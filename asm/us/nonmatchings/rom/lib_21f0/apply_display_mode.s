@@ -4,7 +4,7 @@ glabel apply_display_mode
     /* 2A58 80001E58 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* 2A5C 80001E5C AFBF0014 */  sw         $ra, 0x14($sp)
     /* 2A60 80001E60 3C048003 */  lui        $a0, %hi(gViewportStruct)
-    /* 2A64 80001E64 0C001B50 */  jal        osSetThreadPri
+    /* 2A64 80001E64 0C001B50 */  jal        osViSetMode
     /* 2A68 80001E68 8C84EBFC */   lw        $a0, %lo(gViewportStruct)($a0)
     /* 2A6C 80001E6C 10000001 */  b          .L80001E74
     /* 2A70 80001E70 00000000 */   nop

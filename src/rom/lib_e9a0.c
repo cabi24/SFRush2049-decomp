@@ -134,13 +134,13 @@ extern s32 osEPiRawStartDma(OSPiHandle*,u32,u32),osEPiRawReadIo(OSPiHandle*,u32,
         cHandle->pulse = pihandle->pulse;                            \
     }(void)0
 
-/* PROMOTED 2026-10-01 — osPiSetDeviceTiming
+/* PROMOTED 2026-10-01 — __osEPiRawStartDma (named osPiSetDeviceTiming before the w22g libultra rename)
  * Source:   cloud/work/static_C12/osPiSetDeviceTiming.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C12/osPiSetDeviceTiming.c:osPiSetDeviceTiming (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPiSetDeviceTiming(OSPiHandle* pihandle, s32 direction, u32 devAddr, void* dramAddr, u32 size) {
+s32 __osEPiRawStartDma(OSPiHandle* pihandle, s32 direction, u32 devAddr, void* dramAddr, u32 size) {
     u32 stat;
     u32 domain;
 
@@ -226,14 +226,14 @@ void osSpTaskLoad_full(void* args) {
                 __osPiGetCmdQueue(OS_IM_PI | SR_IBIT4);
             }
 
-            osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+            osSendMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
 
             if (messageSend == 1 && mb->piHandle->transferInfo.block[0].errStatus == LEO_ERROR_GOOD) {
                 messageSend = 0;
                 goto readblock1;
             }
 
-            osJamMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
+            osSendMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
             if (mb->piHandle->transferInfo.blockNum == 1) {
                 osYieldThread();
             }
@@ -256,7 +256,7 @@ void osSpTaskLoad_full(void* args) {
                     ret = dm->edma(mb->piHandle, OS_WRITE, mb->devAddr, mb->dramAddr, mb->size);
                     break;
                 case OS_MESG_TYPE_LOOPBACK:
-                    osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+                    osSendMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
                     ret = -1;
                     break;
                 default:
@@ -266,8 +266,8 @@ void osSpTaskLoad_full(void* args) {
 
             if (ret == 0) {
                 osRecvMesg(dm->evtQueue, &em, OS_MESG_BLOCK);
-                osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
-                osJamMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
+                osSendMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+                osSendMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
             }
         }
     }

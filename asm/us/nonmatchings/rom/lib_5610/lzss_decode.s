@@ -36,7 +36,7 @@ glabel lzss_decode
     /* 577C 80004B7C 00002825 */  or         $a1, $zero, $zero
     /* 5780 80004B80 00003025 */  or         $a2, $zero, $zero
     /* 5784 80004B84 02A03825 */  or         $a3, $s5, $zero
-    /* 5788 80004B88 0C00218C */  jal        __osPiRawStartDma
+    /* 5788 80004B88 0C00218C */  jal        osPiStartDma
     /* 578C 80004B8C AFA90010 */   sw        $t1, 0x10($sp)
     /* 5790 80004B90 26B91000 */  addiu      $t9, $s5, 0x1000
     /* 5794 80004B94 3C018003 */  lui        $at, %hi(gLzssSrc)

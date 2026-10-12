@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osJamMesg
+/* PROMOTED 2026-10-01 — osSendMesg (named osJamMesg before the w22g libultra rename)
  * Source:   cloud/work/static_C7/osJamMesg.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C7/osJamMesg.c:osJamMesg (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osJamMesg(OSMesgQueue* mq, OSMesg msg, s32 flags) {
+s32 osSendMesg(OSMesgQueue* mq, OSMesg msg, s32 flags) {
     register u32 saveMask;
     register s32 last;
 

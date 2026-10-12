@@ -15,7 +15,7 @@ glabel main
     /* 2D18 80002118 27B90020 */  addiu      $t9, $sp, 0x20
     /* 2D1C 8000211C 8FA40060 */  lw         $a0, 0x60($sp)
     /* 2D20 80002120 000FC080 */  sll        $t8, $t7, 2
-    /* 2D24 80002124 0C002074 */  jal        osPiRawReadWord
+    /* 2D24 80002124 0C002074 */  jal        osPiReadIo
     /* 2D28 80002128 03192821 */   addu      $a1, $t8, $t9
     /* 2D2C 8000212C 8FA80064 */  lw         $t0, 0x64($sp)
     /* 2D30 80002130 8FAA0060 */  lw         $t2, 0x60($sp)

@@ -7,13 +7,13 @@
 
 
 
-/* PROMOTED 2026-07-15 — osViSetMode
+/* PROMOTED 2026-07-15 — osViSwapBuffer (named osViSetMode before the w22g libultra rename)
  * Source:   src/rom_auto/osViSetMode.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:src/rom_auto/osViSetMode.c:osViSetMode (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osViSetMode(void *mode) {
+void osViSwapBuffer(void *mode) {
     u32 temp_a0;
 
     temp_a0 = __osDisableInt();

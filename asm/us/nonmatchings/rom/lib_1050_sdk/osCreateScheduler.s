@@ -41,7 +41,7 @@ glabel osCreateScheduler
     /* 10E4 800004E4 27240078 */  addiu      $a0, $t9, 0x78
     /* 10E8 800004E8 0C001A80 */  jal        osCreateMesgQueue
     /* 10EC 800004EC 27250090 */   addiu     $a1, $t9, 0x90
-    /* 10F0 800004F0 0C001A8C */  jal        osSetEventMesg
+    /* 10F0 800004F0 0C001A8C */  jal        osCreateViManager
     /* 10F4 800004F4 240400FE */   addiu     $a0, $zero, 0xFE
     /* 10F8 800004F8 93A8002F */  lbu        $t0, 0x2F($sp)
     /* 10FC 800004FC 3C0A8003 */  lui        $t2, %hi(gViModeTableBase)
@@ -49,34 +49,34 @@ glabel osCreateScheduler
     /* 1104 80000504 00084880 */  sll        $t1, $t0, 2
     /* 1108 80000508 01284821 */  addu       $t1, $t1, $t0
     /* 110C 8000050C 00094900 */  sll        $t1, $t1, 4
-    /* 1110 80000510 0C001B50 */  jal        osSetThreadPri
+    /* 1110 80000510 0C001B50 */  jal        osViSetMode
     /* 1114 80000514 012A2021 */   addu      $a0, $t1, $t2
-    /* 1118 80000518 0C001B68 */  jal        osSetIntMask
+    /* 1118 80000518 0C001B68 */  jal        osViBlack
     /* 111C 8000051C 24040001 */   addiu     $a0, $zero, 0x1
     /* 1120 80000520 8FA50020 */  lw         $a1, 0x20($sp)
     /* 1124 80000524 24040004 */  addiu      $a0, $zero, 0x4
     /* 1128 80000528 2406029B */  addiu      $a2, $zero, 0x29B
-    /* 112C 8000052C 0C001B84 */  jal        osSetEventMesgAlt
+    /* 112C 8000052C 0C001B84 */  jal        osSetEventMesg
     /* 1130 80000530 24A50040 */   addiu     $a1, $a1, 0x40
     /* 1134 80000534 8FA50020 */  lw         $a1, 0x20($sp)
     /* 1138 80000538 24040009 */  addiu      $a0, $zero, 0x9
     /* 113C 8000053C 2406029C */  addiu      $a2, $zero, 0x29C
-    /* 1140 80000540 0C001B84 */  jal        osSetEventMesgAlt
+    /* 1140 80000540 0C001B84 */  jal        osSetEventMesg
     /* 1144 80000544 24A50040 */   addiu     $a1, $a1, 0x40
     /* 1148 80000548 8FA50020 */  lw         $a1, 0x20($sp)
     /* 114C 8000054C 2404000E */  addiu      $a0, $zero, 0xE
     /* 1150 80000550 2406029D */  addiu      $a2, $zero, 0x29D
-    /* 1154 80000554 0C001B84 */  jal        osSetEventMesgAlt
+    /* 1154 80000554 0C001B84 */  jal        osSetEventMesg
     /* 1158 80000558 24A50040 */   addiu     $a1, $a1, 0x40
     /* 115C 8000055C 8FA50020 */  lw         $a1, 0x20($sp)
     /* 1160 80000560 00002025 */  or         $a0, $zero, $zero
     /* 1164 80000564 2406029E */  addiu      $a2, $zero, 0x29E
-    /* 1168 80000568 0C001B84 */  jal        osSetEventMesgAlt
+    /* 1168 80000568 0C001B84 */  jal        osSetEventMesg
     /* 116C 8000056C 24A50040 */   addiu     $a1, $a1, 0x40
     /* 1170 80000570 8FA40020 */  lw         $a0, 0x20($sp)
     /* 1174 80000574 2405029A */  addiu      $a1, $zero, 0x29A
     /* 1178 80000578 93A60033 */  lbu        $a2, 0x33($sp)
-    /* 117C 8000057C 0C001BB4 */  jal        osSetTimerIntr
+    /* 117C 8000057C 0C001BB4 */  jal        osViSetEvent
     /* 1180 80000580 24840040 */   addiu     $a0, $a0, 0x40
     /* 1184 80000584 8FAB0020 */  lw         $t3, 0x20($sp)
     /* 1188 80000588 8FAC0024 */  lw         $t4, 0x24($sp)

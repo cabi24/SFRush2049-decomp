@@ -83,7 +83,7 @@ void func_80010C68(unsigned int *frequency)
 {
     D_80038220 = 1;
     osCreateMesgQueue((OSMesgQueue *) D_800381F8, D_80038210, 4);
-    osSetEventMesgAlt(6, (OSMesgQueue *) D_800381F8, &D_80038220);
+    osSetEventMesg(6, (OSMesgQueue *) D_800381F8, &D_80038220);
     D_8003828C = osAiSetFrequency(*frequency);
     *frequency = D_8003828C;
     D_800381F0 = D_80038018(1024, 128);
@@ -110,14 +110,14 @@ void func_80010D3C(unsigned int *frequency)
  * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80010D74.c:func_80010D74 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern int osJamMesg(OSMesgQueue *, OSMesg, int);
+extern int osSendMesg(OSMesgQueue *, OSMesg, int);
 extern void (*D_8003801C)(void *);
 extern void *D_80038228[];
 void func_80010D74(void)
 {
     unsigned char command[1];
     command[0] = 255;
-    osJamMesg((OSMesgQueue *)D_800381F8, command, 1);
+    osSendMesg((OSMesgQueue *)D_800381F8, command, 1);
     D_8003801C(D_80038228[0]);
     D_8003801C(D_800381F0);
 }
@@ -1247,7 +1247,7 @@ extern void *D_80038380;
 void func_80014550(void)
 {
     osCreateMesgQueue(&D_80038368, &D_80038380, 1);
-    osJamMesg(&D_80038368, 0, 0);
+    osSendMesg(&D_80038368, 0, 0);
 }
 
 /* PROMOTED 2026-10-04 — func_80014594
@@ -1275,7 +1275,7 @@ void func_800145DC(void)
 {
     if (D_8002C5DC > 0) {
         if (--D_8002C5DC == 0) {
-            osJamMesg(&D_80038368, 0, 0);
+            osSendMesg(&D_80038368, 0, 0);
         }
     }
 }
@@ -1299,9 +1299,9 @@ void func_80014624(void)
  */
 #define NULL ((void *)0)
 #define OS_MESG_NOBLOCK 0
-extern s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+extern s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 void func_80014650(void) {
-    osJamMesg(&D_80038368, NULL, OS_MESG_NOBLOCK);
+    osSendMesg(&D_80038368, NULL, OS_MESG_NOBLOCK);
 }
 
 /* PROMOTED 2026-10-11 — func_8001467C

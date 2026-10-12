@@ -68,7 +68,7 @@ glabel display_update
     /* 22EC 800016EC 468041A0 */  cvt.s.w    $ft1, $ft2
     /* 22F0 800016F0 46062283 */  div.s      $ft3, $ft0, $ft1
     /* 22F4 800016F4 E7AA0018 */  swc1       $ft3, 0x18($sp)
-    /* 22F8 800016F8 0C001C74 */  jal        osSetGlobalIntMask
+    /* 22F8 800016F8 0C001C74 */  jal        osSetIntMask
     /* 22FC 800016FC 24040001 */   addiu     $a0, $zero, 0x1
     /* 2300 80001700 AFA20034 */  sw         $v0, 0x34($sp)
     /* 2304 80001704 3C0E8003 */  lui        $t6, %hi(gViewportDataPtr)
@@ -349,7 +349,7 @@ glabel display_update
     /* 2718 80001B18 8C84B014 */  lw         $a0, %lo(gViewportDataPtr)($a0)
     /* 271C 80001B1C 0C001F28 */  jal        osWritebackDCache
     /* 2720 80001B20 24050050 */   addiu     $a1, $zero, 0x50
-    /* 2724 80001B24 0C001C74 */  jal        osSetGlobalIntMask
+    /* 2724 80001B24 0C001C74 */  jal        osSetIntMask
     /* 2728 80001B28 8FA40034 */   lw        $a0, 0x34($sp)
     /* 272C 80001B2C 10000001 */  b          .L80001B34
     /* 2730 80001B30 00000000 */   nop

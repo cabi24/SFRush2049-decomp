@@ -38,13 +38,13 @@ void osContGetQuery(OSContStatus* data) {
     __osContGetStatus(&pattern, data);
 }
 
-/* PROMOTED 2026-10-01 — osContStartReadData2
+/* PROMOTED 2026-10-01 — osContStartReadData (named osContStartReadData2 before the w22g libultra rename)
  * Source:   cloud/work/static_C/osContStartReadData2.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osContStartReadData2.c:osContStartReadData2 (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osContStartReadData2(OSMesgQueue *arg0) {
+s32 osContStartReadData(OSMesgQueue *arg0) {
     s32 temp_v0;
     s32 sp1C;
 

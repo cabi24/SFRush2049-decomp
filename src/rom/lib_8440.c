@@ -7,7 +7,7 @@
 /* Canonical SDK SP-task context; keep shared IO_READ behavior unchanged. */
 extern OSTask gViModeTempBuffer;
 extern OSTask *osViModeTableGet(OSTask *);
-extern void osViModeNtscLan1(OSTask *);
+extern void osSpTaskLoad(OSTask *);
 extern void __osSpSetStatus(u32);
 extern s32 __osSpSetPc(u32);
 extern s32 __osSpDma(s32, u32, void *, u32);
@@ -43,13 +43,13 @@ OSTask* osViModeTableGet(OSTask* intp) {
     return tp;
 }
 
-/* PROMOTED 2026-10-01 — osViModeNtscLan1
+/* PROMOTED 2026-10-01 — osSpTaskLoad (named osViModeNtscLan1 before the w22g libultra rename)
  * Source:   cloud/work/static_C15/osViModeNtscLan1.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C15/osViModeNtscLan1.c:osViModeNtscLan1 (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osViModeNtscLan1(OSTask* intp) {
+void osSpTaskLoad(OSTask* intp) {
     OSTask* tp;
 
 
@@ -76,13 +76,13 @@ void osViModeNtscLan1(OSTask* intp) {
     while (__osSpDma(1, SP_IMEM_START, tp->t.ucode_boot, tp->t.ucode_boot_size) == -1) {}
 }
 
-/* PROMOTED 2026-10-01 — osViModeNtscLpn1
+/* PROMOTED 2026-10-01 — osSpTaskStartGo (named osViModeNtscLpn1 before the w22g libultra rename)
  * Source:   cloud/work/static_C2/osViModeNtscLpn1.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C2/osViModeNtscLpn1.c:osViModeNtscLpn1 (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osViModeNtscLpn1(s32 arg0) {
+void osSpTaskStartGo(s32 arg0) {
     if (__osSpDeviceBusy() != 0) {
         do {
 

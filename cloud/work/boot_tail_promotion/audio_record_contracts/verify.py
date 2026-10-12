@@ -242,9 +242,14 @@ def _verify(out):
     out = Path(out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     identity = compiler_identity()
-    original = checked(['git', 'show', BASE + ':' + TU])
+    # BASE and this packet's sources predate lane w22g's libultra rename: read
+    # them with today's names (static_rename.renamed_source/renamed_locks).
+    from tools.conveyor.pipeline.static_rename import renamed_locks, renamed_source
+    original_old = checked(['git', 'show', BASE + ':' + TU])
+    original = renamed_source(original_old)
     current = (REPO / TU).read_text()
-    base_locks = json.loads(checked(['git','show',BASE + ':matched.lock.json']))
+    base_locks = renamed_locks({TU: original_old},
+                               json.loads(checked(['git','show',BASE + ':matched.lock.json'])))
     baseline = accepted_functions(original, base_locks)
     require(len(baseline) == 35, 'historical baseline must have 35 locked bodies')
     locks = json.loads((REPO / 'matched.lock.json').read_text())
@@ -256,7 +261,8 @@ def _verify(out):
     context.CC = Path(score.ido('cc'))
     sources, contexts = {}, {}
     for name in (*CANDIDATES, CLEANUP):
-        path = HERE / 'sources' / (name + '.c')
+        path = out / (name + '.renamed.c')
+        path.write_text(renamed_source((HERE / 'sources' / (name + '.c')).read_text()))
         result = context.check(name, out, path)
         require(result['status'] == 'ok', name + ': standalone/context refusal: ' + str(result))
         sources[name] = path.read_text()
@@ -287,7 +293,7 @@ def _verify(out):
     require(len({s['linked_text_sha256'] for s in stages.values()}) == 1,
             'whole GNU-linked TU text differs between stages')
     # Original isolated declarations fail even before checking emitted code.
-    old = (REPO / 'cloud/matches/boot_tail/func_80011894.c').read_text()
+    old = renamed_source((REPO / 'cloud/matches/boot_tail/func_80011894.c').read_text())
     pragma = '#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011894.s")'
     old_rejection = compile_tu(original.replace(pragma, old), out, 'old_conflict', True)
     # Wrong selected buffer is source-valid and compiles but must fail strict bytes.

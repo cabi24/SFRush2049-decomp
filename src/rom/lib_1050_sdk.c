@@ -28,14 +28,14 @@ void osCreateScheduler(OSSched *scheduler, void *stack, OSPri priority, u8 mode,
     scheduler->priority = 4;
     osCreateMesgQueue(&scheduler->cmdQueue, scheduler->cmdMsgs, 8);
     osCreateMesgQueue(&scheduler->retQueue, scheduler->retMsgs, 8);
-    osSetEventMesg(254);
-    osSetThreadPri(&gViModeTableBase[mode]);
-    osSetIntMask(1);
-    osSetEventMesgAlt(4, &scheduler->cmdQueue, (OSMesg)667);
-    osSetEventMesgAlt(9, &scheduler->cmdQueue, (OSMesg)668);
-    osSetEventMesgAlt(14, &scheduler->cmdQueue, (OSMesg)669);
-    osSetEventMesgAlt(0, &scheduler->cmdQueue, (OSMesg)670);
-    osSetTimerIntr(&scheduler->cmdQueue, (OSMesg)666, numFields);
+    osCreateViManager(254);
+    osViSetMode(&gViModeTableBase[mode]);
+    osViBlack(1);
+    osSetEventMesg(4, &scheduler->cmdQueue, (OSMesg)667);
+    osSetEventMesg(9, &scheduler->cmdQueue, (OSMesg)668);
+    osSetEventMesg(14, &scheduler->cmdQueue, (OSMesg)669);
+    osSetEventMesg(0, &scheduler->cmdQueue, (OSMesg)670);
+    osViSetEvent(&scheduler->cmdQueue, (OSMesg)666, numFields);
     osCreateThread((OSThread *)scheduler->padB0, 4, __scMain, scheduler, stack, priority);
     osStartThread((OSThread *)scheduler->padB0);
 }
@@ -48,11 +48,11 @@ void osCreateScheduler(OSSched *scheduler, void *stack, OSPri priority, u8 mode,
  */
 void osScAddClient(OSSched *scheduler,OSScClient *client,OSMesgQueue *queue) {
  u32 mask;
- mask=osSetGlobalIntMask(1);
+ mask=osSetIntMask(1);
  client->msgQueue=queue;
  client->next=scheduler->clientList;
  scheduler->clientList=client;
- osSetGlobalIntMask(mask);
+ osSetIntMask(mask);
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
@@ -144,7 +144,7 @@ OSScTask *__scTaskReady(OSSched *scheduler, OSScTask *task) {
     void *next;
     if (task != 0) {
         if ((current = osViGetCurrentFramebuffer()) !=
-            (next = osViGetFramebuffer())) return 0;
+            (next = osViGetNextFramebuffer())) return 0;
         if (__osScPendingSwap != 0 && scheduler->retraceCount - __osScSwapCount < 2U)
             return 0;
         return task;
@@ -163,13 +163,13 @@ s32 __scExecTask(OSSched *scheduler, OSScTask *task)
     int rv;
     if ((task->state & 3) == 0) {
         if (!task->msgQueue) { }
-        rv = osJamMesg(task->msgQueue, task->msg, OS_MESG_BLOCK);
+        rv = osSendMesg(task->msgQueue, task->msg, OS_MESG_BLOCK);
         if (task->type == 1) {
             __osScTaskCount--;
             if ((task->flags & 0x40) && (task->flags & 0x20)) {
                 if (scheduler->retraceCount - __osScSwapCount >= 2U) {
                     __osScSwapCount = scheduler->retraceCount;
-                    osViSetMode(task->framebuffer);
+                    osViSwapBuffer(task->framebuffer);
                     display_mode_tick();
                 } else {
                     __osScPendingSwap = (s32)task->framebuffer;
@@ -192,7 +192,7 @@ s32 __scExecTask(OSSched *scheduler, OSScTask *task)
 void __scHandlePreNMI(OSSched *scheduler) {
  if(scheduler->curRSPTask->type==1) {
   scheduler->curRSPTask->state|=0x10;
-  osDpWait();
+  osSpTaskYield();
  } else {
  }
 }

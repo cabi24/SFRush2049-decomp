@@ -122,7 +122,7 @@ N64Recomp exits 0; `Function count: 2136`; 0.2 s. Emitted (`check_output.py`):
 
 Plus one function N64Recomp found itself: `static_1_80104704` (called from `func_80105480`; it sits
 in an 860-byte opaque run 0x801046FC-0x80104A58 of the game inventory, i.e. a game function the
-inventory misses). The 578 static functions include 4 stubs (empty bodies: `osInvalICache_full`,
+inventory misses). The 578 static functions include 4 stubs (empty bodies: `osInvalICache` (inventory `osInvalICache_full` before w22g),
 `func_8002C5E0` (cache ops), `__osTlbFlush`, `__osTlbInit` (mfc0 EntryHi)), 23 + 5 emitted as
 `NAME_recomp`, and `entrypoint` as `recomp_entrypoint`.
 
@@ -175,13 +175,15 @@ image (B) and runs at 30 frames/s for 120 s; nothing is rasterised (null rendere
   code or the section table references that N64Recomp does not emit: built-in reimplemented
   names in the run and called built-in ignored names as `NAME_recomp`, our `ignored` by name)
   + `hooks` + `images`; `rush2049_images.h` = compressed stream -> recompiled section table.
-- **Why identity.json**: N64Recomp replaces libultra by NAME. The static inventory names ~40
-  libultra functions wrongly (ultralib VERSION_J): e.g. `osJamMesg`/`osSendMesg` are swapped,
-  `osViSetMode` is `osViSwapBuffer`, `osSetEventMesg` is `osCreateViManager`, `osSetTimerIntr`
-  is `osViSetEvent`, `osViModeNtscLan1/Lpn1` are `osSpTaskLoad/StartGo`. Without the renames
-  the host replaces the wrong functions and the real ones poke hardware registers (boot
-  segfaults in `osPiRawReadIo` in `main`). Names ending `_rx` are deliberate non-canonical
-  names for functions that must stay emitted (or be shimmed). Inventory/coverage unchanged.
+- **Why identity.json**: N64Recomp replaces libultra by NAME. Lane w21r found 43 static
+  libultra functions named wrongly in the inventory (ultralib VERSION_J): e.g. `osJamMesg`/
+  `osSendMesg` were swapped, `osViSetMode` was `osViSwapBuffer`. Without the right names the
+  host replaces the wrong functions and the real ones poke hardware registers (boot segfaults
+  in `osPiRawReadIo` in `main`). Lane w22g renamed them in the inventory itself
+  (docs/SYMBOL_MISATTRIBUTION.md); identity.json keeps only the 11 whose recompiler name must
+  differ from the canonical one: names ending `_rx` are deliberate non-canonical names for
+  functions that must stay emitted (or be shimmed), and the PI raw DMA functions keep their
+  pre-J names (`osPiRawStartDma`, `osEPiRawStartDma`) for N64Recomp's lists.
 - **Hooks**: `rush_hook_inflate` at `inflate_entry` entry maps the stream ROM offset to the
   recompiled section and calls `unload_overlays`/`load_overlays` (game image 0xB0CB10 ->
   0x80086A50; A 0xB5C534 / B 0xB6FEC4 -> 0x8038A400, unloading whatever is there). The

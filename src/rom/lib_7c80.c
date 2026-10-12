@@ -46,7 +46,7 @@ void osStartThread(OSThread* t) {
     __osRestoreInt(saveMask);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7c80/osSetGlobalIntMask.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7c80/osSetIntMask.s")
 /* PROMOTED 2026-10-01 — osRecvMesg
  * Source:   cloud/work/static_C4/osRecvMesg.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared

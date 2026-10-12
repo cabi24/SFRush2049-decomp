@@ -121,3 +121,8 @@ not run. The final packet regression passes in 0.21 seconds; the no-IDO arm
 skips, and REQUIRE_TOOLCHAIN=1 converts that missing-tool skip to a failure.
 C89 32-bit syntax and protected-path guard also pass. Hosted CI is reported in
 the PR separately, tied to its exact published head.
+
+A subsequent publication refresh incorporates master `3ef036222` unchanged.
+The only merge conflict was the adjacent CLAIMS row: current master's renamed
+tooling row is retained and this packet's overlay claim is appended. The full
+source/recipe/receipt are unchanged and their strict replay passes on that base.

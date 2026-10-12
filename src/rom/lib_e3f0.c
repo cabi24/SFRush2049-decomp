@@ -4,11 +4,11 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPiWriteWord
+/* PROMOTED 2026-10-01 — __osSiRawWriteIo (named osPiWriteWord before the w22g libultra rename)
  * Source:   cloud/work/static_C5/osPiWriteWord.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C5/osPiWriteWord.c:osPiWriteWord (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPiWriteWord(u32 devAddr, u32 data) { if (__osPiDeviceBusy()) return -1; *(volatile u32 *)(devAddr | 0xA0000000U) = data; return 0; }
+s32 __osSiRawWriteIo(u32 devAddr, u32 data) { if (__osPiDeviceBusy()) return -1; *(volatile u32 *)(devAddr | 0xA0000000U) = data; return 0; }
 

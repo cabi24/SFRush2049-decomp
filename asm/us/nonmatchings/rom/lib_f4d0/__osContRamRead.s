@@ -114,7 +114,7 @@ glabel __osContRamRead
     /* F66C 8000EA6C 11620008 */  beq        $t3, $v0, .L8000EA90
     /* F670 8000EA70 00000000 */   nop
     /* F674 8000EA74 02C02025 */  or         $a0, $s6, $zero
-    /* F678 8000EA78 0C003988 */  jal        osContStartReadData
+    /* F678 8000EA78 0C003988 */  jal        __osPfsGetStatus
     /* F67C 8000EA7C 02202825 */   or        $a1, $s1, $zero
     /* F680 8000EA80 1440000D */  bnez       $v0, .L8000EAB8
     /* F684 8000EA84 00409825 */   or        $s3, $v0, $zero

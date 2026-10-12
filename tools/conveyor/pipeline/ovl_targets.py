@@ -280,7 +280,13 @@ def generate(image, rom, game, out_root=OUT):
     region.write_text(render(image, img, found, base))
     symbols = dict(json.loads(GAME_SYMBOLS.read_text())["symbols"])
     if image == "boot_tail":
-        symbols.update(static_symbols())
+        # Static code: the game symbols carry the game-side (pre-rename)
+        # names of renamed static functions; boot-tail C uses the static ones.
+        from .blob_tu import game_legacy_names
+        static = static_symbols()
+        for legacy in set(game_legacy_names().values()) - set(static):
+            symbols.pop(legacy, None)
+        symbols.update(static)
     symbols.update({name(f["address"]): f"0x{f['address']:08X}" for f in found["functions"]})
     label = "BOOT_TAIL" if image == "boot_tail" else image.upper()
     (out / "symbols.json").write_text(json.dumps({

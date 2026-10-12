@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPfsChecker_full
+/* PROMOTED 2026-10-01 — osStopThread (named osPfsChecker_full before the w22g libultra rename)
  * Source:   cloud/work/static_C11/osPfsChecker_full.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C11/osPfsChecker_full.c:osPfsChecker_full (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osPfsChecker_full(OSThread* t) {
+void osStopThread(OSThread* t) {
     register u32 saveMask = __osDisableInt();
     register u16 state;
 
@@ -31,13 +31,13 @@ void osPfsChecker_full(OSThread* t) {
     __osRestoreInt(saveMask);
 }
 
-/* PROMOTED 2026-10-01 — osPfsReAllocate
+/* PROMOTED 2026-10-01 — osGetThreadId (named osPfsReAllocate before the w22g libultra rename)
  * Source:   cloud/work/static_C6/osPfsReAllocate.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C6/osPfsReAllocate.c:osPfsReAllocate (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-OSId osPfsReAllocate(OSThread* thread) {
+OSId osGetThreadId(OSThread* thread) {
     if (thread == NULL) {
         thread = __osRunningThread;
     }

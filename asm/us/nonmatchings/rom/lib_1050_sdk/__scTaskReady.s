@@ -12,7 +12,7 @@ glabel __scTaskReady
     /* 17C4 80000BC4 0C001DE4 */  jal        osViGetCurrentFramebuffer
     /* 17C8 80000BC8 00000000 */   nop
     /* 17CC 80000BCC 00408025 */  or         $s0, $v0, $zero
-    /* 17D0 80000BD0 0C001DF4 */  jal        osViGetFramebuffer
+    /* 17D0 80000BD0 0C001DF4 */  jal        osViGetNextFramebuffer
     /* 17D4 80000BD4 AFB0002C */   sw        $s0, 0x2C($sp)
     /* 17D8 80000BD8 AFA20028 */  sw         $v0, 0x28($sp)
     /* 17DC 80000BDC 8FAF0028 */  lw         $t7, 0x28($sp)

@@ -105,7 +105,7 @@ SECTIONS
         ASSERT(ABSOLUTE(rom_text_lib_8700_START) == 0x80007b00, "original text owner moved");
         ASSERT(rom_text_lib_8700_INPUT_END == rom_text_lib_8700_START + 0xa0 || rom_text_lib_8700_INPUT_END == rom_text_lib_8700_START + 0x100, "unproven text owner extent");
         ASSERT(ABSOLUTE(osDpSetNextBuffer) == 0x80007b00, "original text alias moved");
-        ASSERT(ABSOLUTE(osDpWait) == 0x80007b80, "original text alias moved");
+        ASSERT(ABSOLUTE(osSpTaskYield) == 0x80007b80, "original text alias moved");
         ASSERT(ABSOLUTE(strchr) == 0x80007c00, "original text alias moved");
         FILL(0x00000000);
         . = rom_text_lib_8700_START + 0x100;
