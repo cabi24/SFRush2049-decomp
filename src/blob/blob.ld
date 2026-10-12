@@ -2260,7 +2260,6 @@ SECTIONS
     PROVIDE(__osContQueryMesg = 0x80037B20);
     PROVIDE(__osMotorPifBuf = 0x80037B30);
     PROVIDE(__osCurrentTime = 0x80037C50);
-    PROVIDE(gViTimeAccumLo = 0x80037C54);
     PROVIDE(__osBaseCounter = 0x80037C58);
     PROVIDE(__osViIntrCount = 0x80037C5C);
     PROVIDE(__osTimerCounter = 0x80037C60);
