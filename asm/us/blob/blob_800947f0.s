@@ -183,6 +183,7 @@ func_80094A4C:
 .section .text.audio_channel_priority, "ax", @progbits
 .globl audio_channel_priority
 audio_channel_priority:
+    /* compiled from src/blob/audio_channel_priority.c */
     .word 0x27BDFFE0
     .word 0xAFB5001C
     .word 0xAFB40018
