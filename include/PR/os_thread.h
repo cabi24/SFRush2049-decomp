@@ -64,9 +64,9 @@ void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
                     void *arg, void *sp, OSPri priority);
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
-/* Historical name at 0x80006D40: this target sets the VI mode. */
-void osSetThreadPri(void *mode);
-OSPri osGetThreadPri(OSThread *thread);
+void osViSetMode(void *mode);
+/* osGetThreadPri: no prototype here; the locked body (src/rom/lib_cc50.c, named
+ * dll_get_priority before w22g) takes void *, and its callers declare it locally. */
 OSId osGetThreadId(OSThread *thread);
 OSThread *__osPopThread(OSThread **queue);
 void __osEnqueueThread(OSThread **queue, OSThread *thread);

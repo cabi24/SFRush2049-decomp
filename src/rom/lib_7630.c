@@ -18,12 +18,12 @@ static OSIoMesg gViMgrEventSP;
 extern u64 gViTimeAccumHi;
 extern u32 gViLastCount, gViRetraceCount;
 extern void dll_init(void), dll_update(void), osViInit(void);
-extern s32 dll_get_priority(void *);
+extern s32 osGetThreadPri(void *);
 extern s32 osGetActiveQueue(void); /* Preserve accepted pointer-valued s32 getter. */
 void vi_manager_main(void *);
 #define OS_EVENT_VI 7
 #define OS_EVENT_COUNTER 3
-void osSetEventMesg(OSPri pri) {
+void osCreateViManager(OSPri pri) {
     u32 savedMask;
     OSPri oldPri;
     OSPri myPri;
@@ -41,14 +41,14 @@ void osSetEventMesg(OSPri pri) {
     gViMgrEventSP.hdr.type = OS_MESG_TYPE_COUNTER;
     gViMgrEventSP.hdr.pri = OS_MESG_PRI_NORMAL;
     gViMgrEventSP.hdr.retQueue = NULL;
-    osSetEventMesgAlt(OS_EVENT_VI, &gViMgrMesgQueue, &gViMgrEventDP);
-    osSetEventMesgAlt(OS_EVENT_COUNTER, &gViMgrMesgQueue, &gViMgrEventSP);
+    osSetEventMesg(OS_EVENT_VI, &gViMgrMesgQueue, &gViMgrEventDP);
+    osSetEventMesg(OS_EVENT_COUNTER, &gViMgrMesgQueue, &gViMgrEventSP);
     oldPri = -1;
-    myPri = dll_get_priority(NULL);
+    myPri = osGetThreadPri(NULL);
 
     if (myPri < pri) {
         oldPri = myPri;
-        osCreateViManager(NULL, pri);
+        osSetThreadPri(NULL, pri);
     }
 
     savedMask = __osDisableInt();
@@ -65,7 +65,7 @@ void osSetEventMesg(OSPri pri) {
     __osRestoreInt(savedMask);
 
     if (oldPri != -1) {
-        osCreateViManager(NULL, oldPri);
+        osSetThreadPri(NULL, oldPri);
     }
 }
 
@@ -97,7 +97,7 @@ void vi_manager_main(void* arg) {
                 if (gViMgrRetraceCounter == 0) {
                     vc = (__OSViContext *)osGetActiveQueue();
                     if (vc->msgq != NULL) {
-                        osJamMesg(vc->msgq, vc->msg, OS_MESG_NOBLOCK);
+                        osSendMesg(vc->msgq, vc->msg, OS_MESG_NOBLOCK);
                     }
                     gViMgrRetraceCounter = vc->retraceCount;
                 }

@@ -18,7 +18,7 @@ glabel __scExecTask
     /* 1888 80000C88 8FA90024 */  lw         $t1, 0x24($sp)
     /* 188C 80000C8C 24060001 */  addiu      $a2, $zero, 0x1
     /* 1890 80000C90 8D240050 */  lw         $a0, 0x50($t1)
-    /* 1894 80000C94 0C001D78 */  jal        osJamMesg
+    /* 1894 80000C94 0C001D78 */  jal        osSendMesg
     /* 1898 80000C98 8D250054 */   lw        $a1, 0x54($t1)
     /* 189C 80000C9C AFA2001C */  sw         $v0, 0x1C($sp)
     /* 18A0 80000CA0 8FAA0024 */  lw         $t2, 0x24($sp)
@@ -52,7 +52,7 @@ glabel __scExecTask
     /* 1910 80000D10 8D8D027C */  lw         $t5, 0x27C($t4)
     /* 1914 80000D14 AC2DAFA8 */  sw         $t5, %lo(__osScSwapCount)($at)
     /* 1918 80000D18 8FAE0024 */  lw         $t6, 0x24($sp)
-    /* 191C 80000D1C 0C001D64 */  jal        osViSetMode
+    /* 191C 80000D1C 0C001D64 */  jal        osViSwapBuffer
     /* 1920 80000D20 8DC4000C */   lw        $a0, 0xC($t6)
     /* 1924 80000D24 0C000758 */  jal        display_mode_tick
     /* 1928 80000D28 00000000 */   nop

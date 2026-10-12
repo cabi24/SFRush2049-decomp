@@ -194,8 +194,8 @@
       "kind": "bss",
       "active": true,
       "tu": "src/rom/lib_7630.c",
-      "source": "cloud/work/integration_B18/lib_7630.c",
-      "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+      "source": "cloud/work/frontier/w22g/rebind/lib_7630.c",
+      "source_sha256": "c5307ac9705e04dd5253dd8c1d06e1f8e1852f1181ade30b48e79192918b7e51",
       "tu_before_source": "cloud/work/integration_B18/lib_7630_before.c",
       "tu_before_sha256": "4af80035fc31c01579675a6ac0de620194a6a471b82e09b5997a95d4d10d02cf",
       "passthrough_asm": "asm/us/7630.s",
@@ -209,7 +209,7 @@
       "vram_start": "0x800354F0",
       "size": "0x1220",
       "members": [
-        "osSetEventMesg",
+        "osCreateViManager",
         "vi_manager_main"
       ],
       "aliases": [
@@ -248,7 +248,7 @@
         {
           "path": "include/PR/os_thread.h",
           "source": "cloud/work/integration_B18/os_thread_proposed.h",
-          "sha256": "1ab29a9e77fcfeae0f2b106b4fbec77fca53f2df4273240ea6b937e25a9845f6",
+          "sha256": "fea1c5c918099102af7192a8cec76556adbd8440d22f7f51fbc0e5b81d2921eb",
           "before_source": "cloud/work/integration_B18/os_thread_before.h",
           "before_sha256": "718904ed6f51d6f423e64e9c49e5a0ee96d33d6e6768bf567e3e97b3e43784a2"
         }
@@ -265,8 +265,8 @@
       "activation_mode": "existing_tu",
       "active": true,
       "tu": "src/rom/lib_cc50.c",
-      "source": "cloud/work/static_C16/candidate.c",
-      "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
+      "source": "cloud/work/frontier/w22g/rebind/candidate.c",
+      "source_sha256": "ff6bc3dcb38adda889342c58063d49a0ed2f0af2c26566220f50da80617e082b",
       "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
       "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
       "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
@@ -276,7 +276,7 @@
         "dll_update",
         "dll_reschedule",
         "dll_insert",
-        "dll_get_priority"
+        "osGetThreadPri"
       ],
       "new_members": [
         "dll_init"
@@ -291,7 +291,7 @@
           "verified_at": "2026-10-01"
         },
         "dll_update": {
-          "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
+          "body_sha256": "ea58f872328380330e951f7e7a1126401ca8406c23cbde47d91ff52a9a0f7c97",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
           "target_id": "dll_update",
           "toolkit_sha": null,
@@ -314,10 +314,10 @@
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
         },
-        "dll_get_priority": {
-          "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
+        "osGetThreadPri": {
+          "body_sha256": "ba89309c36f7bfb4f5743bebb074a067575eebc41fc009b924bcdb6e837ecf04",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-          "target_id": "dll_get_priority",
+          "target_id": "osGetThreadPri",
           "toolkit_sha": null,
           "verified": "rom-sha1",
           "verified_at": "2026-07-15"
@@ -357,10 +357,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/integration_B24/strict_verification.json",
-      "context_proof": "cloud/work/integration_B24/context_hashes.json",
+      "context_proof": "cloud/work/frontier/w22g/rebind/timer_services_context_hashes.json",
       "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
       "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
-      "context_proof_sha256": "00add995ee9d3d943f4abd38477eb00cd2c22b94f14d156882ddd2e520b6673e",
+      "context_proof_sha256": "ecbf760f161bf3ea34c8fb0151159d0e3eff4dfb788555152ce8279031738e1d",
       "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
       "data_slot": {
         "owner": "timer_services_pointer",
@@ -384,8 +384,8 @@
       "activation_mode": "existing_tu",
       "active": true,
       "tu": "src/rom/lib_8a80.c",
-      "source": "cloud/work/static_C18/full_module.c",
-      "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",
+      "source": "cloud/work/frontier/w22g/rebind/full_module.c",
+      "source_sha256": "3d314f02ac0f95d6587c8db009ef81fb75c6b78f429a56e34c3966869de386e3",
       "tu_before_source": "cloud/work/integration_B26/lib_8a80_before.c",
       "tu_before_sha256": "9464866c77f194f86aa65deddf7e168be516700b5d41274faef95935adb820e1",
       "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
@@ -420,10 +420,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/static_C19/strict_verification.json",
-      "context_proof": "cloud/work/boot_tail_extension/sdk_initialize_compiler_context.json",
+      "context_proof": "cloud/work/frontier/w22g/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "45d1a18391a3c6875ef7727ab7faac7869b05a35c0ece6204cae3ee72776bc7c",
+      "context_proof_sha256": "2c25521d226e06a8cc331c1c4973d1a679cacb52a081ed21a96c72ec075d29fa",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",
@@ -446,7 +446,7 @@
     {
       "owner": "lib_8700",
       "tu": "src/rom/lib_8700.c",
-      "function": "osDpWait",
+      "function": "osSpTaskYield",
       "rom_start": "0x8700",
       "vram_start": "0x80007b00",
       "next_rom_start": "0x8800",
@@ -456,11 +456,11 @@
       "padding_bytes": 96,
       "retail_extent_sha256": "db5545f782938a0c57331625e5d11d0dc7c06d385d9e7013604a52b12c4771fa",
       "padding_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
-      "asm_authority": "cloud/work/integration_B22_followup/endpoint_proof.json",
-      "asm_authority_sha256": "a9a201d24aad873390bf04ca854e58feaa5c06cfdd6208d47163a88b8e14a28f",
-      "source": "cloud/work/static_C14/osDpWait.c",
-      "source_sha256": "36ca248a016bb2dad5565f7847503faa2120a9143152115ffd1d2199b7de9068",
-      "body_sha256": "ef6caac183c7f6d610dd5f4c1b71912c716cf3bf7224d7ebd485d0ebe1102881",
+      "asm_authority": "cloud/work/frontier/w22g/rebind/lib_8700_endpoint_proof.json",
+      "asm_authority_sha256": "01c9ee0a47a7d2a3833bcf0f92515609c991e983640dd365eced681658526d7f",
+      "source": "cloud/work/frontier/w22g/rebind/osSpTaskYield.c",
+      "source_sha256": "0f0bdf4708ce985ac89fa288d09a7a7cd5807de82112983e6674e7e5b41ca5c5",
+      "body_sha256": "be21642fd0935e78458008d68fc450c5c8be9dd2d03b3c79db10b5d5456c3d0a",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "aliases": [
         {
@@ -468,7 +468,7 @@
           "offset": 0
         },
         {
-          "symbol": "osDpWait",
+          "symbol": "osSpTaskYield",
           "offset": 128
         },
         {

@@ -42,7 +42,7 @@ glabel __scExec
     /* 1AB0 80000EB0 AC2EE8E0 */  sw         $t6, %lo(__osScRetraceTimeHi)($at)
     /* 1AB4 80000EB4 AC2FE8E4 */  sw         $t7, %lo(__osScRetraceTimeLo)($at)
   .L80000EB8:
-    /* 1AB8 80000EB8 0C001E04 */  jal        osInvalICache
+    /* 1AB8 80000EB8 0C001E04 */  jal        osWritebackDCacheAll
     /* 1ABC 80000EBC 00000000 */   nop
     /* 1AC0 80000EC0 8FAD0024 */  lw         $t5, 0x24($sp)
     /* 1AC4 80000EC4 2401FFCF */  addiu      $at, $zero, -0x31
@@ -50,10 +50,10 @@ glabel __scExec
     /* 1ACC 80000ECC 0301C824 */  and        $t9, $t8, $at
     /* 1AD0 80000ED0 ADB90004 */  sw         $t9, 0x4($t5)
     /* 1AD4 80000ED4 8FA40024 */  lw         $a0, 0x24($sp)
-    /* 1AD8 80000ED8 0C001E53 */  jal        osViModeNtscLan1
+    /* 1AD8 80000ED8 0C001E53 */  jal        osSpTaskLoad
     /* 1ADC 80000EDC 24840010 */   addiu     $a0, $a0, 0x10
     /* 1AE0 80000EE0 8FA40024 */  lw         $a0, 0x24($sp)
-    /* 1AE4 80000EE4 0C001EAD */  jal        osViModeNtscLpn1
+    /* 1AE4 80000EE4 0C001EAD */  jal        osSpTaskStartGo
     /* 1AE8 80000EE8 24840010 */   addiu     $a0, $a0, 0x10
     /* 1AEC 80000EEC 8FA80024 */  lw         $t0, 0x24($sp)
     /* 1AF0 80000EF0 8FA90020 */  lw         $t1, 0x20($sp)

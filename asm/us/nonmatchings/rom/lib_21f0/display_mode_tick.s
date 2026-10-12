@@ -28,11 +28,11 @@ glabel display_mode_tick
     /* 29BC 80001DBC 314BFFFF */  andi       $t3, $t2, 0xFFFF
     /* 29C0 80001DC0 156E0003 */  bne        $t3, $t6, .L80001DD0
     /* 29C4 80001DC4 00000000 */   nop
-    /* 29C8 80001DC8 0C001B68 */  jal        osSetIntMask
+    /* 29C8 80001DC8 0C001B68 */  jal        osViBlack
     /* 29CC 80001DCC 00002025 */   or        $a0, $zero, $zero
   .L80001DD0:
     /* 29D0 80001DD0 3C048003 */  lui        $a0, %hi(gViewportDataPtr)
-    /* 29D4 80001DD4 0C001B50 */  jal        osSetThreadPri
+    /* 29D4 80001DD4 0C001B50 */  jal        osViSetMode
     /* 29D8 80001DD8 8C84B014 */   lw        $a0, %lo(gViewportDataPtr)($a0)
     /* 29DC 80001DDC 0C001F48 */  jal        osViSetSpecialFeatures
     /* 29E0 80001DE0 240400AA */   addiu     $a0, $zero, 0xAA

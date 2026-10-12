@@ -23,7 +23,7 @@ glabel __scHandleRetrace
     /* 14CC 800008CC 1420000D */  bnez       $at, .L80000904
     /* 14D0 800008D0 00000000 */   nop
     /* 14D4 800008D4 3C048003 */  lui        $a0, %hi(__osScPendingSwap)
-    /* 14D8 800008D8 0C001D64 */  jal        osViSetMode
+    /* 14D8 800008D8 0C001D64 */  jal        osViSwapBuffer
     /* 14DC 800008DC 8C84AFA4 */   lw        $a0, %lo(__osScPendingSwap)($a0)
     /* 14E0 800008E0 0C000758 */  jal        display_mode_tick
     /* 14E4 800008E4 00000000 */   nop
@@ -43,7 +43,7 @@ glabel __scHandleRetrace
     /* 1514 80000914 8FAE0028 */  lw         $t6, 0x28($sp)
     /* 1518 80000918 8FA50030 */  lw         $a1, 0x30($sp)
     /* 151C 8000091C 00003025 */  or         $a2, $zero, $zero
-    /* 1520 80000920 0C001D78 */  jal        osJamMesg
+    /* 1520 80000920 0C001D78 */  jal        osSendMesg
     /* 1524 80000924 8DC40004 */   lw        $a0, 0x4($t6)
     /* 1528 80000928 8FB90028 */  lw         $t9, 0x28($sp)
     /* 152C 8000092C 8F280000 */  lw         $t0, 0x0($t9)

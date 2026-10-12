@@ -157,23 +157,21 @@ typedef struct {
 extern void __scAppendList(OSSched *sc, OSScTask *task);
 extern void __scExec(OSSched *sc, OSScTask *rspTask, OSScTask *rdpTask);
 
-/* osViSetMode/display_mode_tick (symbol_addrs.us.txt names for these two
- * addresses); osViSetMode's caller here passes a task framebuffer pointer,
- * not necessarily a real OSViMode*, so keep the param generic. */
-extern void osViSetMode(void *mode);
+/* osViSwapBuffer/display_mode_tick (symbol_addrs.us.txt names for these two
+ * addresses); osViSwapBuffer takes the next framebuffer pointer. */
+extern void osViSwapBuffer(void *mode);
 extern void display_mode_tick(void);
 
-/* --- Inflate double-buffers + full PI DMA request (this ROM's
- * __osPiRawStartDma is the 7-arg osPiStartDma-shaped call: mb, priority,
- * direction, devAddr, dramAddr, size, mq). */
+/* --- Inflate double-buffers + full PI DMA request (libultra osPiStartDma:
+ * mb, priority, direction, devAddr, dramAddr, size, mq). */
 extern u8 gInflateBufferA[0x1000];
 extern u8 gInflateBufferB[0x1000];
-extern s32 __osPiRawStartDma(OSIoMesg *mb, s32 priority, s32 direction,
+extern s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
                               u32 devAddr, void *dramAddr, u32 size,
                               OSMesgQueue *mq);
 
-/* --- PI manager (symbol_addrs.us.txt: osPiInit/osPiGetAccess/
- * osPiReleaseAccess/__osPiMgrState, standard libultra signatures). */
+/* --- PI manager (symbol_addrs.us.txt: osPiInit/__osPiGetAccess/
+ * __osPiRelAccess/__osPiMgrState, standard libultra signatures). */
 typedef struct {
     s32 flag;   /* 0x00 */
     u8 pad04[0x8 - 0x4];
@@ -183,15 +181,15 @@ typedef struct {
 
 extern __OSPiMgrState __osPiMgrState;
 extern void osPiInit(void);
-extern void osPiGetAccess(void);
-extern void osPiReleaseAccess(void);
+extern void __osPiGetAccess(void);
+extern void __osPiRelAccess(void);
 extern u32 osRomBase;
 
 /* --- RCP/timer/scheduler internals confirmed against ultralib
  * (os_internal_reg.h, os_internal_rsp.h). */
 extern void __osSetCompare(u32 compare);
 extern void __osSpSetStatus(u32 status);
-extern void osDpWait(void);
+extern void osSpTaskYield(void);
 
 /* --- __setfpcsr/game_loop: audio_thread_entry sets the FPU control/status
  * register once then loops calling the dynamic per-frame game state
@@ -224,17 +222,15 @@ typedef struct __OSTimerNode_s {
 
 extern OSTimer *__osTimerList; /* canonical timer layout; overlay above remains available */
 
-/* --- idle_thread_entry calls this with (NULL, 0); its own body defaults
- * a NULL thread arg to __osRunningThread and compares the priority arg
- * against thread->priority, so it takes an explicit thread + OSPri rather
- * than the single-arg real SDK osCreateViManager. */
-extern void osCreateViManager(OSThread *thread, OSPri priority);
+/* --- idle_thread_entry calls this with (NULL, 0): libultra osSetThreadPri
+ * (a NULL thread means __osRunningThread). */
+extern void osSetThreadPri(OSThread *thread, OSPri priority);
 
 /* --- Already-implemented functions (src/util/dma.c, src/libultra/
  * os_thread.c, src/libultra/os_vi.c) not visible to m2c's header-only
  * type context; declare their real signatures so callers type-check. */
 extern void dma_queue_init(void);
-extern void osSetIntMask(s32 mask);
+extern void osViBlack(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 
 /* --- Game thread stack (symbol_addrs.us.txt: "game thread stack base"),

@@ -22,4 +22,4 @@ void osWritebackDCache_full(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
   }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_92f0/osWritebackDCacheAll.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_92f0/rmonPrintf.s")

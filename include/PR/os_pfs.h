@@ -150,14 +150,6 @@ s32 osPfsChecker(OSPfs *pfs);
 s32 osPfsRepairId(OSPfs *pfs);
 s32 osPfsAllocateFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                       u8 *gameName, u8 *extName, s32 size, s32 *fileNo);
-/* Historical label: retail implementation is SDK __osPfsReleasePages. */
-s32 osPfsFindFile(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
-                  __OSInodeUnit *nextPage);
-/* Historical label: retail implementation is SDK osPfsFileState. */
-s32 osPfsDeleteFile(OSPfs *pfs, s32 fileNo, OSPfsState *state);
-/* Historical label: retail implementation is SDK osPfsAllocateFile. */
-s32 osPfsReadWriteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                       u8 *gameName, u8 *extName, int size, s32 *fileNo);
 s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state);
 s32 osPfsGetLabel(OSPfs *pfs, u8 *label, s32 *length);
 s32 osPfsSetLabel(OSPfs *pfs, u8 *label);
@@ -167,10 +159,10 @@ s32 osPfsNumFiles(OSPfs *pfs, s32 *maxFiles, s32 *usedFiles);
 /* Internal PFS Functions */
 s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);
 s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode, u8 flag, u8 bank);
-/* Historical label: retail implementation is SDK osPfsFindFile. */
-s32 osPfsAllocate(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                   u8 *gameName, u8 *extName, s32 *fileNo);
-/* Historical symbol: retail body implements SDK osGetThreadId. */
-OSId osPfsReAllocate(OSThread *thread);
+s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
+                  u8 *gameName, u8 *extName, s32 *fileNo);
+/* VERSION_J __osPfsReleasePages (io/pfsdeletefile.c). */
+s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
+                        __OSInodeUnit *last_page);
 
 #endif /* _OS_PFS_H_ */

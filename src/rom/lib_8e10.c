@@ -7,13 +7,13 @@
 
 
 
-/* PROMOTED 2026-10-01 — osCreateViManager
+/* PROMOTED 2026-10-01 — osSetThreadPri (named osCreateViManager before the w22g libultra rename)
  * Source:   cloud/work/static_C8/osCreateViManager.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/osCreateViManager.c:osCreateViManager (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osCreateViManager(OSThread* t, OSPri pri) {
+void osSetThreadPri(OSThread* t, OSPri pri) {
     register u32 saveMask;
 
 
@@ -39,4 +39,4 @@ void osCreateViManager(OSThread* t, OSPri pri) {
 
     __osRestoreInt(saveMask);
 }
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osInvalICache_full.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osInvalICache.s")

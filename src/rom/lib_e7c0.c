@@ -13,16 +13,16 @@
 void osPiInit(void) {
     __osPiInitialized = 1;
     osCreateMesgQueue(&__osPiMesgQueue, &__osPiMesg, 1);
-    osJamMesg(&__osPiMesgQueue, NULL, 0);
+    osSendMesg(&__osPiMesgQueue, NULL, 0);
 }
 
-/* PROMOTED 2026-10-01 — osPiGetAccess
+/* PROMOTED 2026-10-01 — __osPiGetAccess (named osPiGetAccess before the w22g libultra rename)
  * Source:   cloud/work/static_C/osPiGetAccess.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osPiGetAccess.c:osPiGetAccess (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osPiGetAccess(void) {
+void __osPiGetAccess(void) {
     void *sp1C;
 
     if (__osPiInitialized == 0) {
@@ -31,23 +31,23 @@ void osPiGetAccess(void) {
     osRecvMesg(&__osPiMesgQueue, &sp1C, 1);
 }
 
-/* PROMOTED 2026-10-01 — osPiReleaseAccess
+/* PROMOTED 2026-10-01 — __osPiRelAccess (named osPiReleaseAccess before the w22g libultra rename)
  * Source:   cloud/work/static_C/osPiReleaseAccess.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osPiReleaseAccess.c:osPiReleaseAccess (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osPiReleaseAccess(void) {
-    osJamMesg(&__osPiMesgQueue, NULL, 0);
+void __osPiRelAccess(void) {
+    osSendMesg(&__osPiMesgQueue, NULL, 0);
 }
 
-/* PROMOTED 2026-10-01 — osPiReadWord
+/* PROMOTED 2026-10-01 — __osPiRawReadIo (named osPiReadWord before the w22g libultra rename)
  * Source:   cloud/work/static_C8/osPiReadWord.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/osPiReadWord.c:osPiReadWord (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPiReadWord(u32 devAddr, u32* data) {
+s32 __osPiRawReadIo(u32 devAddr, u32* data) {
     register u32 stat;
 
 

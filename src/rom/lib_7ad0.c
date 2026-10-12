@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-07-15 — osSetTimerIntr
+/* PROMOTED 2026-07-15 — osViSetEvent (named osSetTimerIntr before the w22g libultra rename)
  * Source:   src/rom_auto/osSetTimerIntr.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:src/rom_auto/osSetTimerIntr.c:osSetTimerIntr (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osSetTimerIntr(OSMesgQueue *arg0, void *arg1, s32 arg2) {
+void osViSetEvent(OSMesgQueue *arg0, void *arg1, s32 arg2) {
     u32 temp_a0;
 
     temp_a0 = __osDisableInt();

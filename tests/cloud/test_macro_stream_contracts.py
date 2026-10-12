@@ -127,11 +127,15 @@ def test_stream_record_is_identical_across_adapted_paths_and_production():
 
 
 def test_accepted_function_bodies_and_passthroughs_unchanged():
+    # Lane w22g renamed static libultra callees after the freeze: compare the
+    # frozen bodies with that rename applied (static_rename's permutation).
+    from tools.conveyor.pipeline.static_rename import load_map, mapping, permute_c
+    renames=mapping(load_map(ROOT/'cloud/work/frontier/w22g/renames.json'))
     for group in v.GROUPS:
         frozen=v.bodies(v.frozen('src/rom/'+group+'.c'))
         current=v.bodies((ROOT/'src/rom'/(group+'.c')).read_text())
         for fn in v.EXISTING[group]:
-            assert v.body_hash(frozen[fn])==v.body_hash(current[fn])
+            assert v.body_hash(permute_c(frozen[fn],renames))==v.body_hash(current[fn])
 
 
 @pytest.mark.parametrize('words,symbols,reason',[

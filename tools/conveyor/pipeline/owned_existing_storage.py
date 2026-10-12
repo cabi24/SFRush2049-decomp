@@ -18,13 +18,21 @@ PROFILES={
         text_bytes=1120,data_bytes=16,bss_start=0x80037c30,bss_bytes=64,
         data_offset=0x4c20,
         members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','dll_get_priority'),
-        new_members=('dll_init',)),
+        new_members=('dll_init',),
+        # Lane w22g's libultra rename (static_rename owned): the same source with
+        # dll_get_priority -> osGetThreadPri; nothing else changed.
+        renamed=(dict(source_sha256='ff6bc3dcb38adda889342c58063d49a0ed2f0af2c26566220f50da80617e082b',
+                      members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','osGetThreadPri')),)),
     'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
         flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',
         source_sha256='7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80',
         text_bytes=848,data_bytes=32,bss_start=0x800367d0,bss_bytes=16,
         data_offset=0x4b90,members=('__osInitialize_common','__osPiReadDeviceType'),
-        new_members=('__osInitialize_common',)),
+        new_members=('__osInitialize_common',),
+        # Lane w22g's libultra rename: the same source calling osInvalICache
+        # (osInvalICache_full before); members unchanged.
+        renamed=(dict(source_sha256='3d314f02ac0f95d6587c8db009ef81fb75c6b78f429a56e34c3966869de386e3',
+                      members=('__osInitialize_common','__osPiReadDeviceType')),)),
 }
 
 
@@ -32,8 +40,8 @@ def profile(row):
     value=PROFILES.get(row.get('owner'))
     if (value is None or row.get('activation_mode')!='existing_tu' or
         row.get('tu')!=value['tu'] or row.get('flags')!=value['flags'] or
-        row.get('source_sha256')!=value['source_sha256'] or
-        tuple(row.get('members',()))!=value['members'] or
+        (row.get('source_sha256'),tuple(row.get('members',()))) not in
+            [(value['source_sha256'],value['members'])]+[(r['source_sha256'],r['members']) for r in value.get('renamed',())] or
         tuple(row.get('new_members',()))!=value['new_members'] or
         int(row.get('vram_start','0'),0)!=value['bss_start'] or
         int(row.get('size','0'),0)!=value['bss_bytes'] or

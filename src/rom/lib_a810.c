@@ -20,7 +20,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
 
     __osSiGetAccess();
 
-    ret = osContStartReadData(queue, channel);
+    ret = __osPfsGetStatus(queue, channel);
 
     __osSiRelAccess();
 

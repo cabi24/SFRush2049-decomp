@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osSetIntMask
+/* PROMOTED 2026-10-01 — osViBlack (named osSetIntMask before the w22g libultra rename)
  * Source:   cloud/work/static_C/osSetIntMask.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osSetIntMask.c:osSetIntMask (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osSetIntMask(s32 mask) {
+void osViBlack(s32 mask) {
     u32 temp_a0;
 
     temp_a0 = __osDisableInt();

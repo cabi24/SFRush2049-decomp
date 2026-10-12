@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPfsRename
+/* PROMOTED 2026-10-01 — osPfsDeleteFile (named osPfsRename before the w22g libultra rename)
  * Source:   cloud/work/static_C10/osPfsRename.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C10/osPfsRename.c:osPfsRename (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsRename(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name) {
+s32 osPfsDeleteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name) {
     s32 file_no;
     s32 ret;
     __OSInode inode;
@@ -23,7 +23,7 @@ s32 osPfsRename(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* 
         return PFS_ERR_INVALID;
     }
 
-    ERRCK(osPfsAllocate(pfs, company_code, game_code, game_name, ext_name, &file_no));
+    ERRCK(osPfsFindFile(pfs, company_code, game_code, game_name, ext_name, &file_no));
     SET_ACTIVEBANK_TO_ZERO();
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir));
 
@@ -31,7 +31,7 @@ s32 osPfsRename(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* 
 
     for (bank = dir.start_page.inode_t.bank; bank < pfs->banks;) {
         ERRCK(__osPfsRWInode(pfs, &inode, PFS_READ, bank));
-        ERRCK(osPfsFindFile(pfs, &inode, startpage, bank, &last_page));
+        ERRCK(__osPfsReleasePages(pfs, &inode, startpage, bank, &last_page));
         ERRCK(__osPfsRWInode(pfs, &inode, PFS_WRITE, bank));
 
         if (last_page.ipage == PFS_EOF) {
@@ -53,13 +53,13 @@ s32 osPfsRename(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* 
     return ret;
 }
 
-/* PROMOTED 2026-10-01 — osPfsFindFile
+/* PROMOTED 2026-10-01 — __osPfsReleasePages (named osPfsFindFile before the w22g libultra rename)
  * Source:   cloud/work/static_C8/osPfsFindFile.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/osPfsFindFile.c:osPfsFindFile (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsFindFile(OSPfs* pfs, __OSInode* inode, u8 start_page, u8 bank, __OSInodeUnit* last_page) {
+s32 __osPfsReleasePages(OSPfs* pfs, __OSInode* inode, u8 start_page, u8 bank, __OSInodeUnit* last_page) {
     __OSInodeUnit next_page;
     __OSInodeUnit old_page;
     s32 ret = 0;

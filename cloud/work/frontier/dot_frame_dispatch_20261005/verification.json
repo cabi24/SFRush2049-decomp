@@ -18,7 +18,7 @@
         "path": "asm/us/nonmatchings/rom/lib_1050/viTickStart.s",
         "writer_address": "0x80001390",
         "destination": "0x8002eb94",
-        "sha256": "7d4fc71e9403da4beead7c910b464bd8fe2470b3abdc3eeeae6dcd83576654b5"
+        "sha256": "271839def5547a87c5ddd00a567620d1306a31814b9afaebb0f78e42b17a123e"
       },
       {
         "path": "asm/us/nonmatchings/rom/lib_1050/viUpdateTime.s",
@@ -721,7 +721,7 @@
     "cloud/work/frontier/dot_frame_dispatch_20261005/native.py": "2a4e50b4d7b198b7eb4961edd17f9e7b19411306e640ea38394f1f46eaaa4156",
     "cloud/work/frontier/dot_frame_dispatch_20261005/host.c": "323d99a9f8722524ff1e6e2beaf48a86f7d0d83b7d46faf14b45f6ef91b35d37",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "asm/us/nonmatchings/rom/lib_1050/viTickStart.s": "7d4fc71e9403da4beead7c910b464bd8fe2470b3abdc3eeeae6dcd83576654b5",
+    "asm/us/nonmatchings/rom/lib_1050/viTickStart.s": "271839def5547a87c5ddd00a567620d1306a31814b9afaebb0f78e42b17a123e",
     "asm/us/nonmatchings/rom/lib_1050/viUpdateTime.s": "90c4b2b290211614faa23bcf054845829596ee3299b701bc6bf73cc10ccf2502"
   },
   "historical_native_provenance": {

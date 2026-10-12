@@ -39,7 +39,7 @@ glabel inflate_entry
     /* 74A0 800068A0 AFB20018 */  sw         $s2, 0x18($sp)
     /* 74A4 800068A4 00002825 */  or         $a1, $zero, $zero
     /* 74A8 800068A8 00003025 */  or         $a2, $zero, $zero
-    /* 74AC 800068AC 0C00218C */  jal        __osPiRawStartDma
+    /* 74AC 800068AC 0C00218C */  jal        osPiStartDma
     /* 74B0 800068B0 AFB90010 */   sw        $t9, 0x10($sp)
     /* 74B4 800068B4 1220000A */  beqz       $s1, .L800068E0
     /* 74B8 800068B8 00000000 */   nop
@@ -84,7 +84,7 @@ glabel inflate_entry
     /* 7540 80006940 3C098003 */  lui        $t1, %hi(gInflateOutPtr)
     /* 7544 80006944 8D2954B8 */  lw         $t1, %lo(gInflateOutPtr)($t1)
     /* 7548 80006948 8FA4004C */  lw         $a0, 0x4C($sp)
-    /* 754C 8000694C 0C002118 */  jal        osInvalICache_full
+    /* 754C 8000694C 0C002118 */  jal        osInvalICache
     /* 7550 80006950 01242823 */   subu      $a1, $t1, $a0
     /* 7554 80006954 8FBF0034 */  lw         $ra, 0x34($sp)
     /* 7558 80006958 3C0A8003 */  lui        $t2, %hi(gInflateOutPtr)

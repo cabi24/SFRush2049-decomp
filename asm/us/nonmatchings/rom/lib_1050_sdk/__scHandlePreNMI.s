@@ -15,7 +15,7 @@ glabel __scHandlePreNMI
     /* 1BB4 80000FB4 8D090004 */  lw         $t1, 0x4($t0)
     /* 1BB8 80000FB8 352A0010 */  ori        $t2, $t1, 0x10
     /* 1BBC 80000FBC AD0A0004 */  sw         $t2, 0x4($t0)
-    /* 1BC0 80000FC0 0C001EE0 */  jal        osDpWait
+    /* 1BC0 80000FC0 0C001EE0 */  jal        osSpTaskYield
     /* 1BC4 80000FC4 00000000 */   nop
     /* 1BC8 80000FC8 10000001 */  b          .L80000FD0
     /* 1BCC 80000FCC 00000000 */   nop

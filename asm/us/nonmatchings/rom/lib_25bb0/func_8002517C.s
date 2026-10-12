@@ -6,7 +6,7 @@ glabel func_8002517C
     /* 25D84 80025184 3C048006 */  lui        $a0, %hi(D_800586A8)
     /* 25D88 80025188 248486A8 */  addiu      $a0, $a0, %lo(D_800586A8)
     /* 25D8C 8002518C 00002825 */  or         $a1, $zero, $zero
-    /* 25D90 80025190 0C001D78 */  jal        osJamMesg
+    /* 25D90 80025190 0C001D78 */  jal        osSendMesg
     /* 25D94 80025194 00003025 */   or        $a2, $zero, $zero
     /* 25D98 80025198 8FBF0014 */  lw         $ra, 0x14($sp)
     /* 25D9C 8002519C 27BD0018 */  addiu      $sp, $sp, 0x18

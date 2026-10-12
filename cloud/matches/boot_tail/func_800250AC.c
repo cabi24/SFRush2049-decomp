@@ -9,12 +9,12 @@ typedef struct OSMesgQueue {
     OSMesg *msg;
 } OSMesgQueue;
 extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, int);
-extern int osJamMesg(OSMesgQueue *, OSMesg, int);
+extern int osSendMesg(OSMesgQueue *, OSMesg, int);
 extern OSMesgQueue D_800586A8;
 extern OSMesg D_800586C0;
 
 void func_800250AC(void)
 {
     osCreateMesgQueue(&D_800586A8, &D_800586C0, 1);
-    osJamMesg(&D_800586A8, 0, 0);
+    osSendMesg(&D_800586A8, 0, 0);
 }

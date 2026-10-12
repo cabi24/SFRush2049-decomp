@@ -17,7 +17,7 @@ glabel func_80010C68
     /* 1189C 80010C9C 3C068004 */  lui        $a2, %hi(D_80038220)
     /* 118A0 80010CA0 24C68220 */  addiu      $a2, $a2, %lo(D_80038220)
     /* 118A4 80010CA4 24A581F8 */  addiu      $a1, $a1, %lo(D_800381F8)
-    /* 118A8 80010CA8 0C001B84 */  jal        osSetEventMesgAlt
+    /* 118A8 80010CA8 0C001B84 */  jal        osSetEventMesg
     /* 118AC 80010CAC 24040006 */   addiu     $a0, $zero, 0x6
     /* 118B0 80010CB0 8FAF0020 */  lw         $t7, 0x20($sp)
     /* 118B4 80010CB4 0C002FC0 */  jal        osAiSetFrequency

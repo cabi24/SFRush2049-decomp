@@ -141,7 +141,7 @@ glabel osSpTaskLoad_full
     /* ED88 8000E188 8FA50074 */  lw         $a1, 0x74($sp)
   .L8000E18C:
     /* ED8C 8000E18C 00003025 */  or         $a2, $zero, $zero
-    /* ED90 8000E190 0C001D78 */  jal        osJamMesg
+    /* ED90 8000E190 0C001D78 */  jal        osSendMesg
     /* ED94 8000E194 8CA40004 */   lw        $a0, 0x4($a1)
     /* ED98 8000E198 16570007 */  bne        $s2, $s7, .L8000E1B8
     /* ED9C 8000E19C 8FAC0074 */   lw        $t4, 0x74($sp)
@@ -155,7 +155,7 @@ glabel osSpTaskLoad_full
     /* EDB8 8000E1B8 8E840010 */  lw         $a0, 0x10($s4)
   .L8000E1BC:
     /* EDBC 8000E1BC 00002825 */  or         $a1, $zero, $zero
-    /* EDC0 8000E1C0 0C001D78 */  jal        osJamMesg
+    /* EDC0 8000E1C0 0C001D78 */  jal        osSendMesg
     /* EDC4 8000E1C4 00003025 */   or        $a2, $zero, $zero
     /* EDC8 8000E1C8 8FAF0074 */  lw         $t7, 0x74($sp)
     /* EDCC 8000E1CC 8DF80014 */  lw         $t8, 0x14($t7)
@@ -238,7 +238,7 @@ glabel osSpTaskLoad_full
     /* EEFC 8000E2FC 8FA50074 */  lw         $a1, 0x74($sp)
     /* EF00 8000E300 00003025 */  or         $a2, $zero, $zero
     /* EF04 8000E304 2410FFFF */  addiu      $s0, $zero, -0x1
-    /* EF08 8000E308 0C001D78 */  jal        osJamMesg
+    /* EF08 8000E308 0C001D78 */  jal        osSendMesg
     /* EF0C 8000E30C 8CA40004 */   lw        $a0, 0x4($a1)
     /* EF10 8000E310 10000002 */  b          .L8000E31C
     /* EF14 8000E314 00000000 */   nop
@@ -252,11 +252,11 @@ glabel osSpTaskLoad_full
     /* EF2C 8000E32C 02E03025 */   or        $a2, $s7, $zero
     /* EF30 8000E330 8FA50074 */  lw         $a1, 0x74($sp)
     /* EF34 8000E334 00003025 */  or         $a2, $zero, $zero
-    /* EF38 8000E338 0C001D78 */  jal        osJamMesg
+    /* EF38 8000E338 0C001D78 */  jal        osSendMesg
     /* EF3C 8000E33C 8CA40004 */   lw        $a0, 0x4($a1)
     /* EF40 8000E340 8E840010 */  lw         $a0, 0x10($s4)
     /* EF44 8000E344 00002825 */  or         $a1, $zero, $zero
-    /* EF48 8000E348 0C001D78 */  jal        osJamMesg
+    /* EF48 8000E348 0C001D78 */  jal        osSendMesg
     /* EF4C 8000E34C 00003025 */   or        $a2, $zero, $zero
     /* EF50 8000E350 1000FF1F */  b          .L8000DFD0
     /* EF54 8000E354 8E840008 */   lw        $a0, 0x8($s4)
