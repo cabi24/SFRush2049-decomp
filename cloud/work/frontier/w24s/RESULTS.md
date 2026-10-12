@@ -101,7 +101,14 @@ Builder: only `~/rush2049/scratch/frontier/w24s/` (repo copy, cand/, context row
 
 ## Tests
 
-See the final report (Pi `make test-fast JOBS=4`, rocky `tools/ci_equiv.sh`). Test edits: 4 new targets_rename
+- Pi worktree `make test-fast JOBS=4` (at b2a30014): conveyor `1548 passed, 796 skipped`; cloud `770 passed,
+  155 skipped`; rc=0.
+- rocky `tools/ci_equiv.sh` (clone ciclone-w24s from ciclone-coord, HEAD c3b79619): conveyor `2292 passed, 52 skipped,
+  9 deselected`; cloud `924 passed, 1 skipped, 27 subtests passed`; exit 0. (The first run, at b2a30014, failed 13
+  storage-replay tests: the superseded undefined_syms copy is matched by .gitignore and had not been committed;
+  force-added in c3b79619.)
+
+Test edits: 4 new targets_rename
 tests, 3 replace_slot tests (one refusal case changed: front growth is now allowed), the boot-tail pin test lists
 0x26f60 (failing on wave24 since w24a), and `superseded/w22g_libultra_rename/undefined_syms_auto.us.txt` (base copy
 for the storage-activation replay tests).
