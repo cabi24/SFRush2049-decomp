@@ -26,3 +26,5 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 4 (IPA-aware replacement build; RT64 with lockstep as test mode; more scripts) | coordinator | 2026-10-12 | Phase 3 landed (per-call capture, 4 scripts, static binding; plan §11) |
 | tooling | recomp o32 wrapper generator with guest-pointer (`rush_addr`) mode: fold into `replace.py` native mode rather than a second generator; RDRAM accessors (`tools/recomp/rdram.h`, `game_rdram.h`) landed from #325 | Astra (#323 reservation) | 2026-10-12 | w22p; `tests/recomp/test_rdram.py`; the accessors own README section `RDRAM accessors` |
+
+| ovl_a | func_803A5658 | dot lane 3 | 2026-10-12 | Trace-first 736-byte renderer helper; preserve complete installed text-helper group and pending BB80, no duplicate credit |
