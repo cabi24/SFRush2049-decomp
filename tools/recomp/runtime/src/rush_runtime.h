@@ -37,6 +37,8 @@ void oracle_start(const std::string& path, uint64_t stop_frames);
 uint64_t oracle_frames();
 void oracle_event(const char* text);
 void oracle_finish(const char* why);
+void oracle_note_stack(uint32_t top);
+void oracle_dump_at(uint64_t frame, const std::string& path);  // rdram (big-endian) at a frame
 void oracle_virtual_clock(bool on);  // osGetCount/osGetTime from frames
 
 // lockstep.cpp: deterministic VI/AI/SP/DP delivery (--clock frames)

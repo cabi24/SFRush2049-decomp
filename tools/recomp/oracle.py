@@ -7,7 +7,15 @@ hash of every display list it walks and of each 4 KiB page of the N64's
 8 MiB of rdram (pages only when they change). This tool compares runs:
 
   compare  A.log B.log [--baseline S2.log ...]     two logs (+ stock repeats)
-  run      --stock-host BIN --repl-host BIN ...      run both builds, compare
+  run      --stock-host BIN --repl-host BIN ...      run both builds, compare; on a
+                                                     page difference rerun both to that
+                                                     frame with --dump-at and list words
+  worddiff A.bin B.bin [--datasyms F]                word diff of two rdram dumps
+
+Thread stacks (from osCreateThread) are masked out of the page hashes and
+hashed separately: their dead frames differ whenever a replaced body's frame
+differs, which is not behaviour; a stack-only difference is reported, not
+judged.
 
 Determinism. The input script is frame-clocked (`--clock frames`) and the
 game's clock reads are virtual, but the runtime's VI/audio threads still run
@@ -74,6 +82,9 @@ def iter_log(lines):
         elif line.startswith("E "):
             _, frame, text = line.split(" ", 2)
             yield ("E", int(frame), text)
+        elif line.startswith("S "):
+            _, frame, top = line.split()
+            yield ("S", int(frame), int(top, 16))
         elif line.startswith("R "):
             _, name, calls = line.split()
             yield ("R", name, int(calls))
@@ -94,6 +105,7 @@ class Run:
     def __init__(self, path):
         self.path = str(path)
         self.events, self.repl, self.header, self.end = [], {}, [], None
+        self.stacks = []
         self._it = iter_log(open(path))
         self.pages = {}
         self.frame = 0
@@ -109,6 +121,8 @@ class Run:
                 return True
             if kind == "E":
                 self.events.append((item[1], item[2]))
+            elif kind == "S":
+                self.stacks.append(item[2])
             elif kind == "R":
                 self.repl[item[1]] = item[2]
             elif kind == "END":
@@ -150,6 +164,7 @@ def compare(candidate, baselines, max_report=8):
     if not baselines:
         raise OracleError("need at least one baseline run")
     first = None
+    stack_diff = None
     unstable = {}
     horizon = None
     frames = 0
@@ -180,6 +195,9 @@ def compare(candidate, baselines, max_report=8):
             judged_pages += 1
             if candidate.pages.get(p) not in hs:
                 diff_pages.append(p)
+        stks = {b.fields.get("stk") for b in baselines}
+        if stack_diff is None and len(stks) == 1 and candidate.fields.get("stk") not in stks:
+            stack_diff = f
         if (dl_diff or diff_pages) and first is None:
             first = {"frame": f, "dl": dl_diff,
                      "dl_hash": {"candidate": candidate.fields["dl"], "baseline": sorted(dls)[0]},
@@ -197,6 +215,8 @@ def compare(candidate, baselines, max_report=8):
         "first_diff": first,
         "unstable_pages": {page_range(p): n for p, n in sorted(unstable.items())},
         "replaced_calls": dict(candidate.repl),
+        "stack_diff_frame": stack_diff,
+        "stacks": ["0x%08X" % t for t in sorted(set(candidate.stacks))],
         "events_candidate": ev_c,
         "events_baseline": ev_b,
         "candidate_end": candidate.end,
@@ -242,6 +262,9 @@ def report(result, datasyms=None, max_pages=8):
     else:
         lines.append("%s over %d frames (judged: %s, %d baseline run(s))" % (
             v, result["frames"], hz_txt, result["baselines"]))
+    if result.get("stack_diff_frame") is not None:
+        lines.append("  thread-stack contents differ from frame %d (masked out of the page hashes: dead "
+                     "frames differ whenever the code differs; not judged)" % result["stack_diff_frame"])
     for name, calls in sorted(result["replaced_calls"].items()):
         lines.append("  replaced %s: %d calls" % (name, calls))
     if result["unstable_pages"]:
@@ -253,16 +276,61 @@ def report(result, datasyms=None, max_pages=8):
     return lines
 
 
+MAX_STACK = 0x2000   # runtime/src/oracle.cpp kMaxStack
+
+
+def stack_ranges(tops):
+    """[(lo, hi)] N64 address ranges the host masks as thread stacks (same rule
+    as runtime/src/oracle.cpp: from each top down to the next lower top, at
+    most MAX_STACK bytes)."""
+    out, prev = [], 0
+    for top in sorted(set(tops)):
+        lo = max(top - MAX_STACK, prev)
+        if lo < top:
+            out.append((lo, top))
+        prev = top
+    return out
+
+
+def word_diff(a, b, datasyms_path=None, limit=40, skip=()):
+    """[(address, a_word, b_word, symbol+offset)] between two rdram dumps
+    (host --dump-at, big-endian 8 MiB); `skip` = [(lo, hi)] address ranges
+    (thread stacks, pages the baselines disagree on) left out."""
+    syms = []
+    if datasyms_path and Path(datasyms_path).is_file():
+        for m in re.finditer(r'\{ name = "([^"]+)", vram = 0x([0-9A-Fa-f]{8}) \}', Path(datasyms_path).read_text()):
+            syms.append((int(m.group(2), 16), m.group(1)))
+        syms.sort()
+    import bisect
+    keys = [v for v, _ in syms]
+    out = []
+    n = min(len(a), len(b))
+    for off in range(0, n - 3, 4):
+        if a[off:off + 4] != b[off:off + 4]:
+            addr = RAM_BASE + off
+            if any(lo <= addr < hi for lo, hi in skip):
+                continue
+            i = bisect.bisect_right(keys, addr) - 1
+            where = "%s+0x%X" % (syms[i][1], addr - syms[i][0]) if i >= 0 and addr - syms[i][0] < 0x10000 else ""
+            out.append((addr, a[off:off + 4].hex(), b[off:off + 4].hex(), where))
+            if len(out) >= limit:
+                break
+    return out
+
+
 # ------------------------------------------------------------------ running the host
 
 DEFAULT_PRESS = ("5:START,8:START,11:A,14:A,17:A,20:START,23:A,26:A,29:A,32:A,35:START,"
                  "38:A,41:A,44:A,47:A,50:A")
 
 
-def host_command(host, rom, log, home, frames, press, seconds):
-    return [str(host), "--rom", str(rom), "--home", str(home), "--clock", "frames",
-            "--frames", str(frames), "--seconds", str(seconds), "--press", press,
-            "--oracle-log", str(log)]
+def host_command(host, rom, log, home, frames, press, seconds, dump=None):
+    cmd = [str(host), "--rom", str(rom), "--home", str(home), "--clock", "frames",
+           "--frames", str(frames), "--seconds", str(seconds), "--press", press,
+           "--oracle-log", str(log)]
+    if dump:
+        cmd += ["--dump-at", "%d:%s" % dump]
+    return cmd
 
 
 def run_hosts(jobs):
@@ -283,6 +351,11 @@ def main(argv=None):
     c.add_argument("candidate")
     c.add_argument("--baseline", dest="more", action="append", default=[],
                    help="more stock runs (pages they disagree on are not judged)")
+    w = sub.add_parser("worddiff", help="word diff of two --dump-at rdram images")
+    w.add_argument("a")
+    w.add_argument("b")
+    w.add_argument("--datasyms")
+    w.add_argument("--limit", type=int, default=40)
     r = sub.add_parser("run", help="run stock and replaced hosts, then compare")
     r.add_argument("--stock-host", required=True)
     r.add_argument("--repl-host", required=True)
@@ -297,6 +370,11 @@ def main(argv=None):
         p.add_argument("--datasyms", help="build/recomp/rush2049.datasyms.toml (names pages)")
         p.add_argument("--json", help="write the result as JSON")
     args = ap.parse_args(argv)
+    if args.cmd == "worddiff":
+        for addr, wa, wb, where in word_diff(Path(args.a).read_bytes(), Path(args.b).read_bytes(),
+                                             args.datasyms, args.limit):
+            print("0x%08X %s %s  %s" % (addr, wa, wb, where))
+        return 0
     try:
         if args.cmd == "compare":
             baselines = [Run(args.baseline)] + [Run(p) for p in args.more]
@@ -321,11 +399,25 @@ def main(argv=None):
             if not args.json:
                 args.json = str(out / "verdict.json")
         result = compare(cand, baselines)
+        fd = result.get("first_diff") or {}
+        if args.cmd == "run" and fd.get("frame") and fd.get("pages"):
+            # Word-level detail: rerun stock 1 and the candidate to that frame with a dump.
+            f = fd["frame"]
+            da, db = out / "stock_at_diff.bin", out / "repl_at_diff.bin"
+            run_hosts([(host_command(args.stock_host, args.rom_stock, out / "dump_s.log", out / "home_ds", f,
+                                     args.press, seconds, (f, da)), out / "dump_s.err"),
+                       (host_command(args.repl_host, args.rom_repl, out / "dump_r.log", out / "home_dr", f,
+                                     args.press, seconds, (f, db)), out / "dump_r.err")])
+            skip = stack_ranges([int(t, 16) for t in result["stacks"]])
+            skip += [(int(r.split("-")[0], 16), int(r.split("-")[1], 16) + 1) for r in result["unstable_pages"]]
+            fd["words"] = word_diff(da.read_bytes(), db.read_bytes(), args.datasyms, skip=skip)
     except OracleError as exc:
         print("oracle: %s" % exc, file=sys.stderr)
         return 2
     for line in report(result, load_datasyms(args.datasyms)):
         print(line)
+    for addr, wa, wb, where in (result.get("first_diff") or {}).get("words", [])[:16]:
+        print("  word 0x%08X stock %s replaced %s  %s" % (addr, wa, wb, where))
     if args.json:
         Path(args.json).write_text(json.dumps(result, indent=1, sort_keys=True) + "\n")
     return 0 if result["verdict"] == "EQUIVALENT" else 1

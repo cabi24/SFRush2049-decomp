@@ -40,6 +40,7 @@ void usage() {
         "  --time virtual|wall: what osGetCount/osGetTime return (default: virtual with --clock frames)\n"
         "  --clock frames also delivers VI/AI/SP/DP events in lockstep (src/lockstep.cpp);\n"
         "  --no-lockstep keeps the runtime's wall-clock events\n"
+        "  --dump-at FRAME:PATH writes the 8 MiB of rdram (big-endian) at that frame\n"
         "  SYNTHETIC_ROM = build/recomp/rom/rush2049.recomp.z64 (gen_config.py output)\n"
         "  BUTTON = A B Z START UP DOWN LEFT RIGHT L R CU CD CL CR STICKUP STICKDOWN ...\n");
 }
@@ -91,6 +92,12 @@ int main(int argc, char** argv) {
         else if (a == "--oracle-log") oracle_log = next();
         else if (a == "--time") time_mode = next();
         else if (a == "--no-lockstep") no_lockstep = true;
+        else if (a == "--dump-at") {
+            std::string v = next();
+            auto colon = v.find(':');
+            if (colon == std::string::npos) { usage(); return 2; }
+            rush::oracle_dump_at(std::stoull(v.substr(0, colon)), v.substr(colon + 1));
+        }
         else { usage(); return 2; }
     }
     if (rom_path.empty() || (clock != "wall" && clock != "frames")) { usage(); return 2; }

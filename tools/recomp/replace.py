@@ -190,6 +190,7 @@ def read_elf(data):
         sections.append({"name": cstr(shstr + s["name_off"]), "type": s["type"], "addr": s["addr"],
                          "offset": s["offset"], "size": s["size"]})
     symbols = []
+    symtab_names = {}
     for i, s in enumerate(raw):
         if s["type"] != 2:  # SHT_SYMTAB
             continue
@@ -199,11 +200,27 @@ def read_elf(data):
             symbols.append({"name": cstr(strtab + name), "value": value, "size": size,
                             "type": info & 0xF, "bind": info >> 4, "shndx": shndx,
                             "section": sections[shndx]["name"] if 0 < shndx < len(sections) else None})
-    return {"sections": sections, "symbols": symbols}
+            symtab_names[(i, j)] = symbols[-1]["name"]
+    # Symbols some relocation uses (SHT_REL = 9, SHT_RELA = 4): an undefined
+    # symbol no relocation uses (IDO keeps `fabsf` declared under
+    # #pragma intrinsic but emits abs.s) needs no address.
+    referenced = set()
+    for s in raw:
+        if s["type"] in (9, 4):
+            entsize = 8 if s["type"] == 9 else 12
+            for k in range(s["size"] // entsize):
+                _off, info = struct.unpack_from(">II", data, s["offset"] + k * entsize)
+                name = symtab_names.get((s["link"], info >> 8))
+                if name:
+                    referenced.add(name)
+    return {"sections": sections, "symbols": symbols, "referenced": referenced}
 
 
 def undefined_symbols(elf):
-    return sorted({s["name"] for s in elf["symbols"] if s["shndx"] == 0 and s["name"]})
+    """Undefined symbols that a relocation uses (others need no address)."""
+    ref = elf.get("referenced")
+    return sorted({s["name"] for s in elf["symbols"] if s["shndx"] == 0 and s["name"]
+                   and (ref is None or s["name"] in ref)})
 
 
 def defined_functions(elf, section=".repl"):
@@ -284,8 +301,14 @@ def parse_prototype(proto):
     if args and args != "void":
         for i, a in enumerate(args.split(",")):
             a = a.strip()
-            if a == "..." or "(" in a or "[" in a:
+            if a == "..." or "(" in a:
                 raise ReplaceError(f"native: unsupported parameter {a!r} in {name}")
+            if "[" in a:   # array parameter = pointer to its element type
+                am = re.match(r"^(.*?)\b([A-Za-z_][A-Za-z0-9_]*)\s*(\[.*\])$", a)
+                if not am:
+                    raise ReplaceError(f"native: cannot parse array parameter {a!r} in {name}")
+                params.append((am.group(1).strip() + " *", am.group(2)))
+                continue
             pm = re.match(r"^(.*?[\s*])([A-Za-z_][A-Za-z0-9_]*)$", a)
             ptype, pname = (pm.group(1), pm.group(2)) if pm and pm.group(1).strip() else (a, "arg%d" % i)
             params.append((ptype.strip(), pname))
@@ -414,7 +437,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
     {"image": {"vram", "bytes"} or None, "functions": [{name, vram, size}],
      "replaced": [{id, function, population, mode, call, source}],
      "native": [{id, wrapper, body}]} with every name final."""
-    work = Path(work_dir)
+    work = Path(work_dir).resolve()
     work.mkdir(parents=True, exist_ok=True)
     objects, replaced, native = [], [], []
     for rid, e in selected:
@@ -459,8 +482,26 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
     image, funcs, chunks, cursor = None, [], [], REPL_VRAM
     for rid, e, obj, elf, res in objects:
         defined = {s["name"] for s in elf["symbols"] if s["shndx"] != 0 and s["name"]}
+        defs = {n: a for n, a in res.items() if n not in defined}
+        # Data the source DEFINES (matched files define their unit's globals):
+        # bind it to the game's copy (a linker-script assignment overrides the
+        # object's definition), else the replacement would keep private state.
+        private = []
+        for sym in elf["symbols"]:
+            if sym["name"] and sym["bind"] == 1 and sym["type"] in (0, 1) and sym["shndx"] != 0 \
+                    and (sym["section"] or "").startswith((".data", ".bss", ".sdata", ".sbss")) \
+                    or (sym["name"] and sym["shndx"] == 0xFFF2):
+                table = address_table(functions, symbols, e["population"])
+                addr = table.get(sym["name"])
+                m = _ADDR_NAME.match(sym["name"])
+                if addr is None and m:
+                    addr = int(m.group(1), 16)
+                if addr is None:
+                    private.append(sym["name"])
+                else:
+                    defs[sym["name"]] = addr
         script = work / (rid + ".ld")
-        script.write_text(render_linker_script({n: a for n, a in res.items() if n not in defined}, cursor))
+        script.write_text(render_linker_script(defs, cursor))
         out = work / (rid + ".elf")
         cmd = [ld, "-m", "elf32btsmip", "--gc-sections", "-e", e["function"], "-u", e["function"],
                "-T", str(script), "-o", str(out), str(obj)]
@@ -470,12 +511,16 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         data = out.read_bytes()
         lelf = read_elf(data)
         vram, raw = section_bytes(data, lelf)
-        if vram != cursor:
-            raise ReplaceError(f"replacement {rid}: linked at 0x{vram:08X}, expected 0x{cursor:08X}")
+        if vram < cursor:
+            raise ReplaceError(f"replacement {rid}: linked at 0x{vram:08X}, below 0x{cursor:08X}")
+        if vram > cursor:   # the object's section alignment moved it up: pad
+            chunks.append(b"\0" * (vram - cursor))
+            cursor = vram
         named = name_functions(rid, e, defined_functions(lelf))
         funcs += [{"name": f["recomp_name"], "vram": f["vram"], "size": f["size"]} for f in named]
         replaced.append({"id": rid, "function": e["function"], "population": e["population"],
-                         "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"]})
+                         "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"],
+                         "private_data": sorted(private)})
         raw = raw + b"\0" * (-len(raw) % 16)
         chunks.append(raw)
         cursor += len(raw)

@@ -8,8 +8,10 @@
 // thread is suspended (ultramodern runs one game thread at a time), so the
 // snapshot is consistent. Per gfx frame the log gets
 //
-//   F <frame> dl=<xxh64> dls=<display lists> dlb=<bytes> ram=<xxh64 of 8 MiB>
+//   F <frame> dl=<xxh64> dls=<display lists> dlb=<bytes> ram=<xxh64 of 8 MiB> stk=<xxh64>
 //   P <page>:<xxh64> ...      pages (4 KiB) whose hash changed since the last F
+//   S <frame> <stack top>     a thread stack (osCreateThread); stack bytes are
+//                             masked out of page hashes and hashed into stk=
 //
 // Display lists are walked from the task's data_ptr through G_DL calls and
 // branches (F3DEX and F3DEX2 opcodes; segment table tracked through
@@ -45,6 +47,8 @@ constexpr uint32_t kPages = kRamBytes / kPage;
 
 FILE* log_file = nullptr;
 uint64_t stop_after = 0;
+uint64_t dump_at = 0;
+std::string dump_path;
 std::atomic<uint64_t> frames{0};
 std::vector<uint64_t> prev_pages(kPages, 0);
 std::mutex log_mu;
@@ -52,6 +56,27 @@ std::array<std::atomic<uint64_t>, RUSH_REPL_COUNT + 1> repl_calls{};
 
 uint32_t rd32(uint8_t* rdram, uint32_t addr) {
     return (uint32_t)MEM_W(0, (gpr)(int32_t)(0x80000000u | (addr & 0x00FFFFFFu)));
+}
+
+// Thread stacks (osCreateThread's sp argument = top of stack). Their contents
+// below the live sp are dead and differ whenever a replaced body has a
+// different frame, so they are masked out of the page hashes and hashed on
+// their own ("stk="). A stack spans from its top down to the next lower top,
+// at most kMaxStack bytes.
+constexpr uint32_t kMaxStack = 0x2000;
+std::vector<uint32_t> stack_tops;            // N64 addresses, sorted
+std::vector<std::pair<uint32_t, uint32_t>> stack_ranges;  // [lo, hi) offsets into rdram
+
+void rebuild_stack_ranges() {
+    stack_ranges.clear();
+    uint32_t prev = 0;
+    for (uint32_t top : stack_tops) {
+        uint32_t hi = top & 0x00FFFFFFu;
+        uint32_t lo = hi > kMaxStack ? hi - kMaxStack : 0;
+        if (lo < prev) lo = prev;
+        if (lo < hi && hi <= kRamBytes) stack_ranges.push_back({lo, hi});
+        prev = hi;
+    }
 }
 
 struct DlWalk {
@@ -113,6 +138,21 @@ void log_line(const char* fmt, ...) {
 
 } // namespace
 
+void rush::oracle_note_stack(uint32_t top) {
+    std::lock_guard<std::mutex> lock(log_mu);
+    if (std::find(stack_tops.begin(), stack_tops.end(), top) != stack_tops.end()) return;
+    stack_tops.push_back(top);
+    std::sort(stack_tops.begin(), stack_tops.end());
+    rebuild_stack_ranges();
+    log_line("S %llu 0x%08X\n", (unsigned long long)frames.load(), top);
+}
+
+extern "C" void __real_osCreateThread_recomp(uint8_t* rdram, recomp_context* ctx);
+extern "C" void __wrap_osCreateThread_recomp(uint8_t* rdram, recomp_context* ctx) {
+    rush::oracle_note_stack((uint32_t)MEM_W(0x10, ctx->r29));
+    __real_osCreateThread_recomp(rdram, ctx);
+}
+
 void rush::oracle_start(const std::string& path, uint64_t stop_frames) {
     stop_after = stop_frames;
     if (path.empty()) return;
@@ -127,6 +167,11 @@ void rush::oracle_start(const std::string& path, uint64_t stop_frames) {
 }
 
 uint64_t rush::oracle_frames() { return frames.load(); }
+
+void rush::oracle_dump_at(uint64_t frame, const std::string& path) {
+    dump_at = frame;
+    dump_path = path;
+}
 
 void rush::oracle_event(const char* text) {
     std::lock_guard<std::mutex> lock(log_mu);
@@ -231,10 +276,21 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
         // RDRAM: word-swapped host storage hashed as stored (a fixed bijection
         // of the N64 bytes, so equal hashes <=> equal memory).
         std::string changed;
-        uint64_t all = 0;
+        uint64_t all = 0, stk = 0;
         char buf[40];
+        static std::vector<uint8_t> scratch(kPage);
         for (uint32_t p = 0; p < kPages; p++) {
-            uint64_t h = XXH3_64bits(rdram + p * kPage, kPage);
+            const uint8_t* bytes = rdram + p * kPage;
+            uint32_t lo = p * kPage, hi = lo + kPage;
+            bool masked = false;
+            for (const auto& r : stack_ranges) {
+                if (r.second <= lo || r.first >= hi) continue;
+                if (!masked) { std::copy(bytes, bytes + kPage, scratch.begin()); masked = true; }
+                uint32_t a = std::max(r.first, lo), b = std::min(r.second, hi);
+                stk = XXH3_64bits_withSeed(bytes + (a - lo), b - a, stk);
+                std::fill(scratch.begin() + (a - lo), scratch.begin() + (b - lo), 0);
+            }
+            uint64_t h = XXH3_64bits(masked ? scratch.data() : bytes, kPage);
             all = XXH3_64bits_withSeed(&h, sizeof h, all);
             if (h != prev_pages[p] || n == 1) {
                 prev_pages[p] = h;
@@ -243,9 +299,20 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
             }
         }
         std::lock_guard<std::mutex> lock(log_mu);
-        log_line("F %llu dl=%016llx dls=%u dlb=%u ram=%016llx\n", (unsigned long long)n,
-                 (unsigned long long)w.hash, w.lists, w.bytes, (unsigned long long)all);
+        log_line("F %llu dl=%016llx dls=%u dlb=%u ram=%016llx stk=%016llx\n", (unsigned long long)n,
+                 (unsigned long long)w.hash, w.lists, w.bytes, (unsigned long long)all,
+                 (unsigned long long)stk);
         if (!changed.empty()) log_line("P%s\n", changed.c_str());
+    }
+    if (dump_at && n == dump_at && !dump_path.empty()) {
+        if (FILE* f = fopen(dump_path.c_str(), "wb")) {   // big-endian N64 byte order
+            for (uint32_t i = 0; i < kRamBytes; i += 4) {
+                uint32_t w = (uint32_t)MEM_W(0, (gpr)(int32_t)(0x80000000u + i));
+                uint8_t b[4] = {(uint8_t)(w >> 24), (uint8_t)(w >> 16), (uint8_t)(w >> 8), (uint8_t)w};
+                fwrite(b, 1, 4, f);
+            }
+            fclose(f);
+        }
     }
     if (stop_after && n >= stop_after) {
         rush::oracle_finish("frames");

@@ -1,0 +1,132 @@
+{
+ "note": "Phase 2 function replacement (tools/recomp/replace.py, tools/recomp/README.md 'Phase 2'). Each entry swaps one recompiled function for a body built from the named C source: mode ido (default) compiles it with the project's IDO (flags from the file's /* flags: */ header) into the .repl section N64Recomp recompiles; mode native compiles it for the host behind a generated o32 wrapper (leaf, word-sized memory through pointer arguments only). population: static | game | ovl_a | ovl_b. state: matched | draft | injected-bug. A lane asks for a verdict by adding an entry and running tools/recomp/oracle.py (cloud/work/frontier/WAVE_BRIEF.md 'Behavioural check'). Replacing a function never changes coverage.",
+ "entries": {
+  "render_helper": {
+   "function": "render_helper",
+   "population": "game",
+   "source": "src/blob/render_helper.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "globals (f32 store, u32 flag or/and), float compare, call with u16 conversion"
+  },
+  "euler_to_matrix": {
+   "function": "euler_to_matrix",
+   "population": "game",
+   "source": "src/blob/euler_to_matrix.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "calls the game's sinf/cosf, 3x3 f32 stores"
+  },
+  "entity_name_copy": {
+   "function": "entity_name_copy",
+   "population": "game",
+   "source": "src/blob/entity_name_copy.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "bsearch-style loop with a function-pointer comparator (jalr into recompiled code)"
+  },
+  "steering_apply": {
+   "function": "steering_apply",
+   "population": "game",
+   "source": "src/blob/steering_apply.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "-O3 body, short/float pointer arguments, stack arguments"
+  },
+  "model_transform_setup": {
+   "function": "model_transform_setup",
+   "population": "game",
+   "source": "src/blob/model_transform_setup.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "recursive (calls itself through the original entry, which delegates back)"
+  },
+  "vector_normalize_length": {
+   "function": "vector_normalize_length",
+   "population": "game",
+   "source": "src/blob/vector_normalize_length.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "own .rodata literal (0.01f) in the replacement image, global vector, two calls"
+  },
+  "pool_linked_list_init": {
+   "function": "pool_linked_list_init",
+   "population": "game",
+   "source": "src/blob/pool_linked_list_init.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "pointer fields stored in rdram (32-bit N64 pointers), u8* arithmetic"
+  },
+  "func_8008A644": {
+   "function": "func_8008A644",
+   "population": "game",
+   "source": "src/blob/func_8008A644.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "u16 argument; called by render_helper (both replaced: replacement -> original entry -> replacement)"
+  },
+  "native_func_8009E820": {
+   "function": "func_8009E820",
+   "population": "game",
+   "source": "src/blob/func_8009E820.c",
+   "mode": "native",
+   "state": "matched",
+   "note": "NATIVE leaf: three f32* arguments (a0-a2), word-sized loads/stores only"
+  },
+  "native_func_8008B32C": {
+   "function": "func_8008B32C",
+   "population": "game",
+   "source": "src/blob/func_8008B32C.c",
+   "mode": "native",
+   "state": "matched",
+   "note": "NATIVE leaf: two f32[3][3] pointers in a0/a1 and a float third argument in a2 (o32: not f14, the first argument is not floating point)"
+  },
+  "bug_render_helper": {
+   "function": "render_helper",
+   "population": "game",
+   "source": "cloud/work/frontier/w22r/bug/render_helper_flipped.c",
+   "mode": "ido",
+   "state": "injected-bug",
+   "note": "INJECTED BUG: render_helper with `value > 0.0f` flipped to `<` (oracle test)"
+  },
+  "draft_engine_sound_sync": {
+   "function": "engine_sound_sync",
+   "population": "game",
+   "source": "cloud/work/frontier/w21h/engine_sound_sync/best.c",
+   "mode": "ido",
+   "state": "draft",
+   "note": "w21h best, NOT a match (8 normalised rows): correct-not-matched candidate"
+  },
+  "draft_func_800D7634": {
+   "function": "func_800D7634",
+   "population": "game",
+   "source": "cloud/work/frontier/w21h/func_800D7634/best.c",
+   "mode": "ido",
+   "state": "draft",
+   "note": "w21h best, NOT a match (15 words): audio-options input handler"
+  }
+ },
+ "sets": {
+  "matched10": [
+   "render_helper",
+   "euler_to_matrix",
+   "entity_name_copy",
+   "steering_apply",
+   "model_transform_setup",
+   "vector_normalize_length",
+   "pool_linked_list_init",
+   "func_8008A644",
+   "native_func_8009E820",
+   "native_func_8008B32C"
+  ],
+  "bug": [
+   "bug_render_helper"
+  ],
+  "draft_engine_sound_sync": [
+   "draft_engine_sound_sync"
+  ],
+  "draft_func_800D7634": [
+   "draft_func_800D7634"
+  ]
+ }
+}

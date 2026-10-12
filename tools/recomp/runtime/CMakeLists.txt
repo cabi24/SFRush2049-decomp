@@ -83,7 +83,8 @@ target_link_options(rush2049_recomp PRIVATE
     -Wl,--wrap=osGetCount_recomp -Wl,--wrap=osGetTime_recomp
     -Wl,--wrap=osViSetEvent_recomp -Wl,--wrap=osSetEventMesg_recomp
     -Wl,--wrap=osSpTaskStartGo_recomp -Wl,--wrap=osViSwapBuffer_recomp
-    -Wl,--wrap=osViGetCurrentFramebuffer_recomp -Wl,--wrap=osViGetNextFramebuffer_recomp)
+    -Wl,--wrap=osViGetCurrentFramebuffer_recomp -Wl,--wrap=osViGetNextFramebuffer_recomp
+    -Wl,--wrap=osCreateThread_recomp)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 # The recompiled code and the runtime reference each other: group the archives.
