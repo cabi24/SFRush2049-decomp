@@ -16,10 +16,9 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | world_effect_update (12 words, needs a block boundary), audio_frame_update (22 words), race_position_update (50 words, s4 register variable) | open | | w20d RESULTS 2026-10-12; assign_drones landed |
 | game | engine_sound_sync + audio_effect_setup (8 rows; float temp offset), func_800D7634 + func_800D6914 (15 words; D_80110640 colour) | open | | w21h RESULTS 2026-10-12 |
 | game | func_8010FBE0, entity_process_main | open | | w20e RESULTS 2026-10-12 |
-| game | fresh singles/groups from `frontier next` (incl. wheel_setup_initial, ghost_race_setup) | coordinator w21g | 2026-10-12 | wave 21; audio_fade_control unit (6/8) stays open |
+| game | func_800EC190 (2 words), func_8008AD6C (29), func_800A1BB4 (35), wheel_setup_initial, ghost_race_setup, audio_fade_control unit (6/8) | open | | w21g/w20f RESULTS; func_800D63EC, func_800B3704, func_800D6530 landed 2026-10-12 |
 | game | entity_render_setup (12 rows with the data_align pad; causes 2 and 3 in w20h RESULTS), camera_play_script (27 rows) | open | | 2026-10-12 |
 | game | func_80090308, buffer_swap, cpak_read (unblocked by entity_spawn_init) | open | | ready since 2026-10-12 |
-| static | func_80022CD4 (owned .data slot), func_8001C860 (owned .rodata slot) | coordinator w21i | 2026-10-12 | wave 21; sources w21a/ownslot, w21c/ownrodata |
 | static | func_80018448 (325), func_80010E80 (460), func_80018634 (780) | open | | w21a RESULTS 2026-10-12: traced causes, need a 7.1 optimiser trace |
 | static | func_80022874 (code identical; its static must sit at 0x80056208 between func_80023E9C's statics), func_8001A270 (225), func_8001E0E0 (2215), func_80019F48 (2235) | open | | w21b RESULTS 2026-10-12 |
 | static | func_800178B0 (seqStartPlay, 205), func_8001F13C (voiceAllocate), func_80012D18 (per-voice command builder), func_80023E9C (macro interpreter; owned jump-table slot 0x8002D964/0x1C8), func_8001A658 | open | | w21c RESULTS 2026-10-12 has identities and best sources |

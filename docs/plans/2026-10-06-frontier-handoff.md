@@ -269,6 +269,20 @@ needs an owned .bss block for lib_16320; w20a scheduling-only residuals need a 7
 Wave 21 candidates: `CLAIMS.md` open rows; recomp Phase 1 on rocky (runtime pinned to N64Recomp 81213c18; overlay
 load hook; ~20 libultra internals to shim).
 
+**Wave 21 outcome (2026-10-12, master after `46c45bd2`):** static 568 → 580/668 (118,488 B, 73.72%): w21d owned `.bss`
+slot kind (lib_16320 trio), w21b 3 (loop-end reloc_addrs, store read-back lever), w21a 3 (`-Wab,-r4300_mul` was
+missing from the 7.1 lock recipe and explained two "scheduling-only" residuals; now a neutral flagset token in
+layout/promote_batch), w21c 1 (func_80012730; identities for the other six large ones in its RESULTS), w21i 2 via
+owned `.data` and a 4-byte `logical_kind: constants` `.rodata` slot. Game 975 → 979/1216 (318,752 B, 49.26%):
+entity_spawn_init (5,544 B, group frontier_entity_spawn_init: two inlined file statics get_car/get_mph defined after
+the function, one disclosed `if (type) {}`), func_800D63EC, func_800B3704 (NewBlit), func_800D6530 (codex_vsync_a145
+superseded). blob_unit `data_align` override landed (entity_render_setup 20 → 12 rows). Recomp Phase 1 landed
+(`tools/recomp/runtime/`, plan §9): headless boot to the front end and image B under scripted input; 43 libultra
+inventory names corrected only in `tools/recomp/identity.json` (owner decision: rename the inventory). Open: CLAIMS
+`open` rows; func_80090308/buffer_swap/cpak_read now ready; engine_sound_sync 8 rows, func_800D7634 15 words
+(w21h); w21c's five identified large functions; recomp Phase 2 (function replacement, rdram view, frame oracle) and
+RT64 on a machine with a display.
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
