@@ -299,6 +299,23 @@ func_80090308 group, entity_render_setup 8 rows, func_8001F13C 2420, func_8001A6
 game-side rename + ll.c family rename; recomp Phase 3 (per-call capture) and RT64 on a display. Astra's #324/#326/#327/#328/#329 landed
 via lane w22p (overlay A 53/193, B 10/49; four 20261006 groups migrated into dot_runtime_a_text_helpers_20261006).
 
+**Wave 23 outcome (2026-10-12, master after `6fe4eeaa`):** static 586 → 600/668 (130,500 B, 81.20%): func_80018634 (one
+u32 variable spanning two switch arms forbids its register in the default case), w23c's 13 code-identical functions
+(5 plain, func_8001E0E0 via a constants slot, two via reloc names + TU hoist, three via a `.bss` block grown at its
+front, osPfsIsPlug/__osPfsRequestData via new inventory rows; lib_16320 and lib_10d60 are all C). Game 982 →
+985/1216 (325,760 B, 50.34%): buffer_swap (group member; group-vs-unit line markers), engine_sound_sync +
+audio_effect_setup + stub (the Phase 2 frame-706 DIFFERENT was the standalone build ignoring $f22–$f28 IPA
+arguments; Phase 3's per-call capture named that call). Renames: 18 ll.c/llcvt.c helpers + 6 libultra suspects on the
+static side and every game caller (w23g, merged by w23m; `game_static_legacy.us.txt` empty; cpak_read natural u64
+form). Recomp Phase 3 landed (plan §11): per-call capture, 4 input scripts, static binding, OSThread word mask;
+all 689 matched game files replaced at once = EQUIVALENT, 4.2 M calls identical. Traps: the builder gate repo
+(`~/rush2049/repo`) goes stale whenever an owned slot changes ("owned ROM slot address changed" on a sound tree):
+`rm -rf build/us && make COMPILER=ido -j16 && make test` there; after a rename, `build/blob/obj` objects are stale
+(`blob_rom rom` refuses on provenance): `cloud/work/frontier/w23m/rebuild_stale.py`. Near-misses moved: controller_poll
+92 → 11, synthHandle 7725 → 2770, voiceAllocate 2420 → 2045, entity_render_setup cause 3 proven (live range needs block
+17 AND a split). Ceiling table for the boot tail in w23c/RESULTS.md (0x26F60 segment 5,232 B needs conversion;
+pre-tail boot code 13,152 B untriaged; 480 B hand asm).
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
