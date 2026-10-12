@@ -16,7 +16,8 @@ extern OSThread *__osEmptyMesgQueue;   /* 0x8002C3D0 — empty mesg queue sentin
  * base. The names come from symbol_addrs and read as display-list symbols in
  * inflate code, which is suspect — see docs/SYMBOL_MISATTRIBUTION.md. */
 extern s32 gDisplayListHead;            /* 0x800354C4 */
-extern volatile unsigned int gDisplayListSize;  /* 0x800354C8 */
+extern unsigned int gDisplayListSize;  /* 0x800354C8 (w26a: no volatile; the inflate TU's
+                                        * as1 -O1 recipe keeps its reloads) */
 
 /* N64 MMIO registers referenced by promoted libultra bodies. IDO compiles
  * these #define'd KSEG1 addresses to literal immediates (no relocation) —
@@ -49,7 +50,7 @@ extern OSMesgQueue __osSiMesg;
 extern void *__osSiMesgQueue;
 extern u8 __osPfsRequestType;
 /* __osViContext and OSPifRam __osSiDmaBuffer already exist in m2c_types.h.
- * gDisplayListHead and volatile gDisplayListSize already exist in rom_tu.h.
+ * gDisplayListHead and gDisplayListSize already exist in rom_tu.h.
  * No new struct/type definitions are needed. */
 
 /* PI read wrapper uses the currently identified target signature. */
