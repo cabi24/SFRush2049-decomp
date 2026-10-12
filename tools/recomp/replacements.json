@@ -1,5 +1,5 @@
 {
- "note": "Phase 2 function replacement (tools/recomp/replace.py, tools/recomp/README.md 'Phase 2'). Each entry swaps one recompiled function for a body built from the named C source: mode ido (default) compiles it with the project's IDO (flags from the file's /* flags: */ header) into the .repl section N64Recomp recompiles; mode native compiles it for the host behind a generated o32 wrapper (leaf, word-sized memory through pointer arguments only). population: static | game | ovl_a | ovl_b. state: matched | draft | injected-bug. A lane asks for a verdict by adding an entry and running tools/recomp/oracle.py (cloud/work/frontier/WAVE_BRIEF.md 'Behavioural check'). Replacing a function never changes coverage.",
+ "note": "Phase 2 function replacement (tools/recomp/replace.py, tools/recomp/README.md 'Phase 2'). Each entry swaps one recompiled function for a body built from the named C source: mode ido (default) compiles it with the project's IDO (flags from the file's /* flags: */ header) into the .repl section N64Recomp recompiles; mode native compiles it for the host behind a generated o32 wrapper (leaf, word-sized memory through pointer arguments only). population: static | game | ovl_a | ovl_b. state: matched | draft | injected-bug | probe. mode capture (Phase 3) = a PROBE: the function is not replaced, its calls are only recorded (arguments from `prototype`) in both builds, so a replaced body's callees show where its behaviour first departs. A lane asks for a verdict by adding an entry and running tools/recomp/oracle.py (cloud/work/frontier/WAVE_BRIEF.md 'Behavioural check'). Replacing a function never changes coverage.",
  "entries": {
   "render_helper": {
    "function": "render_helper",
@@ -104,6 +104,46 @@
    "mode": "ido",
    "state": "draft",
    "note": "w21h best, NOT a match (15 words): audio-options input handler"
+  },
+  "probe_entity_transform_calc": {
+   "function": "entity_transform_calc",
+   "population": "game",
+   "mode": "capture",
+   "state": "probe",
+   "prototype": "void entity_transform_calc(s32 handle)",
+   "note": "callee of engine_sound_sync (0x80091CA4). Retail passes the four values in callee-saved f22/f24/f26/f28 (the callee compares each with the -2.0 'unchanged' sentinel in f20; target.s 0x80091CC8 c.eq.s f22,f20), not o32: captured by register (capture_args)",
+   "capture_args": [
+    "handle=a0",
+    "f22",
+    "f24",
+    "f26",
+    "f28"
+   ],
+   "capture_ret": "void"
+  },
+  "probe_audio_effect_setup": {
+   "function": "audio_effect_setup",
+   "population": "game",
+   "mode": "capture",
+   "state": "probe",
+   "prototype": "void audio_effect_setup(void *effect)",
+   "note": "callee of engine_sound_sync (kind 2 effects)"
+  },
+  "probe_func_80091BA8": {
+   "function": "func_80091BA8",
+   "population": "game",
+   "mode": "capture",
+   "state": "probe",
+   "prototype": "void *func_80091BA8(s32 handle)",
+   "note": "callee of engine_sound_sync: handle -> effect"
+  },
+  "probe_func_80098A54": {
+   "function": "func_80098A54",
+   "population": "game",
+   "mode": "capture",
+   "state": "probe",
+   "prototype": "f32 func_80098A54(f32 *v)",
+   "note": "callee of engine_sound_sync: vector length"
   }
  },
  "sets": {
@@ -127,6 +167,13 @@
   ],
   "draft_func_800D7634": [
    "draft_func_800D7634"
+  ],
+  "draft_engine_sound_sync_probe": [
+   "draft_engine_sound_sync",
+   "probe_entity_transform_calc",
+   "probe_audio_effect_setup",
+   "probe_func_80091BA8",
+   "probe_func_80098A54"
   ]
  }
 }

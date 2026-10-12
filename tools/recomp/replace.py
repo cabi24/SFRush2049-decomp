@@ -73,13 +73,17 @@ def load_manifest(path=MANIFEST):
     for rid, e in entries.items():
         if not _IDENT.match(rid):
             raise ReplaceError(f"replacement id {rid!r} is not a C identifier")
-        for key in ("function", "population", "source"):
+        mode = e.get("mode", "ido")
+        need = ("function", "population") + (("source",) if mode != "capture" else ())
+        for key in need:
             if key not in e:
                 raise ReplaceError(f"replacement {rid}: missing {key}")
         if e["population"] not in POPULATIONS:
             raise ReplaceError(f"replacement {rid}: unknown population {e['population']}")
-        if e.get("mode", "ido") not in ("ido", "native"):
-            raise ReplaceError(f"replacement {rid}: mode must be ido or native")
+        if mode not in ("ido", "native", "capture"):
+            raise ReplaceError(f"replacement {rid}: mode must be ido, native or capture")
+        if mode == "capture" and not (e.get("source") or e.get("prototype")):
+            raise ReplaceError(f"replacement {rid}: a capture probe needs a prototype or a source")
     for name, ids in doc.get("sets", {}).items():
         for rid in ids:
             if rid not in entries:
@@ -466,13 +470,47 @@ def _lenient_type(text):
         return {"c": "int32_t", "size": 4, "float": False, "ptr": False, "pointee": None}
 
 
-def capture_layout(text, function, prototype=None):
+_GPR_NAMES = {"v0": 2, "v1": 3, "a0": 4, "a1": 5, "a2": 6, "a3": 7, "t0": 8, "t1": 9, "t2": 10, "t3": 11,
+              "t4": 12, "t5": 13, "t6": 14, "t7": 15, "s0": 16, "s1": 17, "s2": 18, "s3": 19, "s4": 20,
+              "s5": 21, "s6": 22, "s7": 23, "t8": 24, "t9": 25, "gp": 28, "sp": 29, "fp": 30, "s8": 30}
+
+
+def explicit_capture(regs, ret="v0"):
+    """Capture layout from register names (entry "capture_args": a callee with
+    a non-o32 convention, e.g. IDO -O3 passing a static's arguments in
+    callee-saved registers): a0..a3, s0..s7, t0..t9, v0/v1 | f0..f31 (single)
+    | fN:d (double) | sp+N (stack word at entry)."""
+    args = []
+    for r in regs:
+        m = re.match(r"^(?:(\w+?)=)?(.+)$", r)
+        label, reg = m.group(1), m.group(2)
+        if reg in _GPR_NAMES:
+            code = CAP_GPR + _GPR_NAMES[reg]
+        elif re.match(r"^f([0-9]|[12][0-9]|3[01])(:d)?$", reg):
+            n = int(reg[1:].split(":")[0])
+            code = (CAP_FPR2 if reg.endswith(":d") else CAP_FPR1) + n
+        elif re.match(r"^sp\+(\d+)$", reg):
+            code = CAP_STK1 + int(reg[3:])
+        else:
+            raise ReplaceError(f"capture_args: unknown register {reg!r}")
+        args.append(["%s:%s" % (reg, label) if label else reg, code])
+    if len(args) > CAP_MAX_LOCS:
+        raise ReplaceError(f"capture_args: at most {CAP_MAX_LOCS} locations")
+    rcode = {"void": 0, "-": 0, "v0": 2, "v0:v1": 3, "f0": 100, "f0:d": 200}.get(ret)
+    if rcode is None:
+        raise ReplaceError(f"capture_ret: unknown {ret!r}")
+    return {"args": args, "ret": rcode, "known": True, "prototype": "explicit"}
+
+
+def capture_layout(text, function, prototype=None, explicit=None, explicit_ret="v0"):
     """What the runtime records at entry/exit of `function` (per-call capture):
     {"args": [[label, code]], "ret": code, "known": bool, "prototype": str}.
     Only the argument registers and stack words the prototype uses are
     recorded (a replaced caller may leave other registers different); the
     return register only for non-void functions. No prototype found: a0-a3
-    and v0, known=False."""
+    and v0, known=False. `explicit` (register names) overrides the prototype."""
+    if explicit:
+        return explicit_capture(explicit, explicit_ret)
     try:
         proto = prototype or find_prototype(text, function)
         ret, name, params = parse_prototype(proto)
@@ -527,11 +565,12 @@ def capture_entries(selected, repo=REPO):
     the call and runs the recompiled original (capture mode)."""
     out = []
     for rid, e in selected:
-        src = (repo / e["source"]).resolve()
-        text = src.read_text(errors="replace") if src.is_file() else ""
+        src = (repo / e["source"]).resolve() if e.get("source") else None
+        text = src.read_text(errors="replace") if src and src.is_file() else ""
         out.append({"id": rid, "function": e["function"], "population": e["population"],
-                    "mode": "capture", "call": None, "source": e["source"],
-                    "capture": capture_layout(text, e["function"], e.get("prototype"))})
+                    "mode": "capture", "call": None, "source": e.get("source"),
+                    "capture": capture_layout(text, e["function"], e.get("prototype"),
+                                                    e.get("capture_args"), e.get("capture_ret", "v0"))})
     return out
 
 
@@ -548,6 +587,12 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
     work.mkdir(parents=True, exist_ok=True)
     objects, replaced, native = [], [], []
     for rid, e in selected:
+        if e["mode"] == "capture":
+            # Probe: not replaced; its entry hook only records the call (the
+            # original runs), so a callee of a replaced body shows its
+            # arguments in both builds.
+            replaced += capture_entries([(rid, e)], repo)
+            continue
         src = (repo / e["source"]).resolve()
         if not src.is_file():
             raise ReplaceError(f"replacement {rid}: source {e['source']} not found")
@@ -566,7 +611,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             native.append({"id": rid, "wrapper": "native__" + rid})
             replaced.append({"id": rid, "function": e["function"], "population": e["population"],
                              "mode": "native", "call": "native__" + rid, "source": e["source"],
-                             "capture": capture_layout(text, e["function"], e.get("prototype"))})
+                             "capture": capture_layout(text, e["function"], e.get("prototype"),
+                                                    e.get("capture_args"), e.get("capture_ret", "v0"))})
             continue
         compiler = e.get("compiler") or DEFAULT_COMPILER[e["population"]]
         if compiler not in toolkits:
@@ -640,7 +686,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         replaced.append({"id": rid, "function": e["function"], "population": e["population"],
                          "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"],
                          "private_data": sorted(private), "self_calls_retargeted": self_calls,
-                         "capture": capture_layout(e["_text"], e["function"], e.get("prototype"))})
+                         "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
+                                                    e.get("capture_args"), e.get("capture_ret", "v0"))})
         raw = raw + b"\0" * (-len(raw) % 16)
         chunks.append(raw)
         cursor += len(raw)
