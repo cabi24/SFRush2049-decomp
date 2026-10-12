@@ -4,7 +4,8 @@
  * static_rename.renamed_source (w22g/w23g tables) and the scheduler TU's .bss defined below (w24s).
  * Devices (from the probe, disclosed there): compiled-out assertion blocks `if (x) { }`; the three
  * OSTime timestamps volatile. The .bss block defines two unreferenced placeholders (D_8002EB6C,
- * D_8002EB88) to place the referenced objects; see the block comment. */
+ * D_8002EB88) to place the referenced objects; see the block comment. w24s: cases 669/670 swapped vs the
+ * probe (the retail jump table sends 670 to __scSchedule, laid out first, and 669 to the client loop). */
 typedef signed char s8;typedef unsigned char u8;
 typedef signed short s16;typedef unsigned short u16;
 typedef int s32;typedef unsigned int u32;
@@ -88,10 +89,10 @@ void __scMain(void *arg) {
     __osScFrameTimeResult=(s32)(osGetTime()-__osScRetraceTime);
     __scHandleRDP(scheduler);
     break;
-   case 669:
+   case 670:
     __scSchedule(scheduler);
     break;
-   case 670:
+   case 669:
     for(client=scheduler->clientList;client!=0;client=client->next)
      osJamMesg(client->msgQueue,(OSMesg)&scheduler->priority,OS_MESG_BLOCK);
     break;
