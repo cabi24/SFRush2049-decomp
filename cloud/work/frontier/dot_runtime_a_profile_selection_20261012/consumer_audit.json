@@ -1,0 +1,49 @@
+{
+  "state_utility": {
+    "address": "0x800b71d4",
+    "bytes": 396,
+    "words_sha256": "636951ffa0efe5e074676c7f3f0456d1149fa0bb76caf89dcdf5331c916bf6e6"
+  },
+  "menu_input_process": {
+    "address": "0x800b6bec",
+    "bytes": 1280,
+    "words_sha256": "4b18d7c8e44e1b522c1d6c84be4c42820beb1ff810eb01dff8c8dd65bc5abdd8"
+  },
+  "func_800B66B0": {
+    "address": "0x800b66b0",
+    "bytes": 152,
+    "words_sha256": "b1160e27fc4aeb496aaf3b5c10277f8bc43eb411e133c4be5ed85ccfec29b0b0"
+  },
+  "audio_doppler_calc": {
+    "address": "0x800b6788",
+    "bytes": 1124,
+    "words_sha256": "078373435e7a2f3f83008bdedc28480fd1e340e45e8134a6b6bdd11a1b27465e"
+  },
+  "func_800A473C": {
+    "address": "0x800a473c",
+    "bytes": 52,
+    "words_sha256": "8d7c9d8431c4731b7c193225a620a6216ca603f249301288a80b08030e2c8a10"
+  },
+  "func_80092DCC": {
+    "address": "0x80092dcc",
+    "bytes": 96,
+    "words_sha256": "70d3fb3bc26b8169bd40da2bd1f40c8bd11bcb2a9f0abb768d67fa921fc07816"
+  },
+  "sound_pitch_diff_halved": {
+    "address": "0x800b71a0",
+    "bytes": 52,
+    "words_sha256": "4b2a589b72f13635fc22d5fccce384a854d5a902bf5d9796eb5747784874941b"
+  },
+  "object_manager_update": {
+    "address": "0x800b3fa4",
+    "bytes": 532,
+    "words_sha256": "a515631a895e84ae58c25c34a7ee3f91dca40939f027356c4b417140d846ffb1"
+  },
+  "memcpy": {
+    "address": "0x80007c68",
+    "bytes": 44,
+    "words_sha256": "770c81b6c68fa85d2b98688a09dd33a41366dd56288fda754c24eb3247e8763d",
+    "source": "asm/us/nonmatchings/rom/lib_8800/memcpy.s",
+    "evidence": "current tracked complete11word target, excludes12B alignment; not a ROM/independent static manifest claim"
+  }
+}

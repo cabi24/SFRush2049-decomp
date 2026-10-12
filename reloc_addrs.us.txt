@@ -203,3 +203,6 @@ rom:0x1A74 reloc:MIPS_LO16 symbol:__osScAudioStart addend:0x4 // was D_8002EB7C 
 rom:0x1AA4 reloc:MIPS_HI16 symbol:__osScFrameTime addend:0x4 // was D_8002EB84 (__scExec)
 rom:0x1AA8 reloc:MIPS_LO16 symbol:__osScFrameTime addend:0x4 // was D_8002EB84 (__scExec)
 rom:0x1AB4 reloc:MIPS_LO16 symbol:__osScRetraceTime addend:0x4 // was D_8002E8E4 (__scExec)
+// func_8001A658 (w26b: fader-loop end pointer &D_8004F300[32])
+rom:0x1BC04 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1BC0C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800

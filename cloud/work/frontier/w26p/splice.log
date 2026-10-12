@@ -1,0 +1,20 @@
+### #359
+image A: group spliced ['func_80394564', 'func_80394834', 'func_80394B00']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     78/193 functions, 45428/194128 bytes (23.40%; 29.70% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     20/49 functions, 8352/43888 bytes (19.03%; 21.58% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #360
+image A: group spliced ['func_803AAF0C', 'func_803AB5FC', 'func_803AB848', 'func_803ABEC8', 'func_803AC330', 'func_803AC54C', 'func_803AC7F4', 'func_803ACA94', 'func_803ACD5C', 'func_803ACF5C', 'func_803AD0D4']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     79/193 functions, 46556/194128 bytes (23.98%; 30.44% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     20/49 functions, 8352/43888 bytes (19.03%; 21.58% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #362
+image B: group spliced ['func_80391650', 'func_80391864']; image gate byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+overlay A:     79/193 functions, 46556/194128 bytes (23.98%; 30.44% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     21/49 functions, 9020/43888 bytes (20.55%; 23.30% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #366
+image A: group spliced ['func_80395E24', 'func_803A7B58', 'func_803A87D4', 'func_803A8B74']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     80/193 functions, 49752/194128 bytes (25.63%; 32.53% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     21/49 functions, 9020/43888 bytes (20.55%; 23.30% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0

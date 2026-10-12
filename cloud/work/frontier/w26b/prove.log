@@ -1,0 +1,12 @@
+== context rows
+func_8001A658 ok 
+== LOCK
+func_8001A658 vs current target: LOCK: true=10 strict=10 reloc_blind=1 objdump-dr DIFFERS(3 rows) (749 rows)
+func_8001A658 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (749 rows)
+func_8001A658 TU context (re-split target): TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (749 rows) RESULT PASS 
+== TU edit alone (lane/tools/tu_edits.py) vs current TU
+lib_1a660: IDENTICAL (2630 lines: .text words+relocs, data sections)
+== all sources spliced into the edited TU, vs the current TU with re-split GLOBAL_ASM
+wrote spl/src/rom/lib_1a660.c
+asm/us/nonmatchings/rom/lib_1a660/func_8001A658.s: 2 operands renamed
+lib_1a660: IDENTICAL (2630 lines: .text words+relocs, data sections)

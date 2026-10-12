@@ -6,7 +6,15 @@
  * the incoming selector with the real induction variable and recovers native
  * private a1 allocation. No extra formal, storage, executable operation, or
  * compiler modification is used. Original source spelling is unknown.
- * 94834 is preserved byte-identically; 97FFC and 94B00 remain NONMATCH context.
+ * 94B00 resets selected player state and preserves the private player=s0,
+ * mode=s1 ABI in this genuine group. Native list loops check equality inside
+ * the body. Native signed word-offset/index arithmetic is retained explicitly:
+ * the u8 identifier is scaled to a word byte offset, then divided as signed32.
+ * This is an identity over all 256 byte values; its original spelling/purpose
+ * is unknown, and no pointer-provenance claim is made. Reversing the two
+ * side-effect-free owner-id equality operands recovers native expression order.
+ * 94564/94834 are preserved byte-identically. 97FFC remains NONMATCH context.
+ * No capacity, frame, helper, formal parameter, or compiler policy changed.
  */
 typedef signed char s8;typedef unsigned char u8;
 typedef short s16;typedef unsigned short u16;typedef int s32;typedef unsigned int u32;typedef float f32;
@@ -154,12 +162,15 @@ void func_80394B00(s32 player,s32 mode)
     if (mode == 0) {
         D_803BAC80[player] = 0;
         node = D_8012E6E0;
-        while (node && node != D_8014A118[player].owner) node = node->body->next;
+        while (node) {
+            if (node == D_8014A118[player].owner) break;
+            node = node->body->next;
+        }
         D_8014A118[player].owner = 0;
         if (!node || !node->body->selection) {
             D_803BAC80[player] = &D_80146150[player];
             if (D_803BACE0[player] != 3 && D_803BACE0[player] != 4)
-                D_803BADBC[player] = D_8014A118[player].id;
+                D_803BADBC[player] = ((s32)(D_8014A118[player].id * sizeof(s32))) / (s32)sizeof(s32);
             if (D_803BAD80[player] >= 3 && D_803BAD80[player] < 11)
                 D_803BAD80[player] = 0;
         } else {
@@ -167,8 +178,9 @@ void func_80394B00(s32 player,s32 mode)
             D_803BADBC[player] = node->body->selection->item->player;
             if (D_803BAD80[player] >= 3 && D_803BAD80[player] < 11) {
                 D_803BAD80[player] = 3;
-                for (other = D_8012E6E0; other && other != node; other = other->body->next) {
-                    if (other->body->selection->item->player == node->body->selection->item->player)
+                for (other = D_8012E6E0; other; other = other->body->next) {
+                    if (other == node) break;
+                    if (node->body->selection->item->player == other->body->selection->item->player)
                         if (D_803BAD80[player] < 10) D_803BAD80[player]++;
                 }
             }

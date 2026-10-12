@@ -1,0 +1,22 @@
+{
+  "members": [
+    "func_80394564",
+    "func_80394834",
+    "func_80394B00",
+    "func_803949CC",
+    "func_80397FFC"
+  ],
+  "claims": [],
+  "context": [
+    "func_80397AD8",
+    "func_8039842C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039842C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Research-only cross-group ABI context, no replacement identity or installer claim. Four preserved exact bodies: 1428 accepted bytes and 728 prior PR359 candidate bytes; target97FFC remains NONMATCH."
+}
