@@ -153,6 +153,21 @@ and `CONVEYOR_BUILDER_REPO` (defaults `watchman2`, `~/rush2049/repo`).
 The blob modules still have their own builder/toolkit constants; inspect those
 when replacing the host rather than assuming the environment variables cover them.
 
+### Gate repo staleness (owned ROM slots)
+
+The gate repo is synced with `rsync -a`, which keeps the Pi's mtimes, so make
+alone could miss a changed owned ROM slot and fail the link with "owned ROM slot
+address changed" on a correct tree. Every builder gate (`promote run
+--via-builder`, `promote_batch.py`, `owned_storage`) therefore hashes the
+owned-slot inputs on the builder (`promote.owned_slot_inputs()`: the registry,
+the files generated from it, passthrough companions, text-boundary inputs; not
+the ROM TUs) and compares the hash with `build/us/.owned_slot_inputs.sha256`,
+written after each successful `make`. On a difference it removes `build/us`
+first and logs `builder gate: GATE-CLEAN: owned-slot inputs changed ...`. The
+manual `rm -rf build/us && make COMPILER=ido -j16 && make test` recovery is no
+longer needed for this case (the first gate after this landed cleans once,
+because no stamp exists yet).
+
 ## CI-equivalent test hosts
 
 CI (`.github/workflows/verify.yml`) runs `tests/conveyor` and `tests/cloud` with

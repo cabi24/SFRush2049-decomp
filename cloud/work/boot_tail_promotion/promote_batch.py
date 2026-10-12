@@ -16,7 +16,9 @@ SAME gate for many functions at once:
     before it (skipping any statement already present in the TU);
   * the gate is the full matching ROM build + `make test` on the builder after
     a full repo sync with `rsync -a --delete asm/`, with every touched TU
-    touched and its object required to be newer than the source;
+    touched and its object required to be newer than the source; build/us is
+    removed first (logged `builder gate: GATE-CLEAN: ...`) when the owned-slot
+    inputs differ from the stamp of its last build (w24t);
   * after every gate the TUs are restored byte-for-byte; when the whole
     batch fails, candidates are accepted one at a time on top of those
     already accepted, and a candidate whose addition fails is refused;
@@ -280,8 +282,12 @@ def gate(tus):
         return False, "asm rsync failed: " + sync.stderr[-300:]
     rels = [str(t.relative_to(REPO)) for t in tus]
     newer = " && ".join(f"[ build/us/{r[:-2]}.o -nt {r} ]" for r in rels) or "true"
-    build = run(["ssh", BUILDER, f"cd {BUILDER_REPO} && touch {' '.join(rels)} && "
-                 f"make COMPILER=ido -j{BUILDER_JOBS} && make test && {newer}"])
+    # w24t: clean build/us first when the owned-slot inputs changed since the
+    # last successful build there (promote.owned_stamp_guard).
+    pre, post = promotemod.owned_stamp_guard(REPO)
+    build = run(["ssh", BUILDER, f"cd {BUILDER_REPO} && {pre} && touch {' '.join(rels)} && "
+                 f"make COMPILER=ido -j{BUILDER_JOBS} && {post} && make test && {newer}"])
+    promotemod.report_gate_clean(build.stdout)
     ok = build.returncode == 0 and "ROM matches!" in build.stdout
     return ok, " / ".join((build.stdout + build.stderr).strip().splitlines()[-3:])
 

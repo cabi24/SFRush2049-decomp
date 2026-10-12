@@ -259,8 +259,11 @@ def _gate(repo, paths, via_builder):
             result = promote._run(["ssh", promote.BUILDER, "rm -f -- " + remote + "/" + shlex.quote(rel)])
         if result.returncode:
             return False, result.stderr
-    proc = promote._run(["ssh", promote.BUILDER, "cd " + remote +
-                         " && touch src/rom/*.c && make COMPILER=ido -j4 && make test"], timeout=1800)
+    pre, post = promote.owned_stamp_guard(repo)
+    proc = promote._run(["ssh", promote.BUILDER, "cd " + remote + " && " + pre +
+                         " && touch src/rom/*.c && make COMPILER=ido -j4 && " + post + " && make test"],
+                        timeout=1800)
+    promote.report_gate_clean(proc.stdout)
     return proc.returncode == 0 and "ROM matches!" in proc.stdout, (proc.stdout + proc.stderr)[-2000:]
 
 
