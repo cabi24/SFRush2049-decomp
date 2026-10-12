@@ -15,8 +15,8 @@ and, unless --with-rom, the ROM:
                                       inputs, make_rom.py, oracle.py, docs (no tests)
       config/                         the generated N64Recomp config of the stock build:
                                       rush2049.recomp.toml, *.syms.toml, manifest.json,
-                                      rush2049_images.h, rush2049_repl.h (names and
-                                      addresses only; no ROM bytes, no recompiled C)
+                                      rush2049_images.h, rush2049_repl.h, rush2049.rsp_audio.toml
+                                      (names and addresses only; no ROM bytes, no recompiled C)
       prebuilt/linux-x86_64/          quick-start host binary built on rocky
       rom/baserom.us.z64              only with --with-rom (owner's private copy)
 
@@ -50,7 +50,7 @@ VERSIONS = HERE / "VERSIONS.md"
 TEMPLATES = HERE / "package"
 DOCS = ("README.md", "INSTALL.md", "TEST_PROCESS.md", "REPORT_TEMPLATE.md", "CHANGES.md")
 CONFIG_FILES = ("rush2049.recomp.toml", "rush2049.syms.toml", "rush2049.datasyms.toml", "manifest.json",
-                "rush2049_images.h", "rush2049_repl.h")
+                "rush2049_images.h", "rush2049_repl.h", "rush2049.rsp_audio.toml")
 # tools/recomp files that are not for the tester (repo-only tooling stays out)
 RUSH_EXCLUDE = re.compile(r"(^|/)(__pycache__|package\.py$|package/)")
 SNAPSHOT_EXCLUDE = {".git", "__pycache__", ".github"}

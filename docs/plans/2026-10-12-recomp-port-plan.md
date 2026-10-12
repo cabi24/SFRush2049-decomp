@@ -335,3 +335,40 @@ versions and the package pins: `tools/recomp/VERSIONS.md`.
   exception handler) if lanes need it there; IPA table entries for every other `register_params` callee a draft
   calls (the build now refuses them by name); cheaper capture (only re-protect pages dirtied since the last
   window instead of two 8 MiB mprotects per call); inbound IPA shims exercised on a real replaced IPA callee.
+
+
+## 13. Phase 5 findings (lane w25r, 2026-10-12)
+
+Detail and commands: `tools/recomp/README.md` "Phase 5"; lane notes: `cloud/work/frontier/w25r/RESULTS.md`;
+tester input: `tools/recomp/reports/v1/REPORT.md`; package v2: `tools/recomp/VERSIONS.md`, `package/CHANGES.md`.
+
+- **Wall-clock boot hang: fixed by yielding in libultra-free busy-waits.** `game_loop` 0x800FD500 spins on
+  `__osScTaskCount` (D_8002EB70); ultramodern switches threads only inside libultra calls, so RT64's late DP
+  completion never reached the scheduler thread. A scan of all four populations found 14 such game loops (7 more
+  drains of the same counter, a retrace wait in dma_wait_complete, two in wheel_params_set, one in
+  func_800E7038, two in the static sound code); all get `rush_hook_spin` (one `yield_self_1ms` turn, no-op in
+  lockstep). Reproduced and verified without a GPU: `--null-dl-delay` (null renderer) and RT64 itself on Xvfb +
+  lavapipe in a container on rocky (`gfx_tasks=2` without the yield, boot + menus + race with it). Three sites
+  are hit in a scripted race (0x800FD500 at boot, 0x8038BA20 in the front end, 0x80096184 at the race start).
+- **RT64 self-check explained.** The second differing range (36 pages after gBssEnd) is the z-buffer
+  (G_SETZIMG 0x8017AEC0, 320x220x2); the first is framebuffer 1 (0x807DDA00; framebuffer 0 at 0x807BB3C0). Named
+  in `runtime_buffers.json` (datasyms only). `oracle.py compare --mask-renderer` / host `--mask-rdp-images` judge
+  the rest: RT64 lockstep race vs null `EQUIVALENT except renderer-written pages over 1800 frames`. Found on the
+  way: lockstep + RT64 could crash (the game rebuilt a display list RT64 was still reading); now the game thread
+  waits for the renderer to take each mirrored list.
+- **Audio.** Rush's audio ucode is its own per-voice synthesiser, not aspMain; RSPRecomp handles it with no
+  extra branch targets once the text size stops at the code end (0xF40 bytes at IMEM 0x1080). Audio tasks now
+  run it (wall: runtime task thread; lockstep: synchronously). A second gap: the game feeds the AI one 192-frame
+  buffer per AI interrupt (115/s), ultramodern sends one AI message per VI; paced AI messages make the game
+  produce 22.05 kHz of audio (headless 45 s: 1.98 M samples, 84 % non-zero; SDL disk driver: continuous output).
+  Lockstep verdicts unchanged in kind: stock self-check and draft_engine_sound_sync on race, race_track2,
+  two_player, audio_options all EQUIVALENT (3599 calls identical each) with the ucode running.
+- **Package v2** (process unchanged): A5 builds `N64RecompCLI` + `RSPRecomp`, A6 runs RSPRecomp; the runtime
+  deletes librecomp's ROM copy from `--home` once loaded; TEST_PROCESS: wall clock by default (`--clock frames`
+  fallback), T6 keys fixed, T2 5-minute attract, T6b stunt (`stunt.press`: SELECT MODE DOWN x4 loads race data
+  0x812BE0), T7a pad mapping (`--log-input`), sound in every step, T8 with `--mask-renderer`.
+- **Phase 6 needs**: the v2 tester report (wall clock on a real GPU, sound by ear: pitch, sync, crackle; stunt
+  and attract pixels; pad table); audio pacing on a real device (the SDL-queue feedback thresholds are untested
+  on hardware); whether any other game thread starves in wall clock (the census covers loops without calls, not
+  long call-free computations); a Windows CI or laptop build check of the RSPRecomp step and `-march=nehalem`
+  under clang-cl; saves/controller pak; the other `register_params` IPA callees; cheaper capture.

@@ -1,0 +1,25 @@
+# Stunt mode: the race script, but on SELECT MODE (the screen after the 14 s A; rows SINGLE RACE, PRACTICE,
+# GHOST RACE, CIRCUIT, STUNT) DOWN x4 then A. Evidence (w25r, frame clock): DOWN x1-x3 load the default
+# track's race data (first stream after image B 0x43FE80), DOWN x4 and x5 (the last row) load 0x812BE0
+# (then 0x89F220, 0xA680B0, 0xAEA800): another arena. Pixels: gameplay-test package v2 T7.
+frames 1800
+5 START
+8 START
+11 A
+14 A
+15.5 DOWN
+16.5 DOWN
+17.5 DOWN
+18.5 DOWN
+19.5 A
+20 START
+23 A
+26 A
+29 A
+32 A
+35 START
+38 A
+41 A
+44 A
+47 A
+50 A

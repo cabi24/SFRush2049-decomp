@@ -60,6 +60,7 @@ void usage() {
         "  --keyboard-alone: the keyboard is player 1 and game controllers start at player 2\n"
         "  --null-dl-delay MS: (test) the null renderer takes MS ms per display list, like RT64\n"
         "  --ai-per-vi: one AI message per VI (the runtime's default; the game then makes half its audio)\n"
+        "  --keep-rom-copy: keep librecomp's copy of the ROM in --home (deleted once loaded by default)\n"
         "  --no-sound: do not open an audio device (rt64 build); --volume PERCENT (default 100)\n"
         "  --wav PATH: also write the game's audio output to a WAV file\n"
         "  --log-input: print every button/stick change per player (pad-mapping check)\n"
@@ -187,6 +188,25 @@ ultramodern::renderer::WindowHandle create_window(ultramodern::gfx_callbacks_t::
 }
 void update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t) {}
 
+// librecomp's select_rom copies the ROM into the --home directory
+// (rush2049.n64.us.z64) and load_stored_rom reads it back when the game starts.
+// The copy is private (it is the synthetic ROM), so it is deleted as soon as
+// the game has loaded it (on_init_callback) and again at exit: a --home
+// directory never keeps a ROM once the game is running (package T9 zips run\).
+std::filesystem::path stored_rom_copy;
+bool keep_rom_copy = false;   // --keep-rom-copy
+void delete_rom_copy() {
+    if (keep_rom_copy || stored_rom_copy.empty()) return;
+    std::error_code ec;
+    if (std::filesystem::remove(stored_rom_copy, ec))
+        fprintf(stderr, "[rush] removed the ROM copy %s (loaded into memory)\n", stored_rom_copy.string().c_str());
+}
+void on_game_init(uint8_t*, recomp_context*) { delete_rom_copy(); }
+void at_exit() {
+    wav_finish();
+    delete_rom_copy();
+}
+
 std::string thread_name(const OSThread* t) { return "game" + std::to_string(t->id); }
 void message_box(const char* msg) { fprintf(stderr, "[rush] message: %s\n", msg); }
 
@@ -235,6 +255,7 @@ int main(int argc, char** argv) {
         else if (a == "--call-log") call_log = next();
         else if (a == "--call-detail") call_detail = std::stoull(next());
         else if (a == "--no-sound") no_sound = true;
+        else if (a == "--keep-rom-copy") keep_rom_copy = true;
         else if (a == "--ai-per-vi") rush::set_ai_pacing(false);
         else if (a == "--wav") {
             std::string w = next();
@@ -242,7 +263,6 @@ int main(int argc, char** argv) {
             if (!wav_file) { fprintf(stderr, "[rush] cannot write %s\n", w.c_str()); return 2; }
             uint8_t zero[44] = {};
             fwrite(zero, 1, sizeof zero, wav_file);
-            rush::set_exit_hook(wav_finish);
         }
         else if (a == "--volume") volume = std::stod(next());
         else if (a == "--log-input") log_input = true;
@@ -294,6 +314,7 @@ int main(int argc, char** argv) {
     game.is_enabled = true;
     game.entrypoint_address = get_entrypoint_address();
     game.entrypoint = recomp_entrypoint;
+    game.on_init_callback = on_game_init;
     recomp::register_game(game);
     rush::register_overlays();
 
@@ -303,6 +324,8 @@ int main(int argc, char** argv) {
         return 2;
     }
     recomp::check_all_stored_roms();
+    stored_rom_copy = home / std::filesystem::path(game.stored_filename());
+    rush::set_exit_hook(at_exit);
 
     rush::set_frame_clock(clock == "frames");
     // osGetCount/osGetTime: virtual (frame-derived) or wall; default follows --clock
@@ -362,5 +385,6 @@ int main(int argc, char** argv) {
     cfg.error_handling_callbacks = ultramodern::error_handling::callbacks_t{.message_box = message_box};
     cfg.threads_callbacks = ultramodern::threads::callbacks_t{.get_game_thread_name = thread_name};
     recomp::start(cfg);
+    rush::run_exit_hook();
     return 0;
 }
