@@ -1,0 +1,37 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803A9EEC",
+    "func_8039842C"
+  ],
+  "members": [
+    "func_80395E24",
+    "func_803A87D4",
+    "func_803A8B74",
+    "func_80396EE8",
+    "func_80396F44",
+    "func_803A7B58",
+    "func_80394564",
+    "func_80394B00"
+  ],
+  "claims": [
+    "func_80395E24",
+    "func_803A87D4",
+    "func_803A8B74",
+    "func_80396EE8",
+    "func_80396F44",
+    "func_803A7B58",
+    "func_80394564",
+    "func_80394B00"
+  ],
+  "context": [
+    "func_803A9088",
+    "func_803A9EEC",
+    "func_80396FA0",
+    "func_8039842C"
+  ],
+  "provenance": "96FA0 NONMATCH controller research, 31/718 words; preserves 7152 prior exact bytes (2508 accepted profile/helper bytes, 3196 draft #366 renderer bytes, 720 accepted availability bytes and 728 draft #359 transition bytes). Same profile identity; duplicated ownership requires checker reconciliation. No installation or coverage gain."
+}
