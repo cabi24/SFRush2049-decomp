@@ -1,0 +1,5 @@
+  also diverges: backward (frame 0, call #1, effect)
+  also diverges: battle (frame 0, call #1, effect)
+  also diverges: circuit (frame 0, call #1, effect)
+VERDICT: DIVERGES (6 of 6 scripts; behaviour differs from retail: the logic is wrong, or a harness gap named above)
+  details: /home/cburnes/rush2049/recomp/dc/runs/game_late_init/20261012-183157-1359586

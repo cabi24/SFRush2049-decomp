@@ -1,0 +1,5 @@
+  practice       EQUIVALENT   2028 calls of func_800EB90C  (2700 frames, 63 s)
+
+VERDICT: EQUIVALENT over 31259 calls / 6 scripts (stunt_end 9189, attract_pak 8298, attract 7688, backward 2028, ghost_race 2028, practice 2028)
+  Behaviour only: every call's arguments, return value and memory writes match retail. This is NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.
+  details: /home/cburnes/rush2049/recomp/dc/runs/func_800EB90C/20261012-181336-1354430

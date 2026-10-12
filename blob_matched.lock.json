@@ -5749,6 +5749,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "func_800EB90C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800EB90C.c",
+    "source_sha256": "3aa1e84ddfe24f7aff8ab032c398ea25c1a4891483ade3dca565f333d47befd1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "func_800EC190": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800EC190.c",
@@ -7960,6 +7968,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-11"
   },
+  "stat_race_start": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/stat_race_start.c",
+    "source_sha256": "8f4d61f21e80ad3d2f69036536a685d2c3836639685b3ea3b5a85be64fda3f5f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "stat_race_update": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/stat_race_update.c",
@@ -8319,6 +8335,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "world_object_destroy": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/world_object_destroy.c",
+    "source_sha256": "311147979e37e836a99d7e28891d523029709baf6d113931e1d45eff936aaa24",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   },
   "world_physics_tick": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

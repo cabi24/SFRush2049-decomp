@@ -4667,6 +4667,7 @@ func_800EB028:
 .section .text.world_object_destroy, "ax", @progbits
 .globl world_object_destroy
 world_object_destroy:
+    /* compiled from src/blob/world_object_destroy.c */
     .word 0x27BDFF70
     .word 0xAFBF0024
     .word 0xAFB20020
@@ -4830,6 +4831,7 @@ world_object_destroy:
 .section .text.func_800EB90C, "ax", @progbits
 .globl func_800EB90C
 func_800EB90C:
+    /* compiled from src/blob/func_800EB90C.c */
     .word 0x27BDFF38
     .word 0x3C0E8015
     .word 0x8DCEA110

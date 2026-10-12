@@ -5497,6 +5497,7 @@ func_800FDF88:
 .section .text.stat_race_start, "ax", @progbits
 .globl stat_race_start
 stat_race_start:
+    /* compiled from src/blob/stat_race_start.c */
     .word 0x3C0E8015
     .word 0x91CE43D4
     .word 0x3C188015

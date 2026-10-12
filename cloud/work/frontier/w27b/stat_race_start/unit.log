@@ -1,0 +1,3 @@
+  EQUAL stat_race_start: 267 words (kept, c_stat_race_start.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 1/1 equal; object build/blob_unit/w27b/unit.o (8.0s)

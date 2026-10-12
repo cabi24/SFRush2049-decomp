@@ -1,0 +1,12 @@
+ERROR in backward:
+oracle: host exited -11: /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875/repl/rush2049_recomp --rom /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875/repl/rush2049.recomp.z64 --home /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875/runs/backward/home_r --clock frames --frames 2700 --seconds 480.0 --press 4:START,7:A,10:A,13:A,17:DOWN,17.7:DOWN,18.4:RIGHT,19.5:A,22:A,25:A,28:A:20,50:A:30 --oracle-log /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875/runs/backward/repl.log --call-log /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875/runs/backward/repl.calls
+
+  details: /home/cburnes/rush2049/recomp/dc/runs/world_trigger_check/20261012-173849-1337875
+  also diverges: circuit (frame 3, call #8, effect)
+  also diverges: ghost_race (frame 3, call #8, effect)
+VERDICT: DIVERGES (6 of 6 scripts; behaviour differs from retail: the logic is wrong, or a harness gap named above)
+  details: /home/cburnes/rush2049/recomp/dc/runs/slot_state_setup/20261012-174132-1339545
+ERROR in battle:
+oracle: host exited -11: /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252/repl/rush2049_recomp --rom /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252/repl/rush2049.recomp.z64 --home /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252/runs/battle/home_r --clock frames --frames 2700 --seconds 480.0 --press 4:START,5.5:RIGHT,7:A,7.3:A@2,10:A,10.3:A@2,13:DOWN,14:DOWN,15:DOWN,16.5:A,16.8:A@2,19.5:A,19.8:A@2,22.5:A,22.8:A@2,25.5:A,25.8:A@2,28.5:A,28.8:A@2,31:A:20,31:A@2:20,55:A:30,55:A@2:30 --oracle-log /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252/runs/battle/repl.log --call-log /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252/runs/battle/repl.calls
+
+  details: /home/cburnes/rush2049/recomp/dc/runs/world_velocity_integrate/20261012-174443-1342252

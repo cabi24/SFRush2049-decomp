@@ -144,6 +144,18 @@
   {
    "name": "view_bind_w",
    "reason": "non-static inlined helper of wheel_render_full (w27a): stores into D_8017A510[k] and returns &D_8017A510[k]; its unused return is retail's dead `move v0,t0` before each call; as a static it leaves a 2-word deleted-procedure stub tail retail does not have"
+  },
+  {
+   "name": "wod_rand",
+   "reason": "non-static inlined helper of world_object_destroy (w27b): copy of the locked rand helper; as a static it leaves deleted-procedure stub words (6 for the three) that retail does not have"
+  },
+  {
+   "name": "wod_random",
+   "reason": "non-static inlined helper of world_object_destroy (w27b): copy of the locked Random helper; as a static it leaves deleted-procedure stub words (6 for the three) that retail does not have"
+  },
+  {
+   "name": "wod_dist2d",
+   "reason": "non-static inlined helper of world_object_destroy (w27b): 2-D distance helper; as a static it leaves deleted-procedure stub words (6 for the three) that retail does not have"
   }
  ],
  "prefer_definition": [
