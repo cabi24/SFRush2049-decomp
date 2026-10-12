@@ -1,0 +1,8 @@
+func_8001F13C ok 
+wrote tue/src/rom/lib_1f5b0.c
+== TU edit alone
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)
+== func_8001F13C (target func_8001F13C) src=lane/sources/func_8001F13C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (436 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (436 rows) RESULT PASS 
+wrote spl/src/rom/lib_1f5b0.c
+== all sources spliced (edited TU)
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)

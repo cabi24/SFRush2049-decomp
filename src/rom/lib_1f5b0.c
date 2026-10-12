@@ -285,9 +285,9 @@ void func_8001EF8C(VoiceState *state, u8 channel)
     state->channel2E = channel;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F13C.s")
 typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
 extern ChannelLink D_80050440[32];
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F13C.s")
 /* PROMOTED 2026-10-11 — func_8001F6EC
  * Source:   cloud/work/frontier/w18c/sources/func_8001F6EC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
