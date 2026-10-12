@@ -11,11 +11,11 @@
   "func_8039BA28",
   "func_8039BAE0",
   "func_8039B560",
-  "func_8039BB80"
+  "func_8039BB80",
+  "func_803A5658"
  ],
  "context": [
   "func_8039A4D4",
-  "func_803A5658",
   "func_803A5948"
  ],
  "files": [
@@ -26,5 +26,5 @@
   "func_803A5948"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "Same-name extension of installed text_helpers group on master 262e9f0f3: all eleven old exact bodies preserved; BB80 added after trace-confirmed private argument order and exact scalar-home frame correction."
+ "provenance": "Same-name group extension from master b37643eec, preserving all eleven installed members and pending PR333 BB80 unchanged; A5658 added after stock-stage equality, loop, and exact scalar-home frame diagnosis. BB80 is preserved-only credit."
 }
