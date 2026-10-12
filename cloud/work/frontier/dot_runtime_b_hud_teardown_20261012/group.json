@@ -1,0 +1,9 @@
+{
+  "name": "dot_runtime_b_hud_teardown_20261012",
+  "files": ["candidate.c"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": ["func_8039244C"],
+  "members": [],
+  "claims": [],
+  "context": ["func_8039244C"]
+}

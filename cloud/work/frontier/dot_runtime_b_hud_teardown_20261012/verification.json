@@ -1,0 +1,831 @@
+{
+  "accepted_image_bytes": 0,
+  "deep": {
+    "controls": {
+      "baseline": {
+        "comparison": {
+          "differing": 34,
+          "errors": [],
+          "extra_words": 0,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "difference_offsets": [
+          80,
+          84,
+          92,
+          104,
+          112,
+          128,
+          136,
+          148,
+          152,
+          156,
+          160,
+          168,
+          180,
+          184,
+          188,
+          196,
+          212,
+          216,
+          260,
+          264,
+          268,
+          272,
+          276,
+          280,
+          284,
+          288,
+          292,
+          296,
+          300,
+          304,
+          308,
+          312,
+          316,
+          320
+        ],
+        "function_bytes": 380,
+        "original_relocations": [
+          [
+            8,
+            5,
+            "D_80395ED4"
+          ],
+          [
+            12,
+            6,
+            "D_80395ED4"
+          ],
+          [
+            60,
+            4,
+            "sound_stop"
+          ],
+          [
+            80,
+            5,
+            "D_80395C00"
+          ],
+          [
+            84,
+            6,
+            "D_80395C00"
+          ],
+          [
+            72,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            76,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            92,
+            5,
+            "D_80395CD0"
+          ],
+          [
+            104,
+            6,
+            "D_80395CD0"
+          ],
+          [
+            96,
+            5,
+            "D_80395DA0"
+          ],
+          [
+            108,
+            6,
+            "D_80395DA0"
+          ],
+          [
+            100,
+            5,
+            "D_803950C0"
+          ],
+          [
+            112,
+            6,
+            "D_803950C0"
+          ],
+          [
+            140,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            172,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            200,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            232,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            260,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            264,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            268,
+            5,
+            "D_803950C0"
+          ],
+          [
+            272,
+            6,
+            "D_803950C0"
+          ]
+        ],
+        "owned_data_bytes": 0,
+        "relocated_sha256": "437c269187383999fce86ae050b40fdd8b8c9626f905176b4886b2c55882740a",
+        "separate_zero_suffix_bytes": 4,
+        "text_bytes": 384
+      },
+      "separate_initializers": {
+        "comparison": {
+          "differing": 6,
+          "errors": [],
+          "extra_words": 0,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "difference_offsets": [
+          104,
+          112,
+          164,
+          192,
+          308,
+          312
+        ],
+        "function_bytes": 380,
+        "original_relocations": [
+          [
+            8,
+            5,
+            "D_80395ED4"
+          ],
+          [
+            12,
+            6,
+            "D_80395ED4"
+          ],
+          [
+            60,
+            4,
+            "sound_stop"
+          ],
+          [
+            72,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            76,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            80,
+            5,
+            "D_80395C00"
+          ],
+          [
+            84,
+            6,
+            "D_80395C00"
+          ],
+          [
+            92,
+            5,
+            "D_80395CD0"
+          ],
+          [
+            104,
+            6,
+            "D_80395CD0"
+          ],
+          [
+            96,
+            5,
+            "D_80395DA0"
+          ],
+          [
+            108,
+            6,
+            "D_80395DA0"
+          ],
+          [
+            100,
+            5,
+            "D_803950C0"
+          ],
+          [
+            112,
+            6,
+            "D_803950C0"
+          ],
+          [
+            140,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            172,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            200,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            232,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            260,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            264,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            268,
+            5,
+            "D_803950C0"
+          ],
+          [
+            272,
+            6,
+            "D_803950C0"
+          ]
+        ],
+        "owned_data_bytes": 0,
+        "relocated_sha256": "d411f3dfa9b758db05f1b97d3495c584ae08bd6b4bca822d26cc61b9641cb6a3",
+        "separate_zero_suffix_bytes": 4,
+        "text_bytes": 384
+      },
+      "unguarded_first": {
+        "comparison": {
+          "differing": 17,
+          "errors": [],
+          "extra_words": 0,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "difference_offsets": [
+          80,
+          84,
+          92,
+          112,
+          128,
+          136,
+          148,
+          152,
+          160,
+          164,
+          180,
+          188,
+          192,
+          308,
+          312,
+          316,
+          320
+        ],
+        "function_bytes": 380,
+        "original_relocations": [
+          [
+            8,
+            5,
+            "D_80395ED4"
+          ],
+          [
+            12,
+            6,
+            "D_80395ED4"
+          ],
+          [
+            60,
+            4,
+            "sound_stop"
+          ],
+          [
+            80,
+            5,
+            "D_80395C00"
+          ],
+          [
+            84,
+            6,
+            "D_80395C00"
+          ],
+          [
+            72,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            76,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            92,
+            5,
+            "D_80395CD0"
+          ],
+          [
+            112,
+            6,
+            "D_80395CD0"
+          ],
+          [
+            96,
+            5,
+            "D_80395DA0"
+          ],
+          [
+            108,
+            6,
+            "D_80395DA0"
+          ],
+          [
+            100,
+            5,
+            "D_803950C0"
+          ],
+          [
+            104,
+            6,
+            "D_803950C0"
+          ],
+          [
+            140,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            172,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            200,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            232,
+            4,
+            "sound_call_minimal"
+          ],
+          [
+            260,
+            5,
+            "D_80151AD0"
+          ],
+          [
+            264,
+            6,
+            "D_80151AD0"
+          ],
+          [
+            268,
+            5,
+            "D_803950C0"
+          ],
+          [
+            272,
+            6,
+            "D_803950C0"
+          ]
+        ],
+        "owned_data_bytes": 0,
+        "relocated_sha256": "2e4a4898cc0da00144969c8eb1f54a88853b1ba4678349f484e3b19176546523",
+        "separate_zero_suffix_bytes": 4,
+        "text_bytes": 384
+      }
+    },
+    "gnu": {
+      "all_original_rels_consumed": true,
+      "body_sha256": "8e4bbbf4a02fecafd95fce3ceb669e62eb2794ea17f1c914b525f96671ccc91d",
+      "complete_original_relocations": 21,
+      "function_bytes": 380,
+      "native_entry_verified": true,
+      "owned_data_bytes": 0,
+      "text_bytes": 384
+    },
+    "group_o3_identical": {
+      "comparison": {
+        "differing": 4,
+        "errors": [],
+        "extra_words": 0,
+        "total": 95,
+        "unresolved": [],
+        "unverified": []
+      },
+      "difference_offsets": [
+        164,
+        192,
+        308,
+        312
+      ],
+      "function_bytes": 380,
+      "original_relocations": [
+        [
+          8,
+          5,
+          "D_80395ED4"
+        ],
+        [
+          12,
+          6,
+          "D_80395ED4"
+        ],
+        [
+          60,
+          4,
+          "sound_stop"
+        ],
+        [
+          72,
+          5,
+          "D_80151AD0"
+        ],
+        [
+          76,
+          6,
+          "D_80151AD0"
+        ],
+        [
+          80,
+          5,
+          "D_80395C00"
+        ],
+        [
+          84,
+          6,
+          "D_80395C00"
+        ],
+        [
+          92,
+          5,
+          "D_80395CD0"
+        ],
+        [
+          112,
+          6,
+          "D_80395CD0"
+        ],
+        [
+          96,
+          5,
+          "D_80395DA0"
+        ],
+        [
+          108,
+          6,
+          "D_80395DA0"
+        ],
+        [
+          100,
+          5,
+          "D_803950C0"
+        ],
+        [
+          104,
+          6,
+          "D_803950C0"
+        ],
+        [
+          140,
+          4,
+          "sound_call_minimal"
+        ],
+        [
+          172,
+          4,
+          "sound_call_minimal"
+        ],
+        [
+          200,
+          4,
+          "sound_call_minimal"
+        ],
+        [
+          232,
+          4,
+          "sound_call_minimal"
+        ],
+        [
+          260,
+          5,
+          "D_80151AD0"
+        ],
+        [
+          264,
+          6,
+          "D_80151AD0"
+        ],
+        [
+          268,
+          5,
+          "D_803950C0"
+        ],
+        [
+          272,
+          6,
+          "D_803950C0"
+        ]
+      ],
+      "owned_data_bytes": 0,
+      "relocated_sha256": "8e4bbbf4a02fecafd95fce3ceb669e62eb2794ea17f1c914b525f96671ccc91d",
+      "separate_zero_suffix_bytes": 4,
+      "text_bytes": 384
+    },
+    "helper_48_bytes_preserved_no_new_credit": true,
+    "host": {
+      "actual_source_fixtures": 1344,
+      "sanitizers": false,
+      "wrong_state_mutation_rejected": true
+    },
+    "installer": {
+      "empty_claims_refused": true,
+      "installed_bytes": 0,
+      "production_mutation": false,
+      "selected_bodies": []
+    },
+    "machine": {
+      "all_branch_outcomes": true,
+      "complete_nonstack_snapshots_and_helper_events": true,
+      "fixtures": 1344,
+      "instruction_offsets_covered": [
+        95,
+        95,
+        95
+      ],
+      "machine_executions": 4032,
+      "negative_controls": {
+        "unsupported_opcode": true,
+        "wrong_state": true
+      },
+      "o32_integer_clobbers_and_saved_registers": true
+    },
+    "native_C89_shape_checks": 12,
+    "overlong_extent_rejected": true,
+    "sanitized_host": {
+      "actual_source_fixtures": 1344,
+      "sanitizers": true,
+      "wrong_state_mutation_rejected": true
+    }
+  },
+  "fast": {
+    "comparison": {
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "total": 95,
+      "unresolved": [],
+      "unverified": []
+    },
+    "difference_offsets": [
+      164,
+      192,
+      308,
+      312
+    ],
+    "function_bytes": 380,
+    "installer": {
+      "empty_claims_refused": true,
+      "installed_bytes": 0,
+      "production_mutation": false,
+      "selected_bodies": []
+    },
+    "original_relocations": [
+      [
+        8,
+        5,
+        "D_80395ED4"
+      ],
+      [
+        12,
+        6,
+        "D_80395ED4"
+      ],
+      [
+        60,
+        4,
+        "sound_stop"
+      ],
+      [
+        72,
+        5,
+        "D_80151AD0"
+      ],
+      [
+        76,
+        6,
+        "D_80151AD0"
+      ],
+      [
+        80,
+        5,
+        "D_80395C00"
+      ],
+      [
+        84,
+        6,
+        "D_80395C00"
+      ],
+      [
+        92,
+        5,
+        "D_80395CD0"
+      ],
+      [
+        112,
+        6,
+        "D_80395CD0"
+      ],
+      [
+        96,
+        5,
+        "D_80395DA0"
+      ],
+      [
+        108,
+        6,
+        "D_80395DA0"
+      ],
+      [
+        100,
+        5,
+        "D_803950C0"
+      ],
+      [
+        104,
+        6,
+        "D_803950C0"
+      ],
+      [
+        140,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        172,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        200,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        232,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        260,
+        5,
+        "D_80151AD0"
+      ],
+      [
+        264,
+        6,
+        "D_80151AD0"
+      ],
+      [
+        268,
+        5,
+        "D_803950C0"
+      ],
+      [
+        272,
+        6,
+        "D_803950C0"
+      ]
+    ],
+    "owned_data_bytes": 0,
+    "relocated_sha256": "8e4bbbf4a02fecafd95fce3ceb669e62eb2794ea17f1c914b525f96671ccc91d",
+    "separate_zero_suffix_bytes": 4,
+    "text_bytes": 384
+  },
+  "inputs": {
+    "callers": {
+      "direct_calls": [
+        [
+          "blob",
+          "records_screen",
+          272
+        ]
+      ],
+      "parsed_inventory_sha256": {
+        "blob": "a9fd6893dbe454f5981f9066d8cf56e4093f7768f4a21498cb3a5fc1e237fea6",
+        "ovl_a": "d3e820b3769a09d066dc731b0eef91f8b74a503c049ff63fbfd19b2bd00e19c5",
+        "ovl_b": "8201e1239936e959003f371657dad8c5b015e355c6976da7b61fb96a100e33ba"
+      }
+    },
+    "files": {
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/candidate.c": "23b27123589c2767285fcca92855f5de934e35c216a5d83af568d796323d2ca5",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/group.json": "8fa06f684044df3708626773bc5f47b38be7b187189c4fce455135351d6e1dd7",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/host.c": "7d4b61f575cbc57504e18b733d38657f54e262d22d77e771d8af1352cfafba21",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/layout_check.c": "db23258a28b0b4c9e2c47d7dc9dfc625dece72cf4c19a44d498b4920a86e25cd",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/machine.py": "1201cc9704db9563eaced2c2577f739de07b71518e4e288e10fe498e2d48bc0f",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/trace.py": "79d5621db549f377cad33101fb034bb0a94173544c28e0d8c15041c5ef18d60a",
+      "cloud/work/frontier/dot_runtime_b_hud_teardown_20261012/verify.py": "cd721fdde40902a61f8d74650089b94ca9852d06e682b06fedfa30579572cc7b",
+      "cloud/work/runtime_b_teardown_20261006/candidate.c": "e5451b5f3017ace51e7543a06fb4e22a64b6654db1b551b9b2bd3a01a6cbb71e",
+      "src/blob/sound_call_minimal.c": "e314d07c9ca19ce53642a698cdc8a83533b0fccb50da927e75d02487f517687c",
+      "tests/cloud/test_runtime_b_hud_teardown_research.py": "afc214b0e37302b374ebfa88e79e882cc7c4bc7c65699c9e5698b7c9d7239278"
+    },
+    "native": {
+      "extent": {
+        "address": "0x8039244C",
+        "evidence": [
+          "game_jal",
+          "prologue"
+        ],
+        "name": "func_8039244C",
+        "size": 380
+      },
+      "image": "B",
+      "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+      "next_boundary": {
+        "address": "0x803925C8",
+        "evidence": [
+          "empty_function"
+        ],
+        "name": "func_803925C8",
+        "size": 8
+      },
+      "rom_offset": "0xB6FEC4",
+      "symbol_bindings": {
+        "D_80151AD0": 2148866768,
+        "D_803950C0": 2151239872,
+        "D_80395C00": 2151242752,
+        "D_80395CD0": 2151242960,
+        "D_80395DA0": 2151243168,
+        "D_80395ED4": 2151243476,
+        "sound_call_minimal": 2148074068,
+        "sound_stop": 2148218252
+      },
+      "word_sha256": "669b9c7401ddec9bf8a96ed492ddcacfefef83de4412bfc1fc3108e4aeb45c4f"
+    },
+    "native_helpers_and_caller": {
+      "records_screen": {
+        "bytes": 312,
+        "word_sha256": "8bc788ec8d193185d9285d90d41bcf883934f5677ed2dbb59c50a665a4beb397"
+      },
+      "sound_call_minimal": {
+        "bytes": 48,
+        "word_sha256": "d60649ae7c407e455923d680fc3603abf94e6efd24dc6285c6ba6d38249d9aec"
+      },
+      "sound_stop": {
+        "bytes": 160,
+        "word_sha256": "d4b514a4dae3fb8aa44239664a58729b7c3ef45e08e3553f1fc4759f32863993"
+      }
+    }
+  },
+  "new_strict_bytes": 0,
+  "protocol": 2,
+  "rom_verified_bytes": 0,
+  "status": "NONMATCH",
+  "stock_compilers": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  }
+}
