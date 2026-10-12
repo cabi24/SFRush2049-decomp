@@ -1,4 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Image-A aggregate statistics ABEC8: separate race/track/record pointers and
+ * scan/display counters follow native lifetimes. The scaled quotient is a
+ * shared expression; useful locals retain native declaration order. Buffer
+ * text[48] is unchanged. Stock frame152, native text at sp+72 and x/y at
+ * sp+146/sp+144. No new padding, unused local, forced register, volatile,
+ * helper or call convention. All ten inherited members are unchanged. */
 /* Image-A per-track statistics AD0D4: preserve the native zero-initialized
  * average and conditional division, unsigned-halfword bit-count arguments,
  * and local declaration order (x/y at sp+132/128, text at sp+76).
@@ -393,11 +399,13 @@ void func_803AD0D4(void)
 }
 void func_803ABEC8(void)
 {
-    u32 distance=0,total=0,scaled;
-    u16 found=0,race_a=0,race_b=0,track_a=0,track_b=0;
-    s16 i,x,y;
-    u8 text[48],*data,*label;
     u32 divisor;
+    s16 x,y;
+    u32 distance=0;
+    u32 total=0;
+    u16 found=0,race_a=0,race_b=0,track_a=0,track_b=0;
+    s16 i,row;
+    u8 text[48],*label,*data,*record,*track;
     if(!D_803BA800)return;
     func_800B669C(0,3);
     for(i=0;i<12;i++) {
@@ -409,25 +417,26 @@ void func_803ABEC8(void)
         }
     }
     for(i=0;i<4;i++) {
-        data=PROFILE_DATA+1292+i*64;
-        total+=U32_AT(data,12);
-        track_a+=func_800B78A4(U16_AT(data,60)&255,16);
-        track_b+=func_800B78A4(U16_AT(data,60)&65280,16);
+        track=PROFILE_DATA+1292+i*64;
+        total+=U32_AT(track,12);
+        track_a+=func_800B78A4(U16_AT(track,60)&255,16);
+        track_b+=func_800B78A4(U16_AT(track,60)&65280,16);
     }
-    data=PROFILE_DATA;
-    for(i=0;i<8;i++)found+=U16_AT(data,1548+i*12+8);
+    for(i=0;i<8;i++) {
+        record=PROFILE_DATA+1548+i*12;
+        found+=U16_AT(record,8);
+    }
     object_create(11);dispatch_handler(1);
     divisor=10;
-    for(i=0;i<7;i++) {
-        if(i==0) {x=180;y=90;}
-        label=NAME(33,i);
-        if(i==0 && D_80146111)label=NAME(28,7);
+    for(row=0;row<7;row++) {
+        if(row==0) {x=180;y=90;}
+        label=NAME(33,row);
+        if(row==0 && D_80146111)label=NAME(28,7);
         state_utility(sound_pitch_diff_calc(label,x-4),y,label);
-        switch(i) {
+        switch(row) {
         case 0:
             if(D_80146111) {
-                scaled=distance*divisor/6;
-                fcvt_wrapper(text,D_803B8B9C,scaled/divisor,scaled%divisor);
+                fcvt_wrapper(text,D_803B8B9C,(distance*divisor/6)/divisor,(distance*divisor/6)%divisor);
             } else fcvt_wrapper(text,D_803B8BA8,distance/divisor,distance%divisor);
             break;
         case 1:fcvt_wrapper(text,D_803B8BB4,total);break;
