@@ -99,21 +99,37 @@ _SYM_LINE = __import__("re").compile(
     r"^\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
 
 
-def static_symbols(path=_SYMBOL_ADDRS):
-    """{address: name} for the static ROM.
+_GAME_LEGACY = REPO / "game_static_legacy.us.txt"
 
-    Game code calls out of the image into libultra and libc — memset,
-    osJamMesg, osRecvMesg, viGetTimeToDeadline. Those live in the cartridge,
-    not in the image, so the link cannot resolve them from any blob object."""
-    out = {}
+
+def _symbol_lines(path):
+    """[(address, name)] of the `NAME = 0xADDR;` lines of a symbol file."""
     try:
         text = Path(path).read_text()
     except OSError:
-        return out
-    for line in text.splitlines():
-        match = _SYM_LINE.match(line)
-        if match:
-            out.setdefault(int(match.group(2), 16), match.group(1))
+        return []
+    return [(int(m.group(2), 16), m.group(1))
+            for m in map(_SYM_LINE.match, text.splitlines()) if m]
+
+
+def game_legacy_names(path=_GAME_LEGACY):
+    """{address: name}: the pre-rename names game code still calls static
+    functions by (game_static_legacy.us.txt; lane w22g's libultra rename)."""
+    return dict(_symbol_lines(path))
+
+
+def static_symbols(path=_SYMBOL_ADDRS, legacy=_GAME_LEGACY):
+    """{address: name} for the static ROM, as the game image names it.
+
+    Game code calls out of the image into libultra and libc — memset,
+    osJamMesg, osRecvMesg, viGetTimeToDeadline. Those live in the cartridge,
+    not in the image, so the link cannot resolve them from any blob object.
+    A static function renamed since the game sources were written keeps its
+    game-side name (game_static_legacy.us.txt) until those callers move."""
+    out = {}
+    for address, name in _symbol_lines(path):
+        out.setdefault(address, name)
+    out.update(game_legacy_names(legacy) if legacy is not None else {})
     return out
 
 
