@@ -410,6 +410,35 @@ address need two symbol names (uopt keys address constants by symbol number + of
 fill-from-above delay slots and kept reloads, check for stripped `.loc` and `-g` before suspecting another
 assembler; 7.1 ugen's temp ring is one FIFO across arms and joins (no save/restore at labels).
 
+**Wave 27 outcome (2026-10-12, wave27 after `8a54d6d2`; owner decisions: game lanes work the never-attempted
+functions by subsystem, recomp time goes to decomp feedback, laptop tests never gate a wave):** game 998 → 1010/1216
+(341,056 B, 52.71%): twelve functions in one wave against one per wave in waves 24–26 — camera_position_update,
+car_render_full, wheel_render_full (w27a), stat_race_start, world_object_destroy, func_800EB90C, world_trigger_check,
+slot_state_setup (w27b), func_80100B8C (w27c), func_800A5A40, save_settings, menu_controller_remap (w27d) — plus 24
+complete drafts saved under `w27*/<fn>/best.c`, 18 of them behaviourally EQUIVALENT under the new draft check, and
+three results-table handlers EQUAL in the unit awaiting their caller chain. Static 625 → 627/667 (149,708 B, 93.15%):
+func_80018448 (w27s: `(short)` casts on the delta reads pop 7.1's temp ring with no code; `uscan.py`) and
+inflate_dynamic (w27s: gzip's brace macros instead of 16 `do {} while (0)` wrappers — each wrapper costs 2 blocks and
+blocks/4 is the callee-saved cost); inflate_entry/alt proven hand-edited (stay asm); the last 7 libultra renames applied.
+Recomp Phase 7 (w27r): `python3 -m tools.recomp.draft_check --remote rocky NAME draft.c [--params …] [--callee …]`
+(EQUIVALENT = behaviour only, never coverage; FIRST DIVERGENCE names script/frame/call/values; NEVER CALLED),
+`regmap_verify` (live-in registers at every retail call site; refuted w26d's A1DD4 mapping, the real one is
+a0,a1,a2,t3), a per-script call census (51 unmatched game functions reached by no script), package v4 with no laptop
+wait. Traps: two lanes superseding the same group (credits_scroll_grp, w27b + w27c) merge by UNION of members, files,
+context AND `keep` — a member missing from keep with no caller in the group is deleted by umerge and leaves a 2-word
+stub after its neighbour (w27f); a splice regenerates `asm/us/blob/SHA256SUMS`, so never revert `symbols.json`/`blob.ld`
+after one (the receipts that pin symbols.json — nearest_point_donor, target_orientation — and the slot-contract audit
+(pins credits_scroll_grp/group.json; `audit.py --write`, then the frozen counts in its test) are re-pinned instead);
+`cloud/work/unregistered-heads.md` has function heads the inventory lacks (func_80104704: highscore_entry_anim is its
+tail). Lessons for wave 28: arcade declaration lists close frames (menu_controller_remap, func_800EB90C); every declared
+local takes a home slot, unused or not; each inlined helper level adds 8 B of frame and each inlined call about
+4·(params+1) B; the D_801461D0 font lock / `font_set` is an inlined static wrapper present in every HUD/results
+function (retail stubs func_800B41B8/func_800B42E8); ugen evaluates IPA register arguments in prototype order, so the
+call sites give the callee's prototype (func_80100D5C); matched siblings supply idioms (`u16` locals for `lhu`, pointer
+returns); as1 merges `srl tmp; move var,tmp` so a web can hold a register and leave no code — read the listing before
+calling a web codeless (w27e); `x >>= 5` is a third code-free temp pop; an inlined value return keeps v0 away from every
+value live across it; check old drafts' prototypes against the locked callee (camera_follow_path 4 → 0 ops).
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
