@@ -78,7 +78,7 @@ def verify(work):
       'missing_level_store':('        state->level=level;','        state->level=state->level;'),
       'wrong_style_predicate':('    if (style!=state->style) {','    if (style==state->style) {'),
       'style_sent_to_wrong_channel':('        entity_hierarchy_update(state->handle,style);','        client_sync(state->handle,style);'),
-      'handle_read_after_lock':('        entity_hierarchy_update(state->handle,style);','        osRecvMesg(&D_80142728,0,1);\n        entity_transform_calc(state->handle,-2.0f,-2.0f,-2.0f,style);\n        osJamMesg(&D_80142728,0,0);')}
+      'handle_read_after_lock':('        entity_hierarchy_update(state->handle,style);','        osRecvMesg(&D_80142728,0,1);\n        entity_transform_calc(state->handle,-2.0f,-2.0f,-2.0f,style);\n        osSendMesg(&D_80142728,0,0);')}
     negatives={};cases=list(semantics.corpus())
     for label,(before,after) in edits.items():
         assert source.count(before)==1,(label,source.count(before));mutant=source.replace(before,after)

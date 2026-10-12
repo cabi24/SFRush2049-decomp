@@ -60,8 +60,8 @@
   ],
   "compile": {
     "archived": {
-      "object_sha256": "f9f144ecab5f5f5e8e8219d07f2fc5206599a168505408fbd7c1c0b6fe7a10d8",
-      "mdebug_sha256": "4bb9cf4ea975b8a26f715ba30f7ba5bde37f607a4b2b1d4fe7b89d5c5e982489",
+      "object_sha256": "eb6472214a16a8652f71b5c0f9d373744d6ef2fbebaa88a74ff6fdaefb864ef2",
+      "mdebug_sha256": "1496004aa5762221a2cd2924e0effe2a655e4c3905aeb6db4603bc5540c8c91c",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -124,8 +124,8 @@
             "info": 0,
             "alignment": 1,
             "entry_size": 1,
-            "size": 107,
-            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+            "size": 108,
+            "sha256": "c1224e568efcad20d1bd4c68f812a4cb42317bc826a429b362e44db34dc3f318"
           },
           {
             "name": ".text",
@@ -297,8 +297,8 @@
       "owned_data_bytes": 0
     },
     "corrected": {
-      "object_sha256": "c8cbe71551e41fca13e117900d16c4b25b57e358326c4447c933d90049d619a4",
-      "mdebug_sha256": "018c6c1f7a39cf9679905593fb864d4484ed4e834e79e2263c6ab87c73d35215",
+      "object_sha256": "4d9d4ff97a64e41944085c148b981b1168a0a6ad6f5e181af7f89714890de7eb",
+      "mdebug_sha256": "ee5650e2ab5fdac516d0aa7492f008315993047055ad2749eff8a597925e3448",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -361,8 +361,8 @@
             "info": 0,
             "alignment": 1,
             "entry_size": 1,
-            "size": 107,
-            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+            "size": 108,
+            "sha256": "c1224e568efcad20d1bd4c68f812a4cb42317bc826a429b362e44db34dc3f318"
           },
           {
             "name": ".text",
@@ -534,8 +534,8 @@
       "owned_data_bytes": 0
     },
     "corrected_header_o2": {
-      "object_sha256": "261eaf67cd716e777a97999730364ec3efa9cb264325f937f69b09110575ba1c",
-      "mdebug_sha256": "b27b17e19c4f63e6cc024712b2851838074f22b4a04fd705f15a9c18ca5d82f7",
+      "object_sha256": "82f7a41966f85938d5cfa845393154d025ebd7dda332360d7bf5e7f6d58bd003",
+      "mdebug_sha256": "32c99cbfb552d788b756ad18d2a83941deaadfc1b8ed135f56550fc54922f918",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -598,8 +598,8 @@
             "info": 0,
             "alignment": 1,
             "entry_size": 1,
-            "size": 107,
-            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+            "size": 108,
+            "sha256": "c1224e568efcad20d1bd4c68f812a4cb42317bc826a429b362e44db34dc3f318"
           },
           {
             "name": ".text",
@@ -771,8 +771,8 @@
       "owned_data_bytes": 0
     },
     "context": {
-      "object_sha256": "a5f9afd546fe41208e669ba603aa1d8c9d7ea99389ed274fd2f23a25fbd4dd0e",
-      "mdebug_sha256": "8f9474368783f670132ecd39e74f6e51fabc7d27d10955c7bceab4c3625a8d5f",
+      "object_sha256": "8de8eac0f37d3efe1d6b91460e882f21479101cd2060a5a575914f220be54d49",
+      "mdebug_sha256": "b19d02680fdb01796d9e155cbb35a3415278711f818afa6f7c78dd58b795f53f",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -812,7 +812,7 @@
             "alignment": 4,
             "entry_size": 16,
             "size": 240,
-            "sha256": "c54d7f39a71a19775005252d05eef0ee80f50047e5a764a28079211b346f8e08"
+            "sha256": "c3c8b10d11a59df74d7c3f51b0360c6fa83d20818117f285936ea90860fcc9fd"
           },
           {
             "name": ".shstrtab",
@@ -835,8 +835,8 @@
             "info": 0,
             "alignment": 1,
             "entry_size": 1,
-            "size": 165,
-            "sha256": "a577d36912a05e6ecc474927f1502d0d6a100cceb4b8c311e05c9427e7cb99eb"
+            "size": 166,
+            "sha256": "63d10072ca0e28727850f92c82e7bab448bf6f20c37189cd486f3b8bb94e76a4"
           },
           {
             "name": ".text",

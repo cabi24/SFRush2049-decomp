@@ -464,6 +464,44 @@
  "cloud/work/heads_B10/func_8010DBB8_best.c": {
   "rule": "C rename (static_rename.permute_c) + redeclaration drop"
  },
+ "cloud/work/ipa-groups/codex_mode_outer_a169/group.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/ipa-groups/codex_mode_outer_a169/initial.verification.json": {
+  "pins": [
+   {
+    "new": "33cfb54070775d4be1b176a50e43f9f84628846bdc360bbf59ba5c77c19bf7ad",
+    "old": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "path": "cloud/work/ipa-groups/codex_mode_outer_a169/group.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/ipa-groups/codex_mode_outer_a169/packet.json": {
+  "pins": [
+   {
+    "new": "33cfb54070775d4be1b176a50e43f9f84628846bdc360bbf59ba5c77c19bf7ad",
+    "old": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "path": "cloud/work/ipa-groups/codex_mode_outer_a169/group.c"
+   },
+   {
+    "new": "33cfb54070775d4be1b176a50e43f9f84628846bdc360bbf59ba5c77c19bf7ad",
+    "old": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "path": "cloud/work/ipa-groups/codex_mode_outer_a169/group.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/ipa-groups/codex_mode_outer_a169/verification.json": {
+  "pins": [
+   {
+    "new": "33cfb54070775d4be1b176a50e43f9f84628846bdc360bbf59ba5c77c19bf7ad",
+    "old": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "path": "cloud/work/ipa-groups/codex_mode_outer_a169/group.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
  "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c": {
   "rule": "C rename (static_rename.permute_c) + redeclaration drop"
  },
@@ -476,22 +514,20 @@
  "cloud/work/ipa-groups/dot_layer_update_20261005/verification.json": {
   "pins": [
    {
-    "new": "e9623c97160dd991d3bb0faf1e8c90592d7655815098116aa3181f10f79bb94b",
-    "old": "58191cc224dd29f108a1650472e297c2705e06df3e7ffb625de4c3d874152752",
-    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c"
+    "new": "33cfb54070775d4be1b176a50e43f9f84628846bdc360bbf59ba5c77c19bf7ad",
+    "old": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "path": "cloud/work/ipa-groups/codex_mode_outer_a169/group.c"
    },
    {
-    "new": "51db76bbd1b4c0713600844197302f7a24798fe1ee0a85b9f8611689feedab15",
-    "old": "df0efb7bdb90391d6d6f8af1f386add8ac93002ee1defabc07377e6ddf9d9074",
-    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/host.c"
-   },
-   {
-    "new": "836ce7120143bf5ef5dc8bf8262e5566c9a194fe07ce566db5a0920dc58f6279",
-    "old": "3157ae29583d81d7064b7ae8b5a1a90a6942cb9ef3232de2e5349d7d5f25a2d8",
-    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/native.py"
+    "new": "256bfbb05e9d88c200df099be1b25723b0fd43bcd5ed91658e2d778d276946c2",
+    "old": "9e7da91fa0126992128ab9acf3975cd60cadd10f7025f528e5fccd754bc4fbda",
+    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/verify.py"
    }
   ],
-  "rule": "receipt name strings renamed"
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/ipa-groups/dot_layer_update_20261005/verify.py": {
+  "rule": "Python identifier tokens naming renamed functions"
  },
  "cloud/work/ipa-groups/dot_object_sound_20261005/verification.json": {
   "pins": [
