@@ -211,29 +211,45 @@ Do not commit, splice, or edit `src/blob`, `asm/`, `*.lock.json`, `tools/`, `inc
   hypothesis, struct layouts and global types recovered.
 Final message: the table, plus anything that generalises.
 
-## Behavioural check (recomp oracle, wave 22)
+## Behavioural check (recomp oracle, waves 22-23)
 A non-matching body can be checked for *behaviour* against retail: the recompiled game (rocky, private
-ROM) runs a fixed 60 s input script (front end, then the race image) with your C in place of the function
-and compares every frame's display lists and rdram with the stock build. This never changes coverage: a
-function replaced in the port stays unmatched. Use it to decide "correct, not matched", or to find where a
-near-miss draft is wrong. Details: `tools/recomp/README.md` "Phase 2".
+ROM) runs a fixed input script with your C in place of the function and compares every CALL of it
+(arguments, return, the words it changed) and every frame's display lists and rdram with a stock build.
+This never changes coverage: a function replaced in the port stays unmatched. Use it to decide "correct,
+not matched", or to find where a near-miss draft is wrong. Details: `tools/recomp/README.md` "Phase 2"/"Phase 3".
 1. Add an entry to `tools/recomp/replacements.json` (one per body; `mode` `ido` = compiled by the project's
    IDO with the file's `/* flags: */` header, exact N64 semantics; leave it at that) and a set naming it:
    `"draft_NAME": {"function": "NAME", "population": "game", "source": "cloud/work/frontier/<you>/NAME/best.c",
    "mode": "ido", "state": "draft", "note": "..."}`, `"sets": {..., "draft_NAME": ["draft_NAME"]}`.
    The source must define NAME; anything else it defines and NAME needs comes along (static helpers); every
-   other symbol binds to the inventory's address (unknown names fail the build).
-2. Ask the coordinator (or, on rocky in `~/rush2049/recomp/<lane>`):
-   `python3 tools/recomp/gen_config.py --rom ROM --n64recomp-src SRC --out build/recomp-SET --replace-set SET --ido53 TK53`,
-   N64Recomp, `cmake`/`ninja` (README), then
-   `python3 tools/recomp/oracle.py run --stock-host build/recomp/host/rush2049_recomp --rom-stock build/recomp/rom/rush2049.recomp.z64 --repl-host build/recomp-SET/host/rush2049_recomp --rom-repl build/recomp-SET/rom/rush2049.recomp.z64 --out runs/SET --datasyms build/recomp/rush2049.datasyms.toml`.
-3. Verdicts: `EQUIVALENT over 1800 frames` (+ the call count of the replaced function); `NOT EXERCISED`
-   (0 calls: the script never reaches it; say so, it is no verdict); `DIFFERENT at frame F` with the display
-   list and/or pages, and the first differing words with symbols (`word 0x8011024C stock 0000000c replaced
-   00000002 D_8011024C+0x0`). Quote the first line and the call count verbatim.
-4. Report state "correct, not matched" only on EQUIVALENT, in RESULTS.md and the CLAIMS line note:
-   `correct, not matched (oracle EQUIVALENT 1800 frames, N calls; runs/<SET>/verdict.json, replacements.json <id>)`.
-   Limits to state with it: one input script (front end + first minute of a race); functions it does not
-   reach get no verdict; thread stacks are masked (dead frames differ whenever code differs); a
-   function-local static gets its own copy (a DIFFERENT that names only that static's address is placement,
-   not behaviour, see w22r RESULTS).
+   other symbol binds to the inventory's address, libultra by the game-side legacy names (unknown names fail).
+   Function-local statics bind to their retail addresses when the code around them is retail, or by a
+   `D_XXXXXXXX` name, or by `"statics": {"name": "0x8015xxxx"}` in the entry (manifest `statics_private`
+   lists any that stayed private). Optional: probes = `"mode": "capture"` entries on callees (with a
+   `prototype`, or `capture_args` register names for non-o32 callees) in the same set.
+2. Ask the coordinator (or, on rocky in `~/rush2049/recomp/<lane>`): build BOTH sides from one tree,
+   `gen_config.py ... --out build/cap-SET --capture-set SET` (stock, capture hooks) and
+   `gen_config.py ... --out build/repl-SET --replace-set SET` (add `--probe-callees` to both to record every
+   retail callee), N64Recomp + `cmake`/`ninja` each, then
+   `python3 tools/recomp/oracle.py run --stock-host build/cap-SET/host/rush2049_recomp --rom-stock build/cap-SET/rom/rush2049.recomp.z64 --repl-host build/repl-SET/host/rush2049_recomp --rom-repl build/repl-SET/rom/rush2049.recomp.z64 --out runs/SET --script SCRIPT --datasyms build/cap-SET/rush2049.datasyms.toml`.
+   Scripts (`tools/recomp/scripts/`): `race` (default), `race_track2`, `two_player`, `audio_options`; pick
+   one that reaches your function (NOT EXERCISED otherwise).
+3. Reading a verdict. First line, verbatim, one of:
+   - `EQUIVALENT over 1800 frames (...)` + `per-call: all N captured calls identical (arguments, returns,
+     effects)` and the call count of the replaced function: behaviourally identical on that script.
+   - `NOT EXERCISED` (a replaced function had 0 calls: no verdict; try another script).
+   - `FIRST DIFFERING CALL: seq S = FUNC call K, frame F: WHAT` then `inside: OUTER call J` when FUNC is a
+     probe/callee running under your function, then the differing fields: `args` (prototype labels, e.g.
+     `f22: stock 3F800000, replaced 00000000`), `return`, `effect` (the words that call changed, stock
+     old->new vs replaced old->new, with data symbols), `sequence` (one side made a call the other did not).
+     Call K of FUNC is where behaviour first departs: everything before it was identical. The frame
+     verdict follows (`frames: DIFFERENT at frame ...` or `no judged frame difference`).
+   - `DIFFERENT at frame F` with `per-call: all N ... identical`: a difference outside the captured effects
+     (writes to the stack frames of callers, or by other threads); report it.
+4. A difference at a call into a function with IPA register parameters (frontier `register_params`, e.g.
+   entity_transform_calc takes $f22-$f28, audio_effect_setup takes s0) is the standalone compile, not your
+   logic: build an oracle source with static copies of those callees (w23f `engine_sound_sync/oracle.c`).
+5. Report state "correct, not matched" only on EQUIVALENT with identical calls, in RESULTS.md and the CLAIMS
+   line note: `correct, not matched (oracle EQUIVALENT 1800 frames, N calls identical, script S;
+   runs/<SET>/verdict.json, replacements.json <id>)`. Limits to state with it: the scripts used; functions
+   a script does not reach get no verdict; thread stacks below the replaced function's frame are not judged.

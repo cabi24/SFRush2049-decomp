@@ -253,3 +253,40 @@ Detail and commands: `tools/recomp/README.md` "Phase 2"; lane notes: `cloud/work
   a word-level mask for the host-pointer fields in OSThread instead of whole pages; data-placement aware
   binding of function-local statics (use the linked game image's map). **Phase 4:** RT64 in place of the
   null renderer keeps lockstep available as a test mode only.
+
+## 11. Phase 3 findings (lane w23r, 2026-10-12)
+
+Detail and commands: `tools/recomp/README.md` "Phase 3"; lane notes: `cloud/work/frontier/w23r/RESULTS.md`;
+how a lane reads a verdict: `cloud/work/frontier/WAVE_BRIEF.md` "Behavioural check".
+
+- **Per-call verdicts.** Both builds log every call of the replaced functions: entry arguments (from the
+  prototype, or explicit registers), return registers, and the call's effect on rdram (words changed
+  between entry and exit) found by page write tracking (`mprotect` + SIGSEGV pre-write copies; 10x run
+  time). The stock side is a capture build of the same set whose hooks re-enter the original. `oracle.py`
+  names the first differing call (function, its call number, frame, field, enclosing replaced call) and
+  lists the effect's differing words. Injected bug -> render_helper call 2 (frame 2); engine_sound_sync
+  draft -> its call 1410 (frame 705), and with callee probes -> its first entity_transform_calc call:
+  retail passes the four values in callee-saved f22-f28 (IDO -O3 IPA), the standalone draft passes them
+  o32. With w23f's oracle source (static copies of the IPA callees) the same body is EQUIVALENT on all four
+  scripts (3,599 calls identical): the draft's logic is right, the standalone compile was not.
+- **Scripts**: race, race_track2 (track selector), two_player (player-count selector + controller 2),
+  audio_options (pause -> audio options). func_800D7634's draft is EQUIVALENT under audio_options (435 calls).
+  Menu layout found without pixels by probe call counts and RAM evidence (inflated stream sets,
+  active_player_count).
+- **Static binding** from the retail image (the replaced function's own HI16/LO16 pairs): func_800E7710's
+  false difference is gone. A second Phase 2 bug surfaced on the way: game bodies must call libultra by the
+  game-side legacy names (game `osJamMesg` = static osSendMesg); Phase 2 bound them by static names, which
+  was the all-matched divergence and func_800D7634's apparent DIFFERENT. Now all 689 matched game files
+  replaced at once: no judged frame difference on four scripts, 4.24 M captured calls identical (race).
+- **OSThread**: only `context` (8-byte host pointer at +0x20) differs between runs; masking those words
+  makes all 2048 pages judged every frame.
+- **Limits**: a draft calling IPA-convention callees needs an oracle source (no automatic detection yet:
+  `ipa.py` reads derived asm whose FP ops are `.word`); probes on functions a replacement inlines are
+  skipped by `--probe-callees` but not for explicit probes; effects into callers' stack frames below the
+  outermost replaced function are not judged; capture costs 10x.
+- **Phase 4 needs**: RT64 (pixels) in place of the null renderer, keeping lockstep as a test mode, so menu
+  scripts can be written and checked visually; an IPA-aware replacement build (compile a draft inside its
+  whole-program unit, or generate register-passing shims from the frontier's `register_params`); scripts
+  for every track/mode reached by probe evidence; capture cost (write tracking per window costs two
+  8 MiB mprotects per call) if it is to run on every lane request.
+

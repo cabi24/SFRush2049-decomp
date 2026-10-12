@@ -358,7 +358,19 @@ python3 tools/recomp/oracle.py run --stock-host build/cap-SET/host/rush2049_reco
 python3 tools/recomp/oracle.py calls runs/SET/stock.calls runs/SET/repl.calls   # re-read a verdict
 ```
 
-RESULTS_PLACEHOLDER
+Results (rocky, 2026-10-12; stock side = the capture build of the same set):
+
+| Set / script | Verdict (first line; per-call line) |
+|---|---|
+| `matched10` / race, race_track2, two_player, audio_options | EQUIVALENT over 1800 frames each; all 333,252 / 374,162 / 418,288 / 201,059 captured calls identical |
+| `bug` / race | FIRST DIFFERING CALL: seq 2 = render_helper call 2, frame 2: effect (13 words vs 1: D_80149B88 0->0x10, D_8012E608, D_8012E678, gDisplayListPtr +0x20, 8 display-list words at 0x80127330) |
+| `draft_engine_sound_sync` / race | FIRST DIFFERING CALL: seq 1410 = engine_sound_sync call 1410, frame 705: effect (80 words vs 78; the +4 floats of the 12-byte records at D_80142DD8: stock 1.0/-2.0, draft -2.0/-1.0) |
+| `draft_engine_sound_sync_probe` / race | FIRST DIFFERING CALL: seq 1444 = entity_transform_calc call 1, frame 705: args, inside engine_sound_sync call 1410: f22 stock 3F800000 replaced 00000000, f28 stock 3F800000 replaced BF800000 (IPA convention: retail passes the values in f22-f28) |
+| w23f `draft_engine_sound_sync_ipa` (oracle.c: the same body + static copies of the IPA callees) / all four scripts | EQUIVALENT; all 3,599 calls identical (with `--probe-callees`: 157,251) |
+| `draft_func_800D7634` / audio_options | EQUIVALENT over 1800 frames; all 435 calls identical (with `--probe-callees`: 8,942) |
+| `draft_func_800D7634` / race | NOT EXERCISED |
+| `statics` (func_800E7710) / race | EQUIVALENT (Phase 2: DIFFERENT at frame 1, its private static) |
+| all 689 matched `src/blob` game files / four scripts | no judged frame difference (NOT EXERCISED: 340-346 of 689 called); per-call (race): all 4,241,687 captured calls identical |
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 
