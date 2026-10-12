@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| ovl_a | func_803A9088; preservation 80395E24/803A87D4/803A8B74 in runtime_a_profile_menu_20261006 | dot lane 1 | 2026-10-12 | Native-led profile deletion renderer; no A9EEC tuning without a new traced lever. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
