@@ -1,25 +1,24 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image-A C140 complete strict match, 1984 new candidate bytes. Research
- * delivery: installation is blocked by existing cross-group lock ownership.
- * C140 updates the configuration screen: validates selected modes, handles
- * input and rotation animation, cleans up transitions, then runs its renderer.
- * N64-native reconstruction; no proven arcade-source ancestor.
- * All ten verified bodies are members/claims; the other four genuine bodies
- * remain context. Nine inherited matches are preserved without new credit.
+/* Image-A BB80 strict match: 712 new bytes. This same-name group preserves
+ * all eleven installed text_helpers members, including C140 and B560.
+ * BB80 computes the configuration panel width/height from localized labels
+ * and up to two player names/statistics. N64 reconstruction; arcade ancestor
+ * is not established. Its private ABI saves ra, and clobbers s0..s8.
  *
- * C140 SHAPING: meaningful matrix and angle operand carriers add two 4-byte
- * declared homes. Stock UGEN M12 -> M20; T16/P4 unchanged; frame128 -> native136.
- * No unused scalar or pad array. C140_ANIMATION_ARM is written readably as a
- * macro so its invocation and following else-if share one physical source
- * line. Stock as1's line-number tie then orders the three hoisted LUIs exactly.
- * Expanding the macro into ordinary lines restores the three schedule words.
- * This is a source-shaping device, not recovered historical spelling.
+ * BB80 SHAPING: the two genuine player/text helpers use player-first formal
+ * order. Both helper bodies remain byte-identical; every real in-group call
+ * is updated. This recovers native private-argument evaluation ordering.
+ * Eight disclosed unused s32 homes are the exact frame residual: the same
+ * live 80-byte text array moves 48 -> 80; frame128 + 8*4 = native160. Their
+ * original names/purposes are unknown. No live capacity is changed.
  *
- * Inherited volatile D_8002EB94 follows same-symbol accepted-source precedent;
- * historical type/asynchronous-writer behavior remain unproven. No new clock
- * qualifier, false ABI, compiler patch, assembly, forced register, live-buffer
- * resizing, protected source or lock changes. External float anchors remain
- * external native-address loads; no new data ownership is asserted.
+ * Inherited C140 shaping: two meaningful operand carriers account for its
+ * native frame136; the one-line animation macro preserves a stock as1 source-
+ * line scheduling tie. Inherited volatile clock declaration and pointer/record
+ * hypotheses are unchanged; asynchronous clock behavior is not established.
+ * B560 retains separate same-value 55.2 literal spellings and owned float data.
+ * No false return types, fabricated callees, forced registers, compiler/object
+ * patches, padding arrays, or historical-source spelling claims are used.
  */
 typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef int s32; typedef unsigned int u32; typedef float f32;
 typedef struct { u8 pad0[4]; u8 u4; u8 pad5[3]; s8 b8; s8 b9; } Cfg;
@@ -706,7 +705,7 @@ extern void *object_create(s32);
 extern s32 object_manager_update(u8 *,s16);
 extern u8 object_type_byte2_get(void);
 
-void func_8039B908(u8 *destination,s32 player)
+void func_8039B908(s32 player,u8 *destination)
 {
     u8 number[32];
     func_800BE6A4(destination,D_8017A4E0.text[80]);
@@ -715,7 +714,7 @@ void func_8039B908(u8 *destination,s32 player)
     func_800BE4F0(destination,D_8017A4E0.text[130]);
 }
 
-void func_8039B988(u8 *destination,s32 player)
+void func_8039B988(s32 player,u8 *destination)
 {
     func_800BE6A4(destination,D_8017A4E0.text[77]);
     func_800BE4F0(destination,D_8017A4E0.names[D_80154450[player].rank + D_8017A4E0.indices->name_base]);
@@ -746,6 +745,9 @@ void func_8039BAE0(u8 *destination)
 void func_8039BB80(void)
 {
     u8 text[80];
+    /* Measured unused scalar homes: 128 + 8*4 = native 160-byte frame. */
+    s32 frame_home0, frame_home1, frame_home2, frame_home3;
+    s32 frame_home4, frame_home5, frame_home6, frame_home7;
     s32 width;
     s32 maximum;
     s32 player;
@@ -776,10 +778,10 @@ void func_8039BB80(void)
             func_800BE6A4(text,(u8 *)D_8014A118[player].owner->body + 20);
             width = object_manager_update(text,-1);
             if (width >= maximum) maximum = width;
-            func_8039B988(text,player);
+            func_8039B988(player,text);
             width = object_manager_update(text,-1);
             if (width >= maximum) maximum = width;
-            func_8039B908(text,player);
+            func_8039B908(player,text);
             width = object_manager_update(text,-1);
             if (width >= maximum) maximum = width;
             if (D_8014A108 == 1) break;
@@ -963,7 +965,7 @@ s32 func_803A5948(void *callback_context)
                 width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
                 state_utility(sound_pitch_diff_halved(text,160),y,text);
                 y+=object_bytes_sum_global();
-                func_8039B908(text,0);
+                func_8039B908(0,text);
                 width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
                 state_utility(sound_pitch_diff_halved(text,160),y,text);
                 y+=object_bytes_sum_global();
@@ -1011,11 +1013,11 @@ s32 func_803A5948(void *callback_context)
                         y=129+object_bytes_sum_global();
                     }
                     y+=object_bytes_sum_global();
-                    func_8039B988(text,0);
+                    func_8039B988(0,text);
                     width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
                     state_utility(sound_pitch_diff_halved(text,160),y,text);
                     y+=object_bytes_sum_global();
-                    func_8039B908(text,0);
+                    func_8039B908(0,text);
                     width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
                     state_utility(sound_pitch_diff_halved(text,160),y,text);
                     y+=object_bytes_sum_global();

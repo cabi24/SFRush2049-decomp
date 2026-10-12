@@ -10,11 +10,11 @@
   "func_8039B988",
   "func_8039BA28",
   "func_8039BAE0",
-  "func_8039B560"
+  "func_8039B560",
+  "func_8039BB80"
  ],
  "context": [
   "func_8039A4D4",
-  "func_8039BB80",
   "func_803A5658",
   "func_803A5948"
  ],
@@ -26,5 +26,5 @@
   "func_803A5948"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "w22p merge of Astra #326 (C140 traced group) and #328 (B560 literal webs): #326's group.c with #328's B560 body appended unchanged (duplicate typedefs dropped). All eleven verified bodies are members and claims."
+ "provenance": "Same-name extension of installed text_helpers group on master 262e9f0f3: all eleven old exact bodies preserved; BB80 added after trace-confirmed private argument order and exact scalar-home frame correction."
 }
