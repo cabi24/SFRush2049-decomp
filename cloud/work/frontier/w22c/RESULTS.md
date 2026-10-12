@@ -9,7 +9,8 @@ cloud/work/boot_tail_promotion; `tgt/` = w17k fetch_targets.py; `lane` -> cloud/
 
 1. **trace71** (`cloud/work/frontier/tools/trace71/`, README there): traced IDO 7.1 uopt/ugen/as1 rebuilt from
    decompals/ido-static-recomp v1.2 (the release the pinned 7.1 binaries come from). Colouring trace + force oracle by
-   procedure NAME, callee/caller-saved cost records, spill homes/area, ugen temp ring, as1 -R. Gate: all 18 boot-tail
+   procedure NAME with every variable web named (`vars71.sh`, from a -g3 build), callee/caller-saved cost records
+   (`[CDX] calleecost`, `CUPLOG`), spill homes/area, ugen temp ring, as1 -R. Tests: `tests/conveyor/test_trace71.py`. Gate: all 18 boot-tail
    TUs byte-identical rel/rebuilt/traced-off/traced-on (54/54, `logs/fidelity71.log`); LOCK lines identical on 13
    locked sources with every trace on (`logs/lock_identity.log`).
 2. **2 matches, 1,372 B** (static, lib_11640 + lib_1a660), both `LOCK: true=0 strict=0 reloc_blind=0 objdump-dr
@@ -21,7 +22,7 @@ cloud/work/boot_tail_promotion; `tgt/` = w17k fetch_targets.py; `lane` -> cloud/
 | func_8001A270 | 872 | MATCH | w21b best_true0 code-identical; spill71: cfe area 32 vs 28 (7 locals vs retail's 6 slots); reusing `note` merges two webs (7.1: one web per variable) | entry index not a variable: `keymap[(u8)(key & 127)]` (CSE'd, same web, no slot); panning sum `int` declared in index's place | `true=0 strict=0 reloc_blind=0 objdump-dr identical (224 rows)` |
 | func_80018634 | 840 | 127 rows (lead_jump_v1) | force oracle: exactly 4 colours (code a3, patterns a1, pattern a2, optional04 t0) give **0 rows**; root = patterns sees v1 free | not found (see below) | unchanged (w21a 780) |
 | func_80018448 | 492 | 26 rows | colours all right (count t0, now t1 ...); ugen ring: retail pops t6/t7 at line 37 where ours pops t4/t5 | not found | unchanged (w21a 325) |
-| func_80012D18 | 3148 | 549 rows | `offset` split: tot 4 <= caller cost 5 (retail t5); many other residuals | — | unchanged (w21c 15620) |
+| func_80012D18 | 3148 | near miss, 15620 -> **12735** | `offset` split: tot 4 <= caller cost 5 (5 transit call blocks); retail t5 with 6 defs | `offset` assigned in every leaf (no top-level `= 0`): tot 7 > 5 -> t5 (`func_80012D18/best.c`) | `true=12735 strict=14066 reloc_blind=716 objdump-dr DIFFERS(679 rows) (810 rows)` |
 
 ## Integration (coordinator)
 
@@ -71,8 +72,15 @@ priority) and its quirk `keymap[key].panning` (unmasked key, as retail).
   Not reproduced: u16/u32 jump, shared code/jump variable (merges -> code v1), jump in `sum`, dead reads of jump.
 - **func_80018448**: no colour difference (all webs as retail: change t0, now t1, ...). Retail's ring at lines 46-51 cycles
   t2..t6 only (t7-t9 absent), ours the full ring: a ugen state question (ugt71 records saved under `build/trace71`).
-- **func_80012D18**: `offset` (var@-32) split, tot 4 <= best 5 (caller cost), retail t5; forcing it alone does not
-  converge (579 rows): too many independent residuals for this lane.
+- **func_80012D18**: `offset` was split (tot 4 <= caller cost 5; `[CUP] transit` = the 4 func_80012730 calls + 1).
+  Retail has six `move t5,zero`/`subu t5` defs: one per leaf of the address/length chain (as1 moves two into delay
+  slots). Our top-level `offset = 0` made the leaf ones redundant (uopt deletes them, so adding one changes nothing);
+  assigning offset in each leaf instead raises its net to 7 > 5 -> t5 like retail: true 15620 -> 12735
+  (`func_80012D18/best.c`, near miss). Remaining, traced: (1) retail frame layout = ours with two more 4-byte locals
+  (one between `end` and `state`, one between `state` and `address`: retail state at -13, address at -28, length -36,
+  offset home -40, mode -44, padded -52, cmd -56, mainRem -58, loopRem -60; filler locals reproduce every virtual
+  offset but give frame 128: retail also has two fewer expression spill homes); (2) frames a1 / mainRem t1 / loopRem
+  a0 forces are all declined (their neighbours hold those colours), i.e. more colouring differences upstream.
 
 ## What generalises
 
