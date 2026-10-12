@@ -326,6 +326,33 @@ func_800DA0B4) so it lands only with a matching D91A0. #330 unchanged since w22p
 `replace.py` native-mode rework; #323, #317, #314, #313, #312, #311, #163 superseded (reasons in RESULTS.md).
 Static and game unchanged.
 
+**Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
+segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
+`rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
+(w24b: 11 fns 1,752 B — rmonPrintf, 4 sched.c, game_init, 7 vi* — promoted by w24s after refreshing inventory targets
+that still carried pre-rename callee names; the "viStub" slot was viDeadlinePassed's trailing `jr ra; nop` pairs and
+is retired with the new `targets_rename apply --absorbed`; the rest of the pre-tail is 2,640 B ultralib hand asm and an
+8,104 B inflate/lzss block). __scMain/__scExec are code-identical but their TU's `.bss` order is wrong in a way the
+full-ROM gate cannot see (syms.ld overrides definitions): needs a `.bss`-offset gate before promotion. Game 985 →
+986/1216 (326,688 B, 50.49%): controller_poll (w24d; volatile pad views fix load order, `if (b == 0) continue;` flips
+the t2/t3 priority tie; group member with `keep` + defined D_80156958 + `extern_data` override). Tooling (w24t): builder
+gates clean `build/us` themselves on an owned-slot-input stamp, `blob_splice rebuild-stale` runs inside `blob_rom
+rom`, `replace.py` refuses IPA register-parameter callees without `--allow-ipa` (`ipa_detect.py`), timer_services
+renamed to ultralib J (dll_* → __osTimerServicesInit/__osTimerInterrupt/__osSetTimerIntr; 0x80009E18 →
+__osPfsCheckRamArea), `opt_overrides.mk` equals its generator. Recomp Phase 4 (w24r, merged with w24t by w24m):
+engine_sound_sync EQUIVALENT on all four scripts via `ipa_callees.json` register shims; RT64 is a CMake renderer
+option (null default, pinned, builds on rocky); seven input scripts; gameplay-test package v1
+(`tools/recomp/package.py`, `build/recomp/dist/rush2049-recomp-test-v1.tar.gz`, Windows 11 native INSTALL first) for
+the owner's laptop — every later recomp phase regenerates it. Near-misses: voiceAllocate 2045 → 605 (7.1 PRE oracle
+`w24c/tools/pre71.py`: no critical-edge splitting, spill-home order = expression-web bit order), synthHandle's span/midi
+proven store-/load-PRE, entity_physics_update 21 words without a device, func_80090308 198 rows with the 112 B frame
+gap decomposed, wheel_setup_initial 4 words (inlined helper from a locked sibling's predicate), audio_fade_control unit
+7/8. Astra PRs #331–#334 landed (w24p). Lessons for the wave-25 rules: a retail constant reused across stores into a
+stack struct means a pointer (inlined helper parameter); a chained assignment costs one frame temp per link; 7.1 frame
+4·N bytes large = N missing named locals; if retail's schedule is worse than as1's choice, a dependency edge is
+missing (volatile); old drafts must say osSendMesg not osJamMesg after the renames; inventory targets may still carry
+pre-rename callee names (refresh_split_targets.py).
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
