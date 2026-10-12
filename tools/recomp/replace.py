@@ -747,16 +747,263 @@ def capture_entries(selected, repo=REPO):
     return out
 
 
+# ------------------------------------------------------------------ IPA conventions (Phase 4)
+
+# IDO -O3 compiles the game as one unit: a static callee may take parameters
+# in non-ABI registers (entity_transform_calc: x,y,z,w in $f22-$f28) or write
+# callee-saved registers without saving them (audio_effect_setup: s1/s2), and
+# small helpers are inlined into every caller, leaving a `jr ra` stub
+# (func_80091AF0, the slot-queue lock). A replacement compiled on its own calls
+# such a callee with o32 conventions (or calls the empty stub): the retail
+# callee then reads garbage (w23f, the frame-706 verdict). The table below
+# (tools/recomp/ipa_callees.json) says how to call each one:
+#   "params": [reg per prototype parameter] + "prototype" (+ "clobbers")
+#        -> the build appends a shim to the replacement's chunk that moves the
+#           o32 arguments into those registers, saves every callee-saved
+#           register it or the callee overwrites, and calls the retail callee;
+#           the object's `jal callee` is retargeted to the shim.
+#   "body": C source -> compiled (IDO) and linked into the replacement, so the
+#           call reaches the inlined body instead of the retail stub.
+# Detection: build/ipa_members.json `callees` (ipa.py scan) and
+# build/frontier.json `unsaved_callee_regs`; a replacement calling an unlisted
+# one is refused unless allow_ipa (gen_config --allow-ipa: plain o32 calls).
+
+IPA_TABLE = REPO / "tools" / "recomp" / "ipa_callees.json"
+IPA_MEMBERS = REPO / "build" / "ipa_members.json"
+FRONTIER_JSON = REPO / "build" / "frontier.json"
+_ABI_IN = {"a0", "a1", "a2", "a3", "f12", "f14", "sp", "ra", "gp", "zero", "f13", "f15"}
+_CALLEE_SAVED_GPR = {"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "fp"}
+
+
+def load_ipa_table(path=IPA_TABLE):
+    try:
+        doc = json.loads(Path(path).read_text())
+    except OSError:
+        return {}
+    out = {}
+    for name, e in doc.get("callees", {}).items():
+        if "params" in e:
+            if "prototype" not in e:
+                raise ReplaceError(f"ipa_callees: {name}: params need a prototype")
+            _ret, pname, params = parse_prototype(e["prototype"])
+            if pname != name:
+                raise ReplaceError(f"ipa_callees: {name}: prototype names {pname}")
+            if len(params) != len(e["params"]):
+                raise ReplaceError(f"ipa_callees: {name}: {len(params)} parameters, {len(e['params'])} registers")
+        elif "body" not in e:
+            raise ReplaceError(f"ipa_callees: {name}: needs params or body")
+        out[name] = e
+    return out
+
+
+def load_ipa_detection(members=IPA_MEMBERS, frontier=FRONTIER_JSON):
+    """{name: why} for callees a standalone o32 call gets wrong (register
+    parameters, unsaved callee-saved writes); {} when no scan is present."""
+    out = {}
+    try:
+        doc = json.loads(Path(members).read_text())
+        for name, regs in doc.get("callees", {}).items():
+            regs = [r for r in regs if r not in _ABI_IN]
+            if regs:
+                out[name] = "register parameters " + ",".join(regs)
+    except (OSError, ValueError):
+        pass
+    try:
+        doc = json.loads(Path(frontier).read_text())
+        for name, f in (doc.get("facts") or {}).items():       # frontier.py scan: per-function facts
+            if not isinstance(f, dict):
+                continue
+            regs = [r for r in f.get("register_params") or () if r not in _ABI_IN]
+            if regs:
+                out.setdefault(name, "register parameters " + ",".join(regs))
+            if f.get("unsaved_callee_regs"):
+                why = "writes callee-saved " + ",".join(f["unsaved_callee_regs"]) + " unsaved"
+                out[name] = out[name] + "; " + why if name in out else why
+    except (OSError, ValueError, AttributeError):
+        pass
+    return out
+
+
+def _gpr_num(r):
+    if r in _GPR_NAMES:
+        return _GPR_NAMES[r]
+    raise ReplaceError(f"ipa shim: unknown register {r!r}")
+
+
+def _fpr_num(r):
+    m = re.match(r"^f(\d+)$", r)
+    if not m or int(m.group(1)) > 31:
+        raise ReplaceError(f"ipa shim: unknown register {r!r}")
+    return int(m.group(1))
+
+
+def _i(op, rs, rt, imm):
+    return (op << 26) | (rs << 21) | (rt << 16) | (imm & 0xFFFF)
+
+
+def _is_fpr(r):
+    return bool(re.match(r"^f\d+$", r))
+
+
+def ipa_shim(callee_vram, prototype, params, clobbers=(), direction="out"):
+    """MIPS words of an adapter between an o32 caller and a register-parameter
+    callee (direction "out": a replacement body calls a retail IPA callee) or
+    between a retail IPA caller and an o32 body (direction "in": the hook of a
+    replaced IPA callee). `params` = one location per prototype parameter: a
+    register name (a0, s0, f22, ...) or "sp+N" (stays on the stack).
+    Returns [words]; the shim saves ra and every callee-saved register it
+    writes or `clobbers` lists, so the o32 side keeps its conventions; "in"
+    also saves the caller-save registers (a retail IPA caller may keep values
+    there across the call) except the return registers."""
+    _ret, _name, protos = parse_prototype(prototype)
+    o32 = o32_layout(protos)
+    if len(o32) != len(params):
+        raise ReplaceError("ipa shim: parameter count differs from the prototype")
+    pairs = []
+    for loc, reg in zip(o32, params):
+        if loc["kind"] == "gpr64":
+            raise ReplaceError("ipa shim: 64-bit parameters are not supported")
+        src = ("r%d" % loc["reg"] if loc["kind"] == "gpr" else "f%d" % loc["reg"] if loc["kind"] == "fpr"
+               else "sp+%d" % loc["offset"])
+        dst = reg if not reg.startswith("sp+") else reg
+        dst = dst if not dst in _GPR_NAMES else "r%d" % _GPR_NAMES[dst]
+        if direction == "in":
+            src, dst = dst, src
+        pairs.append((src, dst))
+    # registers to save (32-bit slots): callee-saved destinations + clobbers;
+    # FP registers with their odd partner (FR=0 doubles)
+    save = []
+
+    def add(r):
+        if r.startswith("sp+"):
+            return
+        if _is_fpr(r):
+            n = _fpr_num(r)
+            for k in (n & ~1, (n & ~1) + 1):
+                if "f%d" % k not in save:
+                    save.append("f%d" % k)
+        else:
+            n = int(r[1:]) if re.match(r"^r\d+$", r) else _gpr_num(r)
+            if "r%d" % n not in save:
+                save.append("r%d" % n)
+    callee_saved = lambda r: (_is_fpr(r) and 20 <= _fpr_num(r) <= 31) or \
+        (re.match(r"^r\d+$", r) and 16 <= int(r[1:]) <= 23 or r == "r30")
+    for _src, dst in pairs:
+        if not dst.startswith("sp+") and callee_saved(dst):
+            add(dst)
+    for r in clobbers:
+        add(r if _is_fpr(r) else "r%d" % _gpr_num(r))
+    if direction == "in":
+        for n in list(range(1, 2)) + list(range(4, 16)) + [24, 25]:     # at, a0-a3, t0-t9
+            add("r%d" % n)
+        for n in range(4, 20):                                         # f4-f19 (not f0-f3: returns)
+            add("f%d" % n)
+    out_stack = max([16] + [int(d[3:]) + 4 for _s, d in pairs if d.startswith("sp+")])
+    out_stack = (out_stack + 7) & ~7
+    save_base = out_stack
+    frame = (save_base + 4 * len(save) + 4 + 7) & ~7
+    ra_off = frame - 4
+    SP, RA, T9 = 29, 31, 25
+    w = [_i(9, SP, SP, -frame), _i(0x2B, SP, RA, ra_off)]
+    for k, r in enumerate(save):
+        off = save_base + 4 * k
+        w.append(_i(0x39, SP, _fpr_num(r), off) if _is_fpr(r) else _i(0x2B, SP, int(r[1:]), off))
+    # moves: a destination is written only after every read of it
+    pending = list(pairs)
+    order = []
+    while pending:
+        for k, (src, dst) in enumerate(pending):
+            if not any(s == dst for j, (s, _d) in enumerate(pending) if j != k):
+                order.append((src, dst))
+                del pending[k]
+                break
+        else:
+            raise ReplaceError("ipa shim: cyclic register moves")
+
+    def caller_sp(off):          # the other side's stack argument, seen from inside the shim
+        return frame + off
+    for src, dst in order:
+        if src == dst:
+            continue
+        if src.startswith("sp+"):
+            off = caller_sp(int(src[3:]))
+            if dst.startswith("sp+"):
+                w += [_i(0x23, SP, T9, off), _i(0x2B, SP, T9, int(dst[3:]))]
+            elif _is_fpr(dst):
+                w.append(_i(0x31, SP, _fpr_num(dst), off))
+            else:
+                w.append(_i(0x23, SP, int(dst[1:]), off))
+        elif dst.startswith("sp+"):
+            if _is_fpr(src):
+                w.append(_i(0x39, SP, _fpr_num(src), int(dst[3:])))
+            else:
+                w.append(_i(0x2B, SP, int(src[1:]), int(dst[3:])))
+        elif _is_fpr(src) and _is_fpr(dst):
+            w.append((0x11 << 26) | (16 << 21) | (_fpr_num(src) << 11) | (_fpr_num(dst) << 6) | 6)
+        elif _is_fpr(dst):
+            w.append((0x11 << 26) | (4 << 21) | (int(src[1:]) << 16) | (_fpr_num(dst) << 11))
+        elif _is_fpr(src):
+            w.append((0x11 << 26) | (0 << 21) | (int(dst[1:]) << 16) | (_fpr_num(src) << 11))
+        else:
+            w.append((int(src[1:]) << 21) | (int(dst[1:]) << 11) | 0x25)    # or dst, src, zero
+    w += [(3 << 26) | ((callee_vram >> 2) & 0x03FFFFFF), 0]
+    for k, r in enumerate(save):
+        off = save_base + 4 * k
+        w.append(_i(0x31, SP, _fpr_num(r), off) if _is_fpr(r) else _i(0x23, SP, int(r[1:]), off))
+    w += [_i(0x23, SP, RA, ra_off), (RA << 21) | 8, _i(9, SP, SP, frame)]
+    return w
+
+
+def retarget_calls(raw, base, target, new, ranges):
+    """(bytes, count): every `jal target` in the code ranges rewritten to `jal new`."""
+    buf = bytearray(raw)
+    n = 0
+    for v, size in ranges:
+        for off in range(v - base, v - base + size, 4):
+            if 0 <= off <= len(buf) - 4:
+                (w,) = struct.unpack_from(">I", buf, off)
+                if w >> 26 == 3 and (((base + off + 4) & 0xF0000000) | ((w & 0x03FFFFFF) << 2)) == target:
+                    struct.pack_into(">I", buf, off, (3 << 26) | ((new >> 2) & 0x03FFFFFF))
+                    n += 1
+    return bytes(buf), n
+
+
+def ipa_plan(rid, entry, called, table, detected, allow_ipa=False):
+    """({callee: table entry} to honour, [notes]) for the names the object
+    calls (`called`); refuses a detected callee the table does not cover."""
+    use, notes, refused = {}, [], []
+    for name in sorted(called):
+        if name in table:
+            use[name] = table[name]
+        elif name in detected:
+            if allow_ipa:
+                notes.append("%s: %s (called o32: --allow-ipa)" % (name, detected[name]))
+            else:
+                refused.append("%s (%s)" % (name, detected[name]))
+    if refused:
+        raise ReplaceError(f"replacement {rid}: calls IDO -O3 IPA-convention callee(s) {', '.join(refused)}; "
+                           "describe them in tools/recomp/ipa_callees.json or build with --allow-ipa")
+    fn = entry["function"]
+    if fn in detected and fn not in table and not allow_ipa:
+        raise ReplaceError(f"replacement {rid}: {fn} itself has an IPA convention ({detected[fn]}); "
+                           "describe it in tools/recomp/ipa_callees.json or build with --allow-ipa")
+    return use, notes
+
+
 # ------------------------------------------------------------------ build
 
 def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run,
-          images=None):
+          images=None, ipa_table=None, ipa_detected=None, allow_ipa=False):
     """Compile and link the selected replacements.
 
     toolkits = {"ido5.3": DIR, "ido7.1": DIR} (each with ido/cc). Returns
     {"image": {"vram", "bytes"} or None, "functions": [{name, vram, size}],
      "replaced": [{id, function, population, mode, call, source}],
-     "native": [{id, wrapper, body}]} with every name final."""
+     "native": [{id, wrapper, body}]} with every name final.
+    ipa_table / ipa_detected (default: load_ipa_table() / load_ipa_detection())
+    decide how calls to IPA-convention callees are built (see ipa_plan)."""
+    ipa_table = load_ipa_table() if ipa_table is None else ipa_table
+    ipa_detected = load_ipa_detection() if ipa_detected is None else ipa_detected
     work = Path(work_dir).resolve()
     work.mkdir(parents=True, exist_ok=True)
     objects, replaced, native = [], [], []
@@ -789,28 +1036,60 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
             continue
         compiler = e.get("compiler") or DEFAULT_COMPILER[e["population"]]
-        if compiler not in toolkits:
-            raise ReplaceError(f"replacement {rid}: no toolkit for {compiler} (--ido53/--ido71)")
-        flags = e.get("flags") or source_flags(text, e["population"])
-        obj = work / (rid + ".o")
-        cmd = [str(Path(toolkits[compiler]) / "ido" / "cc"), "-c"] + shlex.split(flags) + \
-              ["-Xcpluscomm", "-I", str(repo / "include"), "-I", str(src.parent), "-o", str(obj), str(src)]
-        proc = run(cmd, capture_output=True, text=True, cwd=str(work))
-        if proc.returncode != 0 or not obj.is_file():
-            raise ReplaceError(f"replacement {rid}: IDO failed:\n{(proc.stderr or proc.stdout)[:2000]}")
-        elf = read_elf(obj.read_bytes())
-        elf["_data"] = obj.read_bytes()
+
+        def compile_one(src, tag, text, compiler=compiler, e=e, rid=rid):
+            if compiler not in toolkits:
+                raise ReplaceError(f"replacement {rid}: no toolkit for {compiler} (--ido53/--ido71)")
+            flags = (e.get("flags") if tag == rid else None) or source_flags(text, e["population"])
+            obj = work / (tag + ".o")
+            cmd = [str(Path(toolkits[compiler]) / "ido" / "cc"), "-c"] + shlex.split(flags) + \
+                  ["-Xcpluscomm", "-I", str(repo / "include"), "-I", str(src.parent), "-o", str(obj), str(src)]
+            proc = run(cmd, capture_output=True, text=True, cwd=str(work))
+            if proc.returncode != 0 or not obj.is_file():
+                raise ReplaceError(f"replacement {rid}: IDO failed on {src.name}:\n"
+                                   f"{(proc.stderr or proc.stdout)[:2000]}")
+            elf = read_elf(obj.read_bytes())
+            elf["_data"] = obj.read_bytes()
+            return obj, elf
+        obj, elf = compile_one(src, rid, text)
         table = address_table(functions, symbols, e["population"])
-        res, missing = resolve(undefined_symbols(elf), table)
+        undef = undefined_symbols(elf)
+        use, ipa_notes = ipa_plan(rid, e, set(undef), ipa_table, ipa_detected, allow_ipa)
+        extra = []          # (name, obj, elf): inlined-stub bodies linked into this chunk
+        for name, ie in sorted(use.items()):
+            if "body" in ie:
+                bsrc = (repo / ie["body"]).resolve()
+                if not bsrc.is_file():
+                    raise ReplaceError(f"ipa_callees: {name}: body {ie['body']} not found")
+                bobj, belf = compile_one(bsrc, "%s__body__%s" % (rid, name), bsrc.read_text(errors="replace"))
+                extra.append((name, bobj, belf))
+        undef_all = set(undef) - {n for n, _o, _e in extra}
+        for _n, _o, belf in extra:
+            undef_all |= set(undefined_symbols(belf))
+        undef_all -= {n for _n, _o, belf in extra for s2 in [belf["symbols"]] for n in
+                      (x["name"] for x in s2 if x["shndx"] != 0 and x["name"])}
+        res, missing = resolve(sorted(undef_all), table)
         if missing:
             raise ReplaceError(f"replacement {rid}: unresolved symbols {', '.join(missing)}")
-        objects.append((rid, dict(e, _text=text), obj, elf, res))
+        img = (images or {}).get("game")
+        for name in sorted(set(undef) - set(use)):
+            addr = res.get(name)
+            if img is not None and addr is not None and img[0] <= addr <= img[0] + len(img[1]) - 8 and \
+                    struct.unpack_from(">II", img[1], addr - img[0]) == (0x03E00008, 0):
+                ipa_notes.append("%s: retail jr-ra stub (an inlined body? add it to ipa_callees.json)" % name)
+        shims = {n: ie for n, ie in use.items() if "params" in ie}
+        inbound = ipa_table.get(e["function"]) if e["function"] in ipa_table and \
+            "params" in ipa_table[e["function"]] else None
+        objects.append((rid, dict(e, _text=text, _ipa_notes=ipa_notes, _shims=shims, _inbound=inbound,
+                                  _bodies=[n for n, _o, _e in extra]), obj, elf, res, extra))
     # Each object is linked on its own at the next aligned address (no name can
     # collide between replacements; static helpers belong to their object),
     # and the chunks are concatenated into one image at REPL_VRAM.
     image, funcs, chunks, cursor = None, [], [], REPL_VRAM
-    for rid, e, obj, elf, res in objects:
+    for rid, e, obj, elf, res, extra in objects:
         defined = {s["name"] for s in elf["symbols"] if s["shndx"] != 0 and s["name"]}
+        for _n, _o, belf in extra:
+            defined |= {s["name"] for s in belf["symbols"] if s["shndx"] != 0 and s["name"] and s["bind"] == 1}
         defs = {n: a for n, a in res.items() if n not in defined}
         # Data the source DEFINES (matched files define their unit's globals):
         # bind it to the game's copy (a linker-script assignment overrides the
@@ -833,7 +1112,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         script.write_text(render_linker_script(defs, cursor))
         out = work / (rid + ".elf")
         cmd = [ld, "-m", "elf32btsmip", "--gc-sections", "-e", e["function"], "-u", e["function"],
-               "-T", str(script), "-o", str(out), str(obj)]
+               "-T", str(script), "-o", str(out), str(obj)] + [str(o) for _n, o, _e in extra]
         proc = run(cmd, capture_output=True, text=True, cwd=str(work))
         if proc.returncode != 0 or not out.is_file():
             raise ReplaceError(f"replacement {rid}: ld.lld failed:\n{(proc.stderr or proc.stdout)[:2000]}")
@@ -880,9 +1159,38 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                                                   [(f["vram"], f["size"]) for f in named])
         else:
             self_calls = 0
+        # IPA shims (Phase 4): appended after the chunk; the body's jal to the
+        # retail callee goes to the shim, which calls the callee with its
+        # register convention. An inbound shim (the replaced function is an
+        # IPA callee itself) is what the entry hook calls.
+        ranges = [(f["vram"], f["size"]) for f in named]
+        shim_funcs, shim_calls = [], {}
+        raw = raw + b"\0" * (-len(raw) % 16)
+        for name, ie in sorted(e["_shims"].items()):
+            target = address_table(functions, symbols, e["population"]).get(name)
+            if target is None:
+                raise ReplaceError(f"replacement {rid}: IPA callee {name} has no address")
+            words = ipa_shim(target, ie["prototype"], ie["params"], ie.get("clobbers", ()), "out")
+            at = vram + len(raw)
+            raw, n = retarget_calls(raw, vram, target, at, ranges)
+            raw += b"".join(struct.pack(">I", x) for x in words)
+            shim_funcs.append({"name": repl_name(rid, "ipa_out__" + name), "vram": at, "size": 4 * len(words)})
+            shim_calls[name] = n
+        call_name = repl_name(rid, e["function"])
+        if e["_inbound"] is not None:
+            ie = e["_inbound"]
+            words = ipa_shim(own[0], ie["prototype"], ie["params"], ie.get("clobbers", ()), "in")
+            at = vram + len(raw)
+            raw += b"".join(struct.pack(">I", x) for x in words)
+            call_name = repl_name(rid, "ipa_in__" + e["function"])
+            shim_funcs.append({"name": call_name, "vram": at, "size": 4 * len(words)})
         funcs += [{"name": f["recomp_name"], "vram": f["vram"], "size": f["size"]} for f in named]
+        funcs += shim_funcs
         replaced.append({"id": rid, "function": e["function"], "population": e["population"],
-                         "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"],
+                         "mode": "ido", "call": call_name, "source": e["source"],
+                         "ipa_shims": {n: c for n, c in sorted(shim_calls.items())},
+                         "ipa_bodies": sorted(e["_bodies"]), "ipa_inbound": e["_inbound"] is not None,
+                         "ipa_notes": e["_ipa_notes"],
                          "private_data": sorted(private), "self_calls_retargeted": self_calls,
                          "statics_bound": sorted("%s+0x%X=0x%08X(%s)" % (k[0], k[1], a, how)
                                                  for k, (a, how) in bound.items()),
