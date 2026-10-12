@@ -584,7 +584,7 @@ SECTIONS
         build/us/src/rom/lib_1f5b0.o(.bss);
         build/us/src/rom/lib_207b0.o(.bss);
         build/us/src/rom/lib_21210.o(.bss);
-        build/us/src/rom/lib_22300.o(.bss);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_22300.o(.bss) */
         build/us/src/rom/lib_257f0.o(.bss);
         build/us/src/rom/lib_25bb0.o(.bss);
         build/us/src/rom/lib_26ab0.o(.bss);
@@ -706,6 +706,16 @@ SECTIONS
         ASSERT(rom_owned_func_80016E68_END - rom_owned_func_80016E68_START == 0x30, "owned BSS slot size changed");
     }
     /* ROM_OWNED_BSS_END func_80016E68 */
+    /* ROM_OWNED_BSS_BEGIN func_80023E9C */
+    .rom_owned_bss_func_80023E9C 0x80056200 (NOLOAD) : SUBALIGN(16)
+    {
+        rom_owned_func_80023E9C_START = ABSOLUTE(.);
+        build/us/src/rom/lib_22300.o(.bss);
+        rom_owned_func_80023E9C_END = ABSOLUTE(.);
+        ASSERT(rom_owned_func_80023E9C_START == 0x80056200, "owned BSS slot address changed");
+        ASSERT(rom_owned_func_80023E9C_END - rom_owned_func_80023E9C_START == 0x30, "owned BSS slot size changed");
+    }
+    /* ROM_OWNED_BSS_END func_80023E9C */
 
     /DISCARD/ :
     {

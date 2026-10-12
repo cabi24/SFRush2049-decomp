@@ -1464,6 +1464,9 @@ u8 func_80023DB8(MacroVoice_80023DB8 *voice, MacroCommand *command, u8 compariso
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023E9C.s")
+/* ROM_OWNED_RODATA_BEGIN func_80023E9C */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023E9C.bss.s")
+/* ROM_OWNED_RODATA_END func_80023E9C */
 /* PROMOTED 2026-10-11 — func_80024988
  * Source:   cloud/work/frontier/w19a/sources/func_80024988.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
