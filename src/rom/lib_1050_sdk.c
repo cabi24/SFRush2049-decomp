@@ -181,7 +181,38 @@ s32 __scExecTask(OSSched *scheduler, OSScTask *task)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scAppendList.s")
+/* PROMOTED 2026-10-12 — __scAppendList
+ * Source:   cloud/work/frontier/w24b/sources/__scAppendList.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w24b/sources/__scAppendList.c:__scAppendList (score0); rom_tu.h context: cloud/work/frontier/w24b/ctx53_sched.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __scAppendList(OSSched *scheduler, OSScTask *task)
+{
+    long type = task->type;
+
+    if (!((type == 2) || (type == 1))) { }
+
+    if (type == 2) {
+        if (scheduler->rdpTaskHead)
+            scheduler->rdpTaskHead->next = task;
+        else
+            scheduler->rspTaskHead = task;
+        scheduler->rdpTaskHead = task;
+        if (scheduler->audioListPending) { }
+        scheduler->audioListPending = 1;
+        ;
+    } else {
+        if (scheduler->rdpTaskTail)
+            scheduler->rdpTaskTail->next = task;
+        else
+            scheduler->rspTaskTail = task;
+        scheduler->rdpTaskTail = task;
+    }
+    task->next = 0;
+    task->state = task->flags & 3;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExec.s")
 /* PROMOTED 2026-10-02 — __scHandlePreNMI
  * Source:   module_campaign_20261002 SDK publication
