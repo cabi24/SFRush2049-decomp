@@ -22,6 +22,7 @@ import time
 from pathlib import Path
 
 from . import owned_data
+from . import owned_offsets
 from .. import compilers as compilersmod
 
 from ..coordinator import db as dbmod
@@ -144,8 +145,10 @@ def _build_and_gate(via_builder, tu_rel):
         build = _run(["ssh", BUILDER,
                       f"cd {BUILDER_REPO} && {pre} && touch {tu_rel} && "
                       f"make COMPILER=ido -j16 && {post} && make test && "
+                      f"{owned_offsets.gate_command()} && "
                       f"[ {obj_rel} -nt {tu_rel} ]"])
         report_gate_clean(build.stdout)
+        owned_offsets.report(build.stdout)
     else:
         if not _have_local_ido():
             raise Refusal(
@@ -154,6 +157,12 @@ def _build_and_gate(via_builder, tu_rel):
         build = _run(["make", "COMPILER=ido", "-j4"], timeout=1800)
         if build.returncode == 0:
             build = _run(["make", "test"], timeout=600)
+        if build.returncode == 0:
+            # w25a: object data offsets vs retail (syms.ld masks them).
+            check = _run(["python3", "-m", "tools.conveyor.pipeline.owned_offsets", "check"], timeout=600)
+            owned_offsets.report(check.stdout)
+            if check.returncode:
+                build = check
     ok = build.returncode == 0 and "ROM matches!" in build.stdout
     tail = (build.stdout + build.stderr).strip().splitlines()[-3:]
     return ok, " / ".join(tail)

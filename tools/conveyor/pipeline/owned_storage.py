@@ -234,7 +234,7 @@ def _restore(snapshot):
 
 
 def _gate(repo, paths, via_builder):
-    from . import promote
+    from . import promote, owned_offsets
     if not via_builder:
         if not promote._have_local_ido():
             raise promote.Refusal("matching storage promotion requires IDO; pass --via-builder")
@@ -244,6 +244,11 @@ def _gate(repo, paths, via_builder):
         proc = promote._run(["make", "COMPILER=ido", "-j4"], timeout=1800)
         if proc.returncode == 0:
             proc = promote._run(["make", "test"], timeout=600)
+        if proc.returncode == 0:
+            check = promote._run(["python3", "-m", "tools.conveyor.pipeline.owned_offsets", "check"], timeout=600)
+            owned_offsets.report(check.stdout)
+            if check.returncode:
+                proc = check
         return proc.returncode == 0 and "ROM matches!" in proc.stdout, (proc.stdout + proc.stderr)[-2000:]
     remote_value = promote.BUILDER_REPO
     remote = ("$HOME/" + shlex.quote(remote_value[2:])) if remote_value.startswith("~/") else shlex.quote(remote_value)
@@ -261,9 +266,11 @@ def _gate(repo, paths, via_builder):
             return False, result.stderr
     pre, post = promote.owned_stamp_guard(repo)
     proc = promote._run(["ssh", promote.BUILDER, "cd " + remote + " && " + pre +
-                         " && touch src/rom/*.c && make COMPILER=ido -j4 && " + post + " && make test"],
+                         " && touch src/rom/*.c && make COMPILER=ido -j4 && " + post + " && make test && " +
+                         owned_offsets.gate_command()],
                         timeout=1800)
     promote.report_gate_clean(proc.stdout)
+    owned_offsets.report(proc.stdout)
     return proc.returncode == 0 and "ROM matches!" in proc.stdout, (proc.stdout + proc.stderr)[-2000:]
 
 

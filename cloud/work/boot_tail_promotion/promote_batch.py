@@ -78,6 +78,7 @@ from tools.conveyor.coordinator import db as dbmod  # noqa: E402
 from tools.conveyor.pipeline import layout as layoutmod  # noqa: E402
 from tools.conveyor.pipeline import lock as lockmod  # noqa: E402
 from tools.conveyor.pipeline import owned_data  # noqa: E402
+from tools.conveyor.pipeline import owned_offsets  # noqa: E402
 from tools.conveyor.pipeline import promote as promotemod  # noqa: E402
 from tools.conveyor.seeds.extract_candidates import REPO, extract_named_function  # noqa: E402
 
@@ -286,8 +287,11 @@ def gate(tus):
     # last successful build there (promote.owned_stamp_guard).
     pre, post = promotemod.owned_stamp_guard(REPO)
     build = run(["ssh", BUILDER, f"cd {BUILDER_REPO} && {pre} && touch {' '.join(rels)} && "
-                 f"make COMPILER=ido -j{BUILDER_JOBS} && {post} && make test && {newer}"])
+                 f"make COMPILER=ido -j{BUILDER_JOBS} && {post} && make test && "
+                 f"{owned_offsets.gate_command()} && {newer}"])
     promotemod.report_gate_clean(build.stdout)
+    # w25a: every C-defined data object at its retail offset (syms.ld masks it).
+    owned_offsets.report(build.stdout)
     ok = build.returncode == 0 and "ROM matches!" in build.stdout
     return ok, " / ".join((build.stdout + build.stderr).strip().splitlines()[-3:])
 
