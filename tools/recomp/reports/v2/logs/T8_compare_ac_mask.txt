@@ -1,0 +1,3 @@
+EQUIVALENT except renderer-written pages over 1800 frames (judged: all frames, 1 baseline run(s))
+  renderer mask: 105 page(s) not judged (RDP color/depth images)
+  thread-stack contents differ from frame 1 (masked out of the page hashes: dead frames differ whenever the code differs; not judged)

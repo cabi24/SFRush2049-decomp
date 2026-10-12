@@ -1,0 +1,98 @@
+[rush] renderer null, clock wall, scripted input
+[rush] t=0.14s audio frequency 48000
+[rush] t=0.14s first VI
+[rush] t=0.14s first VI screen update, origin 0x00000000
+[rush] removed the ROM copy run\home\rush2049.n64.us.z64 (loaded into memory)
+[rush] t=0.15s shim osPiReadIo_recomp first called
+[rush] t=0.15s load game: stream ROM 0xB0CB10 -> 0x80086A50 (load #1)
+[rush] t=0.16s inflated game image check: 161761/161768 words equal the compiled image
+[rush] t=0.16s inflate src 0x036300 -> 0x8019D500 (data, no code image)
+[rush] t=0.16s inflate src 0x02F4E0 -> 0x8019D500 (data, no code image)
+[rush] t=0.16s audio frequency 22050
+[rush] t=0.16s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #2)
+[rush] t=0.16s idle thread parked (pause_self)
+[rush] t=0.16s shim osStopThread_rx first called
+[rush] t=0.18s largest display list so far: 160 B at 0x80062390 (gfx task 0)
+[rush] t=0.18s first gfx task: ucode 0x80028CC0 data_ptr 0x80062390 size 160
+[rush] t=0.19s audio task: ucode_boot 0x80027DD0/208 ucode 0x8002A050/4096 ucode_data 0x8002E210/2048 dram_stack 0x00000000/0 output 0x00000000 data 0x801A9260/2 yield 0x00000000/0 flags 0
+[rush] t=0.19s audio ucode: recompiled (rush_audio_ucode, RSPRecomp)
+[rush] t=0.19s first audio RSP task
+[rush] t=0.22s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=0.22s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=0.23s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=0.23s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=0.23s inflate src 0x332A20 -> 0x80279BC0 (data, no code image)
+[rush] t=0.23s inflate src 0x32F1F0 -> 0x8027E200 (data, no code image)
+[rush] t=0.24s largest display list so far: 344 B at 0x80062390 (gfx task 2)
+[rush] status t=1.1s vi=59 gfx_tasks=29 audio_tasks=56 other_tasks=0 swaps=59 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=43008 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=0
+[rush] status t=2.1s vi=119 gfx_tasks=59 audio_tasks=116 other_tasks=0 swaps=119 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=86784 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=0
+[rush] status t=3.1s vi=180 gfx_tasks=89 audio_tasks=176 other_tasks=0 swaps=179 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=130560 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=0
+[rush] t=3.23s inflate src 0x3338E0 -> 0x8027ED20 (data, no code image)
+[rush] t=3.23s inflate src 0x330CC0 -> 0x8027F180 (data, no code image)
+[rush] t=3.23s inflate src 0x3336C0 -> 0x8027FCE0 (data, no code image)
+[rush] t=3.23s inflate src 0x3304C0 -> 0x80280140 (data, no code image)
+[rush] status t=4.1s vi=239 gfx_tasks=119 audio_tasks=236 other_tasks=0 swaps=239 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=175104 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=0
+[rush] t=5.03s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=5.03s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=5.03s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=5.03s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] t=5.10s first non-silent audio buffer (384 of 384 samples non-zero, peak 19270)
+[rush] status t=5.1s vi=300 gfx_tasks=149 audio_tasks=297 other_tasks=0 swaps=300 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=220032 audio_nonzero=1920 audio_peak=29845 image=ovl_a spin_yields=0
+[rush] status t=6.1s vi=360 gfx_tasks=179 audio_tasks=357 other_tasks=0 swaps=360 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=263808 audio_nonzero=45692 audio_peak=29845 image=ovl_a spin_yields=0
+[rush] status t=7.2s vi=422 gfx_tasks=210 audio_tasks=418 other_tasks=0 swaps=421 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(344 B) audio_samples=308352 audio_nonzero=90227 audio_peak=29845 image=ovl_a spin_yields=0
+[rush] status t=8.2s vi=482 gfx_tasks=240 audio_tasks=479 other_tasks=0 swaps=482 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(344 B) audio_samples=353280 audio_nonzero=135154 audio_peak=29845 image=ovl_a spin_yields=0
+[rush] status t=9.2s vi=543 gfx_tasks=271 audio_tasks=539 other_tasks=0 swaps=542 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=397440 audio_nonzero=179308 audio_peak=29845 image=ovl_a spin_yields=0
+[rush] t=10.02s load ovl_b: stream ROM 0xB6FEC4 -> 0x8038A400 (load #3)
+[rush] t=10.02s inflated ovl_b image check: 10972/10972 words equal the compiled image
+[rush] t=10.02s inflate src 0x3338E0 -> 0x80218A20 (data, no code image)
+[rush] t=10.02s inflate src 0x330CC0 -> 0x80218E80 (data, no code image)
+[rush] t=10.02s inflate src 0x43FE80 -> 0x803BB3A0 (data, no code image)
+[rush] t=10.05s inflate src 0x895420 -> 0x802199E0 (data, no code image)
+[rush] t=10.10s inflate src 0x8A0CF0 -> 0x8021DCA0 (data, no code image)
+[rush] t=10.13s inflate src 0xAC40B0 -> 0x80284E60 (data, no code image)
+[rush] t=10.16s inflate src 0x3C3990 -> 0x802739A0 (data, no code image)
+[rush] t=10.16s inflate src 0x3EE1B0 -> 0x80298440 (data, no code image)
+[rush] status t=10.2s vi=602 gfx_tasks=301 audio_tasks=599 other_tasks=0 swaps=602 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=441600 audio_nonzero=223464 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] t=10.19s largest display list so far: 4976 B at 0x80073D50 (gfx task 301)
+[rush] t=10.22s largest display list so far: 5136 B at 0x80062390 (gfx task 302)
+[rush] t=10.25s largest display list so far: 5776 B at 0x80073D50 (gfx task 303)
+[rush] t=10.30s largest display list so far: 6640 B at 0x80062390 (gfx task 304)
+[rush] t=10.33s largest display list so far: 7024 B at 0x80073D50 (gfx task 305)
+[rush] t=10.36s largest display list so far: 7824 B at 0x80062390 (gfx task 306)
+[rush] t=10.39s largest display list so far: 8208 B at 0x80073D50 (gfx task 307)
+[rush] t=10.42s largest display list so far: 9032 B at 0x80062390 (gfx task 308)
+[rush] t=10.45s largest display list so far: 9096 B at 0x80073D50 (gfx task 309)
+[rush] t=10.48s largest display list so far: 9656 B at 0x80062390 (gfx task 310)
+[rush] t=10.56s largest display list so far: 9976 B at 0x80062390 (gfx task 312)
+[rush] t=10.62s largest display list so far: 10688 B at 0x80062390 (gfx task 314)
+[rush] t=10.73s largest display list so far: 11472 B at 0x80073D50 (gfx task 317)
+[rush] t=10.79s largest display list so far: 11672 B at 0x80073D50 (gfx task 319)
+[rush] status t=11.2s vi=662 gfx_tasks=331 audio_tasks=659 other_tasks=0 swaps=662 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(10952 B) audio_samples=485760 audio_nonzero=267616 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] status t=12.2s vi=724 gfx_tasks=361 audio_tasks=720 other_tasks=0 swaps=724 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(6984 B) audio_samples=530688 audio_nonzero=312541 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] status t=13.2s vi=783 gfx_tasks=391 audio_tasks=780 other_tasks=0 swaps=783 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(5000 B) audio_samples=574848 audio_nonzero=356695 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] status t=14.2s vi=844 gfx_tasks=422 audio_tasks=840 other_tasks=0 swaps=844 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(5552 B) audio_samples=619392 audio_nonzero=401236 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] status t=15.2s vi=905 gfx_tasks=452 audio_tasks=899 other_tasks=0 swaps=904 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(6488 B) audio_samples=663552 audio_nonzero=445391 audio_peak=29845 image=ovl_b spin_yields=0
+[rush] status t=16.2s vi=964 gfx_tasks=482 audio_tasks=959 other_tasks=0 swaps=964 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(10264 B) audio_samples=707712 audio_nonzero=489548 audio_peak=32767 image=ovl_b spin_yields=0
+[rush] status t=17.2s vi=1024 gfx_tasks=512 audio_tasks=1017 other_tasks=0 swaps=1024 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(11400 B) audio_samples=752256 audio_nonzero=534091 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] t=17.43s largest display list so far: 11744 B at 0x80062390 (gfx task 518)
+[rush] t=17.46s largest display list so far: 12000 B at 0x80073D50 (gfx task 519)
+[rush] status t=18.2s vi=1085 gfx_tasks=542 audio_tasks=1078 other_tasks=0 swaps=1085 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(10336 B) audio_samples=796416 audio_nonzero=578250 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=19.2s vi=1146 gfx_tasks=572 audio_tasks=1137 other_tasks=0 swaps=1145 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(10768 B) audio_samples=840960 audio_nonzero=622794 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] t=19.39s largest display list so far: 12248 B at 0x80073D50 (gfx task 577)
+[rush] t=19.46s largest display list so far: 12344 B at 0x80073D50 (gfx task 579)
+[rush] t=19.49s largest display list so far: 12376 B at 0x80062390 (gfx task 580)
+[rush] t=20.19s largest display list so far: 12408 B at 0x80073D50 (gfx task 601)
+[rush] status t=20.2s vi=1206 gfx_tasks=602 audio_tasks=1196 other_tasks=0 swaps=1205 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(12408 B) audio_samples=885120 audio_nonzero=666953 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] t=20.26s largest display list so far: 12504 B at 0x80073D50 (gfx task 603)
+[rush] t=20.32s largest display list so far: 12568 B at 0x80073D50 (gfx task 605)
+[rush] status t=21.2s vi=1266 gfx_tasks=633 audio_tasks=1257 other_tasks=0 swaps=1266 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(9584 B) audio_samples=930048 audio_nonzero=711879 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=22.3s vi=1327 gfx_tasks=663 audio_tasks=1317 other_tasks=0 swaps=1327 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(6664 B) audio_samples=974208 audio_nonzero=756038 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=23.3s vi=1387 gfx_tasks=693 audio_tasks=1377 other_tasks=0 swaps=1387 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(5656 B) audio_samples=1019136 audio_nonzero=800966 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=24.3s vi=1448 gfx_tasks=724 audio_tasks=1437 other_tasks=0 swaps=1448 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(4800 B) audio_samples=1063680 audio_nonzero=845508 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=25.3s vi=1508 gfx_tasks=754 audio_tasks=1497 other_tasks=0 swaps=1508 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(4736 B) audio_samples=1107840 audio_nonzero=889667 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=26.3s vi=1570 gfx_tasks=784 audio_tasks=1558 other_tasks=0 swaps=1569 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(4440 B) audio_samples=1152384 audio_nonzero=934211 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=27.3s vi=1629 gfx_tasks=814 audio_tasks=1618 other_tasks=0 swaps=1629 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(4832 B) audio_samples=1196544 audio_nonzero=978370 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=28.3s vi=1689 gfx_tasks=844 audio_tasks=1678 other_tasks=0 swaps=1689 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80073D50(4048 B) audio_samples=1240704 audio_nonzero=1022527 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=29.3s vi=1751 gfx_tasks=875 audio_tasks=1738 other_tasks=0 swaps=1751 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(5800 B) audio_samples=1285248 audio_nonzero=1067070 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] status t=30.3s vi=1810 gfx_tasks=905 audio_tasks=1798 other_tasks=0 swaps=1810 origin=0x007DDC80 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(8136 B) audio_samples=1329792 audio_nonzero=1111610 audio_peak=32768 image=ovl_b spin_yields=0
+[rush] final t=30.3s vi=1811 gfx_tasks=905 audio_tasks=1798 other_tasks=0 swaps=1811 origin=0x007BB640 fb_nonzero=4 fb_distinct=1 last_dl=0x80062390(8136 B) audio_samples=1329792 audio_nonzero=1111610 audio_peak=32768 image=ovl_b spin_yields=0

@@ -1,0 +1,101 @@
+[rush] renderer rt64, clock wall, live input
+[rush] SDL video driver: windows
+[rush] RT64 setup: ok, graphics API D3D12
+[rush] t=0.90s audio frequency 48000
+[rush] t=0.90s first VI
+[rush] t=0.90s first VI screen update, origin 0x00000000
+[rush] status t=1.1s vi=15 gfx_tasks=0 audio_tasks=0 other_tasks=0 swaps=15 origin=0x00000000 fb_nonzero=0 fb_distinct=0 last_dl=0x00000000(0 B) audio_samples=0 audio_nonzero=0 audio_peak=0 image=none spin_yields=0
+[rush] audio: SDL driver wasapi, device 48000 Hz stereo float
+[rush] removed the ROM copy run\home\rush2049.n64.us.z64 (loaded into memory)
+[rush] t=1.35s shim osPiReadIo_recomp first called
+[rush] t=1.35s load game: stream ROM 0xB0CB10 -> 0x80086A50 (load #1)
+[rush] t=1.36s inflated game image check: 161761/161768 words equal the compiled image
+[rush] t=1.36s inflate src 0x036300 -> 0x8019D500 (data, no code image)
+[rush] t=1.36s inflate src 0x02F4E0 -> 0x8019D500 (data, no code image)
+[rush] t=1.36s audio frequency 22050
+[rush] t=1.36s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #2)
+[rush] t=1.36s idle thread parked (pause_self)
+[rush] t=1.37s shim osStopThread_rx first called
+[rush] t=1.39s largest display list so far: 160 B at 0x80062390 (gfx task 0)
+[rush] t=1.39s first gfx task: ucode 0x80028CC0 data_ptr 0x80062390 size 160
+[rush] t=1.40s audio task: ucode_boot 0x80027DD0/208 ucode 0x8002A050/4096 ucode_data 0x8002E210/2048 dram_stack 0x00000000/0 output 0x00000000 data 0x801A9260/3 yield 0x00000000/0 flags 0
+[rush] t=1.40s audio ucode: recompiled (rush_audio_ucode, RSPRecomp)
+[rush] t=1.40s busy-wait at 0x800FD500: yielding (rush_hook_spin)
+[rush] t=1.40s first audio RSP task
+[rush] t=1.41s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=1.41s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=1.41s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=1.41s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=1.41s inflate src 0x332A20 -> 0x80279BC0 (data, no code image)
+[rush] t=1.41s inflate src 0x32F1F0 -> 0x8027E200 (data, no code image)
+[rush] t=1.43s largest display list so far: 344 B at 0x80062390 (gfx task 2)
+[rush] status t=2.1s vi=75 gfx_tasks=23 audio_tasks=44 other_tasks=0 swaps=75 origin=0x007BB640 fb_nonzero=35881 fb_distinct=1 last_dl=0x80062390(344 B) audio_samples=36480 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=8
+[rush] status t=3.1s vi=135 gfx_tasks=53 audio_tasks=104 other_tasks=0 swaps=135 origin=0x007BB640 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=80640 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=8
+[rush] status t=4.1s vi=195 gfx_tasks=83 audio_tasks=164 other_tasks=0 swaps=195 origin=0x007BB640 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=124800 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=8
+[rush] t=4.40s inflate src 0x3338E0 -> 0x8027ED20 (data, no code image)
+[rush] t=4.40s inflate src 0x330CC0 -> 0x8027F180 (data, no code image)
+[rush] t=4.40s inflate src 0x3336C0 -> 0x8027FCE0 (data, no code image)
+[rush] t=4.40s inflate src 0x3304C0 -> 0x80280140 (data, no code image)
+[rush] status t=5.1s vi=255 gfx_tasks=113 audio_tasks=224 other_tasks=0 swaps=255 origin=0x007BB640 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=168960 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=6.1s vi=316 gfx_tasks=143 audio_tasks=284 other_tasks=0 swaps=316 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=213120 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=7.1s vi=376 gfx_tasks=174 audio_tasks=345 other_tasks=0 swaps=376 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=257280 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=8.1s vi=436 gfx_tasks=204 audio_tasks=405 other_tasks=0 swaps=436 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=301440 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=9.1s vi=496 gfx_tasks=234 audio_tasks=465 other_tasks=0 swaps=496 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=345600 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=10.1s vi=556 gfx_tasks=264 audio_tasks=525 other_tasks=0 swaps=556 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=389760 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=11.1s vi=616 gfx_tasks=294 audio_tasks=585 other_tasks=0 swaps=616 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=433920 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=12.1s vi=676 gfx_tasks=324 audio_tasks=645 other_tasks=0 swaps=676 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=478080 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=13.1s vi=736 gfx_tasks=354 audio_tasks=705 other_tasks=0 swaps=736 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=522240 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=14.1s vi=796 gfx_tasks=384 audio_tasks=765 other_tasks=0 swaps=796 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=566400 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=15.1s vi=856 gfx_tasks=414 audio_tasks=825 other_tasks=0 swaps=856 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=610560 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=16.1s vi=916 gfx_tasks=444 audio_tasks=885 other_tasks=0 swaps=916 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=654720 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=17.1s vi=976 gfx_tasks=474 audio_tasks=945 other_tasks=0 swaps=976 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=698880 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=18.1s vi=1036 gfx_tasks=504 audio_tasks=1005 other_tasks=0 swaps=1036 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=743040 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=19.1s vi=1096 gfx_tasks=534 audio_tasks=1065 other_tasks=0 swaps=1096 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=787200 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=20.1s vi=1156 gfx_tasks=564 audio_tasks=1125 other_tasks=0 swaps=1156 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=831360 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=21.1s vi=1216 gfx_tasks=594 audio_tasks=1185 other_tasks=0 swaps=1216 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=875520 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=22.1s vi=1276 gfx_tasks=624 audio_tasks=1245 other_tasks=0 swaps=1276 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=919680 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=23.1s vi=1336 gfx_tasks=654 audio_tasks=1305 other_tasks=0 swaps=1336 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=963840 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=24.1s vi=1396 gfx_tasks=684 audio_tasks=1365 other_tasks=0 swaps=1396 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1008000 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=25.1s vi=1456 gfx_tasks=714 audio_tasks=1425 other_tasks=0 swaps=1456 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1052160 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=26.1s vi=1516 gfx_tasks=744 audio_tasks=1485 other_tasks=0 swaps=1516 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1096320 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=27.2s vi=1576 gfx_tasks=774 audio_tasks=1545 other_tasks=0 swaps=1576 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1140480 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=28.2s vi=1636 gfx_tasks=804 audio_tasks=1605 other_tasks=0 swaps=1636 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1184640 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=29.2s vi=1697 gfx_tasks=834 audio_tasks=1666 other_tasks=0 swaps=1697 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1228800 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=30.2s vi=1757 gfx_tasks=864 audio_tasks=1726 other_tasks=0 swaps=1757 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1272960 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=31.2s vi=1817 gfx_tasks=894 audio_tasks=1786 other_tasks=0 swaps=1817 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1316736 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=32.2s vi=1877 gfx_tasks=924 audio_tasks=1846 other_tasks=0 swaps=1877 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1360896 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=33.2s vi=1937 gfx_tasks=954 audio_tasks=1906 other_tasks=0 swaps=1937 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1405056 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=34.2s vi=1997 gfx_tasks=984 audio_tasks=1966 other_tasks=0 swaps=1997 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1449216 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=35.2s vi=2057 gfx_tasks=1014 audio_tasks=2026 other_tasks=0 swaps=2057 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1493376 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=36.2s vi=2117 gfx_tasks=1044 audio_tasks=2086 other_tasks=0 swaps=2117 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1537536 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=37.2s vi=2177 gfx_tasks=1074 audio_tasks=2146 other_tasks=0 swaps=2177 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1582080 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=38.2s vi=2237 gfx_tasks=1104 audio_tasks=2206 other_tasks=0 swaps=2237 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1626240 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=39.2s vi=2297 gfx_tasks=1134 audio_tasks=2266 other_tasks=0 swaps=2297 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1670400 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=40.2s vi=2357 gfx_tasks=1164 audio_tasks=2326 other_tasks=0 swaps=2357 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1714560 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=41.2s vi=2417 gfx_tasks=1194 audio_tasks=2386 other_tasks=0 swaps=2417 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1758720 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=42.2s vi=2477 gfx_tasks=1224 audio_tasks=2446 other_tasks=0 swaps=2477 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1802496 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=43.2s vi=2537 gfx_tasks=1254 audio_tasks=2506 other_tasks=0 swaps=2537 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1846656 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=44.2s vi=2597 gfx_tasks=1284 audio_tasks=2566 other_tasks=0 swaps=2597 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1890816 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=45.2s vi=2657 gfx_tasks=1314 audio_tasks=2626 other_tasks=0 swaps=2657 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1934976 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=46.2s vi=2717 gfx_tasks=1344 audio_tasks=2686 other_tasks=0 swaps=2717 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=1979136 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=47.2s vi=2777 gfx_tasks=1374 audio_tasks=2746 other_tasks=0 swaps=2777 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2023296 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=48.2s vi=2837 gfx_tasks=1404 audio_tasks=2806 other_tasks=0 swaps=2837 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2067456 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=49.2s vi=2897 gfx_tasks=1434 audio_tasks=2866 other_tasks=0 swaps=2897 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2111616 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=50.2s vi=2957 gfx_tasks=1464 audio_tasks=2926 other_tasks=0 swaps=2957 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2155776 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=51.2s vi=3017 gfx_tasks=1494 audio_tasks=2986 other_tasks=0 swaps=3017 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2199936 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=52.2s vi=3078 gfx_tasks=1525 audio_tasks=3047 other_tasks=0 swaps=3078 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2244096 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=53.2s vi=3138 gfx_tasks=1554 audio_tasks=3106 other_tasks=0 swaps=3138 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(344 B) audio_samples=2288256 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=54.2s vi=3198 gfx_tasks=1585 audio_tasks=3167 other_tasks=0 swaps=3198 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2332416 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=55.2s vi=3258 gfx_tasks=1615 audio_tasks=3227 other_tasks=0 swaps=3258 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2376576 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=56.2s vi=3318 gfx_tasks=1645 audio_tasks=3287 other_tasks=0 swaps=3318 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2420736 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=57.2s vi=3378 gfx_tasks=1675 audio_tasks=3347 other_tasks=0 swaps=3378 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2464896 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=58.2s vi=3438 gfx_tasks=1705 audio_tasks=3407 other_tasks=0 swaps=3438 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2509056 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] status t=59.2s vi=3498 gfx_tasks=1735 audio_tasks=3467 other_tasks=0 swaps=3498 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2553216 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=11
+[rush] t=59.24s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=59.24s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=59.24s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=59.24s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] t=59.30s first non-silent audio buffer (384 of 384 samples non-zero, peak 5190)
+[rush] status t=60.2s vi=3558 gfx_tasks=1765 audio_tasks=3527 other_tasks=0 swaps=3558 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=4 last_dl=0x80062390(344 B) audio_samples=2597376 audio_nonzero=38778 audio_peak=29974 image=ovl_a spin_yields=16
+[rush] status t=61.2s vi=3618 gfx_tasks=1795 audio_tasks=3587 other_tasks=0 swaps=3618 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=4 last_dl=0x80062390(344 B) audio_samples=2641536 audio_nonzero=82929 audio_peak=29974 image=ovl_a spin_yields=16
+[rush] final t=62.0s vi=3669 gfx_tasks=1820 audio_tasks=3638 other_tasks=0 swaps=3669 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=4 last_dl=0x80073D50(344 B) audio_samples=2679168 audio_nonzero=120560 audio_peak=29974 image=ovl_a spin_yields=16

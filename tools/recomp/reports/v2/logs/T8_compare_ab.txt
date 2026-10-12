@@ -1,0 +1,2 @@
+EQUIVALENT over 1800 frames (judged: all frames, 1 baseline run(s))
+  thread-stack contents differ from frame 1 (masked out of the page hashes: dead frames differ whenever the code differs; not judged)

@@ -1,0 +1,984 @@
+[rush] renderer rt64, clock wall, live input
+[rush] SDL video driver: windows
+[rush] controller -> player 1: Controller (Xbox 360 Wireless Receiver for Windows)
+[rush] controller -> player 1: Controller (Xbox 360 Wireless Receiver for Windows)
+[rush] RT64 setup: ok, graphics API D3D12
+[rush] t=0.76s audio frequency 48000
+[rush] t=0.76s first VI
+[rush] t=0.76s first VI screen update, origin 0x00000000
+[rush] status t=1.1s vi=23 gfx_tasks=0 audio_tasks=0 other_tasks=0 swaps=23 origin=0x00000000 fb_nonzero=0 fb_distinct=0 last_dl=0x00000000(0 B) audio_samples=0 audio_nonzero=0 audio_peak=0 image=none spin_yields=0
+[rush] audio: SDL driver wasapi, device 48000 Hz stereo float
+[rush] removed the ROM copy run\home\rush2049.n64.us.z64 (loaded into memory)
+[rush] t=1.19s shim osPiReadIo_recomp first called
+[rush] t=1.19s load game: stream ROM 0xB0CB10 -> 0x80086A50 (load #1)
+[rush] t=1.20s inflated game image check: 161761/161768 words equal the compiled image
+[rush] t=1.20s inflate src 0x036300 -> 0x8019D500 (data, no code image)
+[rush] t=1.20s inflate src 0x02F4E0 -> 0x8019D500 (data, no code image)
+[rush] t=1.20s audio frequency 22050
+[rush] t=1.20s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #2)
+[rush] t=1.20s idle thread parked (pause_self)
+[rush] t=1.20s shim osStopThread_rx first called
+[rush] t=1.22s largest display list so far: 160 B at 0x80062390 (gfx task 0)
+[rush] t=1.22s first gfx task: ucode 0x80028CC0 data_ptr 0x80062390 size 160
+[rush] t=1.23s audio task: ucode_boot 0x80027DD0/208 ucode 0x8002A050/4096 ucode_data 0x8002E210/2048 dram_stack 0x00000000/0 output 0x00000000 data 0x801A9260/1 yield 0x00000000/0 flags 0
+[rush] t=1.23s audio ucode: recompiled (rush_audio_ucode, RSPRecomp)
+[rush] t=1.23s first audio RSP task
+[rush] t=1.23s busy-wait at 0x800FD500: yielding (rush_hook_spin)
+[rush] t=1.24s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=1.24s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=1.24s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=1.24s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=1.25s inflate src 0x332A20 -> 0x80279BC0 (data, no code image)
+[rush] t=1.25s inflate src 0x32F1F0 -> 0x8027E200 (data, no code image)
+[rush] t=1.27s largest display list so far: 344 B at 0x80062390 (gfx task 2)
+[rush] status t=2.1s vi=83 gfx_tasks=28 audio_tasks=54 other_tasks=0 swaps=83 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=1 last_dl=0x80073D50(344 B) audio_samples=43008 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=7
+[rush] status t=3.1s vi=143 gfx_tasks=58 audio_tasks=114 other_tasks=0 swaps=143 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=1 last_dl=0x80073D50(344 B) audio_samples=87168 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=7
+[rush] status t=4.1s vi=203 gfx_tasks=88 audio_tasks=174 other_tasks=0 swaps=203 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=1 last_dl=0x80073D50(344 B) audio_samples=131328 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=7
+[rush] t=4.24s inflate src 0x3338E0 -> 0x8027ED20 (data, no code image)
+[rush] t=4.24s inflate src 0x330CC0 -> 0x8027F180 (data, no code image)
+[rush] t=4.24s inflate src 0x3336C0 -> 0x8027FCE0 (data, no code image)
+[rush] t=4.24s inflate src 0x3304C0 -> 0x80280140 (data, no code image)
+[rush] status t=5.1s vi=263 gfx_tasks=118 audio_tasks=234 other_tasks=0 swaps=263 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=175488 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=6.1s vi=323 gfx_tasks=148 audio_tasks=294 other_tasks=0 swaps=323 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=219648 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=7.1s vi=383 gfx_tasks=178 audio_tasks=354 other_tasks=0 swaps=383 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=263808 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=8.1s vi=443 gfx_tasks=208 audio_tasks=414 other_tasks=0 swaps=443 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=307968 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=9.1s vi=503 gfx_tasks=238 audio_tasks=474 other_tasks=0 swaps=503 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=352128 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=10.1s vi=563 gfx_tasks=268 audio_tasks=534 other_tasks=0 swaps=563 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=396288 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=11.1s vi=623 gfx_tasks=298 audio_tasks=594 other_tasks=0 swaps=623 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=440448 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=12.1s vi=683 gfx_tasks=328 audio_tasks=654 other_tasks=0 swaps=683 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=484608 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=13.1s vi=743 gfx_tasks=358 audio_tasks=714 other_tasks=0 swaps=743 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=528768 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=14.1s vi=803 gfx_tasks=388 audio_tasks=774 other_tasks=0 swaps=803 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=572544 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=15.1s vi=863 gfx_tasks=418 audio_tasks=834 other_tasks=0 swaps=863 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=616704 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=16.1s vi=923 gfx_tasks=448 audio_tasks=894 other_tasks=0 swaps=923 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=660864 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=17.1s vi=983 gfx_tasks=478 audio_tasks=954 other_tasks=0 swaps=983 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=705024 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=18.1s vi=1043 gfx_tasks=508 audio_tasks=1014 other_tasks=0 swaps=1043 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=749184 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=19.1s vi=1103 gfx_tasks=538 audio_tasks=1074 other_tasks=0 swaps=1103 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=793344 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=20.1s vi=1163 gfx_tasks=568 audio_tasks=1134 other_tasks=0 swaps=1163 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=837504 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=21.1s vi=1223 gfx_tasks=598 audio_tasks=1194 other_tasks=0 swaps=1223 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=881664 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=22.1s vi=1283 gfx_tasks=628 audio_tasks=1254 other_tasks=0 swaps=1283 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80073D50(344 B) audio_samples=926208 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=23.1s vi=1344 gfx_tasks=659 audio_tasks=1315 other_tasks=0 swaps=1343 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=970368 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=24.1s vi=1404 gfx_tasks=689 audio_tasks=1375 other_tasks=0 swaps=1404 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1014528 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=25.1s vi=1464 gfx_tasks=719 audio_tasks=1435 other_tasks=0 swaps=1464 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1058688 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=26.1s vi=1524 gfx_tasks=749 audio_tasks=1495 other_tasks=0 swaps=1524 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1102464 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=27.1s vi=1584 gfx_tasks=779 audio_tasks=1555 other_tasks=0 swaps=1584 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1146624 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=28.1s vi=1644 gfx_tasks=809 audio_tasks=1615 other_tasks=0 swaps=1644 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1190784 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=29.1s vi=1704 gfx_tasks=839 audio_tasks=1675 other_tasks=0 swaps=1704 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1234944 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=30.1s vi=1764 gfx_tasks=869 audio_tasks=1735 other_tasks=0 swaps=1764 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1279104 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=31.1s vi=1824 gfx_tasks=899 audio_tasks=1795 other_tasks=0 swaps=1824 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1323264 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=32.1s vi=1884 gfx_tasks=929 audio_tasks=1855 other_tasks=0 swaps=1884 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1367424 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=33.1s vi=1944 gfx_tasks=959 audio_tasks=1915 other_tasks=0 swaps=1944 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1411584 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=34.1s vi=2004 gfx_tasks=989 audio_tasks=1975 other_tasks=0 swaps=2004 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1455744 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=35.1s vi=2064 gfx_tasks=1019 audio_tasks=2035 other_tasks=0 swaps=2064 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1499904 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] controller -> player 1: Controller (Xbox 360 Wireless Receiver for Windows)
+[rush] input player 1: - stick x=+0.33 y=-0.50
+[rush] input player 1: - stick x=+0.31 y=-0.63
+[rush] input player 1: - stick x=+0.31 y=-0.91
+[rush] input player 1: - stick x=+0.38 y=-1.00
+[rush] input player 1: - stick x=+0.37 y=-0.80
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=36.1s vi=2124 gfx_tasks=1049 audio_tasks=2095 other_tasks=0 swaps=2124 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1544064 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] input player 1: - stick x=-0.27 y=-0.00
+[rush] input player 1: - stick x=-0.42 y=-0.00
+[rush] input player 1: - stick x=-0.63 y=-0.00
+[rush] input player 1: - stick x=-0.69 y=+0.16
+[rush] input player 1: - stick x=-0.74 y=-0.00
+[rush] input player 1: - stick x=-0.88 y=-0.00
+[rush] input player 1: - stick x=-0.95 y=-0.15
+[rush] input player 1: - stick x=-0.85 y=-0.17
+[rush] input player 1: - stick x=+0.38 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=37.1s vi=2184 gfx_tasks=1079 audio_tasks=2155 other_tasks=0 swaps=2184 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1588224 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=38.1s vi=2244 gfx_tasks=1109 audio_tasks=2215 other_tasks=0 swaps=2244 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1632384 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=39.1s vi=2304 gfx_tasks=1139 audio_tasks=2275 other_tasks=0 swaps=2304 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1676544 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=40.1s vi=2364 gfx_tasks=1169 audio_tasks=2335 other_tasks=0 swaps=2364 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1720704 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=41.1s vi=2424 gfx_tasks=1199 audio_tasks=2395 other_tasks=0 swaps=2424 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1764864 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=42.1s vi=2484 gfx_tasks=1229 audio_tasks=2455 other_tasks=0 swaps=2484 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1809024 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=43.1s vi=2544 gfx_tasks=1259 audio_tasks=2515 other_tasks=0 swaps=2544 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1853184 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=44.1s vi=2604 gfx_tasks=1289 audio_tasks=2575 other_tasks=0 swaps=2604 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1897344 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=45.1s vi=2664 gfx_tasks=1319 audio_tasks=2635 other_tasks=0 swaps=2664 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1941504 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=46.1s vi=2724 gfx_tasks=1349 audio_tasks=2695 other_tasks=0 swaps=2724 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=1985664 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=47.1s vi=2784 gfx_tasks=1379 audio_tasks=2755 other_tasks=0 swaps=2784 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2029440 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=48.1s vi=2844 gfx_tasks=1409 audio_tasks=2815 other_tasks=0 swaps=2844 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2073984 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=49.1s vi=2904 gfx_tasks=1439 audio_tasks=2875 other_tasks=0 swaps=2904 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2118144 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=50.1s vi=2964 gfx_tasks=1469 audio_tasks=2935 other_tasks=0 swaps=2964 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2161920 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=51.2s vi=3024 gfx_tasks=1499 audio_tasks=2995 other_tasks=0 swaps=3024 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2206464 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=52.2s vi=3084 gfx_tasks=1529 audio_tasks=3055 other_tasks=0 swaps=3084 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2250240 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] status t=53.2s vi=3145 gfx_tasks=1559 audio_tasks=3116 other_tasks=0 swaps=3144 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=2 last_dl=0x80062390(344 B) audio_samples=2294400 audio_nonzero=0 audio_peak=0 image=ovl_a spin_yields=12
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] t=53.24s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=53.24s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=53.24s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=53.24s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] t=53.30s first non-silent audio buffer (384 of 384 samples non-zero, peak 5190)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=54.2s vi=3205 gfx_tasks=1589 audio_tasks=3176 other_tasks=0 swaps=3205 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2338560 audio_nonzero=37627 audio_peak=29604 image=ovl_a spin_yields=15
+[rush] status t=55.2s vi=3265 gfx_tasks=1619 audio_tasks=3236 other_tasks=0 swaps=3265 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2383104 audio_nonzero=82161 audio_peak=29604 image=ovl_a spin_yields=15
+[rush] status t=56.2s vi=3325 gfx_tasks=1649 audio_tasks=3296 other_tasks=0 swaps=3325 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2427264 audio_nonzero=126320 audio_peak=29604 image=ovl_a spin_yields=15
+[rush] status t=57.2s vi=3385 gfx_tasks=1679 audio_tasks=3356 other_tasks=0 swaps=3385 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2471424 audio_nonzero=170476 audio_peak=29604 image=ovl_a spin_yields=15
+[rush] status t=58.2s vi=3445 gfx_tasks=1709 audio_tasks=3416 other_tasks=0 swaps=3445 origin=0x007BB640 fb_nonzero=38388 fb_distinct=3 last_dl=0x80062390(344 B) audio_samples=2515584 audio_nonzero=214631 audio_peak=29604 image=ovl_a spin_yields=15
+[rush] t=58.24s load ovl_b: stream ROM 0xB6FEC4 -> 0x8038A400 (load #3)
+[rush] t=58.24s inflated ovl_b image check: 10972/10972 words equal the compiled image
+[rush] t=58.24s inflate src 0x3338E0 -> 0x80218A20 (data, no code image)
+[rush] t=58.24s inflate src 0x330CC0 -> 0x80218E80 (data, no code image)
+[rush] t=58.24s inflate src 0x43FE80 -> 0x803BB3A0 (data, no code image)
+[rush] t=58.27s inflate src 0x895420 -> 0x802199E0 (data, no code image)
+[rush] t=58.30s inflate src 0x8A0CF0 -> 0x8021DCA0 (data, no code image)
+[rush] t=58.34s inflate src 0xAC40B0 -> 0x80284E60 (data, no code image)
+[rush] t=58.37s inflate src 0x3C3990 -> 0x802739A0 (data, no code image)
+[rush] t=58.37s inflate src 0x3EE1B0 -> 0x80298440 (data, no code image)
+[rush] t=58.40s largest display list so far: 4976 B at 0x80062390 (gfx task 1716)
+[rush] t=58.52s largest display list so far: 5136 B at 0x80073D50 (gfx task 1717)
+[rush] t=58.60s largest display list so far: 5616 B at 0x80073D50 (gfx task 1719)
+[rush] t=58.64s largest display list so far: 6104 B at 0x80062390 (gfx task 1720)
+[rush] t=58.67s largest display list so far: 6968 B at 0x80073D50 (gfx task 1721)
+[rush] t=58.70s largest display list so far: 7384 B at 0x80062390 (gfx task 1722)
+[rush] t=58.73s largest display list so far: 8040 B at 0x80073D50 (gfx task 1723)
+[rush] t=58.77s largest display list so far: 8328 B at 0x80062390 (gfx task 1724)
+[rush] t=58.80s largest display list so far: 8616 B at 0x80073D50 (gfx task 1725)
+[rush] t=58.83s largest display list so far: 9168 B at 0x80062390 (gfx task 1726)
+[rush] t=58.87s largest display list so far: 9328 B at 0x80073D50 (gfx task 1727)
+[rush] t=58.93s largest display list so far: 10112 B at 0x80073D50 (gfx task 1729)
+[rush] t=59.00s largest display list so far: 10408 B at 0x80073D50 (gfx task 1731)
+[rush] status t=59.2s vi=3505 gfx_tasks=1736 audio_tasks=3476 other_tasks=0 swaps=3505 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=3 last_dl=0x80073D50(10088 B) audio_samples=2559360 audio_nonzero=258400 audio_peak=29604 image=ovl_b spin_yields=20
+[rush] t=59.20s largest display list so far: 10648 B at 0x80073D50 (gfx task 1737)
+[rush] status t=60.2s vi=3565 gfx_tasks=1766 audio_tasks=3536 other_tasks=0 swaps=3565 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=4 last_dl=0x80073D50(8448 B) audio_samples=2603520 audio_nonzero=302557 audio_peak=29604 image=ovl_b spin_yields=20
+[rush] status t=61.2s vi=3625 gfx_tasks=1796 audio_tasks=3596 other_tasks=0 swaps=3625 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=5 last_dl=0x80073D50(5640 B) audio_samples=2647680 audio_nonzero=346709 audio_peak=29604 image=ovl_b spin_yields=20
+[rush] status t=62.2s vi=3685 gfx_tasks=1826 audio_tasks=3656 other_tasks=0 swaps=3685 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=6 last_dl=0x80073D50(5976 B) audio_samples=2691840 audio_nonzero=390866 audio_peak=29604 image=ovl_b spin_yields=20
+[rush] status t=63.2s vi=3745 gfx_tasks=1856 audio_tasks=3716 other_tasks=0 swaps=3745 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=7 last_dl=0x80073D50(5976 B) audio_samples=2736384 audio_nonzero=435406 audio_peak=29604 image=ovl_b spin_yields=20
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] t=63.64s busy-wait at 0x80096184: yielding (rush_hook_spin)
+[rush] t=63.64s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #4)
+[rush] t=63.65s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=63.65s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=63.65s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=63.65s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=63.65s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=63.65s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=63.65s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=63.65s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=64.2s vi=3805 gfx_tasks=1886 audio_tasks=3776 other_tasks=0 swaps=3805 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=8 last_dl=0x80073D50(344 B) audio_samples=2780160 audio_nonzero=479180 audio_peak=32767 image=ovl_a spin_yields=29
+[rush] status t=65.2s vi=3865 gfx_tasks=1916 audio_tasks=3836 other_tasks=0 swaps=3865 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=2824320 audio_nonzero=523337 audio_peak=32767 image=ovl_a spin_yields=29
+[rush] status t=66.2s vi=3925 gfx_tasks=1946 audio_tasks=3896 other_tasks=0 swaps=3925 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=2868480 audio_nonzero=567496 audio_peak=32768 image=ovl_a spin_yields=29
+[rush] input player 1: C-DOWN stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=67.2s vi=3985 gfx_tasks=1976 audio_tasks=3956 other_tasks=0 swaps=3985 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=2912640 audio_nonzero=611656 audio_peak=32768 image=ovl_a spin_yields=29
+[rush] status t=68.2s vi=4045 gfx_tasks=2006 audio_tasks=4016 other_tasks=0 swaps=4045 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=2956800 audio_nonzero=655815 audio_peak=32768 image=ovl_a spin_yields=29
+[rush] t=68.64s load ovl_b: stream ROM 0xB6FEC4 -> 0x8038A400 (load #5)
+[rush] t=68.64s inflated ovl_b image check: 10972/10972 words equal the compiled image
+[rush] t=68.64s inflate src 0x3338E0 -> 0x80218A20 (data, no code image)
+[rush] t=68.64s inflate src 0x330CC0 -> 0x80218E80 (data, no code image)
+[rush] t=68.64s inflate src 0x4D2FA0 -> 0x803BB3A0 (data, no code image)
+[rush] t=68.67s inflate src 0x896810 -> 0x802199E0 (data, no code image)
+[rush] t=68.70s inflate src 0x8DE6C0 -> 0x80284E60 (data, no code image)
+[rush] t=68.74s inflate src 0xAC8A80 -> 0x80222280 (data, no code image)
+[rush] input player 1: B stick x=+0.00 y=-0.00
+[rush] t=68.77s inflate src 0x3C3990 -> 0x8022BF60 (data, no code image)
+[rush] t=68.77s inflate src 0x3F59F0 -> 0x8023A280 (data, no code image)
+[rush] t=68.77s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #6)
+[rush] t=68.78s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=68.78s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=68.78s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=68.78s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=68.78s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=68.78s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=68.78s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=68.78s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=69.2s vi=4105 gfx_tasks=2036 audio_tasks=4076 other_tasks=0 swaps=4105 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=3000960 audio_nonzero=699974 audio_peak=32768 image=ovl_a spin_yields=34
+[rush] status t=70.2s vi=4165 gfx_tasks=2066 audio_tasks=4136 other_tasks=0 swaps=4165 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=3045120 audio_nonzero=744132 audio_peak=32768 image=ovl_a spin_yields=34
+[rush] input player 1: C-UP stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=71.2s vi=4225 gfx_tasks=2096 audio_tasks=4196 other_tasks=0 swaps=4225 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=3089280 audio_nonzero=788292 audio_peak=32768 image=ovl_a spin_yields=34
+[rush] input player 1: L stick x=+0.00 y=-0.00
+[rush] status t=72.2s vi=4285 gfx_tasks=2126 audio_tasks=4256 other_tasks=0 swaps=4285 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=3133440 audio_nonzero=832451 audio_peak=32768 image=ovl_a spin_yields=34
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=73.2s vi=4345 gfx_tasks=2156 audio_tasks=4316 other_tasks=0 swaps=4345 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(344 B) audio_samples=3177600 audio_nonzero=876609 audio_peak=32768 image=ovl_a spin_yields=34
+[rush] input player 1: R stick x=+0.00 y=-0.00
+[rush] t=73.77s load ovl_b: stream ROM 0xB6FEC4 -> 0x8038A400 (load #7)
+[rush] t=73.77s inflated ovl_b image check: 10972/10972 words equal the compiled image
+[rush] t=73.77s inflate src 0x3338E0 -> 0x80218A20 (data, no code image)
+[rush] t=73.77s inflate src 0x330CC0 -> 0x80218E80 (data, no code image)
+[rush] t=73.77s inflate src 0x555850 -> 0x80284E60 (data, no code image)
+[rush] t=73.80s inflate src 0x8989E0 -> 0x802199E0 (data, no code image)
+[rush] t=73.83s inflate src 0x92BFE0 -> 0x803BB3A0 (data, no code image)
+[rush] t=73.87s inflate src 0xACF230 -> 0x8021D4E0 (data, no code image)
+[rush] t=73.90s inflate src 0x3C3990 -> 0x80226C00 (data, no code image)
+[rush] t=73.90s inflate src 0x3FE240 -> 0x80234F20 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=74.2s vi=4405 gfx_tasks=2186 audio_tasks=4376 other_tasks=0 swaps=4405 origin=0x007BB640 fb_nonzero=38388 fb_distinct=9 last_dl=0x80073D50(6056 B) audio_samples=3221760 audio_nonzero=920769 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] t=74.98s largest display list so far: 10736 B at 0x80062390 (gfx task 2210)
+[rush] t=75.02s largest display list so far: 11256 B at 0x80073D50 (gfx task 2211)
+[rush] t=75.05s largest display list so far: 11352 B at 0x80062390 (gfx task 2212)
+[rush] t=75.12s largest display list so far: 11680 B at 0x80062390 (gfx task 2214)
+[rush] status t=75.2s vi=4465 gfx_tasks=2216 audio_tasks=4436 other_tasks=0 swaps=4465 origin=0x007BB640 fb_nonzero=38388 fb_distinct=10 last_dl=0x80073D50(11648 B) audio_samples=3265920 audio_nonzero=964929 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] t=75.28s largest display list so far: 11776 B at 0x80073D50 (gfx task 2219)
+[rush] t=75.32s largest display list so far: 11808 B at 0x80062390 (gfx task 2220)
+[rush] t=75.35s largest display list so far: 12064 B at 0x80073D50 (gfx task 2221)
+[rush] input player 1: Z stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=76.2s vi=4525 gfx_tasks=2246 audio_tasks=4496 other_tasks=0 swaps=4525 origin=0x007BB640 fb_nonzero=38388 fb_distinct=11 last_dl=0x80073D50(8664 B) audio_samples=3310080 audio_nonzero=1009086 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: R stick x=+0.00 y=-0.00
+[rush] status t=77.2s vi=4586 gfx_tasks=2276 audio_tasks=4557 other_tasks=0 swaps=4586 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=12 last_dl=0x80073D50(7296 B) audio_samples=3354240 audio_nonzero=1053245 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=78.2s vi=4646 gfx_tasks=2306 audio_tasks=4617 other_tasks=0 swaps=4646 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=13 last_dl=0x80073D50(5720 B) audio_samples=3398400 audio_nonzero=1097402 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=79.2s vi=4706 gfx_tasks=2336 audio_tasks=4677 other_tasks=0 swaps=4706 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=14 last_dl=0x80073D50(9720 B) audio_samples=3442560 audio_nonzero=1141560 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=80.2s vi=4766 gfx_tasks=2366 audio_tasks=4737 other_tasks=0 swaps=4766 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=15 last_dl=0x80073D50(6840 B) audio_samples=3486720 audio_nonzero=1185718 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=81.2s vi=4826 gfx_tasks=2396 audio_tasks=4797 other_tasks=0 swaps=4826 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=16 last_dl=0x80073D50(5864 B) audio_samples=3530880 audio_nonzero=1229878 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: D-UP stick x=+0.00 y=-0.00
+[rush] status t=82.2s vi=4886 gfx_tasks=2426 audio_tasks=4857 other_tasks=0 swaps=4886 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=17 last_dl=0x80073D50(3560 B) audio_samples=3575040 audio_nonzero=1274037 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: D-DOWN stick x=+0.00 y=-0.00
+[rush] status t=83.2s vi=4946 gfx_tasks=2456 audio_tasks=4917 other_tasks=0 swaps=4946 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=18 last_dl=0x80073D50(10208 B) audio_samples=3619200 audio_nonzero=1318195 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: D-LEFT stick x=+0.00 y=-0.00
+[rush] status t=84.2s vi=5006 gfx_tasks=2486 audio_tasks=4977 other_tasks=0 swaps=5006 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=19 last_dl=0x80073D50(10856 B) audio_samples=3663360 audio_nonzero=1362355 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: D-RIGHT stick x=+0.00 y=-0.00
+[rush] status t=85.2s vi=5066 gfx_tasks=2516 audio_tasks=5037 other_tasks=0 swaps=5066 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=20 last_dl=0x80073D50(6680 B) audio_samples=3707520 audio_nonzero=1406513 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=86.2s vi=5126 gfx_tasks=2546 audio_tasks=5097 other_tasks=0 swaps=5126 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=21 last_dl=0x80073D50(4704 B) audio_samples=3751680 audio_nonzero=1450670 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=-0.16 y=-0.00
+[rush] input player 1: - stick x=-0.39 y=-0.00
+[rush] input player 1: - stick x=-0.66 y=-0.00
+[rush] input player 1: - stick x=-0.88 y=-0.00
+[rush] input player 1: - stick x=-0.98 y=+0.15
+[rush] input player 1: - stick x=-0.72 y=+0.17
+[rush] input player 1: - stick x=-0.64 y=-0.00
+[rush] input player 1: - stick x=-0.57 y=-0.00
+[rush] input player 1: - stick x=-0.36 y=-0.00
+[rush] status t=87.2s vi=5186 gfx_tasks=2576 audio_tasks=5157 other_tasks=0 swaps=5186 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=22 last_dl=0x80073D50(8760 B) audio_samples=3795840 audio_nonzero=1494826 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=88.2s vi=5246 gfx_tasks=2606 audio_tasks=5217 other_tasks=0 swaps=5246 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=23 last_dl=0x80073D50(10224 B) audio_samples=3840000 audio_nonzero=1538985 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=+0.18
+[rush] input player 1: - stick x=+0.00 y=+0.44
+[rush] input player 1: - stick x=+0.00 y=+0.64
+[rush] input player 1: - stick x=+0.00 y=+0.92
+[rush] input player 1: - stick x=+0.00 y=+0.85
+[rush] input player 1: - stick x=+0.00 y=+0.62
+[rush] input player 1: - stick x=+0.00 y=+0.30
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=89.2s vi=5306 gfx_tasks=2636 audio_tasks=5277 other_tasks=0 swaps=5306 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=24 last_dl=0x80073D50(9368 B) audio_samples=3884160 audio_nonzero=1583143 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=90.2s vi=5366 gfx_tasks=2666 audio_tasks=5337 other_tasks=0 swaps=5366 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=25 last_dl=0x80073D50(11832 B) audio_samples=3928320 audio_nonzero=1627302 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.15 y=-0.00
+[rush] t=90.38s largest display list so far: 12224 B at 0x80062390 (gfx task 2672)
+[rush] t=90.48s largest display list so far: 12264 B at 0x80073D50 (gfx task 2675)
+[rush] t=90.85s largest display list so far: 12576 B at 0x80062390 (gfx task 2686)
+[rush] input player 1: - stick x=+0.16 y=+0.17
+[rush] input player 1: - stick x=+0.16 y=+0.41
+[rush] input player 1: - stick x=+0.00 y=+0.60
+[rush] input player 1: - stick x=+0.00 y=+0.67
+[rush] input player 1: - stick x=+0.00 y=+0.88
+[rush] status t=91.2s vi=5426 gfx_tasks=2696 audio_tasks=5397 other_tasks=0 swaps=5426 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=26 last_dl=0x80073D50(12184 B) audio_samples=3972480 audio_nonzero=1671460 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.15 y=+0.98
+[rush] input player 1: - stick x=+0.39 y=+0.98
+[rush] input player 1: - stick x=+0.43 y=+0.87
+[rush] input player 1: - stick x=+0.41 y=+0.61
+[rush] input player 1: - stick x=+0.36 y=+0.55
+[rush] input player 1: - stick x=+0.28 y=+0.37
+[rush] input player 1: - stick x=+0.21 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.20
+[rush] input player 1: - stick x=+0.00 y=-0.39
+[rush] input player 1: - stick x=+0.00 y=-0.70
+[rush] input player 1: - stick x=+0.00 y=-0.93
+[rush] input player 1: - stick x=-0.16 y=-0.98
+[rush] status t=92.2s vi=5486 gfx_tasks=2726 audio_tasks=5457 other_tasks=0 swaps=5486 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=27 last_dl=0x80073D50(8272 B) audio_samples=4016640 audio_nonzero=1715620 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=-0.17 y=-0.87
+[rush] input player 1: - stick x=-0.17 y=-0.61
+[rush] input player 1: - stick x=+0.00 y=-0.39
+[rush] input player 1: - stick x=+0.00 y=-0.33
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=93.2s vi=5546 gfx_tasks=2756 audio_tasks=5517 other_tasks=0 swaps=5546 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=28 last_dl=0x80073D50(6840 B) audio_samples=4060800 audio_nonzero=1759779 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=94.2s vi=5606 gfx_tasks=2786 audio_tasks=5577 other_tasks=0 swaps=5606 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=29 last_dl=0x80073D50(5128 B) audio_samples=4104960 audio_nonzero=1803936 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=95.2s vi=5666 gfx_tasks=2816 audio_tasks=5637 other_tasks=0 swaps=5666 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=30 last_dl=0x80073D50(8968 B) audio_samples=4149120 audio_nonzero=1848092 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=96.2s vi=5726 gfx_tasks=2846 audio_tasks=5697 other_tasks=0 swaps=5726 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=31 last_dl=0x80073D50(10408 B) audio_samples=4193280 audio_nonzero=1892250 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: C-UP stick x=+0.00 y=-0.00
+[rush] t=96.92s largest display list so far: 12600 B at 0x80062390 (gfx task 2868)
+[rush] status t=97.2s vi=5786 gfx_tasks=2876 audio_tasks=5757 other_tasks=0 swaps=5786 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=32 last_dl=0x80073D50(11656 B) audio_samples=4237440 audio_nonzero=1936409 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: C-UP+C-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: C-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: C-DOWN+C-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: C-DOWN stick x=+0.00 y=-0.00
+[rush] input player 1: C-DOWN+C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: C-UP+C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: C-UP stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=98.2s vi=5846 gfx_tasks=2906 audio_tasks=5817 other_tasks=0 swaps=5846 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=33 last_dl=0x80073D50(9912 B) audio_samples=4281600 audio_nonzero=1980567 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=99.2s vi=5906 gfx_tasks=2936 audio_tasks=5877 other_tasks=0 swaps=5906 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=34 last_dl=0x80073D50(9256 B) audio_samples=4325376 audio_nonzero=2024341 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: C-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: C-UP stick x=+0.00 y=-0.00
+[rush] status t=100.2s vi=5966 gfx_tasks=2966 audio_tasks=5937 other_tasks=0 swaps=5966 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=35 last_dl=0x80073D50(7656 B) audio_samples=4369920 audio_nonzero=2068884 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: C-DOWN stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=101.2s vi=6026 gfx_tasks=2996 audio_tasks=5997 other_tasks=0 swaps=6026 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=36 last_dl=0x80073D50(6608 B) audio_samples=4414080 audio_nonzero=2113042 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=102.2s vi=6087 gfx_tasks=3027 audio_tasks=6058 other_tasks=0 swaps=6086 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=37 last_dl=0x80062390(3824 B) audio_samples=4458240 audio_nonzero=2157198 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] status t=103.2s vi=6147 gfx_tasks=3057 audio_tasks=6118 other_tasks=0 swaps=6147 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=38 last_dl=0x80062390(3888 B) audio_samples=4502016 audio_nonzero=2200974 audio_peak=32768 image=ovl_b spin_yields=39
+[rush] t=103.79s load ovl_a: stream ROM 0xB5C534 -> 0x8038A400 (load #8)
+[rush] t=103.80s inflated ovl_a image check: 48532/48532 words equal the compiled image
+[rush] t=103.80s inflate src 0x3343A0 -> 0x80218A20 (data, no code image)
+[rush] t=103.80s inflate src 0x35EFF0 -> 0x8025E4A0 (data, no code image)
+[rush] t=103.80s inflate src 0x360230 -> 0x80261820 (data, no code image)
+[rush] t=103.80s inflate src 0x3338E0 -> 0x80284E60 (data, no code image)
+[rush] t=103.80s inflate src 0x330CC0 -> 0x802852C0 (data, no code image)
+[rush] t=103.80s inflate src 0x333B10 -> 0x80285E20 (data, no code image)
+[rush] t=103.80s inflate src 0x331310 -> 0x80286280 (data, no code image)
+[rush] status t=104.2s vi=6207 gfx_tasks=3087 audio_tasks=6178 other_tasks=0 swaps=6207 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=39 last_dl=0x80062390(344 B) audio_samples=4546176 audio_nonzero=2245133 audio_peak=32768 image=ovl_a spin_yields=46
+[rush] status t=105.2s vi=6267 gfx_tasks=3117 audio_tasks=6238 other_tasks=0 swaps=6267 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=40 last_dl=0x80062390(344 B) audio_samples=4590336 audio_nonzero=2289291 audio_peak=32768 image=ovl_a spin_yields=46
+[rush] input player 1: START stick x=+0.00 y=-0.00
+[rush] t=105.62s inflate src 0x333D30 -> 0x80287020 (data, no code image)
+[rush] t=105.62s inflate src 0x3316C0 -> 0x80287480 (data, no code image)
+[rush] t=105.62s inflate src 0x3336C0 -> 0x80289080 (data, no code image)
+[rush] t=105.62s inflate src 0x3304C0 -> 0x802894E0 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=106.2s vi=6327 gfx_tasks=3147 audio_tasks=6298 other_tasks=0 swaps=6326 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=41 last_dl=0x80062390(1952 B) audio_samples=4634496 audio_nonzero=2333450 audio_peak=32768 image=ovl_a spin_yields=51
+[rush] status t=107.2s vi=6387 gfx_tasks=3177 audio_tasks=6358 other_tasks=0 swaps=6387 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=42 last_dl=0x80062390(1952 B) audio_samples=4679040 audio_nonzero=2377992 audio_peak=32768 image=ovl_a spin_yields=51
+[rush] status t=108.2s vi=6447 gfx_tasks=3207 audio_tasks=6418 other_tasks=0 swaps=6447 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=43 last_dl=0x80062390(1952 B) audio_samples=4722816 audio_nonzero=2421768 audio_peak=32768 image=ovl_a spin_yields=51
+[rush] status t=109.2s vi=6507 gfx_tasks=3237 audio_tasks=6478 other_tasks=0 swaps=6507 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=44 last_dl=0x80062390(1952 B) audio_samples=4766976 audio_nonzero=2465925 audio_peak=32768 image=ovl_a spin_yields=51
+[rush] status t=110.2s vi=6567 gfx_tasks=3267 audio_tasks=6538 other_tasks=0 swaps=6567 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=45 last_dl=0x80062390(1952 B) audio_samples=4811136 audio_nonzero=2510083 audio_peak=32768 image=ovl_a spin_yields=51
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=111.2s vi=6627 gfx_tasks=3297 audio_tasks=6598 other_tasks=0 swaps=6627 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=46 last_dl=0x80062390(1736 B) audio_samples=4855296 audio_nonzero=2554241 audio_peak=32768 image=ovl_a spin_yields=55
+[rush] status t=112.2s vi=6687 gfx_tasks=3327 audio_tasks=6658 other_tasks=0 swaps=6687 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=47 last_dl=0x80062390(1736 B) audio_samples=4899456 audio_nonzero=2598400 audio_peak=32768 image=ovl_a spin_yields=55
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=113.2s vi=6747 gfx_tasks=3357 audio_tasks=6718 other_tasks=0 swaps=6747 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=48 last_dl=0x80062390(1736 B) audio_samples=4943616 audio_nonzero=2642559 audio_peak=32768 image=ovl_a spin_yields=59
+[rush] status t=114.2s vi=6807 gfx_tasks=3387 audio_tasks=6778 other_tasks=0 swaps=6807 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=49 last_dl=0x80062390(1736 B) audio_samples=4987776 audio_nonzero=2686717 audio_peak=32768 image=ovl_a spin_yields=59
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] t=114.76s inflate src 0x36BCB0 -> 0x8028A580 (data, no code image)
+[rush] t=114.76s inflate src 0xAC40B0 -> 0x802E9960 (data, no code image)
+[rush] t=114.76s inflate src 0xAC8A80 -> 0x802F3AC0 (data, no code image)
+[rush] t=114.76s inflate src 0xACF230 -> 0x802F3AC0 (data, no code image)
+[rush] t=114.76s inflate src 0xAD5410 -> 0x802F3AC0 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=115.2s vi=6867 gfx_tasks=3417 audio_tasks=6838 other_tasks=0 swaps=6867 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=50 last_dl=0x80062390(2040 B) audio_samples=5031936 audio_nonzero=2730876 audio_peak=32768 image=ovl_a spin_yields=64
+[rush] status t=116.2s vi=6927 gfx_tasks=3447 audio_tasks=6898 other_tasks=0 swaps=6927 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=51 last_dl=0x80062390(2040 B) audio_samples=5076096 audio_nonzero=2775030 audio_peak=32768 image=ovl_a spin_yields=64
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] t=116.92s busy-wait at 0x8038BA20: yielding (rush_hook_spin)
+[rush] t=116.93s inflate src 0x34E680 -> 0x8028A580 (data, no code image)
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=117.2s vi=6987 gfx_tasks=3477 audio_tasks=6958 other_tasks=0 swaps=6987 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=52 last_dl=0x80062390(2904 B) audio_samples=5120256 audio_nonzero=2819189 audio_peak=32768 image=ovl_a spin_yields=68
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] t=118.02s load ovl_b: stream ROM 0xB6FEC4 -> 0x8038A400 (load #9)
+[rush] t=118.02s inflated ovl_b image check: 10972/10972 words equal the compiled image
+[rush] t=118.02s inflate src 0x333D30 -> 0x80218A20 (data, no code image)
+[rush] t=118.02s inflate src 0x3316C0 -> 0x80218E80 (data, no code image)
+[rush] t=118.02s inflate src 0x3336C0 -> 0x8021AA80 (data, no code image)
+[rush] t=118.02s inflate src 0x3304C0 -> 0x8021AEE0 (data, no code image)
+[rush] t=118.02s inflate src 0x3338E0 -> 0x8021BF80 (data, no code image)
+[rush] t=118.02s inflate src 0x330CC0 -> 0x8021C3E0 (data, no code image)
+[rush] t=118.02s inflate src 0x333B10 -> 0x8021CF40 (data, no code image)
+[rush] t=118.02s inflate src 0x331310 -> 0x8021D3A0 (data, no code image)
+[rush] t=118.02s inflate src 0x333350 -> 0x8021E140 (data, no code image)
+[rush] t=118.02s inflate src 0x32F770 -> 0x8021E220 (data, no code image)
+[rush] t=118.02s inflate src 0x333200 -> 0x8021E920 (data, no code image)
+[rush] t=118.02s inflate src 0x32F500 -> 0x8021EA00 (data, no code image)
+[rush] t=118.02s inflate src 0x333270 -> 0x8021ED40 (data, no code image)
+[rush] t=118.02s inflate src 0x32F620 -> 0x8021EE40 (data, no code image)
+[rush] t=118.02s inflate src 0x3332E0 -> 0x8021F3E0 (data, no code image)
+[rush] t=118.02s inflate src 0x32F6E0 -> 0x8021F4E0 (data, no code image)
+[rush] t=118.02s inflate src 0x333610 -> 0x8021F6E0 (data, no code image)
+[rush] t=118.02s inflate src 0x330140 -> 0x8021F880 (data, no code image)
+[rush] t=118.02s inflate src 0x333570 -> 0x80220220 (data, no code image)
+[rush] t=118.02s inflate src 0x32FE50 -> 0x802203C0 (data, no code image)
+[rush] t=118.02s inflate src 0x3333C0 -> 0x80220C40 (data, no code image)
+[rush] t=118.02s inflate src 0x32F900 -> 0x80220DE0 (data, no code image)
+[rush] t=118.02s inflate src 0x333460 -> 0x802214C0 (data, no code image)
+[rush] t=118.02s inflate src 0x32FB30 -> 0x80221660 (data, no code image)
+[rush] t=118.02s inflate src 0x3334F0 -> 0x80221DC0 (data, no code image)
+[rush] t=118.02s inflate src 0x32FD50 -> 0x80221F60 (data, no code image)
+[rush] t=118.02s inflate src 0x43FE80 -> 0x80222200 (data, no code image)
+[rush] t=118.05s inflate src 0x895420 -> 0x80345B40 (data, no code image)
+[rush] t=118.08s inflate src 0x8A0CF0 -> 0x803BB3A0 (data, no code image)
+[rush] t=118.12s inflate src 0xAC40B0 -> 0x80349E00 (data, no code image)
+[rush] t=118.15s inflate src 0x3C3990 -> 0x803515E0 (data, no code image)
+[rush] t=118.15s inflate src 0x3EE1B0 -> 0x8035F900 (data, no code image)
+[rush] status t=118.2s vi=7047 gfx_tasks=3507 audio_tasks=7018 other_tasks=0 swaps=7047 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=53 last_dl=0x80062390(6040 B) audio_samples=5164416 audio_nonzero=2863346 audio_peak=32768 image=ovl_b spin_yields=72
+[rush] status t=119.2s vi=7107 gfx_tasks=3536 audio_tasks=7078 other_tasks=0 swaps=7107 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=54 last_dl=0x80073D50(7016 B) audio_samples=5208576 audio_nonzero=2907505 audio_peak=32768 image=ovl_b spin_yields=72
+[rush] status t=120.2s vi=7167 gfx_tasks=3566 audio_tasks=7138 other_tasks=0 swaps=7167 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=55 last_dl=0x80073D50(7016 B) audio_samples=5253120 audio_nonzero=2952049 audio_peak=32768 image=ovl_b spin_yields=72
+[rush] input player 1: C-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=121.2s vi=7227 gfx_tasks=3596 audio_tasks=7198 other_tasks=0 swaps=7227 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=56 last_dl=0x80073D50(7016 B) audio_samples=5297280 audio_nonzero=2996208 audio_peak=32768 image=ovl_b spin_yields=72
+[rush] input player 1: R stick x=+0.00 y=-0.00
+[rush] input player 1: A+R stick x=+0.00 y=-0.00
+[rush] status t=122.2s vi=7287 gfx_tasks=3626 audio_tasks=7258 other_tasks=0 swaps=7287 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=57 last_dl=0x80073D50(11544 B) audio_samples=5341056 audio_nonzero=3039984 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] t=122.23s largest display list so far: 12664 B at 0x80073D50 (gfx task 3627)
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] t=122.27s largest display list so far: 13224 B at 0x80062390 (gfx task 3628)
+[rush] t=122.30s largest display list so far: 13784 B at 0x80073D50 (gfx task 3629)
+[rush] t=122.33s largest display list so far: 14136 B at 0x80062390 (gfx task 3630)
+[rush] input player 1: A stick x=+0.15 y=-0.00
+[rush] input player 1: A stick x=+0.50 y=-0.00
+[rush] input player 1: A stick x=+0.64 y=-0.00
+[rush] input player 1: A stick x=+0.93 y=-0.00
+[rush] input player 1: A stick x=+0.83 y=-0.00
+[rush] input player 1: A stick x=+0.53 y=-0.00
+[rush] input player 1: A stick x=+0.26 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=123.2s vi=7347 gfx_tasks=3656 audio_tasks=7318 other_tasks=0 swaps=7347 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=58 last_dl=0x80073D50(13744 B) audio_samples=5385216 audio_nonzero=3084143 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.41 y=-0.00
+[rush] input player 1: A stick x=-0.43 y=+0.18
+[rush] input player 1: A stick x=-0.64 y=+0.21
+[rush] input player 1: A stick x=-0.49 y=+0.26
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=124.2s vi=7407 gfx_tasks=3686 audio_tasks=7378 other_tasks=0 swaps=7407 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=59 last_dl=0x80073D50(12320 B) audio_samples=5429376 audio_nonzero=3128303 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=125.2s vi=7467 gfx_tasks=3716 audio_tasks=7438 other_tasks=0 swaps=7467 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=60 last_dl=0x80073D50(10048 B) audio_samples=5473536 audio_nonzero=3172461 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=126.2s vi=7527 gfx_tasks=3746 audio_tasks=7498 other_tasks=0 swaps=7527 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=61 last_dl=0x80073D50(7744 B) audio_samples=5517696 audio_nonzero=3216619 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.15 y=-0.00
+[rush] input player 1: A stick x=-0.38 y=-0.00
+[rush] input player 1: A stick x=-0.33 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.21 y=-0.00
+[rush] input player 1: A stick x=+0.40 y=-0.00
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] input player 1: A stick x=+0.88 y=-0.00
+[rush] input player 1: A stick x=+0.84 y=-0.00
+[rush] input player 1: A stick x=+0.53 y=-0.00
+[rush] input player 1: A stick x=+0.28 y=-0.00
+[rush] status t=127.2s vi=7587 gfx_tasks=3776 audio_tasks=7558 other_tasks=0 swaps=7587 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=62 last_dl=0x80073D50(6104 B) audio_samples=5561856 audio_nonzero=3260777 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.39 y=-0.00
+[rush] input player 1: A stick x=-0.64 y=-0.00
+[rush] status t=128.2s vi=7647 gfx_tasks=3806 audio_tasks=7618 other_tasks=0 swaps=7647 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=63 last_dl=0x80073D50(6000 B) audio_samples=5606016 audio_nonzero=3304935 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.62 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: A stick x=-0.40 y=-0.00
+[rush] input player 1: A stick x=-0.67 y=-0.00
+[rush] input player 1: A stick x=-0.76 y=+0.16
+[rush] input player 1: A stick x=-0.88 y=+0.21
+[rush] input player 1: A stick x=-0.80 y=+0.22
+[rush] input player 1: A stick x=-0.62 y=+0.20
+[rush] input player 1: A stick x=-0.53 y=-0.00
+[rush] input player 1: A stick x=-0.32 y=-0.00
+[rush] input player 1: A stick x=-0.38 y=-0.00
+[rush] input player 1: A stick x=-0.63 y=-0.00
+[rush] input player 1: A stick x=-0.81 y=+0.16
+[rush] input player 1: A stick x=-0.66 y=-0.00
+[rush] input player 1: A stick x=-0.59 y=-0.00
+[rush] input player 1: A stick x=-0.37 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] status t=129.2s vi=7708 gfx_tasks=3837 audio_tasks=7679 other_tasks=0 swaps=7708 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=64 last_dl=0x80062390(6216 B) audio_samples=5650176 audio_nonzero=3349092 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.46 y=-0.00
+[rush] input player 1: A stick x=-0.67 y=-0.00
+[rush] input player 1: A stick x=-0.51 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: - stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: - stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: - stick x=-0.26 y=-0.00
+[rush] input player 1: - stick x=-0.43 y=-0.00
+[rush] status t=130.2s vi=7768 gfx_tasks=3867 audio_tasks=7739 other_tasks=0 swaps=7767 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=65 last_dl=0x80062390(12856 B) audio_samples=5694336 audio_nonzero=3393249 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=-0.36 y=-0.00
+[rush] input player 1: - stick x=-0.42 y=-0.00
+[rush] input player 1: - stick x=-0.31 y=-0.00
+[rush] input player 1: - stick x=-0.38 y=-0.00
+[rush] status t=131.2s vi=7828 gfx_tasks=3897 audio_tasks=7799 other_tasks=0 swaps=7827 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=66 last_dl=0x80062390(12584 B) audio_samples=5738496 audio_nonzero=3437407 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=-0.36 y=-0.00
+[rush] input player 1: - stick x=-0.38 y=-0.00
+[rush] input player 1: - stick x=-0.29 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.15 y=-0.00
+[rush] input player 1: A stick x=-0.43 y=-0.00
+[rush] status t=132.2s vi=7888 gfx_tasks=3927 audio_tasks=7859 other_tasks=0 swaps=7887 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=67 last_dl=0x80062390(12528 B) audio_samples=5782656 audio_nonzero=3481566 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.69 y=-0.00
+[rush] input player 1: A stick x=-0.90 y=-0.00
+[rush] status t=133.2s vi=7948 gfx_tasks=3957 audio_tasks=7919 other_tasks=0 swaps=7948 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=68 last_dl=0x80062390(12240 B) audio_samples=5826816 audio_nonzero=3525726 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=134.2s vi=8008 gfx_tasks=3987 audio_tasks=7979 other_tasks=0 swaps=8008 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=69 last_dl=0x80062390(11776 B) audio_samples=5870976 audio_nonzero=3569885 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.87 y=-0.00
+[rush] input player 1: A stick x=-0.52 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.15 y=-0.00
+[rush] input player 1: A stick x=+0.43 y=-0.00
+[rush] input player 1: A stick x=+0.64 y=-0.00
+[rush] status t=135.2s vi=8068 gfx_tasks=4017 audio_tasks=8039 other_tasks=0 swaps=8068 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=70 last_dl=0x80062390(11416 B) audio_samples=5915136 audio_nonzero=3614041 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.57 y=-0.00
+[rush] input player 1: A stick x=+0.36 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.15 y=-0.00
+[rush] input player 1: A stick x=-0.44 y=-0.00
+[rush] input player 1: A stick x=-0.69 y=-0.00
+[rush] input player 1: A stick x=-0.89 y=-0.00
+[rush] status t=136.2s vi=8128 gfx_tasks=4047 audio_tasks=8099 other_tasks=0 swaps=8128 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=71 last_dl=0x80062390(7872 B) audio_samples=5959296 audio_nonzero=3658197 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.87 y=-0.00
+[rush] input player 1: A stick x=-0.62 y=-0.00
+[rush] input player 1: A stick x=-0.28 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=137.2s vi=8188 gfx_tasks=4077 audio_tasks=8159 other_tasks=0 swaps=8188 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=72 last_dl=0x80062390(9176 B) audio_samples=6003072 audio_nonzero=3701971 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.20 y=-0.00
+[rush] input player 1: A stick x=-0.42 y=-0.00
+[rush] input player 1: A stick x=-0.68 y=-0.00
+[rush] input player 1: A stick x=-0.88 y=-0.00
+[rush] input player 1: A stick x=-0.88 y=+0.16
+[rush] input player 1: A stick x=-0.83 y=+0.18
+[rush] input player 1: A stick x=-0.56 y=+0.16
+[rush] input player 1: A stick x=-0.44 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] status t=138.2s vi=8248 gfx_tasks=4107 audio_tasks=8219 other_tasks=0 swaps=8247 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=73 last_dl=0x80062390(7056 B) audio_samples=6047232 audio_nonzero=3746129 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.16 y=-0.00
+[rush] status t=139.2s vi=8308 gfx_tasks=4137 audio_tasks=8279 other_tasks=0 swaps=8308 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=74 last_dl=0x80062390(6056 B) audio_samples=6091776 audio_nonzero=3790670 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.46 y=-0.00
+[rush] input player 1: A stick x=+0.28 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.51 y=-0.00
+[rush] input player 1: A stick x=-0.66 y=-0.00
+[rush] input player 1: A stick x=-0.55 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] status t=140.2s vi=8368 gfx_tasks=4167 audio_tasks=8339 other_tasks=0 swaps=8368 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=75 last_dl=0x80062390(7112 B) audio_samples=6135936 audio_nonzero=3834829 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+Z stick x=+0.00 y=-0.00
+[rush] input player 1: A+Z stick x=+0.00 y=-0.16
+[rush] input player 1: A+Z stick x=+0.00 y=-0.39
+[rush] input player 1: A stick x=+0.00 y=-0.49
+[rush] input player 1: A stick x=+0.00 y=-0.33
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=141.2s vi=8428 gfx_tasks=4197 audio_tasks=8399 other_tasks=0 swaps=8428 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=76 last_dl=0x80062390(10520 B) audio_samples=6179712 audio_nonzero=3878605 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+Z stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=142.2s vi=8488 gfx_tasks=4227 audio_tasks=8459 other_tasks=0 swaps=8488 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=77 last_dl=0x80062390(10984 B) audio_samples=6223872 audio_nonzero=3922764 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.18 y=-0.00
+[rush] input player 1: A stick x=+0.38 y=-0.00
+[rush] status t=143.2s vi=8548 gfx_tasks=4257 audio_tasks=8519 other_tasks=0 swaps=8547 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=78 last_dl=0x80062390(9392 B) audio_samples=6268032 audio_nonzero=3966921 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] input player 1: A stick x=+0.58 y=-0.00
+[rush] input player 1: A stick x=+0.34 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.16
+[rush] input player 1: A stick x=+0.00 y=-0.39
+[rush] input player 1: A+Z stick x=+0.00 y=-0.61
+[rush] input player 1: A+Z stick x=+0.00 y=-0.67
+[rush] status t=144.2s vi=8608 gfx_tasks=4287 audio_tasks=8579 other_tasks=0 swaps=8608 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=79 last_dl=0x80062390(10856 B) audio_samples=6312576 audio_nonzero=4011461 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+Z stick x=+0.00 y=-0.89
+[rush] input player 1: A stick x=+0.00 y=-0.89
+[rush] input player 1: A stick x=+0.00 y=-0.78
+[rush] input player 1: A stick x=+0.00 y=-0.54
+[rush] input player 1: A stick x=+0.00 y=-0.29
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=145.2s vi=8668 gfx_tasks=4317 audio_tasks=8639 other_tasks=0 swaps=8668 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=80 last_dl=0x80062390(10232 B) audio_samples=6356736 audio_nonzero=4055620 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=146.2s vi=8728 gfx_tasks=4347 audio_tasks=8699 other_tasks=0 swaps=8727 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=81 last_dl=0x80062390(9544 B) audio_samples=6400896 audio_nonzero=4099773 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=147.2s vi=8788 gfx_tasks=4377 audio_tasks=8759 other_tasks=0 swaps=8788 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=82 last_dl=0x80062390(7448 B) audio_samples=6445056 audio_nonzero=4143932 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=148.2s vi=8848 gfx_tasks=4407 audio_tasks=8819 other_tasks=0 swaps=8848 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=83 last_dl=0x80062390(8600 B) audio_samples=6489216 audio_nonzero=4188088 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=+0.20
+[rush] input player 1: A stick x=+0.00 y=+0.38
+[rush] input player 1: A stick x=+0.17 y=+0.48
+[rush] input player 1: A stick x=+0.19 y=+0.69
+[rush] input player 1: A+Z stick x=+0.22 y=+0.85
+[rush] input player 1: A+Z stick x=+0.24 y=+0.91
+[rush] input player 1: A+Z stick x=+0.26 y=+0.86
+[rush] input player 1: A+Z stick x=+0.26 y=+0.50
+[rush] input player 1: A+Z stick x=+0.26 y=+0.26
+[rush] input player 1: A+Z stick x=+0.20 y=-0.00
+[rush] input player 1: A stick x=+0.20 y=-0.00
+[rush] status t=149.2s vi=8908 gfx_tasks=4437 audio_tasks=8879 other_tasks=0 swaps=8908 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=84 last_dl=0x80062390(10472 B) audio_samples=6533376 audio_nonzero=4232248 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+Z stick x=+0.20 y=-0.00
+[rush] input player 1: A+Z stick x=+0.20 y=+0.21
+[rush] input player 1: A+Z stick x=+0.20 y=+0.41
+[rush] input player 1: A+Z stick x=+0.20 y=+0.69
+[rush] input player 1: A+Z stick x=+0.20 y=+0.90
+[rush] status t=150.2s vi=8968 gfx_tasks=4467 audio_tasks=8939 other_tasks=0 swaps=8968 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=85 last_dl=0x80062390(10408 B) audio_samples=6577152 audio_nonzero=4276021 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.20 y=+0.98
+[rush] input player 1: A stick x=+0.23 y=+0.87
+[rush] input player 1: A stick x=+0.23 y=+0.51
+[rush] input player 1: A stick x=+0.23 y=+0.30
+[rush] input player 1: A stick x=+0.21 y=-0.00
+[rush] input player 1: A stick x=+0.43 y=-0.00
+[rush] input player 1: A stick x=+0.64 y=-0.00
+[rush] input player 1: A stick x=+0.88 y=-0.00
+[rush] status t=151.2s vi=9028 gfx_tasks=4497 audio_tasks=8999 other_tasks=0 swaps=9028 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=86 last_dl=0x80062390(6888 B) audio_samples=6621312 audio_nonzero=4320180 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.76 y=-0.00
+[rush] input player 1: - stick x=+0.61 y=-0.00
+[rush] input player 1: - stick x=+0.26 y=-0.00
+[rush] input player 1: C-UP stick x=+0.22 y=-0.00
+[rush] input player 1: - stick x=+0.22 y=-0.00
+[rush] status t=152.2s vi=9088 gfx_tasks=4527 audio_tasks=9059 other_tasks=0 swaps=9088 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=87 last_dl=0x80062390(8720 B) audio_samples=6665472 audio_nonzero=4364338 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.22 y=-0.00
+[rush] status t=153.2s vi=9148 gfx_tasks=4557 audio_tasks=9119 other_tasks=0 swaps=9148 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=88 last_dl=0x80062390(11544 B) audio_samples=6710016 audio_nonzero=4408880 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=154.2s vi=9208 gfx_tasks=4587 audio_tasks=9179 other_tasks=0 swaps=9208 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=89 last_dl=0x80062390(8304 B) audio_samples=6753792 audio_nonzero=4452654 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.22 y=-0.18
+[rush] input player 1: A stick x=+0.22 y=-0.00
+[rush] status t=155.2s vi=9269 gfx_tasks=4617 audio_tasks=9240 other_tasks=0 swaps=9269 origin=0x007BB640 fb_nonzero=38388 fb_distinct=90 last_dl=0x80062390(9736 B) audio_samples=6797952 audio_nonzero=4496811 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=156.2s vi=9329 gfx_tasks=4647 audio_tasks=9300 other_tasks=0 swaps=9329 origin=0x007BB640 fb_nonzero=38388 fb_distinct=91 last_dl=0x80062390(11432 B) audio_samples=6842112 audio_nonzero=4540970 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.40 y=+0.20
+[rush] input player 1: A stick x=-0.67 y=+0.30
+[rush] input player 1: A stick x=-0.67 y=+0.38
+[rush] status t=157.2s vi=9389 gfx_tasks=4677 audio_tasks=9360 other_tasks=0 swaps=9389 origin=0x007BB640 fb_nonzero=38388 fb_distinct=92 last_dl=0x80062390(11192 B) audio_samples=6886272 audio_nonzero=4585127 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.66 y=+0.36
+[rush] input player 1: A stick x=-0.57 y=+0.28
+[rush] input player 1: A stick x=-0.36 y=+0.21
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.18 y=-0.00
+[rush] input player 1: A stick x=+0.41 y=-0.00
+[rush] input player 1: A stick x=+0.72 y=-0.00
+[rush] input player 1: A stick x=+0.91 y=-0.00
+[rush] status t=158.2s vi=9449 gfx_tasks=4707 audio_tasks=9420 other_tasks=0 swaps=9449 origin=0x007BB640 fb_nonzero=38388 fb_distinct=93 last_dl=0x80062390(10896 B) audio_samples=6930432 audio_nonzero=4629284 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=159.2s vi=9509 gfx_tasks=4737 audio_tasks=9480 other_tasks=0 swaps=9509 origin=0x007BB640 fb_nonzero=38388 fb_distinct=94 last_dl=0x80062390(9920 B) audio_samples=6974592 audio_nonzero=4673441 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.74 y=-0.00
+[rush] input player 1: A stick x=+0.59 y=-0.00
+[rush] input player 1: A stick x=+0.27 y=-0.00
+[rush] input player 1: A stick x=+0.41 y=-0.00
+[rush] input player 1: A stick x=+0.65 y=-0.00
+[rush] status t=160.2s vi=9569 gfx_tasks=4767 audio_tasks=9540 other_tasks=0 swaps=9569 origin=0x007BB640 fb_nonzero=38388 fb_distinct=95 last_dl=0x80062390(7904 B) audio_samples=7018752 audio_nonzero=4717598 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.60 y=-0.00
+[rush] input player 1: A stick x=+0.32 y=-0.00
+[rush] status t=161.2s vi=9629 gfx_tasks=4797 audio_tasks=9600 other_tasks=0 swaps=9629 origin=0x007BB640 fb_nonzero=38388 fb_distinct=96 last_dl=0x80062390(8416 B) audio_samples=7062912 audio_nonzero=4761756 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.33 y=+0.18
+[rush] input player 1: A stick x=-0.41 y=+0.24
+[rush] input player 1: A stick x=-0.62 y=+0.40
+[rush] input player 1: A stick x=-0.69 y=+0.41
+[rush] input player 1: A stick x=-0.61 y=+0.38
+[rush] input player 1: A stick x=-0.54 y=+0.31
+[rush] input player 1: A stick x=-0.37 y=+0.27
+[rush] input player 1: A stick x=-0.24 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.15 y=-0.00
+[rush] input player 1: A stick x=+0.38 y=-0.00
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] status t=162.2s vi=9689 gfx_tasks=4827 audio_tasks=9660 other_tasks=0 swaps=9689 origin=0x007BB640 fb_nonzero=38388 fb_distinct=97 last_dl=0x80062390(7248 B) audio_samples=7107072 audio_nonzero=4805912 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.59 y=-0.00
+[rush] input player 1: A stick x=+0.37 y=-0.00
+[rush] input player 1: - stick x=+0.21 y=-0.00
+[rush] status t=163.2s vi=9749 gfx_tasks=4857 audio_tasks=9720 other_tasks=0 swaps=9749 origin=0x007BB640 fb_nonzero=38388 fb_distinct=98 last_dl=0x80062390(8704 B) audio_samples=7151232 audio_nonzero=4850069 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=164.2s vi=9809 gfx_tasks=4887 audio_tasks=9780 other_tasks=0 swaps=9809 origin=0x007BB640 fb_nonzero=38388 fb_distinct=99 last_dl=0x80062390(6840 B) audio_samples=7195392 audio_nonzero=4894228 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.21 y=-0.00
+[rush] input player 1: A stick x=+0.38 y=-0.00
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] input player 1: A stick x=+0.92 y=-0.00
+[rush] status t=165.2s vi=9869 gfx_tasks=4917 audio_tasks=9840 other_tasks=0 swaps=9869 origin=0x007BB640 fb_nonzero=38388 fb_distinct=100 last_dl=0x80062390(5840 B) audio_samples=7239552 audio_nonzero=4938388 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.85 y=-0.00
+[rush] input player 1: A stick x=+0.55 y=-0.00
+[rush] input player 1: A stick x=+0.32 y=-0.00
+[rush] input player 1: A stick x=+0.38 y=-0.00
+[rush] input player 1: A stick x=+0.72 y=-0.00
+[rush] input player 1: A stick x=+0.88 y=-0.00
+[rush] input player 1: A stick x=+1.00 y=-0.16
+[rush] input player 1: A stick x=+0.91 y=-0.00
+[rush] input player 1: A stick x=+0.76 y=-0.00
+[rush] input player 1: A stick x=+0.60 y=-0.00
+[rush] input player 1: A stick x=+0.31 y=-0.00
+[rush] status t=166.2s vi=9929 gfx_tasks=4947 audio_tasks=9900 other_tasks=0 swaps=9929 origin=0x007BB640 fb_nonzero=38388 fb_distinct=101 last_dl=0x80062390(10008 B) audio_samples=7283712 audio_nonzero=4982545 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=167.2s vi=9989 gfx_tasks=4977 audio_tasks=9960 other_tasks=0 swaps=9989 origin=0x007BB640 fb_nonzero=38388 fb_distinct=102 last_dl=0x80062390(12016 B) audio_samples=7327872 audio_nonzero=5026703 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.40 y=-0.00
+[rush] input player 1: A stick x=+0.71 y=-0.00
+[rush] input player 1: A stick x=+0.93 y=-0.00
+[rush] input player 1: A stick x=+0.86 y=-0.00
+[rush] input player 1: A stick x=+0.51 y=-0.00
+[rush] input player 1: A stick x=+0.26 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=168.2s vi=10049 gfx_tasks=5007 audio_tasks=10020 other_tasks=0 swaps=10049 origin=0x007BB640 fb_nonzero=38388 fb_distinct=103 last_dl=0x80062390(11544 B) audio_samples=7372032 audio_nonzero=5070861 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=169.2s vi=10109 gfx_tasks=5037 audio_tasks=10080 other_tasks=0 swaps=10109 origin=0x007BB640 fb_nonzero=38388 fb_distinct=104 last_dl=0x80062390(11904 B) audio_samples=7416192 audio_nonzero=5115020 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=170.2s vi=10169 gfx_tasks=5067 audio_tasks=10140 other_tasks=0 swaps=10169 origin=0x007BB640 fb_nonzero=38388 fb_distinct=105 last_dl=0x80062390(10888 B) audio_samples=7460352 audio_nonzero=5159178 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=171.2s vi=10229 gfx_tasks=5097 audio_tasks=10200 other_tasks=0 swaps=10229 origin=0x007BB640 fb_nonzero=38388 fb_distinct=106 last_dl=0x80062390(11376 B) audio_samples=7504128 audio_nonzero=5202952 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=+0.18
+[rush] input player 1: A stick x=-0.16 y=+0.27
+[rush] input player 1: A stick x=-0.24 y=+0.39
+[rush] input player 1: A stick x=-0.18 y=+0.29
+[rush] input player 1: A stick x=+0.00 y=+0.22
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.19 y=-0.00
+[rush] input player 1: A stick x=+0.43 y=-0.00
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] input player 1: A stick x=+0.93 y=-0.00
+[rush] status t=172.2s vi=10289 gfx_tasks=5127 audio_tasks=10260 other_tasks=0 swaps=10289 origin=0x007BB640 fb_nonzero=38388 fb_distinct=107 last_dl=0x80062390(7728 B) audio_samples=7548672 audio_nonzero=5247494 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.78 y=-0.00
+[rush] input player 1: A stick x=+0.59 y=-0.00
+[rush] input player 1: A stick x=+0.28 y=-0.00
+[rush] input player 1: A stick x=+0.38 y=-0.00
+[rush] input player 1: A stick x=+0.37 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=173.2s vi=10349 gfx_tasks=5157 audio_tasks=10320 other_tasks=0 swaps=10349 origin=0x007BB640 fb_nonzero=38388 fb_distinct=108 last_dl=0x80062390(7504 B) audio_samples=7592832 audio_nonzero=5291651 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.15 y=-0.00
+[rush] input player 1: A stick x=-0.32 y=+0.17
+[rush] input player 1: A stick x=-0.40 y=+0.24
+[rush] input player 1: A stick x=-0.36 y=+0.25
+[rush] input player 1: A stick x=-0.17 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=174.2s vi=10409 gfx_tasks=5187 audio_tasks=10380 other_tasks=0 swaps=10409 origin=0x007BB640 fb_nonzero=38388 fb_distinct=109 last_dl=0x80062390(6912 B) audio_samples=7636992 audio_nonzero=5335811 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.15 y=-0.00
+[rush] status t=175.2s vi=10469 gfx_tasks=5217 audio_tasks=10440 other_tasks=0 swaps=10469 origin=0x007BB640 fb_nonzero=38388 fb_distinct=110 last_dl=0x80062390(6672 B) audio_samples=7681152 audio_nonzero=5379970 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.40 y=-0.00
+[rush] input player 1: A stick x=+0.67 y=-0.00
+[rush] input player 1: A stick x=+0.58 y=-0.00
+[rush] input player 1: A stick x=+0.36 y=-0.00
+[rush] input player 1: - stick x=+0.25 y=-0.00
+[rush] status t=176.2s vi=10529 gfx_tasks=5247 audio_tasks=10500 other_tasks=0 swaps=10529 origin=0x007BB640 fb_nonzero=38388 fb_distinct=111 last_dl=0x80062390(9816 B) audio_samples=7725312 audio_nonzero=5424130 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=177.2s vi=10589 gfx_tasks=5277 audio_tasks=10560 other_tasks=0 swaps=10589 origin=0x007BB640 fb_nonzero=38388 fb_distinct=112 last_dl=0x80062390(8040 B) audio_samples=7769472 audio_nonzero=5468287 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=+0.42 y=-0.00
+[rush] input player 1: - stick x=+0.71 y=-0.00
+[rush] input player 1: - stick x=+0.92 y=-0.00
+[rush] input player 1: - stick x=+0.79 y=-0.00
+[rush] input player 1: - stick x=+0.57 y=-0.00
+[rush] input player 1: - stick x=+0.31 y=-0.00
+[rush] status t=178.2s vi=10649 gfx_tasks=5307 audio_tasks=10620 other_tasks=0 swaps=10649 origin=0x007BB640 fb_nonzero=38388 fb_distinct=113 last_dl=0x80062390(9104 B) audio_samples=7813632 audio_nonzero=5512446 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=179.2s vi=10709 gfx_tasks=5337 audio_tasks=10680 other_tasks=0 swaps=10709 origin=0x007BB640 fb_nonzero=38388 fb_distinct=114 last_dl=0x80062390(5376 B) audio_samples=7857408 audio_nonzero=5556220 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=+0.38 y=-0.00
+[rush] input player 1: - stick x=+0.65 y=-0.00
+[rush] input player 1: - stick x=+0.91 y=-0.00
+[rush] input player 1: - stick x=+0.79 y=-0.00
+[rush] input player 1: - stick x=+0.58 y=-0.00
+[rush] input player 1: - stick x=+0.35 y=-0.00
+[rush] status t=180.2s vi=10770 gfx_tasks=5368 audio_tasks=10741 other_tasks=0 swaps=10770 origin=0x007BB640 fb_nonzero=38388 fb_distinct=115 last_dl=0x80073D50(5928 B) audio_samples=7901952 audio_nonzero=5600760 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=181.2s vi=10830 gfx_tasks=5398 audio_tasks=10801 other_tasks=0 swaps=10830 origin=0x007BB640 fb_nonzero=38388 fb_distinct=116 last_dl=0x80073D50(5968 B) audio_samples=7946112 audio_nonzero=5644920 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=182.2s vi=10890 gfx_tasks=5428 audio_tasks=10861 other_tasks=0 swaps=10890 origin=0x007BB640 fb_nonzero=38388 fb_distinct=117 last_dl=0x80073D50(5984 B) audio_samples=7990272 audio_nonzero=5689077 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=183.2s vi=10950 gfx_tasks=5458 audio_tasks=10921 other_tasks=0 swaps=10950 origin=0x007BB640 fb_nonzero=38388 fb_distinct=118 last_dl=0x80073D50(7688 B) audio_samples=8034432 audio_nonzero=5733234 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=184.2s vi=11010 gfx_tasks=5488 audio_tasks=10981 other_tasks=0 swaps=11010 origin=0x007BB640 fb_nonzero=38388 fb_distinct=119 last_dl=0x80073D50(6952 B) audio_samples=8078592 audio_nonzero=5777391 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=185.2s vi=11070 gfx_tasks=5518 audio_tasks=11041 other_tasks=0 swaps=11070 origin=0x007BB640 fb_nonzero=38388 fb_distinct=120 last_dl=0x80073D50(6472 B) audio_samples=8122752 audio_nonzero=5821549 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: C-DOWN stick x=+0.21 y=-0.00
+[rush] input player 1: - stick x=+0.21 y=-0.00
+[rush] input player 1: A stick x=+0.21 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.42 y=-0.00
+[rush] input player 1: A stick x=-0.67 y=-0.00
+[rush] input player 1: A stick x=-0.89 y=-0.00
+[rush] input player 1: A stick x=-0.83 y=-0.00
+[rush] input player 1: A stick x=-0.54 y=-0.00
+[rush] input player 1: A stick x=-0.33 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=186.2s vi=11130 gfx_tasks=5548 audio_tasks=11101 other_tasks=0 swaps=11129 origin=0x007BB640 fb_nonzero=38388 fb_distinct=121 last_dl=0x80073D50(8328 B) audio_samples=8166528 audio_nonzero=5865323 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.39 y=-0.00
+[rush] input player 1: A stick x=-0.64 y=-0.00
+[rush] input player 1: A stick x=-0.57 y=-0.00
+[rush] input player 1: A stick x=-0.37 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+C-UP stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=187.2s vi=11190 gfx_tasks=5578 audio_tasks=11161 other_tasks=0 swaps=11190 origin=0x007BB640 fb_nonzero=38388 fb_distinct=122 last_dl=0x80073D50(7928 B) audio_samples=8210688 audio_nonzero=5909479 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=188.2s vi=11250 gfx_tasks=5608 audio_tasks=11221 other_tasks=0 swaps=11250 origin=0x007BB640 fb_nonzero=38388 fb_distinct=123 last_dl=0x80073D50(6056 B) audio_samples=8254848 audio_nonzero=5953635 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=189.2s vi=11310 gfx_tasks=5638 audio_tasks=11281 other_tasks=0 swaps=11310 origin=0x007BB640 fb_nonzero=38388 fb_distinct=124 last_dl=0x80073D50(4960 B) audio_samples=8299008 audio_nonzero=5997793 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=190.2s vi=11370 gfx_tasks=5668 audio_tasks=11341 other_tasks=0 swaps=11370 origin=0x007BB640 fb_nonzero=38388 fb_distinct=125 last_dl=0x80073D50(4872 B) audio_samples=8343168 audio_nonzero=6041950 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=191.2s vi=11430 gfx_tasks=5698 audio_tasks=11401 other_tasks=0 swaps=11429 origin=0x007BB640 fb_nonzero=38388 fb_distinct=126 last_dl=0x80073D50(5584 B) audio_samples=8387328 audio_nonzero=6086103 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=192.2s vi=11490 gfx_tasks=5728 audio_tasks=11461 other_tasks=0 swaps=11490 origin=0x007BB640 fb_nonzero=38388 fb_distinct=127 last_dl=0x80073D50(6760 B) audio_samples=8431488 audio_nonzero=6130263 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=193.2s vi=11550 gfx_tasks=5758 audio_tasks=11521 other_tasks=0 swaps=11549 origin=0x007BB640 fb_nonzero=38388 fb_distinct=128 last_dl=0x80073D50(9424 B) audio_samples=8475648 audio_nonzero=6174421 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=194.2s vi=11610 gfx_tasks=5788 audio_tasks=11581 other_tasks=0 swaps=11610 origin=0x007BB640 fb_nonzero=38388 fb_distinct=129 last_dl=0x80073D50(10496 B) audio_samples=8519808 audio_nonzero=6218578 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.20 y=-0.00
+[rush] status t=195.2s vi=11670 gfx_tasks=5818 audio_tasks=11641 other_tasks=0 swaps=11670 origin=0x007BB640 fb_nonzero=38388 fb_distinct=130 last_dl=0x80073D50(10000 B) audio_samples=8563968 audio_nonzero=6262736 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.42 y=-0.00
+[rush] input player 1: A stick x=-0.67 y=-0.00
+[rush] input player 1: A stick x=-0.88 y=-0.00
+[rush] input player 1: A stick x=-0.79 y=-0.00
+[rush] input player 1: A stick x=-0.40 y=-0.00
+[rush] input player 1: A stick x=-0.29 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.17 y=-0.00
+[rush] input player 1: A stick x=+0.39 y=-0.00
+[rush] input player 1: A stick x=+0.70 y=-0.00
+[rush] input player 1: A stick x=+0.91 y=-0.00
+[rush] input player 1: A stick x=+0.72 y=-0.00
+[rush] input player 1: A stick x=+0.52 y=-0.00
+[rush] input player 1: A stick x=+0.37 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.38 y=-0.00
+[rush] input player 1: A stick x=-0.64 y=-0.00
+[rush] input player 1: A stick x=-0.88 y=-0.00
+[rush] input player 1: A stick x=-0.80 y=-0.00
+[rush] input player 1: A stick x=-0.59 y=-0.00
+[rush] input player 1: A stick x=-0.34 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.15 y=-0.00
+[rush] input player 1: A stick x=+0.41 y=-0.00
+[rush] input player 1: A stick x=+0.64 y=-0.00
+[rush] input player 1: A stick x=+0.92 y=-0.00
+[rush] status t=196.2s vi=11730 gfx_tasks=5848 audio_tasks=11701 other_tasks=0 swaps=11730 origin=0x007BB640 fb_nonzero=38388 fb_distinct=131 last_dl=0x80073D50(8744 B) audio_samples=8608128 audio_nonzero=6306894 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.75 y=-0.00
+[rush] input player 1: A stick x=+0.55 y=-0.00
+[rush] input player 1: A stick x=+0.37 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.43 y=-0.00
+[rush] input player 1: A stick x=-0.67 y=-0.00
+[rush] input player 1: A stick x=-0.88 y=-0.00
+[rush] input player 1: A stick x=-0.79 y=-0.00
+[rush] input player 1: A stick x=-0.61 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.20 y=-0.00
+[rush] input player 1: A stick x=+0.43 y=-0.00
+[rush] input player 1: A stick x=+0.63 y=-0.00
+[rush] input player 1: A stick x=+0.58 y=-0.00
+[rush] input player 1: A stick x=+0.40 y=+0.16
+[rush] input player 1: A stick x=+0.31 y=+0.16
+[rush] input player 1: A stick x=+0.00 y=+0.16
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.18 y=-0.00
+[rush] input player 1: A stick x=-0.40 y=-0.00
+[rush] input player 1: A stick x=-0.63 y=-0.00
+[rush] input player 1: A stick x=-0.61 y=-0.00
+[rush] input player 1: A stick x=-0.35 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=197.2s vi=11790 gfx_tasks=5878 audio_tasks=11761 other_tasks=0 swaps=11790 origin=0x007BB640 fb_nonzero=38388 fb_distinct=132 last_dl=0x80073D50(8256 B) audio_samples=8652288 audio_nonzero=6351053 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.15 y=-0.00
+[rush] input player 1: A stick x=-0.47 y=-0.00
+[rush] input player 1: A stick x=-0.71 y=-0.00
+[rush] input player 1: A stick x=-0.93 y=-0.00
+[rush] input player 1: A stick x=-1.00 y=-0.21
+[rush] input player 1: A stick x=-1.00 y=-0.38
+[rush] input player 1: A stick x=-0.92 y=-0.69
+[rush] input player 1: A stick x=-0.87 y=-0.74
+[rush] input player 1: A stick x=-0.70 y=-0.89
+[rush] input player 1: A stick x=-0.60 y=-0.97
+[rush] input player 1: A stick x=-0.36 y=-1.00
+[rush] input player 1: A stick x=+0.00 y=-1.00
+[rush] input player 1: A stick x=+0.19 y=-1.00
+[rush] input player 1: A stick x=+0.53 y=-1.00
+[rush] input player 1: A stick x=+0.66 y=-1.00
+[rush] input player 1: A stick x=+0.90 y=-0.90
+[rush] input player 1: A stick x=+1.00 y=-0.75
+[rush] input player 1: A stick x=+1.00 y=-0.62
+[rush] input player 1: A stick x=+1.00 y=-0.31
+[rush] status t=198.2s vi=11850 gfx_tasks=5908 audio_tasks=11821 other_tasks=0 swaps=11850 origin=0x007BB640 fb_nonzero=38388 fb_distinct=133 last_dl=0x80073D50(10472 B) audio_samples=8696448 audio_nonzero=6395211 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+1.00 y=-0.00
+[rush] input player 1: A stick x=+1.00 y=+0.18
+[rush] input player 1: A stick x=+1.00 y=+0.44
+[rush] input player 1: A stick x=+0.93 y=+0.64
+[rush] input player 1: A stick x=+0.86 y=+0.71
+[rush] input player 1: A stick x=+0.53 y=+0.86
+[rush] input player 1: A stick x=+0.31 y=+0.91
+[rush] input player 1: A stick x=+0.00 y=+0.91
+[rush] input player 1: A stick x=-0.26 y=+0.92
+[rush] input player 1: A stick x=-0.45 y=+0.92
+[rush] input player 1: A stick x=-0.64 y=+0.91
+[rush] input player 1: A stick x=-0.70 y=+0.84
+[rush] input player 1: A stick x=-0.91 y=+0.64
+[rush] input player 1: A stick x=-0.92 y=+0.55
+[rush] input player 1: A stick x=-1.00 y=+0.35
+[rush] input player 1: A stick x=-1.00 y=-0.00
+[rush] input player 1: A stick x=-1.00 y=-0.15
+[rush] input player 1: A stick x=-0.89 y=-0.48
+[rush] input player 1: A stick x=-0.83 y=-0.52
+[rush] input player 1: A stick x=-0.69 y=-0.69
+[rush] input player 1: A stick x=-0.59 y=-0.73
+[rush] input player 1: A stick x=-0.36 y=-0.75
+[rush] input player 1: A stick x=+0.00 y=-0.84
+[rush] input player 1: A stick x=+0.23 y=-0.86
+[rush] input player 1: A stick x=+0.40 y=-0.86
+[rush] input player 1: A stick x=+0.68 y=-0.86
+[rush] input player 1: A stick x=+0.76 y=-0.89
+[rush] input player 1: A stick x=+0.91 y=-0.89
+[rush] input player 1: A stick x=+0.91 y=-0.84
+[rush] input player 1: A stick x=+1.00 y=-0.62
+[rush] input player 1: A stick x=+1.00 y=-0.30
+[rush] input player 1: A stick x=+1.00 y=-0.00
+[rush] input player 1: A stick x=+0.79 y=-0.00
+[rush] input player 1: A stick x=+0.57 y=-0.00
+[rush] input player 1: A stick x=+0.29 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=199.2s vi=11910 gfx_tasks=5938 audio_tasks=11881 other_tasks=0 swaps=11910 origin=0x007BB640 fb_nonzero=38388 fb_distinct=134 last_dl=0x80073D50(13056 B) audio_samples=8740608 audio_nonzero=6439371 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+B stick x=+0.00 y=-0.00
+[rush] input player 1: A+B stick x=-0.16 y=-0.00
+[rush] input player 1: A+B stick x=-0.42 y=-0.00
+[rush] input player 1: A+B stick x=-0.71 y=-0.00
+[rush] input player 1: A+B stick x=-0.88 y=-0.00
+[rush] input player 1: A stick x=-1.00 y=-0.00
+[rush] status t=200.2s vi=11970 gfx_tasks=5968 audio_tasks=11941 other_tasks=0 swaps=11970 origin=0x007BB640 fb_nonzero=38388 fb_distinct=135 last_dl=0x80073D50(12880 B) audio_samples=8784768 audio_nonzero=6483530 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-0.87 y=-0.00
+[rush] input player 1: A stick x=-0.45 y=-0.00
+[rush] input player 1: A stick x=-0.36 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+C-DOWN stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.16 y=-0.00
+[rush] input player 1: A stick x=-0.40 y=-0.00
+[rush] input player 1: A stick x=-0.69 y=-0.00
+[rush] input player 1: A stick x=-0.89 y=-0.00
+[rush] input player 1: A+R stick x=-1.00 y=-0.00
+[rush] status t=201.2s vi=12030 gfx_tasks=5998 audio_tasks=12001 other_tasks=0 swaps=12030 origin=0x007BB640 fb_nonzero=38388 fb_distinct=136 last_dl=0x80073D50(12320 B) audio_samples=8828928 audio_nonzero=6527687 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=-1.00 y=-0.00
+[rush] input player 1: A+Z stick x=-1.00 y=-0.00
+[rush] input player 1: A stick x=-1.00 y=-0.00
+[rush] input player 1: A stick x=-0.84 y=-0.00
+[rush] input player 1: A stick x=-0.54 y=-0.00
+[rush] input player 1: A stick x=-0.18 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+D-DOWN stick x=+0.00 y=-0.00
+[rush] status t=202.2s vi=12090 gfx_tasks=6028 audio_tasks=12061 other_tasks=0 swaps=12090 origin=0x007BB640 fb_nonzero=38388 fb_distinct=137 last_dl=0x80073D50(12080 B) audio_samples=8873088 audio_nonzero=6571846 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+D-LEFT stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=203.2s vi=12150 gfx_tasks=6058 audio_tasks=12121 other_tasks=0 swaps=12150 origin=0x007BB640 fb_nonzero=38388 fb_distinct=138 last_dl=0x80073D50(11448 B) audio_samples=8917248 audio_nonzero=6616005 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+D-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+D-RIGHT stick x=+0.00 y=-0.00
+[rush] status t=204.3s vi=12210 gfx_tasks=6088 audio_tasks=12181 other_tasks=0 swaps=12210 origin=0x007BB640 fb_nonzero=38388 fb_distinct=139 last_dl=0x80073D50(10672 B) audio_samples=8961408 audio_nonzero=6660163 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=-0.24 y=-0.00
+[rush] input player 1: A stick x=-0.53 y=-0.00
+[rush] input player 1: A stick x=-0.63 y=-0.00
+[rush] input player 1: A stick x=-0.97 y=-0.00
+[rush] input player 1: A stick x=-0.66 y=-0.00
+[rush] input player 1: A stick x=-0.34 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+D-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=205.3s vi=12270 gfx_tasks=6118 audio_tasks=12241 other_tasks=0 swaps=12270 origin=0x007BB640 fb_nonzero=38388 fb_distinct=140 last_dl=0x80073D50(6656 B) audio_samples=9005568 audio_nonzero=6704323 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+D-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] input player 1: A+D-RIGHT stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=206.3s vi=12330 gfx_tasks=6148 audio_tasks=12301 other_tasks=0 swaps=12330 origin=0x007BB640 fb_nonzero=38388 fb_distinct=141 last_dl=0x80073D50(5896 B) audio_samples=9049728 audio_nonzero=6748480 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: A+D-UP stick x=+0.00 y=-0.00
+[rush] input player 1: A stick x=+0.00 y=-0.00
+[rush] status t=207.3s vi=12390 gfx_tasks=6178 audio_tasks=12361 other_tasks=0 swaps=12390 origin=0x007BB640 fb_nonzero=38388 fb_distinct=142 last_dl=0x80073D50(7944 B) audio_samples=9093888 audio_nonzero=6792638 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=-0.17 y=-0.00
+[rush] input player 1: - stick x=-0.36 y=+0.18
+[rush] input player 1: - stick x=-0.51 y=+0.18
+[rush] input player 1: - stick x=-0.70 y=+0.26
+[rush] input player 1: - stick x=-0.88 y=+0.29
+[rush] input player 1: C-DOWN stick x=-1.00 y=+0.34
+[rush] status t=208.3s vi=12451 gfx_tasks=6208 audio_tasks=12422 other_tasks=0 swaps=12451 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=143 last_dl=0x80073D50(8712 B) audio_samples=9138048 audio_nonzero=6836796 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: C-DOWN stick x=-1.00 y=-0.00
+[rush] input player 1: - stick x=-1.00 y=-0.00
+[rush] input player 1: B stick x=-1.00 y=-0.00
+[rush] input player 1: - stick x=-1.00 y=-0.00
+[rush] status t=209.3s vi=12511 gfx_tasks=6238 audio_tasks=12482 other_tasks=0 swaps=12511 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=144 last_dl=0x80073D50(10664 B) audio_samples=9182208 audio_nonzero=6880952 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: C-UP stick x=-1.00 y=-0.00
+[rush] input player 1: - stick x=-1.00 y=-0.00
+[rush] input player 1: - stick x=-0.80 y=-0.00
+[rush] input player 1: - stick x=-0.16 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=210.3s vi=12571 gfx_tasks=6268 audio_tasks=12542 other_tasks=0 swaps=12571 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=145 last_dl=0x80073D50(8720 B) audio_samples=9226368 audio_nonzero=6925110 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=211.3s vi=12631 gfx_tasks=6298 audio_tasks=12602 other_tasks=0 swaps=12631 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=146 last_dl=0x80073D50(5896 B) audio_samples=9270528 audio_nonzero=6969267 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: R stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: L stick x=+0.00 y=-0.00
+[rush] status t=212.3s vi=12691 gfx_tasks=6328 audio_tasks=12662 other_tasks=0 swaps=12691 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=147 last_dl=0x80073D50(5040 B) audio_samples=9314688 audio_nonzero=7013421 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: L stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: L stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=213.3s vi=12751 gfx_tasks=6358 audio_tasks=12722 other_tasks=0 swaps=12751 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=148 last_dl=0x80073D50(4280 B) audio_samples=9358848 audio_nonzero=7057578 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] input player 1: L stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] input player 1: START stick x=+0.00 y=-0.00
+[rush] input player 1: - stick x=+0.00 y=-0.00
+[rush] status t=214.3s vi=12811 gfx_tasks=6388 audio_tasks=12782 other_tasks=0 swaps=12811 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=149 last_dl=0x80073D50(4280 B) audio_samples=9403008 audio_nonzero=7101737 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=215.3s vi=12871 gfx_tasks=6418 audio_tasks=12842 other_tasks=0 swaps=12871 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=150 last_dl=0x80073D50(4280 B) audio_samples=9447168 audio_nonzero=7145883 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=216.3s vi=12931 gfx_tasks=6448 audio_tasks=12902 other_tasks=0 swaps=12931 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=151 last_dl=0x80073D50(4280 B) audio_samples=9491328 audio_nonzero=7163547 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=217.3s vi=12991 gfx_tasks=6478 audio_tasks=12962 other_tasks=0 swaps=12991 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=151 last_dl=0x80073D50(4280 B) audio_samples=9535488 audio_nonzero=7163547 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] status t=218.3s vi=13051 gfx_tasks=6508 audio_tasks=13022 other_tasks=0 swaps=13051 origin=0x007DDC80 fb_nonzero=38388 fb_distinct=152 last_dl=0x80073D50(4280 B) audio_samples=9579648 audio_nonzero=7163547 audio_peak=32768 image=ovl_b spin_yields=79
+[rush] final t=218.4s vi=13058 gfx_tasks=6512 audio_tasks=13028 other_tasks=0 swaps=13058 origin=0x007BB640 fb_nonzero=38388 fb_distinct=152 last_dl=0x80073D50(4280 B) audio_samples=9584256 audio_nonzero=7163547 audio_peak=32768 image=ovl_b spin_yields=79

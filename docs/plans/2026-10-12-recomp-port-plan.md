@@ -376,3 +376,31 @@ tester input: `tools/recomp/reports/v1/REPORT.md`; package v2: `tools/recomp/VER
   on hardware); whether any other game thread starves in wall clock (the census covers loops without calls, not
   long call-free computations); a Windows CI or laptop build check of the RSPRecomp step and `-march=nehalem`
   under clang-cl; saves/controller pak; the other `register_params` IPA callees; cheaper capture.
+
+## 14. Package v2 laptop report (2026-10-12, Windows 11 25H2, RTX 3050, clang-cl 19.1.5; `tools/recomp/reports/v2/`)
+
+- **Both v1 blockers are closed on real hardware.** 17 wall-clock windowed runs plus the T8 RT64 lockstep run: 0 hangs,
+  0 crashes, 30 gfx tasks/s (worst second 27). Four of the 14 spin hooks fired: 0x800FD500 (boot, every run),
+  0x8038BA20 (front end), 0x8038B4E8 (track selector, each time the track changed; not in CHANGES.md's examples),
+  0x80096184 (race start). `--clock frames` was never needed outside T8.
+- **Sound judged good by ear**: title, menu, countdown, engine following speed, race music, split-screen, stunt; stereo,
+  in sync, no pops. The T3 recording is real time (173.8 s of audio in a 175 s run) with gaps only on the silent boot
+  notice and the pause screen. All four audio options measurably change the output (effects 0 and music 0 each drop
+  ~2.5 dBFS, BATTLE2 is a different tune, MONO makes L and R sample-identical). So the "lockstep makes ~82 % of expected
+  audio" open item is a lockstep/headless question, not a wall-clock one.
+- **T8 on a real GPU**: a vs b `EQUIVALENT over 1800 frames`; a vs c `DIFFERENT at frame 2: 71 pages` from 0x8017A000;
+  with `--mask-renderer` `EQUIVALENT except renderer-written pages`, 105 pages masked. Same verdicts as rocky's
+  lavapipe run, so the runtime_buffers.json mask is right for RT64 on D3D12 too.
+- **Coverage by a human**: boot notice (A also passes it), title, attract (8 demo cycles, credits demo from ~223 s),
+  1P single race with pause/resume, tracks 2–4, 2P split screen (pad as player 2), audio options, stunt (score,
+  bonus text, controls page), pad + keyboard tables all correct. Not yet played: Practice, Ghost Race, Circuit,
+  Battle, other cars, BACKWARD, RECORDS, T7 free play (owner skipped).
+- **Small findings for Phase 6**: `controller -> player N` printed twice per pad (open + device-added reopen);
+  left-stick dead zone steps 0 → 0.15 with no rescaling; Back and L3/R3 unmapped (by design, document it);
+  Vulkan path boots and plays too (`RT64 setup: ok, graphics API Vulkan`); RSPRecomp and `-march=nehalem` under
+  clang-cl verified (A5/A6/A8 clean, 645 steps, 18 benign warnings); N64Recomp prints `Ambiguous jal target
+  0x8038A400 in function input_aux_handler` (info only). Load: 0.55 cores, 452 MB working set, 12.5 % of the 3050.
+- **Phase 6 therefore**: gameplay is no longer the gate. Open items are saves/controller pak (the boot notice is the
+  first thing every player sees), the untested modes above, controller polish (dead-zone rescale, duplicate line),
+  the remaining `register_params` IPA callees, cheaper capture, and the lockstep audio shortfall. The differential
+  harness (Phase 3) is now trustworthy on a real GPU with `--mask-renderer`.
