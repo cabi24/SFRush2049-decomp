@@ -1,31 +1,4 @@
 {
-  "cloud/work/frontier/w26a/sources/huft_build.c:huft_build": {
-    "body_sha256": "5ebefe86207d890577014b82785fd7fe48e687e3e6d0e8619696e3066d715030",
-    "compiler": "ido5.3s",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "huft_build",
-    "toolkit_sha": "8bdf0caebc9ada9612b9dae9422948e37bd119e663e9dda8bb8fdbb7acd96682",
-    "verified": "score0",
-    "verified_at": "2026-10-12"
-  },
-  "cloud/work/frontier/w26a/sources/inflate_fixed.c:inflate_fixed": {
-    "body_sha256": "a7c705f220640ff1050f44a3e7b2a2618803dfe2c3495ccb861d94371fcf7ffd",
-    "compiler": "ido5.3s",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "inflate_fixed",
-    "toolkit_sha": "8bdf0caebc9ada9612b9dae9422948e37bd119e663e9dda8bb8fdbb7acd96682",
-    "verified": "score0",
-    "verified_at": "2026-10-12"
-  },
-  "cloud/work/frontier/w26a/sources/inflate_stored.c:inflate_stored": {
-    "body_sha256": "7b7175c03624296995b02c2e56ea1f7f60e66fded41201e8ad38623130520699",
-    "compiler": "ido5.3s",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "inflate_stored",
-    "toolkit_sha": "8bdf0caebc9ada9612b9dae9422948e37bd119e663e9dda8bb8fdbb7acd96682",
-    "verified": "score0",
-    "verified_at": "2026-10-12"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -4021,11 +3994,29 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-12"
   },
+  "src/rom/lib_5610.c:huft_build": {
+    "body_sha256": "5ebefe86207d890577014b82785fd7fe48e687e3e6d0e8619696e3066d715030",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "huft_build",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_5610.c:inflate_block": {
     "body_sha256": "a1e4133fd815aa9e46b6ea65e6b09e7b353656055b074353ec15416d6aa40e79",
     "compiler": "ido5.3s",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "inflate_block",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_5610.c:inflate_fixed": {
+    "body_sha256": "a7c705f220640ff1050f44a3e7b2a2618803dfe2c3495ccb861d94371fcf7ffd",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_fixed",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-12"
@@ -4053,6 +4044,15 @@
     "compiler": "ido5.3s",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "inflate_read_bits",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_5610.c:inflate_stored": {
+    "body_sha256": "7b7175c03624296995b02c2e56ea1f7f60e66fded41201e8ad38623130520699",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_stored",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-12"
