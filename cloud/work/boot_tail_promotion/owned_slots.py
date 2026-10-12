@@ -165,7 +165,9 @@ def _slot_target(registered, sym, text, addend):
     Two spellings reach a registered slot: compiled C addresses its own owned
     section (section symbol + offset); the TU's untouched passthrough assembly
     still names the slot's split label (undefined `jtbl_<ADDR>_main`, ADDR the
-    slot's start). Either must land inside the slot's extent."""
+    slot's start, or, in a co-owned slot, of a later member's table inside
+    it: jtbl_8002D964_main at +0x14 of lib_22300's 0x1E0 slot, w22i). Either
+    must land inside the slot's extent."""
     if sym['type'] == 3 and sym['section'] != text:
         row = registered.get(sym['name'])
         if row is not None and 0 <= addend < row['size']:
@@ -176,8 +178,8 @@ def _slot_target(registered, sym, text, addend):
         return None, None
     for row in registered.values():
         base = row['container_vram'] + row['offset']
-        if int(match.group(1), 16) == base and 0 <= addend < row['size']:
-            return base + addend, row
+        if 0 <= int(match.group(1), 16) - base + addend < row['size']:
+            return int(match.group(1), 16) + addend, row
     return None, None
 
 
