@@ -308,7 +308,11 @@ $(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin rom_owned_data.json tools/co
 
 # Reapply ownership before linking even without make extract. Rendering is idempotent.
 TEXT_BOUNDARY_INPUTS = $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_text inputs)
-$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py tools/conveyor/pipeline/owned_text.py $(TEXT_BOUNDARY_INPUTS)
+# splat.us.yaml too (w24t): a converted subsegment must link build/us/src/<tu>.o,
+# not its old build/us/asm/us/<SEG>.o; `layout ldsync` rewrites that path and
+# refuses drift only `make extract` can repair.
+$(LD_SCRIPT): rom_owned_data.json splat.us.yaml tools/conveyor/pipeline/layout.py tools/conveyor/pipeline/owned_data.py tools/conveyor/pipeline/owned_text.py $(TEXT_BOUNDARY_INPUTS)
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.layout ldsync $@
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
 
 # Companions and metadata are immutable during promotion; force source/asset rebuilds

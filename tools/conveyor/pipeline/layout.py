@@ -517,6 +517,71 @@ def _add_convert_parsers(sub):
     p.add_argument("--keep", choices=("prefix", "suffix"), default="suffix",
                    help="side retaining the original TU and every promoted lock path")
     p.set_defaults(func=_cmd_split)
+    p = sub.add_parser("ldsync", help="make the linker script name each code subsegment's object "
+                       "as splat.us.yaml says (c -> build/us/src/<tu>.o); asm drift refuses")
+    p.add_argument("path", nargs="?", default=str(REPO / "rush2049.us.ld"))
+    p.add_argument("--check", action="store_true", help="report drift, change nothing")
+    p.set_defaults(func=_cmd_ldsync)
+
+
+# --- linker script object paths (w24t) ----------------------------------------
+# `layout convert` flips a subsegment to c and relies on `make extract` (splat)
+# to rewrite rush2049.us.ld; a convert recipe that skips it, or a builder whose
+# make never re-ran splat, links `build/us/asm/us/<SEG>.o` (a stale duplicate,
+# or "cannot find" after a clean build). splat's entry for a subsegment is its
+# object path in each of .text/.data/.rodata/.bss, so the drift is exactly a
+# path substitution.
+
+def _asm_object(sub):
+    return f"build/us/asm/us/{sub['name'] or format(sub['off'], 'X')}.o"
+
+
+def _c_object(sub):
+    return f"build/us/src/{sub['name']}.o"
+
+
+def linker_object_drift(ld_text, subsegs=None):
+    """([(asm_obj, c_obj)] to rewrite for converted subsegments,
+    [problems] that only `make extract` can fix)."""
+    subsegs = subsegs if subsegs is not None else parse_subsegments()[0]
+    rewrite, problems = [], []
+    for sub in subsegs:
+        if sub["type"] == "c" and sub["name"]:
+            asm, c = _asm_object(dict(sub, name=None)), _c_object(sub)   # the pre-convert name
+            if asm + "(" in ld_text:
+                rewrite.append((asm, c))
+            elif c + "(" not in ld_text:
+                problems.append(f"0x{sub['off']:X} ({sub['name']}): {c} is not in the linker script")
+        elif sub["type"] == "asm":
+            asm = _asm_object(sub)
+            if asm + "(" not in ld_text:
+                problems.append(f"0x{sub['off']:X} (asm): {asm} is not in the linker script")
+    return rewrite, problems
+
+
+def sync_linker_objects(path=None, check=False, subsegs=None):
+    """Rewrite stale asm object paths of converted subsegments in the linker
+    script; returns the rewrites. Refuses (SystemExit) on drift a path
+    substitution cannot repair (a reverted segment, an unknown object)."""
+    path = Path(path or REPO / "rush2049.us.ld")
+    text = path.read_text()
+    rewrite, problems = linker_object_drift(text, subsegs)
+    if problems:
+        raise SystemExit("linker script out of date with splat.us.yaml; run `make extract`:\n  "
+                         + "\n  ".join(problems))
+    if rewrite and not check:
+        for asm, c in rewrite:
+            text = text.replace(asm + "(", c + "(")
+        path.write_text(text)
+    return rewrite
+
+
+def _cmd_ldsync(args):
+    rewrite = sync_linker_objects(args.path, check=args.check)
+    for asm, c in rewrite:
+        print(f"{'stale' if args.check else 'rewrote'} {asm} -> {c}")
+    if args.check and rewrite:
+        sys.exit(1)
 
 
 def _cmd_split(args):
@@ -637,6 +702,14 @@ def compiler_conflicts(mapping, entries):
 
 
 def write_opt_overrides(mapping=None):
+    """Write render_opt_overrides() to src/rom/opt_overrides.mk (committed;
+    tests/conveyor/unit/test_layout_ld_opt_sync.py keeps the two equal)."""
+    text = render_opt_overrides(mapping)
+    OPT_OVERRIDES_MK.parent.mkdir(parents=True, exist_ok=True)
+    OPT_OVERRIDES_MK.write_text(text)
+
+
+def render_opt_overrides(mapping=None):
     """Emit committed per-ROM-TU CFLAGS overrides for converted segments whose
     match was verified at a non-default optimization or debug level.
 
@@ -690,8 +763,7 @@ def write_opt_overrides(mapping=None):
             value = f"$(filter-out -g -g0 -g1 -g2 -g3,{value}) {debug}"
         lines.append(f"{obj}: CFLAGS := {value}")
     lines.append("endif")
-    OPT_OVERRIDES_MK.parent.mkdir(parents=True, exist_ok=True)
-    OPT_OVERRIDES_MK.write_text("\n".join(lines) + "\n")
+    return "\n".join(lines) + "\n"
 
 
 def _do_convert(mapping, seg):
@@ -726,6 +798,11 @@ def _do_convert(mapping, seg):
     tu = REPO / "src" / f"{seg['rom_tu']}.c"
     tu.parent.mkdir(parents=True, exist_ok=True)
     tu.write_text(generate_tu(seg, map_hash(mapping)))
+    # w24t: the checked-in linker script must name the new TU's object even
+    # when splat did not rewrite it (the 0x26F60 conversion's builder gate
+    # failed twice on build/us/asm/us/26F60.o).
+    for asm, c in sync_linker_objects():
+        print(f"linker script: {asm} -> {c}")
     write_opt_overrides()  # re-derive: seg is now converted on disk
     nm = REPO / f"asm/us/nonmatchings/{seg['rom_tu']}"
     n_asm = len(list(nm.glob("*.s"))) if nm.is_dir() else 0
@@ -751,6 +828,7 @@ def _do_revert(seg):
             f.unlink()
         nm.rmdir()
     _run_extract()
+    sync_linker_objects(check=True)   # refuses when the script still names the TU
     write_opt_overrides()
     print(f"reverted {seg['yaml_name']} to asm "
           "(whole-segment asm file regenerated by splat)")
