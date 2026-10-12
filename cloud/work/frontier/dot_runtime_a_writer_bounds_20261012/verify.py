@@ -257,8 +257,11 @@ def replay(deep=False):
     baseline=ROOT/'src/ovl_a/groups'/GROUP_NAME
     # Compare executable text independently of explanatory headers/comments.
     strip=lambda s: re.sub(r'/\*.*?\*/','',s,flags=re.S).strip()
-    require(strip((GROUP/'group.c').read_text()).replace('char text[76];','char text[100];')==
-            strip((baseline/'group.c').read_text()),'change exceeds sole bounded capacity edit')
+    # w25p: once installed, production equals this packet; before, it is the text[100] baseline.
+    installed=strip((baseline/'group.c').read_text())
+    require(strip((GROUP/'group.c').read_text()) in (installed,) or
+            strip((GROUP/'group.c').read_text()).replace('char text[76];','char text[100];')==installed,
+            'change exceeds sole bounded capacity edit')
     meta=metadata();extents={e['name']:e for e in meta['functions']}
     with target_scope():
         for name,size in SIZES.items():

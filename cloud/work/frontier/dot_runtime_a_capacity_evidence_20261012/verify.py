@@ -258,8 +258,10 @@ def replay(deep=False):
     require(spec['keep'] == ['func_80399D10', NAME], 'genuine kept roots changed')
     # Do not pin production inputs, but ensure this packet has not changed the
     # installed helper and both complete real context bodies.
-    require((GROUP/'eligibility.c').read_bytes() ==
-            (ROOT/'src/ovl_a/groups/dot_runtime_a_seven_option_group_20261007/group.c').read_bytes(),
+    # w25p: before installation production has group.c (the helper); after, this packet's eligibility.c.
+    installed = ROOT/'src/ovl_a/groups/dot_runtime_a_seven_option_group_20261007'
+    installed = installed/('eligibility.c' if (installed/'eligibility.c').exists() else 'group.c')
+    require((GROUP/'eligibility.c').read_bytes() == installed.read_bytes(),
             'inherited genuine group source differs from production')
     with tempfile.TemporaryDirectory(prefix='capacity-a6b50-') as path, targets(owndata.ImageData.from_image(data,base)):
         temp=Path(path);obj=temp/'group.o'
