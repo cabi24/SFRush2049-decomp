@@ -296,7 +296,8 @@ names through `game_static_legacy.us.txt`). Recomp Phase 2 landed (w22r, plan §
 project's IDO, lockstep clock, frame oracle; ten matched functions EQUIVALENT over 1800 frames, injected bug caught at
 frame 3, w21h's engine_sound_sync draft DIFFERENT at frame 706. Open: CLAIMS `open` rows (buffer_swap 43 words,
 func_80090308 group, entity_render_setup 8 rows, func_8001F13C 2420, func_8001A658 7725, func_80012D18 12735);
-game-side rename + ll.c family rename; recomp Phase 3 (per-call capture) and RT64 on a display.
+game-side rename + ll.c family rename; recomp Phase 3 (per-call capture) and RT64 on a display. Astra's #324/#326/#327/#328/#329 landed
+via lane w22p (overlay A 53/193, B 10/49; four 20261006 groups migrated into dot_runtime_a_text_helpers_20261006).
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
