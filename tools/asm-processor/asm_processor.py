@@ -1332,6 +1332,12 @@ def fixup_objfile(objfile_name, functions, asm_prelude, assembler, output_enc, d
             if s.name == "_gp_disp":
                 s.type = STT_OBJECT
             if s.bind == STB_LOCAL and s.st_shndx == SHN_UNDEF:
+                # Rush 2049 (w26a): IDO `as` assembling a .s (the ido5.3s driver,
+                # tools/ido_sas/cc) lists every compiler label ($32, ...) as an
+                # unused LOCAL UNDEF symbol. Drop those; anything else (or one a
+                # relocation uses) is still an error.
+                if re.fullmatch(r"\$[0-9]+", s.name or "") and s not in relocated_symbols:
+                    continue
                 raise Failure("local symbol \"" + s.name + "\" is undefined")
             if not s.name:
                 if s.bind != STB_LOCAL:
