@@ -1,0 +1,12 @@
+{
+  "owner": "__scMain",
+  "co_owners": ["__scExec"],
+  "tu": "src/rom/lib_1050_sdk.c",
+  "owner_section": ".bss",
+  "container_section": ".bss",
+  "container_vram": "0x8002E8E0",
+  "offset": "0x0",
+  "size": "0x2d0",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s",
+  "comment": "w24b/w24s: lib_1050_sdk's whole .bss, retail 0x8002E8E0..0x8002EBA7 (+8 B section pad): __osScRetraceTime, gScheduler (OSSched 0x284; gViTickCounter = its retraceCount), D_8002EB6C, __osScTaskCount, __osScAudioStart, __osScFrameTime, D_8002EB88, __osScElapsedTime, __osScDeltaTime, gViFrameDelta, gViAccumTime, gViAccumTotal, gViLastTick (definition order). The entry code clears .bss from 0x8002E8E0, so this TU's .bss is the first in the image."
+}

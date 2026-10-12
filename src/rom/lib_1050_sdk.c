@@ -56,6 +56,9 @@ void osScAddClient(OSSched *scheduler,OSScClient *client,OSMesgQueue *queue) {
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
+/* ROM_OWNED_RODATA_BEGIN __scMain */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s")
+/* ROM_OWNED_RODATA_END __scMain */
 /* PROMOTED 2026-10-02 — __scSchedule
  * Source:   module_campaign_20261002 SDK publication
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
