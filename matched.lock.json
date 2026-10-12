@@ -1,4 +1,60 @@
 {
+  "cloud/work/frontier/w24b/sources/viAddTicks.c:viAddTicks": {
+    "body_sha256": "914b51e9814bd73d281b852ffd5908e8fed3a9e480f2f7c216e0a6a2a9482177",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viAddTicks",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viDisableAccum.c:viDisableAccum": {
+    "body_sha256": "4f1db5d12f0dfece5a216be8b251abffbcab9bf9543ec333d1d8b3364614637f",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viDisableAccum",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viEnableAccum.c:viEnableAccum": {
+    "body_sha256": "98692e69dc5e0f9d207b5fc60f0c66e5e99546096fc4f1d451bf31aa2ab2b657",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viEnableAccum",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viGetTimeToDeadline.c:viGetTimeToDeadline": {
+    "body_sha256": "9a2df3d4521c74054f47991f9333c3a3c59698886b1dcbf0a5969ed264cb8136",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viGetTimeToDeadline",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viScheduleTick.c:viScheduleTick": {
+    "body_sha256": "8d5325cc5287243b286cb9ea75d6861acecc67fe718113d97953cf5f193b2180",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viScheduleTick",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viTickStart.c:viTickStart": {
+    "body_sha256": "efb9077a83fbd9445e8946acc90ef1b16dc9258298750824cc4ba8c7bf1d402e",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viTickStart",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/viUpdateTime.c:viUpdateTime": {
+    "body_sha256": "5ad0a0bd3aa91665ebe5afcf063c95b3e8cafb723541146c60c57431f11195c8",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "viUpdateTime",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
