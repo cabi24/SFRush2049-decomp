@@ -365,7 +365,9 @@ self-check pages named (z-buffer 0x8017AEC0, framebuffers 0x807BB3C0/0x807DDA00;
 --mask-renderer` → "EQUIVALENT except renderer-written pages"), lockstep+RT64 display-list race fixed, Rush's own
 audio microcode recompiled with RSPRecomp (0xF40 B at ROM 0x2AC50; AI interrupts paced to the game's 192-frame
 buffers; sound through SDL and `--wav`), package v2 (`build/recomp/dist/rush2049-recomp-test-v2.tar.gz`, sha256
-99b57e31…, with-ROM copy on rocky) with attract/stunt/pad steps and the ROM copy deleted from `--home`. Traps: the
+99b57e31…, with-ROM copy on rocky) with attract/stunt/pad steps and the ROM copy deleted from `--home`. Astra's
+#353–#358 (w25q, end of wave): five landed (+3,976 B; overlay A 75 → 77/193, 44,700 B, 23.03%; overlay B 14 → 20/49,
+8,352 B, 19.03%), #357 (A9088 15/917) research only. Traps: the
 builder's disk hit 100% mid-promotion (finished-lane scratch copies; now cleaned); the Makefile depends on
 `cloud/work/frontier/<lane>/rename/rebind/*.json`, so the builder gate repo needs those dirs rsynced too; `ci_equiv`
 bundles must be based on a commit the rocky clone already has. Lessons for wave 26: the two code-free temp-pop
