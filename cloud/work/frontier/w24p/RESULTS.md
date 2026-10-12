@@ -45,3 +45,17 @@ EXACT", "ROM matches!", `MAKE=0 TEST=0`.
 - #163: 448 files from 2026-10-06; its portability edits target packets later re-imported/reworked; the game
   groups (audio_priority_find, func_800B66B0, func_800A3724) are IPA-internal group-only matches (agentA/w11h/w14d);
   voice_unblock landed via #314's route; flag-line edits to locked cloud/matches singles are not needed.
+
+## Tests
+
+- rocky, `REQUIRE_TOOLCHAIN=1` on the five new packet tests (#331–#334, #322): 5 passed.
+- Pi without IDO: the same five skip cleanly ("IDO missing").
+- Pi `make test-fast JOBS=4`: conveyor 1541 passed, 795 skipped; cloud 770 passed, 155 skipped; exit 0.
+- rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor 2285 passed, 51 skipped; cloud 924 passed, 1 skipped;
+  exit 0.
+
+## Setup notes
+
+Fresh worktree: `cp baserom.us.z64`, copy `build/game_code.bin` + `build/blob/obj`, `ovl_splice rebuild` A/B,
+`blob_layout derive`, `blob_rom produce` (stream byte-identical; it rewrote `asm/us/blob/{SHA256SUMS,symbols.json}` and
+`src/blob/blob.ld`, reverted, not committed). `OVL_BUILDER_DIR=/tmp/ovlsplice-w24p`. Rocky clone `~/rush2049/scratch/w24p`.
