@@ -289,6 +289,15 @@ def test_committed_patch_inputs_are_well_formed():
         assert e["vram"] % 4 == 0
 
 
+def test_rsp_audio_config():
+    """Phase 5: RSPRecomp config for the audio ucode (boot segment: ROM = vram - 0x80000400 + 0x1000)."""
+    text = gc.render_rsp_audio_toml("rom/rush2049.recomp.z64")
+    assert "text_offset = 0x2AC50" in text and "text_size = 0xF40" in text
+    assert "text_address = 0x04001080" in text and 'output_function_name = "rush_audio_ucode"' in text
+    assert 'rom_file_path = "rom/rush2049.recomp.z64"' in text
+    assert 'output_file_path = "rsp/rush_audio_ucode.cpp"' in text
+
+
 def test_runtime_buffers():
     """runtime_buffers.json: recomp-only names for the z-buffer, framebuffers and
     gfx task buffers (datasyms only)."""

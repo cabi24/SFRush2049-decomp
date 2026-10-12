@@ -14,8 +14,9 @@
 //                             virtual VI per turn (VI message every
 //                             retrace_count VIs, AI message every VI).
 //   SP/DP task completion     the runtime's task/gfx threads. osSpTaskStartGo
-//                             completes the task synchronously (no microcode:
-//                             the null renderer executes nothing either) and
+//                             completes the task synchronously (audio: the
+//                             recompiled microcode runs on the calling thread;
+//                             graphics: the null renderer executes nothing) and
 //                             sends the SP (and for graphics tasks the DP)
 //                             message from the calling game thread.
 //   current/next framebuffer  swapped by the VI thread; modelled here (next =
@@ -34,6 +35,19 @@
 // renderer has interpreted the mirrored display list before it sees SP/DP:
 // otherwise the game rebuilds the list while RT64 still reads it (Phase 5:
 // segfault in RT64::Interpreter at the race start with a slow software GPU).
+// AI pacing (Phase 5, both clocks). The game's audio thread (static
+// func_80010A40) keeps a ring of 0x300-byte buffers (192 stereo frames) and
+// hands the AI the next one for every AI message, as the console's AI
+// interrupt fires once per buffer (22050 Hz / 192 = 115 per second).
+// ultramodern sends the AI message once per VI (60 per second), so the game
+// produced half the audio it plays (gaps). Here the AI event is kept from the
+// runtime and sent at the rate the game's own buffers need: frequency /
+// frames per buffer (the last osAiSetFrequency and osAiSetNextBuffer, noted by
+// main.cpp). Wall clock: a host thread at that rate, corrected by the SDL
+// output queue (skip when more than 8 buffers wait, send early when less than
+// 2). Lockstep: the idle thread sends floor(VIs x rate / 60) messages in total,
+// integer arithmetic, so runs stay deterministic. --ai-per-vi restores the
+// runtime's one-per-VI.
 // PI and SI completions are already sent synchronously by the calling game
 // thread (librecomp pi.cpp, ultramodern send_si_message) and delivered at its
 // next osRecvMesg, so they need nothing.
@@ -46,6 +60,7 @@
 #include <vector>
 
 #include "recomp.h"
+#include "librecomp/rsp.hpp"
 #include "ultramodern/ultra64.h"
 #include "ultramodern/ultramodern.hpp"
 #include "rush_runtime.h"
@@ -78,6 +93,41 @@ uint32_t fb_next = 0, fb_cur = 0;
 std::atomic<uint64_t> virtual_vis{0};
 std::vector<Event> pending;  // messages a full queue refused; retried by the idle thread
 
+// AI pacing
+bool ai_pacing = true;
+std::atomic<uint32_t> ai_freq{0}, ai_frames{0};
+std::mutex ai_mu;
+Event ai_wall_ev;            // wall clock: the game's AI event (the runtime gets NULL)
+bool ai_thread_started = false;
+uint64_t ai_acc = 0;         // lockstep: freq x VIs not yet turned into messages
+rush::ai_backlog_fn ai_backlog = nullptr;
+
+void ai_wall_thread() {
+    using clk = std::chrono::steady_clock;
+    clk::time_point next = clk::now();
+    for (;;) {
+        std::this_thread::sleep_until(next);
+        Event e;
+        {
+            std::lock_guard<std::mutex> lock(ai_mu);
+            e = ai_wall_ev;
+        }
+        uint32_t f = ai_freq.load(), n = ai_frames.load();
+        if (e.mq == 0 || f == 0 || n == 0) {   // before the first buffer: one per VI, as the runtime did
+            if (e.mq != 0) ultramodern::enqueue_external_message(e.mq, (OSMesg)e.msg, false, false);
+            next = clk::now() + std::chrono::microseconds(16667);
+            continue;
+        }
+        auto period = std::chrono::microseconds((int64_t)n * 1000000 / f);
+        int64_t backlog = ai_backlog ? ai_backlog() : -1;   // frames queued for the device, -1 = none
+        if (backlog < 0 || backlog <= 8 * (int64_t)n)
+            ultramodern::enqueue_external_message(e.mq, (OSMesg)e.msg, false, false);
+        if (backlog >= 0 && backlog < 2 * (int64_t)n) next = clk::now() + period / 4;
+        else next += period;
+        if (next < clk::now() - 10 * period) next = clk::now();   // after a stall: no burst
+    }
+}
+
 // Mirrored gfx tasks: sent by the game thread, interpreted by the renderer thread.
 std::mutex mirror_mu;
 std::condition_variable mirror_cv;
@@ -104,6 +154,11 @@ void rush::lockstep_mirror_done() {
     mirror_cv.notify_all();
 }
 
+void rush::ai_note_frequency(uint32_t f) { ai_freq = f; }
+void rush::ai_note_buffer(size_t samples) { if (samples >= 2) ai_frames = (uint32_t)(samples / 2); }
+void rush::set_ai_pacing(bool on) { ai_pacing = on; }
+void rush::set_ai_backlog(ai_backlog_fn fn) { ai_backlog = fn; }
+
 void rush::set_lockstep(bool on) { lockstep = on; }
 void rush::set_lockstep_mirror(bool on) { mirror = on; }
 bool rush::lockstep_enabled() { return lockstep; }
@@ -127,6 +182,17 @@ void __wrap_osViSetEvent_recomp(uint8_t* rdram, recomp_context* ctx) {
 }
 
 void __wrap_osSetEventMesg_recomp(uint8_t* rdram, recomp_context* ctx) {
+    if (!lockstep && ai_pacing && (uint32_t)ctx->r4 == OS_EVENT_AI) {
+        {
+            std::lock_guard<std::mutex> lock(ai_mu);
+            ai_wall_ev = {(int32_t)ctx->r5, (uint32_t)ctx->r6};
+            if (!ai_thread_started) {
+                ai_thread_started = true;
+                std::thread(ai_wall_thread).detach();
+            }
+        }
+        ctx->r5 = 0;   // the runtime's VI thread sends no AI message
+    }
     if (lockstep) {
         Event e{(int32_t)ctx->r5, (uint32_t)ctx->r6};
         switch ((uint32_t)ctx->r4) {
@@ -168,7 +234,9 @@ void __wrap_osSpTaskStartGo_recomp(uint8_t* rdram, recomp_context* ctx) {
         send(rdram, sp_ev);
         send(rdram, dp_ev);
     } else {
-        rush::trace_rsp_task(task->t.type);
+        // Audio (and any other) RSP task: run the recompiled microcode now, on
+        // this thread (deterministic; get_rsp_microcode traces it), then SP.
+        recomp::rsp::run_task(rdram, task);
         send(rdram, sp_ev);
     }
 }
@@ -213,7 +281,16 @@ void rush::lockstep_idle(uint8_t* rdram) {
             vi_remaining = vi_retrace_count;
             send(rdram, vi_ev);
         }
-        send(rdram, ai);
+        uint32_t f = ai_freq.load(), n = ai_frames.load();
+        if (!ai_pacing || f == 0 || n == 0) {
+            send(rdram, ai);   // one per VI (before the first buffer, or --ai-per-vi)
+        } else {
+            ai_acc += f;
+            while (ai_acc >= (uint64_t)n * 60) {
+                ai_acc -= (uint64_t)n * 60;
+                send(rdram, ai);
+            }
+        }
         ultramodern::check_running_queue(rdram);
     }
 }

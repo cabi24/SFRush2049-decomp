@@ -40,6 +40,13 @@ bool sdl_get_input(int port, uint16_t* buttons, float* x, float* y);
 bool sdl_port_connected(int port);
 void sdl_set_fullscreen(bool on);
 void sdl_set_keyboard_alone(bool on);  // controllers start at player 2
+void sdl_set_log_input(bool on);       // --log-input: print button/stick changes
+// SDL audio output (rt64 build): AI buffers -> default output device
+void sdl_audio_enable(bool on, float volume);
+void sdl_audio_set_frequency(uint32_t freq);
+void sdl_audio_queue(const int16_t* samples, size_t count);
+size_t sdl_audio_frames_remaining();
+bool sdl_audio_active();
 
 // trace.cpp: live input (a window's controllers) when no --press script is given
 using live_input_fn = bool (*)(int port, uint16_t* buttons, float* x, float* y);
@@ -47,6 +54,8 @@ using live_connected_fn = bool (*)(int port);
 void set_live_input(live_input_fn input, live_connected_fn connected);
 // write the final status line, close the logs and exit (window closed, Escape)
 [[noreturn]] void request_quit(const char* why);
+void set_exit_hook(void (*fn)());   // run once before the host exits (--wav header)
+void run_exit_hook();
 
 // trace.cpp: counters, the status line, the run timer, scripted input
 void trace_start(double seconds, const std::string& press, const std::string& fb_dump);
@@ -54,7 +63,7 @@ void trace_event(const char* fmt, ...) RUSH_PRINTF(1, 2);
 void trace_rsp_task(uint32_t type);
 void trace_gfx_task(const OSTask* task);
 void trace_screen_update(uint8_t* rdram, uint32_t vi_origin);
-void trace_audio_samples(size_t n);
+void trace_audio_samples(const int16_t* samples, size_t n);  // counts, non-zero samples, peak
 void trace_overlay(const char* name, uint32_t stream_rom, uint32_t dst);
 void trace_shim(const char* name, uint32_t ra);
 void on_vi();
@@ -91,5 +100,11 @@ void set_lockstep_mirror(bool on);  // also send gfx tasks to the real renderer,
 bool lockstep_enabled();
 uint64_t lockstep_vis();
 void lockstep_idle(uint8_t* rdram);
-void lockstep_mirror_done();  // renderer: a mirrored gfx task's display list has been interpreted
+void lockstep_mirror_done();
+// AI pacing (lockstep.cpp): AI messages at frequency / frames-per-buffer
+void ai_note_frequency(uint32_t freq);
+void ai_note_buffer(size_t samples);
+void set_ai_pacing(bool on);   // --ai-per-vi: off (the runtime's one message per VI)
+using ai_backlog_fn = int64_t (*)();   // frames queued for the audio device, -1 = no device
+void set_ai_backlog(ai_backlog_fn fn);  // renderer: a mirrored gfx task's display list has been interpreted
 } // namespace rush

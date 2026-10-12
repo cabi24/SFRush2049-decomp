@@ -417,6 +417,7 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
     if (stop_after && n >= stop_after) {
         rush::oracle_finish("frames");
         rush::trace_event("oracle: stopping after %llu frames", (unsigned long long)n);
+        rush::run_exit_hook();
         fflush(stderr);
         std::_Exit(0);
     }
