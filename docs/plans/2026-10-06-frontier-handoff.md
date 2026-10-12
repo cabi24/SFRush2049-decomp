@@ -283,6 +283,21 @@ inventory names corrected only in `tools/recomp/identity.json` (owner decision: 
 (w21h); w21c's five identified large functions; recomp Phase 2 (function replacement, rdram view, frame oracle) and
 RT64 on a machine with a display.
 
+**Wave 22 outcome (2026-10-12, master after `2ae36670`):** static 581 → 586/668 (124,448 B, 77.43%): seqStartPlay
+(w22a; index reused as return value), the 2,796-B macro interpreter + func_80022874 via a grown co-owned .rodata slot
+and a .bss block (w22b/w22i: `promote_batch --replace-slot`, composed companions do not work because asm-processor
+puts GLOBAL_ASM .rodata first), func_80010E80 + func_8001A270 from the new instrumented IDO 7.1 toolkit
+(`cloud/work/frontier/tools/trace71/`, w22c: callee-saved cost = max(4, blocks/4), ties go caller-saved; one C
+variable = one allocation unit). Game 979 → 982/1216 (322,664 B, 49.87%): audio_options_menu group (func_800D7634 +
+func_800D6914 + stub, w22e: a precoloured call result forbids v0 to every web in its uopt block), cpak_read (w22d;
+explicit calls to the libgcc-named ll.c statics, rename pending). Libultra rename landed (w22g: 43 static names to
+ultralib VERSION_J, `static_rename` + `targets_rename rename`, DB renamed in place; game callers still use the old
+names through `game_static_legacy.us.txt`). Recomp Phase 2 landed (w22r, plan §10): replacement by manifest with the
+project's IDO, lockstep clock, frame oracle; ten matched functions EQUIVALENT over 1800 frames, injected bug caught at
+frame 3, w21h's engine_sound_sync draft DIFFERENT at frame 706. Open: CLAIMS `open` rows (buffer_swap 43 words,
+func_80090308 group, entity_render_setup 8 rows, func_8001F13C 2420, func_8001A658 7725, func_80012D18 12735);
+game-side rename + ll.c family rename; recomp Phase 3 (per-call capture) and RT64 on a display.
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
