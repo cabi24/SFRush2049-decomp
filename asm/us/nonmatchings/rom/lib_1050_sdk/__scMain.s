@@ -25,9 +25,9 @@ glabel __scMain
     /* 128C 8000068C 00000000 */   nop
     /* 1290 80000690 0C001CEC */  jal        osGetTime
     /* 1294 80000694 00000000 */   nop
-    /* 1298 80000698 3C018003 */  lui        $at, %hi(__osScFrameTimeHi)
-    /* 129C 8000069C AC22EB80 */  sw         $v0, %lo(__osScFrameTimeHi)($at)
-    /* 12A0 800006A0 AC23EB84 */  sw         $v1, %lo(__osScFrameTimeLo)($at)
+    /* 1298 80000698 3C018003 */  lui        $at, %hi(__osScFrameTime)
+    /* 129C 8000069C AC22EB80 */  sw         $v0, %lo(__osScFrameTime)($at)
+    /* 12A0 800006A0 AC23EB84 */  sw         $v1, %lo(__osScFrameTime + 0x4)($at)
     /* 12A4 800006A4 0C000220 */  jal        __scHandleRetrace
     /* 12A8 800006A8 8FA40020 */   lw        $a0, 0x20($sp)
     /* 12AC 800006AC 0C0001E0 */  jal        __scSchedule
@@ -40,10 +40,10 @@ glabel __scMain
     /* 12C8 800006C8 00000000 */   nop
     /* 12CC 800006CC 0C001CEC */  jal        osGetTime
     /* 12D0 800006D0 00000000 */   nop
-    /* 12D4 800006D4 3C088003 */  lui        $t0, %hi(__osScRetraceTimeHi)
-    /* 12D8 800006D8 8D08E8E0 */  lw         $t0, %lo(__osScRetraceTimeHi)($t0)
-    /* 12DC 800006DC 3C098003 */  lui        $t1, %hi(__osScRetraceTimeLo)
-    /* 12E0 800006E0 8D29E8E4 */  lw         $t1, %lo(__osScRetraceTimeLo)($t1)
+    /* 12D4 800006D4 3C088003 */  lui        $t0, %hi(__osScRetraceTime)
+    /* 12D8 800006D8 8D08E8E0 */  lw         $t0, %lo(__osScRetraceTime)($t0)
+    /* 12DC 800006DC 3C098003 */  lui        $t1, %hi(__osScRetraceTime + 0x4)
+    /* 12E0 800006E0 8D29E8E4 */  lw         $t1, %lo(__osScRetraceTime + 0x4)($t1)
     /* 12E4 800006E4 00485023 */  subu       $t2, $v0, $t0
     /* 12E8 800006E8 0069082B */  sltu       $at, $v1, $t1
     /* 12EC 800006EC 01415023 */  subu       $t2, $t2, $at

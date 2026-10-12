@@ -459,7 +459,7 @@
       "context_proof": "cloud/work/frontier/w24s/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "93602b5b0d21a04b1d8b1fc92b3f803058a8d3323435ceebf49e961df697c9b8",
+      "context_proof_sha256": "f272e50cd191129a598d5d29c08cb1e3f9a0889ac07e0dcc078c5dc2fc1d2ebf",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

@@ -74,7 +74,7 @@
   "include/rom_auto.h": "19c91f4227b58dc67b9cf73d3046d5516ffea3133be6c1f61be3b3cea257d027",
   "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
   "src/rom/rom_tu.h": "30402209f323b6cf1e55a23290f6deed941db12d70be398db00b6f6a1db0a656",
-  "symbol_addrs.us.txt": "0c8efa99e6eceba416334b1c1b5bc88cf593581172c0fa472294a846690e8c12",
+  "symbol_addrs.us.txt": "b5f580ad3c28abede14d9142aba060fe1ac173446f88831591c89ac77a471344",
   "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5",
-  "undefined_syms_auto.us.txt": "97ce6e345e95431a79f2013510161f3b77558fcefae01a98245446062c539a6c"
+  "undefined_syms_auto.us.txt": "00390901bb1c8bc84d34267dce5e234d6146592bb56f7d40adbd3ec878e9de69"
 }

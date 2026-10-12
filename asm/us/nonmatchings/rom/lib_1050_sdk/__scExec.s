@@ -21,9 +21,9 @@ glabel __scExec
     /* 1A60 80000E60 00000000 */   nop
     /* 1A64 80000E64 0C001CEC */  jal        osGetTime
     /* 1A68 80000E68 00000000 */   nop
-    /* 1A6C 80000E6C 3C018003 */  lui        $at, %hi(__osScAudioStartHi)
-    /* 1A70 80000E70 AC22EB78 */  sw         $v0, %lo(__osScAudioStartHi)($at)
-    /* 1A74 80000E74 AC23EB7C */  sw         $v1, %lo(__osScAudioStartLo)($at)
+    /* 1A6C 80000E6C 3C018003 */  lui        $at, %hi(__osScAudioStart)
+    /* 1A70 80000E70 AC22EB78 */  sw         $v0, %lo(__osScAudioStart)($at)
+    /* 1A74 80000E74 AC23EB7C */  sw         $v1, %lo(__osScAudioStart + 0x4)($at)
     /* 1A78 80000E78 8FA90024 */  lw         $t1, 0x24($sp)
     /* 1A7C 80000E7C 3C018003 */  lui        $at, %hi(__osScCurAudioTask)
     /* 1A80 80000E80 1000000D */  b          .L80000EB8
@@ -34,13 +34,13 @@ glabel __scExec
     /* 1A90 80000E90 316C0020 */  andi       $t4, $t3, 0x20
     /* 1A94 80000E94 15800008 */  bnez       $t4, .L80000EB8
     /* 1A98 80000E98 00000000 */   nop
-    /* 1A9C 80000E9C 3C0E8003 */  lui        $t6, %hi(__osScFrameTimeHi)
-    /* 1AA0 80000EA0 8DCEEB80 */  lw         $t6, %lo(__osScFrameTimeHi)($t6)
-    /* 1AA4 80000EA4 3C0F8003 */  lui        $t7, %hi(__osScFrameTimeLo)
-    /* 1AA8 80000EA8 8DEFEB84 */  lw         $t7, %lo(__osScFrameTimeLo)($t7)
-    /* 1AAC 80000EAC 3C018003 */  lui        $at, %hi(__osScRetraceTimeHi)
-    /* 1AB0 80000EB0 AC2EE8E0 */  sw         $t6, %lo(__osScRetraceTimeHi)($at)
-    /* 1AB4 80000EB4 AC2FE8E4 */  sw         $t7, %lo(__osScRetraceTimeLo)($at)
+    /* 1A9C 80000E9C 3C0E8003 */  lui        $t6, %hi(__osScFrameTime)
+    /* 1AA0 80000EA0 8DCEEB80 */  lw         $t6, %lo(__osScFrameTime)($t6)
+    /* 1AA4 80000EA4 3C0F8003 */  lui        $t7, %hi(__osScFrameTime + 0x4)
+    /* 1AA8 80000EA8 8DEFEB84 */  lw         $t7, %lo(__osScFrameTime + 0x4)($t7)
+    /* 1AAC 80000EAC 3C018003 */  lui        $at, %hi(__osScRetraceTime)
+    /* 1AB0 80000EB0 AC2EE8E0 */  sw         $t6, %lo(__osScRetraceTime)($at)
+    /* 1AB4 80000EB4 AC2FE8E4 */  sw         $t7, %lo(__osScRetraceTime + 0x4)($at)
   .L80000EB8:
     /* 1AB8 80000EB8 0C001E04 */  jal        osWritebackDCacheAll
     /* 1ABC 80000EBC 00000000 */   nop
