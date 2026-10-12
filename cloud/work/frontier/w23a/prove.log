@@ -1,0 +1,6 @@
+func_80018634 ok 
+== func_80018634 (target func_80018634) src=cloud/work/frontier/w23a/sources/func_80018634.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (215 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (215 rows) RESULT PASS 
+  with -Wab,-r4300_mul: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (215 rows)
+wrote spl/src/rom/lib_17dc0.c
+== all sources spliced
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
