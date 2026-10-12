@@ -29,7 +29,7 @@ extern volatile List16 D_80146160;
 extern u32 D_80144C48, D_80146100;
 extern char D_80152770[];
 int osRecvMesg(OSMesgQueue *, void **, int);
-int osJamMesg(OSMesgQueue *, void *, int);
+int osSendMesg(OSMesgQueue *, void *, int);
 void audio_reverb_update(u32 address, int tag);
 void func_800958B8(void);
 
@@ -40,7 +40,7 @@ void func_80095CF4(void)
 
 void func_80095CFC(void)
 {
-    osJamMesg((OSMesgQueue *)D_80152770, 0, 0);
+    osSendMesg((OSMesgQueue *)D_80152770, 0, 0);
 }
 
 void func_800960CC(u32 address)

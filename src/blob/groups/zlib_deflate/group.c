@@ -1558,7 +1558,7 @@ local block_state deflate_slow(s)
 extern void *audio_dma_sync(voidpf opaque, uInt size);
 extern void audio_reverb_update(voidpf opaque, voidpf ptr, int flag);
 extern int osRecvMesg(void *mq, void *msg, int flag);
-extern int osJamMesg(void *mq, void *msg, int flag);
+extern int osSendMesg(void *mq, void *msg, int flag);
 extern char D_80152770[];
 
 #define ZALLOC(size) audio_dma_sync(Z_NULL, (size))
@@ -1570,7 +1570,7 @@ __inline void zfree_locked(voidpf ptr)
 
     osRecvMesg(D_80152770, Z_NULL, 1);
     audio_reverb_update(heap, ptr, 0);
-    osJamMesg(D_80152770, Z_NULL, 0);
+    osSendMesg(D_80152770, Z_NULL, 0);
 }
 #define TRY_FREE(ptr) { if (ptr) zfree_locked(ptr); }
 

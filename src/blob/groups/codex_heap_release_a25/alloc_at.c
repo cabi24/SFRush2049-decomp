@@ -55,7 +55,7 @@ typedef struct Heap {
 extern s32 D_80152770;
 
 s32 osRecvMesg(void *mq, void **msg, s32 flags);
-s32 osJamMesg(void *mq, void *msg, s32 flags);
+s32 osSendMesg(void *mq, void *msg, s32 flags);
 Heap *func_80095F8C(u32 addr);
 
 void *NextMaxPath(u32 addr, u32 size) {
@@ -132,6 +132,6 @@ void *NextMaxPath(u32 addr, u32 size) {
     b->owner = 0;
     b->used = 1;
     b->tag = 0;
-    osJamMesg(&D_80152770, 0, 0);
+    osSendMesg(&D_80152770, 0, 0);
     return result;
 }

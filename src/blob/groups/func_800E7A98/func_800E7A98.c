@@ -21,7 +21,7 @@ typedef int s32; typedef unsigned int u32;
 #define NULL ((void *)0)
 typedef struct OSMesgQueue OSMesgQueue;
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 void audio_reverb_update(u32 address, s32 tag);
 
 extern OSMesgQueue D_80152770;
@@ -56,5 +56,5 @@ void func_800E7A98(Heap *heap)
         }
     }
     audio_reverb_update((u32)h, 1);
-    osJamMesg(&D_80152770, NULL, 0);
+    osSendMesg(&D_80152770, NULL, 0);
 }

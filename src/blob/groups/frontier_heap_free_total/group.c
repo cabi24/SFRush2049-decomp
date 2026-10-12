@@ -47,7 +47,7 @@ extern Heap *D_801527C8;
 extern OSMesgQueue D_80152770;
 
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 
 u32 func_800BAF90(Heap *heap);
 
@@ -65,7 +65,7 @@ u32 audio_output_setup(Heap *heap)
 
     osRecvMesg(&D_80152770, 0, 1);
     sum = func_800BAF90(heap);
-    osJamMesg(&D_80152770, 0, 0);
+    osSendMesg(&D_80152770, 0, 0);
     return sum;
 }
 

@@ -189,7 +189,7 @@ extern Pad16 D_80156CF0[];
 extern s8 D_80157244;
 extern s32 D_80142728, D_801427A8;
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 Msg *func_80091B00(void);
 void func_80091AF0(void);
 void func_80091AF8(void);
@@ -217,7 +217,7 @@ void post_msg_a(void) {
     temp_v0 = func_80091B00();
     sp1C = temp_v0;
     temp_v0->type = 1; func_80091AF8();
-    osJamMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
+    osSendMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
 }
 
 void post_msg_b(void) {
@@ -228,7 +228,7 @@ void post_msg_b(void) {
     temp_v0 = func_80091B00();
     sp1C = temp_v0;
     temp_v0->type = 1; func_80091AF8();
-    osJamMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
+    osSendMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
 }
 
 

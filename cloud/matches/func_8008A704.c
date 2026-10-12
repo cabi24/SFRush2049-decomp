@@ -27,12 +27,12 @@ extern s8 D_8011194C;            /* lock initialised */
 
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 
 static void func_8008A6FC(void) {
     D_8011194C = 1;
     osCreateMesgQueue(&D_801497D0, &D_801527E4, 1);
-    osJamMesg(&D_801497D0, 0, 0);
+    osSendMesg(&D_801497D0, 0, 0);
 }
 
 void func_8008A704(void) {

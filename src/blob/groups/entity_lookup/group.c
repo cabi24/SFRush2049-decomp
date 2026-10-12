@@ -45,7 +45,7 @@ extern s32 D_80142728;
 extern s32 D_801427A8;
 
 s32 osRecvMesg();
-s32 osJamMesg();
+s32 osSendMesg();
 s32 entity_state_check();
 
 Entity *func_80091BA8(s32 h);
@@ -108,11 +108,11 @@ void results_screen_update(s32 h)
     osRecvMesg(&D_80142728, 0, 1);
     e = func_80091BA8(h);
     if (e == 0) {
-        osJamMesg(&D_80142728, 0, 0);
+        osSendMesg(&D_80142728, 0, 0);
         return;
     }
     func_800BF01C(e->cam);
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
     scheduler_recv(h);
 }
 
@@ -123,11 +123,11 @@ s32 leaderboard_update(s32 h)
     osRecvMesg(&D_80142728, 0, 1);
     e = func_80091BA8(h);
     if (e == 0) {
-        osJamMesg(&D_80142728, 0, 0);
+        osSendMesg(&D_80142728, 0, 0);
         return 0;
     }
     func_800BF01C(e->cam);
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
     return results_time_display(h);
 }
 
@@ -149,7 +149,7 @@ s32 results_time_display(s32 h)
     } else {
         r = 0;
     }
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
     return r;
 }
 
@@ -175,7 +175,7 @@ void camera_clip_planes(s32 h, f32 *p, s32 unused, f32 a, f32 b)
         }
         c->extra = b;
     }
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
 }
 
 void scheduler_recv(s32 h)
@@ -191,9 +191,9 @@ void scheduler_recv(s32 h)
         m->ent = e;
         e->msgCount++;
     }
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
     if (m != 0) {
-        osJamMesg(&D_801427A8, m, 0);
+        osSendMesg(&D_801427A8, m, 0);
     }
 }
 

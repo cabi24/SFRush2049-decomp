@@ -52,7 +52,7 @@ typedef struct OSMesgQueue OSMesgQueue;
 extern Heap *D_801527C8;
 extern s32 D_80152770;
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 void audio_reverb_update(u32 address, s32 tag);
 void *func_800A47C0(void *dst, const void *src, u32 n);
 
@@ -138,5 +138,5 @@ void car_damage_visual(Heap *hint) {
         }
         block = after;
     }
-    osJamMesg((OSMesgQueue *)&D_80152770, NULL, 0);
+    osSendMesg((OSMesgQueue *)&D_80152770, NULL, 0);
 }

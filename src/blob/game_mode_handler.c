@@ -20,7 +20,7 @@ typedef unsigned int u32;
 typedef void *OSMesg;
 typedef struct OSMesgQueue OSMesgQueue;
 
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flag);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flag);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flag);
 void viUpdateTime(void);
 void process_inputs(void);
@@ -43,7 +43,7 @@ void game_mode_handler(void)
 
     D_80035472 = 1;
     sm.type = 2750;
-    osJamMesg(&D_8002ECF8, &sm, 1);
+    osSendMesg(&D_8002ECF8, &sm, 1);
     D_80035471 = 0;
     if (osRecvMesg(&D_8002ECC0, &msg, 0) == -1) {}
     osRecvMesg(&D_8002ECC0, &msg, 1);

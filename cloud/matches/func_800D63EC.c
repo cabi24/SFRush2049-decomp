@@ -31,7 +31,7 @@ extern OSMesgQueue D_80142728;
 extern List D_80146170,D_80146188;
 extern void *D_8011025C;
 extern int osRecvMesg(OSMesgQueue *,void **,int);
-extern int osJamMesg(OSMesgQueue *,void *,int);
+extern int osSendMesg(OSMesgQueue *,void *,int);
 extern void func_8009211C(List *,Link *);
 extern void func_80091FBC(List *,Link *,Link *);
 static Packet *packet_alloc(void) {
@@ -52,7 +52,7 @@ static void packet_lock(void) {
 }
 
 static void packet_unlock(void) {
-    osJamMesg(&D_80142728,0,0);
+    osSendMesg(&D_80142728,0,0);
 }
 
 Packet *func_800D63EC(Vec3 *a,Vec3 *b,Vec3 *c,Vec3 *d) {

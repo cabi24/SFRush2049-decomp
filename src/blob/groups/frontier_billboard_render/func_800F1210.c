@@ -18,7 +18,7 @@ extern void sound_handles_array_clear(s8 *);
 extern void func_800F1114(void);
 extern void *ambient_sound_set(s32,s32,s32,s32,s32,s32,s32,s32);
 extern void viScheduleTick(float);
-extern s32 osRecvMesg(void *,void *,s32), osJamMesg(void *,void *,s32);
+extern s32 osRecvMesg(void *,void *,s32), osSendMesg(void *,void *,s32);
 extern s32 slot_state_setup(s32);
 extern s32 object_manager_update(char *,s32), object_bytes_sum_global(void);
 extern void func_800F0F44(s32), func_800F0914(void);
@@ -96,17 +96,17 @@ void func_800F1210(s32 mode)
         break;
     case 4:
         if (D_80149798[0] == 0) {
-            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(13); osJamMesg(D_801461D0,0,0);
+            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(13); osSendMesg(D_801461D0,0,0);
             width = object_manager_update(D_80120600,-1); height = object_bytes_sum_global();
             D_80149798[0] = ambient_sound_set(152-width/2,6,168+width/2,14+height,176,0,0,0);
         }
         if (D_80149798[1] == 0) {
-            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(10); osJamMesg(D_801461D0,0,0);
+            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(10); osSendMesg(D_801461D0,0,0);
             height = object_bytes_sum_global();
             D_80149798[1] = ambient_sound_set(91,51,229,59+height*3,176,0,0,0);
         }
         if (D_80149798[2] == 0) {
-            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(10); osJamMesg(D_801461D0,0,0);
+            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(10); osSendMesg(D_801461D0,0,0);
             height = object_bytes_sum_global();
             D_80149798[2] = ambient_sound_set(91,106,229,114+height*5,176,0,0,0);
         }
@@ -119,7 +119,7 @@ void func_800F1210(s32 mode)
         if (D_8014A110 == 2) D_801148D0 = 2; else D_801148D0 = 0;
         func_800F0914();
         if (D_80149778[0] == 0) {
-            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(13); osJamMesg(D_801461D0,0,0);
+            osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(13); osSendMesg(D_801461D0,0,0);
             width = object_manager_update(countdown_state.strings[countdown_state.info->index+D_801148D0],-1);
             height = object_bytes_sum_global();
             D_80149778[0] = ambient_sound_set(152-width/2,6,168+width/2,14+height,176,0,0,0);

@@ -22,9 +22,9 @@ typedef struct OSMesgQueue {OSThread *mtqueue,*fullqueue;s32 validCount,first,ms
 typedef struct OSContStatus {u16 type;u8 status,errno;} OSContStatus;
 typedef struct Rumble16 {u8 flag;u8 pad[15];} Rumble16;
 extern void osCreateMesgQueue(OSMesgQueue *,OSMesg *,s32);
-extern s32 osJamMesg(OSMesgQueue *,OSMesg,s32),osRecvMesg(OSMesgQueue *,OSMesg *,s32);
-extern void osSetEventMesgAlt(s32,OSMesgQueue *,OSMesg);  /* SDK osSetEventMesg */
-extern s32 __osContBuildPacket(OSMesgQueue *,u8 *,OSContStatus *);  /* SDK osContInit */
+extern s32 osSendMesg(OSMesgQueue *,OSMesg,s32),osRecvMesg(OSMesgQueue *,OSMesg *,s32);
+extern void osSetEventMesg(s32,OSMesgQueue *,OSMesg);  /* SDK osSetEventMesg */
+extern s32 osContInit(OSMesgQueue *,u8 *,OSContStatus *);  /* SDK osContInit */
 extern s8 D_8011194C;
 extern OSMesgQueue D_801497D0;
 extern OSMesg D_801527E4;
@@ -38,7 +38,7 @@ static void pak_queue_init(void)
 {
     if (!D_8011194C) {
         D_8011194C = 1; osCreateMesgQueue(&D_801497D0,&D_801527E4,1);
-        osJamMesg(&D_801497D0,0,0);
+        osSendMesg(&D_801497D0,0,0);
     }
 }
 
@@ -52,7 +52,7 @@ static void pak_lock(void)
 
 static void pak_unlock(void)
 {
-    osJamMesg(&D_801497D0,0,0);
+    osSendMesg(&D_801497D0,0,0);
 }
 
 void func_800E7710(void)
@@ -62,9 +62,9 @@ void func_800E7710(void)
 
     osCreateMesgQueue(&D_80035458, D_80150F18, 8);
     si_message = 5;
-    osSetEventMesgAlt(5, &D_80035458, &si_message);
+    osSetEventMesg(5, &D_80035458, &si_message);
     pak_lock();
-    __osContBuildPacket(&D_80035458, &D_80111950, D_80149440);
+    osContInit(&D_80035458, &D_80111950, D_80149440);
     pak_unlock();
     for (i = 0; i < 4; i++) {
         D_80156CF0[i].flag = 0;

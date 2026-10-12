@@ -10,7 +10,7 @@ extern s8 D_8011ED04,D_8011ED00;
 extern u8 D_8038A400[];
 typedef struct RaceEntry {u32 allocation;u8 pad4[20];} RaceEntry;
 extern RaceEntry D_8013FEF4[];
-s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osJamMesg(OSMesgQueue *,void *,s32);
+s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osSendMesg(OSMesgQueue *,void *,s32);
 void func_80095EC0(void *,u32);
 void *func_80095F8C(u32 arg0) {
     s32 var_v0;
@@ -78,18 +78,18 @@ __inline void audio_effect_process(u32 address) {
  s32 u0, u1, u2, u3;
  osRecvMesg((OSMesgQueue *)&D_80152770,NULL,1);
  audio_reverb_update(address,0);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
 }
 void synced_model_render(u32 address) {
  osRecvMesg((OSMesgQueue *)&D_80152770,NULL,1);
  audio_reverb_update(address,0);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
 }
 void MP_TargetSpeed(void) {
  if(D_8011ED04) {
  osRecvMesg((OSMesgQueue *)&D_80152770,NULL,1);
  audio_reverb_update((u32)D_8038A400,0);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
  D_8011ED04=0;
  }
 }
@@ -97,7 +97,7 @@ void assign_default_paths(void) {
  if(D_8011ED00) {
  osRecvMesg((OSMesgQueue *)&D_80152770,NULL,1);
  audio_reverb_update((u32)D_8038A400,0);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
  D_8011ED00=0;
  }
 }
@@ -106,7 +106,7 @@ void stat_race_end(s32 index) {
  u32 address=entry->allocation;
  osRecvMesg((OSMesgQueue *)&D_80152770,NULL,1);
  audio_reverb_update(address,0);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
 }
 void *audio_buffer_sync(u32 address) {
  void *owner,*block,*result;
@@ -114,7 +114,7 @@ void *audio_buffer_sync(u32 address) {
  owner=func_80095F8C(address);
  block=func_80095EF4(owner,address,0);
  result=M2C_FIELD(block,void **,12);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
  return result;
 }
 void object_counter_decrement(u32 address) {
@@ -124,7 +124,7 @@ void object_counter_decrement(u32 address) {
  block=func_80095EF4(owner,address,0);
  count=M2C_FIELD(block,u8 *,22);
  if(count>0)M2C_FIELD(block,u8 *,22)=count-1;
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
 }
 void object_counter_increment(u32 address) {
  void *owner,*block; s32 count;
@@ -133,7 +133,7 @@ void object_counter_increment(u32 address) {
  block=func_80095EF4(owner,address,0);
  count=M2C_FIELD(block,u8 *,22);
  if(count<255)M2C_FIELD(block,u8 *,22)=count+1;
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
 }
 
 /*
@@ -259,7 +259,7 @@ void menu_item_select(u32 address, u32 desired) {
         }
         block->size = desired;
     }
-    osJamMesg((OSMesgQueue *)&D_80152770, NULL, 0);
+    osSendMesg((OSMesgQueue *)&D_80152770, NULL, 0);
 }
 
 /* w8a: func_800C885C -- frees the two cached audio heap handles D_8011025C / D_80110260 (the first half of

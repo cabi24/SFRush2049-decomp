@@ -48,7 +48,7 @@ typedef struct Object24 {u8 p0,p1,kind,p3;u32 value;f32 f8,f12,f16;Node68 *node;
 typedef struct Queue24 {u32 opaque[6];} Queue24;
 extern List D_80143FF8,D_80144C50;extern u32 D_80110254,D_801460F8,D_80146104;
 extern Queue24 D_80142728,D_801427A8;extern u8 D_8011F5CC[];
-s32 osRecvMesg(Queue24 *,void **,s32);s32 osJamMesg(Queue24 *,void *,s32);
+s32 osRecvMesg(Queue24 *,void **,s32);s32 osSendMesg(Queue24 *,void *,s32);
 Object24 *func_80091B00(void);
 void func_8009211C(List *,Link *);void func_80091FBC(List *,Link *,Link *);
 Node68 *func_80092278(void) {
@@ -77,8 +77,8 @@ u32 entity_flags_apply(u32 index,u32 other,u32 value,u8 mode) {
  object->f12=0.0f;
  object->f16=-2.0f;
  result=object->node->tag;
- osJamMesg(&D_80142728,0,0);
- osJamMesg(&D_801427A8,object,0);
+ osSendMesg(&D_80142728,0,0);
+ osSendMesg(&D_801427A8,object,0);
  return result;
 }
 u32 high_scores_display(u32 index,u32 other,u32 value,u8 mode,f32 x,f32 y,f32 z) {
@@ -94,8 +94,8 @@ u32 high_scores_display(u32 index,u32 other,u32 value,u8 mode,f32 x,f32 y,f32 z)
  object->f12=(y<-1.0f)?-1.0f:((1.0f<y)?1.0f:y);
  object->f16=(z<-1.0f)?-1.0f:((1.0f<z)?1.0f:z);
  result=object->node->tag;
- osJamMesg(&D_80142728,0,0);
- osJamMesg(&D_801427A8,object,0);
+ osSendMesg(&D_80142728,0,0);
+ osSendMesg(&D_801427A8,object,0);
  return result;
 }
 
@@ -108,7 +108,7 @@ s32 camera_target_track(f32 *pos,f32 a1,f32 volume,f32 a3,f32 x,f32 y,u32 index,
  if(D_80110260==0)return -1;
  osRecvMesg(&D_80142728,0,1);
  cam=func_800AED20();
- if(cam==0){osJamMesg(&D_80142728,0,0);return -1;}
+ if(cam==0){osSendMesg(&D_80142728,0,0);return -1;}
  cam->pos[0]=pos[0];
  cam->pos[1]=pos[1];
  cam->pos[2]=pos[2];
@@ -127,11 +127,11 @@ s32 camera_target_track(f32 *pos,f32 a1,f32 volume,f32 a3,f32 x,f32 y,u32 index,
  object->f16=-2.0f;
  object->node->p64=(u32)cam;
  result=cam->tag=object->node->tag;
- osJamMesg(&D_80142728,0,0);
- osJamMesg(&D_801427A8,object,0);
+ osSendMesg(&D_80142728,0,0);
+ osSendMesg(&D_801427A8,object,0);
  osRecvMesg(&D_80142728,0,1);
  if(cam->active==0){func_80091FBC(&D_801461E8,(Link*)cam,D_801461E8.head);cam->queued=1;}
- osJamMesg(&D_80142728,0,0);
+ osSendMesg(&D_80142728,0,0);
  return result;
 }
 void func_8009211C(List *list, Link *object) {

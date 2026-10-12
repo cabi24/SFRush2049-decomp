@@ -58,7 +58,7 @@ extern char D_80142728[];
 extern EventList D_80149860;
 extern f32 D_80152748;
 int osRecvMesg(void *, void *, int);
-int osJamMesg(void *, void *, int);
+int osSendMesg(void *, void *, int);
 Event *func_800D18D8(void);
 void func_80091FBC(EventList *, Event *, Event *);
 
@@ -95,6 +95,6 @@ u32 car_stats_display(int type, f32 delay, int func, int data, int nargs, ...)
     func_80091FBC(&D_80149860, e, D_80149860.head);
     e->active = 1;
     handle = e->handle;
-    osJamMesg(D_80142728, 0, 0);
+    osSendMesg(D_80142728, 0, 0);
     return handle;
 }

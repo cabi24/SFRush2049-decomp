@@ -32,7 +32,7 @@ extern char D_80143F20[5][10];      /* row time strings */
 extern s8 *D_80149778[2];
 extern char D_801461D0[];
 extern s32 sprintf(char *, const char *, ...);
-extern s32 osRecvMesg(void *, void *, s32), osJamMesg(void *, void *, s32);
+extern s32 osRecvMesg(void *, void *, s32), osSendMesg(void *, void *, s32);
 extern s32 slot_state_setup(s32);
 extern s32 object_manager_update(char *, s32), object_bytes_sum_global(void);
 extern void crowd_cheer_play(void *, s32, s32, s32, s32);
@@ -77,7 +77,7 @@ void func_800F0914(void)
     if (D_80149778[0] != 0) {
         osRecvMesg(D_801461D0, 0, 1);
         previous = slot_state_setup(13);
-        osJamMesg(D_801461D0, 0, 0);
+        osSendMesg(D_801461D0, 0, 0);
         width = object_manager_update(countdown_state.strings[countdown_state.info->index + D_801148D0], -1);
         height = object_bytes_sum_global();
         crowd_cheer_play(D_80149778[0], 152 - width / 2, 6, 168 + width / 2, 14 + height);

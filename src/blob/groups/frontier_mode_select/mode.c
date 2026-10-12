@@ -20,7 +20,7 @@ extern s32 D_80146104;
 extern Msg D_80142DD8[128];
 extern s32 D_80142728, D_801427A8;
 s32 osRecvMesg(void *,void *,s32);
-s32 osJamMesg(void *,void *,s32);
+s32 osSendMesg(void *,void *,s32);
 Entity *func_80091BA8(s32 h);
 Msg *func_80091B00(void);
 void entity_transform_calc(s32 h,f32 x,f32 y,f32 z,f32 w);
@@ -28,7 +28,7 @@ void client_sync(s32 h,f32 opacity);
 __inline void entity_hierarchy_update(s32 h,f32 value) {
     osRecvMesg(&D_80142728,0,1);
     entity_transform_calc(h,-2.0f,-2.0f,-2.0f,value);
-    osJamMesg(&D_80142728,0,0);
+    osSendMesg(&D_80142728,0,0);
 }
 void scheduler_recv(s32 h);
 typedef struct LayerState {s32 handle;f32 level,style;u8 other12[8];} LayerState;

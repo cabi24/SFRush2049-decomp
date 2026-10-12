@@ -44,7 +44,7 @@ extern u32 D_8011025C, D_80110260, D_80110244, D_80110248, D_80110270;
 extern s32 D_801427A8;
 void init_wait_completion(void);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 ShutdownMsg *func_80091B00(void);
 
 void func_800960CC(u32 address);
@@ -84,7 +84,7 @@ void post_type1(void) {
     temp_v0 = func_80091B00();
     sp1C = temp_v0;
     temp_v0->type = 1; func_80091AF8();
-    osJamMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
+    osSendMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
 }
 
 void post_type7(void) {
@@ -95,6 +95,6 @@ void post_type7(void) {
     temp_v0 = func_80091B00();
     sp1C = temp_v0;
     temp_v0->type = 7; func_80091AF8();
-    osJamMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
+    osSendMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
 }
 

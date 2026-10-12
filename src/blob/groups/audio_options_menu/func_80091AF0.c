@@ -8,7 +8,7 @@ typedef void *OSMesg;
 #define NULL ((void *)0)
 extern s32 D_80142728;
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 
 void func_80091AF0(void) {
     osRecvMesg((OSMesgQueue *) &D_80142728, NULL, 1);

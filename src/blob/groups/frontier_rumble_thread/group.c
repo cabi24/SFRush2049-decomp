@@ -80,16 +80,16 @@ extern Controller D_80144030[4];
 
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 void osScAddClient(void *sc, OSScClient *c, OSMesgQueue *mq);
-s32 osMotorInit(void *pfs, s32 on);
-s32 osMotorStart(OSMesgQueue *mq, void *pfs, s32 port);
+s32 __osMotorAccess(void *pfs, s32 on);
+s32 osMotorInit(OSMesgQueue *mq, void *pfs, s32 port);
 void sync_release_video(void);
 
 static void func_8008A6FC(void) {
     D_8011194C = 1;
     osCreateMesgQueue(&D_801497D0, &D_801527E4, 1);
-    osJamMesg(&D_801497D0, 0, 0);
+    osSendMesg(&D_801497D0, 0, 0);
 }
 
 void func_8008A704(void) {
@@ -102,7 +102,7 @@ void func_8008A704(void) {
 }
 
 static void func_8008A774(void) {
-    osJamMesg(&D_801497D0, 0, 0);
+    osSendMesg(&D_801497D0, 0, 0);
 }
 
 void audio_queue_process(void *arg) {
@@ -141,15 +141,15 @@ skip:
 off:
             if (D_80144030[i].motorOn) {
                 if (!D_8011EAE4) {
-                    osMotorStart(&D_80035458, D_80144030[i].pfs, i);
+                    osMotorInit(&D_80035458, D_80144030[i].pfs, i);
                 }
                 while (1) {
-                    if (osMotorInit(D_80144030[i].pfs, 0) == 0) {
+                    if (__osMotorAccess(D_80144030[i].pfs, 0) == 0) {
                         D_80144030[i].motorOn = 0;
                         break;
                     }
                     if (retried) break;
-                    if (osMotorStart(&D_80035458, D_80144030[i].pfs, i) != 0) break;
+                    if (osMotorInit(&D_80035458, D_80144030[i].pfs, i) != 0) break;
                     retried = 1;
                 }
             }
@@ -159,12 +159,12 @@ check:
 on:
             if (!D_80144030[i].motorOn) {
                 while (1) {
-                    if (osMotorInit(D_80144030[i].pfs, 1) == 0) {
+                    if (__osMotorAccess(D_80144030[i].pfs, 1) == 0) {
                         D_80144030[i].motorOn = 1;
                         break;
                     }
                     if (retried) break;
-                    if (osMotorStart(&D_80035458, D_80144030[i].pfs, i) != 0) break;
+                    if (osMotorInit(&D_80035458, D_80144030[i].pfs, i) != 0) break;
                     retried = 1;
                 }
             }
@@ -178,5 +178,5 @@ check2:
 }
 
 void sync_release_video(void) {
-    osJamMesg(&D_801497D0, 0, 0);
+    osSendMesg(&D_801497D0, 0, 0);
 }

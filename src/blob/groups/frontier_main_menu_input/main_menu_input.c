@@ -30,7 +30,7 @@ typedef struct Node {
 typedef struct OSMesgQueue OSMesgQueue;
 extern OSMesgQueue D_80142728;
 s32 osRecvMesg(OSMesgQueue *mq, void *msg, s32 flag);
-s32 osJamMesg(OSMesgQueue *mq, void *msg, s32 flag);
+s32 osSendMesg(OSMesgQueue *mq, void *msg, s32 flag);
 extern int __unit_dead[];
 
 /* Empty in retail (`jr ra; nop`) but still called by `jal`, and its callers know it clobbers nothing.
@@ -67,6 +67,6 @@ void main_menu_input(Node *node, f32 *a, f32 *b, f32 *c, f32 *d) {
         node->d[0] = d[0];
         node->d[1] = d[1];
         node->d[2] = d[2];
-        osJamMesg(&D_80142728, 0, 0);
+        osSendMesg(&D_80142728, 0, 0);
     }
 }

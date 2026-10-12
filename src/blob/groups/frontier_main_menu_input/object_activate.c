@@ -45,7 +45,7 @@ extern List D_80146188;
 extern s16 D_8014A108;
 extern Entry D_8014A118[];
 s32 osRecvMesg(OSMesgQueue *mq, void *msg, s32 flag);
-s32 osJamMesg(OSMesgQueue *mq, void *msg, s32 flag);
+s32 osSendMesg(OSMesgQueue *mq, void *msg, s32 flag);
 void func_8009211C(List *list, s32 *object);
 void func_80091FBC(List *list, s32 *object, Link *before);
 
@@ -64,7 +64,7 @@ __inline void object_activate(s32 *arg0)
     }
     func_80091FBC(&D_80146170, arg0, D_80146170.head);
     ((s8 *)arg0)[8] = 1;
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
 }
 
 void func_800D5374(void)

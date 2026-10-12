@@ -201,7 +201,7 @@ extern config configuration_table[10];
 #define NIL 0
 extern void *audio_dma_sync(voidpf opaque, uInt size);
 extern int osRecvMesg(void *mq, void *msg, int flag);
-extern int osJamMesg(void *mq, void *msg, int flag);
+extern int osSendMesg(void *mq, void *msg, int flag);
 extern void audio_reverb_update(unsigned int address, int tag);
 extern char D_80152770[];
 
@@ -209,7 +209,7 @@ __inline void heap_free_locked(unsigned int address)
 {
     osRecvMesg(D_80152770, 0, 1);
     audio_reverb_update(address, 0);
-    osJamMesg(D_80152770, 0, 0);
+    osSendMesg(D_80152770, 0, 0);
 }
 __inline void mem_free(unsigned int address)
 {

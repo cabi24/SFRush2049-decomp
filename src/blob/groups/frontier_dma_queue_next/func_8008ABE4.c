@@ -35,13 +35,13 @@ typedef struct {
 extern DmaList D_80153F10;
 extern OSIoMesg D_80161438;
 extern OSMesgQueue D_80153E68;
-s32 __osPiRawStartDma(OSIoMesg *mb, s32 priority, s32 direction, u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *mq);
+s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction, u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *mq);
 
 s32 func_8008ABE4(void)
 {
     if (D_80153F10.next < D_80153F10.count) {
         D_80153F10.next++;
-        __osPiRawStartDma(&D_80161438, 1, 0, D_80153F10.reqs[D_80153F10.next - 1].devAddr,
+        osPiStartDma(&D_80161438, 1, 0, D_80153F10.reqs[D_80153F10.next - 1].devAddr,
                           D_80153F10.reqs[D_80153F10.next - 1].vAddr, D_80153F10.reqs[D_80153F10.next - 1].size,
                           &D_80153E68);
         return 1;

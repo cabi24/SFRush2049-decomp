@@ -40,7 +40,7 @@ extern char D_80142728[];
 extern Event *D_80110270;
 extern u32 D_80146104;
 int osRecvMesg(void *, void *, int);
-int osJamMesg(void *, void *, int);
+int osSendMesg(void *, void *, int);
 
 static Event *func_800FE79C(s32 h)
 {
@@ -62,5 +62,5 @@ void game_timer_pause(s32 h)
     if (e != 0) {
         e->flag14 = 1;
     }
-    osJamMesg(D_80142728, 0, 0);
+    osSendMesg(D_80142728, 0, 0);
 }

@@ -70,7 +70,7 @@ extern s8 D_80156994;
 extern u32 D_80000318;
 
 s32 osRecvMesg();
-s32 osJamMesg();
+s32 osSendMesg();
 void osCreateMesgQueue();
 void *memset();
 
@@ -169,7 +169,7 @@ void *audio_dma_sync(Heap *heap, u32 size)
 
     osRecvMesg(D_80152770, 0, 1);
     p = audio_helper(func_80097468(heap), size, 0, 0);
-    osJamMesg(D_80152770, 0, 0);
+    osSendMesg(D_80152770, 0, 0);
     return p;
 }
 
@@ -211,7 +211,7 @@ void *audio_task_complete(Heap *heap, u32 size)
         t = t->next;
     }
     *slot = (u32)audio_helper(h, size, slot, 0);
-    osJamMesg(D_80152770, 0, 0);
+    osSendMesg(D_80152770, 0, 0);
     return slot;
 }
 void *func_800E7C2C(Heap *heap, u32 size, u16 count, u16 a)
@@ -229,7 +229,7 @@ void *func_800E7C2C(Heap *heap, u32 size, u16 count, u16 a)
             break;
         }
     }
-    osJamMesg(D_80152770, 0, 0);
+    osSendMesg(D_80152770, 0, 0);
     return h;
 }
 
@@ -252,7 +252,7 @@ void func_800E7D0C(u16 count, u16 a)
     if (D_80116488 == 0) {
         D_80116488 = 1;
         osCreateMesgQueue(D_80152770, &D_801527A0, 1);
-        osJamMesg(D_80152770, 0, 0);
+        osSendMesg(D_80152770, 0, 0);
     }
     func_800E7D04();
     func_800E7B44(D_801527C8, count, a);

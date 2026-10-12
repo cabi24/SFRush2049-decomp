@@ -21,7 +21,7 @@ typedef struct {
 } OSMesgQueue;
 
 void osCreateMesgQueue(OSMesgQueue *, OSMesg *, s32);
-s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
+s32 osSendMesg(OSMesgQueue *, OSMesg, s32);
 extern s8 D_801147C0;
 extern s8 D_80149DA0;
 extern OSMesgQueue D_801461D0;
@@ -34,7 +34,7 @@ void sync_init_conditional(void)
     if (!D_801147C0) {
         D_801147C0 = initialized;
         osCreateMesgQueue(&D_801461D0, &D_801461FC, 1);
-        osJamMesg(&D_801461D0, (OSMesg)0, 0);
+        osSendMesg(&D_801461D0, (OSMesg)0, 0);
     }
     D_80149DA0 = -1;
 }

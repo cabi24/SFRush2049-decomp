@@ -20,7 +20,7 @@ typedef struct OSMesgQueue OSMesgQueue;
 
 extern OSMesgQueue D_801497A8;
 extern int osRecvMesg(OSMesgQueue *, void **, int);
-extern int osJamMesg(OSMesgQueue *, void *, int);
+extern int osSendMesg(OSMesgQueue *, void *, int);
 
 extern s32 D_80156944;      /* all pads: held mask */
 extern s32 D_80149784;      /* all pads: repeat-pressed mask */
@@ -44,5 +44,5 @@ void audio_occlusion(void)
         D_80156978[i] = 0;
         D_80156998[i] = 0;
     }
-    osJamMesg(&D_801497A8, 0, 0);
+    osSendMesg(&D_801497A8, 0, 0);
 }

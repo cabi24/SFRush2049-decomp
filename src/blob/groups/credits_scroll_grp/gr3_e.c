@@ -97,7 +97,7 @@ void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
                     void *arg, void *sp, OSPri priority);
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
-void osSetThreadPri(void *mode);
+void osViSetMode(void *mode);
 OSPri osGetThreadPri(OSThread *thread);
 OSId osGetThreadId(OSThread *thread);
 OSThread *__osPopThread(OSThread **queue);
@@ -114,9 +114,9 @@ typedef struct OSMesgQueue_s {
     OSMesg *msg;
 } OSMesgQueue;
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
-s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
-s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
 s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 typedef struct OSIoMesgHdr {
     u16 type;
     u8 pri;
@@ -143,8 +143,8 @@ typedef struct OSPiHandle {
 } OSPiHandle;
 u32 osPiGetStatus(void);
 s32 osPiWriteIo(u32 devAddr, u32 data);
-s32 osPiReadIo(u32 devAddr, u32 *data);
-s32 osPiStartDma(s32 direction, u32 devAddr, void *dramAddr, u32 size);
+s32 __osSiRawReadIo(u32 devAddr, u32 *data);
+s32 __osPiRawStartDma(s32 direction, u32 devAddr, void *dramAddr, u32 size);
 void osCreatePiManager(s32 pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgCnt);
 OSPiHandle *osCartRomInit(void);
 s32 osAiSetNextBuffer(void *addr, u32 size);
@@ -196,11 +196,8 @@ s32 osPfsChecker(OSPfs *pfs);
 s32 osPfsRepairId(OSPfs *pfs);
 s32 osPfsAllocateFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                       u8 *gameName, u8 *extName, s32 size, s32 *fileNo);
-s32 osPfsFindFile(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
+s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
                   __OSInodeUnit *nextPage);
-s32 osPfsDeleteFile(OSPfs *pfs, s32 fileNo, OSPfsState *state);
-s32 osPfsReadWriteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                       u8 *gameName, u8 *extName, int size, s32 *fileNo);
 s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state);
 s32 osPfsGetLabel(OSPfs *pfs, u8 *label, s32 *length);
 s32 osPfsSetLabel(OSPfs *pfs, u8 *label);
@@ -208,9 +205,8 @@ s32 osPfsFreeBlocks(OSPfs *pfs, s32 *freeBytes);
 s32 osPfsNumFiles(OSPfs *pfs, s32 *maxFiles, s32 *usedFiles);
 s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);
 s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode, u8 flag, u8 bank);
-s32 osPfsAllocate(OSPfs *pfs, u16 companyCode, u32 gameCode,
+s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                    u8 *gameName, u8 *extName, s32 *fileNo);
-OSId osPfsReAllocate(OSThread *thread);
 typedef struct OSContStatus {
     u16 type;
     u8 status;
@@ -232,7 +228,7 @@ typedef struct OSContRamIo {
 s32 osContInit(OSMesgQueue *mq, u8 *pattern, OSContStatus *status);
 s32 osContReset(OSMesgQueue *mq, OSContStatus *status);
 s32 osContStartQuery(OSMesgQueue *mq);
-s32 osContStartReadData(OSMesgQueue *mq, int channel);
+s32 __osPfsGetStatus(OSMesgQueue *mq, int channel);
 s32 osContSetCh(u8 num);
 void osContGetQuery(OSContStatus *status);
 void osContGetReadData(OSContPad *pad);
@@ -251,9 +247,9 @@ s32 osSetTimer(OSTimer *timer, OSTime countdown, OSTime interval,
                OSMesgQueue *mq, OSMesg msg);
 s32 osStopTimer(OSTimer *timer);
 void osInvalDCache(void *vaddr, s32 nbytes);
-void osInvalICache(void *vaddr, s32 nbytes);
+void osWritebackDCacheAll(void *vaddr, s32 nbytes);
 void osWritebackDCache(void *vaddr, s32 nbytes);
-void osWritebackDCacheAll(void);
+void rmonPrintf(void);
 void bzero(void *s, s32 n);
 void bcopy(const void *src, void *dst, s32 len);
 u32 osVirtualToPhysical(void *vaddr);
@@ -350,11 +346,11 @@ typedef struct {
 } OSSched;
 extern void __scAppendList(OSSched *sc, OSScTask *task);
 extern void __scExec(OSSched *sc, OSScTask *rspTask, OSScTask *rdpTask);
-extern void osViSetMode(void *mode);
+extern void osViSwapBuffer(void *mode);
 extern void display_mode_tick(void);
 extern u8 gInflateBufferA[0x1000];
 extern u8 gInflateBufferB[0x1000];
-extern s32 __osPiRawStartDma(OSIoMesg *mb, s32 priority, s32 direction,
+extern s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
                               u32 devAddr, void *dramAddr, u32 size,
                               OSMesgQueue *mq);
 typedef struct {
@@ -365,12 +361,12 @@ typedef struct {
 } __OSPiMgrState;
 extern __OSPiMgrState __osPiMgrState;
 extern void osPiInit(void);
-extern void osPiGetAccess(void);
-extern void osPiReleaseAccess(void);
+extern void __osPiGetAccess(void);
+extern void __osPiRelAccess(void);
 extern u32 osRomBase;
 extern void __osSetCompare(u32 compare);
 extern void __osSpSetStatus(u32 status);
-extern void osDpWait(void);
+extern void osSpTaskYield(void);
 extern void __setfpcsr(u32 value);
 extern void game_loop(void);
 extern void __osSiGetAccess(void);
@@ -387,9 +383,9 @@ typedef struct __OSTimerNode_s {
     OSMesg msg;
 } __OSTimerNode;
 extern OSTimer *__osTimerList;
-extern void osCreateViManager(OSThread *thread, OSPri priority);
+extern void osSetThreadPri(OSThread *thread, OSPri priority);
 extern void dma_queue_init(void);
-extern void osSetIntMask(s32 mask);
+extern void osViBlack(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 extern u8 gStackGame[0x2000];
 typedef enum GState {
@@ -4146,8 +4142,8 @@ void func_800D7634(void) {
             temp_v0 = func_80091B00();
             spD4 = temp_v0;
             M2C_FIELD(temp_v0, s8 *, 2) = 1;
-            osJamMesg((OSMesgQueue *) &D_80142728, NULL, 0);
-            osJamMesg((OSMesgQueue *) &D_801427A8, (void *) spD4, 0);
+            osSendMesg((OSMesgQueue *) &D_80142728, NULL, 0);
+            osSendMesg((OSMesgQueue *) &D_801427A8, (void *) spD4, 0);
             speed_set(1, 0, (f32) (s8) D_80146108.unk0C / 10.0f, D_801241D4);
             if (D_80110640 < 0xC) {
                 sync_entry_register(D_80110640, 1);
@@ -4224,8 +4220,8 @@ void func_800D7634(void) {
             sp74 = temp_v0_2;
             M2C_FIELD(temp_v0_2, s8 *, 2) = 1;
             spE4 = var_a3;
-            osJamMesg((OSMesgQueue *) &D_80142728, NULL, 0);
-            osJamMesg((OSMesgQueue *) &D_801427A8, (void *) sp74, 0);
+            osSendMesg((OSMesgQueue *) &D_80142728, NULL, 0);
+            osSendMesg((OSMesgQueue *) &D_801427A8, (void *) sp74, 0);
             var_a0_2 = D_80110640 + var_a3;
             D_80110640 = var_a0_2;
             if (var_a0_2 >= 0xE) {

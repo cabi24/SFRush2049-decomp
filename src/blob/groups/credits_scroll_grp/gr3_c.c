@@ -9,7 +9,7 @@ typedef float f32;
 typedef struct { u32 opaque[6]; } OSMesgQueue;   /* 24-byte libultra queue */
 extern OSMesgQueue D_801461D0;
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 s32 slot_state_setup(s32 selection);
 extern char **countdown_object;
 extern s32 state_word_a;
@@ -46,7 +46,7 @@ static void gfx_lock(void)
 
 static void gfx_unlock(void)
 {
-    osJamMesg(&D_801461D0, (void *)0, 0);
+    osSendMesg(&D_801461D0, (void *)0, 0);
 }
 
 static s32 font_set(s32 font)

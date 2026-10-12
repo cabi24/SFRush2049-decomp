@@ -37,7 +37,7 @@ extern OSThread D_80034840;
 extern s8 D_80146180[],D_80156994,D_8014978C;
 extern u16 D_801427C2[],D_801428F8;
 extern void *D_80143F74[];
-extern void osPfsChecker_full(OSThread *);
+extern void osStopThread(OSThread *);
 extern void osStartThread(OSThread *);
 extern u16 func_80092B80(s16,u8);
 extern void func_8008D870(s16,void *,int);
@@ -57,7 +57,7 @@ void music_tempo_set(s16 player,u8 mode,int apply)
  s16 i;
  if(apply && mode!=13) {
   if(player_array[player].flags&0x10) {
-   osPfsChecker_full(&D_80034840);
+   osStopThread(&D_80034840);
    if(D_80153E88[player].mode!=6 || D_80146180[player]==0)mask=~0x10;
    else if(D_80146180[player]==2)mask=~0x60;
    else mask=-1;
@@ -91,7 +91,7 @@ void music_tempo_set(s16 player,u8 mode,int apply)
    for(i=0;i<4;i++)model_data_load(D_80139320[player].wheels[i],1,15);
    if(mode==13) {
     model_data_load(slot->body,1,15);
-    osPfsChecker_full(&D_80034840);
+    osStopThread(&D_80034840);
     D_8014A250[player].flags|=0x10;
     model->flags|=0x10;
     osStartThread(&D_80034840);

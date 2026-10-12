@@ -3,7 +3,7 @@ typedef signed int s32;typedef unsigned int u32;typedef float f32;
 #define NULL ((void *)0)
 #define M2C_FIELD(expr,type,offset) (*(type)((s8 *)(expr)+(offset)))
 typedef struct OSMesgQueue OSMesgQueue;
-s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osJamMesg(OSMesgQueue *,void *,s32);
+s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osSendMesg(OSMesgQueue *,void *,s32);
 extern s32 D_801527C8;
 extern OSMesgQueue D_80152770;
 
@@ -79,7 +79,7 @@ void *audio_buffer_sync(u32 address) {
  owner=func_80095F8C(address);
  block=func_80095EF4(owner,address,0);
  result=M2C_FIELD(block,void **,12);
- osJamMesg((OSMesgQueue *)&D_80152770,NULL,0);
+ osSendMesg((OSMesgQueue *)&D_80152770,NULL,0);
  return result;
 }
 
@@ -173,7 +173,7 @@ void AdjustSteer(Handle h) {
         void **data = s->data;
         osRecvMesg(&D_80152770, NULL, 1);
         audio_reverb_update((u32)data, 0);
-        osJamMesg(&D_80152770, NULL, 0);
+        osSendMesg(&D_80152770, NULL, 0);
         s->data = NULL;
         D_80144030[s->id].seat[s->seat].busy = 0;
     }
@@ -186,7 +186,7 @@ void menu_transition(Handle h) {
         void **old = o->h36;
         osRecvMesg(&D_80152770, NULL, 1);
         audio_reverb_update((u32)old, 0);
-        osJamMesg(&D_80152770, NULL, 0);
+        osSendMesg(&D_80152770, NULL, 0);
         o->h36 = NULL;
         ((Slot *)*o->h40)->f76 = 0;
         if (o->slot != NULL) {
@@ -248,7 +248,7 @@ s32 func_800CBF2C(Handle h, s32 back, s32 select) {
 void cart_free(void **address) {
     osRecvMesg(&D_80152770, NULL, 1);
     audio_reverb_update((u32)address, 0);
-    osJamMesg(&D_80152770, NULL, 0);
+    osSendMesg(&D_80152770, NULL, 0);
 }
 
 void slot_forget(Handle node) {
@@ -276,7 +276,7 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
         gone = (*self)->h40;
         osRecvMesg(&D_80152770, NULL, 1);
         audio_reverb_update((u32)gone, 0);
-        osJamMesg(&D_80152770, NULL, 0);
+        osSendMesg(&D_80152770, NULL, 0);
         *self = NULL;
         return 1;
     }

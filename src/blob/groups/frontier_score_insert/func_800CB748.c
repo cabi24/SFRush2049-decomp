@@ -70,7 +70,7 @@ extern u8 D_8013FECA;
 extern s32 D_80152770;
 
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 void audio_reverb_update(u32 address, s32 tag);
 void *func_800A47C0(void *dst, const void *src, u32 n);
 void *memcpy(void *, const void *, u32);
@@ -121,5 +121,5 @@ void func_800CB748(Header88 *entry, void *payload) {
 static void release_handle(u32 address) {
     osRecvMesg((OSMesgQueue *) &D_80152770, 0, 1);
     audio_reverb_update(address, 0);
-    osJamMesg((OSMesgQueue *) &D_80152770, 0, 0);
+    osSendMesg((OSMesgQueue *) &D_80152770, 0, 0);
 }

@@ -26,7 +26,7 @@ typedef struct OSMesgQueue {OSThread *mtqueue,*fullqueue;s32 validCount,first,ms
 typedef struct OSPfs {s32 status;OSMesgQueue *queue;s32 channel;u8 id[32],label[32];s32 version,dir_size,inode_table,minode_table,dir_table,inode_start_page;u8 banks,activebank;} OSPfs;
 typedef struct OSPfsState {u32 file_size,game_code;u16 company_code;char ext_name[4],game_name[16];} OSPfsState;
 extern void osCreateMesgQueue(OSMesgQueue *,OSMesg *,s32);
-extern s32 osJamMesg(OSMesgQueue *,OSMesg,s32),osRecvMesg(OSMesgQueue *,OSMesg *,s32);
+extern s32 osSendMesg(OSMesgQueue *,OSMesg,s32),osRecvMesg(OSMesgQueue *,OSMesg *,s32);
 typedef struct PakFile40 { u32 metadata;u16 count,flags;OSPfsState state; } PakFile40;
 typedef struct Pak772 {
     u8 index;s8 enabled;u8 opaque2[4];s8 present;u8 opaque[5];
@@ -43,14 +43,14 @@ extern OSMesgQueue D_801497D0;
 extern OSMesg D_801527E4;
 extern s8 D_8011EAE4;
 extern OSMesgQueue D_80035458;
-extern s32 osMotorStart(OSMesgQueue *, OSPfs *, s32);  /* SDK osMotorInit */
-extern s32 osMotorInit(OSPfs *, s32);                 /* SDK __osMotorAccess (osMotorStop) */
+extern s32 osMotorInit(OSMesgQueue *, OSPfs *, s32);  /* SDK osMotorInit */
+extern s32 __osMotorAccess(OSPfs *, s32);                 /* SDK __osMotorAccess (osMotorStop) */
 
 static void pak_queue_init(void)
 {
     if (!D_8011194C) {
         D_8011194C = 1; osCreateMesgQueue(&D_801497D0,&D_801527E4,1);
-        osJamMesg(&D_801497D0,0,0);
+        osSendMesg(&D_801497D0,0,0);
     }
 }
 
@@ -66,8 +66,8 @@ static s32 motor_init(Pak772 *p, s32 i)
 {
     if (!p->present) return -1;
     p->motorOn = 0;
-    osMotorStart(&D_80035458, &p->pfs, i);
-    if (osMotorInit(&p->pfs, 0) == 0) {
+    osMotorInit(&D_80035458, &p->pfs, i);
+    if (__osMotorAccess(&p->pfs, 0) == 0) {
         p->motorStopped = 0;
     }
 }
@@ -83,5 +83,5 @@ void check_mpath_save(void)
         p = &D_80144030[i];
         motor_init(p, i);
     }
-    osJamMesg(&D_801497D0,0,0);
+    osSendMesg(&D_801497D0,0,0);
 }

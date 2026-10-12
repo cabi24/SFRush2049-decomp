@@ -1,55 +1,15 @@
 // Game-side names of renamed static functions (hand-maintained; not generated).
 //
-// Lane w22g renamed 43 static libultra functions in symbol_addrs.us.txt to their
-// VERSION_J ultralib names (docs/SYMBOL_MISATTRIBUTION.md). The game image and the
-// runtime images still call them by these pre-rename names (src/blob C, its
-// preludes, asm/us/blob and asm/us/ovl_* symbols), and several names were
-// permuted (osSendMesg <-> osJamMesg), so a static name cannot simply be aliased.
-// pipeline.blob_tu.static_symbols() gives the game link these names at these
-// addresses; the static ROM link never reads this file. Remove an entry only
-// after every game/overlay caller has been renamed and the image re-proven.
+// When a static function is renamed in symbol_addrs.us.txt before its game
+// callers are, this file keeps the old name at its address for the game link
+// only: pipeline.blob_tu.static_symbols() gives the game link these names (they
+// win over the static name at the same address); the static ROM link never
+// reads it. Remove an entry only after every game caller has been renamed and
+// the image re-proven.
 //
-// Format: symbol_addrs (NAME = 0xADDR;). The comment names the static symbol now.
-osSetEventMesg = 0x80006A30; // static name osCreateViManager
-osSetThreadPri = 0x80006D40; // static name osViSetMode
-osSetIntMask = 0x80006DA0; // static name osViBlack
-osSetEventMesgAlt = 0x80006E10; // static name osSetEventMesg
-osSetTimerIntr = 0x80006ED0; // static name osViSetEvent
-osSetGlobalIntMask = 0x800071D0; // static name osSetIntMask
-osSendMesg = 0x80007440; // static name osJamMesg
-osViSetMode = 0x80007590; // static name osViSwapBuffer
-osJamMesg = 0x800075E0; // static name osSendMesg
-osViGetFramebuffer = 0x800077D0; // static name osViGetNextFramebuffer
-osInvalICache = 0x80007810; // static name osWritebackDCacheAll
-osViModeNtscLan1 = 0x8000794C; // static name osSpTaskLoad
-osViModeNtscLpn1 = 0x80007AB4; // static name osSpTaskStartGo
-osDpWait = 0x80007B80; // static name osSpTaskYield
-osPiRawReadWord = 0x800081D0; // static name osPiReadIo
-osCreateViManager = 0x80008380; // static name osSetThreadPri
-osInvalICache_full = 0x80008460; // static name osInvalICache
-__osPiRawStartDma = 0x80008630; // static name osPiStartDma
-osWritebackDCacheAll = 0x8000870C; // static name rmonPrintf
-__osContBuildPacket = 0x80009450; // static name osContInit
-osContStartReadData2 = 0x800097D0; // static name osContStartReadData
-osMotorInit = 0x80009F20; // static name __osMotorAccess
-__osMotorAccess = 0x8000A088; // static name __osMakeMotorData
-osMotorStart = 0x8000A194; // static name osMotorInit
-osMotorStop = 0x8000A2F0; // static name osPfsRepairId
-osPfsAllocate = 0x8000A350; // static name osPfsFindFile
-osPfsDeleteFile = 0x8000A520; // static name osPfsFileState
-osPfsRename = 0x8000A700; // static name osPfsDeleteFile
-osPfsFindFile = 0x8000A8D8; // static name __osPfsReleasePages
-osPfsReadWriteFile = 0x8000A970; // static name osPfsAllocateFile
-osPfsGetFileStat = 0x8000ADF0; // static name __osPfsGetNextPage
-osPfsGetFileSize = 0x8000AEC4; // static name osPfsReadWriteFile
-osPfsChecker_full = 0x8000BD90; // static name osStopThread
-osPfsReAllocate = 0x8000BE50; // static name osGetThreadId
-dll_get_priority = 0x8000C490; // static name osGetThreadPri
-osPiReadIo = 0x8000D7A0; // static name __osSiRawReadIo
-osPiWriteWord = 0x8000D7F0; // static name __osSiRawWriteIo
-osPiGetAccess = 0x8000DC10; // static name __osPiGetAccess
-osPiReleaseAccess = 0x8000DC54; // static name __osPiRelAccess
-osPiReadWord = 0x8000DC80; // static name __osPiRawReadIo
-osPiStartDma = 0x8000DCD0; // static name __osPiRawStartDma
-osPiSetDeviceTiming = 0x8000DDA0; // static name __osEPiRawStartDma
-osContStartReadData = 0x8000E620; // static name __osPfsGetStatus
+// Lane w22g used it for its 43 libultra renames (docs/SYMBOL_MISATTRIBUTION.md).
+// Lane w23g renamed every game caller (src/blob, the groups' context copies and
+// cloud/matches) and re-proved the image, so no entries remain. The runtime
+// images resolve against their own frozen asm/us/ovl_*/symbols.json.
+//
+// Format: symbol_addrs (NAME = 0xADDR; // static name NEW).

@@ -54,7 +54,7 @@ typedef struct OSMesgQueue OSMesgQueue;
 extern OSMesgQueue D_80152770;
 
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
-s32 osJamMesg(OSMesgQueue *, void *, s32);
+s32 osSendMesg(OSMesgQueue *, void *, s32);
 Heap *func_80095F8C(void *addr);
 Block *func_80095EF4(Heap *heap, void *addr, s32 tag);
 void audio_reverb_update(void *addr, s32 tag);
@@ -97,7 +97,7 @@ void func_800CB9D0(void *addr)
         }
     }
     if (b == 0) {
-        osJamMesg(&D_80152770, 0, 0);
+        osSendMesg(&D_80152770, 0, 0);
         return;
     }
     b->owner = old->owner;
@@ -139,5 +139,5 @@ void func_800CB9D0(void *addr)
         }
     }
     audio_reverb_update((u8 *)old + 32, 0);
-    osJamMesg(&D_80152770, 0, 0);
+    osSendMesg(&D_80152770, 0, 0);
 }

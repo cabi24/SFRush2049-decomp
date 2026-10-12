@@ -68,7 +68,7 @@ extern s32 audio_buffer_sync(u32);
 extern void func_800972C4(s32);
 extern void func_80097164(s32);
 extern s32 osRecvMesg(OSMesgQueue *,void *,s32);
-extern s32 osJamMesg(OSMesgQueue *,void *,s32);
+extern s32 osSendMesg(OSMesgQueue *,void *,s32);
 s32 audio_frame_sync(s32 kind, s32 skip, s32 async, s32 flag, void *buf) {
     ResSlot *r;
     s32 i;
@@ -108,7 +108,7 @@ done:
     if (async != 0) {
         osRecvMesg((OSMesgQueue *) &D_80035440, &msg, 1);
         D_801569AC = slot;
-        osJamMesg((OSMesgQueue *) &D_80156BB0, NULL, 1);
+        osSendMesg((OSMesgQueue *) &D_80156BB0, NULL, 1);
     } else {
         func_80097164(slot);
     }
