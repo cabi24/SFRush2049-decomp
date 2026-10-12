@@ -18,7 +18,8 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | func_8010FBE0, entity_process_main | open | | w20e RESULTS 2026-10-12 |
 | game | func_800EC190 (2 words), func_8008AD6C (29), func_800A1BB4 (35), wheel_setup_initial, ghost_race_setup, audio_fade_control unit (6/8) | open | | w21g/w20f RESULTS; func_800D63EC, func_800B3704, func_800D6530 landed 2026-10-12 |
 | game | entity_render_setup + fresh singles by fewest attempts | coordinator w22f | 2026-10-12 | wave 22; camera_play_script (27 rows) stays open |
-| game | func_80090308, buffer_swap, cpak_read | coordinator w22d | 2026-10-12 | wave 22 |
+| game | buffer_swap (43 words; model/car spill homes), func_80090308 + entity_physics_update (7 rows) + save_write_data group | open | | w22d RESULTS; cpak_read landed 2026-10-12 |
+| static | rename the ll.c/llcvt.c statics to their ultralib names (__muldi3 -> __ll_mul, __udivdi3 -> __ull_div, __floatundisf -> __ull_to_f, and the rest of the family): retail game code calls them by those names (w22d cpak_read) | open | | follow-up to w22g |
 | static | func_80018448, func_80010E80, func_80018634, func_8001A270, func_80012D18 | coordinator w22c | 2026-10-12 | wave 22: instrumented IDO 7.1 trace toolkit, then these |
 | static | func_80023E9C, func_80022874, func_8001A658 | coordinator w22b | 2026-10-12 | wave 22 |
 | static | func_8001E0E0 (2215), func_80019F48 (2235) | open | | w21b RESULTS 2026-10-12 |
