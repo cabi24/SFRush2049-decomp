@@ -49,7 +49,8 @@ Stock causal rollback results, including complete original-REL GNU replay:
 - Remove only time address round trip: 49/69
 - Final: 13/69, complete 276-byte body, 64-byte frame
 
-Workbench identified structure/phase displacement before the address changes.
+Workbench diagnosed the intermediate 49-word source as structure/phase
+displacement before the final time-address and argument-width changes.
 Stock UGEN tracing now shows parameter t0 in the callback store, control index
 scale and outgoing argument store; stock as1 substitutes the earlier sign-
 extension temporary t6 and reorders call setup. All 13 final differences are
