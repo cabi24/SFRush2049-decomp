@@ -316,6 +316,16 @@ all 689 matched game files replaced at once = EQUIVALENT, 4.2 M calls identical.
 17 AND a split). Ceiling table for the boot tail in w23c/RESULTS.md (0x26F60 segment 5,232 B needs conversion;
 pre-tail boot code 13,152 B untriaged; 480 B hand asm).
 
+**Wave 24 PR batch (2026-10-12, lane w24p, master after `b37643ee`):** Astra's 14 open PRs triaged in one lane
+(`cloud/work/frontier/w24p/RESULTS.md`). Landed #331 (func_803990D0, superseding `dot_runtime_a_menu_state_20261006`,
+4 members), #332 (func_803A4340 single), #333 (func_8039BB80 in `dot_runtime_a_text_helpers_20261006`, now 12
+members, all claimed), #334 (func_8038D3A4 + owned 0.2f literal, image B): overlay A 53 → 56/193 (25,196 B, 12.98%),
+overlay B 10 → 11/49 (3,608 B, 8.22%). #322 imported as research: func_800D816C is a private-ABI callee of
+func_800D91A0 (691/699 standalone with a normal prologue; 570/699 made internal, and the unit then inlines locked
+func_800DA0B4) so it lands only with a matching D91A0. #330 unchanged since w22p; #325 still awaiting the
+`replace.py` native-mode rework; #323, #317, #314, #313, #312, #311, #163 superseded (reasons in RESULTS.md).
+Static and game unchanged.
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
