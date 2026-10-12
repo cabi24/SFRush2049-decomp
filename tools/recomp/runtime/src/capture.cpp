@@ -231,7 +231,7 @@ void rush::capture_start(const std::string& path, uint64_t detail) {
     if (pool == MAP_FAILED) { fprintf(stderr, "[rush] capture pool mmap failed\n"); std::exit(2); }
     install_handler();
     cap_on = true;
-    cap_log("# rush2049 call log v1: effect = words changed between entry and exit (page write tracking)\n");
+    cap_log("# rush2049 call log v2: effect = words changed between entry and exit (page write tracking; replaced frames floor)\n");
     for (int i = 0; i < RUSH_REPL_COUNT; i++)
         cap_log("# fn %d %s %s probe=%d\n", i, rush_repl_names[i], rush_cap_labels[i], rush_cap_probe[i]);
 }

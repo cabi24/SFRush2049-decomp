@@ -781,6 +781,12 @@ def callee_probes(replaced, functions, images):
         if r.get("probe"):
             continue
         pop = r["population"]
+        # Functions the replacement's source defines itself (a draft's static
+        # copies of its callees) belong to the body under test, and IDO may
+        # inline them: not probed (the replaced build could never log them).
+        text = ""
+        if r.get("source") and (REPO / r["source"]).is_file():
+            text = (REPO / r["source"]).read_text(errors="replace")
         f = next((x for x in functions.get(pop, []) if x["name"] == r["function"]), None)
         if f is None:
             continue
@@ -800,6 +806,9 @@ def callee_probes(replaced, functions, images):
             target = ((addr + 4) & 0xF0000000) | ((word & 0x03FFFFFF) << 2)
             hit = by_addr.get(target)
             if hit is None or hit in have or hit in seen:
+                continue
+            if text and re.search(r"(?m)^[A-Za-z_][\w\s\*]*\b%s\s*\([^;{]*\)\s*\{" % re.escape(hit[1]), text):
+                seen.add(hit)
                 continue
             seen.add(hit)
             out.append({"id": "callee_" + NAME_PREFIX[hit[0]] + hit[1], "function": hit[1],

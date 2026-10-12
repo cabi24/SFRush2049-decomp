@@ -18,7 +18,9 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `BOOT_LOG.md` | Phase 1 commands and what each run reached |
 | `replacements.json` | Phase 2: function -> C body (population, source, mode, state, note) and named sets |
 | `replace.py` | Phase 2: builds replacements (IDO -> `.repl` section, or native host wrappers) for `gen_config.py --replace-set` |
-| `oracle.py` | Phase 2: compares per-frame oracle logs (stock vs replaced): EQUIVALENT / DIFFERENT at frame F / NOT EXERCISED |
+| `oracle.py` | Phase 2: compares per-frame oracle logs (stock vs replaced): EQUIVALENT / DIFFERENT at frame F / NOT EXERCISED; Phase 3: the first differing CALL (`calls`, `run`), input scripts (`--script`, `script`) |
+| `scripts/*.press` | Phase 3: input scripts for the oracle (one line each below) |
+| `runtime/src/capture.cpp` | Phase 3: per-call capture (`--call-log`, `--call-detail`) |
 
 ## Commands (rocky)
 
@@ -267,6 +269,96 @@ Results (rocky, 2026-10-12; default script = BOOT_LOG's race presses, frame-cloc
 | `draft_engine_sound_sync` (w21h best.c, 8 rows off) | DIFFERENT at frame 706 (6 frames into the race): D_8011024C 0xC -> 0x2, D_80110288 0x14 -> 0xA, the free-list links at 0x80142C64+ |
 | `draft_func_800D7634` (w21h best.c) | NOT EXERCISED (the script never opens the audio-options screen) |
 | all 678 buildable matched `src/blob` functions at once | DIFFERENT at frame 1, only func_800E7710's function-local static (its address is sent as an SI message: placement, not behaviour) |
+
+## Phase 3: per-call verdicts, input scripts, static binding (lane w23r, 2026-10-12)
+
+**Per-call capture.** Every replaced function's entry hook now also opens and closes a capture window
+(`rush_cap_enter` / `rush_cap_exit`, `runtime/src/capture.cpp`). The stock side is a separate build,
+`gen_config.py --capture-set SET`: the same functions in the same order, not replaced; each hook arms a
+one-shot bypass and re-enters the recompiled original, so recursion inside the body is captured again
+(the replaced build retargets a body's `jal` to itself onto the original entry for the same reason:
+`self_calls_retargeted` in the manifest). With `--call-log PATH` the host writes per call
+
+    c <seq> <frame> <fn> <args>            entry: the registers/stack words the prototype uses
+    C <seq> <frame> <fn> r=<ret> w=<n>:<hash>   exit: return register(s) + the call's effect
+
+`seq` = global entry order, `fn` = index into the "# fn" header (id, mode, function, labels). Arguments
+come from the C prototype (`replace.capture_layout`: o32 a0-a3 / f12,f14 for leading floats / `sp+16..`;
+return v0, v0:v1, f0); entries may override with `capture_args` (register names, e.g. a callee that IDO
+-O3 passes values in callee-saved f22-f28) and `capture_ret`. The **effect** is every N64 word whose
+value differs between entry and exit, found by **write tracking by page**: at entry the 8 MiB are
+`mprotect`ed read-only; the first write to each 4 KiB page faults, the SIGSEGV handler copies the page's
+pre-write contents for every open window and unprotects it; at exit the copies are compared word by word
+(host pages are 4 KiB and rdram is word-swapped within words, so a host word is the N64 word at the
+same offset). Not part of the effect: the calling thread's stack below the sp at entry of the outermost
+replaced function open on it (dead frames; their layout differs whenever the code does), other threads'
+stacks, the OSThread host words (below). Writes by another thread while a window is open count for that
+window (both builds alike). Cost: 10x (1800 frames: 15 s instead of 1.5 s) for ~0.3 M captured calls.
+`--call-detail SEQ` adds `W seq addr old new` lines for that call.
+
+**Probes.** A `replacements.json` entry with `"mode": "capture"` (state `probe`) is recorded but not
+replaced: put a replaced body's callees in its set to see where it first departs (prototype or
+`capture_args` required). `gen_config.py --probe-callees` (give it to BOTH builds) adds a probe, without
+arguments, for every function the retail body calls with `jal`; a probe on a function the replacement
+object defines itself (a draft's own helper copy) also hooks that copy, under the same index. Probes on
+functions the runtime reimplements (osSendMesg ...) are dropped from both builds (`probes_dropped`).
+
+**Verdict** (`oracle.py run` with the stock capture build as `--stock-host`, or `oracle.py calls
+STOCK.calls REPL.calls`): the call logs are compared record by record; the first difference is reported
+before the frame verdict:
+
+    FIRST DIFFERING CALL: seq 1444 = entity_transform_calc (probe_entity_transform_calc) call 1, frame 705: args
+      inside: engine_sound_sync (draft_engine_sound_sync) call 1410 (seq 1441)
+      f22: stock 3F800000, replaced 00000000
+
+`what` is `args` (named by the prototype labels), `return`, `effect` (then both builds are rerun to that
+frame with `--call-detail` and the differing words are listed with data symbols, old->new per side),
+`sequence` (one side calls something the other does not), or `length`. Logs from builds of different
+sets, layouts or capture versions are refused. No difference: `per-call: all N captured calls identical`.
+
+**Input scripts** (`--script NAME`, `tools/recomp/scripts/NAME.press`; `oracle.py script NAME` prints the
+host `--press` string). Format: `TIME BUTTON[@PORT] [DURATION]` per line (game seconds = frames/30, port
+1-4, default 1 and 0.2 s), `frames N`, `#` comments. The host connects as many controllers as the script
+uses (`T:BUTTON@PORT` in `--press`).
+
+- `race.press`: the Phase 1/2 race script (front end, then a minute of the default track).
+- `race_track2.press`: one RIGHT on the track selector (18.5 s): the six race-data streams after image B
+  differ (first 0x4D2FA0 instead of 0x43FE80; RIGHT x2 and LEFT give two more), i.e. another track.
+- `two_player.press`: RIGHT on the player-count selector (9.5 s) and controller 2 repeating every press;
+  `active_player_count` (0x8014A108) = 2, the race loads, 460 display lists per frame instead of 357.
+- `audio_options.press`: pause during the race (36 s), DOWN x3, A: the audio-options screen; its rows are
+  changed and left with B. func_800D7634 runs 435 times (frames 1201-1635).
+
+**Static binding.** A replaced body's function-local statics (local symbols in .data/.bss/.sdata/.sbss)
+are patched to their retail addresses after linking (`replace.static_bindings`): from the replaced
+function's own HI16/LO16 pair decoded from the retail image at the same offset (only where both
+instruction words equal the object's outside the immediate: matched code), from an address name
+(`D_XXXXXXXX`), or from an entry's `"statics": {name: address}` (drafts). The manifest lists
+`statics_bound` / `statics_private`. func_800E7710's SI message (0x80150F58) is now EQUIVALENT (set
+`statics`). Also fixed while doing this: game and overlay bodies resolve libultra calls by the game-side
+legacy names (`game_static_legacy.us.txt`, e.g. game `osJamMesg` = static osSendMesg), as the game link
+does; Phase 2 linked them by the static names, which sent func_800D6E00's message with the wrong function
+(the all-matched divergence) and made the func_800D7634 draft look DIFFERENT. Loads into `$zero` in a
+replacement are nopped as in the retail sections.
+
+**OSThread word mask.** N64ModernRuntime's OSThread keeps an 8-byte host pointer (`context`) at
+`offsetof(OSThread, context)` = +0x20; two stock runs' rdram differ in exactly those two words of the 11
+threads. They are now masked word by word (log `T` lines, `# thread_host_words`), so all 2048 pages are
+judged at every frame (Phase 2 left three pages unjudged).
+
+```bash
+# rocky; SET from replacements.json; the stock side is the capture build of the same set
+python3 tools/recomp/gen_config.py ... --out build/cap-SET --capture-set SET [--probe-callees]
+python3 tools/recomp/gen_config.py ... --out build/repl-SET --replace-set SET [--probe-callees]
+(N64Recomp + cmake/ninja for each, as in Phase 2)
+python3 tools/recomp/oracle.py run --stock-host build/cap-SET/host/rush2049_recomp \
+        --rom-stock build/cap-SET/rom/rush2049.recomp.z64 --repl-host build/repl-SET/host/rush2049_recomp \
+        --rom-repl build/repl-SET/rom/rush2049.recomp.z64 --out runs/SET --script audio_options \
+        --datasyms build/cap-SET/rush2049.datasyms.toml
+python3 tools/recomp/oracle.py calls runs/SET/stock.calls runs/SET/repl.calls   # re-read a verdict
+```
+
+RESULTS_PLACEHOLDER
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

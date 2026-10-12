@@ -11,6 +11,14 @@ hash of every display list it walks and of each 4 KiB page of the N64's
                                                      page difference rerun both to that
                                                      frame with --dump-at and list words
   worddiff A.bin B.bin [--datasyms F]                word diff of two rdram dumps
+  calls    STOCK.calls REPL.calls                    first differing call of two --call-log files
+  script   NAME                                      a tools/recomp/scripts/NAME.press as --press
+
+Phase 3 (per-call): with --stock-host built by `gen_config --capture-set SET`
+(the same functions, not replaced) both runs write --call-log; `run` reports
+the FIRST DIFFERING CALL (seq, function, its call number, frame, and which
+argument / return / effect word differs, with the enclosing replaced calls)
+before the frame verdict. `--script NAME` picks an input script.
 
 Thread stacks (from osCreateThread) are masked out of the page hashes and
 hashed separately: their dead frames differ whenever a replaced body's frame
@@ -350,6 +358,8 @@ def iter_calls(lines):
             kv = dict(p.split("=", 1) for p in parts[4:] if "=" in p)
             labels = [] if kv.get("args", "-") == "-" else kv["args"].split(",")
             yield ("fn", idx, name, labels, kv.get("ret", "?"))
+        elif line.startswith("# rush2049 call log"):
+            yield ("ver", line.split()[4])
         elif line.startswith("#"):
             continue
         elif line.startswith("c "):
@@ -394,6 +404,9 @@ def compare_calls(stock_lines, repl_lines):
             if item[0] == "fn":
                 fns[item[1]] = (item[2], item[3], item[4])
                 continue
+            if item[0] == "ver":
+                vers.append(item[1])
+                continue
             if item[0] in ("W",):
                 continue
             return item
@@ -402,10 +415,14 @@ def compare_calls(stock_lines, repl_lines):
     calls = 0
     open_calls = {}
     stack = []                    # open (seq, fn) on the stock side, outermost first
+    vers = []
     while True:
         a, b = nxt(a_it, fs), nxt(b_it, fr)
         if not fs or not fr:
             return None
+        if len(set(vers)) > 1:
+            raise OracleError("call logs from different capture versions (%s): rebuild both hosts from "
+                              "the same tools revision" % ", ".join(vers))
         if calls == 0 and a is not None and b is not None:
             def layout(fns):
                 return {k: (v[0].partition("=")[0], v[0].rpartition(":")[2], tuple(v[1]), v[2])

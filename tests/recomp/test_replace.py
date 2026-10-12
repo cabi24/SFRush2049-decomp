@@ -127,6 +127,9 @@ def test_committed_manifest_is_well_formed():
     doc = rp.load_manifest(rp.MANIFEST)
     assert len(doc["sets"]["matched10"]) == 10
     for rid, e in doc["entries"].items():
+        if e.get("mode") == "capture":                    # Phase 3 probe: prototype, no body
+            assert e.get("state") == "probe" and (e.get("prototype") or e.get("source")), rid
+            continue
         assert (REPO / e["source"]).is_file(), e["source"]
         assert e.get("state") in ("matched", "draft", "injected-bug")
     chosen = rp.select(doc, "matched10")
@@ -255,9 +258,12 @@ def test_generate_with_replacements(tmp_path):
     assert 'name = ".repl"' in syms and 'name = "repl__g__game_c", vram = 0x80800000' in syms
     cfg = (out / "rush2049.recomp.toml").read_text()
     hooks = re.findall(r'func = "(\w+)"\ntext = "([^\n]*)"', cfg)
-    assert ("game_c", "{ void rush_repl_count(uint8_t*, int); void repl__g__game_c(uint8_t*, recomp_context*); "
-            "rush_repl_count(rdram, 0); repl__g__game_c(rdram, ctx); return; }") in hooks
-    assert any(f == "ovl_b_func_8038A408" and "native__n(rdram, ctx); return;" in t for f, t in hooks)
+    assert ("game_c", "{ void rush_repl_count(uint8_t*, int); void rush_cap_enter(uint8_t*, recomp_context*, int); "
+            "void rush_cap_exit(uint8_t*, recomp_context*, int); void repl__g__game_c(uint8_t*, recomp_context*); "
+            "rush_repl_count(rdram, 0); rush_cap_enter(rdram, ctx, 0); repl__g__game_c(rdram, ctx); "
+            "rush_cap_exit(rdram, ctx, 0); return; }") in hooks
+    assert any(f == "ovl_b_func_8038A408" and "native__n(rdram, ctx); rush_cap_exit(rdram, ctx, 1); return;" in t
+               for f, t in hooks)
     header = (out / "rush2049_repl.h").read_text()
     assert "#define RUSH_REPL_COUNT 2" in header and '"g=ido:game_c",' in header
     assert "#define RUSH_REPL_VRAM 0x80800000u" in header
@@ -275,7 +281,7 @@ def test_generate_without_replacements_writes_empty_header(tmp_path):
     manifest, out = tg.run(tmp_path)
     header = (out / "rush2049_repl.h").read_text()
     assert "#define RUSH_REPL_COUNT 0" in header and "#define RUSH_REPL_SIZE 0x0u" in header
-    assert manifest["replacements"] == {"image": None, "native": [], "replaced": []}
+    assert manifest["replacements"] == {"image": None, "native": [], "replaced": [], "probes_dropped": []}
     assert 'name = ".repl"' not in (out / "rush2049.syms.toml").read_text()
 
 
