@@ -9,7 +9,7 @@ extern unsigned char *D_800381F0;
 extern unsigned char D_80038040[];
 extern void *(*D_80038018)(unsigned int, unsigned int);
 extern void osCreateMesgQueue(OSMesgQueue *, void **, int);
-extern void osSetEventMesg(int, OSMesgQueue *, void *);
+extern void osSetEventMesgAlt(int, OSMesgQueue *, void *);
 extern int osAiSetFrequency(unsigned int);
 extern void osCreateThread(OSThread *, int, void (*)(void *), void *, void *, int);
 extern void osStartThread(OSThread *);
@@ -18,7 +18,7 @@ void func_80010C68(unsigned int *frequency)
 {
     D_80038220 = 1;
     osCreateMesgQueue((OSMesgQueue *) D_800381F8, D_80038210, 4);
-    osSetEventMesg(6, (OSMesgQueue *) D_800381F8, &D_80038220);
+    osSetEventMesgAlt(6, (OSMesgQueue *) D_800381F8, &D_80038220);
     D_8003828C = osAiSetFrequency(*frequency);
     *frequency = D_8003828C;
     D_800381F0 = D_80038018(1024, 128);
