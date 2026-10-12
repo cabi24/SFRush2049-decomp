@@ -136,6 +136,14 @@
   {
    "name": "func_800A4B40",
    "reason": "deleted per-slot release predicate inlined into wheel_setup_initial; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "view_bind",
+   "reason": "non-static inlined helper of car_render_full (w27a): stores into D_8017A510[k] and returns &D_8017A510[k]; its unused return is retail's dead `move v0,t0` before each call; as a static it leaves a 2-word deleted-procedure stub tail retail does not have"
+  },
+  {
+   "name": "view_bind_w",
+   "reason": "non-static inlined helper of wheel_render_full (w27a): stores into D_8017A510[k] and returns &D_8017A510[k]; its unused return is retail's dead `move v0,t0` before each call; as a static it leaves a 2-word deleted-procedure stub tail retail does not have"
   }
  ],
  "prefer_definition": [

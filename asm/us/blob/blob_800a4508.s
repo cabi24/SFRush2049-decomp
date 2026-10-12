@@ -2191,6 +2191,7 @@ brake_light_update:
 .section .text.car_render_full, "ax", @progbits
 .globl car_render_full
 car_render_full:
+    /* compiled from src/blob/car_render_full.c */
     .word 0x27BDFFC0
     .word 0xAFBF003C
     .word 0xAFB30038
@@ -2699,6 +2700,7 @@ car_render_full:
 .section .text.wheel_render_full, "ax", @progbits
 .globl wheel_render_full
 wheel_render_full:
+    /* compiled from src/blob/wheel_render_full.c */
     .word 0x27BDFFB8
     .word 0xAFBF0044
     .word 0xAFB40040

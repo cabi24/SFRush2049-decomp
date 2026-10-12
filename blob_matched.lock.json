@@ -595,6 +595,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "camera_position_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/camera_position_update.c",
+    "source_sha256": "2cbd94200ab1222c6425f7590f8b33ee0c83fe83fd5a7c840e64dbb67bae0b82",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "camera_process_input": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
@@ -834,6 +842,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "car_render_full": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/car_render_full.c",
+    "source_sha256": "6fddc23d539e66455a4eb5e7d351da7ff094df3795e290c7fa0a08f22e8d1796",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   },
   "car_reset_position": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -8253,6 +8269,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
+  },
+  "wheel_render_full": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/wheel_render_full.c",
+    "source_sha256": "2ab09d65996127d2b93de17c061255f746c9bf83cd46b0448efe2639b544446a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   },
   "wheel_setup_initial": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

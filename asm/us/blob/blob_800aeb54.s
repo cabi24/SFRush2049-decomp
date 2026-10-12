@@ -5,6 +5,7 @@
 .section .text.camera_position_update, "ax", @progbits
 .globl camera_position_update
 camera_position_update:
+    /* compiled from src/blob/camera_position_update.c */
     .word 0x27BDFF50
     .word 0x3C028016
     .word 0x3C038016
