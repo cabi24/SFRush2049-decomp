@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| ovl_a | func_80394564; preserve func_80394834 | dot lane 4 | 2026-10-12 | 720 new strict bytes; 400 preserved. Same-name refresh group; selector reuse closes native a1 allocation. Draft packet dot_runtime_a_availability_selector_20261012. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

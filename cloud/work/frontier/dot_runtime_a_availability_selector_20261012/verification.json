@@ -1,0 +1,159 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "groups/dot_runtime_a_availability_refresh_20261007/group.c": "af72ca27d2b88c6bc7a9efcfbd368da680752ce2f0fedd9f08c4491c4ebae798",
+      "groups/dot_runtime_a_availability_refresh_20261007/group.json": "09fef085e1b6ce1b6ed9b2fab2be18c68bbea151c651c946b0e1f20b4e834c24",
+      "verify.py": "b8daedb5c459187a4072b21fddac5eff276458adecdd982bfccd4187cb5fc0e7",
+      "elf.py": "d3523b1887d0822c673cbc4feb43aea68366182b9904f1735b037a370f30f0c5",
+      "behavior.c": "9d5dc25834ab1278f3a436c3757e36cd94378a14286afed792c34633f43412b0",
+      "trace.py": "bbde6b9dc740f93e5fcd4dbfd4151ad5e5f96686175cbc6d11d1389eb0c1b2cd"
+    },
+    "targets": {
+      "func_80394564": {
+        "image": "A",
+        "address": "0x80394564",
+        "size": 720,
+        "words_sha256": "35e2b23d0ca66a4e8b260c5fe3d86e01a4096c64147d96c9a695a2158472b46a"
+      },
+      "func_80394834": {
+        "image": "A",
+        "address": "0x80394834",
+        "size": 400,
+        "words_sha256": "3a3eacf4902c1dda0aa112414e081721d96cc207a11ba6612a8a24e3f73bb1d3"
+      },
+      "func_80397FFC": {
+        "image": "A",
+        "address": "0x80397FFC",
+        "size": 1072,
+        "words_sha256": "85999da274cae5adb27a16042ae7b5998c14ccefc4210a09942d7444cbfe7f2a"
+      },
+      "func_80394B00": {
+        "image": "A",
+        "address": "0x80394B00",
+        "size": 728,
+        "words_sha256": "14617ea4d93ab289f600292ceab79ae079fea021557292d8175dac6f6cebf375"
+      }
+    },
+    "claims": [
+      "func_80394564",
+      "func_80394834"
+    ],
+    "context": [
+      "func_80397FFC",
+      "func_80394B00"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "results": {
+    "func_80394564": {
+      "differing": 0,
+      "total": 180,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80394834": {
+      "differing": 0,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "contexts": {
+    "func_80397FFC": {
+      "differing": 260,
+      "total": 268,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x2a4",
+        ".rodata+0x0 at +0x2a8",
+        ".rodata+0x4 at +0x324",
+        ".rodata+0x4 at +0x328"
+      ],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_803B5ED0 at .text+0xb60"
+      ],
+      "extra_words": 12
+    },
+    "func_80394B00": {
+      "differing": 162,
+      "total": 182,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "separate_index_control": {
+    "differing": 3,
+    "total": 180,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "extents": {
+    "text_bytes": 2976,
+    "functions": {
+      "func_80394564": {
+        "offset": 0,
+        "size": 720,
+        "next_boundary": 720,
+        "zero_padding": 0
+      },
+      "func_80394B00": {
+        "offset": 720,
+        "size": 724,
+        "next_boundary": 1444,
+        "zero_padding": 0
+      },
+      "func_80394834": {
+        "offset": 1444,
+        "size": 400,
+        "next_boundary": 1844,
+        "zero_padding": 0
+      },
+      "func_80397FFC": {
+        "offset": 1844,
+        "size": 1120,
+        "next_boundary": 2976,
+        "zero_padding": 12
+      }
+    },
+    "member_owned_data_bytes": 0
+  },
+  "gnu_relocations": {
+    "func_80394564": 22,
+    "func_80394834": 20
+  },
+  "gnu_sha256": {
+    "func_80394564": "35e2b23d0ca66a4e8b260c5fe3d86e01a4096c64147d96c9a695a2158472b46a",
+    "func_80394834": "3a3eacf4902c1dda0aa112414e081721d96cc207a11ba6612a8a24e3f73bb1d3"
+  },
+  "native_private_selector_register": "a1",
+  "native_call_sites": {
+    "func_80397FFC": {
+      "call_offset": 456,
+      "argument": "a1 = -1 (all active players)",
+      "window_sha256": "43175fcf6a6246cd983e4af019216ff01befdb8c157cfc244f8d1cb979963a74"
+    },
+    "func_80394B00": {
+      "call_offset": 704,
+      "argument": "a1 = s0 (player)",
+      "window_sha256": "d388df0cedf2d8ece0328af90072535ff21ea3a082b12f04b6d8c71c6e208735"
+    }
+  },
+  "negative_controls": [
+    "instruction mutation rejected",
+    "overlong STT_FUNC rejected"
+  ],
+  "gross_claim_count": 2,
+  "gross_claim_bytes": 1120,
+  "new_claim_bytes": 720,
+  "preserved_bytes": 400,
+  "accepted_image_bytes": 0,
+  "compiler": "stock IDO 5.3"
+}
