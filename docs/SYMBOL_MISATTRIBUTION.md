@@ -269,8 +269,14 @@ already declare `__osCheckId(OSPfs *)` at 0x8000F2D0. Table `cloud/work/frontier
 | 0x80037C58 | `gViLastCount` | `__osBaseCounter` | os/timerintr.c |
 | 0x80037C5C | `gViRetraceCount` | `__osViIntrCount` | os/timerintr.c |
 
-`gViTimeAccumLo` (0x80037C54) is kept: it is the asm label of `__osCurrentTime`'s low word
-(`targets._typed_data_field_aliases` folds it to `__osCurrentTime+0x4`). Applied with `static_rename
+`gViTimeAccumLo` (0x80037C54) was kept by w25a as the asm label of `__osCurrentTime`'s low word;
+**w26a retired it**: four reloc_addrs.us.txt entries (osGetTime 0x7FDC/0x7FE0, __osTimerServicesInit
+0xCC90/0xCC9C) name the sites `%hi/%lo(__osCurrentTime + 0x4)` as ultralib's 64-bit accesses do, the
+symbol_addrs line is gone (`make extract`: undefined_syms_auto lists splat's anonymous `D_80037C54`),
+the two leftover nonmatchings files were rewritten to the same operands, and the ROM is unchanged
+(both functions are C). The game/overlay symbol maps (asm/us/{blob,ovl_a,ovl_b,boot_tail}/symbols.json,
+src/blob/blob.ld PROVIDE) still list the name but nothing references it; `targets._typed_data_field_aliases`
+still folds it for pre-w26a asm text. Applied with `static_rename
 symbols|source|lock|owned` (src/rom TUs and rom_tu.h only; the legacy src/libultra and src/os sources
 are not built and keep their spellings), nonmatchings git-mv'd and permuted, `make extract`
 (undefined_syms_auto), boot_tail/blob `symbols.json` + SHA256SUMS and `src/blob/blob.ld` permuted in

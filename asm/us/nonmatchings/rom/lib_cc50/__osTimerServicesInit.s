@@ -1,10 +1,10 @@
 nonmatching __osTimerServicesInit, 0x8C
 
 glabel __osTimerServicesInit
-    /* CC90 8000C090 3C018003 */  lui        $at, %hi(gViTimeAccumLo)
+    /* CC90 8000C090 3C018003 */  lui        $at, %hi(__osCurrentTime + 0x4)
     /* CC94 8000C094 240E0000 */  addiu      $t6, $zero, 0x0
     /* CC98 8000C098 240F0000 */  addiu      $t7, $zero, 0x0
-    /* CC9C 8000C09C AC2F7C54 */  sw         $t7, %lo(gViTimeAccumLo)($at)
+    /* CC9C 8000C09C AC2F7C54 */  sw         $t7, %lo(__osCurrentTime + 0x4)($at)
     /* CCA0 8000C0A0 AC2E7C50 */  sw         $t6, %lo(__osCurrentTime)($at)
     /* CCA4 8000C0A4 3C018003 */  lui        $at, %hi(__osBaseCounter)
     /* CCA8 8000C0A8 3C188003 */  lui        $t8, %hi(__osTimerList)

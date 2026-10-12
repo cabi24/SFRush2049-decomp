@@ -5,7 +5,9 @@ ROOT=Path(__file__).resolve().parents[3]
 from tools.conveyor.pipeline import targets as T
 
 def test_dll_init_reuses_only_verified_time_family(monkeypatch):
+ # w26a retired the label from symbol_addrs; the fold still serves pre-w26a asm text.
  monkeypatch.setattr(T, "_sdk_field_offsets", lambda kind: {"low_word": 4})
+ monkeypatch.setattr(T,'_resolve_symbol',{'__osCurrentTime':0x80037c50,'gViTimeAccumLo':0x80037c54}.get)
  lines=['lui $at, %hi(gViTimeAccumLo)','sw $t7, %lo(gViTimeAccumLo)($at)','sw $t6, %lo(__osCurrentTime)($at)']
  assert T._typed_data_field_aliases(lines,'__osTimerServicesInit')==['lui $at, %hi(__osCurrentTime+0x4)','sw $t7, %lo(__osCurrentTime+0x4)($at)',lines[2]]
  assert T._typed_data_field_aliases(lines,'unrelated')==lines
@@ -25,9 +27,12 @@ def test_dll_init_requires_real_sdk_scalar_types(tmp_path,monkeypatch):
  assert T._typed_data_field_aliases(lines,'__osTimerServicesInit')==lines
 
 def test_dll_init_original_sites_and_body_unchanged(monkeypatch):
+ # w26a: the asm names the low word __osCurrentTime + 0x4 at exactly the original HI and
+ # LO sites (reloc_addrs.us.txt), so the alias fold has nothing left to rewrite.
  monkeypatch.setattr(T, "_sdk_field_offsets", lambda kind: {"low_word": 4})
  region=T.index_asm_regions()[0x8000c090];normalized=T._typed_data_field_aliases(region.lines,'__osTimerServicesInit')
- changed=[i for i,(a,b) in enumerate(zip(region.lines,normalized)) if a!=b]
- assert changed==[0,3] # exactly original HI and LO instruction sites
+ assert normalized==region.lines
+ sites=[i for i,line in enumerate(region.lines) if '__osCurrentTime + 0x4' in line]
+ assert sites==[0,3]
+ assert not any('gViTimeAccumLo' in line for line in region.lines)
  assert len(region.words)==35
- assert all('__osCurrentTime+0x4' in normalized[i] for i in changed)

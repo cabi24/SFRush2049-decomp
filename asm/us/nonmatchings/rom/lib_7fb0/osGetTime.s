@@ -12,8 +12,8 @@ glabel osGetTime
     /* 7FD0 800073D0 8DEF7C58 */  lw         $t7, %lo(__osBaseCounter)($t7)
     /* 7FD4 800073D4 8FAE0034 */  lw         $t6, 0x34($sp)
     /* 7FD8 800073D8 3C088003 */  lui        $t0, %hi(__osCurrentTime)
-    /* 7FDC 800073DC 3C098003 */  lui        $t1, %hi(gViTimeAccumLo)
-    /* 7FE0 800073E0 8D297C54 */  lw         $t1, %lo(gViTimeAccumLo)($t1)
+    /* 7FDC 800073DC 3C098003 */  lui        $t1, %hi(__osCurrentTime + 0x4)
+    /* 7FE0 800073E0 8D297C54 */  lw         $t1, %lo(__osCurrentTime + 0x4)($t1)
     /* 7FE4 800073E4 8D087C50 */  lw         $t0, %lo(__osCurrentTime)($t0)
     /* 7FE8 800073E8 01CFC023 */  subu       $t8, $t6, $t7
     /* 7FEC 800073EC AFB80030 */  sw         $t8, 0x30($sp)

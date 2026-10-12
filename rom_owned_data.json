@@ -475,7 +475,7 @@
       "context_proof": "cloud/work/frontier/w26a/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "c1fba677f968d749c07bac7950553f2ca53c2037baa74a8081b9d4a25d618773",
+      "context_proof_sha256": "725c19a8f0fa8ab829cca1c5e4fbc3f7a3b8edc05e046ba48e8b1199670bf0f2",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",
