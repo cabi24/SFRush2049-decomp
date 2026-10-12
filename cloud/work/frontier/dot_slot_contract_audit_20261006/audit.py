@@ -124,7 +124,7 @@ def collect():
     locks = json.loads((ROOT / 'blob_matched.lock.json').read_text())
     accepted = {symbols[n] for n in locks if n in symbols}
     selector = symbols['slot_state_setup']
-    acquire, release = symbols['osRecvMesg'], symbols['osJamMesg']
+    acquire, release = symbols['osRecvMesg'], symbols['osSendMesg']
     wrapper = symbols['object_create']
     callers, wrapper_callers = {}, {}
     no_copy, unpaired = [], []

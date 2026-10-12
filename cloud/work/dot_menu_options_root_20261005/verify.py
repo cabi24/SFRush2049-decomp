@@ -32,7 +32,7 @@ def native_contracts():
     assert symbols['func_8010AEAC'] == 0x8010AEAC
     calls = direct_calls(root)
     for name, count in [('func_8010A8D0',1), ('func_8010A7A4',14),
-                        ('slot_state_setup',2), ('osRecvMesg',2), ('osJamMesg',2),
+                        ('slot_state_setup',2), ('osRecvMesg',2), ('osSendMesg',2),
                         ('fcvt_wrapper',1), ('object_manager_update',2),
                         ('object_bytes_sum_global',2), ('state_utility',2)]:
         assert calls[symbols[name]] == count

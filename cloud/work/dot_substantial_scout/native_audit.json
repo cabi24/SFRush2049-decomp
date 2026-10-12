@@ -163,7 +163,7 @@
         {
           "address": "0x800075E0",
           "names": [
-            "osJamMesg"
+            "osSendMesg"
           ],
           "count": 9
         },
@@ -261,7 +261,7 @@
         {
           "address": "0x800075E0",
           "names": [
-            "osJamMesg"
+            "osSendMesg"
           ],
           "count": 8
         },

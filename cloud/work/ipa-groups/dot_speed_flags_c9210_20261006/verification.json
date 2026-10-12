@@ -142,7 +142,7 @@
     "D_801427A8": "0x801427A8",
     "D_80146115": "0x80146115",
     "func_80091B00": "0x80091B00",
-    "osJamMesg": "0x800075E0",
+    "osSendMesg": "0x800075E0",
     "osRecvMesg": "0x80007270"
   },
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",

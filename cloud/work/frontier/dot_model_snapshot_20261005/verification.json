@@ -165,9 +165,9 @@
       }
     },
     "source_sha256": {
-      "src/blob/math_utility.c": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a",
-      "src/blob/players_race_update.c": "6c4ff56da823f00ef1fcfc1a2b6ceef7f59ae5b1159fb3cde0bfb424d92ba27f",
-      "src/blob/func_800D4D84.c": "2e086fb3eaeb3715419e6d1597d5a24d0834230968ccf91fa2a6e94ee839471f",
+      "src/blob/math_utility.c": "7472a0bf25b17015688a9ef94a5ee1a56e789b6b2d6fab169f90729d1f4085b6",
+      "src/blob/players_race_update.c": "decee52a55010760c1c692b183cafefb5d7c84b593fb810a00118e3e6756105f",
+      "src/blob/func_800D4D84.c": "83348bd4dcd04a3b32f94254683d4aa6da7ee95a72b3767aff4ca59830c19018",
       "src/blob/battle_mode_setup.c": "be2b46aaf95577e73f2324074c8eedc31cf99db79648ecbe01bac737a7e89da1"
     },
     "existing_exported_roots_preserved": true,

@@ -1,0 +1,149 @@
+{
+ "note": "w23g: Conveyor inventory rename table = ll_renames.json (18) + suspect_renames.json (6), applied in one targets_rename transaction. Evidence lives in the two source tables.",
+ "renames": [
+  {
+   "vram": "0x8000D8F0",
+   "old": "__lshrdi3",
+   "new": "__ull_rshift",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000D91C",
+   "old": "__umoddi3",
+   "new": "__ull_rem",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000D958",
+   "old": "__udivdi3",
+   "new": "__ull_div",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000D994",
+   "old": "__ashldi3",
+   "new": "__ll_lshift",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000D9C0",
+   "old": "__umoddi3_alt",
+   "new": "__ll_rem",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000D9FC",
+   "old": "__divdi3",
+   "new": "__ll_div",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000DA58",
+   "old": "__muldi3",
+   "new": "__ll_mul",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000DA88",
+   "old": "__qdivrem",
+   "new": "__ull_divremi",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000DAE8",
+   "old": "__moddi3",
+   "new": "__ll_mod",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000DB84",
+   "old": "__ashrdi3",
+   "new": "__ll_rshift",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800099F0",
+   "old": "__fixdfdi",
+   "new": "__d_to_ll",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009A0C",
+   "old": "__fixsfdi",
+   "new": "__f_to_ll",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009A28",
+   "old": "__fixunsdfdi",
+   "new": "__d_to_ull",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009AC8",
+   "old": "__fixunssfdi",
+   "new": "__f_to_ull",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009B64",
+   "old": "__floatdidf",
+   "new": "__ll_to_d",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009B7C",
+   "old": "__floatdisf",
+   "new": "__ll_to_f",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009B94",
+   "old": "__floatundidf",
+   "new": "__ull_to_d",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80009BC8",
+   "old": "__floatundisf",
+   "new": "__ull_to_f",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800086F0",
+   "old": "osWritebackDCache_full",
+   "new": "osSyncPrintf",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000C050",
+   "old": "dll_remove",
+   "new": "__osDequeueThread",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000C308",
+   "old": "dll_insert",
+   "new": "__osInsertTimer",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000CFC4",
+   "old": "__osCleanupThread",
+   "new": "__osEnqueueAndYield",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000DBC0",
+   "old": "osPiInit",
+   "new": "__osPiCreateAccessQueue",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x8000E390",
+   "old": "__osInsertTimer",
+   "new": "osPiGetCmdQueue",
+   "status": "accepted"
+  }
+ ]
+}

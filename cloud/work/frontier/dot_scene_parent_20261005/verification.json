@@ -92,8 +92,8 @@
     },
     "limit": "Three unchanged genuine bodies; shared record accessor regression, not actual caller closure or full-game shadow unit.",
     "source_sha256": {
-      "src/blob/func_8008AE10.c": "3815c636574cb2007d9cd4e6bca85a95e2b9308551d50a546b9770087b264600",
-      "src/blob/func_8008AE2C.c": "7dd3f7f6e3bcc506ff05c591e99964b4e400bba3f5f0b30d41236447c8a83e5f"
+      "src/blob/func_8008AE10.c": "66b6bf4886e77ead73ccbd73ad13d3e294f16369caf4bf19e825f2f9aa32b21b",
+      "src/blob/func_8008AE2C.c": "974016953ef7c9c1c8595b91bbdfdcf61f126812de7b9404fb361b32466d3ddc"
     }
   },
   "controls": {

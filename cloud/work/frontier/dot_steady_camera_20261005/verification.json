@@ -1014,9 +1014,9 @@
   },
   "inputs": {
     "cloud/work/frontier/dot_steady_camera_20261005/candidate.c": "e54774e4b3b549e6862fe4a3d67d91590529ca53c8455a3c998f449a6bfe4654",
-    "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": "3410440564bd9b5afcb1e03113fd06d9508e9d4d4fe3045740cd1f4b9cbc675f",
+    "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": "a9cddce2b1458cc9f7b062f8eb8bdfe606bab439dc3b16142df54e15556a4dd8",
     "cloud/work/ipa-groups/dot_steady_camera_20261005/group.json": "46530938f5dd5856a8d34a30f2d6ddca3252433a00f9e0f236454a4edfa4ab4e",
-    "src/blob/groups/func_800E92C8/group.c": "fd9d6faa17ba52d2190d89cb8353ce3eda2a33f91249a9d3f399db11223e8da0",
+    "src/blob/groups/func_800E92C8/group.c": "04f83fc836ffc69a34d1fa0ff636aa973355b2f70b9c563ce905bb139d9cb6f1",
     "src/blob/groups/func_800E92C8/group.json": "85f544ad1f24fbaf4ae68d0328ebd3897a9d164580bb7535302758f924561b80"
   },
   "native_callees": [

@@ -468,3 +468,109 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+
+
+# --- receipts that pin pre-rename game sources -------------------------------------
+# Research packets (cloud/work/**/verify.py and their tests) pin the sha256 of
+# src/blob sources, cloud/matches submissions and asm/us/blob/symbols.json as
+# they were when the packet was recorded. Lane w23g renamed the game callers
+# (RENAME_TABLES applied to src/blob/**, cloud/matches, asm/us/blob/symbols.json),
+# so those live files no longer hold the recorded hashes. A packet that checks
+# such a pin asks pinned_bytes(): the live bytes when they still hold the
+# recorded hash, otherwise the bytes at RENAME_BASE (the tree every rename
+# table describes, an ancestor of master) provided they hold it AND the live
+# file is exactly that text renamed (renamed_game_source relation, below). The
+# receipt then still describes a file whose current form is its pure rename.
+
+RENAME_BASE = "68477154df"   # wave 23 base = origin/master before lane w23g
+
+
+def _git_bytes(rev, rel):
+    proc = subprocess.run(["git", "show", f"{rev}:{rel}"], cwd=REPO, capture_output=True)
+    return proc.stdout if proc.returncode == 0 else None
+
+
+def renamed_game_text(old, new):
+    """True when `new` is `old` with the rename tables applied (code identifiers
+    only) and nothing else changed except whole prototype statements dropped
+    that declare a name `new` still declares (the redeclarations the
+    permutation creates in generated preludes; lane w23g's drop_renamed_dups)."""
+    import difflib
+    names = libultra_names()
+    want = permute_c(old, names)
+    if want == new:
+        return True
+    decl = re.compile(r"^[ \t]*(?:extern[ \t]+)?[A-Za-z_][\w \t*]*?\b([A-Za-z_]\w*)[ \t]*"
+                      r"\(([^;{}()]|\([^;{}()]*\))*\)[ \t]*;[ \t]*(?:\n|$)", re.M)
+
+    def spans(text):
+        code = re.sub(r"/\*.*?\*/|//[^\n]*",
+                      lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
+        return [(m.group(1), m.start(), m.end()) for m in decl.finditer(code)]
+
+    a, b = want.splitlines(keepends=True), new.splitlines(keepends=True)
+    offsets, pos = [], 0
+    for line in a:
+        offsets.append(pos)
+        pos += len(line)
+    offsets.append(pos)
+    declared = {s: (n, e) for n, s, e in spans(want)}
+    kept = {n for n, _s, _e in spans(new)}
+    for tag, i1, i2, _j1, _j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if tag == "equal":
+            continue
+        if tag != "delete":
+            return False
+        s, end = offsets[i1], offsets[i2]
+        while s < end:
+            if s not in declared or declared[s][0] not in kept:
+                return False
+            s = declared[s][1]
+        if s != end:
+            return False
+    return True
+
+
+def pinned_bytes(path, sha256):
+    """The bytes a receipt pinned at `path` (see above): live when they hold
+    `sha256`, else the RENAME_BASE bytes when they hold it and the live file is
+    their pure rename; otherwise the live bytes (the caller's check fails)."""
+    path = Path(path)
+    live = path.read_bytes()
+    if hashlib.sha256(live).hexdigest() == sha256:
+        return live
+    try:
+        rel = str(path.resolve().relative_to(REPO.resolve()))
+    except ValueError:
+        return live
+    old = _git_bytes(RENAME_BASE, rel)
+    if old is None or hashlib.sha256(old).hexdigest() != sha256:
+        return live
+    if rel == "asm/us/blob/symbols.json" or rel.endswith("/SHA256SUMS"):
+        return old if _symbols_renamed(old, live, rel) else live
+    try:
+        ok = renamed_game_text(old.decode(), live.decode())
+    except UnicodeDecodeError:
+        ok = False
+    return old if ok else live
+
+
+def pinned_sha(path, sha256):
+    """sha256 of pinned_bytes(path, sha256): equals `sha256` when the pin holds."""
+    return hashlib.sha256(pinned_bytes(path, sha256)).hexdigest()
+
+
+def _symbols_renamed(old, live, rel):
+    """asm/us/blob/symbols.json: same addresses, keys renamed by the tables
+    (the regenerated export). SHA256SUMS: accepted when every listed file other
+    than symbols.json is unchanged."""
+    if rel.endswith("SHA256SUMS"):
+        o = dict(l.split()[::-1] for l in old.decode().splitlines() if l.strip())
+        n = dict(l.split()[::-1] for l in live.decode().splitlines() if l.strip())
+        return set(o) == set(n) and all(o[k] == n[k] for k in o if k != "symbols.json")
+    names = libultra_names()
+    o, n = json.loads(old), json.loads(live)
+    if {k: v for k, v in o.items() if k != "symbols"} != {k: v for k, v in n.items() if k != "symbols"}:
+        return False
+    return {names.get(k, k): v for k, v in o["symbols"].items()} == n["symbols"]
+

@@ -103,7 +103,7 @@
     "menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06",
     "root.c": "8f788d7e4b00e4bd85bf49254e4bc926c1de62b2bc091b8b448ab5120239de42",
     "slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "verify.py": "d7ad5784b621310430bc91c3cf5c4f7bd2ad4efce446d370b487e5d95e209220"
+    "verify.py": "8f5c0d6f61150db77b44259583c6b4cf908836ce017e7f94284bdcad53365cc5"
   },
   "status": "complete control-flow reconstruction; native declaration/ABI blocked"
 }

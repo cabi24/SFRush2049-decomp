@@ -10,7 +10,7 @@
     "src/blob/groups/gfx_modes/func_8008A148.c": "7de40c951eb651b658bc6f1de412cc9fbc70851edc7e8c13047d1ef31a9d551f",
     "src/blob/groups/gfx_modes/rect.c": "a1feb67072ebbdc68d6e578a9dac22d89675f6ad8ee5f11ec2b87183b803d929",
     "src/blob/groups/gfx_modes/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
-    "src/blob/groups/gfx_modes/object_render.c": "82a359f4bc20de2bc0111250e90488d4646f697711ca4c124eccb053082a5339"
+    "src/blob/groups/gfx_modes/object_render.c": "8a64edd158153fab62931bdbfdbd10eaa85968c48bd3ce9412e769fdbb8a71fc"
   },
   "baseline_flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
   "native_inventory": {
@@ -93,7 +93,7 @@
         "accepted_recipe": {
           "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
           "source": "src/blob/func_80087804.c",
-          "source_sha256": "19cc628d2e7bd18b0700319740c08348b98de6f59300eb375a23be091e09d985",
+          "source_sha256": "2aee4ddf65c5251ee08c69b4eb31862d70f1313d2d652daf2e885e0c6de87287",
           "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
           "verified": "image_gate",
           "verified_at": "2026-09-28"

@@ -715,7 +715,7 @@
   },
   "source_bindings": {
     "cloud/matches/func_800B7FF8.c": "54ed29b8a95b66c6decd85ea936fdac2b805429cdedc3e2275b2c4505c1ac30b",
-    "src/blob/Effects_UpdateEmitters.c": "13bb5aca1026aa051f699f2f630d27994b44a0c66741bab3c4c61d1d6e492da2",
+    "src/blob/Effects_UpdateEmitters.c": "30734bed68afb9a748669c69eb3b6eb797d0da8558f7bfb5284e2c0dfa74cba3",
     "cloud/work/game_C31/func_800B7FF8.bits.c": "87c66542cc78e0a69711e6e2c1bcc9ee8755b3af5673bb0d592f9726b65ce72b",
     "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "5db5063ff56ebd1a1b38612254dd608b7bdc635988a236388963ec36daae2281",
     "cloud/work/frontier/dot_frame_dispatch_20261005/native.py": "2a4e50b4d7b198b7eb4961edd17f9e7b19411306e640ea38394f1f46eaaa4156",
@@ -726,7 +726,7 @@
   },
   "historical_native_provenance": {
     "asm/us/blob/SHA256SUMS": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
-    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "asm/us/blob/symbols.json": "46c815ca0c4d7bcb418592c16d46bbb02124f099a49b099d55a38529e721a587",
     "symbol_addrs.us.txt": "3db8a69ed8b00120f0926fb610bd0aa8905d936a4cb2eb2238eb62883e7a92a1"
   },
   "compiler_sha256": {

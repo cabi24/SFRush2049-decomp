@@ -567,7 +567,7 @@
       "bytes": 520,
       "native_sha256": "2f8938578f2c7228afcf595ebfc5965922de56a80e88bfcdb6450ecfef77b63c",
       "source": "src/blob/groups/audio_frame_sync/group.c",
-      "source_sha256": "793e51e102b659dce4c0814caa6b06d27a24520861d5eb143c80418331745872",
+      "source_sha256": "5d9900db61a0e5df68e8810b2466a71b8e341b3a7c87ee349429f498126f62a2",
       "scope": "read-only source/native contract witness; not compiled or executed as helper internals"
     },
     "func_800BB02C": {
@@ -1607,7 +1607,7 @@
     "blob_80100d24.s": "117d428475270098f48317f43dc5b404023bc365cf4460b9d93a68951b2fb99d",
     "blob_8010e0fc.s": "c0c9ba877349c3aed66e35a51b1afdb5c5d147d196b54ba1e2fafb45b77f574c",
     "blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
-    "symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d"
+    "symbols.json": "46c815ca0c4d7bcb418592c16d46bbb02124f099a49b099d55a38529e721a587"
   },
   "files": {
     "candidate.c": "29d1dfaaeed5d9f51862bb456ee677280f72e9da259d562a98caae42a135694a",

@@ -46,7 +46,7 @@ def test_counts_are_bounded_dependency_surface_not_matches():
 def test_six_sites_are_real_selector_calls_without_capture(name, site):
     words, symbols = audit.score.targets()[name], audit.score.image_symbols()
     assert audit.inspect_site(words, symbols[name], site, symbols['slot_state_setup'],
-                              symbols['osRecvMesg'], symbols['osJamMesg'])
+                              symbols['osRecvMesg'], symbols['osSendMesg'])
 
 
 @pytest.mark.parametrize('delta', [-1, 2, 4, 8, 0x1000])
@@ -55,7 +55,7 @@ def test_wrong_native_site_is_rejected(delta):
     with pytest.raises(audit.AuditError, match='wrong site'):
         audit.inspect_site(audit.score.targets()['func_800D9058'], symbols['func_800D9058'],
                            0x800D9098 + delta, symbols['slot_state_setup'],
-                           symbols['osRecvMesg'], symbols['osJamMesg'])
+                           symbols['osRecvMesg'], symbols['osSendMesg'])
 
 
 def test_known_captured_site_cannot_be_labeled_no_copy():
@@ -63,7 +63,7 @@ def test_known_captured_site_cannot_be_labeled_no_copy():
     with pytest.raises(audit.AuditError, match='captures selector return'):
         audit.inspect_site(audit.score.targets()['credits_scroll'], symbols['credits_scroll'],
                            0x800D67E0, symbols['slot_state_setup'],
-                           symbols['osRecvMesg'], symbols['osJamMesg'])
+                           symbols['osRecvMesg'], symbols['osSendMesg'])
 
 
 def test_unpaired_selector_call_is_not_an_adjacent_wrapper():
@@ -71,7 +71,7 @@ def test_unpaired_selector_call_is_not_an_adjacent_wrapper():
     with pytest.raises(audit.AuditError, match='lacks adjacent'):
         audit.inspect_site(audit.score.targets()['world_trigger_check'], symbols['world_trigger_check'],
                            0x800EDD54, symbols['slot_state_setup'],
-                           symbols['osRecvMesg'], symbols['osJamMesg'])
+                           symbols['osRecvMesg'], symbols['osSendMesg'])
 
 
 def test_wrong_saved_site_fails_replay():
