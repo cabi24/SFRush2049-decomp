@@ -2,7 +2,21 @@
 
 Newest first. Every package version adds a section here (tools/recomp/package/CHANGES.md in the repo).
 
-## v3 (2026-10-12, lane w26r; this package: @@PACKAGE@@)
+## v4 (2026-10-12, lane w27r; this package: @@PACKAGE@@)
+
+**No gameplay change.** The program you run is built from the same game code, runtime and renderer as v3 (same
+pins); this version exists because every recomp phase ships a package. The v3 report is still welcome: run v4
+instead, the steps are unchanged.
+
+- New tools in `rush/tools/recomp/` for the decompilation side (you do not need them): `draft_check.py`,
+  `regmap_verify.py`, `census.py` and `census/` (which game functions each script reaches).
+- New input script `stunt_end` (`--press-file rush\tools\recomp\scripts\stunt_end.press`, with
+  `--clock frames`): stunt mode held until its 4:40 timer runs out, then the screens that follow. If you play
+  stunt mode by hand, please note what appears when the timer reaches 0:00 (results, name entry, replay prompt):
+  no one has seen those screens in this build yet.
+- What to test: T0 smoke and T8 as in v3; everything else as v3 if you have time.
+
+## v3 (2026-10-12, lane w26r; package v3)
 
 From the v2 report (thank you: 0 hangs, good sound, and the list of small things below).
 

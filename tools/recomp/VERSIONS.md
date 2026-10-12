@@ -72,7 +72,7 @@ pinned `81213c18` headers (the build compiles the emitted C against
 regenerates the package and bumps `package_version` (and adds a section to `package/CHANGES.md`).
 
 <!-- package-pins
-package_version = 3
+package_version = 4
 n64recomp = ffb39cdad1da5de07eaaa48bd1db4a89a7986771
 n64modernruntime = cdf5abbd5026fef5c364c676e4667c45e42b6863
 rt64_url = https://github.com/rt64/rt64
@@ -84,6 +84,7 @@ rt64 = 23cab603c4f9f4a8b369b38e036f1aa484603878
 | v1 | 2026-10-12 | branch w24r (lane w24r) | first package: stock recompiled game, RT64 window, live input |
 | v2 | 2026-10-12 | branch w25r (lane w25r) | wall-clock busy-wait yields, recompiled audio ucode + AI pacing + SDL sound, lockstep/RT64 fix, ROM copy deleted, doc fixes (A5, T6, T9), attract/stunt/pad steps |
 | v3 | 2026-10-12 | branch w26r (lane w26r) | controller pak (saves, no boot notice), pad dead-zone rescale + single pad line, lockstep renderer wait, mode scripts, T3b saves + T4b modes steps |
+| v4 | 2026-10-12 | branch w27r (lane w27r) | no gameplay change: decomp-feedback tools (draft_check, regmap_verify, census), stunt_end script, capture up to 48 locations; built without waiting for a v3 report |
 
 ## RSPRecomp and the RT64 test container (Phase 5, lane w25r, 2026-10-12)
 
