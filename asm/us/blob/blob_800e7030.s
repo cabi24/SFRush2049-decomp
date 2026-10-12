@@ -7189,6 +7189,7 @@ world_collision_response:
 .section .text.world_trigger_check, "ax", @progbits
 .globl world_trigger_check
 world_trigger_check:
+    /* compiled from src/blob/world_trigger_check.c */
     .word 0x27BDFFC8
     .word 0xAFBF0034
     .word 0x3C048014

@@ -2,7 +2,9 @@
  "name": "credits_scroll_grp",
  "members": [
   "credits_scroll",
-  "func_80100B8C"
+  "func_80100B8C",
+  "slot_state_setup",
+  "world_trigger_check"
  ],
  "context": [
   "object_create",
@@ -20,16 +22,17 @@
   "func_800B669C",
   "func_800D7634",
   "time_result_display",
-  "slot_state_setup",
   "sound_update_channel",
-  "func_80096288"
+  "func_80096288",
+  "func_800B6748"
  ],
  "files": [
   "gr3.c",
   "gr3_b.c",
   "gr3_c.c",
   "gr3_d.c",
-  "gr3_e.c"
+  "gr3_e.c",
+  "gr3_w.c"
  ],
  "keep": [
   "object_byte9_set",
@@ -46,8 +49,10 @@
   "func_80100B8C",
   "func_800B669C",
   "func_800D7634",
-  "time_result_display"
+  "time_result_display",
+  "world_trigger_check",
+  "__standin_func_800B6748"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
- "provenance": "w27c 2026-10-12: func_80100B8C added (credits scroll helper); D_80118E20 defined in gr3_d.c"
+ "provenance": "w27c 2026-10-12: func_80100B8C added (credits scroll helper); D_80118E20 defined in gr3_d.c | w27b: slot_state_setup moved from context to members (do{}while(0) flips the s0/s1 tie); world_trigger_check added (gr3_w.c) with byte-identical context copy of func_800B6748 + kept stand-in caller; object_byte9_set context copy gets the if(0) __unit_dead inline blocker | w27f: merged both; keep += world_trigger_check, __standin_func_800B6748"
 }

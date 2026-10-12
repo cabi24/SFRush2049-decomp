@@ -43,6 +43,7 @@ extern s32 D_80149B28;
 void func_80096288(s32 a,s32 b,s32 c) { if(0) { switch(a+b+c) {case 1: D_80149B08=1;break;case 2:D_80149B08=2;break;case 3:D_80149B08=3;break;} } if(c) {} }
 extern s32 func_80097694(s32, s32);
 
+extern int __unit_dead[];
 void sound_update_channel(s32 force)
 {
     Bank *b;
@@ -83,6 +84,7 @@ void sound_update_channel(s32 force)
     }
     D_80149B08 = (D_801497F0->mode == 1) ? 4 : 3;
     D_80149B28 = (D_801497F0->mode == 1) ? 0 : 1;
+
 }
 
 
@@ -103,6 +105,17 @@ s8 object_byte9_set(s8 value) {
  old = D_801497F0->f9;
  D_801497F0->f9 = value;
  return old;
+  if (0) { /* w27b: dead block, stops umerge inlining this context copy (blob_unit's inline-blocker device) */
+    __unit_dead[0] = 1;
+    __unit_dead[1] = 2;
+    __unit_dead[2] = 3;
+    __unit_dead[3] = 4;
+    __unit_dead[4] = 5;
+    __unit_dead[5] = 6;
+    __unit_dead[6] = 7;
+    __unit_dead[7] = 8;
+  }
+
 }
 s16 object_bytes23_sum(void) { u8 first; first=object_type_byte2_get(); return (s16)(first + object_type_byte3_get()); }
 s16 object_bytes_sum_global(void) {

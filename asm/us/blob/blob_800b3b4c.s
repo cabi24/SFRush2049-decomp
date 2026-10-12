@@ -478,6 +478,7 @@ object_byte9_set:
 .section .text.slot_state_setup, "ax", @progbits
 .globl slot_state_setup
 slot_state_setup:
+    /* compiled from src/blob/slot_state_setup.c */
     .word 0x3C118015
     .word 0x26319DA0
     .word 0x27BDFFE0

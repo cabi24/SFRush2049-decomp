@@ -9,7 +9,7 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "e818744d9a4a45a321095ab3620f1278b3d4b25337ff5408736a9e7fa42cc63a",
+    "src/blob/groups/credits_scroll_grp/group.json": "0d9b38868eff7be6852fd16371c611adc8b2a8578373c5137defd5aa10c57742",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "f9c47ea0b8a58236b75d9577e5436c36872dcccd700e00c2b23ae980ffa308e4",
     "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4"
   },
@@ -53,20 +53,21 @@
       "stack_word": 21
     },
     "accepted_callers": [
-      "credits_scroll"
+      "credits_scroll",
+      "world_trigger_check",
+      "func_80100B8C"
     ],
-    "unaccepted_caller_bytes": 74428,
+    "unaccepted_caller_bytes": 73804,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
-      "world_trigger_check": 216,
       "dust_cloud_effect": 600,
       "skid_mark_render": 1396,
       "checkpoint_hit": 580,
       "func_80107EDC": 632,
       "func_80109F54": 1504
     },
-    "bounded_dependency_bytes": 5368
+    "bounded_dependency_bytes": 5152
   },
   "no_copy_sites": [
     {
@@ -200,7 +201,6 @@
         "s0": 2
       },
       "other_unaccepted_direct_game_calls": [
-        "car_lights_render",
         "state_utility"
       ]
     },
@@ -233,14 +233,10 @@
       "other_unaccepted_direct_game_calls": [
         "audio_frame_sync",
         "display_enable",
-        "func_800A3424",
         "func_800A7480",
         "func_800C813C",
-        "func_800C885C",
-        "game_mode_handler",
         "hud_setup",
         "object_create",
-        "speed_set",
         "tire_compound_set"
       ]
     },
@@ -435,7 +431,7 @@
       "start": "0x800EDCE8",
       "bytes": 216,
       "body_sha256": "c61e640dd5a9e43b9f4946fc6d76a154f4c1609d4ae1d3c302b601f2d5282612",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800EDD54"
       ],
@@ -554,8 +550,7 @@
       "other_unaccepted_direct_game_calls": [
         "func_800F0914",
         "func_800F0F44",
-        "object_bytes_sum_global",
-        "sound_stop"
+        "object_bytes_sum_global"
       ]
     },
     "func_800F857C": {
@@ -687,7 +682,7 @@
       "start": "0x80100B8C",
       "bytes": 408,
       "body_sha256": "bd6b058889ac10411ae9df278c0009f4e41a72e47ec3f1e7974852ae3a4296bc",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80100BF0",
         "0x80100C84"

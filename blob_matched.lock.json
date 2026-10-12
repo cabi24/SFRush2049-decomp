@@ -983,7 +983,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "117d6c72622577f42d21192b9090f0135668e245f937dc359f837a598e659871",
+    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-12"
@@ -6313,7 +6313,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "117d6c72622577f42d21192b9090f0135668e245f937dc359f837a598e659871",
+    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-12"
@@ -7775,6 +7775,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "slot_state_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "slot_value_get": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
@@ -8351,5 +8360,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
+  },
+  "world_trigger_check": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   }
 }
