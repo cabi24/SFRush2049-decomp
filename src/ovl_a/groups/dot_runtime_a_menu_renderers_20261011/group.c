@@ -1,30 +1,34 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image A menu renderer group: new strict claims 803A6F2C (596 B),
- * 803A7620 (760 B). Complete 7180 and kept 7918 are genuine context.
+/* Image A menu-renderer group, superseding dot_runtime_a_menu_renderers_20261011.
+ * New claim: func_803A7918, 576 bytes. Preserve both existing members,
+ * func_803A6F2C and func_803A7620, without claiming their bytes again.
+ * Complete real func_803A7180 remains unclaimed private-ABI context.
  * Reconstructed from native targets; no proven arcade-source ancestry.
- * 6F2C builds selected-record text and actions. 7620 renders four storage
- * slots, probing both real owner lists before choosing status text.
+ * 7918 renders the title, dispatches three menu renderers and displays
+ * either of two explanatory messages. Its callback argument is unused.
  *
- * SHAPING, explicitly permitted exact-frame-residual reconstruction:
- * 6F2C: two unused s32 slots before x, 312 + 2*4 = native 320 bytes;
- * all existing buffer homes stay fixed. 7620: four unused s32 slots,
- * one before status and three after title: 128 + 4*4 = native 144;
- * arrays move up 12 bytes, to native 80/120. These scalar slots explain
- * the residual only, not original declarations, names or types.
- * No padding arrays, false signatures, artificial calls or volatile reads.
+ * No executable source change from the accepted group's genuine context.
+ * The new evidence authenticates the existing asset and full image A, then
+ * proves all 144 code words plus the complete 20-byte owned switch table
+ * with the unchanged canonical verifier. Without those image bytes the
+ * default scorer still reports two own-section references unverified.
  *
- * Unclaimed context: 7180's scalar declarations precede its arrays,
- * giving every native buffer home but frame 192 versus 168 (2 words off).
- * 7918's real text-X result has an s16 carrier. Three unused s32 slots
- * reconstruct its named area (without: frame 600; with: native 608,
- * 12 declared bytes cross an 8-byte rounding threshold); code is exact,
- * but default score.py has no authenticated overlay owned-data artifact
- * for its 20-byte switch table. It remains explicitly NOT VERIFIED.
+ * INHERITED SHAPING: 6F2C has two unused s32 locals: frame312 +8 =320.
+ * 7620 has four unused s32 locals: frame128 +16 =144; buffer homes move
+ * upward12 to native80/120. 7918 names the real text-X result in an s16
+ * carrier and has three unused s32 locals: named area516 +12 =528,
+ * rounded frame600 ->608. These explain the measured frame residuals;
+ * they do not recover original variable names, counts, types or purpose.
+ * No fake signatures, dummy calls, forced register, padding arrays,
+ * artificial read/write or diagnostic compiler alteration is used.
  *
- * Frozen live capacities: 6F2C title 128/name 128/suffix 16; 7180 text 100/
- * suffix 16; 7620 status 20/title 40; 7918 unavailable 256/failed 256. They are
- * reconstruction hypotheses, not recovered declarations or safety bounds.
- * Private-register helpers must retain the genuine root's IPA context.
+ * 7180 still differs only in frame192 versus168. All its native buffer
+ * homes agree, and this work does not shrink either live buffer.
+ * All inherited live capacities are unchanged: 6F2C title128/name128/
+ * suffix16; 7180 text100/suffix16; 7620 status20/title40; 7918 two256-byte
+ * buffers. These are reconstruction hypotheses, not authenticated bounds
+ * or guarantees of string safety. The real kept root is essential IPA
+ * context for the private-register helpers; do not install them alone.
  */
 typedef signed char s8;
 typedef unsigned char u8;

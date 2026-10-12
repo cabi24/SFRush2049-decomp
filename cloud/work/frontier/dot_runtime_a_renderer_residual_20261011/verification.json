@@ -1,0 +1,91 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "groups/dot_runtime_a_menu_renderers_20261011/group.c": "e3322d0fac5fc05f499399be67bbddd6a3d959d4f93384e259e18602b9df5456",
+      "groups/dot_runtime_a_menu_renderers_20261011/group.json": "2a35060179c89adf6f7ead88a9f54eee5be800d6b1832bfde076616dddbb9737",
+      "verify.py": "22050243ce433e8f3acd14a9a48b2dd3ea3331446592d5510f39a9c0cfc9aa20",
+      "trace_probes.py": "04df0159e07043f1f9f8e640640218915294df7425a205361bfa067742dbf566"
+    },
+    "target_metadata_sha256": {
+      "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+      "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+    },
+    "targets": {
+      "func_803A6F2C": {
+        "address": "0x803A6F2C",
+        "size": 596,
+        "words_sha256": "4c14e82af4aacc8799096ca7e27dd442f750ba50afab434f155b8b546aa1bfa2"
+      },
+      "func_803A7620": {
+        "address": "0x803A7620",
+        "size": 760,
+        "words_sha256": "9e52141c5fdf509049afe8758e2995959c872a5bd129ef764996b0b40f740c86"
+      },
+      "func_803A7918": {
+        "address": "0x803A7918",
+        "size": 576,
+        "words_sha256": "3f28331e80a503d24bcc9803abfff147dee7bfc06541628f388ab2c6444b3f79"
+      },
+      "func_803A7180": {
+        "address": "0x803A7180",
+        "size": 1184,
+        "words_sha256": "228e65af0d16775b66e700c49789955451c7f91bf394d5231584dec845c52d17"
+      }
+    },
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "image_size": 194128,
+    "members": [
+      "func_803A6F2C",
+      "func_803A7620",
+      "func_803A7918"
+    ],
+    "context": [
+      "func_803A7180"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "results": {
+    "func_803A6F2C": {
+      "differing": 0,
+      "total": 149,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803A7620": {
+      "differing": 0,
+      "total": 190,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803A7918": {
+      "differing": 0,
+      "total": 144,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "owned_table": {
+    "address": "0x803b9834",
+    "size": 20,
+    "entries": 5,
+    "relocations": "five R_MIPS_32 to in-root .text offsets",
+    "sha256": "f677342204735f0515a48ef68d0a4aea3ed1fea6afecd33d1ebee940ab76a9ba",
+    "zero_section_alignment_bytes": 12
+  },
+  "controls": {
+    "all_five_table_entry_mutations_rejected": true,
+    "truncated_table_rejected": true,
+    "absent_table_unverified_references": 2
+  },
+  "new_verified_candidate_bytes": 576,
+  "accepted_image_bytes": 0,
+  "preserved_existing_member_bytes": 1356,
+  "context_differing_words": 2
+}

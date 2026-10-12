@@ -453,9 +453,9 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_menu_renderers_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_renderer_frame_20261011/groups/menu_renderers",
+      "origin": "cloud/work/frontier/dot_runtime_a_renderer_residual_20261011/groups/dot_runtime_a_menu_renderers_20261011",
       "source": "src/ovl_a/groups/dot_runtime_a_menu_renderers_20261011/group.json",
-      "source_sha256": "e52afd1a0c43ed53568e3ca19abf69fc69e1e79e3f9515d9ce87761b17fb47b5",
+      "source_sha256": "8ef1e73f1489b0d63701a5cae8d3214a6da5cc96514dc85c55347334851fcc5c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
@@ -464,9 +464,20 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_menu_renderers_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_renderer_frame_20261011/groups/menu_renderers",
+      "origin": "cloud/work/frontier/dot_runtime_a_renderer_residual_20261011/groups/dot_runtime_a_menu_renderers_20261011",
       "source": "src/ovl_a/groups/dot_runtime_a_menu_renderers_20261011/group.json",
-      "source_sha256": "e52afd1a0c43ed53568e3ca19abf69fc69e1e79e3f9515d9ce87761b17fb47b5",
+      "source_sha256": "8ef1e73f1489b0d63701a5cae8d3214a6da5cc96514dc85c55347334851fcc5c",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_803A7918": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_menu_renderers_20261011",
+      "image": "A",
+      "origin": "cloud/work/frontier/dot_runtime_a_renderer_residual_20261011/groups/dot_runtime_a_menu_renderers_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_menu_renderers_20261011/group.json",
+      "source_sha256": "8ef1e73f1489b0d63701a5cae8d3214a6da5cc96514dc85c55347334851fcc5c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
@@ -590,6 +601,16 @@
       "origin": "cloud/matches/ovl_b/func_80393518.c",
       "source": "src/ovl_b/func_80393518.c",
       "source_sha256": "15005413f61cb81f4290490db4dc56f25cb9c6577fcfe6224125b2ddf6e3ea08",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_803936A8": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_803936A8.c",
+      "source": "src/ovl_b/func_803936A8.c",
+      "source_sha256": "1faa27f3886e9cd93e45109e9cb6c0d296ae2547f1d6efb2a8eea8e803e60ced",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
