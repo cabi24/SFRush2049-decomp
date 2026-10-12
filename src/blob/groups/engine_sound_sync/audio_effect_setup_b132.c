@@ -124,7 +124,7 @@ extern void scheduler_recv(s32);
 extern s32 entity_flags_apply(s32,s32,s32,u8);
 extern void engine_sound_sync(void);
 extern s32 osRecvMesg(void *,void *,s32);
-extern s32 osJamMesg(void *,void *,s32);
+extern s32 osSendMesg(void *,void *,s32);
 extern u8 D_80142728[],D_801427A8[];
 typedef struct TreeNode { struct TreeNode *left,*right; s32 *object; } TreeNode;
 typedef struct Tree { s32 (*compare)(TreeNode *,TreeNode *); s32 count; TreeNode *root; } Tree;
@@ -308,11 +308,11 @@ void func_80098FB8(void) {
         }
         count=0;
         camera_update_a(&D_80143F58,D_80143F58.root,&count,func_800952E0);
-        osJamMesg(D_80142728,0,0);
-        for(i=0;i<D_80110250;i++) osJamMesg(D_801427A8,D_80143CF0[i],0);
-        for(i=0;i<D_8011024C;i++) osJamMesg(D_801427A8,D_80143AE8[i],0);
+        osSendMesg(D_80142728,0,0);
+        for(i=0;i<D_80110250;i++) osSendMesg(D_801427A8,D_80143CF0[i],0);
+        for(i=0;i<D_8011024C;i++) osSendMesg(D_801427A8,D_80143AE8[i],0);
     }
     osRecvMesg(D_80142728,0,1);
     camera_transform();
-    osJamMesg(D_80142728,0,0);
+    osSendMesg(D_80142728,0,0);
 }

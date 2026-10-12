@@ -21,7 +21,7 @@ Effect *func_80091BA8(s32);
 s32 entity_state_check(s32);
 f32 func_80098A54(f32 *);
 s32 osRecvMesg(void *,void *,s32);
-s32 osJamMesg(void *,void *,s32);
+s32 osSendMesg(void *,void *,s32);
 
 
 /* ---- oracle-only static copies of the callees whose retail conventions are IPA-specific ---- */
@@ -89,11 +89,11 @@ static void entity_transform_calc(s32 h,f32 x,f32 y,f32 z,f32 w) {
             if(w!=-2.0f && w!=e->w)m->payload.value.w=w; else m->payload.value.w=-2.0f;
         }
     }
-    if(m!=0)osJamMesg(&D_801427A8,m,0);
+    if(m!=0)osSendMesg(&D_801427A8,m,0);
 }
 /* func_80091AF0/AF8: retail 2-word stubs (deleted statics, inlined); the draft calls them */
 static void func_80091AF0(void) { osRecvMesg(D_80142728, 0, 1); }
-static void func_80091AF8(void) { osJamMesg(D_80142728, 0, 0); }
+static void func_80091AF8(void) { osSendMesg(D_80142728, 0, 0); }
 /* ---- end of oracle-only copies ---- */
 
 static void body_vector(const f32 uvec[3],f32 bodvec[3],const f32 uvs[][3])

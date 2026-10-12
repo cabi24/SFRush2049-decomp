@@ -39,7 +39,7 @@ s32 entity_state_check(s32);
 f32 func_80098A54(f32 *);
 void entity_transform_calc(s32,f32,f32,f32,f32);
 s32 osRecvMesg(void *,void *,s32);
-s32 osJamMesg(void *,void *,s32);
+s32 osSendMesg(void *,void *,s32);
 void func_80091AF0(void);
 void func_80091AF8(void);
 

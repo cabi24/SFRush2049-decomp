@@ -38,7 +38,7 @@ void controller_poll(void)
             D_80156978[i] = 0;
             D_80156998[i] = 0;
         }
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+        osSendMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
         return;
     }
     repeat = D_80123F94;
@@ -78,6 +78,6 @@ void controller_poll(void)
             D_80149784 |= D_80143A00[i];
         }
     }
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+    osSendMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
 

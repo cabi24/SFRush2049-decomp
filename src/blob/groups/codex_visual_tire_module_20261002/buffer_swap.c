@@ -54,13 +54,13 @@ void model_transform_setup(s32 a, s32 mode, u32 v);
 u32 entity_flags_apply(u32 index, u32 other, u32 value, u8 mode);
 void entity_transform_calc(s32 h, f32 x, f32 y, f32 z, f32 w);
 s32 osRecvMesg(void *, void *, s32);
-s32 osJamMesg(void *, void *, s32);
+s32 osSendMesg(void *, void *, s32);
 extern s32 D_80142728;
 __inline void ehu_inline(s32 h, f32 value)
 {
     osRecvMesg(&D_80142728, 0, 1);
     entity_transform_calc(h, -2.0f, -2.0f, -2.0f, value);
-    osJamMesg(&D_80142728, 0, 0);
+    osSendMesg(&D_80142728, 0, 0);
 }
 void client_sync(s32 h, f32 opacity);
 void scheduler_recv(s32 h);

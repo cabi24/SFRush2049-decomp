@@ -147,7 +147,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "fb573e252078ba72d187b325be08a006e087950fe3b258f6d9b987183285aa82",
+    "source_sha256": "3d8551d9c67151aa613a40b7f4b9438ccdadcf85ee28a222949c393bf19ac1e2",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
@@ -256,7 +256,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "engine_sound_sync",
     "source": "src/blob/groups/engine_sound_sync/group.json",
-    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
+    "source_sha256": "08fb1a7e82af4fefa574037f1a1910effe7bb05758614fbadbecea2c919c6d78",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
@@ -410,7 +410,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "fb573e252078ba72d187b325be08a006e087950fe3b258f6d9b987183285aa82",
+    "source_sha256": "3d8551d9c67151aa613a40b7f4b9438ccdadcf85ee28a222949c393bf19ac1e2",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
@@ -1036,7 +1036,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "engine_sound_sync",
     "source": "src/blob/groups/engine_sound_sync/group.json",
-    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
+    "source_sha256": "08fb1a7e82af4fefa574037f1a1910effe7bb05758614fbadbecea2c919c6d78",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
@@ -2223,7 +2223,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "engine_sound_sync",
     "source": "src/blob/groups/engine_sound_sync/group.json",
-    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
+    "source_sha256": "08fb1a7e82af4fefa574037f1a1910effe7bb05758614fbadbecea2c919c6d78",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
@@ -6644,7 +6644,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "fb573e252078ba72d187b325be08a006e087950fe3b258f6d9b987183285aa82",
+    "source_sha256": "3d8551d9c67151aa613a40b7f4b9438ccdadcf85ee28a222949c393bf19ac1e2",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
