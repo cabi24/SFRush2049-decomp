@@ -338,7 +338,11 @@ instruction words equal the object's outside the immediate: matched code), from 
 `statics`). Also fixed while doing this: game and overlay bodies resolve libultra calls by the game-side
 legacy names (`game_static_legacy.us.txt`, e.g. game `osJamMesg` = static osSendMesg), as the game link
 does; Phase 2 linked them by the static names, which sent func_800D6E00's message with the wrong function
-(the all-matched divergence) and made the func_800D7634 draft look DIFFERENT. Loads into `$zero` in a
+(the all-matched divergence) and made the func_800D7634 draft look DIFFERENT. Since lanes w23g/w23m
+renamed every game source (src/blob, cloud/matches, the w21h/w23f draft sources) to the static names,
+that table has no entries: `game_legacy_names()` returns `{}` and game bodies bind by the inventory
+names directly (a draft written against the old game names must go through
+`static_rename.renamed_game_source()` first). Loads into `$zero` in a
 replacement are nopped as in the retail sections.
 
 **OSThread word mask.** N64ModernRuntime's OSThread keeps an 8-byte host pointer (`context`) at
