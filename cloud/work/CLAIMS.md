@@ -24,3 +24,20 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | func_800178B0 (seqStartPlay, 205), func_8001F13C (voiceAllocate), func_80012D18 (per-voice command builder), func_80023E9C (macro interpreter; owned jump-table slot 0x8002D964/0x1C8), func_8001A658 | open | | w21c RESULTS 2026-10-12 has identities and best sources |
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 2 (function replacement, rdram view, frame oracle) | coordinator | 2026-10-12 | Phase 1 landed: boots to the front end and loads image B under scripted input (plan §9) |
+
+## Cloud reservations: Phase 2 and overlay follow-through (2026-10-12)
+
+These scoped reservations implement the owner's two-track request on master `93259a065`.
+The coordinator retains host integration and frame-oracle ownership; these two Phase 2
+contributions are ROM-free fixture-tested building blocks. All publications stay draft;
+installation, image/ROM gates, and merging remain with the independent checker.
+
+| Population | Target | Who | Since | Note |
+|---|---|---|---|---|
+| tooling | RDRAM view/accessors (`tools/recomp/rdram.h`, `tools/recomp/game_rdram.h`; `tests/recomp/test_rdram.py`, `tests/recomp/fixtures/rdram_*`) | Astra: build_rdram_accessors | 2026-10-12 | Phase 2 §9: byte-order-aware loads/stores and N64 address translation; fixtures only, no private ROM. Owns README section `RDRAM accessors`. |
+| tooling | o32 replacement wrapper generator (`tools/recomp/gen_wrapper.py`, `tools/recomp/o32_abi.h`, `.github/workflows/recomp-fixtures.yml`; `tests/recomp/test_wrappers.py`, `tests/recomp/fixtures/wrapper_*`) | Astra: build_o32_wrappers | 2026-10-12 | Phase 2 §9: explicit signature-to-wrapper generation and synthetic `recomp_context` fixtures; narrow ROM-free recomp fixture CI; no production replacement registration. Owns README section `o32 replacement wrappers`. |
+| ovl_a | 8038F648 (primary), 803A7180 (fallback) | Astra: match_overlay_next_targets | 2026-10-12 | Trace-first bounded overlay lane; respect landed A members and #321 root claim. Protocol-v2 packet claims must include every verified member; research keeps empty claims. |
+| ovl_a / tooling | PR #321 renderer packet claims/installer compatibility; shared CLAIMS coordination | Astra: reconcile_overlay_claims | 2026-10-12 | Audit all three verified renderer claims against current supersession refusal. Preserve locked 803A6F2C/803A7620; distinguish gross claims from +576 B incremental. No changes to merged PRs or protected production sources. |
+
+The two README sections are independent additions. Each worker carries only its owned section;
+final integration must retain both. Shared CLAIMS edits remain with the reconciliation lane.

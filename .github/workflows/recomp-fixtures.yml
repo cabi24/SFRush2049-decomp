@@ -1,0 +1,41 @@
+name: Recomp ROM-free fixtures
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'tools/recomp/**'
+      - 'tests/recomp/**'
+      - 'include/game_types.h'
+      - '.github/workflows/recomp-fixtures.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'tools/recomp/**'
+      - 'tests/recomp/**'
+      - 'include/game_types.h'
+      - '.github/workflows/recomp-fixtures.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout submitted revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fixture dependencies
+        run: python -m pip install pytest pycparser
+      - name: Run ROM-free fixtures
+        env:
+          REQUIRE_TOOLCHAIN: '1'
+        run: python -m pytest tests/recomp -q -rs -p no:cacheprovider
