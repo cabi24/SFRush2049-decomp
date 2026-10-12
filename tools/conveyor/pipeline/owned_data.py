@@ -652,10 +652,24 @@ def pending_members(row, text):
 
 REPLACE_SAME = ('tu', 'source', 'owner_section', 'container_section', 'container_vram', 'offset',
                 'passthrough_asm')
+# A .bss block may also grow at its front (w23i): its address moves down, so
+# only these are kept; the old range must lie inside the new one.
+REPLACE_SAME_BSS = ('tu', 'owner_section', 'container_section', 'offset', 'passthrough_asm')
+
+
+def _grows(old, row):
+    """True iff `row` is a strictly larger replacement of `old` (see replace_slot)."""
+    if row['size'] <= old['size']:
+        return False
+    if is_bss(row):
+        return (all(old[k] == row[k] for k in REPLACE_SAME_BSS)
+                and row['container_vram'] <= old['container_vram']
+                and old['container_vram'] + old['size'] <= row['container_vram'] + row['size'])
+    return all(old[k] == row[k] for k in REPLACE_SAME) and not row.get('logical_extent')
 
 
 def replace_slot(repo, raw, linker='rush2049.us.ld'):
-    """Supersede a promoted owner's readonly slot by the larger co-owned slot
+    """Supersede a promoted owner's slot by the larger co-owned slot
     its TU's complete section fills once the new members are C (w22i).
 
     func_80023BDC owns the first 0x14 bytes of lib_22300's .rodata (a 4-byte
@@ -672,30 +686,45 @@ def replace_slot(repo, raw, linker='rush2049.us.ld'):
     {path: original text} for the caller to restore unless the full-ROM gate
     of the promoted set passes and the paths are committed with it.
 
+    A `.bss` block (w23i) grows the same way, and may also grow at its
+    FRONT: lib_16320's block of func_80016E68 and two co-owners (0x80042670,
+    0x30) becomes the TU's whole .bss once the function-local statics of
+    func_80016C20/80016CF0 (below it) and func_80017040 (above it) are C
+    (0x80042630, 0x80). IDO 7.1 lays a TU's .bss out in definition order,
+    so there is no hash-neutral passthrough state for the grown block either
+    (the C members' statics would sit at its start). The old range must lie
+    inside the new one; the new range must not overlap another owned .bss
+    block or storage block (rom_slots); the linker ASSERTs pin the block's
+    address and size and the full-ROM SHA-1 of the promoted set proves every
+    member's statics (old ones included) at their retail addresses.
+
     Refused unless: the owner has exactly one registered row; the new row
     keeps its TU, container, section, offset and companion path and grows it
-    with no logical extent; every member of the old slot is in the new one and
-    already C (no passthrough line, no companion block); every new member is
-    still passthrough; and the new row validates (original-byte SHA-256,
-    overlap, alignment)."""
+    with no logical extent (a .bss row: keeps its TU, section and companion
+    path and covers the old range); every member of the old slot is in the
+    new one and already C (no passthrough line, no companion block); every
+    new member is still passthrough; and the new row validates (original-byte
+    SHA-256, overlap, alignment)."""
     repo = Path(repo)
-    if not isinstance(raw, dict) or raw.get('storage_owner') or raw.get('owner_section') == BSS:
-        raise OwnershipError('replace_slot grows readonly/data passthrough-companion slots only')
+    if not isinstance(raw, dict) or raw.get('storage_owner'):
+        raise OwnershipError('replace_slot grows passthrough-companion slots only')
     registry = load_registry(repo)
     index = [i for i, r in enumerate(registry['rom_slots'])
              if isinstance(r, dict) and r.get('owner') == raw.get('owner')]
     if len(index) != 1:
         raise OwnershipError('replace_slot needs exactly one registered row of the owner')
     old = next(r for r in rom_slots(repo, check_source=False) if r['owner'] == raw['owner'])
+    if is_bss(old) != (raw.get('owner_section') == BSS):
+        raise OwnershipError('the replacement must keep the slot\'s section')
     registry['rom_slots'][index[0]] = raw
     paths = [repo / REGISTRY, repo / linker]
     originals = {p: p.read_text() for p in paths}
     paths[0].write_text(json.dumps(registry, indent=2) + '\n')
     try:
         row = next(r for r in rom_slots(repo) if r['owner'] == raw['owner'])
-        if any(old[k] != row[k] for k in REPLACE_SAME) or old['size'] >= row['size'] or row.get('logical_extent'):
+        if not _grows(old, row):
             raise OwnershipError('the replacement must grow the same slot (TU, container, section, offset, '
-                                 'companion path) to a complete section')
+                                 'companion path; a .bss block over its old range) to a complete section')
         text = (repo / row['tu']).read_text()
         if any(m not in slot_members(row) for m in slot_members(old)):
             raise OwnershipError('the replacement drops a member of the superseded slot')
