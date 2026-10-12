@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| ovl_b | func_8039244C HUD teardown | Astra / dot HUD neighbor lane | 2026-10-12 | 34/95 → 4/95 at full 380 bytes/frame 64; guarded initialization closes traced pointer-priority error; empty-claims research packet dot_runtime_b_hud_teardown_20261012; no new coverage |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
