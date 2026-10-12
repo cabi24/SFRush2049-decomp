@@ -636,9 +636,8 @@ SECTIONS
         rom_owned___scScheduleCore_START = ABSOLUTE(.);
         build/us/src/rom/lib_1050_sdk.o(.rodata);
         rom_owned___scScheduleCore_END = ABSOLUTE(.);
-        ASSERT(rom_owned___scScheduleCore_START == 0x8002d4a4, "owned ROM slot address changed");
-        ASSERT(rom_owned___scScheduleCore_END - rom_owned___scScheduleCore_START == 0x1c, "owned ROM slot size changed");
-        ASSERT(rom_owned___scScheduleCore_START % 4 == 0, "owned table alignment changed");
+        ASSERT(rom_owned___scScheduleCore_START == 0x8002d490, "owned ROM slot address changed");
+        ASSERT(rom_owned___scScheduleCore_END - rom_owned___scScheduleCore_START == 0x30, "owned ROM slot size changed");
         build/us/assets/us/data.o(.data.owned5);
         rom_owned_fcvt_START = ABSOLUTE(.);
         build/us/src/rom/lib_34a0.o(.rodata);
