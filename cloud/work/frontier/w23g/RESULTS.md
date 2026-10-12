@@ -1,6 +1,7 @@
 # w23g: ll.c/llcvt.c rename + game-side libultra rename (tooling, worktree)
 
 Branch `w23g` (worktree `.claude/worktrees/w23g`, base wave23 = origin/master `68477154`). Not pushed to origin.
+Status: done (ll.c rename + cpak_read natural, game side + legacy table emptied, 6 leads, packets rebound, DB applied).
 
 **Renames: 18 ll.c/llcvt.c helpers + 6 verified leads (static and game side), and the game side of
 w22g's 43. `game_static_legacy.us.txt` has no entries left.** Coverage unchanged (`make progress`
@@ -77,7 +78,13 @@ live file is their pure rename (`RENAME_BASE = 68477154df`, an ancestor of maste
 
 Backup (sqlite backup API): `scratchpad/conveyor.db.w23g.bak`. Dry run + full apply on a copy
 (`scratchpad/w23g/data`): 24 renames, 7,339 matrix_entry rows purged, `targets_rename audit` clean.
-Live apply: see the end of this file.
+Live apply (last step, 2026-10-11 23:50 CDT, after a second consistent backup
+`scratchpad/conveyor.db.w23g.bak2` taken immediately before; no open work units on the 24 rows):
+`python3 -m tools.conveyor.pipeline.targets_rename rename cloud/work/frontier/w23g/db_renames.json`
+-> `renamed 24 rows in ~/.conveyor/conveyor.db (n64_target, function_status, matrix_entry, work_unit,
+promotion_record), 7339 matrix_entry rows purged`. Then `targets_rename audit` clean (against this
+branch's layout), 24/24 new names present, no old names or temporary ids left. The 43 w22g rows were
+already renamed by w22g. Until w23g is merged, master's layout and this DB disagree on these 24 names.
 
 ## Builder
 
@@ -86,9 +93,17 @@ worktree incl. the produced game blob and ovl streams): `nice make COMPILER=ido 
 rebuilt) then `make test`: `MAKE=0 TEST=0`, `ROM matches!`, SHA-1 3f99351d...
 Unit/splice compiles: `~/rush2049/scratch/frontier/unit/w23g`, `~/rush2049/scratch/frontier/w23g/{splice,group}`.
 
-## Tests
+## Tests (at 560ada35)
 
-(see the end of this file)
+- Pi worktree `make test-fast JOBS=4`: conveyor `1524 passed, 796 skipped`; cloud `770 passed,
+  150 skipped`; exit 0.
+- rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` (clone `~/rush2049/scratch/w23g`, origin/master =
+  68477154): conveyor `2269 passed, 51 skipped`; cloud `919 passed, 1 skipped, 27 subtests passed`; exit 0.
+  `check_submissions.py --base origin/master --head HEAD`: `Checked 92 changed cloud submissions`, exit 0
+  (87 cloud/matches + 5 ipa-groups, all claims MATCH). `make check-matched`: all 589 locked functions
+  intact; ovl lock 63 intact.
+- Builder full ROM at ffc96fc4 (later commits touch only cloud/work, tests and static_rename helpers):
+  `ROM matches!`.
 
 ## For the coordinator / other lanes
 
