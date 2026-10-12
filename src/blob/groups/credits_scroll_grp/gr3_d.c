@@ -25,7 +25,7 @@ extern s8 D_80116DA8;
 extern s32 D_80116DA4;
 extern char D_80121004[];
 typedef struct { u32 first, second; } Pair;
-extern Pair D_80118E20;
+Pair D_80118E20;   /* defined here (w27c): the two tail stores share one lui at */
 void func_800B669C(u32 first, u32 second);
 extern s8 D_801613E8;
 extern char D_8012029C[];
@@ -79,10 +79,11 @@ s32 game_timer_display(s32 arg0)
 
 s32 func_80100B8C(s32 arg0)
 {
+    char buf[40];   /* unused: exact frame residual (retail frame 144, 104 without it) -- see w27c RESULTS */
 
     render_helper(0.0f);
     func_800B669C(1, 1);
-    if (D_801613E8 == 1) {
+    if (D_801613E8 == 1U) {   /* 1U shares the u32 1 of the inlined func_800B669C(1, 1) stores */
         font_set(13);
         dispatch_handler(22);
         camera_auto_follow(160, 10, 320, 110, -1, 0, D_8012029C);
@@ -91,8 +92,8 @@ s32 func_80100B8C(s32 arg0)
         font_set(11);
         dispatch_handler(22);
         camera_auto_follow(160, 185, 320, 110, -1, 0, countdown_object[32]);
+        dispatch_handler(1);
     }
-    dispatch_handler(1);
     D_80118E20.second = 3;
     D_80118E20.first = 0;
     render_helper(-1.0f);

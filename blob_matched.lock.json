@@ -983,10 +983,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "d8d81ba323249bd940cb7c44cc6991e01622bae59f2253253fbf574b818e7f82",
+    "source_sha256": "117d6c72622577f42d21192b9090f0135668e245f937dc359f837a598e659871",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-04"
+    "verified_at": "2026-10-12"
   },
   "crowd_cheer_play": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -6300,6 +6300,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_80100B8C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "117d6c72622577f42d21192b9090f0135668e245f937dc359f837a598e659871",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   },
   "func_80100D24": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
