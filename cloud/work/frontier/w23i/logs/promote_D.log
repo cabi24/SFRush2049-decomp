@@ -1,0 +1,3 @@
+replace-slot func_80016E68: .bss 0x80042630 size 0x80, members func_80016E68, func_80016C20, func_80016CF0, func_80016EE0, func_80016F80, func_80017040
+batch 0x16320..0x16320: 3 candidates
+PROMOTED 3 (728 B) @ 83ee309e
