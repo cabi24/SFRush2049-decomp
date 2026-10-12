@@ -169,7 +169,7 @@ def controls(work):
     scan = source[worker_start:]
     scan = scan.replace('u32 func_800E79F0(Heap *heap)', 'u32 func_800E79F8(Heap *heap)')
     scan = scan.replace('    block = heap_or_default(heap)->first;', '    osRecvMesg(&D_80152770, 0, 1);\n    block = heap_or_default(heap)->first;')
-    scan = scan.replace('    return largest;', '    osJamMesg(&D_80152770, 0, 0);\n    return largest;')
+    scan = scan.replace('    return largest;', '    osSendMesg(&D_80152770, 0, 0);\n    return largest;')
     direct = work / 'direct.c'; direct.write_text(source[:wrapper_start] + scan)
     obj = work / 'direct.o'; score.compile_single(direct, FLAGS, obj)
     no_worker = score.compare(obj, FN, show=0)

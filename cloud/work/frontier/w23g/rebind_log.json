@@ -64,12 +64,15 @@
  "cloud/work/dot_selector_d9058_20261006/verification.json": {
   "pins": [
    {
-    "new": "7951f00bbb2efb919da493db361d3971e7b8bb40eacd4602f34a0ed3b553f44c",
-    "old": "4c44290bb0e0b4f2133ccf1ef7867dd8586a4f1094ec3f23cbf21c4313834490",
-    "path": "cloud/work/game_C104/group_complete_callers.c"
+    "new": "29c6d093c39f143148180bd352e496ea52f28fe6490fbca9982307ff1553e39e",
+    "old": "9ab5a7dbfe6df6bc6903da589cc961a11d90e6d7fd1e6dac421cbb90409e6aae",
+    "path": "cloud/work/dot_selector_d9058_20261006/verify.py"
    }
   ],
   "rule": "sha256 pins rebound"
+ },
+ "cloud/work/dot_selector_d9058_20261006/verify.py": {
+  "rule": "Python identifier tokens naming renamed functions"
  },
  "cloud/work/dot_substantial_scout/native_audit.json": {
   "rule": "receipt name strings renamed"
@@ -125,6 +128,9 @@
   ],
   "rule": "sha256 pins rebound"
  },
+ "cloud/work/frontier/dot_constructor_prepend_20261005/verify.py": {
+  "rule": "Python identifier tokens naming renamed functions"
+ },
  "cloud/work/frontier/dot_directional_sound_20261005/verification.json": {
   "pins": [
    {
@@ -169,12 +175,15 @@
  "cloud/work/frontier/dot_heap_max_20261005/verification.json": {
   "pins": [
    {
-    "new": "02c0f5c4ecc3fe59fc0f235b85bee6e1142b87130005e5079c5d1e95a75157b3",
-    "old": "21357517675e9bfefe1695b7cb97d3425fb6fbb7d680d18cf8b1272f8b86b041",
-    "path": "cloud/work/frontier/superseded/audio_heap/group.c"
+    "new": "422b710ae27242a81fce1de5430b962bd2ea80f9913dc8cf43aaadc48a35e8db",
+    "old": "bd910d3699da84b3ff3dfa03a7b8f27074b58b3135acef7b5f40a3b77d7079ef",
+    "path": "cloud/work/frontier/dot_heap_max_20261005/verify.py"
    }
   ],
   "rule": "sha256 pins rebound"
+ },
+ "cloud/work/frontier/dot_heap_max_20261005/verify.py": {
+  "rule": "Python identifier tokens naming renamed functions"
  },
  "cloud/work/frontier/dot_model_snapshot_20261005/verification.json": {
   "pins": [
@@ -657,5 +666,8 @@
  },
  "tests/cloud/test_slot_contract_audit.py": {
   "rule": "Python string literals naming renamed functions"
+ },
+ "tests/cloud/test_task_enqueue_research.py": {
+  "rule": "Python identifier tokens naming renamed functions"
  }
 }

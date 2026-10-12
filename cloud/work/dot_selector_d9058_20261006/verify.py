@@ -229,8 +229,8 @@ def verify():
     expected_context = original_context.replace(
         'typedef struct {u32 opaque[6];} Queue24;\nextern Queue24 D_801461D0;',
         'extern u8 D_801461D0[];').replace(
-        's32 osRecvMesg(Queue24*,void**,s32); s32 osJamMesg(Queue24*,void*,s32);',
-        's32 osRecvMesg(void*,void*,s32); s32 osJamMesg(void*,void*,s32);').replace(
+        's32 osRecvMesg(Queue24*,void**,s32); s32 osSendMesg(Queue24*,void*,s32);',
+        's32 osRecvMesg(void*,void*,s32); s32 osSendMesg(void*,void*,s32);').replace(
         '&D_801461D0', 'D_801461D0')
     expected_context = ('/* Complete C104 semantic context; declarations of the shared queue are\n'
                         ' * harmonized with candidate.c. The empty hook has no synthetic blocker.\n'

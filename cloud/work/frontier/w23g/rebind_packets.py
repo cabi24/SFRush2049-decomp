@@ -113,14 +113,21 @@ def main():
         if old is None:
             continue
         base_bytes = git_bytes(r)
-        if base_bytes is None or base_bytes.decode(errors="surrogateescape") != old:
-            continue                  # renamed already (or not in the base tree): idempotent
+        base_text = None if base_bytes is None else base_bytes.decode(errors="surrogateescape")
         if f.suffix in (".c", ".h"):
+            if base_text != old:
+                continue              # renamed already (or not in the base tree): idempotent
             new = sr.permute_c(old, names)
             rule = "C rename (static_rename.permute_c) + redeclaration drop"
         else:
-            new = rename_strings_py(old, names)
-            rule = "Python string literals naming renamed functions"
+            # Python: every identifier token (C names inside string literals,
+            # e.g. embedded mutants 'osJamMesg(&q, 0, 0);'); Python code itself
+            # defines none of these names. Computed from the base text, so a
+            # file that only had its exact name literals renamed is upgraded.
+            if base_text is None or old not in (base_text, rename_strings_py(base_text, names)):
+                continue
+            new = sr.permute_identifiers(base_text, names)
+            rule = "Python identifier tokens naming renamed functions"
         if new == old:
             continue
         if not a.dry_run:

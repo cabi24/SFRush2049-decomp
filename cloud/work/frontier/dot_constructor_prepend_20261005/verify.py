@@ -221,7 +221,7 @@ def behavior(words,work):
     source=SOURCE.read_text()
     for name,(old,new) in mutants.items():
         assert old in source;p=work/(name+'.c');changed=source.replace(old,new)
-        if name=='handle_cached_before_insert':changed=changed.replace('    result = obj->handle;\n    osJamMesg','    osJamMesg')
+        if name=='handle_cached_before_insert':changed=changed.replace('    result = obj->handle;\n    osSendMesg','    osSendMesg')
         if name=='time_cached_before_lock':changed=changed.replace('    start = D_80152748;\n    obj->start', '    obj->start')
         p.write_text(changed);ml,mh=host(work,p,name)
         for seed,count in cases:

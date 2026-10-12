@@ -103,7 +103,7 @@ void *memcpy(void *destination, const void *source, u32 count) {
     phase = 1;
     return destination;
 }
-s32 osJamMesg(OSMesgQueue *queue, OSMesg message, s32 blocking) {
+s32 osSendMesg(OSMesgQueue *queue, OSMesg message, s32 blocking) {
     if (blocking != 1) failure = 3;
     if (phase == 1) {
         if (queue != &D_8002E960 || message != &D_80155238) failure = 4;
