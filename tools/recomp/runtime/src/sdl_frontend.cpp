@@ -3,11 +3,12 @@
 // no window and takes input only from --press scripts (trace.cpp).
 //
 // Controls (TEST_PROCESS.md repeats them):
-//   game controller (XInput / SDL mapping): left stick = analog stick,
-//     A/south = A, X/west = B, B/east = C-down... see kPadMap; LB = L, RB = R,
-//     LT = Z, START = START, D-pad = D-pad, right stick = C buttons
-//   keyboard: arrows = analog stick, X = A, C = B, Z = Z, Enter = START,
-//     A = L, S = R, I/K/J/L = C-up/down/left/right, T/G/F/H = D-pad,
+//   game controller (XInput / SDL mapping, up to 4): left stick = analog stick,
+//     A (south) = A, X (west) = B, B (east) = C-down, Y (north) = C-up,
+//     right stick = C buttons, LB = L, RB or RT = R, LT = Z, START = START,
+//     D-pad = D-pad
+//   keyboard (player 1): arrows = analog stick, X = A, C = B, Z = Z,
+//     Enter = START, Q = L, E = R, W/A/S/D = D-pad, I/J/K/L = C-up/left/down/right,
 //     Escape = quit (writes the final status line)
 #include <atomic>
 #include <cmath>
@@ -38,6 +39,7 @@ SDL_GameController* pads[4] = {};
 std::atomic<uint32_t> pad_buttons[4];
 std::atomic<int32_t> pad_x[4], pad_y[4];   // stick * 32767
 bool fullscreen = false;
+int pad_first_port = 0;   // --keyboard-alone: controllers start at player 2
 
 enum : uint16_t {
     N_A = 0x8000, N_B = 0x4000, N_Z = 0x2000, N_START = 0x1000, N_DU = 0x0800, N_DD = 0x0400, N_DL = 0x0200,
@@ -45,11 +47,11 @@ enum : uint16_t {
 };
 
 void open_pads() {
-    int slot = 0;
+    int slot = pad_first_port;
     for (int i = 0; i < SDL_NumJoysticks() && slot < 4; i++) {
         if (!SDL_IsGameController(i)) continue;
         if (SDL_GameController* c = SDL_GameControllerOpen(i)) {
-            fprintf(stderr, "[rush] controller %d: %s\n", slot + 1, SDL_GameControllerName(c));
+            fprintf(stderr, "[rush] controller -> player %d: %s\n", slot + 1, SDL_GameControllerName(c));
             pads[slot++] = c;
         }
     }
@@ -100,16 +102,16 @@ void sample() {
             if (k[SDL_SCANCODE_C]) m |= N_B;
             if (k[SDL_SCANCODE_Z]) m |= N_Z;
             if (k[SDL_SCANCODE_RETURN]) m |= N_START;
-            if (k[SDL_SCANCODE_A]) m |= N_L;
-            if (k[SDL_SCANCODE_S]) m |= N_R;
+            if (k[SDL_SCANCODE_Q]) m |= N_L;
+            if (k[SDL_SCANCODE_E]) m |= N_R;
             if (k[SDL_SCANCODE_I]) m |= N_CU;
             if (k[SDL_SCANCODE_K]) m |= N_CD;
             if (k[SDL_SCANCODE_J]) m |= N_CL;
             if (k[SDL_SCANCODE_L]) m |= N_CR;
-            if (k[SDL_SCANCODE_T]) m |= N_DU;
-            if (k[SDL_SCANCODE_G]) m |= N_DD;
-            if (k[SDL_SCANCODE_F]) m |= N_DL;
-            if (k[SDL_SCANCODE_H]) m |= N_DR;
+            if (k[SDL_SCANCODE_W]) m |= N_DU;
+            if (k[SDL_SCANCODE_S]) m |= N_DD;
+            if (k[SDL_SCANCODE_A]) m |= N_DL;
+            if (k[SDL_SCANCODE_D]) m |= N_DR;
             if (k[SDL_SCANCODE_LEFT]) x = -1.0f;
             if (k[SDL_SCANCODE_RIGHT]) x = 1.0f;
             if (k[SDL_SCANCODE_UP]) y = 1.0f;
@@ -124,6 +126,7 @@ void sample() {
 } // namespace
 
 void rush::sdl_set_fullscreen(bool on) { fullscreen = on; }
+void rush::sdl_set_keyboard_alone(bool on) { pad_first_port = on ? 1 : 0; }
 
 ultramodern::gfx_callbacks_t::gfx_data_t rush::sdl_create_gfx() {
     SDL_SetMainReady();

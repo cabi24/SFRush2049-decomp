@@ -52,7 +52,8 @@ void usage() {
         "  --press-file PATH: a tools/recomp/scripts/*.press file (same as oracle.py script NAME)\n"
         "  --renderer null|rt64: rt64 = window + RT64 + live input (only in a RUSH_RENDERER=rt64 build;\n"
         "      its default); --seconds 0 = run until the window is closed (rt64 default)\n"
-        "  --gfx-api auto|d3d12|vulkan, --fullscreen, --rt64-dev (RT64 developer overlay)\n");
+        "  --gfx-api auto|d3d12|vulkan, --fullscreen, --rt64-dev (RT64 developer overlay)\n"
+        "  --keyboard-alone: the keyboard is player 1 and game controllers start at player 2\n");
 }
 
 // tools/recomp/scripts/*.press -> the --press string (oracle.py press_string):
@@ -113,7 +114,7 @@ int main(int argc, char** argv) {
     std::string renderer = "null";
 #endif
     std::string gfx_api = "auto";
-    bool fullscreen = false, rt64_dev = false;
+    bool fullscreen = false, rt64_dev = false, keyboard_alone = false;
     uint64_t file_frames = 0;
     std::string press, fb_dump, oracle_log, clock = "wall";
     uint64_t stop_frames = 0;
@@ -136,6 +137,7 @@ int main(int argc, char** argv) {
         else if (a == "--gfx-api") gfx_api = next();
         else if (a == "--fullscreen") fullscreen = true;
         else if (a == "--rt64-dev") rt64_dev = true;
+        else if (a == "--keyboard-alone") keyboard_alone = true;
         else if (a == "--fb-dump") fb_dump = next();
         else if (a == "--clock") clock = next();
         else if (a == "--frames") stop_frames = std::stoull(next());
@@ -230,6 +232,7 @@ int main(int argc, char** argv) {
                                   : ultramodern::renderer::WindowMode::Windowed;
         ultramodern::renderer::set_graphics_config(gc);
         rush::sdl_set_fullscreen(fullscreen);
+        rush::sdl_set_keyboard_alone(keyboard_alone);
         rush::set_live_input(rush::sdl_get_input, rush::sdl_port_connected);
     }
 #endif

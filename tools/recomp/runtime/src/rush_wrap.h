@@ -6,7 +6,7 @@
 // on the RecompiledFuncs target (CMakeLists.txt RUSH_WRAPPED: -DNAME=__wrap_NAME),
 // which works with every compiler/linker (Phases 2-3 used GNU ld --wrap, which
 // MSVC's link.exe does not have). Keep this list and RUSH_WRAPPED in sync
-// (tests/recomp/test_runtime_contract.py checks it).
+// (tests/recomp/test_package.py checks it).
 #pragma once
 #define __real_osGetCount_recomp osGetCount_recomp
 #define __real_osGetTime_recomp osGetTime_recomp

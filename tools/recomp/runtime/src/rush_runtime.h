@@ -34,6 +34,7 @@ void sdl_update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t);
 bool sdl_get_input(int port, uint16_t* buttons, float* x, float* y);
 bool sdl_port_connected(int port);
 void sdl_set_fullscreen(bool on);
+void sdl_set_keyboard_alone(bool on);  // controllers start at player 2
 
 // trace.cpp: live input (a window's controllers) when no --press script is given
 using live_input_fn = bool (*)(int port, uint16_t* buttons, float* x, float* y);
