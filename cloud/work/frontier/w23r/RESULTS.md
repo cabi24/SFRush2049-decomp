@@ -88,8 +88,10 @@ on rocky; it is not added to replacements.json here because its source is outsid
 
 ## Checks
 
-- `python3 -m pytest tests/recomp -q -p no:cacheprovider` on the Pi worktree: see final line below.
-- `make test-fast JOBS=4` on the Pi worktree: see final line below.
+- `python3 -m pytest tests/recomp -q -p no:cacheprovider` on the Pi worktree: `.s....................................                                   [100%]`.
+- `make test-fast JOBS=4` on the Pi worktree (submodules via --reference): tests/conveyor 1512 passed / 808
+  skipped, tests/cloud 770 passed / 150 skipped, exit 0.
+- rocky: nothing of this lane left running (uptime 2 h, no reboot during the lane); runs trimmed to 2.6 GB.
 
 ## Permission denials
 
