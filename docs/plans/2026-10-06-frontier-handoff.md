@@ -338,6 +338,42 @@ before and after installation (#340/#346 compared against the pre-install group 
 re-recorded with `--deep`); running packet tests under `pytest -n` needs `--dist loadgroup`. Static and game unchanged.
 Package v1 laptop report: `tools/recomp/reports/v1/` and the recomp plan "Package v1 laptop report" bullet.
 
+**Wave 25 outcome (2026-10-12, wave25 after `4f59607f`):** static 614/667 → 617/667 (139,624 B, 86.87%): __scMain/__scExec
+(684 B, w25a) through the new `OWNED-OFFSETS` builder gate (`tools/conveyor/pipeline/owned_offsets.py`: every named
+.bss/.data/.rodata object of a ROM TU checked against its retail address after `make test`; cause of the wrong order
+was IDO cfe numbering symbols by first sight and sorting .bss by that number mod 256 — `w25a/tools/bssorder.py`
+predicts it; `promote_batch --bss-at-companion`; headroom 6 declarations in `rom_tu.h`), and voiceAllocate
+(func_8001F13C, 1,456 B, w25f: the 96-row register rename was one code-free ugen temp pop; NOT the `& 0xFF`
+narrowing — as1 deletes a narrowing only inside one block — but a label between two equal loads that stops ugen's CSE,
+spelled `do {} while (0);`, plus the search loop written without `continue` so the extra block does not flip the
+num/voice tie). Six libultra renames proven byte-identical and applied (w25a: __osCurrentTime, __osBaseCounter,
+__osViIntrCount, __osCheckPackId, __osRepairPackId, __osCheckId; `gViTimeAccumLo` stays as the low-word asm label).
+Game 986 → 997/1216 (329,104 B, 50.86%): the audio_fade_control unit as a 12-member group (w25c: a `do {} while (0);`
+in the inlined node_alloc makes the `&D_80146138` web span two blocks so a0 is forbidden and it takes a2; four locked
+empty stubs absorbed as the real inlined helpers via force_internal + prefer_definition), wheel_setup_initial +
+func_800A4B40 (codeless `if (type == 64) {}` flips the three-way tie), func_800EC190 (`& 0xFF` on a byte store =
+one hidden ugen temp, deleted by as1 — the 5.3 form of the mechanism), func_8008AD6C (w25e: read every value through
+`*gfx`, no word local). Near-misses pinned to mechanisms, no score change: entity_render_setup (w25d: the h_d/SPL
+route is dead; two separate candidates hypothesis), func_80090308 group (helper route refuted; inlined colour setter
+reproduces constant sharing; frame gap probably a 12-word local shared with save_write_data), synthHandle (two
+independent store kills; midi tests on the struct field), func_80018448 325 → 310 true (first half matches),
+func_80012D18 (double + two u32 locals), func_800A1BB4 is INTERNAL (t6–t9 only; 9 rows with a stand-in caller),
+ghost_race_setup residual is as1-stage. Inflate block: IDO 5.3 `cc -O2 -S` output hand-assembled at as1 -O1 (needs
+a TU recipe, w25a). Recomp Phase 5 (w25r): 14 libultra-free busy-waits hooked with `rush_hook_spin` (the laptop's
+wall-clock hang reproduced headless with `--null-dl-delay` and under RT64 in an Xvfb container, fixed), RT64
+self-check pages named (z-buffer 0x8017AEC0, framebuffers 0x807BB3C0/0x807DDA00; `oracle.py compare
+--mask-renderer` → "EQUIVALENT except renderer-written pages"), lockstep+RT64 display-list race fixed, Rush's own
+audio microcode recompiled with RSPRecomp (0xF40 B at ROM 0x2AC50; AI interrupts paced to the game's 192-frame
+buffers; sound through SDL and `--wav`), package v2 (`build/recomp/dist/rush2049-recomp-test-v2.tar.gz`, sha256
+99b57e31…, with-ROM copy on rocky) with attract/stunt/pad steps and the ROM copy deleted from `--home`. Traps: the
+builder's disk hit 100% mid-promotion (finished-lane scratch copies; now cleaned); the Makefile depends on
+`cloud/work/frontier/<lane>/rename/rebind/*.json`, so the builder gate repo needs those dirs rsynced too; `ci_equiv`
+bundles must be based on a commit the rocky clone already has. Lessons for wave 26: the two code-free temp-pop
+mechanisms (as1-deleted narrowing within a block; label-broken CSE) are now the first thing to try on any "pure
+register rename" residual on either compiler; an empty block adds one to the block count of every value live across
+it and can flip a near-tied priority; retail using only t6–t9 temporaries means an internal function; a value still
+live at a `return` is denied v0; as1 fills a load delay slot from the branch target even past a label.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
