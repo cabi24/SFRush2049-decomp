@@ -17,12 +17,13 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | engine_sound_sync + audio_effect_setup (oracle: DIFFERENT at frame 706), camera_play_script | coordinator w23f | 2026-10-12 | wave 23 |
 | game | func_8010FBE0, entity_process_main | open | | w20e RESULTS 2026-10-12 |
 | game | func_800EC190 (2 words), func_8008AD6C (29), func_800A1BB4 (35), wheel_setup_initial, ghost_race_setup, audio_fade_control unit (6/8) | open | | w21g/w20f RESULTS; func_800D63EC, func_800B3704, func_800D6530 landed 2026-10-12 |
-| game | entity_render_setup, controller_poll, fresh singles by fewest attempts | coordinator w23e | 2026-10-12 | wave 23 |
+| game | controller_poll (11 words; t2/t3 tie + as1 order), entity_render_setup (8 rows; live range needs block 17 AND a split), func_800EC190 (2) | open | | w23e RESULTS 2026-10-12 |
 | game | buffer_swap, func_80090308 + entity_physics_update + save_write_data group | coordinator w23d | 2026-10-12 | wave 23 |
 | tooling | ll.c/llcvt.c family rename + cpak_read natural form; game-side libultra rename (drop game_static_legacy.us.txt) | coordinator w23g | 2026-10-12 | wave 23 |
-| static | func_80018634, func_80018448, func_80012D18 | coordinator w23a | 2026-10-12 | wave 23 (trace71) |
-| static | func_8001A658 (synthHandle), func_8001F13C (voiceAllocate) | coordinator w23b | 2026-10-12 | wave 23 (trace71) |
-| static | func_8001E0E0, func_80019F48 + triage of the remaining boot tail | coordinator w23c | 2026-10-12 | wave 23 |
+| static | func_80018448 (held temps or emission order; no FIFO ring produces retail), func_80012D18 (two named u32 position variables must survive copy propagation) | open | | w23a RESULTS; func_80018634 landed 2026-10-12 |
+| static | func_8001A658 (synthHandle, 2770: span store-PRE, midi split pieces, fader end pointer), func_8001F13C (voiceAllocate, 2045: voice*416 PRE hoist; needs a 7.1 PRE oracle) | open | | w23b RESULTS 2026-10-12 |
+| static | func_8001E0E0, func_80015A0C, func_80015D68, func_80016C20, func_80016CF0, func_80017040, osPfsIsPlug, __osPfsRequestData (slots, reloc names, inventory rows) | coordinator w23i | 2026-10-12 | w23c sources; five plain ones landed 2026-10-12 |
+| static | func_8001558C (180, loop-invariant u16 copy placement), func_80010DD8, func_80011910, func_80012234, func_80010450; 0x26F60 segment (4 fns, 5,232 B, needs conversion); pre-tail boot code (36 slots, 13,152 B, untriaged) | open | | w23c "remaining boot tail" table 2026-10-12 |
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 3 (per-call capture, input scripts, static binding, OSThread word mask) | coordinator w23r | 2026-10-12 | wave 23, on rocky; RT64 by the owner's agent elsewhere |
 | tooling | recomp o32 wrapper generator with guest-pointer (`rush_addr`) mode: fold into `replace.py` native mode rather than a second generator; RDRAM accessors (`tools/recomp/rdram.h`, `game_rdram.h`) landed from #325 | Astra (#323 reservation) | 2026-10-12 | w22p; `tests/recomp/test_rdram.py`; the accessors own README section `RDRAM accessors` |
