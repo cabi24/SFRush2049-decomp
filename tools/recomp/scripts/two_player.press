@@ -1,0 +1,38 @@
+# Two players: RIGHT on the main menu's player-count selector (before the 11 s A) and controller 2
+# repeating every press 0.3 s later (joins/confirms). Evidence (w23r): active_player_count (0x8014A108)
+# halfword 2 instead of 1, race image B loads, 460 display lists per frame at frame 1000 instead of 357
+# (split screen). Controller 2 connected but idle: the race never starts (player 2 must confirm).
+frames 1800
+5 START
+5.3 START@2
+8 START
+8.3 START@2
+9.5 RIGHT
+11 A
+11.3 A@2
+14 A
+14.3 A@2
+17 A
+17.3 A@2
+20 START
+20.3 START@2
+23 A
+23.3 A@2
+26 A
+26.3 A@2
+29 A
+29.3 A@2
+32 A
+32.3 A@2
+35 START
+35.3 START@2
+38 A
+38.3 A@2
+41 A
+41.3 A@2
+44 A
+44.3 A@2
+47 A
+47.3 A@2
+50 A
+50.3 A@2

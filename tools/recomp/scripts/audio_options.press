@@ -1,0 +1,35 @@
+# Audio-options screen (exercises func_800D7634, the N64 audio-options input handler): the race script to
+# 32 s, then START pauses, DOWN x3 + A opens the audio options (w23r: DOWN x3 is the only pause row that
+# reaches func_800D7634; x4 reaches physics_sym, the pause handler's sibling). Inside: up/down change the
+# value, left/right move the row (sfx volume, music volume, music track, stereo/mono), B exits.
+frames 1800
+5 START
+8 START
+11 A
+14 A
+17 A
+20 START
+23 A
+26 A
+29 A
+32 A
+36 START
+37 DOWN
+37.5 DOWN
+38 DOWN
+40 A
+41.5 UP
+42.5 UP
+43.5 DOWN
+44.5 RIGHT
+45.5 DOWN
+46.5 RIGHT
+47.5 UP
+48.5 UP
+49.5 RIGHT
+50.5 UP
+51.5 LEFT
+52.5 LEFT
+53.5 DOWN
+54.5 B
+57 START

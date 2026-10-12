@@ -569,6 +569,7 @@ def capture_entries(selected, repo=REPO):
         text = src.read_text(errors="replace") if src and src.is_file() else ""
         out.append({"id": rid, "function": e["function"], "population": e["population"],
                     "mode": "capture", "call": None, "source": e.get("source"),
+                    "probe": e.get("mode") == "capture",
                     "capture": capture_layout(text, e["function"], e.get("prototype"),
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
     return out

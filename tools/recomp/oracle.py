@@ -391,6 +391,7 @@ def compare_calls(stock_lines, repl_lines):
 
     calls = 0
     open_calls = {}
+    stack = []                    # open (seq, fn) on the stock side, outermost first
     while True:
         a, b = nxt(a_it, fs), nxt(b_it, fr)
         if not fs or not fr:
@@ -413,8 +414,11 @@ def compare_calls(stock_lines, repl_lines):
             calls += 1
             per_fn[a[3]] = per_fn.get(a[3], 0) + 1
             open_calls[a[1]] = per_fn[a[3]]
+            stack.append((a[1], a[3]))
+        inside = [{"seq": q, "name": _fn_name(fs, f), "fn_call": open_calls.get(q)}
+                  for q, f in stack if q != a[1]]
         base = {"verdict": "DIFFERENT", "calls": calls, "seq": a[1], "frame": a[2], "fn": a[3],
-                "name": _fn_name(fs, a[3]),
+                "name": _fn_name(fs, a[3]), "inside": inside,
                 "fn_call": open_calls.get(a[1]) if a[0] in "cC" else None}
         if a[0] != b[0] or a[3] != b[3] or a[1] != b[1]:
             def desc(x, fns):
@@ -436,6 +440,7 @@ def compare_calls(stock_lines, repl_lines):
                         overflow=a[6] or b[6])
         if a[2] != b[2]:
             return dict(base, what="sequence", fields=[("exit frame", str(a[2]), str(b[2]))])
+        stack[:] = [x for x in stack if x[0] != a[1]]
 
 
 def effect_words(lines, seq):
@@ -484,6 +489,9 @@ def call_report(cr, words=None):
     head = "FIRST DIFFERING CALL: seq %s = %s call %s, frame %s: %s" % (
         cr.get("seq"), cr.get("name"), cr.get("fn_call"), cr.get("frame"), cr["what"])
     lines = [head]
+    if cr.get("inside"):
+        lines.append("  inside: " + " > ".join("%s call %s (seq %s)" % (o["name"], o["fn_call"], o["seq"])
+                                               for o in cr["inside"]))
     for label, x, y in cr.get("fields", []):
         lines.append("  %s: stock %s, replaced %s" % (label, x, y))
     for addr, a, b, where in (words or [])[:24]:

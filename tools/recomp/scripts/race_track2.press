@@ -1,0 +1,21 @@
+# Second track: the race script plus one RIGHT on the track selector (the screen START confirms at 20 s).
+# Evidence (w23r): the six race-data streams inflated after image B differ (first one 0x4D2FA0 -> 0x80222200
+# instead of 0x43FE80; RIGHT twice gives 0x555850, LEFT once 0x5D6160: the selector cycles tracks).
+frames 1800
+5 START
+8 START
+11 A
+14 A
+17 A
+18.5 RIGHT
+20 START
+23 A
+26 A
+29 A
+32 A
+35 START
+38 A
+41 A
+44 A
+47 A
+50 A

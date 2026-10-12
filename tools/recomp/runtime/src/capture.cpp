@@ -80,6 +80,7 @@ struct Window {
     uint64_t seq = 0;
     uint64_t frame = 0;
     uint32_t sp = 0;
+    uint32_t floor = 0;              // own-stack words below this are dead frames
     uint32_t npages = 0;
     int32_t slot[kPages];            // pool slot of the pre-window copy, -1 = none
     uint16_t pages[kPages];
@@ -197,10 +198,13 @@ std::string format_ret(recomp_context* ctx, int fn) {
 }
 
 // Is the N64 address (offset into rdram) left out of a call's effect?
-bool excluded(uint32_t off, uint32_t sp_off) {
+// sp_off = sp at the window's entry, floor = sp at entry of the outermost
+// replaced (non-probe) window open on this thread: below it lie the frames
+// of the replaced bodies, whose layout differs whenever their code does.
+bool excluded(uint32_t off, uint32_t sp_off, uint32_t floor) {
     for (const auto& r : rush::oracle_stack_ranges()) {
         if (off < r.first || off >= r.second) continue;
-        if (sp_off >= r.first && sp_off <= r.second) return off < sp_off;  // own stack: dead below sp
+        if (sp_off >= r.first && sp_off <= r.second) return off < floor;   // own stack: dead frames
         return true;                                                       // another thread's stack
     }
     return rush::oracle_word_masked(off);
@@ -272,6 +276,11 @@ extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
     win.seq = seq;
     win.frame = frame;
     win.sp = (uint32_t)ctx->r29 & 0x00FFFFFFu;
+    win.floor = win.sp;
+    for (int i = 0; i < tl_depth; i++) {            // outermost replaced window on this thread
+        const Window& o = windows[tl_stack[i]];
+        if (!rush_cap_probe[o.fn]) { win.floor = std::max(win.floor, o.sp); break; }
+    }
     win.npages = 0;
     open_windows++;
     spin_unlock();
@@ -299,7 +308,7 @@ extern "C" void rush_cap_exit(uint8_t* rdram, recomp_context* ctx, int fn) {
         for (uint32_t i = 0; i < kPage / 4; i++) {
             if (before[i] == after[i]) continue;
             uint32_t off = p * kPage + i * 4;
-            if (excluded(off, win.sp)) continue;
+            if (excluded(off, win.sp, win.floor)) continue;
             uint32_t rec[2] = {off, after[i]};
             h = XXH3_64bits_withSeed(rec, sizeof rec, h);
             n++;

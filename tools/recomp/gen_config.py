@@ -718,7 +718,7 @@ def render_images_header(images):
     return "\n".join(lines)
 
 
-def replacement_hooks(replaced, renamed_builtin=()):
+def replacement_hooks(replaced, renamed_builtin=(), repl_functions=()):
     """Entry hooks for replaced (and Phase 3 captured) functions.
 
     Replacement: count, open the per-call capture window, call the
@@ -729,9 +729,25 @@ def replacement_hooks(replaced, renamed_builtin=()):
     the same call records (runtime/src/capture.cpp; a no-op without
     --call-log)."""
     out = []
+    copies = {}
+    for name in repl_functions:   # repl__<id>__<name>: functions a replacement object defines
+        m = re.match(r"^repl__\w+?__(\w+)$", name)
+        if m:
+            copies.setdefault(m.group(1), []).append(name)
     for k, r in enumerate(replaced):
         func = NAME_PREFIX[r["population"]] + r["function"]
         emitted = func + "_recomp" if func in renamed_builtin else func
+        if r["mode"] == "capture":
+            # A probe on a function some replacement object also defines (a
+            # draft TU's own static/helper copy, called inside the image): hook
+            # the copy too, so both builds record those calls under index k.
+            for copy in copies.get(r["function"], []):
+                text = ("{ int rush_cap_bypass(int); void rush_cap_enter(uint8_t*, recomp_context*, int); "
+                        "void rush_cap_exit(uint8_t*, recomp_context*, int); if (!rush_cap_bypass(%d)) { "
+                        "rush_cap_enter(rdram, ctx, %d); %s(rdram, ctx); rush_cap_exit(rdram, ctx, %d); "
+                        "return; } }" % (k, k, copy, k))
+                out.append({"func": copy, "call": copy, "before_vram": None, "text": text,
+                            "contract": ["rush_cap_enter", "rush_cap_exit", "rush_cap_bypass"]})
         decl = ("void rush_repl_count(uint8_t*, int); void rush_cap_enter(uint8_t*, recomp_context*, int); "
                 "void rush_cap_exit(uint8_t*, recomp_context*, int); ")
         if r["mode"] == "capture":
@@ -750,6 +766,46 @@ def replacement_hooks(replaced, renamed_builtin=()):
             call = r["call"]
         out.append({"func": func, "call": call, "before_vram": None, "text": text,
                     "contract": contract})
+    return out
+
+
+def callee_probes(replaced, functions, images):
+    """Phase 3 --probe-callees: a capture probe (no arguments recorded, effect
+    and order only) for every function the RETAIL body of each replaced
+    function calls with `jal`, in first-call order, skipping functions already
+    in the set. Computed from the retail image, so the stock capture build and
+    the replaced build get the same list (and indices)."""
+    have = {(r["population"], r["function"]) for r in replaced}
+    out, seen = [], set()
+    for r in replaced:
+        if r.get("probe"):
+            continue
+        pop = r["population"]
+        f = next((x for x in functions.get(pop, []) if x["name"] == r["function"]), None)
+        if f is None:
+            continue
+        vram, data = images[pop]
+        pops = ["static", "game"] + ([pop] if pop.startswith("ovl_") else [])
+        by_addr = {}
+        for p in pops:
+            for g in functions.get(p, []):
+                by_addr.setdefault(g["vram"], (p, g["name"]))
+        if pop.startswith("ovl_"):
+            for g in functions.get(pop, []):
+                by_addr[g["vram"]] = (pop, g["name"])
+        for addr in range(f["vram"], f["vram"] + f["size"], 4):
+            word = int.from_bytes(data[addr - vram:addr - vram + 4], "big")
+            if word >> 26 != 3:
+                continue
+            target = ((addr + 4) & 0xF0000000) | ((word & 0x03FFFFFF) << 2)
+            hit = by_addr.get(target)
+            if hit is None or hit in have or hit in seen:
+                continue
+            seen.add(hit)
+            out.append({"id": "callee_" + NAME_PREFIX[hit[0]] + hit[1], "function": hit[1],
+                        "population": hit[0], "mode": "capture", "call": None, "source": None,
+                        "probe": True, "probe_of": r["function"],
+                        "capture": {"args": [], "ret": 0, "known": False, "prototype": None}})
     return out
 
 
@@ -774,6 +830,9 @@ def render_repl_header(replaced, image=None):
         lines.append("    {%s}," % ", ".join(str(c) for c in [len(codes)] + codes))
     lines += ["    {0}", "};", "static const int rush_cap_ret[] = {"]
     lines += ["    %d," % (r.get("capture") or {"ret": 0})["ret"] for r in replaced]
+    lines += ["    0", "};", "/* 1 = probe (not replaced; a callee): its effect leaves out the stack frames",
+              "   of the replaced functions it runs under */", "static const int rush_cap_probe[] = {"]
+    lines += ["    %d," % (1 if r.get("probe") else 0) for r in replaced]
     lines += ["    0", "};", "/* labels (call log header) */", "static const char* const rush_cap_labels[] = {"]
     for r in replaced:
         cap = r.get("capture") or {"args": [], "ret": 0, "known": False}
@@ -827,6 +886,7 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                 raise GenError(f"patches.json {kind}: {name} is on N64Recomp's built-in lists "
                                "(it is renamed NAME_recomp first; listing it would fail)")
     funcs_by_name = {NAME_PREFIX[pop] + f["name"]: (pop, f) for pop in SECTIONS for f in functions[pop]}
+    repl_by_name = {f["name"]: ("repl", f) for f in functions.get("repl", [])}
     # Functions N64Recomp drops by name, and ones we stub/ignore, take no patches;
     # its built-in "renamed" functions are looked up as NAME_recomp.
     dropped = set(patches["stubs"]) | set(patches["ignored"])
@@ -834,6 +894,14 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
     if lists is not None:
         dropped |= set(lists["reimplemented_funcs"]) | set(lists["ignored_funcs"])
         renamed_builtin = set(lists["renamed_funcs"])
+    # Capture probes on functions N64Recomp does not emit (runtime-reimplemented
+    # libultra, stubs) cannot carry a hook: dropped from both builds alike.
+    probes_dropped = [r["function"] for r in repl["replaced"] if r["mode"] == "capture"
+                      and (NAME_PREFIX[r["population"]] + r["function"] in dropped
+                           or NAME_PREFIX[r["population"]] + r["function"] not in funcs_by_name)]
+    if probes_dropped:
+        repl = dict(repl, replaced=[r for r in repl["replaced"] if not (
+            r["mode"] == "capture" and r["function"] in probes_dropped)])
     manual_vrams = {e["vram"] for e in patches["instruction"]}
     auto = [e for e in zero_load_patches(functions, images, skip=dropped)
             if e["vram"] not in manual_vrams]
@@ -853,8 +921,9 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                               else dict(e) for e in patches["instruction"]]
     if set(patches["stubs"]) & set(patches["ignored"]) or set(patches["renamed"]) & set(patches["ignored"]):
         raise GenError("a function is in two of stubs/ignored/renamed in patches.json")
-    hooks = check_hooks(list(patches["hook"]) + replacement_hooks(repl["replaced"], renamed_builtin),
-                        funcs_by_name, dropped, renamed_builtin)
+    hooks = check_hooks(list(patches["hook"]) + replacement_hooks(repl["replaced"], renamed_builtin,
+                                                                  [f["name"] for f in repl["functions"]]),
+                        dict(funcs_by_name, **repl_by_name), dropped, renamed_builtin)
     contract = runtime_contract(functions, images, sections, patches, lists, hooks, streams)
     placed, conflicts = data_symbols(functions, symbols, sections)
 
@@ -916,6 +985,7 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
         "runtime_contract": contract,
         "identity_renames": identity_applied,
         "replacements": {"replaced": repl["replaced"], "native": repl["native"],
+                         "probes_dropped": probes_dropped,
                          "image": None if not repl_image else
                          {"rom": _hex(repl_image["rom"]), "vram": _hex(repl_image["vram"]),
                           "size": repl_image["size"], "sha256": sha256(images["repl"][1])}},
@@ -947,6 +1017,9 @@ def main(argv=None):
                         help="Phase 3: STOCK build with per-call capture hooks on this set's functions "
                         "(no replacement; same order as --replace-set SET, so call logs compare)")
     parser.add_argument("--capture", default="", help="comma-separated replacement ids to capture")
+    parser.add_argument("--probe-callees", action="store_true",
+                        help="Phase 3: also capture every direct callee of the replaced functions (order "
+                        "and effect only); pass it to BOTH builds")
     args = parser.parse_args(argv)
     try:
         lists = builtin_lists(args.n64recomp_src)
@@ -981,6 +1054,8 @@ def main(argv=None):
         else:
             import shutil
             shutil.rmtree(out / "replace", ignore_errors=True)
+        if repl is not None and args.probe_callees:
+            repl = dict(repl, replaced=list(repl["replaced"]) + callee_probes(repl["replaced"], functions, images))
         manifest = generate(images, functions, symbols, rom, out, lists=lists,
                             extras=load_extra_functions(), patches=load_patches(),
                             streams=stream_offsets(), identity=load_identity(), repl=repl)
