@@ -6,7 +6,7 @@ glabel __osSiRelAccess
     /* F1FC 8000E5FC 3C048003 */  lui        $a0, %hi(__osSiMesg)
     /* F200 8000E600 24847C98 */  addiu      $a0, $a0, %lo(__osSiMesg)
     /* F204 8000E604 00002825 */  or         $a1, $zero, $zero
-    /* F208 8000E608 0C001D78 */  jal        osJamMesg
+    /* F208 8000E608 0C001D78 */  jal        osSendMesg
     /* F20C 8000E60C 00003025 */   or        $a2, $zero, $zero
     /* F210 8000E610 8FBF0014 */  lw         $ra, 0x14($sp)
     /* F214 8000E614 27BD0018 */  addiu      $sp, $sp, 0x18

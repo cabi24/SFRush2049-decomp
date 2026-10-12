@@ -15,7 +15,7 @@ glabel dma_queue_init
     /* 316C 8000256C 3C048003 */  lui        $a0, %hi(gDmaMessageQueue)
     /* 3170 80002570 2484F190 */  addiu      $a0, $a0, %lo(gDmaMessageQueue)
     /* 3174 80002574 00002825 */  or         $a1, $zero, $zero
-    /* 3178 80002578 0C001D78 */  jal        osJamMesg
+    /* 3178 80002578 0C001D78 */  jal        osSendMesg
     /* 317C 8000257C 00003025 */   or        $a2, $zero, $zero
     /* 3180 80002580 10000001 */  b          .L80002588
     /* 3184 80002584 00000000 */   nop

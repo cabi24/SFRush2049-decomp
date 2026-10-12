@@ -3,12 +3,22 @@ import json,shutil,copy
 import pytest
 from tools.conveyor.pipeline import owned_existing_storage as E,owned_storage as S,owned_data as D,lock
 ROOT=Path(__file__).resolve().parents[2]
+# Context files the w22g libultra rename changed after this activation was
+# recorded: replay against byte-identical pre-rename copies (superseded context).
+SUPERSEDED=ROOT/'cloud/work/frontier/superseded/w22g_libultra_rename'
+def _historical(rel,row):
+ import hashlib
+ recorded=json.loads((ROOT/row['context_proof']).read_text()).get(rel)
+ old=SUPERSEDED/rel
+ if recorded and old.is_file() and hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()!=recorded:
+  return old
+ return ROOT/rel
 @pytest.fixture
 def repo(tmp_path):
  row=json.loads((ROOT/'cloud/work/boot_tail_extension/sdk_initialize_storage_record.json').read_text())
  paths={row['source'],row['tu_before_source'],row['strict_proof'],row['context_proof'],row['linked_proof'],row['startup_proof'],'asm/us/1000.s','splat.us.yaml','Makefile','rush2049.us.ld'}|set(json.loads((ROOT/row['context_proof']).read_text()))
  for rel in paths:
-  dst=tmp_path/rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/rel,dst)
+  dst=tmp_path/rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy(_historical(rel,row),dst)
  # Sparse synthetic inputs keep tests runnable without ignored retail assets.
  # Actual original-ROM hashes/placement are tested by separate private gates.
  import hashlib

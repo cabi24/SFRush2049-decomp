@@ -1512,6 +1512,7 @@ cpak_init:
 .section .text.cpak_read, "ax", @progbits
 .globl cpak_read
 cpak_read:
+    /* compiled from src/blob/cpak_read.c */
     .word 0x27BDFFB8
     .word 0xAFB10018
     .word 0x00048C00

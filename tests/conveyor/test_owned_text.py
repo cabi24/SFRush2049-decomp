@@ -3,12 +3,17 @@ from pathlib import Path
 import pytest
 from tools.conveyor.pipeline import owned_text,owned_data,layout
 ROOT=Path(__file__).resolve().parents[2]
+# The record predates the w22g libultra rename (osDpWait is osSpTaskYield now):
+# replay it against byte-identical pre-rename copies of the files it names.
+SUPERSEDED=ROOT/'cloud/work/frontier/superseded/w22g_libultra_rename'
+def _historical(rel):
+ return SUPERSEDED/rel if (SUPERSEDED/rel).is_file() else ROOT/rel
 @pytest.fixture
 def repo(tmp_path):
  row=json.loads((ROOT/'cloud/work/integration_B22_followup/text_boundary_record.json').read_text())
  paths=['splat.us.yaml','symbol_addrs.us.txt',row['source'],row['asm_authority'],row['tu']]
  for rel in paths:
-  dest=tmp_path/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/rel,dest)
+  dest=tmp_path/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy(_historical(rel),dest)
  # Synthetic sparse ROM fixture; real original-ROM gates are separate evidence.
  data=bytearray(0x8800)
  data[0x8780:0x87a0]=bytes(range(32))
@@ -45,7 +50,7 @@ def test_body_coverage_excludes_fill_and_keeps_static_denominator(repo,monkeypat
 def test_alias_or_following_boundary_drift_refused(repo):
  root,row=repo;symbols=root/'symbol_addrs.us.txt';symbols.write_text(symbols.read_text().replace('osDpWait = 0x80007B80','osDpWait = 0x80007B84'))
  with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
- shutil.copy(ROOT/'symbol_addrs.us.txt',symbols);yaml=root/'splat.us.yaml';yaml.write_text(yaml.read_text().replace('[0x8800, c, rom/lib_8800]','[0x8810, c, rom/lib_8800]'))
+ shutil.copy(_historical('symbol_addrs.us.txt'),symbols);yaml=root/'splat.us.yaml';yaml.write_text(yaml.read_text().replace('[0x8800, c, rom/lib_8800]','[0x8810, c, rom/lib_8800]'))
  with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
 
 def test_nonzero_padding_and_changed_canonical_body_refused(repo):

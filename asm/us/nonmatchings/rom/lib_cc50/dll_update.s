@@ -80,7 +80,7 @@ glabel dll_update
     /* CE3C 8000C23C 00000000 */   nop
     /* CE40 8000C240 01C02025 */  or         $a0, $t6, $zero
     /* CE44 8000C244 8F25001C */  lw         $a1, 0x1C($t9)
-    /* CE48 8000C248 0C001D78 */  jal        osJamMesg
+    /* CE48 8000C248 0C001D78 */  jal        osSendMesg
     /* CE4C 8000C24C 00003025 */   or        $a2, $zero, $zero
   .L8000C250:
     /* CE50 8000C250 8FAF0024 */  lw         $t7, 0x24($sp)

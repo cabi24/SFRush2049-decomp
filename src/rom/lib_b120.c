@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPfsDeleteFile
+/* PROMOTED 2026-10-01 — osPfsFileState (named osPfsDeleteFile before the w22g libultra rename)
  * Source:   cloud/work/static_C10/osPfsDeleteFile.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C10/osPfsDeleteFile.c:osPfsDeleteFile (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsDeleteFile(OSPfs* pfs, s32 file_no, OSPfsState* state) {
+s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     s32 ret;
     int pages;
     __OSInode inode;
@@ -58,7 +58,7 @@ s32 osPfsDeleteFile(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     bcopy(&dir.game_name, state->game_name, PFS_FILE_NAME_LEN);
     bcopy(&dir.ext_name, state->ext_name, PFS_FILE_EXT_LEN);
 
-    ret = osContStartReadData(pfs->queue, pfs->channel);
+    ret = __osPfsGetStatus(pfs->queue, pfs->channel);
     return ret;
 }
 

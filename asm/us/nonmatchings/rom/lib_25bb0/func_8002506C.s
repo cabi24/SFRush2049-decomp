@@ -11,7 +11,7 @@ glabel func_8002506C
     /* 25C88 80025088 8FA4001C */   lw        $a0, 0x1C($sp)
     /* 25C8C 8002508C 8FA40024 */  lw         $a0, 0x24($sp)
     /* 25C90 80025090 00002825 */  or         $a1, $zero, $zero
-    /* 25C94 80025094 0C001D78 */  jal        osJamMesg
+    /* 25C94 80025094 0C001D78 */  jal        osSendMesg
     /* 25C98 80025098 24060001 */   addiu     $a2, $zero, 0x1
     /* 25C9C 8002509C 8FBF0014 */  lw         $ra, 0x14($sp)
     /* 25CA0 800250A0 27BD0018 */  addiu      $sp, $sp, 0x18

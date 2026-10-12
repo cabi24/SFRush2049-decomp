@@ -65,13 +65,17 @@ def test_failure_controls_detect_original_bug_and_changed_code(report):
 def promoted_fixture(work, names):
     """Model a legitimate lock migration entirely in memory and temp files."""
     text, locks = verify.baseline_inputs()
-    paths = {fn: path for fn, path in verify.candidate_paths().items() if fn in names}
+    originals = {fn: path for fn, path in verify.candidate_paths().items() if fn in names}
+    # The pinned submissions predate the w22g libultra rename: promote them
+    # with today's names, as the packet compiles them.
+    paths = verify.renamed_copies(originals, work)
     rows = verify.fit(paths, work)
     text = verify.splice(text, paths, rows)
-    for fn, path in paths.items():
+    for fn, path in originals.items():
         old_key = str(path.relative_to(ROOT)) + ":" + fn
         entry = locks.pop(old_key)
         entry["verified"] = "rom-sha1"
+        entry["body_sha256"] = verify.body_sha(paths[fn], fn)
         locks[str(verify.TU) + ":" + fn] = entry
     return text, locks
 

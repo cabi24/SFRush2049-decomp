@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osMotorInit
+/* PROMOTED 2026-10-01 — __osMotorAccess (named osMotorInit before the w22g libultra rename)
  * Source:   cloud/work/static_C9/osMotorInit.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C9/osMotorInit.c:osMotorInit (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osMotorInit(OSPfs* pfs, s32 flag) {
+s32 __osMotorAccess(OSPfs* pfs, s32 flag) {
     int i;
     s32 ret;
     u8* ptr = (u8*)&((OSPifRam *)__osMotorPifBuf)[pfs->channel];
@@ -51,13 +51,13 @@ s32 osMotorInit(OSPfs* pfs, s32 flag) {
     return ret;
 }
 
-/* PROMOTED 2026-10-01 — __osMotorAccess
+/* PROMOTED 2026-10-01 — __osMakeMotorData (named __osMotorAccess before the w22g libultra rename)
  * Source:   cloud/work/static_C9/__osMotorAccess.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C9/__osMotorAccess.c:__osMotorAccess (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void __osMotorAccess(int channel, OSPifRam* mdata) {
+void __osMakeMotorData(int channel, OSPifRam* mdata) {
     u8* ptr = (u8*)mdata->ramarray;
     __OSContRamReadFormat ramreadformat;
     int i;
@@ -80,13 +80,13 @@ void __osMotorAccess(int channel, OSPifRam* mdata) {
     ptr[0] = CONT_CMD_END;
 }
 
-/* PROMOTED 2026-10-01 — osMotorStart
+/* PROMOTED 2026-10-01 — osMotorInit (named osMotorStart before the w22g libultra rename)
  * Source:   cloud/work/static_C10/osMotorStart.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C10/osMotorStart.c:osMotorStart (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osMotorStart(OSMesgQueue* mq, OSPfs* pfs, int channel) {
+s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     s32 ret;
     u8 temp[32];
 
@@ -138,14 +138,14 @@ s32 osMotorStart(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     }
 
     if (!(pfs->status & PFS_MOTOR_INITIALIZED)) {
-        __osMotorAccess(channel, &((OSPifRam *)__osMotorPifBuf)[channel]);
+        __osMakeMotorData(channel, &((OSPifRam *)__osMotorPifBuf)[channel]);
     }
 
     pfs->status = PFS_MOTOR_INITIALIZED;
     return 0;
 }
 
-/* PROMOTED 2026-10-11 — osMotorStop
+/* PROMOTED 2026-10-11 — osPfsRepairId (named osMotorStop before the w22g libultra rename)
  * Source:   cloud/work/frontier/w16g/sources/osMotorStop.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/frontier/w16g/sources/osMotorStop.c:osMotorStop (score0); rom_tu.h context: cloud/work/frontier/w16g/ctx/ctx_O2.jsonl
@@ -155,7 +155,7 @@ s32 osMotorStart(OSMesgQueue* mq, OSPfs* pfs, int channel) {
 #define PFS_ID_BROKEN 0x4
 #define PFS_ERR_INVALID 5
 extern s32 __osGetId(OSPfs *);
-s32 osMotorStop(OSPfs* pfs) {
+s32 osPfsRepairId(OSPfs* pfs) {
     s32 ret = 0;
 
     if ((pfs->status & (PFS_INITIALIZED | PFS_ID_BROKEN))) {

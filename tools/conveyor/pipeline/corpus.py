@@ -45,14 +45,13 @@ PRIORITY = 50  # above bulk matrix (100), below verify/smoke (1)
 # symbol_addrs.us.txt, so name-pairing (targets.get(candidate_name)) misses the
 # real libultra source. Verified against ultralib by asm audit (2026-07-14):
 #   dll_remove        @ 0x8000C050 is byte-for-byte __osDequeueThread
-#   dll_get_priority  @ 0x8000C490 is byte-for-byte osGetThreadPri
-# The proper fix is renaming the linker symbol (touches every cross-file `jal`
-# site + 2 locked regression anchors, so it is gated on a full SHA-1 rebuild);
-# until then this lets corpus pair the candidate against the right target .o
-# with zero build/link/lock risk. See docs/SYMBOL_MISATTRIBUTION.md.
+# (dll_get_priority @ 0x8000C490 was renamed osGetThreadPri by lane w22g and
+# pairs by name now.) The proper fix is renaming the linker symbol
+# (tools.conveyor.pipeline.static_rename + targets_rename rename, as w22g did);
+# until then this lets corpus pair the candidate against the right target .o.
+# See docs/SYMBOL_MISATTRIBUTION.md.
 CANONICAL_ALIASES = {
     "__osDequeueThread": "dll_remove",
-    "osGetThreadPri": "dll_get_priority",
 }
 
 

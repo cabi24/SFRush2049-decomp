@@ -35,7 +35,7 @@ extern void __osSiRelAccess(void);
 extern s32 __osSiRawStartDma(s32 direction, void *dramAddr);
 extern u8 __osContAddressCrc(u16);
 extern u8 __osContDataCrc(u8 *);
-extern s32 osContStartReadData(OSMesgQueue *mq, int channel);
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, int channel);
 extern u8 __osPfsBuffer[64];
 extern u8 __osPfsRequestType;
 extern s32 __osContLastChannel;
@@ -90,7 +90,7 @@ s32 __osContRamWrite(OSMesgQueue* mq, int channel, u16 address, u8* buffer, int 
 
         if (!ret) {
             if (crc != READFORMAT(ptr)->datacrc) {
-                if ((ret = osContStartReadData(mq, channel))) {
+                if ((ret = __osPfsGetStatus(mq, channel))) {
                     break;
                 } else {
                     ret = PFS_ERR_CONTRFAIL;

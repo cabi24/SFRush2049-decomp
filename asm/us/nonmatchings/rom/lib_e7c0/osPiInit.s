@@ -15,7 +15,7 @@ glabel osPiInit
     /* E7EC 8000DBEC 3C048003 */  lui        $a0, %hi(__osPiMesgQueue)
     /* E7F0 8000DBF0 24847C78 */  addiu      $a0, $a0, %lo(__osPiMesgQueue)
     /* E7F4 8000DBF4 00002825 */  or         $a1, $zero, $zero
-    /* E7F8 8000DBF8 0C001D78 */  jal        osJamMesg
+    /* E7F8 8000DBF8 0C001D78 */  jal        osSendMesg
     /* E7FC 8000DBFC 00003025 */   or        $a2, $zero, $zero
     /* E800 8000DC00 8FBF0014 */  lw         $ra, 0x14($sp)
     /* E804 8000DC04 27BD0018 */  addiu      $sp, $sp, 0x18

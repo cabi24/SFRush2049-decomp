@@ -17,7 +17,7 @@ void main(void *argument) {
     __osInitialize_common();
     address = 0xFFB000;
     for (index = 0; index < 16; index++, address += 4) {
-        osPiRawReadWord(address, &header[index]);
+        osPiReadIo(address, &header[index]);
     }
     osCreateThread(&gIdleThread, 1, idle_thread_entry, argument, gStackIdle + 0x190, 2);
     osStartThread(&gIdleThread);
@@ -31,7 +31,7 @@ void main(void *argument) {
  */
 void idle_thread_entry(void *argument) {
     osCreatePiManager(150, &gViModeTable, gViModeLan1, 200);
-    osCreateViManager(NULL, 0);
+    osSetThreadPri(NULL, 0);
     osCreateThread(&gGameThread, 6, game_init, argument, gStackGame + 0x960, 4);
     osStartThread(&gGameThread);
     for (;;) {}

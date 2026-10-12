@@ -54,7 +54,7 @@ s32 __osContRamRead(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
 
         if (!ret) {
             if (__osPfsDataChecksum(READFORMAT(ptr)->data) != READFORMAT(ptr)->datacrc) {
-                ret = osContStartReadData(mq, channel);
+                ret = __osPfsGetStatus(mq, channel);
 
                 if (ret) {
                     break;

@@ -9,7 +9,7 @@ glabel osPfsInitPak
     /* A824 80009C24 0C00396C */  jal        __osSiGetAccess
     /* A828 80009C28 AFA60078 */   sw        $a2, 0x78($sp)
     /* A82C 80009C2C 8FA40070 */  lw         $a0, 0x70($sp)
-    /* A830 80009C30 0C003988 */  jal        osContStartReadData
+    /* A830 80009C30 0C003988 */  jal        __osPfsGetStatus
     /* A834 80009C34 8FA50078 */   lw        $a1, 0x78($sp)
     /* A838 80009C38 0C00397D */  jal        __osSiRelAccess
     /* A83C 80009C3C AFA2006C */   sw        $v0, 0x6C($sp)

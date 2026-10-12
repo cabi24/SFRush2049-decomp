@@ -10,7 +10,7 @@
  * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/dma_queue_init.c:dma_queue_init (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void dma_queue_init(void) { gDmaInitialized=1; osCreateMesgQueue(&gDmaMessageQueue,&gDmaMessageBuffer,1); osJamMesg(&gDmaMessageQueue,NULL,0); }
+void dma_queue_init(void) { gDmaInitialized=1; osCreateMesgQueue(&gDmaMessageQueue,&gDmaMessageBuffer,1); osSendMesg(&gDmaMessageQueue,NULL,0); }
 
 /* PROMOTED 2026-10-02 — dma_wait
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/dma_wait.c (in-repo, locked)
@@ -27,7 +27,7 @@ s32 dma_wait(s32 block) { OSMesg msg; if (!gDmaInitialized) dma_queue_init(); if
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void dma_signal(void) {
-    osJamMesg(&gDmaMessageQueue, NULL, 0);
+    osSendMesg(&gDmaMessageQueue, NULL, 0);
 }
 
 /* PROMOTED 2026-10-02 — lzss_decompress
