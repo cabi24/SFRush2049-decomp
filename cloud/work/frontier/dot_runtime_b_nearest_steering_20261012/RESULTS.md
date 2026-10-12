@@ -89,10 +89,13 @@ index at 776/857/859; vehicle disabled at 1600; Object owner/position/uv at 4/32
 No blocking finding. The original source was research PR #202, not an existing
 strict match; this packet claims 684 newly strict-matched candidate bytes.
 
-The linked ELF check currently pins GNU's MIPS ABI-version byte 5 (object byte
-0), as observed with GNU 2.44. This is a disclosed linker-portability constraint;
-it does not weaken function/data/relocation or ABI checks. Hosted CI is separate
-from the local results and must pass on the published final head.
+The GNU linker is explicitly run with `--hash-style=sysv`, giving the same
+MIPS ABI-version byte 0 as the object and avoiding the known GNU 2.42/2.44
+hash-default difference. Both candidate and baseline links use it; strict ABI,
+function/data/relocation checks stay intact. After this deterministic proof-only
+repair, normal/optimized replay and the focused test pass; the entire receipt
+changes only its verifier source digest. C source and all proof facts stay fixed.
+Hosted CI is separate and must pass on the final published head.
 
 Seven text source/test/proof files only. No accepted lock, production source,
 protected target, raw assembly dump, object, ROM bytes or unrelated data changes.

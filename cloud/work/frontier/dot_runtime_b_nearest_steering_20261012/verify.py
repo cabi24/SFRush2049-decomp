@@ -96,7 +96,7 @@ def inputs():
 def inspect(path, linked=False):
     raw, secs = score._elf(path)
     h = struct.unpack_from('>16sHHIIIIIHHHHHH', raw)
-    require(h[0][:8] == b'\x7fELF\x01\x02\x01\x00' and h[0][8] == (5 if linked else 0) and h[1] == (2 if linked else 1) and h[2] == 8 and h[7] == 0x10000000, 'ELF type/ABI changed: ' + repr((h[0][:9], h[1], h[2], hex(h[7]))))
+    require(h[0][:8] == b'\x7fELF\x01\x02\x01\x00' and h[0][8] == 0 and h[1] == (2 if linked else 1) and h[2] == 8 and h[7] == 0x10000000, 'ELF type/ABI changed: ' + repr((h[0][:9], h[1], h[2], hex(h[7]))))
     symbols = {s['name']: s for i, sec in enumerate(secs) if sec['type'] == 2
                for s in score._symbol_table(raw, secs, i) if s['name']}
     ti = score._text_index(secs)
@@ -162,7 +162,7 @@ def replay():
         script.write_text('\n'.join('%s = 0x%08x;' % x for x in sorted(undefined.items())) +
             '\nSECTIONS { .text 0x8038DDDC : SUBALIGN(4) { *(.text) } .rodata 0x80394DE4 : SUBALIGN(4) { *(.rodata) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n')
         linked = tmp / 'linked.elf'
-        subprocess.run([ld, '-EB', '-T', str(script), '-o', str(linked), str(obj)], check=True, capture_output=True)
+        subprocess.run([ld, '-EB', '--hash-style=sysv', '-T', str(script), '-o', str(linked), str(obj)], check=True, capture_output=True)
         _, _, ls, lo = inspect(linked, True)
         differences = [i for i in range(0, SIZE, 4) if lo['.text'][i:i+4] != native[i:i+4]]
         require(differences == [] and lo['.rodata'] == literal, 'GNU full body/owned-data mismatch')
@@ -187,7 +187,7 @@ def replay():
         require(prior.differing == 14 and not any((prior.extra_words, prior.errors, prior.unresolved, prior.unverified)), 'baseline changed: ' + prior.summary())
         _, _, _, control_sections = inspect(control_obj)
         control_linked = tmp / 'baseline.elf'
-        subprocess.run([ld, '-EB', '-T', str(script), '-o', str(control_linked), str(control_obj)], check=True, capture_output=True)
+        subprocess.run([ld, '-EB', '--hash-style=sysv', '-T', str(script), '-o', str(control_linked), str(control_obj)], check=True, capture_output=True)
         _, _, _, baseline_owned = inspect(control_linked, True)
         expected_offsets = [0x8C,0xF4,0x100,0x110,0x124,0x128,0x12C,0x158,0x1B4,0x1B8,0x1BC,0x1EC,0x22C,0x238]
         baseline_diff = [at for at in range(0, SIZE, 4) if baseline_owned['.text'][at:at+4] != native[at:at+4]]
