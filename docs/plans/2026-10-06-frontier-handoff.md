@@ -326,6 +326,18 @@ func_800DA0B4) so it lands only with a matching D91A0. #330 unchanged since w22p
 `replace.py` native-mode rework; #323, #317, #314, #313, #312, #311, #163 superseded (reasons in RESULTS.md).
 Static and game unchanged.
 
+**Wave 25 PR batch (2026-10-12, lane w25p, wave24 after `7eb1ae51`):** Astra's 18 PRs #335–#352 in one lane
+(`cloud/work/frontier/w25p/RESULTS.md`). 16 landed: five same-name group supersessions (#335 text_helpers → 13 members,
+#336 availability_refresh → 2, #337 option_eligibility → 3, #340 seven_option_group → 2, #346 menu_renderers → 4), two
+new-group chains installed in order with a gate after each step (#341 → #344 → #349 → #352 `runtime_a_stats_menu_20261006`,
+now 9 members incl. three never-locked exact panels; #345 → #350 `runtime_a_profile_menu_20261006`, 3 members), singles
+#348/#351 (settings bar/values) and image-B #338/#343/#347 (position initializer, nearest-target steering, trail callback
+with owned data). Overlay A 56 → 75/193 (43,112 B, 22.21%), overlay B 11 → 14/49 (5,964 B, 13.59%), +20,272 B. #339
+(B 80392894, 2/468) and #342 (A 803A5358, 58/192) imported as research. Lessons: a packet's `verify.py` must pass both
+before and after installation (#340/#346 compared against the pre-install group source and had to be patched, receipts
+re-recorded with `--deep`); running packet tests under `pytest -n` needs `--dist loadgroup`. Static and game unchanged.
+Package v1 laptop report: `tools/recomp/reports/v1/` and the recomp plan "Package v1 laptop report" bullet.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
