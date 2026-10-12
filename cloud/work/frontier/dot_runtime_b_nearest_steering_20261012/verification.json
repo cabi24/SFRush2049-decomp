@@ -1,0 +1,238 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "group.c": "540313255bd7433aa65fa965ac0b80bfa602404983c63e5e7da36545499cdc63",
+      "group.json": "c613e9e80f8de0ebb6251d392d266046921483e4c1f970a192cbe88ce9d39803",
+      "verify.py": "1099fe0b7823434502bd6e61ed013ca2e41558d79ea00b3d9497ba0d36a24693"
+    },
+    "population": "ovl_b",
+    "target": "func_8038DDDC",
+    "extent": {
+      "name": "func_8038DDDC",
+      "address": "0x8038DDDC",
+      "size": 684,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "target_words_sha256": "563f3b6af390cc58174ebca64e3487d91b4eb330c987a8d182cf13e5138116fa",
+    "baseline_source_sha256": "24b29b2ea3aa417b3fca9dbf71086b81b8dae4cd62cef45220cd7e24824c05a1",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "literal_address": "0x80394de4",
+    "literal_sha256": "07d0b1d95f97a905c15d9e33aac8cb7ad4dd6ff2bf2802d49eff7f989ad95be2",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiler": "ido5.3"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 171,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "notes": [
+    "own .rodata verified at 0x80394DE4..0x80394DF4"
+  ],
+  "function_bytes": 684,
+  "text_section_bytes": 688,
+  "owned_data_bytes": 16,
+  "rodata_section_bytes": 16,
+  "text_zero_padding": 4,
+  "rodata_zero_padding": 0,
+  "gnu_text_vma": "0x8038dddc",
+  "gnu_rodata_vma": "0x80394de4",
+  "gnu_function_sha256": "563f3b6af390cc58174ebca64e3487d91b4eb330c987a8d182cf13e5138116fa",
+  "gnu_literal_sha256": "07d0b1d95f97a905c15d9e33aac8cb7ad4dd6ff2bf2802d49eff7f989ad95be2",
+  "gnu_differing_offsets": [],
+  "baseline_gnu_differing_offsets": [
+    140,
+    244,
+    256,
+    272,
+    292,
+    296,
+    300,
+    344,
+    436,
+    440,
+    444,
+    492,
+    556,
+    568
+  ],
+  "external_bindings": {
+    "D_80152818": 2148870168,
+    "D_801543CA": 2148877258,
+    "D_8012E67C": 2148722300,
+    "D_8014A250": 2148835920,
+    "func_800A61B0": 2148164016,
+    "sqrtf": 2147541952,
+    "func_80090E9C": 2148077212,
+    "func_80090F44": 2148077380
+  },
+  "relocations": [
+    {
+      "offset": 36,
+      "kind": 5,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 40,
+      "kind": 6,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 8,
+      "kind": 5,
+      "symbol": "D_801543CA"
+    },
+    {
+      "offset": 12,
+      "kind": 6,
+      "symbol": "D_801543CA"
+    },
+    {
+      "offset": 52,
+      "kind": 5,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 60,
+      "kind": 6,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 120,
+      "kind": 5,
+      "symbol": "D_8014A250"
+    },
+    {
+      "offset": 136,
+      "kind": 6,
+      "symbol": "D_8014A250"
+    },
+    {
+      "offset": 124,
+      "kind": 5,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 132,
+      "kind": 6,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 288,
+      "kind": 4,
+      "symbol": "func_800A61B0"
+    },
+    {
+      "offset": 536,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 540,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 544,
+      "kind": 4,
+      "symbol": "func_80090E9C"
+    },
+    {
+      "offset": 524,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 564,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 560,
+      "kind": 4,
+      "symbol": "func_80090E9C"
+    },
+    {
+      "offset": 596,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 600,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 604,
+      "kind": 4,
+      "symbol": "func_80090F44"
+    },
+    {
+      "offset": 572,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 624,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 620,
+      "kind": 4,
+      "symbol": "func_80090F44"
+    }
+  ],
+  "controls": {
+    "inherited_baseline": {
+      "differing": 14,
+      "total": 171,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "baseline_home_delta_bytes": 4,
+    "missing_data": "rejected",
+    "corrupt_literals": [
+      {
+        "offset": 0,
+        "rejected": true
+      },
+      {
+        "offset": 4,
+        "rejected": true
+      },
+      {
+        "offset": 8,
+        "rejected": true
+      },
+      {
+        "offset": 12,
+        "rejected": true
+      }
+    ],
+    "stock_as1_trace": "whole-object identical",
+    "standalone": {
+      "differing": 0,
+      "total": 171,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "claims": [
+    "func_8038DDDC"
+  ],
+  "new_strict_verified_bytes": 684,
+  "preserved_or_integrated_bytes": 0,
+  "new_image_landed_bytes": 0,
+  "new_rom_verified_bytes": 0
+}
