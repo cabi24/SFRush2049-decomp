@@ -1,0 +1,39 @@
+SAME func_80011A64 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (111 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (111 rows)
+SAME func_80011D74 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (124 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (124 rows)
+SAME func_800139D4 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (193 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (193 rows)
+SAME func_80017D38 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (235 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (235 rows)
+SAME func_8001824C | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (133 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (133 rows)
+SAME func_80019490 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (261 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (261 rows)
+SAME func_8001D1F4 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (138 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (138 rows)
+SAME func_80021150 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (184 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (184 rows)
+SAME func_80021764 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (35 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (35 rows)
+SAME func_80023190 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (35 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (35 rows)
+SAME func_80023564 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (110 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (110 rows)
+SAME func_800252AC | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (166 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (166 rows)
+SAME func_80025AB4 | stock: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (158 rows) | traced(all on): LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (158 rows)

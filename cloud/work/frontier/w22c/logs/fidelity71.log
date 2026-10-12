@@ -1,0 +1,73 @@
+IDENTICAL lib_11050: rel vs reb
+IDENTICAL lib_11050: rel vs off
+IDENTICAL lib_11050: rel vs on
+  lib_11050 trace volume: cdx 591 ugen 11503 spill 49 as1 -R 4138
+IDENTICAL lib_113e0: rel vs reb
+IDENTICAL lib_113e0: rel vs off
+IDENTICAL lib_113e0: rel vs on
+  lib_113e0 trace volume: cdx 440 ugen 14483 spill 85 as1 -R 1031
+IDENTICAL lib_11640: rel vs reb
+IDENTICAL lib_11640: rel vs off
+IDENTICAL lib_11640: rel vs on
+  lib_11640 trace volume: cdx 9602 ugen 263335 spill 1225 as1 -R 41131
+IDENTICAL lib_15930: rel vs reb
+IDENTICAL lib_15930: rel vs off
+IDENTICAL lib_15930: rel vs on
+  lib_15930 trace volume: cdx 89 ugen 2388 spill 16 as1 -R 952
+IDENTICAL lib_15a10: rel vs reb
+IDENTICAL lib_15a10: rel vs off
+IDENTICAL lib_15a10: rel vs on
+  lib_15a10 trace volume: cdx 2481 ugen 55958 spill 270 as1 -R 4337
+IDENTICAL lib_16320: rel vs reb
+IDENTICAL lib_16320: rel vs off
+IDENTICAL lib_16320: rel vs on
+  lib_16320 trace volume: cdx 4901 ugen 103212 spill 868 as1 -R 14023
+IDENTICAL lib_17dc0: rel vs reb
+IDENTICAL lib_17dc0: rel vs off
+IDENTICAL lib_17dc0: rel vs on
+  lib_17dc0 trace volume: cdx 6339 ugen 189152 spill 1080 as1 -R 18671
+IDENTICAL lib_1a660: rel vs reb
+IDENTICAL lib_1a660: rel vs off
+IDENTICAL lib_1a660: rel vs on
+  lib_1a660 trace volume: cdx 5093 ugen 130514 spill 585 as1 -R 14716
+IDENTICAL lib_1cf90: rel vs reb
+IDENTICAL lib_1cf90: rel vs off
+IDENTICAL lib_1cf90: rel vs on
+  lib_1cf90 trace volume: cdx 4910 ugen 151657 spill 688 as1 -R 29994
+IDENTICAL lib_1ece0: rel vs reb
+IDENTICAL lib_1ece0: rel vs off
+IDENTICAL lib_1ece0: rel vs on
+  lib_1ece0 trace volume: cdx 66 ugen 2897 spill 15 as1 -R 1835
+IDENTICAL lib_1f340: rel vs reb
+IDENTICAL lib_1f340: rel vs off
+IDENTICAL lib_1f340: rel vs on
+  lib_1f340 trace volume: cdx 577 ugen 15045 spill 82 as1 -R 1147
+IDENTICAL lib_1f5b0: rel vs reb
+IDENTICAL lib_1f5b0: rel vs off
+IDENTICAL lib_1f5b0: rel vs on
+  lib_1f5b0 trace volume: cdx 3175 ugen 74792 spill 471 as1 -R 10218
+IDENTICAL lib_207b0: rel vs reb
+IDENTICAL lib_207b0: rel vs off
+IDENTICAL lib_207b0: rel vs on
+  lib_207b0 trace volume: cdx 2104 ugen 61501 spill 331 as1 -R 5819
+IDENTICAL lib_21210: rel vs reb
+IDENTICAL lib_21210: rel vs off
+IDENTICAL lib_21210: rel vs on
+  lib_21210 trace volume: cdx 3249 ugen 105701 spill 435 as1 -R 11334
+IDENTICAL lib_22300: rel vs reb
+IDENTICAL lib_22300: rel vs off
+IDENTICAL lib_22300: rel vs on
+  lib_22300 trace volume: cdx 8496 ugen 237995 spill 1206 as1 -R 25248
+IDENTICAL lib_257f0: rel vs reb
+IDENTICAL lib_257f0: rel vs off
+IDENTICAL lib_257f0: rel vs on
+  lib_257f0 trace volume: cdx 397 ugen 23713 spill 61 as1 -R 4217
+IDENTICAL lib_25bb0: rel vs reb
+IDENTICAL lib_25bb0: rel vs off
+IDENTICAL lib_25bb0: rel vs on
+  lib_25bb0 trace volume: cdx 2876 ugen 78421 spill 390 as1 -R 13576
+IDENTICAL lib_26ab0: rel vs reb
+IDENTICAL lib_26ab0: rel vs off
+IDENTICAL lib_26ab0: rel vs on
+  lib_26ab0 trace volume: cdx 845 ugen 29760 spill 237 as1 -R 3046
+fidelity71: 54 identical, 0 different (18 TUs x 3 comparisons against the release 7.1)
