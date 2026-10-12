@@ -92,7 +92,51 @@ typedef struct { unsigned int payload; u16 id; u16 type; u16 references; u16 met
 extern int D_8003CE18;
 typedef union { RecordFields_8003CE20 fields; unsigned int words[3]; } RecordStorage_8003CE20;
 extern RecordStorage_8003CE20 D_8003CE20[];
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015A0C.s")
+/* PROMOTED 2026-10-11 — func_80015A0C
+ * Source:   cloud/work/frontier/w23c/relocname/func_80015A0C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/relocname/func_80015A0C.c:func_80015A0C (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_80015A0C(u16 id, void *payload, u16 type)
+{
+    long i;
+    long j;
+    func_80014594();
+    for (i = 0; i < D_8003CE18 && ((RecordFields_8003CE20 *)&D_8003CE20[i])->id < id; ++i) {
+    }
+    if (i < D_8003CE18) {
+        if (((RecordFields_8003CE20 *)&D_8003CE20[i])->id != id) {
+            if (D_8003CE18 < 256) {
+                for (j = D_8003CE18 - 1; j >= i; --j) {
+                    D_8003CE20[j + 1] = D_8003CE20[j];
+                }
+                ++D_8003CE18;
+            } else {
+                func_800145DC();
+                return 0;
+            }
+        } else {
+            ((RecordFields_8003CE20 *)&D_8003CE20[i])->references++;
+            func_800145DC();
+            return 0;
+        }
+    } else if (D_8003CE18 < 256) {
+        ++D_8003CE18;
+    } else {
+        func_800145DC();
+        return 0;
+    }
+    ((RecordFields_8003CE20 *)&D_8003CE20[i])->id = id;
+    ((RecordFields_8003CE20 *)&D_8003CE20[i])->payload = (unsigned int)payload;
+    ((RecordFields_8003CE20 *)&D_8003CE20[i])->type = type;
+    ((RecordFields_8003CE20 *)&D_8003CE20[i])->references = 1;
+    func_800145DC();
+    return 1;
+}
+
 /* PROMOTED 2026-10-11 — func_80015C0C
  * Source:   cloud/work/frontier/w19b/relocname/func_80015C0C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -127,7 +171,50 @@ typedef struct { unsigned int payload; u16 id; u16 references; } RecordFields_80
 extern int D_80038608;
 typedef union { RecordFields_80038610 fields; unsigned int words[2]; } RecordStorage_80038610;
 extern RecordStorage_80038610 D_80038610[];
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015D68.s")
+/* PROMOTED 2026-10-11 — func_80015D68
+ * Source:   cloud/work/frontier/w23c/relocname/func_80015D68.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/relocname/func_80015D68.c:func_80015D68 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_80015D68(u16 id, void *payload)
+{
+    long i;
+    long j;
+    func_80014594();
+    for (i = 0; i < D_80038608 && ((RecordFields_80038610 *)&D_80038610[i])->id < id; ++i) {
+    }
+    if (i < D_80038608) {
+        if (((RecordFields_80038610 *)&D_80038610[i])->id != id) {
+            if (D_80038608 < 2048) {
+                for (j = D_80038608 - 1; j >= i; --j) {
+                    D_80038610[j + 1] = D_80038610[j];
+                }
+                ++D_80038608;
+            } else {
+                func_800145DC();
+                return 0;
+            }
+        } else {
+            func_800145DC();
+            ((RecordFields_80038610 *)&D_80038610[i])->references++;
+            return 0;
+        }
+    } else if (D_80038608 < 2048) {
+        ++D_80038608;
+    } else {
+        func_800145DC();
+        return 0;
+    }
+    ((RecordFields_80038610 *)&D_80038610[i])->id = id;
+    ((RecordFields_80038610 *)&D_80038610[i])->payload = (unsigned int)payload;
+    ((RecordFields_80038610 *)&D_80038610[i])->references = 1;
+    func_800145DC();
+    return 1;
+}
+
 /* PROMOTED 2026-10-11 — func_80015F28
  * Source:   cloud/work/frontier/w19b/relocname/func_80015F28.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
