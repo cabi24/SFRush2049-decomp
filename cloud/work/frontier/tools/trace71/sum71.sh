@@ -13,7 +13,7 @@ BEGIN { fp[24]="$f0"; fp[25]="$f2"; fp[26]="$f12"; fp[27]="$f14"; fp[28]="$f16";
 /p[12]dec /{for(i=1;i<=NF;i++){split($i,a,"="); v[a[1]]=a[2]} w=v["web"]; ph=v["phase"]; line[ph w]=sprintf("%s w%-4s save=%-10s nocs=%-3s tot=%-10s best=%-8s numintf=%-3s %-8s", ph, w, v["save"], v["nocs"], v["totalsave"], v["bestcost"], v["numintf"], v["decision"]); if (!((ph w) in cnt)) order[++n]=ph w; cnt[ph w]++; delete v}
 /webdetail/ && / role=target /{for(i=1;i<=NF;i++){split($i,a,"="); v[a[1]]=a[2]} t=v["type"]; r10=hx(v["raw10"]);
   if (t==3) { o=r10; if (o>=2147483648) o-=4294967296; d=sprintf("var@%d/%d", o, int(hx(v["raw18"])/16777216)) }
-  else if (t==4) d=sprintf("expr op=0x%02x", int(r10/16777216)); else if (t==1) d="const"; else if (t==2) d="addr"; else d="type" t;
+  else if (t==4) d=sprintf("expr op=0x%02x", int(r10/16777216)); else if (t==1) d="addr"; else if (t==2) d=sprintf("const %d", hx(v["raw10"])); else d="type" t;
   det[v["phase"] v["web"]]=sprintf("%-16s bb=%s", d, v["bb"]); delete v}
 /p[12]color/{for(i=1;i<=NF;i++){split($i,a,"="); v[a[1]]=a[2]} col[v["phase"] v["web"]]=reg(v["color"], v["reg"]) (v["forced"]!="-2" ? "(forced)" : ""); delete v}
 /force_declined/{for(i=1;i<=NF;i++){split($i,a,"="); v[a[1]]=a[2]} dec[v["phase"] v["web"]]=" DECLINED(" reg(v["color"], v["reg"]) ")"; delete v}

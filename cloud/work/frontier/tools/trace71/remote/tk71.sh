@@ -33,7 +33,7 @@ rdiff() { [ -f $S/tgt/$FN.o ] || { echo "(no $S/tgt/$FN.o to diff against)"; ret
   echo "rows: want $(wc -l < $D/t.rows) got $(wc -l < $D/m.rows); differing rows $(diff -y -W 140 $D/t.rows $D/m.rows | grep -c -E '\s[|]\s|\s<$|\s>\s') (objdump -dr rows incl. relocations; $D/{t,m}.rows)"; }
 case $M in
 cdx) red; (cd $D && env CDX_LOG=1 CDX_FN=$FN CDX_DETAIL_WEB=all CDX_OUT=$D/d.txt "$@" $I/cc -c $fl $INC -o $D/c.o r.c) >$D/cc.log 2>&1 || { cat $D/cc.log; exit 1; }
-     grep -v procindex $D/d.txt; grep -h '^\[CUP\]' $D/cc.log ;;
+     grep -v procindex $D/d.txt; grep -h '^\[CUP\]' $D/cc.log; true ;;
 force) red; spec=$1
      (cd $D && CDX_LOG=1 CDX_FN=$FN CDX_FORCE="$spec" CDX_OUT=$D/force.cdx $I/cc -c $fl $INC -o $D/f.o r.c) >$D/cc.log 2>&1 || { echo "cc failed:"; tail -5 $D/cc.log; exit 1; }
      grep -h DKWB $D/cc.log | head -5

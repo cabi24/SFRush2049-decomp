@@ -1,6 +1,11 @@
 func_80010E80 ok 
+func_8001A270 ok 
 == func_80010E80 (target func_80010E80) src=cloud/work/frontier/w22c/sources/func_80010E80.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (139 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (139 rows) RESULT PASS 
   with -Wab,-r4300_mul: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (139 rows)
+== func_8001A270 (target func_8001A270) src=cloud/work/frontier/w22c/sources/func_8001A270.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (224 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (224 rows) RESULT PASS 
+  with -Wab,-r4300_mul: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (224 rows)
 wrote spl/src/rom/lib_11640.c
+wrote spl/src/rom/lib_1a660.c
 == all sources spliced
 lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)
+lib_1a660: IDENTICAL (2630 lines: .text words+relocs, data sections)
