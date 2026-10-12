@@ -191,3 +191,95 @@ image (B) and runs at 30 frames/s for 120 s; nothing is rasterised (null rendere
   another thread; the runtime only stops the caller); INERT/NOPACK for 19 libultra internals
   whose callers the runtime replaces (none reached in 120 s). `check_contract.py` (run by CMake)
   fails the build if a contract name is defined neither here nor in N64ModernRuntime.
+
+## RDRAM accessors
+
+Phase 2's ROM-free host adapter is `rdram.h` (C11/C++11 or newer) plus
+`game_rdram.h` (named field views from `include/game_types.h`). These are standalone
+headers; they neither require nor modify the ROM, matching sources, generated
+recompiler output, or runtime build. They do **not** make unchanged native C pointer
+dereferences safe. A replacement must explicitly adapt each guest-memory read/write
+and keep guest pointers as `rush_addr` (`uint32_t`) tokens.
+
+The layout follows the pinned [N64Recomp 81213c18 `recomp.h`](https://github.com/N64Recomp/N64Recomp/blob/81213c18/include/recomp.h):
+`MEM_B` uses address XOR 3, `MEM_H` XOR 2, and `MEM_W` accesses the unswizzled
+word; `LD`/`SD` put the high word first. Thus guest bytes `11 22 33 44 55 66 77 88`
+occupy host storage `44 33 22 11 88 77 66 55`. A native struct cast is wrong for
+byte/halfword members, and host pointers also change layouts: e.g. `PadConfig.unk14`
+is guest offset 0x14, regardless of `sizeof(void*)` on the host.
+
+- `rush_rdram memory = {rdram, actual_allocation_size}` describes word-swapped
+  storage. Supply its real allocated length, a nonzero multiple of four, at most
+  512 MiB. The implementation never assumes the runtime's allocation is 8 MiB.
+- `rush_rdram_read_KIND(&memory, guest_address, &value)` and
+  `rush_rdram_write_KIND(&memory, guest_address, value)` return `bool`. `KIND` is
+  `u8/u16/u32/u64`, `s8/s16/s32/s64`, `f32/f64`, or `addr`. The memory descriptor is
+  passed as `const rush_rdram*`; writes change the backing bytes, not the descriptor.
+- Only KSEG0 (`0x80000000 + offset`) within that allocation is dereferenceable.
+  Physical/KSEG1/TLB/MMIO addresses are rejected; no broad address mask aliases
+  them into RDRAM. Null is a valid pointer **value**, never a dereferenceable address.
+  `rush_addr_from_gpr` accepts zero-extended or canonical sign-extended o32 tokens;
+  other high bits fail. `rush_addr_add` rejects unsigned address overflow.
+- Accesses assemble logical big-endian bytes without native aliasing/alignment
+  casts, including misaligned buffers and spans crossing words. This is a data
+  view, not an emulator of MIPS alignment exceptions. Integer accesses are host
+  endian independent. Floats require binary32/binary64 (compile-time checks) and
+  use `memcpy` bit transfer, preserving tested signed zero, infinity and quiet-NaN
+  payloads. Use integer accesses when transporting arbitrary signaling-NaN bits
+  without floating-point evaluation.
+- A failure leaves the output and backing memory unchanged. Each scalar operation
+  is checked before touching memory, including the complete width; a sequence of
+  successful field writes is not a transaction. Check returns and choose an
+  explicit replacement fault policy. The API does not add locking or volatile/MMIO
+  semantics; runtime/thread synchronization remains the caller's responsibility.
+
+A `rush_rdram_view` pairs the descriptor with an N64 base address. Named accessors
+are `rush_TYPE_read_FIELD(view, &value)` / `rush_TYPE_write_FIELD(view, value)`;
+`Track_Data.start_time/end_time` also take a checked index (0..7). All named scalar,
+data-pointer and function-pointer fields in `game_types.h` have views; unknown
+padding is left untouched. The embedded `SegmentHeader.unk9CC0` returns a bounded
+subview via `rush_SegmentHeader_view_unk9CC0`; it is not copied into a native
+`OSMesgQueue`. Tokens loaded from callback fields must go through runtime dispatch,
+never a host function-pointer cast. Views do not bind globals or infer array counts.
+
+Example adapted body (a fixture-style example, not a matched-source conversion):
+
+```c
+#include "tools/recomp/game_rdram.h"
+
+bool clear_input(const rush_rdram *memory, rush_addr input_address) {
+    rush_rdram_view input = {memory, input_address};
+    uint8_t active;
+    if (!rush_InputRecord_read_active(input, &active)) return false;
+    return !active || rush_InputRecord_write_unk04(input, 0);
+}
+```
+
+For other fields/structs, use the width-specific memory primitives and checked
+`rush_rdram_subview`, with evidenced guest offsets. Do not use native `offsetof`
+or `sizeof` to derive layouts containing pointers. The typed field table is checked
+against **every non-padding named field** of the current `game_types.h`; header
+changes require reconciling this table. The tests independently compute the o32
+layout from source declarations with `pycparser` and, where supported, also compile
+original-header offset/width assertions with a 32-bit compiler (MIPS preferred).
+
+```bash
+python3 -m pytest tests/recomp/test_rdram.py -q -p no:cacheprovider
+# Optional comparison to your existing pinned N64Recomp checkout (no downloads):
+RUSH_N64RECOMP_INCLUDE=/path/to/N64Recomp/include \
+  python3 -m pytest tests/recomp/test_rdram.py -q -p no:cacheprovider
+```
+
+Fixtures compile/run with both C11 and C++17, strict aliasing and warnings-as-errors,
+and separately with UBSan. They check independent byte-order examples, every offset
+for 1/2/4/8-byte accesses in a synthetic buffer, cross-word accesses, signed extremes,
+float bits, pointer tokens/chains/callback fields, padding preservation, arrays,
+null/unsupported mappings, overflow, short buffers, and failure-without-partial-write.
+No ROM is read. This verifies the adapter contract, not replacement equivalence,
+runtime boot, or Phase 2's ten-function/in-game acceptance criteria.
+
+The optional actual-header test compares both directions against upstream `MEM_*`,
+`LD` and `SD` using an allocated synthetic buffer. It skips if the header location
+is not supplied; no network access or vendored runtime code is needed for normal
+fixture tests. Upstream-header execution was checked against commit `81213c18` on
+the development host; CI without that checkout covers the independent fixtures.
