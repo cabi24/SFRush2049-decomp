@@ -1,0 +1,477 @@
+{
+  "baseline_gnu": {
+    "external_symbols": {
+      "D_801146AC": "0x801146ac",
+      "D_80117420": "0x80117420",
+      "D_80146150": "0x80146150",
+      "D_8014A108": "0x8014a108",
+      "D_8014A118": "0x8014a118",
+      "D_80150B70": "0x80150b70",
+      "D_803B470C": "0x803b470c",
+      "D_803B5D50": "0x803b5d50",
+      "D_803B5EDC": "0x803b5edc",
+      "D_803B5EE0": "0x803b5ee0",
+      "D_803B5EE4": "0x803b5ee4",
+      "D_803BAC08": "0x803bac08",
+      "D_803BAC98": "0x803bac98",
+      "D_803BACD0": "0x803bacd0",
+      "D_803BACE0": "0x803bace0",
+      "brake_light_update": "0x800a6244",
+      "countdown_state": "0x8017a4e0",
+      "crowd_cheer_play": "0x800b39bc",
+      "dispatch_handler": "0x800b74a0",
+      "func_800B669C": "0x800b669c",
+      "func_800F6928": "0x800f6928",
+      "music_fade": "0x800be9a0",
+      "object_bytes_sum_global": "0x800b3f50",
+      "object_create": "0x800b42f0",
+      "object_manager_update": "0x800b3fa4",
+      "sound_pitch_diff_halved": "0x800b71a0",
+      "state_utility": "0x800b71d4"
+    },
+    "members": {
+      "func_803A87D4": {
+        "bytes": 920,
+        "differing_offsets": [],
+        "linked_sha256": "39e4c6850e2afd32ac4bc9e066e03e4f806ef099fa5f70efe4e7f4bd73b17f4e",
+        "relocations": 49
+      },
+      "func_803A8B74": {
+        "bytes": 1300,
+        "differing_offsets": [
+          128,
+          164,
+          168,
+          216,
+          220,
+          260,
+          296,
+          392,
+          400,
+          424,
+          520,
+          584,
+          592,
+          604,
+          608,
+          616,
+          620,
+          624,
+          628,
+          632,
+          636,
+          640,
+          644,
+          652,
+          668,
+          676,
+          684,
+          712,
+          744,
+          752,
+          756,
+          772,
+          792,
+          800,
+          808,
+          812,
+          840,
+          844,
+          848,
+          852,
+          860,
+          876,
+          928,
+          932,
+          940,
+          976,
+          1020,
+          1028,
+          1036,
+          1072,
+          1116,
+          1124,
+          1132,
+          1168,
+          1212,
+          1268
+        ],
+        "linked_sha256": "db6ec973f29aaf5e3f2124300f89ca200ceb8ab2a6c5e66698cc4091baa0a95a",
+        "relocations": 72
+      }
+    },
+    "owned_bytes": 0
+  },
+  "compiler": "stock IDO 5.3; no static ROM TU rebuilt",
+  "compiler_binary_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "contexts": {
+    "func_80395E24": {
+      "differing": 17,
+      "errors": [],
+      "extra_words": 0,
+      "total": 26,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80396EE8": {
+      "differing": 23,
+      "errors": [],
+      "extra_words": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80396F44": {
+      "differing": 23,
+      "errors": [],
+      "extra_words": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_803A7B58": {
+      "differing": 710,
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801146BC at .text+0x23c4",
+        "unpaired R_MIPS_HI16 for D_801146C0 at .text+0x23c8",
+        "own .rodata+0x30 referenced at +0x6ac differs from retail 0x803B9854 (jump table entry 0: retail 803a8240, got 803a8250; 24 bytes compared)"
+      ],
+      "extra_words": 36,
+      "total": 799,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x24 at +0x2bc",
+        ".rodata+0x24 at +0x2c0",
+        ".rodata+0x28 at +0x2c4",
+        ".rodata+0x28 at +0x2c8",
+        ".rodata+0x2c at +0x2cc",
+        ".rodata+0x2c at +0x2d0",
+        ".rodata+0x30 at +0x6a4",
+        ".rodata+0x30 at +0x6ac"
+      ]
+    },
+    "func_803A9088": {
+      "differing": 562,
+      "errors": [
+        "own .rodata+0x0 referenced at +0x64c differs from retail 0x803B986C (+0x0: retail 3fc90fdb, got 401c61aa; 4 bytes compared)",
+        "own .rodata+0x4 referenced at +0x654 differs from retail 0x803B9870 (+0x0: retail 401c61aa, got 3f32b8c2; 4 bytes compared)"
+      ],
+      "extra_words": 0,
+      "total": 917,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x648",
+        ".rodata+0x0 at +0x64c",
+        ".rodata+0x4 at +0x650",
+        ".rodata+0x4 at +0x654",
+        ".rodata+0x8 at +0x6d8",
+        ".rodata+0x8 at +0x6dc",
+        ".rodata+0xc at +0xa14",
+        ".rodata+0xc at +0xa1c"
+      ]
+    },
+    "func_803A9EEC": {
+      "differing": 281,
+      "errors": [
+        "own .rodata+0x48 referenced at +0x8c differs from retail 0x803B9890 (jump table entry 1: retail 803a9fa0, got 803a9f9c; 28 bytes compared)"
+      ],
+      "extra_words": 0,
+      "total": 315,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x48 at +0x84",
+        ".rodata+0x48 at +0x8c"
+      ]
+    }
+  },
+  "controls": {
+    "baseline": {
+      "differing": 56,
+      "errors": [],
+      "extra_words": 0,
+      "total": 325,
+      "unresolved": [],
+      "unverified": []
+    },
+    "scheduler_order": {
+      "differing": 2,
+      "errors": [],
+      "extra_words": 0,
+      "total": 325,
+      "unresolved": [],
+      "unverified": []
+    },
+    "signed_constant": {
+      "differing": 1,
+      "errors": [],
+      "extra_words": 0,
+      "total": 325,
+      "unresolved": [],
+      "unverified": []
+    },
+    "unconditional_increment": {
+      "differing": 131,
+      "errors": [],
+      "extra_words": 0,
+      "total": 325,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "gnu": {
+    "external_symbols": {
+      "D_801146AC": "0x801146ac",
+      "D_80117420": "0x80117420",
+      "D_80146150": "0x80146150",
+      "D_8014A108": "0x8014a108",
+      "D_8014A118": "0x8014a118",
+      "D_80150B70": "0x80150b70",
+      "D_803B470C": "0x803b470c",
+      "D_803B5D50": "0x803b5d50",
+      "D_803B5EDC": "0x803b5edc",
+      "D_803B5EE0": "0x803b5ee0",
+      "D_803B5EE4": "0x803b5ee4",
+      "D_803BAC08": "0x803bac08",
+      "D_803BAC98": "0x803bac98",
+      "D_803BACD0": "0x803bacd0",
+      "D_803BACE0": "0x803bace0",
+      "brake_light_update": "0x800a6244",
+      "countdown_state": "0x8017a4e0",
+      "crowd_cheer_play": "0x800b39bc",
+      "dispatch_handler": "0x800b74a0",
+      "func_800B669C": "0x800b669c",
+      "func_800F6928": "0x800f6928",
+      "music_fade": "0x800be9a0",
+      "object_bytes_sum_global": "0x800b3f50",
+      "object_create": "0x800b42f0",
+      "object_manager_update": "0x800b3fa4",
+      "sound_pitch_diff_halved": "0x800b71a0",
+      "state_utility": "0x800b71d4"
+    },
+    "members": {
+      "func_803A87D4": {
+        "bytes": 920,
+        "differing_offsets": [],
+        "linked_sha256": "39e4c6850e2afd32ac4bc9e066e03e4f806ef099fa5f70efe4e7f4bd73b17f4e",
+        "relocations": 49
+      },
+      "func_803A8B74": {
+        "bytes": 1300,
+        "differing_offsets": [],
+        "linked_sha256": "333c3b80d3f5daf9c7202504583dbf8b85598dee6eb01a1214d9d4e77d0c0ee3",
+        "relocations": 72
+      }
+    },
+    "owned_bytes": 0
+  },
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "buffer_write_set": {
+      "arbitrary_strings_copied": false,
+      "buffer_bytes": 2,
+      "character_index_range": [
+        0,
+        53
+      ],
+      "max_written_bytes": 2,
+      "written_offsets": [
+        0,
+        1
+      ]
+    },
+    "call_sites": {
+      "func_803A87D4": [
+        {
+          "caller": "func_803A9EEC",
+          "offset": "0xb8"
+        }
+      ],
+      "func_803A8B74": [
+        {
+          "caller": "func_803A9EEC",
+          "offset": "0x110"
+        }
+      ]
+    },
+    "claims": [
+      "func_803A87D4",
+      "func_803A8B74"
+    ],
+    "context": [
+      "func_80395E24",
+      "func_80396EE8",
+      "func_80396F44",
+      "func_803A7B58",
+      "func_803A9088",
+      "func_803A9EEC"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "keep": [
+      "func_803A9EEC"
+    ],
+    "members": [
+      "func_803A87D4",
+      "func_803A8B74"
+    ],
+    "protocol_version": 2,
+    "sources": {
+      "cloud/work/frontier/dot_runtime_a_keyboard_20261012/groups/runtime_a_profile_menu_20261006/group.c": "457029d0f04805c504f7558bb3b4bc33e4c506d07cba706a9c55006f73727aa5",
+      "cloud/work/frontier/dot_runtime_a_keyboard_20261012/groups/runtime_a_profile_menu_20261006/group.json": "5ee82a7c6a30ad509513189965b797f6fc4a7cf33656398cb48ebbb1328a1a70",
+      "cloud/work/frontier/dot_runtime_a_keyboard_20261012/verify.py": "d23f8a89bc55a43fb4e32c163668883a83e80c54e78825b1a1c46612aff8ce24",
+      "cloud/work/lean/runtime_a_profile_menu_20261006/group.c": "f3d6ca4c02964367bcc57477aa9e51555eab3d310c1305914e5d2ee7fe95b346",
+      "tests/cloud/test_runtime_a_keyboard.py": "0edb7b2a2ce3fb61f936b2a23e697d43979e99b2fa988081cb4f23f933ec8f04"
+    },
+    "symbols": {
+      "D_801146AC": "0x801146ac",
+      "D_801146BC": "0x801146bc",
+      "D_801146C0": "0x801146c0",
+      "D_80117420": "0x80117420",
+      "D_8011EAD0": "0x8011ead0",
+      "D_8012E6E0": "0x8012e6e0",
+      "D_8012E6E4": "0x8012e6e4",
+      "D_80146150": "0x80146150",
+      "D_8014A108": "0x8014a108",
+      "D_8014A118": "0x8014a118",
+      "D_80150B70": "0x80150b70",
+      "D_803B470C": "0x803b470c",
+      "D_803B5D10": "0x803b5d10",
+      "D_803B5D24": "0x803b5d24",
+      "D_803B5D50": "0x803b5d50",
+      "D_803B5EDC": "0x803b5edc",
+      "D_803B5EE0": "0x803b5ee0",
+      "D_803B5EE4": "0x803b5ee4",
+      "D_803B899C": "0x803b899c",
+      "D_803B89A4": "0x803b89a4",
+      "D_803B89AC": "0x803b89ac",
+      "D_803B89B4": "0x803b89b4",
+      "D_803B89C0": "0x803b89c0",
+      "D_803B89C8": "0x803b89c8",
+      "D_803BAC08": "0x803bac08",
+      "D_803BAC68": "0x803bac68",
+      "D_803BAC80": "0x803bac80",
+      "D_803BAC98": "0x803bac98",
+      "D_803BACD0": "0x803bacd0",
+      "D_803BACE0": "0x803bace0",
+      "D_803BAD00": "0x803bad00",
+      "D_803BAD80": "0x803bad80",
+      "D_803BADB8": "0x803badb8",
+      "D_803BADBC": "0x803badbc",
+      "D_803BADC0": "0x803badc0",
+      "D_803BADC8": "0x803badc8",
+      "D_803BADCC": "0x803badcc",
+      "D_803BADD0": "0x803badd0",
+      "D_803BADD4": "0x803badd4",
+      "D_803BADD8": "0x803badd8",
+      "brake_light_update": "0x800a6244",
+      "camera_auto_follow": "0x800be078",
+      "camera_zoom_fov": "0x800bdebc",
+      "countdown_state": "0x8017a4e0",
+      "crowd_cheer_play": "0x800b39bc",
+      "dispatch_handler": "0x800b74a0",
+      "fcvt_wrapper": "0x800b4360",
+      "func_800B669C": "0x800b669c",
+      "func_800BEA3C": "0x800bea3c",
+      "func_800ED66C": "0x800ed66c",
+      "func_800F6928": "0x800f6928",
+      "func_80395E24": "0x80395e24",
+      "func_80396EE8": "0x80396ee8",
+      "func_80396F44": "0x80396f44",
+      "func_803A7B58": "0x803a7b58",
+      "func_803A87D4": "0x803a87d4",
+      "func_803A8B74": "0x803a8b74",
+      "func_803A9088": "0x803a9088",
+      "func_803A9EEC": "0x803a9eec",
+      "mode_byte_set": "0x800ed764",
+      "music_fade": "0x800be9a0",
+      "object_bytes_sum_global": "0x800b3f50",
+      "object_create": "0x800b42f0",
+      "object_manager_update": "0x800b3fa4",
+      "render_helper": "0x800b65b4",
+      "sound_pitch_diff_calc": "0x800b7170",
+      "sound_pitch_diff_halved": "0x800b71a0",
+      "state_utility": "0x800b71d4"
+    },
+    "targets": {
+      "func_80395E24": {
+        "address": "0x80395E24",
+        "size": 104,
+        "words_sha256": "6eb8531c4f0e819485c76dd982435c940bd363059d545a5fd52e38e1f2634624"
+      },
+      "func_80396EE8": {
+        "address": "0x80396EE8",
+        "size": 92,
+        "words_sha256": "1075da569bc19f8851df7f04f96730f42b14f1ad2a42f9c3c7399a979f2e1c6a"
+      },
+      "func_80396F44": {
+        "address": "0x80396F44",
+        "size": 92,
+        "words_sha256": "cac20f65557c9fd8be9b7ab5e6c8700fe888ee754983bca40e5075802f041859"
+      },
+      "func_803A7B58": {
+        "address": "0x803A7B58",
+        "size": 3196,
+        "words_sha256": "dce13bcf53f859687b20623a5b5a5926b20294d0422b6b0933d9b613b3745b00"
+      },
+      "func_803A87D4": {
+        "address": "0x803A87D4",
+        "size": 920,
+        "words_sha256": "39e4c6850e2afd32ac4bc9e066e03e4f806ef099fa5f70efe4e7f4bd73b17f4e"
+      },
+      "func_803A8B74": {
+        "address": "0x803A8B74",
+        "size": 1300,
+        "words_sha256": "333c3b80d3f5daf9c7202504583dbf8b85598dee6eb01a1214d9d4e77d0c0ee3"
+      },
+      "func_803A9088": {
+        "address": "0x803A9088",
+        "size": 3668,
+        "words_sha256": "e0bb59f94374d56ca70205f2152c8ed9670890d975948a35afecb878016d223e"
+      },
+      "func_803A9EEC": {
+        "address": "0x803A9EEC",
+        "size": 1260,
+        "words_sha256": "b5729e9e5ba3b0fc9e71de813f14e08e7ffbf276b169bb740df9f433b4982fc7"
+      }
+    }
+  },
+  "members": {
+    "func_803A87D4": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 230,
+        "unresolved": [],
+        "unverified": []
+      },
+      "complete_extent": 920,
+      "owned_bytes": 0
+    },
+    "func_803A8B74": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 325,
+        "unresolved": [],
+        "unverified": []
+      },
+      "complete_extent": 1300,
+      "owned_bytes": 0
+    }
+  },
+  "new_exact_code_bytes": 1300,
+  "new_landed_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "preserved_exact_code_bytes": 920
+}

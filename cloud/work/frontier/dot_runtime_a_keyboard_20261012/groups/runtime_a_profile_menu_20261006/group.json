@@ -1,0 +1,26 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803A9EEC"
+  ],
+  "members": [
+    "func_803A87D4",
+    "func_803A8B74"
+  ],
+  "claims": [
+    "func_803A87D4",
+    "func_803A8B74"
+  ],
+  "context": [
+    "func_80395E24",
+    "func_80396EE8",
+    "func_80396F44",
+    "func_803A7B58",
+    "func_803A9088",
+    "func_803A9EEC"
+  ],
+  "provenance": "Genuine profile family; A8B74 is new, A87D4 is inherited exact with no duplicate credit. Only original A9EEC callback root is kept. No locked-group migration."
+}
