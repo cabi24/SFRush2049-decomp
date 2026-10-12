@@ -566,7 +566,39 @@ int func_80016BF8(const PackedKey *left, const PackedKey *right)
     return left->key - right->key;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016C20.s")
+/* PROMOTED 2026-10-11 — func_80016C20
+ * Source:   cloud/work/frontier/w23c/ownbss/func_80016C20.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/ownbss/func_80016C20.c:func_80016C20 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+#pragma pack()
+#pragma pack(1)
+#pragma pack()
+int func_80016BF8(const PackedKey *left, const PackedKey *right);
+void *func_8001E864(const void *key, const void *base, int count, int size, int (*compare)(const void *, const void *));
+void *func_80016C20(u16 id)
+{
+    static long base_80016C20;
+    static long main_80016C20;
+    static RecordFields_8003E228 key_80016C20;
+    static RecordFields_8003E228 *result_80016C20;
+
+    main_80016C20 = id >> 6;
+    if (D_8003DA28[main_80016C20].count != 0) {
+        base_80016C20 = D_8003DA28[main_80016C20].first;
+        key_80016C20.id = id;
+        if ((result_80016C20 = func_8001E864(&key_80016C20, &D_8003E228[base_80016C20], D_8003DA28[main_80016C20].count, 8,
+                                    (int (*)(const void *, const void *))func_80016BF8)) != 0) {
+            return result_80016C20->payload;
+        }
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80016CE0
  * Source:   cloud/matches/boot_tail/func_80016CE0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -578,7 +610,42 @@ int func_80016CE0(const unsigned short *left, const unsigned short *right)
     return *left - *right;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016CF0.s")
+/* PROMOTED 2026-10-11 — func_80016CF0
+ * Source:   cloud/work/frontier/w23c/ownbss/func_80016CF0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/ownbss/func_80016CF0.c:func_80016CF0 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct SampleHeader_80016CF0 { u32 info; u32 length; u32 loopOffset; u32 loopLength; } SampleHeader_80016CF0;
+typedef struct SampleInfo_80016CF0 { u32 info; void *addr; void *offset; u32 length; u32 loop; u32 loopLength; u8 compType; } SampleInfo_80016CF0;
+#pragma pack()
+int func_80016CE0(const unsigned short *left, const unsigned short *right);
+int func_80016CF0(u16 id, SampleInfo_80016CF0 *sample)
+{
+    static SampleRecord key_80016CF0;
+    static SampleRecord *result_80016CF0;
+    static SampleHeader_80016CF0 *header_80016CF0;
+    long i;
+
+    key_80016CF0.identifier = id;
+    for (i = 0; i < D_800385A0; ++i) {
+        if ((result_80016CF0 = func_8001E864(&key_80016CF0, D_800385A8[i].records, D_800385A8[i].count, sizeof(SampleRecord),
+                                    (int (*)(const void *, const void *))func_80016CE0)) != 0) {
+            header_80016CF0 = (SampleHeader_80016CF0 *)result_80016CF0->descriptor;
+            sample->info = header_80016CF0->info;
+            sample->addr = result_80016CF0->data;
+            sample->offset = 0;
+            sample->loop = header_80016CF0->loopOffset;
+            sample->length = header_80016CF0->length & 0xFFFFFF;
+            sample->loopLength = header_80016CF0->loopLength;
+            sample->compType = header_80016CF0->length >> 24;
+            return 0;
+        }
+    }
+    return -1;
+}
+
 /* PROMOTED 2026-10-04 — func_80016E40
  * Source:   cloud/matches/boot_tail/func_80016E40.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -692,7 +759,35 @@ int func_80017018(const PackedLeadingKey *left, const PackedLeadingKey *right)
     return left->key - right->key;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017040.s")
+/* PROMOTED 2026-10-11 — func_80017040
+ * Source:   cloud/work/frontier/w23c/ownbss/func_80017040.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/ownbss/func_80017040.c:func_80017040 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+typedef struct FxKey_80017040 { u16 id; unsigned char unknown02[10]; } FxKey_80017040;
+#pragma pack(1)
+#pragma pack()
+int func_80017018(const PackedLeadingKey *left, const PackedLeadingKey *right);
+Descriptor *func_80017040(u16 id)
+{
+    static FxKey_80017040 key_80017040;
+    Descriptor *result;
+    long i;
+
+    key_80017040.id = id;
+    for (i = 0; i < D_80042228; ++i) {
+        if ((result = func_8001E864(&key_80017040, ((RecordFields *)&D_80042230[i])->descriptors,
+                                    ((RecordFields *)&D_80042230[i])->count, sizeof(Descriptor),
+                                    (int (*)(const void *, const void *))func_80017018)) != 0) {
+            return result;
+        }
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80017108
  * Source:   cloud/matches/boot_tail/func_80017108.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
