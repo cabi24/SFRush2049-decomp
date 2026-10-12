@@ -1,0 +1,127 @@
+#!/usr/bin/env python3
+"""IDO 5.3 "cc -S, then assemble at -O1" driver (compiler `ido5.3s`).
+
+The cartridge's inflate block (ROM TU lib_5610, 0x80004A10..0x800069FC) was not
+built by `cc -c -O2`: it is IDO 5.3 `cc -S -O2` output, with the `.loc` line
+directives (and the `.option O2` the driver writes) gone, assembled by as1 at
+-O1 (w25a triage, w26a proof; docs/COMPILER_SETTINGS.md "IDO 5.3 -S recipe").
+`.loc` is a scheduling barrier for as1, so a .s that still carries it schedules
+prologues differently; as1 -O2 would add branch-likely and target fills that
+retail never has.
+
+This file stands in for `cc` and does exactly that for a `-c` compile of a C
+source:
+
+    cc -S <flags> FILE.c                (the real IDO 5.3 driver, same flags;
+                                         run in a temp dir: -S ignores -o)
+    drop "\t.loc\t...", "\t.option\tO<n>" and " # ..." source-comment lines
+    cc -c <flags, -O<n> -> -O1> -o OUT T.s
+
+Anything else (no -c, or a non-.c input) is passed to the real driver
+unchanged. The real driver is the first of, relative to this file:
+    ido53/cc                               (conveyor toolkit layout)
+    ../ido-static-recomp/build/out/cc      (builder, Makefile IDO_ROOT)
+    ../cloud/ido/cc                        (cloud boxes, tools/cloud/setup.sh)
+(it finds its passes in its own directory and must be called `cc`).
+tools/conveyor/compilers.py fingerprints this file and the real driver's
+directory; anything unknown is refused there, not here. Stdlib only.
+"""
+import os
+import re
+import subprocess
+import sys
+import tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REAL_CANDIDATES = (
+    os.path.join(HERE, "ido53", "cc"),
+    os.path.join(HERE, "..", "ido-static-recomp", "build", "out", "cc"),
+    os.path.join(HERE, "..", "cloud", "ido", "cc"),
+)
+_DROP = re.compile(r"^(\t\.loc\t|\t\.option\tO\d|\s#)")
+
+
+def real_cc():
+    for path in REAL_CANDIDATES:
+        if os.path.isfile(path) and os.access(path, os.X_OK):
+            return os.path.normpath(path)
+    sys.exit("ido_sas/cc: no IDO 5.3 driver found (" + ", ".join(REAL_CANDIDATES) + ")")
+
+
+def strip_asm(text):
+    """The .s as the recipe assembles it: no .loc, no .option O<n>, no
+    ugen source-comment lines."""
+    return "".join(line for line in text.splitlines(True) if not _DROP.match(line))
+
+
+def split_args(argv):
+    """(flags, inputs, output) of a cc command line; None output if absent."""
+    flags, inputs, output = [], [], None
+    i = 0
+    while i < len(argv):
+        arg = argv[i]
+        if arg == "-o":
+            output = argv[i + 1]
+            i += 2
+            continue
+        if not arg.startswith("-") and arg.endswith((".c", ".s", ".o", ".i")):
+            inputs.append(arg)
+        else:
+            flags.append(arg)
+            # flags that take a separate value
+            if arg in ("-I", "-D", "-U", "-G", "-B", "-L", "-l") and i + 1 < len(argv):
+                flags.append(argv[i + 1])
+                i += 1
+        i += 1
+    return flags, inputs, output
+
+
+def absolute_includes(flags):
+    """-I paths made absolute (the -S step runs in a temp directory)."""
+    out, i = [], 0
+    while i < len(flags):
+        arg = flags[i]
+        if arg == "-I" and i + 1 < len(flags):
+            out += ["-I", os.path.abspath(flags[i + 1])]
+            i += 2
+            continue
+        if arg.startswith("-I") and len(arg) > 2:
+            arg = "-I" + os.path.abspath(arg[2:])
+        out.append(arg)
+        i += 1
+    return out
+
+
+def main(argv):
+    cc = real_cc()
+    flags, inputs, output = split_args(argv)
+    if "-c" not in flags or len(inputs) != 1 or not inputs[0].endswith(".c"):
+        os.execv(cc, [cc] + argv)
+    src = inputs[0]
+    if output is None:
+        output = os.path.splitext(os.path.basename(src))[0] + ".o"
+    base = [f for f in flags if f != "-c"]
+    tmp = tempfile.mkdtemp(prefix="ido_sas")
+    try:
+        # `cc -S` ignores -o and writes <basename>.s into the working
+        # directory: run it in the temp dir with absolute paths.
+        rc = subprocess.call([cc, "-S"] + absolute_includes(base) + [os.path.abspath(src)],
+                             cwd=tmp)
+        raw = os.path.join(tmp, os.path.splitext(os.path.basename(src))[0] + ".s")
+        if rc != 0 or not os.path.isfile(raw):
+            return rc or 1
+        stripped = os.path.join(tmp, "unit_sas1.s")
+        with open(raw) as f:
+            text = strip_asm(f.read())
+        with open(stripped, "w") as f:
+            f.write(text)
+        asm_flags = ["-O1" if re.fullmatch(r"-O\d?", f) else f for f in base]
+        return subprocess.call([cc, "-c"] + asm_flags + ["-o", output, stripped])
+    finally:
+        for name in os.listdir(tmp):
+            os.unlink(os.path.join(tmp, name))
+        os.rmdir(tmp)
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
