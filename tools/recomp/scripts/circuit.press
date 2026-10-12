@@ -1,0 +1,19 @@
+# Circuit: SELECT MODE DOWN x3.
+# Pak flow (a fresh controller pak: no boot notice). Screens and times (lockstep, RT64 pixels w26r): title ~3 s;
+# 4 START -> START GAME; 7 A -> PLAYER 1 (JUST PLAY, CONTROLLER PAK, players, CREATE PLAYER); 10 A (JUST PLAY) ->
+# SELECT MODE at ~11 s (1P rows SINGLE RACE, PRACTICE, GHOST RACE, CIRCUIT, STUNT); 16 A -> SELECT TRACK (TRACK,
+# LAPS, BACKWARD); 19 A -> car (PLAYER 1: CAR, TRANSMISSION, HANDLING); 22 A -> race (image B ~22.5 s).
+frames 2700
+pak on
+4 START
+7 A
+10 A
+12 DOWN
+13 DOWN
+14 DOWN
+16 A
+19 A
+22 A
+25 A
+28 A 20
+50 A 30

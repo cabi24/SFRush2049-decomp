@@ -2,6 +2,7 @@
 # Evidence (w24r): race-data streams after image B start at 0x5D6160, then 0x4055E0; LEFT x1 and RIGHT x3
 # give the same stream set (the selector cycles four tracks).
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 8 START
 11 A

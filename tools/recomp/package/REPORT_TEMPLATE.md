@@ -43,10 +43,18 @@ wall-clock result (pass or fail); add a frames row only if wall clock failed.
 | T1 boot to title (`--gfx-api vulkan`) | wall | | | | | |
 | T2 attract mode (5 min idle) | wall | | | | | |
 | T3 race, default track | wall | | | | | |
+| T3b saves: create player, restart, still there? (`pak:` lines) | wall | | | | | |
 | T4 second track (+ tracks 3, 4) | wall | | | | | |
 | T5 two players | wall | | | | | |
 | T6 audio options (each row changes the sound?) | wall | | | | | |
 | T6b stunt mode | wall | | | | | |
+| T4b practice | wall | | | | | |
+| T4b ghost race | wall | | | | | |
+| T4b circuit | wall | | | | | |
+| T4b backward | wall | | | | | |
+| T4b another car | wall | | | | | |
+| T4b battle (2 players) | wall | | | | | |
+| T4b records | wall | | | | | |
 | T7a pad / keyboard mapping (table in section 5) | wall | | | n/a | | |
 | T8 lockstep self-check (a vs b; a vs c; a vs c --mask-renderer first lines) | frames | | | n/a | | |
 
@@ -70,8 +78,9 @@ log** (and the Windows Event Viewer entry for `rush2049_recomp.exe` if it crashe
 | LB / RB / LT / RT | | |
 | Start / Back | | |
 | D-pad up/down/left/right | | |
-| left stick (4 directions) | | |
+| left stick (4 directions; first value past the centre) | | |
 | right stick (4 directions) | | |
+| stick clicks (L3 / R3), Back (unmapped on purpose) | | |
 | keyboard keys (table in TEST_PROCESS) | | |
 
 Which N64 buttons did not work or felt wrong (menus via stick vs D-pad, accelerate/brake, camera/C buttons,

@@ -66,11 +66,19 @@ void usage() {
         "  --log-input: print every button/stick change per player (pad-mapping check)\n"
         "  --no-audio-ucode: audio RSP tasks complete without running the microcode (silence, as v1)\n"
         "  --mask-rdp-images: zero RDP color/depth images in the oracle's page hashes (RT64 self-check)\n"
-        "  --no-spin-yield: (diagnostic) busy-wait hooks do not yield (the v1 behaviour)\n");
+        "  --no-spin-yield: (diagnostic) busy-wait hooks do not yield (the v1 behaviour)\n"
+        "  --pak FILE: controller pak image (default: HOME/rush2049.mpk, created when missing, saved on\n"
+        "      every write; with --clock frames a fresh image in memory, or FILE, never written)\n"
+        "  --fb-every N: with --fb-dump, sample the framebuffer every N screen updates (default 30)\n"
+        "  --pak-write: with --clock frames and --pak FILE, write the image back (save tests)\n"
+        "  --no-pak: no controller pak (the boot notice NO CONTROLLER PAK DETECTED, as v1/v2)\n");
 }
 
-// tools/recomp/scripts/*.press -> the --press string (oracle.py press_string):
-// `TIME BUTTON[@PORT] [DURATION]` per line, `frames N`, `#` comments.
+// tools/recomp/scripts/*.press -> the --press string (oracle.py parse_script):
+// `TIME BUTTON[@PORT] [DURATION]` per line, `frames N`, `pak on|off`, `#` comments.
+// `pak off`: the script was written for the boot notice (no controller pak, v1/v2);
+// --pak / --no-pak on the command line still win.
+int script_pak = -1;   // -1 no directive, 0 off, 1 on
 std::string press_file(const std::string& path, uint64_t& frames) {
     std::ifstream f(path);
     if (!f) { fprintf(stderr, "[rush] cannot read %s\n", path.c_str()); std::exit(2); }
@@ -82,6 +90,13 @@ std::string press_file(const std::string& path, uint64_t& frames) {
         std::string t, b, d;
         if (!(is >> t)) continue;
         if (t == "frames") { is >> frames; continue; }
+        if (t == "pak") {
+            std::string v;
+            is >> v;
+            if (v != "on" && v != "off") { fprintf(stderr, "[rush] %s: pak takes on|off\n", path.c_str()); std::exit(2); }
+            script_pak = v == "on";
+            continue;
+        }
         if (!(is >> b)) { fprintf(stderr, "[rush] %s: bad line '%s'\n", path.c_str(), line.c_str()); std::exit(2); }
         if (!out.empty()) out += ",";
         out += t + ":" + b;
@@ -230,6 +245,8 @@ int main(int argc, char** argv) {
     bool no_lockstep = false;
     std::string call_log;
     uint64_t call_detail = 0;
+    std::filesystem::path pak_file;
+    bool no_pak = false, pak_write = false;
     for (int i = 1; i < argc; i++) {
         std::string a = argv[i];
         auto next = [&]() -> std::string {
@@ -255,6 +272,10 @@ int main(int argc, char** argv) {
         else if (a == "--call-log") call_log = next();
         else if (a == "--call-detail") call_detail = std::stoull(next());
         else if (a == "--no-sound") no_sound = true;
+        else if (a == "--pak") pak_file = next();
+        else if (a == "--fb-every") rush::set_fb_dump_every((uint32_t)std::stoul(next()));
+        else if (a == "--no-pak") no_pak = true;
+        else if (a == "--pak-write") pak_write = true;
         else if (a == "--keep-rom-copy") keep_rom_copy = true;
         else if (a == "--ai-per-vi") rush::set_ai_pacing(false);
         else if (a == "--wav") {
@@ -326,6 +347,13 @@ int main(int argc, char** argv) {
     recomp::check_all_stored_roms();
     stored_rom_copy = home / std::filesystem::path(game.stored_filename());
     rush::set_exit_hook(at_exit);
+
+    // Controller pak: persistent under --home in wall clock; lockstep runs start from
+    // the same bytes every time (fresh, or --pak FILE) and never write them back.
+    if (!no_pak && pak_file.empty() && script_pak == 0) no_pak = true;
+    if (no_pak) rush::pak_setup(false, {}, false);
+    else if (clock == "frames") rush::pak_setup(true, pak_file, pak_write && !pak_file.empty());
+    else rush::pak_setup(true, pak_file.empty() ? home / "rush2049.mpk" : pak_file, true);
 
     rush::set_frame_clock(clock == "frames");
     // osGetCount/osGetTime: virtual (frame-derived) or wall; default follows --clock

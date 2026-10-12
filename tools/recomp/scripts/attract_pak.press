@@ -1,0 +1,4 @@
+# Attract mode with a controller pak (pak flow): no input at all. With a pak there is no boot notice: Midway logo,
+# title (~3 s), then the demo races cycle by themselves (first demo, image B, at ~8 s).
+frames 9000
+pak on

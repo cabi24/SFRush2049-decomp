@@ -2,6 +2,45 @@
 
 Newest first. Every package version adds a section here (tools/recomp/package/CHANGES.md in the repo).
 
+## v3 (2026-10-12, lane w26r; this package: @@PACKAGE@@)
+
+From the v2 report (thank you: 0 hangs, good sound, and the list of small things below).
+
+- **Controller pak: the game now saves.** The program plugs a 32 KB controller pak into controller 1, kept in
+  `--home` as `rush2049.mpk` (the standard `.mpk` layout emulators use) and written after every change. So:
+  - **No boot notice any more**: "NO CONTROLLER PAK DETECTED / CONTINUE WITHOUT SAVING" is gone; the Midway
+    logo goes straight to the title, and with no input the attract demos start by themselves (~8 s).
+  - **Players and records are saved**: START GAME -> PLAYER 1 now offers CREATE PLAYER (name entry), your
+    player, DELETE PLAYER; the game writes the player (9 pages, note "RUSH2049" + name) and its statistics, and
+    they are back after closing and restarting the program (RECORDS lists the players too). Log lines `pak:`.
+  - **"INSERT RUMBLE PAK NOW" at the start of a race is expected**: the pak in the controller is a controller pak,
+    not a rumble pak, and the game invites you to swap (as on a console with a controller pak plugged in). It goes
+    away after a few seconds; the pause menu has a RUMBLE PAK item. There is no rumble in this build.
+  - `--no-pak` gives the v2 behaviour (the notice); `--pak FILE` uses another image. With `--clock frames` (T8)
+    the pak is a fresh image in memory that is never written (identical every run), and the T8 script runs
+    without a pak as before, so T8's expected lines are unchanged.
+- **Controller polish**: the `controller -> player N` line is printed once per pad (no repeat for the
+  "device added" event SDL sends at start). The left-stick dead zone (0.15) is now rescaled: past the dead zone
+  the value starts near 0 and still reaches 1.00 at the edge (v2: it jumped from 0 to 0.15). Back, Guide and the
+  stick clicks (L3/R3) stay **unmapped on purpose**: the N64 pad has no such buttons and every N64 input already
+  has a control.
+- **Modes nobody had played are scripted and checked** (coordinator, RT64 on a software GPU): PRACTICE, GHOST
+  RACE, CIRCUIT (BEGINNER CIRCUIT 8 RACES), BACKWARD, another car, RECORDS, BATTLE (2 players), saves. No hang,
+  no new busy-wait. Scripts: `practice`, `ghost_race`, `circuit`, `backward`, `other_car`, `records`,
+  `battle`, `saves`, `saves_reload`, `race_pak`, `attract_pak` (`--press-file rush\tools\recomp\scripts\NAME.press`).
+- **Lockstep fix** (found on the way): with `--clock frames --renderer rt64` the game used to go on after 10 s if
+  RT64 had not taken a frame, which could crash RT64 on a very slow GPU; it now waits (log
+  `lockstep: still waiting for the renderer ...` every 10 s).
+- **The "lockstep makes ~82 % of the audio" item was a measurement error**: the count came from the last
+  once-per-second status line before the run stopped; the full output is 100.0 % of 22050 Hz (a new `final`
+  line and a `lockstep: ... audio frames = 100.0% of 22050 Hz` line print it). Nothing to listen for.
+- New status fields `pak_writes=` and `max_burst_ms=` (the longest time a game thread ran without a message
+  call: a check that no thread starves the others in wall clock); options `--pak`, `--no-pak`, `--fb-every`.
+- What to test: **T1 (no notice), T2 (attract with no START), T3b saves (create a player, race, quit, close,
+  restart: the player is still there), T4b the new modes (practice, ghost race, circuit, battle with the pad as
+  player 2, backward, another car, records), T7a the stick near the centre (small values now), sound
+  everywhere** (listen again in the new modes), then T8.
+
 ## v2 (2026-10-12, lane w25r; this package: @@PACKAGE@@)
 
 Fixes from the v1 report (thank you: it found the boot hang, the A5 target and the ROM copy).

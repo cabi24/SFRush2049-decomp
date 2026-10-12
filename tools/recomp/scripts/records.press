@@ -1,0 +1,19 @@
+# RECORDS (pak flow): START GAME DOWN x1 = RECORDS (rows TOTALS, CONTROLLER PAK n, players or NO PLAYERS);
+# TOTALS (A): TRACK / STATS rows, RIGHT cycles tracks (TRACK 1, TRACK 1 BACKWARD, TRACK 2, ...), DOWN + RIGHT the stats
+# pages; B back. With saves.press's pak (--pak FILE) the players row lists the saved player.
+frames 1200
+pak on
+4 START
+7 DOWN
+9 A
+12 A
+15 RIGHT
+17 RIGHT
+19 DOWN
+21 RIGHT
+23 RIGHT
+26 B
+28 DOWN
+29 DOWN
+31 A
+35 B

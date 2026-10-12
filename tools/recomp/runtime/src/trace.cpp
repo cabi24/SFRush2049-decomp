@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 #include <cstdlib>
 #include <filesystem>
 #include <mutex>
@@ -33,6 +34,7 @@ std::mutex mu;
 std::set<std::string> seen_shims;
 std::set<uint64_t> fb_hashes;
 std::string fb_dump_dir;
+uint32_t fb_dump_every = 30;   // --fb-every N: sample every N screen updates
 std::string current_image = "none";
 
 struct Press { double t, dur; uint16_t mask; float x, y; int port; };  // port 0-3
@@ -93,14 +95,21 @@ void parse_presses(const std::string& spec) {
 void status_line(const char* tag) {
     fprintf(stderr,
         "[rush] %s t=%.1fs vi=%llu gfx_tasks=%llu audio_tasks=%llu other_tasks=%llu swaps=%llu "
-        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu audio_nonzero=%llu audio_peak=%d image=%s spin_yields=%llu\n",
+        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu audio_nonzero=%llu audio_peak=%d image=%s spin_yields=%llu pak_writes=%llu max_burst_ms=%.1f\n",
         tag, now_s(), (unsigned long long)n_vi, (unsigned long long)n_gfx,
         (unsigned long long)n_audio_task, (unsigned long long)n_other_task,
         (unsigned long long)n_swap, last_origin.load(), (unsigned long long)fb_nonzero,
         (unsigned long long)fb_distinct, last_dl.load(), last_dl_size.load(),
         (unsigned long long)n_audio_samples, (unsigned long long)n_audio_nonzero, audio_peak.load(),
         current_image.c_str(),
-        (unsigned long long)rush::spin_yield_count());
+        (unsigned long long)rush::spin_yield_count(), (unsigned long long)rush::pak_writes(),
+        rush::max_burst_ms());
+    if (rush::lockstep_enabled() && std::strcmp(tag, "final") == 0)   // virtual time (lockstep)
+        fprintf(stderr, "[rush] lockstep: %llu virtual VIs (%.2f s), %llu audio frames = %.1f%% of %u Hz\n",
+                (unsigned long long)rush::lockstep_vis(), rush::lockstep_vis() / 60.0,
+                (unsigned long long)(n_audio_samples / 2),
+                rush::lockstep_vis() ? 100.0 * (n_audio_samples / 2) / (rush::lockstep_vis() / 60.0 * 22050) : 0.0,
+                22050u);
 }
 
 } // namespace
@@ -157,7 +166,7 @@ void rush::trace_screen_update(uint8_t* rdram, uint32_t origin) {
     uint64_t n = n_swap++;
     last_origin = origin;
     if (n == 0) trace_event("first VI screen update, origin 0x%08X", origin);
-    if (origin == 0 || (n % 30) != 0) return;
+    if (origin == 0 || (n % fb_dump_every) != 0) return;
     // Framebuffer statistics: 320x240 16-bit assumed (VI width register checked).
     auto* vi = ultramodern::renderer::get_vi_regs();
     uint32_t width = vi->VI_WIDTH_REG ? vi->VI_WIDTH_REG : 320;
@@ -282,17 +291,24 @@ bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
 void rush::set_rumble(int, bool) {}
 
 void rush::set_frame_clock(bool on) { frame_clock = on; }
+void rush::trace_final() { status_line("final"); }
+void rush::set_fb_dump_every(uint32_t n) { fb_dump_every = n ? n : 1; }
 
 int rush::scripted_controllers() { return max_port + 1; }
 
 ultramodern::input::connected_device_info_t rush::get_connected_device_info(int controller) {
+    // A controller pak (pak.cpp) is reported as a pak that is not a rumble pak:
+    // osContGetQuery status bit CONT_CARD_ON, osMotorInit -> PFS_ERR_DEVICE (as a real
+    // controller pak answers). ultramodern's Pak enum has no ControllerPak entry yet.
+    const auto pak = rush::pak_present(controller) ? static_cast<ultramodern::input::Pak>(2)
+                                                   : ultramodern::input::Pak::None;
     if (live_connected && presses.empty()) {
         if (live_connected(controller))
-            return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
+            return {ultramodern::input::Device::Controller, pak};
         return {ultramodern::input::Device::None, ultramodern::input::Pak::None};
     }
     if (controller >= 0 && controller <= max_port) {
-        return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
+        return {ultramodern::input::Device::Controller, pak};
     }
     return {ultramodern::input::Device::None, ultramodern::input::Pak::None};
 }

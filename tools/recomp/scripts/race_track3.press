@@ -2,6 +2,7 @@
 # Evidence (w24r, stock build, frame clock): after image B the race-data streams start at 0x555850 (default
 # 0x43FE80, race_track2 0x4D2FA0); the selector cycles four tracks (RIGHT x4 = default, LEFT x1 = RIGHT x3).
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 8 START
 11 A

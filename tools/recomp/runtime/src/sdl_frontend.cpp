@@ -108,14 +108,25 @@ enum : uint16_t {
     N_DR = 0x0100, N_L = 0x0020, N_R = 0x0010, N_CU = 0x0008, N_CD = 0x0004, N_CL = 0x0002, N_CR = 0x0001
 };
 
+// Printed once per pad: SDL also sends SDL_CONTROLLERDEVICEADDED for pads that were
+// already present at start-up, and the re-open after it must not print the line
+// again (v2 report). A line appears only when a slot gets a different joystick.
+SDL_JoystickID pad_ids[4] = {-1, -1, -1, -1};
 void open_pads() {
     int slot = pad_first_port;
     for (int i = 0; i < SDL_NumJoysticks() && slot < 4; i++) {
         if (!SDL_IsGameController(i)) continue;
         if (SDL_GameController* c = SDL_GameControllerOpen(i)) {
-            fprintf(stderr, "[rush] controller -> player %d: %s\n", slot + 1, SDL_GameControllerName(c));
+            SDL_JoystickID id = SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(c));
+            if (pad_ids[slot] != id)
+                fprintf(stderr, "[rush] controller -> player %d: %s\n", slot + 1, SDL_GameControllerName(c));
+            pad_ids[slot] = id;
             pads[slot++] = c;
         }
+    }
+    for (int s = slot; s < 4; s++) {
+        if (pad_ids[s] != -1 && s >= pad_first_port) fprintf(stderr, "[rush] controller -> player %d: none\n", s + 1);
+        pad_ids[s] = -1;
     }
 }
 
@@ -126,9 +137,17 @@ void close_pads() {
     }
 }
 
+// Sticks and triggers: a dead zone of 0.15 around the centre, rescaled linearly from
+// its edge (0.15 -> 0, 1 -> 1), so the first value past the dead zone is small instead
+// of a jump to 0.15 (v2 report). Buttons read from the right stick and the triggers
+// use thresholds on the rescaled value.
+constexpr float DEAD_ZONE = 0.15f;
 float axis(SDL_GameController* c, SDL_GameControllerAxis a) {
     float v = SDL_GameControllerGetAxis(c, a) / 32767.0f;
-    return std::fabs(v) < 0.15f ? 0.0f : std::fmax(-1.0f, std::fmin(1.0f, v));
+    float m = std::fabs(v);
+    if (m < DEAD_ZONE) return 0.0f;
+    m = std::fmin(1.0f, (m - DEAD_ZONE) / (1.0f - DEAD_ZONE));
+    return v < 0 ? -m : m;
 }
 
 void sample() {
@@ -149,6 +168,8 @@ void sample() {
             if (b(SDL_CONTROLLER_BUTTON_DPAD_RIGHT)) m |= N_DR;
             if (b(SDL_CONTROLLER_BUTTON_B)) m |= N_CD;
             if (b(SDL_CONTROLLER_BUTTON_Y)) m |= N_CU;
+            // Back, Guide and the stick clicks (L3/R3) stay unmapped on purpose: the N64
+            // pad has no such buttons and every N64 input already has a control above.
             if (axis(c, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 0.5f) m |= N_Z;
             if (axis(c, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) > 0.5f) m |= N_R;
             float rx = axis(c, SDL_CONTROLLER_AXIS_RIGHTX), ry = axis(c, SDL_CONTROLLER_AXIS_RIGHTY);

@@ -262,7 +262,20 @@ def test_thread_host_words_are_skipped_in_word_diffs(tmp_path):
 
 def test_parse_script():
     sc = oracle.parse_script("# demo\nframes 900\n11 A\n5 START 0.5\n6.5 RIGHT@2   # p2\n6.5 A@1\n")
-    assert sc == {"press": "5:START:0.5,6.5:RIGHT@2,6.5:A,11:A", "frames": 900, "controllers": 2}
+    assert sc == {"press": "5:START:0.5,6.5:RIGHT@2,6.5:A,11:A", "frames": 900, "controllers": 2, "pak": True}
+
+
+def test_parse_script_pak_directive():
+    assert oracle.parse_script("frames 30\npak off   # boot notice\n5 START\n")["pak"] is False
+    assert oracle.parse_script("frames 30\npak on\n")["pak"] is True
+    with pytest.raises(oracle.OracleError, match="pak takes on or off"):
+        oracle.parse_script("frames 30\npak maybe\n")
+
+
+def test_host_command_pak():
+    base = ("host", "rom", "log", "home", 30, "5:START", 60)
+    assert "--no-pak" in oracle.host_command(*base)               # --press strings: the v1/v2 boot notice
+    assert "--no-pak" not in oracle.host_command(*base, pak=True)  # a script's `pak on`: fresh in-memory pak
 
 
 @pytest.mark.parametrize("text,msg", [
@@ -281,10 +294,18 @@ def test_committed_scripts_parse_and_have_a_readme_line():
     assert {"race", "race_track2", "two_player", "audio_options"} <= set(names)
     for name in names:
         sc = oracle.load_script(name)
-        assert sc["frames"] and (sc["press"] or name == "attract")   # attract: no input on purpose
+        assert sc["frames"] and (sc["press"] or name in ("attract", "attract_pak"))   # no input on purpose
         assert "`%s.press`" % name in readme, name
     assert oracle.load_script("race")["press"] == oracle.DEFAULT_PRESS
     assert oracle.load_script("two_player")["controllers"] == 2
+    # Phase 6: scripts written for the boot notice keep it (pak off); the pak-flow scripts use a fresh pak
+    for name in ("race", "race_track2", "race_track3", "race_track4", "two_player", "audio_options", "stunt",
+                 "attract"):
+        assert oracle.load_script(name)["pak"] is False, name
+    for name in ("race_pak", "attract_pak", "saves", "saves_reload", "records", "practice", "ghost_race",
+                 "circuit", "backward", "other_car", "battle"):
+        assert oracle.load_script(name)["pak"] is True, name
+    assert oracle.load_script("battle")["controllers"] == 2
     with pytest.raises(oracle.OracleError, match="no input script"):
         oracle.load_script("no_such_script")
 

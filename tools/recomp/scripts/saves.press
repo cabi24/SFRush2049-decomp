@@ -1,0 +1,41 @@
+# Saves (pak flow): PLAYER 1 DOWN x2 = CREATE PLAYER (NO PLAYERS is skipped), A; ENTER YOUR NAME (the cursor starts on
+# A): A x4 = "AAAA", START = END -> the game allocates note "RUSH2049AAAA" (9 pages) and writes 2304 bytes.
+# Then select AAAA (A), SINGLE RACE, race 40 s ("AAAA PAUSED"), pause -> QUIT -> YES -> GAME OVER -> QUIT.
+# Run with --pak FILE (--clock frames: add --pak-write) and replay records.press / saves_reload.press with it.
+frames 4500
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+18 A
+20 A
+22 A
+24 START
+27 A
+30 A
+33 A
+36 A
+39 A
+42 A
+45 A 30
+80 START
+83 DOWN
+83.5 DOWN
+84 DOWN
+84.5 DOWN
+85 DOWN
+85.5 DOWN
+86 DOWN
+88 A
+90 LEFT
+91.5 A
+96 DOWN
+97 DOWN
+98 DOWN
+99 DOWN
+100.5 A
+103 A
+106 A

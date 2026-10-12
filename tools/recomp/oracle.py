@@ -611,8 +611,10 @@ def parse_script(text, name="script"):
     """A .press script -> {"press": host --press string, "frames": N or None,
     "controllers": n}. Lines: `TIME BUTTON[@PORT] [DURATION]` (seconds of game
     time = frames/30; PORT 1-4, default 1; duration default 0.2), `frames N`
-    (default run length), `# comment`. Times need not be sorted."""
-    items, frames, ports = [], None, {1}
+    (default run length), `pak on|off` (controller pak; scripts written for the
+    boot notice NO CONTROLLER PAK DETECTED say `pak off`; default on), `# comment`.
+    Times need not be sorted."""
+    items, frames, ports, pak = [], None, {1}, None
     for n, raw in enumerate(text.splitlines(), 1):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -622,6 +624,11 @@ def parse_script(text, name="script"):
             if len(parts) != 2 or not parts[1].isdigit():
                 raise OracleError(f"{name}:{n}: frames takes one integer")
             frames = int(parts[1])
+            continue
+        if parts[0] == "pak":
+            if len(parts) != 2 or parts[1] not in ("on", "off"):
+                raise OracleError(f"{name}:{n}: pak takes on or off")
+            pak = parts[1] == "on"
             continue
         if len(parts) not in (2, 3):
             raise OracleError(f"{name}:{n}: expected TIME BUTTON[@PORT] [DURATION]")
@@ -646,7 +653,8 @@ def parse_script(text, name="script"):
     if not items and not frames:
         raise OracleError(f"{name}: no presses")     # a script without presses must at least say `frames N`
     items.sort()
-    return {"press": ",".join(i for _, _, i in items), "frames": frames, "controllers": max(ports)}
+    return {"press": ",".join(i for _, _, i in items), "frames": frames, "controllers": max(ports),
+            "pak": True if pak is None else pak}
 
 
 def load_script(arg):
@@ -665,10 +673,12 @@ DEFAULT_PRESS = ("5:START,8:START,11:A,14:A,17:A,20:START,23:A,26:A,29:A,32:A,35
                  "38:A,41:A,44:A,47:A,50:A")
 
 
-def host_command(host, rom, log, home, frames, press, seconds, dump=None, calls=None, detail=None):
+def host_command(host, rom, log, home, frames, press, seconds, dump=None, calls=None, detail=None, pak=False):
     cmd = [str(host), "--rom", str(rom), "--home", str(home), "--clock", "frames",
            "--frames", str(frames), "--seconds", str(seconds), "--press", press,
            "--oracle-log", str(log)]
+    if not pak:
+        cmd += ["--no-pak"]     # the v1/v2 boot (notice); a script's `pak on` gives a fresh in-memory pak
     if dump:
         cmd += ["--dump-at", "%d:%s" % dump]
     if calls:
@@ -742,6 +752,8 @@ def main(argv=None):
             print(sc["press"])
             if sc["frames"]:
                 print("# frames %d, controllers %d" % (sc["frames"], sc["controllers"]), file=sys.stderr)
+            if not sc["pak"]:
+                print("# pak off: run the host with --no-pak", file=sys.stderr)
             return 0
         if args.cmd == "calls":
             with open(args.stock) as fa, open(args.repl) as fb:
@@ -763,9 +775,11 @@ def main(argv=None):
             out.mkdir(parents=True, exist_ok=True)
             press = args.press
             frames = args.frames
+            pak = False     # --press strings and the default are boot-notice (no pak) scripts
             if args.script:
                 sc = load_script(args.script)
                 press = press or sc["press"]
+                pak = sc["pak"] if not args.press else False
                 if sc["frames"] and args.frames == 1800 and "--frames" not in (argv or sys.argv):
                     frames = sc["frames"]
             press = press or DEFAULT_PRESS
@@ -779,10 +793,10 @@ def main(argv=None):
                     continue
                 jobs.append((host_command(args.stock_host, args.rom_stock, log, out / ("home_s%d" % i),
                                           frames, press, seconds,
-                                          calls=out / "stock.calls" if calls and i == 0 else None),
+                                          calls=out / "stock.calls" if calls and i == 0 else None, pak=pak),
                              out / ("stock%d.err" % (i + 1))))
             jobs.append((host_command(args.repl_host, args.rom_repl, out / "repl.log", out / "home_r",
-                                      frames, press, seconds, calls=out / "repl.calls" if calls else None),
+                                      frames, press, seconds, calls=out / "repl.calls" if calls else None, pak=pak),
                          out / "repl.err"))
             run_hosts(jobs)
             baselines = [Run(p) for p in stock_logs]
@@ -791,7 +805,7 @@ def main(argv=None):
                 args.json = str(out / "verdict.json")
             result = compare(cand, baselines)
             result.update(script=args.script or ("--press" if args.press else "race (default)"),
-                          press=press, frames_requested=frames)
+                          press=press, frames_requested=frames, pak=pak)
             if calls and (out / "stock.calls").is_file() and (out / "repl.calls").is_file():
                 with open(out / "stock.calls") as fa, open(out / "repl.calls") as fb:
                     cr = compare_calls(fa, fb)
@@ -800,10 +814,10 @@ def main(argv=None):
                     f = (cr["frame"] or 0) + 2
                     da, db = out / "detail_s.calls", out / "detail_r.calls"
                     run_hosts([(host_command(args.stock_host, args.rom_stock, out / "detail_s.log",
-                                             out / "home_cs", f, press, seconds, calls=da, detail=cr["seq"]),
+                                             out / "home_cs", f, press, seconds, calls=da, detail=cr["seq"], pak=pak),
                                 out / "detail_s.err"),
                                (host_command(args.repl_host, args.rom_repl, out / "detail_r.log",
-                                             out / "home_cr", f, press, seconds, calls=db, detail=cr["seq"]),
+                                             out / "home_cr", f, press, seconds, calls=db, detail=cr["seq"], pak=pak),
                                 out / "detail_r.err")])
                     with open(da) as fa, open(db) as fb:
                         cr["words"] = effect_diff(effect_words(fa, cr["seq"]), effect_words(fb, cr["seq"]),
@@ -814,9 +828,9 @@ def main(argv=None):
                 f = fd["frame"]
                 da, db = out / "stock_at_diff.bin", out / "repl_at_diff.bin"
                 run_hosts([(host_command(args.stock_host, args.rom_stock, out / "dump_s.log", out / "home_ds", f,
-                                         press, seconds, (f, da)), out / "dump_s.err"),
+                                         press, seconds, (f, da), pak=pak), out / "dump_s.err"),
                            (host_command(args.repl_host, args.rom_repl, out / "dump_r.log", out / "home_dr", f,
-                                         press, seconds, (f, db)), out / "dump_r.err")])
+                                         press, seconds, (f, db), pak=pak), out / "dump_r.err")])
                 skip = stack_ranges([int(t, 16) for t in result["stacks"]])
                 skip += thread_word_ranges(result)
                 skip += [(int(r.split("-")[0], 16), int(r.split("-")[1], 16) + 1) for r in result["unstable_pages"]]

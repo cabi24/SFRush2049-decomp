@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -25,6 +25,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `runtime/src/rt64_renderer.cpp`, `sdl_frontend.cpp` | Phase 4: RT64 renderer + SDL2 window/input (CMake `RUSH_RENDERER=rt64`) |
 | `make_rom.py` | Phase 4: synthetic ROM from the retail ROM + a config's `manifest.json` (stdlib; the package's ROM step) |
 | `package.py`, `package/` | Phase 4: gameplay-test package `rush2049-recomp-test-v<N>.tar.gz` and its tester documents |
+| `runtime/src/pak.cpp` | Phase 6: controller pak (osPfs* over a 32 KiB `.mpk` image under `--home`) |
 | `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
@@ -533,6 +534,66 @@ cmake build/stock/host-rt64 && ninja -C build/stock/host-rt64      # (first time
 xvfb/run.sh runs/x.txt --home runs/h --seconds 30                   # RT64 on Xvfb + lavapipe, wall clock
 python3 tools/recomp/oracle.py compare --mask-renderer runs/self/a.log runs/self/c.log
 ```
+
+## Phase 6: controller pak, pad polish, mode scripts, cheaper capture, package v3 (lane w26r, 2026-10-12)
+
+Lane notes: `cloud/work/frontier/w26r/RESULTS.md`; plan section 15; tester report v2: `reports/v2/REPORT.md`.
+
+**Controller pak** (`runtime/src/pak.cpp`). N64ModernRuntime cdf5abbd answers every `osPfs*` call with
+PFS_ERR_NOPACK (librecomp/src/pak.cpp), hence the boot notice NO CONTROLLER PAK DETECTED. The game uses the pak
+only (no EEPROM, SRAM or flash call in the recompiled code); it calls osPfsInitPak, FreeBlocks, AllocateFile,
+DeleteFile, FileState, ReadWriteFile and RepairId (plus osMotorInit for rumble). CMake renames those calls in
+the recompiled code to `rush_osPfs*_recomp` (`RUSH_PAK_RENAMED`, the RUSH_WRAPPED mechanism), which implement
+libultra's semantics and return codes over a 32 KiB image in the standard `.mpk` layout (ID block with
+checksums and copies, inode table + backup with its checksum, 16 notes, 123 data pages) so emulators can open
+it. Controller 1 reports a pak that is not a rumble pak (osContGetQuery status CONT_CARD_ON, osMotorInit
+PFS_ERR_DEVICE, as a real controller pak). Modes: wall clock `--home/rush2049.mpk`, created formatted, rewritten
+(temp file + rename) after every allocate/delete/write; `--clock frames` a fresh formatted image in memory,
+never written (or `--pak FILE` read, `--pak-write` to write it back: save tests); `--no-pak` = v1/v2. Log lines
+`pak: ...` (allocate, delete, every read/write), oracle events `E <frame> pak ...`, status field `pak_writes=`.
+What the game does with it: START GAME -> PLAYER 1 (JUST PLAY, CONTROLLER PAK n, the players, CREATE PLAYER,
+DELETE PLAYER); CREATE PLAYER -> ENTER YOUR NAME -> note "RUSH2049"+name (company 0x3544, game 0x4E525545,
+9 pages = the notice's "1 NOTE AND 9 PAGES"), 2304 bytes written; race start writes 64+32 bytes, quitting a race
+128 bytes (statistics); boot and player selection read the 2304 bytes. With a controller pak the game shows
+"INSERT RUMBLE PAK NOW" for the first seconds of a race (it invites a pak swap; expected).
+
+**Input scripts and the pak.** A `.press` script may say `pak on|off` (host `--press-file` and oracle.py honour
+it; `--pak`/`--no-pak` win). Every script written before Phase 6 says `pak off` (the notice flow; its frames and
+verdicts are unchanged); `oracle.py run` with `--press` or the default press string runs `--no-pak`. New
+pak-flow scripts (lockstep frames: title ~3 s; 4 START -> START GAME; 7 A -> PLAYER 1; 10 A -> SELECT MODE;
+13/16 A -> SELECT TRACK; 19 A -> car; 22 A -> race):
+`race_pak.press` (default race, image B at frame 580), `attract_pak.press` (no input: demos from frame 242,
+tracks 1-4), `practice.press`, `ghost_race.press`, `circuit.press` (BEGINNER CIRCUIT 8 RACES), `backward.press`
+(BACKWARD ON), `other_car.press` (RIGHT x2 on CAR), `records.press`, `battle.press` (2P, BATTLE 1 arena),
+`saves.press` (CREATE PLAYER "AAAA", race, quit: 5 pak writes) and `saves_reload.press` (selects AAAA; run it
+with the pak `saves.press` wrote).
+
+**Pad polish** (`sdl_frontend.cpp`): `controller -> player N` printed once per pad (SDL's device-added event for
+pads present at start re-opened them and printed again); stick/trigger dead zone 0.15 rescaled linearly from
+its edge; Back, Guide, L3/R3 unmapped on purpose (commented).
+
+**Lockstep + RT64**: the game thread waits for the renderer to take a mirrored display list however long it
+takes (warning every 10 s). The old 10 s timeout went on, and on an overloaded software GPU RT64 then read a
+half-rebuilt list ("Unable to find a matching GBI", SIGSEGV; three crashes in w26r's parallel runs, none after).
+
+**Lockstep audio**: the "~82 %" of Phase 5 was the last once-per-second status line before the frame stop; the
+run's output is 100.0 % (race.press: 1,322,688 frames in 3600 virtual VIs, w25r's binary and this one alike;
+WAV 59.986 s). A lockstep `--frames` stop now prints the `final` status line and
+`lockstep: N virtual VIs (S s), F audio frames = P% of 22050 Hz`.
+
+**Run-burst census** (`hooks.cpp`; osRecvMesg/osSendMesg added to RUSH_WRAPPED): the longest time a game thread
+runs between message calls (or busy-wait yields), after the first 2 s, as `max_burst_ms=` and a `longest
+game-thread run ...` line from 4 ms. Wall clock, null renderer, `--null-dl-delay 25`, every script: at most
+1.1 ms over 16 scripts (race_track2), 0.3-0.8 ms elsewhere. No long call-free computation starves another
+thread on this host.
+
+**Cheaper capture** (`capture.cpp`): rdram is made read-only once; each window re-protects only the pages
+written since the last one (runs of pages per mprotect) instead of protecting 8 MiB at entry and unprotecting
+it at the last exit. matched10 capture set, race script, 333,252 calls: 21.0 s -> 15.5 s (no capture: 2.7 s),
+call log byte-identical.
+
+Other: `--fb-every N` (framebuffer dump period), RT64 pixel runs `rtp.sh`-style: `xvfb/run.sh` with
+`--clock frames --press-file ... --fb-dump DIR` (lavapipe is too slow for wall-clock scripts: ~3 gfx tasks/s).
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

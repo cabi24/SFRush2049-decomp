@@ -93,10 +93,19 @@ add_subdirectory(${N64MODERNRUNTIME_DIR} ${CMAKE_BINARY_DIR}/N64ModernRuntime)
 set(RUSH_WRAPPED
     osGetCount_recomp osGetTime_recomp osViSetEvent_recomp osSetEventMesg_recomp
     osSpTaskStartGo_recomp osViSwapBuffer_recomp osViGetCurrentFramebuffer_recomp
-    osViGetNextFramebuffer_recomp osCreateThread_recomp)
+    osViGetNextFramebuffer_recomp osCreateThread_recomp osRecvMesg_recomp osSendMesg_recomp)
 set(RUSH_WRAP_DEFS "")
 foreach(name ${RUSH_WRAPPED})
     list(APPEND RUSH_WRAP_DEFS "${name}=__wrap_${name}")
+endforeach()
+# Controller pak (Phase 6, src/pak.cpp): the runtime's osPfs* are "no pak" stubs;
+# the recompiled code calls rush_NAME instead (the stubs stay linked, unused).
+set(RUSH_PAK_RENAMED
+    osPfsInitPak_recomp osPfsRepairId_recomp osPfsChecker_recomp osPfsFreeBlocks_recomp
+    osPfsNumFiles_recomp osPfsFindFile_recomp osPfsAllocateFile_recomp osPfsDeleteFile_recomp
+    osPfsFileState_recomp osPfsReadWriteFile_recomp)
+foreach(name ${RUSH_PAK_RENAMED})
+    list(APPEND RUSH_WRAP_DEFS "${name}=rush_${name}")
 endforeach()
 
 # Recompiled game: every funcs_*.c from N64Recomp (lookup.cpp and
@@ -168,7 +177,8 @@ set(RUSH_SOURCES
     src/trace.cpp
     src/oracle.cpp
     src/capture.cpp
-    src/lockstep.cpp)
+    src/lockstep.cpp
+    src/pak.cpp)
 if(RUSH_RENDERER STREQUAL "rt64")
     list(APPEND RUSH_SOURCES src/rt64_renderer.cpp src/sdl_frontend.cpp)
 endif()
