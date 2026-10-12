@@ -1,0 +1,23 @@
+{
+  "members": [
+    "func_80394564",
+    "func_80394834",
+    "func_80394B00"
+  ],
+  "context": [
+    "func_80397FFC"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80397FFC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Same-name availability group: new full 94B00 reset body, two preserved accepted bodies, genuine NONMATCH 97FFC root; stock IDO 5.3.",
+  "claims": [
+    "func_80394564",
+    "func_80394834",
+    "func_80394B00"
+  ]
+}
