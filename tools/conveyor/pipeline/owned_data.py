@@ -639,6 +639,93 @@ def slot_members(row):
     return [row['owner']] + list(row.get('co_owners', []))
 
 
+def passthrough_line(row, member):
+    return '#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/' + Path(row['tu']).stem + '/' + member + '.s")'
+
+
+def pending_members(row, text):
+    """The slot's members whose passthrough line is still in the TU `text`:
+    every member of a prepared slot, only the new members of a replaced slot
+    (`replace_slot`) whose earlier members are already C."""
+    return [m for m in slot_members(row) if passthrough_line(row, m) in text]
+
+
+REPLACE_SAME = ('tu', 'source', 'owner_section', 'container_section', 'container_vram', 'offset',
+                'passthrough_asm')
+
+
+def replace_slot(repo, raw, linker='rush2049.us.ld'):
+    """Supersede a promoted owner's readonly slot by the larger co-owned slot
+    its TU's complete section fills once the new members are C (w22i).
+
+    func_80023BDC owns the first 0x14 bytes of lib_22300's .rodata (a 4-byte
+    logical table); func_80023E9C's table follows. As C, both tables are one
+    0x1E0 section. There is no hash-neutral passthrough state for the grown
+    slot: asm-processor emits a GLOBAL_ASM block's .rodata as a file-scope
+    `const char[]`, which IDO places before every function's jump table, so a
+    companion carrying only the new member's words lands AHEAD of the owner's
+    compiled table (measured: ROM differs at the slot and at the owner's
+    `lw`). So the replacement is part of the new members' promotion
+    transaction (promote_batch --replace-slot): this writes the row (in place
+    of the owner's), its companion file (the plain original bytes; the TU gets
+    no companion block) and the re-rendered linker script, and returns
+    {path: original text} for the caller to restore unless the full-ROM gate
+    of the promoted set passes and the paths are committed with it.
+
+    Refused unless: the owner has exactly one registered row; the new row
+    keeps its TU, container, section, offset and companion path and grows it
+    with no logical extent; every member of the old slot is in the new one and
+    already C (no passthrough line, no companion block); every new member is
+    still passthrough; and the new row validates (original-byte SHA-256,
+    overlap, alignment)."""
+    repo = Path(repo)
+    if not isinstance(raw, dict) or raw.get('storage_owner') or raw.get('owner_section') == BSS:
+        raise OwnershipError('replace_slot grows readonly/data passthrough-companion slots only')
+    registry = load_registry(repo)
+    index = [i for i, r in enumerate(registry['rom_slots'])
+             if isinstance(r, dict) and r.get('owner') == raw.get('owner')]
+    if len(index) != 1:
+        raise OwnershipError('replace_slot needs exactly one registered row of the owner')
+    old = next(r for r in rom_slots(repo, check_source=False) if r['owner'] == raw['owner'])
+    registry['rom_slots'][index[0]] = raw
+    paths = [repo / REGISTRY, repo / linker]
+    originals = {p: p.read_text() for p in paths}
+    paths[0].write_text(json.dumps(registry, indent=2) + '\n')
+    try:
+        row = next(r for r in rom_slots(repo) if r['owner'] == raw['owner'])
+        if any(old[k] != row[k] for k in REPLACE_SAME) or old['size'] >= row['size'] or row.get('logical_extent'):
+            raise OwnershipError('the replacement must grow the same slot (TU, container, section, offset, '
+                                 'companion path) to a complete section')
+        text = (repo / row['tu']).read_text()
+        if any(m not in slot_members(row) for m in slot_members(old)):
+            raise OwnershipError('the replacement drops a member of the superseded slot')
+        if pending_members(old, text) or companion_block(old) in text:
+            raise OwnershipError('the superseded slot is not fully promoted')
+        new = [m for m in slot_members(row) if m not in slot_members(old)]
+        if pending_members(row, text) != new or any(text.count(passthrough_line(row, m)) != 1 for m in new):
+            raise OwnershipError('every new member of the replacement must still be passthrough')
+        companion = repo / row['passthrough_asm']
+        originals[companion] = companion.read_text() if companion.exists() else None
+        source = companion_source(row, repo)
+        rendered = rewrite_linker(paths[1].read_text(), repo)
+    except BaseException:
+        paths[0].write_text(originals[paths[0]])
+        raise
+    companion.write_text(source)
+    paths[1].write_text(rendered)
+    return row, originals
+
+
+def restore(originals):
+    """Undo `replace_slot` (None = the file did not exist)."""
+    for path, text in originals.items():
+        if text is None:
+            if Path(path).exists():
+                Path(path).unlink()
+        else:
+            Path(path).write_text(text)
+
+
 def slots_for_function(repo, func, tu=None):
     """Passthrough-companion slots `func` owns or co-owns (in `tu`, if given)."""
     return [r for r in rom_slots(repo, check_source=False)

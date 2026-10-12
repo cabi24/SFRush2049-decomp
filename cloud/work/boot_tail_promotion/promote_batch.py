@@ -45,6 +45,16 @@ unit. The registry row and companion must already be committed (`owned_data
 prepare`, its own ROM gate). A context row carrying "flagset" (context_check.py
 --flags) must equal the segment's.
 
+A function may belong to several slots of its TU (w22i: func_80023E9C owns
+lib_22300's .bss block and co-owns its .rodata); the slots' members then form
+one unit. A slot's members are the ones still passthrough in the TU.
+`--replace-slot ROW.json` (w22i) grows a fully promoted owner's slot into the
+co-owned slot of the batch's new members (`owned_data.replace_slot`: there is
+no hash-neutral passthrough state for it). The registry row, companion file
+and linker script are rewritten for the plan and the gates, committed with the
+promotion only if every new member passes, and restored otherwise (always on
+--dry-run).
+
 `--dry-run` plans only: it prints every candidate and refusal (refusals are not
 appended to refusals.jsonl) and touches nothing. `--splice-out DIR` (implies
 --dry-run) also writes the spliced TUs to DIR/<tu>.c instead of src/rom, for a
@@ -110,6 +120,7 @@ PREFIX_DEDUP = set()
 CONTEXT_PATH = HERE / "context.jsonl"
 DRY_RUN = False
 LOCKFILE = None  # None = matched.lock.json
+REPLACED = None  # (row, {path: original}) from --replace-slot
 
 
 def plan(segments, context):
@@ -180,26 +191,35 @@ def slot_closure(cands):
 
 
 def owned_slot(fn, seg, row):
-    """(refusal, slot) for a candidate: the passthrough-companion slot it is a
-    member of in its TU (None if none), checked against its context row."""
+    """(refusal, slot) for a candidate: the passthrough-companion slots it is a
+    member of in its TU (None if none), checked against its context row. A
+    slot counts when its companion block is in the TU, or it is this run's
+    --replace-slot row; its members are those still passthrough. Several
+    slots merge into one record (their members form one unit)."""
     tu = "src/" + seg["rom_tu"] + ".c"
-    slots = owned_data.slots_for_function(REPO, fn, tu)
-    if slots:
-        text = (REPO / tu).read_text()
-        slots = [r for r in slots if owned_data.companion_block(r) in text]
+    text = (REPO / tu).read_text()
+    replaced = REPLACED[0]["owner"] if REPLACED else None
+    slots = [r for r in owned_data.slots_for_function(REPO, fn, tu)
+             if owned_data.companion_block(r) in text or r["owner"] == replaced]
     owned = row.get("owned") or []
-    if len(slots) > 1:
-        return f"member of {len(slots)} owned slots", None
     if not slots:
         if owned:
             return "context row has owned data but the TU holds no companion for it", None
         return None, None
-    r = slots[0]
+    if len({r["owner_section"] for r in slots}) != len(slots):
+        return f"member of {len(slots)} owned slots of one section", None
+    by_section = {r["owner_section"]: r for r in slots}
     for o in owned:
-        if o.get("slot") != r["owner"] or o.get("section") != r["owner_section"] or o.get("tu") != tu:
-            return f"context row's owned data {o} is not the slot of {r['owner']}", None
-    return None, {"owner": r["owner"], "members": owned_data.slot_members(r), "tu": tu,
-                  "section": r["owner_section"]}
+        r = by_section.get(o.get("section"))
+        if r is None or o.get("slot") != r["owner"] or o.get("tu") != tu:
+            return f"context row's owned data {o} is not a slot of {fn}", None
+    parts = [{"owner": r["owner"], "members": owned_data.pending_members(r, text), "section": r["owner_section"]}
+             for r in slots]
+    members = []
+    for part in parts:
+        members += [m for m in part["members"] if m not in members]
+    return None, {"owner": ",".join(p["owner"] for p in parts), "members": members, "tu": tu,
+                  "section": ",".join(p["section"] for p in parts), "slots": parts}
 
 
 def splice(cands, out_dir=None):
@@ -231,12 +251,17 @@ def splice(cands, out_dir=None):
             f"{CONTEXT_PATH}")
         block = header + "\n" + "".join(d + "\n" for d in decls) + body.rstrip() + "\n"
         texts[tu] = text.replace(pragma, block, 1)
-    # Remove each fully promoted owned slot's passthrough companion.
+    # Remove each fully promoted owned slot's passthrough companion (a
+    # --replace-slot row has none), once, at its first pending member.
     for c in cands:
         slot = c.get("slot")
-        if slot and c["fn"] == slot["owner"]:
+        for part in (slot or {}).get("slots", []):
+            if c["fn"] != part["members"][0]:
+                continue
             tu = REPO / slot["tu"]
-            texts[tu] = owned_data.strip_companion(texts[tu], slot["owner"], REPO, slot["tu"])
+            row = next(r for r in owned_data.rom_slots(REPO, check_source=False) if r["owner"] == part["owner"])
+            if owned_data.companion_block(row) in texts[tu]:
+                texts[tu] = owned_data.strip_companion(texts[tu], part["owner"], REPO, slot["tu"])
     for tu, text in texts.items():
         (Path(out_dir) / tu.name if out_dir else tu).write_text(text)
     return sorted(texts)
@@ -290,11 +315,21 @@ def attempt(cands):
 
 
 def units(cands):
-    """Candidates in order; the members of one owned slot form one unit,
-    placed at its first member's position."""
+    """Candidates in order; the members of one owned slot (transitively, of
+    slots sharing a member) form one unit, placed at its first member's
+    position."""
+    parent = {}
+
+    def find(x):
+        while parent.setdefault(x, x) != x:
+            x = parent[x]
+        return x
+    for c in cands:
+        for m in (c["slot"]["members"] if c.get("slot") else []):
+            parent[find(m)] = find(c["fn"])
     out, by_slot = [], {}
     for c in cands:
-        key = c["slot"]["owner"] if c.get("slot") else None
+        key = find(c["fn"]) if c.get("slot") else None
         if key is None:
             out.append([c])
         elif key in by_slot:
@@ -342,14 +377,18 @@ def publish(passed, label):
            f"target, rom_tu.h context check\n({CONTEXT_PATH}), then one "
            "full matching ROM build + make test\non watchman2 for the batch (greedy per-function acceptance on failure).\n\n"
            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
-    c = run(["git", "commit", "-q", "-m", msg, "--"] + tus + ["matched.lock.json"])
+    replaced = [str(Path(p).relative_to(REPO)) for p in REPLACED[1]] if REPLACED else []
+    if replaced:
+        msg = msg.replace("\n\nCo-Authored-By", f"\nOwned slot of {REPLACED[0]['owner']} replaced "
+                          f"(--replace-slot): {', '.join(replaced)}.\n\nCo-Authored-By")
+    c = run(["git", "commit", "-q", "-m", msg, "--"] + tus + ["matched.lock.json"] + replaced)
     if c.returncode:
         sys.exit("commit failed after a PASSED gate:\n" + c.stderr[-500:])
     print(f"PROMOTED {len(passed)} ({nbytes} B) @ {run(['git','rev-parse','--short','HEAD']).stdout.strip()}")
 
 
 def main():
-    global ONLY, CONTEXT_PATH, PREFIX_DEDUP, DRY_RUN, LOCKFILE
+    global ONLY, CONTEXT_PATH, PREFIX_DEDUP, DRY_RUN, LOCKFILE, REPLACED
     argv = sys.argv[1:]
     splice_out = None
     if "--dry-run" in argv:
@@ -374,12 +413,38 @@ def main():
         i = argv.index("--only")
         ONLY = set(argv[i + 1].split(","))
         del argv[i:i + 2]
+    replace_row = None
+    if "--replace-slot" in argv:
+        i = argv.index("--replace-slot")
+        replace_row = json.loads(Path(argv[i + 1]).read_text())
+        del argv[i:i + 2]
     CONTEXT_PATH = Path(argv[0])
     context = {json.loads(l)["function"]: json.loads(l) for l in CONTEXT_PATH.read_text().splitlines()}
     segments = argv[1:]
-    dirty = run(["git", "status", "--porcelain", "--", "src/rom", "matched.lock.json"]).stdout.strip()
+    guarded = ["src/rom", "matched.lock.json"]
+    if replace_row is not None:
+        guarded += [owned_data.REGISTRY, "rush2049.us.ld", replace_row.get("passthrough_asm") or owned_data.REGISTRY]
+    dirty = run(["git", "status", "--porcelain", "--"] + guarded).stdout.strip()
     if dirty and not DRY_RUN:
-        sys.exit("refusing: dirty src/rom or lockfile\n" + dirty)
+        sys.exit("refusing: dirty src/rom, lockfile or replaced-slot paths\n" + dirty)
+    if replace_row is None:
+        return run_batch(segments, context, splice_out)
+    REPLACED = owned_data.replace_slot(REPO, replace_row)
+    print(f"replace-slot {REPLACED[0]['owner']}: {REPLACED[0]['owner_section']} "
+          f"{REPLACED[0]['container_vram'] + REPLACED[0]['offset']:#x} size {REPLACED[0]['size']:#x}, "
+          f"members {', '.join(owned_data.slot_members(REPLACED[0]))}")
+    published = False
+    try:
+        published = run_batch(segments, context, splice_out)
+    finally:
+        if not published and REPLACED:
+            owned_data.restore(REPLACED[1])
+            print(f"replace-slot {REPLACED[0]['owner']}: restored")
+
+
+def run_batch(segments, context, splice_out):
+    """Plan, gate and publish; True iff a --replace-slot row was committed."""
+    global REPLACED
     cands = plan(segments, context)
     print(f"batch {segments[0]}..{segments[-1]}: {len(cands)} candidates")
     if DRY_RUN:
@@ -392,10 +457,22 @@ def main():
             splice_out.mkdir(parents=True, exist_ok=True)
             for tu in splice(cands, splice_out):
                 print(f"  spliced {splice_out / tu.name}")
-        return
+        return False
     passed = attempt(cands)
+    if REPLACED:
+        tu_text = (REPO / REPLACED[0]["tu"]).read_text()
+        new = owned_data.pending_members(REPLACED[0], tu_text)
+        if not set(new) <= {c["fn"] for c in passed}:
+            # The grown slot only holds once every new member is C: drop the
+            # replacement (and its members) before the final gate.
+            for c in passed:
+                if c["fn"] in new:
+                    refuse(c["fn"], f"--replace-slot {REPLACED[0]['owner']} needs {', '.join(new)} accepted together")
+            passed = [c for c in passed if c["fn"] not in new]
+            owned_data.restore(REPLACED[1])
+            REPLACED = None
     if not passed:
-        return
+        return False
     # Gate the final passed set exactly as it will be committed.
     tus = splice(passed)
     ok, detail = gate(tus)
@@ -403,6 +480,7 @@ def main():
         restore(tus)
         sys.exit("combined passed set failed the gate: " + detail)
     publish(passed, f"{segments[0]}..{segments[-1]}")
+    return REPLACED is not None
 
 
 if __name__ == "__main__":
