@@ -139,7 +139,11 @@ def test_replace_slot_writes_row_companion_linker_and_restores(repo):
 
 
 @pytest.mark.parametrize("raw,match", [
-    (_grown(offset="0x10", sha256=hashlib.sha256(DATA[0x10:0x30]).hexdigest()), "grow the same slot"),
+    # starts inside the old slot (w24s: a readonly slot may grow at its front, not lose it)
+    (_grown(offset="0x30", sha256=hashlib.sha256(DATA[0x30:0x50]).hexdigest()), "grow the same slot"),
+    (_grown(offset="0x10", size="0x10", sha256=hashlib.sha256(DATA[0x10:0x20]).hexdigest()),
+     "grow the same slot"),                                             # misses the old range
+    (_grown(container_vram="0x80000010"), "grow the same slot"),        # other container address
     (_grown(tu="src/rom/lib_2000.c"), "grow the same slot"),
     (_row(), "grow the same slot"),                                     # not larger
     (_grown(owner="fz", co_owners=["fb"]), "exactly one registered row"),
@@ -154,6 +158,30 @@ def test_replace_slot_refusals_write_nothing(repo, raw, match):
     with pytest.raises(O.OwnershipError, match=match):
         O.replace_slot(repo, raw)
     assert _state(repo) == before
+
+
+def test_readonly_slot_grows_at_its_front_and_restores(repo):
+    """w24s: lib_1050_sdk's __scScheduleCore table gains __scMain's jump table in front of it."""
+    before = _state(repo)
+    raw = _grown(offset="0x10", sha256=hashlib.sha256(DATA[0x10:0x30]).hexdigest())
+    row, originals = O.replace_slot(repo, raw)
+    assert (row["offset"], row["size"], O.slot_members(row)) == (0x10, 0x20, ["fa", "fb"])
+    assert (repo / row["passthrough_asm"]).read_text() == O.companion_source(row, repo)
+    assert "rom_owned_fa_END - rom_owned_fa_START == 0x20" in (repo / "rush2049.us.ld").read_text()
+    O.restore(originals)
+    assert _state(repo) == before
+
+
+def test_committed_lib_1050_sdk_rodata_slot():
+    ro = next(r for r in O.rom_slots(REPO, check_source=False)
+              if r["owner"] == "__scScheduleCore" and r["owner_section"] == ".rodata")
+    if O.slot_members(ro) == ["__scScheduleCore"]:
+        pytest.skip("__scMain not promoted yet")
+    assert O.slot_members(ro) == ["__scScheduleCore", "__scMain"]
+    assert (ro["container_vram"] + ro["offset"], ro["size"]) == (0x8002D490, 0x30)
+    assert not ro.get("logical_extent")
+    text = (REPO / ro["tu"]).read_text()
+    assert O.pending_members(ro, text) == [] and O.companion_block(ro) not in text
 
 
 def test_replace_slot_refuses_an_unpromoted_old_slot(repo):

@@ -650,8 +650,11 @@ def pending_members(row, text):
     return [m for m in slot_members(row) if passthrough_line(row, m) in text]
 
 
-REPLACE_SAME = ('tu', 'source', 'owner_section', 'container_section', 'container_vram', 'offset',
+REPLACE_SAME = ('tu', 'source', 'owner_section', 'container_section', 'container_vram',
                 'passthrough_asm')
+# A readonly slot keeps its container and may grow at either end (front growth
+# w24s: lib_1050_sdk's .rodata gains __scMain's jump table BEFORE
+# __scScheduleCore's table); the old range must lie inside the new one.
 # A .bss block may also grow at its front (w23i): its address moves down, so
 # only these are kept; the old range must lie inside the new one.
 REPLACE_SAME_BSS = ('tu', 'owner_section', 'container_section', 'offset', 'passthrough_asm')
@@ -665,7 +668,9 @@ def _grows(old, row):
         return (all(old[k] == row[k] for k in REPLACE_SAME_BSS)
                 and row['container_vram'] <= old['container_vram']
                 and old['container_vram'] + old['size'] <= row['container_vram'] + row['size'])
-    return all(old[k] == row[k] for k in REPLACE_SAME) and not row.get('logical_extent')
+    return (all(old[k] == row[k] for k in REPLACE_SAME) and not row.get('logical_extent')
+            and row['offset'] <= old['offset']
+            and old['offset'] + old['size'] <= row['offset'] + row['size'])
 
 
 def replace_slot(repo, raw, linker='rush2049.us.ld'):
@@ -686,6 +691,13 @@ def replace_slot(repo, raw, linker='rush2049.us.ld'):
     {path: original text} for the caller to restore unless the full-ROM gate
     of the promoted set passes and the paths are committed with it.
 
+    A readonly slot may also grow at its FRONT (w24s): lib_1050_sdk's
+    .rodata is __scScheduleCore's table (0x8002D4A4, a 4-byte logical
+    extent) once __scMain is C, preceded by __scMain's jump table
+    (0x8002D490): IDO emits the TU's jump tables in function order, so the
+    grown slot is the complete 0x30 section at 0x8002D490. Same rules: the
+    old range must lie inside the new one, same container and companion.
+
     A `.bss` block (w23i) grows the same way, and may also grow at its
     FRONT: lib_16320's block of func_80016E68 and two co-owners (0x80042670,
     0x30) becomes the TU's whole .bss once the function-local statics of
@@ -699,8 +711,8 @@ def replace_slot(repo, raw, linker='rush2049.us.ld'):
     member's statics (old ones included) at their retail addresses.
 
     Refused unless: the owner has exactly one registered row; the new row
-    keeps its TU, container, section, offset and companion path and grows it
-    with no logical extent (a .bss row: keeps its TU, section and companion
+    keeps its TU, container, section and companion path and grows it over
+    the old range with no logical extent (a .bss row: keeps its TU, section and companion
     path and covers the old range); every member of the old slot is in the
     new one and already C (no passthrough line, no companion block); every
     new member is still passthrough; and the new row validates (original-byte
@@ -723,7 +735,7 @@ def replace_slot(repo, raw, linker='rush2049.us.ld'):
     try:
         row = next(r for r in rom_slots(repo) if r['owner'] == raw['owner'])
         if not _grows(old, row):
-            raise OwnershipError('the replacement must grow the same slot (TU, container, section, offset, '
+            raise OwnershipError('the replacement must grow the same slot (TU, container, section, '
                                  'companion path; a .bss block over its old range) to a complete section')
         text = (repo / row['tu']).read_text()
         if any(m not in slot_members(row) for m in slot_members(old)):
