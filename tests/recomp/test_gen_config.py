@@ -289,6 +289,26 @@ def test_committed_patch_inputs_are_well_formed():
         assert e["vram"] % 4 == 0
 
 
+def test_site_arg_hooks(tmp_path):
+    """Phase 5: `"site_arg": true` passes before_vram as a third argument; the
+    committed busy-wait hooks (rush_hook_spin) all use it, one per site."""
+    p = tmp_path / "patches.json"
+    p.write_text(json.dumps({"hook": [
+        {"func": "f", "before_vram": "0x800FD500", "call": "rush_hook_spin", "site_arg": True},
+        {"func": "g", "call": "plain_hook"}]}))
+    spin, plain = gc.load_patches(p)["hook"]
+    assert spin["text"] == ("{ void rush_hook_spin(uint8_t*, recomp_context*, uint32_t); "
+                            "rush_hook_spin(rdram, ctx, 0x800FD500U); }")
+    assert spin["contract"] == ["rush_hook_spin"] and "text" not in plain
+    p.write_text(json.dumps({"hook": [{"func": "f", "call": "h", "site_arg": True}]}))
+    with pytest.raises(gc.GenError):
+        gc.load_patches(p)
+    spins = [e for e in gc.load_patches()["hook"] if e["call"] == "rush_hook_spin"]
+    assert len(spins) == 14 and all("text" in e for e in spins)
+    sites = [(e["func"], e["before_vram"]) for e in spins]
+    assert len(set(sites)) == len(sites) and ("game_loop", 0x800FD500) in sites
+
+
 # --------------------------------------------------------------- check_output
 
 def test_check_output_summary(tmp_path):

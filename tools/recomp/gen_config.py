@@ -5,7 +5,7 @@
                                        [--n64recomp-src DIR]
 
 Inputs (committed): the four code populations' inventories
-  static  668 functions  layout map (tools.conveyor.pipeline.layout.derive:
+  static  667 functions  layout map (tools.conveyor.pipeline.layout.derive:
                          splat.us.yaml + symbol_addrs.us.txt + asm/us/*.s +
                          asm/us/boot_tail/extents.json), boot segment
                          ROM 0x1000-0x2F4E0 -> 0x80000400
@@ -85,7 +85,7 @@ EXTRA_FUNCTIONS = REPO / "tools" / "recomp" / "extra_functions.json"
 IDENTITY = REPO / "tools" / "recomp" / "identity.json"
 PATCHES = REPO / "tools" / "recomp" / "patches.json"
 
-EXPECTED_COUNTS = {"static": 668, "game": 1216, "ovl_a": 193, "ovl_b": 49}
+EXPECTED_COUNTS = {"static": 667, "game": 1216, "ovl_a": 193, "ovl_b": 49}
 
 
 _C_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
@@ -168,7 +168,7 @@ def _fn(name, vram, size):
 
 
 def load_static_functions(rom_path, game_image_path, repo=REPO):
-    """The 668 static functions from the layout map. layout.derive reads ROM
+    """The 667 static (668 before w24s merged viStub into viDeadlinePassed) functions from the layout map. layout.derive reads ROM
     bytes through targets.BASEROM / targets.GAME_CODE_BIN; both are pointed at
     the verified inputs for the call and restored afterwards."""
     from tools.conveyor.pipeline import layout
@@ -555,6 +555,23 @@ def apply_identity(functions, identity):
     return out, applied
 
 
+def _patch_hook(e):
+    """One patches.json "hook" entry. `"site_arg": true` passes the hook's
+    before_vram as a third argument (one runtime function serving several
+    sites, e.g. rush_hook_spin at every busy-wait loop)."""
+    bv = int(e["before_vram"], 16) if e.get("before_vram") else None
+    hook = {"func": e["func"], "call": e["call"], "before_vram": bv}
+    if e.get("site_arg"):
+        if bv is None:
+            raise GenError(f"hook {e['call']} in {e['func']}: site_arg needs before_vram")
+        if not _C_IDENT.match(e["call"]):
+            raise GenError(f"hook call {e['call']!r} is not a C identifier")
+        hook["text"] = ("{ void %s(uint8_t*, recomp_context*, uint32_t); %s(rdram, ctx, 0x%08XU); }"
+                        % (e["call"], e["call"], bv))
+        hook["contract"] = [e["call"]]
+    return hook
+
+
 def load_patches(path=PATCHES):
     path = Path(path)
     if not path.is_file():
@@ -562,9 +579,7 @@ def load_patches(path=PATCHES):
     doc = json.loads(path.read_text())
     return {"stubs": dict(doc.get("stubs", {})), "ignored": dict(doc.get("ignored", {})),
             "renamed": dict(doc.get("renamed", {})),
-            "hook": [{"func": e["func"], "call": e["call"],
-                      "before_vram": int(e["before_vram"], 16) if e.get("before_vram") else None}
-                     for e in doc.get("hook", [])],
+            "hook": [_patch_hook(e) for e in doc.get("hook", [])],
             "instruction": [{"func": e["func"], "vram": int(e["vram"], 16),
                              "original": int(e["original"], 16), "value": int(e["value"], 16),
                              "now": e.get("now", "")}

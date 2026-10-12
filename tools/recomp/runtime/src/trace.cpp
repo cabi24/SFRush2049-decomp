@@ -92,12 +92,13 @@ void parse_presses(const std::string& spec) {
 void status_line(const char* tag) {
     fprintf(stderr,
         "[rush] %s t=%.1fs vi=%llu gfx_tasks=%llu audio_tasks=%llu other_tasks=%llu swaps=%llu "
-        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu image=%s\n",
+        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu image=%s spin_yields=%llu\n",
         tag, now_s(), (unsigned long long)n_vi, (unsigned long long)n_gfx,
         (unsigned long long)n_audio_task, (unsigned long long)n_other_task,
         (unsigned long long)n_swap, last_origin.load(), (unsigned long long)fb_nonzero,
         (unsigned long long)fb_distinct, last_dl.load(), last_dl_size.load(),
-        (unsigned long long)n_audio_samples, current_image.c_str());
+        (unsigned long long)n_audio_samples, current_image.c_str(),
+        (unsigned long long)rush::spin_yield_count());
 }
 
 } // namespace

@@ -1,5 +1,5 @@
 {
- "note": "Functions N64Recomp refuses (found by running it, see README 'Acceptance'), and what the config does with each. stub: emitted as an empty body (the operation has no host meaning). ignored: not emitted; the runtime must provide a host function of the same name (Phase 1 shim list). Names are inventory names (static population). renamed: emitted as NAME_recomp because NAME collides with a host C/libc declaration (found by compiling the output with clang). instruction: single-word replacements (N64Recomp [[patches.instruction]]); the hand-written codec kernels get their PC with a never-taken `bltzal zero` whose only effect is ra = pc+8, which N64Recomp treats as a call into the inline table; the pair is rewritten to load the same ra value directly (lui/ori), behaviour unchanged. hook: C call inserted by N64Recomp ([[patches.hook]]) at function entry (or before_vram); the runtime (tools/recomp/runtime) defines the callee extern \"C\".",
+ "note": "Functions N64Recomp refuses (found by running it, see README 'Acceptance'), and what the config does with each. stub: emitted as an empty body (the operation has no host meaning). ignored: not emitted; the runtime must provide a host function of the same name (Phase 1 shim list). Names are inventory names (static population). renamed: emitted as NAME_recomp because NAME collides with a host C/libc declaration (found by compiling the output with clang). instruction: single-word replacements (N64Recomp [[patches.instruction]]); the hand-written codec kernels get their PC with a never-taken `bltzal zero` whose only effect is ra = pc+8, which N64Recomp treats as a call into the inline table; the pair is rewritten to load the same ra value directly (lui/ori), behaviour unchanged. hook: C call inserted by N64Recomp ([[patches.hook]]) at function entry (or before_vram; \"site_arg\": true passes that vram as a third argument); the runtime (tools/recomp/runtime) defines the callee extern \"C\".",
  "stubs": {
   "func_8002C5E0": "cache instruction (D-cache range loop; no host meaning)",
   "__osTlbFlush": "mfc0 cop0 register 10 (EntryHi; TLB unused by the recompiled game)",
@@ -134,6 +134,104 @@
    "before_vram": "0x80000EE0",
    "call": "rush_hook_frame",
    "why": "Phase 2 frame oracle (runtime/src/oracle.cpp): the libultra scheduler's __scExec hands every RSP task to osSpTaskStartGo(&sctask->list) at 0x80000EE4; before it the hook reads the OSScTask pointer from the frame (sp+0x24), and for graphics tasks counts the frame, hashes the display lists and the 8 MiB of rdram, drives the frame-clocked input script and stops after --frames. It runs on the scheduler thread while the other game threads are suspended (ultramodern runs one at a time), so the snapshot is consistent."
+  },
+  {
+   "func": "game_loop",
+   "before_vram": "0x800FD500",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain when state_word_a != state_word_b (the v1 laptop wall-clock boot hang: 13/13 runs with RT64)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "func_80096130",
+   "before_vram": "0x80096184",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "suspension_setup",
+   "before_vram": "0x800A5094",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "tire_compound_set",
+   "before_vram": "0x800A5C2C",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "ovl_a_func_8038B388",
+   "before_vram": "0x8038B3DC",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain (front end, image A)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "ovl_a_func_8038B3EC",
+   "before_vram": "0x8038B4E8",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain (front end, image A)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "ovl_a_func_8038B940",
+   "before_vram": "0x8038BA20",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain (front end, image A)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "ovl_a_func_8038B940",
+   "before_vram": "0x8038BA84",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lh D_8002EB70 (__osScTaskCount, scheduler +0x288) until 0: mode-switch drain (front end, image A)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "dma_wait_complete",
+   "before_vram": "0x8008AB3C",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lw scheduler+0x274 (D_8002EB5C, retrace counter) until it changes: waits for the next VI); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "wheel_params_set",
+   "before_vram": "0x800A4BA0",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lb D_8011028C until 0 (cleared by func_800958B8 / camera_transform / func_800A4CB8)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "wheel_params_set",
+   "before_vram": "0x800A4BC8",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lw 0x80146168 until 0 (cleared by func_800A4CB8)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "func_800E7038",
+   "before_vram": "0x800E7114",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (lbu D_80111950 while == 0x80); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "func_80011848",
+   "before_vram": "0x80011868",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (static: lbu 0x800382CC until 0 (cleared by func_800114C0 / func_80011CD8 / func_80011D24)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
+  },
+  {
+   "func": "func_80014140",
+   "before_vram": "0x8001416C",
+   "call": "rush_hook_spin",
+   "site_arg": true,
+   "why": "busy-wait with no call inside (static: lh 0x80038362 while > 0 (written by func_80013DEC)); ultramodern switches game threads only inside libultra calls, so the writer (another game thread woken by an SP/DP/VI/AI message) never runs while this spins. rush_hook_spin (runtime/src/hooks.cpp) yields like rush_hook_park_idle (wait <=1 ms for an external message, deliver it, run a woken higher-priority thread); a no-op with --clock frames."
   }
  ]
 }

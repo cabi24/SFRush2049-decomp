@@ -22,10 +22,15 @@ void register_overlays();
 // null_renderer.cpp
 std::unique_ptr<ultramodern::renderer::RendererContext> create_null_renderer(
     uint8_t* rdram, ultramodern::renderer::WindowHandle window, bool developer_mode);
+void set_null_dl_delay_ms(int ms);  // --null-dl-delay: late asynchronous DP completion (test)
 
 // rt64_renderer.cpp (RUSH_RENDERER=rt64)
 std::unique_ptr<ultramodern::renderer::RendererContext> create_rt64_renderer(
     uint8_t* rdram, ultramodern::renderer::WindowHandle window, bool developer_mode);
+
+// hooks.cpp: rush_hook_spin yields so far (wall clock only)
+uint64_t spin_yield_count();
+void set_spin_yield(bool on);  // --no-spin-yield (diagnostic): the loops spin as in v1
 
 // sdl_frontend.cpp (RUSH_RENDERER=rt64): window, events, controller/keyboard
 ultramodern::gfx_callbacks_t::gfx_data_t sdl_create_gfx();
