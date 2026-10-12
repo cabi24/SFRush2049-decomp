@@ -1,6 +1,6 @@
 # w25r: recomp Phase 5 (wall-clock busy-waits, RT64 self-check mask, package v2 fixes, audio ucode) — tooling lane, branch w25r
 
-Status: in progress (2026-10-12). Not a matching lane: no src/, asm/, lock or coverage change.
+Status: done (2026-10-12). Not a matching lane: no src/, asm/, lock or coverage change.
 Host: rocky, `~/rush2049/recomp/w25r` (clean copy of this branch's tracked files + w24r's `b.sh`/`sanity`; nothing
 ROM-derived committed). Inputs: the v1 laptop report `tools/recomp/reports/v1/REPORT.md`.
 
@@ -103,7 +103,7 @@ libultra aspMain**: no acmd command table; the code walks per-voice records in D
 indirect jumps are only `jr $ra/$30/$8` on saved return addresses (RSPRecomp collects those itself). The declared
 4096 bytes hold data after IMEM 0x1FC0 (two words decode as invalid instructions), so the config stops at the code
 end: `text_offset 0x2AC50, text_size 0xF40, text_address 0x04001080` (gen_config `AUDIO_UCODE` ->
-`rush2049.rsp_audio.toml`; `RSPRecomp rush2049.rsp_audio.toml` -> `rsp/rush_audio_ucode.cpp`, 2578 lines; CMake
+`rush2049.rsp_audio.toml`; `RSPRecomp rush2049.rsp_audio.toml` -> `rsp/rush_audio_ucode.cpp`, 2548 lines; CMake
 compiles it with `-march=nehalem` when present, `RUSH_HAVE_AUDIO_UCODE`). No extra branch targets, no unsupported
 instructions, no "Unhandled jump target" in any run.
 
@@ -132,3 +132,74 @@ Lockstep (audio ucode now runs synchronously in osSpTaskStartGo; AI paced): stoc
     race_track2:   EQUIVALENT over 1800 frames (judged: all frames, 2 baseline run(s)) / all 3599 captured calls identical
     two_player:    EQUIVALENT over 1800 frames (judged: all frames, 2 baseline run(s)) / all 3599 captured calls identical
     audio_options: EQUIVALENT over 1800 frames (judged: all frames, 2 baseline run(s)) / all 3599 captured calls identical
+
+## 3. Package v2 fixes (docs + runtime)
+
+- INSTALL A5: `cmake --build build\N64Recomp --target N64RecompCLI RSPRecomp` (Linux: `ninja ... N64RecompCLI
+  RSPRecomp`); A6 runs `RSPRecomp rush2049.rsp_audio.toml`; A8 shows `Rush 2049 host: recompiled audio ucode`.
+- T9 privacy: runtime fix. The host deletes librecomp's `--home/rush2049.n64.us.z64` in the game's
+  `on_init_callback` (after `load_stored_rom` read it) and at exit (`--keep-rom-copy` keeps it); log `removed the
+  ROM copy ...`. T9 still lists/deletes `*.z64` before zipping (a run that dies before game init could keep one).
+- TEST_PROCESS: wall clock is the default command, `--clock frames` the documented fallback; explicit wall-clock
+  T1 (D3D12 + Vulkan) - T4; T6 keys fixed (UP/DOWN = row, LEFT/RIGHT = value); T2 attract (one START, 5 min);
+  T6b stunt; T7a pad/keyboard mapping with `--log-input`; sound notes in every step; T8 adds
+  `--mask-renderer`. REPORT_TEMPLATE has a Mode column, a sound column, a pad table, a sound section.
+- Attract mode found: idle, the game never leaves the boot notice NO CONTROLLER PAK DETECTED / CONTINUE WITHOUT
+  SAVING (silent; w24r's "no demo race" was this). After one START: title 5 s, demo race ~30 s, title, next demo;
+  the demos cycle tracks 1-4 (race data 0x43FE80, 0x4D2FA0, 0x555850, 0x5D6160). `attract.press` presses START
+  at 5 s.
+- Stunt: `stunt.press` = SELECT MODE (screen after the 14 s A) DOWN x4 + A: race data 0x812BE0 (DOWN x1-x3:
+  0x43FE80). RT64 on lavapipe framebuffer at frame ~5900: a stunt arena (ramps, score box "0", 4:40 timer).
+
+## 5. Package v2
+
+- `~/rush2049/recomp/dist/rush2049-recomp-test-v2.tar.gz` (rocky) = Pi `build/recomp/dist/rush2049-recomp-test-v2.tar.gz`
+  in this worktree (git-ignored): 36,166,594 bytes, sha256 `99b57e310f5bc1f369cbaa871bb529b7453e9c68cc71c92ea3a20deb0027343b`,
+  2,173 files (2,172 in MANIFEST), repo commit c2b81dc6, no `.z64` member.
+- Private, rocky only: `rush2049-recomp-test-v2-with-rom.tar.gz`, 47,595,717 bytes, sha256
+  `ce4ee0b6ced3fdadfdb1b143219fb26cfc6714ca98a51625480d76e6319c336f`.
+- Sanity (rocky, fresh extract, INSTALL B literally: `~/rush2049/recomp/w25r/sanity/run.sh`, log `sanity/log.txt`):
+  MANIFEST OK; make_rom = manifest (sha256 1202705...); prebuilt and built hosts headless 30 s with `--press 5:START`:
+  `removed the ROM copy`, `first non-silent audio buffer` at 5.1 s, `load ovl_b` at 10.0 s (attract demo),
+  `final ... gfx_tasks=899/900 audio_nonzero=1,101,625`; N64RecompCLI + RSPRecomp built; 44 RecompiledFuncs files;
+  RT64 cloned at 23cab603; configure `renderer rt64, capture ON` + `recompiled audio ucode`; 0 `.z64` left in
+  `run/`; lockstep a vs b `EQUIVALENT over 1800 frames (judged: all frames, 1 baseline run(s))`. RT64 in the
+  container from the fresh build: wall clock 60 s `busy-wait at 0x800FD500` (0.78 s) and `0x80096184` (40 s),
+  demo races at 10 s and 45 s, SDL disk audio 60 s; lockstep RT64 c: plain `DIFFERENT at frame 2: 71 rdram
+  page(s)`, `--mask-renderer`: `EQUIVALENT except renderer-written pages over 1800 frames (judged: all frames, 1
+  baseline run(s))`.
+
+## Checks
+
+- Pi `python3 -m pytest tests/recomp -q -p no:cacheprovider`: 144 passed, 3 skipped.
+- rocky (civenv): 142 passed, 5 skipped; with private inputs (RUSH2049_ROM, RUSH2049_RECOMP_HOST/ROM from
+  build/stock, RUSH_N64RECOMP_INCLUDE): 145 passed, 2 skipped (game_code.bin, libubsan).
+- New tests: site_arg hooks, runtime_buffers, rsp_audio config (test_gen_config), renderer page mask and host
+  image-mask header (test_oracle).
+
+## Laptop prompt (owner -> Claude on the Windows laptop)
+
+> You are testing package v2 of the Rush 2049 N64 recompilation on this Windows 11 laptop (rush2049-recomp-test-v2.tar.gz;
+> the ROM is in the -with-rom variant or I will give you rom\baserom.us.z64). Extract it to C:\rush2049\, read
+> README.md, CHANGES.md (v2 section) and INSTALL.md, and build it by following INSTALL section A exactly (A5 now
+> builds N64RecompCLI and RSPRecomp, A6 also runs RSPRecomp). Then follow TEST_PROCESS.md in order, running every
+> step in the default wall-clock mode first (no --clock): T1 boot on D3D12 and Vulkan, T2 attract (press START
+> once, then idle 5 minutes), T3 race, T4 tracks 2-4, T5 two players, T6 audio options (listen to each change),
+> T6b stunt mode, T7a pad/keyboard mapping with --log-input (I will press the Xbox 360 pad buttons when you ask),
+> T7 free play with me, T8 lockstep self-check (all three compare lines). Only if a wall-clock step fails, record
+> the failure with the last 40 log lines and repeat that step with --clock frames. Describe what you see and what
+> I hear at every step (sound is new: music, engine, effects, gaps, speed, pitch). Fill REPORT_TEMPLATE.md,
+> save it with the logs under run\, delete any *.z64 under run\ as T9 shows, zip run\ (no ROM, no --wav files)
+> and give me the report and the zip.
+
+## Open items for Phase 6
+
+Tester v2 report (real GPU wall clock, sound by ear, attract/stunt pixels, pad table); AI pacing thresholds on
+a real audio device; long call-free computations that could still starve threads (the census covers polling
+loops only); Windows build of RSPRecomp output under clang-cl (`-march=nehalem`) unverified; saves/controller
+pak (the boot notice); other register_params IPA callees; cheaper capture; the lockstep AI rate yields ~82 % of
+22.05 kHz over a scripted minute (deterministic; why not 100 %: open).
+
+## Permission denials
+
+None.
