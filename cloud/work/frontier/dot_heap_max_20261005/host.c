@@ -39,7 +39,7 @@ s32 osRecvMesg(OSMesgQueue *queue, void **message, s32 blocking)
     return 0;
 }
 
-s32 osJamMesg(OSMesgQueue *queue, void *message, s32 blocking)
+s32 osSendMesg(OSMesgQueue *queue, void *message, s32 blocking)
 {
     assert(queue == &D_80152770 && message == 0 && blocking == 0);
     assert(call_count++ == 1);

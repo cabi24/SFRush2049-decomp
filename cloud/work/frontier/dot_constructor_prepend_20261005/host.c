@@ -38,7 +38,7 @@ void func_80091FBC(void *l,Object *o,u32 before) {
     memcpy(observed+8,((u8 *)&object)+8,4);
     object.handle=values[9];
 }
-int osJamMesg(void *q,void *m,int block) {
+int osSendMesg(void *q,void *m,int block) {
     if(q!=D_80142728 || m!=0 || block!=0 || phase!=3 || object.active!=1)bad=1;
     phase=4;object.handle=values[10];return 0;
 }

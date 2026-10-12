@@ -45,7 +45,7 @@ class Machine:
             for i in list(range(1,16))+[24,25]:r[i]=0xbad00000+i
             for i in range(20):fp[i]=bits(-400.5-i)
         while pc!=STOP:
-            if pc in (a['osRecvMesg'],a['osJamMesg']):
+            if pc in (a['osRecvMesg'],a['osSendMesg']):
                 assert pending is None
                 if pc==a['osRecvMesg']:
                     assert (r[4],r[5],r[6])==(a['D_80142728'],0,1) and not locked

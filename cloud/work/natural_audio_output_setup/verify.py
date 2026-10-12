@@ -30,7 +30,7 @@ def targets():
 def compile_link(out, symbols, source=NAME+'.c'):
     ido = Path(os.environ.get('IDO_DIR', ROOT/'tools/cloud/ido')).resolve()
     subprocess.run([str(ido/'cc'), '-c', *FLAGS, str(HERE/source), '-o', str(out/'candidate.o')], check=True)
-    names = ['D_80152770', 'D_801527C8', 'osRecvMesg', 'osJamMesg']
+    names = ['D_80152770', 'D_801527C8', 'osRecvMesg', 'osSendMesg']
     script = 'OUTPUT_ARCH(mips)\nENTRY('+NAME+')\nSECTIONS { . = '+hex(symbols[NAME])+'; .text : SUBALIGN(4) { *(.text) } }\n'
     script += '\n'.join(k+' = '+hex(symbols[k])+';' for k in names)
     (out/'link.ld').write_text(script)
@@ -98,7 +98,7 @@ def emulate(words, symbols, values, excluded, use_default, poison_seed=0):
             assert pending is None,'branch inside delay slot'
             if isinstance(old_pending,tuple):
                 address=old_pending[1]
-                expected=symbols['osRecvMesg'] if not calls else symbols['osJamMesg']
+                expected=symbols['osRecvMesg'] if not calls else symbols['osSendMesg']
                 assert address==expected and len(calls)<2
                 assert regs[4]==symbols['D_80152770'] and regs[5]==0 and regs[6]==(1 if not calls else 0)
                 calls.append(address)

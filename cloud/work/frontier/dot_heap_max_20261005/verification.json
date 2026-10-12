@@ -337,12 +337,12 @@
   },
   "new_candidate_bytes": 160,
   "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-  "source_sha256": "b8783350a6b2d0dbd12e01c09be0187e5e217ea7955345bde2df2092cb53154a",
+  "source_sha256": "dc7cb97baa1677839e1b69fce1cbe38fd9a89ac4f00033cc5f2dfd7ed18e6f1f",
   "sources": {
     "behavior.py": "7157efbf96dc91b82ddb936f748b3f8fffc6b4fc1136b8b8e097dae4f81f77dc",
     "group/group.json": "d2ac5502ebf9245827cf0a32c2d24bdcacd413ebf5e1a15b32e91121a976244b",
-    "group/heap_max.c": "b8783350a6b2d0dbd12e01c09be0187e5e217ea7955345bde2df2092cb53154a",
-    "host.c": "ad21894808d0162ff2dd72b708e3fa633f805fc10cafb510cb0f6a625a2d4a44",
+    "group/heap_max.c": "dc7cb97baa1677839e1b69fce1cbe38fd9a89ac4f00033cc5f2dfd7ed18e6f1f",
+    "host.c": "bb4e8a4e3504001f4cb2a8ff1de980c2dfcce3adbdb96ba8237cf6e0f4e2d674",
     "verify.py": "bd910d3699da84b3ff3dfa03a7b8f27074b58b3135acef7b5f40a3b77d7079ef"
   },
   "status": "MATCH",

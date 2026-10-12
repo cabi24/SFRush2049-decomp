@@ -12,7 +12,7 @@ s32 osRecvMesg(OSMesgQueue *queue, OSMesg *message, s32 blocking) {
  assert(phase==0 && queue==&D_80152770 && message==0 && blocking==1);
  D_801527C8=default_after_acquire;phase=1;return -1;
 }
-s32 osJamMesg(OSMesgQueue *queue, OSMesg message, s32 blocking) {
+s32 osSendMesg(OSMesgQueue *queue, OSMesg message, s32 blocking) {
  assert(phase==1 && queue==&D_80152770 && message==0 && blocking==0);
  phase=2;return -1;
 }

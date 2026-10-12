@@ -12,7 +12,7 @@ extern s16 D_8014A10A;
 extern u32 D_801174B4;
 extern unsigned char D_801461D0[];
 extern s32 osRecvMesg(void *, void *, s32);
-extern s32 osJamMesg(void *, void *, s32);
+extern s32 osSendMesg(void *, void *, s32);
 extern s32 slot_state_setup(s32);
 
 void func_800D9058(void)
@@ -25,7 +25,7 @@ void func_800D9058(void)
     height = D_80113E8C[D_80151AD0 * 24];
     osRecvMesg(D_801461D0, 0, 1);
     slot_state_setup(11);
-    osJamMesg(D_801461D0, 0, 0);
+    osSendMesg(D_801461D0, 0, 0);
     D_8014A10A = (s32)((u32)height - 24U) / 16;
     count = 2;
     for (index = 0; index < 12; index++) {

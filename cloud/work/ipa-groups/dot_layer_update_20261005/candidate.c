@@ -18,7 +18,7 @@ extern s32 D_80146104;
 extern Msg D_80142DD8[128];
 extern s32 D_80142728, D_801427A8;
 s32 osRecvMesg(void *,void *,s32);
-s32 osJamMesg(void *,void *,s32);
+s32 osSendMesg(void *,void *,s32);
 Entity *func_80091BA8(s32 h) {
     if(h==-1)return 0;
     if(D_80110244[h&D_80146104].id!=h)return 0;
@@ -41,18 +41,18 @@ void entity_transform_calc(s32 h,f32 x,f32 y,f32 z,f32 w) {
             if(w!=-2.0f && w!=e->w)m->payload.value.w=w; else m->payload.value.w=-2.0f;
         }
     }
-    if(m!=0)osJamMesg(&D_801427A8,m,0);
+    if(m!=0)osSendMesg(&D_801427A8,m,0);
 }
 void client_sync(s32 h,f32 opacity) {
     osRecvMesg(&D_80142728,0,1);
     entity_transform_calc(h,opacity<0.0f ? 0.0f : opacity>1.0f ? 1.0f : opacity,
                           -2.0f,-2.0f,-2.0f);
-    osJamMesg(&D_80142728,0,0);
+    osSendMesg(&D_80142728,0,0);
 }
 __inline void entity_hierarchy_update(s32 h,f32 value) {
     osRecvMesg(&D_80142728,0,1);
     entity_transform_calc(h,-2.0f,-2.0f,-2.0f,value);
-    osJamMesg(&D_80142728,0,0);
+    osSendMesg(&D_80142728,0,0);
 }
 void scheduler_recv(s32 h) {
     Msg *m=0;
@@ -65,8 +65,8 @@ void scheduler_recv(s32 h) {
         m->payload.target=e;
         e->msgCount++;
     }
-    osJamMesg(&D_80142728,0,0);
-    if(m!=0)osJamMesg(&D_801427A8,m,0);
+    osSendMesg(&D_80142728,0,0);
+    if(m!=0)osSendMesg(&D_801427A8,m,0);
 }
 typedef unsigned short u16;
 typedef struct LayerState {s32 handle;f32 level,style;u8 other12[8];} LayerState;

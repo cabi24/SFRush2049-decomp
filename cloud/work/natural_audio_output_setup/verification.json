@@ -11,7 +11,7 @@
     "-non_shared",
     "-Wab,-r4300_mul"
   ],
-  "source_sha256": "bad44508030b2ad7f237428fa7c354de8e1e8049cad9e518e28dc7326fd7334d",
+  "source_sha256": "e2fabe164d59052a5bd69d93512a0253088a27583ebaabdf3dcdba3fd68ba257",
   "target_bytes": 148,
   "candidate_body_bytes": 144,
   "zero_alignment_bytes": 0,

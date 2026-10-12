@@ -42,6 +42,15 @@
  "cloud/work/dot_menu_options_root_20261005/verify.py": {
   "rule": "Python string literals naming renamed functions"
  },
+ "cloud/work/dot_selector_d9058_20261006/candidate.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/dot_selector_d9058_20261006/context.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/dot_selector_d9058_20261006/host.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
  "cloud/work/dot_selector_d9058_20261006/validation.json": {
   "pins": [
    {
@@ -51,6 +60,26 @@
    }
   ],
   "rule": "sha256 pins rebound"
+ },
+ "cloud/work/dot_selector_d9058_20261006/verification.json": {
+  "pins": [
+   {
+    "new": "2963065ac94be9e98b8dbfb29e46e74f7dec987b8085ab010a50548aaa4ad04b",
+    "old": "ca98939e2dad8b69f4da09bd0d27cf6d6137589a8e9ae7f328bb78a606126335",
+    "path": "cloud/work/dot_selector_d9058_20261006/candidate.c"
+   },
+   {
+    "new": "f70431a0ba02acf6b16705fc3d56ba0242a9bbbbe70cf741eaddc4704dfce5aa",
+    "old": "2963fbe58bb796af2a1b94086dfd01cfa29c8dadbdfd5f89612e3bf47b511fe2",
+    "path": "cloud/work/dot_selector_d9058_20261006/context.c"
+   },
+   {
+    "new": "9b40ff0cc122a86e3647c67d5bb009e0e93575b4ab4f17c8be05b05e271bffa5",
+    "old": "2350c45f0367b46ca7a72d82d741a84211e972af3783ed1516ef21940bbb3286",
+    "path": "cloud/work/dot_selector_d9058_20261006/host.c"
+   }
+  ],
+  "rule": "receipt name strings renamed"
  },
  "cloud/work/dot_substantial_scout/native_audit.json": {
   "rule": "receipt name strings renamed"
@@ -79,6 +108,22 @@
    }
   ],
   "rule": "sha256 pins rebound"
+ },
+ "cloud/work/frontier/dot_constructor_prepend_20261005/candidate.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/dot_constructor_prepend_20261005/host.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/dot_constructor_prepend_20261005/verification.json": {
+  "pins": [
+   {
+    "new": "c1a7e5c1e05d92d9aa1e8685cf3db3ae0f17bb5df0f89ff785fee78c1a42cdaa",
+    "old": "d70f5c263914906b5b67af9e475a266a400c304ea373190d8fc791a2b8f6d281",
+    "path": "cloud/work/frontier/dot_constructor_prepend_20261005/candidate.c"
+   }
+  ],
+  "rule": "receipt name strings renamed"
  },
  "cloud/work/frontier/dot_directional_sound_20261005/verification.json": {
   "pins": [
@@ -135,12 +180,28 @@
   ],
   "rule": "sha256 pins rebound"
  },
+ "cloud/work/frontier/dot_heap_max_20261005/group/heap_max.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/dot_heap_max_20261005/host.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
  "cloud/work/frontier/dot_heap_max_20261005/verification.json": {
   "pins": [
    {
-    "new": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41",
-    "old": "9407121b3d6d68a4990144b36f330630027dfab2b927b565ccc228eaab690443",
-    "path": "src/blob/groups/frontier_heap_free_total/group.c"
+    "new": "dc7cb97baa1677839e1b69fce1cbe38fd9a89ac4f00033cc5f2dfd7ed18e6f1f",
+    "old": "b8783350a6b2d0dbd12e01c09be0187e5e217ea7955345bde2df2092cb53154a",
+    "path": "src/blob/groups/frontier_heap_max/heap_max.c"
+   },
+   {
+    "new": "dc7cb97baa1677839e1b69fce1cbe38fd9a89ac4f00033cc5f2dfd7ed18e6f1f",
+    "old": "b8783350a6b2d0dbd12e01c09be0187e5e217ea7955345bde2df2092cb53154a",
+    "path": "src/blob/groups/frontier_heap_max/heap_max.c"
+   },
+   {
+    "new": "bb4e8a4e3504001f4cb2a8ff1de980c2dfcce3adbdb96ba8237cf6e0f4e2d674",
+    "old": "ad21894808d0162ff2dd72b708e3fa633f805fc10cafb510cb0f6a625a2d4a44",
+    "path": "cloud/work/frontier/dot_heap_max_20261005/host.c"
    }
   ],
   "rule": "sha256 pins rebound"
@@ -358,15 +419,67 @@
   ],
   "rule": "sha256 pins rebound"
  },
- "cloud/work/ipa-groups/dot_layer_update_20261005/verification.json": {
+ "cloud/work/frontier/task_enqueue_20261005/candidate.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/task_enqueue_20261005/verification.json": {
   "pins": [
    {
-    "new": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768",
-    "old": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
-    "path": "src/blob/groups/codex_transform_b109/group.c"
+    "new": "37e228f7d4d6b86971392388b76e13a143f9dc2ea3d7980a99b314e0e5150584",
+    "old": "8a45698d9d78bf50633c2b49e53b3e6c8986d593545c708932a52104aa95f822",
+    "path": "cloud/work/frontier/task_enqueue_20261005/candidate.c"
+   },
+   {
+    "new": "974645b811d216ea818029a1796e0f359e17b2fc87d6e3be1f3d2978c0e57a17",
+    "old": "33e086a51d2b14d7d05406cdbbf419bed7cfc37578019ffa3418c7a876f0c646",
+    "path": "cloud/work/tiny_A116/control.packet_view.c"
+   },
+   {
+    "new": "96270eba869063fd919ad3c7b9135a234c2604ac7f14770661524616deeee38d",
+    "old": "0a4b0e7b0919611634785eb6f499dd8920e1d3f67cd1884361fc59b202decbb6",
+    "path": "cloud/work/tiny_A116/control.scalar_globals.c"
+   },
+   {
+    "new": "5bdc774bae2540539f1a64fe483489c0497c214d9dd730f9a274d66b9d1dda39",
+    "old": "36a690b4714083b2b0b26ceed79a7a95ef1b96e08415901c16bd0936fda351ba",
+    "path": "cloud/work/tiny_A116/func_8010FBE0.c"
+   },
+   {
+    "new": "6495b60ec8af753117eb071dd5e7d53ed1303abca5ec3eb43b2280ad13699181",
+    "old": "0b14ba199b69a5ba80ad8874e2aea0ebf0e676c17c3947c24c00939b3aeb799e",
+    "path": "cloud/work/tiny_A50/func_8010FBE0.c"
    }
   ],
   "rule": "sha256 pins rebound"
+ },
+ "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/ipa-groups/dot_layer_update_20261005/host.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/ipa-groups/dot_layer_update_20261005/native.py": {
+  "rule": "Python string literals naming renamed functions"
+ },
+ "cloud/work/ipa-groups/dot_layer_update_20261005/verification.json": {
+  "pins": [
+   {
+    "new": "e9623c97160dd991d3bb0faf1e8c90592d7655815098116aa3181f10f79bb94b",
+    "old": "58191cc224dd29f108a1650472e297c2705e06df3e7ffb625de4c3d874152752",
+    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c"
+   },
+   {
+    "new": "51db76bbd1b4c0713600844197302f7a24798fe1ee0a85b9f8611689feedab15",
+    "old": "df0efb7bdb90391d6d6f8af1f386add8ac93002ee1defabc07377e6ddf9d9074",
+    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/host.c"
+   },
+   {
+    "new": "836ce7120143bf5ef5dc8bf8262e5566c9a194fe07ce566db5a0920dc58f6279",
+    "old": "3157ae29583d81d7064b7ae8b5a1a90a6942cb9ef3232de2e5349d7d5f25a2d8",
+    "path": "cloud/work/ipa-groups/dot_layer_update_20261005/native.py"
+   }
+  ],
+  "rule": "receipt name strings renamed"
  },
  "cloud/work/ipa-groups/dot_object_sound_20261005/verification.json": {
   "pins": [
@@ -383,6 +496,38 @@
  },
  "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": {
   "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/natural_audio_output_setup/audio_output_setup.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/natural_audio_output_setup/host_test.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/natural_audio_output_setup/layout_experiment.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/natural_audio_output_setup/peer_review.json": {
+  "pins": [
+   {
+    "new": "e2fabe164d59052a5bd69d93512a0253088a27583ebaabdf3dcdba3fd68ba257",
+    "old": "bad44508030b2ad7f237428fa7c354de8e1e8049cad9e518e28dc7326fd7334d",
+    "path": "cloud/work/natural_audio_output_setup/audio_output_setup.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/natural_audio_output_setup/verification.json": {
+  "pins": [
+   {
+    "new": "e2fabe164d59052a5bd69d93512a0253088a27583ebaabdf3dcdba3fd68ba257",
+    "old": "bad44508030b2ad7f237428fa7c354de8e1e8049cad9e518e28dc7326fd7334d",
+    "path": "cloud/work/natural_audio_output_setup/audio_output_setup.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/natural_audio_output_setup/verify.py": {
+  "rule": "Python string literals naming renamed functions"
  },
  "cloud/work/runtime_b_teardown_20261006/verification.json": {
   "pins": [
@@ -410,6 +555,93 @@
     "new": "2aee4ddf65c5251ee08c69b4eb31862d70f1313d2d652daf2e885e0c6de87287",
     "old": "19cc628d2e7bd18b0700319740c08348b98de6f59300eb375a23be091e09d985",
     "path": "src/blob/func_80087804.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/tiny_A116/control.packet_view.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/tiny_A116/control.packet_view.verification.json": {
+  "pins": [
+   {
+    "new": "974645b811d216ea818029a1796e0f359e17b2fc87d6e3be1f3d2978c0e57a17",
+    "old": "33e086a51d2b14d7d05406cdbbf419bed7cfc37578019ffa3418c7a876f0c646",
+    "path": "cloud/work/tiny_A116/control.packet_view.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/tiny_A116/control.scalar_globals.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/tiny_A116/control.scalar_globals.verification.json": {
+  "pins": [
+   {
+    "new": "96270eba869063fd919ad3c7b9135a234c2604ac7f14770661524616deeee38d",
+    "old": "0a4b0e7b0919611634785eb6f499dd8920e1d3f67cd1884361fc59b202decbb6",
+    "path": "cloud/work/tiny_A116/control.scalar_globals.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/tiny_A116/func_8010FBE0.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/tiny_A116/packet.json": {
+  "pins": [
+   {
+    "new": "96270eba869063fd919ad3c7b9135a234c2604ac7f14770661524616deeee38d",
+    "old": "0a4b0e7b0919611634785eb6f499dd8920e1d3f67cd1884361fc59b202decbb6",
+    "path": "cloud/work/tiny_A116/control.scalar_globals.c"
+   },
+   {
+    "new": "5bdc774bae2540539f1a64fe483489c0497c214d9dd730f9a274d66b9d1dda39",
+    "old": "36a690b4714083b2b0b26ceed79a7a95ef1b96e08415901c16bd0936fda351ba",
+    "path": "cloud/work/tiny_A116/func_8010FBE0.c"
+   },
+   {
+    "new": "974645b811d216ea818029a1796e0f359e17b2fc87d6e3be1f3d2978c0e57a17",
+    "old": "33e086a51d2b14d7d05406cdbbf419bed7cfc37578019ffa3418c7a876f0c646",
+    "path": "cloud/work/tiny_A116/control.packet_view.c"
+   },
+   {
+    "new": "167f069a3066dab93fb2a1a10a99a038a535292f0bf1cd3fd83400a00ecbfee5",
+    "old": "0afee4fe7e78b0468d0724869113086c3b4f62c79065b4d37cca93571580d161",
+    "path": "cloud/work/tiny_A116/control.packet_view.verification.json"
+   },
+   {
+    "new": "b8b6ce526dddbe7b82739ffc17952e7db3b959211818e1a31fbe008bc50c2b85",
+    "old": "ec6b46ba822ef54514a44ba1d20801f4eb3bfba07234bcdc14653e529611956f",
+    "path": "cloud/work/tiny_A116/verification.json"
+   },
+   {
+    "new": "9522a57a778c8850505d3bec12d2a89e138e10bf134b32d9344fc704bc1b2434",
+    "old": "05f16c9699829e6788b43e15d1b32451c35d436a231370e71dd133507097f3ba",
+    "path": "cloud/work/tiny_A116/control.scalar_globals.verification.json"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/tiny_A116/verification.json": {
+  "pins": [
+   {
+    "new": "5bdc774bae2540539f1a64fe483489c0497c214d9dd730f9a274d66b9d1dda39",
+    "old": "36a690b4714083b2b0b26ceed79a7a95ef1b96e08415901c16bd0936fda351ba",
+    "path": "cloud/work/tiny_A116/func_8010FBE0.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/tiny_A50/func_8010FBE0.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/tiny_A50/scores.json": {
+  "pins": [
+   {
+    "new": "6495b60ec8af753117eb071dd5e7d53ed1303abca5ec3eb43b2280ad13699181",
+    "old": "0b14ba199b69a5ba80ad8874e2aea0ebf0e676c17c3947c24c00939b3aeb799e",
+    "path": "cloud/work/tiny_A50/func_8010FBE0.c"
    }
   ],
   "rule": "sha256 pins rebound"

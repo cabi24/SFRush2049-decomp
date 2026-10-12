@@ -5,7 +5,7 @@
   "function": "car_stats_display",
   "start": "0x800d197c",
   "end": "0x800d1ab0",
-  "source_sha256": "d70f5c263914906b5b67af9e475a266a400c304ea373190d8fc791a2b8f6d281",
+  "source_sha256": "c1a7e5c1e05d92d9aa1e8685cf3db3ae0f17bb5df0f89ff785fee78c1a42cdaa",
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "archived_source_sha256": "9379de779f4a0e1403256a94cf9a9159695d816a46a11a8dfa727f4ce3c27522",
   "target_sha256": "d98df93343830cd849be749da6664a95ff9d62eff8b89721a79ac86cce1583e6",
@@ -279,7 +279,7 @@
             {
               "offset": 280,
               "type": 4,
-              "symbol": "osJamMesg"
+              "symbol": "osSendMesg"
             }
           ],
           "gnu_equals_project_relocation": true,
@@ -516,7 +516,7 @@
             {
               "offset": 280,
               "type": 4,
-              "symbol": "osJamMesg"
+              "symbol": "osSendMesg"
             }
           ],
           "gnu_equals_project_relocation": true,
@@ -753,7 +753,7 @@
             {
               "offset": 280,
               "type": 4,
-              "symbol": "osJamMesg"
+              "symbol": "osSendMesg"
             }
           ],
           "gnu_equals_project_relocation": true,
@@ -990,7 +990,7 @@
             {
               "offset": 280,
               "type": 4,
-              "symbol": "osJamMesg"
+              "symbol": "osSendMesg"
             }
           ],
           "gnu_equals_project_relocation": true,

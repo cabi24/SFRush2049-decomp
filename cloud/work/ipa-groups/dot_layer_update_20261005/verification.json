@@ -365,7 +365,7 @@
         {
           "object_section_addend": 0,
           "offset": 176,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         }
       ],
@@ -416,7 +416,7 @@
         {
           "object_section_addend": 0,
           "offset": 96,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         }
       ],
@@ -455,7 +455,7 @@
         {
           "object_section_addend": 0,
           "offset": 416,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         }
       ],
@@ -566,7 +566,7 @@
         {
           "object_section_addend": 0,
           "offset": 128,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         }
       ],
@@ -623,7 +623,7 @@
         {
           "object_section_addend": 0,
           "offset": 108,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         },
         {
@@ -641,7 +641,7 @@
         {
           "object_section_addend": 0,
           "offset": 136,
-          "symbol": "osJamMesg",
+          "symbol": "osSendMesg",
           "type": 4
         }
       ],
@@ -743,10 +743,10 @@
     "cloud/work/ipa-groups/codex_mode_outer_a169/group.c": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
     "cloud/work/ipa-groups/codex_mode_outer_a169/group.json": "d8f7a4eb7298c91bbaf8b1e8c013ca9f86a1660fb196b1a3e934aa3608d67728",
     "cloud/work/ipa-groups/dot_layer_update_20261005/allocator.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
-    "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c": "58191cc224dd29f108a1650472e297c2705e06df3e7ffb625de4c3d874152752",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c": "e9623c97160dd991d3bb0faf1e8c90592d7655815098116aa3181f10f79bb94b",
     "cloud/work/ipa-groups/dot_layer_update_20261005/group.json": "f81b552c416d59a8ec2d459baa931905c18726ffccb63beecf4797d05c1a6939",
-    "cloud/work/ipa-groups/dot_layer_update_20261005/host.c": "df0efb7bdb90391d6d6f8af1f386add8ac93002ee1defabc07377e6ddf9d9074",
-    "cloud/work/ipa-groups/dot_layer_update_20261005/native.py": "3157ae29583d81d7064b7ae8b5a1a90a6942cb9ef3232de2e5349d7d5f25a2d8",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/host.c": "51db76bbd1b4c0713600844197302f7a24798fe1ee0a85b9f8611689feedab15",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/native.py": "836ce7120143bf5ef5dc8bf8262e5566c9a194fe07ce566db5a0920dc58f6279",
     "cloud/work/ipa-groups/dot_layer_update_20261005/proof.py": "dd432b686c42b022a9aa9a664f4c289a8d36234beaab4be602cedb5d7e9de3e9",
     "cloud/work/ipa-groups/dot_layer_update_20261005/semantics.py": "5da69aea01b31ee699a4f0fa926dad5f6bb737edc7166d0adebb54707988f2fc",
     "cloud/work/ipa-groups/dot_layer_update_20261005/verify.py": "9e7da91fa0126992128ab9acf3975cd60cadd10f7025f528e5fccd754bc4fbda",

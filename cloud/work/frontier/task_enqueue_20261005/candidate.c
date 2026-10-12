@@ -41,13 +41,13 @@ typedef struct OSScTask {
 extern OSScTask D_80155238;
 extern OSMesgQueue D_80152750, D_8002E960, D_8002E928;
 void *memcpy(void *, const void *, u32);
-s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
+s32 osSendMesg(OSMesgQueue *, OSMesg, s32);
 void func_8010FBE0(const OSTask *source) {
     D_80155238.next = 0;
     D_80155238.msgQueue = &D_80152750;
     D_80155238.msg = 0;
     D_80155238.flags = 2;
     memcpy(&D_80155238.list, source, sizeof(OSTask));
-    osJamMesg(&D_8002E960, &D_80155238, 1);
-    osJamMesg(&D_8002E928, (OSMesg)670, 1);
+    osSendMesg(&D_8002E960, &D_80155238, 1);
+    osSendMesg(&D_8002E928, (OSMesg)670, 1);
 }

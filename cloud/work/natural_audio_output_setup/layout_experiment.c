@@ -10,7 +10,7 @@ typedef struct OSMesgQueue OSMesgQueue;
 typedef void *OSMesg;
 extern OSMesgQueue D_80152770;
 extern s32 osRecvMesg(OSMesgQueue *, OSMesg *, s32);
-extern s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
+extern s32 osSendMesg(OSMesgQueue *, OSMesg, s32);
 typedef struct AudioEntry AudioEntry;
 struct AudioEntry {
     s32 reserved0;
@@ -35,6 +35,6 @@ unsigned int audio_output_setup(AudioList *list) {
     for (; p; p = ((AudioEntry *)p)->next) {
         if (!((AudioEntry *)p)->excluded) count += ((AudioEntry *)p)->count;
     }
-    osJamMesg(&D_80152770, (OSMesg)0, 0);
+    osSendMesg(&D_80152770, (OSMesg)0, 0);
     return count;
 }

@@ -7,13 +7,13 @@ typedef struct Packet {
 extern Packet D_80155238;
 extern int D_80152750, D_8002E960, D_8002E928;
 void *memcpy(void *,const void *,unsigned int);
-int osJamMesg(void *,void *,int);
+int osSendMesg(void *,void *,int);
 void func_8010FBE0(const void *source) {
     D_80155238.word0=0;
     D_80155238.queue=&D_80152750;
     D_80155238.word84=0;
     D_80155238.type=2;
     memcpy(D_80155238.payload,source,64);
-    osJamMesg(&D_8002E960,&D_80155238,1);
-    osJamMesg(&D_8002E928,(void *)670,1);
+    osSendMesg(&D_8002E960,&D_80155238,1);
+    osSendMesg(&D_8002E928,(void *)670,1);
 }

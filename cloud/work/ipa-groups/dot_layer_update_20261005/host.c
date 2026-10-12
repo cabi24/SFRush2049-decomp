@@ -39,7 +39,7 @@ s32 osRecvMesg(void *q,void *msg,s32 block)
     assert(q==&D_80142728 && msg==0 && block==1 && !locked);
     locked=1;event(1);return 0;
 }
-s32 osJamMesg(void *q,void *msg,s32 block)
+s32 osSendMesg(void *q,void *msg,s32 block)
 {
     assert(block==0 && locked);
     if(q==&D_80142728) { assert(msg==0);locked=0;event(2); }

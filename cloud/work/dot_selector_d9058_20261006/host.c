@@ -26,7 +26,7 @@ int slot_state_setup(int selection)
     if (mode == 2) D_801174B4 |= 2U;
     return initial_height ^ (int)D_801174B4;
 }
-int osJamMesg(void *queue, void *message, int block)
+int osSendMesg(void *queue, void *message, int block)
 {
     assert(stage == 2 && queue == D_801461D0 && message == 0 && block == 0);
     stage = 3;
