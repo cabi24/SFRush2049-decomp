@@ -1,0 +1,49 @@
+{
+  "method": "Read-only uopt colouring and ugen emission tracing; matching proof uses stock IDO 5.3 only.",
+  "baseline": {
+    "source_sha256": "39f312749660a105f13eaa4fae57b2ec76f2514851ad6833816d4450ba7c502c",
+    "stock_sha256": "5d02e9acb380d74ffc9d86c870df9f1df7e45420892195efd85d7a9b2580d496",
+    "diagnostic_sha256": "5d02e9acb380d74ffc9d86c870df9f1df7e45420892195efd85d7a9b2580d496",
+    "byte_identical": true
+  },
+  "final": {
+    "source_sha256": "3e2c5b03fa72134dd80fdb9619e79a65a2a05883e9b5fcd99157b5de8b5080be",
+    "stock_sha256": "361c5b40d55de006b2946b34809523bfd208deb10a0d329232a29b4de64a958a",
+    "diagnostic_sha256": "361c5b40d55de006b2946b34809523bfd208deb10a0d329232a29b4de64a958a",
+    "byte_identical": true
+  },
+  "residual_progression": [
+    270,
+    232,
+    192,
+    188,
+    180,
+    171,
+    159,
+    119,
+    0
+  ],
+  "frame_bytes": 216,
+  "native_homes": {
+    "i": 204,
+    "text": 124,
+    "label": 120,
+    "point": 116,
+    "position": 104,
+    "index": 100
+  },
+  "capacity_unchanged": {
+    "text_bytes": 80,
+    "point_halfwords": 2,
+    "position_floats": 3
+  },
+  "evidence": [
+    "Native home census proves declaration ordering; no storage was added or removed.",
+    "Reordered existing vector writes and split its Y subtraction yield the native coloured f0 and subsequent floating temporary phase.",
+    "Existing label reuse puts computed text in argument register a2 before coordinate narrowing.",
+    "Base-pointer plus selected boolean, then language offset indexing matches native expression evaluation and temp-register phase."
+  ],
+  "limitations": [
+    "W5D level-3 internal debug crashed on this translation unit. Ordinary read-only colour and ugen tracing completed with byte-identical objects. No oracle-forced object was used."
+  ]
+}
