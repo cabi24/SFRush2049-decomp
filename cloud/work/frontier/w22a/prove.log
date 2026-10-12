@@ -1,0 +1,5 @@
+func_800178B0 ok 
+== func_800178B0 (target func_800178B0) src=lane/sources/func_800178B0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (307 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp0colj7c9/tu.c, line 131: redeclaration of 'MapRecord'; previous declaration at line 126 in file '/tmp/tmp0colj7c9/tu.c' | cfe: Error: /tmp/tmp0colj7c9/tu.c, line 1 RESULT FAIL 
+wrote spl/src/rom/lib_17dc0.c
+== all sources spliced
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)

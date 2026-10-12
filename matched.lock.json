@@ -1,4 +1,13 @@
 {
+  "cloud/work/frontier/w22a/sources/func_800178B0.c:func_800178B0": {
+    "body_sha256": "7a10f7ba56aa4ad9176c82c0f3beed1838d43575ea0ac2dd3501ecba503ee843",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "func_800178B0",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
