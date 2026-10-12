@@ -79,9 +79,15 @@ check", this file, `bug/render_helper_flipped.c`). CLAIMS.md: no line to add for
 
 ## Open
 
-- 677-at-once divergence at frame 705 (`D_801161D0`): bisect result in `~/rush2049/recomp/w22r/runs/bisect.txt`
-  if it finished; a matched body that diverges behaviourally would point at an unmatched-context
-  assumption (unit flags, a shared static) rather than its code, since the IDO output is retail bytes.
+- 677-at-once divergence at frame 705 (`D_801161D0 1 -> 0`): a bisect (`~/rush2049/recomp/w22r/bisect.py`,
+  output `runs/bisect.txt`, exploration only) was started on rocky; rocky then stopped answering ssh
+  (connection timed out) during its first build step, so there is no result. Check that rocky is up and
+  whether `python3 bisect.py` is still running there (kill it if not wanted). Since the IDO output of a
+  matched file is retail code, a matched body that diverges points at context (a static shared with an
+  unreplaced function of its unit, unit-level flags, data placement), not at its code.
+- Checks run: `python3 -m pytest tests/recomp -q -p no:cacheprovider` (all pass, 1 e2e skip) and
+  `make test-fast JOBS=4` on the Pi in the worktree: 1488 passed / 806 skipped, 770 passed / 146
+  skipped, exit 0.
 
 ## Permission denials
 
