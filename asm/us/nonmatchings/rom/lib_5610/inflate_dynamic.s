@@ -187,8 +187,8 @@ glabel inflate_dynamic
     /* 6BD0 80005FD0 3C0D8003 */  lui        $t5, %hi(gInflateBorder)
     /* 6BD4 80005FD4 25ADB040 */  addiu      $t5, $t5, %lo(gInflateBorder)
     /* 6BD8 80005FD8 00106080 */  sll        $t4, $s0, 2
-    /* 6BDC 80005FDC 3C028003 */  lui        $v0, %hi(gInflateCplens)
-    /* 6BE0 80005FE0 2442B08C */  addiu      $v0, $v0, %lo(gInflateCplens)
+    /* 6BDC 80005FDC 3C028003 */  lui        $v0, %hi(gInflateBorder + 0x4C)
+    /* 6BE0 80005FE0 2442B08C */  addiu      $v0, $v0, %lo(gInflateBorder + 0x4C)
     /* 6BE4 80005FE4 018DA021 */  addu       $s4, $t4, $t5
   .L80005FE8:
     /* 6BE8 80005FE8 8E8E0000 */  lw         $t6, 0x0($s4)
