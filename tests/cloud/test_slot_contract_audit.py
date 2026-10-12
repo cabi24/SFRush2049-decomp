@@ -29,10 +29,10 @@ def test_counts_are_bounded_dependency_surface_not_matches():
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (65, 170, 167)
     assert sum(result['captures'].values()) == 161
-    assert result['accepted_callers'] == ['credits_scroll']
-    assert result['unaccepted_caller_bytes'] == 74428
-    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 8
-    assert result['bounded_dependency_bytes'] == 5368
+    assert result['accepted_callers'] == ['credits_scroll', 'world_trigger_check', 'func_80100B8C']  # grows as callers land (w27b/w27c/w27f 2026-10-12)
+    assert result['unaccepted_caller_bytes'] == 73804
+    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 7
+    assert result['bounded_dependency_bytes'] == 5152
 
 
 @pytest.mark.parametrize('name,site', [
