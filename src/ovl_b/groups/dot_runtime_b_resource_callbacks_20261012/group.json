@@ -1,0 +1,20 @@
+{
+ "name": "dot_runtime_b_resource_callbacks_20261012",
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "members": [
+  "func_80390B00",
+  "func_80390B08",
+  "func_80390B10",
+  "func_80390D38"
+ ],
+ "context": [
+  "func_80390F60"
+ ],
+ "keep": [
+  "func_80390F60"
+ ],
+ "provenance": "installed from cloud/work/frontier/dot_runtime_b_resource_callbacks_20261012"
+}

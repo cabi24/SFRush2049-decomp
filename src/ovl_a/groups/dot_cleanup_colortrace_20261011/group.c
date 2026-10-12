@@ -1,4 +1,18 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Image-A selected car-stat product: D300, 404 newly strict-matched bytes.
+ * The genuine cleanup/car-selection group retains all five accepted members.
+ * D300 uses direct per-component indexed factors, letting stock IDO hoist the
+ * complete row-address expressions while preserving the five selection reads.
+ * Two do/while(0) statement regions deliberately establish CFE block boundaries:
+ * the first pair assignment and third-factor update coalesce into one store;
+ * the next region and final update retain three native stores per component.
+ * This is disclosed source shaping under the live Wave 15 block-boundary rule,
+ * not a claim that these original source macros or blocks have been recovered.
+ * The initial pair's source operand order and compound third-factor update
+ * reproduce the native floating operand order without reassociating its stages.
+ * No volatile, unused local, capacity change, false signature, artificial caller,
+ * assembly, forced register, or compiler modification is used.
+ */
 /* Overlay A cleanup (8039D05C), complete 676-byte body.
  * Source ancestry: PR #311, record-context group at d725fbe089ba81b36386b849f492035261af4883.
  * Authentic reconstructed callers/callees are preserved as nonclaiming context.
@@ -140,24 +154,17 @@ extern float D_803BA190[][4];
 
 void func_8039D300(s32 player)
 {
-    float *dest;
-    float *first;
-    float *second;
-    float *third;
-    float *fourth;
-    float *fifth;
     s16 component;
 
-    dest = D_803BA190[player];
-    first = D_803B28C8[D_80110E85[player][D_803B9FD0[player]]];
-    second = D_803B2948[D_80111049[player][D_803B9FD0[player]]];
-    third = D_803B2978[D_8011108D[player][D_803B9FD0[player]]];
-    fourth = D_803B2A08[D_801111A9[player][D_803B9FD0[player]]];
-    fifth = D_803B2A58[D_8011123D[player][D_803B9FD0[player]]];
     for (component = 0; component < 4; component++) {
-        dest[component] = (first[component] * second[component]) * third[component];
-        dest[component] *= fourth[component];
-        dest[component] *= fifth[component];
+        do {
+            D_803BA190[player][component] = D_803B2948[D_80111049[player][D_803B9FD0[player]]][component] * D_803B28C8[D_80110E85[player][D_803B9FD0[player]]][component];
+            D_803BA190[player][component] *= D_803B2978[D_8011108D[player][D_803B9FD0[player]]][component];
+        } while (0);
+        do {
+            D_803BA190[player][component] *= D_803B2A08[D_801111A9[player][D_803B9FD0[player]]][component];
+        } while (0);
+        D_803BA190[player][component] *= D_803B2A58[D_8011123D[player][D_803B9FD0[player]]][component];
     }
 }
 void func_803A0498(void)

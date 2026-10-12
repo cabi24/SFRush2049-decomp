@@ -1,4 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Image-A per-track statistics AD0D4: preserve the native zero-initialized
+ * average and conditional division, unsigned-halfword bit-count arguments,
+ * and local declaration order (x/y at sp+132/128, text at sp+76).
+ * Its real text buffer remains 48 bytes; frame remains 144 bytes. No unused
+ * local or artificial access is introduced. Original spelling is unknown.
+ * All nine earlier exact statistics members remain unchanged and claimed. */
 /* Image-A cumulative statistics ACA94: row-count initialization follows the
  * two native setup calls; bit masks retain unsigned-halfword narrowing.
  * Existing declaration order recovers native text/x/y homes without changing
@@ -335,9 +341,10 @@ void func_803AB848(void)
 void func_803AC330(u8 *,f32,s32);
 void func_803AD0D4(void)
 {
-    u8 text[48],*data,*label;
     s32 track,i,x,y;
+    u8 *label,text[48],*data;
     u32 distance;
+    f32 average;
     func_800B669C(0,3);
     track=D_803BA858/2;
     if(D_803BA858&1)track+=6;
@@ -360,7 +367,12 @@ void func_803AD0D4(void)
         switch(i) {
         case 0:func_803AC330(text,F32_AT(data,64),0);break;
         case 1:fcvt_wrapper(text,D_803B8AE8,U16_AT(data,68));break;
-        case 2:func_803AC330(text,U16_AT(data,68)>0 ? F32_AT(data,64)/(f32)(u32)U16_AT(data,68) : 0.0f,0);break;
+        case 2:
+            average=0.0f;
+            if(U16_AT(data,68)>0)
+                average=F32_AT(data,64)/(f32)(u32)U16_AT(data,68);
+            func_803AC330(text,average,0);
+            break;
         case 3:fcvt_wrapper(text,D_803B8AEC,U16_AT(data,70));break;
         case 4:fcvt_wrapper(text,D_803B8AF0,U16_AT(data,72));break;
         case 5:fcvt_wrapper(text,D_803B8AF4,U16_AT(data,74));break;
@@ -370,8 +382,8 @@ void func_803AD0D4(void)
         case 9:fcvt_wrapper(text,D_803B8B04,U16_AT(data,82));break;
         case 10:fcvt_wrapper(text,D_803B8B08,U16_AT(data,84));break;
         case 11: {u32 divisor=10;fcvt_wrapper(text,D_803B8B0C,distance/divisor,distance%divisor);break;}
-        case 12:fcvt_wrapper(text,D_803B8B18,func_800B78A4(U16_AT(data,92)&255,16));break;
-        case 13:fcvt_wrapper(text,D_803B8B20,func_800B78A4(U16_AT(data,92)&65280,16));break;
+        case 12:fcvt_wrapper(text,D_803B8B18,func_800B78A4((u16)(U16_AT(data,92)&255),16));break;
+        case 13:fcvt_wrapper(text,D_803B8B20,func_800B78A4((u16)(U16_AT(data,92)&65280),16));break;
         }
         if(i==0 || i==2)object_create(2);
         state_utility(x+4,y,text);
