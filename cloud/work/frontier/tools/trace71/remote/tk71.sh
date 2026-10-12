@@ -3,7 +3,8 @@
 # Compiles the reduced TU of SRC around FN (tools.conveyor.seeds.context.reduced_tu, exactly what `lock add`
 # compiles) with the traced IDO 7.1 in SCR/t71/ido and the LOCK flags (the SRC's first-line `/* flags: */`, else
 # -g0 -O2 -mips2 -G 0 -non_shared) plus -Wab,-r4300_mul (FLAGS=... overrides everything). Work dir SCR/t71/run/FN.
-#   cdx    SRC FN            colouring trace of FN (CDX_LOG=1 CDX_FN=FN CDX_DETAIL_WEB=all): raw [CDX] lines
+#   cdx    SRC FN [K=V..]    colouring trace of FN (CDX_LOG=1 CDX_FN=FN CDX_DETAIL_WEB=all): raw [CDX] lines
+#                            (+ [CUP] caller-save cost lines with CUPLOG=1)
 #   force  SRC FN SPEC       CDX_FN=FN CDX_FORCE=SPEC -> f.o; forced/declined records, then the row diff vs tgt/FN.o
 #   ugen   SRC FN            traced ugen (DKWB_UGEN_TRACE, SCHED=1 adds EMIT records) on cc -S: FN's records,
 #                            then ==LISTING== and FN's ugen listing (fn.s)
@@ -32,7 +33,7 @@ rdiff() { [ -f $S/tgt/$FN.o ] || { echo "(no $S/tgt/$FN.o to diff against)"; ret
   echo "rows: want $(wc -l < $D/t.rows) got $(wc -l < $D/m.rows); differing rows $(diff -y -W 140 $D/t.rows $D/m.rows | grep -c -E '\s[|]\s|\s<$|\s>\s') (objdump -dr rows incl. relocations; $D/{t,m}.rows)"; }
 case $M in
 cdx) red; (cd $D && env CDX_LOG=1 CDX_FN=$FN CDX_DETAIL_WEB=all CDX_OUT=$D/d.txt "$@" $I/cc -c $fl $INC -o $D/c.o r.c) >$D/cc.log 2>&1 || { cat $D/cc.log; exit 1; }
-     grep -v procindex $D/d.txt ;;
+     grep -v procindex $D/d.txt; grep -h '^\[CUP\]' $D/cc.log ;;
 force) red; spec=$1
      (cd $D && CDX_LOG=1 CDX_FN=$FN CDX_FORCE="$spec" CDX_OUT=$D/force.cdx $I/cc -c $fl $INC -o $D/f.o r.c) >$D/cc.log 2>&1 || { echo "cc failed:"; tail -5 $D/cc.log; exit 1; }
      grep -h DKWB $D/cc.log | head -5

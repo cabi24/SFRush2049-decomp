@@ -35,6 +35,8 @@ NAME71 = r'''
 /* W22C_UOPT71_GLOBALCOLOR_V1 -- 7.1 additions: procedure names, CDX_FN */
 static char w71_fn[256];
 static int w71_fn_ready;
+static int w71_active, w71_cuplog = -1;
+#define W71_CUP (w71_active && (w71_cuplog < 0 ? (w71_cuplog = getenv("CUPLOG") != NULL) : w71_cuplog))
 static int w71_name(uint8_t *mem, char *buf, int size) {
     int n = (int)MEM_U32(0x1001c330), i;
     if (n < 0 || n >= size) n = size - 1;
@@ -52,6 +54,7 @@ static void w71_entry(uint8_t *mem, int ordinal) {
     }
     w71_name(mem, name, sizeof(name));
     if (w71_fn[0]) dkwb_cdx_proc = strcmp(name, w71_fn) == 0 ? ordinal : 0x7fffffff;
+    w71_active = !w71_fn[0] || dkwb_cdx_proc == ordinal;
     if (dkwb_cdx_log && (!w71_fn[0] || dkwb_cdx_proc == ordinal))
         fprintf(dkwb_cdx_output, "[CDX] procname proc=%d name=%s\n", ordinal, name);
 }
@@ -129,6 +132,10 @@ def instrument(src):
              'w71_entry(mem, dkwb_cdx_ordinal);\n'
              'DKWB_CDX_LOG(dkwb_cdx_ordinal, "[CDX] globalcolor proc=%d\\n", dkwb_cdx_ordinal);\n'
              'L469280:\n//globalcolor:', 'globalcolor entry')
+    # the callee-saved register cost (f24): max(4, min(60, nblocks * weight * 0.25)), or 2 * entry frequency
+    s = once(s, 'L4693ac:\na1 = 0x1001c7a0;\n', 'L4693ac:\nDKWB_CDX_LOG(dkwb_cdx_ordinal, "[CDX] calleecost proc=%d cost=%.6f '
+             'nblocks=%d opt=%d\\n", dkwb_cdx_ordinal, (double)f24.f[0], (int)MEM_U32(0x1001c364), (int)MEM_U8(0x1001c42c));\n'
+             'a1 = 0x1001c7a0;\n', 'callee cost')
     s = once(s, 'L4698f4:\nf0.w[0] = MEM_U32(s5 + 48);\n',
              'L4698f4:\nf0.w[0] = MEM_U32(s5 + 48);\n'
              'DKWB_CDX_LOG(dkwb_cdx_ordinal, "[CDX] p1cand phase=p1 proc=%d web=%d sym=%d save=%.6f nocs=%d '
@@ -150,6 +157,17 @@ def instrument(src):
              + '//nop;\nif (!cf) {', 'phase-two decision')
     s = once(s, 'L46a82c:\nt8 = MEM_U32(sp + 220);', 'L46a82c:\n' + color('p2', 272, 't0')
              + 't8 = MEM_U32(sp + 220);', 'phase-two color')
+    # CUPLOG=1 (with CDX_FN): f_cupcosts (the caller-saved cost of a web for one register) per live unit
+    s = once(s, 'L468a84:\nif (t6 != zero) {', 'L468a84:\nif (W71_CUP) fprintf(stderr, "[CUP] unit web=%d reg=%d bb=%d flags=%d,%d,%d,%d,%d,%d run=%.6f\\n", '
+             '(int)MEM_U16(MEM_U32(s3 + 0) + 2), (int)s2, (int)MEM_U16(MEM_U32(s1 + 0) + 8), (int)MEM_U8(s1 + 18), '
+             '(int)MEM_U8(s1 + 19), (int)MEM_U8(s1 + 20), (int)MEM_U8(s1 + 21), (int)MEM_U8(s1 + 22), (int)MEM_U8(s1 + 23), '
+             '(double)f20.f[0]);\nif (t6 != zero) {', 'cup unit')
+    s = once(s, 'L468f00:\n', 'L468f00:\nif (W71_CUP) fprintf(stderr, "[CUP] units web=%d reg=%d sum=%.6f\\n", '
+             '(int)MEM_U16(MEM_U32(s3 + 0) + 2), (int)s2, (double)f20.f[0]);\n', 'cup phase1')
+    s = once(s, 'L4690cc:\nt6 = 0x1001c358;\n', 'L4690cc:\nif (W71_CUP) fprintf(stderr, "[CUP] transit web=%d reg=%d bb=%d run=%.6f\\n", '
+             '(int)MEM_U16(MEM_U32(s3 + 0) + 2), (int)s2, (int)s1, (double)f20.f[0]);\nt6 = 0x1001c358;\n', 'cup transit')
+    s = once(s, 'L469160:\nf0.f[0] = f20.f[0];\n', 'L469160:\nf0.f[0] = f20.f[0];\nif (W71_CUP) fprintf(stderr, '
+             '"[CUP] total web=%d reg=%d cost=%.6f\\n", (int)MEM_U16(MEM_U32(s3 + 0) + 2), (int)s2, (double)f0.f[0]);\n', 'cup total')
     return s
 
 

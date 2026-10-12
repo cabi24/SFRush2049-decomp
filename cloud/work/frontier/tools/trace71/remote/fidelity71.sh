@@ -5,7 +5,7 @@
 #   rel   the pinned release 7.1 toolkit IDO (decompals v1.2 release binaries)
 #   reb   SCRDIR/t71/reb: the release dir with uopt/ugen/as1 rebuilt by us from the v1.2 generated C (no patches)
 #   off   SCRDIR/t71/ido: traced uopt/ugen/as1, every trace switch off
-#   on    SCRDIR/t71/ido with every trace on: CDX_LOG=1 CDX_DETAIL_WEB=all (all procedures), SPLOG=1, DKWB_UGEN_TRACE=1
+#   on    SCRDIR/t71/ido with every trace on: CDX_LOG=1 CDX_DETAIL_WEB=all (all procedures), SPLOG=1, CUPLOG=1, DKWB_UGEN_TRACE=1
 #         DKWB_UGEN_SCHED=1, as1 -R (-Wb,-R) -- trace output discarded, volume counted
 # Prints one IDENTICAL/DIFFERENT line per TU and comparison, then a summary.
 S=$1; shift
@@ -20,12 +20,12 @@ for t in $TUS; do
   $REL/cc -c $FL -o $D/$t.rel.o $f 2>/dev/null || { echo "rel cc failed on $f"; diff=$((diff+1)); continue; }
   $S/t71/reb/cc -c $FL -o $D/$t.reb.o $f 2>/dev/null
   $S/t71/ido/cc -c $FL -o $D/$t.off.o $f 2>/dev/null
-  CDX_LOG=1 CDX_DETAIL_WEB=all CDX_OUT=$D/$t.cdx SPLOG=1 DKWB_UGEN_TRACE=1 DKWB_UGEN_SCHED=1 \
+  CDX_LOG=1 CDX_DETAIL_WEB=all CDX_OUT=$D/$t.cdx SPLOG=1 CUPLOG=1 DKWB_UGEN_TRACE=1 DKWB_UGEN_SCHED=1 \
     $S/t71/ido/cc -c $FL -Wb,-R -o $D/$t.on.o $f >$D/$t.as1r 2>$D/$t.ugen
   for k in reb off on; do
     if cmp -s $D/$t.rel.o $D/$t.$k.o; then same=$((same+1)); r=IDENTICAL; else diff=$((diff+1)); r=DIFFERENT; fi
     echo "$r lib_$t: rel vs $k"
   done
-  echo "  lib_$t trace volume: cdx $(grep -c '^\[CDX\]' $D/$t.cdx) ugen $(grep -c '^DKWB' $D/$t.ugen) spill $(grep -c -E '^(AREA|SPILLTEMP|HOME|CONFL|SPILLWEB) ' $D/$t.ugen) as1 -R $(wc -l < $D/$t.as1r)"
+  echo "  lib_$t trace volume: cdx $(grep -c '^\[CDX\]' $D/$t.cdx) ugen $(grep -c '^DKWB' $D/$t.ugen) spill $(grep -c -E '^(AREA|SPILLTEMP|HOME|CONFL|SPILLWEB) ' $D/$t.ugen) cup $(grep -c '^\[CUP\]' $D/$t.ugen) as1 -R $(wc -l < $D/$t.as1r)"
 done
 echo "fidelity71: $same identical, $diff different ($(echo $TUS | wc -w) TUs x 3 comparisons against the release 7.1)"
