@@ -146,7 +146,8 @@ def test_replace_slot_writes_row_companion_linker_and_restores(repo):
     (_grown(co_owners=["fz"]), "still be passthrough"),                 # fz has no passthrough line
     (_grown(co_owners=["fb", "fz"]), "still be passthrough"),
     (_grown(sha256="0" * 64), "original-byte identity"),
-    (dict(BSS, size="0x40"), "readonly/data"),
+    (dict(BSS, size="0x40"), "not fully promoted"),                  # w23i: .bss rows may grow too
+    (dict(BSS, owner="fa", size="0x40"), "keep the slot's section"),
 ])
 def test_replace_slot_refusals_write_nothing(repo, raw, match):
     before = _state(repo)

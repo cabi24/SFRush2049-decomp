@@ -7,6 +7,10 @@ function-local statics that form the TU's whole .bss, 0x30 B at retail
 linker moves the TU's .bss input into a fixed NOLOAD section with address and
 size ASSERTs; while the members are passthrough a `.space` companion keeps the
 block occupied, so both states link to the same addresses.
+
+w23i grew the committed block at its front and end (owned_data.replace_slot,
+promote_batch --replace-slot) to lib_16320's whole .bss, 0x80 B at 0x80042630:
+func_80016C20/80016CF0/80017040's statics joined as co-owners.
 """
 import json
 from pathlib import Path
@@ -16,7 +20,8 @@ import pytest
 from tools.conveyor.pipeline import owned_data as O
 
 REPO = Path(__file__).resolve().parents[2]
-MEMBERS = ["func_80016E68", "func_80016EE0", "func_80016F80"]
+MEMBERS = ["func_80016E68", "func_80016C20", "func_80016CF0", "func_80016EE0", "func_80016F80",
+           "func_80017040"]
 
 LD = """SECTIONS
 {
@@ -57,9 +62,9 @@ def test_committed_lib_16320_row():
     rows = [r for r in O.rom_slots(REPO, check_source=False) if O.is_bss(r)]
     r, = [r for r in rows if r["owner"] == "func_80016E68"]
     assert O.slot_members(r) == MEMBERS and r["tu"] == "src/rom/lib_16320.c"
-    assert (r["container_vram"], r["offset"], r["size"]) == (0x80042670, 0, 0x30)
+    assert (r["container_vram"], r["offset"], r["size"]) == (0x80042630, 0, 0x80)
     assert (REPO / r["passthrough_asm"]).read_text() == O.companion_source(r, REPO)
-    assert O.companion_source(r) == ".section .bss\n.balign 4\n.space 0x30\n"
+    assert O.companion_source(r) == ".section .bss\n.balign 4\n.space 0x80\n"
     text = (REPO / r["tu"]).read_text()
     passthrough = [m for m in MEMBERS if f'/{m}.s")' in text]
     # All members passthrough (companion present) or all promoted (companion gone).
@@ -71,8 +76,8 @@ def test_committed_lib_16320_row():
 def test_committed_linker_script_places_the_block():
     text = (REPO / "rush2049.us.ld").read_text()
     assert "/* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_16320.o(.bss) */" in text
-    assert ".rom_owned_bss_func_80016E68 0x80042670 (NOLOAD)" in text
-    assert 'END - rom_owned_func_80016E68_START == 0x30, "owned BSS slot size changed")' in text
+    assert ".rom_owned_bss_func_80016E68 0x80042630 (NOLOAD)" in text
+    assert 'END - rom_owned_func_80016E68_START == 0x80, "owned BSS slot size changed")' in text
 
 
 def test_bss_rows_need_no_container_and_are_not_split(tmp_path):
