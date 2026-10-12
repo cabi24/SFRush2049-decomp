@@ -7,14 +7,16 @@
  * inflate_read_bits when the buffer is empty.
  * From static_C23/inflate_block.c (w25a 99/105 under the recipe): w26a writes the word as
  * `ptr[-2] | (ptr[-1] << 8)` (retail loads the high byte first; the other operand order
- * swaps the two lbu registers). No shaping devices. */
+ * swaps the two lbu registers) and NEEDBITS as one conditional expression (a named block-scope
+ * `word` compiles identically here but moves inflate_stored's `n--` temporary from v1 to v0;
+ * the whole TU uses this one macro text). No shaping devices. */
 #include "types.h"
 
 extern u32 gInflateBitBuf, gInflateBitCount;
 extern u8 *gInflateInPtr, *gInflateInEnd;
 extern s32 inflate_read_bits(void), inflate_dynamic(void), inflate_stored(void), inflate_fixed(void);
 
-#define NEEDBITS(n) do { while (k < (n)) { u32 word; if (gInflateInPtr < gInflateInEnd) { gInflateInPtr += 2; word = gInflateInPtr[-2] | (gInflateInPtr[-1] << 8); } else word = inflate_read_bits(); b |= word << k; k += 16; } } while (0)
+#define NEEDBITS(n) do { while (k < (n)) { b |= (u32)(gInflateInPtr < gInflateInEnd ? (gInflateInPtr += 2, gInflateInPtr[-2] | (gInflateInPtr[-1] << 8)) : inflate_read_bits()) << k; k += 16; } } while (0)
 #define DUMPBITS(n) do { b >>= (n); k -= (n); } while (0)
 
 s32 inflate_block(s32 *last) {

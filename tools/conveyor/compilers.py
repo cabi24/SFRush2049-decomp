@@ -108,7 +108,7 @@ COMPILERS = {
         "wraps": "ido5.3",
         # sha256 of tools/ido_sas/cc: any edit to the driver is a new compiler
         # (re-pin here after re-proving every ido5.3s lock).
-        "wrapper_sha256": "72c68bd89508b2aab45d2273e20c4fa1aab89254c13332a95c23ab2e70542bab",
+        "wrapper_sha256": "23d2457901feedeba0ba18e00c5c6f5cb832a8babd1c77b455e7fdbc0b27f470",
         "wrapped_dirs": ("ido53", "../ido-static-recomp/build/out", "../cloud/ido"),
         "builds": {},
     },

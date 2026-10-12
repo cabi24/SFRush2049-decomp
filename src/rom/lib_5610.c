@@ -53,7 +53,7 @@ s32 huft_alloc(s32 arg0)
 extern u32 gInflateBitBuf, gInflateBitCount;
 extern u8 *gInflateInPtr, *gInflateInEnd;
 extern s32 inflate_read_bits(void), inflate_dynamic(void), inflate_stored(void), inflate_fixed(void);
-#define NEEDBITS(n) do { while (k < (n)) { u32 word; if (gInflateInPtr < gInflateInEnd) { gInflateInPtr += 2; word = gInflateInPtr[-2] | (gInflateInPtr[-1] << 8); } else word = inflate_read_bits(); b |= word << k; k += 16; } } while (0)
+#define NEEDBITS(n) do { while (k < (n)) { b |= (u32)(gInflateInPtr < gInflateInEnd ? (gInflateInPtr += 2, gInflateInPtr[-2] | (gInflateInPtr[-1] << 8)) : inflate_read_bits()) << k; k += 16; } } while (0)
 #define DUMPBITS(n) do { b >>= (n); k -= (n); } while (0)
 s32 inflate_block(s32 *last) {
     u32 t;

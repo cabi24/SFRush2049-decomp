@@ -7,7 +7,9 @@ directives (and the `.option O2` the driver writes) gone, assembled by as1 at
 -O1 (w25a triage, w26a proof; docs/COMPILER_SETTINGS.md "IDO 5.3 -S recipe").
 `.loc` is a scheduling barrier for as1, so a .s that still carries it schedules
 prologues differently; as1 -O2 would add branch-likely and target fills that
-retail never has.
+retail never has. The assembly step runs with -g: without it as1 -O1 moves the
+`sltiu at` of a macro branch (bgeu reg,imm) into the delay slot of the branch
+before it, which retail never does (huft_build, inflate_dynamic).
 
 This file stands in for `cc` and does exactly that for a `-c` compile of a C
 source:
@@ -15,7 +17,7 @@ source:
     cc -S <flags> FILE.c                (the real IDO 5.3 driver, same flags;
                                          run in a temp dir: -S ignores -o)
     drop "\t.loc\t...", "\t.option\tO<n>" and " # ..." source-comment lines
-    cc -c <flags, -O<n> -> -O1> -o OUT T.s
+    cc -c <flags, -O<n> -> -O1, -g<n> -> -g> -o OUT T.s
 
 Anything else (no -c, or a non-.c input) is passed to the real driver
 unchanged. The real driver is the first of, relative to this file:
@@ -115,7 +117,8 @@ def main(argv):
             text = strip_asm(f.read())
         with open(stripped, "w") as f:
             f.write(text)
-        asm_flags = ["-O1" if re.fullmatch(r"-O\d?", f) else f for f in base]
+        asm_flags = ["-O1" if re.fullmatch(r"-O\d?", f) else f for f in base
+                     if not re.fullmatch(r"-g\d?", f)] + ["-g"]
         return subprocess.call([cc, "-c"] + asm_flags + ["-o", output, stripped])
     finally:
         for name in os.listdir(tmp):

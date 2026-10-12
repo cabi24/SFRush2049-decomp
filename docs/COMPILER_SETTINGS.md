@@ -52,14 +52,14 @@ separate.
 
 The inflate/lzss TU `src/rom/lib_5610.c` (0x80004A10..0x800069FC, 14 slots) was
 not built by `cc -c -O2`. It is IDO 5.3 `cc -S -O2` output with every `.loc`
-line removed, assembled by as1 at `-O1` (lzss_decode and inflate_io_wait are
+line removed, assembled by as1 at `-O1` with `-g` (lzss_decode and inflate_io_wait are
 hand-edited assembly in the same file and stay GLOBAL_ASM). Compiler name
 `ido5.3s`; driver `tools/ido_sas/cc` (Makefile `IDO53S_CC`, pinned in
 `rom_compilers.json`, fingerprinted in `tools/conveyor/compilers.py`):
 
     cc -S <flags> FILE.c                     # same IDO 5.3, same flags (-g0 -O2 -mips2 -G 0 -non_shared)
     drop "\t.loc\t", "\t.option\tO<n>" and " #" comment lines
-    cc -c <flags with -O1> -o OUT FILE.s       # as0 + as1 at -O1
+    cc -c <flags with -O1 -g> -o OUT FILE.s    # as0 + as1 at -O1, debug on
 
 Why each step (w25a triage, w26a proof; `cloud/work/frontier/w26a/RESULTS.md`):
 
@@ -70,6 +70,11 @@ Why each step (w25a triage, w26a proof; `cloud/work/frontier/w26a/RESULTS.md`):
   prologue `sw ra`/`sw s0` and the first global stores keep source order
   (w25a's residual: inflate_block 99/105, inflate_loop 21/23); without them as1
   interleaves them exactly as retail does.
+- **-g on the assembly step.** Without it as1 -O1 moves the `sltiu at` of a
+  macro branch (`bgeu reg,imm`) into the delay slot of the branch before it
+  (huft_build, inflate_dynamic); retail leaves a nop there. Any of -g/-g1/-g2
+  gives the retail schedule; the inflate_loop prologue still needs the `.loc`
+  lines gone.
 - `cc -S` ignores `-o` (it writes `<basename>.s` into the working directory);
   the driver runs it in a temporary directory with absolute `-I` paths.
 
