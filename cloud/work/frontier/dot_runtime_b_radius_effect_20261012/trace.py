@@ -46,9 +46,9 @@ def main():
             results[label]=inspect(source,directory)
     for result in results.values():
         v.require(result['frame']==168 and result['memory_areas']=={'M':64,'T':16,'P':20},'stock native frame areas')
-    v.require(results['plain_count']['direct_count_loads']==3 and results['plain_count']['count_address_materializations']==0,'ordinary count PRE read pattern')
-    for label in ('diagnostic_volatile_count','diagnostic_old_homes'):
-        v.require(results[label]['direct_count_loads']==0 and results[label]['count_address_materializations']==2,'diagnostic count barrier pattern')
+    v.require(results['plain_count_control']['direct_count_loads']==3 and results['plain_count_control']['count_address_materializations']==0,'ordinary count PRE read pattern')
+    for label in ('matching','old_homes_control'):
+        v.require(results[label]['direct_count_loads']==0 and results[label]['count_address_materializations']==2,'accepted count barrier pattern')
     print(json.dumps(results,indent=2,sort_keys=True))
 
 

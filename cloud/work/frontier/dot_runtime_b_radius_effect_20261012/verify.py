@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Complete source-first NONMATCH proof and explicitly non-claimable read-barrier control."""
+"""Complete source-first match under the current accepted shared-count read contract."""
 import argparse
 from contextlib import contextmanager
 from dataclasses import asdict
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -22,6 +23,8 @@ TEST = ROOT / 'tests/cloud/test_runtime_b_radius_effect.py'
 sys.path.insert(0, str(ROOT))
 from tools.cloud import score, owndata
 from tools.conveyor import compilers
+contract_spec=importlib.util.spec_from_file_location('radius_count_contract',HERE/'count_contract.py')
+contract=importlib.util.module_from_spec(contract_spec);contract_spec.loader.exec_module(contract)
 
 
 def require(value, message):
@@ -91,10 +94,10 @@ def selected_inputs():
                     callers.append({'population': population, 'name': name, 'sites': sites, 'body_sha256': sha(packed(words))})
     require([(c['population'], c['name'], c['sites']) for c in callers] ==
             [('blob', 'func_8010C974', [2384]), ('ovl_b', 'func_8038E114', [3020,4040,4072,4268,4296])], 'caller census')
-    return {'sources': {name: sha((HERE / name).read_bytes()) for name in ('group.c','group.json','verify.py','trace.py')},
+    return {'sources': {name: sha((HERE / name).read_bytes()) for name in ('group.c','group.json','verify.py','trace.py','count_contract.py')},
             'test': sha(TEST.read_bytes()), 'native_extent': entry, 'native_body_sha256': sha(native),
             'native_literal_sha256': sha(literal), 'image_sha256': sha(image), 'symbols': selected_symbols,
-            'damage_helper_sha256': sha(helper), 'callers': callers, 'flags': FLAGS, 'compiler': 'ido5.3'}
+            'count_contract':contract.evidence(ROOT,score), 'damage_helper_sha256': sha(helper), 'callers': callers, 'flags': FLAGS, 'compiler': 'ido5.3'}
 
 
 def inspect(path, size, linked=False):
@@ -161,12 +164,12 @@ def gnu_link(obj, size, directory):
 
 
 def forms(source):
-    require(source.count('extern s16 D_801543CA;') == 1, 'count declaration drift')
-    exact = source.replace('extern s16 D_801543CA;','extern volatile s16 D_801543CA;')
-    homes = exact.replace('    Player *target;\n    f32 direction[3];\n    f32 transformed[3];\n    Player *source;\n    f32 delta[3];\n    f32 distance_squared;',
-                          '    f32 direction[3];\n    f32 transformed[3];\n    f32 delta[3];\n    f32 distance_squared;\n    Player *target;\n    Player *source;')
-    require(homes != exact,'home control drift')
-    return [('plain_count',source,760,125,6),('diagnostic_volatile_count',exact,736,0,0),('diagnostic_old_homes',homes,736,13,0)]
+    require(source.count('extern volatile s16 D_801543CA;') == 1, 'accepted count declaration drift')
+    plain = source.replace('extern volatile s16 D_801543CA;','extern s16 D_801543CA;')
+    homes = source.replace('    Player *target;\n    f32 direction[3];\n    f32 transformed[3];\n    Player *source;\n    f32 delta[3];\n    f32 distance_squared;',
+                           '    f32 direction[3];\n    f32 transformed[3];\n    f32 delta[3];\n    f32 distance_squared;\n    Player *target;\n    Player *source;')
+    require(homes != source,'home control drift')
+    return [('matching',source,736,0,0),('plain_count_control',plain,760,125,6),('old_homes_control',homes,736,13,0)]
 
 
 def replay():
@@ -184,15 +187,15 @@ def replay():
             (directory/'group.json').write_bytes((HERE/'group.json').read_bytes())
             obj=directory/'candidate.o'
             spec=score.compile_group(directory,obj)
-            require(spec['members']==spec['keep']==[NAME] and spec['claims']==spec['context']==[], 'empty-claims group contract')
+            require(spec['members']==spec['keep']==spec['claims']==[NAME] and spec['context']==[], 'source-first group contract')
             result=score.compare(obj,NAME,show=0)
             require(result.differing==differing and result.extra_words==extra and not result.errors and not result.unresolved, label+': '+result.summary())
-            require(len(result.unverified)==(4 if label=='plain_count' else 0), 'expected own-data uncertainty')
+            require(len(result.unverified)==(4 if label=='plain_count_control' else 0), 'expected own-data uncertainty')
             linked=gnu_link(obj,size,directory)
             require(len(linked['differing_offsets'])==differing and linked['extra_nonzero_words']==extra, 'GNU/scorer difference agreement')
-            require(len(linked['relocations'])==(27 if label=='plain_count' else 25),'relocation census')
-            if label=='diagnostic_volatile_count':
-                require(result.accepted(),'diagnostic did not reproduce exact words')
+            require(len(linked['relocations'])==(27 if label=='plain_count_control' else 25),'relocation census')
+            if label=='matching':
+                require(result.accepted(),'complete matching source differs')
                 with targets(None):
                     missing=score.compare(obj,NAME,show=0)
                     require(not missing.accepted() and missing.unverified,'missing data accepted')
@@ -202,9 +205,20 @@ def replay():
                         bad=score.compare(obj,NAME,show=0)
                         require(not bad.accepted() and bad.errors,'corrupt data accepted')
             outputs[label]={'scorer':asdict(result),'gnu':linked}
-    return {'inputs':binding,'compiler_sha256':compiler,'forms':outputs,'claims':[],
-            'new_accepted_strict_match_bytes':0,'new_image_bytes':0,'new_rom_bytes':0,
-            'diagnostic_only_exact_bytes':736,'diagnostic_qualifier_originally_present':'unproven',
+    accepted_replays={}
+    with targets(None,'blob'), tempfile.TemporaryDirectory(prefix='radius-accepted-count-') as temp:
+        for name in ('func_800EC914','func_80108DA8'):
+            selected=binding['count_contract']['accepted_sources'][name]
+            obj=Path(temp)/(name+'.o');old_cwd=Path.cwd()
+            try:
+                os.chdir(temp);score.compile_single(ROOT/selected['path'],selected['flagset'],obj)
+            finally:os.chdir(old_cwd)
+            result=score.compare(obj,name,show=0)
+            require(result.accepted(),'accepted contract source drift: '+name)
+            accepted_replays[name]=asdict(result)
+    return {'inputs':binding,'compiler_sha256':compiler,'forms':outputs,'claims':[NAME],
+            'new_strict_match_bytes':736,'preserved_or_integrated_bytes':0,'new_image_bytes':0,'new_rom_bytes':0,
+            'accepted_contract_replays':accepted_replays,'original_qualifier_spelling':'unproven; existing accepted shared view reused',
             'owned_data_negative_controls':'missing data and either corrupt literal rejected'}
 
 
@@ -220,7 +234,7 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.record:
         (HERE/'verification.json').write_text(json.dumps(replay(),indent=2)+'\n')
-        print('Recorded complete NONMATCH and non-claimable exact diagnostic')
+        print('Recorded complete 736-byte MATCH with accepted shared-count contract')
     elif args.score:
         with targets(image_bytes()):
             sys.argv=['score.py','group',str(HERE),'--targets',str(ROOT/'asm/us/ovl_b')]
@@ -229,4 +243,4 @@ if __name__=='__main__':
         require(selected_inputs()==json.loads((HERE/'verification.json').read_text())['inputs'],'selected input drift')
         print('PASS: selected source/native input bindings')
     else:
-        verify();print('PASS: complete NONMATCH GNU proof; exact volatile diagnostic remains unclaimed')
+        verify();print('PASS: 184/184 words, full GNU body/data, accepted count view and both causal controls')

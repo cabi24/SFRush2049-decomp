@@ -7,7 +7,9 @@
   "members": [
     "func_8038D798"
   ],
-  "claims": [],
+  "claims": [
+    "func_8038D798"
+  ],
   "context": [],
   "keep": [
     "func_8038D798"

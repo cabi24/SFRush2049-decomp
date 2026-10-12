@@ -1,26 +1,28 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Image B [0x8038D798,0x8038DA78): apply a distance-weighted effect.
- * NONMATCH research, empty claims. This ordinary nonvolatile source has a
- * 760-byte function versus native 736; the read-barrier diagnostic in verify.py
- * is byte-identical only after adding an UNPROVEN volatile count qualifier.
- * That control is not an installable match or evidence of original volatility.
+ * Native-led matching reconstruction using the CURRENT ACCEPTED shared-count
+ * view: extern volatile s16 D_801543CA, present in EC914/108DA8/108F40/109A60/
+ * world_physics_tick production sources. count_contract.py binds those current
+ * sources and their image-gate records, game/B symbol identity, and EB90C's
+ * independent call/store-free continuing-loop count read. This is reuse of an
+ * accepted project contract, not a claim to recover original qualification or
+ * prove an asynchronous writer. Original source spelling remains unknown.
  *
  * For each enabled, unblocked, non-disabled player within the strict squared
  * radius, apply trunc(((radius-distance)/radius)^2 * integer magnitude).
  * Kind 5 first transforms endpoint-origin into target-local space and applies
  * the native binary32 0.35 multiplier if the native angle magnitude is <1.35.
- * The three vectors are real three-float values. Existing pointer declarations
- * recover native direction/transformed/delta homes at sp+152/+140/+124.
- * No buffer size, fake formal, artificial caller, extra local or qualifier is
- * added to this submitted source. The native count read/PRE contract remains
- * unresolved. Names and original declarations/arcade ancestry are unknown.
+ * The three vectors are real three-float values. Moving the two existing
+ * pointer declarations recovers direction/transformed/delta homes at
+ * sp+152/+140/+124. Original declaration order and arcade ancestry are unknown.
+ * No buffer change, fake formal, artificial caller, extra local or assembly.
  *
  * Ordinary O32: two vector pointers, signed source index, binary32 squared
  * radius in a3 bits, signed integer magnitude in the first stack-argument slot.
  * Valid backed player/model/vector storage and indices, finite in-range float
- * conversions, and the genuine helper contracts are assumed. Origin/endpoint
- * may alias each other. Arbitrary partial overlaps, asynchronous mutation,
- * exceptional FCSR behavior, helper implementation and gameplay are unproved.
+ * conversions, and genuine helper contracts are assumed. Origin/endpoint may
+ * alias each other. Arbitrary partial overlaps, exceptional FCSR behavior,
+ * helper implementation, concurrency and full gameplay remain unproved.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -39,7 +41,7 @@ typedef struct Player {
 typedef struct Vehicle { u8 unknown000[1600]; s8 disabled; u8 unknown641[455]; } Vehicle;
 extern Player D_80152818[];
 extern Vehicle D_8014A250[];
-extern s16 D_801543CA;
+extern volatile s16 D_801543CA;
 extern void func_800A61B0(f32 *,f32 *,f32 *);
 extern f32 func_8008C768(f32,f32);
 extern void func_8038D3A4(Player *,Player *,s32);

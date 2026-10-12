@@ -7,7 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
-| ovl_b | func_8038D798 | Astra lane 2 | 2026-10-12 | NONMATCH research: 125/184 plus six extra words; exact volatile-count diagnostic unclaimed pending read-contract evidence. F938 scout confirms private FCE0 context. Packet dot_runtime_b_radius_effect_20261012 |
+| ovl_b | func_8038D798 | Astra lane 2 | 2026-10-12 | 736-byte strict candidate using the current accepted shared-count read contract; original spelling unproven, image/ROM credit zero. F938 scout confirms private FCE0 context. Packet dot_runtime_b_radius_effect_20261012 |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

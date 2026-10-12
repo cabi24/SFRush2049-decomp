@@ -1,4 +1,4 @@
-"""One bounded input-bound NONMATCH packet replay; missing IDO uses shared skip."""
+"""One bounded input-bound matching packet replay; missing IDO uses shared skip."""
 import importlib.util
 from pathlib import Path
 import shutil
