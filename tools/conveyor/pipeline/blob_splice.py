@@ -469,6 +469,97 @@ def unbound_objects(lock=None, obj_dir=None):
     return unbound
 
 
+def stale_objects(lock=None, obj_dir=None, include_unbound=False):
+    """Locked bodies whose object may not stand for its lock entry: object
+    missing, or its provenance record names another source/toolkit (after a
+    rename or any source edit that re-pinned the lock). With include_unbound,
+    objects with no provenance record at all count too (w23m's full sweep).
+
+    Returns ({target_id: entry} for singles, {group: why}, {target_id: why})."""
+    from . import blob_group
+    lock = load_lock() if lock is None else lock
+    obj_dir = Path(obj_dir or OBJ_DIR)
+    singles, groups, why = {}, {}, {}
+    for target_id, entry in sorted(lock.items()):
+        group = entry.get("group")
+        obj = (blob_group.object_path(group, obj_dir / "groups") if group
+               else obj_dir / f"{target_id}.o")
+        problem = ("object missing" if not obj.is_file()
+                   else provenance_problem(obj, entry, required=include_unbound))
+        if not problem:
+            continue
+        why[target_id] = problem
+        if group:
+            groups.setdefault(group, problem)
+        else:
+            singles[target_id] = entry
+    return singles, groups, why
+
+
+def rebuild_stale(lock=None, obj_dir=None, include_unbound=False, dry_run=False,
+                  workdir=None, group_workdir=None, log=print,
+                  compile_singles=None, compile_group=None):
+    """Recompile exactly the stale objects (stale_objects) on the builder:
+    singles batched per flagset (compile_on_builder), groups one by one
+    (blob_group.compile_group). Folded in from w23m's rebuild_stale.py.
+
+    The provenance check is NOT relaxed: every rebuilt object is bound to the
+    source text it was compiled from, so a source that drifted from its lock
+    entry stays stale and is reported (and spliced_bodies still refuses it).
+    Sources are drift-checked first; drift refuses before anything compiles.
+    Returns {"singles", "groups", "still"} (target ids / group names)."""
+    from . import blob_group
+    lock = load_lock() if lock is None else lock
+    obj_dir = Path(obj_dir or OBJ_DIR)
+    singles, groups, _ = stale_objects(lock, obj_dir, include_unbound)
+    log(f"blob objects: {len(singles)} stale singles, {len(groups)} stale groups"
+        + (f" ({', '.join(sorted(singles)[:6])}{' ...' if len(singles) > 6 else ''}"
+           f"{'; groups ' + ', '.join(sorted(groups)[:4]) if groups else ''})"
+           if singles or groups else ""))
+    if dry_run or not (singles or groups):
+        return {"singles": sorted(singles), "groups": sorted(groups), "still": []}
+    sources = {t: REPO / e["source"] for t, e in singles.items()}
+    drifted = sorted(t for t, p in sources.items()
+                     if not p.is_file() or source_sha(p.read_text()) != lock[t].get("source_sha256"))
+    specs = {}
+    for g in sorted(groups):
+        try:
+            specs[g] = blob_group.load(g)
+        except blob_group.GroupError:
+            drifted.append(f"group:{g}")
+            continue
+        if {e["source_sha256"] for e in lock.values() if e.get("group") == g} != {blob_group.source_sha(specs[g])}:
+            drifted.append(f"group:{g}")
+    if drifted:
+        raise LockedBodyError({t: "source drifted from its lock entry; not rebuilt"
+                               for t in drifted})
+    compile_singles = compile_singles or compile_on_builder
+    compile_group = compile_group or blob_group.compile_group
+    by_flags = {}
+    for t, e in singles.items():
+        by_flags.setdefault(e["flagset"], {})[t] = sources[t]
+    for flags, batch in sorted(by_flags.items()):
+        kwargs = {"obj_dir": obj_dir}
+        if workdir:
+            kwargs["workdir"] = workdir
+        _, failed = compile_singles(batch, flags, **kwargs)
+        if failed:
+            raise LockedBodyError(failed)
+        log(f"  rebuilt {len(batch)} singles ({flags})")
+    for g in sorted(groups):
+        kwargs = {"obj_dir": obj_dir / "groups"}
+        if group_workdir:
+            kwargs["workdir"] = group_workdir
+        compile_group(specs[g], **kwargs)
+        log(f"  rebuilt group {g}")
+    s2, g2, why2 = stale_objects(lock, obj_dir, include_unbound)
+    still = sorted(s2) + sorted(f"group:{g}" for g in g2)
+    if still:
+        log(f"  still stale after rebuild: {len(still)} "
+            + "; ".join(f"{t}: {why2.get(t, g2.get(t[6:], ''))}" for t in still[:6]))
+    return {"singles": sorted(singles), "groups": sorted(groups), "still": still}
+
+
 def spliced_bodies(lock=None, document=None, symbols=None, obj_dir=None,
                    require_provenance=False):
     """{target_id: bytes} for EVERY locked target, or LockedBodyError.
@@ -745,7 +836,31 @@ def main():
     p.add_argument("targets", nargs="+")
     sub.add_parser("coverage")
     sub.add_parser("check")
+    p = sub.add_parser("rebuild-stale",
+                       help="recompile exactly the locked bodies whose object is missing or "
+                            "bound to other source (e.g. after a rename); provenance kept")
+    p.add_argument("--include-unbound", action="store_true",
+                   help="also rebuild objects that have no provenance record")
+    p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--builder-dir", default=None,
+                   help="builder work dir for singles (default " + BUILDER_TMP + ")")
+    p.add_argument("--group-builder-dir", default=None,
+                   help="builder work dir for groups (default blob_group's)")
     args = parser.parse_args()
+
+    if args.command == "rebuild-stale":
+        try:
+            r = rebuild_stale(include_unbound=args.include_unbound, dry_run=args.dry_run,
+                              workdir=args.builder_dir, group_workdir=args.group_builder_dir)
+        except LockedBodyError as exc:
+            print(f"rebuild-stale REFUSED: {exc}")
+            return 1
+        if args.dry_run:
+            for t in r["singles"]:
+                print(f"  stale {t}")
+            for g in r["groups"]:
+                print(f"  stale group {g}")
+        return 1 if r["still"] else 0
 
     document = blob_layout.load()
     if args.command == "coverage":

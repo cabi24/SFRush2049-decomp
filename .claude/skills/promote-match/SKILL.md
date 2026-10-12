@@ -41,6 +41,9 @@ Static `lock`/`promote` commands intentionally reject this population.
    after an overlay splice run `ovl_layout build` then `ovl_rom rom` (same gate);
    `blob_rom rom` refuses when `build/ovl/ovl_{a,b}.deflate` are missing. The required `build/blob/game_code.deflate` uses
    vendored zlib 1.0.4 with the documented exact parameters; no extracted-byte fallback.
+   Before composing, `blob_rom rom` recompiles exactly the locked bodies whose
+   `build/blob/obj` object is missing or bound to other source (e.g. after a rename);
+   standalone: `python3 -m tools.conveyor.pipeline.blob_splice rebuild-stale [--dry-run]`.
 
 ## Evidence to report
 

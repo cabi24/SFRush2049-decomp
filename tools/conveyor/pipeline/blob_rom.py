@@ -4,6 +4,11 @@
     python3 -m tools.conveyor.pipeline.blob_rom rom          # + builder ROM build + SHA-1
     python3 -m tools.conveyor.pipeline.blob_rom rom --drill  # prove the gate bites
 
+`rom` first recompiles, on the builder, exactly the locked bodies whose
+object in build/blob/obj is missing or bound to other source (after a rename;
+`blob_splice rebuild-stale`, w24t), unless `--no-rebuild-stale`; `produce
+--rebuild-stale` does the same. Provenance is still checked when composing.
+
 `produce` links the game-code image from sources (008, gated on byte
 identity), compresses the BUILT image with vendored zlib 1.0.4 at the
 cartridge's exact parameters, and writes `build/blob/game_code.deflate`.
@@ -80,7 +85,11 @@ def produce(out=BLOB_OUT, document=None):
     try:
         bodies = blob_splice.spliced_bodies(document=document)
     except blob_splice.LockedBodyError as exc:
-        raise BlobRomError(str(exc)) from exc
+        hint = ""
+        if any("different" in why or "object missing" in why for why in exc.problems.values()):
+            hint = ("\n  stale objects: `blob_splice rebuild-stale` (or `blob_rom produce "
+                    "--rebuild-stale`) recompiles exactly those")
+        raise BlobRomError(str(exc) + hint) from exc
     blob_tu.generate(document, spliced=bodies)
     work = Path(tempfile.mkdtemp(prefix="blobrom-"))
     ok, sha, message = blob_build.build(document, work_dir=work)
@@ -174,12 +183,26 @@ def builder_rom_build(repo=BUILDER_REPO, make_args="-j16", log="/tmp/blobrom"):
     return ok, out.strip()
 
 
-def rom(drill=False):
+def rebuild_stale_objects(log=print):
+    """Before composing: recompile exactly the locked bodies whose object is
+    missing or bound to other source (after a libultra/ll.c rename, the
+    renamed game callers' objects in build/blob/obj; w23m). The provenance
+    check in spliced_bodies is unchanged; a body that is still stale after
+    the rebuild (its source drifted from the lock) is refused there."""
+    try:
+        return blob_splice.rebuild_stale(log=log)
+    except blob_splice.LockedBodyError as exc:
+        raise BlobRomError(str(exc)) from exc
+
+
+def rom(drill=False, rebuild_stale=True):
     absent = [str(p) for _, p in sorted(OVL_STREAMS.items()) if not p.is_file()]
     if absent:
         raise BlobRomError("runtime-image streams absent: " + ", ".join(absent) +
                            " — run ovl_layout build and ovl_rom produce first "
                            "(the ROM build composes them; there is no fallback)")
+    if rebuild_stale:
+        rebuild_stale_objects()
     result = produce()
     if not result["stream_matches_rom"]:
         raise BlobRomError("pre-flight: compressed blob differs from the ROM's stream; "
@@ -251,16 +274,22 @@ def print_coverage(cov):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("produce")
+    p = sub.add_parser("produce")
+    p.add_argument("--rebuild-stale", action="store_true",
+                   help="first recompile stale build/blob/obj objects on the builder")
     sub.add_parser("coverage")
     p = sub.add_parser("rom")
     p.add_argument("--drill", action="store_true")
+    p.add_argument("--no-rebuild-stale", action="store_true",
+                   help="refuse on stale objects instead of recompiling them first")
     args = parser.parse_args()
     if args.command == "coverage":
         print_coverage(cartridge_coverage())
         return 0
     try:
         if args.command == "produce":
+            if args.rebuild_stale:
+                rebuild_stale_objects()
             r = produce()
             print(f"blob_rom: image {r['image_bytes']} B ({r['spliced']} spliced) -> "
                   f"blob {r['blob_bytes']} B sha256 {r['blob_sha256'][:16]}…")
@@ -270,7 +299,7 @@ def main():
                       "before provenance records; rebuild them to bind source")
             print(f"  -> {r['path']}")
             return 0 if r["stream_matches_rom"] else 1
-        r = rom(drill=args.drill)
+        r = rom(drill=args.drill, rebuild_stale=not args.no_rebuild_stale)
     except BlobRomError as exc:
         sys.exit(f"blob_rom FAILED: {exc}")
     print(f"ROM build with the source-built blob: {'SHA-1 EXACT' if r['rom_ok'] else 'FAILED'}")

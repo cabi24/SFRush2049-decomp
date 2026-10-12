@@ -66,6 +66,10 @@ syncs the required `build/blob/game_code.deflate` before the builder runs Make.
 Every ROM build also composes the runtime-image streams `build/ovl/ovl_{a,b}.deflate`
 (`ovl_layout build` then `ovl_rom produce`; `ovl_rom rom` does both sync and build);
 `blob_rom rom` and `ovl_rom rom` refuse when any of the three is absent.
+`blob_rom rom` first recompiles exactly the stale `build/blob/obj` objects
+(missing, or provenance naming other source, as after a rename; `--no-rebuild-stale`
+refuses instead); `blob_splice rebuild-stale [--dry-run] [--include-unbound]` does it
+alone. A body whose source drifted from its lock entry is still refused.
 The direct command below assumes those files are already present and current:
 
 ```bash
