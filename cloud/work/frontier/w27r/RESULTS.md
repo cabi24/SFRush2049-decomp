@@ -1,4 +1,4 @@
-STATUS (2026-10-12): draft_check READY. On the Pi from the repo root:
+STATUS (2026-10-12): DONE. draft_check READY. On the Pi from the repo root:
 `python3 .claude/worktrees/w27r/tools/recomp/draft_check.py --remote rocky NAME path/to/draft.c`
 (add `--params PARAM=REG,...` for a register-parameter function; `--scripts race,battle` to choose scripts).
 Prints EQUIVALENT (behaviour only, NOT a match) / FIRST DIVERGENCE (script, frame, call #, retail vs draft) /
@@ -16,7 +16,8 @@ Not a matching lane: no src/, asm/, lock or coverage change.
 See tools/recomp/README.md "draft_check". Checked on rocky: matched render_helper EQUIVALENT (60,802 calls over
 race/two_player/attract); injected bug DIVERGES at race frame 2 call #2; w21h engine_sound_sync EQUIVALENT;
 func_800D7634 NEVER CALLED (race) / EQUIVALENT (audio_options, 435 calls); audio_effect_setup (inbound s0)
-EQUIVALENT. First check of a function ~50 s (two builds + retail runs), repeat ~5-16 s.
+EQUIVALENT; w26d cluster.c func_800A1DD4 with `--params handle=a0,address=a1,bytes=a2,mark=t3`: EQUIVALENT
+(saves, 9 calls; without --params it is refused). First check of a function ~50 s (two builds + retail runs), repeat ~5-16 s.
 
 ## 2. regmap_verify (done)
 
@@ -41,3 +42,38 @@ Per lane (unreached = draft_check can only say NEVER CALLED):
 - w27d: unreached save_settings, fp_call_wrapper, func_800C7EC8, func_800D5A04, func_800DD0C0, func_8010BC84,
   func_8010E8B4, func_8010F218; drone_collision_avoid once (audio_options), track_texture_load once (saves).
 - w27e: func_800A1DD4 / func_800A1BB4 only in saves (9 / 3 calls); func_80096CA8 and func_80097164 everywhere.
+
+## 4. Package v4 (done, no laptop wait)
+
+- `rocky:~/rush2049/recomp/dist/rush2049-recomp-test-v4.tar.gz` = Pi `build/recomp/dist/` in this worktree
+  (git-ignored): 36,485,508 bytes, sha256 `a080ca8e26690793cfaa624a8893ea8b7df9c3930e438e5deec2183ecb0d2333`,
+  repo commit edf96ad6, 0 `.z64` members, `--verify` OK. Private (rocky only) `-with-rom`: 47,912,357 bytes,
+  sha256 `9e2a7e27780f9abb822ab51bc66869082fcbc2698bcd6c3d35a032719658c269`.
+- Sanity (`~/rush2049/recomp/w27r/sanity/run.sh`, fresh extract, INSTALL B): MANIFEST OK; prebuilt + built hosts
+  headless (pak created, ovl_b loaded, non-silent audio); saves/saves_reload pak lines as v3; lockstep a vs b
+  `EQUIVALENT over 1800 frames`; RT64 container `RT64 setup: ok, graphics API Vulkan`, a vs c `DIFFERENT at frame 2:
+  71 rdram page(s)`, `--mask-renderer` `EQUIVALENT except renderer-written pages over 1800 frames`.
+- After merging wave27 (w27s identity.json renames): stock `rush2049.recomp.toml` and `rush2049.syms.toml`
+  byte-identical to the v4 build (only manifest.json names differ), so v4's recompiled code is current.
+
+## Checks (merged tree d4b48407 + this commit)
+
+- Pi `python3 -m pytest tests/recomp -p no:cacheprovider`: 158 passed, 5 skipped (private inputs).
+- rocky (civenv; RUSH2049_ROM / RECOMP_HOST / RECOMP_ROM / N64RECOMP_INCLUDE from build/stock): 161 passed,
+  2 skipped (game_code.bin, libubsan); includes the draft_check end-to-end good/broken pair.
+- Pi `make test-fast JOBS=4` run in the MAIN checkout (branch wave27 as it stood, the lanes' environment with
+  the mips_to_c submodule): tests/conveyor 1618 passed, 764 skipped; tests/cloud 770 passed, 187 skipped; exit 0.
+  This lane touches only tools/recomp, tests/recomp, the plan and this dir; no conveyor/cloud test imports
+  tools/recomp.
+
+## Open items for Phase 8
+
+Scripts that finish a race (results, high-score entry, replay save: needs scripted steering or a lever), options
+screens (controller/save settings), attract demo/video handlers; draft_check for a whole IPA unit (several
+functions with their conventions); overlays; `--probe-callees` in draft_check to localise a divergence; cleanup
+policy for `~/rush2049/recomp/dc` (~250 MB per function tree); refresh `dc/repo` when wave27 moves (README rsync
+line; it is at this commit now).
+
+## Permission denials
+
+None.
