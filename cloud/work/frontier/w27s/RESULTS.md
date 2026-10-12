@@ -1,17 +1,17 @@
 # w27s - static boot tail (worktree lane): func_80018448, inflate leftovers, libultra rename leads
 
 Branch `w27s` (worktree `.claude/worktrees/w27s`, from wave27 8a54d6d2). Static numbers only (`make progress`).
-Status: IN PROGRESS.
+Status: DONE (wave27 8a54d6d2 merged: no-op, wave27 had not moved). Not pushed.
 
-**Static 625/667, 147,280 B -> 627/667, 149,708 B (93.15%) so far.**
+**Static 625/667, 147,280 B (91.64%) -> 627/667, 149,708 B (93.15%): +2 functions, +2,428 B.** Game/overlays untouched.
 
 | function | bytes | state | scorer / gate line |
 |---|---|---|---|
 | func_80018448 | 492 | **PROMOTED** ef6833a7 | `LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (129 rows)`; `TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (129 rows)` `RESULT PASS`; lock `(ido7.1): score=0`; gate `OWNED-OFFSETS: OK 19 ROM TU data sections ...`, `PROMOTED 1 (492 B) @ ef6833a7` |
 | inflate_dynamic | 1936 | **PROMOTED** a1bbc86c (+ reloc_addrs prep 2 entries) | `LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (537 rows)`; `TU: ... identical (537 rows)` `RESULT PASS`; lock `(ido5.3s): score=0`; `PROMOTED 1 (1936 B) @ a1bbc86c`, OWNED-OFFSETS OK |
 | inflate_entry / inflate_entry_alt | 360/132 | left as GLOBAL_ASM: hand-edited call (evidence below) | best C `LOCK: true=25 strict=25 reloc_blind=4 objdump-dr DIFFERS(3 rows) (122 rows)` (u64 argument) |
-| 7 libultra rename leads | - | pending | |
-| func_80012D18 | 3148 | only if a lever appears | |
+| 7 libultra rename leads | - | **RENAMED** d8d00877 (all 7 proven) | each ultralib object `RESULT: IDENTICAL (...)` (below); gate `GATE PASS`, built ROM SHA-1 3f99351d... = baserom, `OWNED-OFFSETS: OK 19 ROM TU data sections ...` |
+| func_80012D18 | 3148 | not attempted (no lever: no macro/do-while blocks in the draft; w26b's 7-missing-instruction residual stands) | w26b `LOCK: true=12735 strict=13017 ...` unchanged |
 
 ## func_80018448 (492 B, IDO 7.1 -O2): MATCH, promoted
 
@@ -115,3 +115,94 @@ Retail: `li a1,12000; jal sound_play_menu; addiu a0,zero,0` (sound_play_menu = t
 Conclusion: the object was compiled from a one-argument call and the .s edited afterwards (`li $4,12000` ->
 `li $5,12000` + `li $4,0`), consistent with the TU's other hand-edited code (inflate_io_wait/lzss_decode non-ABI).
 No C produces it; they stay GLOBAL_ASM.
+
+## The 7 libultra rename leads (w22g/w23g leads in docs/SYMBOL_MISATTRIBUTION.md): all proven and applied
+
+`rename/prove.sh` (builder): ultralib (decompals e24c836, `reference/repos/ultralib` of the main checkout) VERSION_J
+`-D_FINALROM`, project IDO 5.3 (toolkit 796ae99a), `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm` (the
+holding TUs lib_8440/lib_e280/lib_a050/lib_f160 have no opt override and are ido5.3 in rom_compilers.json). Then w24t's
+`compare.py OBJ VRAM` on the Pi (`rename/prove.log`, object sha256s included):
+```
+sptask.o       @0x80007840  RESULT: IDENTICAL (176 words, 54 relocated fields compared by value, 0 differing words)
+sprawdma.o     @0x8000D680  RESULT: IDENTICAL (36 words, 2 relocated fields compared by value, 0 differing words)
+controller.o   @0x80009450  RESULT: IDENTICAL (184 words, 38 relocated fields compared by value, 0 differing words)
+siacs.o        @0x8000E560  RESULT: IDENTICAL (48 words, 19 relocated fields compared by value, 0 differing words)
+pfsgetstatus.o @0x8000E620  RESULT: IDENTICAL (140 words, 18 relocated fields compared by value, 0 differing words)
+```
+| vram | old | new (ultralib J) | file |
+|---|---|---|---|
+| 0x80007840 | osViModeTableGet | _VirtualToPhysicalTask (static in ultralib) | io/sptask.c |
+| 0x8000D680 | __osSpDma | __osSpRawStartDma | io/sprawdma.c |
+| 0x800095AC | __osContGetStatus | __osContGetInitData | io/controller.c |
+| 0x80009658 | __osContRamReset | __osPackRequestData | io/controller.c |
+| 0x8000E560 | osSiInit | __osSiCreateAccessQueue | io/siacs.c |
+| 0x8000E6F0 | __osContBuildRequest | __osPfsRequestOneChannel | io/pfsgetstatus.c |
+| 0x8000E7B4 | __osContParseResponse | __osPfsGetOneChannelData | io/pfsgetstatus.c |
+
+Applied in commit d8d00877 (table `rename/renames.json`, a pure permutation, no cycles; base 6b929277):
+- `static_rename symbols` (7 definitions), `source` on src/rom/lib_{8440,a050,a330,e280,f160}.c + rom_tu.h (6 files),
+  PROMOTED headers retitled by hand ("ultralib name since w27s; was X"), `lock` (`13 of 630 entries migrated`: 7 re-keyed,
+  6 callers rehashed with the pure-rename proof), `owned ... --rebind-dir cloud/work/frontier/w27s/rebind`
+  (`2 file pins refreshed`: timer_services + sdk_initialize context hashes, superseding w26a/rebind), then
+  `owned_storage generate` (storage_overrides.mk now names w27s/rebind).
+- asm/us/nonmatchings/rom: 7 files git-mv'd, names permuted in 13 files (these slots are all C; `make extract` does not
+  rewrite them). asm/us/{blob,boot_tail}/symbols.json keys + SHA256SUMS and src/blob/blob.ld PROVIDEs permuted in place
+  (no game source or asm references these names). ovl_a/ovl_b symbols.json not touched (Astra's; unreferenced there).
+- Receipts that pin asm/us/blob/symbols.json re-pinned with the pure-rename proof (live = pinned 0b72f7be with the table
+  applied): dot_nearest_point_donor_20261005 and dot_target_orientation_20261005 verification.json -> 89ee4b7a.
+- `targets._typed_data_field_aliases` accepts `_VirtualToPhysicalTask` (and the old name) for the OSTask field family;
+  test_typed_target_aliases.py follows. `tools/recomp/identity.json`: 7 entries map the new inventory names back to the
+  pre-w27s names for N64Recomp (recomp output unchanged; giving N64Recomp the ultralib names is the recomp lane's call).
+  `static_rename.RENAME_TABLES` += w27s table. docs/SYMBOL_MISATTRIBUTION.md section.
+- Conveyor DB (`~/.conveyor/conveyor.db`): copy run first (`renamed 7 rows`, audit clean), then live
+  `targets_rename rename cloud/work/frontier/w27s/rename/renames.json` -> `renamed 7 rows in /home/cburnes/.conveyor/conveyor.db
+  (n64_target, function_status, matrix_entry, work_unit, promotion_record), 0 matrix_entry rows purged`; `audit` clean.
+  Backups (sqlite backup API) in the session scratchpad `w27s/conveyor.db.w27s.bak{1,2,3}` (bak1 before the inflate_dynamic
+  target refresh, bak3 immediately before the live rename, 17:13 CDT). **Until w27s merges, the DB and wave27's layout
+  disagree on these 7 names.**
+- Gate: `gate_only.py src/rom/lib_{8440,a050,a330,e280,f160}.c` in the lane gate repo -> `GATE-CLEAN: owned-slot inputs
+  changed ...`, `OWNED-OFFSETS: OK 19 ROM TU data sections (16 owned slots), 23 named objects checked against retail
+  addresses (18 in owned slots), 1 without a retail address`, `GATE PASS`; built ROM sha1 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
+  = baserom. `lock check`: `all 630 locked functions intact`.
+
+## Integration notes (coordinator)
+
+- Fast-forward wave27 to w27s (wave27 8a54d6d2 is an ancestor; merge was a no-op). Commits: f1eb254a/82ce6005 (lock +
+  ctx func_80018448), ef6833a7 (PROMOTED func_80018448), 26d3bb6a (reloc_addrs + make extract), 2119732f (lock
+  inflate_dynamic), a1bbc86c (PROMOTED inflate_dynamic), d8d00877 (renames), plus RESULTS commits. promote_batch's commits
+  carry its own Opus trailer.
+- **Builder gate repo needs** `cloud/work/frontier/w27s/rebind/*.json` (rom_owned_data.json / storage_overrides.mk now point
+  there instead of w26a/rebind): rsync it to `~/rush2049/repo` before the next gate there. I did not touch ~/rush2049/repo;
+  all gates ran in `watchman2:~/rush2049/scratch/frontier/w27s/repo` (seeded from ~/rush2049/repo without .git/cloud/build,
+  its submodule .git dirs removed, deflate streams copied; CONVEYOR_BUILDER_REPO/JOBS=2). Scratch deleted at the end.
+- Conveyor DB already carries: inflate_dynamic target refresh (`f82aa18a6528 -> 735d59c0892d`, needed for the
+  reloc_addrs entries) and the 7 renames.
+- No unit_overrides, no game/overlay changes, no data-symbol changes beyond the reloc_addrs naming; rom_tu.h changed only
+  by the renames (no new declarations: OWNED-OFFSETS headroom unchanged).
+- Worktree setup notes: `tools/decomp-permuter` was `git submodule update --init`ed in the worktree (reloc_split needs it);
+  `tools/mips_to_c` untouched; baserom.us.z64, build/blob_layout.json, build/game_code.bin copied (ignored files).
+
+## Tests (Pi, worktree HEAD after the merge)
+
+`make test-fast JOBS=4`: conveyor `6 failed, 1583 passed, 793 skipped`; cloud `770 passed, 187 skipped`. The 6 are the
+m2c tests (test_autodecomp_population x3, test_ido_syntax x3) because the worktree's `tools/mips_to_c` submodule is not
+checked out (not to be touched). Re-run on a `git archive HEAD` copy with the main checkout's tools/mips_to_c:
+`python3 -m pytest tests/conveyor/test_ido_syntax.py tests/conveyor/test_autodecomp_population.py` -> `28 passed`.
+Not run: rocky REQUIRE_TOOLCHAIN replay (packet receipts re-pinned above are toolchain-only replays; w25a's re-pin of the
+same two receipts was found that way).
+
+## What generalises
+
+- **The ucode-first scan finds hidden pops in minutes**: `tools/uscan.py` (batch uedit+urun, 2 jobs, ~0.05 s/variant)
+  over single and chained `cvtl` insertions located func_80018448's three hidden-pop sites; a pop pair's FREE order is
+  visible later as a permuted register order (t8 t7 t9), so a "different free order" can still be hidden pops.
+- **`(short)` on int-typed byte operands is a code-free 7.1 pop lever**: cfe emits 16-bit narrowings, ugen allocates
+  sll/sra (or and) temps, as1 deletes them because the byte is known zero-extended. `(short)u8var` alone does not; it
+  needs an int-typed operand (`(short)second` after promotion, `(short)(first & 255)`).
+- **`do { } while (0)` macros cost uopt 2 blocks each, and blocks/4 is the callee-saved cost** (5.3 too). A big
+  function full of statement macros can lose a callee-saved colour for that reason alone: try the brace form `{ ... }`
+  (gzip's original) before chasing priorities.
+- **A 64-bit argument is the only C that gives `addiu aN,zero,0`** (`li` of a 64-bit constant's high word); a lone
+  `li a0,0` after the other argument plus a ONE-argument register allocation elsewhere is the signature of a hand-edited
+  .s call.
+- Ultralib J compile proofs remain cheap: five files, one script, all leads closed.
