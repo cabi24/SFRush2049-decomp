@@ -200,7 +200,7 @@
     "src/blob/func_80090284.c": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
     "src/blob/func_80090E9C.c": "48a0e9b157c6e2607c22fa279a6e3b008b692fe15c1262f2c21b443d75893905",
     "src/blob/func_800A61B0.c": "aad8ebd2e21bb212b9ddc6562183238a06993bdad136d7e57f651eb3e23a8189",
-    "src/blob/groups/frontier_list_alloc_sound/group.c": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "src/blob/groups/frontier_list_alloc_sound/group.c": "b76c29d2c8fa2d15aff8f02494c87be8c74ca2d4c5b1f0c6be4ce05418f11c8b",
     "src/blob/stat_lap_split.c": "f9563673b971d17d830a9897e9aabf42f223188e3c16679663e9e65b4f5f19fc"
   },
   "erratum_flag": "-Wab,-r4300_mul",

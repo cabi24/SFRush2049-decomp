@@ -74,6 +74,16 @@
  "cloud/work/dot_substantial_scout/native_audit.json": {
   "rule": "receipt name strings renamed"
  },
+ "cloud/work/frontier/dot_audio_force_20261005/verification.json": {
+  "pins": [
+   {
+    "new": "b76c29d2c8fa2d15aff8f02494c87be8c74ca2d4c5b1f0c6be4ce05418f11c8b",
+    "old": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "path": "cloud/work/frontier/superseded/frontier_list_alloc_sound/group.c"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
  "cloud/work/frontier/dot_cone_motion_donor_20261005/verification.json": {
   "pins": [
    {
@@ -118,29 +128,9 @@
  "cloud/work/frontier/dot_directional_sound_20261005/verification.json": {
   "pins": [
    {
-    "new": "aad8ebd2e21bb212b9ddc6562183238a06993bdad136d7e57f651eb3e23a8189",
-    "old": "0d8334e0223e4b3f9498c2ed324e5a35847593c90e4b107a80306d4149e824af",
-    "path": "src/blob/func_800A61B0.c"
-   },
-   {
-    "new": "a2595fd737c77eb13848aab4c8c2d74897fd73b1335b8a886db8dca105a4be4d",
-    "old": "4610b0611f323281f407c5182571c7f43c1a450128ae9d419531d3ca229f8e00",
-    "path": "src/blob/func_8010C7F4.c"
-   },
-   {
-    "new": "c2d132e61cd00064272972174540c3de9e8df0c06f9a4bea33ac724c31356059",
-    "old": "b90d7374a2b0975810c16d912c38e462fc2e314b5bf1f87fad463ed40076edcf",
-    "path": "src/blob/func_8010D9CC.c"
-   },
-   {
-    "new": "1aa7f4c43d6e293c110e47ac812bdb6cbf749af12fe89cb242e114ea6043d0ad",
-    "old": "7a39ba68fd984100ac9f516bab276f9513fbd7a29413bbff0fa1c17b137cc857",
-    "path": "src/blob/func_8010DAF8.c"
-   },
-   {
-    "new": "e82ef7c16a14102e64d5d636bdad92f84bec9fbb18ff1b4195a9800dbdf39765",
-    "old": "754af3cb0fe13ff64c05598ff09dbb32381476b1dd143dc4c6b39eda7219f7d1",
-    "path": "src/blob/func_8010DF90.c"
+    "new": "b76c29d2c8fa2d15aff8f02494c87be8c74ca2d4c5b1f0c6be4ce05418f11c8b",
+    "old": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "path": "cloud/work/frontier/superseded/frontier_list_alloc_sound/group.c"
    }
   ],
   "rule": "sha256 pins rebound"
@@ -179,9 +169,9 @@
  "cloud/work/frontier/dot_heap_max_20261005/verification.json": {
   "pins": [
    {
-    "new": "b0bd0731257e04ecb805e844f150e4c873fc8e49b5a5c867d0734ee3ef7d41bc",
-    "old": "543862e1de0db8abe75643ce8adf345f28586d5cf96d6107bdc33445e5658e6f",
-    "path": "cloud/work/tiny_A40/func_800E79F8.c"
+    "new": "02c0f5c4ecc3fe59fc0f235b85bee6e1142b87130005e5079c5d1e95a75157b3",
+    "old": "21357517675e9bfefe1695b7cb97d3425fb6fbb7d680d18cf8b1272f8b86b041",
+    "path": "cloud/work/frontier/superseded/audio_heap/group.c"
    }
   ],
   "rule": "sha256 pins rebound"
@@ -208,6 +198,21 @@
  },
  "cloud/work/frontier/dot_nearest_point_donor_20261005/verification.json": {
   "pins": [
+   {
+    "new": "46c815ca0c4d7bcb418592c16d46bbb02124f099a49b099d55a38529e721a587",
+    "old": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "path": "asm/us/blob/symbols.json"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/frontier/dot_quadtree_donor_20261005/verification.json": {
+  "pins": [
+   {
+    "new": "5ba972a5a30b360598ad333f08577e1e4f21fb695872eee695d79b1a56b0e38a",
+    "old": "2188cd871873c9d778d5d403b6a2321ee988ada5aebcb9e784600a521571a553",
+    "path": "cloud/work/frontier/superseded/func_800AD4C8/group.c"
+   },
    {
     "new": "46c815ca0c4d7bcb418592c16d46bbb02124f099a49b099d55a38529e721a587",
     "old": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
@@ -399,6 +404,15 @@
   ],
   "rule": "sha256 pins rebound"
  },
+ "cloud/work/frontier/superseded/audio_heap/group.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/superseded/frontier_list_alloc_sound/group.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/frontier/superseded/func_800AD4C8/group.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
  "cloud/work/frontier/task_enqueue_20261005/candidate.c": {
   "rule": "C rename (static_rename.permute_c) + redeclaration drop"
  },
@@ -473,9 +487,9 @@
  "cloud/work/ipa-groups/dot_object_sound_20261005/verification.json": {
   "pins": [
    {
-    "new": "aad8ebd2e21bb212b9ddc6562183238a06993bdad136d7e57f651eb3e23a8189",
-    "old": "0d8334e0223e4b3f9498c2ed324e5a35847593c90e4b107a80306d4149e824af",
-    "path": "src/blob/func_800A61B0.c"
+    "new": "b76c29d2c8fa2d15aff8f02494c87be8c74ca2d4c5b1f0c6be4ce05418f11c8b",
+    "old": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "path": "cloud/work/frontier/superseded/frontier_list_alloc_sound/group.c"
    }
   ],
   "rule": "sha256 pins rebound"

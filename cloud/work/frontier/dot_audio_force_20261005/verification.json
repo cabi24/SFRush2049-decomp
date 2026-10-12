@@ -384,7 +384,7 @@
     "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/impact_sound.h": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194",
     "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/mode_select_handler.c": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d",
     "cloud/work/module_campaign_20261002/ai/model_audio/audio_core.c": "0011b8a296d554ee9e2074428a1278571d0cdc07ad0e5bcd3901343a69ac4cee",
-    "src/blob/groups/frontier_list_alloc_sound/group.c": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "src/blob/groups/frontier_list_alloc_sound/group.c": "b76c29d2c8fa2d15aff8f02494c87be8c74ca2d4c5b1f0c6be4ce05418f11c8b",
     "src/blob/groups/frontier_list_alloc_sound/group.json": "ff830e40ce03e9e3a26089b00b080ed224c5b6ddcf721d9f4e627db2266fe693"
   },
   "start": "0x800DED78",
