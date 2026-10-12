@@ -74,7 +74,8 @@ REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/cloud/test_runtime_a_projected_optio
 ```
 
 The authenticated unmodified canonical scorer runs **without `--claims` or
-`--allow-unverified`**. Its member and relevant context output is:
+`--allow-unverified`**. Its member and relevant context summaries (omitting the displayed differing
+instruction rows) are:
 
 ```
 Members:
@@ -84,7 +85,6 @@ func_80399394:
 Context (informational; excluded from exit status):
 func_803A6B50:
   3/241 words differ
-    own .rodata verified at 0x803B9820..0x803B9834
 ```
 
 The existing other two nonmatching contexts remain informational. A zero group
