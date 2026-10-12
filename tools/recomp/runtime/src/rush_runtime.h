@@ -29,4 +29,19 @@ void poll_input();
 bool get_input(int controller, uint16_t* buttons, float* x, float* y);
 void set_rumble(int controller, bool on);
 ultramodern::input::connected_device_info_t get_connected_device_info(int controller);
+// --clock frames: scripted input reads game frames / 30 instead of wall time
+void set_frame_clock(bool on);
+
+// oracle.cpp: per-frame rdram/display-list hashes (tools/recomp/oracle.py)
+void oracle_start(const std::string& path, uint64_t stop_frames);
+uint64_t oracle_frames();
+void oracle_event(const char* text);
+void oracle_finish(const char* why);
+void oracle_virtual_clock(bool on);  // osGetCount/osGetTime from frames
+
+// lockstep.cpp: deterministic VI/AI/SP/DP delivery (--clock frames)
+void set_lockstep(bool on);
+bool lockstep_enabled();
+uint64_t lockstep_vis();
+void lockstep_idle(uint8_t* rdram);
 } // namespace rush

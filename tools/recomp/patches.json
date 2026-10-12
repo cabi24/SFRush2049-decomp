@@ -128,6 +128,12 @@
    "before_vram": "0x80002218",
    "call": "rush_hook_park_idle",
    "why": "the idle thread ends in `for (;;) {}` (b . at 0x80002218). ultramodern schedules game threads cooperatively (one runs at a time, switches only inside libultra calls), so a spinning idle thread would hold the CPU forever once every other thread blocks; the hook calls ultramodern pause_self (wait for external events, then run the woken higher-priority thread), as the runtime intends for idle loops."
+  },
+  {
+   "func": "__scExec",
+   "before_vram": "0x80000EE0",
+   "call": "rush_hook_frame",
+   "why": "Phase 2 frame oracle (runtime/src/oracle.cpp): the libultra scheduler's __scExec hands every RSP task to osSpTaskStartGo(&sctask->list) at 0x80000EE4; before it the hook reads the OSScTask pointer from the frame (sp+0x24), and for graphics tasks counts the frame, hashes the display lists and the 8 MiB of rdram, drives the frame-clocked input script and stops after --frames. It runs on the scheduler thread while the other game threads are suspended (ultramodern runs one at a time), so the snapshot is consistent."
   }
  ]
 }

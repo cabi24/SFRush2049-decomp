@@ -73,6 +73,7 @@ extern "C" void pause_self(uint8_t* rdram);
 
 extern "C" void rush_hook_park_idle(uint8_t* rdram, recomp_context* ctx) {
     (void)ctx;
-    rush::trace_event("idle thread parked (pause_self)");
-    pause_self(rdram);
+    rush::trace_event(rush::lockstep_enabled() ? "idle thread parked (lockstep: virtual VIs)"
+                                               : "idle thread parked (pause_self)");
+    rush::lockstep_idle(rdram);
 }

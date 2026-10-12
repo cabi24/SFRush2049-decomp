@@ -38,6 +38,11 @@ std::vector<Press> presses;
 
 double now_s() { return std::chrono::duration<double>(clock_type::now() - t0).count(); }
 
+// Scripted input clock: wall time (Phase 1 default) or game frames / 30
+// (--clock frames: deterministic replay for the frame oracle).
+bool frame_clock = false;
+double input_time() { return frame_clock ? rush::oracle_frames() / 30.0 : now_s(); }
+
 uint16_t button_mask(const std::string& b, float& x, float& y) {
     static const struct { const char* n; uint16_t m; } table[] = {
         {"A", 0x8000}, {"B", 0x4000}, {"Z", 0x2000}, {"START", 0x1000},
@@ -101,6 +106,7 @@ void rush::trace_start(double seconds, const std::string& press, const std::stri
             status_line("status");
         }
         status_line("final");
+        rush::oracle_finish("seconds");
         fflush(stderr);
         std::_Exit(0);
     }).detach();
@@ -179,6 +185,11 @@ void rush::trace_overlay(const char* name, uint32_t stream_rom, uint32_t dst) {
         if (std::string(name) != "game") current_image = name;
     }
     n_overlay++;
+    {
+        char ev[96];
+        snprintf(ev, sizeof ev, "load %s", name);
+        rush::oracle_event(ev);
+    }
     trace_event("load %s: stream ROM 0x%06X -> 0x%08X (load #%llu)", name, stream_rom, dst,
                 (unsigned long long)n_overlay.load());
 }
@@ -199,7 +210,7 @@ void rush::poll_input() {}
 
 bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
     if (controller != 0) return false;
-    double t = now_s();
+    double t = input_time();
     uint16_t m = 0;
     float sx = 0, sy = 0;
     for (const Press& p : presses) {
@@ -216,6 +227,8 @@ bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
 }
 
 void rush::set_rumble(int, bool) {}
+
+void rush::set_frame_clock(bool on) { frame_clock = on; }
 
 ultramodern::input::connected_device_info_t rush::get_connected_device_info(int controller) {
     if (controller == 0) {

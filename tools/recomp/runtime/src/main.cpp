@@ -2,7 +2,8 @@
 // output, scripted controller input. See tools/recomp/BOOT_LOG.md.
 //
 //   rush2049_recomp --rom build/recomp/rom/rush2049.recomp.z64 [--home DIR]
-//                   [--seconds N] [--press T:BUTTON[:DUR],...] [--trace-calls]
+//                   [--seconds N] [--press T:BUTTON[:DUR],...] [--fb-dump DIR]
+//                   [--clock wall|frames] [--frames N] [--oracle-log PATH]
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -33,6 +34,12 @@ void usage() {
     fprintf(stderr,
         "usage: rush2049_recomp --rom SYNTHETIC_ROM [--home DIR] [--seconds N]\n"
         "                       [--press T:BUTTON[:DUR],...] [--fb-dump DIR]\n"
+        "                       [--clock wall|frames] [--frames N] [--oracle-log PATH]\n"
+        "  --clock frames: --press times are game frames / 30 (deterministic replay)\n"
+        "  --frames N: exit after N graphics frames; --oracle-log: per-frame hashes\n"
+        "  --time virtual|wall: what osGetCount/osGetTime return (default: virtual with --clock frames)\n"
+        "  --clock frames also delivers VI/AI/SP/DP events in lockstep (src/lockstep.cpp);\n"
+        "  --no-lockstep keeps the runtime's wall-clock events\n"
         "  SYNTHETIC_ROM = build/recomp/rom/rush2049.recomp.z64 (gen_config.py output)\n"
         "  BUTTON = A B Z START UP DOWN LEFT RIGHT L R CU CD CL CR STICKUP STICKDOWN ...\n");
 }
@@ -64,7 +71,10 @@ void message_box(const char* msg) { fprintf(stderr, "[rush] message: %s\n", msg)
 int main(int argc, char** argv) {
     std::filesystem::path rom_path, home = "rush2049_recomp_home";
     double seconds = 30.0;
-    std::string press, fb_dump;
+    std::string press, fb_dump, oracle_log, clock = "wall";
+    uint64_t stop_frames = 0;
+    std::string time_mode = "";
+    bool no_lockstep = false;
     for (int i = 1; i < argc; i++) {
         std::string a = argv[i];
         auto next = [&]() -> std::string {
@@ -76,9 +86,14 @@ int main(int argc, char** argv) {
         else if (a == "--seconds") seconds = std::stod(next());
         else if (a == "--press") press = next();
         else if (a == "--fb-dump") fb_dump = next();
+        else if (a == "--clock") clock = next();
+        else if (a == "--frames") stop_frames = std::stoull(next());
+        else if (a == "--oracle-log") oracle_log = next();
+        else if (a == "--time") time_mode = next();
+        else if (a == "--no-lockstep") no_lockstep = true;
         else { usage(); return 2; }
     }
-    if (rom_path.empty()) { usage(); return 2; }
+    if (rom_path.empty() || (clock != "wall" && clock != "frames")) { usage(); return 2; }
 
     std::vector<uint8_t> rom = read_all(rom_path);
     if (rom.size() < 0x1000) {
@@ -113,6 +128,13 @@ int main(int argc, char** argv) {
     }
     recomp::check_all_stored_roms();
 
+    rush::set_frame_clock(clock == "frames");
+    // osGetCount/osGetTime: virtual (frame-derived) or wall; default follows --clock
+    if (time_mode.empty()) time_mode = clock == "frames" ? "virtual" : "wall";
+    if (time_mode != "virtual" && time_mode != "wall") { usage(); return 2; }
+    rush::oracle_virtual_clock(time_mode == "virtual");
+    rush::set_lockstep(clock == "frames" && !no_lockstep);
+    rush::oracle_start(oracle_log, stop_frames);
     rush::trace_start(seconds, press, fb_dump);
 
     static char arg0[] = "rush2049_recomp", arg1[] = "--game", arg2[] = "rush2049";

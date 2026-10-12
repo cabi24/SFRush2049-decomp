@@ -20,12 +20,15 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 _DEF = re.compile(r'^\s*(?:SHIM|INERT|NOPACK|FORWARD)\(\s*([A-Za-z_][A-Za-z0-9_]*)'
-                  r'|extern\s+"C"\s+void\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*(?:uint8_t\s*\*|RDRAM_ARG)', re.M)
+                  r'|(?:extern\s+"C"\s+)?void\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*(?:uint8_t\s*\*|RDRAM_ARG)', re.M)
 
 
-def defined_names(src_dir, recursive=False):
+def defined_names(src_dir, recursive=False, patterns=("*.cpp",)):
     names = set()
-    for path in sorted(Path(src_dir).glob("**/*.cpp" if recursive else "*.cpp")):
+    paths = []
+    for pat in patterns:
+        paths += Path(src_dir).glob("**/" + pat if recursive else pat)
+    for path in sorted(paths):
         text = re.sub(r"//[^\n]*", "", path.read_text())
         for m in _DEF.finditer(text):
             names.add(m.group(1) or m.group(2))
@@ -43,6 +46,9 @@ def main(argv=None):
     ap.add_argument("--runtime", default=str(HERE / "src"))
     ap.add_argument("--n64modernruntime", help="N64ModernRuntime checkout: names its librecomp/"
                     "ultramodern sources define (e.g. osYieldThread_recomp) count as provided")
+    ap.add_argument("--extra-src", action="append", default=[],
+                    help="more sources (*.c, *.cpp) defining names: the generated native "
+                    "replacement wrappers (build/recomp/replace/native)")
     args = ap.parse_args(argv)
     contract = json.loads(Path(args.manifest).read_text()).get("runtime_contract")
     if contract is None:
@@ -52,6 +58,9 @@ def main(argv=None):
     if args.n64modernruntime:
         for sub in ("librecomp/src", "ultramodern/src"):
             names |= defined_names(Path(args.n64modernruntime) / sub, recursive=True)
+    for extra in args.extra_src:
+        if Path(extra).is_dir():
+            names |= defined_names(extra, patterns=("*.c", "*.cpp"))
     gone = missing(contract, names)
     for name in gone:
         if name in contract.get("hooks", []):

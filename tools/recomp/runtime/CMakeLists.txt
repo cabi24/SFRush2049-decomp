@@ -32,6 +32,7 @@ execute_process(
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/check_contract.py
             --manifest ${RECOMP_OUT}/manifest.json --runtime ${CMAKE_CURRENT_SOURCE_DIR}/src
             --n64modernruntime ${N64MODERNRUNTIME_DIR}
+            --extra-src ${RECOMP_OUT}/replace/native
     RESULT_VARIABLE contract_rc)
 if(NOT contract_rc EQUAL 0)
     message(FATAL_ERROR "runtime contract check failed (see above)")
@@ -51,21 +52,41 @@ target_include_directories(RecompiledFuncs PRIVATE
     ${N64MODERNRUNTIME_DIR}/ultramodern/include
     ${N64MODERNRUNTIME_DIR}/librecomp/include)
 
+# Phase 2 native replacements (tools/recomp/replace.py mode "native"): host C
+# bodies of game functions and their o32 wrappers, generated per build.
+file(GLOB NATIVE_REPL_SOURCES ${RECOMP_OUT}/replace/native/*.c)
+if(NATIVE_REPL_SOURCES)
+    add_library(NativeRepl STATIC ${NATIVE_REPL_SOURCES})
+    target_compile_options(NativeRepl PRIVATE -w -fno-strict-aliasing -funsigned-char -fwrapv)
+    target_include_directories(NativeRepl PRIVATE
+        ${N64MODERNRUNTIME_DIR}/N64Recomp/include ${CMAKE_CURRENT_SOURCE_DIR}/../../../include)
+    set(NATIVE_REPL_LIB NativeRepl)
+endif()
+
 add_executable(rush2049_recomp
     src/main.cpp
     src/null_renderer.cpp
     src/register_overlays.cpp
     src/hooks.cpp
     src/shims.cpp
-    src/trace.cpp)
+    src/trace.cpp
+    src/oracle.cpp
+    src/lockstep.cpp)
 target_include_directories(rush2049_recomp PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${RECOMP_OUT}
     ${N64MODERNRUNTIME_DIR}/N64Recomp/include
     ${N64MODERNRUNTIME_DIR}/thirdparty)
+# --clock frames replaces the wall clock the game reads (src/oracle.cpp) and
+# delivers VI/AI/SP/DP events in lockstep (src/lockstep.cpp).
+target_link_options(rush2049_recomp PRIVATE
+    -Wl,--wrap=osGetCount_recomp -Wl,--wrap=osGetTime_recomp
+    -Wl,--wrap=osViSetEvent_recomp -Wl,--wrap=osSetEventMesg_recomp
+    -Wl,--wrap=osSpTaskStartGo_recomp -Wl,--wrap=osViSwapBuffer_recomp
+    -Wl,--wrap=osViGetCurrentFramebuffer_recomp -Wl,--wrap=osViGetNextFramebuffer_recomp)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 # The recompiled code and the runtime reference each other: group the archives.
 target_link_libraries(rush2049_recomp PRIVATE
-    -Wl,--start-group RecompiledFuncs librecomp ultramodern -Wl,--end-group
+    -Wl,--start-group RecompiledFuncs ${NATIVE_REPL_LIB} librecomp ultramodern -Wl,--end-group
     Threads::Threads ${CMAKE_DL_LIBS})
