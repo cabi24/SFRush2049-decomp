@@ -1,34 +1,28 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image A menu-renderer group, superseding dot_runtime_a_menu_renderers_20261011.
- * New claim: func_803A7918, 576 bytes. Preserve both existing members,
- * func_803A6F2C and func_803A7620, without claiming their bytes again.
- * Complete real func_803A7180 remains unclaimed private-ABI context.
- * Reconstructed from native targets; no proven arcade-source ancestry.
- * 7918 renders the title, dispatches three menu renderers and displays
- * either of two explanatory messages. Its callback argument is unused.
+/* Image A file-menu renderer: supersede the installed same-name group.
+ * New exact member func_803A7180 (1184 bytes); preserve 6F2C/7620/7918
+ * (1932 bytes) and claim all four verified members. The real 7918 root
+ * retains its genuine private-register renderer context. No arcade
+ * ancestry is established.
  *
- * No executable source change from the accepted group's genuine context.
- * The new evidence authenticates the existing asset and full image A, then
- * proves all 144 code words plus the complete 20-byte owned switch table
- * with the unchanged canonical verifier. Without those image bytes the
- * default scorer still reports two own-section references unverified.
+ * SOLE NEW EXECUTABLE EDIT: text[100] -> text[76] in 7180. Every writer
+ * is independently bounded: authentic six-language resources, signed
+ * decimal conversions and the native fixed-width Pak-name encoder plus
+ * two-encoding copy/append rules. The largest output is 45 bytes with
+ * terminator; suffix remains16, bounded at11. This is a safe layout
+ * inference, NOT recovery of the original source capacity.
+ * Stock M148/T28/P4 -> M124/T28/P4 closes frame192 ->168 while preserving
+ * every native buffer address and instruction: suffix52, text68. Source
+ * scalar homes are above the 76-byte text object; no overlap is required.
+ * Limits: valid loaded resource tables and Pak nodes produced by the two
+ * native fixed-width producer paths; arbitrary pointer mutation excluded.
  *
- * INHERITED SHAPING: 6F2C has two unused s32 locals: frame312 +8 =320.
- * 7620 has four unused s32 locals: frame128 +16 =144; buffer homes move
- * upward12 to native80/120. 7918 names the real text-X result in an s16
- * carrier and has three unused s32 locals: named area516 +12 =528,
- * rounded frame600 ->608. These explain the measured frame residuals;
- * they do not recover original variable names, counts, types or purpose.
- * No fake signatures, dummy calls, forced register, padding arrays,
- * artificial read/write or diagnostic compiler alteration is used.
- *
- * 7180 still differs only in frame192 versus168. All its native buffer
- * homes agree, and this work does not shrink either live buffer.
- * All inherited live capacities are unchanged: 6F2C title128/name128/
- * suffix16; 7180 text100/suffix16; 7620 status20/title40; 7918 two256-byte
- * buffers. These are reconstruction hypotheses, not authenticated bounds
- * or guarantees of string safety. The real kept root is essential IPA
- * context for the private-register helpers; do not install them alone.
+ * INHERITED SHAPING, unchanged: 6F2C two unused s32 slots close312 ->320;
+ * 7620 four unused s32 slots close128 ->144, used homes move+12;
+ * 7918 a real s16 X carrier and three unused s32 slots close600 ->608.
+ * Other inherited buffer capacities remain unproven and unchanged.
+ * No new padding, dummy local, fake signature, synthetic helper, forced
+ * register, artificial use, compiler modification or source reordering.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -37,7 +31,7 @@ typedef unsigned short u16;
 typedef int s32;
 typedef unsigned int u32;
 /* Accessed field offsets are known; the view extents are not string-capacity
- * or termination guarantees. Buffer hypotheses are frozen for this research. */
+ * or termination guarantees. This view preserves existing offsets; the Pak producer bounds are in capacity.py. */
 typedef struct Record { u8 prefix[18]; char name[35]; char suffix[15]; u32 blocks; } Record;
 typedef struct TextIndices { u8 prefix[48]; u16 choice; u8 unknown32[44]; u16 file_action; } TextIndices;
 typedef struct Language { void *header; char **labels; void *unknown8; TextIndices *indices; char **choices; } Language;
@@ -86,7 +80,7 @@ void func_803A7180(void)
     Record **record;
     s16 x;
     s16 row_y;
-    char text[100];
+    char text[76];
     char suffix[16];
     func_800B42F0(11);
     func_800B74A0(1);
