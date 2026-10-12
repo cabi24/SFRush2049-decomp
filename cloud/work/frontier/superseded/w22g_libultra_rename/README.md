@@ -13,3 +13,8 @@ keeping the historical receipts unchanged. The live owners were rebound by
 `symbol_addrs.us.txt` and `src/rom/lib_8700.c` also serve `tests/conveyor/test_owned_text.py`,
 which replays `cloud/work/integration_B22_followup/text_boundary_record.json` (function
 osDpWait, now osSpTaskYield; the live row was rebound to cloud/work/frontier/w22g/rebind/).
+
+`undefined_syms_auto.us.txt` (added by lane w24s): the copy from commit 1dde4ccb, byte-identical to
+the hash sdk_initialize's activation recorded; w24s merged the scheduler's Hi/Lo timestamp symbols
+(splat regenerates this file), so the live file no longer has that hash. The live owner was
+rebound with `static_rename owned` (empty table) into cloud/work/frontier/w24s/rebind/.

@@ -1,4 +1,20 @@
 {
+  "cloud/work/frontier/w24s/sched/__scExec.c:__scExec": {
+    "body_sha256": "ae41280dff2f4c08a48f35a8c5cc7e80bf17a80991cddca1ae0a9b15e4c468c2",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scExec",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24s/sched/__scMain.c:__scMain": {
+    "body_sha256": "d12184f070d76c75caac0237949652a69d5c1c3af1c99860e5dad87a652cebb0",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scMain",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -15,21 +31,77 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_1050.c:viAddTicks": {
+    "body_sha256": "914b51e9814bd73d281b852ffd5908e8fed3a9e480f2f7c216e0a6a2a9482177",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viAddTicks",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_1050.c:viDeadlinePassed": {
     "body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "viDeadlinePassed",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
   },
-  "src/rom/lib_1050.c:viStub": {
-    "body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "viStub",
+  "src/rom/lib_1050.c:viDisableAccum": {
+    "body_sha256": "4f1db5d12f0dfece5a216be8b251abffbcab9bf9543ec333d1d8b3364614637f",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viDisableAccum",
     "toolkit_sha": null,
     "verified": "rom-sha1",
-    "verified_at": "2026-09-24"
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050.c:viEnableAccum": {
+    "body_sha256": "98692e69dc5e0f9d207b5fc60f0c66e5e99546096fc4f1d451bf31aa2ab2b657",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viEnableAccum",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050.c:viGetTimeToDeadline": {
+    "body_sha256": "9a2df3d4521c74054f47991f9333c3a3c59698886b1dcbf0a5969ed264cb8136",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viGetTimeToDeadline",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050.c:viScheduleTick": {
+    "body_sha256": "8d5325cc5287243b286cb9ea75d6861acecc67fe718113d97953cf5f193b2180",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viScheduleTick",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050.c:viTickStart": {
+    "body_sha256": "efb9077a83fbd9445e8946acc90ef1b16dc9258298750824cc4ba8c7bf1d402e",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viTickStart",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050.c:viUpdateTime": {
+    "body_sha256": "5ad0a0bd3aa91665ebe5afcf063c95b3e8cafb723541146c60c57431f11195c8",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "viUpdateTime",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
+  "src/rom/lib_1050_sdk.c:__scAppendList": {
+    "body_sha256": "39b3b494b593a6bf0fb35e73d0751dd80d418dbaa9896cc1ed18448786bc7d25",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__scAppendList",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_1050_sdk.c:__scExecTask": {
     "body_sha256": "ab5486f8a2229a97093847930aad91ab627549c980171b104bde7ea61d1f771c",
@@ -62,6 +134,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scHandleRetrace": {
+    "body_sha256": "699e80323da7f9598286890d7f2b45f7463ec91f341b06e2d980473d4922bfaf",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__scHandleRetrace",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_1050_sdk.c:__scSchedule": {
     "body_sha256": "e4f085f8b7904d04047860cfb70bb8d5cde486234e54d6009a663792778dd288",
@@ -3735,6 +3815,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
   },
+  "src/rom/lib_2cf0.c:game_init": {
+    "body_sha256": "e238b9b026a62fb5830287199639cae9b8ffc65393b4752da2be7243d4387b1a",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "game_init",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_2cf0.c:idle_thread_entry": {
     "body_sha256": "86c999cbf2204a22f5d5415ef8a5313964a8b933f7088c8980899440d29b5b84",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -4164,6 +4252,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
+  },
+  "src/rom/lib_92f0.c:rmonPrintf": {
+    "body_sha256": "217b38d8293dc025675405c6fd2a3115beee22bc08ac7a430d959f33734c8af7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "rmonPrintf",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_9330.c:cosf": {
     "body_sha256": "0142ea1488599b06640c5cfdf628d0d23f4f02b725dd4feac6793fe7153dc518",

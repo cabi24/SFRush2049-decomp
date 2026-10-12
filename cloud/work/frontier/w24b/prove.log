@@ -1,0 +1,56 @@
+== targets with stale pre-w22g callee names -> emulated refresh (objcopy --redefine-sym, names only)
+== 1. rmonPrintf (lib_92f0, -g0 -O2)
+rmonPrintf vs rmonPrintf: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+rmonPrintf ok 
+lib_92f0: linked .text == baserom: IDENTICAL
+lib_92f0: linked .text == baserom: IDENTICAL
+== 2. scheduler (lib_1050_sdk, -g1 -O1)
+__scAppendList vs __scAppendList: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (45 rows)
+__scHandleRetrace vs __scHandleRetrace: LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(2 rows) (64 rows)
+__scHandleRetrace vs __scHandleRetrace_rn: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (64 rows)
+__scAppendList ok 
+__scHandleRetrace ok 
+lib_1050_sdk: linked .text == baserom: IDENTICAL
+lib_1050_sdk: linked .text == baserom: IDENTICAL
+-- research probes (not deliverables): __scMain / __scExec with timestamps volatile + defined
+__scMain vs __scMain: LOCK: true=15 strict=15 reloc_blind=0 objdump-dr DIFFERS(7 rows) (100 rows)
+__scExec vs __scExec: LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(7 rows) (106 rows)
+== 3. game_init (lib_2cf0, -g1 -O1)
+game_init vs game_init: LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(2 rows) (279 rows)
+game_init vs game_init_rn: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (279 rows)
+game_init ok 
+lib_2cf0: linked .text == baserom: IDENTICAL
+lib_2cf0: linked .text == baserom: IDENTICAL
+== 4. vi* (segment 0x1f50 = lib_1050, -g1 -O1; needs lane/patch/rom_tu_volatile.diff)
+viTickStart vs viTickStart: LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(2 rows) (39 rows)
+viEnableAccum vs viEnableAccum: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+viDisableAccum vs viDisableAccum: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+viUpdateTime vs viUpdateTime: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (104 rows)
+viScheduleTick vs viScheduleTick: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (28 rows)
+viAddTicks vs viAddTicks: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+viGetTimeToDeadline vs viGetTimeToDeadline: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+viTickStart vs viTickStart_rn: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+rom_tu.h patched (scratch copy)
+viTickStart ok 
+viEnableAccum ok 
+viDisableAccum ok 
+viUpdateTime ok 
+viScheduleTick ok 
+viAddTicks ok 
+viGetTimeToDeadline ok 
+-- today's lib_1050.c at -O2 (control, unpatched header)
+lib_1050: linked .text == baserom: IDENTICAL
+-- spliced lib_1050.c (7 vi bodies, viStub removed) at -g1 -O1, patched header
+lib_1050: linked .text == baserom: IDENTICAL
+== context rows
+lane/ctx53_O2.jsonl rmonPrintf ok ido5.3 (default) 
+lane/ctx53_sched.jsonl __scAppendList ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_sched.jsonl __scHandleRetrace ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_gi.jsonl game_init ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viTickStart ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viEnableAccum ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viDisableAccum ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viUpdateTime ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viScheduleTick ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viAddTicks ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 
+lane/ctx53_vi.jsonl viGetTimeToDeadline ok ido5.3 -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul 

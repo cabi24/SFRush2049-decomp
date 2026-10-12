@@ -222,6 +222,20 @@
       "logical_extent": true,
       "logical_kind": "constants",
       "comment": "w23c: func_8001E0E0's own float literals 32767.0f, 0.7079f x2, -0.7079f, 0.7079f (IDO 7.1 does not merge equal literals) at 0x8002D910..0x8002D923; func_8001E440's literal D_8002D924 (extern, locked) follows in lib_1ece0's retail .rodata"
+    },
+    {
+      "owner": "__scMain",
+      "co_owners": [
+        "__scExec"
+      ],
+      "tu": "src/rom/lib_1050_sdk.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x8002E8E0",
+      "offset": "0x0",
+      "size": "0x2d0",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s",
+      "comment": "w24b/w24s: lib_1050_sdk's whole .bss, retail 0x8002E8E0..0x8002EBA7 (+8 B section pad): __osScRetraceTime, gScheduler (OSSched 0x284; gViTickCounter = its retraceCount), D_8002EB6C, __osScTaskCount, __osScAudioStart, __osScFrameTime, D_8002EB88, __osScElapsedTime, __osScDeltaTime, gViFrameDelta, gViAccumTime, gViAccumTotal, gViLastTick (definition order). The entry code clears .bss from 0x8002E8E0, so this TU's .bss is the first in the image."
     }
   ],
   "storage_blocks": [
@@ -393,10 +407,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/integration_B24/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w24t/rename/rebind/timer_services_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w24x/rebind/timer_services_context_hashes.json",
       "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
       "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
-      "context_proof_sha256": "041cce0682d704721f68a2213b5e79ca9a2fd2adf7358ae95f86fb6d7e6a65d7",
+      "context_proof_sha256": "9b642c4b6fa8a9207c6a7695dd1498a4aafc9de26483cf033a4411936e5446a0",
       "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
       "data_slot": {
         "owner": "timer_services_pointer",
@@ -456,10 +470,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/static_C19/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w24t/rename/rebind/sdk_initialize_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w24x/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "7815af82d67aba44d610fe82ae8564fb12f8dec9edffc654f32204c41e382ffb",
+      "context_proof_sha256": "485b7eedb490b2ceb61658aa8d8fb2c5d4842e8e0de9ce1f71685f1de1a97de5",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

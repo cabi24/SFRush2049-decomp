@@ -1,7 +1,7 @@
 """The committed IDO 7.1 switch: exactly the 19 Rush boot-tail ROM TUs build with
 IDO 7.1 (rom_compilers.json -> src/rom/opt_overrides.mk). Evidence:
-cloud/work/frontier/w17g (tu71.log, locked71.log) and w17k (full-ROM gate); 0x26f60
-(libgsm decoder) added by w24a, converted in 4b4be251 and ROM-gated in 1dde4ccb."""
+cloud/work/frontier/w17g (tu71.log, locked71.log) and w17k (full-ROM gate);
+0x26f60 (lib_26f60, libgsm decoder) converted and pinned by lane w24a."""
 from pathlib import Path
 
 from tools.conveyor import compilers

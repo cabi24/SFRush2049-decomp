@@ -458,8 +458,7 @@ viUpdateTime = 0x800013F4; // type:func update frame delta timing
 viScheduleTick = 0x800014F0; // type:func schedule next tick deadline
 viAddTicks = 0x8000153C; // type:func add ticks to deadline
 viGetTimeToDeadline = 0x80001578; // type:func get float time until deadline
-viDeadlinePassed = 0x800015BC; // type:func check if deadline passed
-viStub = 0x800015DC; // type:func no-op stub
+viDeadlinePassed = 0x800015BC; // type:func size:0x30 check if deadline passed (0x30 at -g1 -O1 incl. the two trailing jr ra, nop pairs once labelled viStub, w24b)
 
 // Display mode functions (21F0.s) - newly identified
 display_mode_tick = 0x80001D60; // type:func countdown and apply pending display mode
@@ -2232,13 +2231,10 @@ gInflateHuftPointerDist = 0x8002B1AC; // size:4 fixed Huffman distance table poi
 __osScCurAudioTask = 0x8002AFA0; // size:4 current audio task pointer (OSScTask*)
 __osScPendingSwap = 0x8002AFA4; // size:4 pending framebuffer swap address
 __osScSwapCount = 0x8002AFA8; // size:4 retrace count at last swap
-__osScRetraceTimeHi = 0x8002E8E0; // size:4 retrace time high 32 bits
-__osScRetraceTimeLo = 0x8002E8E4; // size:4 retrace time low 32 bits
+__osScRetraceTime = 0x8002E8E0; // size:0x8 retrace time, one OSTime u64 (formerly Hi/Lo halves, w24b/w24s)
 __osScTaskCount = 0x8002EB70; // size:2 pending graphics task count (s16)
-__osScAudioStartHi = 0x8002EB78; // size:4 audio task start time high 32 bits
-__osScAudioStartLo = 0x8002EB7C; // size:4 audio task start time low 32 bits
-__osScFrameTimeHi = 0x8002EB80; // size:4 frame time accumulator high 32 bits
-__osScFrameTimeLo = 0x8002EB84; // size:4 frame time accumulator low 32 bits
+__osScAudioStart = 0x8002EB78; // size:0x8 audio task start time, one OSTime u64 (formerly Hi/Lo halves, w24b/w24s)
+__osScFrameTime = 0x8002EB80; // size:0x8 frame time accumulator time, one OSTime u64 (formerly Hi/Lo halves, w24b/w24s)
 __osScElapsedTime = 0x8002EB90; // size:4 elapsed time since start (f32)
 __osScDeltaTime = 0x8002EB94; // size:4 delta time this frame (f32)
 __osScFrameTimeResult = 0x80124F70; // size:4 frame time output for profiling

@@ -15,3 +15,8 @@ osEPiRawStartDma = __osEPiRawWriteIo;       /* 0x8000FE00 */
 osEPiRawReadIo = __osEPiRawReadIo;          /* 0x8000FF60 */
 __osPiGetCmdQueue = __osSetGlobalIntMask;   /* 0x800100C0 */
 __osPfsDataChecksum = __osContDataCrc;      /* 0x8000FAC0 */
+
+/* w24s: the scheduler timestamps are one OSTime each (__osScRetraceTime, ...);
+ * asm/us/1000.s (entry .bss clear, pinned by sdk_initialize's startup proof)
+ * still names the start of .bss by the old high-half label. */
+__osScRetraceTimeHi = __osScRetraceTime;    /* 0x8002E8E0 */

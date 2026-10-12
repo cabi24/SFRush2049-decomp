@@ -1,0 +1,1 @@
+{"status": "ok", "preamble": ["typedef char *va_list;"], "dropped": [], "words": 7, "function": "rmonPrintf", "source": "lane/sources/rmonPrintf.c", "compiler": "ido5.3"}

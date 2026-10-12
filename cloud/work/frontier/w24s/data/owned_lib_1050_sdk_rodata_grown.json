@@ -1,0 +1,17 @@
+{
+  "owner": "__scScheduleCore",
+  "co_owners": [
+    "__scMain"
+  ],
+  "tu": "src/rom/lib_1050_sdk.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".rodata",
+  "offset": "0x5cc0",
+  "size": "0x30",
+  "container_vram": "0x800277d0",
+  "sha256": "fc92cc366be18841229a18427b5664ddec61f3602273680e97efb43f9918c0e1",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.table.s",
+  "composed_source": "build/us/assets/us/data.composed.bin",
+  "comment": "w24s: replaces __scScheduleCore's 4-byte logical-extent row (0x5cd4/0x1c) in __scMain's promotion transaction (promote_batch --replace-slot, front growth). lib_1050_sdk's whole .rodata as C: jtbl_8002D490 (__scMain's switch 666..670, 0x14) + __scScheduleCore's table (0x1c) = 0x30 at 0x8002D490..0x8002D4BF."
+}
