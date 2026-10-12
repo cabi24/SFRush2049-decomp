@@ -449,7 +449,33 @@ u8 func_80022160(MacroState_80022160 *state, MacroCommand *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022324.s")
+/* PROMOTED 2026-10-11 — func_80022324
+ * Source:   cloud/matches/boot_tail/func_80022324.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80022324.c:func_80022324 (score0); rom_tu.h context: cloud/work/frontier/dot_boot_neighbors_20261011/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+typedef struct MacroState_80022324 { u8 unknown00[0x4E]; u16 keyGroup4E; } MacroState_80022324;
+#pragma pack(0)
+extern u8 D_8004FA18;
+extern int func_80021700(u32 id);
+u8 func_80022324(MacroState_80022324 *voice, MacroCommand *command)
+{
+    u32 i;
+    u32 id;
+    id = (((command->word[0] >> 8) & 255) + voice->keyGroup4E) << 8;
+    id |= (u32)(u16)(command->word[0] >> 16) << 16;
+    for (i = 0; i < D_8004FA18; ++i) {
+        if ((id | i) == D_8004BEB8[i].id60) {
+            func_80021700(id | i);
+        }
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_800223D0
  * Source:   cloud/work/frontier/w18c/sources/func_800223D0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
