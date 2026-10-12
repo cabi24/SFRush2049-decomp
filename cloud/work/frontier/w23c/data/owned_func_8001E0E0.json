@@ -1,0 +1,17 @@
+{
+  "owner": "func_8001E0E0",
+  "tu": "src/rom/lib_1ece0.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".rodata",
+  "offset": "0x6140",
+  "size": "0x14",
+  "container_vram": "0x800277d0",
+  "sha256": "44a21168797bd097fa1f27cd45ea169cb542117f280da5431b296ed2e064720c",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_1ece0/func_8001E0E0.rodata.s",
+  "composed_source": "build/us/assets/us/data.composed.bin",
+  "alignment": 4,
+  "logical_extent": true,
+  "logical_kind": "constants",
+  "comment": "w23c: func_8001E0E0's own float literals 32767.0f, 0.7079f x2, -0.7079f, 0.7079f (IDO 7.1 does not merge equal literals) at 0x8002D910..0x8002D923; func_8001E440's literal D_8002D924 (extern, locked) follows in lib_1ece0's retail .rodata"
+}

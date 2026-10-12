@@ -1,0 +1,80 @@
+# w23c prove.log: builder ~/rush2049/scratch/frontier/w23c, tree synced at master dbc211cf (src/rom, include, asm/us/nonmatchings/rom, asm/us/boot_tail, matched.lock.json); sh lane/tools/prove.sh
+== context rows
+func_8001605C ok 
+func_80017720 ok 
+func_80019F48 ok 
+func_8001E0E0 ok 
+func_8001E50C ok 
+func_800233B0 ok 
+func_8001605C ok ido7.1  []
+func_80017720 ok ido7.1  []
+func_80019F48 ok ido7.1  []
+func_8001E0E0 ok ido7.1  [('.rodata', 32)]
+func_8001E50C ok ido7.1  []
+func_800233B0 ok ido7.1  []
+== LOCK
+func_8001605C: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (92 rows)
+func_80017720: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (50 rows)
+func_80019F48: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (207 rows)
+func_8001E0E0: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(14 rows) (230 rows)
+func_8001E50C: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (100 rows)
+func_800233B0: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (96 rows)
+== sources spliced into their TUs vs current TUs
+lib_16320: IDENTICAL (1705 lines: .text words+relocs, data sections)
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
+lib_1a660: IDENTICAL (2630 lines: .text words+relocs, data sections)
+lib_1ece0: DIFFERENT (11 changed lines of 405)
+72c72
+< c4280000
+---
+> c4280004
+115c115
+< c4260000
+---
+> c4260008
+lib_22300: IDENTICAL (3420 lines: .text words+relocs, data sections)
+== lib_1ece0 linked (owned .rodata at 0x8002D910)
+orig: .text 1632 B, sha1 c8c01108ece2d8815fc8ee451bbac945e3909d91; .bss none
+spl: .text 1632 B, sha1 c8c01108ece2d8815fc8ee451bbac945e3909d91; .bss none
+rom:  .text 1632 B, sha1 c8c01108ece2d8815fc8ee451bbac945e3909d91
+linked orig == linked spliced: IDENTICAL
+linked spliced == baserom 0x1ece0..+1632: IDENTICAL
+spliced .rodata[0..0x14] 46fffe003f3538ef3f3538efbf3538ef3f3538ef; tail 000000000000000000000000
+spliced .rodata 0x8002D910..+0x14 == baserom 0x2E510: IDENTICAL
+== libultra (IDO 5.3, lib_10d60): osPfsIsPlug, __osPfsRequestData (no inventory target: compared with the retail .s)
+osPfsIsPlug ok 
+__osPfsRequestData ok 
+osPfsIsPlug: target 99 words, ours 99, differing 0
+__osPfsRequestData: target 45 words, ours 45, differing 0
+lib_10d60: IDENTICAL (188 lines: .text words+relocs, data sections)
+== ownbss (lib_16320 .bss block 0x80042630/0x80; scratch rom_owned_data.json = lane/data/owned_func_80016E68_bss_grown.json replacing the func_80016E68 row)
+func_80016C20 ok 
+func_80016CF0 ok 
+func_80017040 ok 
+func_80016C20: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(17 rows) (66 rows)
+func_80016CF0: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(13 rows) (101 rows)
+func_80017040: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(4 rows) (61 rows)
+lib_16320: DIFFERENT (53 changed lines of 1705)
+1578c1578
+< ac230000
+  [ 4] .text             PROGBITS        00000000 000940 001aa0 01  AX  0   0 16
+  [ 5] .bss              NOBITS          00000000 0020d0 000080 01  WA  0   0 16
+  [ 8] .rel.text         REL             00000000 002438 000a20 08      1   4  4
+spl: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss .bss              NOBITS          80042630 012630 000080
+rom:  .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d
+linked spliced == baserom 0x16320..+6816: IDENTICAL
+== relocname func_80015A0C/func_80015D68 (reloc_addrs_w23c.txt; re-split targets tgt/<fn>_rs.o from resplit_target.py on the Pi)
+func_80015A0C ok 
+func_80015D68 ok 
+func_80015A0C vs current target: LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (146 rows)
+func_80015A0C vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (146 rows)
+func_80015D68 vs current target: LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (130 rows)
+func_80015D68 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (130 rows)
+-- TU edit alone (tools/tu_edits.py: two declaration hoists in lib_16320)
+lib_16320: IDENTICAL (1705 lines: .text words+relocs, data sections)
+-- lib_16320 complete: edited TU + func_8001605C + ownbss trio + relocname pair, linked (.bss at 0x80042630) vs baserom
+1
+lib_16320: DIFFERENT (61 changed lines of 1705)
+spl: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss .bss              NOBITS          80042630 012630 000080
+rom:  .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d
+linked spliced == baserom 0x16320..+6816: IDENTICAL
