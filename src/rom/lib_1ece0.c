@@ -5,6 +5,9 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1ece0/func_8001E0E0.s")
+/* ROM_OWNED_RODATA_BEGIN func_8001E0E0 */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1ece0/func_8001E0E0.rodata.s")
+/* ROM_OWNED_RODATA_END func_8001E0E0 */
 /* PROMOTED 2026-10-11 — func_8001E440
  * Source:   cloud/work/frontier/w17g/sources/func_8001E440.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
