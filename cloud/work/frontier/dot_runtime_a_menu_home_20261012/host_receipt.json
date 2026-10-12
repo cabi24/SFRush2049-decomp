@@ -1,0 +1,12 @@
+{
+  "cases": 85476,
+  "inputs": {
+    "cloud/matches/ovl_a/func_803A4340.c": "462bd7191b07901baac4679abad5282bd76367901f6dba093da00229c6515303",
+    "cloud/work/frontier/dot_runtime_a_menu_home_20261012/host_verify.py": "a9e83ad36a64842ed4ded38ef088581ce5da04463a35228528d61f7141fe07a9",
+    "cloud/work/frontier/dot_runtime_a_menu_loop_20261006/host.c": "f401af7dc93eec012cddf27b10469d1eb1de4cdd8ed3b9939c31a36cd5a4a4bd",
+    "cloud/work/frontier/dot_runtime_a_menu_loop_20261006/verify.py": "36c483b428c62ec1a256734a0268d68d18c477c38ed7513bb98ccc3863d5b52d"
+  },
+  "layout32": "PASS",
+  "scope": "bounded hosted C89 UBSan/bounds cases against inherited oracle and helper doubles",
+  "trace_sha256": "56b43c9fdfb32b6aef050b5d92a829181753d92ef788f63c84e6e43599a1b910"
+}
