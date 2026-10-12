@@ -205,7 +205,7 @@ SECTIONS
         build/us/src/rom/lib_257f0.o(.text);
         build/us/src/rom/lib_25bb0.o(.text);
         build/us/src/rom/lib_26ab0.o(.text);
-        build/us/asm/us/26F60.o(.text);
+        build/us/src/rom/lib_26f60.o(.text);
         . = ALIGN(., 16);
         main_TEXT_END = .;
         main_TEXT_SIZE = ABSOLUTE(main_TEXT_END - main_TEXT_START);
@@ -331,7 +331,7 @@ SECTIONS
         build/us/src/rom/lib_257f0.o(.data);
         build/us/src/rom/lib_25bb0.o(.data);
         build/us/src/rom/lib_26ab0.o(.data);
-        build/us/asm/us/26F60.o(.data);
+        build/us/src/rom/lib_26f60.o(.data);
         . = ALIGN(., 16);
         main_DATA_END = .;
         main_DATA_SIZE = ABSOLUTE(main_DATA_END - main_DATA_START);
@@ -457,7 +457,7 @@ SECTIONS
         build/us/src/rom/lib_257f0.o(.rodata);
         build/us/src/rom/lib_25bb0.o(.rodata);
         build/us/src/rom/lib_26ab0.o(.rodata);
-        build/us/asm/us/26F60.o(.rodata);
+        build/us/src/rom/lib_26f60.o(.rodata);
         . = ALIGN(., 16);
         main_RODATA_END = .;
         main_RODATA_SIZE = ABSOLUTE(main_RODATA_END - main_RODATA_START);
@@ -588,7 +588,7 @@ SECTIONS
         build/us/src/rom/lib_257f0.o(.bss);
         build/us/src/rom/lib_25bb0.o(.bss);
         build/us/src/rom/lib_26ab0.o(.bss);
-        build/us/asm/us/26F60.o(.bss);
+        build/us/src/rom/lib_26f60.o(.bss);
         . = ALIGN(., 16);
         main_BSS_END = .;
         main_BSS_SIZE = ABSOLUTE(main_BSS_END - main_BSS_START);
