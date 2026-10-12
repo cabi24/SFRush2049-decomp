@@ -246,7 +246,78 @@ s32 huft_build(u32 *b, u32 n, u32 s, u16 *d, u16 *e, huft **t, s32 *m)
 	return y != 0 && g != 1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_free_window.s")
+/* PROMOTED 2026-10-12 — inflate_free_window
+ * Source:   cloud/work/frontier/w26a/sources/inflate_free_window.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w26a/sources/inflate_free_window.c:inflate_free_window (score0); rom_tu.h context: cloud/work/frontier/w26a/ctx53s_c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u32 gInflateBitBuf, gInflateBitCount;
+extern u8 *gInflateInPtr, *gInflateInEnd, *gInflateOutPtr;
+extern s32 inflate_read_bits(void);
+extern u16 gInflateMaskBits[];
+extern void *memcpy(void *, const void *, u32);
+#define NEEDBITS(n) do { while (k < (n)) { b |= (u32)(gInflateInPtr < gInflateInEnd ? (gInflateInPtr += 2, gInflateInPtr[-2] | (gInflateInPtr[-1] << 8)) : inflate_read_bits()) << k; k += 16; } } while (0)
+#define DUMPBITS(n) do { b >>= (n); k -= (n); } while (0)
+s32 inflate_free_window(huft *tl, huft *td, s32 bl, s32 bd) {
+    register u32 e;
+    u32 n;
+    s32 d;
+    u32 w;  /* gzip: current window position (unused here, see header) */
+    huft *t;
+    u32 ml, md;
+    register u32 b;
+    register u32 k;
+
+    b = gInflateBitBuf;
+    k = gInflateBitCount;
+    ml = gInflateMaskBits[bl];
+    md = gInflateMaskBits[bd];
+    for (;;) {
+        NEEDBITS((u32)bl);
+        if ((e = (t = tl + (b & ml))->e) > 16)
+            do {
+                if (e == 99) return 1;
+                DUMPBITS(t->b);
+                e -= 16;
+                NEEDBITS(e);
+            } while ((e = (t = t->v.t + (b & gInflateMaskBits[e]))->e) > 16);
+        DUMPBITS(t->b);
+        if (e == 16) {
+            *gInflateOutPtr++ = (u8)t->v.n;
+        } else {
+            if (e == 15) break;
+            NEEDBITS(e);
+            n = t->v.n + (b & gInflateMaskBits[e]);
+            DUMPBITS(e);
+            NEEDBITS((u32)bd);
+            if ((e = (t = td + (b & md))->e) > 16)
+                do {
+                    if (e == 99) return 1;
+                    DUMPBITS(t->b);
+                    e -= 16;
+                    NEEDBITS(e);
+                } while ((e = (t = t->v.t + (b & gInflateMaskBits[e]))->e) > 16);
+            DUMPBITS(t->b);
+            NEEDBITS(e);
+            d = -t->v.n - (b & gInflateMaskBits[e]);
+            DUMPBITS(e);
+            if (d < -8) {
+                memcpy(gInflateOutPtr, gInflateOutPtr + d, n);
+                gInflateOutPtr += n;
+            } else {
+                while (n--) {
+                    *gInflateOutPtr = gInflateOutPtr[d];
+                    gInflateOutPtr++;
+                }
+            }
+        }
+    }
+    gInflateBitBuf = b;
+    gInflateBitCount = k;
+    return 0;
+}
+
 /* PROMOTED 2026-10-12 — inflate_stored
  * Source:   cloud/work/frontier/w26a/sources/inflate_stored.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
