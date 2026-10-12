@@ -68,13 +68,13 @@
   "include/include_asm.h": "44d8047eced2a0b9bdadfe8c6b0c786cc36fe019bdfcdaf32fda6003fae16bc5",
   "include/inflate/inflate.h": "e7e57bc1716f004fb1b56e1ab3557cfab6eb2ff018ca205ad50b7cfef58400f3",
   "include/labels.inc": "fad2e9326e1ecf11718f4fc9e42424ca444fd830ecb5e9367fba066809883dcf",
-  "include/m2c_types.h": "46dba2a88876dba4779e8ba3ed640c27aefe67acad7f163538a49be2520c5044",
+  "include/m2c_types.h": "bb8aa73955b3bc4c60ba29dd1c6f4d17224bf6c9f94100f2a85e8ad3ed0c1469",
   "include/macro.inc": "2e7bfb76784497ba386933c61b4e5466736a5fb0b61b7b422df2ce8084486021",
   "include/macros.h": "d0f6cf4f1e09fa5203b24fdec0c0eb10c38be4e3f9af51bb0db94c1f00164739",
   "include/rom_auto.h": "19c91f4227b58dc67b9cf73d3046d5516ffea3133be6c1f61be3b3cea257d027",
   "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
-  "src/rom/rom_tu.h": "623a1b78c9b63a7ff32dfdb71d7781384d56bedc1bcbf7f718c00c4a7244590e",
-  "symbol_addrs.us.txt": "6e7eb7123ca86e12b11c0989a5327d4edcea259a69399f2eaa73dd5de11fbef4",
+  "src/rom/rom_tu.h": "264b23fe01bed8d0bae6d7e087c2cdc157233ab9d60e1c500d7f04d691a2b284",
+  "symbol_addrs.us.txt": "8f152d81acb61f2c27b0c165b8d45c20b420604007a78ff869fec353554e7a78",
   "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5",
   "undefined_syms_auto.us.txt": "97ce6e345e95431a79f2013510161f3b77558fcefae01a98245446062c539a6c"
 }

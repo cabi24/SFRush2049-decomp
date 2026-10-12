@@ -7,7 +7,7 @@ glabel __osPiGetAccess
     /* E81C 8000DC1C AFBF0014 */  sw         $ra, 0x14($sp)
     /* E820 8000DC20 15C00003 */  bnez       $t6, .L8000DC30
     /* E824 8000DC24 00000000 */   nop
-    /* E828 8000DC28 0C0036F0 */  jal        osPiInit
+    /* E828 8000DC28 0C0036F0 */  jal        __osPiCreateAccessQueue
     /* E82C 8000DC2C 00000000 */   nop
   .L8000DC30:
     /* E830 8000DC30 3C048003 */  lui        $a0, %hi(__osPiMesgQueue)

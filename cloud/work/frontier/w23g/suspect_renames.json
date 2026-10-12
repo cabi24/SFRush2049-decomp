@@ -1,0 +1,18 @@
+{
+ "note": "w23g: the misnames lane w22g listed as leads (docs/SYMBOL_MISATTRIBUTION.md), each checked against its ultralib body (decompals/ultralib e24c836, reference/repos/ultralib, VERSION_J / _FINALROM). dll_insert is included because renaming __osInsertTimer (0x8000E390) away frees the name for the function that is __osInsertTimer. Applied as one simultaneous permutation together with the game callers (no legacy entries). status: accepted | rejected (reason).",
+ "sdk": "ultralib VERSION_J (decompals/ultralib e24c836, reference/repos/ultralib)",
+ "renames": [
+  {"vram": "0x800086F0", "old": "osWritebackDCache_full", "new": "osSyncPrintf", "ultralib": "src/libc/syncprintf.c", "confidence": "medium", "status": "accepted",
+   "evidence": "body is the _FINALROM osSyncPrintf: an empty varargs function that spills a0-a3 and returns (the locked C reproduces only that); segment lib_92f0 holds exactly syncprintf.o's two functions, osSyncPrintf then rmonPrintf (0x8000870C, accepted by w22g on the same argument). No jal callers in any image. Not the dcache writeback: osWritebackDCache is 0x80007CA0 and this body has no cache op."},
+  {"vram": "0x8000C050", "old": "dll_remove", "new": "__osDequeueThread", "ultralib": "src/os/thread.c", "confidence": "high", "status": "accepted",
+   "evidence": "locked C in src/rom/lib_cc50.c is ultralib's __osDequeueThread token for token after the rename (register pred/succ walk from (OSThread*)queue, unlink on succ == t; the _DEBUG t->next = NULL is compiled out); callers osSetThreadPri/osStopThread/osDestroyThread call __osDequeueThread at this point in ultralib"},
+  {"vram": "0x8000C308", "old": "dll_insert", "new": "__osInsertTimer", "ultralib": "src/os/timerintr.c", "confidence": "high", "status": "accepted",
+   "evidence": "locked C in src/rom/lib_cc50.c is ultralib's __osInsertTimer token for token after the rename (__osDisableInt, delta walk of __osTimerList, splice, __osRestoreInt, return tim); called by osSetTimer as in ultralib"},
+  {"vram": "0x8000CFC4", "old": "__osCleanupThread", "new": "__osEnqueueAndYield", "ultralib": "src/os/exceptasm.s", "confidence": "high", "status": "accepted",
+   "evidence": "handwritten asm (lib_d580): lw a1 __osRunningThread; save SR|EXL, s0-s7/gp/sp/s8/ra, ra as PC; FPU callee-saved when THREAD_FP; interrupt-mask merge from __osGlobalIntMask and MI_INTR_MASK; then enqueue and __osDispatchThread: exceptasm.s LEAF(__osEnqueueAndYield) for < VERSION_K (no __osPreviousThread store). include/m2c_types.h already documented this identity."},
+  {"vram": "0x8000DBC0", "old": "osPiInit", "new": "__osPiCreateAccessQueue", "ultralib": "src/io/piacs.c", "confidence": "high", "status": "accepted",
+   "evidence": "locked C in src/rom/lib_e7c0.c: flag = 1; osCreateMesgQueue(&q, &buf, 1); osSendMesg(&q, NULL, 0): ultralib __osPiCreateAccessQueue (__osPiAccessQueueEnabled, __osPiAccessQueue, piAccessBuf); it sits before __osPiGetAccess/__osPiRelAccess in the same segment, as in piacs.c"},
+  {"vram": "0x8000E390", "old": "__osInsertTimer", "new": "osPiGetCmdQueue", "ultralib": "src/io/pigetcmdq.c", "confidence": "high", "status": "accepted",
+   "evidence": "locked C in src/rom/lib_e9a0.c: return __osPiMgrState.flag == 0 ? 0 : __osPiMgrState.unk8, i.e. if (!__osPiDevMgr.active) return NULL; return __osPiDevMgr.cmdQueue (OSDevMgr.cmdQueue is at +8): ultralib osPiGetCmdQueue"}
+ ]
+}

@@ -137,16 +137,19 @@ Notes:
   `python3 -m tools.conveyor.pipeline.targets_rename rename` (Conveyor rows in
   place, history kept).
 
-### Game side: legacy names
+### Game side: legacy names (retired by lane w23g)
 
-The game image and the runtime images still call these functions by their old
-names (src/blob C and preludes, `asm/us/blob/symbols.json`,
-`asm/us/ovl_*/symbols.json`). Because the names were permuted, an alias cannot
-express both meanings, so `game_static_legacy.us.txt` maps each old name to its
-address for the game link only (`pipeline.blob_tu.static_symbols`); the static
-ROM link never reads it. Generated game files are byte-identical. To finish the
-rename on the game side: rename the callers in src/blob (and its preludes),
-regenerate blob.ld/symbols.json, re-prove the image, then drop the entries.
+Until lane w23g the game image still called these functions by their old
+names, so `game_static_legacy.us.txt` gave the game link the old names at their
+addresses. w23g renamed every game caller (`src/blob/**` including the groups'
+context copies, and the 86 `cloud/matches` submissions) with the same
+permutation (`static_rename source`), dropped the prelude prototypes the
+permutation turned into conflicting redeclarations
+(`cloud/work/frontier/w23g/drop_renamed_dups.py`), re-pinned the blob lock with
+a pure-rename proof per entry and re-proved the image
+(`cloud/work/frontier/w23g/rename_resplice.py`), then emptied the table. The
+runtime images keep resolving against their frozen `asm/us/ovl_*/symbols.json`
+(old spellings; not regenerated).
 
 ## ll.c / llcvt.c helpers: libgcc names -> ultralib names (lane w23g, 2026-10-11)
 
@@ -191,16 +194,33 @@ names as ignored/reimplemented: dropping those entries is a recomp decision).
 `asm/us/ovl_{a,b}/symbols.json` (frozen target snapshots) still spell the
 libgcc names; nothing in the runtime images calls them.
 
+## Leads verified and renamed (lane w23g, 2026-10-11)
+
+Table `cloud/work/frontier/w23g/suspect_renames.json` (evidence per row), applied
+to the static inventory and the game callers at once:
+
+| vram | old | ultralib name | file | confidence |
+|---|---|---|---|---|
+| 0x800086F0 | `osWritebackDCache_full` | `osSyncPrintf` | libc/syncprintf.c | medium (FINALROM empty varargs; segment position, as rmonPrintf) |
+| 0x8000C050 | `dll_remove` | `__osDequeueThread` | os/thread.c | high |
+| 0x8000C308 | `dll_insert` | `__osInsertTimer` | os/timerintr.c | high |
+| 0x8000CFC4 | `__osCleanupThread` | `__osEnqueueAndYield` | os/exceptasm.s | high |
+| 0x8000DBC0 | `osPiInit` | `__osPiCreateAccessQueue` | io/piacs.c | high |
+| 0x8000E390 | `__osInsertTimer` | `osPiGetCmdQueue` | io/pigetcmdq.c | high |
+
+`asm/us/boot_tail/symbols.json` also lost a stale `__osEnqueueAndYield =
+0x8000FBA0` key (the census name of osDestroyThread). `corpus.CANONICAL_ALIASES`
+is empty now. Still open below: the remaining leads, and `dll_init`,
+`dll_update`, `dll_reschedule` (timer_services members; likely
+`__osTimerServicesInit`, `__osTimerInterrupt`, `__osSetTimerIntr`, unchecked).
+
 ### Other misnamed static functions seen during the check (leads, not verified)
 
 Call order in the 43 bodies matched ultralib only after mapping these callees,
-which keep their current names: `dll_remove` = `__osDequeueThread` (verified
-2026-07-14, above), `__osCleanupThread` = `__osEnqueueAndYield`, `osPiInit` =
-`__osPiCreateAccessQueue`, `__osInsertTimer` (0x8000E390) = `osPiGetCmdQueue`,
+which keep their current names (the w23g renames above are done):
 `osViModeTableGet` = `_VirtualToPhysicalTask`, `__osSpDma` = `__osSpRawStartDma`,
 `__osContRamReset` = `__osPackRequestData`, `__osContGetStatus` =
 `__osContGetInitData`, `osSiInit` = `__osSiCreateAccessQueue`,
 `__osContBuildRequest` = `__osPfsRequestOneChannel`, `__osContParseResponse` =
-`__osPfsGetOneChannelData`, `osPfsReadWriteFile_pages` = `__osCheckId`, and
-`osWritebackDCache_full` = `osSyncPrintf`. Each needs its own body check before
-a rename.
+`__osPfsGetOneChannelData`, and `osPfsReadWriteFile_pages` = `__osCheckId`.
+Each needs its own body check before a rename.

@@ -1,6 +1,6 @@
-nonmatching osWritebackDCache_full, 0x1C
+nonmatching osSyncPrintf, 0x1C
 
-glabel osWritebackDCache_full
+glabel osSyncPrintf
     /* 92F0 800086F0 27BDFFF8 */  addiu      $sp, $sp, -0x8
     /* 92F4 800086F4 AFA40008 */  sw         $a0, 0x8($sp)
     /* 92F8 800086F8 AFA5000C */  sw         $a1, 0xC($sp)
@@ -8,4 +8,4 @@ glabel osWritebackDCache_full
     /* 9300 80008700 AFA70014 */  sw         $a3, 0x14($sp)
     /* 9304 80008704 03E00008 */  jr         $ra
     /* 9308 80008708 27BD0008 */   addiu     $sp, $sp, 0x8
-endlabel osWritebackDCache_full
+endlabel osSyncPrintf

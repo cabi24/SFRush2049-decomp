@@ -31,9 +31,9 @@ s32 osPiStartDma(OSIoMesg* mb, s32 priority, s32 direction, u32 devAddr, void* d
     mb->piHandle = NULL;
 
     if (priority == OS_MESG_PRI_HIGH) {
-        ret = osJamMesg((OSMesgQueue *)__osInsertTimer(), (OSMesg)mb, OS_MESG_NOBLOCK);
+        ret = osJamMesg((OSMesgQueue *)osPiGetCmdQueue(), (OSMesg)mb, OS_MESG_NOBLOCK);
     } else {
-        ret = osSendMesg((OSMesgQueue *)__osInsertTimer(), (OSMesg)mb, OS_MESG_NOBLOCK);
+        ret = osSendMesg((OSMesgQueue *)osPiGetCmdQueue(), (OSMesg)mb, OS_MESG_NOBLOCK);
     }
 
     return ret;

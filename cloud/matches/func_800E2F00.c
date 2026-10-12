@@ -290,8 +290,7 @@ typedef struct {
     __OSViScale y;
 } __OSViContext;
 extern __OSViContext *__osViContext;
-extern void __osCleanupThread(OSThread **queue);
-void dll_remove(OSThread **queue, OSThread *thread);
+void __osDequeueThread(OSThread **queue, OSThread *thread);
 extern s32 __osSiRawStartDma(s32 direction, void *dramAddr);
 typedef struct {
     u32 ramarray[15];
@@ -362,7 +361,7 @@ typedef struct {
     u8 pad0C[0x1C - 0xC];
 } __OSPiMgrState;
 extern __OSPiMgrState __osPiMgrState;
-extern void osPiInit(void);
+extern void __osPiCreateAccessQueue(void);
 extern void __osPiGetAccess(void);
 extern void __osPiRelAccess(void);
 extern u32 osRomBase;

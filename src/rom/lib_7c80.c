@@ -40,7 +40,7 @@ void osStartThread(OSThread* t) {
         __osDispatchThread();
     } else if (__osRunningThread->priority < __osActiveQueue->priority) {
         __osRunningThread->state = OS_STATE_RUNNABLE;
-        __osCleanupThread(&__osActiveQueue);
+        __osEnqueueAndYield(&__osActiveQueue);
     }
 
     __osRestoreInt(saveMask);
@@ -71,7 +71,7 @@ s32 osRecvMesg(OSMesgQueue* mq, OSMesg* msg, s32 flags) {
             return -1;
         } else {
             __osRunningThread->state = OS_STATE_WAITING;
-            __osCleanupThread(&mq->mtqueue);
+            __osEnqueueAndYield(&mq->mtqueue);
         }
     }
 

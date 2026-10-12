@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPiInit
+/* PROMOTED 2026-10-01 — __osPiCreateAccessQueue (ultralib name since w23g; was osPiInit)
  * Source:   cloud/work/static_C/osPiInit.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osPiInit.c:osPiInit (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osPiInit(void) {
+void __osPiCreateAccessQueue(void) {
     __osPiInitialized = 1;
     osCreateMesgQueue(&__osPiMesgQueue, &__osPiMesg, 1);
     osSendMesg(&__osPiMesgQueue, NULL, 0);
@@ -26,7 +26,7 @@ void __osPiGetAccess(void) {
     void *sp1C;
 
     if (__osPiInitialized == 0) {
-        osPiInit();
+        __osPiCreateAccessQueue();
     }
     osRecvMesg(&__osPiMesgQueue, &sp1C, 1);
 }

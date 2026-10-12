@@ -31,7 +31,7 @@ glabel osSetThreadPri
     /* 8FE8 800083E8 11610008 */  beq        $t3, $at, .L8000840C
     /* 8FEC 800083EC 00000000 */   nop
     /* 8FF0 800083F0 8D240008 */  lw         $a0, 0x8($t1)
-    /* 8FF4 800083F4 0C003014 */  jal        dll_remove
+    /* 8FF4 800083F4 0C003014 */  jal        __osDequeueThread
     /* 8FF8 800083F8 01202825 */   or        $a1, $t1, $zero
     /* 8FFC 800083FC 8FAC0028 */  lw         $t4, 0x28($sp)
     /* 9000 80008400 8D840008 */  lw         $a0, 0x8($t4)
@@ -50,7 +50,7 @@ glabel osSetThreadPri
     /* 9030 80008430 24080002 */  addiu      $t0, $zero, 0x2
     /* 9034 80008434 3C048003 */  lui        $a0, %hi(__osActiveQueue)
     /* 9038 80008438 A5A80010 */  sh         $t0, 0x10($t5)
-    /* 903C 8000843C 0C0033F1 */  jal        __osCleanupThread
+    /* 903C 8000843C 0C0033F1 */  jal        __osEnqueueAndYield
     /* 9040 80008440 2484C3D8 */   addiu     $a0, $a0, %lo(__osActiveQueue)
   .L80008444:
     /* 9044 80008444 0C003148 */  jal        __osRestoreInt

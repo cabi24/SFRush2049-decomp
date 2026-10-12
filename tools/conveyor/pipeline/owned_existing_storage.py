@@ -22,7 +22,10 @@ PROFILES={
         # Lane w22g's libultra rename (static_rename owned): the same source with
         # dll_get_priority -> osGetThreadPri; nothing else changed.
         renamed=(dict(source_sha256='ff6bc3dcb38adda889342c58063d49a0ed2f0af2c26566220f50da80617e082b',
-                      members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','osGetThreadPri')),)),
+                      members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','osGetThreadPri')),
+                 # Lane w23g: dll_remove -> __osDequeueThread, dll_insert -> __osInsertTimer.
+                 dict(source_sha256='e52c72ba1747de254a6504d1b9fd7d0e0b69f4426b85032e99b5a66dfa127b87',
+                      members=('__osDequeueThread','dll_init','dll_update','dll_reschedule','__osInsertTimer','osGetThreadPri')),)),
     'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
         flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',
         source_sha256='7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80',

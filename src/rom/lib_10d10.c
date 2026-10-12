@@ -13,14 +13,14 @@
 #define OS_STATE_RUNNABLE 2
 extern u32 __osDisableInt(void);
 extern void __osRestoreInt(u32 flags);
-extern void __osCleanupThread(OSThread **queue);
+extern void __osEnqueueAndYield(OSThread **queue);
 extern OSThread *__osRunningThread;
 extern OSThread *__osActiveQueue;
 void osYieldThread(void) {
     register u32 saveMask = __osDisableInt();
 
     __osRunningThread->state = OS_STATE_RUNNABLE;
-    __osCleanupThread(&__osActiveQueue);
+    __osEnqueueAndYield(&__osActiveQueue);
     __osRestoreInt(saveMask);
 }
 

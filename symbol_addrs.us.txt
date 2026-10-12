@@ -110,7 +110,7 @@ osCauseGet = 0x8000DBB0; // type:func read CP0 Cause register
 __osSiRawReadIo = 0x8000D7A0; // type:func libultra __osSiRawReadIo (renamed from osPiReadIo, docs/SYMBOL_MISATTRIBUTION.md)
 __osSiRawWriteIo = 0x8000D7F0; // type:func libultra __osSiRawWriteIo (renamed from osPiWriteWord, docs/SYMBOL_MISATTRIBUTION.md)
 osPiReadIo = 0x800081D0; // type:func libultra osPiReadIo (renamed from osPiRawReadWord, docs/SYMBOL_MISATTRIBUTION.md)
-osPiInit = 0x8000DBC0; // type:func peripheral interface initialization
+__osPiCreateAccessQueue = 0x8000DBC0; // type:func libultra __osPiCreateAccessQueue (renamed from osPiInit, docs/SYMBOL_MISATTRIBUTION.md)
 __osPiGetAccess = 0x8000DC10; // type:func libultra __osPiGetAccess (renamed from osPiGetAccess, docs/SYMBOL_MISATTRIBUTION.md)
 __osPiRelAccess = 0x8000DC54; // type:func libultra __osPiRelAccess (renamed from osPiReleaseAccess, docs/SYMBOL_MISATTRIBUTION.md)
 __osPiRawReadIo = 0x8000DC80; // type:func libultra __osPiRawReadIo (renamed from osPiReadWord, docs/SYMBOL_MISATTRIBUTION.md)
@@ -236,11 +236,11 @@ __osSumcalc = 0x8000EB00; // type:func byte-sum checksum helper (used by PFS)
 // Timer queue and linked list utilities (CC50.s, D0B0.s)
 // MISATTRIBUTED cluster — verified vs ultralib 2026-07-14, rename gated on
 // watchman/SHA-1 rebuild; see docs/SYMBOL_MISATTRIBUTION.md.
-dll_remove = 0x8000C050; // type:func remove node from singly-linked list [MISATTR really __osDequeueThread]
+__osDequeueThread = 0x8000C050; // type:func libultra __osDequeueThread (renamed from dll_remove, docs/SYMBOL_MISATTRIBUTION.md)
 dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list) [MISATTR really __osTimerServicesInit]
 dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance) [MISATTR really __osTimerInterrupt]
 dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt [MISATTR really __osSetTimerIntr]
-dll_insert = 0x8000C308; // type:func insert timer into delta queue [MISATTR really __osInsertTimer]
+__osInsertTimer = 0x8000C308; // type:func libultra __osInsertTimer (renamed from dll_insert, docs/SYMBOL_MISATTRIBUTION.md)
 osGetThreadPri = 0x8000C490; // type:func libultra osGetThreadPri (renamed from dll_get_priority, docs/SYMBOL_MISATTRIBUTION.md)
 __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 
@@ -504,7 +504,7 @@ inflate_flush_window = 0x80004D50; // type:func flush output window to destinati
 inflate_free_window = 0x80005464; // type:func free huffman decode tables
 
 // Cache operations (9230.s)
-osWritebackDCache_full = 0x800086F0; // type:func writeback data cache region
+osSyncPrintf = 0x800086F0; // type:func libultra osSyncPrintf (renamed from osWritebackDCache_full, docs/SYMBOL_MISATTRIBUTION.md)
 rmonPrintf = 0x8000870C; // type:func libultra rmonPrintf (renamed from osWritebackDCacheAll, docs/SYMBOL_MISATTRIBUTION.md)
 
 // SI controller functions (9930.s)
@@ -532,7 +532,7 @@ osGetThreadId = 0x8000BE50; // type:func libultra osGetThreadId (renamed from os
 // Exception context save functions (D580.s)
 // NOTE: dll_get_data and dll_set_data were misidentified - these are exception handler internal functions
 // __osSendInterrupt = 0x8000CEDC already defined in Exception handler code labels section
-__osCleanupThread = 0x8000CFC4; // type:func save thread context and check for dispatch (exception cleanup)
+__osEnqueueAndYield = 0x8000CFC4; // type:func libultra __osEnqueueAndYield (renamed from __osCleanupThread, docs/SYMBOL_MISATTRIBUTION.md)
 
 // String utility (DE20.s)
 bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
@@ -544,7 +544,7 @@ __ll_rem = 0x8000D9C0; // type:func libultra __ll_rem (renamed from __umoddi3_al
 osSpTaskLoad_full = 0x8000DF80; // type:func load RSP task microcode and data
 
 // More timer functions (EF80.s)
-__osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue [MISATTR really a __osPiMgrState getter, LOCKED under this name — real __osInsertTimer is dll_insert @ 0x8000C308, see docs/SYMBOL_MISATTRIBUTION.md]
+osPiGetCmdQueue = 0x8000E390; // type:func libultra osPiGetCmdQueue (renamed from __osInsertTimer, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Compressed game code functions (decompressed at 0x80086A50)
 // Maps to arcade game/game.c structure

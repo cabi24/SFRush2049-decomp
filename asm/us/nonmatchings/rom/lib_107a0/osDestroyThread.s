@@ -23,7 +23,7 @@ glabel osDestroyThread
     /* 107E8 8000FBE8 13210004 */  beq        $t9, $at, .L8000FBFC
     /* 107EC 8000FBEC 00000000 */   nop
     /* 107F0 8000FBF0 8F040008 */  lw         $a0, 0x8($t8)
-    /* 107F4 8000FBF4 0C003014 */  jal        dll_remove
+    /* 107F4 8000FBF4 0C003014 */  jal        __osDequeueThread
     /* 107F8 8000FBF8 03002825 */   or        $a1, $t8, $zero
   .L8000FBFC:
     /* 107FC 8000FBFC 3C088003 */  lui        $t0, %hi(__osRunQueue)

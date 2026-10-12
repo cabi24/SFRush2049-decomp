@@ -1,6 +1,6 @@
-nonmatching dll_remove, 0x40
+nonmatching __osDequeueThread, 0x40
 
-glabel dll_remove
+glabel __osDequeueThread
     /* CC50 8000C050 00803025 */  or         $a2, $a0, $zero
     /* CC54 8000C054 8CC70000 */  lw         $a3, 0x0($a2)
     /* CC58 8000C058 27BDFFF8 */  addiu      $sp, $sp, -0x8
@@ -20,4 +20,4 @@ glabel dll_remove
   .L8000C088:
     /* CC88 8000C088 03E00008 */  jr         $ra
     /* CC8C 8000C08C 27BD0008 */   addiu     $sp, $sp, 0x8
-endlabel dll_remove
+endlabel __osDequeueThread

@@ -267,7 +267,10 @@ def test_submit_counts_unextractable(tmp_path, monkeypatch, capsys):
 
 def _setup_alias_corpus(tmp_path, monkeypatch):
     """A corpus whose candidate is the canonical ultralib name, paired to a
-    target carrying the historically-misattributed label via CANONICAL_ALIASES."""
+    target carrying the historically-misattributed label via CANONICAL_ALIASES.
+    The inventory has no misattributed label left (w23g renamed dll_remove to
+    __osDequeueThread), so the alias is installed for the test."""
+    monkeypatch.setattr(corpusmod, "CANONICAL_ALIASES", {"__osDequeueThread": "dll_remove"})
     repo = _make_clone(
         tmp_path,
         body="void __osDequeueThread(void **q, void *t) { *q = t; }\n")

@@ -7,7 +7,7 @@
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osException.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osExceptionPreamble.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osSendInterrupt.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osCleanupThread.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osEnqueueAndYield.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osEnqueueThread.s")
 /* PROMOTED 2026-09-24 — __osPopThread
  * Source:   work/auto/__osPopThread/matched.c (in-repo, locked)

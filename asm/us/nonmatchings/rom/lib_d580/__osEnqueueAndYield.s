@@ -1,7 +1,7 @@
 /* Handwritten function */
-nonmatching __osCleanupThread, 0x100
+nonmatching __osEnqueueAndYield, 0x100
 
-glabel __osCleanupThread
+glabel __osEnqueueAndYield
     /* DBC4 8000CFC4 3C058003 */  lui        $a1, %hi(__osRunningThread)
     /* DBC8 8000CFC8 8CA5C3E0 */  lw         $a1, %lo(__osRunningThread)($a1)
     /* DBCC 8000CFCC 40086000 */  mfc0       $t0, $12 /* handwritten instruction */
@@ -70,4 +70,4 @@ glabel __osCleanupThread
   .L8000D0BC:
     /* DCBC 8000D0BC 08003447 */  j          __osDispatchThread
     /* DCC0 8000D0C0 00000000 */   nop
-endlabel __osCleanupThread
+endlabel __osEnqueueAndYield

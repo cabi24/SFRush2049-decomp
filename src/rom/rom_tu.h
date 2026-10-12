@@ -95,7 +95,7 @@ extern void guLookAtF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void guMtxF2L(f32 [4][4], Mtx *);
 extern s32 osDpIsBusy(void);
 extern void __osContRamReset(u8);
-extern OSTime dll_insert(OSTimer *);
+extern OSTime __osInsertTimer(OSTimer *);
 extern void dll_reschedule(OSTime);
 extern void __osExceptionPanic(void);
 extern OSThread *__osRunQueue;
@@ -229,7 +229,7 @@ extern s32 __osContPifBuf;
 extern OSMesgQueue __osContQueryMsgQ;
 extern OSMesg __osContQueryMesg;
 extern u8 __osSiChannelMask;
-extern s32 __osInsertTimer(void); /* accepted pointer-valued s32 body */
+extern s32 osPiGetCmdQueue(void); /* accepted pointer-valued s32 body */
 extern s32 osContInit(OSMesgQueue *, u8 *, OSContStatus *);
 extern s32 __osPfsGetNextPage(OSPfs *, u8 *, __OSInode *, __OSInodeUnit *);
 #define CONT_BLOCK_DETECT 0x400

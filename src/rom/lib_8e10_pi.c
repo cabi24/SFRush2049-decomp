@@ -26,7 +26,7 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
     osCreateMesgQueue(&__osPiDmaQueue, (OSMesg*)__osPiDmaMesg, 1);
 
     if (!__osPiInitialized) {
-        osPiInit();
+        __osPiCreateAccessQueue();
     }
 
     osSetEventMesg(OS_EVENT_PI, &__osPiDmaQueue, (OSMesg)0x22222222);

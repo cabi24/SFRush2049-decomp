@@ -14,7 +14,7 @@
 #define OS_STATE_STOPPED 1
 extern u32 __osDisableInt(void);
 extern void __osRestoreInt(u32 flags);
-extern void dll_remove(OSThread **queue, OSThread *thread);
+extern void __osDequeueThread(OSThread **queue, OSThread *thread);
 extern void __osDispatchThread(void);
 extern OSThread *__osRunningThread;
 extern OSThread *__osRunQueue;
@@ -28,7 +28,7 @@ void osDestroyThread(OSThread* t) {
     if (t == NULL) {
         t = __osRunningThread;
     } else if (t->state != OS_STATE_STOPPED) {
-        dll_remove(t->queue, t);
+        __osDequeueThread(t->queue, t);
     }
 
     if (__osRunQueue == t) {

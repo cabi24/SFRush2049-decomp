@@ -273,13 +273,13 @@ void osSpTaskLoad_full(void* args) {
     }
 }
 
-/* PROMOTED 2026-07-15 — __osInsertTimer
- * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
+/* PROMOTED 2026-07-15 — osPiGetCmdQueue (ultralib name since w23g; was __osInsertTimer)
+ * Source:   src/rom_auto/osPiGetCmdQueue.c (in-repo, locked; src/rom_auto/__osInsertTimer.c until w23g)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:src/rom_auto/__osInsertTimer.c:__osInsertTimer (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 __osInsertTimer(void) {
+s32 osPiGetCmdQueue(void) {
     if (__osPiMgrState.flag == 0) {
         return 0;
     }

@@ -356,20 +356,35 @@ def rebind_owned(doc, names, base, rebind_dir, repo=REPO):
 
 # --- historical inputs ----------------------------------------------------------
 # Research packets compile sources written before lane w22g's libultra rename
+# (and before lane w23g's)
 # (pinned cloud/matches/boot_tail submissions, `git show BASE:` baselines)
 # against today's symbol tables, where e.g. osJamMesg names another address.
 # They pass such text through renamed_source() (and baseline lock pins through
 # renamed_locks()) so old and new code resolve to the same functions.
 
-LIBULTRA_RENAMES = REPO / "cloud" / "work" / "frontier" / "w22g" / "renames.json"
+# Every static rename since, in order. The packets' inputs predate all of them,
+# and no table's old names overlap another's (checked in libultra_names), so
+# the union is one simultaneous permutation of the pre-w22g names.
+FRONTIER = REPO / "cloud" / "work" / "frontier"
+LIBULTRA_RENAMES = FRONTIER / "w22g" / "renames.json"
+RENAME_TABLES = (LIBULTRA_RENAMES,
+                 FRONTIER / "w23g" / "ll_renames.json",        # ll.c/llcvt.c helpers
+                 FRONTIER / "w23g" / "suspect_renames.json")   # w22g's verified leads
 _libultra_cache = None
 
 
 def libultra_names():
-    """{old: new} of the w22g libultra rename."""
+    """{old: new}: the union of the static rename tables (RENAME_TABLES)."""
     global _libultra_cache
     if _libultra_cache is None:
-        _libultra_cache = mapping(load_map(LIBULTRA_RENAMES))
+        names = {}
+        for table in RENAME_TABLES:
+            more = mapping(load_map(table))
+            clash = (set(more) & set(names)) | (set(more) & set(names.values()))
+            if clash:
+                raise RenameError(f"{table}: renames names an earlier table touched: {sorted(clash)}")
+            names.update(more)
+        _libultra_cache = names
     return _libultra_cache
 
 

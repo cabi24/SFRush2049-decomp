@@ -52,12 +52,10 @@ typedef struct {
 extern __OSViContext *__osViContext;
 
 /* --- Thread scheduling internals (libultra osint.h), same signatures as
- * the real SDK; the symbols here are misattributed names left over from an
- * earlier auto-naming pass (__osCleanupThread's body is really
- * __osEnqueueAndYield; dll_remove's is __osDequeueThread) but the callers
- * only need a correct signature to compile. */
-extern void __osCleanupThread(OSThread **queue);
-void dll_remove(OSThread **queue, OSThread *thread);
+ * the real SDK (0x8000CFC4 and 0x8000C050; named __osCleanupThread and
+ * dll_remove by an earlier auto-naming pass until lane w23g). */
+extern void __osEnqueueAndYield(OSThread **queue);
+void __osDequeueThread(OSThread **queue, OSThread *thread);
 
 /* --- Serial interface raw DMA (libultra os_internal_si.h). ------------- */
 extern s32 __osSiRawStartDma(s32 direction, void *dramAddr);
@@ -98,11 +96,6 @@ extern void dma_signal(void);
  * but symbol_addrs.us.txt gives it its own symbol so m2c needs its own
  * extern too. */
 extern s32 __osSiDmaRetry;
-
-/* --- Real name for func_8000CFC4's body (see __osCleanupThread above;
- * ultralib's exceptasm.s confirms this is __osEnqueueAndYield, called
- * directly under its real name elsewhere too). */
-extern void __osEnqueueAndYield(OSThread **queue);
 
 /* --- Controller Pak raw read (PRinternal/controller.h counterpart to
  * __osContRamWrite above). */
@@ -180,7 +173,7 @@ typedef struct {
 } __OSPiMgrState;
 
 extern __OSPiMgrState __osPiMgrState;
-extern void osPiInit(void);
+extern void __osPiCreateAccessQueue(void);
 extern void __osPiGetAccess(void);
 extern void __osPiRelAccess(void);
 extern u32 osRomBase;

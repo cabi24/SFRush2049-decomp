@@ -16,7 +16,7 @@ DATA = Path(os.environ.get("CONVEYOR_DATA", "~/.conveyor")).expanduser()
 # (n64 work-dir name, arcade candidate) — high-confidence hand matches.
 KNOWN_PAIRINGS = [
     ("game_loop", "game/game.c:game"),
-    ("dll_remove", "GUTS/os/dll.c:dll_remove"),
+    ("__osDequeueThread", "GUTS/os/dll.c:dll_remove"),   # target dll_remove until w23g
     ("dll_init", "GUTS/os/dll.c:dll_init"),
 ]
 

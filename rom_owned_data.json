@@ -301,33 +301,33 @@
       "activation_mode": "existing_tu",
       "active": true,
       "tu": "src/rom/lib_cc50.c",
-      "source": "cloud/work/frontier/w22g/rebind/candidate.c",
-      "source_sha256": "ff6bc3dcb38adda889342c58063d49a0ed2f0af2c26566220f50da80617e082b",
+      "source": "cloud/work/frontier/w23g/rebind/candidate.c",
+      "source_sha256": "e52c72ba1747de254a6504d1b9fd7d0e0b69f4426b85032e99b5a66dfa127b87",
       "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
       "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
       "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
       "members": [
-        "dll_remove",
+        "__osDequeueThread",
         "dll_init",
         "dll_update",
         "dll_reschedule",
-        "dll_insert",
+        "__osInsertTimer",
         "osGetThreadPri"
       ],
       "new_members": [
         "dll_init"
       ],
       "prior_locks": {
-        "dll_remove": {
-          "body_sha256": "a1cad86d2a4504ad6c0db40f658baac3a91a3158aaa351daa5c43ec08f1fe4df",
+        "__osDequeueThread": {
+          "body_sha256": "73d8517ad035c7aae49f1a3d85da46bffcf8b1c51b22c49716dff9f0a73fc805",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-          "target_id": "dll_remove",
+          "target_id": "__osDequeueThread",
           "toolkit_sha": null,
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
         },
         "dll_update": {
-          "body_sha256": "ea58f872328380330e951f7e7a1126401ca8406c23cbde47d91ff52a9a0f7c97",
+          "body_sha256": "c1ab2754fba597f25388b71df1fe959df93d106eb94571c233a5ea5c5e82ce78",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
           "target_id": "dll_update",
           "toolkit_sha": null,
@@ -342,10 +342,10 @@
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
         },
-        "dll_insert": {
-          "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
+        "__osInsertTimer": {
+          "body_sha256": "dc31f6245d6579131328d696eabc68e1a929b963b5b8da7cb7bf030c068e2f2e",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-          "target_id": "dll_insert",
+          "target_id": "__osInsertTimer",
           "toolkit_sha": null,
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
@@ -393,10 +393,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/integration_B24/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w22g/rebind/timer_services_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w23g/rebind/timer_services_context_hashes.json",
       "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
       "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
-      "context_proof_sha256": "ecbf760f161bf3ea34c8fb0151159d0e3eff4dfb788555152ce8279031738e1d",
+      "context_proof_sha256": "b8307807fd8b61aefff3786b7f9bb16fbff17c353251b7b045b0c87a20a0746d",
       "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
       "data_slot": {
         "owner": "timer_services_pointer",
@@ -459,7 +459,7 @@
       "context_proof": "cloud/work/frontier/w23g/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "7843633afbf355b1bb4df498e2285dbfbed57f05d37638ee6e32a8b1325e056e",
+      "context_proof_sha256": "5c5bc0fa5a2c7eab4bdefedf3c388787e2f1852431ab279dd359d4fc8f5c14de",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

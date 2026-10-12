@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-09-24 — osWritebackDCache_full
+/* PROMOTED 2026-09-24 — osSyncPrintf (ultralib name since w23g; was osWritebackDCache_full)
  * Source:   work/auto/osWritebackDCache_full/matched.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:work/auto/osWritebackDCache_full/matched.c:osWritebackDCache_full (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osWritebackDCache_full(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+void osSyncPrintf(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
   int new_var;
   if (!new_var)

@@ -43,16 +43,13 @@ PRIORITY = 50  # above bulk matrix (100), below verify/smoke (1)
 # Canonical-name aliases: ultralib candidate function name -> our target_id.
 # A few N64 targets were historically given generic/wrong labels in
 # symbol_addrs.us.txt, so name-pairing (targets.get(candidate_name)) misses the
-# real libultra source. Verified against ultralib by asm audit (2026-07-14):
-#   dll_remove        @ 0x8000C050 is byte-for-byte __osDequeueThread
-# (dll_get_priority @ 0x8000C490 was renamed osGetThreadPri by lane w22g and
-# pairs by name now.) The proper fix is renaming the linker symbol
-# (tools.conveyor.pipeline.static_rename + targets_rename rename, as w22g did);
-# until then this lets corpus pair the candidate against the right target .o.
-# See docs/SYMBOL_MISATTRIBUTION.md.
-CANONICAL_ALIASES = {
-    "__osDequeueThread": "dll_remove",
-}
+# real libultra source. Empty since lane w23g renamed the last one in the
+# inventory (dll_remove @ 0x8000C050 -> __osDequeueThread; lane w22g had done
+# the same for dll_get_priority -> osGetThreadPri), so every candidate pairs by
+# name. Fix a new misname by renaming the symbol
+# (tools.conveyor.pipeline.static_rename + targets_rename rename); an entry here
+# is the stopgap. See docs/SYMBOL_MISATTRIBUTION.md.
+CANONICAL_ALIASES = {}
 
 
 def _conn_store(data):

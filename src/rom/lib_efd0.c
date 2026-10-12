@@ -21,7 +21,7 @@ int osSetTimer(OSTimer* t, OSTime countdown, OSTime interval, OSMesgQueue* mq, O
     t->mq = mq;
     t->msg = msg;
 
-    time = dll_insert(t);
+    time = __osInsertTimer(t);
     if (((OSTimer *)__osTimerList)->next == t) {
         dll_reschedule(time);
     }

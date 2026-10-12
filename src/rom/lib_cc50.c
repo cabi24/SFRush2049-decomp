@@ -11,7 +11,7 @@ OSTimer __osBaseTimer;
 OSTimer* __osTimerList = &__osBaseTimer;
 
 
-void dll_remove(register OSThread** queue, register OSThread* t) {
+void __osDequeueThread(register OSThread** queue, register OSThread* t) {
     register OSThread* pred;
     register OSThread* succ;
 
@@ -86,7 +86,7 @@ void dll_update(void) {
 
         if (t->interval != 0) {
             t->value = t->interval;
-            dll_insert(t);
+            __osInsertTimer(t);
         }
     }
 }
@@ -109,13 +109,13 @@ void dll_reschedule(OSTime tim) {
     __osRestoreInt(savedMask);
 }
 
-/* PROMOTED 2026-10-01 — dll_insert
+/* PROMOTED 2026-10-01 — __osInsertTimer (ultralib name since w23g; was dll_insert)
  * Source:   cloud/work/static_C11/dll_insert.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C11/dll_insert.c:dll_insert (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-OSTime dll_insert(OSTimer* t) {
+OSTime __osInsertTimer(OSTimer* t) {
     OSTimer* timep;
     OSTime tim;
     u32 savedMask = __osDisableInt();

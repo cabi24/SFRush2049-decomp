@@ -11,7 +11,7 @@ glabel osYieldThread
     /* 10D2C 8001012C 3C048003 */  lui        $a0, %hi(__osActiveQueue)
     /* 10D30 80010130 00408025 */  or         $s0, $v0, $zero
     /* 10D34 80010134 2484C3D8 */  addiu      $a0, $a0, %lo(__osActiveQueue)
-    /* 10D38 80010138 0C0033F1 */  jal        __osCleanupThread
+    /* 10D38 80010138 0C0033F1 */  jal        __osEnqueueAndYield
     /* 10D3C 8001013C A5EE0010 */   sh        $t6, 0x10($t7)
     /* 10D40 80010140 0C003148 */  jal        __osRestoreInt
     /* 10D44 80010144 02002025 */   or        $a0, $s0, $zero

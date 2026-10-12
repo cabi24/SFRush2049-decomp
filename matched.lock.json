@@ -120,7 +120,7 @@
     "verified_at": "2026-10-11"
   },
   "src/rom/lib_107a0.c:osDestroyThread": {
-    "body_sha256": "8f4dba3cfd6bc136a94800c5ea72b73550beeeba6027dbc66f22acaa04853136",
+    "body_sha256": "8a3119c5d35f4f194e0d84c31c083742530f31f7bc56b4f0594309087f83d12f",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osDestroyThread",
     "toolkit_sha": null,
@@ -168,7 +168,7 @@
     "verified_at": "2026-10-11"
   },
   "src/rom/lib_10d10.c:osYieldThread": {
-    "body_sha256": "e513a5fb8ba832e387555d1712637e740be4a1a5ba313c99e2ab7a88f33af3fb",
+    "body_sha256": "47268628b3108ea895cd531a9a14789cd3aebcd25b83628c799a765f0260f273",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osYieldThread",
     "toolkit_sha": null,
@@ -3926,7 +3926,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_7c80.c:osRecvMesg": {
-    "body_sha256": "8ae778727d64b624a4d01d5a18b404a4e3d85441b40c8594f3a4d3e53e24bd0b",
+    "body_sha256": "b6a6e09ee8c0ee535a2397855db03738299b9bf472af5a10bae3f8823fdd2f22",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osRecvMesg",
     "toolkit_sha": null,
@@ -3934,7 +3934,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_7c80.c:osStartThread": {
-    "body_sha256": "8279d088cbbb1f4ab6dd54f125581cf8d3b8e5e22d05c670f28a6659f00e20ca",
+    "body_sha256": "16a54a32103b4ed0f07c349035cd893252329a5c0ccd9e91705387ce8fc9dfdf",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osStartThread",
     "toolkit_sha": null,
@@ -3958,7 +3958,7 @@
     "verified_at": "2026-07-15"
   },
   "src/rom/lib_8040_msg.c:osJamMesg": {
-    "body_sha256": "2f17334bd53d31814e6ea4ff0aa30241e722e822318fd7bdefe1e638f25fc8e5",
+    "body_sha256": "886043a0335eaa1529b0982131d9e0757a74cea1ecd4abb9be1a4e4475574ccb",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "osJamMesg",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
@@ -3966,7 +3966,7 @@
     "verified_at": "2026-10-02"
   },
   "src/rom/lib_81e0.c:osSendMesg": {
-    "body_sha256": "9508d562ecd937d4026ed1dd7ed842faa386b460c73c8a16f566a02d5dca4020",
+    "body_sha256": "f6927d206f2cf88eb30adbb8bcf3a4963254e6d9cc8a978ec762f4caf28d42ca",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osSendMesg",
     "toolkit_sha": null,
@@ -4098,7 +4098,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_8e10.c:osSetThreadPri": {
-    "body_sha256": "14527780d4cf432cf0885259f3bfb1982cb64942239fd51ad473978ea1788612",
+    "body_sha256": "afac72277fe7c01abee573ab6addb29f9952d8df80ee0829415d39bc2d036329",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osSetThreadPri",
     "toolkit_sha": null,
@@ -4106,7 +4106,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_8e10_pi.c:osCreatePiManager": {
-    "body_sha256": "6fe8194de08103042b8879ed01a6d2ab8206103ae5e76ac214deee4480060652",
+    "body_sha256": "94de31b859fda040d3242ba906b1d3bd0e93000a55559df525a46c970f2b4063",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "osCreatePiManager",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
@@ -4114,17 +4114,17 @@
     "verified_at": "2026-10-02"
   },
   "src/rom/lib_9230.c:osPiStartDma": {
-    "body_sha256": "31faa3168d4c6ca86dd2bdfea78777ddf7c965067516178a897054a28605806b",
+    "body_sha256": "e4e2c5e66cb0a645b76593ca6282e793feb733601cadca845882f76709fa2ab4",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPiStartDma",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
-  "src/rom/lib_92f0.c:osWritebackDCache_full": {
-    "body_sha256": "e29fdc3172e7e8ea8481b4fd260f11149bdc9c5c481758f0d8eabb3354a36ca7",
+  "src/rom/lib_92f0.c:osSyncPrintf": {
+    "body_sha256": "326b4b18d7b3637a3f11ab237040fe4ed7560532cb684c9e65f75d9b0d2fdee7",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osWritebackDCache_full",
+    "target_id": "osSyncPrintf",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
@@ -4534,7 +4534,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_c990.c:osStopThread": {
-    "body_sha256": "678fbe4a3c0f625f55973a0a15231d19ed9c60d7d0572ac5cc6c4f9153d79238",
+    "body_sha256": "9a7119ef29ace2f3a12f37a9127fc0318353b4ca2116ceaae5745c6073033d03",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osStopThread",
     "toolkit_sha": null,
@@ -4557,6 +4557,22 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_cc50.c:__osDequeueThread": {
+    "body_sha256": "73d8517ad035c7aae49f1a3d85da46bffcf8b1c51b22c49716dff9f0a73fc805",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osDequeueThread",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_cc50.c:__osInsertTimer": {
+    "body_sha256": "dc31f6245d6579131328d696eabc68e1a929b963b5b8da7cb7bf030c068e2f2e",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osInsertTimer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
   "src/rom/lib_cc50.c:dll_init": {
     "body_sha256": "5c936501e7adce13ef7b979edef234ac9bbc65b279fba82e25890855f82c0cfc",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
@@ -4569,22 +4585,6 @@
     "toolkit_sha": null,
     "verified": "rom-sha1"
   },
-  "src/rom/lib_cc50.c:dll_insert": {
-    "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "dll_insert",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_cc50.c:dll_remove": {
-    "body_sha256": "a1cad86d2a4504ad6c0db40f658baac3a91a3158aaa351daa5c43ec08f1fe4df",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "dll_remove",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
   "src/rom/lib_cc50.c:dll_reschedule": {
     "body_sha256": "45c8e3c1299e9dcec5de8852f30053709ec9d963bb8ba5c118aae2f946d13343",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -4594,7 +4594,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_cc50.c:dll_update": {
-    "body_sha256": "ea58f872328380330e951f7e7a1126401ca8406c23cbde47d91ff52a9a0f7c97",
+    "body_sha256": "c1ab2754fba597f25388b71df1fe959df93d106eb94571c233a5ea5c5e82ce78",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "dll_update",
     "toolkit_sha": null,
@@ -4793,8 +4793,16 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_e7c0.c:__osPiCreateAccessQueue": {
+    "body_sha256": "b712dcf67da51c8448458aa406a0eb9954f4f0a040e3427f7322b53c4c634c54",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPiCreateAccessQueue",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
   "src/rom/lib_e7c0.c:__osPiGetAccess": {
-    "body_sha256": "b54714f21afde324a02ada9aa018082ca7cc716f5afc8e7756e887e81d68a23f",
+    "body_sha256": "eef104e4a0b22c23fd38df79cc2b48ddc31d16c4615a9189ea794270ca7cd59c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osPiGetAccess",
     "toolkit_sha": null,
@@ -4817,14 +4825,6 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
-  "src/rom/lib_e7c0.c:osPiInit": {
-    "body_sha256": "808459683b02306ea9a029834eecba5701ec058d39154c105f00b71470b1d76b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPiInit",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
   "src/rom/lib_e8d0.c:__osPiRawStartDma": {
     "body_sha256": "c5f864c400b8db912240dc14ec629fd3b6bdb380e3ba43c65fe99238e33d5bdf",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -4841,10 +4841,10 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
-  "src/rom/lib_e9a0.c:__osInsertTimer": {
-    "body_sha256": "94b6b9e34403b46e8a97d9fa93a8f991a7bf86eaec609a784d45638a7e53226e",
+  "src/rom/lib_e9a0.c:osPiGetCmdQueue": {
+    "body_sha256": "3c92a5e51eaf52ad6f995a18212ba0679852344401d1c1f1492275f21f4499c8",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osInsertTimer",
+    "target_id": "osPiGetCmdQueue",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
@@ -4858,7 +4858,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_efd0.c:osSetTimer": {
-    "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
+    "body_sha256": "5723146bda44365b3b71f1037fdfc2fee84ed05f443b8d5fa5342740b1f2fecb",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osSetTimer",
     "toolkit_sha": null,

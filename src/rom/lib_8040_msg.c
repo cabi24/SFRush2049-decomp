@@ -21,7 +21,7 @@ s32 osJamMesg(OSMesgQueue* mq, OSMesg msg, s32 flag) {
     while (mq->validCount >= mq->msgCount) {
         if (flag == OS_MESG_BLOCK) {
             __osRunningThread->state = OS_STATE_WAITING;
-            __osCleanupThread(&mq->fullqueue);
+            __osEnqueueAndYield(&mq->fullqueue);
         } else {
             __osRestoreInt(saveMask);
             return -1;

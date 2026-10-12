@@ -26,7 +26,7 @@ glabel osJamMesg
     /* 8094 80007494 24080008 */  addiu      $t0, $zero, 0x8
     /* 8098 80007498 A5280010 */  sh         $t0, 0x10($t1)
     /* 809C 8000749C 8FA40028 */  lw         $a0, 0x28($sp)
-    /* 80A0 800074A0 0C0033F1 */  jal        __osCleanupThread
+    /* 80A0 800074A0 0C0033F1 */  jal        __osEnqueueAndYield
     /* 80A4 800074A4 24840004 */   addiu     $a0, $a0, 0x4
     /* 80A8 800074A8 10000005 */  b          .L800074C0
     /* 80AC 800074AC 00000000 */   nop

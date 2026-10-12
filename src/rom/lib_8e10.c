@@ -27,13 +27,13 @@ void osSetThreadPri(OSThread* t, OSPri pri) {
         t->priority = pri;
 
         if (t != __osRunningThread && t->state != OS_STATE_STOPPED) {
-            dll_remove(t->queue, t);
+            __osDequeueThread(t->queue, t);
             __osEnqueueThread(t->queue, t);
         }
 
         if (__osRunningThread->priority < ((OSThread *)__osActiveQueue)->priority) {
             __osRunningThread->state = OS_STATE_RUNNABLE;
-            __osCleanupThread((OSThread **) &__osActiveQueue);
+            __osEnqueueAndYield((OSThread **) &__osActiveQueue);
         }
     }
 

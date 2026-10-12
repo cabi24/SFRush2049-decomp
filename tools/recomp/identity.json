@@ -1,6 +1,13 @@
 {
- "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Lane w23g added the 18 ultralib ll.c/llcvt.c helpers (inventory __ll_mul etc.), mapped back to their former libgcc names so the recompiler sees exactly what it saw before that rename.",
+ "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Lane w23g added the 18 ultralib ll.c/llcvt.c helpers (inventory __ll_mul etc.), mapped back to their former libgcc names so the recompiler sees exactly what it saw before that rename. It also added the 6 functions of cloud/work/frontier/w23g/suspect_renames.json, mapped back to their pre-w23g names for the same reason.",
  "static": [
+  {
+   "vram": "0x800086F0",
+   "inventory": "osSyncPrintf",
+   "recomp": "osWritebackDCache_full",
+   "confidence": "medium",
+   "evidence": "ultralib src/libc/syncprintf.c osSyncPrintf (lane w23g inventory rename; osWritebackDCache_full before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
   {
    "vram": "0x8000870C",
    "inventory": "rmonPrintf",
@@ -93,6 +100,27 @@
    "evidence": "switch on state 2/4/8 -> OS_STATE_STOPPED, __osDequeueThread / __osEnqueueAndYield(NULL): libultra osStopThread (named _rx and ignored in patches.json: the host shim implements stopping ANOTHER thread, which N64ModernRuntime's osStopThread does not) (inventory name osPfsChecker_full until w22g)"
   },
   {
+   "vram": "0x8000C050",
+   "inventory": "__osDequeueThread",
+   "recomp": "dll_remove",
+   "confidence": "high",
+   "evidence": "ultralib src/os/thread.c __osDequeueThread (lane w23g inventory rename; dll_remove before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000C308",
+   "inventory": "__osInsertTimer",
+   "recomp": "dll_insert",
+   "confidence": "high",
+   "evidence": "ultralib src/os/timerintr.c __osInsertTimer (lane w23g inventory rename; dll_insert before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000CFC4",
+   "inventory": "__osEnqueueAndYield",
+   "recomp": "__osCleanupThread",
+   "confidence": "high",
+   "evidence": "ultralib src/os/exceptasm.s __osEnqueueAndYield (lane w23g inventory rename; __osCleanupThread before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
    "vram": "0x8000D7A0",
    "inventory": "__osSiRawReadIo",
    "recomp": "__osSiRawReadIo_rx",
@@ -177,6 +205,13 @@
    "evidence": "ultralib src/libc/ll.c __ll_rshift (lane w23g inventory rename; libgcc name __ashrdi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
   },
   {
+   "vram": "0x8000DBC0",
+   "inventory": "__osPiCreateAccessQueue",
+   "recomp": "osPiInit",
+   "confidence": "high",
+   "evidence": "ultralib src/io/piacs.c __osPiCreateAccessQueue (lane w23g inventory rename; osPiInit before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
    "vram": "0x8000DC80",
    "inventory": "__osPiRawReadIo",
    "recomp": "osPiRawReadIo_rx",
@@ -196,6 +231,13 @@
    "recomp": "osEPiRawStartDma",
    "confidence": "high",
    "evidence": "(handle, dir, cartAddr, dram, size): compares __osCurrentHandle, programs PI_BSD_DOM regs, then the PI DMA registers: libultra osEPiRawStartDma (reached through the PI manager table) (inventory name osPiSetDeviceTiming until w22g)"
+  },
+  {
+   "vram": "0x8000E390",
+   "inventory": "osPiGetCmdQueue",
+   "recomp": "__osInsertTimer",
+   "confidence": "high",
+   "evidence": "ultralib src/io/pigetcmdq.c osPiGetCmdQueue (lane w23g inventory rename; __osInsertTimer before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
   },
   {
    "vram": "0x8000E620",

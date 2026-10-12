@@ -93,7 +93,7 @@ glabel dll_update
   .L8000C26C:
     /* CE6C 8000C26C ADF80010 */  sw         $t8, 0x10($t7)
     /* CE70 8000C270 ADF90014 */  sw         $t9, 0x14($t7)
-    /* CE74 8000C274 0C0030C2 */  jal        dll_insert
+    /* CE74 8000C274 0C0030C2 */  jal        __osInsertTimer
     /* CE78 8000C278 8FA40024 */   lw        $a0, 0x24($sp)
     /* CE7C 8000C27C 1000FFAE */  b          .L8000C138
     /* CE80 8000C280 00000000 */   nop

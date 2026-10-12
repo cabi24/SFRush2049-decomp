@@ -19,12 +19,12 @@ void osStopThread(OSThread* t) {
     switch (state) {
         case OS_STATE_RUNNING:
             __osRunningThread->state = OS_STATE_STOPPED;
-            __osCleanupThread(NULL);
+            __osEnqueueAndYield(NULL);
             break;
         case OS_STATE_RUNNABLE:
         case OS_STATE_WAITING:
             t->state = OS_STATE_STOPPED;
-            dll_remove(t->queue, t);
+            __osDequeueThread(t->queue, t);
             break;
     }
 

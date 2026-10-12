@@ -39,7 +39,7 @@ glabel osSetTimer
     /* F050 8000E450 8FA80020 */  lw         $t0, 0x20($sp)
     /* F054 8000E454 8FB9003C */  lw         $t9, 0x3C($sp)
     /* F058 8000E458 AD19001C */  sw         $t9, 0x1C($t0)
-    /* F05C 8000E45C 0C0030C2 */  jal        dll_insert
+    /* F05C 8000E45C 0C0030C2 */  jal        __osInsertTimer
     /* F060 8000E460 8FA40020 */   lw        $a0, 0x20($sp)
     /* F064 8000E464 3C0A8003 */  lui        $t2, %hi(__osTimerList)
     /* F068 8000E468 8D4AC3F0 */  lw         $t2, %lo(__osTimerList)($t2)

@@ -81,7 +81,7 @@ glabel osStartThread
     /* 7DA0 800071A0 240B0002 */  addiu      $t3, $zero, 0x2
     /* 7DA4 800071A4 3C048003 */  lui        $a0, %hi(__osActiveQueue)
     /* 7DA8 800071A8 A72B0010 */  sh         $t3, 0x10($t9)
-    /* 7DAC 800071AC 0C0033F1 */  jal        __osCleanupThread
+    /* 7DAC 800071AC 0C0033F1 */  jal        __osEnqueueAndYield
     /* 7DB0 800071B0 2484C3D8 */   addiu     $a0, $a0, %lo(__osActiveQueue)
   .L800071B4:
     /* 7DB4 800071B4 0C003148 */  jal        __osRestoreInt

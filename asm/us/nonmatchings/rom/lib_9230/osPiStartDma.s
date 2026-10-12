@@ -30,7 +30,7 @@ glabel osPiStartDma
     /* 928C 8000868C AE000014 */  sw         $zero, 0x14($s0)
     /* 9290 80008690 14A10009 */  bne        $a1, $at, .L800086B8
     /* 9294 80008694 AE090010 */   sw        $t1, 0x10($s0)
-    /* 9298 80008698 0C0038E4 */  jal        __osInsertTimer
+    /* 9298 80008698 0C0038E4 */  jal        osPiGetCmdQueue
     /* 929C 8000869C 00000000 */   nop
     /* 92A0 800086A0 00402025 */  or         $a0, $v0, $zero
     /* 92A4 800086A4 02002825 */  or         $a1, $s0, $zero
@@ -39,7 +39,7 @@ glabel osPiStartDma
     /* 92B0 800086B0 10000008 */  b          .L800086D4
     /* 92B4 800086B4 00401825 */   or        $v1, $v0, $zero
   .L800086B8:
-    /* 92B8 800086B8 0C0038E4 */  jal        __osInsertTimer
+    /* 92B8 800086B8 0C0038E4 */  jal        osPiGetCmdQueue
     /* 92BC 800086BC 00000000 */   nop
     /* 92C0 800086C0 00402025 */  or         $a0, $v0, $zero
     /* 92C4 800086C4 02002825 */  or         $a1, $s0, $zero

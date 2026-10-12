@@ -1,6 +1,6 @@
-nonmatching osPiInit, 0x50
+nonmatching __osPiCreateAccessQueue, 0x50
 
-glabel osPiInit
+glabel __osPiCreateAccessQueue
     /* E7C0 8000DBC0 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* E7C4 8000DBC4 AFBF0014 */  sw         $ra, 0x14($sp)
     /* E7C8 8000DBC8 240E0001 */  addiu      $t6, $zero, 0x1
@@ -21,4 +21,4 @@ glabel osPiInit
     /* E804 8000DC04 27BD0018 */  addiu      $sp, $sp, 0x18
     /* E808 8000DC08 03E00008 */  jr         $ra
     /* E80C 8000DC0C 00000000 */   nop
-endlabel osPiInit
+endlabel __osPiCreateAccessQueue

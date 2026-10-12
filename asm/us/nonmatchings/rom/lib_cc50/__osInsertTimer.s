@@ -1,6 +1,6 @@
-nonmatching dll_insert, 0x188
+nonmatching __osInsertTimer, 0x188
 
-glabel dll_insert
+glabel __osInsertTimer
     /* CF08 8000C308 27BDFFC8 */  addiu      $sp, $sp, -0x38
     /* CF0C 8000C30C AFBF0014 */  sw         $ra, 0x14($sp)
     /* CF10 8000C310 0C00312C */  jal        __osDisableInt
@@ -102,4 +102,4 @@ glabel dll_insert
     /* D084 8000C484 8FA3002C */  lw         $v1, 0x2C($sp)
     /* D088 8000C488 03E00008 */  jr         $ra
     /* D08C 8000C48C 27BD0038 */   addiu     $sp, $sp, 0x38
-endlabel dll_insert
+endlabel __osInsertTimer

@@ -33,7 +33,7 @@ glabel osStopThread
     /* C9F8 8000BDF8 8F39C3E0 */  lw         $t9, %lo(__osRunningThread)($t9)
     /* C9FC 8000BDFC 24180001 */  addiu      $t8, $zero, 0x1
     /* CA00 8000BE00 00002025 */  or         $a0, $zero, $zero
-    /* CA04 8000BE04 0C0033F1 */  jal        __osCleanupThread
+    /* CA04 8000BE04 0C0033F1 */  jal        __osEnqueueAndYield
     /* CA08 8000BE08 A7380010 */   sh        $t8, 0x10($t9)
     /* CA0C 8000BE0C 10000008 */  b          .L8000BE30
     /* CA10 8000BE10 00000000 */   nop
@@ -43,7 +43,7 @@ glabel osStopThread
     /* CA1C 8000BE1C A5280010 */  sh         $t0, 0x10($t1)
     /* CA20 8000BE20 8FAA0038 */  lw         $t2, 0x38($sp)
     /* CA24 8000BE24 8D440008 */  lw         $a0, 0x8($t2)
-    /* CA28 8000BE28 0C003014 */  jal        dll_remove
+    /* CA28 8000BE28 0C003014 */  jal        __osDequeueThread
     /* CA2C 8000BE2C 01402825 */   or        $a1, $t2, $zero
   .L8000BE30:
     /* CA30 8000BE30 0C003148 */  jal        __osRestoreInt

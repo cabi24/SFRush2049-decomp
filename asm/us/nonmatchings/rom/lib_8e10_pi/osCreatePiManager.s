@@ -25,7 +25,7 @@ glabel osCreatePiManager
     /* 8E64 80008264 8DEFC4A0 */  lw         $t7, %lo(__osPiInitialized)($t7)
     /* 8E68 80008268 15E00003 */  bnez       $t7, .L80008278
     /* 8E6C 8000826C 00000000 */   nop
-    /* 8E70 80008270 0C0036F0 */  jal        osPiInit
+    /* 8E70 80008270 0C0036F0 */  jal        __osPiCreateAccessQueue
     /* 8E74 80008274 00000000 */   nop
   .L80008278:
     /* 8E78 80008278 3C058003 */  lui        $a1, %hi(__osPiDmaQueue)

@@ -27,7 +27,7 @@ glabel osRecvMesg
     /* 7EC4 800072C4 8D08C3E0 */  lw         $t0, %lo(__osRunningThread)($t0)
     /* 7EC8 800072C8 24190008 */  addiu      $t9, $zero, 0x8
     /* 7ECC 800072CC A5190010 */  sh         $t9, 0x10($t0)
-    /* 7ED0 800072D0 0C0033F1 */  jal        __osCleanupThread
+    /* 7ED0 800072D0 0C0033F1 */  jal        __osEnqueueAndYield
     /* 7ED4 800072D4 8FA40028 */   lw        $a0, 0x28($sp)
     /* 7ED8 800072D8 8FA90028 */  lw         $t1, 0x28($sp)
     /* 7EDC 800072DC 8D2A0008 */  lw         $t2, 0x8($t1)
