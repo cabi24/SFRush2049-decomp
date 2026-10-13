@@ -6681,6 +6681,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_8010B5D0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8010B5D0",
+    "source": "src/blob/groups/func_8010B5D0/group.json",
+    "source_sha256": "7b334a46ce7e67974d85053cab3ab9920bdd069f79b16e36fb6907fcc5d531fa",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "func_8010B7FC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8010B7FC",

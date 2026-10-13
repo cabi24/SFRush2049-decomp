@@ -10776,6 +10776,7 @@ state_update_global:
 .section .text.func_8010B5D0, "ax", @progbits
 .globl func_8010B5D0
 func_8010B5D0:
+    /* compiled from src/blob/func_8010B5D0.c */
     .word 0x27BDFF68
     .word 0xAFBF0024
     .word 0xAFB30020

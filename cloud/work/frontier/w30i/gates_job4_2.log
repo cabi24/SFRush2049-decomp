@@ -1,0 +1,7 @@
+group lock: 0 problems
+blob lock: 1049 entries, 0 problems
+blob_unit: 1049 locked bodies, 1049 equal to the image in one 924-file unit, 0 differ [1012 plain; stub tail 35, own bss 3; 426 own .rodata/.data references in 131 bodies checked against image bytes] (948 kept, 281 internal; IDO 2.0s, total 8.4s)
+ROM build with the source-built blob: SHA-1 EXACT
+  build/us/rush2049.us.z64: OK
+  build/us/rush2049.us.z64: OK
+unused_overrides []

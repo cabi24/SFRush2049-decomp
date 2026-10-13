@@ -71,11 +71,12 @@
       "func_80107EDC",
       "animLapTime",
       "func_8010A53C",
+      "func_8010B5D0",
       "func_8010B7FC",
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 53780,
+    "unaccepted_caller_bytes": 53224,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -1143,7 +1144,7 @@
       "start": "0x8010B5D0",
       "bytes": 556,
       "body_sha256": "489afb44bae48695fd9b724fd5a10858664849889773455ddd098dfc52267060",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x8010B638"
       ],

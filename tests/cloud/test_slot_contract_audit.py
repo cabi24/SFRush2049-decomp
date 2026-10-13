@@ -29,8 +29,8 @@ def test_counts_are_bounded_dependency_surface_not_matches():
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (65, 170, 167)
     assert sum(result['captures'].values()) == 161
-    assert result['accepted_callers'] == ['TitlePane', 'credits_scroll', 'world_trigger_check', 'PrintScores', 'SetHighScoreState', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'func_80102980', 'func_80102F30', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_8010A53C', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a via w30i 2026-10-13)
-    assert result['unaccepted_caller_bytes'] == 53780
+    assert result['accepted_callers'] == ['TitlePane', 'credits_scroll', 'world_trigger_check', 'PrintScores', 'SetHighScoreState', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'func_80102980', 'func_80102F30', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_8010A53C', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13)
+    assert result['unaccepted_caller_bytes'] == 53224
     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 6
     assert result['bounded_dependency_bytes'] == 4520
 
