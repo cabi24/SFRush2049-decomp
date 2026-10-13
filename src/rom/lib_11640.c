@@ -638,7 +638,52 @@ void func_80012200(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012234.s")
+/* PROMOTED 2026-10-12 — func_80012234
+ * Source:   cloud/matches/boot_tail/func_80012234.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80012234.c:func_80012234 (score0); rom_tu.h context: cloud/work/frontier/w28p/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct DmaEntry_80012234 { int length; unsigned int source; unsigned char *destination; } DmaEntry_80012234;
+extern unsigned int func_8002C5E0(unsigned int, unsigned int);
+unsigned char *func_80012234(unsigned int source)
+{
+    AudioNode *node;
+    for (node = D_80038344; node != 0; node = node->next) {
+        if (source == node->unknown0C) {
+            node->countdown = 2;
+            return node->buffer;
+        }
+    }
+    if (D_80038348 != 0) {
+        node = D_80038348;
+        D_80038348 = node->next;
+        if (D_80038348 != 0) {
+            D_80038348->previous = 0;
+        }
+        if (D_80038344 != 0) {
+            D_80038344->previous = node;
+        }
+        node->next = D_80038344;
+        D_80038344 = node;
+    } else {
+        for (node = D_80038344; node != 0; node = node->next) {
+            if (node->countdown == 0) {
+                break;
+            }
+        }
+    }
+    node->countdown = 2;
+    node->unknown0C = source;
+    D_80038038 += 12;
+    D_8003803C = func_8002C5E0(D_8003803C, D_80038038);
+    ((DmaEntry_80012234 *)D_8003802C)[D_80038028].source = source;
+    ((DmaEntry_80012234 *)D_8003802C)[D_80038028].length = 0x100;
+    ((DmaEntry_80012234 *)D_8003802C)[D_80038028].destination = node->buffer;
+    D_80038028++;
+    return node->buffer;
+}
+
 typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; unsigned int unknown08; unsigned int unknown0C; unsigned int unknown10; unsigned char *buffer; } AudioCacheNode;
 extern AudioCacheNode *D_80038354;
 extern AudioCacheNode *D_80038358;
