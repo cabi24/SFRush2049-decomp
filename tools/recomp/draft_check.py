@@ -462,6 +462,52 @@ def remote_main(args, argv):
     return subprocess.run(["ssh", host, cmd]).returncode
 
 
+def _strip_remote(argv):
+    out, skip = [], False
+    for a in argv:
+        if skip:
+            skip = False
+            continue
+        if a in ("--remote", "--remote-tree", "--include-from"):
+            skip = True
+            continue
+        if not a.startswith(("--remote=", "--remote-tree=", "--include-from=")):
+            out.append(a)
+    return out
+
+
+def probe_callees_main(args):
+    """--probe-callees: regmap_verify --derive for each named callee."""
+    import regmap_verify as rv
+    rc = 0
+    for callee in [c.strip() for c in args.probe_callees.split(",") if c.strip()]:
+        argv = [callee, "--derive"] + (["--static-only"] if args.static_only else []) + \
+               (["--scripts", args.scripts] if args.scripts else [])
+        rc = max(rc, rv.main(argv))
+        print()
+    return rc
+
+
+def suggest_callees(names, out=print):
+    """Derived --callee lines for register-parameter callees the table lacks
+    (static evidence only: cheap; printed under the WARNING line)."""
+    try:
+        import regmap_verify as rv
+        image, funcs = rv.load_inputs(paths())
+    except Exception as exc:          # noqa: BLE001 -- advice only
+        out("  (no --callee suggestion: %s)" % exc)
+        return
+    for n in names:
+        try:
+            d = rv.derive(n, image, funcs, None, rv.unsaved_fact(n))
+        except Exception:             # noqa: BLE001
+            continue
+        regs = [r for r, _k in d["params"]]
+        if all(r in ("a0", "a1", "a2", "a3", "f12", "f14") for r in regs) and not d["clobbers"]:
+            continue
+        out("  suggested (derived; order by register number, check it): --callee '%s'" % rv.callee_spec(d))
+
+
 # ------------------------------------------------------------------ main
 
 def main(argv=None):
@@ -469,7 +515,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="python3 -m tools.recomp.draft_check", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("name", help="function to replace (inventory name, game or static)")
-    ap.add_argument("draft", help="C file defining NAME (a /* flags: ... */ header picks the IDO flags)")
+    ap.add_argument("draft", nargs="?", default=None,
+                    help="C file defining NAME (a /* flags: ... */ header picks the IDO flags)")
     ap.add_argument("--scripts", default=None,
                     help="comma-separated tools/recomp/scripts names, 'all', or 'reached' (every script the census "
                     "says calls NAME); default: the 6 census scripts with the most calls of NAME, all scripts "
@@ -480,6 +527,11 @@ def main(argv=None):
     ap.add_argument("--callee", action="append", default=[],
                     help="register convention of a callee the draft calls: 'PROTOTYPE=REG,...[/CLOBBER,...]' "
                     "(adds to tools/recomp/ipa_callees.json for this run)")
+    ap.add_argument("--probe-callees", default=None, metavar="CALLEE[,CALLEE...]",
+                    help="derive the register-parameter convention of these internal callees from the retail "
+                    "body and its captured call sites (regmap_verify --derive) and print each in --callee syntax; "
+                    "no draft needed (NAME is only a label). Add --static-only to skip the capture run")
+    ap.add_argument("--static-only", action="store_true", help="with --probe-callees: no capture run")
     ap.add_argument("--ignore-register-params", action="store_true",
                     help="build a function the frontier lists with register_params without --params "
                     "(o32 inbound: only right if those registers are not really parameters)")
@@ -498,6 +550,15 @@ def main(argv=None):
     ap.add_argument("--origin", default=None, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     try:
+        if args.probe_callees:
+            if args.remote:
+                fwd = _strip_remote(argv)
+                cmd = "cd %s && python3 -m tools.recomp.draft_check %s" % (
+                    args.remote_tree, " ".join(shlex.quote(a) for a in fwd))
+                return subprocess.run(["ssh", args.remote, cmd]).returncode
+            return probe_callees_main(args)
+        if args.draft is None:
+            raise DCError("no draft given (only --probe-callees runs without one)")
         if args.remote:
             return remote_main(args, argv)
         return local_main(args)
@@ -598,6 +659,10 @@ def local_main(args):
                                                           rp.DEFAULT_COMPILER[pop]))
     for ln in warn:
         print("  " + ln.strip())
+    o32_called = sorted({n for ln in warn for m in re.finditer(r"o32 calls for ([\w,]+)", ln)
+                         for n in m.group(1).split(",") if n})
+    if o32_called:
+        suggest_callees(o32_called)
     if rinfo.get("ipa_inbound"):
         print("  inbound register shim: %s" % table[name]["params"])
     if rinfo.get("private_data"):

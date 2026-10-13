@@ -181,6 +181,178 @@ def setter(image, site, caller_vram, reg, limit=64):
     return None
 
 
+# ------------------------------------------------------------------ derivation (--derive / draft_check --probe-callees)
+
+_FP_SAVED = {("f", n) for n in range(20, 32, 2)}
+_GPR_SAVED = {("r", n) for n in ipa_detect._CALLEE_SAVED_GPR}
+
+
+class Interproc:
+    """Register effects of game functions, transitively through their static
+    `jal` callees: reads(vram) = live-in set (o32 registers included; a
+    callee's reads count at the call), writes(vram) = caller-save registers
+    it may write plus callee-saved ones it writes without a prologue save.
+    jalr, calls outside the game image and recursion fall back to the default
+    (every caller-save register written, nothing read). Needed because IDO -O3
+    keeps a register parameter alive across a call to a callee that does not
+    touch it (sound_update_channel reads `force` in t0 after its first call)."""
+
+    def __init__(self, image, funcs):
+        self.image = image
+        self.by_vram = {f["vram"]: f for f in funcs}
+        self.memo = {}
+        self.busy = set()
+
+    def target(self, word, at=None):
+        if word >> 26 != 3:
+            return None
+        return 0x80000000 | ((word & 0x03FFFFFF) << 2)
+
+    def call_effects(self, word):
+        t = self.target(word)
+        if t is None or t not in self.by_vram or t in self.busy:
+            return None
+        return self.effects(t)
+
+    def effects(self, vram):
+        if vram in self.memo:
+            return self.memo[vram]
+        f = self.by_vram[vram]
+        words = ipa_detect.body_words(self.image, vram, f["size"])
+        if not words:
+            return None
+        self.busy.add(vram)
+        try:
+            live = ipa_detect.register_params(words, include_o32=True, call_effects=self.call_effects)
+            keys = {_key(r) for r in live}
+            writes, saved = set(), set()
+            for w in words:
+                _r, wr, call = ipa_detect.decode(w)
+                if ipa_detect._is_save(w):
+                    rt = (w >> 16) & 31
+                    saved.add(("f", rt & ~1) if w >> 26 in (0x39, 0x3D) else ("r", rt))
+                writes |= wr
+                if call:
+                    e = self.call_effects(w)
+                    writes |= set(e[1]) if e is not None else set(ipa_detect._CALL_WRITES)
+            writes.add(("r", ipa_detect.RA)) if any(ipa_detect.decode(w)[2] for w in words) else None
+            out_w = {k for k in writes if k in ipa_detect._CALL_WRITES or
+                     ((k in _GPR_SAVED or k in _FP_SAVED) and k not in saved)}
+            res = (frozenset(keys), frozenset(out_w))
+        finally:
+            self.busy.discard(vram)
+        self.memo[vram] = res
+        return res
+
+    def unsaved(self, vram):
+        e = self.effects(vram)
+        return sorted((ipa_detect.reg_name(k) for k in (e[1] if e else ()) if k in _GPR_SAVED or k in _FP_SAVED),
+                      key=_reg_order)
+
+
+def _reg_order(r):
+    if r.startswith("f"):
+        return (2, int(r[1:]))
+    return (0 if r in ("a0", "a1", "a2", "a3") else 1, ipa_detect.GPR_NAMES.index(r))
+
+
+_O32_SEQ = ("a0", "a1", "a2", "a3")
+
+
+def static_kind(text):
+    """Kind of a parameter from the instruction that set it (None: unknown)."""
+    if not text or text.startswith("("):
+        return None
+    t = text.split("   ")[0]
+    if t.startswith(("lwc1", "ldc1", "mov.s", "mov.d", "mtc1")) or re.match(r"^\S+ f\d+", t):
+        return "float"
+    m = re.match(r"^lui \w+, 0x([0-9A-F]+)", t)
+    if m:
+        return "ptr" if 0x8000 <= int(m.group(1), 16) < 0x8080 else None
+    if t.startswith(("lb ", "lbu ", "lh ", "lhu ", "slti", "sltiu", "andi", "sltu", "slt ")) or \
+            t.startswith("move ") and t.endswith(", zero"):
+        return "int"
+    m = re.match(r"^addiu (\w+), (\w+), (-?\d+)", t)
+    if m and m.group(2) == "zero":
+        return "int"
+    if m and m.group(1) == m.group(2) and m.group(1) != "sp":
+        return "ptr"            # the low half of a lui/addiu address pair
+    return None
+
+
+def derive(name, image, funcs, stats=None, facts_unsaved=None):
+    """{params: [(reg, kind)], clobbers, ret, evidence} for NAME: the live-in
+    registers of its retail body (interprocedural), ordered a0-a3 first, then
+    by where the static call sites set them (IDO evaluates IPA register
+    arguments in prototype order, w26d: earliest set = earlier parameter), FP
+    last on ties; kinds from the dynamic capture (stats) or the setters."""
+    fn = next((f for f in funcs if f["name"] == name), None)
+    if fn is None:
+        raise VerifyError(f"{name} is not a game function")
+    ip = Interproc(image, funcs)
+    eff = ip.effects(fn["vram"])
+    if eff is None:
+        raise VerifyError(f"{name}: no body words")
+    live = sorted((ipa_detect.reg_name(k) for k in eff[0] if k not in ipa_detect._NOT_PARAMS), key=_reg_order)
+    sites = call_sites(image, funcs, fn["vram"])
+    pos, kinds_static = {}, {}
+    for at, _caller, cv, _cs in sites:
+        for r in live:
+            s = setter(image, at, cv, r)
+            if s is None:
+                continue
+            # delay slot = latest (distance 0); else distance back from the call
+            d = 0 if s[0] == at + 4 else (at - s[0]) // 4 + 1
+            pos.setdefault(r, []).append(d)
+            k = static_kind(s[1])
+            if k:
+                kinds_static.setdefault(r, set()).add(k)
+
+    # Order: a0-a3 (o32 slots), then the other GPRs, then FP, each by register
+    # number. The call sites' setter order is NOT used: the scheduler moves
+    # the argument setters (menu_input_process sets func_800B6748's t2..a0 in
+    # reverse, engine_sound_sync sets f22..f28 forwards with f28 in the delay
+    # slot); every known IPA callee numbers its parameters upwards
+    # (func_800B6748 t0-t2, entity_transform_calc f22-f28). The order is what
+    # the draft's C call must follow: a guess to check against the source.
+    params = []
+    for r in sorted(live, key=_reg_order):
+        kind = None
+        if stats:
+            allv = set().union(*(st["regs"].get(r, set()) for st in stats.values()))
+            k = kind_of(allv, r)
+            kind = k if k in ("ptr", "int", "float") else ("int" if k == "zero" else None)
+        if kind is None and len(kinds_static.get(r, ())) == 1:
+            kind = next(iter(kinds_static[r]))
+        if kind is None and r.startswith("f"):
+            kind = "float"
+        params.append((r, kind or "int"))
+    clobbers = ip.unsaved(fn["vram"])
+    for r in facts_unsaved or ():
+        if r not in clobbers:
+            clobbers.append(r)
+    clobbers = [r for r in sorted(set(clobbers), key=_reg_order) if r not in [p for p, _k in params]]
+    own = ipa_detect.body_words(image, fn["vram"], fn["size"]) or []
+    writes_v0 = any(("r", 2) in ipa_detect.decode(w)[1] for w in own)
+    return {"function": name, "params": params, "clobbers": clobbers,
+            "ret": "s32" if writes_v0 else "void", "sites": len(sites),
+            "order_evidence": {r: sorted(pos.get(r, [])) for r in live}}
+
+
+_CTYPE = {"ptr": "void *", "int": "s32", "float": "f32"}
+
+
+def callee_spec(d):
+    """draft_check --callee syntax for a derive() result."""
+    args = ", ".join("%s%sp%d" % (_CTYPE[k], "" if _CTYPE[k].endswith("*") else " ", i)
+                     for i, (_r, k) in enumerate(d["params"])) or "void"
+    regs = ",".join(r for r, _k in d["params"])
+    spec = "%s %s(%s)=%s" % (d["ret"], d["function"], args, regs)
+    if d["clobbers"]:
+        spec += "/" + ",".join(d["clobbers"])
+    return spec
+
+
 # ------------------------------------------------------------------ dynamic evidence
 
 def kind_of(values, reg):
@@ -228,7 +400,12 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="python3 -m tools.recomp.regmap_verify", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("name")
-    ap.add_argument("mapping", help="REG=LABEL[:KIND],... e.g. 'a0=handle:int,t3=mark:int,s0=buf:ptr'")
+    ap.add_argument("mapping", nargs="?", default=None,
+                    help="REG=LABEL[:KIND],... e.g. 'a0=handle:int,t3=mark:int,s0=buf:ptr' (not with --derive)")
+    ap.add_argument("--derive", action="store_true",
+                    help="no claim: derive the register-parameter mapping from the retail body and its call "
+                    "sites (interprocedural live-in, setter order, kinds from the capture unless --static-only) "
+                    "and print it in draft_check --callee syntax")
     ap.add_argument("--scripts", default=None, help="comma list or all (default: census, else all)")
     ap.add_argument("--static-only", action="store_true", help="no capture run")
     ap.add_argument("--jobs", type=int, default=6)
@@ -237,7 +414,9 @@ def main(argv=None):
     ap.add_argument("--remote-tree", default=dc.REMOTE_TREE)
     args = ap.parse_args(argv)
     try:
-        mapping = parse_mapping(args.mapping)
+        if args.derive == bool(args.mapping):
+            raise VerifyError("give a mapping, or --derive without one")
+        mapping = parse_mapping(args.mapping) if args.mapping else None
         if args.remote:
             fwd, skip = [], False
             for a in argv:
@@ -252,6 +431,8 @@ def main(argv=None):
             cmd = "cd %s && python3 -m tools.recomp.regmap_verify %s" % (
                 args.remote_tree, " ".join(shlex.quote(a) for a in fwd))
             return subprocess.run(["ssh", args.remote, cmd]).returncode
+        if args.derive:
+            return run_derive(args)
         return run(args, mapping)
     except (VerifyError, dc.DCError, oracle.OracleError) as exc:
         print("regmap_verify: ERROR: %s" % exc, file=sys.stderr)
@@ -355,6 +536,66 @@ def run(args, mapping):
             "dynamic": {hex(k): {"calls": v["calls"], "regs": {r: sorted(x)[:64] for r, x in v["regs"].items()}}
                         for k, v in stats.items()}}, indent=1) + "\n")
     return {"CONSISTENT": 0, "REFUTED": 1, "NEVER CALLED": 3}[verdict]
+
+
+def load_inputs(p):
+    sys.path.insert(0, str(HERE))
+    import gen_config as gc
+    rom = gc.read_rom(p["rom"])
+    image = gc.extract_images(rom)["game"]
+    funcs = [f for f in gc.load_game_functions(REPO / "asm" / "us" / "blob") if f.get("name") and f.get("size")]
+    return image, funcs
+
+
+def unsaved_fact(name, frontier=REPO / "build" / "frontier.json"):
+    try:
+        f = json.loads(Path(frontier).read_text()).get("facts", {}).get(name) or {}
+    except (OSError, ValueError):
+        return []
+    return list(f.get("unsaved_callee_regs") or ())
+
+
+def derive_report(d, out=print):
+    """Lines for a derive() result; returns the --callee spec or None (plain o32)."""
+    regs = [r for r, _k in d["params"]]
+    o32 = all(r in _O32_SEQ or r in ("f12", "f14") for r in regs)
+    out("  derived parameters (prototype order): %s" % (
+        ", ".join("%s:%s" % (r, k) for r, k in d["params"]) or "none"))
+    for r in regs:
+        ev = d["order_evidence"].get(r) or []
+        if r not in _O32_SEQ:
+            out("    %-4s set %s instruction(s) before the jal at the %d static site(s) (0 = delay slot)" % (
+                r, ",".join(str(x) for x in ev) or "-", len(ev)))
+    out("  callee-saved registers written without a save (clobbers): %s" % (", ".join(d["clobbers"]) or "none"))
+    if o32 and not d["clobbers"]:
+        out("  plain o32: no --callee needed")
+        return None
+    spec = callee_spec(d)
+    out("  --callee '%s'" % spec)
+    return spec
+
+
+def run_derive(args):
+    p = dc.paths()
+    image, funcs = load_inputs(p)
+    fn = next((f for f in funcs if f["name"] == args.name), None)
+    if fn is None:
+        raise VerifyError(f"{args.name} is not a game function")
+    stats = None
+    print("regmap_verify --derive %s (0x%08X, %d B)" % (args.name, fn["vram"], fn["size"]))
+    if not args.static_only:
+        sites = call_sites(image, funcs, fn["vram"])
+        stats, ncalls, scripts = dynamic(args, fn, p, sites)
+        print("  dynamic: %d calls over %s" % (ncalls, ", ".join(scripts)) if ncalls else
+              "  dynamic: NEVER CALLED in %s (kinds from the setters only)" % ", ".join(scripts))
+    d = derive(args.name, image, funcs, stats, unsaved_fact(args.name))
+    spec = derive_report(d)
+    print("  (derived from retail evidence, not proven: parameter ORDER is by register number and the "
+          "return type is a guess; check both against the draft's source, then confirm with "
+          "`regmap_verify NAME 'REG=label,...'`)")
+    if args.json:
+        Path(args.json).write_text(json.dumps(dict(d, callee=spec), indent=1) + "\n")
+    return 0
 
 
 def dynamic(args, fn, p, sites):

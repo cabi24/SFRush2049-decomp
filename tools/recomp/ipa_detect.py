@@ -190,22 +190,31 @@ def _flow(words):
     return [s[1] if isinstance(s, tuple) else s for s in succ], call_slot
 
 
-def register_params(words, include_o32=False, call_reads=False):
+def register_params(words, include_o32=False, call_reads=False, call_effects=None):
     """Sorted names of registers read on some path from the entry before any
     write that o32 does not pass in (see module doc): a must-write dataflow
     over the body's branches; code the flow does not reach (jump tables) is
     judged in address order. include_o32: also the o32 argument registers
     (a0-a3, f12, f14): the whole live-in set (regmap_verify). call_reads: a
-    call counts as reading a0-a3/f12/f14 (arguments forwarded unread)."""
+    call counts as reading a0-a3/f12/f14 (arguments forwarded unread).
+    call_effects: optional function(call word) -> (reads, writes) register
+    key sets of that callee (interprocedural mode, regmap_verify --derive:
+    a register the callee neither reads nor writes survives the call, and a
+    register the callee reads is read at the call), or None for the default
+    (every caller-save register written, nothing read)."""
     n = len(words)
     dec = [decode(w) for w in words]
     succ, call_slot = _flow(words)
+
+    def effects(i):                # i = delay slot index; the call is at i - 1
+        e = call_effects(words[i - 1]) if call_effects is not None and i > 0 else None
+        return e if e is not None else (frozenset(), _CALL_WRITES)
     IN = [None] * n
     IN[0] = frozenset()
     work = [0]
     while work:
         i = work.pop()
-        out = IN[i] | dec[i][1] | (_CALL_WRITES if call_slot[i] else set())
+        out = IN[i] | dec[i][1] | (effects(i)[1] if call_slot[i] else set())
         for j in succ[i]:
             new = out if IN[j] is None else IN[j] & out
             if IN[j] is None or new != IN[j]:
@@ -220,12 +229,15 @@ def register_params(words, include_o32=False, call_reads=False):
             # the call (after this delay slot) passes a0-a3/f12/f14 on: an
             # argument register the body forwards unread is live-in too
             found.update(r for r in _ARG_REGS if r not in have and r not in writes)
+        if call_effects is not None and call_slot[i]:
+            found.update(r for r in effects(i)[0] if r not in have and r not in writes and r not in _NOT_PARAMS
+                         and (not _abi(r) or include_o32))
         if not _is_save(w):
             found.update(r for r in reads if r not in have and
                          (not _abi(r) or (include_o32 and r not in _NOT_PARAMS)))
         linear |= writes
         if call:
-            linear |= _CALL_WRITES
+            linear |= (effects(i + 1)[1] if i + 1 < n else _CALL_WRITES)
     found.discard(("r", ZERO))
     return sorted((reg_name(k) for k in found), key=lambda s: (s[0] == "f", len(s), s))
 

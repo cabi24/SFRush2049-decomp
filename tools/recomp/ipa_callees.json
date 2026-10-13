@@ -1,16 +1,29 @@
 {
- "note": "Phase 4 (w24r): how a standalone-compiled replacement calls retail callees whose IDO -O3 whole-program convention is not o32. params = one location per prototype parameter (register name, or sp+N to stay on the stack); clobbers = callee-saved registers the callee writes without saving; body = C source of a function retail inlined everywhere (only a jr-ra stub remains), linked into the replacement instead. Read by tools/recomp/replace.py (load_ipa_table); detection of callees missing here: build/ipa_members.json + build/frontier.json.",
+ "note": "Phase 4 (w24r): how a standalone-compiled replacement calls retail callees whose IDO -O3 whole-program convention is not o32. params = one location per prototype parameter (register name, or sp+N to stay on the stack); clobbers = callee-saved registers the callee writes without saving; body = C source of a function retail inlined everywhere (only a jr-ra stub remains), linked into the replacement instead. Read by tools/recomp/replace.py (load_ipa_table); detection of callees missing here: build/ipa_members.json + build/frontier.json. Phase 8 (w28r): entries for the register-parameter callees lanes passed with draft_check --callee/--params; `python3 -m tools.recomp.draft_check --probe-callees NAME` derives a new one (print only).",
  "callees": {
   "entity_transform_calc": {
    "prototype": "void entity_transform_calc(s32 h, f32 x, f32 y, f32 z, f32 w)",
-   "params": ["a0", "f22", "f24", "f26", "f28"],
-   "clobbers": ["f20"],
+   "params": [
+    "a0",
+    "f22",
+    "f24",
+    "f26",
+    "f28"
+   ],
+   "clobbers": [
+    "f20"
+   ],
    "evidence": "retail call site in engine_sound_sync 0x80098F30-0x80098F40 (lwc1 f22/f24/f26/f28 before jal), callee 0x80091CC8 c.eq.s f22,f20 (w23f, w23r probe verdict); ipa_members callees f22,f24,f26,f28; prototype from src/blob/groups/codex_transform_b109/group.c"
   },
   "audio_effect_setup": {
    "prototype": "void audio_effect_setup(void *effect)",
-   "params": ["s0"],
-   "clobbers": ["s1", "s2"],
+   "params": [
+    "s0"
+   ],
+   "clobbers": [
+    "s1",
+    "s2"
+   ],
    "evidence": "frontier register_params s0; writes s1/s2 unsaved (w23f RESULTS); src/blob/groups/engine_sound_sync/audio_effect_setup*.c"
   },
   "func_80091AF0": {
@@ -20,6 +33,80 @@
   "func_80091AF8": {
    "body": "src/blob/groups/codex_heap_release_a25/func_80091AF8.c",
    "evidence": "slot-queue unlock osSendMesg(&D_80142728, NULL, 0); retail jr-ra stub, inlined (w17h)"
+  },
+  "slot_state_setup": {
+   "prototype": "s32 slot_state_setup(s32 selection)",
+   "params": [
+    "s2"
+   ],
+   "clobbers": [
+    "s0",
+    "s1",
+    "s3"
+   ],
+   "evidence": "w28r: regmap_verify --derive s2 (interprocedural live-in, 170 static jal sites), writes s0/s1/s3 unsaved (frontier unsaved_callee_regs); lanes w27a/w27c/w27d draft_check --callee 's32 slot_state_setup(s32 sel)=s2/s0,s1,s3' EQUIVALENT (o32 call crashed the host); prototype src/blob/groups/credits_scroll_grp/gr3_d.c"
+  },
+  "sound_update_channel": {
+   "prototype": "void sound_update_channel(s32 force)",
+   "params": [
+    "t0"
+   ],
+   "evidence": "w28r: every one of the 20 static jal sites sets t0 (move t0,zero / sltu t0,zero,t0 in slot_state_setup); the body reads t0 (bnez t0, 0x800B3D58) after its first call (0x80096288 does not write t0), so the w24t intra-procedural detector misses it and regmap_verify --derive (interprocedural) finds it; w27a draft_check --callee 'void sound_update_channel(s32 force)=t0' EQUIVALENT; w27b's slot_state_setup DIVERGES was this gap"
+  },
+  "func_800B6748": {
+   "prototype": "void func_800B6748(u8 *rgba, f32 *amount, s16 *x, s16 *y, s8 *bank, s8 *mode, s8 *variant)",
+   "params": [
+    "a0",
+    "a1",
+    "a2",
+    "a3",
+    "t0",
+    "t1",
+    "t2"
+   ],
+   "evidence": "w28r: retail body stores through t0/t1/t2 (sb v1,0(t0) / 0(t1) / 0(t2)) for parameters 5-7 (o32 would pass them at sp+16..24); regmap_verify static CONSISTENT a0-a3,t0-t2 at its 3 sites (menu_input_process, world_velocity_integrate, world_trigger_check); prototype from the locked src/blob/groups/codex_defaults_a16 body; w27b: draft callers crashed (exit -11) without it"
+  },
+  "func_80096CA8": {
+   "prototype": "void func_80096CA8(s32 slot, s32 first)",
+   "params": [
+    "s8",
+    "t0"
+   ],
+   "clobbers": [
+    "s0",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6",
+    "s7"
+   ],
+   "evidence": "w28r: frontier register_params s8,t0 + unsaved s0-s7; regmap_verify static CONSISTENT (callers func_80097164 t0=1, fp_call_wrapper move s8,a0 / t0=0); w27e draft_check func_80097164 with --callee 'void func_80096CA8(s32 slot, s32 first)=s8,t0' EQUIVALENT (race 79 calls); prototype w27e res_loader/func_80096CA8_c2_piece.c"
+  },
+  "func_80097164": {
+   "prototype": "void func_80097164(s32 slot)",
+   "params": [
+    "s8"
+   ],
+   "clobbers": [
+    "s1",
+    "s3",
+    "s5",
+    "s6",
+    "s7"
+   ],
+   "evidence": "w28r: frontier register_params s8 (unsaved s1,s3; s5-s7 through func_80096CA8, regmap_verify --derive); w27e draft_check --params slot=s8 EQUIVALENT (race 79 calls); prototype w27e res_loader/func_80097164_best_piece.c"
+  },
+  "func_800A1DD4": {
+   "prototype": "void func_800A1DD4(void *handle, u8 *address, u32 bytes, s32 mark)",
+   "params": [
+    "a0",
+    "a1",
+    "a2",
+    "t3"
+   ],
+   "evidence": "w27r regmap_verify: live-in a0,a1,a2,t3 (a1 buffer pointers, a2 sizes 0x10..0x900, t3 = 0 from track_data_decompress / 1 from slot_state_lookup); w27e draft_check --params handle=a0,address=a1,bytes=a2,mark=t3 EQUIVALENT (saves, 9 calls); prototype w27e pak_write_cluster/cluster.c (C96Handle * as void *)"
   }
  }
 }
