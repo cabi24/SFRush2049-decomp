@@ -87,3 +87,36 @@ prologue); kept as is, noted in CLAIMS.
 - `splice_singles.py attract_or_transition`: `refused {}`, `image_ok True locked 1020`; group lock 0 / blob lock 1020
   entries 0 problems; `blob_unit check` 1020/1020 equal, 0 differ; `blob_rom rom` SHA-1 EXACT. symbols.json/blob.ld
   unchanged; audit no diff.
+- Job 3 tests at 7dcb6623: rocky conveyor 2340 passed, 52 skipped; cloud 986 passed, 4 skipped; rc=0. Pi conveyor
+  1589 passed, 803 skipped; cloud 790 passed, 200 skipped; rc=0.
+
+## Job 4: w28c packets (merge of wave28 cdce2956 first)
+
+### (a) audio_doppler_full (= GC ShowCountdown, 952 B) — new one-member group
+Game 1020 -> 1021/1216, 349,924 B (54.08%).
+- Unit `--neighbours`: `EQUAL audio_doppler_full: 238 words (kept, c_audio_doppler_full.c); own zero-initialised data
+  (addresses consistent, inside game .bss, no overlaps; nothing to compare)`, 0 locked bodies differ.
+- watchman2 `score.py group --claims`: no word diffs, `NOT VERIFIED (28 section-relative relocations unverified …)`
+  (own .rodata in two retail regions, the known one-base case), own .bss placed at 0x80154368/0x80154398/0x801543A4,
+  own .data verified at 0x801140F4/0x801140F8. Installed via install_group (`--provenance` added: the packet had none).
+- Data side: symbols.json and blob.ld unchanged (the D_ labels stay as address labels; the statics are local symbols);
+  `blob_unit check` 1021/1021 equal ("own bss 3"); no receipt re-pin; audit no diff.
+
+### (b) credits_scroll_grp superseded: func_8010A53C (616 B), func_80107EDC (632 B), func_80108154 (896 B, animLapTime)
+Game 1021 -> 1024/1216, 352,068 B (54.41%).
+- Unit (w28c's exact command, `--internal` for the 8 new helpers): EQUAL 154 / 158 / 224 words, 0 locked bodies differ.
+  Note: adding `--with gr3_c.c --with gr3_d.c` to a score run fails with `D_80118E20: multiply defined` (the locked
+  gr3_d.c stays in the manifest); not needed, the installed group is checked by `blob_unit check`.
+- watchman2 `score.py group --claims`: the three claims MATCH, rc=0; old members MATCH as context.
+- `install_group.py`: `spliced credits_scroll_grp: 7 members, new: ['func_80107EDC', 'func_80108154', 'func_8010A53C']`.
+- No force_internal needed: the 8 new helpers and the six `*_g3c`/`*_g3d` renames are not on keep, so internal
+  (`blob_unit check`: 1024/1024 equal, 0 differ; internal 205 -> 219). gr3_b.c unchanged and still byte-identical to
+  frontier_billboard_render/ctx_gr3_b.c; the unit accepts the duplicate.
+- `blob_rom rom` SHA-1 EXACT; symbols.json unchanged. Slot-contract audit changed (three new accepted callers):
+  `audit.py --write`, test counts updated (unaccepted_caller_bytes 70404 -> 68260, selector-only deps 7 -> 6,
+  bounded_dependency_bytes 5152 -> 4520).
+- sound_loop_set NOT packaged (coordinator decision deferred).
+
+## Coverage summary (game only; static 632/667 151,176 B, overlay A 81/193, overlay B 21/49 unchanged throughout)
+Job 1: 1010 -> 1017 (343,496 B, 53.08%); Job 2: -> 1019 (346,896 B, 53.61%); Job 3: -> 1020 (348,972 B, 53.93%);
+Job 4: -> 1021 (349,924 B) -> **1024/1216, 352,068 B (54.41%)**.
