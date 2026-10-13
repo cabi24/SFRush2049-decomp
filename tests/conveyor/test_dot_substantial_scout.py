@@ -23,7 +23,8 @@ def test_native_metadata_replays_complete_current_extents():
     result = scout.audit()
     assert result == json.loads((PACKET/'native_audit.json').read_text())
     assert result['claims'] == []
-    assert all(not row['accepted_name_lock'] for row in result['targets'])
+    landed = {'func_80102F30'}  # locked since the scout: wave 29 (w29a frontier_results_table via w29i)
+    assert all(row['accepted_name_lock'] == (row['target'] in landed) for row in result['targets'])
     assert sum(row['native_bytes'] for row in result['targets']) == 12788
 
 def test_registered_caller_corrects_old_bigfish_report():
