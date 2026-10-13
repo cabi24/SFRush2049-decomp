@@ -1,0 +1,69 @@
+{
+  "claims": [],
+  "compiler": "ido7.1",
+  "conclusion": "Stock candidate code is exact, but the 64-byte task definition is not owned in the ROM TU. Empty claims until storage placement and integration gates pass.",
+  "oracle_is_matching_evidence": false,
+  "source_reachable": {
+    "blocker": "unregistered task BSS ownership and actual-TU integration",
+    "compiler": "stock ido7.1",
+    "differing_words": 0,
+    "function_bytes": 208,
+    "mechanism": "local task pointer initialized before count guard and reused for callback",
+    "source_match_credit": false,
+    "task_definition_bytes": 64
+  },
+  "variants": {
+    "defined_task": {
+      "cfe_direct_task_stores": 10,
+      "count_register": "a3",
+      "modes": {
+        "oracle": {
+          "allocated_task_definition": true,
+          "credit": false,
+          "differing_words": 0,
+          "extra_nonzero_words": 0,
+          "function_bytes": 208
+        },
+        "stock": {
+          "allocated_task_definition": true,
+          "credit": false,
+          "differing_words": 47,
+          "extra_nonzero_words": 0,
+          "function_bytes": 196
+        }
+      },
+      "task_address_best_cost": 2.1,
+      "task_address_register": "a2",
+      "task_address_total_saving": 10.0,
+      "task_address_web": 23,
+      "trace_fidelity": true,
+      "uopt_indirect_stores_including_completion": 11
+    },
+    "extern_task": {
+      "cfe_direct_task_stores": 10,
+      "count_register": "a3",
+      "modes": {
+        "oracle": {
+          "allocated_task_definition": false,
+          "credit": false,
+          "differing_words": 43,
+          "extra_nonzero_words": 4,
+          "function_bytes": 228
+        },
+        "stock": {
+          "allocated_task_definition": false,
+          "credit": false,
+          "differing_words": 47,
+          "extra_nonzero_words": 0,
+          "function_bytes": 196
+        }
+      },
+      "task_address_best_cost": 2.1,
+      "task_address_register": "a2",
+      "task_address_total_saving": 10.0,
+      "task_address_web": 23,
+      "trace_fidelity": true,
+      "uopt_indirect_stores_including_completion": 11
+    }
+  }
+}
