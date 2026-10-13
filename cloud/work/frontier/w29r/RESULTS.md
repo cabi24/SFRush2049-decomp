@@ -1,4 +1,4 @@
-STATUS (2026-10-13): IN PROGRESS. Recomp Phase 9 (decomp feedback tooling), branch w29r. Not a matching lane: no
+STATUS (2026-10-13): DONE. Recomp Phase 9 (decomp feedback tooling), branch w29r. Not a matching lane: no
 src/, asm/, lock or coverage change. Docs: tools/recomp/README.md "Phase 9"; plan §18.
 
 # 1. The host crash (-11): two causes, one host bug and one draft bug
@@ -64,3 +64,46 @@ signal death of the replaced host only (the stock runs must succeed), symbolises
 maps each recompiled-C line to the `// 0xADDR: insn` comment N64Recomp wrote above it, compares the call logs up to
 the fault (an earlier differing call still comes first) and returns DIFFERENT with `crash`; draft_check reports a
 DIVERGES with the fault lines above (exit 1), never ERROR.
+
+# 2. Scripts for the unreached functions: 9 of 23 reached
+
+New mechanisms (README "Phase 9"): script lines `poke TIME ADDR VALUE [BYTES]` (host `--poke`, applied when the
+frame starts, both sides alike) and `pak from SCRIPT` (the harness runs SCRIPT once on the stock host and starts
+from the pak image it leaves; cached per script chain). Every harness honours them (oracle.py run, draft_check,
+census, script_probe, regmap_verify). Fixed: `script_probe --pak-write FILE` without `--pak` never wrote the image.
+
+Levers found by dump diffs (host `--dump-at`, two runs that differ in one menu setting):
+- race lap count = byte 0x80152735 (3 default/ghost, 1 after LAPS 1); a poke after race init (>= frame 735) makes a
+  ghost race 1 lap; earlier pokes are overwritten at race start (~frame 700).
+- battle points target = byte 0x80142513 (10; 5 with POINTS LEFT); 0 ends the battle at the next score check.
+
+| script | frames | reaches (newly) |
+|---|---:|---|
+| player_reload (saves_reload + `pak from saves`) | 1500 | func_800C7EC8, drone_set_catchup, draw_speedometer (SaveServer reads player AAAA at frame 4) |
+| ghost_save (`pak from saves`, AAAA ghost race, `poke 28 80152735 1 1`, RACE AGAIN) | 5000 | + func_800CC50C, func_800CC040 (BEST GHOSTS 3836), func_800CBF2C, menu_back (RACE AGAIN 4860: the in-memory ghost loads) |
+| battle_end (battle.press + `poke 24 80142513 0 1`, A on SCOREBOARD) | 1800 | func_80101904 (GAME OVER standings 795), func_80102980 (SCOREBOARD 855) |
+
+saves_reload itself stays "not runnable alone" (tests/recomp pins that; player_reload is the runnable copy).
+
+Census (rocky, 30 scripts, 192 unmatched at wave29 8c74d8b6; `tools/recomp/census/`): **178 reached (194,028 B),
+14 never (14,912 B)** (w28r: 183 of 206 / 23; 14 were matched in wave 28). Still never reached:
+func_8010C974 (_AnimateMine: a mine pickup in battle), control_settings, func_800DD0C0, attract_mode_handler,
+attract_demo_handler, attract_video_handler (image A only), func_80103D28 (DrawUnlocked: needs an unlock),
+func_80104B14, func_800F0F44 (_FindGhosts: the ghost-save menu), draw_ui_element (SaveServer's ghost branch: a
+ghost FILE on the pak), AdjustSpeed (pak file delete with retry), world_effect_update, fp_call_wrapper,
+object_bytes23_sum (no static reference).
+
+Ghost file not reached, what was tried: the 1-lap ghost finish enters BEST GHOSTS and the player record (128-byte
+write) but writes no ghost note (GC updateHighScoreScreen: SaveGhost only when gGhostToSave is set; state 4 = the
+save menu when ghost files already exist); JUST PLAY and pak-player flows alike; GAME OVER QUIT / NEW TRACK / RACE
+AGAIN + a second 1-lap finish (1:35.864) also write none; lap-counter pokes (0x8014A647, 0x8014A980, 0x801E0ECB,
+0x801F6178 := 3) did not shorten a 3-lap race. Next lever: find the N64 gGhostToSave (the store before the
+high-score state switch in func_800F1930/func_800F1210) and poke it, or steer a real 3-lap finish.
+
+# 3. draft_check --lane and the --gc check
+
+`draft_check --lane LANE` (summary mode): every `cloud/work/frontier/LANE/<NAME>/best.c`, per-draft options in
+`<NAME>/dc.args`, one table. `--gc` no longer needs a NAME word (it did since Phase 8's help said "give any word").
+`--gc --dry-run` on rocky (dc 15.6 GB): 0.4 GB to free (trees #13/#14 by last use, one superseded retail cache).
+
+# Checks
