@@ -122,3 +122,13 @@ union credits_scroll_grp rc=0 all 10 MATCH, `--claims` func_80108AB0 MATCH (`own
   `build/us/rush2049.us.z64: OK`. After the refused 4.3: lock 1049 entries, unit 1049/0 differ, SHA-1 EXACT.
 - Slot-contract audit re-written at 4.2 (B5D0 accepted, 53780 -> 53224) and 4.4 (credits_scroll_grp/group.json re-pinned,
   80108AB0 accepted, 53224 -> 52464); frozen list/count in the test updated. 4.1: no audit change. No scout targets.
+
+## Tests (branch w30i at 810bed26)
+- Pi `make test-fast JOBS=4` (main checkout's tools/mips_to_c and tools/decomp-permuter symlinked in temporarily, removed
+  afterwards): conveyor `1589 passed, 800 skipped`; cloud `808 passed, 202 skipped`; rc=0.
+- rocky clone `~/rush2049/scratch/w30i` (copy of the w29i clone, branch from bundles, `origin/master` = 1b34f797, CI venv),
+  `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor `2337 passed, 52 skipped`; cloud `1005 passed, 5 skipped, 8
+  warnings, 27 subtests passed`; rc=0. (An earlier run at 6b1c5725 under load avg ~45 had 2 failures, both
+  `subprocess.TimeoutExpired` after 180 s in the static boot-tail verifiers audio_record_contracts / macro_wrapper_contracts
+  — host load, not these changes; they pass in the final run.)
+- Builder scratch watchman2:~/rush2049/scratch/frontier/w30i deleted.
