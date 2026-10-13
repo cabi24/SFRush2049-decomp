@@ -2714,6 +2714,7 @@ func_800B61A8:
 .section .text.audio_doppler_full, "ax", @progbits
 .globl audio_doppler_full
 audio_doppler_full:
+    /* compiled from src/blob/audio_doppler_full.c */
     .word 0x27BDFF00
     .word 0x3C028015
     .word 0x84421AD0

@@ -270,6 +270,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "audio_doppler_full": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_doppler_full",
+    "source": "src/blob/groups/audio_doppler_full/group.json",
+    "source_sha256": "6191673e9d7879e96b85535c9617ccb91b2453c4f69ec8c8294f36b3d608893d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "audio_dsp_process": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/audio_dsp_process.c",
