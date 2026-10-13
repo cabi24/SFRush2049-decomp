@@ -6928,6 +6928,7 @@ func_80107AEC:
 .section .text.animPlace, "ax", @progbits
 .globl animPlace
 animPlace:
+    /* compiled from src/blob/animPlace.c */
     .word 0x27BDFEE8
     .word 0x3C0E8011
     .word 0x8DCE74B4

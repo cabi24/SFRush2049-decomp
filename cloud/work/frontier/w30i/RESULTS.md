@@ -7,6 +7,7 @@ blob_unit cache, baserom); `blob_splice rebuild-stale` rebuilt 5 stale copied gr
 |---|---|---:|---|
 | (start) | — | — | 1041/1216, 370,952 B (57.33%) |
 | 1 | `menu_save_options` (frontier_menu_save_options) superseded by w30c's packet + merge of menu_cc040_20261004 and codex_func_800C7200_2 | 2,848 | 1045/1216, 373,800 B (57.77%) |
+| 2 | `credits_scroll_grp` superseded in place (w30d): + animPlace (gr3_7af4.c) | 1,000 | 1046/1216, 374,800 B (57.92%) |
 
 ## Job 1: w30c save packet
 New coverage: draw_speedometer 1,704, func_800C7EC8 628, draw_ui_element 240, func_800CBF2C 276 = 2,848 B. The three
@@ -42,3 +43,22 @@ status of every function unchanged; group.c/save.c/ctx files are w30c's byte-for
 - symbols.json / blob.ld unchanged (only SHA256SUMS + provenance comments): no donor-receipt re-pin. Slot-contract
   audit `audit.py --write`: no diff; test passes. Scout receipt: none of the functions is a scout target.
 - provisional.json: no entries for these functions. No data-symbol changes.
+
+## Job 2: w30d animPlace (merge of wave30 5cfc8433/e4e580f3 first)
+- Packet check: all 10 old files byte-identical to src/blob/groups/credits_scroll_grp (cmp); group.json differs only in
+  members/keep/files += animPlace/gr3_7af4.c, claims, provenance.
+- Unit (`blob_unit --tag w30i score animPlace animElapsedTimerText animLapTime slot_state_setup --with gr3_7af4.c
+  --internal` the four *_7AF4 helpers `--neighbours`): `blob_unit score: 4/4 equal`, `locked bodies that differ in this unit: 0`
+  (animPlace 250 words kept).
+- Builder `score.py group cand/w30d/credits_scroll_grp --claims`: rc=0, animPlace MATCH; without --claims rc=0, all 9
+  members MATCH (`builder_job2.log`).
+- Install: `install_group.py cloud/work/frontier/w30d/groups/credits_scroll_grp credits_scroll_grp` -> `spliced
+  credits_scroll_grp: 9 members, new: ['animPlace']`.
+- Gates: `group lock: 0 problems`; `blob lock: 1046 entries, 0 problems`; `blob_unit: 1046 locked bodies, 1046 equal to
+  the image in one 921-file unit, 0 differ` (internal 271 -> 275: the four *_7AF4 helpers, no override needed);
+  `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- All seven ctx_gr3_b.c copies (func_8010BC84, physics_sym, frontier_results_table, func_8010B7FC, func_8010B9C8,
+  func_80106B3C, frontier_billboard_render) byte-identical to credits_scroll_grp/gr3_b.c.
+- Slot-contract audit `audit.py --write`: credits_scroll_grp/group.json re-pinned, animPlace accepted,
+  unaccepted_caller_bytes 56236 -> 55236; frozen list/count in tests/cloud/test_slot_contract_audit.py updated.
+  symbols.json/blob.ld unchanged. Not a scout target. No provisional/data/unit_overrides changes.

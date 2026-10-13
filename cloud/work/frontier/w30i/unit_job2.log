@@ -1,0 +1,6 @@
+  EQUAL animPlace: 250 words (kept, c_gr3_7af4.c)
+  EQUAL animElapsedTimerText: 308 words (kept, g_credits_scroll_grp__gr3_761c.c)
+  EQUAL animLapTime: 224 words (kept, g_credits_scroll_grp__gr3_8154.c)
+  EQUAL slot_state_setup: 58 words (internal, g_credits_scroll_grp__gr3_b.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 4/4 equal; object build/blob_unit/w30i/unit.o (8.3s)

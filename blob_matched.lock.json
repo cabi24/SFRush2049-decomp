@@ -219,7 +219,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -228,7 +228,16 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "animPlace": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -1073,7 +1082,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6506,7 +6515,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6609,7 +6618,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6650,7 +6659,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -8112,7 +8121,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -8707,7 +8716,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+    "source_sha256": "57232819fe9dff4e268596724b85a83691e79578d4e6ef227fedbdd544c0bce1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"

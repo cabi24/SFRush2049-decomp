@@ -1,0 +1,26 @@
+claims rc=0
+Members:
+animPlace:
+  MATCH
+
+all rc=0
+Members:
+credits_scroll:
+  MATCH
+func_80100B8C:
+  MATCH
+slot_state_setup:
+  MATCH
+world_trigger_check:
+  MATCH
+func_8010A53C:
+  MATCH
+func_80107EDC:
+  MATCH
+animLapTime:
+  MATCH
+animElapsedTimerText:
+  MATCH
+animPlace:
+  MATCH
+

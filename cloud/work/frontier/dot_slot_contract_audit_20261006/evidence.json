@@ -9,7 +9,7 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "8b261e88ada54944f329e0d1e90569f99d6ed82b7d8389e80a9dc74679374186",
+    "src/blob/groups/credits_scroll_grp/group.json": "c4261f48202524af5d01ebb733ea82d2dfd6cf0b5a824800c530521a39522e81",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
     "src/blob/groups/slot_sound/group.c": "8484f7c1109f0613d9f6d11127fab652cec41df4a2e1a3acf1719a4cd68e0c26"
   },
@@ -66,6 +66,7 @@
       "func_80102F30",
       "func_80106B3C",
       "animElapsedTimerText",
+      "animPlace",
       "func_80107EDC",
       "animLapTime",
       "func_8010A53C",
@@ -73,7 +74,7 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 56236,
+    "unaccepted_caller_bytes": 55236,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -993,7 +994,7 @@
       "start": "0x80107AF4",
       "bytes": 1000,
       "body_sha256": "b15859b3659e176387300f284ec5854d3a3805a044a90451ff132df1f13622bf",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80107BCC",
         "0x80107BFC",
