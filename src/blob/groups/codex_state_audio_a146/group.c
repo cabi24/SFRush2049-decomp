@@ -3,7 +3,7 @@ typedef signed char s8; typedef unsigned char u8; typedef int s32;
 typedef unsigned int u32;
 typedef struct ResSlot {s8 f0,loaded,f2,f3,f4,f5;u8 type,pad07;s32 pad08;u8 **p0C;u8 *w10;} ResSlot;
 typedef ResSlot Voice;
-extern Voice D_80156D38[64];
+extern Voice gWaveInstance[64];
 extern s32 audio_frame_sync(s32 a, s32 b, s32 c, s32 d, void *e);
 extern void display_list_alloc(s32 a);
 
@@ -13,7 +13,7 @@ s32 func_80097694(s32 arg0, s8 arg1)
 
   for (i = 0; i < 64; i++)
   {
-    if ((D_80156D38[i].p0C != 0) && (arg0 == D_80156D38[i].type) && ((arg1 < 0) || (arg1 == D_80156D38[i].f5)))
+    if ((gWaveInstance[i].p0C != 0) && (arg0 == gWaveInstance[i].type) && ((arg1 < 0) || (arg1 == gWaveInstance[i].f5)))
     {
       return i;
     }
@@ -78,12 +78,12 @@ s32 audio_frame_sync(s32 kind, s32 skip, s32 async, s32 flag, void *buf) {
 
     if (skip == 0 && (res = func_80097694(kind, flag)) >= 0) {
         slot = res;
-        if (D_80156D38[slot].f3 != 0) {
+        if (gWaveInstance[slot].f3 != 0) {
             entity_render_mode(slot);
         }
         return slot;
     }
-    r = D_80156D38;
+    r = gWaveInstance;
     for (i = 0; i != 64; i++, r++) {
         if (r->p0C == 0) {
             r->f0 = 0;

@@ -6451,9 +6451,9 @@ tournament_unlock_check:
     .word 0x03E00008
     .word 0x27BD0038
 
-.section .text.attract_mode_handler, "ax", @progbits
-.globl attract_mode_handler
-attract_mode_handler:
+.section .text.control_cell_text, "ax", @progbits
+.globl control_cell_text
+control_cell_text:
     .word 0x27BDFFD8
     .word 0x3C148014
     .word 0x269461D0
@@ -6528,9 +6528,9 @@ func_800DC994:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.attract_demo_handler, "ax", @progbits
-.globl attract_demo_handler
-attract_demo_handler:
+.section .text.control_cell_text3, "ax", @progbits
+.globl control_cell_text3
+control_cell_text3:
     .word 0x27BDFFC8
     .word 0x3C038012
     .word 0x3C148014
@@ -6835,9 +6835,9 @@ func_800DCD58:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.attract_video_handler, "ax", @progbits
-.globl attract_video_handler
-attract_video_handler:
+.section .text.control_cell_text2, "ax", @progbits
+.globl control_cell_text2
+control_cell_text2:
     .word 0x27BDFFD0
     .word 0xAFBF0024
     .word 0x0C02DD28

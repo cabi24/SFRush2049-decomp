@@ -66,8 +66,8 @@
    ],
    "evidence": "w28r: retail body stores through t0/t1/t2 (sb v1,0(t0) / 0(t1) / 0(t2)) for parameters 5-7 (o32 would pass them at sp+16..24); regmap_verify static CONSISTENT a0-a3,t0-t2 at its 3 sites (menu_input_process, world_velocity_integrate, world_trigger_check); prototype from the locked src/blob/groups/codex_defaults_a16 body; w27b: draft callers crashed (exit -11) without it"
   },
-  "func_80096CA8": {
-   "prototype": "void func_80096CA8(s32 slot, s32 first)",
+  "SetupWaveModel": {
+   "prototype": "void SetupWaveModel(s32 slot, s32 first)",
    "params": [
     "s8",
     "t0"

@@ -5,7 +5,7 @@ typedef struct Resource {u8 *data;} Resource;
 typedef struct Object {u8 other0[8];void *lookup;u8 other12[32];Resource *resource;} Object;
 typedef struct Handle {Object *object;} Handle;
 extern u32 format_string_parse(u8 *,u32);
-extern void slot_state_lookup(void *,u32 *,int);
+extern void PS_WriteFile(void *,u32 *,int);
 u32 format_string_parse(u8 *data,u32 size)
 {
     u8 *cursor=data;
@@ -30,12 +30,12 @@ void menu_dialog_close(Handle *handle,u8 kind)
 {
     u8 *record=handle->object->resource->data+kind*28+1668;
     *(u32 *)record=format_string_parse(record+4,24);
-    slot_state_lookup(handle->object->lookup,(u32 *)record,28);
+    PS_WriteFile(handle->object->lookup,(u32 *)record,28);
 }
 
 void object_data_allocate(Handle *handle)
 {
     u8 *record=handle->object->resource->data+1780;
     *(u32 *)record=format_string_parse(record+4,72);
-    slot_state_lookup(handle->object->lookup,(u32 *)record,76);
+    PS_WriteFile(handle->object->lookup,(u32 *)record,76);
 }

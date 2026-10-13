@@ -5,17 +5,17 @@
   "func_800A1C6C",
   "func_800A1DD4",
   "track_data_decompress",
-  "track_collision_setup",
-  "MaxPathZeroControls",
-  "slot_state_lookup"
+  "PS_FlushPak",
+  "PS_FlushFile",
+  "PS_WriteFile"
  ],
  "files": [
   "group.c"
  ],
  "keep": [
-  "track_collision_setup",
-  "MaxPathZeroControls",
-  "slot_state_lookup"
+  "PS_FlushPak",
+  "PS_FlushFile",
+  "PS_WriteFile"
  ],
  "context": [],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",

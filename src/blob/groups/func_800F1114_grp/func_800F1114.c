@@ -6,8 +6,8 @@ typedef signed int s32;
 extern s16 active_player_count;
 extern s32 state_word_b;
 extern u8 D_801148A4;
-extern s8 *D_80146208;
-extern s8 *D_80149418[];
+extern s8 *codePane;
+extern s8 *namePanes[];
 extern s8 *D_80149778[2];
 extern s8 *D_80149798[3];
 
@@ -17,14 +17,14 @@ void func_800F1114(void)
 {
     s32 i;
 
-    if (D_80146208 != 0) {
-        sound_handles_array_clear(D_80146208);
-        D_80146208 = 0;
+    if (codePane != 0) {
+        sound_handles_array_clear(codePane);
+        codePane = 0;
     }
     for (i = 0; i < active_player_count; i++) {
-        if (D_80149418[i] != 0) {
-            sound_handles_array_clear(D_80149418[i]);
-            D_80149418[i] = 0;
+        if (namePanes[i] != 0) {
+            sound_handles_array_clear(namePanes[i]);
+            namePanes[i] = 0;
         }
     }
     for (i = 0; i < 2; i++) {

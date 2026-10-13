@@ -15,7 +15,7 @@ typedef struct Resource {u8 *data;} Resource;
 typedef struct Object {u8 other0[8];void *lookup;u8 other12[32];Resource *resource;} Object;
 typedef struct Handle {Object *object;} Handle;
 extern u32 format_string_parse(u8 *,u32);
-extern void slot_state_lookup(void *,u32 *,int);
+extern void PS_WriteFile(void *,u32 *,int);
 u32 format_string_parse(u8 *data,u32 size)
 {
     u8 *cursor=data;
@@ -57,7 +57,7 @@ void voice_stop_2(Handle *handle,u8 selector,s8 value)
     if(value==*field)return;
     *field=value;
     *(u32 *)(data+72)=format_string_parse(data+76,16);
-    slot_state_lookup(handle->object->lookup,(u32 *)(data+72),20);
+    PS_WriteFile(handle->object->lookup,(u32 *)(data+72),20);
 }
 
 void func_800B4720(Handle *handle,u8 selector,s8 value)
@@ -78,7 +78,7 @@ void func_800B4720(Handle *handle,u8 selector,s8 value)
     if(value==*field)return;
     *field=value;
     *(u32 *)(data+92)=format_string_parse(data+96,12);
-    slot_state_lookup(handle->object->lookup,(u32 *)(data+92),16);
+    PS_WriteFile(handle->object->lookup,(u32 *)(data+92),16);
 }
 
 void func_800B4728(Handle *handle,u8 selector,s8 value)
@@ -100,7 +100,7 @@ void func_800B4728(Handle *handle,u8 selector,s8 value)
     if(value==*field)return;
     *field=value;
     *(u32 *)(data+108)=format_string_parse(data+112,16);
-    slot_state_lookup(handle->object->lookup,(u32 *)(data+108),20);
+    PS_WriteFile(handle->object->lookup,(u32 *)(data+108),20);
 }
 
 void func_800B4730(Handle *handle,u8 selector,s8 value)
@@ -117,7 +117,7 @@ void func_800B4730(Handle *handle,u8 selector,s8 value)
     if(value==*field)return;
     *field=value;
     *(u32 *)(data+128)=format_string_parse(data+132,8);
-    slot_state_lookup(handle->object->lookup,(u32 *)(data+128),12);
+    PS_WriteFile(handle->object->lookup,(u32 *)(data+128),12);
 }
 
 void audio_bus_mix(Handle *handle,u8 selector,s8 value)
@@ -132,7 +132,7 @@ void audio_bus_mix(Handle *handle,u8 selector,s8 value)
         if(value==*field)return;
         *field=value;
         *(u32 *)(data+28)=format_string_parse(data+32,21);
-        slot_state_lookup(handle->object->lookup,(u32 *)(data+28),25);
+        PS_WriteFile(handle->object->lookup,(u32 *)(data+28),25);
         return;
     }
     mode=D_8014978C;

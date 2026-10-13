@@ -552,7 +552,7 @@ game_loop = 0x800FD464; // type:func main per-frame game state machine (704 byte
 
 // Game state handlers called from game_loop
 game_mode_handler = 0x800C9AE0; // type:func - in_game_mode handling (arcade. game.c.620)
-attract_or_transition = 0x800EDDC0; // type:func attract mode/state transition - attract mode/state transition
+gfx_frame_begin = 0x800EDDC0; // type:func N64 per-frame display-list prologue (renamed from attract_or_transition, w29n; cloud/work/frontier/w29n/renames.json)
 process_inputs = 0x800C997C; // type:func ProcessPDUs equivalent or state switch - ProcessPDUs equivalent or state switch
 
 
@@ -633,10 +633,10 @@ car_color_handler = 0x800D1AB8; // type:func arcade.car color selection (552 byt
 //   ATR_ATARILOGO, ATR_HISCORE1-7, ATR_DEMO, ATR_CREDITS, ATR_JOIN, etc.
 // Uses attractFunc state variable, ShowAttract() to display/hide screens,
 //   SetCountdownTimer() for screen timing, chk_start() for game start detection.
-attract_mode_handler = 0x800DC88C; // type:func arcade.attract() - attract mode state machine (1272 bytes)
-attract_demo_handler = 0x800DC99C; // type:func arcade.play_demogame - demo race playback (1016 bytes)
+control_cell_text = 0x800DC88C; // type:func N64 control-settings menu cell, one text line (callee of control_settings) (renamed from attract_mode_handler, w29n; cloud/work/frontier/w29n/renames.json)
+control_cell_text3 = 0x800DC99C; // type:func N64 control-settings menu cell, cell text + three option strings (callee of control_settings) (renamed from attract_demo_handler, w29n; cloud/work/frontier/w29n/renames.json)
 attract_idle_handler = 0x800DCD94; // type:func arcade.TimeOut check (96 bytes)
-attract_video_handler = 0x800DCDF4; // type:func arcade.AttractMovie - video playback (732 bytes)
+control_cell_text2 = 0x800DCDF4; // type:func N64 control-settings menu cell, cell text + two option strings (callee of control_settings) (renamed from attract_video_handler, w29n; cloud/work/frontier/w29n/renames.json)
 attract_sequence_handler = 0x800DD0D0; // type:func arcade.attract screen sequencing (988 bytes)
 
 // --- TITLE SCREEN (arcade: attract.c:ShowLogo, ShowJoin) ---
@@ -1254,15 +1254,15 @@ check_mpath_save = 0x800A13E8; // type:func check if lap faster and save maxpath
 track_segment_load = 0x800A1648; // type:func (2256 bytes) load track segment from ROM, GZIP decompression
 // RecordMaxPath = 0x800A1A60; // type:func record maxpath during drone training (arcade: maxpath.c)
 track_data_decompress = 0x800A1F18; // type:func (644 bytes) decompress GZIP/ZLIB/LZSS track data
-track_collision_setup = 0x800A21A4; // type:func (732 bytes) setup 64x64 collision height/surface grids
-MaxPathZeroControls = 0x800A2378; // type:func zero out drone controls (arcade. maxpath.c)
-slot_state_lookup = 0x800A2504; // type:func accesses player/slot state array (58 calls)
+PS_FlushPak = 0x800A21A4; // type:func GC paksysdc.c PS_FlushPak (renamed from track_collision_setup, w29n; cloud/work/frontier/w29n/renames.json)
+PS_FlushFile = 0x800A2378; // type:func GC paksysdc.c PS_FlushFile (renamed from MaxPathZeroControls, w29n; cloud/work/frontier/w29n/renames.json)
+PS_WriteFile = 0x800A2504; // type:func GC paksysdc.c PS_WriteFile (renamed from slot_state_lookup, w29n; cloud/work/frontier/w29n/renames.json)
 AdjustSteer = 0x800A25C0; // type:func adjust drone steering toward target pos (arcade. maxpath.c.AdjustSteer)
 // dup-addr(kept physics_velocities_P): AdjustSpeed = 0x800A2680; // type:func adjust drone throttle/brake to target speed (arcade. maxpath.c.AdjustSpeed)
 drone_set_catchup = 0x800A2990; // type:func set catchup speed scaling for drone (arcade. drones.c)
 set_catchup = 0x800A2CE4; // type:func set catchup mode for drones (arcade. drones.c.set_catchup)
 no_catchup = 0x800A2D0C; // type:func disable catchup for tournament mode (arcade. drones.c.no_catchup)
-track_process_main = 0x800A2D4C; // type:func (3116 bytes) per-frame track segment processing
+PS_CreateFile = 0x800A2D4C; // type:func GC paksysdc.c PS_CreateFile (renamed from track_process_main, w29n; cloud/work/frontier/w29n/renames.json)
 track_spline_interp = 0x800A3654; // type:func (296 bytes) Catmull-Rom spline interpolation
 drone_rwtobod = 0x800A373C; // type:func convert real-world to body coords for drone arcade.unitvecs.c.rwtobod()
 track_render_process = 0x800A377C; // type:func (3156 bytes) per-frame track rendering
@@ -1395,7 +1395,7 @@ audio_ducking = 0x800B4E70; // type:func audio ducking - reduce lower priority s
 ambient_sounds_clear = 0x800B557C; // type:func clear all ambient and environment sound handles
 visual_objects_update = 0x800B55FC; // type:func iterates and updates visual objects
 sound_priority_mgr = 0x800B5694; // type:func sound priority management (184 bytes)
-sound_loop_set = 0x800B574C; // type:func enable/disable looping for playing sound (340 bytes)
+TitlePane = 0x800B574C; // type:func GC _TitlePane (renamed from sound_loop_set, w29n; cloud/work/frontier/w29n/renames.json)
 sound_pitch_set = 0x800B58A0; // type:func set pitch for playing sound (float to N64 fixed-point)
 sound_volume_set = 0x800B5948; // type:func set volume 0.0-1.0 for playing sound (176 bytes)
 audio_spatialize = 0x800B59F8; // type:func 3D sound spatialization - pan/attenuation/doppler (1472 bytes)
@@ -1405,7 +1405,7 @@ resource_type_select = 0x800B5FC4; // type:func select resource type based on bi
 audio_occlusion = 0x800B6024; // type:func calculate audio occlusion between listener and source
 // dup-addr(kept set_race_state): entity_audio_update = 0x800B6138; // type:func update all audio for game entity (car/drone/object)
 resource_alloc_conditional = 0x800B61B0; // type:func conditionally allocate resource or return -1
-audio_doppler_full = 0x800B61FC; // type:func full doppler calculation with velocity
+ShowCountdown = 0x800B61FC; // type:func GC countdown.c ShowCountdown (renamed from audio_doppler_full, w29n; cloud/work/frontier/w29n/renames.json)
 render_helper_main = 0x800B65B8; // type:func rendering helper function (65 calls)
 audio_doppler_calc = 0x800B6788; // type:func doppler calculation - listener/source velocity (1124 bytes)
 menu_input_process = 0x800B6BEC; // type:func process menu controller input
@@ -1567,8 +1567,8 @@ world_trigger_activate = 0x800EE5DC; // type:func activate checkpoint/shortcut/b
 
 // Checkpoint hit/lap functions (0x80107xxx range - in game code segment)
 checkpoint_hit = 0x801073D8; // type:func record checkpoint passage, validate sequence (580 bytes) (arcade. checkpoint.c.PassedCP validation)
-lap_complete = 0x8010761C; // type:func handle lap completion (1240 bytes) (arcade. checkpoint.c.PassedCP finish line, update_lap_counter)
-race_finish = 0x80107AF4; // type:func handle car finishing race (1000 bytes) (arcade. checkpoint.c.CarReportsGameOver)
+animElapsedTimerText = 0x8010761C; // type:func GC hud.c animElapsedTimerText (renamed from lap_complete, w29n; cloud/work/frontier/w29n/renames.json)
+animPlace = 0x80107AF4; // type:func GC hud.c animPlace (renamed from race_finish, w29n; cloud/work/frontier/w29n/renames.json)
 
 // Race state machine related to checkpoints
 // dup-addr(kept RaceStateMachine_Update): race_state_update = 0x800DB81C; // type:func race progression/checkpoint/finalization controller (2148 bytes) (arcade. checkpoint.c.check_everyones_checkpoints)

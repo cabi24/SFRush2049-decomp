@@ -65,7 +65,7 @@ static void pair_set(u32 first, u32 second)
     p->second = second;
 }
 
-void attract_demo_handler(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char *s3, s32 col, s32 sel2)
+void control_cell_text3(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char *s3, s32 col, s32 sel2)
 {
     Cell *c;
     s32 y;
@@ -97,7 +97,7 @@ void __standin_attract_demo_handler(u8 *t, char *a, char *b, char *d, s32 s, s32
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            attract_demo_handler(s, i, t, a, b, d, j, u);
+            control_cell_text3(s, i, t, a, b, d, j, u);
         }
     }
 }

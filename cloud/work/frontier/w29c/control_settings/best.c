@@ -119,7 +119,7 @@ void pair_set_DC(u32 first, u32 second)
     p->second = second;
 }
 
-void attract_mode_handler(s32 row, s32 col, u8 *text)
+void control_cell_text(s32 row, s32 col, u8 *text)
 {
     Cell *c;
 
@@ -131,7 +131,7 @@ void attract_mode_handler(s32 row, s32 col, u8 *text)
     pair_set_DC(0, 3);
 }
 
-void attract_demo_handler(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char *s3, s32 col, s32 sel2)
+void control_cell_text3(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char *s3, s32 col, s32 sel2)
 {
     Cell *c;
     s32 y;
@@ -157,7 +157,7 @@ void attract_demo_handler(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char 
     pair_set_DC(0, 3);
 }
 
-void attract_video_handler(s32 sel, s32 row, s32 col, char *a, char *b, s32 text)
+void control_cell_text2(s32 sel, s32 row, s32 col, char *a, char *b, s32 text)
 {
     Cell *c;
     s32 y;
@@ -245,7 +245,7 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
         func_800BE6A4(t3, C.alt ? D_8017A4E0.msg[424 / 4] : D_8017A4E0.msg[428 / 4]);
         func_800BE4F0(t3, (u8 *)D_80121074);
         func_800BE4F0(t3, (u8 *)D_8017A4E0.msg[432 / 4]);
-        attract_video_handler(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[25]],
+        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[25]],
                               D_8017A4E0.msg[944 / 4], (s32)t3);
         break;
     case 4:
@@ -253,24 +253,24 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
         func_800BE6A4(t4, D_8017A4E0.msg[436 / 4]);
         func_800BE4F0(t4, (u8 *)D_80121078);
         func_800BE4F0(t4, (u8 *)D_8017A4E0.msg[440 / 4]);
-        attract_mode_handler(row, col, t4);
+        control_cell_text(row, col, t4);
         break;
     case 15:
         func_800DCCE0(row, col);
         func_800BE6A4(t15, D_8017A4E0.msg[444 / 4]);
         func_800BE4F0(t15, (u8 *)D_80121088);
         func_800BE4F0(t15, (u8 *)D_8017A4E0.msg[408 / 4]);
-        attract_mode_handler(row, col, t15);
+        control_cell_text(row, col, t15);
         break;
     case 5:
     case 7:
         func_800DCD58(row, col);
-        attract_video_handler(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[26] + 1],
+        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[26] + 1],
                               D_8017A4E0.msg[944 / 4], (s32)D_8017A4E0.msg[444 / 4]);
         break;
     case 8:
         func_800DCD58(row, col);
-        attract_video_handler(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[24]],
+        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[24]],
                               D_8017A4E0.strings[D_8017A4E0.lang[24] + 1], (s32)D_8017A4E0.msg[448 / 4]);
         break;
     case 6:
@@ -278,14 +278,14 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
         func_800BE6A4(t6, D_8017A4E0.msg[452 / 4]);
         func_800BE4F0(t6, (u8 *)D_8012107C);
         func_800BE4F0(t6, (u8 *)D_8017A4E0.msg[456 / 4]);
-        attract_mode_handler(row, col, t6);
+        control_cell_text(row, col, t6);
         break;
     case 9:
         func_800DCCE0(row, col);
         func_800BE6A4(t9, D_8017A4E0.msg[460 / 4]);
         func_800BE4F0(t9, (u8 *)D_80121080);
         func_800BE4F0(t9, (u8 *)D_8017A4E0.msg[440 / 4]);
-        attract_mode_handler(row, col, t9);
+        control_cell_text(row, col, t9);
         break;
     case 10:
         if (C.buttons & 0x800) {
@@ -314,7 +314,7 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
             entity_flags_apply(37, 0, 1, 0);
             C.done = 1;
         }
-        attract_demo_handler(C.sel1, row, (u8 *)D_8017A4E0.msg[472 / 4], D_8017A4E0.msg[944 / 4],
+        control_cell_text3(C.sel1, row, (u8 *)D_8017A4E0.msg[472 / 4], D_8017A4E0.msg[944 / 4],
                              D_8017A4E0.strings[D_8017A4E0.lang[26]], D_8017A4E0.strings[D_8017A4E0.lang[26] + 1],
                              col, C.sel2);
         break;
@@ -322,19 +322,19 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
         if (C.timeout < game_loop_tick) {
             C.done = 1;
         }
-        attract_mode_handler(row, col, (u8 *)D_8017A4E0.msg[476 / 4]);
+        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[476 / 4]);
         break;
     case 12:
         if (C.timeout < game_loop_tick) {
             C.done = 1;
         }
-        attract_mode_handler(row, col, (u8 *)D_8017A4E0.msg[480 / 4]);
+        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[480 / 4]);
         break;
     case 13:
         if (C.timeout < game_loop_tick) {
             C.done = 1;
         }
-        attract_mode_handler(row, col, (u8 *)D_8017A4E0.msg[484 / 4]);
+        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[484 / 4]);
         break;
     case 14:
         C.done = 1;

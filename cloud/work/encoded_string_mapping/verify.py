@@ -77,8 +77,8 @@ def verify(directory):
         for index, word in enumerate(body):
             if word == jal:
                 callers.append({'function': name, 'offset': index * 4})
-    assert callers == [{'function': 'track_process_main', 'offset': 164},
-                       {'function': 'track_process_main', 'offset': 184}]
+    assert callers == [{'function': 'PS_CreateFile', 'offset': 164},
+                       {'function': 'PS_CreateFile', 'offset': 184}]
     controls = []
     for label, source, flags, expected, extras in [
         ('historical_final_o2', ROOT / 'cloud/work/tiny_A110/func_800A150C.c',

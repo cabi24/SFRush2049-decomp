@@ -409,9 +409,9 @@ func_80096C28:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_80096CA8, "ax", @progbits
-.globl func_80096CA8
-func_80096CA8:
+.section .text.SetupWaveModel, "ax", @progbits
+.globl SetupWaveModel
+SetupWaveModel:
     .word 0x001E7080
     .word 0x01DE7021
     .word 0x3C0F8015

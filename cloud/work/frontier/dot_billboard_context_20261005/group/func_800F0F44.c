@@ -27,7 +27,7 @@ extern s8 D_80152570;
 extern s32 func_800950AC(void *, void *, s32);
 extern s32 func_8008AD04(void *, void *);
 
-void func_800F0F44(s32 idx)
+void FindGhosts(s32 idx)
 {
     Ref *r = *(Ref **)D_8014A160;
     Slot *sl;

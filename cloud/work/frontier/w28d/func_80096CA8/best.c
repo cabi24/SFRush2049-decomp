@@ -680,7 +680,7 @@ extern SoundState *func_800b3704(s32, s32, s32, s32);
 extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16 arg3);
 extern void game_loop(void);
 extern void game_mode_handler(void);
-extern void attract_or_transition(void);
+extern void gfx_frame_begin(void);
 extern void process_inputs(void);
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
@@ -779,7 +779,7 @@ extern s32 D_8002E4A0;
 extern s32 D_8002E528;
 extern s32 D_8002E580[];
 extern u8 D_8002E860;
-extern f32 D_8002E870;
+extern f32 gDefStartTimes;
 extern s32 D_8002E8E8;
 extern s32 D_8002E928;
 extern s32 D_8002E960;
@@ -2220,7 +2220,7 @@ extern s32 D_80140AE0;
 extern s32 D_80140AF0;
 extern s32 D_80140AF8;
 extern f32 D_80140B10;
-extern s32 D_80140B20;
+extern s32 gHighScoreState;
 extern s32 D_80140B28;
 extern u8 D_80140BDC;
 extern f32 D_80140BE0;
@@ -2385,10 +2385,10 @@ extern s32 D_801461E8;
 extern s32 D_801461F0;
 extern s32 D_801461FC;
 extern s32 D_80146200;
-extern s32 D_80146208;
+extern s32 codePane;
 extern s32 D_80146210;
 extern s32 D_80149410;
-extern s32 D_80149418;
+extern s32 namePanes;
 extern s32 D_80149428;
 extern s32 D_80149440;
 extern s32 D_80149450;
@@ -2789,7 +2789,7 @@ extern s8 D_80156D00;
 extern s8 D_80156D10;
 extern s8 D_80156D20;
 extern s32 D_80156D30;
-extern ResSlot D_80156D38[];
+extern ResSlot gWaveInstance[];
 extern s8 D_80156D39;
 extern s8 D_80156D3B;
 extern s32 D_80156D44;
@@ -2850,7 +2850,7 @@ extern s32 D_803B9A50;
 extern s32 D_803B9AA0;
 extern s32 D_803BA7EB;
 extern s32 D_803BAE20;
-void AdjustSpeed(s32 *arg0);
+void pak_delete_file_retry(s32 *arg0);
 void AdjustSteer(void **arg0);
 void Input_InitPadHandlers(s32 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
 void Input_SetAnalogBounds(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4);
@@ -2858,7 +2858,7 @@ void Input_SetPadEnabledFlag(s32 arg0, s32 arg1);
 void Input_SetPadSecondaryFlag(s32 arg0, s32 arg1);
 void MP_TargetSpeed(void);
 s32 MP_TargetSteerPos(void);
-s8 MaxPathZeroControls(void **arg0, s32 arg1);
+s8 PS_FlushFile(void **arg0, s32 arg1);
 void *NextMaxPath(u32 arg0, s32 arg1);
 void PrevMaxPath(s32 arg2);
 s32 achievement_unlock(s32 arg0, f64 arg10, s32 arg12, s32 arg13, s32 arg14, s32 arg15, s32 arg16, s32 arg17, s32 arg18, s32 arg19, s32 arg20, s32 arg21, void *arg23, s32 arg42, s32 arg50, s32 arg65);
@@ -2868,9 +2868,9 @@ void anim_state_update(void *arg0, s16 arg1);
 void arb_rate_set(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8);
 void assign_default_paths(void);
 void assign_drones(void);
-void attract_demo_handler(u8 *arg2, void *arg3, void *arg4, void *arg5);
-void attract_mode_handler(void);
-void attract_video_handler(void);
+void control_cell_text3(u8 *arg2, void *arg3, void *arg4, void *arg5);
+void control_cell_text(void);
+void control_cell_text2(void);
 void audio_buffer_manage(s32 arg0, f32 arg1);
 s32 audio_buffer_sync(u32 arg0);
 s32 audio_bus_mix();
@@ -2883,7 +2883,7 @@ void audio_distance_atten(s32 arg0);
 void *audio_dma_sync(s32 arg0, s32 arg1);
 void audio_doppler(s32 arg0);
 void audio_doppler_calc(void);
-void audio_doppler_full(s32 arg0);
+void ShowCountdown(s32 arg0);
 void audio_dsp_process(void);
 void audio_effect_apply(void);
 void audio_effect_process(s32 arg0);
@@ -3258,7 +3258,7 @@ s32 *func_800C7200(void);
 void func_800C7578(void **arg0, s32 arg1, s32 arg2, s8 arg3);
 void func_800C77C4(void *arg0);
 s32 *func_800C7EC8(void);
-void func_800C813C(s32 arg0, s32 arg1);
+void SaveServer(s32 arg0, s32 arg1);
 s32 func_800C8738(s32 arg0);
 void func_800C885C(void);
 void func_800C8918(void);
@@ -3376,7 +3376,7 @@ s32 func_800E5D64(s32 arg0, f32 *arg1);
 void func_800E627C(void *arg0, void *arg1);
 void func_800E6460(void *arg0, void *arg1);
 void func_800E681C(void);
-void func_800E6AF8(void);
+void model_iteration(void);
 void func_800E7038(void);
 void func_800E7134(void);
 s32 func_800E73D8(void);
@@ -3408,10 +3408,10 @@ void func_800ED66C(f32 arg0);
 void func_800EF5B0(void *arg0, s32 arg1, s32 arg2);
 s32 func_800F0674(s32 arg0, u8 *arg1);
 s32 func_800F084C(u8 *arg0);
-void func_800F0914(void);
-void func_800F0F44(void);
+void PrintScores(void);
+void FindGhosts(void);
 void func_800F1114(void);
-s32 func_800F1210();
+s32 SetHighScoreState();
 void func_800F1930(void);
 s16 func_800F1D04(u8 *arg0);
 void func_800F207C(void);
@@ -3467,7 +3467,7 @@ u16 *input_deadzone_apply(void *arg0, void *arg1, f32 *arg2, f32 arg3, s32 arg4,
 s8 input_new_data_wrapper(void *arg0, s8 arg1);
 s16 input_process_controller(s32 arg3);
 void input_status_update(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-s32 lap_complete(s32 arg0);
+s32 animElapsedTimerText(s32 arg0);
 void lap_count_select(s32 arg0, s32 arg1, u16 arg2, s32 arg3, s32 *arg4, s32 *arg5);
 s32 leaderboard_update(s32 arg0);
 void linear_interp(s32 arg0, s32 arg1);
@@ -3566,7 +3566,7 @@ void pool_linked_list_init(void *arg0);
 s32 profile_stats_update(void **arg1, s32 arg9, s32 arg10, s32 arg11, s32 arg12, s32 arg13, s32 arg14, s32 arg15, void *arg16);
 void props_render(void);
 void race_countdown_display(void *arg0, f32 arg1);
-s32 race_finish(s32 arg0);
+s32 animPlace(s32 arg0);
 void race_position_update(u8 *arg0, void *arg1, s16 arg2);
 void random_float(s32 arg0, void *arg1, void *arg2, void *arg3, f32 *arg4);
 void random_int(void *arg0, void *arg1);
@@ -3609,7 +3609,7 @@ void sign_extend_call(s16 arg0, s32 arg1, s16 arg2, s32 arg3);
 void skid_mark_render(void);
 s8 skill_rating_update(void *arg0, s32 arg6, s32 arg7, void *arg10, s32 arg24, s32 arg25, f32 arg30, f32 arg33, f32 arg35, s16 arg36, s32 arg41);
 void slot_deactivate(s32 arg0);
-void slot_state_lookup(void **arg0, u32 arg1, s32 arg2);
+void PS_WriteFile(void **arg0, u32 arg1, s32 arg2);
 s32 slot_value_get(s32 arg0);
 u32 sound_bank_load(u8 *arg0, s16 *arg1, s8 arg2, s8 arg3);
 void sound_bank_unload(s16 arg0, s16 arg1, u8 arg2, u8 arg3, u8 arg4);
@@ -3617,7 +3617,7 @@ void sound_call_minimal(s16 arg0);
 void sound_call_simple(s16 arg0, s32 arg1);
 void sound_handles_array_clear(s8 *arg0);
 void sound_handles_clear(s32 arg0);
-void sound_loop_set(void);
+void TitlePane(void);
 s16 sound_pitch_diff_calc(void *arg0, s16 arg1);
 s16 sound_pitch_diff_halved(void *arg0, s16 arg1);
 void *sound_play_menu(s32 arg0, s32 arg1);
@@ -3658,13 +3658,13 @@ void tournament_trophy_award(s32 arg0);
 void tournament_unlock_check(void *arg0, void *arg1, void *arg2);
 s32 track_collision(void *arg0, s32 arg1);
 s32 track_collision_edge(void *arg0, s32 arg1);
-s32 track_collision_setup(s32 arg0, s32 arg1);
+s32 PS_FlushPak(s32 arg0, s32 arg1);
 s32 track_collision_wall(s32 **arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
 s32 track_data_decompress(void **arg2, void **arg0, s32 arg1);
 void track_info_display(void *arg0);
 s32 track_lighting_setup();
 void track_preview_handler(void *arg0, void *arg1, f32 arg2);
-s32 track_process_main(s32 arg0, void *arg1, void *arg2, s32 arg3, s32 arg4, s32 arg5);
+s32 PS_CreateFile(s32 arg0, void *arg1, void *arg2, s32 arg3, s32 arg4, s32 arg5);
 void track_render_process(s32 arg0, s32 arg1);
 void track_select_handler(void *arg0);
 void track_texture_load(void);
@@ -3757,7 +3757,7 @@ typedef struct Wad {             /* GC mb_wad.c wad struct (__anon_87656): base,
     void *TOC;
 } Wad;
 
-void func_80096CA8(s32 idx, s32 first) {
+void SetupWaveModel(s32 idx, s32 first) {
     Wad wad;
     u8 *WADptr;
     s32 TXLDptr;
@@ -3770,11 +3770,11 @@ void func_80096CA8(s32 idx, s32 first) {
     s32 flags;
 
     flags = 0;
-    if (D_80156D38[idx].f3 == 0) {
-        D_80156D38[idx].loaded = 1;
+    if (gWaveInstance[idx].f3 == 0) {
+        gWaveInstance[idx].loaded = 1;
         return;
     }
-    if (first == 0 && D_80156D38[idx].f5 == 0) {
+    if (first == 0 && gWaveInstance[idx].f5 == 0) {
         return;
     }
     if (active_player_count == 1) {
@@ -3787,23 +3787,23 @@ void func_80096CA8(s32 idx, s32 first) {
     } else {
         flags |= 8;
     }
-    if (D_80156D38[idx].f5 != 0) {
-        WADptr = *D_80156D38[idx].p0C;
+    if (gWaveInstance[idx].f5 != 0) {
+        WADptr = *gWaveInstance[idx].p0C;
     } else {
-        WADptr = (u8 *)D_80156D38[idx].p0C;
+        WADptr = (u8 *)gWaveInstance[idx].p0C;
     }
     n = idx;
     if (first != 0) {
         func_80096C28(&wad, WADptr);
     } else {
-        offset = *D_80156D38[idx].p0C - (u32)D_80156D38[idx].w10;
+        offset = *gWaveInstance[idx].p0C - (u32)gWaveInstance[idx].w10;
         func_80096BBC(&wad, (s32)WADptr, (s32)offset);
     }
-    D_80156D38[idx].w10 = *D_80156D38[idx].p0C;
+    gWaveInstance[idx].w10 = *gWaveInstance[idx].p0C;
     D_801161F4[idx].ptr = (void *)lookup_with_output(&wad, 0x4F424844, &D_801161F4[idx].count);
     D_80151AE8[idx].ptr = (void *)lookup_with_output(&wad, 0x54584844, &D_80151AE8[idx].count);
     ((Tab *)D_80138670)[idx].ptr = (void *)lookup_with_output(&wad, 0x504C4844, &((Tab *)D_80138670)[idx].count);
-    if (D_80156D38[idx].type >= 101 && D_80156D38[idx].type < 120) {
+    if (gWaveInstance[idx].type >= 101 && gWaveInstance[idx].type < 120) {
         D_801392D0 = (TexRec *)lookup_with_output(&wad, 0x50544844, &D_801392D4);
     }
     TXLDptr = lookup_with_output(&wad, 0x54584C44, &TXLDcnt);
@@ -3824,12 +3824,12 @@ void func_80096CA8(s32 idx, s32 first) {
             }
         }
     }
-    if (D_80156D38[idx].type >= 101 && D_80156D38[idx].type < 120) {
+    if (gWaveInstance[idx].type >= 101 && gWaveInstance[idx].type < 120) {
         for (i = 0; i < D_801392D4; i++) {
             D_801392D0[i].w1C += (u32)(first ? WADptr : offset);
             D_801392D0[i].w18 += (u32)(first ? WADptr : offset);
         }
     }
-    D_80156D38[idx].loaded = 1;
+    gWaveInstance[idx].loaded = 1;
     entity_render_mode(idx);
 }

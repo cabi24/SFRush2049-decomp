@@ -231,7 +231,7 @@ void particle_collision(void);
 void resource_type_select(s32 a);
 void audio_doppler(s32 a);
 void audio_distance_atten(s32 a);
-void sound_loop_set(void);
+void TitlePane(void);
 void func_800B5688(void);
 void func_800B4FB0(s32 a);
 
@@ -327,7 +327,7 @@ void physics_sym(void) {
         p = &D_80156CF0[D_8015698C];
         if (!p->b0 != D_8011AD6C) {
             D_8011AD6C = !p->b0;
-            sound_loop_set();
+            TitlePane();
         }
     }
     if (D_80157244) {

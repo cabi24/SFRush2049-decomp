@@ -42,7 +42,7 @@
    "reason": "retail calls it from music_tempo_set with jal; our small body is otherwise inlined by umerge in the shadow unit (wave 7, w7d)"
   },
   {
-   "name": "sound_loop_set",
+   "name": "TitlePane",
    "reason": "retail calls it by jal from physics_sym and the asm func_8010E8B4; with physics_sym its only C caller umerge would inline it (w29b); drop when func_8010E8B4 lands in physics_sym"
   }
  ],
@@ -198,7 +198,7 @@
    "reason": "group func_800E56F8 (w29c): non-static nested helper (arcade update_model) inlined into func_800E6AF8, caller-less, leaves no stub"
   },
   {
-   "name": "sound_loop_set",
+   "name": "TitlePane",
    "reason": "group physics_sym (w29b): internal callee (= GC _TitlePane), s0/s1/s2/s4 unsaved; as a kept name it compiles o32"
   },
   {
@@ -398,7 +398,7 @@
    "reason": "locked as an empty stub; the camera slot setter inlined into camera_update and camera_process_input (wave 11, w11c)"
   },
   {
-   "name": "func_800F1210",
+   "name": "SetHighScoreState",
    "file": "src/blob/groups/frontier_billboard_render/func_800F1210.c",
    "reason": "the locked func_800F2718_grp also defines a partial func_800F1210; billboard_render and func_800F1930 need this group's reconstruction (178/244 and 62/245 otherwise), w15f"
   },

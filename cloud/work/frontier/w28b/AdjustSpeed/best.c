@@ -93,7 +93,7 @@ void func_800A2678(PakNode *node) {
     func_80091FBC(&D_801460E0, node, D_801460E0.head);
 }
 
-void AdjustSpeed(PakNode *node)
+void pak_delete_file_retry(PakNode *node)
 {
     Controller *controller;
     OSPfsState *file;

@@ -33,7 +33,7 @@ typedef struct { u8 pad0[8]; u32 *dl; u8 padC[4]; } Part;
 typedef struct { u8 pad0[0x18]; Part part[4]; } Model;
 typedef struct { Model *models; s32 count; } ModelList;
 
-extern ResSlot D_80156D38[];
+extern ResSlot gWaveInstance[];
 extern ModelList D_801161F4[];
 extern s8 D_80140A04;
 
@@ -49,8 +49,8 @@ void entity_render_mode(s32 index)
     s32 count;
 
     func_80096288(index, 1, 1);
-    if (D_80156D38[index].loaded) {
-        if (D_80156D38[index].mode != (D_80140A04 != 0)) {
+    if (gWaveInstance[index].loaded) {
+        if (gWaveInstance[index].mode != (D_80140A04 != 0)) {
             m = D_801161F4[index].models;
             count = D_801161F4[index].count;
             for (i = 0; i < count; i++) {
@@ -61,7 +61,7 @@ void entity_render_mode(s32 index)
                 }
                 m++;
             }
-            D_80156D38[index].mode = (D_80140A04 != 0);
+            gWaveInstance[index].mode = (D_80140A04 != 0);
         }
     }
 }

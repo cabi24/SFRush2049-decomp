@@ -21,7 +21,7 @@
     "audio_frame_sync",
     "brake_force_apply",
     "fp_call_wrapper",
-    "func_80096CA8",
+    "SetupWaveModel",
     "func_80097164",
     "suspension_setup",
     "func_80097694",

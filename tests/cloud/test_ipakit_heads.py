@@ -7,6 +7,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "cloud" / "work" / "tools"))
 from ipakit import Corpus, Func, IMAGE_BASE, load_corpus, heads, unique_targets  # noqa: E402
+import json  # noqa: E402
+W29N_RENAMES = {r['old']: r['new'] for r in json.loads(
+    (ROOT / 'cloud/work/frontier/w29n/renames.json').read_text())['renames'] if r['status'] == 'accepted'}
 
 JR_RA = 0x03E00008
 ADDIU_SP_M16 = 0x27BDFFF0
@@ -41,7 +44,10 @@ class HeadTests(unittest.TestCase):
             else:
                 self.assertEqual(kind, 'func', hex(a))
                 self.assertFalse(f.discovered)
-                self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))
+                # a registered head keeps its func_ name unless a symbol rename moved it
+                # (w29n: cloud/work/frontier/w29n/renames.json, e.g. func_80108154 = animLapTime)
+                name = 'func_%08X' % a
+                self.assertEqual((f.name, len(f.words)), (W29N_RENAMES.get(name, name), words))
         self.assertEqual(opaque, {0x80104704})
 
     def test_six_switch_heads_are_registered_with_proved_extents(self):
@@ -51,7 +57,8 @@ class HeadTests(unittest.TestCase):
             kind, f, _ = self.c.resolve(a)
             self.assertEqual(kind, 'func', hex(a))
             self.assertFalse(f.discovered)
-            self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))
+            name = 'func_%08X' % a   # w29n: func_8010221C = drawMain
+            self.assertEqual((f.name, len(f.words)), (W29N_RENAMES.get(name, name), words))
             self.assertNotIn(a, self.rows)
 
     def test_func_80107EDC_is_registered_with_proved_extent(self):

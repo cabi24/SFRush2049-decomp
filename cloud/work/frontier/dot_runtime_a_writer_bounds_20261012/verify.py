@@ -162,7 +162,7 @@ def inputs():
     previous=score.ASM_DIR
     try:
         score.ASM_DIR=ROOT/'asm/us/blob'
-        for name in ('func_800A1644','func_800BE4F0','func_800BE6A4','track_process_main',
+        for name in ('func_800A1644','func_800BE4F0','func_800BE6A4','PS_CreateFile',
                      'track_render_process','no_catchup','func_800A4E58','func_800A510C',
                      'func_800A5158','audio_frame_sync','func_80097164','fcvt_wrapper',
                      'sound_pitch_diff_halved','object_manager_update','state_utility','menu_input_process',

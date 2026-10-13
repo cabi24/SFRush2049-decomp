@@ -17,8 +17,8 @@ s32 func_800CC040(s32 slot, void *data, void *output, s32 force)
     if (mutate_selection) D_80144DA0 = 3;
     return save_result;
 }
-void func_800F1210(s32 state) { transitions++; next_state = state; }
-void func_800F0F44(s32 slot) { status_calls++; status_slot = slot; }
+void SetHighScoreState(s32 state) { transitions++; next_state = state; }
+void FindGhosts(s32 slot) { status_calls++; status_slot = slot; }
 static void reset(void)
 {
     static int data, output;

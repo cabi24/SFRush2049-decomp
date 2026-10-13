@@ -4,7 +4,7 @@
     "func_800F2718"
   ],
   "context": [
-    "func_800F1210"
+    "SetHighScoreState"
   ],
   "files": [
     "func_800F2718.c"

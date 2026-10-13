@@ -2,7 +2,7 @@
  "name": "frontier_results_table",
  "members": [
   "func_80102F30",
-  "func_8010221C",
+  "drawMain",
   "func_80101904",
   "func_80101D84",
   "func_80102448",

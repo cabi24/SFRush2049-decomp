@@ -38,7 +38,7 @@ typedef struct ResSlot {
     /* 0x10 */ s32 unk10;
 } ResSlot; /* 0x14 */
 
-extern ResSlot D_80156D38[];
+extern ResSlot gWaveInstance[];
 void audio_loop_control(void *ptr, s32 dec);
 
 extern s32 D_80149B08;
@@ -60,7 +60,7 @@ void func_80096288(s32 arg0, s32 arg1, s32 arg2)
 void *slot_value_get(s32 index)
 {
     func_80096288(index, 0, 0);
-    return D_80156D38[index].data;
+    return gWaveInstance[index].data;
 }
 
 void display_list_alloc(s32 index)
@@ -68,7 +68,7 @@ void display_list_alloc(s32 index)
     ResSlot *slot;
 
     func_80096288(index, 0, 0);
-    slot = &D_80156D38[index];
+    slot = &gWaveInstance[index];
     audio_loop_control(slot->data, 0);
     do { slot->active = 1; } while (0);
 }
@@ -76,7 +76,7 @@ void display_list_alloc(s32 index)
 s8 player_state_get(s32 index)
 {
     func_80096288(index, 0, 0);
-    return D_80156D38[index].state;
+    return gWaveInstance[index].state;
 }
 
 void slot_deactivate(s32 index)
@@ -84,7 +84,7 @@ void slot_deactivate(s32 index)
     ResSlot *slot;
 
     func_80096288(index, 0, 0);
-    slot = &D_80156D38[index];
+    slot = &gWaveInstance[index];
     audio_loop_control(slot->data, 1);
     do { slot->active = 0; } while (0);
 }

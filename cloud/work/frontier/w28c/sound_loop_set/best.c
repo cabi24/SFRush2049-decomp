@@ -67,7 +67,7 @@ static s32 font_set(s32 font)
     return old;
 }
 
-void sound_loop_set(void)
+void TitlePane(void)
 {
     s32 width;
     s32 height;
@@ -100,7 +100,7 @@ s32 func_8010E8B4(void *item)
         if (!(D_801174B4 & 0x7C03FFFE)) {
             font_set(13);
             D_8011AD6C = D_80156CF0[D_8015698C][0] == 0;
-            sound_loop_set();
+            TitlePane();
             y = object_bytes_sum_global() * 2 + 10;
             ambient_sound_set(D_8011AD70[0] - 8, y - 4, D_8011AD70[0] + D_8011AD70[1] + 8, y + D_8011AD70[2] + 4,
                               176, 0, 0, 0);

@@ -567,7 +567,7 @@
       "bytes": 520,
       "native_sha256": "2f8938578f2c7228afcf595ebfc5965922de56a80e88bfcdb6450ecfef77b63c",
       "source": "src/blob/groups/audio_frame_sync/group.c",
-      "source_sha256": "5d9900db61a0e5df68e8810b2466a71b8e341b3a7c87ee349429f498126f62a2",
+      "source_sha256": "100bcc8ed33420e3411086f857224f8d87a8e1da7e90cb1de9f9cdcb563114da",
       "scope": "read-only source/native contract witness; not compiled or executed as helper internals"
     },
     "func_800BB02C": {

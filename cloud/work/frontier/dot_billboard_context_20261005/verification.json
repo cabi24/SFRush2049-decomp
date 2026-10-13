@@ -14,14 +14,14 @@
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "source_sha256": {
-    "group/func_800F2718.c": "4af528260039fd0220d52acec370d662d85c67622b51abf7e2fff2af459ccdf0",
+    "group/func_800F2718.c": "bbe4b97550a51adf3a7420d9cbf992b397c16d666f4b0259cad0539df59ba21c",
     "group/func_800F207C.c": "6a60b7a5e4f5d5edad5a75f966bb994a7bbd807ce7c5f8041cbc7f5c1601aed7",
-    "group/func_800F0F44.c": "b4e9940ae73e7959017767225a099f0e5eb3cbb22618b16efade38e7000154a7",
-    "group/func_800F1210.c": "2d36c156676df203b910372b21dd4231553ab1a03e0d18ee1d0f6b9128635631",
-    "group/func_800F1930.c": "eedb1ad33f218d525d36189d9becf93cca9cc8240e33b1e261cce1022d16e7ff",
-    "group/billboard_render.c": "47278f88f6ca3ae439730ae805eac6d94546bd13ce6d1ec6aa8b2c0f439feb2b",
-    "group/group.json": "7ad49a2bc53e0be3b26d3c18482fa63f50a295b36413b90dffd071e0a5db0adc",
-    "semantic_test.c": "412c370c225ffa7a193d745bab525517a6b8933ef542264a017a951ccb9e9d94"
+    "group/func_800F0F44.c": "ee09b75b1a421b0cc1a2c5bdb91da21c84df66ece06007f241006da1ae51d99b",
+    "group/func_800F1210.c": "0a678a3da531b8991e5a3c366b2f08e970650975486b7a95bfc6e754eda6d6e4",
+    "group/func_800F1930.c": "53d9a08b1cd05ad6706c535d03b5077db23a95e539a6b096a562d6bb5ad82006",
+    "group/billboard_render.c": "a672930ba265029c0055059d25d5eeaf4461d8ab5ef85c60f9380299af6b44c4",
+    "group/group.json": "2b2b89e29539d919e14120cee9f769a4ed153dceaa88359c5a40d839a791a75b",
+    "semantic_test.c": "23606c490e956fdbe5e0e32a71b63746d789fc92c9ab593fa7da59c4955fc8c5"
   },
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
@@ -82,7 +82,7 @@
       "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
       "frame_bytes": 24
     },
-    "func_800F0F44": {
+    "FindGhosts": {
       "differing": 68,
       "total": 116,
       "unresolved": [],
@@ -96,7 +96,7 @@
       "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
       "frame_bytes": 56
     },
-    "func_800F1210": {
+    "SetHighScoreState": {
       "differing": 399,
       "total": 454,
       "unresolved": [],
@@ -179,7 +179,7 @@
         "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
         "frame_bytes": 24
       },
-      "func_800F0F44": {
+      "FindGhosts": {
         "differing": 110,
         "total": 116,
         "unresolved": [],
@@ -193,7 +193,7 @@
         "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
         "frame_bytes": 24
       },
-      "func_800F1210": {
+      "SetHighScoreState": {
         "differing": 399,
         "total": 454,
         "unresolved": [],
@@ -275,7 +275,7 @@
         "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
         "frame_bytes": 24
       },
-      "func_800F0F44": {
+      "FindGhosts": {
         "differing": 68,
         "total": 116,
         "unresolved": [],
@@ -289,7 +289,7 @@
         "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
         "frame_bytes": 56
       },
-      "func_800F1210": {
+      "SetHighScoreState": {
         "differing": 399,
         "total": 454,
         "unresolved": [],

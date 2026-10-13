@@ -5,7 +5,7 @@ s32 func_800A1910(u8 *a, u8 *b, s32 n);
 extern void *memcpy(void *, void *, unsigned);
 u32 format_string_parse(u8 *, u32);
 struct C96Handle;
-void slot_state_lookup(struct C96Handle *, u8 *, u32);
+void PS_WriteFile(struct C96Handle *, u8 *, u32);
 void func_800CCE5C(X **arg0, u8 *arg1)
 {
 Y *y;
@@ -15,7 +15,7 @@ Y *y;
  memcpy((*arg0)->name, arg1, 11);
  memcpy(y->name, arg1, 11);
  y->f38 = format_string_parse(y->name, 11);
- slot_state_lookup((*arg0)->f8, (u8 *) &y->f38, 15);
+ PS_WriteFile((*arg0)->f8, (u8 *) &y->f38, 15);
  }
  }
 }

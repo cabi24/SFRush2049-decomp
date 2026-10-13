@@ -65,7 +65,7 @@ static void pair_set(u32 first, u32 second)
     p->second = second;
 }
 
-void attract_video_handler(s32 sel, s32 row, s32 col, s32 text)
+void control_cell_text2(s32 sel, s32 row, s32 col, s32 text)
 {
     Cell *c;
     s32 y;
@@ -93,7 +93,7 @@ void __standin_attract_video_handler(s32 s, s32 t)
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            attract_video_handler(s, i, j, t);
+            control_cell_text2(s, i, j, t);
         }
     }
 }

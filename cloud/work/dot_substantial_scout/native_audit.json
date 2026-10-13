@@ -221,7 +221,7 @@
         {
           "address": "0x8010221C",
           "names": [
-            "func_8010221C"
+            "drawMain"
           ],
           "count": 1
         },
@@ -318,7 +318,7 @@
         }
       ],
       "direct_callers": [
-        "func_8010221C"
+        "drawMain"
       ]
     },
     {

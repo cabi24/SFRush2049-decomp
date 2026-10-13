@@ -34,6 +34,6 @@
       12
     ]
   ],
-  "source_sha256": "b2cb59164614713407adb7d25ae8ddcbb19bc422b85c1c08a66cfb3d2093ebfd",
+  "source_sha256": "badf90dfc5011b038b7c665d898f40d44d0519c554be642c31583ea914667ed5",
   "limits": "Synthetic 160-byte profiles; native MIPS caller and internal helper executed, authenticated native jump tables read. The accepted checksum and external persistence routine use explicit functional contracts. Host layout populated through fields; host checksum endianness normalized. This is semantic evidence, not a match or ROM claim."
 }

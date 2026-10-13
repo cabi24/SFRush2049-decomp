@@ -47,7 +47,7 @@ def test_committed_table_has_the_lane_conventions():
     assert t["slot_state_setup"]["params"] == ["s2"] and t["slot_state_setup"]["clobbers"] == ["s0", "s1", "s3"]
     assert t["sound_update_channel"]["params"] == ["t0"]
     assert t["func_800B6748"]["params"] == ["a0", "a1", "a2", "a3", "t0", "t1", "t2"]
-    assert t["func_80096CA8"]["params"] == ["s8", "t0"]
+    assert t["SetupWaveModel"]["params"] == ["s8", "t0"]
     for name, e in t.items():
         assert e.get("evidence"), name
         if "params" in e:     # every shim is buildable

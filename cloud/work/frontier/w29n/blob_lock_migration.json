@@ -1,0 +1,700 @@
+{
+ "map": {
+  "attract_mode_handler": "control_cell_text",
+  "attract_video_handler": "control_cell_text2",
+  "attract_demo_handler": "control_cell_text3",
+  "AdjustSpeed": "pak_delete_file_retry",
+  "audio_doppler_full": "ShowCountdown",
+  "attract_or_transition": "gfx_frame_begin",
+  "func_800F0914": "PrintScores",
+  "func_800F1210": "SetHighScoreState",
+  "func_80108154": "animLapTime",
+  "func_800CD104": "CreatePlayer",
+  "func_800C813C": "SaveServer",
+  "func_80096CA8": "SetupWaveModel",
+  "sound_loop_set": "TitlePane",
+  "track_process_main": "PS_CreateFile",
+  "slot_state_lookup": "PS_WriteFile",
+  "MaxPathZeroControls": "PS_FlushFile",
+  "track_collision_setup": "PS_FlushPak",
+  "D_80140B20": "gHighScoreState",
+  "D_80149418": "namePanes",
+  "D_80146208": "codePane",
+  "D_8002E870": "gDefStartTimes",
+  "D_80156D38": "gWaveInstance",
+  "func_800F0F44": "FindGhosts",
+  "func_8010221C": "drawMain",
+  "func_800E6AF8": "model_iteration",
+  "lap_complete": "animElapsedTimerText",
+  "race_finish": "animPlace"
+ },
+ "base": "HEAD",
+ "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+ "bodies": 1041,
+ "rekeyed": [
+  "MaxPathZeroControls -> PS_FlushFile",
+  "attract_or_transition -> gfx_frame_begin",
+  "audio_doppler_full -> ShowCountdown",
+  "func_800E6AF8 -> model_iteration",
+  "func_800F0914 -> PrintScores",
+  "func_800F0F44 -> FindGhosts",
+  "func_800F1210 -> SetHighScoreState",
+  "func_8010221C -> drawMain",
+  "func_80108154 -> animLapTime",
+  "lap_complete -> animElapsedTimerText",
+  "slot_state_lookup -> PS_WriteFile",
+  "sound_loop_set -> TitlePane",
+  "track_collision_setup -> PS_FlushPak"
+ ],
+ "entries": [
+  {
+   "kind": "group",
+   "name": "menu_cc040_20261004",
+   "old_sha256": "d0516e6ace9b7afed95c0c27724bcc2a29ff3c1dbfc37497a0a75d30f0371bce",
+   "new_sha256": "07ccf1ed7d96011a6d06af2b1cc99c95a3d45224773cfd06179838bb6348c392",
+   "changed_files": [
+    "src/blob/groups/menu_cc040_20261004/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "AdjustSteer",
+    "menu_item_value_get",
+    "menu_transition"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "Effects_UpdateEmitters",
+   "old_sha256": "30734bed68afb9a748669c69eb3b6eb797d0da8558f7bfb5284e2c0dfa74cba3",
+   "new_sha256": "11aba2a2e741dedeccc1f3fd91b16d63dfcedbbad47616e70fdde2c75a5cd4c6",
+   "changed_files": [
+    "src/blob/Effects_UpdateEmitters.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "Effects_UpdateEmitters"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_billboard_render",
+   "old_sha256": "d67acb98034aed48e820e6d65344db493e372d02683f50ce77d852506037fb20",
+   "new_sha256": "fe182310a635559fb83da0deb5e589889c72e8979e4d73bd5cefd42bf5d31f5f",
+   "changed_files": [
+    "src/blob/groups/frontier_billboard_render/group.json",
+    "src/blob/groups/frontier_billboard_render/func_800F2718.c",
+    "src/blob/groups/frontier_billboard_render/func_800F0F44.c",
+    "src/blob/groups/frontier_billboard_render/func_800F1210.c",
+    "src/blob/groups/frontier_billboard_render/func_800F0914.c",
+    "src/blob/groups/frontier_billboard_render/func_800F1930.c",
+    "src/blob/groups/frontier_billboard_render/billboard_render.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "FindGhosts",
+    "PrintScores",
+    "SetHighScoreState"
+   ],
+   "members": [
+    "FindGhosts",
+    "PrintScores",
+    "SetHighScoreState",
+    "billboard_render",
+    "func_800F1930",
+    "func_800F207C"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_heap_release_a25",
+   "old_sha256": "b5acdb813b24b73a63cb5006c08811d46ae761b2e628c5ed2d6469f94baa4844",
+   "new_sha256": "6891c2c794f43289d54a2d0fdb589547e9c5c279f4a67fa45cfc0229ea52c2f9",
+   "changed_files": [
+    "src/blob/groups/codex_heap_release_a25/func_80096130.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "InitMaxPath",
+    "MP_TargetSpeed",
+    "NextMaxPath",
+    "PrevMaxPath",
+    "assign_default_paths",
+    "audio_effect_process",
+    "audio_reverb_update",
+    "car_angular_velocity_clamp",
+    "car_damage_visual",
+    "func_80091AF0",
+    "func_80091AF8",
+    "func_80096130",
+    "func_800C885C",
+    "func_800C8918",
+    "func_800CB9D0",
+    "menu_item_select",
+    "stat_race_end",
+    "sync_maxpath_to_checkpoint",
+    "synced_model_render",
+    "wheel_params_set"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "pak_write_cluster",
+   "old_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+   "new_sha256": "7133b7bab30217243ee1a732d655324ec2e5e5ff6841d3193e1733acee5f3ae1",
+   "changed_files": [
+    "src/blob/groups/pak_write_cluster/group.json",
+    "src/blob/groups/pak_write_cluster/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "PS_FlushFile",
+    "PS_FlushPak",
+    "PS_WriteFile"
+   ],
+   "members": [
+    "PS_FlushFile",
+    "PS_FlushPak",
+    "PS_WriteFile",
+    "func_800A1BB4",
+    "func_800A1C6C",
+    "func_800A1DD4",
+    "track_data_decompress"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "audio_doppler_full",
+   "old_sha256": "6191673e9d7879e96b85535c9617ccb91b2453c4f69ec8c8294f36b3d608893d",
+   "new_sha256": "571149f1784cf12ab02c8374daf72fea543c2da5667535f9d4022d1aa6d93c7d",
+   "changed_files": [
+    "src/blob/groups/audio_doppler_full/group.json",
+    "src/blob/groups/audio_doppler_full/audio_doppler_full.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "ShowCountdown"
+   ],
+   "members": [
+    "ShowCountdown"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "physics_sym",
+   "old_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
+   "new_sha256": "71a854ca427aafad4127a8d8a81d9d86f12cb94b29dcb2c7c69bcd0a72dd309d",
+   "changed_files": [
+    "src/blob/groups/physics_sym/group.json",
+    "src/blob/groups/physics_sym/group.c",
+    "src/blob/groups/physics_sym/slp.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "TitlePane"
+   ],
+   "members": [
+    "TitlePane",
+    "func_800B55F4",
+    "func_800B5688",
+    "func_800B59E8",
+    "func_800B59F0",
+    "physics_sym"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "credits_scroll_grp",
+   "old_sha256": "c48890bccce645f5de6bdcc289e01be095b9356daeb3b21dc620fe3032a56282",
+   "new_sha256": "e9518fca73bbfc0717405e5bb5cc542f5cdb415311448289cc9d954303e9083b",
+   "changed_files": [
+    "src/blob/groups/credits_scroll_grp/group.json",
+    "src/blob/groups/credits_scroll_grp/gr3_8154.c",
+    "src/blob/groups/credits_scroll_grp/gr3_761c.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "animElapsedTimerText",
+    "animLapTime"
+   ],
+   "members": [
+    "animElapsedTimerText",
+    "animLapTime",
+    "credits_scroll",
+    "func_80100B8C",
+    "func_80107EDC",
+    "func_8010A53C",
+    "slot_state_setup",
+    "world_trigger_check"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "slot_sound",
+   "old_sha256": "ff088b0b1090913e6d01bef230618a07a36c6b767e5c90feab5ab899625d062d",
+   "new_sha256": "40000fa45ee8063deb71056948ce45b2cb1f8f99b83ed1ede6d9d4e8a457fae1",
+   "changed_files": [
+    "src/blob/groups/slot_sound/group.c",
+    "src/blob/groups/slot_sound/entity_render_mode.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "display_list_alloc",
+    "entity_render_mode",
+    "func_80096288",
+    "func_800A4E58",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "player_state_get",
+    "slot_deactivate",
+    "slot_value_get",
+    "sound_update_channel"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_results_table",
+   "old_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+   "new_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+   "changed_files": [
+    "src/blob/groups/frontier_results_table/group.json",
+    "src/blob/groups/frontier_results_table/results_table.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "drawMain"
+   ],
+   "members": [
+    "drawMain",
+    "func_80100D5C",
+    "func_80101904",
+    "func_80101D84",
+    "func_80102448",
+    "func_80102F30"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80092D80",
+   "old_sha256": "87244a9840fab33cee85e8a655da072e3477db4c39b39af1f488a170d47a0b33",
+   "new_sha256": "0225f95c6ccd9beff5b0d9ccdc8e42e2909f45dfaae5495e9f38e94b426812f2",
+   "changed_files": [
+    "src/blob/func_80092D80.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80092D80"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "audio_frame_sync",
+   "old_sha256": "fe99d7ba4846994e8cc53b313f6311319bec211f48846c69de11349c89c31ccb",
+   "new_sha256": "9f2e1176b9807274f1c4aca5694c7f71fd7a97a9385853492f2847a4f718ce2e",
+   "changed_files": [
+    "src/blob/groups/audio_frame_sync/group.json",
+    "src/blob/groups/audio_frame_sync/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800972C4"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "resource_slot_clear",
+   "old_sha256": "aa65d2d1752cc1c66b784e71aec34bfe2c1270f732574629ed39dd0756bf55e4",
+   "new_sha256": "7d8de57e140202dcc95d137f0e3d3f40cd711881f63f08eb616244020f35a97e",
+   "changed_files": [
+    "src/blob/groups/resource_slot_clear/audio.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80097694",
+    "resource_slot_clear",
+    "resource_slots_clear_multiple"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "menu_save_options",
+   "old_sha256": "0f2eb3d25861166bf94317ef0726d1685d5edf5a25fadd240c4b329a728a054d",
+   "new_sha256": "3a1fb3341c8130c7d265a3ac77851e301958c434c145aa52e0844cf853ff58f3",
+   "changed_files": [
+    "src/blob/groups/menu_save_options/group.json",
+    "src/blob/groups/menu_save_options/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800A370C",
+    "func_800A44E8",
+    "func_800CCCCC",
+    "func_800CCEFC",
+    "func_800CD058",
+    "menu_save_options"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "wheel_setup_initial",
+   "old_sha256": "2aaea9f83a7a3120057a90e47dfb2cfbb29bf2fb37e4a476214fa9ab761ea83e",
+   "new_sha256": "a9f2410c3f404f3157be30846e1fd602da2bf3b35ee99dc3cf7d9c67bcc26f89",
+   "changed_files": [
+    "src/blob/groups/wheel_setup_initial/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800A4B40",
+    "wheel_setup_initial"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_func_800C7200_2",
+   "old_sha256": "e5ecdc4a279a7ec1e223986fd817a7958a769ba25db3bbaa071061dcc0363119",
+   "new_sha256": "771cf9c8ce55ebb6a0e56840557acd9e64c4cfc62236f469517b3e9e6b239afc",
+   "changed_files": [
+    "src/blob/groups/codex_func_800C7200_2/group.json",
+    "src/blob/groups/codex_func_800C7200_2/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800C7200"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "dot_setting_c7578",
+   "old_sha256": "a838ec1408dd74ed3785c4b5e809f6e7d2603502a92431edcf5b61074a9b7e95",
+   "new_sha256": "9229b4a9e5c1a721d6d5874dedd9e27436a8383d72a3c52f3449f23e47b652bc",
+   "changed_files": [
+    "src/blob/groups/dot_setting_c7578/candidate.c",
+    "src/blob/groups/dot_setting_c7578/other_callers.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800C7578"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_menu_a104",
+   "old_sha256": "12b444bfd23e98d0424acca67ae3a643f79acca0237eb256ae49db28ca7ccec8",
+   "new_sha256": "6e81a3414978de56875833e32c510db652b7e04ae7f24aeeffa0731afb064471",
+   "changed_files": [
+    "src/blob/groups/codex_menu_a104/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CC8C8"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_menu_a105",
+   "old_sha256": "45a2a8afe9ae554b712a7e7a31a4d7b4825b74f2c03679ec8b6a90854f7ba6da",
+   "new_sha256": "3cb71bbd32a7dc3933db43e16e650820b0ff86bd0dc9142c88ec718b155170b2",
+   "changed_files": [
+    "src/blob/groups/codex_menu_a105/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CCA04"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "dot_filename_cce5c",
+   "old_sha256": "c97dd14b95383e2f2cded3c6ff2f1c525e3a70ff7bd898ecc445e7e07d434fa8",
+   "new_sha256": "b51143c72f7137ee7f89309bb4911f7ab357229004201e9173fc1968d6225df5",
+   "changed_files": [
+    "src/blob/groups/dot_filename_cce5c/candidate.c",
+    "src/blob/groups/dot_filename_cce5c/other_callers.c",
+    "src/blob/groups/dot_filename_cce5c/filename.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CCE5C"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "dot_range_cd798",
+   "old_sha256": "f709a920227b80ce1f48c7fdc60c304f32d788a2f8363f901c8ce2ad2debfe3a",
+   "new_sha256": "f0cb1c1b5cf336e8b953664715d08737bab90f18d75b6eb45deae2014892f434",
+   "changed_files": [
+    "src/blob/groups/dot_range_cd798/candidate.c",
+    "src/blob/groups/dot_range_cd798/other_callers.c",
+    "src/blob/groups/dot_range_cd798/filename.c",
+    "src/blob/groups/dot_range_cd798/range_update.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CD798"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "dot_records_cd8ec",
+   "old_sha256": "e2d013ad2275c6c241e9de0199a784fa6ca0de8d490a64047d2273e4ce050a12",
+   "new_sha256": "0dec5f2f3ed9ef666c8c992822938d872347f534b16659d277ce19823e422a6e",
+   "changed_files": [
+    "src/blob/groups/dot_records_cd8ec/candidate.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CD8EC"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_control_settings_a4",
+   "old_sha256": "715ab36e6db3863f77e193eba9800b1329ca68cf6a3937c3c47185d659dc0ecd",
+   "new_sha256": "7bfa1dc9b8a1786803bd4b8a1757c361c4cd90194ebf2d3ba8b8af341f4d4543",
+   "changed_files": [
+    "src/blob/groups/codex_control_settings_a4/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800DCCE0",
+    "func_800DCD58"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_800E56F8",
+   "old_sha256": "cad96e9b471a172b63f265225eb1b9081fae077b5e402f48c360a7d252eefac9",
+   "new_sha256": "264a535dc4c88530f2c33d16d5243c8106df796e38833b0440d0189aa319648c",
+   "changed_files": [
+    "src/blob/groups/func_800E56F8/group.json",
+    "src/blob/groups/func_800E56F8/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "model_iteration"
+   ],
+   "members": [
+    "func_800E56F8",
+    "model_iteration"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_800F1114_grp",
+   "old_sha256": "d2e30e158ac14e762f7e71ef6c6d98b661b24e74c4630ba426bef3d31a2ce7cd",
+   "new_sha256": "e07fbbefc3f25ac83e7b442aa81e6f94ec69c06da1d721f472093a4d953389bd",
+   "changed_files": [
+    "src/blob/groups/func_800F1114_grp/func_800F1114.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800F1114"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_800F2718_grp",
+   "old_sha256": "207e0d24e1327557478b8fb1d9b329d4002d56501a97b1a23cea53334bc6157f",
+   "new_sha256": "f498ec6a8fbe5b9bef10a4557997f4901ae0169ac9eba8390b8c899183911346",
+   "changed_files": [
+    "src/blob/groups/func_800F2718_grp/group.json",
+    "src/blob/groups/func_800F2718_grp/func_800F2718.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800F2718"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800FDF88",
+   "old_sha256": "778e69c78226f907a7c606cc1353d7ae0cd7e4ea12e5687a0c391d3aa6ff0589",
+   "new_sha256": "01ff300e1ad01534e50ae37a2b5354f93dbdfc702db1637f24d333d80272617f",
+   "changed_files": [
+    "src/blob/func_800FDF88.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800FDF88"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "gfx_frame_begin",
+   "old_sha256": "4511a700244a6c932c8b3968acd073cdfcdeb7767979d46e398ede96d8fb1ecd",
+   "new_sha256": "8bc7ad86f7fe343213dd318dc5946235890eb48056cf46bbe4d2edc756db80ea",
+   "changed_files": [
+    "src/blob/gfx_frame_begin.c"
+   ],
+   "moved_from": "src/blob/attract_or_transition.c",
+   "renamed_members": [
+    "gfx_frame_begin"
+   ],
+   "members": [
+    "gfx_frame_begin"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_input_aux",
+   "old_sha256": "a2d0eb24c94aaf341c3ca705aeb50f68b02b05ba4af18b049abcfe073769a79d",
+   "new_sha256": "d9432c02609d22028cc48b5cf123dc82275c8f8bc7e4ef9a85cc3848a3cebb21",
+   "changed_files": [
+    "src/blob/groups/codex_input_aux/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "input_aux_handler"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "menu_confirm_dialog",
+   "old_sha256": "42f1cd109ce8c1ee233190b5664e4cbd56bd0b72314c278433d49e8293a43e19",
+   "new_sha256": "f5f46554ed5d864fc986bf86b0c2be3ddfe4c74008909f9cacbe59448837a7e1",
+   "changed_files": [
+    "src/blob/menu_confirm_dialog.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "menu_confirm_dialog"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_menu_records_a88",
+   "old_sha256": "b4cdcd888cbb7b0d33ae89aa1c29b23a78c487a25f23e32e06b8394b6180671a",
+   "new_sha256": "c5424a7c7013c0c22aca3694858cbbcbda6b7ea9c43e9ac0578c6749dae95786",
+   "changed_files": [
+    "src/blob/groups/codex_menu_records_a88/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "menu_dialog_close",
+    "object_data_allocate"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_menu_a86",
+   "old_sha256": "f8bd5ac8effe4fadc6862305f301151e460c5958ad9cecb8b7808266a26d67b2",
+   "new_sha256": "019df40019ae6b407b548823aec1f0cd1b740a4ffefa532ea37dae7fddefb151",
+   "changed_files": [
+    "src/blob/groups/codex_menu_a86/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "menu_option_toggle"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "menu_render_list",
+   "old_sha256": "37a3418a6838859a4a94dfdcd14778b13a98ed94e420fe5ca947b82819809647",
+   "new_sha256": "d7185d54bf20a7e84748fbe0a6dcfb528140d48744c5872ce0b6a37c81a0a897",
+   "changed_files": [
+    "src/blob/menu_render_list.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "menu_render_list"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_menu_a87",
+   "old_sha256": "958b2c13d1f30e060d6bb3937b4874b8fe27bab5dc8e0be72e89e2b839f6e942",
+   "new_sha256": "a1063fc202648e61fd3a6d550444af6252d482dd1906c5425a7ac1c964b0cc72",
+   "changed_files": [
+    "src/blob/groups/codex_menu_a87/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "menu_text_input"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "object_byte71_set_sync",
+   "old_sha256": "c6c6fceeedc587813ffb6345d69ef67e971568c45bfdee2a3a2630c22ce3538c",
+   "new_sha256": "f911cac40a992fffb406c329db748b255cddaffc3f1ea456635e0c8e7d84219d",
+   "changed_files": [
+    "src/blob/object_byte71_set_sync.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "object_byte71_set_sync"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "save_settings",
+   "old_sha256": "dc6471e73075fa64434b4c7b05f1e95375d5c67fa31e1f9c95b3108fbb277415",
+   "new_sha256": "4eec0d469d24f67727b41a0d1283a5607362d9979ce05e5d9258a1e86eedc4dd",
+   "changed_files": [
+    "src/blob/save_settings.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "save_settings"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_state_audio_a146",
+   "old_sha256": "0ca7c9f064c847c300b69e8a1fd738bb23cadbce5b977b57d5799a2dbf08e925",
+   "new_sha256": "712a259c48a3a21ed4292e14104e82d3a90d83b03ddf2d56d9a053f6afc21453",
+   "changed_files": [
+    "src/blob/groups/codex_state_audio_a146/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "state_change_preprocess"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "visual_objects_update",
+   "old_sha256": "b0c01419e28731a66770980fdfc5e3fbe0df965e25bccbf90ded9b6f152a2b78",
+   "new_sha256": "c716b350aca645343f0f90dcc169c4ce144399a1cc3679e82877545b66a540e2",
+   "changed_files": [
+    "src/blob/visual_objects_update.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "visual_objects_update"
+   ]
+  }
+ ]
+}

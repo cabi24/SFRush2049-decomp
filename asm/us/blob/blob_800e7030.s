@@ -7246,10 +7246,10 @@ world_trigger_check:
     .word 0x03E00008
     .word 0x27BD0038
 
-.section .text.attract_or_transition, "ax", @progbits
-.globl attract_or_transition
-attract_or_transition:
-    /* compiled from src/blob/attract_or_transition.c */
+.section .text.gfx_frame_begin, "ax", @progbits
+.globl gfx_frame_begin
+gfx_frame_begin:
+    /* compiled from src/blob/gfx_frame_begin.c */
     .word 0x27BDFFB0
     .word 0x3C0E8016
     .word 0xAFBF0014

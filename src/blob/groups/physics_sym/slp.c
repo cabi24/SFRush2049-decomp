@@ -51,7 +51,7 @@ void *ambient_sound_set(s32, s32, s32, s32, s32, s32, s32, s32);
 
 void gfx_lock_slp(void) { osRecvMesg(&D_801461D0, (void *)0, 1); } void gfx_unlock_slp(void) { osSendMesg(&D_801461D0, (void *)0, 0); } s32 font_select_slp(s32 font) { return slot_state_setup(font); } s32 font_set_slp(s32 font) { s32 old; gfx_lock_slp(); old = font_select_slp(font); gfx_unlock_slp(); return old; }
 
-void sound_loop_set(void)
+void TitlePane(void)
 {
     s32 width;
     s32 height;

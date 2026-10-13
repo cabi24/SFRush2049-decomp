@@ -139,11 +139,11 @@ s32 sprintf(char *, const char *, ...);
 void *memcpy(void *, const void *, u32);
 s32 func_8008AD04(char *, char *);
 void func_800CB748(void *, void *);
-void AdjustSpeed(void *);
-Handle track_process_main(s32, char *, char *, u32, s32, s32);
-void slot_state_lookup(void *, void *, u32);
-s32 MaxPathZeroControls(void *, s32);
-s32 track_collision_setup(s32, s32);
+void pak_delete_file_retry(void *);
+Handle PS_CreateFile(s32, char *, char *, u32, s32, s32);
+void PS_WriteFile(void *, void *, u32);
+s32 PS_FlushFile(void *, s32);
+s32 PS_FlushPak(s32, s32);
 void func_80091FBC(List *, Handle, Handle);
 void drone_set_catchup(void *, s32, s32);
 s32 audio_task_complete(void *, s32);
@@ -289,7 +289,7 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
             if (func_800CBF2C(node, 0, 0)) {
                 func_800CB748(*obj->h40, ((MenuData *)*obj->h40)->data);
                 if ((*node)->slot != NULL) {
-                    AdjustSpeed((*node)->slot);
+                    pak_delete_file_retry((*node)->slot);
                 }
             }
             break;
@@ -299,7 +299,7 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
     size = (u32)audio_buffer_sync((u32)obj->h40);
     sprintf(buf, D_801211E4, (char *)*M2C_FIELD(*owner, void ***, 8) + 18, m->index + 1,
             m->variant ? D_801211EC : D_801211F0);
-    created = track_process_main(id, buf, D_801211F4, size, 0x3544, 0x4E525545);
+    created = PS_CreateFile(id, buf, D_801211F4, size, 0x3544, 0x4E525545);
     if (created == NULL) {
         return 0;
     }
@@ -309,9 +309,9 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
     memcpy(*((Slot *)*created)->data, *obj->h40, size);
     cart_free(obj->h40);
     obj->h40 = ((Slot *)*created)->data;
-    slot_state_lookup(created, *obj->h40, size);
-    MaxPathZeroControls(created, 0);
-    track_collision_setup(id, 1);
+    PS_WriteFile(created, *obj->h40, size);
+    PS_FlushFile(created, 0);
+    PS_FlushPak(id, 1);
     AdjustSteer(created);
     obj->h40 = NULL;
     obj->h36 = NULL;

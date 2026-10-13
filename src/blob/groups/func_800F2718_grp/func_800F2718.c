@@ -14,8 +14,8 @@ extern s32 gameplay_mode;
 extern InputRecord input_rec0[];
 extern s8 D_80142694[];
 extern s8 D_80143CE8;
-extern s8 *D_80149418[];
-extern s32 D_80140B20;
+extern s8 *namePanes[];
+extern s32 gHighScoreState;
 extern s32 D_801148CC;
 
 void sound_handles_array_clear(s8 *arg0);
@@ -23,33 +23,33 @@ s32 viDeadlinePassed(s32 arg0);
 void resource_type_select(s32 arg0);
 void sound_stop(s32 arg0);
 
-extern s8 *D_80146208;
+extern s8 *codePane;
 extern s8 *D_80149798[3];
 
-void func_800F1210(s32 mode)
+void SetHighScoreState(s32 mode)
 {
     s32 i;
 
-    if (mode == D_80140B20) {
+    if (mode == gHighScoreState) {
         return;
     }
     if (D_801148CC != 0) {
         sound_stop(D_801148CC);
         D_801148CC = 0;
     }
-    switch (D_80140B20) {
+    switch (gHighScoreState) {
     case 1:
         for (i = 0; i < active_player_count; i++) {
-            if (D_80149418[i] != 0) {
-                sound_handles_array_clear(D_80149418[i]);
-                D_80149418[i] = 0;
+            if (namePanes[i] != 0) {
+                sound_handles_array_clear(namePanes[i]);
+                namePanes[i] = 0;
             }
         }
         break;
     case 2:
-        if (D_80146208 != 0) {
-            sound_handles_array_clear(D_80146208);
-            D_80146208 = 0;
+        if (codePane != 0) {
+            sound_handles_array_clear(codePane);
+            codePane = 0;
         }
         break;
     case 3:
@@ -71,7 +71,7 @@ void func_800F1210(s32 mode)
         resource_type_select(7);
         break;
     }
-    D_80140B20 = mode;
+    gHighScoreState = mode;
 }
 
 void func_800F2718(void)
@@ -86,9 +86,9 @@ void func_800F2718(void)
                 resource_type_select(input_rec0[i].unk04);
                 D_80142694[i] = 0;
             }
-        } else if (D_80149418[i] != 0) {
-            sound_handles_array_clear(D_80149418[i]);
-            D_80149418[i] = 0;
+        } else if (namePanes[i] != 0) {
+            sound_handles_array_clear(namePanes[i]);
+            namePanes[i] = 0;
         }
     }
     for (i = 0; i < active_player_count; i++) {
@@ -98,16 +98,16 @@ void func_800F2718(void)
     }
     if (done == 1) {
         if (D_80143CE8) {
-            func_800F1210(2);
+            SetHighScoreState(2);
         } else if (gameplay_mode == 0 || gameplay_mode == 3 || gameplay_mode == 2) {
-            func_800F1210(3);
+            SetHighScoreState(3);
         } else {
-            func_800F1210(0);
+            SetHighScoreState(0);
         }
     }
 }
 
 void __standin_a(void) { func_800F2718(); }
 void __standin_b(void) { func_800F2718(); }
-void __standin_c(void) { func_800F1210(1); }
-void __standin_d(void) { func_800F1210(4); }
+void __standin_c(void) { SetHighScoreState(1); }
+void __standin_d(void) { SetHighScoreState(4); }

@@ -558,7 +558,7 @@ void func_80100E58(void)
 }
 
 /* The only native direct caller of both callbacks. */
-void func_8010221C(void)
+void drawMain(void)
 {
     char *text;
     s32 item,color;
@@ -612,7 +612,7 @@ s32 func_80102F30(s32 arg0)
     f32 t;
     switch(D_80138870) {
     case 1:
-        func_8010221C();
+        drawMain();
         break;
     case 2:
         switch(gameplay_mode) {

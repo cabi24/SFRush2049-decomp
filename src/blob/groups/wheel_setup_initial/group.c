@@ -15,14 +15,14 @@
  */
 typedef signed char s8; typedef unsigned char u8; typedef int s32; typedef unsigned int u32;
 typedef struct ResSlot {s8 f0,loaded,f2,f3,f4,f5;u8 type,pad07;s32 pad08;u8 **p0C;u8 *w10;} ResSlot;
-extern ResSlot D_80156D38[64];
+extern ResSlot gWaveInstance[64];
 void func_80096130(s32 index);
 void func_800A4B40(ResSlot *slot, s32 i, s32 type, s8 sub);
 void wheel_setup_initial(s32 type) {
     s32 i;
     for (i = 0; i < 64; i++) {
         if (type == 64) {}
-        func_800A4B40(&D_80156D38[i], i, type, -1);
+        func_800A4B40(&gWaveInstance[i], i, type, -1);
     }
 }
 void func_800A4B40(ResSlot *slot, s32 i, s32 type, s8 sub) {

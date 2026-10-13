@@ -484,10 +484,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/static_C19/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w27s/rebind/sdk_initialize_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w29n/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "0d78df0705bd9b4017b3aa0a97e6965bd7149755cb81c4736a1a41f7696ec516",
+      "context_proof_sha256": "09c968df1397180163cf48e556a8dba1b42ff7fc3ed44c4e33fb16d256997d04",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

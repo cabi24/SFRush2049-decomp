@@ -1373,10 +1373,10 @@ func_80101D84:
     .word 0x03E00008
     .word 0x27BD0188
 
-.section .text.func_8010221C, "ax", @progbits
-.globl func_8010221C
-func_8010221C:
-    /* compiled from src/blob/func_8010221C.c */
+.section .text.drawMain, "ax", @progbits
+.globl drawMain
+drawMain:
+    /* compiled from src/blob/drawMain.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x44806000
@@ -6605,10 +6605,10 @@ checkpoint_hit:
     .word 0x03E00008
     .word 0x27BD0090
 
-.section .text.lap_complete, "ax", @progbits
-.globl lap_complete
-lap_complete:
-    /* compiled from src/blob/lap_complete.c */
+.section .text.animElapsedTimerText, "ax", @progbits
+.globl animElapsedTimerText
+animElapsedTimerText:
+    /* compiled from src/blob/animElapsedTimerText.c */
     .word 0x27BDFF48
     .word 0x3C028011
     .word 0x8C4274B4
@@ -6925,9 +6925,9 @@ func_80107AEC:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.race_finish, "ax", @progbits
-.globl race_finish
-race_finish:
+.section .text.animPlace, "ax", @progbits
+.globl animPlace
+animPlace:
     .word 0x27BDFEE8
     .word 0x3C0E8011
     .word 0x8DCE74B4
@@ -7342,10 +7342,10 @@ func_80107EDC:
     .word 0x03E00008
     .word 0x27BD0048
 
-.section .text.func_80108154, "ax", @progbits
-.globl func_80108154
-func_80108154:
-    /* compiled from src/blob/func_80108154.c */
+.section .text.animLapTime, "ax", @progbits
+.globl animLapTime
+animLapTime:
+    /* compiled from src/blob/animLapTime.c */
     .word 0x27BDFF68
     .word 0xAFBF002C
     .word 0xAFB40028

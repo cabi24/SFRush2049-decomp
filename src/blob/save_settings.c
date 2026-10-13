@@ -29,7 +29,7 @@ s32 control_settings(s32 arg0, s32 arg1, s32 arg2, s8 *done, s32 (*arg4)(void));
 void display_settings(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 void func_800A7428(s16 *arg0, s16 *arg1, u8 *arg2, u8 *arg3, u8 *arg4, u8 *arg5, s32 arg6);
 void func_800A7480(s16 arg0, s16 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, s32 arg6);
-void func_800C813C(s32 arg0, s32 arg1);
+void SaveServer(s32 arg0, s32 arg1);
 
 void save_settings(s32 arg0, s32 mode, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 (*arg6)(void)) {
     s8 done;
@@ -54,7 +54,7 @@ void save_settings(s32 arg0, s32 mode, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
             game_mode_handler();
         }
         if (mode != 11 && mode != 12 && mode != 13 && mode != 10) {
-            func_800C813C(0, 0);
+            SaveServer(0, 0);
         }
         control_settings(arg0, arg4, arg5, &done, arg6);
     }

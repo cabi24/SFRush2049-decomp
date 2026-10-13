@@ -142,7 +142,7 @@
       ]
     ],
     "caller_census_parsed_inputs": {
-      "blob": "7b97b803059d071c3add23983bbbae9bddd1ca860766a226189419ad6cd07dc0",
+      "blob": "6ab5d1ff30cad517fe26902011ec80ce5627ee735a683c65fa3f0af0e9f6b896",
       "boot_tail": "8d6234ce8a8e3b0a06a5be7e11cfd6f0995de0c4106b50b8a89ef9e875964857",
       "ovl_a": "712cbe1f7c90c98c68e91eba4fad810b48d6bd79cad921964562ba3efb7cdf2f",
       "ovl_b": "6383e06cdaa04316a08bfc604cf142a9d227a4075559b54cb902fcedbe8b4dae"

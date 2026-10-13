@@ -31,7 +31,7 @@ extern OSMesgQueue D_801461D0;
 extern TextState countdown_state;
 extern s16 active_player_count, D_80151AD0;      /* gNumPlayers, gNumWindows */
 extern Rect D_801148E8[][4];                     /* gPlayerRects */
-extern s8 *D_80149418[];                         /* namePanes */
+extern s8 *namePanes[];                         /* namePanes */
 extern s8 D_80142694[];                          /* gStuffUnlocked[p] */
 extern s8 D_80150DD8[][19], D_801426A0[][19];    /* tracks: unlocked now / before */
 extern s8 D_80150E30[][13], D_801426F0[][13];    /* cars */
@@ -85,8 +85,8 @@ void func_80103D28(void)
         for (i = 0; i < 6; i++) if (D_80150F40[p][i] && !D_80142DC0[p][i]) stuffCount++;
         x = D_801148E8[D_80151AD0 - 1][p].cx;
         y = D_801148E8[D_80151AD0 - 1][p].cy - stuffCount * object_bytes_sum_global() / 2;
-        if (D_80149418[p] != 0) {
-            crowd_cheer_play(D_80149418[p], D_801148E8[D_80151AD0 - 1][p].x, y - 4,
+        if (namePanes[p] != 0) {
+            crowd_cheer_play(namePanes[p], D_801148E8[D_80151AD0 - 1][p].x, y - 4,
                 D_801148E8[D_80151AD0 - 1][p].x + D_801148E8[D_80151AD0 - 1][p].w,
                 y + stuffCount * object_bytes_sum_global() + 4);
         }

@@ -8,8 +8,8 @@ extern s32 D_801461C0[4];
 extern u32 D_80156944, D_8015694C;
 extern void *D_8014A160, *D_801461A8;
 extern s32 func_800CC040(s32, void *, void *, s32);
-extern void func_800F1210(s32);
-extern void func_800F0F44(s32);
+extern void SetHighScoreState(s32);
+extern void FindGhosts(s32);
 
 void func_800F1930(void)
 {
@@ -75,7 +75,7 @@ void func_800F1930(void)
             D_801461A8 = 0;
             finished = 1;
         }
-        if (finished == 1) func_800F1210(5);
+        if (finished == 1) SetHighScoreState(5);
     }
-    func_800F0F44(D_801460C0);
+    FindGhosts(D_801460C0);
 }

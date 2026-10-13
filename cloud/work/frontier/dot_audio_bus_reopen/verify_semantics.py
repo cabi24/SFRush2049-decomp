@@ -74,7 +74,7 @@ class Native:
                 r[2] = checksum(records[DATA][a-DATA:a-DATA+n])
                 pc = r[31]
                 continue
-            if pc == self.addresses['slot_state_lookup']:
+            if pc == self.addresses['PS_WriteFile']:
                 assert r[4] == LOOKUP
                 calls.append((r[5]-DATA, r[6], bytes(records[DATA][r[5]-DATA:r[5]-DATA+r[6]])))
                 pc = r[31]
@@ -125,7 +125,7 @@ static unsigned char *live;
 static void *lookup;
 static int calls, offset, length;
 static unsigned char snapshot[32];
-void slot_state_lookup(void *p, u32 *record, int size) {
+void PS_WriteFile(void *p, u32 *record, int size) {
     assert(p == lookup && calls == 0 && size <= 32);
     calls++; offset = (unsigned char *)record-live; length = size;
     memcpy(snapshot, record, size);

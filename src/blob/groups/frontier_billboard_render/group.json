@@ -4,9 +4,9 @@
   "billboard_render",
   "func_800F207C",
   "func_800F1930",
-  "func_800F0914",
-  "func_800F1210",
-  "func_800F0F44"
+  "PrintScores",
+  "SetHighScoreState",
+  "FindGhosts"
  ],
  "context": [
   "func_800F2718",

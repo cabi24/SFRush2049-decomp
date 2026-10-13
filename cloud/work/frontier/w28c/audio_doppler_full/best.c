@@ -64,7 +64,7 @@ static void ZOID_ShowPoly(Poly *poly)
     poly->flags &= 0x7FFF;
 }
 
-void audio_doppler_full(s32 active)
+void ShowCountdown(s32 active)
 {
     f32 xyz[4][3];
     f32 dist;

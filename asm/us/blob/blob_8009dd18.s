@@ -4542,10 +4542,10 @@ track_data_decompress:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.track_collision_setup, "ax", @progbits
-.globl track_collision_setup
-track_collision_setup:
-    /* compiled from src/blob/track_collision_setup.c */
+.section .text.PS_FlushPak, "ax", @progbits
+.globl PS_FlushPak
+PS_FlushPak:
+    /* compiled from src/blob/PS_FlushPak.c */
     .word 0x27BDFF98
     .word 0x00047880
     .word 0x01E47823
@@ -4664,10 +4664,10 @@ track_collision_setup:
     .word 0x03E00008
     .word 0x27BD0068
 
-.section .text.MaxPathZeroControls, "ax", @progbits
-.globl MaxPathZeroControls
-MaxPathZeroControls:
-    /* compiled from src/blob/MaxPathZeroControls.c */
+.section .text.PS_FlushFile, "ax", @progbits
+.globl PS_FlushFile
+PS_FlushFile:
+    /* compiled from src/blob/PS_FlushFile.c */
     .word 0x27BDFFA8
     .word 0x3C028011
     .word 0x2442194C
@@ -4768,10 +4768,10 @@ MaxPathZeroControls:
     .word 0x03E00008
     .word 0x27BD0058
 
-.section .text.slot_state_lookup, "ax", @progbits
-.globl slot_state_lookup
-slot_state_lookup:
-    /* compiled from src/blob/slot_state_lookup.c */
+.section .text.PS_WriteFile, "ax", @progbits
+.globl PS_WriteFile
+PS_WriteFile:
+    /* compiled from src/blob/PS_WriteFile.c */
     .word 0x27BDFFE8
     .word 0x10800029
     .word 0xAFBF0014
@@ -4883,9 +4883,9 @@ func_800A2678:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.AdjustSpeed, "ax", @progbits
-.globl AdjustSpeed
-AdjustSpeed:
+.section .text.pak_delete_file_retry, "ax", @progbits
+.globl pak_delete_file_retry
+pak_delete_file_retry:
     .word 0x27BDFF18
     .word 0xAFB70044
     .word 0x3C178011
@@ -5341,9 +5341,9 @@ func_800A2D44:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.track_process_main, "ax", @progbits
-.globl track_process_main
-track_process_main:
+.section .text.PS_CreateFile, "ax", @progbits
+.globl PS_CreateFile
+PS_CreateFile:
     .word 0x27BDFEE8
     .word 0x3C0E8011
     .word 0x81CE194C

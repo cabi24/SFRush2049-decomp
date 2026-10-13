@@ -194,7 +194,7 @@ SECTIONS
         *(.text.lookup_with_output)
         *(.text.func_80096BBC)
         *(.text.func_80096C28)
-        *(.text.func_80096CA8)
+        *(.text.SetupWaveModel)
         *(.text.func_8009715C)
         *(.text.func_80097164)
         *(.text.func_800972BC)
@@ -279,18 +279,18 @@ SECTIONS
         *(.text.func_800A1DD4)
         *(.text.func_800A1E94)
         *(.text.track_data_decompress)
-        *(.text.track_collision_setup)
-        *(.text.MaxPathZeroControls)
-        *(.text.slot_state_lookup)
+        *(.text.PS_FlushPak)
+        *(.text.PS_FlushFile)
+        *(.text.PS_WriteFile)
         *(.text.AdjustSteer)
         *(.text.func_800A2670)
         *(.text.func_800A2678)
-        *(.text.AdjustSpeed)
+        *(.text.pak_delete_file_retry)
         *(.text.drone_set_catchup)
         *(.text.set_catchup)
         *(.text.no_catchup)
         *(.text.func_800A2D44)
-        *(.text.track_process_main)
+        *(.text.PS_CreateFile)
         *(.text.func_800A3424)
         *(.text.func_800A3508)
         *(.text.func_800A3518)
@@ -527,7 +527,7 @@ SECTIONS
         *(.text.func_800B55F4)
         *(.text.visual_objects_update)
         *(.text.func_800B5688)
-        *(.text.sound_loop_set)
+        *(.text.TitlePane)
         *(.text.func_800B5898)
         *(.text.func_800B5940)
         *(.text.func_800B59E8)
@@ -540,7 +540,7 @@ SECTIONS
         *(.text.audio_occlusion)
         *(.text.entity_audio_update)
         *(.text.func_800B61A8)
-        *(.text.audio_doppler_full)
+        *(.text.ShowCountdown)
         *(.text.render_helper)
         *(.text.func_800B669C)
         *(.text.func_800B66B0)
@@ -697,7 +697,7 @@ SECTIONS
         *(.text.draw_speedometer)
         *(.text.func_800C7EC0)
         *(.text.func_800C7EC8)
-        *(.text.func_800C813C)
+        *(.text.SaveServer)
         *(.text.player_mode_set)
         *(.text.hud_speed_display)
         *(.text.func_800C8738)
@@ -753,7 +753,7 @@ SECTIONS
         *(.text.func_800CD058)
         *(.text.func_800CD0F4)
         *(.text.func_800CD0FC)
-        *(.text.func_800CD104)
+        *(.text.CreatePlayer)
         *(.text.menu_confirm_dialog)
         *(.text.menu_dialog_close)
         *(.text.object_data_allocate)
@@ -897,15 +897,15 @@ SECTIONS
         *(.text.func_800DC628)
         *(.text.sound_handles_array_clear)
         *(.text.tournament_unlock_check)
-        *(.text.attract_mode_handler)
+        *(.text.control_cell_text)
         *(.text.func_800DC994)
-        *(.text.attract_demo_handler)
+        *(.text.control_cell_text3)
         *(.text.func_800DCCD0)
         *(.text.func_800DCCD8)
         *(.text.func_800DCCE0)
         *(.text.func_800DCD50)
         *(.text.func_800DCD58)
-        *(.text.attract_video_handler)
+        *(.text.control_cell_text2)
         *(.text.func_800DD0A8)
         *(.text.func_800DD0B0)
         *(.text.func_800DD0B8)
@@ -978,7 +978,7 @@ SECTIONS
         *(.text.func_800E681C)
         *(.text.func_800E6AE8)
         *(.text.func_800E6AF0)
-        *(.text.func_800E6AF8)
+        *(.text.model_iteration)
         /* blob_800e7030 */
         *(.text.func_800E7030)
         *(.text.func_800E7038)
@@ -1028,7 +1028,7 @@ SECTIONS
         *(.text.world_velocity_integrate)
         *(.text.world_collision_response)
         *(.text.world_trigger_check)
-        *(.text.attract_or_transition)
+        *(.text.gfx_frame_begin)
         *(.text.world_trigger_activate)
         *(.text.func_800EE7AC)
         *(.text.func_800EE7B4)
@@ -1048,10 +1048,10 @@ SECTIONS
         *(.text.skid_mark_render)
         *(.text.func_800F0674)
         *(.text.func_800F084C)
-        *(.text.func_800F0914)
-        *(.text.func_800F0F44)
+        *(.text.PrintScores)
+        *(.text.FindGhosts)
         *(.text.func_800F1114)
-        *(.text.func_800F1210)
+        *(.text.SetHighScoreState)
         *(.text.func_800F1928)
         *(.text.func_800F1930)
         *(.text.func_800F1D04)
@@ -1169,7 +1169,7 @@ SECTIONS
         *(.text.func_80100E58)
         *(.text.func_80101904)
         *(.text.func_80101D84)
-        *(.text.func_8010221C)
+        *(.text.drawMain)
         *(.blobdata.op_80102440)
         *(.text.func_80102448)
         *(.text.func_80102980)
@@ -1188,11 +1188,11 @@ SECTIONS
         *(.text.func_80106B3C)
         *(.text.func_80106D94)
         *(.text.checkpoint_hit)
-        *(.text.lap_complete)
+        *(.text.animElapsedTimerText)
         *(.text.func_80107AEC)
-        *(.text.race_finish)
+        *(.text.animPlace)
         *(.text.func_80107EDC)
-        *(.text.func_80108154)
+        *(.text.animLapTime)
         *(.text.func_801084D4)
         *(.text.func_80108AB0)
         *(.text.func_80108DA8)
@@ -2041,7 +2041,7 @@ SECTIONS
     PROVIDE(D_8002E528 = 0x8002E528);
     PROVIDE(D_8002E580 = 0x8002E580);
     PROVIDE(D_8002E860 = 0x8002E860);
-    PROVIDE(D_8002E870 = 0x8002E870);
+    PROVIDE(gDefStartTimes = 0x8002E870);
     PROVIDE(__osScRetraceTime = 0x8002E8E0);
     PROVIDE(D_8002E8E8 = 0x8002E8E8);
     PROVIDE(D_8002E928 = 0x8002E928);
@@ -2464,9 +2464,9 @@ SECTIONS
     PROVIDE(gfx_lui = 0x800A1D38);
     PROVIDE(track_data_decompress = 0x800A1F18);
     PROVIDE(physics_contact_test = 0x800A214C);
-    PROVIDE(track_collision_setup = 0x800A21A4);
-    PROVIDE(MaxPathZeroControls = 0x800A2378);
-    PROVIDE(slot_state_lookup = 0x800A2504);
+    PROVIDE(PS_FlushPak = 0x800A21A4);
+    PROVIDE(PS_FlushFile = 0x800A2378);
+    PROVIDE(PS_WriteFile = 0x800A2504);
     PROVIDE(gfx_store = 0x800A2564);
     PROVIDE(AdjustSteer = 0x800A25C0);
     PROVIDE(physics_velocities_P = 0x800A2680);
@@ -2477,7 +2477,7 @@ SECTIONS
     PROVIDE(set_catchup = 0x800A2CE4);
     PROVIDE(no_catchup = 0x800A2D0C);
     PROVIDE(gfx_store_b = 0x800A2D1C);
-    PROVIDE(track_process_main = 0x800A2D4C);
+    PROVIDE(PS_CreateFile = 0x800A2D4C);
     PROVIDE(audio_branch_handler_c = 0x800A2E64);
     PROVIDE(gfx_lui_b = 0x800A30AC);
     PROVIDE(track_spline_interp = 0x800A3654);
@@ -2627,7 +2627,7 @@ SECTIONS
     PROVIDE(ambient_sounds_clear = 0x800B557C);
     PROVIDE(visual_objects_update = 0x800B55FC);
     PROVIDE(sound_priority_mgr = 0x800B5694);
-    PROVIDE(sound_loop_set = 0x800B574C);
+    PROVIDE(TitlePane = 0x800B574C);
     PROVIDE(sound_pitch_set = 0x800B58A0);
     PROVIDE(sound_volume_set = 0x800B5948);
     PROVIDE(audio_spatialize = 0x800B59F8);
@@ -2637,7 +2637,7 @@ SECTIONS
     PROVIDE(audio_occlusion = 0x800B6024);
     PROVIDE(set_race_state = 0x800B6138);
     PROVIDE(resource_alloc_conditional = 0x800B61B0);
-    PROVIDE(audio_doppler_full = 0x800B61FC);
+    PROVIDE(ShowCountdown = 0x800B61FC);
     PROVIDE(render_helper = 0x800B65B4);
     PROVIDE(render_helper_main = 0x800B65B8);
     PROVIDE(audio_doppler_calc = 0x800B6788);
@@ -2895,11 +2895,11 @@ SECTIONS
     PROVIDE(trophy_award_championship = 0x800DC3F8);
     PROVIDE(sound_handles_array_clear = 0x800DC720);
     PROVIDE(unlock_notification = 0x800DC794);
-    PROVIDE(attract_mode_handler = 0x800DC88C);
-    PROVIDE(attract_demo_handler = 0x800DC99C);
+    PROVIDE(control_cell_text = 0x800DC88C);
+    PROVIDE(control_cell_text3 = 0x800DC99C);
     PROVIDE(mode_enable_flagged = 0x800DCD1C);
     PROVIDE(attract_idle_handler = 0x800DCD94);
-    PROVIDE(attract_video_handler = 0x800DCDF4);
+    PROVIDE(control_cell_text2 = 0x800DCDF4);
     PROVIDE(attract_sequence_handler = 0x800DD0D0);
     PROVIDE(title_screen_handler = 0x800DD4AC);
     PROVIDE(title_logo_handler = 0x800DDFAC);
@@ -2997,7 +2997,7 @@ SECTIONS
     PROVIDE(world_velocity_integrate = 0x800ED804);
     PROVIDE(world_collision_response = 0x800EDACC);
     PROVIDE(world_trigger_check = 0x800EDCE8);
-    PROVIDE(attract_or_transition = 0x800EDDC0);
+    PROVIDE(gfx_frame_begin = 0x800EDDC0);
     PROVIDE(world_trigger_activate = 0x800EE5DC);
     PROVIDE(sync_init_conditional = 0x800EE7C4);
     PROVIDE(effect_spawn = 0x800EE820);
@@ -3145,9 +3145,9 @@ SECTIONS
     PROVIDE(difficulty_scaling = 0x80107110);
     PROVIDE(checkpoint_hit = 0x801073D8);
     PROVIDE(ai_difficulty_adjust = 0x80107600);
-    PROVIDE(lap_complete = 0x8010761C);
+    PROVIDE(animElapsedTimerText = 0x8010761C);
     PROVIDE(rubber_banding = 0x801079AC);
-    PROVIDE(race_finish = 0x80107AF4);
+    PROVIDE(animPlace = 0x80107AF4);
     PROVIDE(dynamic_difficulty = 0x80108098);
     PROVIDE(catchup_logic = 0x801089CC);
     PROVIDE(skill_rating_update = 0x80108F6C);
@@ -4700,7 +4700,7 @@ SECTIONS
     PROVIDE(D_80140AF8 = 0x80140AF8);
     PROVIDE(D_80140B08 = 0x80140B08);
     PROVIDE(D_80140B10 = 0x80140B10);
-    PROVIDE(D_80140B20 = 0x80140B20);
+    PROVIDE(gHighScoreState = 0x80140B20);
     PROVIDE(D_80140B28 = 0x80140B28);
     PROVIDE(D_80140BD8 = 0x80140BD8);
     PROVIDE(D_80140BDC = 0x80140BDC);
@@ -4944,12 +4944,12 @@ SECTIONS
     PROVIDE(D_80146200 = 0x80146200);
     PROVIDE(D_80146204 = 0x80146204);
     PROVIDE(D_80146205 = 0x80146205);
-    PROVIDE(D_80146208 = 0x80146208);
+    PROVIDE(codePane = 0x80146208);
     PROVIDE(D_80146210 = 0x80146210);
     PROVIDE(gPhysicsObjectListHead = 0x801491F0);
     PROVIDE(D_80149410 = 0x80149410);
     PROVIDE(D_80149414 = 0x80149414);
-    PROVIDE(D_80149418 = 0x80149418);
+    PROVIDE(namePanes = 0x80149418);
     PROVIDE(D_80149428 = 0x80149428);
     PROVIDE(D_80149438 = 0x80149438);
     PROVIDE(D_80149440 = 0x80149440);
@@ -5563,7 +5563,7 @@ SECTIONS
     PROVIDE(D_80156D10 = 0x80156D10);
     PROVIDE(D_80156D20 = 0x80156D20);
     PROVIDE(D_80156D30 = 0x80156D30);
-    PROVIDE(D_80156D38 = 0x80156D38);
+    PROVIDE(gWaveInstance = 0x80156D38);
     PROVIDE(D_80156D39 = 0x80156D39);
     PROVIDE(D_80156D3B = 0x80156D3B);
     PROVIDE(D_80156D44 = 0x80156D44);

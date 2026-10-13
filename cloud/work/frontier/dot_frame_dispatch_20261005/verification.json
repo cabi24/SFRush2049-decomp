@@ -86,7 +86,7 @@
       "D_80151AD0": 2148866768,
       "D_80152032": 2148868146,
       "Effects_UpdateEmitters": 2148237596,
-      "audio_doppler_full": 2148229628,
+      "ShowCountdown": 2148229628,
       "func_800B7FF8": 2148237304,
       "func_8010E694": 2148591252,
       "func_80391B00": 2151226112,
@@ -602,7 +602,7 @@
           {
             "offset": 216,
             "type": 4,
-            "symbol": "audio_doppler_full"
+            "symbol": "ShowCountdown"
           }
         ],
         "linked_body_sha256": "93ecc401b82a381e8d6cb626d5198e9464d6ca4dc00effc1413bc979fcd28fed"
@@ -715,9 +715,9 @@
   },
   "source_bindings": {
     "cloud/matches/func_800B7FF8.c": "54ed29b8a95b66c6decd85ea936fdac2b805429cdedc3e2275b2c4505c1ac30b",
-    "src/blob/Effects_UpdateEmitters.c": "30734bed68afb9a748669c69eb3b6eb797d0da8558f7bfb5284e2c0dfa74cba3",
+    "src/blob/Effects_UpdateEmitters.c": "11aba2a2e741dedeccc1f3fd91b16d63dfcedbbad47616e70fdde2c75a5cd4c6",
     "cloud/work/game_C31/func_800B7FF8.bits.c": "87c66542cc78e0a69711e6e2c1bcc9ee8755b3af5673bb0d592f9726b65ce72b",
-    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "5db5063ff56ebd1a1b38612254dd608b7bdc635988a236388963ec36daae2281",
+    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "4a33d5119c0d0479d4b47b8cd67f84da469ca37a13b3772db1483c21a82642a2",
     "cloud/work/frontier/dot_frame_dispatch_20261005/native.py": "2a4e50b4d7b198b7eb4961edd17f9e7b19411306e640ea38394f1f46eaaa4156",
     "cloud/work/frontier/dot_frame_dispatch_20261005/host.c": "323d99a9f8722524ff1e6e2beaf48a86f7d0d83b7d46faf14b45f6ef91b35d37",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",

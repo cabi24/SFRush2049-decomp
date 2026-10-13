@@ -15,8 +15,8 @@ extern s32 gameplay_mode;
 extern InputRecord input_rec0[];
 extern s8 D_80142694[];
 extern s8 D_80143CE8;
-extern s8 *D_80149418[];
-extern s32 D_80140B20;
+extern s8 *namePanes[];
+extern s32 gHighScoreState;
 extern s32 D_801148CC;
 
 void sound_handles_array_clear(s8 *arg0);
@@ -24,9 +24,9 @@ s32 viDeadlinePassed(s32 arg0);
 void resource_type_select(s32 arg0);
 void sound_stop(s32 arg0);
 
-extern s8 *D_80146208;
+extern s8 *codePane;
 extern s8 *D_80149798[3];
-void func_800F1210(s32);
+void SetHighScoreState(s32);
 
 
 void func_800F2718(void)
@@ -41,9 +41,9 @@ void func_800F2718(void)
                 resource_type_select(input_rec0[i].unk04);
                 D_80142694[i] = 0;
             }
-        } else if (D_80149418[i] != 0) {
-            sound_handles_array_clear(D_80149418[i]);
-            D_80149418[i] = 0;
+        } else if (namePanes[i] != 0) {
+            sound_handles_array_clear(namePanes[i]);
+            namePanes[i] = 0;
         }
     }
     for (i = 0; i < active_player_count; i++) {
@@ -53,11 +53,11 @@ void func_800F2718(void)
     }
     if (done == 1) {
         if (D_80143CE8) {
-            func_800F1210(2);
+            SetHighScoreState(2);
         } else if (gameplay_mode == 0 || gameplay_mode == 3 || gameplay_mode == 2) {
-            func_800F1210(3);
+            SetHighScoreState(3);
         } else {
-            func_800F1210(0);
+            SetHighScoreState(0);
         }
     }
 }

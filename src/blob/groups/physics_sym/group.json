@@ -6,7 +6,7 @@
   "func_800B59E8",
   "func_800B59F0",
   "physics_sym",
-  "sound_loop_set"
+  "TitlePane"
  ],
  "context": [
   "slot_state_setup",

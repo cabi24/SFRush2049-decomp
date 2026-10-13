@@ -216,7 +216,7 @@ write_retry:
     func_800A1BB4(index);
     return 1;
 }
-s32 track_collision_setup(s32 index, s32 mode) {
+s32 PS_FlushPak(s32 index, s32 mode) {
     C96Handle *node;
     C96Handle *next;
     D_80144030[index].result = 0;
@@ -236,7 +236,7 @@ s32 track_collision_setup(s32 index, s32 mode) {
     pfs_unlock();
     return node == 0;
 }
-s32 MaxPathZeroControls(C96Handle *handle, s32 mode) {
+s32 PS_FlushFile(C96Handle *handle, s32 mode) {
     pfs_lock();
     D_80144030[handle->file->channel].busy = 1;
     D_80144030[handle->file->channel].result = 0;
@@ -245,7 +245,7 @@ s32 MaxPathZeroControls(C96Handle *handle, s32 mode) {
     pfs_unlock();
     return D_80144030[handle->file->channel].result;
 }
-void slot_state_lookup(C96Handle *handle, u8 *address, u32 bytes) {
+void PS_WriteFile(C96Handle *handle, u8 *address, u32 bytes) {
     C96File *file;
     if (!handle) return;
     file = handle->file;

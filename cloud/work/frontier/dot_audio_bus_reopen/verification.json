@@ -5,7 +5,7 @@
   "coverage_delta_bytes": 0,
   "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "source_sha256": "b2cb59164614713407adb7d25ae8ddcbb19bc422b85c1c08a66cfb3d2093ebfd",
+  "source_sha256": "badf90dfc5011b038b7c665d898f40d44d0519c554be642c31583ea914667ed5",
   "manifest_sha256": "87be881934f297a2dbbc05f3b621f795d7404cc6862850f74dc9547b726da109",
   "accepted_context_sha256": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
   "native": {
@@ -317,7 +317,7 @@
           "offset": 104
         },
         {
-          "function": "func_800CD104",
+          "function": "CreatePlayer",
           "offset": 856
         },
         {

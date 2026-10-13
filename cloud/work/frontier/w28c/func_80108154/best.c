@@ -91,7 +91,7 @@ s32 Hidden_8154(Blit *blt, s32 hide)
     return blt->hidden;
 }
 
-s32 func_80108154(Blit *blt)
+s32 animLapTime(Blit *blt)
 {
     s32 x;
     s32 w;

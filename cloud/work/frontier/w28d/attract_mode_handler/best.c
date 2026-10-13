@@ -63,7 +63,7 @@ static void pair_set(u32 first, u32 second)
     p->second = second;
 }
 
-void attract_mode_handler(s32 row, s32 col, u8 *text)
+void control_cell_text(s32 row, s32 col, u8 *text)
 {
     Cell *c;
 
@@ -82,7 +82,7 @@ void __standin_attract_mode_handler(u8 *t)
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            attract_mode_handler(i, j, t);
+            control_cell_text(i, j, t);
         }
     }
 }

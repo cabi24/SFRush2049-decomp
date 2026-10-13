@@ -123,7 +123,7 @@ def native_bindings():
     selected=set(names)|{'state_word_a','D_801170FC','gameplay_mode','D_8002EB94',
         'D_8002EB90','D_80123DE0','D_80116178','particles_update','func_80391B00',
         'viTickStart','viUpdateTime','D_80150B70','D_80150BA0','D_80151AD0',
-        'D_80152032','audio_doppler_full','math_utility','particles_spawn_emitter'}
+        'D_80152032','ShowCountdown','math_utility','particles_spawn_emitter'}
     resolved={name:addresses[name] if name in addresses else score.address_named(name)
               for name in sorted(selected)}
     assert all(address is not None for address in resolved.values())

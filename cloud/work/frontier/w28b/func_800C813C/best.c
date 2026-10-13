@@ -94,7 +94,7 @@ void audio_volume_pan(void);
 void func_800949D4(void);
 
 /* GC save.c SaveServer(int forceUpdate, int rumbleOnly) */
-void func_800C813C(s32 forceUpdate, s32 rumbleOnly) {
+void SaveServer(s32 forceUpdate, s32 rumbleOnly) {
     s32 pak;
     s8 *reading;
     s8 lastPak;

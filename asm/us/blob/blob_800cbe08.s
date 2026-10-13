@@ -1298,9 +1298,9 @@ func_800CD0FC:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_800CD104, "ax", @progbits
-.globl func_800CD104
-func_800CD104:
+.section .text.CreatePlayer, "ax", @progbits
+.globl CreatePlayer
+CreatePlayer:
     .word 0x27BDFF20
     .word 0x3C188014
     .word 0xAFB60048

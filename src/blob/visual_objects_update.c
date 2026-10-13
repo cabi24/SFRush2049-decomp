@@ -22,7 +22,7 @@ typedef struct VisualList {
     VisualNode *tail;
 } VisualList;
 extern VisualList D_80144D60[4];
-s32 MaxPathZeroControls(VisualNode *, s32);
+s32 PS_FlushFile(VisualNode *, s32);
 
 void visual_objects_update(s32 action)
 {
@@ -32,7 +32,7 @@ void visual_objects_update(s32 action)
     for (i = 0; i < 4; i++) {
         for (node = D_80144D60[i].head; node; node = node->body->next) {
             if (node->body->enabled) {
-                MaxPathZeroControls(node, action);
+                PS_FlushFile(node, action);
             }
         }
     }

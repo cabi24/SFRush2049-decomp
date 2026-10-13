@@ -41,7 +41,7 @@
     "bound_method": "native flow and matched two-encoding helper analysis",
     "character_map_sha256": "644dfbdffefd3fd52234963921837a3c8ac33ac28b2fb220bbc1b15ca387a0b4",
     "encoder_calls": {
-      "track_process_main": [
+      "PS_CreateFile": [
         1636,
         1668
       ],
@@ -477,7 +477,7 @@
       }
     ],
     "list_insert_calls": {
-      "track_process_main": [
+      "PS_CreateFile": [
         1676
       ],
       "track_render_process": [
@@ -610,13 +610,13 @@
       "src/ovl_a/func_80398BF0.c": "3d2217aaa0286a6e72d848825a437f696fdd002c5ffe56a70ba051ab80b99e17"
     },
     "sources_sha256": {
-      "capacity.py": "eb51ea8f3e8094d3ed1ab775773dae2a7353c5053e2e51f450c4409e7a28ebc3",
+      "capacity.py": "064b6204a6f9e003c11e364f5b479865e3eaf8508cd97f01f479e617ac905f08",
       "gnu.py": "d6284f4aa92a71d6253144cc179788173f7b09034450807fb6173d96ec71cb5a",
       "groups/dot_runtime_a_menu_renderers_20261011/group.c": "2c1037b908787b8bac4378b580cd57b51d62506fa58938cd46f4822b381a09d6",
       "groups/dot_runtime_a_menu_renderers_20261011/group.json": "3df7daa31c7f9ae91340f0ced72d3411b45296124ac07718bccc808206cce3b4",
       "host.c": "75ce6962ad076bc28768e9039d8b24d1a5aa4afd5916c12170d5c78ab29a866d",
       "trace.py": "ea720a5ce6d3d54618d1369d83c3afb71e9fef25ca314850d58a2e0ea0dc0f61",
-      "verify.py": "302740591d99311b891e0fd3c9ecc74f5f651d7db0f0dc595ddba3c5857b6808"
+      "verify.py": "3cbf3b69c4cd6f52fbc8a9254352b63edad2b865faf4de3bc0507ea4646e026c"
     },
     "targets": {
       "func_803A6F2C": {
@@ -711,7 +711,7 @@
         "size": 396,
         "words_sha256": "636951ffa0efe5e074676c7f3f0456d1149fa0bb76caf89dcdf5331c916bf6e6"
       },
-      "game:track_process_main": {
+      "game:PS_CreateFile": {
         "size": 1752,
         "words_sha256": "6c90d7caa962ffabf6c30b7c6f9917e7a58dbc8e2fb66eb50b732ece1e4beb0b"
       },

@@ -1275,10 +1275,10 @@ func_800F084C:
     .word 0x03E00008
     .word 0x27BD0090
 
-.section .text.func_800F0914, "ax", @progbits
-.globl func_800F0914
-func_800F0914:
-    /* compiled from src/blob/func_800F0914.c */
+.section .text.PrintScores, "ax", @progbits
+.globl PrintScores
+PrintScores:
+    /* compiled from src/blob/PrintScores.c */
     .word 0x3C058015
     .word 0x80A52570
     .word 0x27BDFFC8
@@ -1676,10 +1676,10 @@ func_800F0914:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_800F0F44, "ax", @progbits
-.globl func_800F0F44
-func_800F0F44:
-    /* compiled from src/blob/func_800F0F44.c */
+.section .text.FindGhosts, "ax", @progbits
+.globl FindGhosts
+FindGhosts:
+    /* compiled from src/blob/FindGhosts.c */
     .word 0x3C0E8015
     .word 0x8DCEA160
     .word 0x27BDFFB8
@@ -1865,10 +1865,10 @@ func_800F1114:
     .word 0x03E00008
     .word 0x27BD0018
 
-.section .text.func_800F1210, "ax", @progbits
-.globl func_800F1210
-func_800F1210:
-    /* compiled from src/blob/func_800F1210.c */
+.section .text.SetHighScoreState, "ax", @progbits
+.globl SetHighScoreState
+SetHighScoreState:
+    /* compiled from src/blob/SetHighScoreState.c */
     .word 0x3C138014
     .word 0x26730B20
     .word 0x8E620000

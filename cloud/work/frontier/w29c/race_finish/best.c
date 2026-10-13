@@ -79,7 +79,7 @@ static void pair_set(s32 first, s32 second)
     p->first = first;
 }
 
-s32 race_finish(s32 arg0)
+s32 animPlace(s32 arg0)
 {
     char str[4];
     char ch[2];

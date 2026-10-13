@@ -109,13 +109,13 @@ def audit(image_a, image_base, targets, symbols):
     require(all(value < 255 for value in mapping[:66]), 'byte-mode character can become a wide escape')
     encode_calls = caller_census(targets, 'func_800A1644', symbols['func_800A1644'])
     insert_calls = caller_census(targets, 'no_catchup', symbols['no_catchup'])
-    require(encode_calls == {'track_process_main': [0x664,0x684], 'track_render_process': [0xBA0,0xBB0]},
+    require(encode_calls == {'PS_CreateFile': [0x664,0x684], 'track_render_process': [0xBA0,0xBB0]},
             'native fixed-width encoder caller set changed')
-    require(insert_calls == {'track_process_main': [0x68C], 'track_render_process': [0xBCC]},
+    require(insert_calls == {'PS_CreateFile': [0x68C], 'track_render_process': [0xBCC]},
             'native list insertion caller set changed')
     # Pin operand facts rather than exporting instruction words or listings.
     for name, checks in {
-        'track_process_main': [(0x644,9,18,4,18),(0x648,9,0,6,16),(0x670,9,18,4,53),(0x674,9,0,6,4)],
+        'PS_CreateFile': [(0x644,9,18,4,18),(0x648,9,0,6,16),(0x670,9,18,4,53),(0x674,9,0,6,4)],
         'track_render_process': [(0xB6C,9,0,6,16),(0xB84,9,16,4,18),(0xBA8,9,16,4,53),(0xBB4,9,0,6,4)]
     }.items():
         for offset,op,base,reg,value in checks:
@@ -123,7 +123,7 @@ def audit(image_a, image_base, targets, symbols):
             require((word>>26,(word>>21)&31,(word>>16)&31,word&65535)==(op,base,reg,value),
                     'producer destination/width fact changed')
     for name,shift,store,source_reg,result_reg,record_reg in (
-            ('track_process_main',0x5C0,0x5C4,15,25,18),
+            ('PS_CreateFile',0x5C0,0x5C4,15,25,18),
             ('track_render_process',0xB94,0xB98,14,24,16)):
         word=targets[name][shift//4]
         require((word>>26,(word>>21)&31,(word>>16)&31,(word>>11)&31,(word>>6)&31,word&63)==

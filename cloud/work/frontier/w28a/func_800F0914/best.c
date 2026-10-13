@@ -36,7 +36,7 @@ extern s8 D_801148D0;                   /* gTable */
 extern s16 D_80142528;                  /* gThisTrack */
 extern Player **D_80151690[][3][5];     /* gTotalNames */
 extern RaceStats D_80150F88[];          /* gTotalRaceStats */
-extern f32 D_8002E870[];                /* gDefStartTimes */
+extern f32 gDefStartTimes[];                /* gDefStartTimes */
 extern char *D_801147C8[];              /* gDefaultNames (55 on N64) */
 extern char D_80151968[][13];           /* gTempNames */
 extern char D_80143F20[5][10];          /* score strings */
@@ -57,7 +57,7 @@ extern void crowd_cheer_play(void *, s32, s32, s32, s32);
 
 extern s32 func_800D50E4(u32 *seed);   /* rand_r, locked, inlined by umerge */
 
-void func_800F0914(void)
+void PrintScores(void)
 {
     s32 i;
     f32 *s;
@@ -70,7 +70,7 @@ void func_800F0914(void)
     D_80142528 = (D_80152570 ? 6 : 0) + D_8014978C;
     p = D_80151690[D_80142528][D_801148D0];
     s = D_80150F88[D_80142528].scores[D_801148D0];
-    defTime = D_8002E870[(D_80152570 ? 19 : 0) + D_8014978C];
+    defTime = gDefStartTimes[(D_80152570 ? 19 : 0) + D_8014978C];
     seed = defTime * 6969.0f;
     if (D_801148D0 == 1) {
         defTime += 1.0f + (f32)(func_800D50E4(&seed) % 2000) / 1000.0f;

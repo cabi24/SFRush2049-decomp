@@ -1963,10 +1963,10 @@ func_800B5688:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.sound_loop_set, "ax", @progbits
-.globl sound_loop_set
-sound_loop_set:
-    /* compiled from src/blob/sound_loop_set.c */
+.section .text.TitlePane, "ax", @progbits
+.globl TitlePane
+TitlePane:
+    /* compiled from src/blob/TitlePane.c */
     .word 0x27BDFF70
     .word 0x3C148014
     .word 0x269461D0
@@ -2712,10 +2712,10 @@ func_800B61A8:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.audio_doppler_full, "ax", @progbits
-.globl audio_doppler_full
-audio_doppler_full:
-    /* compiled from src/blob/audio_doppler_full.c */
+.section .text.ShowCountdown, "ax", @progbits
+.globl ShowCountdown
+ShowCountdown:
+    /* compiled from src/blob/ShowCountdown.c */
     .word 0x27BDFF00
     .word 0x3C028015
     .word 0x84421AD0

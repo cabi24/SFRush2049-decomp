@@ -36,10 +36,10 @@ def test_full_extent_and_context_caveats():
         assert row['differing'] == row['extra_words'] == 0
         assert row['full_extent_relocated_equal']
         assert result['independent_group_relocation_equal'][name]
-    for name in ['func_800F0F44','func_800F1210','billboard_render']:
+    for name in ['FindGhosts','SetHighScoreState','billboard_render']:
         assert not result['comparison'][name]['full_extent_relocated_equal']
         assert result['comparison'][name]['differing'] > 0
-    assert result['comparison']['func_800F1210']['errors']
+    assert result['comparison']['SetHighScoreState']['errors']
     assert result['controls']['signed_mode_literal']['func_800F1930']['differing'] == 1
     assert result['host_test'] == '103 save-input scenarios passed'
 
@@ -92,7 +92,7 @@ def test_new_pointer_interfaces_normalized_but_production_still_blocked():
     assert 'extern s32 func_800CC040(s32, void *, void *, s32);' in render
     assert 'extern void *func_800CC50C(s32, char *);' in render
     for source in [render, transition]:
-        assert 'extern s8 *D_80149418[]' in source
+        assert 'extern s8 *namePanes[]' in source
         assert 'extern void sound_handles_array_clear(s8 *);' in source
     assert walker.endswith('}\n') and not walker.endswith('}\n\n')
     receipt = json.loads((HERE / 'verification.json').read_text())

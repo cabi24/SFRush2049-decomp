@@ -7,9 +7,9 @@ typedef struct Rect { s16 x,y,w,h; s16 unknown[2]; } Rect;
 typedef struct TextInfo { char unknown[54]; u16 index; } TextInfo;
 typedef struct TextState { s32 unknown[3]; TextInfo *info; char **strings; } TextState;
 extern TextState countdown_state;
-extern s32 D_80140B20, D_801148CC, D_8014A110, D_80144DA0;
+extern s32 gHighScoreState, D_801148CC, D_8014A110, D_80144DA0;
 extern s16 active_player_count, D_80151AD0;
-extern s8 *D_80149418[], *D_80146208, *D_80149798[3], *D_80149778[2];
+extern s8 *namePanes[], *codePane, *D_80149798[3], *D_80149778[2];
 extern s8 D_801460C0, D_801148D0;
 extern Rect D_801148E8[][4];
 extern char D_801461D0[], D_80120600[], D_801148A8[];
@@ -21,34 +21,34 @@ extern void viScheduleTick(float);
 extern s32 osRecvMesg(void *,void *,s32), osJamMesg(void *,void *,s32);
 extern s32 slot_state_setup(s32);
 extern s32 object_manager_update(char *,s32), object_bytes_sum_global(void);
-extern void func_800F0F44(s32), func_800F0914(void);
+extern void FindGhosts(s32), PrintScores(void);
 extern s32 sound_control(s32,s32,void *,s32);
 
-void func_800F1210(s32 mode)
+void SetHighScoreState(s32 mode)
 {
     s32 i;
     s32 previous;
     s32 width, height;
-    if (mode == D_80140B20) return;
+    if (mode == gHighScoreState) return;
     if (D_801148CC != 0) {
         sound_stop(D_801148CC);
         D_801148CC = 0;
     }
-    switch (D_80140B20) {
+    switch (gHighScoreState) {
     case 1:
         for (i = 0; i < active_player_count; i++) {
-            if (D_80149418[i] != 0) {
-                sound_handles_array_clear(D_80149418[i]); D_80149418[i] = 0;
+            if (namePanes[i] != 0) {
+                sound_handles_array_clear(namePanes[i]); namePanes[i] = 0;
             }
         }
         break;
     case 2:
-        if (D_80146208 != 0) { sound_handles_array_clear(D_80146208); D_80146208 = 0; }
+        if (codePane != 0) { sound_handles_array_clear(codePane); codePane = 0; }
         break;
     case 3:
         for (i = 0; i < active_player_count; i++) {
-            if (D_80149418[i] != 0) {
-                sound_handles_array_clear(D_80149418[i]); D_80149418[i] = 0;
+            if (namePanes[i] != 0) {
+                sound_handles_array_clear(namePanes[i]); namePanes[i] = 0;
             }
         }
         break;
@@ -63,15 +63,15 @@ void func_800F1210(s32 mode)
         }
         break;
     }
-    D_80140B20 = mode;
+    gHighScoreState = mode;
     switch (mode) {
     case 0:
         func_800F1114();
         break;
     case 1:
         for (i = 0; i < active_player_count; i++) {
-            if (D_80149418[i] == 0) {
-                D_80149418[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
+            if (namePanes[i] == 0) {
+                namePanes[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
                     D_801148E8[D_80151AD0-1][i].y,
                     D_801148E8[D_80151AD0-1][i].x + D_801148E8[D_80151AD0-1][i].w,
                     D_801148E8[D_80151AD0-1][i].y + D_801148E8[D_80151AD0-1][i].h,176,0,0,0);
@@ -80,13 +80,13 @@ void func_800F1210(s32 mode)
         viScheduleTick(600.0f);
         break;
     case 2:
-        D_80146208 = ambient_sound_set(83,70,237,136,192,0,0,0);
+        codePane = ambient_sound_set(83,70,237,136,192,0,0,0);
         viScheduleTick(600.0f);
         break;
     case 3:
         for (i = 0; i < active_player_count; i++) {
-            if (D_80149418[i] == 0) {
-                D_80149418[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
+            if (namePanes[i] == 0) {
+                namePanes[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
                     D_801148E8[D_80151AD0-1][i].y,
                     D_801148E8[D_80151AD0-1][i].x + D_801148E8[D_80151AD0-1][i].w,
                     D_801148E8[D_80151AD0-1][i].y + D_801148E8[D_80151AD0-1][i].h,176,0,0,0);
@@ -113,11 +113,11 @@ void func_800F1210(s32 mode)
         viScheduleTick(600.0f);
         D_80144DA0 = 0;
         D_801460C0 = 0;
-        for (i = 0; i < 4; i++) func_800F0F44(i);
+        for (i = 0; i < 4; i++) FindGhosts(i);
         break;
     case 5:
         if (D_8014A110 == 2) D_801148D0 = 2; else D_801148D0 = 0;
-        func_800F0914();
+        PrintScores();
         if (D_80149778[0] == 0) {
             osRecvMesg(D_801461D0,0,1); previous = slot_state_setup(13); osJamMesg(D_801461D0,0,0);
             width = object_manager_update(countdown_state.strings[countdown_state.info->index+D_801148D0],-1);
@@ -130,5 +130,5 @@ void func_800F1210(s32 mode)
         if (D_8014A110 == 2) viScheduleTick(30.0f); else viScheduleTick(15.0f);
         break;
     }
-    if (D_80140B20 != 0) D_801148CC = sound_control(0,0,D_801148A8,1);
+    if (gHighScoreState != 0) D_801148CC = sound_control(0,0,D_801148A8,1);
 }

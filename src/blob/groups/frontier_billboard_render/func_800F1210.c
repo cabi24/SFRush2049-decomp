@@ -25,9 +25,9 @@ typedef struct Rect { s16 x,y,w,h; s16 unknown[2]; } Rect;
 typedef struct TextInfo { char unknown[54]; u16 index; } TextInfo;
 typedef struct TextState { s32 unknown[3]; TextInfo *info; char **strings; } TextState;
 extern TextState countdown_state;
-extern s32 D_80140B20, D_801148CC, D_8014A110, D_80144DA0;
+extern s32 gHighScoreState, D_801148CC, D_8014A110, D_80144DA0;
 extern s16 active_player_count, D_80151AD0;
-extern s8 *D_80149418[], *D_80146208, *D_80149798[3], *D_80149778[2];
+extern s8 *namePanes[], *codePane, *D_80149798[3], *D_80149778[2];
 extern s8 D_801460C0, D_801148D0;
 extern Rect D_801148E8[][4];
 extern char D_80120600[], D_801148A8[];
@@ -52,40 +52,40 @@ s32 hs_font_set(s32 font)
 }
 extern s32 object_manager_update(char *,s32);
 extern s16 object_bytes_sum_global(void);
-extern void func_800F0F44(s32), func_800F0914(void);
+extern void FindGhosts(s32), PrintScores(void);
 extern s32 sound_control(s32,s32,void *,s32);
 
-void func_800F1210(s32 newState)
+void SetHighScoreState(s32 newState)
 {
     s32 p;
     s32 width;
 
-    if (newState == D_80140B20) return;
+    if (newState == gHighScoreState) return;
     if (D_801148CC != 0) {
         sound_stop(D_801148CC);
         D_801148CC = 0;
     }
-    switch (D_80140B20) {
+    switch (gHighScoreState) {
     case 1: {
         for (p = 0; p < active_player_count; p++) {
-            if (D_80149418[p] != 0) {
-                sound_handles_array_clear(D_80149418[p]);
-                D_80149418[p] = 0;
+            if (namePanes[p] != 0) {
+                sound_handles_array_clear(namePanes[p]);
+                namePanes[p] = 0;
             }
         }
         break;
     }
     case 2:
-        if (D_80146208 != 0) {
-            sound_handles_array_clear(D_80146208);
-            D_80146208 = 0;
+        if (codePane != 0) {
+            sound_handles_array_clear(codePane);
+            codePane = 0;
         }
         break;
     case 3: {
         for (p = 0; p < active_player_count; p++) {
-            if (D_80149418[p] != 0) {
-                sound_handles_array_clear(D_80149418[p]);
-                D_80149418[p] = 0;
+            if (namePanes[p] != 0) {
+                sound_handles_array_clear(namePanes[p]);
+                namePanes[p] = 0;
             }
         }
         break;
@@ -111,16 +111,16 @@ void func_800F1210(s32 newState)
         break;
     }
     }
-    D_80140B20 = newState;
-    switch (D_80140B20) {
+    gHighScoreState = newState;
+    switch (gHighScoreState) {
     case 0:
         func_800F1114();
         break;
     case 1: {
         s32 p;
         for (p = 0; p < active_player_count; p++) {
-            if (D_80149418[p] == 0) {
-                D_80149418[p] = ambient_sound_set(D_801148E8[D_80151AD0 - 1][p].x,
+            if (namePanes[p] == 0) {
+                namePanes[p] = ambient_sound_set(D_801148E8[D_80151AD0 - 1][p].x,
                     D_801148E8[D_80151AD0 - 1][p].y,
                     D_801148E8[D_80151AD0 - 1][p].x + D_801148E8[D_80151AD0 - 1][p].w,
                     D_801148E8[D_80151AD0 - 1][p].y + D_801148E8[D_80151AD0 - 1][p].h, 176, 0, 0, 0);
@@ -130,14 +130,14 @@ void func_800F1210(s32 newState)
         break;
     }
     case 2:
-        D_80146208 = ambient_sound_set(83, 70, 237, 136, 192, 0, 0, 0);
+        codePane = ambient_sound_set(83, 70, 237, 136, 192, 0, 0, 0);
         viScheduleTick(600.0f);
         break;
     case 3: {
         s32 p;
         for (p = 0; p < active_player_count; p++) {
-            if (D_80149418[p] == 0) {
-                D_80149418[p] = ambient_sound_set(D_801148E8[D_80151AD0 - 1][p].x,
+            if (namePanes[p] == 0) {
+                namePanes[p] = ambient_sound_set(D_801148E8[D_80151AD0 - 1][p].x,
                     D_801148E8[D_80151AD0 - 1][p].y,
                     D_801148E8[D_80151AD0 - 1][p].x + D_801148E8[D_80151AD0 - 1][p].w,
                     D_801148E8[D_80151AD0 - 1][p].y + D_801148E8[D_80151AD0 - 1][p].h, 176, 0, 0, 0);
@@ -165,13 +165,13 @@ void func_800F1210(s32 newState)
         D_80144DA0 = 0;
         D_801460C0 = 0;
         for (pak = 0; pak < 4; pak++) {
-            func_800F0F44(pak);
+            FindGhosts(pak);
         }
         break;
     }
     case 5:
         D_801148D0 = (D_8014A110 == 2) ? 2 : 0;
-        func_800F0914();
+        PrintScores();
         if (D_80149778[0] == 0) {
             hs_font_set(13);
             width = object_manager_update(countdown_state.strings[countdown_state.info->index + D_801148D0], -1);
@@ -187,7 +187,7 @@ void func_800F1210(s32 newState)
         }
         break;
     }
-    if (D_80140B20 != 0) {
+    if (gHighScoreState != 0) {
         D_801148CC = sound_control(0, 0, D_801148A8, 1);
     }
 }

@@ -65,7 +65,7 @@ void pair_set_761C(s32 first, s32 second)
     D_80118E20.first = first;
 }
 
-s32 lap_complete(s32 arg0)
+s32 animElapsedTimerText(s32 arg0)
 {
     s32 t;
     char digits[9];

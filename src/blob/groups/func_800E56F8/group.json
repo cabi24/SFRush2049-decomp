@@ -2,13 +2,13 @@
  "name": "func_800E56F8",
  "members": [
   "func_800E56F8",
-  "func_800E6AF8"
+  "model_iteration"
  ],
  "files": [
   "group.c"
  ],
  "keep": [
-  "func_800E6AF8"
+  "model_iteration"
  ],
  "context": [],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",

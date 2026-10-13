@@ -9,9 +9,9 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "fa6a41ee9eef374c82d520266d7ececc454ac684581b15491741950682a61339",
+    "src/blob/groups/credits_scroll_grp/group.json": "8b261e88ada54944f329e0d1e90569f99d6ed82b7d8389e80a9dc74679374186",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
-    "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4"
+    "src/blob/groups/slot_sound/group.c": "8484f7c1109f0613d9f6d11127fab652cec41df4a2e1a3acf1719a4cd68e0c26"
   },
   "helpers": {
     "slot_state_setup": {
@@ -53,21 +53,21 @@
       "stack_word": 21
     },
     "accepted_callers": [
-      "sound_loop_set",
+      "TitlePane",
       "credits_scroll",
       "world_trigger_check",
-      "func_800F0914",
-      "func_800F1210",
+      "PrintScores",
+      "SetHighScoreState",
       "func_80100B8C",
       "func_80101904",
       "func_80101D84",
-      "func_8010221C",
+      "drawMain",
       "func_80102448",
       "func_80102F30",
       "func_80106B3C",
-      "lap_complete",
+      "animElapsedTimerText",
       "func_80107EDC",
-      "func_80108154",
+      "animLapTime",
       "func_8010A53C",
       "func_8010B7FC",
       "func_8010B9C8",
@@ -188,7 +188,7 @@
         "voice_stop"
       ]
     },
-    "sound_loop_set": {
+    "TitlePane": {
       "start": "0x800B574C",
       "bytes": 332,
       "body_sha256": "5fb14ce0def5ae36a1a3c8b448abedd7c4d08abf8b6e3ef40059141f20cf8fb8",
@@ -246,10 +246,10 @@
         "stack_word": 3
       },
       "other_unaccepted_direct_game_calls": [
+        "SaveServer",
         "audio_frame_sync",
         "display_enable",
         "func_800A7480",
-        "func_800C813C",
         "hud_setup",
         "object_create",
         "tire_compound_set"
@@ -331,7 +331,7 @@
         "time_result_display"
       ]
     },
-    "attract_mode_handler": {
+    "control_cell_text": {
       "start": "0x800DC88C",
       "bytes": 264,
       "body_sha256": "4cf7e4dca62d3e45cff6f5ac33310c8009e7afc3976c3c5429611607af1d51f9",
@@ -346,7 +346,7 @@
         "camera_auto_follow"
       ]
     },
-    "attract_demo_handler": {
+    "control_cell_text3": {
       "start": "0x800DC99C",
       "bytes": 820,
       "body_sha256": "27d3a8ed3371fc0abce83e343ced4995b40b9b43758bf72797fe2f40df3d0493",
@@ -366,7 +366,7 @@
         "state_utility"
       ]
     },
-    "attract_video_handler": {
+    "control_cell_text2": {
       "start": "0x800DCDF4",
       "bytes": 692,
       "body_sha256": "29c9a74c6d39a53dea6170e17d3e588a1f302176a7ad904ff80dfbdfb63a4b6b",
@@ -420,10 +420,10 @@
         "s0": 4
       },
       "other_unaccepted_direct_game_calls": [
-        "attract_demo_handler",
-        "attract_mode_handler",
-        "attract_video_handler",
         "camera_auto_follow",
+        "control_cell_text",
+        "control_cell_text2",
+        "control_cell_text3",
         "func_800DD0C0",
         "state_utility"
       ]
@@ -533,7 +533,7 @@
       },
       "other_unaccepted_direct_game_calls": []
     },
-    "func_800F0914": {
+    "PrintScores": {
       "start": "0x800F0914",
       "bytes": 1584,
       "body_sha256": "5716ba84db2bda2f059034e9d8303711bbe1a9ddb422ddaf26afff2c0e64ca69",
@@ -548,7 +548,7 @@
         "object_bytes_sum_global"
       ]
     },
-    "func_800F1210": {
+    "SetHighScoreState": {
       "start": "0x800F1210",
       "bytes": 1816,
       "body_sha256": "c6fb36a11b9e441906119b861abba4d588886b9cf6ab013cd77b428e0af3859c",
@@ -766,7 +766,7 @@
         "state_utility"
       ]
     },
-    "func_8010221C": {
+    "drawMain": {
       "start": "0x8010221C",
       "bytes": 548,
       "body_sha256": "ffd161f096a16260bd5fc933845091633ae6490aab9166a2be47655ee5b058c4",
@@ -973,7 +973,7 @@
       },
       "other_unaccepted_direct_game_calls": []
     },
-    "lap_complete": {
+    "animElapsedTimerText": {
       "start": "0x8010761C",
       "bytes": 1232,
       "body_sha256": "9c8af2bec57a0064bc733102f1b4b413ccab75dbf90cda7a240b35fbacf456f5",
@@ -989,7 +989,7 @@
         "state_utility"
       ]
     },
-    "race_finish": {
+    "animPlace": {
       "start": "0x80107AF4",
       "bytes": 1000,
       "body_sha256": "b15859b3659e176387300f284ec5854d3a3805a044a90451ff132df1f13622bf",
@@ -1023,7 +1023,7 @@
       },
       "other_unaccepted_direct_game_calls": []
     },
-    "func_80108154": {
+    "animLapTime": {
       "start": "0x80108154",
       "bytes": 896,
       "body_sha256": "bbd16223b572f65dd28273759bfc70cbe764ea2209c8483d8bd34266a840bef5",

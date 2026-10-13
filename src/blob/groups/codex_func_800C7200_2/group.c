@@ -623,7 +623,7 @@ extern SoundState *func_800b3704(s32, s32, s32, s32);
 extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16 arg3);
 extern void game_loop(void);
 extern void game_mode_handler(void);
-extern void attract_or_transition(void);
+extern void gfx_frame_begin(void);
 extern void process_inputs(void);
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
@@ -794,7 +794,7 @@ extern void **D_80152028;
 extern M2C_UNK D_80152770;
 
 /* callees outside the group */
-void AdjustSpeed();
+void pak_delete_file_retry();
 void AdjustSteer();
 s32 audio_buffer_sync();
 void audio_reverb_update();
@@ -815,7 +815,7 @@ void track_render_process();
 
 /* group functions */
 void **func_800C7200(void);
-void func_800C813C(void);
+void SaveServer(void);
 void **func_800CC50C(s32 *arg0, s8 *arg1);
 s32 draw_ui_element(void **ipa_t0, s32 ipa_t1, s32 ipa_t2);
 extern void **func_800C7EC8(void **);
@@ -853,7 +853,7 @@ exhausted:;
 }
 
 
-void func_800C813C(void) {
+void SaveServer(void) {
     s32 sp9C;
     void **sp94;
     s8 *sp54;

@@ -26,7 +26,7 @@ s32 pak_slot_b1(s32 pak) { return D_80144030[pak].formatted; }
 s32 pak_slot_b5(s32 pak) { return D_80144030[pak].damaged; }
 s32 pak_slot_b6(s32 pak) { return D_80144030[pak].full; }
 
-void func_800F0F44(s32 pak)
+void FindGhosts(s32 pak)
 {
     Player *player;
     Ghost ***ghosth;

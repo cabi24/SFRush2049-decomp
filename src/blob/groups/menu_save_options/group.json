@@ -9,7 +9,7 @@
   "func_800A370C"
  ],
  "context": [
-  "func_800CD104",
+  "CreatePlayer",
   "draw_number",
   "draw_speedometer"
  ],
@@ -18,7 +18,7 @@
   "save.c"
  ],
  "keep": [
-  "func_800CD104",
+  "CreatePlayer",
   "func_800CD058",
   "func_800CCEFC",
   "menu_save_options",

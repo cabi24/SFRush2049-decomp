@@ -50,11 +50,11 @@
   ],
   "direct_callers": [
     {
-      "function": "track_process_main",
+      "function": "PS_CreateFile",
       "offset": 164
     },
     {
-      "function": "track_process_main",
+      "function": "PS_CreateFile",
       "offset": 184
     }
   ],

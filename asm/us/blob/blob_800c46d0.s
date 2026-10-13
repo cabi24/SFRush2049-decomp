@@ -3844,9 +3844,9 @@ func_800C7EC8:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_800C813C, "ax", @progbits
-.globl func_800C813C
-func_800C813C:
+.section .text.SaveServer, "ax", @progbits
+.globl SaveServer
+SaveServer:
     .word 0x27BDFF60
     .word 0xAFBF004C
     .word 0xAFBE0048

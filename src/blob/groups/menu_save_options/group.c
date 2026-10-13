@@ -14,13 +14,13 @@ s8 func_800CCB40(s32);
 void func_800CCA04(Handle, s32);
 void func_800CC8C8(Handle, s32);
 s32 func_8008AD04(void *, void *);
-Handle track_process_main(s32, char *, char *, u32, s32, s32);
-void slot_state_lookup(Handle, void *, u32);
-s32 MaxPathZeroControls(Handle, s32);
-s32 track_collision_setup(s32, s32);
+Handle PS_CreateFile(s32, char *, char *, u32, s32, s32);
+void PS_WriteFile(Handle, void *, u32);
+s32 PS_FlushFile(Handle, s32);
+s32 PS_FlushPak(s32, s32);
 void func_80091FBC(void *, Handle, Handle);
 void func_800A473C(void *, char *);
-void AdjustSpeed(Handle);
+void pak_delete_file_retry(Handle);
 void audio_volume_pan(void);
 void func_800949D4(void);
 
@@ -111,7 +111,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
     save = *F(*h, Handle, 44);
     if (save[12] != 16) {
         if (repair) {
-            AdjustSpeed(F(*h, Handle, 8));
+            pak_delete_file_retry(F(*h, Handle, 8));
             return 0;
         }
         dirty = 1;
@@ -120,7 +120,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
         dirty = 1;
         if (repair) {
             F(save, s32, 0) = format_string_parse(save + 4, (save + 28) - (save + 4));
-            slot_state_lookup(F(*h, Handle, 8), save, 4);
+            PS_WriteFile(F(*h, Handle, 8), save, 4);
         }
     }
     if (format_string_parse(save + 32, 21) != F(save, s32, 28)) {
@@ -138,7 +138,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             ((u8 *)*h)[43] = 1;
             memcpy(save + 60, (u8 *)*h + 33, 11);
             F(save, s32, 56) = format_string_parse(save + 60, 11);
-            slot_state_lookup(F(*h, Handle, 8), save + 56, 15);
+            PS_WriteFile(F(*h, Handle, 8), save + 56, 15);
         }
     }
     if (format_string_parse(save + 76, 16) != F(save, s32, 72)) {
@@ -151,7 +151,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             }
             D_8014978C = saved;
             memset(save + 72, 0, 20);
-            slot_state_lookup(F(*h, Handle, 8), save + 72, 20);
+            PS_WriteFile(F(*h, Handle, 8), save + 72, 20);
         }
     }
     if (format_string_parse(save + 96, 12) != F(save, s32, 92)) {
@@ -164,7 +164,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             }
             D_8014978C = saved;
             memset(save + 92, 0, 16);
-            slot_state_lookup(F(*h, Handle, 8), save + 92, 16);
+            PS_WriteFile(F(*h, Handle, 8), save + 92, 16);
         }
     }
     if (format_string_parse(save + 112, 16) != F(save, s32, 108)) {
@@ -177,7 +177,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             }
             D_8014978C = saved;
             memset(save + 108, 0, 20);
-            slot_state_lookup(F(*h, Handle, 8), save + 108, 20);
+            PS_WriteFile(F(*h, Handle, 8), save + 108, 20);
         }
     }
     if (format_string_parse(save + 132, 8) != F(save, s32, 128)) {
@@ -190,7 +190,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             }
             D_8014978C = saved;
             memset(save + 128, 0, 12);
-            slot_state_lookup(F(*h, Handle, 8), save + 128, 12);
+            PS_WriteFile(F(*h, Handle, 8), save + 128, 12);
         }
     }
     for (off = 0; off < 576; off += 96) {
@@ -198,7 +198,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 memset(save + off + 140, 0, 96);
-                slot_state_lookup(F(*h, Handle, 8), save + off + 140, 96);
+                PS_WriteFile(F(*h, Handle, 8), save + off + 140, 96);
             }
         }
     }
@@ -207,7 +207,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 memset(save + off + 1292, 0, 64);
-                slot_state_lookup(F(*h, Handle, 8), save + off + 1292, 64);
+                PS_WriteFile(F(*h, Handle, 8), save + off + 1292, 64);
             }
         }
     }
@@ -216,7 +216,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 memset(save + off + 1548, 0, 12);
-                slot_state_lookup(F(*h, Handle, 8), save + off + 1548, 12);
+                PS_WriteFile(F(*h, Handle, 8), save + off + 1548, 12);
             }
         }
     }
@@ -225,7 +225,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 memset(save + off + 1644, 0, 24);
-                slot_state_lookup(F(*h, Handle, 8), save + off + 1644, 24);
+                PS_WriteFile(F(*h, Handle, 8), save + off + 1644, 24);
             }
         }
     }
@@ -234,7 +234,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 memset(save + off + 1668, 0, 28);
-                slot_state_lookup(F(*h, Handle, 8), save + off + 1668, 28);
+                PS_WriteFile(F(*h, Handle, 8), save + off + 1668, 28);
             }
         }
     }
@@ -242,7 +242,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
         dirty = 1;
         if (repair) {
             memset(save + 1780, 0, 76);
-            slot_state_lookup(F(*h, Handle, 8), save + 1780, 76);
+            PS_WriteFile(F(*h, Handle, 8), save + 1780, 76);
         }
     }
     for (i = 0; i < 13; i++) {
@@ -251,7 +251,7 @@ s32 draw_speedometer(Handle h, s32 repair) {
             dirty = 1;
             if (repair) {
                 draw_number(h, i);
-                slot_state_lookup(F(*h, Handle, 8), p + 1856, 16);
+                PS_WriteFile(F(*h, Handle, 8), p + 1856, 16);
             }
         }
     }
@@ -292,7 +292,7 @@ s32 func_800CCEFC(Handle h) {
 void func_800CD058(Handle h) {
     if (F(*h, s32, 8) != 0) {
         if (func_800CCEFC(h)) {
-            AdjustSpeed(F(*h, Handle, 8));
+            pak_delete_file_retry(F(*h, Handle, 8));
         }
     } else {
         func_800CCCCC(h);
@@ -308,7 +308,7 @@ extern u8 D_8013E5D8[][16][48];
 extern u8 D_8012E6D8[];
 extern s32 D_8002E8E8[];
 
-Handle func_800CD104(s32 id, char *name) {
+Handle CreatePlayer(s32 id, char *name) {
     Handle entry;
     u8 *data;
     Handle created;
@@ -366,7 +366,7 @@ Handle func_800CD104(s32 id, char *name) {
         }
         attempt++;
     } while (node != NULL);
-    created = track_process_main(id, file, D_801211E0, 2064, 0x3544, 0x4E525545);
+    created = PS_CreateFile(id, file, D_801211E0, 2064, 0x3544, 0x4E525545);
     if (created == NULL) {
         return NULL;
     }
@@ -385,9 +385,9 @@ Handle func_800CD104(s32 id, char *name) {
     F(data, s32, 0) = format_string_parse(data + 4, (data + 28) - (data + 4));
     memcpy(rec + 20, data + 13, 13);
     memcpy(rec + 12, data + 4, 8);
-    slot_state_lookup(F(rec, Handle, 8), data, 2064);
-    MaxPathZeroControls(F(rec, Handle, 8), 0);
-    track_collision_setup(((u8 *)*F(rec, Handle, 8))[16], 1);
+    PS_WriteFile(F(rec, Handle, 8), data, 2064);
+    PS_FlushFile(F(rec, Handle, 8), 0);
+    PS_FlushPak(((u8 *)*F(rec, Handle, 8))[16], 1);
     for (node = F(D_8012E6D8, Handle, 8); node != NULL; node = *(Handle *)*node) {
         if (func_8008AD04((u8 *)*node + 20, rec + 20) > 0) {
             break;

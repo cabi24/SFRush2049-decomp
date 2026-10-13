@@ -1,12 +1,12 @@
 {
  "members": [
-  "audio_doppler_full"
+  "ShowCountdown"
  ],
  "files": [
   "audio_doppler_full.c"
  ],
  "keep": [
-  "audio_doppler_full"
+  "ShowCountdown"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "provenance": "frontier wave 28 (w28c), 2026-10-13: audio_doppler_full = GC ShowCountdown (countdown.c); function-local statics poly/polyTidx/lastCountDown/polyColor/polyXYZ are the TU's own .bss/.data; cloud/work/frontier/w28c/RESULTS.md"

@@ -29,7 +29,7 @@ def test_native_metadata_replays_complete_current_extents():
 
 def test_registered_caller_corrects_old_bigfish_report():
     rows = {r['target']:r for r in scout.audit()['targets']}
-    assert rows['func_80100E58']['direct_callers'] == ['func_8010221C']
+    assert rows['func_80100E58']['direct_callers'] == ['drawMain']
     assert rows['func_8010C974']['entry_frame_bytes'] == 392
     assert any(c['address'] == '0x8038D798' and c['names'] == [] for c in rows['func_8010C974']['callees'])
 

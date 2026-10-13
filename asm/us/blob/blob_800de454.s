@@ -8912,10 +8912,10 @@ func_800E6AF0:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_800E6AF8, "ax", @progbits
-.globl func_800E6AF8
-func_800E6AF8:
-    /* compiled from src/blob/func_800E6AF8.c */
+.section .text.model_iteration, "ax", @progbits
+.globl model_iteration
+model_iteration:
+    /* compiled from src/blob/model_iteration.c */
     .word 0x27BDFF60
     .word 0x3C0E8011
     .word 0x8DCE74B4

@@ -27,7 +27,7 @@ typedef struct Ghost {            /* GC __anon_49a9c (N64 layout) */
 } Ghost;
 
 u32 format_string_parse(u8 *start, u32 size);    /* GC _CalcChecksum */
-void AdjustSpeed(void **fileh);                  /* pak file delete (label wrong) */
+void pak_delete_file_retry(void **fileh);                  /* pak file delete (label wrong) */
 
 s32 draw_ui_element(Ghost **ghosth, s32 data, s32 repair) {
     s32 result;
@@ -38,7 +38,7 @@ s32 draw_ui_element(Ghost **ghosth, s32 data, s32 repair) {
     if (header->revision != 17) {
         if (repair) {
             if ((*ghosth)->fileh) {
-                AdjustSpeed((*ghosth)->fileh);
+                pak_delete_file_retry((*ghosth)->fileh);
             }
             return 0;
         }
@@ -47,7 +47,7 @@ s32 draw_ui_element(Ghost **ghosth, s32 data, s32 repair) {
     if (header->headerChecksum != format_string_parse(&header->revision, (u8 *)&header->zippedChecksum - (u8 *)header - 4)) {
         if (repair) {
             if ((*ghosth)->fileh) {
-                AdjustSpeed((*ghosth)->fileh);
+                pak_delete_file_retry((*ghosth)->fileh);
             }
             return 0;
         }
@@ -59,7 +59,7 @@ s32 draw_ui_element(Ghost **ghosth, s32 data, s32 repair) {
     if (header->zippedChecksum != format_string_parse(header->data, header->zippedSize)) {
         if (repair) {
             if ((*ghosth)->fileh) {
-                AdjustSpeed((*ghosth)->fileh);
+                pak_delete_file_retry((*ghosth)->fileh);
             }
             return 0;
         }

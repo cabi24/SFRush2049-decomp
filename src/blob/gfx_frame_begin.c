@@ -147,7 +147,7 @@ s32 wheel_render_full(s32);
 void sound_init(void);
 void world_trigger_check(void);
 
-void attract_or_transition(void) {
+void gfx_frame_begin(void) {
     u32 color;
     FrameBuf *frame;
     frame=&D_80156BE0[D_8015F72D];
