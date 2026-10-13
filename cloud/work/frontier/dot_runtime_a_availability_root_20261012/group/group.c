@@ -9,7 +9,8 @@
  * Both root float literals are authenticated and checked in full. All source
  * spellings/names are reconstructions, not assertions of original source.
  * 97FFC still differs in 15 instruction words. Its body is not installable
- * separately from the private ABI context; 9842C and 97AD8 remain NONMATCH.
+ * separately from the private ABI context. 97AD8 now matches all 327 words;
+ * 9842C remains NONMATCH. The callee is not independently installable.
  * No proven arcade ancestor, forced compiler, fake caller/formal or pad array.
  */
 typedef signed char s8;typedef unsigned char u8;
@@ -408,10 +409,17 @@ restart:
     func_80394834();
     func_80394564(-1);
 }
-/* Complete native-led 97AD8 model-slot initialization, nonmatching context.
- * Scalar constants and four-byte white color initializer are authenticated
- * against image A; accessed Slot64 fields retain native offsets/capacities.
- * No fabricated formal or caller: actual input is one signed player byte.
+/* Complete native-led 97AD8 model-slot initialization: strict 327-word match
+ * in this genuine context. The consumed scale local preserves the native
+ * multiply-by-one operations that literal folding removed, including their
+ * floating-point evaluation. Its native-derived declaration position leaves
+ * color at sp+76 and the genuine s16 output at sp+70 in the unchanged 80-byte
+ * frame. This is not an unused frame filler or a recovered original name.
+ * All 40 literal bytes and the complete four-byte white color initializer
+ * are authenticated against image A. Slot64 offsets/capacities are unchanged.
+ * No fabricated formal or caller: actual input is one signed player byte
+ * passed by the sole genuine 97FFC caller at incoming stack+3. Empty claims:
+ * the nonmatching caller and cross-group ownership still block installation.
  */
 /* Existing matched texture lookup declares this table-count byte volatile. */
 extern volatile u8 D_80140BDC;
@@ -430,6 +438,7 @@ extern void particle_velocity_set(void);
 void func_80397AD8(s8 player)
 {
     u8 color[4]={255,255,255,255};
+    f32 scale=1.0f;
     s16 count;
     s32 j;
     Slot64 *slot;
@@ -453,9 +462,9 @@ void func_80397AD8(s8 player)
     func_800B5898(-1.57079632679f,D_803B470C[player][16].matrix);
     D_803B470C[player][16].position[0]=0.0f;
     D_803B470C[player][16].position[1]=D_8014A108>=2?105.0f:115.0f;
-    D_803B470C[player][16].position[0]*=1.0f;
-    D_803B470C[player][16].position[1]*=1.0f;
-    D_803B470C[player][16].position[2]=200.0f*1.0f;
+    D_803B470C[player][16].position[0]*=scale;
+    D_803B470C[player][16].position[1]*=scale;
+    D_803B470C[player][16].position[2]=200.0f*scale;
     resource=func_800B24EC(D_803B89E4,&count,0,D_80140BDC-1,1);
     func_8008D870(D_803B470C[player][17].id,resource,-1);
     resource=func_800B24EC(D_803B89EC,&count,0,D_80140BDC-1,1);
@@ -478,17 +487,17 @@ void func_80397AD8(s8 player)
     func_800B5898(-1.57079632679f,D_803B470C[player][20].matrix);
     D_803B470C[player][20].position[0]=-75.1f;
     D_803B470C[player][20].position[1]=D_8014A108>=2?50.2f:55.2f;
-    D_803B470C[player][20].position[0]*=1.0f;
-    D_803B470C[player][20].position[1]*=1.0f;
-    D_803B470C[player][20].position[2]=100.0f*1.0f;
+    D_803B470C[player][20].position[0]*=scale;
+    D_803B470C[player][20].position[1]*=scale;
+    D_803B470C[player][20].position[2]=100.0f*scale;
     func_8008B32C(D_803B470C[player][20].matrix,D_803B470C[player][20].matrix,.5f);
     memcpy(D_803B470C[player][21].matrix,D_8011418C,36);
     func_800B5898(-1.57079632679f,D_803B470C[player][21].matrix);
     D_803B470C[player][21].position[0]=-87.1f;
     D_803B470C[player][21].position[1]=D_8014A108>=2?50.2f:55.2f;
-    D_803B470C[player][21].position[0]*=1.0f;
-    D_803B470C[player][21].position[1]*=1.0f;
-    D_803B470C[player][21].position[2]=100.0f*1.0f;
+    D_803B470C[player][21].position[0]*=scale;
+    D_803B470C[player][21].position[1]*=scale;
+    D_803B470C[player][21].position[2]=100.0f*scale;
     D_803BA868[player]=1;
     D_803BA888[player]=1;
     particle_velocity_set();

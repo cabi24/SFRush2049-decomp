@@ -1,112 +1,125 @@
-# Image-A availability setup: genuine context, 15-word residual
+# Image-A model-slot initialization: strict callee, private-ABI research
 
-## Deliverable and accounting
+## Source deliverable and accounting
 
-`group/` is a **research-only, empty-claims** source group for `func_80397FFC`,
-complete native interval `[0x80397FFC,0x8039842C)`, **1,072 bytes**. It is not a
-replacement for either accepted availability or cleanup group. The current
-selective installer explicitly refuses this packet with “no claims (research
-only), nothing to splice”; the verifier checks that refusal before compiling.
+`group/` now reproduces **func_80397AD8, all 327 words / 1,308 bytes**, interval
+`[0x80397AD8,0x80397FFC)`, with unmodified stock IDO 5.3. Its complete 40-byte
+literal range and four-byte white color initializer also match. The sole real
+caller 97FFC remains **15/268 words different**, full 1,072-byte extent and
+72-byte frame. Outer 9842C remains NONMATCH.
 
-**Zero new strict-matched, accepted-image, or ROM bytes.** The four diagnostic
-preservation members remain strict matches: 94564 (720 B), 94834 (400 B),
-949CC (308 B), and 94B00 (728 B). The first three total **1,428 accepted bytes**;
-94B00 is **728 inherited candidate bytes from PR #359**, not new credit and
-not yet accepted at base master `84d8a4827e7fed06365846e013351b580593d921`.
-Every preserved body is listed in the diagnostic manifest and independently
-verified; none is proposed for reinstallation. No accepted identity is given a
-reduced replacement claim set, and no lock/source is changed.
+This is **empty-claims, non-installable research**. New individually strict
+source bytes: **1,308**. New installable, accepted-image and ROM bytes: **0**.
+The private callee cannot be installed independently of the unresolved caller
+and the existing availability/cleanup group ownership. This packet proposes
+no installer replacement or group-identity migration. `packet_spec` refuses
+its empty claims, and the verifier requires that refusal.
 
-## Measured causal chain
+All four prior exact bodies remain diagnostic members and strict matches:
+94564 (720 B), 94834 (400 B), 949CC (308 B), and 94B00 (728 B). The first three
+are **1,428 already accepted bytes**; 94B00 is **728 inherited #359 candidate
+bytes**, still unaccepted at base master `46780d3e85fb79001d64cceef25c868e187265d7`.
+None is new credit or proposed for reinstallation. No accepted identity loses
+members, and no protected source or lock changes.
 
-- Imported #359 kept-97FFC context: canonical **260/268** differing words,
-  full GNU **262/268 plus 12 extra nonzero words**, full extent 1,120 B, frame
-  104. The canonical target slice truncates a final HI/LO pair and masks two
-  shifted literal sites. Its three reported relocation/data errors are saved
-  honestly in the receipt; full original-REL GNU reconstruction resolves the
-  complete function and establishes the stricter count.
-- Add the complete existing genuine **9842C parent** and its already-exact
-  949CC cleanup: canonical **176/268**, full GNU **177/268**, 1,032 B, frame 64.
-  The absent 40-byte native tail is counted; nothing is borrowed from its
-  neighbor. This makes 97FFC internal and removes false o32 callee-save work.
-- Add a newly reconstructed **complete real 97AD8 callee**: **31/268** in
-  both checks, full 1,072 B, frame 64. Native caller census is exactly
-  9842C+0x16c → 97FFC and 97FFC+0x188 → 97AD8. The latter naturally receives
-  its single player input at stack+0; native 97AD8 reads the low signed byte
-  at incoming stack+3. No fictitious formal, synthetic caller, or empty stand-in.
-- Keep the consumed screen-count local used in the three-to-four-screen
-  override: **17/268**, frame **72**, all native spill homes recovered.
-  Stock UGEN M24/T32/P4 becomes M28/T32/P4, then normal frame alignment adds
-  four bytes. There are **no unused locals**, capacity reductions, pad arrays,
-  forced registers, invented helpers, or compiler changes.
-- Put the final ambient-sound loop body on its own source line: **15/268**,
-  full native extent/frame and all **8 owned literal bytes** verified.
+## New causal result
 
-Source spellings and variable names are reconstructions. The named count is
-not evidence of the original declarations. Reconstructed 97AD8 remains
-NONMATCH (200/327 canonical words), as does outer 9842C (443/451); their owned
-context data and gameplay semantics are not promoted by the root result.
-The existing matched texture lookup declares table-count byte D_80140BDC
-volatile. That actual declaration, pinned as a consumed source input, is
-preserved in the callee; arbitrary new volatility was not introduced.
+The inherited complete 97AD8 reconstruction in `context_baseline.c` (PR #365)
+scored **200/327**, with a true **1,280-byte** function and 28 missing native
+bytes. Its partial own-data failure and 22 unverified references remain in the
+receipt rather than being excused as an accepted baseline.
 
-## Residual diagnosis and stop
+Native code repeatedly multiplies position components by a retained `1.0f`.
+The inherited source spelled these as literal multiplications, which the
+front end simplified before register allocation. A genuinely consumed
+`f32 scale = 1.0f` local restores those operations and their native floating
+register allocation. Declaring it after the real four-byte color local and
+before the signed-halfword output local also restores both native homes:
+color at `sp+76`, output at `sp+70`. The frame remains **80 bytes**.
 
-Workbench diagnosis and stock UGEN layout distinguish the home, color and
-schedule effects. Instrumented uopt with no force is byte-identical to the
-complete stock object. In root procedure 5, the relevant phase-one choices
-are screen-value web 46 → v0, consumed local web 44 → v1, and address web
-79 → a0. The legal three-color diagnostic
-`p1:w46=c3,p1:w44=c2,p1:w79=c1` reaches **6/268** in independent GNU linkage.
-Those remaining offsets are +0x174/+0x178/+0x17c/+0x180/+0x184/+0x18c:
-the same byte store and stack spills in a different order before/inside the
-97AD8 call. **The forced object is not a match or accepted deliverable.**
+This one coherent source change reaches strict **0/327**, full 1,308 bytes,
+zero extra words, unresolved symbols, unverified references or data errors.
+It introduces no unused local, buffer reduction, pad array, invented formal,
+fake caller, new volatility or compiler override. Original variable names
+and exact declaration spellings remain unknown.
 
-Bounded natural experiments included consumed count width/reuse, a genuine
-layout pointer, direct-global vs local conditions, switch form, source line
-boundaries, named call results, and equivalent narrow parameter spellings.
-None closed the color/schedule pair. The final source retains only the useful
-count and loop-line changes. No broad random sweep or ineffective shaping is
-published. A next useful step is stock scheduler/priority tracing at the
-97AD8 call boundary, not another frame-capacity search.
+Two causal controls isolate the declaration placement while retaining the
+same operations and complete 1,308-byte extent:
 
-## Proof and limits
+- Scale before color: exactly one differing word, color home `sp+72` instead
+  of `sp+76`, at +0x14.
+- Scale after output: exactly one differing word, output home `sp+74` instead
+  of `sp+70`, at +0x15c.
 
-`verify.py` binds source/recipe/baseline/own verifier/trace/host/test hashes,
-selected complete target words and extents, exact caller bodies and consumed
-symbol addresses, both owned root literals, and all eight stock IDO passes.
-It does not pin shared scoring/tools, lock files, Makefile, or assembly text.
-No static ROM TU is rebuilt. The imported #359 baseline is self-contained;
-replay never reads a non-master-ancestor Git object.
+The real signed-byte input still arrives at incoming stack+3, from 97FFC's
+stack+0 word store. The full native call census is 9842C+0x16c to 97FFC and
+97FFC+0x188 to 97AD8. All 327 callee words, including entry/exit and calls,
+are now byte-exact. The already-matched texture lookup's actual volatile
+count declaration is retained and bound as an input; no new volatility is
+used to steer compilation.
 
-For all five causal stages, an independent ELF reader checks every defined
-function's full STT_FUNC extent, next compiled symbol and zero suffix. GNU
-rebuilds the complete selected bodies and **every original REL record in those
-bodies**, preserving exact function-entry call destinations and rebasing the
-root's whole compiler-owned 8-byte literal slice. Final proof checks **213
-text relocations**, zero unresolved GNU state, exact allocation set, every
-instruction word and both whole literals. Unclaimed context data are not
-included in that GNU acceptance comparison. The receipt records full missing
-and excess extents for controls rather than padding/cropping them.
+## Root history and measured stopping point
 
-Instruction corruption, corrupt/missing root literals and an overlong function
-extent are rejected. Normal and Python `-O` proof pass. The focused test takes
-about 0.6 seconds with IDO and cleanly skips when IDO is absent after verifying
-all bound inputs. Canonical group scoring correctly returns NONMATCH.
+All #365 stages remain self-contained and replayable:
 
-Both exact C root bodies, unchanged by the host generator, run over **20,480
-logical-host cases**: counts 0–4, all 16 owner-presence masks, 16 table/height
-seeds, and 16 positive divisors. Complete helper-event traces and root state
-agree. The same matrix passes ASan/UBSan. Helper implementations are explicit
-deterministic doubles and memory is stable: this does not execute real retail
-helpers, prove arbitrary aliasing/concurrent mutation, pointer-width layout,
-exceptional division, model-slot semantics or gameplay. The real 97AD8 context
-and 9842C parent are independently unverified reconstructions; no hardware,
-image composition/compression or full-ROM gate was run.
+- Imported #359 kept-root baseline: canonical 260/268; complete GNU linkage
+  gives **262/268 plus 12 extra nonzero words**, 1,120 B, frame 104. The
+  canonical truncated-slice HI/LO and own-data diagnostics remain recorded.
+- Genuine 9842C parent and 949CC cleanup: canonical 176/268, GNU 177/268,
+  1,032 B, frame 64. The absent 40-byte native tail is counted.
+- Complete real 97AD8 context: 31/268, full 1,072 B, frame 64.
+- Consumed screen-count local: 17/268, frame 72 and exact spill homes.
+- Final loop-line separation: 15/268. The newly exact callee preserves this
+  root result and every prior exact member.
+
+This round re-established stock UGEN/assembler tracing and independently
+confirmed complete object identity for unforced traced uopt, ugen and as1.
+The legal three-color diagnostic still gives 6/268; it is not matching
+or installation evidence. At the 97AD8 call, as1's ready-list trace selects
+the completed byte store before five independent stack stores; the native
+order leaves that byte store in the call delay slot. Joining statement lines,
+using a comma argument, and reusing consumed quotient/divisor locals did not
+close it. The other nine words remain the screen-address/value allocation
+swap. Bounded pointer, local-use and block-boundary probes were also flat or
+worse; none is retained. This is the measured stop for the root, rather than
+an unsupported claim that all source solutions are exhausted.
+
+The exact callee changes outer 9842C's private-clobber environment: it now
+scores 440/451, emitted 1,712 B versus native 1,804 B, frame 152 versus 192.
+Its jump-table references remain unverified. It is not part of the exact
+body/owned-data proof or an installer claim.
+
+## Verification
+
+- Protocol-v2 receipt binds all source, baseline, recipe, verifier/trace/test
+  inputs, selected native target words/extents, the complete real caller
+  census, relevant symbols and owned-data identities. Eight stock compiler
+  passes are identified. No shared-tool, lock, Makefile or assembly-text pins;
+  no static ROM TU is rebuilt; no non-master Git object is needed for replay.
+- Independent ELF/full GNU linkage covers **305 original selected-body REL
+  records**, all six complete selected function extents and exact symbol
+  bindings, every instruction word, and **52 owned bytes**: callee rodata
+  `0x803B94BC..0x803B94E4` (40 B), root literals
+  `0x803B94E4..0x803B94EC` (8 B), color at `0x803B5EE8` (4 B).
+  The complete 16-byte `.data` allocation is classified as the selected 4-byte
+  color plus 12 zero alignment bytes; nonzero suffixes and expansion fail.
+  Parent-owned context data remain explicitly outside this proof.
+- Missing/corrupt owned data, corrupted root/callee instructions and overlong
+  function extents fail closed. Canonical source and GNU proofs independently
+  require the new callee to be exact and all prior bodies preserved.
+- Normal and Python `-O` deep replay pass. The focused test takes about 0.75 s
+  with IDO; without IDO it checks input identities and cleanly skips.
+- The unchanged real root bodies agree over **20,480 logical-host cases**,
+  also under ASan/UBSan. This uses deterministic helper doubles and stable
+  memory; it is finite root baseline equivalence, not an executed callee,
+  gameplay, unrestricted aliasing/concurrency, pointer-width or exceptional
+  division proof.
+
+The four-byte color and all existing object/array capacities are unchanged.
+No raw assembly, ROM payloads, extracted images, compiled binaries,
+credentials or unrelated private data are part of the publication.
 
 ## Reproduce
-
-From the repository with IDO 5.3 and GNU MIPS binutils configured:
 
 ```
 python3 cloud/work/frontier/dot_runtime_a_availability_root_20261012/verify.py --deep --score
@@ -115,6 +128,8 @@ REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/cloud/test_runtime_a_availability_ro
 python3 cloud/work/frontier/dot_runtime_a_availability_root_20261012/trace.py
 ```
 
-Optional `trace.py --tracer PATH` checks entire-object fidelity, the exact
-three-color diagnostic, and the six remaining GNU differences. Nothing from
-the diagnostic compiler is used for the stock result or installation.
+Optional `trace.py --tracer PATH` independently checks the instrumented uopt's
+complete object fidelity and force-only diagnostic. All acceptance evidence
+comes from stock IDO. The independent checker owns further ownership
+reconciliation, image composition/recompression, the full-ROM gate and any
+merging. This remains a draft.

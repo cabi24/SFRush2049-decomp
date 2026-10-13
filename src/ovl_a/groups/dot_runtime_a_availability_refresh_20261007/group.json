@@ -2,17 +2,20 @@
  "members": [
   "func_80394564",
   "func_80394834",
-  "func_80394B00"
+  "func_80394B00",
+  "func_80397AD8"
  ],
  "context": [
+  "func_8039842C",
+  "func_803949CC",
   "func_80397FFC"
  ],
  "files": [
   "group.c"
  ],
  "keep": [
-  "func_80397FFC"
+  "func_8039842C"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "Same-name availability group: new full 94B00 reset body, two preserved accepted bodies, genuine NONMATCH 97FFC root; stock IDO 5.3."
+ "provenance": "Same-name availability group (w27p, PR #369): claims 94564, 94834, 94B00 (preserved) and new exact 97AD8 model-slot initializer (1,308 B + 40 B rodata + 4 B data) compiled in genuine context: NONMATCH 97FFC root (15/268), 949CC (locked in dot_runtime_a_menu_cleanup_20261007) and 9842C as unspliced context; stock IDO 5.3."
 }

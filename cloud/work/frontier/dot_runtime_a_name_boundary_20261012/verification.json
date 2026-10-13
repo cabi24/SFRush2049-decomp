@@ -1,0 +1,1475 @@
+{
+  "cases": [
+    {
+      "after_toggle_name_bytes": 0,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 21,
+        "0x800be6a4": 10,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 0,
+      "loaded_name_bytes": 0,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22810,
+      "stored_logical_name_bytes": 0,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 1,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 1,
+      "loaded_name_bytes": 1,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22815,
+      "stored_logical_name_bytes": 1,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 2,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 2,
+      "loaded_name_bytes": 2,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22820,
+      "stored_logical_name_bytes": 2,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 3,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 3,
+      "loaded_name_bytes": 3,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22825,
+      "stored_logical_name_bytes": 3,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 4,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 4,
+      "loaded_name_bytes": 4,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22830,
+      "stored_logical_name_bytes": 4,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 5,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 5,
+      "loaded_name_bytes": 5,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22835,
+      "stored_logical_name_bytes": 5,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 6,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 6,
+      "loaded_name_bytes": 6,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22840,
+      "stored_logical_name_bytes": 6,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 7,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 7,
+      "loaded_name_bytes": 7,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22845,
+      "stored_logical_name_bytes": 7,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 8,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 8,
+      "loaded_name_bytes": 8,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22850,
+      "stored_logical_name_bytes": 8,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 9,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 9,
+      "loaded_name_bytes": 9,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22855,
+      "stored_logical_name_bytes": 9,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 10,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 10,
+      "loaded_name_bytes": 10,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22860,
+      "stored_logical_name_bytes": 10,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 11,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 11,
+      "loaded_name_bytes": 11,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22865,
+      "stored_logical_name_bytes": 11,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 12,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 12,
+      "loaded_name_bytes": 12,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": false,
+      "native_steps": 22870,
+      "stored_logical_name_bytes": 12,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 14,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 24,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 14,
+      "loaded_name_bytes": 13,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22875,
+      "stored_logical_name_bytes": 13,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 14,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 14,
+      "loaded_name_bytes": 14,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22880,
+      "stored_logical_name_bytes": 14,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 15,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 15,
+      "loaded_name_bytes": 15,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22885,
+      "stored_logical_name_bytes": 15,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 17,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 16,
+      "loaded_name_bytes": 16,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22890,
+      "stored_logical_name_bytes": 16,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 17,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 16,
+      "loaded_name_bytes": 17,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22895,
+      "stored_logical_name_bytes": 17,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 18,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 16,
+      "loaded_name_bytes": 18,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22900,
+      "stored_logical_name_bytes": 18,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    },
+    {
+      "after_toggle_name_bytes": 19,
+      "executed_instruction_counts": {
+        "0x80091fbc": 26,
+        "0x800b466c": 27,
+        "0x800be6a4": 15,
+        "0x800c7308": 15,
+        "0x800c734c": 55,
+        "0x800c7818": 141,
+        "0x800c7ec8": 92,
+        "0x8039338c": 96
+      },
+      "hook_events": [
+        [
+          "file_read",
+          2064
+        ],
+        [
+          "copy",
+          2148787692,
+          2149584909,
+          13
+        ],
+        [
+          "copy",
+          2148787684,
+          2149584900,
+          8
+        ],
+        [
+          "copy",
+          2148787705,
+          2149584956,
+          11
+        ],
+        [
+          "release_file"
+        ],
+        [
+          "input_sound",
+          2
+        ],
+        [
+          "input_sound",
+          4096
+        ]
+      ],
+      "initial_confirmation_name_bytes": 16,
+      "loaded_name_bytes": 19,
+      "loader_return": "0x8013c128",
+      "malformed_unterminated_13_byte_field": true,
+      "native_steps": 22905,
+      "stored_logical_name_bytes": 19,
+      "total_instruction_counts": {
+        "0x80091fbc": 88,
+        "0x800b466c": 45,
+        "0x800be6a4": 40,
+        "0x800c7308": 17,
+        "0x800c734c": 139,
+        "0x800c7818": 426,
+        "0x800c7ec8": 157,
+        "0x8039338c": 490
+      }
+    }
+  ],
+  "checksum_controls": {
+    "cases": 289,
+    "executed_instructions": 44,
+    "total_instructions": 45,
+    "unexecuted": "unreachable divide-by-zero break; divisor has low three bits 5"
+  },
+  "claims": [],
+  "conclusion": "Checksum-valid malformed 13-byte name fields can expose 19-byte names to the confirmation formatter after a native selection toggle; a universal 18-byte bound is not established.",
+  "formats": [
+    {
+      "fixed_bytes": 42,
+      "format_sha256": "d8ad7b8061b0e5d1fc64e55afc8b79a6b07f49756c4faf54d0de54e4daee6716",
+      "language": 0,
+      "output_including_nul": 62,
+      "resource_sha256": "7f974efe1d10e2a1734fe1dad803c88ec8add1f09d5caa323d2fce563e41c5df",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 29,
+      "format_sha256": "793ba7cd03d7b70ab007d0e001d433e45e7bd5d987040c122d459708305fc65e",
+      "language": 0,
+      "output_including_nul": 49,
+      "resource_sha256": "7f974efe1d10e2a1734fe1dad803c88ec8add1f09d5caa323d2fce563e41c5df",
+      "slot": 146
+    },
+    {
+      "fixed_bytes": 44,
+      "format_sha256": "9aabc32bdf5d4e93c381983cf3e127e2979cc48295a57340ceb0900f7b6b9825",
+      "language": 1,
+      "output_including_nul": 64,
+      "resource_sha256": "aa12c8f54c4a7ee2621c96d4c0df9361d4564f7be0a0d96c6392d97bb6225310",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 32,
+      "format_sha256": "f9ca421ddd6dfbabed0fc32d2f21f77eaad5850f49dd301719ecf9e10c0be603",
+      "language": 1,
+      "output_including_nul": 52,
+      "resource_sha256": "aa12c8f54c4a7ee2621c96d4c0df9361d4564f7be0a0d96c6392d97bb6225310",
+      "slot": 146
+    },
+    {
+      "fixed_bytes": 41,
+      "format_sha256": "2eafaa84a3b418fe83c7353e6732abd673d37ed8a145d5b49be7f1b6fdd51025",
+      "language": 2,
+      "output_including_nul": 61,
+      "resource_sha256": "831003fa550c0c216c111a45b4f74a5a0bda71b30ba50760eb0dde89061ec448",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 33,
+      "format_sha256": "701bf497d7bc4134a682d2437d74d6b11a2e78bde8f17fc4b578298a13d8fc94",
+      "language": 2,
+      "output_including_nul": 53,
+      "resource_sha256": "831003fa550c0c216c111a45b4f74a5a0bda71b30ba50760eb0dde89061ec448",
+      "slot": 146
+    },
+    {
+      "fixed_bytes": 37,
+      "format_sha256": "bab2ad7ffebad5700b8dd81e88d3f8fd7a82c9144d806c38802261521205be50",
+      "language": 3,
+      "output_including_nul": 57,
+      "resource_sha256": "402fdd427e66f59037b41cafaeabc86cd7093913572b516a1294212944ebaff3",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 26,
+      "format_sha256": "13c4f9c12c1f8e5a0e58fcf19d74cf607d01c27053062a7bcb5f73ab242a1369",
+      "language": 3,
+      "output_including_nul": 46,
+      "resource_sha256": "402fdd427e66f59037b41cafaeabc86cd7093913572b516a1294212944ebaff3",
+      "slot": 146
+    },
+    {
+      "fixed_bytes": 45,
+      "format_sha256": "5501f249ce6439058937e92b956f0ca787dc9b88c2bf652394b7591436a98d05",
+      "language": 4,
+      "output_including_nul": 65,
+      "resource_sha256": "956f5dc0aa76d662916bdea5c6d8402ff979488f376cdc7d0e8dee9d4eadab19",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 25,
+      "format_sha256": "53abc23fa29e64e1567bf8a46c7bcd377d3224fbad2f276cb277cb5bfa7bd5f8",
+      "language": 4,
+      "output_including_nul": 45,
+      "resource_sha256": "956f5dc0aa76d662916bdea5c6d8402ff979488f376cdc7d0e8dee9d4eadab19",
+      "slot": 146
+    },
+    {
+      "fixed_bytes": 45,
+      "format_sha256": "967752b81d26692546d1b2cea61c8aecccb3dcd528c515c4627bb23874006b61",
+      "language": 5,
+      "output_including_nul": 65,
+      "resource_sha256": "3f6339ba46c78667919a51c34b4a4245a48f355074ea867c59dc78a453b97727",
+      "slot": 143
+    },
+    {
+      "fixed_bytes": 34,
+      "format_sha256": "8b6bb2d1575e9f98adb104ee1f684b807212e7f1f70d491c015832bbc5e77bdf",
+      "language": 5,
+      "output_including_nul": 54,
+      "resource_sha256": "3f6339ba46c78667919a51c34b4a4245a48f355074ea867c59dc78a453b97727",
+      "slot": 146
+    }
+  ],
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "checksum_jump_table": {
+      "address": "0x80123c20",
+      "bytes": 24,
+      "sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e"
+    },
+    "claims": [],
+    "game_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_a_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "protocol_version": 2,
+    "sources": {
+      "cloud/work/frontier/dot_runtime_a_name_boundary_20261012/host.c": "c3754b150370a507b3e1757c37756d3a16b58eda7d4480f0ccae43ee88f32fea",
+      "cloud/work/frontier/dot_runtime_a_name_boundary_20261012/native.py": "499958c06785324d47954e4f6d42022da79b46bf1f464e9e168ddd281fcb4582",
+      "cloud/work/frontier/dot_runtime_a_name_boundary_20261012/verify.py": "6999203d980d168f56b00b9bcc8a7d3fa21f8baccf4119bb88859825ec134b5d",
+      "tests/cloud/test_runtime_a_name_boundary.py": "6e4816195df9c23928378ce5a5777b2e11ade0f2f708536a2371559ae148099c"
+    },
+    "targets": {
+      "draw_speedometer": {
+        "address": "0x800c7818",
+        "complete_bytes": 1704,
+        "population": "blob",
+        "words_sha256": "4585bbe55d46f3d722c32180915ab0d091472669a38a92e925d181ce5eb0a28a"
+      },
+      "draw_text": {
+        "address": "0x800c734c",
+        "complete_bytes": 556,
+        "population": "blob",
+        "words_sha256": "2ab390f33612ef2c750ef4b14896e4afe18642c52184d4baa60e17c9fdd0149e"
+      },
+      "format_string_parse": {
+        "address": "0x800b466c",
+        "complete_bytes": 180,
+        "population": "blob",
+        "words_sha256": "f8537dbeb5e899bf215a2380e1f44dc25689bb46dca8be6deb664bc5bfbd4c0d"
+      },
+      "func_80091FBC": {
+        "address": "0x80091fbc",
+        "complete_bytes": 352,
+        "population": "blob",
+        "words_sha256": "f8d5ad3a803810f13581c07ee33389ef6ac7e7e536c566e80cce8c3574064255"
+      },
+      "func_800BE6A4": {
+        "address": "0x800be6a4",
+        "complete_bytes": 160,
+        "population": "blob",
+        "words_sha256": "00710f1dbfb5750584cf4dcbffd653280b810bcc283815a1b3dd7c131bea38a8"
+      },
+      "func_800C7EC8": {
+        "address": "0x800c7ec8",
+        "complete_bytes": 628,
+        "population": "blob",
+        "words_sha256": "66d712ae390c57c49f457203708c3e1ec073e45c3b6ba02947b60f017ec4f555"
+      },
+      "func_8039338C": {
+        "address": "0x8039338c",
+        "complete_bytes": 1960,
+        "population": "ovl_a",
+        "words_sha256": "6eae48d1f42ba7f22368855a4024b05499241f1433e3d4012bde801c71230e6d"
+      },
+      "func_803AA3D8": {
+        "address": "0x803aa3d8",
+        "complete_bytes": 2868,
+        "population": "ovl_a",
+        "words_sha256": "7cea9cb4a17f341eb80b95eced6389232fdedfca9ba92a8dee7524470e3582a6"
+      },
+      "object_render_cleanup": {
+        "address": "0x800c7308",
+        "complete_bytes": 68,
+        "population": "blob",
+        "words_sha256": "98f44b8036e8f64c06ead8ad57680ea8435aaf06a3dcb3cd6445bf0955819676"
+      }
+    }
+  },
+  "limits": "Logical machine fixture; file-read/copy/release/sound contracts hooked. Normal UI creation, physical pak I/O, formatter execution, renderer execution, original declarations, full gameplay and hardware reachability are not proved.",
+  "negative_controls": {
+    "changed_native_copy_count": "rejected",
+    "checksum": "validator returns dirty=1",
+    "unmapped_memory": "rejected",
+    "unsupported_instruction": "rejected",
+    "version": "validator returns dirty=1"
+  },
+  "new_accepted_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "new_strict_code_bytes": 0
+}

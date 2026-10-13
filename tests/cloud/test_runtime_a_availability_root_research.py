@@ -13,7 +13,10 @@ def test_availability_root_research():
     receipt=json.loads((PACKET/'verification.json').read_text());before=v.score.ASM_DIR
     assert v.inputs()==receipt['inputs'] and v.score.ASM_DIR==before
     assert receipt['claims']==[] and not receipt['installation_proposed']
-    assert (receipt['new_strict_bytes'],receipt['accepted_image_bytes'],receipt['rom_bytes'])==(0,0,0)
+    assert receipt['new_individually_strict_bytes']==1308
+    assert (receipt['new_installable_bytes'],receipt['accepted_image_bytes'],receipt['rom_bytes'])==(0,0,0)
+    assert receipt['results']['candidate']['gnu']['owned_data_bytes']==52
+    assert receipt['results']['candidate']['callee_comparison']['differing']==0
     missing=[n for n in ('mips-linux-gnu-as','mips-linux-gnu-ld') if not shutil.which(n)]
     if missing:pytest.skip('MIPS binutils missing: '+', '.join(missing))
     assert v.verify()==receipt and v.score.ASM_DIR==before
