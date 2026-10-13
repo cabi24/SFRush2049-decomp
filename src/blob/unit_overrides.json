@@ -156,6 +156,22 @@
   {
    "name": "wod_dist2d",
    "reason": "non-static inlined helper of world_object_destroy (w27b): 2-D distance helper; as a static it leaves deleted-procedure stub words (6 for the three) that retail does not have"
+  },
+  {
+   "name": "func_800A1BB4",
+   "reason": "pak write cluster (w28b, group pak_write_cluster): internal IPA function; umerge must see it internal so its callers inline/pass arguments as retail (no keep entry, no stub)"
+  },
+  {
+   "name": "func_800A1C6C",
+   "reason": "pak write cluster (w28b): internal IPA function, register parameters handle a0, address t2, bytes a1, offset t1 (retail call sites)"
+  },
+  {
+   "name": "func_800A1DD4",
+   "reason": "pak write cluster (w28b): internal IPA function, register parameters a0,a1,a2,t3 (w27r regmap_verify)"
+  },
+  {
+   "name": "track_data_decompress",
+   "reason": "pak write cluster (w28b): internal IPA function, handle a2, mode in the caller's 4(sp), s0-s8 unsaved"
   }
  ],
  "prefer_definition": [

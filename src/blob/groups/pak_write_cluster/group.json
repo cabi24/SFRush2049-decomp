@@ -1,0 +1,24 @@
+{
+ "name": "pak_write_cluster",
+ "members": [
+  "func_800A1BB4",
+  "func_800A1C6C",
+  "func_800A1DD4",
+  "track_data_decompress",
+  "track_collision_setup",
+  "MaxPathZeroControls",
+  "slot_state_lookup"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "track_collision_setup",
+  "MaxPathZeroControls",
+  "slot_state_lookup"
+ ],
+ "context": [],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "Controller-pak write cluster (w26d/w27e/w28b). func_800A1BB4, func_800A1C6C, func_800A1DD4 and track_data_decompress are internal IPA functions (need unit_overrides force_internal); pfs_queue_init/pfs_lock/pfs_unlock are non-static inlined helpers (not members, not keep). Shaping devices disclosed in group.c header.",
+ "provenance": "frontier wave 28 (w28b), 2026-10-12; cloud/work/frontier/w28b/RESULTS.md"
+}
