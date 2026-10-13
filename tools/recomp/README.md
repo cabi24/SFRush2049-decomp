@@ -802,12 +802,12 @@ TIMES | RACE AGAIN | NEW TRACK | NEW CAR | QUIT`. It replaces RT64 screenshots f
 a 0.5 s press auto-repeats (use the default 0.2 s, ~1 s apart); SELECT TRACK DOWN + LEFT x2 = 1 lap (default 3);
 with the accelerator held the default car finishes a 1-lap race on track 1 (6th, ~frame 3676).
 
-**Phase 8 scripts** (lane w28r; pak flow; frames in brackets): `options_menus` [2490] front-end OPTIONS / AUDIO /
-VIDEO, every row changed; `pause_menus` [4320] pause -> OPTIONS, CONTROLS (every row), AUDIO, VIDEO, RUMBLE PAK,
-RESTART; `controls_frontend` [1740] PLAYER 1 -> CONTROLS editor (RIGHT on the row before A, else A starts JUST
-PLAY); `race_finish` [4800] 1-lap race to the finish, ENTER YOUR NAME, BEST LAPS, GAME OVER -> RACE AGAIN;
-`two_player_finish` [4800] the same for 2P; `player_finish` [5100] CREATE PLAYER "AAAA" then a 1-lap finish as
-that pak player (stat writes, BEST AVERAGES), QUIT; `stunt_short` [3600] stunt with MINUTES 1 (ends at frame
+**Phase 8 scripts** (lane w28r; pak flow; frames in brackets): `options_menus.press` [2490] front-end OPTIONS / AUDIO /
+VIDEO, every row changed; `pause_menus.press` [4320] pause -> OPTIONS, CONTROLS (every row), AUDIO, VIDEO, RUMBLE PAK,
+RESTART; `controls_frontend.press` [1740] PLAYER 1 -> CONTROLS editor (RIGHT on the row before A, else A starts JUST
+PLAY); `race_finish.press` [4800] 1-lap race to the finish, ENTER YOUR NAME, BEST LAPS, GAME OVER -> RACE AGAIN;
+`two_player_finish.press` [4800] the same for 2P; `player_finish.press` [5100] CREATE PLAYER "AAAA" then a 1-lap finish as
+that pak player (stat writes, BEST AVERAGES), QUIT; `stunt_short.press` [3600] stunt with MINUTES 1 (ends at frame
 2810; keep stunt_end for the four functions only it reaches). Traps: a held press counts on release; LAPS is
 fixed at 3 in ghost and circuit; the GAME OVER menu takes 0.2 s DOWN presses (A on LAP TIMES toggles the lap list,
 which is why w26r thought DOWN was dead).

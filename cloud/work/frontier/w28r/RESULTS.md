@@ -84,7 +84,7 @@ function or 3 days; verify/probe/census/inbox older than 3 days. Dry run on rock
   passed, 816 skipped, 2 errors` = the known fresh-worktree environment (no mips_to_c submodule / build
   artifacts; same as w26r on its base). tests/conveyor in the MAIN checkout (wave28, with the submodule; this lane
   touches no conveyor code): `1618 passed, 773 skipped`, exit 0.
-- Pi `python3 -m pytest tests/recomp -p no:cacheprovider`: all pass (5 skips: private inputs).
+- Pi `python3 -m pytest tests/recomp -p no:cacheprovider` (after merging wave28 44d10022 and naming the new scripts `NAME.press` in the README, which test_phase3 requires): all pass. Pi tests/cloud after the merge: `790 passed, 200 skipped`.
 
 ## Permission denials
 
