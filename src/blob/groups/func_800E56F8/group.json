@@ -1,0 +1,17 @@
+{
+ "name": "func_800E56F8",
+ "members": [
+  "func_800E56F8",
+  "func_800E6AF8"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E6AF8"
+ ],
+ "context": [],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "IPA unit (func_800E56F8 takes its argument in s4 and clobbers s0-s3,s5,s6 unsaved; only caller func_800E6AF8 = arcade model_iteration). update_drone_models/update_model are non-static inlined helpers (not members, not keep): unit_overrides force_internal func_800E56F8, update_drone_models, update_model. Shaping devices disclosed in group.c header.",
+ "provenance": "frontier wave 29 (w29c), 2026-10-13; cloud/work/frontier/w29c/RESULTS.md (drafts w28d)"
+}

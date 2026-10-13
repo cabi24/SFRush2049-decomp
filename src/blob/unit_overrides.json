@@ -180,6 +180,18 @@
   {
    "name": "track_data_decompress",
    "reason": "pak write cluster (w28b): internal IPA function, handle a2, mode in the caller's 4(sp), s0-s8 unsaved"
+  },
+  {
+   "name": "func_800E56F8",
+   "reason": "group func_800E56F8 (w29c): internal IPA function, argument in s4, s0-s3/s5/s6 clobbered unsaved; only caller func_800E6AF8"
+  },
+  {
+   "name": "update_drone_models",
+   "reason": "group func_800E56F8 (w29c): non-static helper (arcade mdrive.c update_drone_models) inlined into func_800E6AF8, caller-less, leaves no stub"
+  },
+  {
+   "name": "update_model",
+   "reason": "group func_800E56F8 (w29c): non-static nested helper (arcade update_model) inlined into func_800E6AF8, caller-less, leaves no stub"
   }
  ],
  "prefer_definition": [
