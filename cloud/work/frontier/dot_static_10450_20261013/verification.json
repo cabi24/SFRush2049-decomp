@@ -1,0 +1,406 @@
+{
+  "accepted_contract_controls": {
+    "func_800105C4": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80010628": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 59,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80010714": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 48,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80012730": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 378,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "compiler": "ido7.1",
+  "compiler_fingerprints": {
+    "as1": "52160d61a732d209eed15e0ce6736eee23118e1c34ca5b9ec61474fe1a4011e3",
+    "cc": "d886205c468987e49d1b294cc01c3d6bc886a879f4babb2f5035728d1df6029b",
+    "cfe": "c264f0c1f3ece0d15c2cd2ff73fff20381e98ed09f630c8087e24010e2a5ce1a",
+    "ugen": "a8bcc5d4dad3b67428cde0dac6002c1e1ef3f98ea69746ff05300cdab913d227",
+    "uopt": "b21294d653fa414ba97413dc2e17c17bb417f7699166b330ed00a6a3723f03a5"
+  },
+  "gnu": {
+    "complete_text_bytes": 384,
+    "differing_offsets": [],
+    "external_bindings": {
+      "D_80037FA0": "0x80037fa0",
+      "D_80037FA8": "0x80037fa8",
+      "D_80037FD8": "0x80037fd8",
+      "D_80037FE0": "0x80037fe0",
+      "D_80038028": "0x80038028",
+      "D_8003802C": "0x8003802c",
+      "D_80038038": "0x80038038",
+      "D_8003803C": "0x8003803c",
+      "func_8002C5E0": "0x8002c5e0",
+      "osSendMesg": "0x800075e0"
+    },
+    "extra_words": 0,
+    "function_bytes": 372,
+    "original_relocations": [
+      [
+        4,
+        5,
+        "D_80037FD8"
+      ],
+      [
+        8,
+        6,
+        "D_80037FD8"
+      ],
+      [
+        52,
+        5,
+        "D_80037FE0"
+      ],
+      [
+        56,
+        6,
+        "D_80037FE0"
+      ],
+      [
+        64,
+        4,
+        "osSendMesg"
+      ],
+      [
+        72,
+        5,
+        "D_80037FA0"
+      ],
+      [
+        76,
+        6,
+        "D_80037FA0"
+      ],
+      [
+        96,
+        5,
+        "D_80037FA8"
+      ],
+      [
+        100,
+        6,
+        "D_80037FA8"
+      ],
+      [
+        112,
+        5,
+        "D_8003803C"
+      ],
+      [
+        140,
+        6,
+        "D_8003803C"
+      ],
+      [
+        116,
+        5,
+        "D_8003802C"
+      ],
+      [
+        136,
+        6,
+        "D_8003802C"
+      ],
+      [
+        120,
+        5,
+        "D_80038038"
+      ],
+      [
+        132,
+        6,
+        "D_80038038"
+      ],
+      [
+        124,
+        5,
+        "D_80038028"
+      ],
+      [
+        128,
+        6,
+        "D_80038028"
+      ],
+      [
+        160,
+        4,
+        "func_8002C5E0"
+      ],
+      [
+        308,
+        5,
+        "D_80037FD8"
+      ],
+      [
+        316,
+        6,
+        "D_80037FD8"
+      ],
+      [
+        320,
+        5,
+        "D_80037FD8"
+      ],
+      [
+        324,
+        6,
+        "D_80037FD8"
+      ]
+    ],
+    "owned_data_bytes": 0,
+    "relocations": 22,
+    "zero_suffix_bytes": 12
+  },
+  "host": {
+    "O0": "1350 actual-C field-oracle cases passed",
+    "O2": "1350 actual-C field-oracle cases passed",
+    "sanitized": "1350 actual-C field-oracle cases passed"
+  },
+  "inputs": {
+    "caller_census": [],
+    "caller_census_parsed_inputs": {
+      "blob": "7b97b803059d071c3add23983bbbae9bddd1ca860766a226189419ad6cd07dc0",
+      "boot_tail": "8d6234ce8a8e3b0a06a5be7e11cfd6f0995de0c4106b50b8a89ef9e875964857",
+      "ovl_a": "712cbe1f7c90c98c68e91eba4fad810b48d6bd79cad921964562ba3efb7cdf2f",
+      "ovl_b": "6383e06cdaa04316a08bfc604cf142a9d227a4075559b54cb902fcedbe8b4dae"
+    },
+    "candidate_bytes": 372,
+    "cartridge_coverage_claimed": false,
+    "claims": [
+      "func_80010450"
+    ],
+    "files": {
+      "cloud/matches/boot_tail/func_80010450.c": "1e180538351b156914ff4e0b0618bc91cb835a83c0511a1cce378cee455ec8b9",
+      "cloud/matches/boot_tail/func_800105C4.c": "396ca270d9f7c106ac279047dd279e56a4b2a8d1dc5e57cdcb48be8af0ec3f17",
+      "cloud/matches/boot_tail/func_80010714.c": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
+      "cloud/work/boot_tail_promotion/sources/func_80010628.c": "5f1ac5b951c6b8399c51afa00a6a54045f01e16aacfa3fedd3f9d9c9c727492e",
+      "cloud/work/frontier/dot_static_10450_20261013/host.c": "156e4eabe4c7152e3ca1fa1f8f71d32cef0ea68d62b406059eabfcc216721fa4",
+      "cloud/work/frontier/dot_static_10450_20261013/native.py": "ca244500a372a71555b1b39ba6d414caa5d6dedade36ca6161c4d29de79d76ac",
+      "cloud/work/frontier/dot_static_10450_20261013/verify.py": "f1f72a17d8821def7170d8e8c0f6327d7e6c344475d4f1c1a392ffa71c337c9d",
+      "cloud/work/frontier/w21c/sources/func_80012730.c": "02975cf09b932c65895e5b83e46f7ee85ed646d55031b6b24d17f115ca963b40",
+      "tests/cloud/test_static_10450_match.py": "b937f4b4f1ac5f3d9cf7bc3c695d6c2747d4ff5505c215b9158853399dc9007e"
+    },
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "population": "static",
+    "protocol_version": 2,
+    "symbols": {
+      "D_80037FA0": "0x80037fa0",
+      "D_80037FA8": "0x80037fa8",
+      "D_80037FD8": "0x80037fd8",
+      "D_80037FE0": "0x80037fe0",
+      "D_80038028": "0x80038028",
+      "D_8003802C": "0x8003802c",
+      "D_80038038": "0x80038038",
+      "D_8003803C": "0x8003803c",
+      "func_80010450": "0x80010450",
+      "func_80010628": "0x80010628",
+      "func_80010714": "0x80010714",
+      "func_80012730": "0x80012730",
+      "func_8002C5E0": "0x8002c5e0"
+    },
+    "targets": {
+      "func_80010450": {
+        "bytes": 372,
+        "words_sha256": "77edc128286f5a7caa8c3624ba0ca2daafbf2ddc29084d48e765bdfe0b5bcdb0"
+      },
+      "func_800105C4": {
+        "bytes": 88,
+        "words_sha256": "0a73ceae9d16f8807d9c7b8b84d3956d527ab2d3a723e09855f9d394d6d8ce42"
+      },
+      "func_80010628": {
+        "bytes": 236,
+        "words_sha256": "6d9c992af5e55c1f065652cf15fc15c966680d37cf5806df273153a5d1656ecd"
+      },
+      "func_80010714": {
+        "bytes": 192,
+        "words_sha256": "8b3c18043762a18cff94c08dc6b611161390a2698c7872242125dfb6f46354d9"
+      },
+      "func_80012730": {
+        "bytes": 1512,
+        "words_sha256": "fec8c5a5269996d7a52ac74482766591d6dedb74c79b96a32f11eff0d28dd570"
+      }
+    }
+  },
+  "layout": {
+    "half": 2,
+    "pointer": 4,
+    "record_destination": 8,
+    "record_length": 0,
+    "record_size": 12,
+    "record_source": 4,
+    "request_destination": 0,
+    "request_size": 12,
+    "request_size_field": 8,
+    "request_source": 4,
+    "word": 4
+  },
+  "native": {
+    "conditional_outcomes": {
+      "compiled": [
+        [
+          44,
+          false
+        ],
+        [
+          44,
+          true
+        ],
+        [
+          84,
+          false
+        ],
+        [
+          84,
+          true
+        ],
+        [
+          104,
+          false
+        ],
+        [
+          104,
+          true
+        ],
+        [
+          292,
+          false
+        ],
+        [
+          292,
+          true
+        ]
+      ],
+      "native": [
+        [
+          44,
+          false
+        ],
+        [
+          44,
+          true
+        ],
+        [
+          84,
+          false
+        ],
+        [
+          84,
+          true
+        ],
+        [
+          104,
+          false
+        ],
+        [
+          104,
+          true
+        ],
+        [
+          292,
+          false
+        ],
+        [
+          292,
+          true
+        ]
+      ]
+    },
+    "covered_instructions": {
+      "compiled": 93,
+      "native": 93
+    },
+    "executions": 2702,
+    "fixtures": 1351,
+    "unexecuted_offsets": {
+      "compiled": [],
+      "native": []
+    }
+  },
+  "negative_controls": [
+    "wrong_cursor rejected by strict and finite native oracle",
+    "wrong_source rejected by strict and finite native oracle",
+    "unexpected owned allocation refused",
+    "full STT_FUNC extent gate rejects zero-suffix extension",
+    "unknown_opcode refused",
+    "unmapped refused"
+  ],
+  "results": {
+    "geometry": {
+      "frame_bytes": 56,
+      "function_bytes": 372,
+      "owned_data_bytes": 0,
+      "text_bytes": 384,
+      "zero_suffix_bytes": 12
+    },
+    "strict": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 93,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "tu": {
+    "context": {
+      "dropped": [
+        "typedef struct OSMesgQueue_s OSMesgQueue;"
+      ],
+      "preamble": [
+        "typedef struct TransferRequest { void *destination; void *source; unsigned int size; } TransferRequest;",
+        "typedef struct DmaEntry_80010450 { int length; void *source; unsigned char *destination; } DmaEntry_80010450;",
+        "extern TransferRequest D_80037FA8[];",
+        "extern volatile unsigned char D_80037FA0;",
+        "extern unsigned char D_80037FD8;",
+        "extern unsigned char D_80037FE0[];",
+        "extern void *D_8003802C;",
+        "extern unsigned int D_80038038;",
+        "extern unsigned int D_8003803C;",
+        "extern unsigned short D_80038028;",
+        "extern int osSendMesg(OSMesgQueue *, void *, int);",
+        "extern unsigned int func_8002C5E0(unsigned int, unsigned int);"
+      ],
+      "status": "ok",
+      "words": 93
+    },
+    "exact_duplicate_removed": "typedef struct TransferRequest { void *destination; void *source; unsigned int size; } TransferRequest;",
+    "prefix_dedup": "rom/lib_11050",
+    "preserved_functions": [
+      "func_800105C4",
+      "func_8001061C",
+      "func_80010628",
+      "func_80010714"
+    ],
+    "promoted_shape_claims": [
+      "func_80010450",
+      "func_800105C4",
+      "func_8001061C",
+      "func_80010628",
+      "func_80010714"
+    ],
+    "temporary_only": true
+  }
+}
