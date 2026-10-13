@@ -1,0 +1,577 @@
+{
+  "accepted_contract_controls": {
+    "func_80011F60": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 151,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80012200": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 13,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80012730": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 378,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "compiler": "ido7.1",
+  "compiler_fingerprints": {
+    "as1": "52160d61a732d209eed15e0ce6736eee23118e1c34ca5b9ec61474fe1a4011e3",
+    "cc": "d886205c468987e49d1b294cc01c3d6bc886a879f4babb2f5035728d1df6029b",
+    "cfe": "c264f0c1f3ece0d15c2cd2ff73fff20381e98ed09f630c8087e24010e2a5ce1a",
+    "ugen": "a8bcc5d4dad3b67428cde0dac6002c1e1ef3f98ea69746ff05300cdab913d227",
+    "uopt": "b21294d653fa414ba97413dc2e17c17bb417f7699166b330ed00a6a3723f03a5"
+  },
+  "gnu": {
+    "complete_text_bytes": 384,
+    "differing_offsets": [],
+    "external_bindings": {
+      "D_80038028": "0x80038028",
+      "D_8003802C": "0x8003802c",
+      "D_80038038": "0x80038038",
+      "D_8003803C": "0x8003803c",
+      "D_80038344": "0x80038344",
+      "D_80038348": "0x80038348",
+      "func_8002C5E0": "0x8002c5e0"
+    },
+    "extra_words": 0,
+    "function_bytes": 372,
+    "original_relocations": [
+      [
+        0,
+        5,
+        "D_80038344"
+      ],
+      [
+        4,
+        6,
+        "D_80038344"
+      ],
+      [
+        68,
+        5,
+        "D_80038348"
+      ],
+      [
+        72,
+        6,
+        "D_80038348"
+      ],
+      [
+        172,
+        5,
+        "D_80038038"
+      ],
+      [
+        180,
+        6,
+        "D_80038038"
+      ],
+      [
+        196,
+        5,
+        "D_8003803C"
+      ],
+      [
+        212,
+        6,
+        "D_8003803C"
+      ],
+      [
+        216,
+        4,
+        "func_8002C5E0"
+      ],
+      [
+        224,
+        5,
+        "D_80038028"
+      ],
+      [
+        236,
+        6,
+        "D_80038028"
+      ],
+      [
+        248,
+        5,
+        "D_8003802C"
+      ],
+      [
+        256,
+        6,
+        "D_8003802C"
+      ],
+      [
+        228,
+        5,
+        "D_8003803C"
+      ],
+      [
+        232,
+        6,
+        "D_8003803C"
+      ]
+    ],
+    "owned_data_bytes": 0,
+    "relocations": 15,
+    "zero_suffix_bytes": 12
+  },
+  "host": {
+    "O0": "2491 actual-C field-oracle cases passed",
+    "O2": "2491 actual-C field-oracle cases passed",
+    "sanitized": "2491 actual-C field-oracle cases passed"
+  },
+  "inputs": {
+    "caller_census": [
+      [
+        "boot_tail",
+        "func_80012D18",
+        1168
+      ]
+    ],
+    "caller_census_parsed_inputs": {
+      "blob": "7b97b803059d071c3add23983bbbae9bddd1ca860766a226189419ad6cd07dc0",
+      "boot_tail": "8d6234ce8a8e3b0a06a5be7e11cfd6f0995de0c4106b50b8a89ef9e875964857",
+      "ovl_a": "712cbe1f7c90c98c68e91eba4fad810b48d6bd79cad921964562ba3efb7cdf2f",
+      "ovl_b": "6383e06cdaa04316a08bfc604cf142a9d227a4075559b54cb902fcedbe8b4dae"
+    },
+    "candidate_bytes": 372,
+    "cartridge_coverage_claimed": false,
+    "claims": [
+      "func_80012234"
+    ],
+    "files": {
+      "cloud/matches/boot_tail/func_80012200.c": "fe3074328065426cc90f4fb7ee8cb290e2a2d844701e897b72995bafaa4268ff",
+      "cloud/matches/boot_tail/func_80012234.c": "08c3404adbad82a8926da5bb80342d0b685ceb6f123e500de04df3d711e4a6cc",
+      "cloud/work/frontier/dot_static_12234_20261013/host.c": "78f0eb001637e4c435a781f7398d6541343f0d39bdef74dc063022d80230784d",
+      "cloud/work/frontier/dot_static_12234_20261013/native.py": "1f983015dc8df954d3972dd2e479b3e181cf6f4097df9ce937322862fd075988",
+      "cloud/work/frontier/dot_static_12234_20261013/verify.py": "4c22134f86f8d974ac1d7bd26fa2bed41d5a64b5b35a25813f8bbb262c65c9aa",
+      "cloud/work/frontier/w18c/sources/func_80011F60.c": "54cbe5f392499e2690f1dfd07ce4110db243b045b9313e700af40e48c19eccd4",
+      "cloud/work/frontier/w21c/sources/func_80012730.c": "02975cf09b932c65895e5b83e46f7ee85ed646d55031b6b24d17f115ca963b40",
+      "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+      "tests/cloud/test_static_12234_match.py": "fc4f83e01789a0bc9035ac4998cb4e074e1ac95c648b4b16976202043a3659c4"
+    },
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "population": "static",
+    "protocol_version": 2,
+    "symbols": {
+      "D_80038028": "0x80038028",
+      "D_8003802C": "0x8003802c",
+      "D_80038038": "0x80038038",
+      "D_8003803C": "0x8003803c",
+      "D_80038344": "0x80038344",
+      "D_80038348": "0x80038348",
+      "func_80012234": "0x80012234",
+      "func_8002C5E0": "0x8002c5e0"
+    },
+    "targets": {
+      "func_80010450": {
+        "bytes": 372,
+        "words_sha256": "77edc128286f5a7caa8c3624ba0ca2daafbf2ddc29084d48e765bdfe0b5bcdb0"
+      },
+      "func_80011F60": {
+        "bytes": 604,
+        "words_sha256": "419b0890c6e65db31a5b3f8713e059dff827074e8b5cd7fe2572aa36f1a8f71e"
+      },
+      "func_80012200": {
+        "bytes": 52,
+        "words_sha256": "9f15206ca0d5f9f27e9a9b74ae12ef8fc75fe8c6b55abcf3dcf4479a8ffe583f"
+      },
+      "func_80012234": {
+        "bytes": 372,
+        "words_sha256": "8d69ac42d6230f2c54d248f5b1fce93cb1030435906e67236a1b96dfe1efe109"
+      },
+      "func_80012730": {
+        "bytes": 1512,
+        "words_sha256": "fec8c5a5269996d7a52ac74482766591d6dedb74c79b96a32f11eff0d28dd570"
+      },
+      "func_80012D18": {
+        "bytes": 3148,
+        "words_sha256": "f737c8cd0d7b8f271819f0ed872a3cae4866517035db456708f89c40e47e9e6a"
+      }
+    }
+  },
+  "layout": {
+    "half": 2,
+    "node_age": 16,
+    "node_buffer": 8,
+    "node_key": 12,
+    "node_next": 0,
+    "node_previous": 4,
+    "node_size": 20,
+    "node_spare": 18,
+    "record_destination": 8,
+    "record_length": 0,
+    "record_size": 12,
+    "record_source": 4,
+    "word": 4
+  },
+  "native": {
+    "conditional_outcomes": {
+      "compiled": [
+        [
+          24,
+          false
+        ],
+        [
+          24,
+          true
+        ],
+        [
+          36,
+          false
+        ],
+        [
+          36,
+          true
+        ],
+        [
+          48,
+          true
+        ],
+        [
+          60,
+          false
+        ],
+        [
+          60,
+          true
+        ],
+        [
+          80,
+          false
+        ],
+        [
+          80,
+          true
+        ],
+        [
+          96,
+          false
+        ],
+        [
+          96,
+          true
+        ],
+        [
+          112,
+          false
+        ],
+        [
+          112,
+          true
+        ],
+        [
+          132,
+          true
+        ],
+        [
+          140,
+          false
+        ],
+        [
+          152,
+          false
+        ],
+        [
+          152,
+          true
+        ],
+        [
+          164,
+          true
+        ]
+      ],
+      "native": [
+        [
+          24,
+          false
+        ],
+        [
+          24,
+          true
+        ],
+        [
+          36,
+          false
+        ],
+        [
+          36,
+          true
+        ],
+        [
+          48,
+          true
+        ],
+        [
+          60,
+          false
+        ],
+        [
+          60,
+          true
+        ],
+        [
+          80,
+          false
+        ],
+        [
+          80,
+          true
+        ],
+        [
+          96,
+          false
+        ],
+        [
+          96,
+          true
+        ],
+        [
+          112,
+          false
+        ],
+        [
+          112,
+          true
+        ],
+        [
+          132,
+          true
+        ],
+        [
+          140,
+          false
+        ],
+        [
+          152,
+          false
+        ],
+        [
+          152,
+          true
+        ],
+        [
+          164,
+          true
+        ]
+      ]
+    },
+    "covered_instructions": {
+      "compiled": 93,
+      "native": 93
+    },
+    "executions": 4982,
+    "fixtures": 2491,
+    "unexecuted_offsets": {
+      "compiled": [],
+      "native": []
+    }
+  },
+  "negative_controls": [
+    "wrong_countdown rejected by strict and finite native oracle",
+    "wrong_dma_length rejected by strict and finite native oracle",
+    "unexpected owned allocation refused",
+    "full STT_FUNC extent gate rejects zero-suffix extension",
+    "unknown_opcode refused",
+    "unmapped refused",
+    "empty exhausted pool dereferences null; explicit precondition",
+    "nonempty all-live exhausted pool dereferences null; explicit precondition"
+  ],
+  "results": {
+    "geometry": {
+      "frame_bytes": 32,
+      "function_bytes": 372,
+      "owned_data_bytes": 0,
+      "text_bytes": 384,
+      "zero_suffix_bytes": 12
+    },
+    "strict": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 93,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "tu": {
+    "context": {
+      "dropped": [],
+      "preamble": [
+        "typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char *buffer; unsigned int unknown0C; unsigned short countdown; unsigned short unknown12; } AudioNode;",
+        "typedef struct DmaEntry_80012234 { int length; unsigned int source; unsigned char *destination; } DmaEntry_80012234;",
+        "extern AudioNode *D_80038344;",
+        "extern AudioNode *D_80038348;",
+        "extern void *D_8003802C;",
+        "extern unsigned int D_80038038;",
+        "extern unsigned int D_8003803C;",
+        "extern unsigned short D_80038028;",
+        "extern unsigned int func_8002C5E0(unsigned int, unsigned int);"
+      ],
+      "status": "ok",
+      "words": 93
+    },
+    "prefix_dedup": "rom/lib_11640",
+    "preserved_functions": [
+      "func_80010A40",
+      "func_80010C68",
+      "func_80010D3C",
+      "func_80010D74",
+      "func_80010E80",
+      "func_80011074",
+      "func_800110C4",
+      "func_80011104",
+      "func_8001144C",
+      "func_800114C0",
+      "func_80011848",
+      "func_80011894",
+      "func_800118C0",
+      "func_800119E0",
+      "func_80011A10",
+      "func_80011A3C",
+      "func_80011A64",
+      "func_80011C1C",
+      "func_80011C84",
+      "func_80011CD8",
+      "func_80011D24",
+      "func_80011D74",
+      "func_80011F60",
+      "func_800121BC",
+      "func_80012200",
+      "func_800123A8",
+      "func_8001261C",
+      "func_80012660",
+      "func_80012730",
+      "func_80013964",
+      "func_800139D4",
+      "func_80013C84",
+      "func_80013D70",
+      "func_80013DEC",
+      "func_800140F8",
+      "func_80014140",
+      "func_80014198",
+      "func_80014374",
+      "func_800143C0",
+      "func_80014434",
+      "func_80014488",
+      "func_800144F0",
+      "func_80014550",
+      "func_80014594",
+      "func_800145DC",
+      "func_80014624",
+      "func_80014650",
+      "func_8001467C",
+      "func_800146AC",
+      "func_800146B4",
+      "func_8001489C",
+      "func_800148F8",
+      "func_800149BC",
+      "func_800149DC",
+      "func_80014A04",
+      "func_80014A0C",
+      "func_80014A74",
+      "func_80014AF0",
+      "func_80014B3C",
+      "func_80014BB0",
+      "func_80014BD8",
+      "func_80014BF8",
+      "func_80014C18",
+      "func_80014C40",
+      "func_80014C60",
+      "func_80014CAC",
+      "func_80014CF4",
+      "func_80014CFC",
+      "func_80014D08",
+      "func_80014D14",
+      "func_80014D1C"
+    ],
+    "promoted_shape_claims": [
+      "func_80010A40",
+      "func_80010C68",
+      "func_80010D3C",
+      "func_80010D74",
+      "func_80010E80",
+      "func_80011074",
+      "func_800110C4",
+      "func_80011104",
+      "func_8001144C",
+      "func_800114C0",
+      "func_80011848",
+      "func_80011894",
+      "func_800118C0",
+      "func_800119E0",
+      "func_80011A10",
+      "func_80011A3C",
+      "func_80011A64",
+      "func_80011C1C",
+      "func_80011C84",
+      "func_80011CD8",
+      "func_80011D24",
+      "func_80011D74",
+      "func_80011F60",
+      "func_800121BC",
+      "func_80012200",
+      "func_80012234",
+      "func_800123A8",
+      "func_8001261C",
+      "func_80012660",
+      "func_80012730",
+      "func_80013964",
+      "func_800139D4",
+      "func_80013C84",
+      "func_80013D70",
+      "func_80013DEC",
+      "func_800140F8",
+      "func_80014140",
+      "func_80014198",
+      "func_80014374",
+      "func_800143C0",
+      "func_80014434",
+      "func_80014488",
+      "func_800144F0",
+      "func_80014550",
+      "func_80014594",
+      "func_800145DC",
+      "func_80014624",
+      "func_80014650",
+      "func_8001467C",
+      "func_800146AC",
+      "func_800146B4",
+      "func_8001489C",
+      "func_800148F8",
+      "func_800149BC",
+      "func_800149DC",
+      "func_80014A04",
+      "func_80014A0C",
+      "func_80014A74",
+      "func_80014AF0",
+      "func_80014B3C",
+      "func_80014BB0",
+      "func_80014BD8",
+      "func_80014BF8",
+      "func_80014C18",
+      "func_80014C40",
+      "func_80014C60",
+      "func_80014CAC",
+      "func_80014CF4",
+      "func_80014CFC",
+      "func_80014D08",
+      "func_80014D14",
+      "func_80014D1C"
+    ],
+    "temporary_only": true
+  }
+}
