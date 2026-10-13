@@ -12,6 +12,14 @@ Read it before working a register-allocation or frame-size residual. Caveats: it
 (we use `-mips2` and `-O3` whole-program groups), and parts are specific to that project (GBI macros, its build
 tooling). Check a claim on our pipeline before relying on it; matching items go into `cloud/PLAYBOOK.md`.
 
+## GameCube debug build (second reference)
+
+Astra's upload (commit f45e3940, notes in `writeup.md` at the repo root) of the fan-made GameCube disc's
+`rush_d.elf` -- a divergent later CodeWarrior sibling of the game with full symbols and DWARF v1 -- is decoded
+by `tools/gcref/` into struct layouts, signatures, symbolised disassembly and an N64 -> GC function candidate
+table. Use it after the arcade source, mainly for the N64-only screens/save/pak/countdown code: see
+[gc/README.md](gc/README.md).
+
 ## Vendored: n64-decomp-workbench (CC0)
 
 [akratch/n64-decomp-workbench](https://github.com/akratch/n64-decomp-workbench) is public domain (CC0-1.0), so it

@@ -23,6 +23,7 @@ Paths inside command examples are relative to the repository root.
 | Builder access, paths, services, and sync rules | [Build environment](BUILDING.md) |
 | General decompilation techniques and MIPS reference | [Decompilation workflow](DECOMPILATION_WORKFLOW.md) |
 | IDO register-allocation, stack-frame and loop-unrolling behaviour (third-party, local copy) | [External references](external/README.md) |
+| GameCube debug build as a second reference (struct layouts, signatures, symbolised disassembly, N64→GC function candidates) | [GameCube reference](external/gc/README.md) |
 | Project policies | [Constitution](../.specify/memory/constitution.md) |
 | Wiki access and publishing | [Wiki guide](WIKI.md) |
 
