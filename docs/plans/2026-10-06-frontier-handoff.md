@@ -439,6 +439,48 @@ returns); as1 merges `srl tmp; move var,tmp` so a web can hold a register and le
 calling a web codeless (w27e); `x >>= 5` is a third code-free temp pop; an inlined value return keeps v0 away from every
 value live across it; check old drafts' prototypes against the locked callee (camera_follow_path 4 → 0 ops).
 
+**Wave 28 outcome (2026-10-13, wave28 from `f45e3940`; owner decisions: pull in Astra's static PRs, "make #377 work",
+work the GameCube angle):** Astra's upload f45e3940 put a GameCube debug build of Rush 2049 (`rush_d.elf`, CodeWarrior
+PowerPC, full symtab + DWARF v1, 1,457 named game functions, plus `rush_d_*.csv` and `writeup.md`) in the repo root;
+the ELF is a divergent later sibling (same-named functions differ a lot in size) but it covers the N64-only
+screens/save/pak/countdown code the arcade source lacks. Lane w28g turned it into a reference: `tools/gcref/`
+(`dwarf1.py` decodes all 2,431 structs/26,640 members/2,757 params/5,591 locals; `disasm.py` symbolises every function
+from the ELF's own relocations — capstone needs `CS_MODE_PS` for paired-single words; `correlate.py` scores N64→GC
+pairs from shared strings incl. pointer tables, call-graph propagation, rare constants, switch sizes and neighbour
+clustering: 72 confident pairs, 4/4 on a held-out test), outputs under `docs/external/gc/` (types.h, functions.json,
+globals.json, callgraph.json, strings_xref.json, correlation.md/json, README) and the bulk disassembly in the ignored
+`reference/gc/disasm/`. Static 627 → 632/667 (151,176 B, 94.06%): #372–#375 landed by w28p (func_8001558C with a
+disclosed dead `result = id` init, func_80012234, func_80010450 — lib_11050's TransferRequest typedef hoisted above the
+first slot —, func_80010DD8) and #377 func_80011910 by w28s (owner-approved C definitions of the live neighbours
+D_800382F0/F4 and D_80038338/3C make 0x800382F0..0x8003833F an owned .bss slot; IDO 7.1 lays `.bss` out in order of
+FIRST USE in code when a definition follows its uses, so the companion goes to the top of the TU and promote_batch gets
+`--bss-at-companion`; 13 reloc_addrs field entries `D_800382F8+off`); the static ceiling is now documented in
+`docs/static-asm-ceiling.md` (27 libultra asm functions byte-identical to ultralib 2.0J e24c836, 6 hand-written: inflate
+set, entrypoint, __setfpcsr; ceiling 634/667; __osAiDeviceBusy is C but its segment 0x10760 is whole-asm). Game
+1010 → 1024/1216 (352,068 B, 54.41%): pak write cluster (7 members, 2,440 B, w28b — func_800A1BB4's duplicated
+`jr ra` comes from `{ next = p = 0; goto out; }` + `out: if (next) {}`; func_800A1DD4's last pop from `first = bytes;
+… if (first) {}`), func_800F0914 + func_800F1210 (w28a, GC _PrintScores/_SetHighScoreState: GC statement order,
+per-loop variables and the 0x60 race-stats layout were decisive; `g = v; switch (g)` reloads per case),
+attract_or_transition (w28d: SDK GBI block macros + `extern volatile s8 D_8015F72D`; it is the per-frame display-list
+prologue, the label is wrong), audio_doppler_full (w28c, = GC ShowCountdown; function-local statics from the GC names
+closed it; own .rodata in two regions → installed as a group), func_8010A53C, func_80107EDC, func_80108154 (w28c,
+credits_scroll_grp superseded again). Recomp Phase 8 (w28r): `ipa_callees.json` entries with evidence (slot_state_setup
+s2, sound_update_channel t0 — read after its first call, so regmap_verify now follows static callees —, func_800B6748,
+func_80096CA8 s8,t0, func_80097164 s8, func_800A1DD4), `draft_check --probe-callees`, `--unit A,B,C` (first diverging
+member), `script_probe.py` (functions reached + on-screen text per script, 6 s), seven new scripts, census 183/206
+reached (23 unreached, reasons listed), `--gc` cleanup. EQUIVALENT drafts (not coverage) now cover func_80102F30
+(1,350 calls; removes the w27c stand-in so the results-table family sits on the real call chain), func_8010221C (11/137),
+game_results_input, func_80106B3C, func_80108AB0, func_8010BC84, func_8010E8B4, func_800E56F8 + func_800E6AF8 (unit),
+race_finish, func_800E543C; func_80096CA8 is 1,646/1,647 words with every stack home explained by GC _SetupWaveModel's
+locals. Traps: a packet whose `context` list names locked singles (func_800B669C, func_800D50E4) makes them internal in
+the shadow unit and empties their bodies — `force_keep` in unit_overrides (func_8008B2B4 precedent), not
+prefer_definition (w28i); `git pull` on a wave branch fast-forwards THAT branch; `git bundle create … ..HEAD` for
+ci_equiv; the labels attract_mode/demo/video_handler, AdjustSpeed, audio_doppler_full, attract_or_transition are wrong
+(census + correlation). Open: sound_loop_set (= GC _TitlePane) is unit-EQUAL but needs a group holding physics_sym and
+slot_state_setup (packaging decision); func_80097164 waits on func_80096CAB's convention; the GC files' placement in
+the repo root (`*.elf` is git-ignored by policy) is an owner decision; next GC steps: struct-offset fingerprint channel
+in correlate.py, decode `rock.elf`/`offroad_d.elf` from the same disc.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
