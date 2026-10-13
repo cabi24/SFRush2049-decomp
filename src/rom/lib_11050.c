@@ -7,7 +7,45 @@
 /* w28p (#374): hoisted from func_80010628's declarations so that func_80010450, the first slot, sees it. */
 typedef struct TransferRequest { void *destination; void *source; unsigned int size; } TransferRequest;
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11050/func_80010450.s")
+/* PROMOTED 2026-10-12 — func_80010450
+ * Source:   cloud/matches/boot_tail/func_80010450.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80010450.c:func_80010450 (score0); rom_tu.h context: cloud/work/frontier/w28p/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct DmaEntry_80010450 { int length; void *source; unsigned char *destination; } DmaEntry_80010450;
+extern TransferRequest D_80037FA8[];
+extern volatile unsigned char D_80037FA0;
+extern unsigned char D_80037FD8;
+extern unsigned char D_80037FE0[];
+extern void *D_8003802C;
+extern unsigned int D_80038038;
+extern unsigned int D_8003803C;
+extern unsigned short D_80038028;
+extern int osSendMesg(OSMesgQueue *, void *, int);
+extern unsigned int func_8002C5E0(unsigned int, unsigned int);
+void func_80010450(void)
+{
+    unsigned char i;
+    if (D_80037FD8 != 0) {
+        osSendMesg((OSMesgQueue *)D_80037FE0, 0, 0);
+    }
+    if (D_80037FA0 != 0) {
+        for (i = 0; i < D_80037FA0; i++) {
+            D_80038038 += 12;
+            D_8003803C = func_8002C5E0(D_8003803C, D_80038038);
+            ((DmaEntry_80010450 *)D_8003802C)[D_80038028].source = D_80037FA8[i].source;
+            ((DmaEntry_80010450 *)D_8003802C)[D_80038028].length = D_80037FA8[i].size;
+            ((DmaEntry_80010450 *)D_8003802C)[D_80038028].destination = D_80037FA8[i].destination;
+            D_80038028++;
+        }
+        D_80037FA0 = 0;
+        D_80037FD8 = 1;
+    } else {
+        D_80037FD8 = 0;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_800105C4
  * Source:   cloud/matches/boot_tail/func_800105C4.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
