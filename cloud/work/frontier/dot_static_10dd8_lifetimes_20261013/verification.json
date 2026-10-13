@@ -1,0 +1,132 @@
+{
+  "result": "MATCH",
+  "population": "static",
+  "function": "func_80010DD8",
+  "newly_matched_bytes": 168,
+  "landed_rom_bytes_claimed": 0,
+  "compiler": "ido7.1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "inputs": {
+    "source_sha256": "f70fe2c84fac8b85c80c307bc1f08b2828f956e3cf88880ae698e1f83d662ddf",
+    "verify_sha256": "bd3e1721eff2b156b20635c6b07201a99beb3dfe9d44387ed95cb8db731b70ef",
+    "packet_files": {
+      "native.py": "f3875fb9e8d71350467c8ea09157cfaaf9094d3fd19df2d2e3e13cb80984a297",
+      "host.c": "e2f94b9afe4e2b51725f5f8d8465293a83486fce7c713075e3266e01a941800e",
+      "semantics.py": "d26fd72a31f40b11811c552d2579b4edb108dbb26318c3548be62b3827dd5843",
+      "experiments.py": "415bb6a6f2a7060afe1c770316b12a15759fa460596b1c3a46bea092a6408043",
+      "experiments.json": "05bcb9968c57748eeccdd9233f836c167d895d47194c60137a7cbd964095d76a"
+    },
+    "focused_test_sha256": "7f0cefe8a7ab9e86119f5e007061ad7c05b6a592c8b04f931d511b05ef190247",
+    "neighbor_source_sha256": "94e82d4ab0fe331cfad01def0fdde633c3f9410ad4b4a876fc0023ba19dcd36f",
+    "target_words_sha256": "a7d787d7661d3097f2bd4c5e08cf0efbd2ffb5085350471da4b3decdac191fcf",
+    "target_extent": {
+      "name": "func_80010DD8",
+      "address": "0x80010DD8",
+      "size": 168,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "target_symbols": {
+      "D_80038018": 2147713048,
+      "D_800382F4": 2147713780,
+      "D_800382E8": 2147713768,
+      "D_800382F0": 2147713776
+    }
+  },
+  "canonical": "MATCH",
+  "native_extent_bytes": 168,
+  "object_symbol_bytes": 168,
+  "zero_alignment_bytes": 8,
+  "gnu_symbolic_relocations": 10,
+  "gnu_object_equal": true,
+  "gnu_link_equal": true,
+  "semantics": {
+    "cases": 320,
+    "native_and_host_equal": true,
+    "host_builds": [
+      "O2",
+      "O0 + undefined,bounds sanitizer"
+    ],
+    "full_unsigned_product_wrap": true,
+    "narrow_duration_entry": true,
+    "strict_next_quantum": true,
+    "null_allocator_result": true,
+    "callback_observes_store_order": true,
+    "o32_callee_saves_and_stack": true,
+    "covered_instruction_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164
+    ],
+    "unreachable_constant_divisor_break_offset": 112,
+    "negative_controls": {
+      "ceiling_instead_of_strict_next": 40,
+      "wrong_allocation_width": 272,
+      "lost_zero_duration_branch": 48,
+      "unknown_opcode": true,
+      "zero_divisor": true
+    }
+  },
+  "own_data_sections": [],
+  "object_negative_controls": {
+    "short_function_symbol": true,
+    "unowned_global_allocation": true
+  },
+  "control_differing_words": 36,
+  "rom_tu_context": {
+    "status": "ok",
+    "preamble": [
+      "extern void *(*D_80038018)(unsigned int, unsigned int);",
+      "extern unsigned int D_800382F4;",
+      "extern void *D_800382E8;",
+      "extern void *D_800382F0;"
+    ],
+    "dropped": [],
+    "non_elided_disassembly_words": 40,
+    "function": "func_80010DD8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  "current_whole_tu_equal": true,
+  "whole_tu_text_bytes": 17136
+}
