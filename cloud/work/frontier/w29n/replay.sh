@@ -16,7 +16,8 @@
 #   3  symbol_addrs (symaddr_rename.py) + sdk_initialize context re-pin (static_rename owned)
 #      + src/rom/storage_overrides.mk regenerated (owned_storage generate)
 #   4  sources: users.py finds every src/blob C/H file that USES an old name (all
-#      singles and groups, incl. ones installed after the w29n base); permute_c
+#      singles and groups, incl. ones installed after the w29n base); permute_c; the same for
+#      the lane drafts cloud/work/frontier/w2[89]?/<fn>/best.c
 #   5  group.json/unit_overrides names, git mv of renamed singles (json_rename.py)
 #   6  lock: rename_resplice.py apply (keys, pure-rename proofs, recompile on watchman2,
 #      image gate) -> w29n/blob_lock_migration.json; blob_tu symbols
@@ -54,6 +55,9 @@ python3 -m tools.conveyor.pipeline.owned_storage generate   # storage_overrides.
 echo "== 4 sources"
 files=$(python3 $L/tools/users.py $MAP $(find src/blob \( -name '*.c' -o -name '*.h' \) | sort) | cut -d: -f1)
 python3 -m tools.conveyor.pipeline.static_rename source $MAP $files
+# lane drafts reused next wave (w28*/w29* <fn>/best.c, not this lane): same rule, so they keep linking
+drafts=$(python3 $L/tools/users.py $MAP $(ls cloud/work/frontier/w2[89]?/*/best.c | grep -v '^cloud/work/frontier/w29n/' | sort) | cut -d: -f1)
+[ -z "$drafts" ] || python3 -m tools.conveyor.pipeline.static_rename source $MAP $drafts
 echo "== 5 group.json / unit_overrides / singles"; python3 $L/tools/json_rename.py $MAP
 echo "== 6 lock"
 python3 $L/tools/rename_resplice.py apply $MAP --base HEAD
@@ -72,7 +76,8 @@ python3 $L/tools/rebind_packets.py --base HEAD --write \
   cloud/work/frontier/dot_audio_bus_reopen cloud/work/frontier/dot_billboard_context_20261005 \
   tests/conveyor/test_billboard_save_input_packet.py tests/conveyor/test_encoded_string_mapping_reconstruction.py \
   tests/cloud/test_runtime_a_writer_bounds.py tests/conveyor/test_dot_audio_bus_reopen.py \
-  tests/cloud/test_slot_contract_audit.py
+  tests/cloud/test_slot_contract_audit.py \
+  cloud/work/dot_substantial_scout tests/conveyor/test_dot_substantial_scout.py
 echo "== 8 CLAIMS, recomp follow-ups, correlation"
 python3 $L/tools/claims.py $MAP
 python3 $L/tools/followups.py --write

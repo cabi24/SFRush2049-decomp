@@ -30,6 +30,11 @@ calls do; "corr" means a confident pair in [correlation.md](correlation.md).
 | 0x800A2504 | slot_state_lookup | PS_WriteFile | paksysdc.c PS_WriteFile | call: CreatePlayer (w28b); locked (pak_write_cluster) |
 | 0x800A2378 | MaxPathZeroControls | PS_FlushFile | paksysdc.c PS_FlushFile | call order in CreatePlayer (w28b); locked |
 | 0x800A21A4 | track_collision_setup | PS_FlushPak | paksysdc.c PS_FlushPak | call order in CreatePlayer (w28b); locked |
+| 0x800F0F44 | func_800F0F44 | FindGhosts | highscorescr.c _FindGhosts | matched (w29a), SetHighScoreState call anchor (w28a) |
+| 0x8010221C | func_8010221C | drawMain | gameoverscr.c drawMain | matched (w29a, frontier_results_table): GC locals/loop |
+| 0x800E6AF8 | func_800E6AF8 | model_iteration | arcade mdrive.c model_iteration | matched (w29c, func_800E56F8 group) |
+| 0x8010761C | lap_complete | animElapsedTimerText | hud.c animElapsedTimerText | matched (w29c, credits_scroll_grp gr3_761c.c): GC locals |
+| 0x80107AF4 | race_finish | animPlace | hud.c animPlace | w29c draft, GC locals |
 
 ## Data (GAME_SYMBOLS in tools/conveyor/pipeline/disasm.py)
 
@@ -71,7 +76,6 @@ match or a second anchor confirms them.
 
 | N64 | GC name | Source of the lead |
 |---|---|---|
-| func_800F0F44 | _FindGhosts (highscorescr.c) | called by SetHighScoreState where GC calls _FindGhosts (w28a); corr 2.2 |
 | func_800F1114 | _UninitScreen (highscorescr.c) | same (w28a); the GC name exists in several files |
 | func_8010AEAC / func_8010A8D0 / func_8010A7A4 | animText / animButtonText / printOption (optionscr.c) | w28c (register-parameter order = GC prototype order); corr ~3 |
 | func_80108AB0 | animWrongWay (hud.c) | w28c names only |
@@ -107,15 +111,16 @@ _AssignDrones, `mode_select_handler` → _UpdateBumps, `drone_collision_avoid` �
 pairs func_8008C5E0/C680/C720/C768 → fxatan/fsatan/fatan/fatan2, func_8009C3F8 → farcsine,
 func_800A557C → ftan.
 
-## Later wave-29 lanes (recorded for the replay; candidates are not applied)
+## Later wave-29 lanes
 
-`renames.json` rows with status `candidate` (accept by setting `accepted` before `replay.sh`):
+Accepted by the coordinator (2026-10-13) and applied with the replay:
 func_800F0F44 → FindGhosts (w29a matched it from GC _FindGhosts), func_8010221C → drawMain (GC gameoverscr.c,
 w29a), func_800E6AF8 → model_iteration (arcade mdrive.c, w29c), lap_complete → animElapsedTimerText (GC hud.c,
-w29c), race_finish → animPlace (GC hud.c, w29c draft), and the wrong-label lead game_results_update /
+w29c), race_finish → animPlace (GC hud.c, w29c draft); still a candidate: the wrong-label lead game_results_update /
 game_results_render = the audio-options screen (GC audioscr.c animButtonText/animText; w29a; needs an N64 name).
 Helper identifiers the later packets introduce (rt_gfx_lock, rt_gfx_unlock, rt_font_set, rt_font_set_b;
-update_drone_models, update_model, gfx_lock_761C, gfx_unlock_761C, font_set_761C, pair_set_761C) are not
+update_drone_models, update_model, gfx_lock_761C, gfx_unlock_761C, font_set_761C, pair_set_761C; w29b's *_slp, *_6B3C,
+*_BC84, *_B7FC, *_B9C8 helpers, listed in renames.json) are not
 inventory targets and collide with no new name; the old names those packets use (PrintScores/SetHighScoreState/
 SaveServer and the highscore data in w29a's frontier_billboard_render, animLapTime in w29c's gr3_8154.c) are
 found and renamed by the replay once the packets are installed in src/blob.

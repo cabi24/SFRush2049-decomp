@@ -102,6 +102,10 @@ TEST_PATCHES = [  # (test file, old text, new text): exact, applied once
      "                # (w29n: cloud/work/frontier/w29n/renames.json, e.g. func_80108154 = animLapTime)\n"
      "                name = 'func_%08X' % a\n"
      "                self.assertEqual((f.name, len(f.words)), (W29N_RENAMES.get(name, name), words))\n"),
+    ("tests/cloud/test_ipakit_heads.py",
+     "            self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))\n",
+     "            name = 'func_%08X' % a   # w29n: func_8010221C = drawMain\n"
+     "            self.assertEqual((f.name, len(f.words)), (W29N_RENAMES.get(name, name), words))\n"),
 ]
 EDITED_PINS = [   # (receipt, file edited by LOOKUPS that the receipt pins)
     ("dot_frame_dispatch_20261005/verification.json", "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py"),

@@ -305,8 +305,8 @@
    "new": "FindGhosts",
    "kind": "function",
    "source": "GC highscorescr.c _FindGhosts",
-   "evidence": "w28a call anchor from SetHighScoreState; w29a matched it from GC _FindGhosts (frontier_billboard_render packet)",
-   "status": "candidate"
+   "evidence": "w28a call anchor from SetHighScoreState; w29a matched it from GC _FindGhosts (frontier_billboard_render packet); accepted by the coordinator 2026-10-13",
+   "status": "accepted"
   },
   {
    "vram": "0x8010221C",
@@ -314,8 +314,8 @@
    "new": "drawMain",
    "kind": "function",
    "source": "GC gameoverscr.c drawMain",
-   "evidence": "w29a: GC drawMain locals i, x, y, str and the validOption loop (frontier_results_table packet)",
-   "status": "candidate"
+   "evidence": "w29a: GC drawMain locals i, x, y, str and the validOption loop (frontier_results_table packet); accepted by the coordinator 2026-10-13",
+   "status": "accepted"
   },
   {
    "vram": "0x800E6AF8",
@@ -323,8 +323,8 @@
    "new": "model_iteration",
    "kind": "function",
    "source": "arcade mdrive.c model_iteration",
-   "evidence": "w29c: arcade model_iteration with update_drone_models/update_model inlined (func_800E56F8 packet)",
-   "status": "candidate"
+   "evidence": "w29c: arcade model_iteration with update_drone_models/update_model inlined (func_800E56F8 packet); accepted by the coordinator 2026-10-13",
+   "status": "accepted"
   },
   {
    "vram": "0x8010761C",
@@ -332,8 +332,8 @@
    "new": "animElapsedTimerText",
    "kind": "function",
    "source": "GC hud.c animElapsedTimerText",
-   "evidence": "w29c: GC static int animElapsedTimerText(void) locals t, digits[9], str[2], digitW, colonW, fixedWidth (credits_scroll_grp gr3_761c.c)",
-   "status": "candidate"
+   "evidence": "w29c: GC static int animElapsedTimerText(void) locals t, digits[9], str[2], digitW, colonW, fixedWidth (credits_scroll_grp gr3_761c.c); accepted by the coordinator 2026-10-13",
+   "status": "accepted"
   },
   {
    "vram": "0x80107AF4",
@@ -341,8 +341,8 @@
    "new": "animPlace",
    "kind": "function",
    "source": "GC hud.c animPlace",
-   "evidence": "w29c: GC static int animPlace(void) locals digits[3], str[2] (draft)",
-   "status": "candidate"
+   "evidence": "w29c: GC static int animPlace(void) locals digits[3], str[2] (draft); accepted by the coordinator 2026-10-13",
+   "status": "accepted"
   },
   {
    "vram": "0x800FEE04",
@@ -354,9 +354,9 @@
    "status": "candidate"
   }
  ],
- "candidates_note": "status 'candidate' rows are NOT applied (static_rename.load_map and every w29n tool use 'accepted' only): names recorded by the later wave-29 lanes for review; accept one by setting its status to 'accepted' (and a final N64 name for the wrong-label leads) before replay.sh.",
+ "candidates_note": "status 'candidate' rows are NOT applied (every w29n tool uses 'accepted' rows only). The five wave-29 candidates (FindGhosts, drawMain, model_iteration, animElapsedTimerText, animPlace) were accepted by the coordinator; the game_results_update/render lead stays unnamed.",
  "later_lane_names": {
-  "note": "identifiers introduced by later wave-29 packets (not inventory targets; not renamed). replay.sh renames the OLD names those packets use (users.py finds them once installed in src/blob): w29a frontier_billboard_render uses func_800F0914/func_800F1210/func_800C813C/D_80140B20/D_80149418/D_80146208/D_8002E870, w29c credits_scroll_grp gr3_8154.c uses func_80108154. None collides with a new name.",
+  "note": "identifiers introduced by later wave-29 packets (not inventory targets; not renamed). replay.sh renames the OLD names those packets use (users.py finds them once installed in src/blob): w29a frontier_billboard_render uses func_800F0914/func_800F1210/func_800C813C/D_80140B20/D_80149418/D_80146208/D_8002E870, w29c credits_scroll_grp gr3_8154.c uses func_80108154. None collides with a new name. w29b's helper suffixes follow the old function names (*_slp for sound_loop_set = TitlePane); helpers are not renamed.",
   "w29a": [
    "rt_gfx_lock",
    "rt_gfx_unlock",
@@ -374,7 +374,11 @@
    "gr3_761c.c (lap_complete)"
   ],
   "w29b": [
-   "TBD"
+   "physics_sym group (sound_loop_set): gfx_lock_slp, gfx_unlock_slp, font_select_slp, font_set_slp",
+   "func_80106B3C: Hidden_6B3C, TB_SetJust_6B3C, getB6_6B3C, gfx_lock_6B3C, gfx_unlock_6B3C, font_set_6B3C",
+   "func_8010BC84: Hidden_BC84, getB6_BC84, TB_CenterText_BC84, gfx_lock_BC84, gfx_unlock_BC84, font_set_BC84",
+   "func_8010B7FC: item_refresh_B7FC, TB_CenterText_B7FC, gfx_lock_B7FC, gfx_unlock_B7FC, font_set_B7FC",
+   "func_8010B9C8: item_disable_B9C8, TB_CenterText_B9C8, gfx_lock_B9C8, gfx_unlock_B9C8, font_set_B9C8"
   ]
  }
 }
