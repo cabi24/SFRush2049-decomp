@@ -258,6 +258,12 @@ void rush::oracle_finish(const char* why) {
     rush::capture_finish();
 }
 
+void rush::oracle_fault_flush() {
+    if (!log_file || !log_mu.try_lock()) return;
+    fflush(log_file);
+    log_mu.unlock();
+}
+
 // Called by the generated replacement hooks (gen_config.replacement_hooks)
 // before the replacement body runs: counts calls per replaced function. The
 // first call copies the replacement image (.repl section of the synthetic

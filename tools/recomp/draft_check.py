@@ -372,9 +372,18 @@ def run_script(script, name, cap, repl, run_dir, cap_key, frames=None):
     res["calls_per_member"] = per
     res["captured_calls"] = (v.get("calls") or {}).get("calls")
     calls = v.get("calls") or {}
+    if v.get("crash") is not None:
+        # Phase 9: the draft's host faulted (the stock runs did not): a divergence
+        # with the fault's N64 address, PC, call chain (oracle.fault_report)
+        res["crash"] = v["crash"]
+        if not ncalls and calls.get("fn_call"):
+            res["calls_of_fn"] = calls.get("fn_call")
     if calls.get("verdict") == "DIFFERENT":
         res["status"] = "DIVERGES"
         res["first"] = calls
+    elif v.get("crash") is not None:
+        res["status"] = "DIVERGES"
+        res["first"] = {"what": "crash", "frame": v["crash"].get("frame")}
     elif v.get("verdict") == "DIFFERENT":
         res["status"] = "DIVERGES"
         res["frame_diff"] = v.get("first_diff")
@@ -400,7 +409,8 @@ def divergence_lines(res, name, members=None):
     if c:
         what = {"args": "arguments differ at entry", "return": "return value differs",
                 "effect": "memory written differs", "sequence": "call sequence differs",
-                "length": "one side stops calling"}.get(c.get("what"), c.get("what"))
+                "length": "one side stops calling",
+                "crash": "the draft FAULTED (host signal; retail did not)"}.get(c.get("what"), c.get("what"))
         out.append("FIRST DIVERGENCE: script %s, frame %s, %s call #%s (global seq %s): %s" % (
             res["script"], c.get("frame"), c.get("name"), c.get("fn_call"), c.get("seq"), what))
         if c.get("inside"):
@@ -414,6 +424,15 @@ def divergence_lines(res, name, members=None):
             out.append("  word %s: retail %s | draft %s  %s" % (addr, _fmt_word(a), _fmt_word(b), where))
         if len(words) > 24:
             out.append("  ... %d more words (runs/%s/oracle.txt)" % (len(words) - 24, res["script"]))
+        if res.get("crash") is not None:
+            if c.get("what") != "crash":
+                out.append("  later the draft FAULTED at frame %s:" % res["crash"].get("frame"))
+            out += oracle.fault_lines(res["crash"]) if res["crash"].get("signal") else [
+                "  (no [rush] FAULT lines: rebuild the hosts with this tools revision)"]
+            if c.get("what") == "crash":
+                out.append("  note: a wild N64 address (outside 0x80000000-0x80FFFFFF) is a TLB exception on the "
+                           "console too: read the faulting instruction's base register back to the draft line that "
+                           "loaded it (a wrong field offset or stride is the usual cause)")
         if c.get("what") == "args" and c.get("fn_call") == 1:
             out.append("  note: arguments differ on the FIRST call: both sides' callers are retail, so the "
                        "prototype/capture registers are wrong (--params?) or an earlier effect leaked")
@@ -845,7 +864,7 @@ def local_main(args):
     elif args.scripts == "all":
         scripts, how = all_scripts(), "all scripts"
     else:
-        scripts, how = [s.strip() for s in args.scripts.split(",") if s.strip()], "chosen"
+        scripts, how = list(dict.fromkeys(s.strip() for s in args.scripts.split(",") if s.strip())), "chosen"
         for s in scripts:
             if not (SCRIPT_DIR / (s + ".press")).is_file():
                 raise DCError(f"no script {s} (have: {', '.join(all_scripts())})")
@@ -893,6 +912,8 @@ def local_main(args):
                         "%s %d" % (m, r["calls_per_member"].get(m, 0)) for m in members))
                 elif tag in ("EQUIVALENT", "DIVERGES"):
                     extra = "%d calls of %s" % (r["calls_of_fn"], name)
+                if r.get("crash") is not None:
+                    extra += " - draft FAULTED at frame %s" % r["crash"].get("frame")
                 elif tag == "ERROR":
                     extra = r["error"].strip().splitlines()[-1] if r["error"].strip() else "?"
                 print("  %-14s %-12s %s  (%d frames, %.0f s%s)" % (r["script"], tag, extra, r["frames"],

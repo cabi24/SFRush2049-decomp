@@ -989,6 +989,32 @@ def ipa_shim(callee_vram, prototype, params, clobbers=(), direction="out"):
     return w
 
 
+def code_ranges(named, obj_elf, linked_elf):
+    """[(vram, size)] of every code byte of one replacement chunk: the named
+    functions plus the object's whole .text. IDO -O3 writes no symbol for a
+    static function, so a static helper's code lies in .text but in no named
+    function; without this its `jal` sites were never retargeted to the IPA
+    shims (w29r: the w28c func_8010AEAC draft's static func_8010A8D0 called
+    slot_state_setup o32; slot_state_setup clobbers s3, which held the gfx
+    message queue address, and the next osSendMesg faulted: host -11)."""
+    spans = [(f["vram"], f["size"]) for f in named]
+    linked = {s["name"]: s["value"] for s in linked_elf["symbols"] if s["type"] == 2 and s["name"]}
+    for sec in obj_elf["sections"]:
+        if sec["name"] != ".text" or not sec["size"]:
+            continue
+        anchor = next((x for x in obj_elf["symbols"] if x["type"] == 2 and x["section"] == ".text"
+                       and x["name"] in linked), None)
+        if anchor is not None:
+            spans.append((linked[anchor["name"]] - anchor["value"], sec["size"]))
+    out = []
+    for v, n in sorted(spans):
+        if out and v <= out[-1][0] + out[-1][1]:
+            out[-1] = (out[-1][0], max(out[-1][0] + out[-1][1], v + n) - out[-1][0])
+        else:
+            out.append((v, n))
+    return out
+
+
 def retarget_calls(raw, base, target, new, ranges):
     """(bytes, count): every `jal target` in the code ranges rewritten to `jal new`."""
     buf = bytearray(raw)
@@ -1246,7 +1272,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         # A load into $zero (N64Recomp emits `0 = MEM_W(...)`, which does not
         # compile; gen_config's automatic rule for the retail sections) becomes
         # a nop here too: no architectural effect on RAM.
-        raw, zero_loads = nop_zero_loads(raw, vram, [(f["vram"], f["size"]) for f in named])
+        code = code_ranges(named, elf, lelf)
+        raw, zero_loads = nop_zero_loads(raw, vram, code)
         own = {f["name"]: f["vram"] for f in named if f["replaces"]}
         self_calls = {}
         for m in members:
@@ -1254,15 +1281,14 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             if orig is not None and m in own:
                 mf = next(f for f in named if f["replaces"] and f["name"] == m)
                 raw, self_calls[m] = retarget_self_calls(raw, vram, own[m], orig, [(mf["vram"], mf["size"])]
-                                                         if e.get("unit") else
-                                                         [(f["vram"], f["size"]) for f in named])
+                                                         if e.get("unit") else code)
             else:
                 self_calls[m] = 0
         # IPA shims (Phase 4): appended after the chunk; the body's jal to the
         # retail callee goes to the shim, which calls the callee with its
         # register convention. An inbound shim (the replaced function is an
         # IPA callee itself) is what the entry hook calls.
-        ranges = [(f["vram"], f["size"]) for f in named]
+        ranges = code
         shim_funcs, shim_calls = [], {}
         raw = raw + b"\0" * (-len(raw) % 16)
         for name, ie in sorted(e["_shims"].items()):

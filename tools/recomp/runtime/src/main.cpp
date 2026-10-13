@@ -218,7 +218,10 @@ void delete_rom_copy() {
     if (std::filesystem::remove(stored_rom_copy, ec))
         fprintf(stderr, "[rush] removed the ROM copy %s (loaded into memory)\n", stored_rom_copy.string().c_str());
 }
-void on_game_init(uint8_t*, recomp_context*) { delete_rom_copy(); }
+void on_game_init(uint8_t* rdram, recomp_context*) {
+    rush::fault_note_rdram(rdram);
+    delete_rom_copy();
+}
 void at_exit() {
     wav_finish();
     delete_rom_copy();
@@ -365,6 +368,7 @@ int main(int argc, char** argv) {
     rush::oracle_virtual_clock(time_mode == "virtual");
     rush::set_lockstep(clock == "frames" && !no_lockstep);
     rush::set_lockstep_mirror(renderer == "rt64");
+    rush::fault_setup();
     rush::oracle_start(oracle_log, stop_frames);
     rush::capture_start(call_log, call_detail);
     rush::trace_start(seconds, press, fb_dump);

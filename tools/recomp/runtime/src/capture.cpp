@@ -36,7 +36,8 @@
 // the runtime keeps rdram word-swapped within each word, so an N64 page is a
 // host page and a host 32-bit word is the N64 word at the same offset.
 // Excluded from the effect: the calling thread's stack below the sp at entry
-// (the callee's own dead frame), other threads' stacks, and the OSThread
+// (the callee's own dead frame) and the 16 argument-home bytes above it
+// (log v3, Phase 9), other threads' stacks, and the OSThread
 // host-pointer words (oracle.cpp). Writes to the replacement image above
 // 8 MiB are not tracked (static binding puts matched bodies' statics at
 // their retail addresses; replace.py). Writes by other threads while a
@@ -70,6 +71,10 @@
 #include "xxHash/xxh3.h"
 #include "rush_runtime.h"
 #include "rush2049_repl.h"
+
+// fault.cpp: the replaced/probed calls open on this thread (for the FAULT report)
+extern "C" void rush_fault_enter(uint8_t* rdram, recomp_context* ctx, int fn, uint64_t seq);
+extern "C" void rush_fault_exit(void);
 
 namespace {
 
@@ -229,7 +234,12 @@ std::string format_ret(recomp_context* ctx, int fn) {
 bool excluded(uint32_t off, uint32_t sp_off, uint32_t floor) {
     for (const auto& r : rush::oracle_stack_ranges()) {
         if (off < r.first || off >= r.second) continue;
-        if (sp_off >= r.first && sp_off <= r.second) return off < floor;   // own stack: dead frames
+        // own stack: dead frames below the floor, and the 16-byte argument home
+        // area just above it (o32: the caller's outgoing slots for a0-a3, which
+        // the callee may store its register arguments into; IDO does so for an
+        // address-taken or spilled parameter: w28b's func_800C813C draft wrote
+        // its a0 home at sp_entry+0, retail does not; Phase 9)
+        if (sp_off >= r.first && sp_off <= r.second) return off < floor + 16;
         return true;                                                       // another thread's stack
     }
     return rush::oracle_word_masked(off);
@@ -256,7 +266,7 @@ void rush::capture_start(const std::string& path, uint64_t detail) {
     if (pool == MAP_FAILED) { fprintf(stderr, "[rush] capture pool mmap failed\n"); std::exit(2); }
     install_handler();
     cap_on = true;
-    cap_log("# rush2049 call log v2: effect = words changed between entry and exit (page write tracking; replaced frames floor)\n");
+    cap_log("# rush2049 call log v3: effect = words changed between entry and exit (page write tracking; replaced frames floor + arg homes)\n");
     for (int i = 0; i < RUSH_REPL_COUNT; i++)
         cap_log("# fn %d %s %s probe=%d\n", i, rush_repl_names[i], rush_cap_labels[i], rush_cap_probe[i]);
 }
@@ -266,6 +276,12 @@ void rush::capture_finish() {
     std::lock_guard<std::mutex> lock(cap_mu);
     cap_log("END %llu calls\n", (unsigned long long)seq_counter);
     fflush(cap_file);
+}
+
+void rush::capture_fault_flush() {
+    if (!cap_file || !cap_mu.try_lock()) return;
+    fflush(cap_file);
+    cap_mu.unlock();
 }
 
 // Stock capture hook: the hook re-enters the recompiled function with the
@@ -280,6 +296,7 @@ extern "C" int rush_cap_bypass(int fn) {
 extern "C" void rush_cap_arm(int fn) { bypass_fn = fn; }
 
 extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
+    rush_fault_enter(rdram, ctx, fn, cap_on ? seq_counter + 1 : 0);
     if (!cap_on) {
         bypass_fn = fn;  // stock capture build without --call-log: still transparent
         return;
@@ -335,6 +352,7 @@ extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
 }
 
 extern "C" void rush_cap_exit(uint8_t* rdram, recomp_context* ctx, int fn) {
+    rush_fault_exit();
     if (!cap_on) return;
     std::lock_guard<std::mutex> lock(cap_mu);
     if (tl_depth == 0) { fprintf(stderr, "[rush] capture: exit without entry\n"); std::_Exit(3); }
@@ -382,6 +400,10 @@ extern "C" void rush_cap_exit(uint8_t* rdram, recomp_context* ctx, int fn) {
 #include "recomp.h"
 #include "rush_runtime.h"
 
+// fault.cpp: the replaced/probed calls open on this thread (for the FAULT report)
+extern "C" void rush_fault_enter(uint8_t* rdram, recomp_context* ctx, int fn, uint64_t seq);
+extern "C" void rush_fault_exit(void);
+
 namespace { int bypass_fn = -1; }
 
 void rush::capture_start(const std::string& path, uint64_t) {
@@ -392,17 +414,21 @@ void rush::capture_start(const std::string& path, uint64_t) {
 }
 
 void rush::capture_finish() {}
+void rush::capture_fault_flush() {}
 
 extern "C" int rush_cap_bypass(int fn) {
     if (bypass_fn == fn) { bypass_fn = -1; return 1; }
     return 0;
 }
 
-extern "C" void rush_cap_enter(uint8_t*, recomp_context*, int fn) { bypass_fn = fn; }
+extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
+    rush_fault_enter(rdram, ctx, fn, 0);
+    bypass_fn = fn;
+}
 
 extern "C" void rush_cap_arm(int fn) { bypass_fn = fn; }
 
-extern "C" void rush_cap_exit(uint8_t*, recomp_context*, int) {}
+extern "C" void rush_cap_exit(uint8_t*, recomp_context*, int) { rush_fault_exit(); }
 
 #endif  // RUSH_CAPTURE
 

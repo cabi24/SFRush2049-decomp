@@ -90,6 +90,7 @@ void oracle_start(const std::string& path, uint64_t stop_frames);
 uint64_t oracle_frames();
 void oracle_event(const char* text);
 void oracle_finish(const char* why);
+void oracle_fault_flush();   // fault.cpp: flush the oracle log (not if a writer holds it)
 void oracle_note_stack(uint32_t top);
 void oracle_note_thread(uint32_t thread);  // OSThread struct (osCreateThread a0)
 void oracle_text_log(const std::string& path);  // --text-log: strings drawn (rush_text_log hook)
@@ -104,6 +105,11 @@ bool oracle_word_masked(uint32_t off);
 // capture.cpp: per-call capture of replaced functions (--call-log, --call-detail)
 void capture_start(const std::string& path, uint64_t detail_seq);
 void capture_finish();
+void capture_fault_flush();   // fault.cpp: flush the call log (not if a writer holds it)
+
+// fault.cpp (Phase 9): `[rush] FAULT` report on SIGSEGV/SIGBUS/SIGFPE/SIGILL/SIGABRT
+void fault_setup();
+void fault_note_rdram(uint8_t* rdram);
 
 // lockstep.cpp: deterministic VI/AI/SP/DP delivery (--clock frames)
 void set_lockstep(bool on);

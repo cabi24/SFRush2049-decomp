@@ -58,6 +58,16 @@ hashes, header `# mask rdp_images`; compare then reports the same verdict text
 with the images listed and needs no flag. The verdicts of replacement lanes
 stay defined on the null renderer without either mask.
 
+Host fault (Phase 9): when the replaced host dies on a signal (a draft that
+dereferences a wild N64 pointer: SIGSEGV, exit -11) and the stock runs did
+not, `run` does not stop with an error. The host's `[rush] FAULT` lines
+(runtime fault.cpp: N64 address, host pc + backtrace, the replaced call open
+on the faulting thread, its registers) are symbolised (addr2line on the host
+binary, then the `// 0xADDR: insn` comment N64Recomp wrote above that line)
+and the verdict is DIFFERENT with `crash`: the call logs (flushed at the
+fault) are compared up to it, so an earlier differing call still comes first;
+otherwise the faulting call is the first divergence (what = crash).
+
 Stdlib only, Python 3.9+. Logs are private (rdram hashes of the ROM's code
 running); keep them under build/.
 """
@@ -584,7 +594,8 @@ def call_report(cr, words=None):
     if cr["verdict"] == "SAME":
         return ["  per-call: all %d captured calls identical (arguments, returns, effects)" % cr["calls"]]
     head = "FIRST DIFFERING CALL: seq %s = %s call %s, frame %s: %s" % (
-        cr.get("seq"), cr.get("name"), cr.get("fn_call"), cr.get("frame"), cr["what"])
+        cr.get("seq"), cr.get("name"), cr.get("fn_call"), cr.get("frame"),
+        "the replaced host faulted inside this call" if cr["what"] == "crash" else cr["what"])
     lines = [head]
     if cr.get("inside"):
         lines.append("  inside: " + " > ".join("%s call %s (seq %s)" % (o["name"], o["fn_call"], o["seq"])
@@ -688,14 +699,204 @@ def host_command(host, rom, log, home, frames, press, seconds, dump=None, calls=
     return cmd
 
 
-def run_hosts(jobs):
-    """Run [(cmd, stderr_path)] in parallel; raise if one fails."""
+def run_hosts(jobs, tolerate=()):
+    """Run [(cmd, stderr_path)] in parallel; raise if one fails, except a job
+    whose stderr path is in `tolerate` and that died on a signal (rc < 0).
+    Returns {stderr_path: returncode}."""
     procs = []
     for cmd, err in jobs:
-        procs.append((cmd, subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=open(err, "w"))))
-    for cmd, p in procs:
-        if p.wait() != 0:
-            raise OracleError("host exited %d: %s" % (p.returncode, " ".join(shlex.quote(c) for c in cmd)))
+        procs.append((cmd, err, subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=open(err, "w"))))
+    rcs = {}
+    failed = None
+    for cmd, err, p in procs:
+        rc = p.wait()
+        rcs[str(err)] = rc
+        if rc != 0 and not (rc < 0 and str(err) in {str(t) for t in tolerate}) and failed is None:
+            failed = (rc, cmd)
+    if failed:
+        raise OracleError("host exited %d: %s" % (failed[0], " ".join(shlex.quote(c) for c in failed[1])))
+    return rcs
+
+
+# ------------------------------------------------------------------ host faults (Phase 9)
+
+_FAULT = re.compile(r"^\[rush\] FAULT (.*)$")
+_N64_COMMENT = re.compile(r"^\s*// (0x[0-9A-Fa-f]{8}): +(.*?)\s*$")
+_RECOMP_FUNC = re.compile(r"^RECOMP_FUNC \w+ (\w+)\(")
+
+
+def parse_fault(text):
+    """The host's `[rush] FAULT` lines (runtime/src/fault.cpp) as a dict, or None."""
+    info = {}
+    for line in text.splitlines():
+        m = _FAULT.match(line)
+        if not m:
+            continue
+        body = m.group(1)
+        if body.startswith("regs "):
+            info["regs"] = dict(kv.split("=", 1) for kv in body.split()[1:] if "=" in kv)
+            continue
+        for kv in re.finditer(r"(\w+)=(\S+)(?: \((\w+)\))?", body):
+            info.setdefault(kv.group(1), kv.group(2))
+            if kv.group(3):
+                info[kv.group(1) + "_name"] = kv.group(3)
+    return info or None
+
+
+_SRC_CACHE = {}
+
+
+def _n64_at(path, line):
+    """(n64 pc, instruction, recompiled function, function start vram) of the
+    N64Recomp comment at or above `line` of a recompiled C file."""
+    lines = _SRC_CACHE.get(path)
+    if lines is None:
+        try:
+            lines = Path(path).read_text(errors="replace").splitlines()
+        except OSError:
+            lines = []
+        _SRC_CACHE[path] = lines
+    pc = insn = func = None
+    start = None
+    i = min(line, len(lines)) - 1
+    while i >= 0:
+        m = _N64_COMMENT.match(lines[i])
+        if m and pc is None:
+            pc, insn = int(m.group(1), 16), " ".join(m.group(2).split())
+        f = _RECOMP_FUNC.match(lines[i])
+        if f:
+            func = f.group(1)
+            for j in range(i + 1, min(i + 40, len(lines))):
+                m2 = _N64_COMMENT.match(lines[j])
+                if m2:
+                    start = int(m2.group(1), 16)
+                    break
+            break
+        i -= 1
+    return pc, insn, func, start
+
+
+def symbolize(host, addrs, exe_base=0):
+    """[{addr, function, file, line, n64_pc, insn, n64_function, n64_start}] for host
+    code addresses (addr2line on the host binary; N64 PC from the recompiled C)."""
+    if not addrs:
+        return []
+    try:
+        data = Path(host).read_bytes()[:18]
+        pie = len(data) >= 18 and data[16] == 3          # ET_DYN
+    except OSError:
+        return []
+    q = ["0x%x" % ((a - exe_base) if pie else a) for a in addrs]
+    try:
+        proc = subprocess.run(["addr2line", "-f", "-C", "-e", str(host)] + q, capture_output=True,
+                              text=True, timeout=120)
+    except (OSError, subprocess.TimeoutExpired):
+        return []
+    out_lines = proc.stdout.splitlines()
+    out = []
+    for i, a in enumerate(addrs):
+        fn = out_lines[2 * i] if 2 * i < len(out_lines) else "??"
+        loc = out_lines[2 * i + 1] if 2 * i + 1 < len(out_lines) else "??:0"
+        path, _, ln = loc.rpartition(":")
+        ln = (ln.split() or ["0"])[0]
+        rec = {"addr": "0x%x" % a, "function": fn.split("(")[0], "file": path,
+               "line": int(ln) if ln.isdigit() else 0}
+        if rec["line"] and "RecompiledFuncs" in path:
+            pc, insn, func, start = _n64_at(path, rec["line"])
+            rec.update(n64_pc=pc, insn=insn, n64_function=func, n64_start=start)
+        out.append(rec)
+    return out
+
+
+def fault_report(err_text, host):
+    """parse_fault + symbolised frames: the faulting N64 instruction and the
+    chain of recompiled functions (innermost first)."""
+    info = parse_fault(err_text)
+    if not info:
+        return None
+    pc = int(info.get("pc", "0"), 16)
+    base = int(info.get("exe_base", "0"), 16)
+    bt = [int(x, 16) for x in info.get("bt", "").split(",") if x.startswith("0x")]
+    # backtrace() starts in the handler; the faulting pc follows the signal frame
+    rest = bt[bt.index(pc) + 1:] if pc in bt else bt[2:]
+    frames = symbolize(host, [pc] + [a - 1 for a in rest], base) if pc else []
+    info["frames"] = frames
+    chain = []
+    for f in frames:
+        if f.get("n64_function") and (not chain or chain[-1]["n64_function"] != f["n64_function"]):
+            chain.append({k: f.get(k) for k in ("n64_function", "n64_pc", "insn", "n64_start")})
+    info["n64_chain"] = chain
+    if chain:
+        info["n64_pc"] = chain[0]["n64_pc"]
+        info["insn"] = chain[0]["insn"]
+        info["n64_function"] = chain[0]["n64_function"]
+        if chain[0]["n64_pc"] is not None and chain[0]["n64_start"] is not None:
+            info["n64_offset"] = chain[0]["n64_pc"] - chain[0]["n64_start"]
+    elif frames:
+        info["host_function"] = frames[0]["function"]
+    return info
+
+
+def open_call(lines):
+    """The innermost call record still open at the end of a (truncated) call
+    log: {seq, frame, fn, name, fn_call, inside, calls}, or None."""
+    fns, per_fn, stack, calls = {}, {}, [], 0
+    for item in iter_calls(lines):
+        if item[0] == "fn":
+            fns[item[1]] = (item[2], item[3], item[4])
+        elif item[0] == "c":
+            calls += 1
+            per_fn[item[3]] = per_fn.get(item[3], 0) + 1
+            stack.append((item[1], item[2], item[3], per_fn[item[3]]))
+        elif item[0] == "C":
+            stack = [x for x in stack if x[0] != item[1]]
+    if not stack:
+        return {"calls": calls} if fns else None
+    seq, frame, fn, k = stack[-1]
+    return {"seq": seq, "frame": frame, "fn": fn, "name": _fn_name(fns, fn), "fn_call": k, "calls": calls,
+            "inside": [{"seq": q, "name": _fn_name(fns, f), "fn_call": n} for q, _fr, f, n in stack[:-1]]}
+
+
+def _draft_name(n):
+    """repl__<id>__<name> (a replacement's recompiled name) -> '<name> (<id>)'."""
+    m = re.match(r"^repl__(\w+?)__(\w+)$", n or "")
+    return "%s (%s)" % (m.group(2), m.group(1)) if m else n
+
+
+def fault_lines(fault):
+    """Human lines for a fault_report dict (oracle and draft_check)."""
+    out = []
+    sig = fault.get("signal_name") or ("signal %s" % fault.get("signal"))
+    what = "N64 %s of 0x%s" % (fault.get("access", "access"), fault["n64"][2:]) if fault.get("n64", "-") != "-" \
+        else "host address %s (not an N64 address)" % fault.get("host")
+    out.append("  fault: %s, %s at frame %s (thread %s)" % (sig, what, fault.get("frame"), fault.get("thread")))
+    if fault.get("n64_pc") is not None:
+        nm = _draft_name(fault.get("n64_function"))
+        off = ("+0x%X" % fault["n64_offset"]) if fault.get("n64_offset") is not None else ""
+        out.append("  N64 PC 0x%08X `%s` = %s%s" % (fault["n64_pc"], fault.get("insn"), nm.split(" ")[0] + off,
+                                                    nm[len(nm.split(" ")[0]):]))
+        regs = fault.get("regs") or {}
+        used = [r for r in re.findall(r"\$(\w+)", fault.get("insn") or "") if r in regs]
+        if used:
+            out.append("  registers: %s (thread context; may lag the host registers)" % " ".join(
+                "%s=%s" % (r, regs[r]) for r in dict.fromkeys(used + ["sp", "ra"]) if r in regs))
+    elif fault.get("host_function"):
+        out.append("  host function %s (pc %s): not recompiled game code" % (fault["host_function"], fault.get("pc")))
+    chain = fault.get("n64_chain") or []
+    if len(chain) > 1:
+        out.append("  N64 call chain: " + " <- ".join(
+            "%s%s" % (_draft_name(c["n64_function"]), " @0x%08X" % c["n64_pc"] if c.get("n64_pc") is not None and i else "")
+            for i, c in enumerate(chain[:8])))
+    oc = fault.get("call") or {}
+    if oc.get("seq"):
+        out.append("  faulting call: %s call #%s (global seq %s, entered at frame %s)%s" % (
+            oc.get("name"), oc.get("fn_call"), oc.get("seq"), oc.get("frame"),
+            "; inside " + " > ".join("%s call #%s" % (o["name"], o["fn_call"]) for o in oc["inside"])
+            if oc.get("inside") else ""))
+    elif fault.get("active") and fault["active"] != "-":
+        out.append("  open replaced/probed call on that thread: %s (call-log seq %s)" % (
+            _fn_name({0: (fault["active"],)}, 0), fault.get("seq")))
+    return out
 
 
 def main(argv=None):
@@ -798,17 +999,40 @@ def main(argv=None):
             jobs.append((host_command(args.repl_host, args.rom_repl, out / "repl.log", out / "home_r",
                                       frames, press, seconds, calls=out / "repl.calls" if calls else None, pak=pak),
                          out / "repl.err"))
-            run_hosts(jobs)
+            rcs = run_hosts(jobs, tolerate=[out / "repl.err"])
+            crash = None
+            if rcs.get(str(out / "repl.err"), 0) < 0:
+                crash = fault_report((out / "repl.err").read_text(errors="replace"), args.repl_host) or {}
+                crash["rc"] = rcs[str(out / "repl.err")]
             baselines = [Run(p) for p in stock_logs]
             cand = Run(out / "repl.log")
             if not args.json:
                 args.json = str(out / "verdict.json")
             result = compare(cand, baselines)
+            if crash is not None:
+                # the replaced log stops at the fault (its last frame may be partial)
+                last = cand.frame
+                fd0 = result.get("first_diff") or {}
+                if fd0.get("frame") is None or fd0.get("frame") >= last:
+                    result["first_diff"] = None
+                result["verdict"] = "DIFFERENT"
+                result["crash"] = crash
             result.update(script=args.script or ("--press" if args.press else "race (default)"),
                           press=press, frames_requested=frames, pak=pak)
             if calls and (out / "stock.calls").is_file() and (out / "repl.calls").is_file():
                 with open(out / "stock.calls") as fa, open(out / "repl.calls") as fb:
                     cr = compare_calls(fa, fb)
+                oc = {}
+                if crash is not None:
+                    with open(out / "repl.calls") as fb:
+                        oc = open_call(fb) or {}
+                    crash["call"] = oc
+                if crash is not None and (cr is None or cr["verdict"] == "SAME" or cr["what"] in ("length",)):
+                    # no call differed before the fault: the faulting call is the divergence
+                    cr = {"verdict": "DIFFERENT", "what": "crash", "calls": oc.get("calls", 0),
+                          "seq": oc.get("seq"), "frame": oc.get("frame", crash.get("frame")), "fn": oc.get("fn"),
+                          "name": oc.get("name"), "fn_call": oc.get("fn_call"), "inside": oc.get("inside", []),
+                          "fields": []}
                 if cr and cr["verdict"] == "DIFFERENT" and cr["what"] == "effect":
                     # Word-level effect of that call: rerun both to the call's frame with --call-detail.
                     f = (cr["frame"] or 0) + 2
@@ -818,7 +1042,7 @@ def main(argv=None):
                                 out / "detail_s.err"),
                                (host_command(args.repl_host, args.rom_repl, out / "detail_r.log",
                                              out / "home_cr", f, press, seconds, calls=db, detail=cr["seq"], pak=pak),
-                                out / "detail_r.err")])
+                                out / "detail_r.err")], tolerate=[out / "detail_r.err"] if crash is not None else ())
                     with open(da) as fa, open(db) as fb:
                         cr["words"] = effect_diff(effect_words(fa, cr["seq"]), effect_words(fb, cr["seq"]),
                                                   load_symbol_list(args.datasyms))
@@ -830,7 +1054,8 @@ def main(argv=None):
                 run_hosts([(host_command(args.stock_host, args.rom_stock, out / "dump_s.log", out / "home_ds", f,
                                          press, seconds, (f, da), pak=pak), out / "dump_s.err"),
                            (host_command(args.repl_host, args.rom_repl, out / "dump_r.log", out / "home_dr", f,
-                                         press, seconds, (f, db), pak=pak), out / "dump_r.err")])
+                                         press, seconds, (f, db), pak=pak), out / "dump_r.err")],
+                          tolerate=[out / "dump_r.err"] if crash is not None else ())
                 skip = stack_ranges([int(t, 16) for t in result["stacks"]])
                 skip += thread_word_ranges(result)
                 skip += [(int(r.split("-")[0], 16), int(r.split("-")[1], 16) + 1) for r in result["unstable_pages"]]
@@ -855,6 +1080,11 @@ def main(argv=None):
         lines += report(result, load_datasyms(args.datasyms))
         if cr is not None or args.cmd == "run":
             lines += call_report(cr) if cr is not None else []
+    if result.get("crash") is not None:
+        c = result["crash"]
+        lines.append("HOST FAULT in the replaced build (exit %s): the stock runs did not fault" % c.get("rc"))
+        lines += fault_lines(c) if c.get("signal") else ["  (no [rush] FAULT lines in repl.err: host built "
+                                                         "before Phase 9?)"]
     for line in lines:
         print(line)
     if cr is None or cr["verdict"] != "DIFFERENT":

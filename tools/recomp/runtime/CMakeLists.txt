@@ -177,6 +177,7 @@ set(RUSH_SOURCES
     src/trace.cpp
     src/oracle.cpp
     src/capture.cpp
+    src/fault.cpp
     src/lockstep.cpp
     src/pak.cpp)
 if(RUSH_RENDERER STREQUAL "rt64")
