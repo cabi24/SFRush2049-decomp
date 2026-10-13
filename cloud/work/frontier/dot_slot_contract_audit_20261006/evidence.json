@@ -557,7 +557,6 @@
         "s0": 4
       },
       "other_unaccepted_direct_game_calls": [
-        "func_800F0F44",
         "object_bytes_sum_global"
       ]
     },

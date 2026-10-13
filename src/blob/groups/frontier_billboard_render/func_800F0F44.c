@@ -1,62 +1,80 @@
-/* Genuine slot-status walk, still NONMATCH. Both double-pointer loads are
- * witnessed in retail. The 2U spelling on the mode comparison pools the native
- * constant-2 web and gives the s8 index input required by both actual callers;
- * its literal value and equality result are unchanged for every s32 value.
- * No declaration of the shared global was changed. Original spelling unknown.
- * The explicit value local represents the three actual status-byte reads.
- * Native 72-byte frame is not reproduced; no padding was added to fit it.
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/*
+ * func_800F0F44 = GC _FindGhosts(pak) (highscorescr.c): controller-pak ghost status for the high-score screen.
+ * Status D_801461C0[pak]: -4 no pak (D_80156CF0[pak].inserted), -1 unformatted, -2 damaged, -3 full (slot
+ * bytes 1/5/6 of D_80144030[pak], read through the inlined helpers pak_slot_b1/b5/b6, which give retail's
+ * 72-byte frame), else 0; in a ghost race (gRace D_8014A110 == 2) walk the ghost list D_80152028 and record
+ * the matching node in D_80146198[pak]; 1 = same ghost as the player's, 2 = a different one.
+ * w28a draft (8/116); w29a: the `= 2` arm first (retail block layout) plus ONE DEVICE:
+ *  - compiled-out `do {} while (0);` right after `if (D_8014A110 == 2) {` (GC has a GhostFileAvailable()
+ *    check at this point). It lengthens only the constant-2 web (born at the gRace compare), so its
+ *    priority drops below the 1/&D_8014978C/&D_80152570 tie (save 2.0 -> below) and 2 takes s7 as in retail.
+ *    Without it: 12 words (colour-only, force.sh proven); with `= 1` first instead: 9 rows (layout).
+ * pak_slot_b1/b5/b6 are non-static internal helpers (no deleted stubs); force_internal them.
  */
 typedef signed int s32;
+typedef unsigned int u32;
 typedef signed char s8;
 typedef unsigned char u8;
 
 typedef struct Q { u8 pad[16]; u8 id; u8 pad17; s8 name[14]; } Q;
-typedef struct Obj { struct Obj **next; Q **q; s8 b8; u8 b9; s8 pos[14]; s32 w24; s32 w28; } Obj;
-typedef struct Ref { s32 w0; s32 w4; Q **qq; s32 w12; s32 w16; s8 pos[4]; } Ref;
-typedef struct Slot { u8 pad0; s8 b1; u8 pad2[3]; s8 b5; s8 b6; u8 rest[765]; } Slot;   /* 772 bytes */
+typedef struct Ghost { struct Ghost **next; Q **q; s8 track; u8 backwards; s8 pos[14]; s32 id0; s32 id1; } Ghost;
+typedef struct Player { s32 w0; s32 w4; Q **qq; s32 id0; s32 id1; s8 name[4]; } Player;
+typedef struct Slot { u8 pad0; s8 formatted; u8 pad2[3]; s8 damaged; s8 full; u8 rest[765]; } Slot;   /* 772 bytes */
+typedef struct PakState { s8 inserted; u8 rest[15]; } PakState;
 
-extern void *D_8014A160;
-extern s32 D_80146198[];        /* [idx] = matched list node */
-extern s32 D_801461C0[];        /* [idx] = result code */
-extern s8 D_80156CF0[][16];     /* [idx*16] active flag */
+extern Player **D_8014A160;     /* gGhostPlayer */
+extern Ghost **D_80146198[];    /* gPakGhosts */
+extern s32 D_801461C0[];        /* gGhostStatus */
+extern PakState D_80156CF0[];
 extern Slot D_80144030[];
-extern s32 D_8014A110;
-extern Obj **D_80152028;
-extern s8 D_8014978C;
-extern s8 D_80152570;
+extern s32 D_8014A110;          /* gRace */
+extern Ghost **D_80152028;      /* gGhostFiles list head */
+extern s8 D_8014978C;           /* gTrackNum */
+extern s8 D_80152570;           /* gBackwards */
 extern s32 func_800950AC(void *, void *, s32);
 extern s32 func_8008AD04(void *, void *);
 
-void func_800F0F44(s32 idx)
-{
-    Ref *r = *(Ref **)D_8014A160;
-    Slot *sl;
-    s32 value;
-    Obj **n, *o;
+s32 pak_slot_b1(s32 pak) { return D_80144030[pak].formatted; }
+s32 pak_slot_b5(s32 pak) { return D_80144030[pak].damaged; }
+s32 pak_slot_b6(s32 pak) { return D_80144030[pak].full; }
 
-    D_80146198[idx] = 0;
-    if (D_80156CF0[idx][0] == 0) { D_801461C0[idx] = -4; return; }
-    sl = &D_80144030[idx];
-    value = sl->b1;
-    if (value == 0) { D_801461C0[idx] = -1; return; }
-    value = sl->b5;
-    if (value != 0) { D_801461C0[idx] = -2; return; }
-    value = sl->b6;
-    if (value != 0) { D_801461C0[idx] = -3; return; }
-    D_801461C0[idx] = 0;
-    if (D_8014A110 == 2U) {
-        for (n = D_80152028; n != 0; n = o->next) {
-            o = (Obj *)*n;
-            if (o->q == 0) continue;
-            if ((*o->q)->id != idx) continue;
-            if (D_8014978C != o->b8) continue;
-            if (D_80152570 != o->b9) continue;
-            if (func_800950AC((*o->q)->name, (*r->qq)->name, 14) != 0) continue;
-            D_80146198[idx] = (s32)n;
-            if (func_8008AD04(o->pos, r->pos) == 0 && o->w24 == r->w12 && o->w28 == r->w16)
-                D_801461C0[idx] = 1;
-            else
-                D_801461C0[idx] = 2;
+void func_800F0F44(s32 pak)
+{
+    Player *player;
+    Ghost ***ghosth;
+    Ghost **node;
+    Ghost *ghost;
+
+    player = *D_8014A160;
+    ghosth = &D_80146198[pak];
+    *ghosth = 0;
+    if (D_80156CF0[pak].inserted == 0) {
+        D_801461C0[pak] = -4;
+    } else if (pak_slot_b1(pak) == 0) {
+        D_801461C0[pak] = -1;
+    } else if (pak_slot_b5(pak) != 0) {
+        D_801461C0[pak] = -2;
+    } else if (pak_slot_b6(pak) != 0) {
+        D_801461C0[pak] = -3;
+    } else {
+        D_801461C0[pak] = 0;
+        if (D_8014A110 == 2) {
+            do {} while (0);
+            for (node = D_80152028; node != 0; node = ghost->next) {
+                ghost = *node;
+                if (ghost->q != 0 && (*ghost->q)->id == pak && ghost->track == D_8014978C &&
+                    ghost->backwards == D_80152570 &&
+                    func_800950AC((*ghost->q)->name, (*player->qq)->name, 14) == 0) {
+                    *ghosth = node;
+                    if (func_8008AD04(ghost->pos, player->name) != 0 || player->id0 != ghost->id0 ||
+                        player->id1 != ghost->id1) {
+                        D_801461C0[pak] = 2;
+                    } else {
+                        D_801461C0[pak] = 1;
+                    }
+                }
+            }
         }
     }
 }

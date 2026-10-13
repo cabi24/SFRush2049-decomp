@@ -1679,6 +1679,7 @@ func_800F0914:
 .section .text.func_800F0F44, "ax", @progbits
 .globl func_800F0F44
 func_800F0F44:
+    /* compiled from src/blob/func_800F0F44.c */
     .word 0x3C0E8015
     .word 0x8DCEA160
     .word 0x27BDFFB8
