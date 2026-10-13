@@ -178,6 +178,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-11"
   },
+  "attract_or_transition": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/attract_or_transition.c",
+    "source_sha256": "4511a700244a6c932c8b3968acd073cdfcdeb7767979d46e398ede96d8fb1ecd",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "audio_buffer_manage": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_fade_control",

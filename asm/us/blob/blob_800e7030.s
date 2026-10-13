@@ -7248,6 +7248,7 @@ world_trigger_check:
 .section .text.attract_or_transition, "ax", @progbits
 .globl attract_or_transition
 attract_or_transition:
+    /* compiled from src/blob/attract_or_transition.c */
     .word 0x27BDFFB0
     .word 0x3C0E8016
     .word 0xAFBF0014
