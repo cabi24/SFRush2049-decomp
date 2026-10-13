@@ -6405,6 +6405,60 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_80100D5C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80101904": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80101D84": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_8010221C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80102448": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80102F30": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "070260a60d79ea61c388d70ab10d948bfe3713a98f4bf2a399b03cfa4f3f287f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "func_80105B74": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_80105B74.c",

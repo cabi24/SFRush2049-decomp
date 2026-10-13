@@ -58,11 +58,16 @@
       "func_800F0914",
       "func_800F1210",
       "func_80100B8C",
+      "func_80101904",
+      "func_80101D84",
+      "func_8010221C",
+      "func_80102448",
+      "func_80102F30",
       "func_80107EDC",
       "func_80108154",
       "func_8010A53C"
     ],
-    "unaccepted_caller_bytes": 68260,
+    "unaccepted_caller_bytes": 60488,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -716,7 +721,6 @@
         "s0": 8
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
         "race_position_update",
         "state_utility"
       ]
@@ -725,7 +729,7 @@
       "start": "0x80101904",
       "bytes": 1152,
       "body_sha256": "becc39979d69f112de618aa6242da40511858e42634d6eda0b7be40c598a5ef2",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80101A64",
         "0x80101AFC"
@@ -734,7 +738,6 @@
         "s0": 2
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
         "race_position_update",
         "state_utility"
       ]
@@ -743,7 +746,7 @@
       "start": "0x80101D84",
       "bytes": 1176,
       "body_sha256": "5a91e6103070e55276fa97806896e15267c329a702eb0106b9b222b31c6a7ea7",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80101EDC",
         "0x80101F70",
@@ -754,7 +757,6 @@
         "s0": 4
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
         "race_position_update",
         "state_utility"
       ]
@@ -763,7 +765,7 @@
       "start": "0x8010221C",
       "bytes": 548,
       "body_sha256": "ffd161f096a16260bd5fc933845091633ae6490aab9166a2be47655ee5b058c4",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80102260",
         "0x801022D8"
@@ -773,8 +775,6 @@
       },
       "other_unaccepted_direct_game_calls": [
         "func_80100E58",
-        "func_80101904",
-        "func_80101D84",
         "object_bytes_sum_global",
         "state_utility"
       ]
@@ -783,7 +783,7 @@
       "start": "0x80102448",
       "bytes": 1336,
       "body_sha256": "3b5283404d850b1c3648673ce2e7acb800e14ccf6bf8c5e9364c2b01844ce3cb",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80102618",
         "0x80102748",
@@ -793,7 +793,6 @@
         "s0": 3
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
         "race_position_update",
         "state_utility"
       ]
@@ -810,7 +809,6 @@
         "s0": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
         "race_position_update",
         "state_utility"
       ]
@@ -819,7 +817,7 @@
       "start": "0x80102F30",
       "bytes": 3560,
       "body_sha256": "3277195138a39afef44bb022e00422269403b1976613b6c165f7fc822c76001d",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x801031D0",
         "0x801032DC",
@@ -837,9 +835,6 @@
         "s5": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80100D5C",
-        "func_8010221C",
-        "func_80102448",
         "func_80102980",
         "race_position_update",
         "state_utility"

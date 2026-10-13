@@ -29,6 +29,7 @@ callback_init:
 .section .text.func_80100D5C, "ax", @progbits
 .globl func_80100D5C
 func_80100D5C:
+    /* compiled from src/blob/func_80100D5C.c */
     .word 0x3C0D8015
     .word 0x25AD9438
     .word 0x8DA30000
@@ -783,6 +784,7 @@ func_80100E58:
 .section .text.func_80101904, "ax", @progbits
 .globl func_80101904
 func_80101904:
+    /* compiled from src/blob/func_80101904.c */
     .word 0x3C0E8015
     .word 0x81CE2744
     .word 0x27BDFE98
@@ -1075,6 +1077,7 @@ func_80101904:
 .section .text.func_80101D84, "ax", @progbits
 .globl func_80101D84
 func_80101D84:
+    /* compiled from src/blob/func_80101D84.c */
     .word 0x3C0E8015
     .word 0x81CE2744
     .word 0x27BDFE78
@@ -1373,6 +1376,7 @@ func_80101D84:
 .section .text.func_8010221C, "ax", @progbits
 .globl func_8010221C
 func_8010221C:
+    /* compiled from src/blob/func_8010221C.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x44806000
@@ -1517,6 +1521,7 @@ func_8010221C:
 .section .text.func_80102448, "ax", @progbits
 .globl func_80102448
 func_80102448:
+    /* compiled from src/blob/func_80102448.c */
     .word 0x3C0F8015
     .word 0x85EFA108
     .word 0x27BDFE88
@@ -2223,6 +2228,7 @@ func_80102980:
 .section .text.func_80102F30, "ax", @progbits
 .globl func_80102F30
 func_80102F30:
+    /* compiled from src/blob/func_80102F30.c */
     .word 0x27BDFD80
     .word 0x3C028014
     .word 0x8C428870
