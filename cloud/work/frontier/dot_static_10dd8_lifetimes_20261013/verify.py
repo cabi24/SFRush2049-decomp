@@ -4,6 +4,7 @@
 def require(condition, message):
     if not condition:
         raise AssertionError(message)
+from contextlib import contextmanager
 import hashlib
 import importlib.util
 import json
@@ -32,6 +33,18 @@ def load(name, path):
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
+@contextmanager
+def scoped_population():
+    """Restore shared scorer selection on success, failure, and nested calls."""
+    previous = score.ASM_DIR, score.IDO
+    score.ASM_DIR = ROOT / 'asm/us/boot_tail'
+    try:
+        yield
+    finally:
+        score.ASM_DIR, score.IDO = previous
+
+
+@scoped_population()
 def inputs():
     score.ASM_DIR = ROOT / 'asm/us/boot_tail'
     words = score.targets()[FN]
@@ -85,6 +98,7 @@ def expect_rejection(action, message):
     raise AssertionError('negative control escaped: ' + message)
 
 
+@scoped_population()
 def run():
     pinned = inputs()
     require(pinned['target_extent']['size'] == 168, 'verification requirement failed')

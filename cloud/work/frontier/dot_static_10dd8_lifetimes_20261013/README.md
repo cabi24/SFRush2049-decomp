@@ -98,3 +98,13 @@ lock files, generated assembly text, or the whole evolving ROM TU. Normal replay
 compares the entire receipt. Packet gates use explicit checks and also pass under
 Python `-O`; they cannot be disabled by removing assertions. Scratch object,
 assembly, compiler, and ROM bytes are not included in this packet.
+
+## CI isolation regression
+
+The first draft CI run exposed shared scorer state left at the static population,
+which broke later game-code tests. `inputs()` and `run()` now scope and restore
+both target population and compiler in `finally`, including nested calls and
+failures. The one packet test checks successful and forced-failure restoration.
+An ordered replay with the existing texture native-parser test reproduced the
+old failure and passes with this fix. The matching source and evidence are
+unchanged; the input receipt was rebound for the verifier/test correction.
