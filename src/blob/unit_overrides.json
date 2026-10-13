@@ -216,6 +216,30 @@
   {
    "name": "font_set_slp",
    "reason": "group physics_sym (w29b): non-static inlined helper of sound_loop_set (slp.c), caller-less after inlining"
+  },
+  {
+   "name": "Hidden_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
+  },
+  {
+   "name": "getB6_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
+  },
+  {
+   "name": "gfx_lock_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
+  },
+  {
+   "name": "font_set_6B3C",
+   "reason": "group func_80106B3C (w29b): non-static inlined helper of func_80106B3C, caller-less after inlining"
   }
  ],
  "prefer_definition": [

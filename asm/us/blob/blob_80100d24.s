@@ -5898,6 +5898,7 @@ func_80106874:
 .section .text.func_80106B3C, "ax", @progbits
 .globl func_80106B3C
 func_80106B3C:
+    /* compiled from src/blob/func_80106B3C.c */
     .word 0x27BDFFC0
     .word 0x3C028011
     .word 0x8C4274B4
