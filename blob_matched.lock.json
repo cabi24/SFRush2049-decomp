@@ -3630,19 +3630,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "physics_sym",
     "source": "src/blob/groups/physics_sym/group.json",
-    "source_sha256": "dc8196272a8f920e7b5dbc630b8da4132eb8bf4eb3634c2f311364f2ba172078",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-11"
+    "verified_at": "2026-10-13"
   },
   "func_800B5688": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "physics_sym",
     "source": "src/blob/groups/physics_sym/group.json",
-    "source_sha256": "dc8196272a8f920e7b5dbc630b8da4132eb8bf4eb3634c2f311364f2ba172078",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-11"
+    "verified_at": "2026-10-13"
   },
   "func_800B5898": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -3664,19 +3664,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "physics_sym",
     "source": "src/blob/groups/physics_sym/group.json",
-    "source_sha256": "dc8196272a8f920e7b5dbc630b8da4132eb8bf4eb3634c2f311364f2ba172078",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-11"
+    "verified_at": "2026-10-13"
   },
   "func_800B59F0": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "physics_sym",
     "source": "src/blob/groups/physics_sym/group.json",
-    "source_sha256": "dc8196272a8f920e7b5dbc630b8da4132eb8bf4eb3634c2f311364f2ba172078",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-11"
+    "verified_at": "2026-10-13"
   },
   "func_800B6014": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7488,10 +7488,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "physics_sym",
     "source": "src/blob/groups/physics_sym/group.json",
-    "source_sha256": "dc8196272a8f920e7b5dbc630b8da4132eb8bf4eb3634c2f311364f2ba172078",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-11"
+    "verified_at": "2026-10-13"
   },
   "physics_velocity_clamp": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -8086,6 +8086,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "sound_loop_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "physics_sym",
+    "source": "src/blob/groups/physics_sym/group.json",
+    "source_sha256": "d528f5d6e7acaa233ffcbc439c37684beb72c71a4e8d9638de548f385dec714f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
   },
   "sound_pitch_diff_calc": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

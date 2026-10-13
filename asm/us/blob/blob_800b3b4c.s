@@ -1966,6 +1966,7 @@ func_800B5688:
 .section .text.sound_loop_set, "ax", @progbits
 .globl sound_loop_set
 sound_loop_set:
+    /* compiled from src/blob/sound_loop_set.c */
     .word 0x27BDFF70
     .word 0x3C148014
     .word 0x269461D0

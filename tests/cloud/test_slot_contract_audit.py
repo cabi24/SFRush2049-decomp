@@ -29,8 +29,8 @@ def test_counts_are_bounded_dependency_surface_not_matches():
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (65, 170, 167)
     assert sum(result['captures'].values()) == 161
-    assert result['accepted_callers'] == ['credits_scroll', 'world_trigger_check', 'func_800F0914', 'func_800F1210', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'func_8010221C', 'func_80102448', 'func_80102F30', 'lap_complete', 'func_80107EDC', 'func_80108154', 'func_8010A53C']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c via w29i 2026-10-13)
-    assert result['unaccepted_caller_bytes'] == 59256
+    assert result['accepted_callers'] == ['sound_loop_set', 'credits_scroll', 'world_trigger_check', 'func_800F0914', 'func_800F1210', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'func_8010221C', 'func_80102448', 'func_80102F30', 'lap_complete', 'func_80107EDC', 'func_80108154', 'func_8010A53C']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13)
+    assert result['unaccepted_caller_bytes'] == 58924
     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 6
     assert result['bounded_dependency_bytes'] == 4520
 

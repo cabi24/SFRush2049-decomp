@@ -40,6 +40,10 @@
   {
    "name": "func_80092B80",
    "reason": "retail calls it from music_tempo_set with jal; our small body is otherwise inlined by umerge in the shadow unit (wave 7, w7d)"
+  },
+  {
+   "name": "sound_loop_set",
+   "reason": "retail calls it by jal from physics_sym and the asm func_8010E8B4; with physics_sym its only C caller umerge would inline it (w29b); drop when func_8010E8B4 lands in physics_sym"
   }
  ],
  "force_keep": [
@@ -192,6 +196,26 @@
   {
    "name": "update_model",
    "reason": "group func_800E56F8 (w29c): non-static nested helper (arcade update_model) inlined into func_800E6AF8, caller-less, leaves no stub"
+  },
+  {
+   "name": "sound_loop_set",
+   "reason": "group physics_sym (w29b): internal callee (= GC _TitlePane), s0/s1/s2/s4 unsaved; as a kept name it compiles o32"
+  },
+  {
+   "name": "gfx_lock_slp",
+   "reason": "group physics_sym (w29b): non-static inlined helper of sound_loop_set (slp.c), caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_slp",
+   "reason": "group physics_sym (w29b): non-static inlined helper of sound_loop_set (slp.c), caller-less after inlining"
+  },
+  {
+   "name": "font_select_slp",
+   "reason": "group physics_sym (w29b): non-static inlined helper of sound_loop_set (slp.c), caller-less after inlining"
+  },
+  {
+   "name": "font_set_slp",
+   "reason": "group physics_sym (w29b): non-static inlined helper of sound_loop_set (slp.c), caller-less after inlining"
   }
  ],
  "prefer_definition": [

@@ -53,6 +53,7 @@
       "stack_word": 21
     },
     "accepted_callers": [
+      "sound_loop_set",
       "credits_scroll",
       "world_trigger_check",
       "func_800F0914",
@@ -68,7 +69,7 @@
       "func_80108154",
       "func_8010A53C"
     ],
-    "unaccepted_caller_bytes": 59256,
+    "unaccepted_caller_bytes": 58924,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -187,7 +188,7 @@
       "start": "0x800B574C",
       "bytes": 332,
       "body_sha256": "5fb14ce0def5ae36a1a3c8b448abedd7c4d08abf8b6e3ef40059141f20cf8fb8",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800B576C"
       ],
@@ -1211,8 +1212,7 @@
         "stack_word": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "object_bytes_sum_global",
-        "sound_loop_set"
+        "object_bytes_sum_global"
       ]
     },
     "func_8010EA08": {
