@@ -100,6 +100,33 @@ Game function names are Conveyor inventory target ids (`n64_target`, population 
    integration_B24 static context; renaming it needs that re-pin).
 5. `identity.json` maps static recompiler names only: no change.
 
+## Replay (coordinator request: renames go on last)
+
+The branch is now three commits on wave29 09496631, so it can be rebuilt on any later wave29:
+1. `gcref: struct-offset fingerprint channel` (Job 2; independent of the rename),
+2. `w29n: rename inputs and replay` (renames.json, tools/, replay.sh, names.md, README; inputs only),
+3. `Apply the w29n game symbol rename (replay.sh output …)` — produced by
+   `sh cloud/work/frontier/w29n/replay.sh` on commit 2, nothing by hand (plus this RESULTS commit).
+
+`replay.sh [MAIN_CHECKOUT]` (header documents the 9 steps) needs a clean tree; it copies build/ from the main
+checkout when absent, renames a sqlite backup COPY of the live DB (never the live DB), discovers every
+src/blob source that uses an old name (so groups installed after the base are covered), and ends with the
+gate chain. Proof: a fresh scratch worktree at commit 2 with build/ copied from the main checkout, replay
+run, `git add -A; git diff --cached <commit 3>` = **0 lines**; its gates: `image matches (647072 bytes)
+bf7da3fa…`, `blob lock: 1024 entries, 0 problems`, `group lock: 0 problems`, `blob_unit: 1024 locked bodies,
+1024 equal … 0 differ`, `ROM build with the source-built blob: SHA-1 EXACT` (2.5 min). Determinism fixes:
+storage_overrides.mk regenerated explicitly (`owned_storage generate`), correlation run with
+PYTHONHASHSEED=0 (equal-score ties followed set order).
+To re-apply on a merged wave29 W: `git checkout -B w29n W; git cherry-pick <commit 1> <commit 2> <RESULTS>;
+sh cloud/work/frontier/w29n/replay.sh; git add -A; git commit`. Packets that the replay does not know
+(new receipts pinning renamed names) show up only in the test suites, not in the gates: run both test-fasts.
+Later-lane names: `renames.json` `later_lane_names` and status-`candidate` rows (FindGhosts, drawMain,
+model_iteration, animElapsedTimerText, animPlace, the audio-options wrong-label lead), names.md last section.
+Tests at commit 3: Pi `make test-fast JOBS=4` conveyor `1589 passed, 803 skipped`, cloud `808 passed, 202
+skipped`, rc=0; rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` conveyor `2340 passed, 52 skipped`, cloud
+`1005 passed, 5 skipped, 27 subtests passed`, rc=0. followups.py is now part of the replay (ipa_callees key
+SetupWaveModel, census names, phase-8 test).
+
 ## Job 2: struct-offset channel (`tools/gcref/fields.py`, `correlate.py --fld-*`)
 Keys `offset/width` of loads/stores off pointer registers (GC D-form words from rush_d.elf with relocated
 words, r0/r1/r2/r13 and negative displacements skipped; N64 MIPS with `%lo` bases, sp/gp/zero skipped),
