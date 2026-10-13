@@ -191,3 +191,21 @@ To re-apply on a merged wave30 W: `git checkout -B w30n W; git cherry-pick <inpu
 cloud/work/frontier/w30n/register.sh; git add -A …; git commit; RENAME_BATCH=w30n sh
 cloud/work/frontier/w29n/replay.sh; git add -A …; git commit`; then both test-fasts (new fixtures pinning a
 renamed name show up only there: extend the replay.sh rebind list / rebind_edits.py and redo the replay).
+
+## Final application on W = faaaee20 (w30i installs merged)
+
+Series: inputs cf697ad9 / 6fe7fcc5 / ba51ded0 (cherry-picks; CLAIMS conflict resolved by re-adding the w30n row
+and marking func_80104704 registered in the results-family row), Job 1 output 97d7b777 (`register.sh`), Job 2
+output 44bb2f76 (`replay.sh`, RENAME_BATCH=w30n). dot_steady_camera's group func_800E92C8 is untouched by w30i
+(`git diff 931baefa faaaee20 -- src/blob/groups/func_800E92C8` empty), so the OBJECT_PINS proof stands.
+Job 1: slot-contract counts 66/171/168, captures 162, unaccepted caller bytes 53,504 (w30i landed callers).
+Job 2: 79 src/blob + 42 draft/packet sources renamed (incl. menu_save_options ctx files, credits_scroll_grp
+gr3_7af4.c and the 8AB0 file, func_8010B5D0, func_8010DCFC and the w30a-d lane dirs), 1 lock key re-keyed,
+153 entries re-pinned.
+Gates: `blob lock: 1050 entries, 0 problems`; `group lock: 0 problems`; `blob_unit: 1050 locked bodies, 1050
+equal to the image in one 925-file unit, 0 differ`; `ROM build with the source-built blob: SHA-1 EXACT`.
+Tests at 44bb2f76: Pi `make test-fast JOBS=4` conveyor `1590 passed, 799 skipped`, cloud `808 passed, 202
+skipped`, rc=0 (main checkout's submodule contents copied into the worktree's empty submodule dirs; still there,
+untracked by git — remove `tools/decomp-permuter/*` and `tools/mips_to_c/*` in the worktree by hand);
+rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` conveyor `2337 passed, 52 skipped`, cloud `1005 passed,
+5 skipped, 27 subtests passed`, rc=0.
