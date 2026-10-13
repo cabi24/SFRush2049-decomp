@@ -24,6 +24,7 @@ The edits are listed in cloud/work/frontier/w29n/RESULTS.md ("Receipts").
 import argparse
 import hashlib
 import json
+import re
 import struct
 import subprocess
 import sys
@@ -119,6 +120,11 @@ def git_show(base, rel):
     return p.stdout
 
 
+def rebind_tokens(text, names):
+    rx = re.compile(r"(?<![A-Za-z0-9_])(%s)(?![A-Za-z0-9_])" % "|".join(map(re.escape, sorted(names, key=len, reverse=True))))
+    return rx.sub(lambda m: names[m.group(1)], text)
+
+
 def replace_once(path, old, new, write, log):
     text = path.read_text()
     n = text.count(old)
@@ -136,8 +142,11 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--base", default="HEAD", help="the pre-rename revision (replay.sh: HEAD)")
     p.add_argument("--write", action="store_true")
+    p.add_argument("--map", default=None,
+                   help="the batch being applied (batch.py output): census digests undo only its renames, "
+                        "since the pinned digests already carry every earlier batch (default: the whole table)")
     a = p.parse_args()
-    names = static_rename.mapping(static_rename.load_map(MAP))
+    names = static_rename.mapping(static_rename.load_map(a.map or MAP))
     inverse = {v: k for k, v in names.items()}
     log = []
     for receipt, rel in SOURCE_PINS:
@@ -154,7 +163,9 @@ def main():
     for rel, old, new, count in LOOKUPS:
         path = FR / rel
         text = path.read_text()
-        if text.count(old) == 0 and text.count(new) == count:
+        # a later batch may have renamed other tokens of the edited text (w30n: D_80152032 -> gCountDown)
+        if text.count(old) == 0 and (text.count(new) == count
+                                     or text.count(rebind_tokens(new, names)) == count):
             log.append(f"{rel}: name edit already applied")
             continue
         if text.count(old) != count:

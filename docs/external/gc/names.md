@@ -1,6 +1,7 @@
 # N64 game symbols named from the GameCube build (and wrong labels replaced)
 
-Lane w29n (wave 29) renamed these game symbols. Machine-readable table with evidence:
+Lane w29n (wave 29) renamed these game symbols; lane w30n (wave 30) applied the ten it had deferred
+(last table of this section). Machine-readable table with evidence and the `batch` of each row:
 [`cloud/work/frontier/w29n/renames.json`](../../../cloud/work/frontier/w29n/renames.json); procedure and gates:
 [`cloud/work/frontier/w29n/RESULTS.md`](../../../cloud/work/frontier/w29n/RESULTS.md). Style: GC names keep
 their spelling without the leading underscore of CodeWarrior file statics (`_PrintScores` → `PrintScores`);
@@ -53,10 +54,12 @@ declarations in sources that do not use a renamed name, `cloud/matches/` submiss
 `asm/us/boot_tail/symbols.json`. Drafts written against the old names: rename them with
 `python3 -m tools.conveyor.pipeline.static_rename source cloud/work/frontier/w29n/renames.json FILE.c`.
 
-Deferred (evidence as good, but a test or a research packet uses the old label as a fixture; rename each
-together with its fixture, see `deferred` in renames.json):
+Applied in wave 30 by lane w30n (batch `w30n`; w29n had deferred them because a test or a research packet
+used the old label as a fixture — each fixture was rebound with the rename, same proof rules: the new text is
+exactly the old text renamed; `was_deferred` in renames.json, procedure in
+[`cloud/work/frontier/w30n/RESULTS.md`](../../../cloud/work/frontier/w30n/RESULTS.md)):
 
-| Address | Old | New | GC source | Blocking fixture |
+| Address | Old | New | GC source | Fixture (rebound) |
 |---|---|---|---|---|
 | 0x800FF724 | game_results_input | animControls | controlscr.c animControls (corr 3.76, str CONTROLS_SM) | `tests/conveyor/test_d05_hud_context_audit.py` parametrises on the name |
 | 0x800BB9B0 | func_800BB9B0 | LoadTrack | tracks.c LoadTrack (corr 12.96: track-name table x19, SkyInit/InitSmoke pairs) | `tests/cloud/test_node_pool_init_match.py` records the native caller as func_800BB9B0 |
