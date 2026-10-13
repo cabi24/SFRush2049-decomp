@@ -127,6 +127,21 @@ skipped`, rc=0; rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` conveyor `234
 `1005 passed, 5 skipped, 27 subtests passed`, rc=0. followups.py is now part of the replay (ipa_callees key
 SetupWaveModel, census names, phase-8 test).
 
+## Re-application on wave29 d77aa4ec (final)
+
+Branch w29n = d77aa4ec + gcref commit + rename inputs (five wave-29 GC names accepted: FindGhosts, drawMain,
+model_iteration, animElapsedTimerText, animPlace; w29b helper names recorded; drafts step; dot_substantial_scout
+added to the packet rebind) + replay output 415639ad + this RESULTS commit. Replay: 22 inventory rows (DB copy),
+12 symbol_addrs definitions, 52 src/blob sources + 31 lane drafts renamed, 13 lock keys renamed, 109 entries re-pinned.
+Gates: `image matches (647072 bytes) bf7da3fa…`, `blob lock: 1041 entries, 0 problems`, `group lock: 0 problems`,
+`blob_unit: 1041 locked bodies, 1041 equal to the image in one 925-file unit, 0 differ`, `blob_rom rom` SHA-1 EXACT.
+Tests at 415639ad: Pi `make test-fast JOBS=4` conveyor 1589 passed, 805 skipped; cloud 808 passed, 202 skipped; rc=0.
+rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` conveyor 2342 passed, 52 skipped; cloud 1005 passed, 5 skipped,
+27 subtests passed; rc=0.
+Live DB (Pi, /home/cburnes/.conveyor/conveyor.db), from the main checkout after merging:
+`python3 cloud/work/frontier/w29n/tools/db_rename.py cloud/work/frontier/w29n/renames.json --data /home/cburnes/.conveyor --apply --backup /home/cburnes/.conveyor/conveyor.pre-w29n.db`
+then `python3 -m tools.conveyor.pipeline.blob_layout derive` (and `blob_tu symbols` must leave asm/us/blob/symbols.json unchanged).
+
 ## Job 2: struct-offset channel (`tools/gcref/fields.py`, `correlate.py --fld-*`)
 Keys `offset/width` of loads/stores off pointer registers (GC D-form words from rush_d.elf with relocated
 words, r0/r1/r2/r13 and negative displacements skipped; N64 MIPS with `%lo` bases, sp/gp/zero skipped),
