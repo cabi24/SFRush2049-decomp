@@ -49,6 +49,8 @@ Thumbs.db
 
 # Reference repos (cloned from git, large)
 reference/repos/
+# GameCube rush_d.elf bulk dumps (tools/gcref; regenerable)
+reference/gc/
 
 # Local analysis outputs (large, regenerable)
 ollama_analysis/

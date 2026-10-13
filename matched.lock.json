@@ -502,6 +502,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_11640.c:func_80011910": {
+    "body_sha256": "6bc4a0160ec2ba66e665ded46fbea2cf2bdd3620a5cc93134b79e61f47f9d4e7",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80011910",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_11640.c:func_800119E0": {
     "body_sha256": "f9fcfa8e3726b7a2314f559752c4bc8547a44339ab437b2039cd3ab6f38c6ee3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

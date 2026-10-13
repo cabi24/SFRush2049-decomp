@@ -18,10 +18,12 @@ Paths inside command examples are relative to the repository root.
 | Promote static C or splice game C into the ROM | [Promotion skill](../.claude/skills/promote-match/SKILL.md) |
 | Regenerate extracted game context | [Context skill](../.claude/skills/refresh-game-context/SKILL.md) |
 | IDO flag evidence and C89 constraints | [Compiler settings](COMPILER_SETTINGS.md) |
+| Static coverage ceiling: which boot-segment functions stay assembly (ultralib proofs, hand asm) | [Static assembly ceiling](static-asm-ceiling.md) |
 | Queue, farm, toolkit, corpus, scoring, and build commands | [Conveyor operations](../tools/conveyor/README.md) |
 | Builder access, paths, services, and sync rules | [Build environment](BUILDING.md) |
 | General decompilation techniques and MIPS reference | [Decompilation workflow](DECOMPILATION_WORKFLOW.md) |
 | IDO register-allocation, stack-frame and loop-unrolling behaviour (third-party, local copy) | [External references](external/README.md) |
+| GameCube debug build as a second reference (struct layouts, signatures, symbolised disassembly, N64→GC function candidates) | [GameCube reference](external/gc/README.md) |
 | Project policies | [Constitution](../.specify/memory/constitution.md) |
 | Wiki access and publishing | [Wiki guide](WIKI.md) |
 

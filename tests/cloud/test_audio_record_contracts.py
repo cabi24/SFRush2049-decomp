@@ -134,3 +134,30 @@ def test_bad_promoted_body_with_fresh_fixture_lock_still_fails(tmp_path):
             V.check_object(obj, [name], tmp_path, score.targets(), score.image_symbols())
     finally:
         score.ASM_DIR, score._targets, score._target_fingerprint = old
+
+
+@pytest.mark.parametrize('edit,message', [
+    # w28s: D_800382F0/D_800382F4 swapped inside the owned .bss window.
+    (lambda t: t.replace('void *D_800382F0;\nunsigned int D_800382F4;',
+                         'unsigned int D_800382F4;\nvoid *D_800382F0;'), 'not at its retail address'),
+    # One more object grows the TU's .bss past the registered slot (0x50).
+    (lambda t: t.replace('unsigned char *D_8003833C;', 'unsigned char *D_8003833C;\nunsigned int D_80038340;'),
+     'unexpected allocated data'),
+])
+def test_owned_bss_window_fails_closed(tmp_path, edit, message):
+    if not (score.IDO/'cc').is_file():
+        pytest.skip('IDO unavailable')
+    for tool in ('mips-linux-gnu-as','mips-linux-gnu-ld','mips-linux-gnu-objcopy'):
+        if not shutil.which(tool):
+            pytest.skip(tool + ' unavailable')
+    text = (ROOT / V.TU).read_text()
+    bad = edit(text)
+    assert bad != text
+    old = score.ASM_DIR, score._targets, score._target_fingerprint
+    try:
+        score.ASM_DIR = ROOT/'asm/us/boot_tail'
+        obj = V.compile_tu(bad, tmp_path, 'bad_owned_bss')
+        with pytest.raises(V.VerificationError, match=message):
+            V.check_object(obj, [], tmp_path, score.targets(), score.image_symbols())
+    finally:
+        score.ASM_DIR, score._targets, score._target_fingerprint = old
