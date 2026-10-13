@@ -9,7 +9,7 @@ separately.
 
 | target | bytes | state | scorer / gate lines |
 |---|---:|---|---|
-| func_80011910 (#377) | 208 | **PROMOTED** 4e32a60f | `LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (81 rows)`; `TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (81 rows)` `RESULT PASS`; lock `(ido7.1): score=0`; gate `OWNED-OFFSETS: OK 20 ROM TU data sections (17 owned slots), 28 named objects checked against retail addresses (23 in owned slots), 1 without a retail address`; `PROMOTED 1 (208 B) @ 4e32a60fa` |
+| func_80011910 (#377) | 208 | **PROMOTED** 69d05f4c (amended from 4e32a60f) | `LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (81 rows)`; `TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (81 rows)` `RESULT PASS`; lock `(ido7.1): score=0`; gate `OWNED-OFFSETS: OK 20 ROM TU data sections (17 owned slots), 28 named objects checked against retail addresses (23 in owned slots), 1 without a retail address`; `PROMOTED 1 (208 B) @ 4e32a60fa` (amended to 69d05f4c to carry #377) |
 | func_80012D18 | 3,148 | skipped: no concrete lever | #376 found no source improvement; the w28g GameCube types have no counterpart (GC audio is `ngcAudio.c`/AX, with no loop/sample-record structs to borrow) |
 | static asm ceiling | - | **documented** `docs/static-asm-ceiling.md` | 21 ultralib objects `RESULT: IDENTICAL` (27 functions, 4,816 B); floor 33 fn / 6,252 B; ceiling 634/667, 154,372 B (96.05%) |
 
@@ -52,7 +52,7 @@ lib_16320 slot started as a partial retail window the same way, w20b). Steps, ea
    cloud/work/boot_tail_promotion/promote_batch.py cloud/work/frontier/w28s/ctx71_O2.jsonl 0x11640 --only
    func_80011910 --prefix-dedup rom/lib_11640 --bss-at-companion` -> `OWNED-OFFSETS: OK 20 ROM TU data sections
    (17 owned slots), 28 named objects checked against retail addresses (23 in owned slots)`, `PROMOTED 1 (208 B) @
-   4e32a60fa`. The subject was amended to carry #377.
+   4e32a60fa`. The subject was amended to carry #377 (commit 69d05f4c).
 
 ## Verifier fixes (the packets assumed lib_11640 had no data / #377 was unregistered)
 
