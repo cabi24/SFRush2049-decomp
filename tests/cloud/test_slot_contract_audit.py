@@ -29,8 +29,8 @@ def test_counts_are_bounded_dependency_surface_not_matches():
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (65, 170, 167)
     assert sum(result['captures'].values()) == 161
-    assert result['accepted_callers'] == ['credits_scroll', 'world_trigger_check', 'func_80100B8C']  # grows as callers land (w27b/w27c/w27f 2026-10-12)
-    assert result['unaccepted_caller_bytes'] == 73804
+    assert result['accepted_callers'] == ['credits_scroll', 'world_trigger_check', 'func_800F0914', 'func_800F1210', 'func_80100B8C']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28i 2026-10-13)
+    assert result['unaccepted_caller_bytes'] == 70404
     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 7
     assert result['bounded_dependency_bytes'] == 5152
 
