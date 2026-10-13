@@ -1,0 +1,44 @@
+rc=0
+112
+Members:
+func_800CD058:
+  MATCH
+func_800CCEFC:
+  MATCH
+func_800CCCCC:
+  MATCH
+menu_save_options:
+  MATCH
+func_800A44E8:
+  MATCH
+func_800A370C:
+  MATCH
+draw_speedometer:
+  MATCH
+func_800C7EC0:
+  MATCH
+func_800C7EC8:
+  MATCH
+draw_ui_element:
+  MATCH
+func_800CBF2C:
+  MATCH
+func_800C7300:
+  MATCH
+func_800CD0FC:
+  MATCH
+func_800A361C:
+  MATCH
+func_800A1A3C:
+  MATCH
+func_80094FC4:
+  MATCH
+menu_item_value_get:
+  MATCH
+menu_transition:
+  MATCH
+AdjustSteer:
+  MATCH
+func_800C7200:
+  MATCH
+

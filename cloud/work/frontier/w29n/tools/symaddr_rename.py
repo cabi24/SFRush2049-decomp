@@ -37,7 +37,7 @@ def main():
             kind = "type:func " if "type:func" in m.group(6) else ""
             nl = "\n" if line.endswith("\n") else ""
             line = (f"{m.group(1)}{r['new']}{m.group(3)}{m.group(4)}{m.group(5)} // {kind}{r['source']}"
-                    f" (renamed from {r['old']}, w29n; cloud/work/frontier/w29n/renames.json){nl}")
+                    f" (renamed from {r['old']}, {r.get('batch', 'w29n')}; cloud/work/frontier/w29n/renames.json){nl}")
         out.append(line)
     if any(n > 1 for n in seen.values()):
         sys.exit(f"refusing: defined twice: {[k for k, n in seen.items() if n > 1]}")

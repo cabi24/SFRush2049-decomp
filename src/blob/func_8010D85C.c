@@ -38,7 +38,7 @@ typedef struct Obj {
 typedef struct Ent { u8 pad0[0x38]; s32 sound; u8 pad3C[8]; } Ent;
 extern s32 D_801170FC;
 extern char *D_80118E08[];
-extern volatile u8 D_80140BDC;
+extern volatile u8 gNumModels;
 extern Ent D_8012E700[];
 void entity_transform_apply(void *node, s32 unlink);
 char *func_800A464C(char *s, char *find);
@@ -72,7 +72,7 @@ void func_8010D85C(Obj *obj, s16 mode) {
         } else {
             i = 0;
         }
-        r = sound_bank_load(D_80118E08[i], &handle, 0, (s8)(D_80140BDC - 1), 1);
+        r = sound_bank_load(D_80118E08[i], &handle, 0, (s8)(gNumModels - 1), 1);
         i = m->id;
         D_8012E700[i].sound = r;
         p = func_800A464C(m->name, "_OFF");

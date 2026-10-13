@@ -19,7 +19,7 @@ def run():
         syms=[s for i,sec in enumerate(secs) if sec['type']==2 for s in score._symbol_table(data,secs,i)]
         fn=next(s for s in syms if s['name']==NAME)
         undefined=[s['name'] for s in syms if s['section']==0 and s['name']]
-        assert set(undefined)=={'D_80151968','D_80151A78','D_80151690','func_8008AD04','func_800A473C'}
+        assert set(undefined)=={'D_80151968','D_80151A78','gTotalNames','func_8008AD04','func_800A473C'}
         ld=shutil.which('mips-linux-gnu-ld');copy=shutil.which('mips-linux-gnu-objcopy');assert ld and copy
         (d/'link.ld').write_text('SECTIONS { .text '+hex(addresses[NAME])+' : SUBALIGN(4) { *(.text) } }')
         subprocess.run([ld,'-T',str(d/'link.ld'),'-e',NAME,*['--defsym='+n+'='+hex(addresses[n]) for n in undefined],str(obj),'-o',str(d/'linked.elf')],check=True)

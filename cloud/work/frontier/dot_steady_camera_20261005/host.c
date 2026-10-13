@@ -23,7 +23,7 @@ typedef struct Cr {
 typedef char CheckV3[(sizeof(V3)==12)?1:-1];
 typedef char CheckFx[(sizeof(Fx)==152)?1:-1];
 typedef char CheckCar[(offsetof(Cr,q)==0x380 && offsetof(Cr,player)==0x35c)?1:-1];
-V3 D_8012E690[4],D_801526A8[4];Fx D_80150B70[4];
+V3 D_8012E690[4],D_801526A8[4];Fx gCamera[4];
 s16 D_8012E6C8[4];f32 D_8012E6E8[4],D_801526F8[4],D_801526E0[4],D_80152720[4];
 f32 D_801108C8[4],D_8002EB94;s32 state_word_a;
 static uint32_t events[128];static int nevents,selected,slot;
@@ -33,7 +33,7 @@ static void event(int n,float *a,float *b){int i;events[nevents++]=n;for(i=0;i<3
 void vector_normalize_length(float *a,V3 *b){event(1,a,0);b->x=a[0];b->y=a[1];b->z=a[2];}
 void func_800E9234(Cr *c){assert(c->player==slot);event(2,0,0);}
 s32 func_800CDE38(HN **h){assert(h[0]->f2c);event(3,0,0);return selected;}
-void func_800E8D50(Cr *c,float *p,s32 uvs,float *r){int i;assert(c->player==slot && uvs==0x2468);event(4,p,r);for(i=0;i<3;i++)D_80150B70[slot].v84[i]=p[i]+r[i];}
+void func_800E8D50(Cr *c,float *p,s32 uvs,float *r){int i;assert(c->player==slot && uvs==0x2468);event(4,p,r);for(i=0;i<3;i++)gCamera[slot].v84[i]=p[i]+r[i];}
 void func_8009E820(float *a,float *b,float *m){int i;for(i=0;i<3;i++)b[i]=(a[0]*m[i]+a[1]*m[3+i])+a[2]*m[6+i];}
 void func_800A61B0(float *a,float *b,float *m){int i;for(i=0;i<3;i++)b[i]=(a[0]*m[3*i]+a[1]*m[3*i+1])+a[2]*m[3*i+2];}
 void func_800CFDEC(float *a,float *b,s16 n,float lo,float hi,float t,float *out){float k;int i;k=hi-lo;if(hi!=lo)k=(t-lo)/k;for(i=0;i<n;i++)out[i]=(b[i]-a[i])*k+a[i];}
@@ -51,8 +51,8 @@ void run_case(const uint32_t *in,uint32_t *out){
  for(i=0;i<4;i++){
   D_8012E690[i].x=100+i;D_8012E690[i].y=200+i;D_8012E690[i].z=300+i;
   D_801526A8[i].x=400+i;D_801526A8[i].y=500+i;D_801526A8[i].z=600+i;
-  memset(&D_80150B70[i],0xa5,sizeof(Fx));
-  D_80150B70[i].v84[0]=700+i;D_80150B70[i].v84[1]=800+i;D_80150B70[i].v84[2]=900+i;
+  memset(&gCamera[i],0xa5,sizeof(Fx));
+  gCamera[i].v84[0]=700+i;gCamera[i].v84[1]=800+i;gCamera[i].v84[2]=900+i;
   D_8012E6C8[i]=3;D_8012E6E8[i]=10+i;D_801526F8[i]=20+i;D_801526E0[i]=12+i;D_80152720[i]=.25f;
  }
  D_8012E690[slot].x=fv(in[17]);D_8012E690[slot].y=fv(in[18]);D_8012E690[slot].z=fv(in[19]);
@@ -65,8 +65,8 @@ void run_case(const uint32_t *in,uint32_t *out){
   out[k++]=(uint32_t)(s32)D_8012E6C8[i];out[k++]=fb(D_8012E6E8[i]);out[k++]=fb(D_80152720[i]);
   out[k++]=fb(D_8012E690[i].x);out[k++]=fb(D_8012E690[i].y);out[k++]=fb(D_8012E690[i].z);
   out[k++]=fb(D_801526A8[i].x);out[k++]=fb(D_801526A8[i].y);out[k++]=fb(D_801526A8[i].z);
-  for(j=0;j<3;j++)out[k++]=fb(D_80150B70[i].v84[j]);
-  out[k++]=fb(D_80150B70[i].n60.x);out[k++]=fb(D_80150B70[i].n60.y);out[k++]=fb(D_80150B70[i].n60.z);
+  for(j=0;j<3;j++)out[k++]=fb(gCamera[i].v84[j]);
+  out[k++]=fb(gCamera[i].n60.x);out[k++]=fb(gCamera[i].n60.y);out[k++]=fb(gCamera[i].n60.z);
  }
  out[k++]=nevents;for(i=0;i<nevents;i++)out[k++]=events[i];while(k<128)out[k++]=0;
  (void)old;

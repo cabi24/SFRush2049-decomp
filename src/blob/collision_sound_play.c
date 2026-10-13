@@ -40,7 +40,7 @@ typedef struct Blit {
 #define MBOX_WARN 1
 
 extern u8 D_80110664[];
-extern volatile u8 D_80140BDC; /* MBOX texture-table count */
+extern volatile u8 gNumModels; /* MBOX texture-table count */
 extern TexDef *func_800B24EC(char *name, s16 *index, s8 lo, s8 hi, s32 err);
 
 void collision_sound_play(Blit *blit) {
@@ -57,7 +57,7 @@ void collision_sound_play(Blit *blit) {
         blit->height = 0;
         blit->image = 0;
     } else {
-        blit->info = func_800B24EC(blit->name, &blit->texIndex, 0, D_80140BDC - 1, MBOX_WARN);
+        blit->info = func_800B24EC(blit->name, &blit->texIndex, 0, gNumModels - 1, MBOX_WARN);
         blit->width = blit->info->width;
         blit->height = blit->info->height;
         blit->image = 0;

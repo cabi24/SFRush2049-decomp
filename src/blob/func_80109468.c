@@ -75,7 +75,7 @@ typedef struct {
     s32 y;
 } Pos;
 
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s8 D_80156BDC;
 extern s32 D_801161C4;
 extern Pos D_801160A8[];
@@ -106,7 +106,7 @@ s32 func_80109468(Blit *blt) {
     s32 hide;
     s32 t;
 
-    hide = D_80151AD0 >= 5 || D_80156BDC == 0;
+    hide = gNumWindows >= 5 || D_80156BDC == 0;
     if (hide != blt->Hide) {
         blt->Hide = hide;
         Input_ApplyPadConfig(blt);
@@ -117,14 +117,14 @@ s32 func_80109468(Blit *blt) {
     if (!(blt->AnimID & 0x10)) {
         return 1;
     }
-    if (D_80151AD0 == 4) {
+    if (gNumWindows == 4) {
         func_800EF5B0(blt, "MAP_MD", 0);
     }
     D_801161C4 = blt->Width;
     if (blt->AnimID & 0x10) {
         blt->AnimID = blt->AnimID & 0xF;
-        blt->X = D_801160A8[D_80151AD0 - 1].x - D_801161C4 / 2;
-        blt->Y = D_801160A8[D_80151AD0 - 1].y - D_801161C4 / 2;
+        blt->X = D_801160A8[gNumWindows - 1].x - D_801161C4 / 2;
+        blt->Y = D_801160A8[gNumWindows - 1].y - D_801161C4 / 2;
         Input_ApplyPadConfig(blt);
     }
     dx = D_801407B4[0] - D_801407D4[0];

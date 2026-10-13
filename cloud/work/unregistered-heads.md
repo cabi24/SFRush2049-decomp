@@ -6,6 +6,23 @@ Every row was checked against the retail words: the game image was inflated from
 does, and compared with `asm/us/blob/symbols.json`. Words = (end - address) / 4, end is exclusive and
 includes the `jr ra` delay slot. "Frame" is the `addiu sp,sp,-N` size of the prologue.
 
+## Status (2026-10-13, lane w30n)
+
+Every head in the two "Confirmed" tables is now registered in the Conveyor inventory: 45 by `closure heads`
+(specs/012-register-heads/findings.md), six switch heads (commit 62f8b2f3), and the last one, **func_80104704**,
+by `closure run` in lane w30n (`cloud/work/frontier/w30n/RESULTS.md`): the 005 extent scanner gives 260 words,
+and the suffix rule retires the old inventory row `highscore_entry_anim` (0x80104A58, 47 words; reached only by
+the branches at 0x80104A48/0x80104A50 inside the head, no `jal`/pointer anywhere in the game image or the
+runtime images) as `extent_conflict:func_80104704`. The label stays defined in `symbol_addrs.us.txt` like the
+other tail labels (`game_over_screen`, `name_entry_screen`, `achievements_check`), so it is still an address in
+`asm/us/blob/symbols.json`, but it is no longer a function. 0x8010C2E4 (the "uncertain" leaf) is registered.
+
+Left for the maintainers: the 2-word `jr ra; nop` stubs of the "Uncertain" table. `python3 -m
+tools.conveyor.pipeline.closure orphans` (dry run) accepts 13 such stubs today: 0x80102440, 0x80103D18,
+0x80103D20, 0x801046FC, 0x80105478, 0x8010A534, 0x8010C024 (the seven below) and 0x8010C7E4, 0x8010C7EC,
+0x8010E8AC, 0x8010F210, 0x8010FBA4, 0x8010FBAC. Registering them adds 13 functions to the game denominator
+(1216 -> 1229); wave 29 found such caller-less stubs to be inlined GC statics (0x800C7EC0 = _NewPlayer).
+
 ## Read this first: INDEX labels are not function names
 
 The group labels `dynamic_difficulty`, `catchup_logic`, `reconnect_attempt`, `skill_rating_update`,
@@ -57,7 +74,7 @@ maintainers can register the whole range in one go. The range 0x8010221C..0x8010
 | func_8010B5D0 | 0x8010B5D0 | 139 | 556 | 152 | NOT in any STATUS list; start of blob_8010b5d0.s (reconnect_attempt STATUS mentions the file only) | head after jr ra+delay at 0x8010B5C8; addiu sp,sp,-152 at head; single jr ra at 0x8010B7F4 (delay slot 0x8010B7F8); word 0x8010B5D0 in descriptor/pointer table at 0x801172C4 (end excl. 0x8010B7FC) | unregistered |
 | func_80102F30 | 0x80102F30 | 890 | 3560 | 640 | bigfish/maintainer note; trophy_animation 0x8010306C and game_over_screen 0x80103A08 are mid-function | head after jr ra+delay at 0x80102F28; addiu sp,sp,-640 at head; single jr ra at 0x80103D10 (delay slot 0x80103D14); word 0x80102F30 in descriptor/pointer table at 0x8011471C (end excl. 0x80103D18) | unregistered |
 | func_80103D28 | 0x80103D28 | 629 | 2516 | 264 | INDEX name_entry_screen (head 0x80103D28); label name_entry_screen 0x80104320 is mid-function | head after jr ra+delay at 0x80103D20; addiu sp,sp,-264 at head; single jr ra at 0x801046F4 (delay slot 0x801046F8); jal from 0x801054EC (end excl. 0x801046FC) | unregistered |
-| func_80104704 | 0x80104704 | 260 | 1040 | 136 | highscore_entry_anim STATUS (label 0x80104A58 is mid-function; STATUS could not find the head) | head after jr ra+delay at 0x801046FC; addiu sp,sp,-136 at head; single jr ra at 0x80104B0C (delay slot 0x80104B10); jal from 0x80105730 (end excl. 0x80104B14) | unregistered |
+| func_80104704 | 0x80104704 | 260 | 1040 | 136 | highscore_entry_anim STATUS (label 0x80104A58 is mid-function; STATUS could not find the head) | head after jr ra+delay at 0x801046FC; addiu sp,sp,-136 at head; single jr ra at 0x80104B0C (delay slot 0x80104B10); jal from 0x80105730 (end excl. 0x80104B14) | **registered 2026-10-13 (w30n)**: `closure run` from the jal at 0x80105730; highscore_entry_anim retired (`extent_conflict:func_80104704`) |
 | func_8010221C | 0x8010221C | 137 | 548 | 24 | INDEX/blob_8010221c.s start; label race_results_screen 0x80102250 is mid-function | head after jr ra+delay at 0x80102214; addiu sp,sp,-24 at head; single jr ra at 0x80102438 (delay slot 0x8010243C); jal from 0x80102F90 (end excl. 0x80102440) | unregistered |
 | func_80102448 | 0x80102448 | 334 | 1336 | 376 | unlabelled head in the same opaque run (blob_8010221c.s) | head after jr ra+delay at 0x80102440; 2 pre-prologue insns (lui/load) then addiu sp at 0x80102450; single jr ra at 0x80102978 (delay slot 0x8010297C); jal from 0x80102FC4 (end excl. 0x80102980) | unregistered |
 | func_80102980 | 0x80102980 | 364 | 1456 | 480 | label award_ceremony 0x80102A74 is mid-function | head after jr ra+delay at 0x80102978; 2 pre-prologue insns (lui/load) then addiu sp at 0x80102988; single jr ra at 0x80102F28 (delay slot 0x80102F2C); jal from 0x80102FD4 (end excl. 0x80102F30) | unregistered |

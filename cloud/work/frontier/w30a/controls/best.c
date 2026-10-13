@@ -20,7 +20,7 @@ typedef struct ContData { s8 b0; u8 rest[15]; } ContData;                       
 
 extern OSMesgQueue D_801461D0;
 extern TextState countdown_state;                /* gText */
-extern s16 D_80151AD0;                           /* gNumWindows */
+extern s16 gNumWindows;                           /* gNumWindows */
 extern s32 D_80154618[];                         /* buttonsInited[p] */
 extern PlayerRow input_rec0[];                   /* gPlayers */
 extern s8 D_8015418C[];                          /* controlScrActive[p] */
@@ -47,7 +47,7 @@ extern void camera_auto_follow(s16, s16, s16, s16, s32, s32, char *);  /* TB_Dra
 typedef struct CtButton { u8 pad[8]; f32 angle; u8 pad12[36]; u8 pos[8]; f32 depth; u8 alpha; u8 pad61[3]; } CtButton; /* 64 B */
 typedef struct CtCamera { u8 data[152]; } CtCamera;
 extern CtButton D_80111998[][17];                /* buttonInfo[p][17] */
-extern CtCamera D_80150B70[];                    /* gCamera[p] */
+extern CtCamera gCamera[];                    /* gCamera[p] */
 extern f32 D_80112A9C;                           /* gButtonScale */
 extern f32 D_80112AB0;                           /* buttonZ */
 extern void brake_light_update(s32, void *, void *, void *, s16 *);  /* ZOID_ProjectWindow */
@@ -102,45 +102,45 @@ void game_results_exit(s8 p)
     char label[224];
 
     gTextPosScale = D_80112A9C;
-    if (D_80151AD0 >= 2) gTextPosScale *= 0.5f;
+    if (gNumWindows >= 2) gTextPosScale *= 0.5f;
     ct_font_set(11);
     D_80118E20[0] = 1;
     D_80118E20[1] = 1;
     if (input_rec0[p].pak == 5) goto end;
     if (D_8015418C[p] != 1 && !(state_word_a & 0x7C0000)) goto end;
-    brake_light_update(p, D_80111998[p][13].pos, &D_80150B70[p], 0, screenPos);
+    brake_light_update(p, D_80111998[p][13].pos, &gCamera[p], 0, screenPos);
     x = screenPos[0];
     y = screenPos[1];
-    if (D_80151AD0 >= 2) ct_font_set(11);
+    if (gNumWindows >= 2) ct_font_set(11);
     else ct_font_set(13);
     dispatch_handler(1);
-    race_position_update(label, *input_rec0[p].name + 20, D_80151AD0 == 1 ? 150 : 69);
+    race_position_update(label, *input_rec0[p].name + 20, gNumWindows == 1 ? 150 : 69);
     state_utility(x, y, label);
     D_80118E20[0] = 0;
     D_80118E20[1] = 1;
     if (D_8015418C[p] == 0) {
         if (state_word_a & 0x7C0000) {
-            if (D_80151AD0 == 1) ct_font_set(10);
+            if (gNumWindows == 1) ct_font_set(10);
             else ct_font_set(11);
             dispatch_handler(1);
             D_80118E20[0] = 1;
             D_80118E20[1] = 1;
-            camera_auto_follow(D_80113EE0[D_80151AD0 - 1][p].x, D_80113EE0[D_80151AD0 - 1][p].f20,
-                               D_80113EE0[D_80151AD0 - 1][p].w, D_80113EE0[D_80151AD0 - 1][p].h,
+            camera_auto_follow(D_80113EE0[gNumWindows - 1][p].x, D_80113EE0[gNumWindows - 1][p].f20,
+                               D_80113EE0[gNumWindows - 1][p].w, D_80113EE0[gNumWindows - 1][p].h,
                                -1, 0, countdown_state.fixed[38]);
             D_80118E20[1] = 3;
             D_80118E20[0] = 0;
         }
         goto end;
     }
-    if (D_80151AD0 == 1) ct_font_set(11);
+    if (gNumWindows == 1) ct_font_set(11);
     else ct_font_set(12);
     for (i = 0; i < 12; i++) {
         if (D_80111998[p][i].angle > 0.69813168f && D_80111998[p][i].angle < 2.443461f) continue;
         if (D_80111998[p][i].alpha == 0) continue;
         func_800ED66C(D_80111998[p][i].alpha);
         func_800F6928(D_80111998[p][i].depth - 10.0f);
-        brake_light_update(p, D_80111998[p][i].pos, &D_80150B70[p], 0, screenPos);
+        brake_light_update(p, D_80111998[p][i].pos, &gCamera[p], 0, screenPos);
         if (i == 10) x = screenPos[0] - 35.0f * gTextPosScale * 300.0f / D_80112AB0;
         else if (i == 11) x = screenPos[0] - 55.0f * gTextPosScale * 300.0f / D_80112AB0;
         else x = screenPos[0] - 45.0f * gTextPosScale * 300.0f / D_80112AB0;
@@ -155,7 +155,7 @@ void game_results_exit(s8 p)
         }
         state_utility(x, y, countdown_state.strings[countdown_state.indices->controlNames + i]);
         if (i == 10) {
-            brake_light_update(p, D_80111998[p][12].pos, &D_80150B70[p], 0, screenPos);
+            brake_light_update(p, D_80111998[p][12].pos, &gCamera[p], 0, screenPos);
             x = screenPos[0] - 25.0f * gTextPosScale * 300.0f / D_80112AB0;
             y = screenPos[1];
             if (!ct_PakRumble(input_rec0[p].pak)) str = countdown_state.strings[countdown_state.indices->rumbleOff];
@@ -182,7 +182,7 @@ s32 func_80100564(s32 arg0)
     s32 itemsDrawn;
 
     render_helper(0.0f);
-    for (p = 0; p < D_80151AD0; p++) {
+    for (p = 0; p < gNumWindows; p++) {
         if (D_80154618[p] == 1) {
             game_results_exit(p);
             continue;
@@ -190,8 +190,8 @@ s32 func_80100564(s32 arg0)
         ct_font_set(11);
         if (input_rec0[p].pak == 5) continue;
         if (D_8015418C[p] != 1 && !(state_word_a & 0x7C0000)) continue;
-        y = D_80113EE0[D_80151AD0 - 1][p].y + 10;
-        x = D_80113EE0[D_80151AD0 - 1][p].x;
+        y = D_80113EE0[gNumWindows - 1][p].y + 10;
+        x = D_80113EE0[gNumWindows - 1][p].x;
         dispatch_handler(D_801146AC[p]);
         if (D_80156CF0[p].b0 == 0) {
             fcvt_wrapper(str1, D_80120240, p + 1, countdown_state.fixed[233]);
@@ -206,15 +206,15 @@ s32 func_80100564(s32 arg0)
             dispatch_handler(1);
             D_80118E20[1] = 1;
             D_80118E20[0] = 1;
-            camera_auto_follow(D_80113EE0[D_80151AD0 - 1][p].x, D_80113EE0[D_80151AD0 - 1][p].f20,
-                               D_80113EE0[D_80151AD0 - 1][p].w / 2, D_80113EE0[D_80151AD0 - 1][p].h,
+            camera_auto_follow(D_80113EE0[gNumWindows - 1][p].x, D_80113EE0[gNumWindows - 1][p].f20,
+                               D_80113EE0[gNumWindows - 1][p].w / 2, D_80113EE0[gNumWindows - 1][p].h,
                                -1, 0, countdown_state.fixed[38]);
             D_80118E20[1] = 3;
             D_80118E20[0] = 0;
             continue;
         }
-        x = D_80113EE0[D_80151AD0 - 1][p].x + 10;
-        y = D_80113EE0[D_80151AD0 - 1][p].y + 24;
+        x = D_80113EE0[gNumWindows - 1][p].x + 10;
+        y = D_80113EE0[gNumWindows - 1][p].y + 24;
         itemsDrawn = 0;
         for (i = 0; i < 12; i++) {
             if (i < D_8014A100[p]) continue;
@@ -222,7 +222,7 @@ s32 func_80100564(s32 arg0)
             if (!ct_PakRumble(input_rec0[p].pak) && i == 10) dispatch_handler(3);
             else dispatch_handler(i == D_8014A0F8[p] ? 22 : 1);
             str = countdown_state.strings[countdown_state.indices->controlNames + i];
-            if (i == 11) state_utility(ct_CenterText(str, D_80113EE0[D_80151AD0 - 1][p].x), y, str);
+            if (i == 11) state_utility(ct_CenterText(str, D_80113EE0[gNumWindows - 1][p].x), y, str);
             else state_utility(ct_RightText(str, x), y, str);
             if (i == 10) {
                 if (!ct_PakRumble(input_rec0[p].pak)) str = countdown_state.strings[countdown_state.indices->rumbleOff];

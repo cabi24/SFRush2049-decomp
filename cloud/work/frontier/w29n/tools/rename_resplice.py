@@ -30,6 +30,7 @@ locked function itself) and may move a single's source file
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -40,7 +41,7 @@ from tools.conveyor.pipeline import blob_group, blob_splice, static_rename  # no
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import users  # noqa: E402
 
-WORK = "rush2049/scratch/frontier/w29n"          # builder dirs, relative to $HOME
+WORK = os.environ.get("RENAME_WORK", "rush2049/scratch/frontier/w29n")   # builder dirs, relative to $HOME
 OUT_DIR = Path(__file__).resolve().parent.parent
 
 

@@ -54,7 +54,7 @@ typedef struct Player { u8 pad0[860]; s8 slot; u8 pad861[91]; } Player;
 extern s32 D_801170FC;
 extern u32 D_80118E14, D_80118E18;
 extern s32 D_80151610, D_80151964;
-extern u8 D_80140BDC;
+extern u8 gNumModels;
 extern s16 D_8014A108;
 extern char D_80121DB0[], D_80121DBC[], D_80121DCC[];
 extern Mat3 D_8011418C;
@@ -117,7 +117,7 @@ void func_8010E0FC(Node *node, s16 update)
             coin->number = number;
             D_80151964++;
         }
-        resource_set_object(entity->id.part.index, string_copy_format(D_80121DB0, 0, D_80140BDC - 1, 1));
+        resource_set_object(entity->id.part.index, string_copy_format(D_80121DB0, 0, gNumModels - 1, 1));
         coin->spin[0] = 0.0f;
         coin->spin[2] = 0.0f;
         coin->spin[1] = 3.0f;
@@ -126,10 +126,10 @@ void func_8010E0FC(Node *node, s16 update)
         coin->position[1] = entity->position[1];
         coin->position[2] = entity->position[2];
         if (entity->flags & 0x40) {
-            coin->model = func_8008E26C(string_copy_format(D_80121DBC, 0, D_80140BDC - 1, 1), coin->matrix, -1, 0x40000);
+            coin->model = func_8008E26C(string_copy_format(D_80121DBC, 0, gNumModels - 1, 1), coin->matrix, -1, 0x40000);
             resource_set_color(entity->id.part.index, gold);
         } else {
-            coin->model = func_8008E26C(string_copy_format(D_80121DCC, 0, D_80140BDC - 1, 1), coin->matrix, -1, 0x40000);
+            coin->model = func_8008E26C(string_copy_format(D_80121DCC, 0, gNumModels - 1, 1), coin->matrix, -1, 0x40000);
             resource_set_color(entity->id.part.index, silver);
         }
         coin->missing = 0;

@@ -587,10 +587,10 @@ typedef struct {
 extern GfxBuf *D_8015B250;
 extern Mtx *D_8015B260;
 extern Node D_8012E700[];
-extern View D_80150B70[];
-extern LodTable D_801161F4[];
-extern TexTable D_80151AE8[];
-extern PalTable D_80138670[];
+extern View gCamera[];
+extern LodTable gRomObjDefPtrs[];
+extern TexTable gTexDefPtrs[];
+extern PalTable gPalDefPtrs[];
 extern f32 D_80124EE8;
 extern f32 D_80124EF0[4][4];
 extern f32 D_80124F30[4][4];
@@ -831,7 +831,7 @@ s32 particle_system(Gfx **gp, Node *parent, s32 count, s32 flag, Node *node, s32
     f32 x, y, z;
     f32 yaw, pitch;
 
-    set = &D_801161F4[node->model >> 10].sets[node->model & 0x3FF];
+    set = &gRomObjDefPtrs[node->model >> 10].sets[node->model & 0x3FF];
     lod = set->lv[0].count - 1;
     if (node->flags & 4) {
         lod = node->flags & 3;
@@ -846,12 +846,12 @@ s32 particle_system(Gfx **gp, Node *parent, s32 count, s32 flag, Node *node, s32
                 d[0] = parent->obj->pos[0] + node->obj->pos[0];
                 d[1] = parent->obj->pos[1] + node->obj->pos[1];
                 d[2] = parent->obj->pos[2] + node->obj->pos[2];
-                v = &D_80150B70[view];
+                v = &gCamera[view];
                 d[0] = d[0] - v->pos[0];
                 d[1] = d[1] - v->pos[1];
                 d[2] = d[2] - v->pos[2];
             } else {
-                v = &D_80150B70[view];
+                v = &gCamera[view];
                 d[0] = node->obj->pos[0] - v->pos[0];
                 d[1] = node->obj->pos[1] - v->pos[1];
                 d[2] = node->obj->pos[2] - v->pos[2];
@@ -877,7 +877,7 @@ s32 particle_system(Gfx **gp, Node *parent, s32 count, s32 flag, Node *node, s32
             dl = set->lv[lod].dl;
             if (dl != NULL) {
                 if (node->flags & 0x80000) {
-                    v = &D_80150B70[view];
+                    v = &gCamera[view];
                     camera_update_d(&D_8015B250->la[D_80124F84], -v->pos[0], v->pos[1], v->pos[2],
                                     -D_80124F78[0], D_80124F78[1], D_80124F78[2], 0.0f, 1.0f, 0.0f);
                     gSPLookAt(gfx++, &D_8015B250->la[D_80124F84]);
@@ -909,11 +909,11 @@ s32 particle_system(Gfx **gp, Node *parent, s32 count, s32 flag, Node *node, s32
                     func_80099B30(&gfx, node->pal);
                 }
                 if (set->lv[lod].flags & 1) {
-                    pals = (node->pal != NULL) ? NULL : D_80138670[node->model >> 10].pal;
+                    pals = (node->pal != NULL) ? NULL : gPalDefPtrs[node->model >> 10].pal;
                     if (node->tex[lod] != NULL) {
                         render_display_list(&gfx, node->tex[lod], node->rect, node->clip, pals);
                     } else if (set->lv[lod].flags & 0x8000) {
-                        render_display_list(&gfx, (set->lv[lod].tex & 0x3FF) + D_80151AE8[set->lv[lod].tex >> 10].tex, node->rect, node->clip, pals);
+                        render_display_list(&gfx, (set->lv[lod].tex & 0x3FF) + gTexDefPtrs[set->lv[lod].tex >> 10].tex, node->rect, node->clip, pals);
                     }
                 } else if (node->clip != NULL) {
                     gDPSetTileSize(gfx++, G_TX_RENDERTILE, node->clip->x0 >> 3, node->clip->y0 >> 3,
@@ -1072,7 +1072,7 @@ s32 track_collision_wall(Gfx **gp, Node *parent, Node *node, s32 view, s32 count
                 n = node->lights & 7;
                 vtx = &D_80157248[(node->lights & 0x1FF8) >> 3];
                 if (!(node->flags & 0x400000) && D_80151AA0 < 2000.0f) {
-                    v = &D_80150B70[view];
+                    v = &gCamera[view];
                     x = (vtx[0].v.ob[0] < vtx[7].v.ob[0]) ? vtx[7].v.ob[0] : vtx[0].v.ob[0];
                     z = (vtx[0].v.ob[2] < vtx[7].v.ob[2]) ? vtx[7].v.ob[2] : vtx[0].v.ob[2];
                     r = sqrtf(x * x + z * z) * 0.0625f;
@@ -1254,7 +1254,7 @@ void func_8009F058(s32 view, View *eye)
     if (D_80151AD8) {
         f32 uv[3][3];
 
-        math_utility(&D_80150B70[view], uv);
+        math_utility(&gCamera[view], uv);
         func_8009EA68(3.1415927f, uv);
         if (D_80140A04) {
             uv[2][0] *= -1.0f;
@@ -1262,16 +1262,16 @@ void func_8009F058(s32 view, View *eye)
         }
         guLookAtF(D_801613F0, 0.0f, 0.0f, 0.0f, -uv[2][0], uv[2][1], uv[2][2], -uv[1][0], uv[1][1], uv[1][2]);
     } else if (D_80140A04) {
-        guLookAtF(D_801613F0, 0.0f, 0.0f, 0.0f, -(-D_80150B70[view].rot[2][0]), D_80150B70[view].rot[2][1],
-                  D_80150B70[view].rot[2][2], -(-D_80150B70[view].rot[1][0]), D_80150B70[view].rot[1][1],
-                  D_80150B70[view].rot[1][2]);
+        guLookAtF(D_801613F0, 0.0f, 0.0f, 0.0f, -(-gCamera[view].rot[2][0]), gCamera[view].rot[2][1],
+                  gCamera[view].rot[2][2], -(-gCamera[view].rot[1][0]), gCamera[view].rot[1][1],
+                  gCamera[view].rot[1][2]);
     } else {
-        guLookAtF(D_801613F0, 0.0f, 0.0f, 0.0f, -D_80150B70[view].rot[2][0], D_80150B70[view].rot[2][1],
-                  D_80150B70[view].rot[2][2], -D_80150B70[view].rot[1][0], D_80150B70[view].rot[1][1],
-                  D_80150B70[view].rot[1][2]);
+        guLookAtF(D_801613F0, 0.0f, 0.0f, 0.0f, -gCamera[view].rot[2][0], gCamera[view].rot[2][1],
+                  gCamera[view].rot[2][2], -gCamera[view].rot[1][0], gCamera[view].rot[1][1],
+                  gCamera[view].rot[1][2]);
     }
-    guLookAtF(D_80124EF0, D_80150B70[view].rot[2][0], D_80150B70[view].rot[2][1], D_80150B70[view].rot[2][2], 0.0f,
-              0.0f, 0.0f, D_80150B70[view].rot[1][0], D_80150B70[view].rot[1][1], D_80150B70[view].rot[1][2]);
+    guLookAtF(D_80124EF0, gCamera[view].rot[2][0], gCamera[view].rot[2][1], gCamera[view].rot[2][2], 0.0f,
+              0.0f, 0.0f, gCamera[view].rot[1][0], gCamera[view].rot[1][1], gCamera[view].rot[1][2]);
     if (D_801613B8 != 1) {
         s32 j;
 
@@ -1352,15 +1352,15 @@ void func_8009F058(s32 view, View *eye)
             f32 p[3];
 
             if (!(poly->flags & 0x10)) {
-                p[0] = poly->u.v[j].pos[0] - D_80150B70[view].pos[0] * 16.0f;
-                p[1] = poly->u.v[j].pos[1] - D_80150B70[view].pos[1] * 16.0f;
-                p[2] = poly->u.v[j].pos[2] - D_80150B70[view].pos[2] * 16.0f;
+                p[0] = poly->u.v[j].pos[0] - gCamera[view].pos[0] * 16.0f;
+                p[1] = poly->u.v[j].pos[1] - gCamera[view].pos[1] * 16.0f;
+                p[2] = poly->u.v[j].pos[2] - gCamera[view].pos[2] * 16.0f;
                 if (p[0] <= -32768.0f || 32768.0f <= p[0] || p[1] <= -32768.0f || 32768.0f <= p[1] ||
                     p[2] <= -32768.0f || 32768.0f <= p[2]) {
                     goto skip;
                 }
             } else {
-                func_8009E820(poly->u.v[j].pos, p, (f32 *)&D_80150B70[view]);
+                func_8009E820(poly->u.v[j].pos, p, (f32 *)&gCamera[view]);
             }
             D_80161434[j].v.ob[0] = p[0];
             D_80161434[j].v.ob[1] = p[1];
@@ -1387,10 +1387,10 @@ void func_8009F058(s32 view, View *eye)
         if (poly->flags & 0x400) {
             Texture *tex;
 
-            tex = &D_80151AE8[poly->tex >> 10].tex[poly->tex & 0x3FF];
+            tex = &gTexDefPtrs[poly->tex >> 10].tex[poly->tex & 0x3FF];
             if (tex != D_8017A508) {
-                render_display_list(&D_801497C8, &D_80151AE8[poly->tex >> 10].tex[poly->tex & 0x3FF], NULL, NULL,
-                                    D_80138670[poly->tex >> 10].pal);
+                render_display_list(&D_801497C8, &gTexDefPtrs[poly->tex >> 10].tex[poly->tex & 0x3FF], NULL, NULL,
+                                    gPalDefPtrs[poly->tex >> 10].pal);
                 D_8017A508 = tex;
             }
             if (poly->flags & 0x200) {
@@ -1542,7 +1542,7 @@ void Input_ProcessGameplayPad(s32 arg0)
     }
     D_80161434 = D_80161498[D_8015F72D];
     for (i = 0; i < D_80146204; i++) {
-        func_8009F058(i, &D_80150B70[i]);
+        func_8009F058(i, &gCamera[i]);
     }
     gSPClearGeometryMode(D_801497C8++, G_FOG);
     gDPPipeSync(D_801497C8++);
@@ -1654,14 +1654,14 @@ void Input_ProcessGameplayPad(s32 arg0)
             pal = e->pal;
             func_8008A148((u8 *)pal->table, tex->fmt, tex->siz, 0);
         } else if (tex->palette >= 0) {
-            pal = &D_80138670[e->model >> 10].pal[tex->palette];
+            pal = &gPalDefPtrs[e->model >> 10].pal[tex->palette];
             func_8008A148((u8 *)pal->table, tex->fmt, tex->siz, 0);
         } else if (tex->fmt == 3) {
             D_8011ED08[3] = e->color;
             func_8008A148(D_8011ED08, tex->fmt, tex->siz, 0);
         } else if (tex->fmt != 0) {
-            if (D_80138670[e->model >> 10].count != 0) {
-                pal = D_80138670[e->model >> 10].pal;
+            if (gPalDefPtrs[e->model >> 10].count != 0) {
+                pal = gPalDefPtrs[e->model >> 10].pal;
                 func_8008A148((u8 *)pal->table, tex->fmt, tex->siz, 0);
             }
         }

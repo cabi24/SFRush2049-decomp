@@ -22,7 +22,7 @@ def test_reject_non_stack_prologue():
 
 @pytest.mark.parametrize('name,frame,size,homes,calls', [
     ('func_80109A60', 40, 1268, {40}, {'0x80094EC8': 3, '0x800FE5B0': 2}),
-    ('game_results_input', 120, 1732, {120}, {'0x80094EC8': 5, '0x800FE5B0': 2, '0x800A6244': 2, '0x800EF5B0': 1}),
+    ('animControls', 120, 1732, {120}, {'0x80094EC8': 5, '0x800FE5B0': 2, '0x800A6244': 2, '0x800EF5B0': 1}),
 ])
 def test_current_targets_reproduce_geometry(name, frame, size, homes, calls):
     from collections import Counter

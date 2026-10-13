@@ -88,11 +88,11 @@ extern s32 gameplay_mode;
 extern s32 D_8015697C, D_8015699C;
 extern s32 state_word_a;
 extern volatile s16 D_801543CA;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern f32 D_801543CC;
 extern Object D_80152818[];
 extern Model D_8014A250[];
-extern Camera D_80150B70[];
+extern Camera gCamera[];
 extern Player76 input_rec0[];
 extern Vec3 D_801526A8[];
 extern f32 D_801106A4[], D_801106B4[];
@@ -145,7 +145,7 @@ void func_800EB90C(void)
     f32 view3_lim;                          /* unused */
 
     if (gameplay_mode == 2 && (D_8015697C & 2) && (D_8015699C & 4)) {
-        n = D_80150B70[0].target;
+        n = gCamera[0].target;
         D_80152818[n].slot = -1;
         do {
             n++;
@@ -154,11 +154,11 @@ void func_800EB90C(void)
             }
         } while (D_8014A250[n].active == 0 && D_80152818[n].slot < 0);
         D_80152818[n].slot = 0;
-        D_80150B70[0].target = n;
+        gCamera[0].target = n;
     }
     pl = input_rec0;
-    for (i = 0; i < D_80151AD0; i++, pl++) {
-        cam = &D_80150B70[i];
+    for (i = 0; i < gNumWindows; i++, pl++) {
+        cam = &gCamera[i];
         obj = &D_80152818[cam->target];
         m = &D_8014A250[cam->target];
         view = obj->view;
@@ -208,9 +208,9 @@ void func_800EB90C(void)
                 D_801526A8[obj->slot][2] = 0.0f;
             } else if (view == 2) {
                 func_800E9234(obj);
-                D_80150B70[obj->slot].out_pos[0] = obj->pos[0];
-                D_80150B70[obj->slot].out_pos[1] = obj->pos[1] + 1.0f;
-                D_80150B70[obj->slot].out_pos[2] = obj->pos[2];
+                gCamera[obj->slot].out_pos[0] = obj->pos[0];
+                gCamera[obj->slot].out_pos[1] = obj->pos[1] + 1.0f;
+                gCamera[obj->slot].out_pos[2] = obj->pos[2];
             } else if (view == 3) {
                 func_800E9234(obj);
             }

@@ -1,0 +1,68 @@
+== fn DCFC
+func_8010DCFC:
+  MATCH
+rc=0
+== func_8010B5D0 --claims rc=0
+Members:
+func_8010B5D0:
+  MATCH
+
+== func_8010B5D0  rc=0
+Members:
+func_8010B5D0:
+  MATCH
+
+== func_8010AEAC --claims rc=1
+Members:
+func_8010AEAC:
+  NOT VERIFIED (4 section-relative relocations unverified: .rodata+0x0 at +0xd0, .rodata+0x0 at +0xe8, .rodata+0x5c at +0x208, .rodata+0x5c at +0x210; own .rodata: this function's references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c): the literals are not laid out as in retail)
+func_8010A8D0:
+  MATCH
+    own .rodata verified at 0x801248D8..0x8012491C
+func_8010A7A4:
+  MATCH
+    own .rodata verified at 0x801248D4..0x801248D8
+
+== func_8010AEAC  rc=1
+Members:
+func_8010AEAC:
+  NOT VERIFIED (4 section-relative relocations unverified: .rodata+0x0 at +0xd0, .rodata+0x0 at +0xe8, .rodata+0x5c at +0x208, .rodata+0x5c at +0x210; own .rodata: this function's references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c): the literals are not laid out as in retail)
+func_8010A8D0:
+  MATCH
+    own .rodata verified at 0x801248D8..0x8012491C
+func_8010A7A4:
+  MATCH
+    own .rodata verified at 0x801248D4..0x801248D8
+
+== credits_scroll_grp --claims rc=0
+Members:
+func_80108AB0:
+  MATCH
+    own .bss placed at 0x8013F2F8 (1 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .rodata verified at 0x801248C4..0x801248CC
+
+== credits_scroll_grp  rc=0
+Members:
+credits_scroll:
+  MATCH
+func_80100B8C:
+  MATCH
+slot_state_setup:
+  MATCH
+world_trigger_check:
+  MATCH
+func_8010A53C:
+  MATCH
+func_80107EDC:
+  MATCH
+animLapTime:
+  MATCH
+animElapsedTimerText:
+  MATCH
+animPlace:
+  MATCH
+func_80108AB0:
+  MATCH
+    own .bss placed at 0x8013F2F8 (1 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .rodata verified at 0x801248C4..0x801248CC
+

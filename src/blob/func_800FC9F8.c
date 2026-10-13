@@ -56,7 +56,7 @@ typedef struct {
 extern PointList *D_80114628[4];
 extern Dims *D_80114638;
 extern s32 D_8011463C[];
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern f32 D_8002EB94;
 extern MotionFrame D_80114264[];
 
@@ -72,8 +72,8 @@ void func_800FC9F8(void) {
             shift[0] = 0.0f;
             shift[1] = 0.0f;
             for (i = 0; i < list->count; i++) {
-                list->pts[i].x += D_80114264[D_80151AD0 - 1].slot[slot].dx * D_8002EB94 * (D_80114638->width << 5);
-                list->pts[i].y += D_80114264[D_80151AD0 - 1].slot[slot].dy * D_8002EB94 * (D_80114638->height << 5);
+                list->pts[i].x += D_80114264[gNumWindows - 1].slot[slot].dx * D_8002EB94 * (D_80114638->width << 5);
+                list->pts[i].y += D_80114264[gNumWindows - 1].slot[slot].dy * D_8002EB94 * (D_80114638->height << 5);
             }
             for (i = 0; i < list->count; i++) {
                 if (list->pts[i].x >= D_80114638->width << 5) {
@@ -106,10 +106,10 @@ void func_800FC9F8(void) {
             for (i = 0; i < list->count; i++) {
                 list->pts[i].x += shift[0];
                 list->pts[i].y += shift[1];
-                D_80114264[D_80151AD0 - 1].slot[slot].xs[i] = list->pts[i].x;
-                D_80114264[D_80151AD0 - 1].slot[slot].ys[i] = list->pts[i].y;
+                D_80114264[gNumWindows - 1].slot[slot].xs[i] = list->pts[i].x;
+                D_80114264[gNumWindows - 1].slot[slot].ys[i] = list->pts[i].y;
             }
-            D_8011463C[D_80151AD0 - 1] = 1;
+            D_8011463C[gNumWindows - 1] = 1;
         }
     }
 }

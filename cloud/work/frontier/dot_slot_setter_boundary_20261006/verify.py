@@ -31,7 +31,7 @@ ADDRESS_ANCHORS = {
     'D_8012E73C': 0x8012e73c,
     'D_80139320': 0x80139320,
     'D_80139334': 0x80139334,
-    'D_80140BDC': 0x80140bdc,
+    'gNumModels': 0x80140bdc,
     'func_8008D870': 0x8008d870,
     'func_8008E06C': 0x8008e06c,
     'func_80092BC8': 0x80092bc8,

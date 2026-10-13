@@ -1,0 +1,38 @@
+claims rc=0
+Members:
+func_80102F30:
+  MATCH
+    own .rodata verified at 0x80124864..0x80124880
+drawMain:
+  MATCH
+    own .rodata verified at 0x80124848..0x80124864
+func_80101904:
+  MATCH
+func_80101D84:
+  MATCH
+func_80102448:
+  MATCH
+func_80100D5C:
+  MATCH
+func_80102980:
+  MATCH
+
+all rc=0
+Members:
+func_80102F30:
+  MATCH
+    own .rodata verified at 0x80124864..0x80124880
+drawMain:
+  MATCH
+    own .rodata verified at 0x80124848..0x80124864
+func_80101904:
+  MATCH
+func_80101D84:
+  MATCH
+func_80102448:
+  MATCH
+func_80100D5C:
+  MATCH
+func_80102980:
+  MATCH
+

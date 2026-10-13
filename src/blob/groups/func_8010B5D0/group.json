@@ -1,0 +1,22 @@
+{
+ "name": "func_8010B5D0",
+ "members": [
+  "func_8010B5D0"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "fb5d0.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_8010B5D0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_8010B5D0 with inlined helpers (non-static *_B5D0, not on keep; the three lock/font helpers on one source line = as1 line-tie lever). Unused `s32 i` = exact frame residual (152 vs 144), disclosed in fb5d0.c. Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup's s2 font convention). Unit install: force_internal += gfx_lock_B5D0, gfx_unlock_B5D0, font_set_B5D0, item_refresh_B5D0, TB_CenterText_B5D0.",
+ "provenance": "w27d draft -> w29b 2/139 -> w30b MATCH; cloud/work/frontier/w30b/RESULTS.md"
+}

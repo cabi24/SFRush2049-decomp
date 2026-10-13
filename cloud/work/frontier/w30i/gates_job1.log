@@ -1,0 +1,7 @@
+group lock: 0 problems
+blob lock: 1045 entries, 0 problems
+blob_unit: 1045 locked bodies, 1045 equal to the image in one 920-file unit, 0 differ [1009 plain; stub tail 34, own bss 3; 426 own .rodata/.data references in 131 bodies checked against image bytes] (945 kept, 271 internal; IDO 2.0s, total 9.3s)
+  ROM matches!
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  MAKE=0 TEST=0

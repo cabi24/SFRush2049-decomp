@@ -114,7 +114,7 @@ extern s32 D_801497A4;
 extern Entry *D_80149800;
 extern s16 D_80149878[256];
 extern s32 D_80149820[];
-extern Pair D_80151AE8[];
+extern Pair gTexDefPtrs[];
 extern u8 D_80149B60;
 extern u8 D_80149B70;
 extern s32 D_80149B28;
@@ -145,7 +145,7 @@ void sound_update_channel(s32 force)
     }
     if (force) {
         for (i = 0; i < D_801497F0->f11; i++) {
-            D_80149820[i] = D_80151AE8[D_801497A4].first + i * 36;
+            D_80149820[i] = gTexDefPtrs[D_801497A4].first + i * 36;
         }
         D_80149B60 = D_801497F0->f4;
         D_80149B70 = D_801497F0->f8;

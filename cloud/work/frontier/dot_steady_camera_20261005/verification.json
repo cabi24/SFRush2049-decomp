@@ -286,12 +286,12 @@
         "sha256": "d5d26b0b669de88986f9db9647ec5d156cf6dafbb7eac2fa2bb80ec9cff4bf4c"
       },
       ".strtab": {
-        "bytes": 353,
-        "sha256": "d688083cb2a98ed183046094af7ac4dae47c2ee19dca08136c5f35dd09dea78a"
+        "bytes": 350,
+        "sha256": "6591c47d57329c089215cd6ab444dc5724d854422cadbb639ff4cfe3eef9c2d1"
       },
       ".symtab": {
         "bytes": 480,
-        "sha256": "4249206b6707acce7dafea70a1eb199f488a079c9c7d02b4a1d6b379b2a10194"
+        "sha256": "3daec3b30f7aa7e91f60db8dd0f0dc27c6294195ace9afe820b8d26eebd55044"
       },
       ".text": {
         "bytes": 3232,
@@ -594,12 +594,12 @@
         {
           "kind": 5,
           "offset": 132,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 6,
           "offset": 136,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 4,
@@ -824,12 +824,12 @@
         {
           "kind": 5,
           "offset": 1464,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 6,
           "offset": 1468,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 5,
@@ -908,22 +908,22 @@
         {
           "kind": 5,
           "offset": 188,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 6,
           "offset": 200,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 5,
           "offset": 380,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 6,
           "offset": 384,
-          "symbol": "D_80150B70"
+          "symbol": "gCamera"
         },
         {
           "kind": 4,
@@ -1013,10 +1013,10 @@
     }
   },
   "inputs": {
-    "cloud/work/frontier/dot_steady_camera_20261005/candidate.c": "e54774e4b3b549e6862fe4a3d67d91590529ca53c8455a3c998f449a6bfe4654",
-    "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": "a9cddce2b1458cc9f7b062f8eb8bdfe606bab439dc3b16142df54e15556a4dd8",
+    "cloud/work/frontier/dot_steady_camera_20261005/candidate.c": "3281a0633f5498ad7ab2d3897a749d4ae6abcf5eef83aa00cbd15bebc99be644",
+    "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": "de61265d3109e51f20744f29cc11056f4ac0c464cb114f5e3f69b4a91fc93e11",
     "cloud/work/ipa-groups/dot_steady_camera_20261005/group.json": "46530938f5dd5856a8d34a30f2d6ddca3252433a00f9e0f236454a4edfa4ab4e",
-    "src/blob/groups/func_800E92C8/group.c": "04f83fc836ffc69a34d1fa0ff636aa973355b2f70b9c563ce905bb139d9cb6f1",
+    "src/blob/groups/func_800E92C8/group.c": "13e59e3f9b2677e32e66d8b01c99d6a15000875e2999b17a2ef40eeb52213af3",
     "src/blob/groups/func_800E92C8/group.json": "85f544ad1f24fbaf4ae68d0328ebd3897a9d164580bb7535302758f924561b80"
   },
   "native_callees": [
@@ -2112,10 +2112,10 @@
   },
   "source_changes": "Only the actual E95DC function body is replaced. All declarations, three accepted bodies and compiler/keep recipe stay unchanged.",
   "source_sha256": {
-    "candidate.c": "e54774e4b3b549e6862fe4a3d67d91590529ca53c8455a3c998f449a6bfe4654",
-    "host.c": "a6a38bd2ade946aaf5bb11cefda5d2e37e9ef7dbe821fe2f9d72a3ee90213c10",
+    "candidate.c": "3281a0633f5498ad7ab2d3897a749d4ae6abcf5eef83aa00cbd15bebc99be644",
+    "host.c": "d17b9a0d3aa6527b346f70af9be75c1e24cdc14712840594dd1d6039b731050f",
     "steady_camera_experiments.py": "1433f79369540a67f2b97d74f50f34ea7d3c685631c45454d2ee3058fddebae1",
-    "steady_camera_native.py": "89fe529e9886305fde638322f16ba5fb8670985fe2936a3e50b5e8549c2ec8db",
+    "steady_camera_native.py": "13b17e10d10c039a5c77ae61c859effc16f5e1cf336ffbed2bccbeba8d74ba0f",
     "steady_camera_semantics.py": "419b0c4286745193a5b8db43182ebd101464e7ac87b46a06f4b34494d1ea9388",
     "verify.py": "f9d71368e4fc4f797ff4b8be9141c4e22661378cf82d2999f14d4306c4965561"
   },

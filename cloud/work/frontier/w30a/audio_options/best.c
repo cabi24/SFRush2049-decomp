@@ -33,7 +33,7 @@ typedef union TextColor { u8 c[4]; u32 rgba; } TextColor;   /* GC union __anon_2
 extern TextColor D_801146BC[2];                  /* flashColors */
 extern ButtonInfo D_801102B4[];                  /* buttonInfo (N64 copy starts at the first button) */
 extern u8 D_801105A4[];                          /* buttonInfo + 0x2f0 (title position) */
-extern u8 D_80150B70[];                          /* gCamera */
+extern u8 gCamera[];                          /* gCamera */
 extern s32 D_80118E20[2];                        /* TB_SetJust pair */
 extern s32 osRecvMesg(OSMesgQueue *, void **, s32), osSendMesg(OSMesgQueue *, void *, s32);
 extern s32 slot_state_setup(s32);
@@ -86,7 +86,7 @@ void game_results_update(void)
     D_80118E20[0] = 0;
     au_font_set(13);
     dispatch_handler(1);
-    brake_light_update(0, D_801105A4, D_80150B70, 0, screenPos);
+    brake_light_update(0, D_801105A4, gCamera, 0, screenPos);
     x = screenPos[0];
     y = screenPos[1];
     state_utility(au_CenterText(countdown_state.fixed[52], x), y, countdown_state.fixed[52]);
@@ -102,7 +102,7 @@ void game_results_update(void)
             func_800BEA3C(D_801146BC[0], D_801146BC[1]);
             dispatch_handler(22);
         }
-        brake_light_update(0, D_801102B4[i].pos, D_80150B70, 0, screenPos);
+        brake_light_update(0, D_801102B4[i].pos, gCamera, 0, screenPos);
         x = screenPos[0];
         y = screenPos[1];
         state_utility(x - 55, y,
@@ -126,7 +126,7 @@ void game_results_update(void)
         for (charPtr = str; *charPtr; charPtr++) {
             if (*charPtr >= 'a' && *charPtr <= 'z') *charPtr ^= 0x20;
         }
-        brake_light_update(0, D_801102B4[i + 4].pos, D_80150B70, 0, screenPos);
+        brake_light_update(0, D_801102B4[i + 4].pos, gCamera, 0, screenPos);
         x = screenPos[0];
         y = screenPos[1];
         state_utility(x - 35, y, str);

@@ -51,13 +51,13 @@ typedef struct TextPos {
 
 extern s16 D_8014A100[];          /* gControlFirst */
 extern s16 D_8014A10A;            /* gControlMenuSize */
-extern s16 D_80151AD0;            /* gNumWindows */
+extern s16 gNumWindows;            /* gNumWindows */
 extern s8 D_80149DA8[][10];       /* gConflict */
 extern s8 D_8015418C[];           /* controlScrActive */
 extern Player D_8014A118[];       /* gPlayers */
 extern s32 D_80154618[];          /* buttonsInited */
 extern ButtonName D_80111998[][17]; /* buttonNames */
-extern u8 D_80150B70[][152];      /* gCamera */
+extern u8 gCamera[][152];      /* gCamera */
 extern f32 D_80112A9C;            /* gButtonScale */
 extern f32 D_80112AB0;            /* buttonZ */
 extern TextPos D_80113EE0[][4];
@@ -89,7 +89,7 @@ static s32 Hidden(Blit *blt, s32 hide)
     return blt->hidden;
 }
 
-s32 game_results_input(Blit *blt)
+s32 animControls(Blit *blt)
 {
     s32 id;
     s32 conflict;
@@ -109,7 +109,7 @@ s32 game_results_input(Blit *blt)
     val = ((blt->data >> 16) & 255) - 1;
     action = D_8014A100[p] + id - 1;
     gTextPosScale = D_80112A9C;
-    if (D_80151AD0 > 1) {
+    if (gNumWindows > 1) {
         gTextPosScale *= 0.5f;
     }
     for (i = 0, j = 0; i < id; j++) {
@@ -124,20 +124,20 @@ s32 game_results_input(Blit *blt)
         return 1;
     }
     if (uninited) {
-        if (D_80151AD0 > 1) {
+        if (gNumWindows > 1) {
             func_800EF5B0(blt, "CONTROLS_SM", 0);
         }
         if (D_80154618[p]) {
-            brake_light_update(p, D_80111998[p][action].pos, D_80150B70[p], 0, screenPos);
+            brake_light_update(p, D_80111998[p][action].pos, gCamera[p], 0, screenPos);
             blt->x = screenPos[0] + 55.0f * gTextPosScale * 300.0f / D_80112AB0;
             blt->y = screenPos[1] - blt->h / 2;
             blt->alpha = D_80111998[p][action].alpha;
         } else {
-            blt->x = D_80113EE0[D_80151AD0 - 1][p].x + 20;
-            blt->y = D_80113EE0[D_80151AD0 - 1][p].y + id * 16 + 8;
+            blt->x = D_80113EE0[gNumWindows - 1][p].x + 20;
+            blt->y = D_80113EE0[gNumWindows - 1][p].y + id * 16 + 8;
         }
         if (conflict) {
-            blt->x += (D_80151AD0 == 1) ? 20 : 10;
+            blt->x += (gNumWindows == 1) ? 20 : 10;
         }
         Input_ApplyPadConfig(blt);
         blt->data &= 0x00FFF0FF;
@@ -147,12 +147,12 @@ s32 game_results_input(Blit *blt)
         }
     }
     if (D_80154618[p]) {
-        brake_light_update(p, D_80111998[p][action].pos, D_80150B70[p], 0, screenPos);
+        brake_light_update(p, D_80111998[p][action].pos, gCamera[p], 0, screenPos);
         blt->x = screenPos[0] + 75.0f * gTextPosScale * 300.0f / D_80112AB0;
         blt->y = screenPos[1] - blt->h / 2;
         blt->half18 = 0x7F00;
         if (conflict) {
-            blt->x += (D_80151AD0 == 1) ? 20 : 10;
+            blt->x += (gNumWindows == 1) ? 20 : 10;
         }
         if (D_80111998[p][action].alpha >= 255) {
             blt->alpha = 254;

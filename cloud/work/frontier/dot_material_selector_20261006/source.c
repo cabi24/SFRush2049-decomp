@@ -25,13 +25,13 @@ typedef struct ModelRecord {
     RecordSpan16 spans[5];
 } ModelRecord;
 typedef struct ModelBank { ModelRecord *records; s32 count; } ModelBank;
-extern ModelBank D_801161F4[];
+extern ModelBank gRomObjDefPtrs[];
 
 s32 func_8008B000(u16 handle, s16 selector, u16 value)
 {
     ModelRecord *model;
     s32 i;
-    model = &D_801161F4[handle >> 10].records[handle & 1023];
+    model = &gRomObjDefPtrs[handle >> 10].records[handle & 1023];
     if (selector >= 0) {
         if (selector >= model->spans[0].tail) return 0;
         model->spans[selector + 1].value = value;

@@ -24,7 +24,7 @@ extern s16 D_8014A108;
 extern CarRec D_8014A118[];
 extern ModelDat D_8014A250[];
 extern f32 D_801141B0[];
-extern View D_80150B70[];
+extern View gCamera[];
 
 void main_menu_input(void *node, f32 *a, f32 *b, f32 *c, f32 *d);
 
@@ -37,7 +37,7 @@ void main_menu_render(void)
         if (D_8014A118[i].node != (void *) -1) {
             node = D_8014A118[i].node;
             main_menu_input(node, D_8014A250[D_8014A118[i].model].pos, D_801141B0,
-                            D_80150B70[i].b, D_80150B70[i].a);
+                            gCamera[i].b, gCamera[i].a);
         }
     }
 }

@@ -1,5 +1,5 @@
 {
- "note": "w29n game-symbol rename table (static_rename format; only 'accepted' rows apply). kind function = Conveyor inventory target (game, extracted population); kind data = GAME_SYMBOLS entry. Evidence per row; mapping table with GC sources in docs/external/gc/names.md.",
+ "note": "w29n game-symbol rename table (static_rename format; only 'accepted' rows apply; `batch` = the lane that applied the row: w29n (27 rows: 22 functions, 5 data; wave 29), w30n (the 10 rows deferred by w29n until their fixtures moved; wave 30). replay.sh applies one batch: RENAME_BATCH=w29n|w30n). kind function = Conveyor inventory target (game, extracted population); kind data = GAME_SYMBOLS entry. Evidence per row; mapping table with GC sources in docs/external/gc/names.md.",
  "renames": [
   {
    "vram": "0x800DC88C",
@@ -8,7 +8,8 @@
    "kind": "function",
    "source": "N64 control-settings menu cell, one text line (callee of control_settings)",
    "evidence": "w28d: draws one menu cell's text centred in its box (cell D_80153FD8[row][col]); reached only through control_settings (overlay A), w28r census",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800DCDF4",
@@ -17,7 +18,8 @@
    "kind": "function",
    "source": "N64 control-settings menu cell, cell text + two option strings (callee of control_settings)",
    "evidence": "w28d: two-line option cell (cell text + two strings, selected/unselected font by `sel`); only caller control_settings",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800DC99C",
@@ -26,7 +28,8 @@
    "kind": "function",
    "source": "N64 control-settings menu cell, cell text + three option strings (callee of control_settings)",
    "evidence": "w28d: three-line option cell (cell text + three strings by sel1/sel2); only caller control_settings",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800A2680",
@@ -35,7 +38,8 @@
    "kind": "function",
    "source": "N64 controller-pak file delete with retry (osPfsDeleteFile)",
    "evidence": "w28b: controller-pak file delete with retry (osPfsDeleteFile, osPfsFreeBlocks, error callback, node moved to the free list); GC lead PS_DeleteFile/_DeleteFile (paksysdc.c), not scored",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800B61FC",
@@ -44,7 +48,8 @@
    "kind": "function",
    "source": "GC countdown.c ShowCountdown",
    "evidence": "w28c: code-identical to GC ShowCountdown(int active) structure; str CNTDWN%d/CNTDWN3; correlation confident 5.35; landed wave 28",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800EDDC0",
@@ -53,7 +58,8 @@
    "kind": "function",
    "source": "N64 per-frame display-list prologue",
    "evidence": "w28d: per-frame display-list prologue (frame-buffer record, segment 0, depth/colour clears, split-screen bars, VI filters); no arcade/GC counterpart; landed wave 28",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800F0914",
@@ -62,7 +68,8 @@
    "kind": "function",
    "source": "GC highscorescr.c _PrintScores",
    "evidence": "w28a: matched from GC _PrintScores (statement order, locals, 0x60 race-stats layout); correlation confident 6.51",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800F1210",
@@ -71,7 +78,8 @@
    "kind": "function",
    "source": "GC highscorescr.c _SetHighScoreState",
    "evidence": "w28a: matched from GC _SetHighScoreState(newState) (two switches, panes, SetCountdownTimer 600/30/15); correlation confident 4.4",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80108154",
@@ -80,7 +88,8 @@
    "kind": "function",
    "source": "GC hud.c animLapTime",
    "evidence": "w28c: matched; GC locals w, digitW, colonW, win, show, fixedWidth close the frame",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800CD104",
@@ -89,7 +98,8 @@
    "kind": "function",
    "source": "GC save.c CreatePlayer",
    "evidence": "w28b: call-for-call with GC CreatePlayer(pak, name) (_InitPlayer, strcpy, _CalcChecksum, PS_WriteFile/FlushFile/FlushPak, InsertLLE, PS_CreateFile); retail homes = GC locals in GC order",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800C813C",
@@ -98,7 +108,8 @@
    "kind": "function",
    "source": "GC save.c SaveServer",
    "evidence": "w28b: GC SaveServer(forceUpdate, rumbleOnly) structure (PS_PakServer, sInitCountdown, sReadingPak, RUSH2049 prefix, P extension); save_settings calls it (0, 0)",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80096CA8",
@@ -107,7 +118,8 @@
    "kind": "function",
    "source": "GC waves.c _SetupWaveModel",
    "evidence": "w28d/w27e: FourCC IMAG/OBHD/PLHD/PTHD/TXHD; every stack home = GC locals; correlation confident 9.48",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800B574C",
@@ -116,7 +128,8 @@
    "kind": "function",
    "source": "GC _TitlePane",
    "evidence": "w28c: unit-EQUAL draft written from GC _TitlePane",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800A2D4C",
@@ -125,7 +138,8 @@
    "kind": "function",
    "source": "GC paksysdc.c PS_CreateFile",
    "evidence": "w28b: CreatePlayer's call (pak, file, \"P\", 0x810, 0x3544, 'NRUE') at GC PS_CreateFile's position",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800A2504",
@@ -134,7 +148,8 @@
    "kind": "function",
    "source": "GC paksysdc.c PS_WriteFile",
    "evidence": "w28b: CreatePlayer's call (data, 0x810) at GC PS_WriteFile's position; locked (pak_write_cluster)",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800A2378",
@@ -143,7 +158,8 @@
    "kind": "function",
    "source": "GC paksysdc.c PS_FlushFile",
    "evidence": "w28b: CreatePlayer calls PS_FlushFile(fileh, 0) then PS_FlushPak(pak, 1) in that order; locked (pak_write_cluster)",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800A21A4",
@@ -152,7 +168,8 @@
    "kind": "function",
    "source": "GC paksysdc.c PS_FlushPak",
    "evidence": "w28b: as PS_FlushFile; locked (pak_write_cluster)",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800FF724",
@@ -161,8 +178,9 @@
    "kind": "function",
    "source": "GC controlscr.c animControls",
    "evidence": "w28c: str CONTROLS_SM; correlation confident 3.76; GC structure took the draft from 325 to 11 ops",
-   "status": "deferred",
-   "deferred": "tests/conveyor/test_d05_hud_context_audit.py parametrises on game_results_input; the w29b lane is working the function"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "tests/conveyor/test_d05_hud_context_audit.py parametrises on game_results_input; the w29b lane is working the function"
   },
   {
    "vram": "0x800BB9B0",
@@ -171,8 +189,9 @@
    "kind": "function",
    "source": "GC tracks.c LoadTrack",
    "evidence": "correlation confident 12.96: track-name table x19, calls the SkyInit/InitSmoke pairs (camera_reset/physics_collision_test)",
-   "status": "deferred",
-   "deferred": "packet node_pool_init (tests/cloud/test_node_pool_init_match.py) records its native direct caller as func_800BB9B0"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "packet node_pool_init (tests/cloud/test_node_pool_init_match.py) records its native direct caller as func_800BB9B0"
   },
   {
    "vram": "0x80140B20",
@@ -181,7 +200,8 @@
    "kind": "data",
    "source": "GC highscorescr.c gHighScoreState",
    "evidence": "w28a: _SetHighScoreState stores newState there and switches on it",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80149418",
@@ -190,7 +210,8 @@
    "kind": "data",
    "source": "GC highscorescr.c namePanes",
    "evidence": "w28a: _SetHighScoreState pane array",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80146208",
@@ -199,7 +220,8 @@
    "kind": "data",
    "source": "GC highscorescr.c codePane",
    "evidence": "w28a: _SetHighScoreState",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80151690",
@@ -208,8 +230,9 @@
    "kind": "data",
    "source": "GC gTotalNames",
    "evidence": "w28a: _PrintScores gTotalNames[track][3][5]",
-   "status": "deferred",
-   "deferred": "packet cloud/work/dot_name_cache replays sources that use D_80151690"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "packet cloud/work/dot_name_cache replays sources that use D_80151690"
   },
   {
    "vram": "0x8002E870",
@@ -218,7 +241,8 @@
    "kind": "data",
    "source": "GC gDefStartTimes",
    "evidence": "w28a: _PrintScores default times (f32[])",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80156D38",
@@ -227,7 +251,8 @@
    "kind": "data",
    "source": "GC waves.c gWaveInstance",
    "evidence": "w28d: _SetupWaveModel 20-byte records",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x801161F4",
@@ -236,8 +261,9 @@
    "kind": "data",
    "source": "GC gRomObjDefPtrs",
    "evidence": "w28d: _SetupWaveModel/MBSetupWad",
-   "status": "deferred",
-   "deferred": "packet dot_material_selector_20261006 pins car_gear_shift.c and binds D_801161F4 by name"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "packet dot_material_selector_20261006 pins car_gear_shift.c and binds D_801161F4 by name"
   },
   {
    "vram": "0x80151AE8",
@@ -246,8 +272,9 @@
    "kind": "data",
    "source": "GC gTexDefPtrs",
    "evidence": "w28d: _SetupWaveModel {ptr, count}",
-   "status": "deferred",
-   "deferred": "src/blob/func_800B24EC.c is pinned by dot_runtime_a_availability_root_20261012 and the multiblit/blit_bar contracts"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "src/blob/func_800B24EC.c is pinned by dot_runtime_a_availability_root_20261012 and the multiblit/blit_bar contracts"
   },
   {
    "vram": "0x80138670",
@@ -256,8 +283,9 @@
    "kind": "data",
    "source": "GC gPalDefPtrs",
    "evidence": "w28d: _SetupWaveModel {ptr, count}",
-   "status": "deferred",
-   "deferred": "tests/conveyor/test_disasm.py uses D_80138670 (GAME_SYMBOLS survey entry) as its fixture symbol"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "tests/conveyor/test_disasm.py uses D_80138670 (GAME_SYMBOLS survey entry) as its fixture symbol"
   },
   {
    "vram": "0x80151AD0",
@@ -266,8 +294,9 @@
    "kind": "data",
    "source": "GC gNumWindows",
    "evidence": "w28a/w28c: _SetHighScoreState and ShowCountdown (s16)",
-   "status": "deferred",
-   "deferred": "sources pinned by dot_runtime_b_radius_effect_20261012 and dot_frame_dispatch_20261005"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "sources pinned by dot_runtime_b_radius_effect_20261012 and dot_frame_dispatch_20261005"
   },
   {
    "vram": "0x80152032",
@@ -276,8 +305,9 @@
    "kind": "data",
    "source": "GC countdown.c gCountDown",
    "evidence": "w28c: ShowCountdown (s16)",
-   "status": "deferred",
-   "deferred": "source pinned by dot_frame_dispatch_20261005 (Effects_UpdateEmitters.c)"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "source pinned by dot_frame_dispatch_20261005 (Effects_UpdateEmitters.c)"
   },
   {
    "vram": "0x80150B70",
@@ -286,8 +316,9 @@
    "kind": "data",
    "source": "GC gCamera",
    "evidence": "w28c: ShowCountdown camera array (stride 0x98, pos +0x24, matrix +0x30)",
-   "status": "deferred",
-   "deferred": "packet dot_steady_camera_20261005 (steady_camera_native.py) looks D_80150B70 up by name"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "packet dot_steady_camera_20261005 (steady_camera_native.py) looks D_80150B70 up by name"
   },
   {
    "vram": "0x80140BDC",
@@ -296,8 +327,9 @@
    "kind": "data",
    "source": "GC gNumModels",
    "evidence": "w28c: ShowCountdown (volatile u8)",
-   "status": "deferred",
-   "deferred": "packet dot_runtime_a_availability_root_20261012 checks the text `extern volatile u8 D_80140BDC;`; sources pinned by dot_slot_setter_boundary, multiblit/blit_bar contracts"
+   "status": "accepted",
+   "batch": "w30n",
+   "was_deferred": "packet dot_runtime_a_availability_root_20261012 checks the text `extern volatile u8 D_80140BDC;`; sources pinned by dot_slot_setter_boundary, multiblit/blit_bar contracts"
   },
   {
    "vram": "0x800F0F44",
@@ -306,7 +338,8 @@
    "kind": "function",
    "source": "GC highscorescr.c _FindGhosts",
    "evidence": "w28a call anchor from SetHighScoreState; w29a matched it from GC _FindGhosts (frontier_billboard_render packet); accepted by the coordinator 2026-10-13",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x8010221C",
@@ -315,7 +348,8 @@
    "kind": "function",
    "source": "GC gameoverscr.c drawMain",
    "evidence": "w29a: GC drawMain locals i, x, y, str and the validOption loop (frontier_results_table packet); accepted by the coordinator 2026-10-13",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800E6AF8",
@@ -324,7 +358,8 @@
    "kind": "function",
    "source": "arcade mdrive.c model_iteration",
    "evidence": "w29c: arcade model_iteration with update_drone_models/update_model inlined (func_800E56F8 packet); accepted by the coordinator 2026-10-13",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x8010761C",
@@ -333,7 +368,8 @@
    "kind": "function",
    "source": "GC hud.c animElapsedTimerText",
    "evidence": "w29c: GC static int animElapsedTimerText(void) locals t, digits[9], str[2], digitW, colonW, fixedWidth (credits_scroll_grp gr3_761c.c); accepted by the coordinator 2026-10-13",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x80107AF4",
@@ -342,7 +378,8 @@
    "kind": "function",
    "source": "GC hud.c animPlace",
    "evidence": "w29c: GC static int animPlace(void) locals digits[3], str[2] (draft); accepted by the coordinator 2026-10-13",
-   "status": "accepted"
+   "status": "accepted",
+   "batch": "w29n"
   },
   {
    "vram": "0x800FEE04",

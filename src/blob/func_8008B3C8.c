@@ -105,7 +105,7 @@ extern f32 D_801551D8[];
 extern f32 D_80155210[];
 extern f32 D_80155178[][3];
 extern f32 D_801551A8[][3];
-extern u8 D_80150B70[][0x98];
+extern u8 gCamera[][0x98];
 extern f32 D_801141BC[3];
 extern f32 D_801141C8[3];
 extern volatile f32 D_8002EB94;
@@ -153,7 +153,7 @@ void func_800E8CB8(void *car, void *vel, void *mat) {
 #define car ((u8 *)arg0)
 #define CF(off) (*(f32 *)(car + (off)))
 #define CB(off) (*(s8 *)(car + (off)))
-#define OF(off) (*(f32 *)(D_80150B70[idx] + (off)))
+#define OF(off) (*(f32 *)(gCamera[idx] + (off)))
 #define A1(off) (*(f32 *)((u8 *)arg1 + (off)))
 void func_800EA3F4(void *arg0, void *arg1) {
     s32 idx;
@@ -309,7 +309,7 @@ void func_800EA3F4(void *arg0, void *arg1) {
     sp44[0] += sp50[0] * sp90;
     sp44[1] += sp50[1] * sp90;
     sp44[2] += sp50[2] * sp90;
-    vector_copy_scale(sp44, D_80150B70[idx] + 0x78);
+    vector_copy_scale(sp44, gCamera[idx] + 0x78);
     sp44[0] = OF(0x78) * sp84;
     sp44[1] = OF(0x7C) * sp84;
     sp44[2] = OF(0x80) * sp84;
@@ -331,7 +331,7 @@ void func_800EA3F4(void *arg0, void *arg1) {
     OF(0x60) = sp50[1] * OF(0x80) - sp50[2] * OF(0x7C);
     OF(0x64) = sp50[2] * OF(0x78) - sp50[0] * OF(0x80);
     OF(0x68) = sp50[0] * OF(0x7C) - sp50[1] * OF(0x78);
-    len = func_8008B3C8((f32 *)(D_80150B70[idx] + 0x60));
+    len = func_8008B3C8((f32 *)(gCamera[idx] + 0x60));
     if (len < D_80124514) {
         OF(0x60) = D_801141C8[0];
         OF(0x64) = D_801141C8[1];

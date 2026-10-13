@@ -10,7 +10,7 @@ u8 D_80143A50[4][13];
 s8 D_80143F18[4];
 s32 D_801148D4[4], D_801424F0[4];
 s16 D_80142528;
-s32 D_80151690[12][3][5];
+s32 gTotalNames[12][3][5];
 s8 D_80151AC0[3][5];
 static u8 alphabet[54];
 u8 *D_80117420 = alphabet;
@@ -30,7 +30,7 @@ static void reset(void)
     memset(D_80143F18, 1, sizeof(D_80143F18));
     memset(D_801148D4, -1, sizeof(D_801148D4));
     memset(D_801424F0, -1, sizeof(D_801424F0));
-    memset(D_80151690, -1, sizeof(D_80151690));
+    memset(gTotalNames, -1, sizeof(gTotalNames));
     memset(D_80151AC0, -1, sizeof(D_80151AC0));
     timeout = sound_count = resource_count = filtered = cached = 0;
     last_sound = 0;
@@ -104,8 +104,8 @@ int main(void)
         assert(filtered == 1 && cached == 1 && resource_count == 1);
         assert(D_801148D4[3] == 7 && D_801424F0[2] == 7);
         for (row = 0; row < 3; row++) for (place = 0; place < 5; place++) {
-            assert(D_80151690[8][row][place] == (D_80151AC0[row][place] == 2 ? 7 : -1));
-            assert(D_80151690[7][row][place] == -1);
+            assert(gTotalNames[8][row][place] == (D_80151AC0[row][place] == 2 ? 7 : -1));
+            assert(gTotalNames[7][row][place] == -1);
         }
         cases++;
     }

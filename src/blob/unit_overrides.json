@@ -304,6 +304,54 @@
   {
    "name": "TB_CenterText_B9C8",
    "reason": "group func_8010B9C8 (w29b): non-static inlined helper of func_8010B9C8, caller-less after inlining"
+  },
+  {
+   "name": "gfx_lock_B5D0",
+   "reason": "group func_8010B5D0 (w30b): non-static inlined helper of func_8010B5D0, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_B5D0",
+   "reason": "group func_8010B5D0 (w30b): non-static inlined helper of func_8010B5D0, caller-less after inlining"
+  },
+  {
+   "name": "font_set_B5D0",
+   "reason": "group func_8010B5D0 (w30b): non-static inlined helper of func_8010B5D0, caller-less after inlining"
+  },
+  {
+   "name": "item_refresh_B5D0",
+   "reason": "group func_8010B5D0 (w30b): non-static inlined helper of func_8010B5D0, caller-less after inlining"
+  },
+  {
+   "name": "TB_CenterText_B5D0",
+   "reason": "group func_8010B5D0 (w30b): non-static inlined helper of func_8010B5D0, caller-less after inlining"
+  },
+  {
+   "name": "gfx_lock_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_select_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_set_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "TB_GetFlashTextCycle_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_SetFont_8AB0",
+   "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

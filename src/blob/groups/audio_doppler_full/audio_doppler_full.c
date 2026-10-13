@@ -36,10 +36,10 @@ typedef struct Camera {
     u8 mat[0x98 - 0x30];
 } Camera;
 
-extern s16 D_80151AD0;          /* gNumWindows */
-extern s16 D_80152032;          /* gCountDown */
-extern Camera D_80150B70[];     /* gCamera */
-extern volatile u8 D_80140BDC;           /* gNumModels */
+extern s16 gNumWindows;          /* gNumWindows */
+extern s16 gCountDown;          /* gCountDown */
+extern Camera gCamera[];     /* gCamera */
+extern volatile u8 gNumModels;           /* gNumModels */
 extern s8 D_8010FFC0;
 
 f32 viGetTimeToDeadline(void);
@@ -79,7 +79,7 @@ void ShowCountdown(s32 active)
         { 1.0f, 1.0f, 6.0f }, { -1.0f, 1.0f, 6.0f }, { -1.0f, -1.0f, 6.0f }, { 1.0f, -1.0f, 6.0f }
     };
 
-    for (winidx = 0; winidx < D_80151AD0; winidx++) {
+    for (winidx = 0; winidx < gNumWindows; winidx++) {
         if (active) {
             dist = viGetTimeToDeadline() - 0.001f;
             dist = (dist - (s32)dist) * 12.0f;
@@ -88,23 +88,23 @@ void ShowCountdown(s32 active)
             }
             for (i = 0; i < 4; i++) {
                 D_801140F8[i][2] = dist;
-                func_8008C544(D_801140F8[i], xyz[i], D_80150B70[winidx].mat);
-                xyz[i][0] += D_80150B70[winidx].pos[0];
-                xyz[i][1] += D_80150B70[winidx].pos[1];
-                xyz[i][2] += D_80150B70[winidx].pos[2];
+                func_8008C544(D_801140F8[i], xyz[i], gCamera[winidx].mat);
+                xyz[i][0] += gCamera[winidx].pos[0];
+                xyz[i][1] += gCamera[winidx].pos[1];
+                xyz[i][2] += gCamera[winidx].pos[2];
             }
             if (D_80154368[winidx] == 0) {
-                func_800B24EC("CNTDWN3", &D_80154398, 0, D_80140BDC - 1, 1);
+                func_800B24EC("CNTDWN3", &D_80154398, 0, gNumModels - 1, 1);
                 D_80154368[winidx] = func_800A78BC(4, xyz[0], D_80154398, D_801140F4, (1 << winidx) | 0x8000 | 0x200 | 0x80 | 0x40, 1);
                 D_801543A4 = 4;
-            } else if (D_801543A4 > D_80152032) {
-                if (winidx == D_80151AD0 - 1) {
-                    sprintf(str, "CNTDWN%d", D_80152032);
-                    func_800B24EC(str, &D_80154398, 0, D_80140BDC - 1, 1);
-                    D_801543A4 = D_80152032;
-                    if (D_80152032 == 3) {
+            } else if (D_801543A4 > gCountDown) {
+                if (winidx == gNumWindows - 1) {
+                    sprintf(str, "CNTDWN%d", gCountDown);
+                    func_800B24EC(str, &D_80154398, 0, gNumModels - 1, 1);
+                    D_801543A4 = gCountDown;
+                    if (gCountDown == 3) {
                         PlayGameSound(75, 0, 1, 0);
-                    } else if (D_80152032 == 2) {
+                    } else if (gCountDown == 2) {
                         PlayGameSound(76, 0, 1, 0);
                     } else {
                         PlayGameSound(77, 0, 1, 0);
@@ -118,7 +118,7 @@ void ShowCountdown(s32 active)
         } else if (D_80154368[winidx] != 0) {
             func_8008D0C0(D_80154368[winidx]);
             D_80154368[winidx] = 0;
-            D_80152032 = -1;
+            gCountDown = -1;
         }
     }
 }

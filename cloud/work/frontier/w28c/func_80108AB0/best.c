@@ -48,7 +48,7 @@ extern s32 D_8014A110;
 extern s8 D_801613A0;
 extern Pair D_80118E20;
 extern StrTable D_8017A4E0;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern Car D_80152818[];
 extern f32 D_801543B8[];
 extern s8 D_8013F2F8[];
@@ -77,7 +77,7 @@ s32 func_80108AB0(void *item)
     render_helper(0.0f);
     D_80118E20.a = 1;
     D_80118E20.b = 1;
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         if ((-1.5707964f <= D_80152818[i].heading && D_80152818[i].heading <= 1.5707964f) ||
             !(D_801174B4 & 0x400000) || D_80152818[i].f239 == 1 || !D_801613A0 || D_8014A110 == 1) {
             D_8013F2F8[i] = 0;
@@ -88,7 +88,7 @@ s32 func_80108AB0(void *item)
         if (D_8002EB90 - D_801543B8[i] < 2.0f) {
             continue;
         }
-        if (D_80151AD0 == 1) {
+        if (gNumWindows == 1) {
             osRecvMesg(&D_801461D0, (void *)0, 1);
             previous = slot_state_setup(10);
             osSendMesg(&D_801461D0, (void *)0, 0);
@@ -98,8 +98,8 @@ s32 func_80108AB0(void *item)
             osSendMesg(&D_801461D0, (void *)0, 0);
         }
         func_800ED66C(D_8017A630 * 255.0f);
-        x = D_80115F28[D_80151AD0 - 1][i].x;
-        y = D_80115F28[D_80151AD0 - 1][i].y;
+        x = D_80115F28[gNumWindows - 1][i].x;
+        y = D_80115F28[gNumWindows - 1][i].y;
         dispatch_handler(0);
         state_utility(x + 1, y + 1, D_8017A4E0.hdr->text);
         dispatch_handler(14);

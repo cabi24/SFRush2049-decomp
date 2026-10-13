@@ -90,8 +90,11 @@ def main():
     p.add_argument("paths", nargs="+")
     p.add_argument("--base", default="894a4d1ef", help="the pre-rename revision")
     p.add_argument("--write", action="store_true")
+    p.add_argument("--map", default=None, help="rename table to apply (replay: the batch, batch.py output); "
+                   "default the whole renames.json. A batch map keeps the source-pin proof exact: sources keep "
+                   "stale prelude declarations of earlier batches' old names, which a whole-table rename would touch")
     a = p.parse_args()
-    names = static_rename.mapping(static_rename.load_map(MAP))
+    names = static_rename.mapping(static_rename.load_map(a.map or MAP))
     files = files_of(a.paths)
     texts = {f: f.read_text() for f in files}
     new = {}

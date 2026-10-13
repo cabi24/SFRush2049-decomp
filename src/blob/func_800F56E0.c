@@ -69,7 +69,7 @@ extern ResourceRoot *D_80146150[];
 extern u8 D_80144018[];
 extern float D_80149A78[][8];
 extern RaceStats D_80150F88[];
-extern ResourceHandle D_80151690[][15];
+extern ResourceHandle gTotalNames[][15];
 extern s8 D_80151AC0[];
 extern CarRecord D_80152818[];
 extern s8 D_80152744;
@@ -118,14 +118,14 @@ void func_800F56E0(void)
                             stats->samples[shift] = stats->samples[shift - 1];
                             if (phase == 1) {
                                 D_80151AC0[shift] = D_80151AC0[shift - 1];
-                                D_80151690[course][shift] = D_80151690[course][shift - 1];
+                                gTotalNames[course][shift] = gTotalNames[course][shift - 1];
                             }
                         }
                         stats->samples[rank] = D_80149A78[player][lap];
                         if (phase == 1) {
                             D_80151AC0[rank] = player;
                             if ((*input_rec0[player].resource)->enabled) {
-                                D_80151690[course][rank] = input_rec0[player].resource;
+                                gTotalNames[course][rank] = input_rec0[player].resource;
                             }
                         }
                         break;
@@ -144,14 +144,14 @@ void func_800F56E0(void)
                             stats->means[shift] = stats->means[shift - 1];
                             if (phase == 1) {
                                 D_80151AC0[shift + 5] = D_80151AC0[shift + 4];
-                                D_80151690[course][shift + 5] = D_80151690[course][shift + 4];
+                                gTotalNames[course][shift + 5] = gTotalNames[course][shift + 4];
                             }
                         }
                         stats->means[rank] = mean;
                         if (phase == 1) {
                             D_80151AC0[shift + 5] = player;
                             if ((*input_rec0[player].resource)->enabled) {
-                                D_80151690[course][rank + 5] = input_rec0[player].resource;
+                                gTotalNames[course][rank + 5] = input_rec0[player].resource;
                             }
                         }
                         break;

@@ -7,10 +7,10 @@
   "accepted_byte_gain": 0,
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "source_sha256": {
-    "group/func_800F207C.c": "6a60b7a5e4f5d5edad5a75f966bb994a7bbd807ce7c5f8041cbc7f5c1601aed7",
+    "group/func_800F207C.c": "d55f6386edfd423f913cd54739813c03647ebbe97549a6bf43f4670a3b40543e",
     "group/billboard_render.c": "065f76ce0cf6cbb11a2c28417c7f579313de2b31eb955fe9e82cf4a6e31ea7cf",
     "group/group.json": "8dc5b304aa035ba24b0a22904e5b0052a571882f15de12daba61b6bebecfac90",
-    "semantic_test.c": "efd65b2c2758ace0367bef5ec455755938654b4eef89214b12b0afd16bbfbafd"
+    "semantic_test.c": "d18fa04637af0d3f3216f8297fe1587ec2f5cc7f90ebf374065de6e3d7e8bc02"
   },
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
@@ -267,7 +267,7 @@
     "audio_doppler": "c02ffd76a0b434494c1395d55700018425b1f8f00bcdd6cf954a857c71ed163c",
     "resource_type_select": "b470df2e2d3df22ced694c77d98a65da1373b408e643b14895497cbdac2f68b3",
     "func_800F084C": "3f14dcdc1dad2c2c191d8b95a2e378bd0aacdc57e4d0e73b29f8dc934b7c2974",
-    "func_800F1D04": "4491651fe5d5fa404556cbcd75578e81aaa87b1105b92b896cf94e8f0b22368f"
+    "func_800F1D04": "859637b2fc2d5139fd8ef9b724e0439afb9b7f9e99b523f8cf16aaf72fb72f78"
   },
   "host_test": "240 behavior cases passed"
 }

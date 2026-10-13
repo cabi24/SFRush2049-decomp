@@ -37,7 +37,7 @@ typedef struct MenuNode {
 typedef struct { s32 x, y; } Pos;
 typedef struct { u8 pad[0x17]; s8 state; u8 pad18[0x3B8 - 0x18]; } Player;  /* 0x3B8 */
 
-extern s16 D_80151AD0;                  /* player count */
+extern s16 gNumWindows;                  /* player count */
 extern volatile s16 D_801543CA;
 extern s8 D_80156CE8;
 extern Player D_801528F0[];
@@ -52,7 +52,7 @@ s32 func_80108DA8(MenuNode *node) {
     s32 hidden;
 
     index = node->index;
-    if (index >= D_80151AD0 || (state_word_a & 8) || D_801543CA < 2) {
+    if (index >= gNumWindows || (state_word_a & 8) || D_801543CA < 2) {
         node->word28 = 0;
         if (node->hidden != 1) {
             node->hidden = 1;
@@ -71,9 +71,9 @@ s32 func_80108DA8(MenuNode *node) {
     if (node->hidden != 0) {
         return 1;
     }
-    node->x = D_80116028[D_80151AD0 - 1][index].x;
-    node->y = D_80116028[D_80151AD0 - 1][index].y;
-    if (D_80151AD0 >= 2) {
+    node->x = D_80116028[gNumWindows - 1][index].x;
+    node->y = D_80116028[gNumWindows - 1][index].y;
+    if (gNumWindows >= 2) {
         func_800EF5B0(node, D_80120E34, 0);
         node->alpha = 0x60;
     }

@@ -37,7 +37,7 @@ extern s8 D_80156994;
 extern s8 D_8014978C;
 extern int D_80117480[6];
 extern s16 D_8013F380[6];
-extern u8 D_80140BDC;
+extern u8 gNumModels;
 void pool_linked_list_init(Pool *pool);
 void func_800B24EC(int a, s16 *b, int c, int d, int e);
 
@@ -55,7 +55,7 @@ void physics_collision_test(void)
     }
     if (D_80156994 || D_8014978C >= 6) {
         for (i = 0; i < 6; i++) {
-            func_800B24EC(D_80117480[i], &D_8013F380[i], 0, (s8)(D_80140BDC - 1), 1);
+            func_800B24EC(D_80117480[i], &D_8013F380[i], 0, (s8)(gNumModels - 1), 1);
         }
     }
 }

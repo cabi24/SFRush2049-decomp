@@ -566,7 +566,7 @@ typedef struct {
     PadConfig *unk0;
     s32 unk4;
 } D_80138670_Entry;
-extern D_80138670_Entry D_80138670[];
+extern D_80138670_Entry gPalDefPtrs[];
 extern s32 game_loop_tick;
 extern s16 active_player_count;
 extern s32 gameplay_mode;
@@ -600,7 +600,7 @@ extern u8 D_80149774, D_80149794, D_801497C4;
 extern s32 D_801497F4, D_80149D98;
 extern u8 D_8014B240, D_80150EFC, D_80150F14;
 extern s32 D_80150000;
-extern u16 D_80151AD0;
+extern u16 gNumWindows;
 extern u8 D_80151AD8, D_8015256C, D_80152744, D_80152F29;
 extern s32 D_8015204C, D_801520C4, D_80153308;
 extern f32 D_801525F4, D_801543CC;
@@ -1057,7 +1057,7 @@ extern s32 D_801161CC;
 extern s32 D_801161D0;
 extern f32 D_801161D4;
 extern f32 D_801161E4;
-extern Tab D_801161F4[];
+extern Tab gRomObjDefPtrs[];
 extern s16 D_801163F4;
 extern s32 D_801163F8;
 extern s8 D_80116488;
@@ -2222,7 +2222,7 @@ extern s32 D_80140AF8;
 extern f32 D_80140B10;
 extern s32 gHighScoreState;
 extern s32 D_80140B28;
-extern u8 D_80140BDC;
+extern u8 gNumModels;
 extern f32 D_80140BE0;
 extern s32 D_801424F0;
 extern s32 D_80142500;
@@ -2514,7 +2514,7 @@ extern s32 D_80150004;
 extern s32 D_80150B60;
 extern s32 D_80150B64;
 extern s32 D_80150B68;
-extern s32 D_80150B70;
+extern s32 gCamera;
 extern s32 D_80150B7C;
 extern s32 D_80150B94;
 extern s32 D_80150BA0;
@@ -2551,7 +2551,7 @@ extern s32 D_801515F8;
 extern s32 D_80151610;
 extern s32 D_80151618;
 extern s32 D_80151688;
-extern s32 D_80151690;
+extern s32 gTotalNames;
 extern u8 D_80151960;
 extern s32 D_80151964;
 extern s32 D_80151968;
@@ -2566,7 +2566,7 @@ extern s32 D_80151ACF;
 extern s32 D_80151AD4;
 extern s32 D_80151ADC;
 extern s32 D_80151AE0;
-extern Tab D_80151AE8[];
+extern Tab gTexDefPtrs[];
 extern s32 D_80151CE8;
 extern s16 D_80151CEC;
 extern s16 D_80151CEE;
@@ -2581,7 +2581,7 @@ extern s32 D_80152020;
 extern s32 D_80152028;
 extern s8 D_80152030;
 extern s8 D_80152031;
-extern s16 D_80152032;
+extern s16 gCountDown;
 extern s32 D_80152034;
 extern s32 D_80152038;
 extern s32 D_80152040;
@@ -3223,7 +3223,7 @@ s16 func_800BA2B8(s16 arg0, s16 arg1);
 s16 func_800BA61C(s16 arg0);
 void func_800BB02C(s32 arg0, s32 arg1, s32 arg2);
 void func_800BB7F4(void);
-s32 func_800BB9B0(s32 arg0, s32 arg1, s32 arg2);
+s32 LoadTrack(s32 arg0, s32 arg1, s32 arg2);
 f32 func_800BC21C(void *arg0);
 void func_800BD080(void *arg0, s32 arg1);
 s32 func_800BDA24(void *arg0);
@@ -3446,7 +3446,7 @@ void func_80101D84(void);
 void func_8010A7A4(s32 arg0);
 void game_late_init(void);
 void game_results_exit(s8 arg0);
-s32 game_results_input(void *arg0);
+s32 animControls(void *arg0);
 s32 game_results_render(s32 arg0);
 void game_results_update(void);
 void game_state_check_handler(s32 arg1);
@@ -3800,27 +3800,27 @@ void SetupWaveModel(s32 idx, s32 first) {
         func_80096BBC(&wad, (s32)WADptr, (s32)offset);
     }
     gWaveInstance[idx].w10 = *gWaveInstance[idx].p0C;
-    D_801161F4[idx].ptr = (void *)lookup_with_output(&wad, 0x4F424844, &D_801161F4[idx].count);
-    D_80151AE8[idx].ptr = (void *)lookup_with_output(&wad, 0x54584844, &D_80151AE8[idx].count);
-    ((Tab *)D_80138670)[idx].ptr = (void *)lookup_with_output(&wad, 0x504C4844, &((Tab *)D_80138670)[idx].count);
+    gRomObjDefPtrs[idx].ptr = (void *)lookup_with_output(&wad, 0x4F424844, &gRomObjDefPtrs[idx].count);
+    gTexDefPtrs[idx].ptr = (void *)lookup_with_output(&wad, 0x54584844, &gTexDefPtrs[idx].count);
+    ((Tab *)gPalDefPtrs)[idx].ptr = (void *)lookup_with_output(&wad, 0x504C4844, &((Tab *)gPalDefPtrs)[idx].count);
     if (gWaveInstance[idx].type >= 101 && gWaveInstance[idx].type < 120) {
         D_801392D0 = (TexRec *)lookup_with_output(&wad, 0x50544844, &D_801392D4);
     }
     TXLDptr = lookup_with_output(&wad, 0x54584C44, &TXLDcnt);
     IMAGptr = lookup_with_output(&wad, 0x494D4147, NULL);
     entity_cull_check(TXLDptr, TXLDptr + TXLDcnt, IMAGptr);
-    for (i = 0; i < D_80151AE8[idx].count; i++) {
-        ((TexRec *)D_80151AE8[idx].ptr)[i].w18 += IMAGptr;
+    for (i = 0; i < gTexDefPtrs[idx].count; i++) {
+        ((TexRec *)gTexDefPtrs[idx].ptr)[i].w18 += IMAGptr;
     }
-    for (i = 0; i < ((Tab *)D_80138670)[idx].count; i++) {
-        ((PalRec *)((Tab *)D_80138670)[idx].ptr)[i].w14 += IMAGptr;
+    for (i = 0; i < ((Tab *)gPalDefPtrs)[idx].count; i++) {
+        ((PalRec *)((Tab *)gPalDefPtrs)[idx].ptr)[i].w14 += IMAGptr;
     }
     if (first != 0) {
-        for (i = 0; i < D_801161F4[n].count; i++) {
-            for (j = 0; j < ((ObjRec *)D_801161F4[n].ptr)[i].nsub; j++) {
-                ((ObjRec *)D_801161F4[idx].ptr)[i].sub[j].a += (u32)(first ? WADptr : offset);
-                ((ObjRec *)D_801161F4[idx].ptr)[i].sub[j].b += (u32)(first ? WADptr : offset);
-                entity_lod_select((u32 *)((ObjRec *)D_801161F4[idx].ptr)[i].sub[j].a, (s32)(first ? WADptr : offset), -1, D_80140A04 ? 1 : 0, flags);
+        for (i = 0; i < gRomObjDefPtrs[n].count; i++) {
+            for (j = 0; j < ((ObjRec *)gRomObjDefPtrs[n].ptr)[i].nsub; j++) {
+                ((ObjRec *)gRomObjDefPtrs[idx].ptr)[i].sub[j].a += (u32)(first ? WADptr : offset);
+                ((ObjRec *)gRomObjDefPtrs[idx].ptr)[i].sub[j].b += (u32)(first ? WADptr : offset);
+                entity_lod_select((u32 *)((ObjRec *)gRomObjDefPtrs[idx].ptr)[i].sub[j].a, (s32)(first ? WADptr : offset), -1, D_80140A04 ? 1 : 0, flags);
             }
         }
     }

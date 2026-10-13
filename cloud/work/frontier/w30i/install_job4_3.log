@@ -1,0 +1,3 @@
+FAILED: func_8010AEAC: own .rodata: this function's references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c): the literals are not laid out as in retail; independent regions refused: .rodata: relocated words (a jump table) need the one-base or jump-table proof [per-reference placement tried because the whole-section placement was refused: .rodata: unmapped data between jump table entries]
+restoring lock and sources
+image after restore: OK

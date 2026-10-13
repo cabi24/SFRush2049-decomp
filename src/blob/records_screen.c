@@ -29,7 +29,7 @@ extern Voice *D_80154198;
 extern Voice *D_801541A0;
 extern s32 D_80154350[];
 extern s32 D_80154360;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern RecordRow D_801541A8[];
 extern s32 gameplay_mode;
 
@@ -51,7 +51,7 @@ void records_screen(void) {
         D_80154198 = 0;
         neg = -1;
         i = 0;
-        if (D_80151AD0 > 0) {
+        if (gNumWindows > 0) {
             status = D_80154350; row = D_801541A8;
             do {
                 id = row->a.id;
@@ -68,7 +68,7 @@ void records_screen(void) {
                 i++;
                 status++;
                 row++;
-            } while (i < D_80151AD0);
+            } while (i < gNumWindows);
         }
         D_80154360 = 0;
     }

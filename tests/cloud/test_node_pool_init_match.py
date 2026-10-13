@@ -60,7 +60,7 @@ def test_compatible_actual_consumer_and_owned_pool():
         assert proof['complete_gnu_equal'] and proof['elf_function_bytes'] == length
     lock = json.loads((ROOT / 'blob_matched.lock.json').read_text())[packet.POP]
     assert lock['source_sha256'] == packet.sha(packet.ACCEPTED)
-    assert receipt['native']['direct_callers'] == [{'name': 'func_800BB9B0', 'address': '0x800bc104'}]
+    assert receipt['native']['direct_callers'] == [{'name': 'LoadTrack', 'address': '0x800bc104'}]
 
 
 def test_native_host_full_state_and_every_instruction():

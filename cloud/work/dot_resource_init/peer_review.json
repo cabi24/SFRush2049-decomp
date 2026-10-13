@@ -1,7 +1,7 @@
 {
   "reviewer": "independent lane F",
   "verdict": "PASS as NONMATCH research only",
-  "source_sha256": "d28af79147333fec2422797822df56da00944052b05716e5666d203477aa00a7",
+  "source_sha256": "dc775f3d16dd0277e9461653c125a000c13406dd3f7e7c79e10260fd61a4671e",
   "checks": [
     "Read all92 native words and inspected sound_bank_load halfword output stores",
     "Confirmed signed-byte count/variant narrowing, actual fifth stack argument1, post-call slot/text/flags rereads and guard behavior",

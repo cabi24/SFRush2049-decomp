@@ -28,7 +28,7 @@ typedef unsigned int u32;
 
 extern u8 D_80151968[20][13];
 extern u16 D_80151A78[20];
-extern s32 D_80151690[12][3][5];
+extern s32 gTotalNames[12][3][5];
 extern s32 func_8008AD04(u8 *, u8 *);
 extern u8 *func_800A473C(u8 *, u8 *);
 
@@ -62,7 +62,7 @@ s16 func_800F1D04(u8 *name)
     for (j = 0; j < 12; j++) {
         for (k = 0; k < 3; k++) {
             for (i = 0; i < 5; i++) {
-                slot = D_80151690[j][k][i];
+                slot = gTotalNames[j][k][i];
                 if (slot >= 0 && slot < 20) {
                     references[slot]++;
                 }
@@ -87,8 +87,8 @@ s16 func_800F1D04(u8 *name)
     for (j = 0; j < 12; j++) {
         for (k = 0; k < 3; k++) {
             for (i = 0; i < 5; i++) {
-                if (D_80151690[j][k][i] == victim) {
-                    D_80151690[j][k][i] = -1;
+                if (gTotalNames[j][k][i] == victim) {
+                    gTotalNames[j][k][i] = -1;
                 }
             }
         }

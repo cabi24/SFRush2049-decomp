@@ -1,0 +1,8 @@
+  EQUAL func_80108AB0: 190 words (kept, c_gr3_8ab0.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  EQUAL animPlace: 250 words (kept, g_credits_scroll_grp__gr3_7af4.c)
+  EQUAL animElapsedTimerText: 308 words (kept, g_credits_scroll_grp__gr3_761c.c)
+  EQUAL animLapTime: 224 words (kept, g_credits_scroll_grp__gr3_8154.c)
+  EQUAL slot_state_setup: 58 words (internal, g_credits_scroll_grp__gr3_b.c)
+  EQUAL credits_scroll: 83 words (internal, g_credits_scroll_grp__gr3_c.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 6/6 equal; object build/blob_unit/w30i/unit.o (9.4s)

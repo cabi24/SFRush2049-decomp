@@ -1,0 +1,29 @@
+{
+ "name": "func_8010AEAC",
+ "members": [
+  "func_8010AEAC",
+  "func_8010A8D0",
+  "func_8010A7A4"
+ ],
+ "claims": [
+  "func_8010AEAC",
+  "func_8010A8D0",
+  "func_8010A7A4"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "faeac.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_8010AEAC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "GC optionscr.c animText (func_8010AEAC, kept: called by pointer) + animButtonText (func_8010A8D0) + printOption (func_8010A7A4, register params x=s1,y=s2,name=s3,value=s4,item=a0), both internal callees (not on keep). Inlined helpers non-static *_AEAC (not on keep: w17j). Unused `u0` in func_8010AEAC = frame residual (disclosed in faeac.c). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup's s2 font convention). Unit install: force_internal += func_8010A7A4, func_8010A8D0, gfx_lock_AEAC, gfx_unlock_AEAC, font_set_AEAC, TB_FlashTextColors_AEAC, TB_SetJust_AEAC, TB_CenterText_AEAC. Data: D_801146BC is the GC flashColors[2] (8 bytes, colour union) - the file declares it as an array.",
+ "provenance": "w28c draft -> w29b ct_centertext.c -> w30b MATCH; cloud/work/frontier/w30b/RESULTS.md"
+}

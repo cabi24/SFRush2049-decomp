@@ -43,8 +43,46 @@ def ipa(text, table):
     raise SystemExit("ipa_callees.json: unknown json format")
 
 
-def words(text, table):
-    return re.sub(r"\b(%s)\b" % "|".join(map(re.escape, table)), lambda m: table[m.group(1)], text)
+def scripts():
+    return {p.stem for p in (REPO / "tools/recomp/scripts").glob("*.press")}
+
+
+def census(path, table):
+    """The census file with FUNCTION names renamed structurally (census.json: the
+    `functions` keys; <script>.json: the `functions` keys), written in the generator's
+    own format (tools/recomp/census.py). Script names are not function names: w29n's
+    first version renamed the script `race_finish` along with the function race_finish
+    (-> animPlace); a script key that is not a script but whose inverse rename is one
+    is restored here."""
+    inverse = {}
+    for o, n in table.items():
+        inverse.setdefault(n, o)
+    known = scripts()
+
+    def script(s):
+        return inverse[s] if s not in known and inverse.get(s) in known else s
+    doc = json.loads(path.read_text())
+    funcs = {table.get(k, k): v for k, v in doc["functions"].items()}
+    if len(funcs) != len(doc["functions"]):
+        raise SystemExit(f"{path.name}: a rename merges two census functions")
+    if path.name == "census.json":
+        for f in funcs.values():
+            f["scripts"] = {script(s): n for s, n in f["scripts"].items()}
+        doc = dict(doc, functions=funcs, scripts=sorted(script(s) for s in doc["scripts"]))
+        return json.dumps(doc, indent=1, sort_keys=True) + "\n"
+    doc = dict(doc, functions=funcs, script=script(doc["script"]))
+    return CENSUS.compact_json(doc)
+
+
+def _census_module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("recomp_census", REPO / "tools/recomp/census.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+CENSUS = _census_module()      # compact_json: the per-script file format
 
 
 def main():
@@ -59,7 +97,7 @@ def main():
     text = path.read_text()
     edits.append((path, text.replace('t["func_80096CA8"]', 't["SetupWaveModel"]')))
     for path in sorted((REPO / "tools/recomp/census").glob("*.json")):
-        edits.append((path, words(path.read_text(), table)))
+        edits.append((path, census(path, table)))
     for path, new in edits:
         if new != path.read_text():
             print(f"{'rewrite' if a.write else 'would rewrite'} {path.relative_to(REPO)}")

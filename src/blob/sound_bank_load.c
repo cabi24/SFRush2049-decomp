@@ -26,8 +26,8 @@ typedef struct {
     u32 count;
 } Table;
 
-extern Table D_80138670[];
-extern volatile u8 D_80140BDC;
+extern Table gPalDefPtrs[];
+extern volatile u8 gNumModels;
 
 char *func_800A473C(char *dst, char *src);
 s8 func_80092D80(s32 idx);
@@ -43,14 +43,14 @@ char *sound_bank_load(char *name, u16 *out, s8 lo, s8 hi) {
     if (lo < 0) {
         lo = 0;
     }
-    if (hi < 0 || hi >= D_80140BDC) {
-        hi = D_80140BDC - 1;
+    if (hi < 0 || hi >= gNumModels) {
+        hi = gNumModels - 1;
     }
     for (i = lo; i <= hi; i++) {
         if (func_80092D80(i) == 0) {
             continue;
         }
-        found = entity_name_copy(key, D_80138670[i].base, D_80138670[i].count, 24, func_8009508C);
+        found = entity_name_copy(key, gPalDefPtrs[i].base, gPalDefPtrs[i].count, 24, func_8009508C);
         if (found != 0) {
             break;
         }
@@ -59,6 +59,6 @@ char *sound_bank_load(char *name, u16 *out, s8 lo, s8 hi) {
         *out = 0;
         return 0;
     }
-    *out = ((found - D_80138670[i].base) / 24) | (i << 10);
+    *out = ((found - gPalDefPtrs[i].base) / 24) | (i << 10);
     return found;
 }

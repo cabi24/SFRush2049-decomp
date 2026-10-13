@@ -511,7 +511,7 @@ typedef struct {
     PadConfig *unk0;
     s32 unk4;
 } D_80138670_Entry;
-extern D_80138670_Entry D_80138670[];
+extern D_80138670_Entry gPalDefPtrs[];
 extern s32 game_loop_tick;
 extern s16 active_player_count;
 extern s32 gameplay_mode;
@@ -545,7 +545,7 @@ extern u8 D_80149774, D_80149794, D_801497C4;
 extern s32 D_801497F4, D_80149D98;
 extern u8 D_8014B240, D_80150EFC, D_80150F14;
 extern s32 D_80150000;
-extern u16 D_80151AD0;
+extern u16 gNumWindows;
 extern u8 D_80151AD8, D_8015256C, D_80152744, D_80152F29;
 extern s32 D_8015204C, D_801520C4, D_80153308;
 extern f32 D_801525F4, D_801543CC;
@@ -787,7 +787,7 @@ s32 func_80105DA8(void *arg0) {
     s32 temp_v0;
     u32 temp_v1;
 
-    if (((s8) D_80142760 == 0) || (temp_v1 = M2C_FIELD(arg0, u32 *, 0x2C), (temp_v1 >= (u32) (s16) D_80151AD0)) || (*((s8 *) &D_80152907 + (*(s16 *)((u8 *)&D_8014AA16 + temp_v1 * 0x808) * 0x3B8)) == 1)) {
+    if (((s8) D_80142760 == 0) || (temp_v1 = M2C_FIELD(arg0, u32 *, 0x2C), (temp_v1 >= (u32) (s16) gNumWindows)) || (*((s8 *) &D_80152907 + (*(s16 *)((u8 *)&D_8014AA16 + temp_v1 * 0x808) * 0x3B8)) == 1)) {
         if (M2C_FIELD(arg0, s8 *, 0x1A) != 1) {
             M2C_FIELD(arg0, s8 *, 0x1A) = 1;
             Input_ApplyPadConfig(arg0);
@@ -795,8 +795,8 @@ s32 func_80105DA8(void *arg0) {
         return M2C_FIELD(arg0, s8 *, 0x1A);
     }
     temp_v0 = temp_v1 * 8;
-    M2C_FIELD(arg0, s16 *, 0xE) = (s16) (M2C_FIELD(((u8 *) &D_801160C8 + ((s16) D_80151AD0 << 5) + temp_v0), s32 *, -0x20) - ((s16) M2C_FIELD(arg0, s16 *, 0x14) / 2));
-    M2C_FIELD(arg0, s16 *, 0x10) = (s16) M2C_FIELD(((u8 *) &D_801160C8 + ((s16) D_80151AD0 << 5) + temp_v0), s32 *, -0x1C);
+    M2C_FIELD(arg0, s16 *, 0xE) = (s16) (M2C_FIELD(((u8 *) &D_801160C8 + ((s16) gNumWindows << 5) + temp_v0), s32 *, -0x20) - ((s16) M2C_FIELD(arg0, s16 *, 0x14) / 2));
+    M2C_FIELD(arg0, s16 *, 0x10) = (s16) M2C_FIELD(((u8 *) &D_801160C8 + ((s16) gNumWindows << 5) + temp_v0), s32 *, -0x1C);
     Input_ApplyPadConfig(arg0);
     return 1;
 }

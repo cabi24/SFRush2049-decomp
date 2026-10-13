@@ -34,7 +34,7 @@ extern Tbl D_80156D44[];
 extern Entry *D_80149800;
 extern s16 D_80149878[256];
 extern s32 D_80149820[];
-extern Pair D_80151AE8[];
+extern Pair gTexDefPtrs[];
 extern s8 D_80149B60;
 extern u8 D_80149B70;
 extern s32 D_80149B08;
@@ -73,7 +73,7 @@ void sound_update_channel(s32 force)
         }
     }
     if (force) {
-        v = D_80151AE8[D_801497A4].first;
+        v = gTexDefPtrs[D_801497A4].first;
         r = D_80149820;
         for (i = 0; i < D_801497F0->f11; i++) {
             *r++ = v;

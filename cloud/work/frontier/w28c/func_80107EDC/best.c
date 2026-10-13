@@ -54,7 +54,7 @@ extern s32 D_8014A110;
 extern s8 D_8016137C;
 extern Pair D_80118E20;
 extern StrTable D_8017A4E0;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s16 D_80152734;
 extern Lap D_8014A250[];
 extern Car D_80152818[];
@@ -99,20 +99,20 @@ s32 func_80107EDC(void *item)
     render_helper(0.0f);
     D_80118E20.b = 3;
     D_80118E20.a = 1;
-    if (D_80151AD0 == 1) {
+    if (gNumWindows == 1) {
         font_set_EDC(11);
     } else {
         font_set_EDC(12);
     }
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         if (D_80152734 == D_8014A250[i].lap) {
             continue;
         }
         if (D_80152818[i].f239 == 1) {
             continue;
         }
-        x = D_80115DA8[D_80151AD0 - 1][i].x;
-        y = D_80115DA8[D_80151AD0 - 1][i].y;
+        x = D_80115DA8[gNumWindows - 1][i].x;
+        y = D_80115DA8[gNumWindows - 1][i].y;
         dispatch_handler(0);
         music_tempo_adjust(x + 1, y + 1, D_8017A4E0.hdr->text, D_8014A250[i].lap + 1, D_80152734);
         dispatch_handler(1);

@@ -42,8 +42,8 @@ extern s16 D_80142B08[];
 extern u8 D_8013FE90[];
 extern char *D_8011B3A0[24];
 extern TexDef *D_80143F68[24];
-extern TexTable D_80151AE8[];
-extern volatile u8 D_80140BDC;
+extern TexTable gTexDefPtrs[];
+extern volatile u8 gNumModels;
 extern char *D_8011B400[];
 extern char *D_8011B404[10];
 extern s16 D_80161368[10];
@@ -82,16 +82,16 @@ void sfx_position_3d(s32 for_game) {
         }
     }
     for (k = 0; k < 24; k++) {
-        if (func_800B24EC(D_8011B3A0[k], (s16 *)&tex, 0, D_80140BDC - 1, 0)) {
-            D_80143F68[k] = &D_80151AE8[tex >> 10].defs[tex & 0x3FF];
+        if (func_800B24EC(D_8011B3A0[k], (s16 *)&tex, 0, gNumModels - 1, 0)) {
+            D_80143F68[k] = &gTexDefPtrs[tex >> 10].defs[tex & 0x3FF];
         } else {
             D_80143F68[k] = 0;
         }
     }
     for (k = 156; k != 157; k++) {
-        D_801427C0[k] = string_copy_format(D_8011B400[k - 156], 0, D_80140BDC - 1, 1);
+        D_801427C0[k] = string_copy_format(D_8011B400[k - 156], 0, gNumModels - 1, 1);
     }
     for (k = 0; k < 10; k++) {
-        func_800B24EC(D_8011B404[k], &D_80161368[k], 0, D_80140BDC - 1, 0);
+        func_800B24EC(D_8011B404[k], &D_80161368[k], 0, gNumModels - 1, 0);
     }
 }

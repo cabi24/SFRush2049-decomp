@@ -199,9 +199,9 @@ def test_indexed_addu_idiom_symbolizes_lui_and_access(monkeypatch):
         "  14:\t00000000 \tnop",
     ))
     text = disasm.normalize_objdump(out, "t", {})
-    assert "lui     $t9,%hi(D_80138670)" in text
+    assert "lui     $t9,%hi(gPalDefPtrs)" in text
     assert "addu    $v1,$t8,$t9" in text
-    assert "lw      $t7,%lo(D_80138670)($v1)" in text
+    assert "lw      $t7,%lo(gPalDefPtrs)($v1)" in text
 
 
 def test_indexed_addu_idiom_dest_equals_base(monkeypatch):
@@ -213,8 +213,8 @@ def test_indexed_addu_idiom_dest_equals_base(monkeypatch):
         "  10:\t00000000 \tnop",
     ))
     text = disasm.normalize_objdump(out, "t", {})
-    assert "lui     $t9,%hi(D_80138670)" in text
-    assert "lw      $t7,%lo(D_80138670)($t9)" in text
+    assert "lui     $t9,%hi(gPalDefPtrs)" in text
+    assert "lw      $t7,%lo(gPalDefPtrs)($t9)" in text
 
 
 def test_indexed_addu_untabled_address_stays_numeric():

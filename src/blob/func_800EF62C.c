@@ -40,7 +40,7 @@ typedef struct { u8 other0[10]; s8 flag; u8 other11[1979]; s16 index; u8 other19
 typedef struct { u8 other0[239]; s8 mode; u8 other240[712]; } Object952;
 extern Car2056 D_8014A250[];
 extern Object952 D_80152818[];
-extern s16 D_80151AD0,D_8014A108;
+extern s16 gNumWindows,D_8014A108;
 extern s8 D_8015B25C;
 extern char D_80120D9C[],D_80120DAC[];
 extern s32 D_80115B68[][4][2];
@@ -53,7 +53,7 @@ s32 func_800EF62C(Blit *blt)
     f32 amount;
     slot=(blt->AnimID & 0xf0)>>4;
     kind=blt->AnimID & 0xf;
-    if(slot>=D_80151AD0) {
+    if(slot>=gNumWindows) {
         if(slot>=D_8014A108) blt->AnimFunc=0;
         if (blt->Hide != 1) {
             blt->Hide = 1;
@@ -68,10 +68,10 @@ s32 func_800EF62C(Blit *blt)
         Input_ApplyPadConfig(blt);
     }
     if (blt->Hide) return 1;
-    if(D_80151AD0==2) func_800EF5B0(blt,D_80120D9C,0);
-    else if(D_80151AD0>=3) func_800EF5B0(blt,D_80120DAC,0);
-    blt->X=D_80115B68[D_80151AD0-1][slot][0]-blt->Width/2;
-    blt->Y=D_80115B68[D_80151AD0-1][slot][1];
+    if(gNumWindows==2) func_800EF5B0(blt,D_80120D9C,0);
+    else if(gNumWindows>=3) func_800EF5B0(blt,D_80120DAC,0);
+    blt->X=D_80115B68[gNumWindows-1][slot][0]-blt->Width/2;
+    blt->Y=D_80115B68[gNumWindows-1][slot][1];
     if(kind==0) blt->Bot=blt->Height/2-1;
     else if(kind==1) {
         amount=(D_8014A250[slot].value*1.35f)*0.0001f;

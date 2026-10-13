@@ -22,7 +22,7 @@ typedef struct WeightRecord {
 } WeightRecord;
 
 extern WeightRecord D_80150F88[12];
-extern int D_80151690[12][3][5];
+extern int gTotalNames[12][3][5];
 
 void audio_channel_priority(int handle) {
     int outer, row, slot, index;
@@ -31,7 +31,7 @@ void audio_channel_priority(int handle) {
 
     for (outer = 0; outer < 12; outer++) {
         for (row = 0; row < 3; row++) {
-            handles = D_80151690[outer][row];
+            handles = gTotalNames[outer][row];
             weights = D_80150F88[outer].weight[row];
             for (slot = 0; slot < 5; slot++) {
                 if (handle == handles[slot]) {

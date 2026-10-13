@@ -91,7 +91,7 @@ typedef struct {
     /* 0x00 */ f32 uvs[3][3];
     /* 0x24 */ f32 pos[3];
 } CamXform;
-extern CamXform D_80150B70;             /* camera matrix + position (pos = old D_80150B94) */
+extern CamXform gCamera;             /* camera matrix + position (pos = old D_80150B94) */
 extern u16 D_80161378;
 
 extern EffectObj *func_8008E3C0(void *pool);
@@ -162,7 +162,7 @@ EffectObj *func_800AFB30(u8 *color)
         fars = ((EffectObj **) D_80155220)[4];
         for (s = ((EffectObj **) D_80155220)[4]; s->next; s = s->next) {
             for (dsq = 0.0f, i = 0; i < 3; i++) {
-                d = s->pos[i] - D_80150B70.pos[i];
+                d = s->pos[i] - gCamera.pos[i];
                 dsq += d * d;
             }
             if (dsq > fardsq) {

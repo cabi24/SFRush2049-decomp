@@ -16,16 +16,16 @@ void func_800E95DC(s16 mode, Cr *car, f32 *pos, s32 uvs) {
         D_8012E690[pl].x = pos[0];
         D_8012E690[pl].y = pos[1];
         D_8012E690[pl].z = pos[2];
-        D_80150B70[pl].v84[0] = pos[0];
-        D_80150B70[pl].v84[1] = pos[1];
-        D_80150B70[pl].v84[2] = pos[2];
+        gCamera[pl].v84[0] = pos[0];
+        gCamera[pl].v84[1] = pos[1];
+        gCamera[pl].v84[2] = pos[2];
         res[0] = car->pos[0];
         res[1] = car->pos[1];
         res[2] = car->pos[2];
         pos[0] = pos[0] - res[0];
         pos[1] = pos[1] - res[1];
         pos[2] = pos[2] - res[2];
-        vector_normalize_length(pos, &D_80150B70[pl].n60);
+        vector_normalize_length(pos, &gCamera[pl].n60);
         D_8012E6C8[pl] = 0;
         D_8012E6E8[pl] = 0.0f;
         return;
@@ -91,14 +91,14 @@ void func_800E95DC(s16 mode, Cr *car, f32 *pos, s32 uvs) {
         res[2] = pos2[2] - pos[2];
         D_80152720[pl] = 0;
         func_800E8D50(car, pos, uvs, res);
-        D_80150B70[pl].v84[1] += 4.0f;
+        gCamera[pl].v84[1] += 4.0f;
         D_8012E6E8[pl] += D_8002EB94;
         if (D_801108C8[D_8012E6C8[pl]] <= D_8012E6E8[pl]) {
             D_8012E6C8[pl]++;
             D_8012E6E8[pl] = 0.0f;
-            D_8012E690[pl].x = D_80150B70[pl].v84[0];
-            D_8012E690[pl].y = D_80150B70[pl].v84[1];
-            D_8012E690[pl].z = D_80150B70[pl].v84[2];
+            D_8012E690[pl].x = gCamera[pl].v84[0];
+            D_8012E690[pl].y = gCamera[pl].v84[1];
+            D_8012E690[pl].z = gCamera[pl].v84[2];
         }
     }
 }

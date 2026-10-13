@@ -2005,7 +2005,7 @@ game_timer_display = 0x800FECA4; // type:func game timer display (352 bytes)
 game_results_init = 0x800FEC78; // type:func game results init (1808 bytes)
 // dup-addr(kept gameover_handler): game_results_update = 0x800FEE04; // type:func game results update (1172 bytes)
 game_results_render = 0x800FF298; // type:func game results render (1164 bytes)
-game_results_input = 0x800FF724; // type:func game results input (1748 bytes)
+animControls = 0x800FF724; // type:func GC controlscr.c animControls (renamed from game_results_input, w30n; cloud/work/frontier/w29n/renames.json)
 game_results_exit = 0x800FFDF8; // type:func game results exit (1900 bytes)
 
 // Large Update Routines

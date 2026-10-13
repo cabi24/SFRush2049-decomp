@@ -1,0 +1,3 @@
+spliced credits_scroll_grp: 9 members, new: ['animPlace']
+image coverage: 1046/1216 functions, 374800/647072 bytes (57.92%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

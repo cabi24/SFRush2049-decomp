@@ -26,7 +26,7 @@ extern s8 D_80143F18[];
 extern s32 D_801148D4[];
 extern s32 D_801424F0[];
 extern s16 D_80142528;
-extern s32 D_80151690[12][3][5];
+extern s32 gTotalNames[12][3][5];
 extern s8 D_80151AC0[3][5];
 extern u8 *D_80117420;
 extern void audio_distance_atten(u32);
@@ -98,7 +98,7 @@ void func_800F207C(s32 player)
             for (row = 0; row < 3; row++) {
                 for (place = 0; place < 5; place++) {
                     if (D_80151AC0[row][place] == player) {
-                        D_80151690[D_80142528][row][place] = D_801424F0[player];
+                        gTotalNames[D_80142528][row][place] = D_801424F0[player];
                     }
                 }
             }

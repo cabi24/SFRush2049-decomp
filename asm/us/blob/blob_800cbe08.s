@@ -87,6 +87,7 @@ menu_transition:
 .section .text.func_800CBF2C, "ax", @progbits
 .globl func_800CBF2C
 func_800CBF2C:
+    /* compiled from src/blob/func_800CBF2C.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8E320000

@@ -80,7 +80,7 @@ typedef struct Object68 {
 extern Model2056 D_8014A250[];
 extern Car952 player_array[];
 extern CarConfig *D_80110D08[];
-extern Control152 D_80150B70[];
+extern Control152 gCamera[];
 extern Object68 D_8012E700[];
 extern s8 D_80140418,D_80156994,D_8014978C;
 extern u8 D_80123264[];
@@ -150,7 +150,7 @@ void anim_state_update(Visual *v, s16 op)
         if (D_8014A250[slot].visual_code[tire] == 1) spring2 = (Random(2.0f) - 1.0f) * t;
         else if (D_8014A250[slot].visual_code[tire] == 8) spring2 = 0;
         else spring2 = (Random(2.0f) - 1.0f) * t * 0.25f;
-        D_80150B70[controller].spring_save = D_80150B70[controller].spring_save * 0.75f + spring2;
+        gCamera[controller].spring_save = gCamera[controller].spring_save * 0.75f + spring2;
     }
     vel = m->tires[tire].angular_velocity;
     lastpos = v->angle;

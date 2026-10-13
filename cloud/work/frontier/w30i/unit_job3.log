@@ -1,0 +1,10 @@
+  EQUAL func_80102980: 364 words (internal, c_results_table.c)
+  EQUAL func_80102F30: 890 words (kept, c_results_table.c)
+  EQUAL drawMain: 137 words (internal, c_results_table.c)
+  EQUAL func_80101904: 288 words (internal, c_results_table.c)
+  EQUAL func_80101D84: 294 words (internal, c_results_table.c)
+  EQUAL func_80102448: 334 words (internal, c_results_table.c)
+  EQUAL func_80100D5C: 63 words (internal, c_results_table.c)
+  EQUAL slot_state_setup: 58 words (internal, c_ctx_gr3_b.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 8/8 equal; object build/blob_unit/w30i/unit.o (8.5s)

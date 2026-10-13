@@ -9,9 +9,9 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "8b261e88ada54944f329e0d1e90569f99d6ed82b7d8389e80a9dc74679374186",
+    "src/blob/groups/credits_scroll_grp/group.json": "54b995a95309a7ad07676ff1e83a12a8e80860a0fdf76830a13d5eff89913421",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
-    "src/blob/groups/slot_sound/group.c": "8484f7c1109f0613d9f6d11127fab652cec41df4a2e1a3acf1719a4cd68e0c26"
+    "src/blob/groups/slot_sound/group.c": "f45284d32c1be634058f3f1c6a47e2c0f98588e8caaa0771f2beef14232136b2"
   },
   "helpers": {
     "slot_state_setup": {
@@ -41,11 +41,11 @@
     }
   },
   "summary": {
-    "callers": 65,
-    "sites": 170,
-    "adjacent_call_label_pairs": 167,
+    "callers": 66,
+    "sites": 171,
+    "adjacent_call_label_pairs": 168,
     "captures": {
-      "s0": 123,
+      "s0": 124,
       "s1": 7,
       "s4": 7,
       "s5": 2,
@@ -63,17 +63,21 @@
       "func_80101D84",
       "drawMain",
       "func_80102448",
+      "func_80102980",
       "func_80102F30",
       "func_80106B3C",
       "animElapsedTimerText",
+      "animPlace",
       "func_80107EDC",
       "animLapTime",
+      "func_80108AB0",
       "func_8010A53C",
+      "func_8010B5D0",
       "func_8010B7FC",
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 56236,
+    "unaccepted_caller_bytes": 53504,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -806,7 +810,7 @@
       "start": "0x80102980",
       "bytes": 1456,
       "body_sha256": "3a39ddabf997cb61c9e8e4d89617e76991963337e4a62f004aa01690b8099d99",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80102BC8"
       ],
@@ -840,7 +844,6 @@
         "s5": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80102980",
         "race_position_update",
         "state_utility"
       ]
@@ -858,6 +861,21 @@
       },
       "other_unaccepted_direct_game_calls": [
         "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_80104704": {
+      "start": "0x80104704",
+      "bytes": 1040,
+      "body_sha256": "7ec34079ea4b33df62f69cb51957126ee37dc4772f57bb0e80896d4b5f34cb55",
+      "accepted": false,
+      "sites": [
+        "0x80104724"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
         "state_utility"
       ]
     },
@@ -906,6 +924,7 @@
       },
       "other_unaccepted_direct_game_calls": [
         "func_80103D28",
+        "func_80104704",
         "func_80104B14",
         "race_position_update",
         "state_utility"
@@ -993,7 +1012,7 @@
       "start": "0x80107AF4",
       "bytes": 1000,
       "body_sha256": "b15859b3659e176387300f284ec5854d3a3805a044a90451ff132df1f13622bf",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80107BCC",
         "0x80107BFC",
@@ -1059,7 +1078,7 @@
       "start": "0x80108AB0",
       "bytes": 760,
       "body_sha256": "6fd1e202ddda9cf171d89702d30617080135529d0e41ba1533b927f697e8fa3b",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x80108C14",
         "0x80108C50"
@@ -1142,7 +1161,7 @@
       "start": "0x8010B5D0",
       "bytes": 556,
       "body_sha256": "489afb44bae48695fd9b724fd5a10858664849889773455ddd098dfc52267060",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x8010B638"
       ],

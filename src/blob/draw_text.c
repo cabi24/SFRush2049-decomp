@@ -50,7 +50,7 @@ typedef struct Entry {
 } Entry;
 
 extern TrackTimes D_80150F88[12];
-extern Entry *D_80151690[12][3][5];
+extern Entry *gTotalNames[12][3][5];
 
 void draw_text(Entry *entry)
 {
@@ -73,7 +73,7 @@ void draw_text(Entry *entry)
             src = data->tracks[i].times[j];
             l = 0;
             times = D_80150F88[i].times[j];
-            owners = D_80151690[i][j];
+            owners = gTotalNames[i][j];
             for (k = 0; k < 5; k++) {
                 if (0.0f < src[l]) {
                     if (0.0f == times[k] || src[l] < times[k]) {

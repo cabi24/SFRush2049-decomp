@@ -80,7 +80,7 @@ typedef struct {
 extern Car D_80152818[];
 extern Model D_8014A250[];
 extern s8 D_80146111;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s32 D_8014A110;
 extern s8 D_8015F734;
 extern Pos D_80115AE8[][4];
@@ -108,7 +108,7 @@ s32 func_80106D94(Blit *blt) {
     if (D_80146111) {
         dist = dist / 0.6f;
     }
-    if (!(slot < D_80151AD0) || D_8014A110 == 5) {
+    if (!(slot < gNumWindows) || D_8014A110 == 5) {
         blt->AnimDTA = 0;
         if (blt->Hide != 1) {
             blt->Hide = 1;
@@ -132,8 +132,8 @@ s32 func_80106D94(Blit *blt) {
     }
     switch (digit) {
     case 0:
-        blt->X = D_80115AE8[D_80151AD0 - 1][slot].x - HW * 2;
-        blt->Y = D_80115AE8[D_80151AD0 - 1][slot].y;
+        blt->X = D_80115AE8[gNumWindows - 1][slot].x - HW * 2;
+        blt->Y = D_80115AE8[gNumWindows - 1][slot].y;
         blt->Left = 0;
         blt->Top = ((s32) (dist / 528000.0f) % 10) * HW;
         if ((s32) (dist / 52800.0f) % 10 == 9 && (s32) (dist / 5280.0f) % 10 == 9 && itenths % 10 == 9) {
@@ -141,8 +141,8 @@ s32 func_80106D94(Blit *blt) {
         }
         break;
     case 1:
-        blt->X = D_80115AE8[D_80151AD0 - 1][slot].x - HW;
-        blt->Y = D_80115AE8[D_80151AD0 - 1][slot].y;
+        blt->X = D_80115AE8[gNumWindows - 1][slot].x - HW;
+        blt->Y = D_80115AE8[gNumWindows - 1][slot].y;
         blt->Left = 0;
         blt->Top = ((s32) (dist / 52800.0f) % 10) * HW;
         if ((s32) (dist / 5280.0f) % 10 == 9 && itenths % 10 == 9) {
@@ -150,8 +150,8 @@ s32 func_80106D94(Blit *blt) {
         }
         break;
     case 2:
-        blt->X = D_80115AE8[D_80151AD0 - 1][slot].x;
-        blt->Y = D_80115AE8[D_80151AD0 - 1][slot].y;
+        blt->X = D_80115AE8[gNumWindows - 1][slot].x;
+        blt->Y = D_80115AE8[gNumWindows - 1][slot].y;
         blt->Left = 0;
         blt->Top = ((s32) (dist / 5280.0f) % 10) * HW;
         if (itenths % 10 == 9) {
@@ -159,8 +159,8 @@ s32 func_80106D94(Blit *blt) {
         }
         break;
     case 3:
-        blt->X = D_80115AE8[D_80151AD0 - 1][slot].x + HW;
-        blt->Y = D_80115AE8[D_80151AD0 - 1][slot].y;
+        blt->X = D_80115AE8[gNumWindows - 1][slot].x + HW;
+        blt->Y = D_80115AE8[gNumWindows - 1][slot].y;
         blt->Left = HW;
         blt->Top = HW * (itenths % 10 + tenths - itenths);
         break;

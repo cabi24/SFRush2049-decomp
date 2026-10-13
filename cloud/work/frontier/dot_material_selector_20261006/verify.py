@@ -207,7 +207,7 @@ def verify(work):
         directory=work/opt;directory.mkdir()
         obj=directory/'candidate.o';score.compile_single(SOURCE,FLAGS.replace('O2',opt),obj)
         result[opt],body=inspect(obj,FN,directory)
-        assert result[opt]['relocations']==[dict(offset=0x18,type=5,symbol='D_801161F4'),dict(offset=0x24,type=6,symbol='D_801161F4')]
+        assert result[opt]['relocations']==[dict(offset=0x18,type=5,symbol='gRomObjDefPtrs'),dict(offset=0x24,type=6,symbol='gRomObjDefPtrs')]
         data,sections,syms=elf(obj);text=sections[score._text_index(sections)]
         assert text['size']==224 and data[text['off']+216:text['off']+224]==bytes(8)
     result['zero_alignment_bytes_outside_function']=8

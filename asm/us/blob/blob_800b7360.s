@@ -4737,9 +4737,9 @@ camera_lerp_position:
     .word 0x03E00008
     .word 0x27BD0018
 
-.section .text.func_800BB9B0, "ax", @progbits
-.globl func_800BB9B0
-func_800BB9B0:
+.section .text.LoadTrack, "ax", @progbits
+.globl LoadTrack
+LoadTrack:
     .word 0x3C098014
     .word 0x25293A10
     .word 0x812E0004

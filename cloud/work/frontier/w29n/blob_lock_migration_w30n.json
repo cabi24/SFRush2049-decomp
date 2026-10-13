@@ -1,0 +1,1084 @@
+{
+ "map": {
+  "game_results_input": "animControls",
+  "func_800BB9B0": "LoadTrack",
+  "D_80151690": "gTotalNames",
+  "D_801161F4": "gRomObjDefPtrs",
+  "D_80151AE8": "gTexDefPtrs",
+  "D_80138670": "gPalDefPtrs",
+  "D_80151AD0": "gNumWindows",
+  "D_80152032": "gCountDown",
+  "D_80150B70": "gCamera",
+  "D_80140BDC": "gNumModels"
+ },
+ "base": "HEAD",
+ "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+ "bodies": 1050,
+ "rekeyed": [
+  "game_results_input -> animControls"
+ ],
+ "entries": [
+  {
+   "kind": "single",
+   "name": "Effects_UpdateEmitters",
+   "old_sha256": "11aba2a2e741dedeccc1f3fd91b16d63dfcedbbad47616e70fdde2c75a5cd4c6",
+   "new_sha256": "f98237ee52023e2347d3a8291d2ae648f41db4cb6dfb033311071009a646bb93",
+   "changed_files": [
+    "src/blob/Effects_UpdateEmitters.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "Effects_UpdateEmitters"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_billboard_render",
+   "old_sha256": "fe182310a635559fb83da0deb5e589889c72e8979e4d73bd5cefd42bf5d31f5f",
+   "new_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+   "changed_files": [
+    "src/blob/groups/frontier_billboard_render/func_800F207C.c",
+    "src/blob/groups/frontier_billboard_render/func_800F1210.c",
+    "src/blob/groups/frontier_billboard_render/func_800F0914.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "FindGhosts",
+    "PrintScores",
+    "SetHighScoreState",
+    "billboard_render",
+    "func_800F1930",
+    "func_800F207C"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_heap_release_a25",
+   "old_sha256": "6891c2c794f43289d54a2d0fdb589547e9c5c279f4a67fa45cfc0229ea52c2f9",
+   "new_sha256": "f346592a6d3a694a57336585e42408c0036ccb0a548a5e9ba2c5f3f275d79a89",
+   "changed_files": [
+    "src/blob/groups/codex_heap_release_a25/func_80096130.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "InitMaxPath",
+    "MP_TargetSpeed",
+    "NextMaxPath",
+    "PrevMaxPath",
+    "assign_default_paths",
+    "audio_effect_process",
+    "audio_reverb_update",
+    "car_angular_velocity_clamp",
+    "car_damage_visual",
+    "func_80091AF0",
+    "func_80091AF8",
+    "func_80096130",
+    "func_800C885C",
+    "func_800C8918",
+    "func_800CB9D0",
+    "menu_item_select",
+    "stat_race_end",
+    "sync_maxpath_to_checkpoint",
+    "synced_model_render",
+    "wheel_params_set"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_particle_knot",
+   "old_sha256": "8e019620c8c461c1946ff7c02b753c6e1b9ed594d3d5d9728e2e54ca8984b150",
+   "new_sha256": "79be8cc64f05f672a72b54092b82e202cb0ae2a2dbdabdf3a903acf8af891a52",
+   "changed_files": [
+    "src/blob/groups/frontier_particle_knot/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "Input_ProcessGameplayPad",
+    "camera_update_c",
+    "func_80099B30",
+    "func_8009C3F8",
+    "func_800BFD8C",
+    "particle_system",
+    "render_display_list",
+    "select_screen_update",
+    "track_collision_wall"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "audio_doppler_full",
+   "old_sha256": "571149f1784cf12ab02c8374daf72fea543c2da5667535f9d4022d1aa6d93c7d",
+   "new_sha256": "bf23dd732fcdec8dad6e487d5e1916764a5dfa027f8f2c6c6914a862c1edb561",
+   "changed_files": [
+    "src/blob/groups/audio_doppler_full/audio_doppler_full.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "ShowCountdown"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "physics_sym",
+   "old_sha256": "71a854ca427aafad4127a8d8a81d9d86f12cb94b29dcb2c7c69bcd0a72dd309d",
+   "new_sha256": "21bade7f2ed2bf629c663f51ea4de13d4aaa73c07e20e6fdda83c089c256bc54",
+   "changed_files": [
+    "src/blob/groups/physics_sym/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "TitlePane",
+    "func_800B55F4",
+    "func_800B5688",
+    "func_800B59E8",
+    "func_800B59F0",
+    "physics_sym"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "animControls",
+   "old_sha256": "935ea8e080efdc71105af7e40046686b88b532bfd7ea20d9da5b66831c249f44",
+   "new_sha256": "cdc53690acdb71e0f62097e26e54da30b6d59a3ef5ebfcf0dcc2dbb8aafe4a97",
+   "changed_files": [
+    "src/blob/animControls.c"
+   ],
+   "moved_from": "src/blob/game_results_input.c",
+   "renamed_members": [
+    "animControls"
+   ],
+   "members": [
+    "animControls"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "credits_scroll_grp",
+   "old_sha256": "b97ac5373496defbc2950ff39bca6d79e9d74833ed72f6b50c04e40402975cfd",
+   "new_sha256": "10b5f80ac53d3adfab30a9802353255d22aba965808f034451ae4d4d32b0d4be",
+   "changed_files": [
+    "src/blob/groups/credits_scroll_grp/gr3.c",
+    "src/blob/groups/credits_scroll_grp/gr3_edc.c",
+    "src/blob/groups/credits_scroll_grp/gr3_8154.c",
+    "src/blob/groups/credits_scroll_grp/gr3_761c.c",
+    "src/blob/groups/credits_scroll_grp/gr3_7af4.c",
+    "src/blob/groups/credits_scroll_grp/gr3_8ab0.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "animElapsedTimerText",
+    "animLapTime",
+    "animPlace",
+    "credits_scroll",
+    "func_80100B8C",
+    "func_80107EDC",
+    "func_80108AB0",
+    "func_8010A53C",
+    "slot_state_setup",
+    "world_trigger_check"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_visual_tire_module_20261002",
+   "old_sha256": "3d8551d9c67151aa613a40b7f4b9438ccdadcf85ee28a222949c393bf19ac1e2",
+   "new_sha256": "befd909c5dd8d817d4a4e16cb3414cde05e2bfb382ec772ff370ebc26b639f5e",
+   "changed_files": [
+    "src/blob/groups/codex_visual_tire_module_20261002/anim_tire_donor.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "anim_state_update",
+    "buffer_swap",
+    "matrix_scale_apply"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "assign_drones",
+   "old_sha256": "dba874abda152ec06575655133a1ad99e0ff0373978fb026c137a91d04e2157d",
+   "new_sha256": "0adc3a28315c727bbaaa6754d1775f177a376dc5ab45deb154de2abcf1777f3d",
+   "changed_files": [
+    "src/blob/assign_drones.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "assign_drones"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "audio_channel_priority",
+   "old_sha256": "1f07c875281249537a25c808f684402c5725f459c6da0640dc77f4b3db07ead1",
+   "new_sha256": "dfaafffd4a9b1eb0f273853592f356a60a82dd9db27c08822e4520ddec785942",
+   "changed_files": [
+    "src/blob/audio_channel_priority.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "audio_channel_priority"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_mode_select",
+   "old_sha256": "5aa83166207008abfa6ec83bd142625a74244260d9d06fd176cc05fcaa55ff69",
+   "new_sha256": "88e0ddf00edf8f859e494ec3c336d8f40f151b44552915d253c5e4fa99cdbdd7",
+   "changed_files": [
+    "src/blob/groups/frontier_mode_select/mode.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "best_times_display",
+    "func_800D5E64",
+    "func_800DED78",
+    "func_800DEF60",
+    "func_800DFBA0",
+    "func_800E0048",
+    "func_800E0050",
+    "func_800E05F0",
+    "mode_select_handler",
+    "mode_select_input"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "camera_reset",
+   "old_sha256": "2513073ba17e8a73d61c3d5d93213ec1bad8f802c3f36b4406b2c1171f6afaba",
+   "new_sha256": "970a9442ce2aad4e0b88467ea6927ca99995fa93bd40f827b82ac664565b7d8f",
+   "changed_files": [
+    "src/blob/camera_reset.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "camera_reset"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "camera_shake_start",
+   "old_sha256": "5d7633a6feadb9f00c8856bb09e5b4ad41238b95719f818103eaf0b4247d0082",
+   "new_sha256": "aa79c5e2a765bf8b07e6b5f3bf12825bf32ad7341efbfb50b06e505ed964a956",
+   "changed_files": [
+    "src/blob/camera_shake_start.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "camera_shake_start"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_sound_channel_extra",
+   "old_sha256": "cdbf12741c347b7940ccaa3a1d5beef648fe924d9a26148561d02450cd929e82",
+   "new_sha256": "357690d36da7fe7979c48e05ef7a76d91ff07088d2111945c9f24f86aa84635f",
+   "changed_files": [
+    "src/blob/groups/codex_sound_channel_extra/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "camera_shake_update",
+    "func_800F68A4",
+    "object_byte9_set",
+    "object_manager_update"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "car_gear_shift",
+   "old_sha256": "28b49d1ae7307b8f08d337263eb42153dd9ea0688544f1fdcb17754833517094",
+   "new_sha256": "7fb61c5c775d87738aa26a22041d08dfb017ee48abc38baa97e934fd511fb668",
+   "changed_files": [
+    "src/blob/car_gear_shift.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "car_gear_shift"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "collision_sound_play",
+   "old_sha256": "63b62b4b9ede11a3b384c71211ea5e0f92346b8aafa123318a7bdbbf655da3ee",
+   "new_sha256": "df0445a28cc9efc2402bab22984ae523afc3e1931eec575b731dc5c44f05367f",
+   "changed_files": [
+    "src/blob/collision_sound_play.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "collision_sound_play"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_skid_marks",
+   "old_sha256": "2b128dff3ae217112d63086118d616016e054951a26c46cca2fbd488a1647035",
+   "new_sha256": "9565f2e5c15112cfffd68bbda04874a16649aa261bf65befc2dc8f38d26bc569",
+   "changed_files": [
+    "src/blob/groups/frontier_skid_marks/group.c",
+    "src/blob/groups/frontier_skid_marks/func_8008C074.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "cpak_init",
+    "func_800AF8C0",
+    "save_validate"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_level_objects",
+   "old_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
+   "new_sha256": "8136a22868b8d79c62550aeb9eff2e7699ce61a531f9652c78a8cab7fadfa08d",
+   "changed_files": [
+    "src/blob/groups/frontier_level_objects/group.c",
+    "src/blob/groups/frontier_level_objects/differential_output.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "differential_output",
+    "engine_sound_update",
+    "engine_torque_calc",
+    "func_800AB7D0",
+    "func_800AC660",
+    "transmission_ratio_get"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "slot_sound",
+   "old_sha256": "40000fa45ee8063deb71056948ce45b2cb1f8f99b83ed1ede6d9d4e8a457fae1",
+   "new_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+   "changed_files": [
+    "src/blob/groups/slot_sound/group.c",
+    "src/blob/groups/slot_sound/entity_render_mode.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "display_list_alloc",
+    "entity_render_mode",
+    "func_80096288",
+    "func_800A4E58",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "player_state_get",
+    "slot_deactivate",
+    "slot_value_get",
+    "sound_update_channel"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "draw_text",
+   "old_sha256": "75321bad52c59298f823d1f0a7136e341ce5fe026bb711064209feac4dd0b523",
+   "new_sha256": "49650d807e093a454dd516c497740c19a3e52d33aafd99895c5830783570ad82",
+   "changed_files": [
+    "src/blob/draw_text.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "draw_text"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_entity_spawn_init",
+   "old_sha256": "64ace8e7c71c73742cce88bba86f0aa26015cec46c864922e40454fb8b8448f2",
+   "new_sha256": "a692ac09b2e3a18068eda96927ca69a31bee49dcb7e0b7939fc27251489396b9",
+   "changed_files": [
+    "src/blob/groups/frontier_entity_spawn_init/entity_spawn_init.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "entity_spawn_init"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8008B000",
+   "old_sha256": "ca02fd63b90e298f1de8dbb406931123cbbdfc9f16f4946cb01847ce65cec505",
+   "new_sha256": "e6f7ddaf4327f40e5ab8b744881bf7f16b17218aa3aff7a0c87d3516f3cf3534",
+   "changed_files": [
+    "src/blob/func_8008B000.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8008B000"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8008B3C8",
+   "old_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+   "new_sha256": "00ecb6740d68b52a86ce5efe0855f225bb523477b3c3155a336680d15211186a",
+   "changed_files": [
+    "src/blob/func_8008B3C8.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8008B3C8"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "codex_vertices_b88",
+   "old_sha256": "eadba88e29ff99d7d9b55a72473be81c8752342b049b6fbc4ea038744c5bb27e",
+   "new_sha256": "b1b43eb8a5214426d52982c8292405641fbb7976699037d3bfb1f5af11885d7b",
+   "changed_files": [
+    "src/blob/groups/codex_vertices_b88/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8008C074"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "audio_frame_sync",
+   "old_sha256": "9f2e1176b9807274f1c4aca5694c7f71fd7a97a9385853492f2847a4f718ce2e",
+   "new_sha256": "db8066764d89c915075e01632d3d959898dfd261ca9eafb251662e26253c7965",
+   "changed_files": [
+    "src/blob/groups/audio_frame_sync/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800972C4"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8009D45C",
+   "old_sha256": "c845d72b7008c597789f548fad345717378b48111f0bcde1f3d0ca48d666e3dd",
+   "new_sha256": "3063c8a8168a988cd7101d9ab1254eb1ce54d9ff9555962234824bfe06147672",
+   "changed_files": [
+    "src/blob/func_8009D45C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8009D45C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8009D708",
+   "old_sha256": "db4509c7b20cf7e2525ff6f468f92f83142202f040c71292fd34d9c595087aa5",
+   "new_sha256": "f626e0a928fe5ea0975bd625634068367edd5d9b2b26256cfc11d25af9c49ee5",
+   "changed_files": [
+    "src/blob/func_8009D708.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8009D708"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8009D99C",
+   "old_sha256": "41031b815f6dbcf1876441c6592c464d608ef2d37b98efef779324d8ab8f0cbf",
+   "new_sha256": "683faa2b1337713f041e2832ba139fd3db228855b708bec2883ba7e88d44c0f0",
+   "changed_files": [
+    "src/blob/func_8009D99C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8009D99C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800ABB58",
+   "old_sha256": "8e5863f9abe288979081390658cc17d4cedf086acab5d25582b9350b3161084a",
+   "new_sha256": "d207aa2cf78a92627558672d3b7e6e4eb2e4712b23e599c1b198d17406cf4705",
+   "changed_files": [
+    "src/blob/func_800ABB58.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800ABB58"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800B24EC",
+   "old_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b",
+   "new_sha256": "1dfaf9c9e2f9a4f30ae3bd23aeec1c72e8ff9971008edcca2a52bf9f6f4d7738",
+   "changed_files": [
+    "src/blob/func_800B24EC.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800B24EC"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800B90F8",
+   "old_sha256": "e6dfeddedfe5e8a6f63fd379aa367e1ce44b7cbccc29d55ff5a6ff41060ca9c4",
+   "new_sha256": "abcf486746f9ac87a63ef1223279f30cda5a82322ed0b663a4464ad2ec441af9",
+   "changed_files": [
+    "src/blob/func_800B90F8.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800B90F8"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800C9480",
+   "old_sha256": "36644a6bdcec1edc8da5e49267cba0e3e3cc5575b1d90c20140eebbafd90ddec",
+   "new_sha256": "6d1473f5174088d13d92408fbc66ead2f5846bc209a4c823ba9899c1005cc176",
+   "changed_files": [
+    "src/blob/func_800C9480.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800C9480"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_800EA3F4",
+   "old_sha256": "793f76a6abc4f3575ecd47428f3ee2796907da8aed8cfc6e0f3475e0df8f4112",
+   "new_sha256": "76dbfc160da460a9e78ebb2a869a99ca6e302c591ad89c167109a984328e9f7a",
+   "changed_files": [
+    "src/blob/groups/func_800EA3F4/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800CFDEC",
+    "func_800E8CB8",
+    "func_800EA3F4"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "audio_options_menu",
+   "old_sha256": "30814e562d2346cbf23cf58c1ec3ac1130aa90fc0c198d74e24087b04743d8f9",
+   "new_sha256": "b2e9be5fae489b5bb5ad56e6a5a01417d9e536af1368c83d419aeb8ce9f2e6fd",
+   "changed_files": [
+    "src/blob/groups/audio_options_menu/func_800D7634.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800D690C",
+    "func_800D6914",
+    "func_800D7634"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800E8D50",
+   "old_sha256": "58ad8601fa1f05e5c79e476c39119b63e2fef818cdbfb77bbaaea8ca283a4ca0",
+   "new_sha256": "aed933fc251191a0d2dbf7c4bf1201e2c9b963f200a42d803aca644dd53a2781",
+   "changed_files": [
+    "src/blob/func_800E8D50.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800E8D50"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_800E92C8",
+   "old_sha256": "ba12aa22cbdfa1ee2efed9cc36a69754792072e051260defac9fe13cf11ef717",
+   "new_sha256": "f1168e31d85abd1fc0e176514533d88a2771cf2166dba510c37f0447b8db4f86",
+   "changed_files": [
+    "src/blob/groups/func_800E92C8/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800E92C8",
+    "func_800EA108",
+    "func_800EA2DC"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_steady_camera",
+   "old_sha256": "9e89d84e75e975e82d5d433901fc0b7342447ca36d4a424274415e1a5f2d1022",
+   "new_sha256": "642f5fb5ada718180ee5258861e872db786908760127ffb63c586d7729069c56",
+   "changed_files": [
+    "src/blob/groups/frontier_steady_camera/group.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800E95DC"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800EB028",
+   "old_sha256": "3bbc31df15dcad7dfaae8d32871ddf1605c6e60ef862916f866f681cf0532625",
+   "new_sha256": "d3e4cda3d47b8bea8ad2267671ec39b77a3fb08c44a464c620405b57550373b9",
+   "changed_files": [
+    "src/blob/func_800EB028.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800EB028"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800EB90C",
+   "old_sha256": "3aa1e84ddfe24f7aff8ab032c398ea25c1a4891483ade3dca565f333d47befd1",
+   "new_sha256": "749cae8976cfc3ca052fdd2ff6de6d662402b054163dc63fb4c141bde2f5a56b",
+   "changed_files": [
+    "src/blob/func_800EB90C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800EB90C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800EF5B0",
+   "old_sha256": "b67eb68eed2d09822d6e94505261cd3ee6ba96751addf74a464d85e982fe4016",
+   "new_sha256": "462ed5b19c4bb632310c73d1f9fe31c4f2af9589b03ce4c96f42ee0a87990027",
+   "changed_files": [
+    "src/blob/func_800EF5B0.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800EF5B0"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800EF62C",
+   "old_sha256": "56ee1fc5c7ad608618a28f43b1667729910654060348fb4f6b10e1fc5c9f7312",
+   "new_sha256": "01a4db332e62bc1159e1e6d883aa263e46051064e68d8af85698cecef629cb9b",
+   "changed_files": [
+    "src/blob/func_800EF62C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800EF62C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800F1D04",
+   "old_sha256": "4491651fe5d5fa404556cbcd75578e81aaa87b1105b92b896cf94e8f0b22368f",
+   "new_sha256": "859637b2fc2d5139fd8ef9b724e0439afb9b7f9e99b523f8cf16aaf72fb72f78",
+   "changed_files": [
+    "src/blob/func_800F1D04.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800F1D04"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800F56E0",
+   "old_sha256": "2a2e3ea9b0a67ac3d61515225d2dc123c074731b0808b1f3b466c871d770d9ae",
+   "new_sha256": "8d122329138acdd14b4e17ff5a12d28d7ac746278063d9fe5b616b0423c91968",
+   "changed_files": [
+    "src/blob/func_800F56E0.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800F56E0"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800FBF2C",
+   "old_sha256": "de1672198a1dbf210265dcc5b8f3f85f797fe3a36ea37bb69c87ce2a6fb658cc",
+   "new_sha256": "17e1bbbe0273f93bf209a0248c986b80bd705c863b39cf5dfe169f5a4d05471a",
+   "changed_files": [
+    "src/blob/func_800FBF2C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800FBF2C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_800FC9F8",
+   "old_sha256": "0d9b5b0cda98c0214e31414b759c0c5b904794fa44f61e536a7bbd2159a1e105",
+   "new_sha256": "0ddcbef65eb6de53fa22daa15344540ff0bcbc82b184f3ac342385e1b2e33e01",
+   "changed_files": [
+    "src/blob/func_800FC9F8.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_800FC9F8"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80105DA8",
+   "old_sha256": "03fcd707e29756959d7847dd735def9b2b043e33e4225a37cd5f2c1fccb7ecd8",
+   "new_sha256": "6685e1941fbde812e8213cf8191ed9f2b48dc6fb2ae1910037e833333bf7f03b",
+   "changed_files": [
+    "src/blob/func_80105DA8.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80105DA8"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_80106B3C",
+   "old_sha256": "220b80f42a8a423b8fdc8044cc4d6f4ab1f05cca16a11ee9cc11cdc5f740a180",
+   "new_sha256": "afce83af02acb3b490f03005220003fd0b4fc73d55f78559ac22ac992ad4cf91",
+   "changed_files": [
+    "src/blob/groups/func_80106B3C/f6b3c.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80106B3C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80106D94",
+   "old_sha256": "9ecc3205284343153e509e964a81bbad52d90ac999d06b761bb735091f855036",
+   "new_sha256": "199a344af74ca4386a1602a115773fe6423847dc89ca9f5711f8188991a980a4",
+   "changed_files": [
+    "src/blob/func_80106D94.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80106D94"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80108DA8",
+   "old_sha256": "0fe855989e6c8f0276a643dac99c695c7d4822b6788bf906be3239ff9b3e281a",
+   "new_sha256": "f6153f5be677b74052a37260e4de1009038a05c23c39cb3170d1e30d8e110691",
+   "changed_files": [
+    "src/blob/func_80108DA8.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80108DA8"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80108F40",
+   "old_sha256": "be37d4babc6bd8fb1d979b0a35cf001e9890f349ed78ea817e435cf465e4d0b3",
+   "new_sha256": "4831cca562a3a7a94b771e95498c78612fe72ee5be507a9368ea481edc5d9c51",
+   "changed_files": [
+    "src/blob/func_80108F40.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80108F40"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80109468",
+   "old_sha256": "48a33266b99b69fb67c73ff5c51508ce3084db298303797cf5eda74253c8abe3",
+   "new_sha256": "cca7237b9af3ffef622eb3f79fdc3b36fa0d61e71cfa32f89f50c9660f47a810",
+   "changed_files": [
+    "src/blob/func_80109468.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80109468"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_80109A60",
+   "old_sha256": "8ba6770cd139f7895941bc29d884565b880d0d3f43177f27f86138902945b43e",
+   "new_sha256": "1f3c0ee0bff53ff45961b9eb8a656db2c949ad52e7ea10f4f88adc4c2c9ff74c",
+   "changed_files": [
+    "src/blob/func_80109A60.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_80109A60"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8010D85C",
+   "old_sha256": "8715be8766354e18913d03bd59327e816429bd020540eb2ccaddd710179ac137",
+   "new_sha256": "127085fd6ffb644cef0a600f962ecdce857d0290f66db5bdf4b454152b1faa6a",
+   "changed_files": [
+    "src/blob/func_8010D85C.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8010D85C"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "func_8010E0FC",
+   "old_sha256": "e67fa19fd03d74829d2f03d765a4b3c03a7dfb89a9e18c7edf5d0565a58163b3",
+   "new_sha256": "240f39869e4490d467013100fbe2624a02906e4cec3d5e33d8430794a18a7e3c",
+   "changed_files": [
+    "src/blob/func_8010E0FC.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "func_8010E0FC"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "gfx_frame_begin",
+   "old_sha256": "8bc7ad86f7fe343213dd318dc5946235890eb48056cf46bbe4d2edc756db80ea",
+   "new_sha256": "94cefe2885dacfe10296a1c48e4e18238502954f0c9a12dac1486ee17c89f8fe",
+   "changed_files": [
+    "src/blob/gfx_frame_begin.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "gfx_frame_begin"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "main_menu_render",
+   "old_sha256": "3d84077801ece3b08ce2fbdc47525bd554ee5682748f5226bc85c906af782a04",
+   "new_sha256": "08962d5f305094ee490b3f89382b8f80d25f23dc725359d0a029a1c31b78eeb0",
+   "changed_files": [
+    "src/blob/main_menu_render.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "main_menu_render"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "particle_position_set",
+   "old_sha256": "f5a61824491401958a3245a21b26fdf85893357b81dc4d7290e27c44f3dd0af0",
+   "new_sha256": "99b7a2676d82d5d5fda4d3fb8d14b031ac6ea138026deeb48163e9c93972032a",
+   "changed_files": [
+    "src/blob/particle_position_set.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "particle_position_set"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "particles_spawn_emitter",
+   "old_sha256": "a54afb87c9834c505f3f4331d2a36544062199a96901b00525a18c4a895ea12c",
+   "new_sha256": "48bf03641c4099645de1d826d334cdf6a88472f8d20cd7dd4fa996d34c67486f",
+   "changed_files": [
+    "src/blob/particles_spawn_emitter.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "particles_spawn_emitter"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "physics_collision_test",
+   "old_sha256": "59e7f46bb2b65f8e044051e6d3727ef7d5f7520a97d0dc7c7b668f8f8e84ad6f",
+   "new_sha256": "d6e8f13f2140ce383c5565469d1e661e43ceab9997e10c6632773c035365b683",
+   "changed_files": [
+    "src/blob/physics_collision_test.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "physics_collision_test"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "player_flag_clear_process",
+   "old_sha256": "4f7c7ba2fd9a3b5bb757faa28c1e2f3194f75e9fc8d12dd8d36f9f40258d7212",
+   "new_sha256": "9de0919331a737fd181c09d0dff85c4c4b3eb51589702c5876c8cb1bb00ef1ab",
+   "changed_files": [
+    "src/blob/player_flag_clear_process.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "player_flag_clear_process"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "records_screen",
+   "old_sha256": "767cfe0089bf01325766c73c2d0ce709a423fab8980ad0407ade65ec626c30c6",
+   "new_sha256": "82a5c08cfdd6710ce9a1d6bab1181a2f856526095829722c6e15ea199fe44798",
+   "changed_files": [
+    "src/blob/records_screen.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "records_screen"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "render_post_process",
+   "old_sha256": "80b2d67f479e048d00941f121b1c636e5c746eda990d7b626d7c4e4fd1488cc6",
+   "new_sha256": "1f6a6c50fc5a3480b3237e3a01b869b28723a23737401bd1c242b8b33ff48b82",
+   "changed_files": [
+    "src/blob/render_post_process.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "render_post_process"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "save_settings",
+   "old_sha256": "4eec0d469d24f67727b41a0d1283a5607362d9979ce05e5d9258a1e86eedc4dd",
+   "new_sha256": "59a1940a901b1072ec1b8eeedcacbc45da8c057e323c6814f3f4da3c1d3cb964",
+   "changed_files": [
+    "src/blob/save_settings.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "save_settings"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "sfx_position_3d",
+   "old_sha256": "56f65a3c77e18911f9e7ee170ae6d45a8d6e537bd5072d9580b1a69747f9c0e1",
+   "new_sha256": "673649cb916111798f20f4c864b8f0659dd22d28d719849ec6056050c5ab4a3a",
+   "changed_files": [
+    "src/blob/sfx_position_3d.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "sfx_position_3d"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "sfx_stop",
+   "old_sha256": "97076af0d7a7f1e6be6c2fdde2b76992fb0bb97c64f9acc0b130a8cf3910cbe9",
+   "new_sha256": "55ad3e916e344d7eb39caa3a5d1f54382ba797eb9c504b7fb4fdf719c3e9b7c2",
+   "changed_files": [
+    "src/blob/sfx_stop.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "sfx_stop"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "sound_bank_load",
+   "old_sha256": "fcfac5f58fec50f70a525b995a451d585e31850f583717457023428cf631a318",
+   "new_sha256": "da2032535bc229a65cb2ab15bb5dd458b79360690df0b8bc5e855781e8f64400",
+   "changed_files": [
+    "src/blob/sound_bank_load.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "sound_bank_load"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "string_copy_format",
+   "old_sha256": "39da5493aa21715ffaf036d8479f446fce60f24f2042dd1501a7b101cbed1e16",
+   "new_sha256": "d35af7dc8812e800dde65d9905de5474e502b47b5321bb63267aba03e4cdf12c",
+   "changed_files": [
+    "src/blob/string_copy_format.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "string_copy_format"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "tire_sound_update",
+   "old_sha256": "cff94f0f3b0b46df15b818da510e1808ad7efb3a4fd0f77951016462176afc6b",
+   "new_sha256": "16057bf04e747cfde019956008b6cee7e5b8549bbcc7b2c88b8ea266489a2402",
+   "changed_files": [
+    "src/blob/tire_sound_update.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [],
+   "members": [
+    "tire_sound_update"
+   ]
+  }
+ ]
+}

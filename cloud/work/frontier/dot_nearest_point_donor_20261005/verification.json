@@ -217,7 +217,7 @@
   "function": "func_800D2C10",
   "input_files": {
     "asm/us/blob/SHA256SUMS": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
-    "asm/us/blob/symbols.json": "2152d6ca3a2f3d6611fc433de64120308e5e0f82fe513478550a87750300676e",
+    "asm/us/blob/symbols.json": "13c3849fe076dee7fa07a5d8a829cb5a5bba3bd8c80def12dac98e83afd6b981",
     "cloud/work/near-miss/func_800D2C10/base.c": "60f73ac85796669d1323bd90ee5b720727d6166dd5b134d439a60084febe0c5f",
     "cloud/work/near_miss_B6/func_800D2C10_best.c": "de65e2a9a9540be2d7361ad9de148e27bfe6e0c72461b41ac6d4b02e5d06edda",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
