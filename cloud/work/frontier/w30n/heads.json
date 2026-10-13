@@ -1,0 +1,14 @@
+{
+ "note": "w30n: game function heads registered by `closure run` (refresh-game-context skill) on a copy of the Conveyor DB, and the inventory rows its suffix rule retired (extent_conflict:<head>). Proofs: cloud/work/frontier/w30n/RESULTS.md. Read by w30n/tools/repin_heads.py and the w29n rebind tools to undo the registration when they prove a re-pin.",
+ "registered": [
+  {
+   "name": "func_80104704",
+   "vram": "0x80104704",
+   "words": 260,
+   "discovered_by": "jal at 0x80105730 in func_80105480",
+   "retires": [
+    {"name": "highscore_entry_anim", "vram": "0x80104A58", "words": 47}
+   ]
+  }
+ ]
+}

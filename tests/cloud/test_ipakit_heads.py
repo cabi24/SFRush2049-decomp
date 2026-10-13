@@ -28,7 +28,7 @@ class HeadTests(unittest.TestCase):
         self.assertEqual(bad, [])
 
     def test_remaining_heads_match_current_audit(self):
-        remaining = {0x80104704}
+        remaining = set()   # w30n registered the last one, func_80104704 (cloud/work/frontier/w30n/heads.json)
         self.assertEqual(set(self.rows), remaining)
         self.assertTrue(all(not r['registered'] for r in self.rows.values()))
 
@@ -48,7 +48,7 @@ class HeadTests(unittest.TestCase):
                 # (w29n: cloud/work/frontier/w29n/renames.json, e.g. func_80108154 = animLapTime)
                 name = 'func_%08X' % a
                 self.assertEqual((f.name, len(f.words)), (W29N_RENAMES.get(name, name), words))
-        self.assertEqual(opaque, {0x80104704})
+        self.assertEqual(opaque, set())
 
     def test_six_switch_heads_are_registered_with_proved_extents(self):
         for a, words in ((0x8010221C, 137), (0x80102F30, 890),
@@ -73,16 +73,16 @@ class HeadTests(unittest.TestCase):
         for a, words in ((0x80108154, 224), (0x801084D4, 375), (0x8010BC84, 232)):
             self.assertEqual(len(self.c.by_addr[a].words), words, hex(a))
             self.assertNotIn(a, self.rows)
-        self.assertEqual(self.rows[0x80104704]['words'], 260)
+        # w30n: registered by `closure run`; its old tail label highscore_entry_anim is retired
+        self.assertEqual((self.c.by_addr[0x80104704].name, len(self.c.by_addr[0x80104704].words)),
+                         ('func_80104704', 260))
+        self.assertNotIn(0x80104704, self.rows)
 
     def test_tail_labels_are_not_heads(self):
-        for tail in (0x80108098, 0x801089CC, 0x8010BE7C, 0x80103A08):
+        for tail in (0x80108098, 0x801089CC, 0x8010BE7C, 0x80103A08, 0x80104A58):
             self.assertNotIn(tail, self.rows)
             self.assertIsNotNone(self.c.containing(tail), hex(tail))
-        for tail in (0x80104A58,):
-            self.assertNotIn(tail, self.rows)
-            owners = [a for a in self.rows if a < tail < a + 4 * self.rows[a]['words']]
-            self.assertEqual(len(owners), 1, hex(tail))
+        self.assertEqual(self.c.containing(0x80104A58).name, 'func_80104704')
 
     def test_prologue_does_not_cross_a_jr_ra(self):
         # 0x80103D20 is `jr ra; nop`, the next function's addiu sp is 3 words away: no prologue
@@ -93,10 +93,10 @@ class HeadTests(unittest.TestCase):
         for a, r in self.rows.items():
             self.assertIsNone(self.c.containing(a), hex(a))                   # the head itself is in an opaque run
         inside = {n for r in self.rows.values() for n in r['contains_registered']}
-        self.assertEqual(inside, {'highscore_entry_anim'})                   # the only registered tail label
-        self.assertEqual(self.rows[0x80104704]['contains_registered'], ['highscore_entry_anim'])
+        self.assertEqual(inside, set())     # w30n: highscore_entry_anim, the last registered tail label, is retired
+        self.assertNotIn('highscore_entry_anim', self.c.funcs)
         c2 = load_corpus(discover=False, heads=True)
-        self.assertEqual(c2.funcs['highscore_entry_anim'].tail_of, 'func_80104704')
+        self.assertNotIn('highscore_entry_anim', c2.funcs)
 
     def test_opaque_runs_partition(self):
         runs = self.rep['opaque_runs']
