@@ -481,6 +481,44 @@ slot_state_setup (packaging decision); func_80097164 waits on func_80096CAB's co
 the repo root (`*.elf` is git-ignored by policy) is an owner decision; next GC steps: struct-offset fingerprint channel
 in correlate.py, decode `rock.elf`/`offroad_d.elf` from the same disc.
 
+**Wave 29 outcome (2026-10-13, wave29 from `8c74d8b6`, pushed as `d77aa4ec`; owner decisions: keep the GameCube
+ELF in the repo, delegate sound_loop_set packaging to the lane, issue #378 posted for Astra with 15 confident overlay
+GC pairs):** game 1024 → 1041/1216 (370,952 B, 57.33%), 17 functions, 18,884 B, all installed by the w29i worktree
+lane: the results-table family as the new group `frontier_results_table` (func_80102F30 kept + func_8010221C,
+func_80101904, func_80101D84, func_80102448, func_80100D5C; w29a — the 172 B inline area was two helper shapes mixed,
+rt_font_set 24 B vs rt_font_set_b 16 B; `cell = 60; x = column*cell` renumbers x as retail; `if (!f(item)) continue;`
+replaced w28a's device), func_800F0F44 moved from context to member of frontier_billboard_render (an empty block
+lengthens only the constant-2 web), the camera unit func_800E56F8 + func_800E6AF8 as a new group (w29c; `.alias` after
+an unconditional `b` blocks as1's `lui` hoist — `do {} while (0)` before the `return` fixes it; E6AF8 is arcade
+mdrive.c model_iteration with update_drone_models/update_model inlined), lap_complete via credits_scroll_grp (an
+inlined s32 pair_set storing `.second` before `.first`, as func_80107EDC), func_800EB028 single (REMOVING the
+`Camera *cam` local closed it — a named pointer local can itself be the residual), game_results_input single (w29b; GC
+shows validOption takes a player argument, which is the web holding a3), sound_loop_set added to physics_sym (the
+smallest of seven packagings; an as1 delay-slot tie settled by writing the four helpers on one line), and
+single-member groups func_80106B3C, func_8010BC84, func_8010B7FC, func_8010B9C8 (`x - (w>>1)` is GC `s16
+TB_CenterText` inlined). Static unchanged at 632/667. Recomp Phase 9 (w29r): the -11 host crashes were (a) a host
+bug — IDO -O3 emits no symbol for `static` functions, so their calls bypassed the register-passing shims and clobbered
+s3; `replace.code_ranges` now scans the whole `.text` — and (b) a real draft bug (w28b's func_800C813C read offset +8
+for +0), now reported as a FIRST DIVERGENCE with fault address/PC instead of killing the host; the 16-byte argument
+area a callee writes no longer counts as a divergence; `poke` and `pak from SCRIPT` script features; scripts
+player_reload, ghost_save, battle_end; census 178/192 reached; `draft_check --lane LANE` summary mode. Lane w29n
+(names): 17 functions + 5 data symbols renamed through the tools (wrong labels → control_cell_text/2/3,
+pak_delete_file_retry, gfx_frame_begin, ShowCountdown; GC names PrintScores, SetHighScoreState, animLapTime,
+CreatePlayer, SaveServer, SetupWaveModel, TitlePane, PS_CreateFile/WriteFile/FlushFile/FlushPak, gHighScoreState,
+namePanes, codePane, gDefStartTimes, gWaveInstance) with a proven byte-exact `replay.sh` (lock re-keyed with proofs,
+11 receipts + 3 tests re-pinned, `followups.py --write`); game names live in the Conveyor DB inventory, so the live
+DB must be renamed with `db_rename.py` + `blob_layout derive` at integration; struct-offset channel in correlate.py
+lifts held-out top-1 from 8/22 to 12/22. Unit-EQUAL but blocked: func_800C7EC8 (= GC _ReadPlayer) on
+draw_speedometer (99/426), draw_ui_element (= _CheckAndRepairGhost; t0/t2/t1) on its callers; attract_mode_handler
+EQUAL with control_settings' draft (603/638) as caller — the four plus func_800DCD58/func_800DCCE0 land as one group
+superseding codex_control_settings_a4. EQUIVALENT drafts for wave 30: func_8010E8B4 (3/85), func_8010B5D0 (2/139),
+race_finish/animPlace (40 rows), LoadTrack (40/526, frame exact), SaveServer (133/225), CreatePlayer, func_80100E58
+(534 words), func_80102980 (102), func_8010DCFC (= _StartCone), func_80096CA8 (register permutation only; `idx` must
+outrank `first`), func_800E543C. Traps: a lane's lane-dir files are uncommitted in the main checkout until the
+coordinator commits them — do it before an integration lane copies them; `tests/conveyor/test_dot_substantial_scout.py`
+asserts no scout target is locked — re-record `native_audit.json` and extend the `landed` set when one lands; the two
+other tests in that file fail when the file is run alone (import isolation), pass in the suite.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
