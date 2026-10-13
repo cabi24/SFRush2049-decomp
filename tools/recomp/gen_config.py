@@ -829,6 +829,29 @@ def replacement_hooks(replaced, renamed_builtin=(), repl_functions=()):
                             "contract": ["rush_cap_enter", "rush_cap_exit", "rush_cap_bypass"]})
         decl = ("void rush_repl_count(uint8_t*, int); void rush_cap_enter(uint8_t*, recomp_context*, int); "
                 "void rush_cap_exit(uint8_t*, recomp_context*, int); ")
+        if r.get("unit"):
+            # Phase 8 unit (draft_check --unit): members call each other inside
+            # the replacement chunk without passing their hooks, so on BOTH sides
+            # only the outermost member call on a thread opens a capture window
+            # (rush_unit_enter: 1 when no member call is active on this thread);
+            # nested member calls run without a record.
+            udecl = decl + "int rush_unit_enter(void); void rush_unit_exit(void); void rush_cap_arm(int); "
+            ucontract = ["rush_repl_count", "rush_cap_enter", "rush_cap_exit", "rush_unit_enter", "rush_unit_exit"]
+            if r["mode"] == "capture":
+                text = ("{ int rush_cap_bypass(int); %sif (!rush_cap_bypass(%d)) { rush_repl_count(rdram, %d); "
+                        "if (rush_unit_enter()) { rush_cap_enter(rdram, ctx, %d); %s(rdram, ctx); "
+                        "rush_cap_exit(rdram, ctx, %d); } else { rush_cap_arm(%d); %s(rdram, ctx); } "
+                        "rush_unit_exit(); return; } }" % (udecl, k, k, k, emitted, k, k, emitted))
+                out.append({"func": func, "call": emitted, "before_vram": None, "text": text,
+                            "contract": ucontract + ["rush_cap_bypass", "rush_cap_arm"]})
+            else:
+                text = ("{ %svoid %s(uint8_t*, recomp_context*); rush_repl_count(rdram, %d); "
+                        "if (rush_unit_enter()) { rush_cap_enter(rdram, ctx, %d); %s(rdram, ctx); "
+                        "rush_cap_exit(rdram, ctx, %d); } else { %s(rdram, ctx); } rush_unit_exit(); return; }"
+                        % (udecl, r["call"], k, k, r["call"], k, r["call"]))
+                out.append({"func": func, "call": r["call"], "before_vram": None, "text": text,
+                            "contract": ucontract})
+            continue
         if r["mode"] == "capture":
             text = ("{ int rush_cap_bypass(int); %sif (!rush_cap_bypass(%d)) { "
                     "rush_repl_count(rdram, %d); rush_cap_enter(rdram, ctx, %d); "

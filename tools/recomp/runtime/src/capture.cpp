@@ -275,6 +275,10 @@ extern "C" int rush_cap_bypass(int fn) {
     return 0;
 }
 
+// Unit hooks (Phase 8): a nested member call runs the original without a
+// window; arm its bypass so the re-entry runs the body.
+extern "C" void rush_cap_arm(int fn) { bypass_fn = fn; }
+
 extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
     if (!cap_on) {
         bypass_fn = fn;  // stock capture build without --call-log: still transparent
@@ -396,6 +400,15 @@ extern "C" int rush_cap_bypass(int fn) {
 
 extern "C" void rush_cap_enter(uint8_t*, recomp_context*, int fn) { bypass_fn = fn; }
 
+extern "C" void rush_cap_arm(int fn) { bypass_fn = fn; }
+
 extern "C" void rush_cap_exit(uint8_t*, recomp_context*, int) {}
 
 #endif  // RUSH_CAPTURE
+
+// Unit hooks (Phase 8, draft_check --unit; both RUSH_CAPTURE variants): depth of
+// unit-member calls active on this thread. rush_unit_enter returns 1 for the
+// outermost one (the call that is recorded).
+namespace { thread_local int unit_depth = 0; }
+extern "C" int rush_unit_enter(void) { return unit_depth++ == 0; }
+extern "C" void rush_unit_exit(void) { if (unit_depth > 0) unit_depth--; }

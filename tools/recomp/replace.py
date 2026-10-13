@@ -441,15 +441,32 @@ def repl_name(rid, name):
     return "repl__%s__%s" % (rid, name)
 
 
+def unit_members(entry):
+    """The functions one entry replaces: its "unit" list (Phase 8, draft_check
+    --unit: several functions of one source compiled and linked together as
+    one chunk) or just "function"."""
+    members = list(entry.get("unit") or [entry["function"]])
+    if members[0] != entry["function"]:
+        raise ReplaceError(f"unit {members}: the first member must be the entry's function {entry['function']}")
+    return members
+
+
+def member_id(rid, entry, name):
+    """Record id of one replaced function: the entry id, or <id>__<member> in a unit."""
+    return "%s__%s" % (rid, name) if entry.get("unit") else rid
+
+
 def name_functions(rid, entry, funcs):
     """Recompiler names for the functions one replacement's object defines:
-    the replaced function and anything else it kept (static helpers)."""
+    the replaced function(s) and anything else it kept (static helpers)."""
+    members = unit_members(entry)
     out = []
     for f in funcs:
         out.append(dict(f, recomp_name=repl_name(rid, f["name"]), id=rid,
-                        replaces=f["name"] == entry["function"]))
-    if not any(f["replaces"] for f in out):
-        raise ReplaceError(f"replacement {rid}: the object does not define {entry['function']}")
+                        replaces=f["name"] in members))
+    missing = [m for m in members if not any(f["name"] == m for f in out)]
+    if missing:
+        raise ReplaceError(f"replacement {rid}: the object does not define {', '.join(missing)}")
     return out
 
 
@@ -740,12 +757,25 @@ def capture_entries(selected, repo=REPO):
     for rid, e in selected:
         src = (repo / e["source"]).resolve() if e.get("source") else None
         text = src.read_text(errors="replace") if src and src.is_file() else ""
-        out.append({"id": rid, "function": e["function"], "population": e["population"],
-                    "mode": "capture", "call": None, "source": e.get("source"),
-                    "probe": e.get("mode") == "capture",
-                    "capture": capture_layout(text, e["function"], e.get("prototype"),
-                                                    e.get("capture_args"), e.get("capture_ret", "v0"))})
+        for m in unit_members(e):
+            c = member_capture(e, m)
+            rec = {"id": member_id(rid, e, m), "function": m, "population": e["population"],
+                   "mode": "capture", "call": None, "source": e.get("source"),
+                   "probe": e.get("mode") == "capture",
+                   "capture": capture_layout(text, m, c.get("prototype"), c.get("capture_args"),
+                                             c.get("capture_ret", "v0"))}
+            if e.get("unit"):
+                rec["unit"] = rid
+            out.append(rec)
     return out
+
+
+def member_capture(entry, name):
+    """prototype / capture_args / capture_ret of one member: the entry's own
+    for its function, "unit_capture"[name] for the other unit members."""
+    if name == entry["function"]:
+        return {k: entry[k] for k in ("prototype", "capture_args", "capture_ret") if k in entry}
+    return dict((entry.get("unit_capture") or {}).get(name) or {})
 
 
 # ------------------------------------------------------------------ IPA conventions (Phase 4)
@@ -1095,10 +1125,14 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         undef = undefined_symbols(elf)
         hazards = ipa_hazards(elf, table, functions, images, ipa_detected)
         plan_detected = dict(hazards)
-        if e["function"] in ipa_detected:
-            plan_detected[e["function"]] = ipa_detected[e["function"]]
+        members = unit_members(e)
+        for m in members:
+            if m in ipa_detected:
+                plan_detected[m] = ipa_detected[m]
         allowed = bool(allow_ipa or e.get("allow_ipa"))
         use, ipa_notes = ipa_plan(rid, e, set(undef), ipa_table, plan_detected, allowed)
+        for m in members[1:]:
+            ipa_plan(rid, dict(e, function=m), set(), ipa_table, plan_detected, allowed)
         if hazards:
             how = [("register shims", [n for n in sorted(hazards) if "params" in use.get(n, {})]),
                    ("linked bodies", [n for n in sorted(hazards) if "body" in use.get(n, {})]),
@@ -1128,9 +1162,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             if img is not None and addr is not None and img[0] <= addr <= img[0] + len(img[1]) - 8 and \
                     struct.unpack_from(">II", img[1], addr - img[0]) == (0x03E00008, 0):
                 ipa_notes.append("%s: retail jr-ra stub (an inlined body? add it to ipa_callees.json)" % name)
-        shims = {n: ie for n, ie in use.items() if "params" in ie}
-        inbound = ipa_table.get(e["function"]) if e["function"] in ipa_table and \
-            "params" in ipa_table[e["function"]] else None
+        shims = {n: ie for n, ie in use.items() if "params" in ie and n not in members}
+        inbound = {m: ipa_table[m] for m in members if m in ipa_table and "params" in ipa_table[m]}
         objects.append((rid, dict(e, _text=text, _ipa_notes=ipa_notes, _shims=shims, _inbound=inbound, _ipa=hazards,
                                   _bodies=[n for n, _o, _e in extra]), obj, elf, res, extra))
     # Each object is linked on its own at the next aligned address (no name can
@@ -1162,8 +1195,9 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         script = work / (rid + ".ld")
         script.write_text(render_linker_script(defs, cursor))
         out = work / (rid + ".elf")
-        cmd = [ld, "-m", "elf32btsmip", "--gc-sections", "-e", e["function"], "-u", e["function"],
-               "-T", str(script), "-o", str(out), str(obj)] + [str(o) for _n, o, _e in extra]
+        cmd = [ld, "-m", "elf32btsmip", "--gc-sections", "-e", e["function"]] + \
+            [x for m in unit_members(e) for x in ("-u", m)] + \
+            ["-T", str(script), "-o", str(out), str(obj)] + [str(o) for _n, o, _e in extra]
         proc = run(cmd, capture_output=True, text=True, cwd=str(work))
         if proc.returncode != 0 or not out.is_file():
             raise ReplaceError(f"replacement {rid}: ld.lld failed:\n{(proc.stderr or proc.stdout)[:2000]}")
@@ -1176,40 +1210,54 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             chunks.append(b"\0" * (vram - cursor))
             cursor = vram
         named = name_functions(rid, e, defined_functions(lelf))
+        members = unit_members(e)
+        addrs = address_table(functions, symbols, e["population"])
+        img = (images or {}).get(e["population"])
+
+        def image_word(addr, img=img):
+            if img is None or not img[0] <= addr <= img[0] + len(img[1]) - 4:
+                return None
+            return struct.unpack_from(">I", img[1], addr - img[0])[0]
         # Static binding: the body's function-local statics live at their
         # retail addresses (else a private copy in the image: an escaping
         # address, func_800E7710's SI message, or state shared with an
-        # unreplaced function of the unit would differ).
-        func_obj = next((x for x in elf["symbols"] if x["name"] == e["function"] and x["type"] == 2
-                         and x["section"] == ".text"), None)
-        func_lnk = next((f["vram"] for f in named if f["replaces"]), None)
+        # unreplaced function of the unit would differ). Per member of a unit.
         bound, unbound, patched = {}, [], 0
-        if func_obj is not None and func_lnk is not None:
-            img = (images or {}).get(e["population"])
-
-            def image_word(addr, img=img):
-                if img is None or not img[0] <= addr <= img[0] + len(img[1]) - 4:
-                    return None
-                return struct.unpack_from(">I", img[1], addr - img[0])[0]
-            bound, unbound = static_bindings(elf, e["function"], func_obj,
-                                             address_table(functions, symbols, e["population"]).get(e["function"]),
-                                             image_word, e.get("statics"))
-            raw, patched = apply_static_bindings(raw, vram, func_lnk - func_obj["value"], elf, bound)
+        for m in members:
+            func_obj = next((x for x in elf["symbols"] if x["name"] == m and x["type"] == 2
+                             and x["section"] == ".text"), None)
+            func_lnk = next((f["vram"] for f in named if f["replaces"] and f["name"] == m), None)
+            if func_obj is None or func_lnk is None:
+                continue
+            b, u = static_bindings(elf, m, func_obj, addrs.get(m), image_word,
+                                   e.get("statics") if m == e["function"] else None)
+            raw, n = apply_static_bindings(raw, vram, func_lnk - func_obj["value"], elf,
+                                           {k: v for k, v in b.items() if k not in bound})
+            bound.update(b)
+            unbound += [x for x in u if x not in unbound]
+            patched += n
         # A recursive body calls itself inside the object (jal to its own
         # linked address), which would bypass the entry hook: retarget those
         # jals to the original entry so every call is counted and captured
-        # as in the stock build (model_transform_setup).
-        orig = address_table(functions, symbols, e["population"]).get(e["function"])
-        own = [f["vram"] for f in named if f["replaces"]]
+        # as in the stock build (model_transform_setup). In a unit only each
+        # member's calls to ITSELF are retargeted: calls between members stay
+        # inside the chunk (the unit's own convention); the capture records
+        # only the outermost member call on both sides (gen_config unit hooks).
         # A load into $zero (N64Recomp emits `0 = MEM_W(...)`, which does not
         # compile; gen_config's automatic rule for the retail sections) becomes
         # a nop here too: no architectural effect on RAM.
         raw, zero_loads = nop_zero_loads(raw, vram, [(f["vram"], f["size"]) for f in named])
-        if orig is not None and own:
-            raw, self_calls = retarget_self_calls(raw, vram, own[0], orig,
-                                                  [(f["vram"], f["size"]) for f in named])
-        else:
-            self_calls = 0
+        own = {f["name"]: f["vram"] for f in named if f["replaces"]}
+        self_calls = {}
+        for m in members:
+            orig = addrs.get(m)
+            if orig is not None and m in own:
+                mf = next(f for f in named if f["replaces"] and f["name"] == m)
+                raw, self_calls[m] = retarget_self_calls(raw, vram, own[m], orig, [(mf["vram"], mf["size"])]
+                                                         if e.get("unit") else
+                                                         [(f["vram"], f["size"]) for f in named])
+            else:
+                self_calls[m] = 0
         # IPA shims (Phase 4): appended after the chunk; the body's jal to the
         # retail callee goes to the shim, which calls the callee with its
         # register convention. An inbound shim (the replaced function is an
@@ -1218,7 +1266,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         shim_funcs, shim_calls = [], {}
         raw = raw + b"\0" * (-len(raw) % 16)
         for name, ie in sorted(e["_shims"].items()):
-            target = address_table(functions, symbols, e["population"]).get(name)
+            target = addrs.get(name)
             if target is None:
                 raise ReplaceError(f"replacement {rid}: IPA callee {name} has no address")
             words = ipa_shim(target, ie["prototype"], ie["params"], ie.get("clobbers", ()), "out")
@@ -1227,36 +1275,46 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             raw += b"".join(struct.pack(">I", x) for x in words)
             shim_funcs.append({"name": repl_name(rid, "ipa_out__" + name), "vram": at, "size": 4 * len(words)})
             shim_calls[name] = n
-        call_name = repl_name(rid, e["function"])
-        if e["_inbound"] is not None:
-            ie = e["_inbound"]
-            words = ipa_shim(own[0], ie["prototype"], ie["params"], ie.get("clobbers", ()), "in")
-            at = vram + len(raw)
-            raw += b"".join(struct.pack(">I", x) for x in words)
-            call_name = repl_name(rid, "ipa_in__" + e["function"])
-            shim_funcs.append({"name": call_name, "vram": at, "size": 4 * len(words)})
+        calls = {}
+        for m in members:
+            calls[m] = repl_name(rid, m)
+            if m in e["_inbound"]:
+                ie = e["_inbound"][m]
+                words = ipa_shim(own[m], ie["prototype"], ie["params"], ie.get("clobbers", ()), "in")
+                at = vram + len(raw)
+                raw += b"".join(struct.pack(">I", x) for x in words)
+                calls[m] = repl_name(rid, "ipa_in__" + m)
+                shim_funcs.append({"name": calls[m], "vram": at, "size": 4 * len(words)})
         funcs += [{"name": f["recomp_name"], "vram": f["vram"], "size": f["size"]} for f in named]
         funcs += shim_funcs
-        replaced.append({"id": rid, "function": e["function"], "population": e["population"],
-                         "mode": "ido", "call": call_name, "source": e["source"],
-                         "ipa_shims": {n: c for n, c in sorted(shim_calls.items())},
-                         "ipa_bodies": sorted(e["_bodies"]), "ipa_inbound": e["_inbound"] is not None,
-                         "ipa_notes": e["_ipa_notes"],
-                         "private_data": sorted(private), "self_calls_retargeted": self_calls,
-                         "statics_bound": sorted("%s+0x%X=0x%08X(%s)" % (k[0], k[1], a, how)
-                                                 for k, (a, how) in bound.items()),
-                         "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
-                                                   for k, n in unbound),
-                         "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
-                         "ipa_callees": dict(sorted(e["_ipa"].items())),
-                         "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
-                                                    e.get("capture_args"), e.get("capture_ret", "v0"))})
+        for m in members:
+            c = member_capture(e, m)
+            rec = {"id": member_id(rid, e, m), "function": m, "population": e["population"],
+                   "mode": "ido", "call": calls[m], "source": e["source"],
+                   "ipa_shims": {n: c2 for n, c2 in sorted(shim_calls.items())},
+                   "ipa_bodies": sorted(e["_bodies"]), "ipa_inbound": m in e["_inbound"],
+                   "ipa_notes": e["_ipa_notes"],
+                   "private_data": sorted(private), "self_calls_retargeted": self_calls[m],
+                   "statics_bound": sorted("%s+0x%X=0x%08X(%s)" % (k[0], k[1], a, how)
+                                           for k, (a, how) in bound.items()),
+                   "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
+                                             for k, n in unbound),
+                   "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
+                   "ipa_callees": dict(sorted(e["_ipa"].items())),
+                   "capture": capture_layout(e["_text"], m, c.get("prototype"),
+                                             c.get("capture_args"), c.get("capture_ret", "v0"))}
+            if e.get("unit"):
+                rec["unit"] = rid
+            replaced.append(rec)
         raw = raw + b"\0" * (-len(raw) % 16)
         chunks.append(raw)
         cursor += len(raw)
     if chunks:
         image = {"vram": REPL_VRAM, "bytes": b"".join(chunks)}
-    order = {rid: i for i, (rid, _e) in enumerate(selected)}
-    replaced.sort(key=lambda r: order[r["id"]])
+    order = {}
+    for i, (rid, e) in enumerate(selected):
+        for j, m in enumerate(unit_members(e) if e.get("mode") != "capture" else [e["function"]]):
+            order[member_id(rid, e, m) if e.get("mode") != "capture" else rid] = (i, j)
+    replaced.sort(key=lambda r: order.get(r["id"], (len(order), 0)))
     return {"image": image, "functions": sorted(funcs, key=lambda f: f["vram"]), "replaced": replaced,
             "native": native}

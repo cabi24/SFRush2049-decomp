@@ -204,6 +204,40 @@ def find_population(name, game_functions=None):
     return "static"
 
 
+def member_params(specs, members, unit):
+    """--params values -> {member: 'p=r,...'}; a unit needs 'MEMBER:' prefixes."""
+    out = {}
+    for spec in specs:
+        if unit:
+            m, sep, rest = spec.partition(":")
+            if not sep or m.strip() not in members:
+                raise DCError(f"--unit --params: {spec!r} must start with one of the members ({', '.join(members)}:)")
+            out[m.strip()] = rest
+        else:
+            if members[0] in out:
+                raise DCError("--params given twice")
+            out[members[0]] = spec
+    return out
+
+
+def census_scripts_for(members, census_dir=CENSUS_DIR):
+    """census_scripts over several functions: scripts ordered by their calls of any member."""
+    if len(members) == 1:
+        return census_scripts(members[0], census_dir)
+    try:
+        doc = json.loads((census_dir / "census.json").read_text())
+    except (OSError, ValueError):
+        return None, False
+    fns = doc.get("functions", {})
+    if not any(m in fns for m in members):
+        return None, False
+    tot = {}
+    for m in members:
+        for sc, n in (fns.get(m) or {}).get("scripts", {}).items():
+            tot[sc] = tot.get(sc, 0) + n
+    return sorted(tot, key=lambda sc: (-tot[sc], sc)), True
+
+
 # ------------------------------------------------------------------ build (incremental, per function)
 
 def _run(cmd, log, cwd=None, env=None):
@@ -328,8 +362,14 @@ def run_script(script, name, cap, repl, run_dir, cap_key, frames=None):
             os.rename(tmp, cache)
         except OSError:
             shutil.rmtree(tmp, ignore_errors=True)       # another run cached it first
-    ncalls = sum(n for k, n in v.get("replaced_calls", {}).items() if k.startswith("draft="))
+    per = {}
+    for k, n in v.get("replaced_calls", {}).items():
+        rid, _, rest = k.partition("=")
+        if rid == "draft" or rid.startswith("draft__"):
+            per[rest.partition(":")[2] or rid] = per.get(rest.partition(":")[2] or rid, 0) + n
+    ncalls = sum(per.values())
     res["calls_of_fn"] = ncalls
+    res["calls_per_member"] = per
     res["captured_calls"] = (v.get("calls") or {}).get("calls")
     calls = v.get("calls") or {}
     if calls.get("verdict") == "DIFFERENT":
@@ -350,10 +390,13 @@ def _fmt_word(x):
     return "%s->%s" % tuple(x) if x else "unchanged"
 
 
-def divergence_lines(res, name):
-    """Human lines for a diverging script (retail vs draft)."""
+def divergence_lines(res, name, members=None):
+    """Human lines for a diverging script (retail vs draft); `members`: a unit."""
     out = []
     c = res.get("first")
+    member = str(c.get("name") or "").split(" ")[0] if c else ""
+    if c and members and member in members:
+        out.append("FIRST DIVERGING MEMBER: %s (unit %s)" % (member, ", ".join(members)))
     if c:
         what = {"args": "arguments differ at entry", "return": "return value differs",
                 "effect": "memory written differs", "sequence": "call sequence differs",
@@ -388,6 +431,120 @@ def divergence_lines(res, name):
             for addr, a, b, where in (fd.get("words") or [])[:16]:
                 out.append("  word %s: retail %s | draft %s  %s" % (addr, a, b, where))
     return out
+
+
+# ------------------------------------------------------------------ cleanup (Phase 8: --gc)
+
+GC_KEEP_TREES = int(os.environ.get("RUSH_DC_KEEP", "12"))      # function build trees kept (most recently used)
+GC_DAYS = float(os.environ.get("RUSH_DC_DAYS", "3"))           # runs / verify / probe / census / inbox kept (days)
+GC_KEEP_RUNS = 5                                               # newest run dirs kept per function regardless of age
+
+
+def _du(path):
+    total = 0
+    for root, _dirs, files in os.walk(path):
+        for f in files:
+            try:
+                total += os.lstat(os.path.join(root, f)).st_size
+            except OSError:
+                pass
+    return total
+
+
+def _tree_used(fn_dir):
+    """Last use of a function build tree: newest mtime of its cap/repl `lock`
+    (build_side opens it for writing on every build)."""
+    ts = [(fn_dir / k / "lock").stat().st_mtime for k in ("cap", "repl") if (fn_dir / k / "lock").is_file()]
+    return max(ts) if ts else fn_dir.stat().st_mtime
+
+
+def _busy(fn_dir):
+    """True when a build holds a tree lock right now."""
+    for k in ("cap", "repl"):
+        lk = fn_dir / k / "lock"
+        if not lk.is_file():
+            continue
+        with open(lk, "a") as fh:
+            try:
+                fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                fcntl.flock(fh, fcntl.LOCK_UN)
+            except OSError:
+                return True
+    return False
+
+
+def gc_plan(dc_home=None, keep=None, days=None, now=None):
+    """[(path, why)] to delete under dc_home. Policy (README "draft_check"
+    cleanup): build trees (dc/trees/<checkout>/<NAME>, ~250 MB each): keep the
+    `keep` most recently used over all checkouts, never one being built; retail
+    log caches (dc/cache/<NAME>): drop a function whose tree is gone, and keep
+    only the newest retail binary key otherwise; run dirs (dc/runs/<NAME>/*):
+    keep the newest GC_KEEP_RUNS per function and any younger than `days`;
+    verify/, probe/, census/ runs and inbox/ drafts older than `days`."""
+    dc_home = Path(dc_home or DC_HOME)
+    keep = GC_KEEP_TREES if keep is None else keep
+    days = GC_DAYS if days is None else days
+    now = time.time() if now is None else now
+    old = now - days * 86400
+    out = []
+    trees = [d for c in sorted((dc_home / "trees").glob("*")) if c.is_dir() for d in sorted(c.iterdir())
+             if d.is_dir()]
+    trees.sort(key=_tree_used, reverse=True)
+    kept_names = set()
+    for i, d in enumerate(trees):
+        if i < keep or _busy(d):
+            kept_names.add(d.name)
+        else:
+            out.append((d, "build tree #%d by last use (keep %d)" % (i + 1, keep)))
+    for d in sorted((dc_home / "cache").glob("*")):
+        if not d.is_dir():
+            continue
+        if d.name not in kept_names:
+            out.append((d, "retail log cache of a collected tree"))
+            continue
+        keys = sorted((k for k in d.iterdir() if k.is_dir()), key=lambda k: k.stat().st_mtime, reverse=True)
+        out += [(k, "retail log cache of an older retail build") for k in keys[1:]]
+    for d in sorted((dc_home / "runs").glob("*")):
+        if not d.is_dir():
+            continue
+        runs = sorted((r for r in d.iterdir() if r.is_dir()), key=lambda r: r.stat().st_mtime, reverse=True)
+        out += [(r, "run dir older than %g days (newest %d kept)" % (days, GC_KEEP_RUNS))
+                for r in runs[GC_KEEP_RUNS:] if r.stat().st_mtime < old]
+    for sub in ("verify", "probe", "census", "inbox"):
+        for d in sorted((dc_home / sub).glob("*")):
+            if sub == "verify" and d.is_dir():
+                cands = [r for r in d.iterdir() if r.is_dir()]
+            else:
+                cands = [d]
+            out += [(r, "%s entry older than %g days" % (sub, days)) for r in cands if r.stat().st_mtime < old]
+    return out
+
+
+def gc_main(args):
+    plan = gc_plan(keep=args.keep_trees, days=args.gc_days)
+    freed = 0
+    for path, why in plan:
+        n = _du(path)
+        freed += n
+        print("  %s %s (%.0f MB): %s" % ("would delete" if args.dry_run else "delete", path, n / 1e6, why))
+        if not args.dry_run:
+            shutil.rmtree(path, ignore_errors=True)
+    left = _du(DC_HOME) if DC_HOME.is_dir() else 0
+    print("draft_check --gc: %d entr%s, %.1f GB %s; %s now %.1f GB" % (
+        len(plan), "y" if len(plan) == 1 else "ies", freed / 1e9, "to free" if args.dry_run else "freed",
+        DC_HOME, left / 1e9))
+    return 0
+
+
+def auto_gc():
+    """After a run: collect when the trees exceed the keep count by 4 (cheap check)."""
+    try:
+        n = sum(1 for c in (DC_HOME / "trees").glob("*") for d in c.iterdir() if d.is_dir())
+        if n > GC_KEEP_TREES + 4:
+            for path, _why in gc_plan():
+                shutil.rmtree(path, ignore_errors=True)
+    except OSError:
+        pass
 
 
 # ------------------------------------------------------------------ remote (Pi -> rocky)
@@ -514,16 +671,23 @@ def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     ap = argparse.ArgumentParser(prog="python3 -m tools.recomp.draft_check", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("name", help="function to replace (inventory name, game or static)")
+    ap.add_argument("name", help="function to replace (inventory name, game or static); with --unit a comma "
+                    "list of the functions the draft defines, all replaced together")
     ap.add_argument("draft", nargs="?", default=None,
                     help="C file defining NAME (a /* flags: ... */ header picks the IDO flags)")
     ap.add_argument("--scripts", default=None,
                     help="comma-separated tools/recomp/scripts names, 'all', or 'reached' (every script the census "
                     "says calls NAME); default: the 6 census scripts with the most calls of NAME, all scripts "
                     "when NAME is not in the census")
-    ap.add_argument("--params", default=None,
+    ap.add_argument("--params", action="append", default=[],
                     help="register parameters of NAME itself: PARAM=REG,... for every prototype parameter "
-                    "(IDO -O3 IPA functions; e.g. handle=a0,mark=t3)")
+                    "(IDO -O3 IPA functions; e.g. handle=a0,mark=t3); with --unit prefix the member: "
+                    "'MEMBER:PARAM=REG,...' (repeat per member)")
+    ap.add_argument("--unit", action="store_true",
+                    help="NAME is a comma list: the draft is ONE translation unit defining every member; it is "
+                    "compiled and linked once and all members are replaced together (calls between members stay "
+                    "inside the unit, with the unit's own conventions; only the outermost member call on a "
+                    "thread is compared, on both sides). The first divergence names the member")
     ap.add_argument("--callee", action="append", default=[],
                     help="register convention of a callee the draft calls: 'PROTOTYPE=REG,...[/CLOBBER,...]' "
                     "(adds to tools/recomp/ipa_callees.json for this run)")
@@ -532,6 +696,15 @@ def main(argv=None):
                     "body and its captured call sites (regmap_verify --derive) and print each in --callee syntax; "
                     "no draft needed (NAME is only a label). Add --static-only to skip the capture run")
     ap.add_argument("--static-only", action="store_true", help="with --probe-callees: no capture run")
+    ap.add_argument("--gc", action="store_true",
+                    help="clean up the recomp host's draft_check directory (README: cleanup policy) and exit; "
+                    "NAME is ignored (give any word, e.g. --gc all); with --dry-run only list")
+    ap.add_argument("--dry-run", action="store_true", help="with --gc: list what would be deleted")
+    ap.add_argument("--keep-trees", type=int, default=None,
+                    help="with --gc: function build trees to keep (default %d, $RUSH_DC_KEEP)" % GC_KEEP_TREES)
+    ap.add_argument("--gc-days", type=float, default=None,
+                    help="with --gc: keep runs/probe/verify/census/inbox entries younger than this many days "
+                    "(default %g, $RUSH_DC_DAYS)" % GC_DAYS)
     ap.add_argument("--ignore-register-params", action="store_true",
                     help="build a function the frontier lists with register_params without --params "
                     "(o32 inbound: only right if those registers are not really parameters)")
@@ -550,6 +723,12 @@ def main(argv=None):
     ap.add_argument("--origin", default=None, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     try:
+        if args.gc:
+            if args.remote:
+                cmd = "cd %s && python3 -m tools.recomp.draft_check %s" % (
+                    args.remote_tree, " ".join(shlex.quote(a) for a in _strip_remote(argv)))
+                return subprocess.run(["ssh", args.remote, cmd]).returncode
+            return gc_main(args)
         if args.probe_callees:
             if args.remote:
                 fwd = _strip_remote(argv)
@@ -575,15 +754,28 @@ def local_main(args):
     draft = Path(args.draft).resolve()
     if not draft.is_file():
         raise DCError(f"no draft {args.draft}")
-    name = args.name
+    members = [m.strip() for m in args.name.split(",") if m.strip()] if args.unit else [args.name]
+    if not members or len(set(members)) != len(members):
+        raise DCError("--unit: give distinct member names, comma separated")
+    if not args.unit and "," in args.name:
+        raise DCError("several functions given: add --unit to check them as one unit")
+    name = members[0]
     text = draft.read_text(errors="replace")
-    try:
-        proto = rp.find_prototype(text, name)
-    except rp.ReplaceError:
-        raise DCError(f"{draft.name} has no definition of {name}")
-    pop = find_population(name)
+    protos = {}
+    for m in members:
+        try:
+            protos[m] = rp.find_prototype(text, m)
+        except rp.ReplaceError:
+            raise DCError(f"{draft.name} has no definition of {m}")
+    pops = {m: find_population(m) for m in members}
+    pop = pops[name]
+    if len(set(pops.values())) != 1:
+        raise DCError("--unit members span populations: %s" % pops)
     entry = {"function": name, "population": pop, "source": str(draft), "mode": "ido", "state": "draft",
              "allow_ipa": True, "note": "draft_check run (NOT a match)"}
+    if args.unit:
+        entry["unit"] = members
+        entry["unit_capture"] = {}
     if args.include_dir:
         entry["include_dirs"] = [str(Path(d).resolve()) for d in args.include_dir]
     if args.compiler:
@@ -591,32 +783,43 @@ def local_main(args):
     if args.statics:
         entry["statics"] = {k: int(v, 16) for k, v in (x.split("=") for x in args.statics.split(",") if x)}
     table = rp.load_ipa_table()
-    regs_fact = register_params_fact(name)
-    if args.params:
-        cap, regs = parse_params(args.params, proto)
-        ret = rp._lenient_type(rp.parse_prototype(proto)[0])
-        entry["capture_args"] = cap
-        entry["capture_ret"] = "void" if ret["c"] == "void" else ("f0" if ret["float"] else "v0")
-        table[name] = {"prototype": proto, "params": regs, "evidence": "draft_check --params (lane hypothesis)"}
-    elif name in table and "params" in table[name]:
-        # committed ipa_callees.json convention of NAME: inbound shim + capture of those registers
-        tproto = table[name]["prototype"]
-        tnames = [pn for _t, pn in rp.parse_prototype(tproto)[2]]
-        entry["capture_args"] = ["%s=%s" % (pn, r) for pn, r in zip(tnames, table[name]["params"])]
-        ret = rp._lenient_type(rp.parse_prototype(tproto)[0])
-        entry["capture_ret"] = "void" if ret["c"] == "void" else ("f0" if ret["float"] else "v0")
-    elif regs_fact and not args.ignore_register_params:
-        raise DCError(f"{name} takes register parameters ({','.join(regs_fact)}, build/frontier.json facts): "
-                      f"pass --params PARAM=REG,... for every parameter of `{proto}` (e.g. "
-                      f"--params {','.join('%s=%s' % (pn, 'REG') for _t, pn in rp.parse_prototype(proto)[2])}); "
-                      "prove the mapping with python3 -m tools.recomp.regmap_verify")
+    params = member_params(args.params, members, args.unit)
+    for m in members:
+        cap_fields = {}
+        regs_fact = register_params_fact(m)
+        proto = protos[m]
+        if m in params:
+            cap, regs = parse_params(params[m], proto)
+            ret = rp._lenient_type(rp.parse_prototype(proto)[0])
+            cap_fields = {"capture_args": cap,
+                          "capture_ret": "void" if ret["c"] == "void" else ("f0" if ret["float"] else "v0")}
+            table[m] = {"prototype": proto, "params": regs, "evidence": "draft_check --params (lane hypothesis)"}
+        elif m in table and "params" in table[m]:
+            # committed ipa_callees.json convention of m: inbound shim + capture of those registers
+            tproto = table[m]["prototype"]
+            tnames = [pn for _t, pn in rp.parse_prototype(tproto)[2]]
+            ret = rp._lenient_type(rp.parse_prototype(tproto)[0])
+            cap_fields = {"capture_args": ["%s=%s" % (pn, r) for pn, r in zip(tnames, table[m]["params"])],
+                          "capture_ret": "void" if ret["c"] == "void" else ("f0" if ret["float"] else "v0")}
+        elif regs_fact and not args.ignore_register_params:
+            raise DCError(f"{m} takes register parameters ({','.join(regs_fact)}, build/frontier.json facts): "
+                          f"pass --params {'%s:' % m if args.unit else ''}PARAM=REG,... for every parameter of "
+                          f"`{proto}` (e.g. --params {'%s:' % m if args.unit else ''}"
+                          f"{','.join('%s=%s' % (pn, 'REG') for _t, pn in rp.parse_prototype(proto)[2])}); "
+                          "prove the mapping with python3 -m tools.recomp.regmap_verify")
+        if m == name:
+            entry.update(cap_fields)
+        elif cap_fields:
+            entry["unit_capture"][m] = cap_fields
     auto = clobber_shims(table)
-    auto.pop(name, None)             # NAME itself: inbound only through --params
+    for m in members:
+        auto.pop(m, None)            # members: inbound only through --params / the table
     table.update(auto)
     for spec in args.callee:
         cname, ce = parse_callee(spec)
         table[cname] = ce
-    run_dir = DC_HOME / "runs" / name / ("%s-%d" % (time.strftime("%Y%m%d-%H%M%S"), os.getpid()))
+    key = name if not args.unit else "%s+unit%d" % (name, len(members))
+    run_dir = DC_HOME / "runs" / key / ("%s-%d" % (time.strftime("%Y%m%d-%H%M%S"), os.getpid()))
     run_dir.mkdir(parents=True, exist_ok=True)
     manifest = run_dir / "replacements.json"
     manifest.write_text(json.dumps({"note": "draft_check", "entries": {"draft": entry},
@@ -624,10 +827,11 @@ def local_main(args):
     ipa_path = run_dir / "ipa_callees.json"
     ipa_path.write_text(json.dumps({"note": "draft_check: committed table + run options",
                                     "callees": table}, indent=1))
-    print("draft_check %s <- %s%s" % (name, args.origin or draft, " [%s]" % pop if pop != "game" else ""))
+    print("draft_check %s <- %s%s" % (", ".join(members) + (" (unit)" if args.unit else ""), args.origin or draft,
+                                       " [%s]" % pop if pop != "game" else ""))
     print("  draft sha256 %s; run dir %s" % (hashlib.sha256(draft.read_bytes()).hexdigest()[:16], run_dir))
     if args.scripts in (None, "census", "reached"):
-        scripts, covered = census_scripts(name)
+        scripts, covered = census_scripts_for(members)
         if covered and not scripts:
             how = "census: no script calls %s" % name
         elif covered and args.scripts != "reached" and len(scripts) > DEFAULT_MAX_SCRIPTS:
@@ -648,11 +852,13 @@ def local_main(args):
     print("  scripts (%s): %s" % (how, ", ".join(scripts) or "none"), flush=True)
     t0 = time.time()
     with ThreadPoolExecutor(2) as ex:
-        fc = ex.submit(build_side, "cap", name, manifest, run_dir, p, None, 8)
-        fr = ex.submit(build_side, "repl", name, manifest, run_dir, p, ipa_path, 8)
+        fc = ex.submit(build_side, "cap", key, manifest, run_dir, p, None, 8)
+        fr = ex.submit(build_side, "repl", key, manifest, run_dir, p, ipa_path, 8)
         cap, repl = fc.result(), fr.result()
     man = json.loads(Path(repl["manifest"]).read_text())
-    rinfo = next((r for r in man.get("replacements", {}).get("replaced", []) if r.get("id") == "draft"), {})
+    rinfos = [r for r in man.get("replacements", {}).get("replaced", [])
+              if r.get("id") == "draft" or str(r.get("id", "")).startswith("draft__")]
+    rinfo = rinfos[0] if rinfos else {}
     warn = [ln for ln in Path(repl["gen_log"]).read_text(errors="replace").splitlines()
             if "WARNING" in ln or "ipa note" in ln or "ipa shim" in ln or "ipa body" in ln]
     print("  built in %.0f s (draft compiled with %s)" % (time.time() - t0, entry.get("compiler") or
@@ -663,8 +869,10 @@ def local_main(args):
                          for n in m.group(1).split(",") if n})
     if o32_called:
         suggest_callees(o32_called)
-    if rinfo.get("ipa_inbound"):
-        print("  inbound register shim: %s" % table[name]["params"])
+    for r in rinfos:
+        if r.get("ipa_inbound"):
+            print("  inbound register shim%s: %s" % (" (%s)" % r["function"] if args.unit else "",
+                                                    table[r["function"]]["params"]))
     if rinfo.get("private_data"):
         print("  NOTE private data (not bound to retail): %s" % ", ".join(rinfo["private_data"]))
     if rinfo.get("statics_private"):
@@ -674,13 +882,16 @@ def local_main(args):
     results = []
     if scripts:
         with ThreadPoolExecutor(max(1, args.jobs)) as ex:
-            futs = [ex.submit(run_script, s, name, cap, repl, run_dir, cap_key, args.frames) for s in scripts]
+            futs = [ex.submit(run_script, s, key, cap, repl, run_dir, cap_key, args.frames) for s in scripts]
             for f in futs:
                 r = f.result()
                 results.append(r)
                 tag = r["status"]
                 extra = ""
-                if tag in ("EQUIVALENT", "DIVERGES"):
+                if tag in ("EQUIVALENT", "DIVERGES") and args.unit:
+                    extra = "%d member calls (%s)" % (r["calls_of_fn"], ", ".join(
+                        "%s %d" % (m, r["calls_per_member"].get(m, 0)) for m in members))
+                elif tag in ("EQUIVALENT", "DIVERGES"):
                     extra = "%d calls of %s" % (r["calls_of_fn"], name)
                 elif tag == "ERROR":
                     extra = r["error"].strip().splitlines()[-1] if r["error"].strip() else "?"
@@ -692,9 +903,11 @@ def local_main(args):
     never = [r for r in results if r["status"] == "NEVER CALLED"]
     err = [r for r in results if r["status"] == "ERROR"]
     summary = {"function": name, "draft": str(args.origin or draft), "scripts": results, "run_dir": str(run_dir)}
+    if args.unit:
+        summary["unit"] = members
     print()
     if div:
-        for line in divergence_lines(div[0], name):
+        for line in divergence_lines(div[0], name, members if args.unit else None):
             print(line)
         for r in div[1:]:
             c = r.get("first") or {}
@@ -712,6 +925,12 @@ def local_main(args):
         print("VERDICT: EQUIVALENT over %d calls / %d scripts (%s)%s" % (
             n, len(eq), ", ".join("%s %d" % (r["script"], r["calls_of_fn"]) for r in eq),
             "; never called in: " + ", ".join(r["script"] for r in never) if never else ""))
+        if args.unit:
+            tot = {m: sum((r.get("calls_per_member") or {}).get(m, 0) for r in eq) for m in members}
+            print("  unit members (outermost calls compared): %s" % ", ".join("%s %d" % kv for kv in tot.items()))
+            if any(v == 0 for v in tot.values()):
+                print("  NOTE never called from outside the unit: %s (exercised only through other members, "
+                      "inside their compared calls)" % ", ".join(m for m, v in tot.items() if v == 0))
         print("  Behaviour only: every call's arguments, return value and memory writes match retail. This is "
               "NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.")
         summary["verdict"], rc = "EQUIVALENT", 0
@@ -735,6 +954,7 @@ def local_main(args):
             for f in ("home_s0", "home_s1", "home_r", "home_cs", "home_cr", "home_ds", "home_dr"):
                 shutil.rmtree(run_dir / "runs" / r["script"] / f, ignore_errors=True)
     print("  details: %s" % run_dir)
+    auto_gc()
     return rc
 
 

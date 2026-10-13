@@ -92,6 +92,7 @@ void oracle_event(const char* text);
 void oracle_finish(const char* why);
 void oracle_note_stack(uint32_t top);
 void oracle_note_thread(uint32_t thread);  // OSThread struct (osCreateThread a0)
+void oracle_text_log(const std::string& path);  // --text-log: strings drawn (rush_text_log hook)
 void oracle_dump_at(uint64_t frame, const std::string& path);  // rdram (big-endian) at a frame
 void oracle_virtual_clock(bool on);
 void oracle_mask_images(bool on);  // --mask-rdp-images: RDP color/depth images out of the page hashes  // osGetCount/osGetTime from frames

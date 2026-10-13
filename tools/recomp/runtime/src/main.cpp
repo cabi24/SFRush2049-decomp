@@ -71,7 +71,9 @@ void usage() {
         "      every write; with --clock frames a fresh image in memory, or FILE, never written)\n"
         "  --fb-every N: with --fb-dump, sample the framebuffer every N screen updates (default 30)\n"
         "  --pak-write: with --clock frames and --pak FILE, write the image back (save tests)\n"
-        "  --no-pak: no controller pak (the boot notice NO CONTROLLER PAK DETECTED, as v1/v2)\n");
+        "  --no-pak: no controller pak (the boot notice NO CONTROLLER PAK DETECTED, as v1/v2)\n"
+        "  --text-log PATH: strings the game draws, '<frame>\\t<text>' when they appear (needs the\n"
+        "      rush_text_log extra hook: tools/recomp/script_probe.py)\n");
 }
 
 // tools/recomp/scripts/*.press -> the --press string (oracle.py parse_script):
@@ -275,6 +277,7 @@ int main(int argc, char** argv) {
         else if (a == "--pak") pak_file = next();
         else if (a == "--fb-every") rush::set_fb_dump_every((uint32_t)std::stoul(next()));
         else if (a == "--no-pak") no_pak = true;
+        else if (a == "--text-log") rush::oracle_text_log(next());
         else if (a == "--pak-write") pak_write = true;
         else if (a == "--keep-rom-copy") keep_rom_copy = true;
         else if (a == "--ai-per-vi") rush::set_ai_pacing(false);

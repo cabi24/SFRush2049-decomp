@@ -21,7 +21,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 _DEF = re.compile(r'^\s*(?:SHIM|INERT|NOPACK|FORWARD)\(\s*([A-Za-z_][A-Za-z0-9_]*)'
                   r'|(?:extern\s+"C"\s+)?void\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*(?:uint8_t\s*\*|RDRAM_ARG)'
-                  r'|extern\s+"C"\s+int\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(', re.M)
+                  r'|extern\s+"C"\s+(?:int|void)\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(', re.M)
 
 
 def defined_names(src_dir, recursive=False, patterns=("*.cpp",)):

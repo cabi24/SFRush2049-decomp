@@ -322,6 +322,51 @@ extern "C" void __wrap_osGetTime_recomp(uint8_t* rdram, recomp_context* ctx) {
     ctx->r3 = (gpr)(int32_t)(uint32_t)t;
 }
 
+// --text-log PATH (Phase 8, w28r): the strings the game queues for drawing.
+// An --extra-hooks entry in the game's string-queue function (menu_input_process,
+// 0x800B6994: a0 = the string, a1 = its length or < 0 for NUL-terminated)
+// calls rush_text_log; a line `<frame>\t<text>` is written when a string
+// appears that the previous frame did not draw (so a screen is listed once,
+// not 30 times a second). tools/recomp/script_probe.py reads it.
+namespace {
+FILE* text_file = nullptr;
+std::mutex text_mu;
+std::set<std::string> text_prev, text_cur;
+uint64_t text_frame = ~0ull;
+} // namespace
+
+void rush::oracle_text_log(const std::string& path) {
+    if (path.empty()) return;
+    text_file = fopen(path.c_str(), "w");
+    if (!text_file) fprintf(stderr, "[rush] cannot write %s\n", path.c_str());
+}
+
+extern "C" void rush_text_log(uint8_t* rdram, recomp_context* ctx) {
+    if (!text_file) return;
+    int32_t len = (int32_t)(int16_t)(uint16_t)ctx->r5;
+    if (len < 0 || len > 255) len = 255;
+    uint32_t addr = (uint32_t)ctx->r4;
+    if (addr < 0x80000000u || addr >= 0x80000000u + kRamBytes - 256) return;
+    std::string text;
+    for (int32_t i = 0; i < len; i++) {
+        char c = (char)MEM_B(i, (gpr)(int32_t)addr);
+        if (c == 0) break;
+        text.push_back((c >= 0x20 && c < 0x7F) ? c : '?');
+    }
+    if (text.empty()) return;
+    std::lock_guard<std::mutex> lock(text_mu);
+    uint64_t f = frames.load();
+    if (f != text_frame) {
+        text_prev.swap(text_cur);
+        text_cur.clear();
+        text_frame = f;
+    }
+    if (text_cur.insert(text).second && !text_prev.count(text)) {
+        fprintf(text_file, "%llu\t%s\n", (unsigned long long)f, text.c_str());
+        fflush(text_file);
+    }
+}
+
 // patches.json hook in __scExec, before osSpTaskStartGo(&task->list).
 extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
     uint32_t sc_task = (uint32_t)MEM_W(0x24, ctx->r29);
