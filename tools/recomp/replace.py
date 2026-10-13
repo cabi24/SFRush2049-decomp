@@ -543,8 +543,21 @@ def parse_prototype(proto):
     ret, name, args = m.group(1), m.group(2), m.group(3).strip()
     params = []
     if args and args != "void":
-        for i, a in enumerate(args.split(",")):
+        parts, depth, cur = [], 0, ""
+        for ch in args:                  # split at top-level commas (function-pointer parameters)
+            depth += {"(": 1, ")": -1}.get(ch, 0)
+            if ch == "," and depth == 0:
+                parts.append(cur)
+                cur = ""
+            else:
+                cur += ch
+        parts.append(cur)
+        for i, a in enumerate(parts):
             a = a.strip()
+            fp = re.match(r"^.*\(\s*\*\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)\s*\(.*\)$", a, re.S)
+            if fp:                       # Phase 10: `T (*name)(...)` = a code pointer, one word
+                params.append(("void *", fp.group(1)))
+                continue
             if a == "..." or "(" in a:
                 raise ReplaceError(f"native: unsupported parameter {a!r} in {name}")
             if "[" in a:   # array parameter = pointer to its element type
@@ -666,7 +679,9 @@ def render_native_body(source_path, function, body_name):
 
 
 def find_prototype(text, function):
-    m = re.search(r"(?m)^([A-Za-z_][\w\s\*]*?\b%s\s*\([^)]*\))\s*\{" % re.escape(function), text)
+    # parameter list with one level of nested parentheses (function-pointer parameters, Phase 10)
+    m = re.search(r"(?m)^([A-Za-z_][\w\s\*]*?\b%s\s*\((?:[^()]|\([^()]*\))*\))\s*\{" % re.escape(function),
+                  text)
     if not m:
         raise ReplaceError(f"native: no definition of {function} found to take the prototype from")
     return " ".join(m.group(1).split())

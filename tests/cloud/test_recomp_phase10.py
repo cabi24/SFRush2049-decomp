@@ -230,3 +230,21 @@ def test_e2e_ghost_reload_reaches_the_ghost_branch():
                        cwd=str(REPO), capture_output=True, text=True)
     assert p.returncode == 0, p.stdout + p.stderr
     assert "reached draw_ui_element" in p.stdout and "reached func_800CBF2C" in p.stdout
+
+
+def test_function_pointer_parameters():
+    text = "void control_settings(s32 row, s8 *sel1, s32 (*poll)(void))\n{\n}\n"
+    p = rp.find_prototype(text, "control_settings")
+    assert p == "void control_settings(s32 row, s8 *sel1, s32 (*poll)(void))"
+    assert rp.parse_prototype(p)[2] == [("s32", "row"), ("s8 *", "sel1"), ("void *", "poll")]
+
+
+def test_lane_names_follow_renames():
+    stale = {"func_800C813C": "SaveServer", "AdjustSpeed": "pak_delete_file_retry", "func_80096CA8": "SetupWaveModel"}
+    name, extra, done = dc.current_names("func_800C813C,func_800C7EC8",
+                                         ["--params", "func_800C813C:a=s0", "--callee",
+                                          "void func_80096CA8(s32 slot, s32 first)=s8,t0", "--scripts", "saves"], stale)
+    assert name == "SaveServer,func_800C7EC8"
+    assert extra == ["--params", "SaveServer:a=s0", "--callee", "void SetupWaveModel(s32 slot, s32 first)=s8,t0",
+                     "--scripts", "saves"]
+    assert done == [("func_80096CA8", "SetupWaveModel"), ("func_800C813C", "SaveServer")]

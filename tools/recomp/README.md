@@ -986,6 +986,14 @@ renamed since the draft was saved` line. (3) The committed census: w29n's text r
 SCRIPT `race_finish` to `animPlace` in `census/*.json` (draft_check's default script choice then named a script that
 does not exist); the census refresh below regenerated every file.
 
+**Prototypes with function-pointer parameters** (`s32 (*poll)(void)`, control_settings): `find_prototype` /
+`parse_prototype` accept them (one word, captured as a pointer); draft_check used to say `best.c has no definition`.
+
+**Rename check** (`--lane` over the 31 drafts w29n renamed, plus w29d/w29a/most of w29b): no divergence caused by
+the rename; new first verdicts on reached-for-the-first-time functions (draw_ui_element, func_80103D28 EQUIVALENT;
+w28b pak_delete_file_retry and the w29c/w30d control_settings drafts FAULT on the new paths). Table:
+`cloud/work/frontier/w30r/RESULTS.md`.
+
 **Census refresh** (2026-10-13, 34 scripts, 175 unmatched at wave30 = 1b34f797): **168 reached (184,796 B), 7 never
 (5,260 B)** (w29r: 178 of 192 / 14). Newly reached: func_80104B14 (ghost_pak, ghost_resave, ghost_delete_fail),
 draw_ui_element (ghost_reload, ghost_resave, ghost_delete_fail), func_80103D28 (unlock), pak_delete_file_retry
