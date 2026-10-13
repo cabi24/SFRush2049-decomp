@@ -70,3 +70,39 @@ Total: 11 functions, 14,132 B.
   That receipt and test are outside this lane's edit list, so the fix is NOT committed: `scout_receipt.patch` in this
   directory regenerates native_audit.json (preflight.py output) and changes the assertion to
   `accepted_name_lock == (target in {'func_80102F30'})`; with it applied the file passes 5/5.
+
+## Job 3: w29b packets (merge of wave29 1fededc2 first, incl. coordinator's scout-receipt commit 92aa7850)
+
+| Step | Install | Bytes | Game after |
+|---|---|---:|---|
+| (start) | — | — | 1035/1216, 366,200 B (56.59%) |
+| 3.1 | single game_results_input (= GC animControls) | 1,732 | 1036/1216, 367,932 B (56.86%) |
+| 3.2 | physics_sym superseded in place: + sound_loop_set (slp.c) + ctx_gr3_b.c | 332 | 1037/1216, 368,264 B (56.91%) |
+| 3.3 | new group func_80106B3C | 600 | 1038/1216, 368,864 B (57.01%) |
+| 3.4 | new group func_8010BC84 | 928 | 1039/1216, 369,792 B (57.15%) |
+| 3.5 | new group func_8010B7FC | 460 | 1040/1216, 370,252 B (57.22%) |
+| 3.6 | new group func_8010B9C8 | 700 | **1041/1216, 370,952 B (57.33%)** |
+
+Job 3 total: 6 functions, 4,752 B. Wave 29 total (Jobs 1–3): 17 functions, 18,884 B, game 1024 -> 1041.
+
+- Unit, all six together (`--with` game_results_input.c, slp.c, f6b3c.c, fbc84.c, fb7fc.c, fb9c8.c, `--internal` every
+  helper + sound_loop_set, `--block sound_loop_set`, `--neighbours`): `blob_unit score: 9/9 equal` (GRI 433 kept,
+  sound_loop_set 83 internal, physics_sym 313, B5688 49, B59F0 343, 6B3C 150, BC84 232, B7FC 115, B9C8 175),
+  `locked bodies that differ in this unit: 0`.
+- Builder (scratch w29i, deleted): physics_sym group B55F4/B5688/B59E8/physics_sym/sound_loop_set MATCH (sound_loop_set
+  own .rodata verified at 0x80122614..0x80122624), func_800B59F0 `NOT VERIFIED (12 section-relative relocations …)` = the
+  known two-region case, rc=1 as for the locked group; `--claims` sound_loop_set MATCH rc=0. The four single-member groups:
+  MATCH, rc=0, with and without --claims. `score.py fn game_results_input`: MATCH, own .rodata verified at 0x80120234..0x80120240.
+- Gates after each step: `group lock: 0 problems`, `blob lock: N entries, 0 problems`, `blob_unit: N locked bodies, N
+  equal …, 0 differ` (N = 1036..1041), `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- unit_overrides: inline_blockers += sound_loop_set; force_internal += sound_loop_set, gfx_lock_slp, gfx_unlock_slp,
+  font_select_slp, font_set_slp, the six *_6B3C, six *_BC84, five *_B7FC and five *_B9C8 helpers (`unused_overrides: []`).
+- All seven ctx_gr3_b.c copies are byte-identical to credits_scroll_grp/gr3_b.c; func_800B669C stays kept via force_keep.
+- symbols.json/blob.ld unchanged (no receipt re-pin). Slot-contract audit re-written at 3.2–3.6 (sound_loop_set,
+  6B3C, BC84, B7FC, B9C8 accepted; unaccepted_caller_bytes 59256 -> 56236); frozen counts in the test updated each time.
+- CLAIMS: six functions appended to the wave-29 landed row with devices; w28c menu row rewritten as the open w28c/w29b
+  menus row; w27d row points B5D0 there and notes B7FC/B9C8 landed.
+- Tests at 0cc13fa9 (Job 3): Pi `make test-fast JOBS=4` (main checkout's submodules symlinked in temporarily, removed):
+  conveyor `1589 passed, 805 skipped`; cloud `806 passed, 202 skipped`; rc=0. rocky `REQUIRE_TOOLCHAIN=1 make test-fast
+  JOBS=16` (clone ~/rush2049/scratch/w29i, origin/master 8c74d8b6): conveyor `2342 passed, 52 skipped`; cloud `1004 passed,
+  4 skipped, 8 warnings, 27 subtests passed`; rc=0. (The scout-receipt failure of Jobs 1–2 is fixed by 92aa7850.)
