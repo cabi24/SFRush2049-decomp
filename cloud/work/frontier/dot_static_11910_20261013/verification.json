@@ -1,0 +1,298 @@
+{
+  "behavior": {
+    "native": {
+      "cases": 192,
+      "frame_restored": true,
+      "full_instruction_coverage": true,
+      "instructions_covered": 52
+    },
+    "stock_candidate": {
+      "cases": 192,
+      "frame_restored": true,
+      "full_instruction_coverage": true,
+      "instructions_covered": 52
+    }
+  },
+  "compiler": "ido7.1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "geometry": {
+    "candidate_bytes": 208,
+    "frame_bytes": 24,
+    "native_bytes": 208,
+    "text_bytes": 208,
+    "unowned_bss_bytes": 64,
+    "zero_padding_bytes": 0
+  },
+  "gnu": {
+    "allocated_task_bytes": 64,
+    "complete_text_bytes": 208,
+    "differing_offsets": [],
+    "extra_words": 0,
+    "function_bytes": 208,
+    "hypothetical_bss_subalign": 4,
+    "owned_data_bytes": 0,
+    "relocations": 30,
+    "zero_suffix_bytes": 0
+  },
+  "inputs": {
+    "cartridge_coverage_claimed": false,
+    "claims": [],
+    "files": {
+      "cloud/work/frontier/dot_static_11910_20261013/baseline.c": "9b0776027b9cc979f4db3695a4030504d60810029f3c24b280989f6bd65080a3",
+      "cloud/work/frontier/dot_static_11910_20261013/candidate.c": "be2d77ed2f9494321b0a62df78678b73a8afb7b1835356282dccdcb0b0bb21f7",
+      "cloud/work/frontier/dot_static_11910_20261013/native.py": "ab53f9259f71c73cda56f702633c4d2b0b41bf1fd85643a206b304b59d08b843",
+      "cloud/work/frontier/dot_static_11910_20261013/probes.py": "49c696b828a38139bc6e68f4b87dfdebafafcf8da00f7c3554cbf03891286cbb",
+      "cloud/work/frontier/dot_static_11910_20261013/trace.py": "8f2deeb913dc11d44209c5244b5b155c4ce4bb143efc2e623d352e11f7e1bdd0",
+      "cloud/work/frontier/dot_static_11910_20261013/trace_summary.json": "e8ea96de459090a1bb0e361ab53f75c5415c7ac7a97aa3e2e39656d2aae68464",
+      "cloud/work/frontier/dot_static_11910_20261013/verify.py": "06d0f0e41673186bb866974d593c9debdc178368eaa62f205d15f64aa89df31d",
+      "tests/cloud/test_static_11910_research.py": "58b8f237a195224deaa9db66f3f75e242507869b291893b852bafe827f1fe96b"
+    },
+    "population": "static",
+    "protocol_version": 2,
+    "symbols": {
+      "D_80027DD0": "0x80027dd0",
+      "D_80027EA0": "0x80027ea0",
+      "D_8002A050": "0x8002a050",
+      "D_8002E210": "0x8002e210",
+      "D_80038000": "0x80038000",
+      "D_800382CD": "0x800382cd",
+      "D_800382F8": "0x800382f8",
+      "func_80011104": "0x80011104",
+      "func_800118C0": "0x800118c0",
+      "func_80011910": "0x80011910",
+      "func_800119E0": "0x800119e0",
+      "osWritebackDCache": "0x80007ca0"
+    },
+    "target": {
+      "extent": {
+        "address": "0x80011910",
+        "evidence": [
+          "jal",
+          "prologue"
+        ],
+        "name": "func_80011910",
+        "size": 208
+      },
+      "words_sha256": "9de209485846eeed83989d69edcf692a274d26666506114b69240d3984597e50"
+    }
+  },
+  "landed_rom_bytes": 0,
+  "layout": {
+    "field_offsets": {
+      "boot": 8,
+      "boot_size": 12,
+      "code": 16,
+      "code_size": 20,
+      "command_count": 52,
+      "commands": 48,
+      "data": 24,
+      "data_size": 28,
+      "flags": 4,
+      "output": 40,
+      "output_size": 44,
+      "stack": 32,
+      "stack_size": 36,
+      "type": 0,
+      "yield_data": 56,
+      "yield_size": 60
+    },
+    "pointer_bytes": 4,
+    "task_bytes": 64
+  },
+  "native_gnu": {
+    "allocated_task_bytes": 0,
+    "complete_text_bytes": 208,
+    "differing_offsets": [],
+    "extra_words": 0,
+    "function_bytes": 208,
+    "hypothetical_bss_subalign": null,
+    "owned_data_bytes": 0,
+    "relocations": 30,
+    "zero_suffix_bytes": 0
+  },
+  "negative_controls": [
+    "wrong cache scale rejected by independent behavior oracle",
+    "unknown opcode rejected",
+    "wrong stack store rejected before return"
+  ],
+  "newly_matched_bytes": 0,
+  "source_probes": {
+    "aligned_union": {
+      "allocated_data": {},
+      "function_bytes": 196,
+      "strict": {
+        "differing": 47,
+        "errors": [],
+        "extra_words": 0,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "baseline": {
+      "allocated_data": {},
+      "function_bytes": 196,
+      "strict": {
+        "differing": 47,
+        "errors": [],
+        "extra_words": 0,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "defined_task": {
+      "allocated_data": {
+        ".bss": 64
+      },
+      "function_bytes": 196,
+      "strict": {
+        "differing": 47,
+        "errors": [],
+        "extra_words": 0,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "explicit_pointer": {
+      "allocated_data": {},
+      "function_bytes": 228,
+      "strict": {
+        "differing": 43,
+        "errors": [],
+        "extra_words": 4,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "stock_equal": {
+      "allocated_data": {
+        ".bss": 64
+      },
+      "function_bytes": 208,
+      "strict": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "volatile_task": {
+      "allocated_data": {},
+      "function_bytes": 200,
+      "strict": {
+        "differing": 47,
+        "errors": [],
+        "extra_words": 0,
+        "total": 52,
+        "unresolved": [],
+        "unverified": []
+      }
+    }
+  },
+  "status": "CODE_EQUAL_STORAGE_BLOCKED",
+  "strict": {
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "total": 52,
+    "unresolved": [],
+    "unverified": []
+  },
+  "tu": {
+    "assembly_passthroughs_unchanged": true,
+    "candidate_in_tu": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 52,
+      "unresolved": [],
+      "unverified": []
+    },
+    "context_gate": {
+      "reason": "object has data/rodata (.bss:64) outside an owned slot of func_80011910",
+      "status": "refused"
+    },
+    "full_rom_not_run": true,
+    "integration_permitted": false,
+    "preserved_exact_c_bodies": [
+      "func_80010A40",
+      "func_80010C68",
+      "func_80010D3C",
+      "func_80010D74",
+      "func_80010E80",
+      "func_80011074",
+      "func_800110C4",
+      "func_80011104",
+      "func_8001144C",
+      "func_800114C0",
+      "func_80011848",
+      "func_80011894",
+      "func_800118C0",
+      "func_800119E0",
+      "func_80011A10",
+      "func_80011A3C",
+      "func_80011A64",
+      "func_80011C1C",
+      "func_80011C84",
+      "func_80011CD8",
+      "func_80011D24",
+      "func_80011D74",
+      "func_80011F60",
+      "func_800121BC",
+      "func_80012200",
+      "func_800123A8",
+      "func_8001261C",
+      "func_80012660",
+      "func_80012730",
+      "func_80013964",
+      "func_800139D4",
+      "func_80013C84",
+      "func_80013D70",
+      "func_80013DEC",
+      "func_800140F8",
+      "func_80014140",
+      "func_80014198",
+      "func_80014374",
+      "func_800143C0",
+      "func_80014434",
+      "func_80014488",
+      "func_800144F0",
+      "func_80014550",
+      "func_80014594",
+      "func_800145DC",
+      "func_80014624",
+      "func_80014650",
+      "func_8001467C",
+      "func_800146AC",
+      "func_800146B4",
+      "func_8001489C",
+      "func_800148F8",
+      "func_800149BC",
+      "func_800149DC",
+      "func_80014A04",
+      "func_80014A0C",
+      "func_80014A74",
+      "func_80014AF0",
+      "func_80014B3C",
+      "func_80014BB0",
+      "func_80014BD8",
+      "func_80014BF8",
+      "func_80014C18",
+      "func_80014C40",
+      "func_80014C60",
+      "func_80014CAC",
+      "func_80014CF4",
+      "func_80014CFC",
+      "func_80014D08",
+      "func_80014D14",
+      "func_80014D1C"
+    ],
+    "task_bss_owner_registered": false,
+    "temporary_only": true
+  }
+}
