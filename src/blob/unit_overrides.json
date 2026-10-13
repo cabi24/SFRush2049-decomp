@@ -54,6 +54,14 @@
   {
    "name": "controller_poll",
    "reason": "same group: internal controller_poll breaks standalone-matched process_inputs (89w -> 111w)"
+  },
+  {
+   "name": "func_800B669C",
+   "reason": "locked in credits_scroll_grp (gr3_b.c, kept there); group frontier_billboard_render lists it as context (byte-identical copy ctx_gr3_b.c, w28a) which makes it internal in the unit, where all its visible calls are inlined and the body is emptied (5w -> 2w)"
+  },
+  {
+   "name": "func_800D50E4",
+   "reason": "locked single rand_r; group frontier_billboard_render lists it as context (byte-identical copy ctx_func_800D50E4.c, w28a, inlined three times into func_800F0914) which makes it internal in the unit and empties the body (10w -> 2w)"
   }
  ],
  "force_internal": [
