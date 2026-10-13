@@ -1,0 +1,380 @@
+{
+ "note": "w29n game-symbol rename table (static_rename format; only 'accepted' rows apply). kind function = Conveyor inventory target (game, extracted population); kind data = GAME_SYMBOLS entry. Evidence per row; mapping table with GC sources in docs/external/gc/names.md.",
+ "renames": [
+  {
+   "vram": "0x800DC88C",
+   "old": "attract_mode_handler",
+   "new": "control_cell_text",
+   "kind": "function",
+   "source": "N64 control-settings menu cell, one text line (callee of control_settings)",
+   "evidence": "w28d: draws one menu cell's text centred in its box (cell D_80153FD8[row][col]); reached only through control_settings (overlay A), w28r census",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800DCDF4",
+   "old": "attract_video_handler",
+   "new": "control_cell_text2",
+   "kind": "function",
+   "source": "N64 control-settings menu cell, cell text + two option strings (callee of control_settings)",
+   "evidence": "w28d: two-line option cell (cell text + two strings, selected/unselected font by `sel`); only caller control_settings",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800DC99C",
+   "old": "attract_demo_handler",
+   "new": "control_cell_text3",
+   "kind": "function",
+   "source": "N64 control-settings menu cell, cell text + three option strings (callee of control_settings)",
+   "evidence": "w28d: three-line option cell (cell text + three strings by sel1/sel2); only caller control_settings",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800A2680",
+   "old": "AdjustSpeed",
+   "new": "pak_delete_file_retry",
+   "kind": "function",
+   "source": "N64 controller-pak file delete with retry (osPfsDeleteFile)",
+   "evidence": "w28b: controller-pak file delete with retry (osPfsDeleteFile, osPfsFreeBlocks, error callback, node moved to the free list); GC lead PS_DeleteFile/_DeleteFile (paksysdc.c), not scored",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800B61FC",
+   "old": "audio_doppler_full",
+   "new": "ShowCountdown",
+   "kind": "function",
+   "source": "GC countdown.c ShowCountdown",
+   "evidence": "w28c: code-identical to GC ShowCountdown(int active) structure; str CNTDWN%d/CNTDWN3; correlation confident 5.35; landed wave 28",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800EDDC0",
+   "old": "attract_or_transition",
+   "new": "gfx_frame_begin",
+   "kind": "function",
+   "source": "N64 per-frame display-list prologue",
+   "evidence": "w28d: per-frame display-list prologue (frame-buffer record, segment 0, depth/colour clears, split-screen bars, VI filters); no arcade/GC counterpart; landed wave 28",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800F0914",
+   "old": "func_800F0914",
+   "new": "PrintScores",
+   "kind": "function",
+   "source": "GC highscorescr.c _PrintScores",
+   "evidence": "w28a: matched from GC _PrintScores (statement order, locals, 0x60 race-stats layout); correlation confident 6.51",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800F1210",
+   "old": "func_800F1210",
+   "new": "SetHighScoreState",
+   "kind": "function",
+   "source": "GC highscorescr.c _SetHighScoreState",
+   "evidence": "w28a: matched from GC _SetHighScoreState(newState) (two switches, panes, SetCountdownTimer 600/30/15); correlation confident 4.4",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80108154",
+   "old": "func_80108154",
+   "new": "animLapTime",
+   "kind": "function",
+   "source": "GC hud.c animLapTime",
+   "evidence": "w28c: matched; GC locals w, digitW, colonW, win, show, fixedWidth close the frame",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800CD104",
+   "old": "func_800CD104",
+   "new": "CreatePlayer",
+   "kind": "function",
+   "source": "GC save.c CreatePlayer",
+   "evidence": "w28b: call-for-call with GC CreatePlayer(pak, name) (_InitPlayer, strcpy, _CalcChecksum, PS_WriteFile/FlushFile/FlushPak, InsertLLE, PS_CreateFile); retail homes = GC locals in GC order",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800C813C",
+   "old": "func_800C813C",
+   "new": "SaveServer",
+   "kind": "function",
+   "source": "GC save.c SaveServer",
+   "evidence": "w28b: GC SaveServer(forceUpdate, rumbleOnly) structure (PS_PakServer, sInitCountdown, sReadingPak, RUSH2049 prefix, P extension); save_settings calls it (0, 0)",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80096CA8",
+   "old": "func_80096CA8",
+   "new": "SetupWaveModel",
+   "kind": "function",
+   "source": "GC waves.c _SetupWaveModel",
+   "evidence": "w28d/w27e: FourCC IMAG/OBHD/PLHD/PTHD/TXHD; every stack home = GC locals; correlation confident 9.48",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800B574C",
+   "old": "sound_loop_set",
+   "new": "TitlePane",
+   "kind": "function",
+   "source": "GC _TitlePane",
+   "evidence": "w28c: unit-EQUAL draft written from GC _TitlePane",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800A2D4C",
+   "old": "track_process_main",
+   "new": "PS_CreateFile",
+   "kind": "function",
+   "source": "GC paksysdc.c PS_CreateFile",
+   "evidence": "w28b: CreatePlayer's call (pak, file, \"P\", 0x810, 0x3544, 'NRUE') at GC PS_CreateFile's position",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800A2504",
+   "old": "slot_state_lookup",
+   "new": "PS_WriteFile",
+   "kind": "function",
+   "source": "GC paksysdc.c PS_WriteFile",
+   "evidence": "w28b: CreatePlayer's call (data, 0x810) at GC PS_WriteFile's position; locked (pak_write_cluster)",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800A2378",
+   "old": "MaxPathZeroControls",
+   "new": "PS_FlushFile",
+   "kind": "function",
+   "source": "GC paksysdc.c PS_FlushFile",
+   "evidence": "w28b: CreatePlayer calls PS_FlushFile(fileh, 0) then PS_FlushPak(pak, 1) in that order; locked (pak_write_cluster)",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800A21A4",
+   "old": "track_collision_setup",
+   "new": "PS_FlushPak",
+   "kind": "function",
+   "source": "GC paksysdc.c PS_FlushPak",
+   "evidence": "w28b: as PS_FlushFile; locked (pak_write_cluster)",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x800FF724",
+   "old": "game_results_input",
+   "new": "animControls",
+   "kind": "function",
+   "source": "GC controlscr.c animControls",
+   "evidence": "w28c: str CONTROLS_SM; correlation confident 3.76; GC structure took the draft from 325 to 11 ops",
+   "status": "deferred",
+   "deferred": "tests/conveyor/test_d05_hud_context_audit.py parametrises on game_results_input; the w29b lane is working the function"
+  },
+  {
+   "vram": "0x800BB9B0",
+   "old": "func_800BB9B0",
+   "new": "LoadTrack",
+   "kind": "function",
+   "source": "GC tracks.c LoadTrack",
+   "evidence": "correlation confident 12.96: track-name table x19, calls the SkyInit/InitSmoke pairs (camera_reset/physics_collision_test)",
+   "status": "deferred",
+   "deferred": "packet node_pool_init (tests/cloud/test_node_pool_init_match.py) records its native direct caller as func_800BB9B0"
+  },
+  {
+   "vram": "0x80140B20",
+   "old": "D_80140B20",
+   "new": "gHighScoreState",
+   "kind": "data",
+   "source": "GC highscorescr.c gHighScoreState",
+   "evidence": "w28a: _SetHighScoreState stores newState there and switches on it",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80149418",
+   "old": "D_80149418",
+   "new": "namePanes",
+   "kind": "data",
+   "source": "GC highscorescr.c namePanes",
+   "evidence": "w28a: _SetHighScoreState pane array",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80146208",
+   "old": "D_80146208",
+   "new": "codePane",
+   "kind": "data",
+   "source": "GC highscorescr.c codePane",
+   "evidence": "w28a: _SetHighScoreState",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80151690",
+   "old": "D_80151690",
+   "new": "gTotalNames",
+   "kind": "data",
+   "source": "GC gTotalNames",
+   "evidence": "w28a: _PrintScores gTotalNames[track][3][5]",
+   "status": "deferred",
+   "deferred": "packet cloud/work/dot_name_cache replays sources that use D_80151690"
+  },
+  {
+   "vram": "0x8002E870",
+   "old": "D_8002E870",
+   "new": "gDefStartTimes",
+   "kind": "data",
+   "source": "GC gDefStartTimes",
+   "evidence": "w28a: _PrintScores default times (f32[])",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x80156D38",
+   "old": "D_80156D38",
+   "new": "gWaveInstance",
+   "kind": "data",
+   "source": "GC waves.c gWaveInstance",
+   "evidence": "w28d: _SetupWaveModel 20-byte records",
+   "status": "accepted"
+  },
+  {
+   "vram": "0x801161F4",
+   "old": "D_801161F4",
+   "new": "gRomObjDefPtrs",
+   "kind": "data",
+   "source": "GC gRomObjDefPtrs",
+   "evidence": "w28d: _SetupWaveModel/MBSetupWad",
+   "status": "deferred",
+   "deferred": "packet dot_material_selector_20261006 pins car_gear_shift.c and binds D_801161F4 by name"
+  },
+  {
+   "vram": "0x80151AE8",
+   "old": "D_80151AE8",
+   "new": "gTexDefPtrs",
+   "kind": "data",
+   "source": "GC gTexDefPtrs",
+   "evidence": "w28d: _SetupWaveModel {ptr, count}",
+   "status": "deferred",
+   "deferred": "src/blob/func_800B24EC.c is pinned by dot_runtime_a_availability_root_20261012 and the multiblit/blit_bar contracts"
+  },
+  {
+   "vram": "0x80138670",
+   "old": "D_80138670",
+   "new": "gPalDefPtrs",
+   "kind": "data",
+   "source": "GC gPalDefPtrs",
+   "evidence": "w28d: _SetupWaveModel {ptr, count}",
+   "status": "deferred",
+   "deferred": "tests/conveyor/test_disasm.py uses D_80138670 (GAME_SYMBOLS survey entry) as its fixture symbol"
+  },
+  {
+   "vram": "0x80151AD0",
+   "old": "D_80151AD0",
+   "new": "gNumWindows",
+   "kind": "data",
+   "source": "GC gNumWindows",
+   "evidence": "w28a/w28c: _SetHighScoreState and ShowCountdown (s16)",
+   "status": "deferred",
+   "deferred": "sources pinned by dot_runtime_b_radius_effect_20261012 and dot_frame_dispatch_20261005"
+  },
+  {
+   "vram": "0x80152032",
+   "old": "D_80152032",
+   "new": "gCountDown",
+   "kind": "data",
+   "source": "GC countdown.c gCountDown",
+   "evidence": "w28c: ShowCountdown (s16)",
+   "status": "deferred",
+   "deferred": "source pinned by dot_frame_dispatch_20261005 (Effects_UpdateEmitters.c)"
+  },
+  {
+   "vram": "0x80150B70",
+   "old": "D_80150B70",
+   "new": "gCamera",
+   "kind": "data",
+   "source": "GC gCamera",
+   "evidence": "w28c: ShowCountdown camera array (stride 0x98, pos +0x24, matrix +0x30)",
+   "status": "deferred",
+   "deferred": "packet dot_steady_camera_20261005 (steady_camera_native.py) looks D_80150B70 up by name"
+  },
+  {
+   "vram": "0x80140BDC",
+   "old": "D_80140BDC",
+   "new": "gNumModels",
+   "kind": "data",
+   "source": "GC gNumModels",
+   "evidence": "w28c: ShowCountdown (volatile u8)",
+   "status": "deferred",
+   "deferred": "packet dot_runtime_a_availability_root_20261012 checks the text `extern volatile u8 D_80140BDC;`; sources pinned by dot_slot_setter_boundary, multiblit/blit_bar contracts"
+  },
+  {
+   "vram": "0x800F0F44",
+   "old": "func_800F0F44",
+   "new": "FindGhosts",
+   "kind": "function",
+   "source": "GC highscorescr.c _FindGhosts",
+   "evidence": "w28a call anchor from SetHighScoreState; w29a matched it from GC _FindGhosts (frontier_billboard_render packet)",
+   "status": "candidate"
+  },
+  {
+   "vram": "0x8010221C",
+   "old": "func_8010221C",
+   "new": "drawMain",
+   "kind": "function",
+   "source": "GC gameoverscr.c drawMain",
+   "evidence": "w29a: GC drawMain locals i, x, y, str and the validOption loop (frontier_results_table packet)",
+   "status": "candidate"
+  },
+  {
+   "vram": "0x800E6AF8",
+   "old": "func_800E6AF8",
+   "new": "model_iteration",
+   "kind": "function",
+   "source": "arcade mdrive.c model_iteration",
+   "evidence": "w29c: arcade model_iteration with update_drone_models/update_model inlined (func_800E56F8 packet)",
+   "status": "candidate"
+  },
+  {
+   "vram": "0x8010761C",
+   "old": "lap_complete",
+   "new": "animElapsedTimerText",
+   "kind": "function",
+   "source": "GC hud.c animElapsedTimerText",
+   "evidence": "w29c: GC static int animElapsedTimerText(void) locals t, digits[9], str[2], digitW, colonW, fixedWidth (credits_scroll_grp gr3_761c.c)",
+   "status": "candidate"
+  },
+  {
+   "vram": "0x80107AF4",
+   "old": "race_finish",
+   "new": "animPlace",
+   "kind": "function",
+   "source": "GC hud.c animPlace",
+   "evidence": "w29c: GC static int animPlace(void) locals digits[3], str[2] (draft)",
+   "status": "candidate"
+  },
+  {
+   "vram": "0x800FEE04",
+   "old": "game_results_update",
+   "new": "(audio-options screen; GC audioscr.c animButtonText)",
+   "kind": "function",
+   "source": "GC audioscr.c",
+   "evidence": "w29a wrong-label lead: music-track string table Flier/Garage/Night; with game_results_render (animText)",
+   "status": "candidate"
+  }
+ ],
+ "candidates_note": "status 'candidate' rows are NOT applied (static_rename.load_map and every w29n tool use 'accepted' only): names recorded by the later wave-29 lanes for review; accept one by setting its status to 'accepted' (and a final N64 name for the wrong-label leads) before replay.sh.",
+ "later_lane_names": {
+  "note": "identifiers introduced by later wave-29 packets (not inventory targets; not renamed). replay.sh renames the OLD names those packets use (users.py finds them once installed in src/blob): w29a frontier_billboard_render uses func_800F0914/func_800F1210/func_800C813C/D_80140B20/D_80149418/D_80146208/D_8002E870, w29c credits_scroll_grp gr3_8154.c uses func_80108154. None collides with a new name.",
+  "w29a": [
+   "rt_gfx_lock",
+   "rt_gfx_unlock",
+   "rt_font_set",
+   "rt_font_set_b",
+   "frontier_results_table: func_80102F30, func_8010221C, func_80101904, func_80101D84, func_80102448, func_80100D5C"
+  ],
+  "w29c": [
+   "update_drone_models",
+   "update_model",
+   "gfx_lock_761C",
+   "gfx_unlock_761C",
+   "font_set_761C",
+   "pair_set_761C",
+   "gr3_761c.c (lap_complete)"
+  ],
+  "w29b": [
+   "TBD"
+  ]
+ }
+}
