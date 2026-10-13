@@ -1,0 +1,22 @@
+# ghost_resave.press with the first osPfsDeleteFile failing (w30r, Phase 10 fault lever `pak fail delete 1`:
+# PFS_ERR_CONTRFAIL, image unchanged): pak_delete_file_retry's error path. The game's pak error callback shows
+# CONTROLLER 1 | UNKNOWN ERROR ... | CONTINUE WITHOUT SAVING | RETRY (frame 3991); A (136 s) = RETRY, the second
+# delete succeeds and the ghost is saved (GHOST SAVED ON CONTROLLER PAK 1, 4080).
+frames 4300
+pak from ghost_pak
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+17 A
+20 A
+23 A
+26 A
+27 A 100
+poke 28 80152735 1 1
+poke 28 801148E4 1 1
+132 DOWN
+133 A
+136 A
+pak fail delete 1

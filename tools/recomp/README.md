@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-9 decomp feedback)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-10 decomp feedback)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -32,6 +32,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census") |
 | `script_probe.py` | Phase 8: what a script reaches and which strings the game draws (section "script_probe") |
 | `runtime/src/fault.cpp` | Phase 9: `[rush] FAULT` report when the host faults (section "Phase 9") |
+| `static_layout.py` | Phase 10: where IDO put a draft's statics (no symbols), for `--statics` by name (section "Phase 10") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -613,7 +614,8 @@ python3 .claude/worktrees/w27r/tools/recomp/draft_check.py --remote rocky NAME p
 options: --scripts race,two_player | all | reached   (default: the 6 census scripts with most calls of NAME)
          --params handle=a0,mark=t3          (NAME takes IDO -O3 register parameters: every prototype parameter)
          --callee 'void f(s32 h, f32 x)=a0,f22[/s1,s2]'   (a register-parameter callee the draft calls)
-         --statics name=0x80150F58           (bind a function-local static to its retail address)
+         --statics name=0x80150F58           (bind a function-local static to its retail address; Phase 10:
+                                              initialised ones too, FUNCTION:NAME when two share a name)
          --frames N, --jobs N, --json PATH, --keep
          --unit A,B,C draft.c                (Phase 8: one TU, every member replaced; --params A:p=r,...)
          x --probe-callees F,G [--static-only]   (Phase 8: derive F's register convention, print --callee)
@@ -909,3 +911,86 @@ func_80102980. Still never: func_8010C974 (mine pickup in battle), control_setti
 file or an unlock, above), AdjustSpeed (pak file delete with retry: needs a full or failing pak), world_effect_update,
 fp_call_wrapper, object_bytes23_sum (no static reference).
 
+
+## Phase 10: ghost files, unlocks, pak faults, initialised statics, renames (lane w30r, 2026-10-13)
+
+Lane notes: `cloud/work/frontier/w30r/RESULTS.md`; plan section 19. Not a matching lane; no gameplay change (no
+package).
+
+**Why no script wrote a ghost file.** The high-score state machine is `finish_state_normal` 0x800F64D4 (GC
+highscorescr.c updateHighScoreScreen; state word gHighScoreState 0x80140B20, SetHighScoreState takes its state in
+s2). In state 3 (after the name entry) a ghost race with a recorded ghost (the N64 gGhostToSave = 0x80140800)
+compresses it (func_800CC50C = CompressGhost) and then: if the byte **0x801148E4** (the N64 gSaveGhostFiles) is set,
+goes to state 4 = SAVE GHOST (FindGhosts, func_80104B14, func_800F1930); else calls func_800CC040 = SaveGhost with
+limbo = 1 (the ghost stays in memory: what w29r's ghost_save saw). Only func_800CCEFC sets 0x801148E4: when the
+player's id string equals the developer id `000F1CC5 EJK` (0x801211CC), together with 0x801164A1 and the halfwords
+0x801164C0.. (unlock everything). GC is the same (`_ReadPlayer`: gSaveGhostFiles only for that id). Retail players
+never save ghost files; the scripts poke the flag.
+
+**Unlocks.** `_InitScreen` (track_texture_load 0x800F5F90) snapshots the per-player unlock tables (0x80150DD8.. ->
+0x801426A0..), recomputes them (net_state_validate 0x800F2A28 = GC CalcUnlockedStuff) and compares (func_800A1910);
+any difference = SetHighScoreState(1) = ControlUnlocked (func_800F2718) -> DrawUnlocked (func_80103D28). With the
+developer halfword 0x801164C0 = 1 CalcUnlockedStuff unlocks every car, so the first race end shows CONGRATULATIONS!
+YOU JUST UNLOCKED: LOCUST LX | GX-2 | MINI XS | VENOM | CRUSHER | EURO LX | PANTHER.
+
+**Pak faults** (`runtime/src/pak.cpp`, host `--pak-fail OP:N[:ERR][,...]`, script line `pak fail OP N [ERR]`): the
+Nth call (1-based, counted per OP over the run) of osPfsDeleteFile (`delete`), osPfsReadWriteFile (`read`,
+`write`), osPfsAllocateFile (`alloc`) or osPfsFileState (`state`) returns ERR (default 4 = PFS_ERR_CONTRFAIL) and
+changes nothing; log `pak: injected failure: ...`, oracle event `E F pak fail ...`. Deterministic in lockstep, so
+both sides of a comparison fail the same call. Every harness passes it (`oracle.lever_args`: oracle.py run,
+draft_check, census, script_probe, regmap_verify, `pak from` producers). A failed delete in
+pak_delete_file_retry (0x800A2680, = PS_DeleteFile) opens the game's pak error dialog CONTROLLER 1 | UNKNOWN
+ERROR ... | CONTINUE WITHOUT SAVING | RETRY, drawn by **control_settings and control_cell_text2** (the first scripts
+that reach them: they are the pak-error/notice menu cells, not only image A's control-settings screen); A = RETRY,
+and the second delete succeeds.
+
+Phase 10 scripts (frames in brackets; all pak flow):
+- `ghost_pak.press` [5400] ghost_save's AAAA 1-lap ghost race + `poke 28 801148E4 1 1`: SAVE GHOST 3836
+  (FindGhosts, func_80104B14), DOWN + A = SAVE: GHOST SAVED ON CONTROLLER PAK 1 (3990, note "RUSH2049AAAA1F",
+  256 B), BEST GHOSTS 4080, GAME OVER 4980. Gas released at 127 s (a held A swallows menu presses).
+- `ghost_reload.press` [1500] `pak from ghost_pak`: the boot reads the ghost file (draw_ui_element =
+  _CheckAndRepairGhost, frame 4), the car screen lists GHOST 1 TIME 1:38.858 and loads it (func_800CBF2C,
+  menu_back, 600). SELECT MODE now starts on GHOST RACE (the player's last mode): no DOWN presses.
+- `ghost_resave.press` [5400] ghost_pak again from its own pak: SaveGhost replaces the old file of the same
+  track/player, i.e. deletes it first: pak_delete_file_retry (3990).
+- `ghost_delete_fail.press` [4300] ghost_resave + `pak fail delete 1`: the error dialog (3991), RETRY, saved (4080).
+- `unlock.press` [4800] race_finish + `poke 30 801164C0 1 2`: CONGRATULATIONS! 3742 (func_80103D28 98 calls,
+  func_800F2718, func_80105480), then race_finish's name entry and menus.
+
+**Initialised function-local statics (`--statics`).** IDO writes NO symbol for a function-local static, initialised
+or not (nor for a file-scope `static`); the code reaches them through the `.data`/`.bss` section symbol + offset,
+so Phase 3's name lookup found nothing to bind in a draft whose code differs from retail (w29d SaveServer:
+sInitCountdown/sLastPak/sReadingPak stayed private, the lane needed a `dc.c` with externs). `static_layout.py`
+recovers the layout from the draft as IDO's own preprocessor sees it (`cc -E`): every object definition in source
+order (file-scope objects and the `static` objects in function bodies), initialised -> `.data`, uninitialised static
+-> `.bss`, each aligned to max(4, natural) (checked on rocky with IDO 5.3 objects: chars 4 bytes apart, a double at
+8, unreferenced statics dropped without a gap). It is rejected (statics stay private, a `NOTE static layout:`
+line says why) when an object symbol is not where the layout puts it, the layout passes the section end, an
+integer initialiser differs from the section bytes, or a size is unknown (struct statics: later objects of that
+section unplaced). `--statics NAME=0xADDR` (or `FUNCTION:NAME=0xADDR`) now binds them; with a `--unit` draft the
+names apply to every member; the NOTE line names each private static. Checked (rocky): w29d's SaveServer best.c
+(no dc.c) `--statics sInitCountdown=0x8011742C,sLastPak=0x80117430,sReadingPak=0x80117434`: `VERDICT: EQUIVALENT
+over 3490 calls / 3 scripts (saves 1568, ghost_reload 825, ghost_resave 1097)` - the ghost branch included; without
+`--statics`: DIVERGES at saves frame 2 (`word 0x8011742C: retail 03000000->02000000 | draft unchanged`).
+
+**Renamed functions** (wave 29, w29n). Three things kept the old names: (1) `build/frontier.json` (a build product
+scanned before the rename): its `register_params`/`unsaved_callee_regs` facts were looked up by name, so 22 renamed
+functions lost them (no refusal for a register-parameter draft such as SetupWaveModel, and no clobber shim around
+calls to drawMain, PrintScores, TitlePane, control_cell_text...). `replace.frontier_facts` now keys the facts by
+today's name through each fact's `address` (draft_check, regmap_verify, replace.load_ipa_detection; also
+build/ipa_members.json names). (2) Lane directories and their `dc.args` (`w29d/func_800C813C/` holds SaveServer
+now): `draft_check --lane` maps NAME, `--unit` members, `--params MEMBER:` prefixes and `--callee` prototype names
+through `replace.stale_function_names()` (frontier fact addresses, every accepted function row of
+`cloud/work/frontier/*/renames.json`, and `func_XXXXXXXX` names that have a real name now) and prints a `NOTE ...
+renamed since the draft was saved` line. (3) The committed census: w29n's text replacement had also renamed the
+SCRIPT `race_finish` to `animPlace` in `census/*.json` (draft_check's default script choice then named a script that
+does not exist); the census refresh below regenerated every file.
+
+**Census refresh** (2026-10-13, 34 scripts, 175 unmatched at wave30 = 1b34f797): **168 reached (184,796 B), 7 never
+(5,260 B)** (w29r: 178 of 192 / 14). Newly reached: func_80104B14 (ghost_pak, ghost_resave, ghost_delete_fail),
+draw_ui_element (ghost_reload, ghost_resave, ghost_delete_fail), func_80103D28 (unlock), pak_delete_file_retry
+(ghost_resave, ghost_delete_fail), control_settings and control_cell_text2 (ghost_delete_fail: the pak error
+dialog). Still never: func_8010C974 (_AnimateMine: a mine pickup in battle), func_800DD0C0, control_cell_text3,
+control_cell_text (control_settings' other cell kinds: the error dialog draws only control_cell_text2; probably
+image A's controller-settings screen, unverified), world_effect_update, fp_call_wrapper, object_bytes23_sum (no static
+reference: dead or computed-jalr only).

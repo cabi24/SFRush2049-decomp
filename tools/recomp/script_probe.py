@@ -192,8 +192,7 @@ def run(args):
         cmd = oracle.host_command(cap["host"], cap["rom"], out / "o.log", out / "home", frames, sc["press"],
                                   frames / 30.0 * 6 + 300, calls=out / "calls", pak=sc["pak"])
         cmd += ["--text-log", str(out / "text.log")]
-        if sc.get("pokes"):
-            cmd += ["--poke", ",".join(sc["pokes"])]
+        cmd += oracle.lever_args(sc)                 # poke / pak fail
         if sc.get("pak_from") and not (args.pak or args.pak_write):
             args_pak = oracle.pak_image(sc["pak_from"], cap["host"], cap["rom"], run_dir)
             cmd += ["--pak", str(args_pak)]

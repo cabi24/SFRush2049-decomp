@@ -19,11 +19,20 @@
 // starts from the same bytes: deterministic), unless --pak FILE names a
 // starting image (still not written). --no-pak: the runtime's behaviour (no
 // pak; the boot notice).
+//
+// Fault injection (Phase 10, --pak-fail OP:N[:ERR], scripts `pak fail OP N [ERR]`):
+// the Nth call (1-based, counted per OP over the run) of osPfsDeleteFile (delete),
+// osPfsReadWriteFile read/write (read, write), osPfsAllocateFile (alloc) or
+// osPfsFileState (state) returns ERR (default 4 = PFS_ERR_CONTRFAIL) without
+// touching the image, as a pak pulled or a bad contact would. Deterministic in
+// lockstep (the call order is), so both sides of a comparison fail the same call.
 #include <cstdint>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <map>
 #include <mutex>
 #include <string>
 #include <vector>
@@ -53,6 +62,26 @@ bool persist = false;          // rewrite the file after every change
 std::filesystem::path file;
 std::vector<uint8_t> img(PAK_SIZE);
 uint64_t writes = 0;            // game changes (allocate, delete, write): status pak_writes=
+
+// --pak-fail: {op, nth call, error}; calls counted per op
+struct PakFail { std::string op; uint64_t nth; int32_t err; };
+std::vector<PakFail> fails;
+std::map<std::string, uint64_t> op_calls;
+// true (and *err set) when this call of op is to fail; logs it
+bool injected(const char* op, int32_t* err) {
+    uint64_t c = ++op_calls[op];
+    for (const PakFail& f : fails) {
+        if (f.op == op && f.nth == c) {
+            *err = f.err;
+            rush::trace_event("pak: injected failure: %s call %llu -> error %d", op, (unsigned long long)c, f.err);
+            char ev[64];
+            snprintf(ev, sizeof ev, "pak fail %s %llu %d", op, (unsigned long long)c, f.err);
+            rush::oracle_event(ev);
+            return true;
+        }
+    }
+    return false;
+}
 
 uint16_t be16(const uint8_t* p) { return (uint16_t)(p[0] << 8 | p[1]); }
 uint32_t be32(const uint8_t* p) { return (uint32_t)p[0] << 24 | (uint32_t)p[1] << 16 | (uint32_t)p[2] << 8 | p[3]; }
@@ -208,6 +237,28 @@ void rush::pak_setup(bool on, const std::filesystem::path& path, bool persistent
     if (persist && std::strcmp(how, "new") == 0) save_locked();
 }
 
+// --pak-fail OP:N[:ERR]; false on a malformed item
+bool rush::pak_add_fail(const std::string& item) {
+    std::lock_guard<std::mutex> lock(mu);
+    size_t a = item.find(':');
+    if (a == std::string::npos) return false;
+    std::string op = item.substr(0, a), rest = item.substr(a + 1);
+    if (op != "delete" && op != "read" && op != "write" && op != "alloc" && op != "state") return false;
+    size_t b = rest.find(':');
+    char* end = nullptr;
+    std::string ns = rest.substr(0, b);
+    unsigned long long nth = std::strtoull(ns.c_str(), &end, 10);
+    if (ns.empty() || *end || nth == 0) return false;
+    long e = PFS_ERR_CONTRFAIL;
+    if (b != std::string::npos) {
+        std::string es = rest.substr(b + 1);
+        e = std::strtol(es.c_str(), &end, 10);
+        if (es.empty() || *end || e <= 0 || e > 255) return false;
+    }
+    fails.push_back({op, (uint64_t)nth, (int32_t)e});
+    return true;
+}
+
 bool rush::pak_present(int channel) { return enabled && channel == 0; }
 uint64_t rush::pak_writes() { return writes; }
 
@@ -292,6 +343,8 @@ PAKFN(osPfsAllocateFile) {
     uint32_t game = arg(rdram, ctx, 2), name = arg(rdram, ctx, 3), ext = arg(rdram, ctx, 4);
     int32_t size = (int32_t)arg(rdram, ctx, 5);
     uint32_t file_no = arg(rdram, ctx, 6);
+    int32_t err;
+    if (injected("alloc", &err)) { ret(ctx, err); return; }
     if (company == 0 || game == 0) { ret(ctx, PFS_ERR_INVALID); return; }
     int existing = find(rdram, company, game, name, ext);
     sw(rdram, file_no, (uint32_t)existing);
@@ -331,6 +384,8 @@ PAKFN(osPfsAllocateFile) {
 PAKFN(osPfsDeleteFile) {
     std::lock_guard<std::mutex> lock(mu);
     if (!pak_on(rdram, arg(rdram, ctx, 0))) { ret(ctx, PFS_ERR_NOPACK); return; }
+    int32_t err;
+    if (injected("delete", &err)) { ret(ctx, err); return; }
     uint16_t company = (uint16_t)arg(rdram, ctx, 1);
     uint32_t game = arg(rdram, ctx, 2);
     if (company == 0 || game == 0) { ret(ctx, PFS_ERR_INVALID); return; }
@@ -352,6 +407,8 @@ PAKFN(osPfsFileState) {
     if (!pak_on(rdram, arg(rdram, ctx, 0))) { ret(ctx, PFS_ERR_NOPACK); return; }
     int32_t n = (int32_t)arg(rdram, ctx, 1);
     uint32_t st = arg(rdram, ctx, 2);
+    int32_t err;
+    if (injected("state", &err)) { ret(ctx, err); return; }
     if (n < 0 || n >= NOTES || !note_used(n)) { ret(ctx, PFS_ERR_INVALID); return; }
     std::vector<int> pages = chain(n);
     if (pages.empty()) { ret(ctx, PFS_ERR_INCONSISTENT); return; }
@@ -374,6 +431,8 @@ PAKFN(osPfsReadWriteFile) {
     uint8_t flag = (uint8_t)arg(rdram, ctx, 2);
     int32_t offset = (int32_t)arg(rdram, ctx, 3), size = (int32_t)arg(rdram, ctx, 4);
     uint32_t buf = arg(rdram, ctx, 5);
+    int32_t err;
+    if (injected(flag ? "write" : "read", &err)) { ret(ctx, err); return; }
     if (n < 0 || n >= NOTES || size <= 0 || size % BLOCK || offset < 0 || offset % BLOCK) {
         ret(ctx, PFS_ERR_INVALID);
         return;

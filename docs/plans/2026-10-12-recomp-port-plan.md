@@ -534,3 +534,34 @@ commands: `tools/recomp/README.md` "Phase 9"; lane notes: `cloud/work/frontier/w
 - **Phase 10 needs**: a pak ghost file (the 1-lap ghost is not saved: find what sets the N64 gGhostToSave, or poke
   it), an unlock (DrawUnlocked), a mine pickup in battle (func_8010C974), image-A-only control_settings (overlay
   scripts), AdjustSpeed (a failing pak delete: a pak-fault option in pak.cpp).
+
+
+## 19. Phase 10: ghost files, unlocks, pak faults, initialised statics, renames (lane w30r, 2026-10-13)
+
+Owner decisions unchanged: recomp time is for decomp feedback only; no package (no gameplay change). Detail and
+commands: `tools/recomp/README.md` "Phase 10"; lane notes: `cloud/work/frontier/w30r/RESULTS.md`.
+
+- **The ghost file was gated by a developer id, not by the race.** In the high-score state machine
+  (finish_state_normal 0x800F64D4 = GC updateHighScoreScreen) a finished ghost race always compresses its ghost;
+  it is written to the pak (state 4, SAVE GHOST: FindGhosts, func_80104B14) only when the byte 0x801148E4 (N64
+  gSaveGhostFiles) is set, which func_800CCEFC does only for the player id "000F1CC5 EJK"; otherwise SaveGhost keeps
+  it in memory (limbo). Scene lever `poke 28 801148E4 1 1`; scripts ghost_pak (writes the file), ghost_reload
+  (boot reads it: draw_ui_element), ghost_resave (replacing it deletes the old file: pak_delete_file_retry).
+- **Unlock**: the same developer path sets 0x801164C0 (unlock every car); poked before a race end, _InitScreen's
+  before/after comparison of the unlock tables (CalcUnlockedStuff = net_state_validate) shows CONGRATULATIONS!
+  YOU JUST UNLOCKED (DrawUnlocked = func_80103D28). Script unlock.
+- **Pak fault lever**: `pak fail OP N [ERR]` / host `--pak-fail` fails the Nth osPfs delete/read/write/alloc/state
+  call; ghost_delete_fail drives pak_delete_file_retry's error path (the CONTROLLER PAK error dialog, RETRY), which
+  also reaches control_settings and control_cell_text2 (the dialog's cells) for the first time.
+- **`--statics` binds initialised function-local statics**: IDO writes no symbol for any static object; the layout
+  is recovered from the preprocessed draft (`static_layout.py`, source order, max(4, natural) alignment, unused
+  statics dropped, checked against symbols, section size and initialisers). w29d's SaveServer draft needs no
+  `dc.c` any more (EQUIVALENT over 3,490 calls with `--statics`, including the ghost branch).
+- **Renames**: frontier facts are keyed by today's names through their addresses (22 renamed functions had lost
+  their register-parameter / clobber facts); `--lane` maps directory names and dc.args to today's names; the
+  census refresh removed w29n's renaming of the script race_finish to animPlace in the committed census.
+- **Census**: 168 of 175 unmatched reached, 7 never (5,260 B): func_8010C974 (mine pickup in battle), func_800DD0C0,
+  control_cell_text3, control_cell_text, world_effect_update, fp_call_wrapper, object_bytes23_sum.
+- **Phase 11 needs**: a mine pickup in battle (func_8010C974), the remaining control_settings cell kinds (image A's
+  controller-settings screen), a regenerated build/frontier.json in the service tree after renames (the remap
+  covers it meanwhile).

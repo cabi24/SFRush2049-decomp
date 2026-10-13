@@ -554,10 +554,7 @@ def load_inputs(p):
 
 
 def unsaved_fact(name, frontier=REPO / "build" / "frontier.json"):
-    try:
-        f = json.loads(Path(frontier).read_text()).get("facts", {}).get(name) or {}
-    except (OSError, ValueError):
-        return []
+    f = dc.rp.frontier_facts(frontier)[0].get(name) or {}       # keyed by today's names (Phase 10)
     return list(f.get("unsaved_callee_regs") or ())
 
 

@@ -5,7 +5,8 @@
 # SELECT TRACK; found by dump diff); the poke at 28 s (frame 840, after LAP 1/3 is shown) makes it a 1-lap race
 # that gas alone finishes in time (gas-only 3-lap ghost races end DNF against the 3:40 limit).
 # Frames: LAP 1/1 840, finish 3775 (AAAA 1ST PLACE TIME 1:38.858), BEST GHOSTS 3836 (AAAA enters the table: a
-# 128-byte player-record write; NO ghost file is written to the pak, see w29r RESULTS), GAME OVER 4736, DOWN + A =
+# 128-byte player-record write; NO ghost file is written: retail saves ghost files only for the developer id, see
+# ghost_pak.press), GAME OVER 4736, DOWN + A =
 # RACE AGAIN (4860: the new race loads the in-memory ghost).
 # Reaches func_800CC50C and func_800CC040 (BEST GHOSTS), func_800CBF2C and menu_back (RACE AGAIN, ghost load); the
 # saves pak's player read at boot reaches func_800C7EC8, drone_set_catchup, draw_speedometer (SaveServer).

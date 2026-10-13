@@ -1,0 +1,16 @@
+# Boot with the ghost file ghost_pak.press leaves (w30r, Phase 10): SaveServer reads the ghost header at boot
+# (draw_ui_element = _CheckAndRepairGhost, frame 4), the GHOST RACE car screen lists GHOST 1 TIME 1:38.858 and
+# loads it (func_800CBF2C, menu_back, frame 600), then 20 s of the race against it. SELECT MODE starts on GHOST
+# RACE here (the player's last mode), so no DOWN presses.
+frames 1500
+pak from ghost_pak
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+17 A
+20 A
+23 A
+26 A
+27 A 20

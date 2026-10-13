@@ -1,0 +1,21 @@
+# ghost_pak.press again, starting from the pak it leaves (w30r, Phase 10): saving the new ghost of the same
+# track/player replaces the old file, so func_800CC040 (SaveGhost) deletes it first: pak_delete_file_retry
+# (osPfsDeleteFile succeeds; frame 3990) plus the ghost read at boot (draw_ui_element) and in the car screen.
+# SELECT MODE starts on GHOST RACE (the player's last mode), so no DOWN presses.
+frames 5400
+pak from ghost_pak
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+17 A
+20 A
+23 A
+26 A
+27 A 100
+poke 28 80152735 1 1
+poke 28 801148E4 1 1
+132 DOWN
+133 A
+136 A

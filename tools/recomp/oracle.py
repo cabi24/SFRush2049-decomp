@@ -614,6 +614,7 @@ def call_report(cr, words=None):
 # ------------------------------------------------------------------ input scripts
 
 SCRIPT_DIR = Path(__file__).resolve().parent / "scripts"
+PAK_FAIL_OPS = ("delete", "read", "write", "alloc", "state")
 _BUTTONS = {"A", "B", "Z", "START", "UP", "DOWN", "LEFT", "RIGHT", "L", "R", "CU", "CD", "CL", "CR",
             "STICKUP", "STICKDOWN", "STICKLEFT", "STICKRIGHT"}
 
@@ -627,9 +628,11 @@ def parse_script(text, name="script"):
     Phase 9: `pak from SCRIPT` (start from the pak image SCRIPT leaves: the
     harness runs SCRIPT first on the stock host; see script_host_args) and
     `poke TIME ADDR VALUE [BYTES]` (write VALUE, 1/2/4 bytes, at the N64 address
-    when the frame at TIME seconds starts; host --poke). Times need not be sorted."""
+    when the frame at TIME seconds starts; host --poke). Phase 10: `pak fail OP N
+    [ERR]` (the Nth osPfs call of OP = delete|read|write|alloc|state returns ERR,
+    default 4 = PFS_ERR_CONTRFAIL; host --pak-fail). Times need not be sorted."""
     items, frames, ports, pak = [], None, {1}, None
-    pak_from, pokes = None, []
+    pak_from, pokes, pak_fail = None, [], []
     for n, raw in enumerate(text.splitlines(), 1):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -643,6 +646,14 @@ def parse_script(text, name="script"):
         if parts[0] == "pak":
             if len(parts) == 3 and parts[1] == "from" and re.match(r"^\w+$", parts[2]):
                 pak, pak_from = True, parts[2]
+                continue
+            if len(parts) >= 2 and parts[1] == "fail":
+                if len(parts) not in (4, 5) or parts[2] not in PAK_FAIL_OPS or not parts[3].isdigit() \
+                        or int(parts[3]) < 1 or (len(parts) == 5 and not (parts[4].isdigit()
+                                                                         and 1 <= int(parts[4]) <= 255)):
+                    raise OracleError(f"{name}:{n}: pak fail takes OP N [ERR] (OP: {'|'.join(PAK_FAIL_OPS)}; "
+                                      "N >= 1; ERR 1-255, default 4)")
+                pak_fail.append("%s:%d:%d" % (parts[2], int(parts[3]), int(parts[4]) if len(parts) == 5 else 4))
                 continue
             if len(parts) != 2 or parts[1] not in ("on", "off"):
                 raise OracleError(f"{name}:{n}: pak takes on or off (or `from SCRIPT`)")
@@ -688,6 +699,8 @@ def parse_script(text, name="script"):
         sc["pak_from"] = pak_from
     if pokes:
         sc["pokes"] = pokes
+    if pak_fail:
+        sc["pak_fail"] = pak_fail
     return sc
 
 
@@ -730,7 +743,7 @@ def pak_image(name, host, rom, cache_dir, _depth=0):
     frames = sc["frames"] or 1800
     cmd = host_command(host, rom, tmp / "o.log", tmp / "home", frames, sc["press"], frames / 30.0 * 6 + 300,
                        pak=True)
-    cmd += ["--pak", str(out), "--pak-write"] + (["--poke", ",".join(sc["pokes"])] if sc.get("pokes") else [])
+    cmd += ["--pak", str(out), "--pak-write"] + lever_args(sc)
     with open(tmp / "err", "w") as fe:
         rc = subprocess.run([str(c) for c in cmd], stdout=subprocess.DEVNULL, stderr=fe).returncode
     if rc != 0 or not out.is_file():
@@ -743,13 +756,22 @@ def pak_image(name, host, rom, cache_dir, _depth=0):
 
 def script_host_args(sc, host, rom, cache_dir):
     """Extra host arguments a script needs besides --press: `poke` lines
-    (--poke) and `pak from` (--pak IMAGE, read-only in lockstep: every run of
+    (--poke), `pak fail` lines (--pak-fail) and `pak from` (--pak IMAGE, read-only in lockstep: every run of
     the comparison starts from the same bytes)."""
     args = []
     if sc.get("pak_from"):
         args += ["--pak", str(pak_image(sc["pak_from"], host, rom, cache_dir))]
+    return args + lever_args(sc)
+
+
+def lever_args(sc):
+    """Host arguments for a script's scene levers: `poke` (--poke) and
+    `pak fail` (--pak-fail, Phase 10)."""
+    args = []
     if sc.get("pokes"):
         args += ["--poke", ",".join(sc["pokes"])]
+    if sc.get("pak_fail"):
+        args += ["--pak-fail", ",".join(sc["pak_fail"])]
     return args
 
 

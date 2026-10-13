@@ -83,6 +83,7 @@ void trace_final();   // the final status line (lockstep --frames stop)   // --f
 // behaviour); persistent=false: the image is never written (lockstep: fixed image).
 void pak_setup(bool on, const std::filesystem::path& path, bool persistent);
 bool pak_present(int channel);
+bool pak_add_fail(const std::string& item);   // --pak-fail OP:N[:ERR] (Phase 10)
 uint64_t pak_writes();
 
 // oracle.cpp: per-frame rdram/display-list hashes (tools/recomp/oracle.py)

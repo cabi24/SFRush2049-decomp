@@ -155,10 +155,7 @@ def parse_callee(spec):
 
 
 def register_params_fact(name, frontier=REPO / "build" / "frontier.json"):
-    try:
-        f = json.loads(Path(frontier).read_text()).get("facts", {}).get(name) or {}
-    except (OSError, ValueError):
-        return []
+    f = rp.frontier_facts(frontier)[0].get(name) or {}       # keyed by today's names (Phase 10)
     return [r for r in f.get("register_params") or () if r not in rp._ABI_IN]
 
 
@@ -172,10 +169,7 @@ def clobber_shims(table, frontier=REPO / "build" / "frontier.json"):
     eight stack words through unchanged (f12/f14 are not touched) and saves
     the clobbered registers around the call, so the draft's s-registers
     survive as they would in the whole-program build."""
-    try:
-        facts = json.loads(Path(frontier).read_text()).get("facts", {})
-    except (OSError, ValueError):
-        return {}
+    facts = rp.frontier_facts(frontier)[0]       # keyed by today's names (Phase 10)
     out = {}
     for name, f in facts.items():
         if not isinstance(f, dict) or name in table or not f.get("unsaved_callee_regs"):
@@ -716,6 +710,36 @@ def lane_drafts(lane, root=LANE_ROOT):
     return out
 
 
+def current_names(name, extra, stale=None):
+    """Phase 10: a lane directory and its dc.args keep the function names of
+    the day they were written; renames (wave 29, w29n) changed the draft text
+    but not those. Map NAME (a comma list for --unit), `--params MEMBER:...`
+    prefixes and the function names in `--callee` prototypes to today's names.
+    Returns (name, extra, [(old, new)])."""
+    stale = rp.stale_function_names() if stale is None else stale
+    done = []
+
+    def cur(n):
+        if n in stale:
+            done.append((n, stale[n]))
+            return stale[n]
+        return n
+    name = ",".join(cur(n) for n in name.split(","))
+    out, it = [], iter(extra)
+    for a in it:
+        if a in ("--params", "--callee"):
+            v = next(it, "")
+            if a == "--params" and ":" in v.split("=", 1)[0]:
+                m, rest = v.split(":", 1)
+                v = cur(m) + ":" + rest
+            elif a == "--callee":
+                v = re.sub(r"(\w+)(\s*\()", lambda mm: cur(mm.group(1)) + mm.group(2), v, count=1)
+            out += [a, v]
+        else:
+            out.append(a)
+    return name, out, sorted(set(done))
+
+
 def summarize_output(text, rc):
     """(verdict, detail) from one draft_check run's stdout."""
     verdict = {0: "EQUIVALENT", 1: "DIVERGES", 3: "NEVER CALLED"}.get(rc, "ERROR")
@@ -748,7 +772,12 @@ def lane_main(args, argv):
         if not a.startswith(("--lane=", "--json=")):
             fwd.append(a)
     rows = []
+    stale = rp.stale_function_names()
     for name, best, extra in drafts:
+        name, extra, renamed = current_names(name, extra, stale)
+        if renamed:
+            print("  NOTE %s: renamed since the draft was saved: %s" % (
+                best.parent.name, ", ".join("%s -> %s" % r for r in renamed)), flush=True)
         unit = ["--unit"] if "--unit" in extra else []
         extra = [x for x in extra if x != "--unit"]
         cmd = [sys.executable, "-m", "tools.recomp.draft_check"] + unit + [name, str(best)] + extra + fwd
@@ -817,7 +846,9 @@ def main(argv=None):
     ap.add_argument("--ignore-register-params", action="store_true",
                     help="build a function the frontier lists with register_params without --params "
                     "(o32 inbound: only right if those registers are not really parameters)")
-    ap.add_argument("--statics", default=None, help="NAME=0xADDR,... function-local statics -> retail addresses")
+    ap.add_argument("--statics", default=None,
+                    help="NAME=0xADDR,... (or FUNCTION:NAME=0xADDR) function-local statics -> retail addresses "
+                         "(Phase 10: initialised and uninitialised, named from the draft's source)")
     ap.add_argument("--compiler", default=None, help="ido5.3 | ido7.1 (default by population)")
     ap.add_argument("--frames", type=int, default=None, help="frames per script (default: the script's)")
     ap.add_argument("--jobs", type=int, default=int(os.environ.get("RUSH_DC_JOBS", "6")),
@@ -997,8 +1028,10 @@ def local_main(args):
     if rinfo.get("private_data"):
         print("  NOTE private data (not bound to retail): %s" % ", ".join(rinfo["private_data"]))
     if rinfo.get("statics_private"):
-        print("  NOTE function-local statics kept private (pass --statics NAME=0xADDR): %s"
+        print("  NOTE function-local statics kept private (pass --statics NAME=0xADDR or FUNCTION:NAME=0xADDR): %s"
               % ", ".join(rinfo["statics_private"]))
+        for prob in rinfo.get("static_layout_problems") or ():
+            print("  NOTE static layout: %s" % prob)
     cap_key = (sha256_file(cap["host"])[:12] + sha256_file(cap["rom"])[:8])
     results = []
     if scripts:

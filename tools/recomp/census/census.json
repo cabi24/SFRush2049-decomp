@@ -1,9 +1,23 @@
 {
  "functions": {
-  "pak_delete_file_retry": {
-   "scripts": {},
-   "size": 784,
-   "vram": "0x800A2680"
+  "CreatePlayer": {
+   "scripts": {
+    "player_finish": 1,
+    "saves": 1
+   },
+   "size": 1088,
+   "vram": "0x800CD104"
+  },
+  "PS_CreateFile": {
+   "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
+    "player_finish": 1,
+    "saves": 1
+   },
+   "size": 1752,
+   "vram": "0x800A2D4C"
   },
   "RaceStateMachine_Update": {
    "scripts": {
@@ -12,7 +26,11 @@
     "battle": 2012,
     "battle_end": 108,
     "circuit": 1937,
+    "ghost_delete_fail": 3134,
+    "ghost_pak": 3134,
     "ghost_race": 2027,
+    "ghost_reload": 797,
+    "ghost_resave": 3134,
     "ghost_save": 3271,
     "other_car": 2012,
     "pause_menus": 3739,
@@ -20,7 +38,7 @@
     "player_reload": 827,
     "practice": 2027,
     "race": 1097,
-    "animPlace": 3221,
+    "race_finish": 3221,
     "race_pak": 1217,
     "race_track2": 1097,
     "race_track3": 1097,
@@ -30,10 +48,121 @@
     "stunt_end": 9338,
     "stunt_short": 2499,
     "two_player": 1097,
-    "two_player_finish": 3393
+    "two_player_finish": 3393,
+    "unlock": 3221
    },
    "size": 2148,
    "vram": "0x800DB81C"
+  },
+  "SaveServer": {
+   "scripts": {
+    "attract": 9014,
+    "attract_pak": 9014,
+    "audio_options": 1451,
+    "backward": 809,
+    "battle": 823,
+    "battle_end": 805,
+    "circuit": 899,
+    "controls_frontend": 1743,
+    "ghost_delete_fail": 1315,
+    "ghost_pak": 1097,
+    "ghost_race": 809,
+    "ghost_reload": 825,
+    "ghost_resave": 1097,
+    "ghost_save": 971,
+    "options_menus": 2498,
+    "other_car": 823,
+    "pause_menus": 3691,
+    "player_finish": 1387,
+    "player_reload": 1091,
+    "practice": 809,
+    "race": 917,
+    "race_finish": 929,
+    "race_pak": 710,
+    "race_track2": 917,
+    "race_track3": 917,
+    "race_track4": 917,
+    "records": 1202,
+    "saves": 1568,
+    "stunt": 917,
+    "stunt_end": 1039,
+    "stunt_short": 1071,
+    "two_player": 917,
+    "two_player_finish": 931,
+    "unlock": 929
+   },
+   "size": 900,
+   "vram": "0x800C813C"
+  },
+  "SetupWaveModel": {
+   "scripts": {
+    "attract": 203,
+    "attract_pak": 199,
+    "audio_options": 79,
+    "backward": 75,
+    "battle": 71,
+    "battle_end": 72,
+    "circuit": 76,
+    "controls_frontend": 19,
+    "ghost_delete_fail": 72,
+    "ghost_pak": 70,
+    "ghost_race": 69,
+    "ghost_reload": 71,
+    "ghost_resave": 72,
+    "ghost_save": 116,
+    "options_menus": 26,
+    "other_car": 79,
+    "pause_menus": 75,
+    "player_finish": 76,
+    "player_reload": 75,
+    "practice": 70,
+    "race": 79,
+    "race_finish": 77,
+    "race_pak": 75,
+    "race_track2": 79,
+    "race_track3": 79,
+    "race_track4": 79,
+    "records": 21,
+    "saves": 76,
+    "stunt": 69,
+    "stunt_end": 66,
+    "stunt_short": 67,
+    "two_player": 83,
+    "two_player_finish": 81,
+    "unlock": 77
+   },
+   "size": 1204,
+   "vram": "0x80096CA8"
+  },
+  "animPlace": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
+    "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
+    "ghost_save": 3268,
+    "other_car": 2011,
+    "pause_menus": 3736,
+    "player_finish": 2633,
+    "player_reload": 826,
+    "practice": 2026,
+    "race": 1096,
+    "race_finish": 3218,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096,
+    "two_player_finish": 3390,
+    "unlock": 3218
+   },
+   "size": 1000,
+   "vram": "0x80107AF4"
   },
   "arb_rate_set": {
    "scripts": {
@@ -45,7 +174,11 @@
     "battle_end": 36,
     "circuit": 28,
     "controls_frontend": 8,
+    "ghost_delete_fail": 31,
+    "ghost_pak": 31,
     "ghost_race": 31,
+    "ghost_reload": 31,
+    "ghost_resave": 31,
     "ghost_save": 48,
     "options_menus": 6,
     "other_car": 28,
@@ -54,7 +187,7 @@
     "player_reload": 28,
     "practice": 28,
     "race": 28,
-    "animPlace": 31,
+    "race_finish": 31,
     "race_pak": 28,
     "race_track2": 28,
     "race_track3": 28,
@@ -65,25 +198,11 @@
     "stunt_end": 28,
     "stunt_short": 31,
     "two_player": 36,
-    "two_player_finish": 40
+    "two_player_finish": 40,
+    "unlock": 31
    },
    "size": 312,
    "vram": "0x800A5908"
-  },
-  "control_cell_text3": {
-   "scripts": {},
-   "size": 820,
-   "vram": "0x800DC99C"
-  },
-  "control_cell_text": {
-   "scripts": {},
-   "size": 264,
-   "vram": "0x800DC88C"
-  },
-  "control_cell_text2": {
-   "scripts": {},
-   "size": 692,
-   "vram": "0x800DCDF4"
   },
   "audio_bus_mix": {
    "scripts": {
@@ -95,7 +214,11 @@
     "battle_end": 1833,
     "circuit": 1708,
     "controls_frontend": 1604,
+    "ghost_delete_fail": 1708,
+    "ghost_pak": 1708,
     "ghost_race": 1708,
+    "ghost_reload": 1708,
+    "ghost_resave": 1708,
     "ghost_save": 1750,
     "options_menus": 1604,
     "other_car": 1708,
@@ -104,7 +227,7 @@
     "player_reload": 1708,
     "practice": 1708,
     "race": 1729,
-    "animPlace": 1832,
+    "race_finish": 1832,
     "race_pak": 1708,
     "race_track2": 1770,
     "race_track3": 1811,
@@ -115,7 +238,8 @@
     "stunt_end": 1729,
     "stunt_short": 1914,
     "two_player": 1875,
-    "two_player_finish": 2041
+    "two_player_finish": 2041,
+    "unlock": 1832
    },
    "size": 720,
    "vram": "0x800B4818"
@@ -130,7 +254,11 @@
     "battle_end": 17308,
     "circuit": 66365,
     "controls_frontend": 15886,
+    "ghost_delete_fail": 132738,
+    "ghost_pak": 141094,
     "ghost_race": 77663,
+    "ghost_reload": 35513,
+    "ghost_resave": 155868,
     "ghost_save": 139209,
     "options_menus": 27316,
     "other_car": 70366,
@@ -139,7 +267,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
-    "animPlace": 122021,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -150,7 +278,8 @@
     "stunt_end": 225208,
     "stunt_short": 63071,
     "two_player": 60760,
-    "two_player_finish": 213374
+    "two_player_finish": 213374,
+    "unlock": 121141
    },
    "size": 1124,
    "vram": "0x800B6788"
@@ -164,7 +293,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 5,
+    "ghost_delete_fail": 5,
+    "ghost_pak": 5,
     "ghost_race": 5,
+    "ghost_reload": 5,
+    "ghost_resave": 5,
     "ghost_save": 6,
     "other_car": 5,
     "pause_menus": 6,
@@ -172,7 +305,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
-    "animPlace": 6,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -182,7 +315,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 5,
-    "two_player_finish": 6
+    "two_player_finish": 6,
+    "unlock": 6
    },
    "size": 696,
    "vram": "0x800BAAA0"
@@ -197,7 +331,11 @@
     "battle_end": 71,
     "circuit": 75,
     "controls_frontend": 18,
+    "ghost_delete_fail": 71,
+    "ghost_pak": 69,
     "ghost_race": 68,
+    "ghost_reload": 70,
+    "ghost_resave": 71,
     "ghost_save": 115,
     "options_menus": 25,
     "other_car": 78,
@@ -206,7 +344,7 @@
     "player_reload": 74,
     "practice": 69,
     "race": 78,
-    "animPlace": 76,
+    "race_finish": 76,
     "race_pak": 74,
     "race_track2": 78,
     "race_track3": 78,
@@ -217,7 +355,8 @@
     "stunt_end": 65,
     "stunt_short": 66,
     "two_player": 82,
-    "two_player_finish": 80
+    "two_player_finish": 80,
+    "unlock": 76
    },
    "size": 520,
    "vram": "0x80097798"
@@ -231,7 +370,11 @@
     "battle": 2,
     "battle_end": 2,
     "circuit": 6,
+    "ghost_delete_fail": 2,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 2,
+    "ghost_resave": 2,
     "ghost_save": 3,
     "other_car": 6,
     "pause_menus": 12,
@@ -239,7 +382,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 6,
-    "animPlace": 12,
+    "race_finish": 12,
     "race_pak": 6,
     "race_track2": 6,
     "race_track3": 6,
@@ -249,7 +392,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 6,
-    "two_player_finish": 12
+    "two_player_finish": 12,
+    "unlock": 12
    },
    "size": 600,
    "vram": "0x800B0C48"
@@ -263,7 +407,11 @@
     "battle": 2,
     "battle_end": 2,
     "circuit": 2,
+    "ghost_delete_fail": 2,
+    "ghost_pak": 2,
     "ghost_race": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 2,
     "ghost_save": 3,
     "other_car": 2,
     "pause_menus": 2,
@@ -271,7 +419,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -281,7 +429,8 @@
     "stunt_end": 2,
     "stunt_short": 2,
     "two_player": 2,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 1372,
    "vram": "0x800BB140"
@@ -295,7 +444,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 5,
+    "ghost_delete_fail": 5,
+    "ghost_pak": 5,
     "ghost_race": 5,
+    "ghost_reload": 5,
+    "ghost_resave": 5,
     "ghost_save": 6,
     "other_car": 5,
     "pause_menus": 6,
@@ -303,7 +456,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
-    "animPlace": 6,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -313,7 +466,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 5,
-    "two_player_finish": 6
+    "two_player_finish": 6,
+    "unlock": 6
    },
    "size": 732,
    "vram": "0x800BA7C4"
@@ -327,7 +481,11 @@
     "battle": 60,
     "battle_end": 60,
     "circuit": 465,
+    "ghost_delete_fail": 465,
+    "ghost_pak": 465,
     "ghost_race": 465,
+    "ghost_reload": 465,
+    "ghost_resave": 465,
     "ghost_save": 555,
     "other_car": 465,
     "pause_menus": 555,
@@ -335,7 +493,7 @@
     "player_reload": 465,
     "practice": 465,
     "race": 465,
-    "animPlace": 555,
+    "race_finish": 555,
     "race_pak": 465,
     "race_track2": 465,
     "race_track3": 450,
@@ -345,7 +503,8 @@
     "stunt_end": 60,
     "stunt_short": 120,
     "two_player": 465,
-    "two_player_finish": 555
+    "two_player_finish": 555,
+    "unlock": 555
    },
    "size": 432,
    "vram": "0x800BA46C"
@@ -353,9 +512,10 @@
   "audio_update_d": {
    "scripts": {
     "ghost_save": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "stunt_short": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 76,
    "vram": "0x800F8754"
@@ -370,7 +530,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -379,7 +543,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -390,7 +554,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 196,
    "vram": "0x800AC75C"
@@ -403,7 +568,11 @@
     "battle_end": 4071,
     "circuit": 4056,
     "controls_frontend": 26120,
+    "ghost_delete_fail": 4989,
+    "ghost_pak": 4973,
     "ghost_race": 4577,
+    "ghost_reload": 4989,
+    "ghost_resave": 4989,
     "ghost_save": 4973,
     "options_menus": 18132,
     "other_car": 3915,
@@ -412,7 +581,7 @@
     "player_reload": 3936,
     "practice": 3712,
     "race": 3090,
-    "animPlace": 4032,
+    "race_finish": 4032,
     "race_pak": 3180,
     "race_track2": 3090,
     "race_track3": 3090,
@@ -423,7 +592,8 @@
     "stunt_end": 3688,
     "stunt_short": 5438,
     "two_player": 3480,
-    "two_player_finish": 4422
+    "two_player_finish": 4422,
+    "unlock": 4032
    },
    "size": 448,
    "vram": "0x800A6244"
@@ -438,7 +608,11 @@
     "battle_end": 118,
     "circuit": 118,
     "controls_frontend": 118,
+    "ghost_delete_fail": 489,
+    "ghost_pak": 269,
     "ghost_race": 118,
+    "ghost_reload": 118,
+    "ghost_resave": 269,
     "ghost_save": 179,
     "options_menus": 208,
     "other_car": 118,
@@ -447,7 +621,7 @@
     "player_reload": 118,
     "practice": 118,
     "race": 238,
-    "animPlace": 184,
+    "race_finish": 184,
     "race_pak": 118,
     "race_track2": 238,
     "race_track3": 238,
@@ -458,7 +632,8 @@
     "stunt_end": 118,
     "stunt_short": 118,
     "two_player": 238,
-    "two_player_finish": 303
+    "two_player_finish": 303,
+    "unlock": 184
    },
    "size": 1084,
    "vram": "0x800BE078"
@@ -470,7 +645,11 @@
     "audio_options": 7,
     "backward": 10,
     "circuit": 10,
+    "ghost_delete_fail": 8,
+    "ghost_pak": 4,
     "ghost_race": 3,
+    "ghost_reload": 4,
+    "ghost_resave": 8,
     "ghost_save": 6,
     "other_car": 8,
     "pause_menus": 12,
@@ -478,7 +657,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
-    "animPlace": 15,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -487,7 +666,8 @@
     "stunt_end": 10,
     "stunt_short": 3,
     "two_player": 10,
-    "two_player_finish": 17
+    "two_player_finish": 17,
+    "unlock": 15
    },
    "size": 1484,
    "vram": "0x800C46D0"
@@ -499,7 +679,11 @@
     "audio_options": 6215,
     "backward": 26870,
     "circuit": 25622,
+    "ghost_delete_fail": 33852,
+    "ghost_pak": 33852,
     "ghost_race": 21866,
+    "ghost_reload": 8636,
+    "ghost_resave": 33852,
     "ghost_save": 35312,
     "other_car": 26660,
     "pause_menus": 11317,
@@ -507,14 +691,15 @@
     "player_reload": 7055,
     "practice": 26870,
     "race": 13756,
-    "animPlace": 43095,
+    "race_finish": 43095,
     "race_pak": 16724,
     "race_track2": 8398,
     "race_track3": 12765,
     "race_track4": 20195,
     "saves": 17753,
     "two_player": 13756,
-    "two_player_finish": 45459
+    "two_player_finish": 45459,
+    "unlock": 43095
    },
    "size": 796,
    "vram": "0x800BF45C"
@@ -528,7 +713,11 @@
     "battle": 61516,
     "battle_end": 6177,
     "circuit": 116860,
+    "ghost_delete_fail": 114402,
+    "ghost_pak": 57201,
     "ghost_race": 35427,
+    "ghost_reload": 27127,
+    "ghost_resave": 114402,
     "ghost_save": 62696,
     "other_car": 118779,
     "pause_menus": 53641,
@@ -536,7 +725,7 @@
     "player_reload": 31736,
     "practice": 34833,
     "race": 57014,
-    "animPlace": 177500,
+    "race_finish": 177500,
     "race_pak": 72161,
     "race_track2": 51188,
     "race_track3": 49541,
@@ -546,7 +735,8 @@
     "stunt_end": 131028,
     "stunt_short": 35110,
     "two_player": 65726,
-    "two_player_finish": 230327
+    "two_player_finish": 230327,
+    "unlock": 177500
    },
    "size": 3520,
    "vram": "0x800C5644"
@@ -561,7 +751,11 @@
     "battle_end": 3599,
     "circuit": 5399,
     "controls_frontend": 3479,
+    "ghost_delete_fail": 8599,
+    "ghost_pak": 10799,
     "ghost_race": 5399,
+    "ghost_reload": 2999,
+    "ghost_resave": 10799,
     "ghost_save": 9999,
     "options_menus": 4979,
     "other_car": 5399,
@@ -570,7 +764,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
-    "animPlace": 9599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -581,7 +775,8 @@
     "stunt_end": 21999,
     "stunt_short": 7199,
     "two_player": 3599,
-    "two_player_finish": 9599
+    "two_player_finish": 9599,
+    "unlock": 9599
    },
    "size": 2228,
    "vram": "0x80097CA0"
@@ -596,7 +791,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -605,7 +804,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -616,7 +815,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 324,
    "vram": "0x800A4508"
@@ -631,7 +831,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -640,7 +844,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -651,7 +855,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 836,
    "vram": "0x800A5D34"
@@ -661,7 +866,11 @@
     "audio_options": 1098,
     "backward": 2028,
     "circuit": 1938,
+    "ghost_delete_fail": 3134,
+    "ghost_pak": 3134,
     "ghost_race": 2028,
+    "ghost_reload": 798,
+    "ghost_resave": 3134,
     "ghost_save": 3272,
     "other_car": 2013,
     "pause_menus": 3740,
@@ -669,20 +878,40 @@
     "player_reload": 828,
     "practice": 2028,
     "race": 1098,
-    "animPlace": 3222,
+    "race_finish": 3222,
     "race_pak": 1218,
     "race_track2": 1098,
     "race_track3": 1098,
     "race_track4": 1098,
     "saves": 1653,
     "two_player": 1098,
-    "two_player_finish": 3394
+    "two_player_finish": 3394,
+    "unlock": 3222
    },
    "size": 580,
    "vram": "0x801073D8"
   },
-  "control_settings": {
+  "control_cell_text": {
    "scripts": {},
+   "size": 264,
+   "vram": "0x800DC88C"
+  },
+  "control_cell_text2": {
+   "scripts": {
+    "ghost_delete_fail": 90
+   },
+   "size": 692,
+   "vram": "0x800DCDF4"
+  },
+  "control_cell_text3": {
+   "scripts": {},
+   "size": 820,
+   "vram": "0x800DC99C"
+  },
+  "control_settings": {
+   "scripts": {
+    "ghost_delete_fail": 90
+   },
    "size": 2552,
    "vram": "0x800DD4AC"
   },
@@ -693,7 +922,11 @@
     "battle": 2019,
     "battle_end": 1122,
     "circuit": 1944,
+    "ghost_delete_fail": 3516,
+    "ghost_pak": 4707,
     "ghost_race": 2034,
+    "ghost_reload": 804,
+    "ghost_resave": 4707,
     "ghost_save": 4312,
     "other_car": 2019,
     "pause_menus": 868,
@@ -701,7 +934,7 @@
     "player_reload": 534,
     "practice": 2034,
     "race": 1014,
-    "animPlace": 4141,
+    "race_finish": 4141,
     "race_pak": 1224,
     "race_track2": 1014,
     "race_track3": 1014,
@@ -711,7 +944,8 @@
     "stunt_end": 10187,
     "stunt_short": 2791,
     "two_player": 1014,
-    "two_player_finish": 4141
+    "two_player_finish": 4141,
+    "unlock": 4141
    },
    "size": 2672,
    "vram": "0x800FBF88"
@@ -726,7 +960,11 @@
     "battle_end": 1798,
     "circuit": 2698,
     "controls_frontend": 1738,
+    "ghost_delete_fail": 4208,
+    "ghost_pak": 5398,
     "ghost_race": 2698,
+    "ghost_reload": 1498,
+    "ghost_resave": 5398,
     "ghost_save": 4998,
     "options_menus": 2488,
     "other_car": 2698,
@@ -735,7 +973,7 @@
     "player_reload": 1198,
     "practice": 2698,
     "race": 1708,
-    "animPlace": 4798,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1708,
     "race_track3": 1708,
@@ -746,7 +984,8 @@
     "stunt_end": 10848,
     "stunt_short": 3598,
     "two_player": 1708,
-    "two_player_finish": 4798
+    "two_player_finish": 4798,
+    "unlock": 4798
    },
    "size": 496,
    "vram": "0x800FBC30"
@@ -786,7 +1025,11 @@
     "battle_end": 4,
     "circuit": 4,
     "controls_frontend": 3,
+    "ghost_delete_fail": 4,
+    "ghost_pak": 4,
     "ghost_race": 4,
+    "ghost_reload": 4,
+    "ghost_resave": 4,
     "ghost_save": 6,
     "options_menus": 4,
     "other_car": 4,
@@ -795,7 +1038,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
-    "animPlace": 5,
+    "race_finish": 5,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -806,7 +1049,8 @@
     "stunt_end": 4,
     "stunt_short": 5,
     "two_player": 4,
-    "two_player_finish": 5
+    "two_player_finish": 5,
+    "unlock": 5
    },
    "size": 316,
    "vram": "0x800C8FA4"
@@ -820,7 +1064,11 @@
     "battle": 6,
     "battle_end": 6,
     "circuit": 6,
+    "ghost_delete_fail": 6,
+    "ghost_pak": 6,
     "ghost_race": 6,
+    "ghost_reload": 6,
+    "ghost_resave": 6,
     "ghost_save": 12,
     "other_car": 6,
     "pause_menus": 7,
@@ -828,7 +1076,7 @@
     "player_reload": 6,
     "practice": 6,
     "race": 6,
-    "animPlace": 7,
+    "race_finish": 7,
     "race_pak": 6,
     "race_track2": 6,
     "race_track3": 6,
@@ -838,13 +1086,18 @@
     "stunt_end": 6,
     "stunt_short": 7,
     "two_player": 6,
-    "two_player_finish": 7
+    "two_player_finish": 7,
+    "unlock": 7
    },
    "size": 2356,
    "vram": "0x800FB2C8"
   },
   "draw_speedometer": {
    "scripts": {
+    "ghost_delete_fail": 2,
+    "ghost_pak": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 2,
     "ghost_save": 2,
     "player_reload": 2
    },
@@ -852,7 +1105,11 @@
    "vram": "0x800C7818"
   },
   "draw_ui_element": {
-   "scripts": {},
+   "scripts": {
+    "ghost_delete_fail": 4,
+    "ghost_reload": 3,
+    "ghost_resave": 4
+   },
    "size": 240,
    "vram": "0x800C7110"
   },
@@ -865,7 +1122,11 @@
     "battle": 4026,
     "battle_end": 220,
     "circuit": 11628,
+    "ghost_delete_fail": 6272,
+    "ghost_pak": 3136,
     "ghost_race": 2028,
+    "ghost_reload": 1596,
+    "ghost_resave": 6272,
     "ghost_save": 3412,
     "other_car": 12078,
     "pause_menus": 5166,
@@ -873,7 +1134,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
-    "animPlace": 19344,
+    "race_finish": 19344,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -883,7 +1144,8 @@
     "stunt_end": 9190,
     "stunt_short": 2502,
     "two_player": 6048,
-    "two_player_finish": 20376
+    "two_player_finish": 20376,
+    "unlock": 19344
    },
    "size": 3280,
    "vram": "0x80093B20"
@@ -908,6 +1170,10 @@
   },
   "drone_set_catchup": {
    "scripts": {
+    "ghost_delete_fail": 6,
+    "ghost_pak": 2,
+    "ghost_reload": 5,
+    "ghost_resave": 6,
     "ghost_save": 2,
     "player_reload": 2
    },
@@ -924,7 +1190,11 @@
     "battle_end": 2,
     "circuit": 2,
     "controls_frontend": 2,
+    "ghost_delete_fail": 2,
+    "ghost_pak": 2,
     "ghost_race": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 2,
     "ghost_save": 2,
     "options_menus": 1,
     "other_car": 2,
@@ -933,7 +1203,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -944,7 +1214,8 @@
     "stunt_end": 2,
     "stunt_short": 2,
     "two_player": 2,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 496,
    "vram": "0x800D7E88"
@@ -961,7 +1232,11 @@
     "audio_options": 1101,
     "backward": 2031,
     "circuit": 1941,
+    "ghost_delete_fail": 3137,
+    "ghost_pak": 3137,
     "ghost_race": 2031,
+    "ghost_reload": 801,
+    "ghost_resave": 3137,
     "ghost_save": 3278,
     "other_car": 2016,
     "pause_menus": 3746,
@@ -969,7 +1244,7 @@
     "player_reload": 831,
     "practice": 2031,
     "race": 1101,
-    "animPlace": 3228,
+    "race_finish": 3228,
     "race_pak": 1221,
     "race_track2": 1101,
     "race_track3": 1101,
@@ -979,7 +1254,8 @@
     "stunt_end": 9341,
     "stunt_short": 2506,
     "two_player": 2197,
-    "two_player_finish": 6790
+    "two_player_finish": 6790,
+    "unlock": 3228
    },
    "size": 600,
    "vram": "0x800EFEA8"
@@ -989,7 +1265,11 @@
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -997,7 +1277,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -1007,7 +1287,8 @@
     "stunt_end": 9336,
     "stunt_short": 2496,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 1240,
    "vram": "0x800EEDB0"
@@ -1022,7 +1303,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -1031,7 +1316,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -1042,7 +1327,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 2180,
    "vram": "0x800992AC"
@@ -1058,7 +1344,7 @@
     "player_reload": 1056,
     "practice": 4056,
     "race": 2016,
-    "animPlace": 6448,
+    "race_finish": 6448,
     "race_pak": 2436,
     "race_track2": 2016,
     "race_track3": 2016,
@@ -1068,7 +1354,8 @@
     "stunt_end": 18380,
     "stunt_short": 5004,
     "two_player": 4032,
-    "two_player_finish": 13584
+    "two_player_finish": 13584,
+    "unlock": 6448
    },
    "size": 636,
    "vram": "0x80091874"
@@ -1082,7 +1369,11 @@
     "battle": 3880,
     "battle_end": 72,
     "circuit": 1865,
+    "ghost_delete_fail": 3001,
+    "ghost_pak": 3001,
     "ghost_race": 1955,
+    "ghost_reload": 725,
+    "ghost_resave": 3001,
     "ghost_save": 3066,
     "other_car": 1940,
     "pause_menus": 715,
@@ -1090,7 +1381,7 @@
     "player_reload": 455,
     "practice": 1955,
     "race": 935,
-    "animPlace": 3011,
+    "race_finish": 3011,
     "race_pak": 1145,
     "race_track2": 935,
     "race_track3": 935,
@@ -1100,7 +1391,8 @@
     "stunt_end": 8670,
     "stunt_short": 2221,
     "two_player": 1870,
-    "two_player_finish": 6373
+    "two_player_finish": 6373,
+    "unlock": 3011
    },
    "size": 224,
    "vram": "0x800C69C0"
@@ -1109,16 +1401,21 @@
    "scripts": {
     "backward": 93,
     "circuit": 93,
+    "ghost_delete_fail": 186,
+    "ghost_pak": 93,
+    "ghost_reload": 62,
+    "ghost_resave": 186,
     "ghost_save": 93,
     "other_car": 31,
     "player_finish": 62,
     "player_reload": 31,
-    "animPlace": 62,
+    "race_finish": 62,
     "race_pak": 31,
     "saves": 31,
     "stunt_end": 310,
     "stunt_short": 93,
-    "two_player_finish": 93
+    "two_player_finish": 93,
+    "unlock": 62
    },
    "size": 712,
    "vram": "0x800908A0"
@@ -1132,7 +1429,11 @@
     "battle": 4026,
     "battle_end": 220,
     "circuit": 11628,
+    "ghost_delete_fail": 6272,
+    "ghost_pak": 3136,
     "ghost_race": 2028,
+    "ghost_reload": 1596,
+    "ghost_resave": 6272,
     "ghost_save": 3412,
     "other_car": 12078,
     "pause_menus": 5166,
@@ -1140,7 +1441,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
-    "animPlace": 19344,
+    "race_finish": 19344,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -1150,7 +1451,8 @@
     "stunt_end": 9190,
     "stunt_short": 2502,
     "two_player": 6048,
-    "two_player_finish": 20376
+    "two_player_finish": 20376,
+    "unlock": 19344
    },
    "size": 1424,
    "vram": "0x8008D120"
@@ -1159,6 +1461,9 @@
    "scripts": {
     "battle": 4026,
     "battle_end": 220,
+    "ghost_delete_fail": 3136,
+    "ghost_reload": 798,
+    "ghost_resave": 3136,
     "ghost_save": 138,
     "two_player": 2016,
     "two_player_finish": 6792
@@ -1175,14 +1480,18 @@
     "battle": 4026,
     "battle_end": 220,
     "circuit": 1938,
+    "ghost_delete_fail": 6272,
+    "ghost_pak": 3136,
     "ghost_race": 2028,
+    "ghost_reload": 1596,
+    "ghost_resave": 6272,
     "ghost_save": 3412,
     "pause_menus": 861,
     "player_finish": 2637,
     "player_reload": 528,
     "practice": 2028,
     "race": 1008,
-    "animPlace": 3224,
+    "race_finish": 3224,
     "race_pak": 1218,
     "race_track2": 1008,
     "race_track3": 1008,
@@ -1192,7 +1501,8 @@
     "stunt_end": 9190,
     "stunt_short": 2502,
     "two_player": 2016,
-    "two_player_finish": 6792
+    "two_player_finish": 6792,
+    "unlock": 3224
    },
    "size": 2684,
    "vram": "0x800930A4"
@@ -1201,16 +1511,21 @@
    "scripts": {
     "backward": 312,
     "circuit": 311,
+    "ghost_delete_fail": 622,
+    "ghost_pak": 311,
+    "ghost_reload": 206,
+    "ghost_resave": 622,
     "ghost_save": 311,
     "other_car": 104,
     "player_finish": 1384,
     "player_reload": 348,
-    "animPlace": 208,
+    "race_finish": 208,
     "race_pak": 104,
     "saves": 103,
     "stunt_end": 1032,
     "stunt_short": 309,
-    "two_player_finish": 310
+    "two_player_finish": 310,
+    "unlock": 208
    },
    "size": 2184,
    "vram": "0x80090FEC"
@@ -1220,7 +1535,11 @@
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -1228,7 +1547,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -1238,7 +1557,8 @@
     "stunt_end": 9336,
     "stunt_short": 2496,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 1460,
    "vram": "0x800EF8F4"
@@ -1246,13 +1566,16 @@
   "finish_state_alt": {
    "scripts": {
     "battle_end": 1005,
+    "ghost_pak": 420,
+    "ghost_resave": 420,
     "ghost_save": 125,
     "player_finish": 360,
-    "animPlace": 751,
+    "race_finish": 751,
     "saves": 1485,
     "stunt_end": 990,
     "stunt_short": 281,
-    "two_player_finish": 241
+    "two_player_finish": 241,
+    "unlock": 601
    },
    "size": 556,
    "vram": "0x800F8B70"
@@ -1272,7 +1595,11 @@
     "battle_end": 142214,
     "circuit": 231470,
     "controls_frontend": 212250,
+    "ghost_delete_fail": 361616,
+    "ghost_pak": 441302,
     "ghost_race": 235496,
+    "ghost_reload": 149052,
+    "ghost_resave": 468396,
     "ghost_save": 412592,
     "options_menus": 273643,
     "other_car": 235475,
@@ -1281,7 +1608,7 @@
     "player_reload": 162662,
     "practice": 182338,
     "race": 169278,
-    "animPlace": 384899,
+    "race_finish": 384899,
     "race_pak": 164120,
     "race_track2": 169226,
     "race_track3": 169112,
@@ -1292,7 +1619,8 @@
     "stunt_end": 542836,
     "stunt_short": 210304,
     "two_player": 235458,
-    "two_player_finish": 620369
+    "two_player_finish": 620369,
+    "unlock": 388851
    },
    "size": 1780,
    "vram": "0x80087110"
@@ -1301,54 +1629,24 @@
    "scripts": {
     "backward": 3,
     "circuit": 3,
+    "ghost_delete_fail": 6,
+    "ghost_pak": 3,
+    "ghost_reload": 2,
+    "ghost_resave": 6,
     "ghost_save": 3,
     "other_car": 1,
     "player_finish": 2,
     "player_reload": 1,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "saves": 1,
     "stunt_end": 10,
     "stunt_short": 3,
-    "two_player_finish": 3
+    "two_player_finish": 3,
+    "unlock": 2
    },
    "size": 1128,
    "vram": "0x80090308"
-  },
-  "SetupWaveModel": {
-   "scripts": {
-    "attract": 203,
-    "attract_pak": 199,
-    "audio_options": 79,
-    "backward": 75,
-    "battle": 71,
-    "battle_end": 72,
-    "circuit": 76,
-    "controls_frontend": 19,
-    "ghost_race": 69,
-    "ghost_save": 116,
-    "options_menus": 26,
-    "other_car": 79,
-    "pause_menus": 75,
-    "player_finish": 76,
-    "player_reload": 75,
-    "practice": 70,
-    "race": 79,
-    "animPlace": 77,
-    "race_pak": 75,
-    "race_track2": 79,
-    "race_track3": 79,
-    "race_track4": 79,
-    "records": 21,
-    "saves": 76,
-    "stunt": 69,
-    "stunt_end": 66,
-    "stunt_short": 67,
-    "two_player": 83,
-    "two_player_finish": 81
-   },
-   "size": 1204,
-   "vram": "0x80096CA8"
   },
   "func_80097164": {
    "scripts": {
@@ -1360,7 +1658,11 @@
     "battle_end": 72,
     "circuit": 76,
     "controls_frontend": 19,
+    "ghost_delete_fail": 72,
+    "ghost_pak": 70,
     "ghost_race": 69,
+    "ghost_reload": 71,
+    "ghost_resave": 72,
     "ghost_save": 116,
     "options_menus": 26,
     "other_car": 79,
@@ -1369,7 +1671,7 @@
     "player_reload": 75,
     "practice": 70,
     "race": 79,
-    "animPlace": 77,
+    "race_finish": 77,
     "race_pak": 75,
     "race_track2": 79,
     "race_track3": 79,
@@ -1380,7 +1682,8 @@
     "stunt_end": 66,
     "stunt_short": 67,
     "two_player": 83,
-    "two_player_finish": 81
+    "two_player_finish": 81,
+    "unlock": 77
    },
    "size": 344,
    "vram": "0x80097164"
@@ -1395,7 +1698,11 @@
     "battle_end": 3,
     "circuit": 2,
     "controls_frontend": 1,
+    "ghost_delete_fail": 3,
+    "ghost_pak": 3,
     "ghost_race": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 3,
     "ghost_save": 4,
     "options_menus": 4,
     "other_car": 2,
@@ -1404,7 +1711,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
-    "animPlace": 4,
+    "race_finish": 4,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -1415,7 +1722,8 @@
     "stunt_end": 3,
     "stunt_short": 4,
     "two_player": 2,
-    "two_player_finish": 4
+    "two_player_finish": 4,
+    "unlock": 4
    },
    "size": 292,
    "vram": "0x800979A0"
@@ -1430,7 +1738,11 @@
     "battle_end": 3599,
     "circuit": 5399,
     "controls_frontend": 3479,
+    "ghost_delete_fail": 8599,
+    "ghost_pak": 10799,
     "ghost_race": 5399,
+    "ghost_reload": 2999,
+    "ghost_resave": 10799,
     "ghost_save": 9999,
     "options_menus": 4979,
     "other_car": 5399,
@@ -1439,7 +1751,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
-    "animPlace": 9599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -1450,7 +1762,8 @@
     "stunt_end": 21999,
     "stunt_short": 7199,
     "two_player": 3599,
-    "two_player_finish": 9599
+    "two_player_finish": 9599,
+    "unlock": 9599
    },
    "size": 380,
    "vram": "0x800988D8"
@@ -1465,7 +1778,11 @@
     "battle_end": 3599,
     "circuit": 5399,
     "controls_frontend": 3479,
+    "ghost_delete_fail": 8599,
+    "ghost_pak": 10799,
     "ghost_race": 5399,
+    "ghost_reload": 2999,
+    "ghost_resave": 10799,
     "ghost_save": 9999,
     "options_menus": 4979,
     "other_car": 5399,
@@ -1474,7 +1791,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
-    "animPlace": 9599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -1485,7 +1802,8 @@
     "stunt_end": 21999,
     "stunt_short": 7199,
     "two_player": 3599,
-    "two_player_finish": 9599
+    "two_player_finish": 9599,
+    "unlock": 9599
    },
    "size": 756,
    "vram": "0x80098FB8"
@@ -1500,7 +1818,11 @@
     "battle_end": 3103,
     "circuit": 2698,
     "controls_frontend": 1738,
+    "ghost_delete_fail": 4508,
+    "ghost_pak": 5698,
     "ghost_race": 2998,
+    "ghost_reload": 1798,
+    "ghost_resave": 5698,
     "ghost_save": 5298,
     "options_menus": 2488,
     "other_car": 2698,
@@ -1509,7 +1831,7 @@
     "player_reload": 1498,
     "practice": 2698,
     "race": 1798,
-    "animPlace": 4798,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1798,
     "race_track3": 1798,
@@ -1520,7 +1842,8 @@
     "stunt_end": 10998,
     "stunt_short": 3598,
     "two_player": 3088,
-    "two_player_finish": 9118
+    "two_player_finish": 9118,
+    "unlock": 4798
    },
    "size": 5228,
    "vram": "0x8009F058"
@@ -1533,7 +1856,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -1541,13 +1868,14 @@
     "player_finish": 1,
     "player_reload": 1,
     "practice": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "records": 1,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 204,
    "vram": "0x800A3640"
@@ -1562,7 +1890,11 @@
     "battle_end": 4,
     "circuit": 4,
     "controls_frontend": 4,
+    "ghost_delete_fail": 4,
+    "ghost_pak": 4,
     "ghost_race": 4,
+    "ghost_reload": 4,
+    "ghost_resave": 4,
     "ghost_save": 4,
     "options_menus": 4,
     "other_car": 4,
@@ -1571,7 +1903,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
-    "animPlace": 4,
+    "race_finish": 4,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -1582,7 +1914,8 @@
     "stunt_end": 4,
     "stunt_short": 4,
     "two_player": 4,
-    "two_player_finish": 4
+    "two_player_finish": 4,
+    "unlock": 4
    },
    "size": 88,
    "vram": "0x800A3724"
@@ -1597,7 +1930,11 @@
     "battle_end": 18,
     "circuit": 19,
     "controls_frontend": 12,
+    "ghost_delete_fail": 19,
+    "ghost_pak": 17,
     "ghost_race": 17,
+    "ghost_reload": 17,
+    "ghost_resave": 17,
     "ghost_save": 30,
     "options_menus": 22,
     "other_car": 17,
@@ -1606,7 +1943,7 @@
     "player_reload": 17,
     "practice": 17,
     "race": 17,
-    "animPlace": 18,
+    "race_finish": 18,
     "race_pak": 17,
     "race_track2": 17,
     "race_track3": 17,
@@ -1617,7 +1954,8 @@
     "stunt_end": 17,
     "stunt_short": 18,
     "two_player": 18,
-    "two_player_finish": 20
+    "two_player_finish": 20,
+    "unlock": 18
    },
    "size": 136,
    "vram": "0x800A7480"
@@ -1631,7 +1969,11 @@
     "battle": 33731,
     "battle_end": 1937,
     "circuit": 123100,
+    "ghost_delete_fail": 85712,
+    "ghost_pak": 43168,
     "ghost_race": 44170,
+    "ghost_reload": 36245,
+    "ghost_resave": 85712,
     "ghost_save": 53972,
     "other_car": 122944,
     "pause_menus": 93987,
@@ -1639,7 +1981,7 @@
     "player_reload": 53737,
     "practice": 36110,
     "race": 81935,
-    "animPlace": 189334,
+    "race_finish": 189334,
     "race_pak": 91774,
     "race_track2": 88711,
     "race_track3": 49809,
@@ -1649,7 +1991,8 @@
     "stunt_end": 189181,
     "stunt_short": 62480,
     "two_player": 99436,
-    "two_player_finish": 239192
+    "two_player_finish": 239192,
+    "unlock": 189334
    },
    "size": 264,
    "vram": "0x800AD4C8"
@@ -1663,7 +2006,11 @@
     "battle": 552,
     "battle_end": 552,
     "circuit": 736,
+    "ghost_delete_fail": 368,
+    "ghost_pak": 184,
     "ghost_race": 184,
+    "ghost_reload": 368,
+    "ghost_resave": 368,
     "ghost_save": 368,
     "other_car": 1104,
     "pause_menus": 1288,
@@ -1671,7 +2018,7 @@
     "player_reload": 736,
     "practice": 276,
     "race": 736,
-    "animPlace": 1288,
+    "race_finish": 1288,
     "race_pak": 736,
     "race_track2": 736,
     "race_track3": 736,
@@ -1681,7 +2028,8 @@
     "stunt_end": 276,
     "stunt_short": 368,
     "two_player": 920,
-    "two_player_finish": 1472
+    "two_player_finish": 1472,
+    "unlock": 1288
    },
    "size": 192,
    "vram": "0x800B0EA0"
@@ -1713,7 +2061,11 @@
     "battle_end": 17308,
     "circuit": 66365,
     "controls_frontend": 15886,
+    "ghost_delete_fail": 132738,
+    "ghost_pak": 141094,
     "ghost_race": 77663,
+    "ghost_reload": 35513,
+    "ghost_resave": 155868,
     "ghost_save": 139209,
     "options_menus": 27316,
     "other_car": 70366,
@@ -1722,7 +2074,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
-    "animPlace": 122021,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -1733,7 +2085,8 @@
     "stunt_end": 225208,
     "stunt_short": 63071,
     "two_player": 60760,
-    "two_player_finish": 213374
+    "two_player_finish": 213374,
+    "unlock": 121141
    },
    "size": 152,
    "vram": "0x800B66B0"
@@ -1747,7 +2100,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 5,
+    "ghost_delete_fail": 5,
+    "ghost_pak": 5,
     "ghost_race": 5,
+    "ghost_reload": 5,
+    "ghost_resave": 5,
     "ghost_save": 6,
     "other_car": 5,
     "pause_menus": 6,
@@ -1755,7 +2112,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
-    "animPlace": 6,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -1765,7 +2122,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 5,
-    "two_player_finish": 6
+    "two_player_finish": 6,
+    "unlock": 6
    },
    "size": 408,
    "vram": "0x800B9740"
@@ -1779,7 +2137,11 @@
     "battle": 6,
     "battle_end": 6,
     "circuit": 6,
+    "ghost_delete_fail": 6,
+    "ghost_pak": 6,
     "ghost_race": 6,
+    "ghost_reload": 6,
+    "ghost_resave": 6,
     "ghost_save": 12,
     "other_car": 6,
     "pause_menus": 7,
@@ -1787,7 +2149,7 @@
     "player_reload": 6,
     "practice": 6,
     "race": 6,
-    "animPlace": 7,
+    "race_finish": 7,
     "race_pak": 6,
     "race_track2": 6,
     "race_track3": 6,
@@ -1797,7 +2159,8 @@
     "stunt_end": 6,
     "stunt_short": 7,
     "two_player": 6,
-    "two_player_finish": 7
+    "two_player_finish": 7,
+    "unlock": 7
    },
    "size": 2104,
    "vram": "0x800BB9B0"
@@ -1811,7 +2174,11 @@
     "battle": 2,
     "battle_end": 2,
     "circuit": 10,
+    "ghost_delete_fail": 8,
+    "ghost_pak": 4,
     "ghost_race": 3,
+    "ghost_reload": 4,
+    "ghost_resave": 8,
     "ghost_save": 6,
     "other_car": 8,
     "pause_menus": 12,
@@ -1819,7 +2186,7 @@
     "player_reload": 7,
     "practice": 1,
     "race": 8,
-    "animPlace": 15,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -1829,56 +2196,29 @@
     "stunt_end": 11,
     "stunt_short": 5,
     "two_player": 10,
-    "two_player_finish": 17
+    "two_player_finish": 17,
+    "unlock": 15
    },
    "size": 1416,
    "vram": "0x800C4F68"
   },
   "func_800C7EC8": {
    "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "player_reload": 1
    },
    "size": 628,
    "vram": "0x800C7EC8"
   },
-  "SaveServer": {
-   "scripts": {
-    "attract": 9014,
-    "attract_pak": 9014,
-    "audio_options": 1451,
-    "backward": 809,
-    "battle": 823,
-    "battle_end": 805,
-    "circuit": 899,
-    "controls_frontend": 1743,
-    "ghost_race": 809,
-    "ghost_save": 971,
-    "options_menus": 2498,
-    "other_car": 823,
-    "pause_menus": 3691,
-    "player_finish": 1387,
-    "player_reload": 1091,
-    "practice": 809,
-    "race": 917,
-    "animPlace": 929,
-    "race_pak": 710,
-    "race_track2": 917,
-    "race_track3": 917,
-    "race_track4": 917,
-    "records": 1202,
-    "saves": 1568,
-    "stunt": 917,
-    "stunt_end": 1039,
-    "stunt_short": 1071,
-    "two_player": 917,
-    "two_player_finish": 931
-   },
-   "size": 900,
-   "vram": "0x800C813C"
-  },
   "func_800CBF2C": {
    "scripts": {
+    "ghost_delete_fail": 3,
+    "ghost_reload": 2,
+    "ghost_resave": 3,
     "ghost_save": 2
    },
    "size": 276,
@@ -1886,6 +2226,9 @@
   },
   "func_800CC040": {
    "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 1
    },
    "size": 896,
@@ -1893,30 +2236,29 @@
   },
   "func_800CC50C": {
    "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 1
    },
    "size": 760,
    "vram": "0x800CC50C"
-  },
-  "CreatePlayer": {
-   "scripts": {
-    "player_finish": 1,
-    "saves": 1
-   },
-   "size": 1088,
-   "vram": "0x800CD104"
   },
   "func_800D348C": {
    "scripts": {
     "audio_options": 1,
     "backward": 2,
     "circuit": 3,
+    "ghost_delete_fail": 6,
+    "ghost_pak": 3,
     "ghost_race": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 6,
     "ghost_save": 3,
     "other_car": 2,
     "player_finish": 1,
     "race": 2,
-    "animPlace": 3,
+    "race_finish": 3,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -1925,7 +2267,8 @@
     "stunt_end": 10,
     "stunt_short": 3,
     "two_player": 4,
-    "two_player_finish": 5
+    "two_player_finish": 5,
+    "unlock": 3
    },
    "size": 1684,
    "vram": "0x800D348C"
@@ -1933,9 +2276,10 @@
   "func_800D5A04": {
    "scripts": {
     "pause_menus": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "stunt_short": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 428,
    "vram": "0x800D5A04"
@@ -1947,7 +2291,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 2,
     "other_car": 1,
     "pause_menus": 4,
@@ -1955,7 +2303,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 3,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 3,
     "race_track3": 3,
@@ -1965,7 +2313,8 @@
     "stunt_end": 3,
     "stunt_short": 2,
     "two_player": 3,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 304,
    "vram": "0x800D6160"
@@ -2002,7 +2351,11 @@
     "battle_end": 91,
     "circuit": 91,
     "controls_frontend": 1471,
+    "ghost_delete_fail": 181,
+    "ghost_pak": 181,
     "ghost_race": 91,
+    "ghost_reload": 181,
+    "ghost_resave": 181,
     "ghost_save": 181,
     "other_car": 91,
     "pause_menus": 931,
@@ -2010,7 +2363,7 @@
     "player_reload": 181,
     "practice": 91,
     "race": 91,
-    "animPlace": 91,
+    "race_finish": 91,
     "race_pak": 91,
     "race_track2": 91,
     "race_track3": 91,
@@ -2020,7 +2373,8 @@
     "stunt_end": 91,
     "stunt_short": 91,
     "two_player": 91,
-    "two_player_finish": 91
+    "two_player_finish": 91,
+    "unlock": 91
    },
    "size": 3860,
    "vram": "0x800D91A0"
@@ -2064,7 +2418,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -2073,7 +2431,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2084,7 +2442,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 1020,
    "vram": "0x800DE45C"
@@ -2098,7 +2457,11 @@
     "battle": 2,
     "battle_end": 2,
     "circuit": 10,
+    "ghost_delete_fail": 8,
+    "ghost_pak": 4,
     "ghost_race": 3,
+    "ghost_reload": 4,
+    "ghost_resave": 8,
     "ghost_save": 6,
     "other_car": 8,
     "pause_menus": 12,
@@ -2106,7 +2469,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
-    "animPlace": 15,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -2116,74 +2479,11 @@
     "stunt_end": 11,
     "stunt_short": 5,
     "two_player": 10,
-    "two_player_finish": 17
+    "two_player_finish": 17,
+    "unlock": 15
    },
    "size": 700,
    "vram": "0x800E543C"
-  },
-  "func_800E56F8": {
-   "scripts": {
-    "attract": 46086,
-    "attract_pak": 46434,
-    "audio_options": 3255,
-    "backward": 14175,
-    "battle": 8040,
-    "battle_end": 424,
-    "circuit": 13545,
-    "ghost_race": 4050,
-    "ghost_save": 6804,
-    "other_car": 14070,
-    "pause_menus": 5985,
-    "player_finish": 18431,
-    "player_reload": 3682,
-    "practice": 4050,
-    "race": 7035,
-    "animPlace": 22519,
-    "race_pak": 8505,
-    "race_track2": 7035,
-    "race_track3": 7035,
-    "race_track4": 7035,
-    "saves": 9142,
-    "stunt": 2010,
-    "stunt_end": 18372,
-    "stunt_short": 4990,
-    "two_player": 8040,
-    "two_player_finish": 27112
-   },
-   "size": 1436,
-   "vram": "0x800E56F8"
-  },
-  "model_iteration": {
-   "scripts": {
-    "attract": 15362,
-    "attract_pak": 15478,
-    "audio_options": 930,
-    "backward": 4050,
-    "battle": 4020,
-    "battle_end": 212,
-    "circuit": 3870,
-    "ghost_race": 4050,
-    "ghost_save": 6534,
-    "other_car": 4020,
-    "pause_menus": 1710,
-    "player_finish": 5266,
-    "player_reload": 1052,
-    "practice": 4050,
-    "race": 2010,
-    "animPlace": 6434,
-    "race_pak": 2430,
-    "race_track2": 2010,
-    "race_track3": 2010,
-    "race_track4": 2010,
-    "saves": 2612,
-    "stunt": 2010,
-    "stunt_end": 18372,
-    "stunt_short": 4990,
-    "two_player": 2010,
-    "two_player_finish": 6778
-   },
-   "size": 1336,
-   "vram": "0x800E6AF8"
   },
   "func_800E7038": {
    "scripts": {
@@ -2195,7 +2495,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -2204,7 +2508,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2215,7 +2519,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 252,
    "vram": "0x800E7038"
@@ -2230,7 +2535,11 @@
     "battle_end": 3599,
     "circuit": 5399,
     "controls_frontend": 3479,
+    "ghost_delete_fail": 8599,
+    "ghost_pak": 10799,
     "ghost_race": 5399,
+    "ghost_reload": 2999,
+    "ghost_resave": 10799,
     "ghost_save": 9999,
     "options_menus": 4979,
     "other_car": 5399,
@@ -2239,7 +2548,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
-    "animPlace": 9599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -2250,7 +2559,8 @@
     "stunt_end": 21999,
     "stunt_short": 7199,
     "two_player": 3599,
-    "two_player_finish": 9599
+    "two_player_finish": 9599,
+    "unlock": 9599
    },
    "size": 676,
    "vram": "0x800E7134"
@@ -2265,7 +2575,11 @@
     "battle_end": 3599,
     "circuit": 5399,
     "controls_frontend": 3479,
+    "ghost_delete_fail": 8599,
+    "ghost_pak": 10799,
     "ghost_race": 5399,
+    "ghost_reload": 2999,
+    "ghost_resave": 10799,
     "ghost_save": 9999,
     "options_menus": 4979,
     "other_car": 5399,
@@ -2274,7 +2588,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
-    "animPlace": 9599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -2285,7 +2599,8 @@
     "stunt_end": 21999,
     "stunt_short": 7199,
     "two_player": 3599,
-    "two_player_finish": 9599
+    "two_player_finish": 9599,
+    "unlock": 9599
    },
    "size": 596,
    "vram": "0x800E73D8"
@@ -2299,7 +2614,11 @@
     "battle": 4026,
     "battle_end": 218,
     "circuit": 11628,
+    "ghost_delete_fail": 6270,
+    "ghost_pak": 3135,
     "ghost_race": 2028,
+    "ghost_reload": 1596,
+    "ghost_resave": 6270,
     "ghost_save": 3411,
     "other_car": 12078,
     "pause_menus": 5166,
@@ -2307,7 +2626,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
-    "animPlace": 19338,
+    "race_finish": 19338,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -2317,7 +2636,8 @@
     "stunt_end": 9189,
     "stunt_short": 2501,
     "two_player": 6048,
-    "two_player_finish": 20370
+    "two_player_finish": 20370,
+    "unlock": 19338
    },
    "size": 1244,
    "vram": "0x800E7FA0"
@@ -2331,7 +2651,11 @@
     "battle": 2013,
     "battle_end": 109,
     "circuit": 1938,
+    "ghost_delete_fail": 3135,
+    "ghost_pak": 3135,
     "ghost_race": 2028,
+    "ghost_reload": 798,
+    "ghost_resave": 3135,
     "ghost_save": 3273,
     "other_car": 2013,
     "pause_menus": 861,
@@ -2339,7 +2663,7 @@
     "player_reload": 528,
     "practice": 2028,
     "race": 1008,
-    "animPlace": 3223,
+    "race_finish": 3223,
     "race_pak": 1218,
     "race_track2": 1008,
     "race_track3": 1008,
@@ -2349,49 +2673,22 @@
     "stunt_end": 9189,
     "stunt_short": 2501,
     "two_player": 1008,
-    "two_player_finish": 3395
+    "two_player_finish": 3395,
+    "unlock": 3223
    },
    "size": 2100,
    "vram": "0x800E847C"
-  },
-  "func_800EB028": {
-   "scripts": {
-    "attract": 7688,
-    "attract_pak": 7746,
-    "audio_options": 468,
-    "backward": 2028,
-    "battle": 4026,
-    "battle_end": 218,
-    "circuit": 1938,
-    "ghost_race": 2028,
-    "ghost_save": 3273,
-    "other_car": 2013,
-    "pause_menus": 861,
-    "player_finish": 2636,
-    "player_reload": 528,
-    "practice": 2028,
-    "race": 1008,
-    "animPlace": 3223,
-    "race_pak": 1218,
-    "race_track2": 1008,
-    "race_track3": 1008,
-    "race_track4": 1008,
-    "saves": 1309,
-    "stunt": 1008,
-    "stunt_end": 9189,
-    "stunt_short": 2501,
-    "two_player": 2016,
-    "two_player_finish": 6790
-   },
-   "size": 1640,
-   "vram": "0x800EB028"
   },
   "func_800EF288": {
    "scripts": {
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -2399,7 +2696,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2409,26 +2706,26 @@
     "stunt_end": 9336,
     "stunt_short": 2496,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 808,
    "vram": "0x800EF288"
   },
-  "FindGhosts": {
-   "scripts": {},
-   "size": 464,
-   "vram": "0x800F0F44"
-  },
   "func_800F7F3C": {
    "scripts": {
     "battle_end": 4,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "player_finish": 16,
-    "animPlace": 16,
+    "race_finish": 16,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
-    "two_player_finish": 16
+    "two_player_finish": 16,
+    "unlock": 16
    },
    "size": 1396,
    "vram": "0x800F7F3C"
@@ -2436,13 +2733,16 @@
   "func_800F857C": {
    "scripts": {
     "battle_end": 2,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 2,
     "player_finish": 3,
-    "animPlace": 6,
+    "race_finish": 6,
     "saves": 3,
     "stunt_end": 5,
     "stunt_short": 4,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 4
    },
    "size": 464,
    "vram": "0x800F857C"
@@ -2450,13 +2750,16 @@
   "func_800F87A0": {
    "scripts": {
     "battle_end": 61,
+    "ghost_pak": 420,
+    "ghost_resave": 420,
     "ghost_save": 125,
     "player_finish": 270,
-    "animPlace": 481,
+    "race_finish": 481,
     "saves": 1395,
     "stunt_end": 690,
     "stunt_short": 191,
-    "two_player_finish": 241
+    "two_player_finish": 241,
+    "unlock": 421
    },
    "size": 968,
    "vram": "0x800F87A0"
@@ -2469,67 +2772,19 @@
    "size": 1576,
    "vram": "0x80100564"
   },
-  "func_80100D5C": {
-   "scripts": {
-    "battle_end": 11820,
-    "ghost_save": 620,
-    "player_finish": 2610,
-    "animPlace": 5520,
-    "saves": 10845,
-    "stunt_end": 11250,
-    "stunt_short": 3290,
-    "two_player_finish": 2640
-   },
-   "size": 252,
-   "vram": "0x80100D5C"
-  },
   "func_80100E58": {
    "scripts": {
+    "ghost_pak": 420,
+    "ghost_resave": 420,
     "ghost_save": 124,
     "player_finish": 270,
-    "animPlace": 480,
+    "race_finish": 480,
     "saves": 1395,
-    "two_player_finish": 240
+    "two_player_finish": 240,
+    "unlock": 420
    },
    "size": 2732,
    "vram": "0x80100E58"
-  },
-  "func_80101904": {
-   "scripts": {
-    "battle_end": 60
-   },
-   "size": 1152,
-   "vram": "0x80101904"
-  },
-  "func_80101D84": {
-   "scripts": {
-    "stunt_end": 690,
-    "stunt_short": 190
-   },
-   "size": 1176,
-   "vram": "0x80101D84"
-  },
-  "drawMain": {
-   "scripts": {
-    "battle_end": 60,
-    "ghost_save": 124,
-    "player_finish": 270,
-    "animPlace": 480,
-    "saves": 1395,
-    "stunt_end": 690,
-    "stunt_short": 190,
-    "two_player_finish": 240
-   },
-   "size": 548,
-   "vram": "0x8010221C"
-  },
-  "func_80102448": {
-   "scripts": {
-    "stunt_end": 300,
-    "stunt_short": 90
-   },
-   "size": 1336,
-   "vram": "0x80102448"
   },
   "func_80102980": {
    "scripts": {
@@ -2538,37 +2793,33 @@
    "size": 1456,
    "vram": "0x80102980"
   },
-  "func_80102F30": {
-   "scripts": {
-    "battle_end": 1005,
-    "ghost_save": 124,
-    "player_finish": 360,
-    "animPlace": 750,
-    "saves": 1485,
-    "stunt_end": 990,
-    "stunt_short": 280,
-    "two_player_finish": 240
-   },
-   "size": 3560,
-   "vram": "0x80102F30"
-  },
   "func_80103D28": {
-   "scripts": {},
+   "scripts": {
+    "unlock": 98
+   },
    "size": 2516,
    "vram": "0x80103D28"
   },
   "func_80104B14": {
-   "scripts": {},
+   "scripts": {
+    "ghost_delete_fail": 374,
+    "ghost_pak": 244,
+    "ghost_resave": 244
+   },
    "size": 2404,
    "vram": "0x80104B14"
   },
   "func_80105480": {
    "scripts": {
+    "ghost_delete_fail": 374,
+    "ghost_pak": 1144,
+    "ghost_resave": 1144,
     "ghost_save": 900,
     "player_finish": 863,
-    "animPlace": 158,
+    "race_finish": 158,
     "saves": 270,
-    "two_player_finish": 496
+    "two_player_finish": 496,
+    "unlock": 308
    },
    "size": 1780,
    "vram": "0x80105480"
@@ -2580,7 +2831,11 @@
     "battle": 2011,
     "battle_end": 106,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -2588,7 +2843,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2598,7 +2853,8 @@
     "stunt_end": 9336,
     "stunt_short": 2496,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 2508,
    "vram": "0x80105EA8"
@@ -2610,7 +2866,11 @@
     "battle": 106,
     "battle_end": 106,
     "circuit": 106,
+    "ghost_delete_fail": 106,
+    "ghost_pak": 106,
     "ghost_race": 106,
+    "ghost_reload": 106,
+    "ghost_resave": 106,
     "ghost_save": 212,
     "other_car": 106,
     "pause_menus": 212,
@@ -2618,7 +2878,7 @@
     "player_reload": 106,
     "practice": 106,
     "race": 106,
-    "animPlace": 212,
+    "race_finish": 212,
     "race_pak": 106,
     "race_track2": 106,
     "race_track3": 106,
@@ -2628,47 +2888,22 @@
     "stunt_end": 106,
     "stunt_short": 212,
     "two_player": 106,
-    "two_player_finish": 212
+    "two_player_finish": 212,
+    "unlock": 212
    },
    "size": 712,
    "vram": "0x80106874"
-  },
-  "func_80106B3C": {
-   "scripts": {
-    "audio_options": 1096,
-    "backward": 2026,
-    "battle": 2011,
-    "battle_end": 106,
-    "circuit": 1936,
-    "ghost_race": 2026,
-    "ghost_save": 3268,
-    "other_car": 2011,
-    "pause_menus": 3736,
-    "player_finish": 2633,
-    "player_reload": 826,
-    "practice": 2026,
-    "race": 1096,
-    "animPlace": 3218,
-    "race_pak": 1216,
-    "race_track2": 1096,
-    "race_track3": 1096,
-    "race_track4": 1096,
-    "saves": 1651,
-    "stunt": 1096,
-    "stunt_end": 9336,
-    "stunt_short": 2496,
-    "two_player": 1096,
-    "two_player_finish": 3390
-   },
-   "size": 600,
-   "vram": "0x80106B3C"
   },
   "func_801084D4": {
    "scripts": {
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -2676,14 +2911,15 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
     "race_track4": 1096,
     "saves": 1651,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 1500,
    "vram": "0x801084D4"
@@ -2693,7 +2929,11 @@
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -2701,14 +2941,15 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
     "race_track4": 1096,
     "saves": 1651,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 760,
    "vram": "0x80108AB0"
@@ -2718,7 +2959,11 @@
     "audio_options": 1097,
     "backward": 2027,
     "circuit": 1937,
+    "ghost_delete_fail": 3133,
+    "ghost_pak": 3133,
     "ghost_race": 2027,
+    "ghost_reload": 797,
+    "ghost_resave": 3133,
     "ghost_save": 3270,
     "other_car": 2012,
     "pause_menus": 3738,
@@ -2726,14 +2971,15 @@
     "player_reload": 827,
     "practice": 2027,
     "race": 1097,
-    "animPlace": 3220,
+    "race_finish": 3220,
     "race_pak": 1217,
     "race_track2": 1097,
     "race_track3": 1097,
     "race_track4": 1097,
     "saves": 1652,
     "two_player": 1097,
-    "two_player_finish": 3392
+    "two_player_finish": 3392,
+    "unlock": 3220
    },
    "size": 1504,
    "vram": "0x80109F54"
@@ -2777,37 +3023,6 @@
    },
    "size": 556,
    "vram": "0x8010B5D0"
-  },
-  "func_8010B7FC": {
-   "scripts": {
-    "audio_options": 195,
-    "pause_menus": 720,
-    "player_reload": 300,
-    "race": 90,
-    "race_track2": 90,
-    "race_track3": 90,
-    "race_track4": 90,
-    "saves": 240,
-    "stunt": 90,
-    "stunt_end": 150,
-    "two_player": 90
-   },
-   "size": 460,
-   "vram": "0x8010B7FC"
-  },
-  "func_8010B9C8": {
-   "scripts": {
-    "saves": 105
-   },
-   "size": 700,
-   "vram": "0x8010B9C8"
-  },
-  "func_8010BC84": {
-   "scripts": {
-    "pause_menus": 90
-   },
-   "size": 928,
-   "vram": "0x8010BC84"
   },
   "func_8010C974": {
    "scripts": {},
@@ -2872,7 +3087,11 @@
     "battle_end": 3597,
     "circuit": 5397,
     "controls_frontend": 3477,
+    "ghost_delete_fail": 8597,
+    "ghost_pak": 10797,
     "ghost_race": 5397,
+    "ghost_reload": 2997,
+    "ghost_resave": 10797,
     "ghost_save": 9997,
     "options_menus": 4977,
     "other_car": 5397,
@@ -2881,7 +3100,7 @@
     "player_reload": 2997,
     "practice": 5397,
     "race": 3597,
-    "animPlace": 9597,
+    "race_finish": 9597,
     "race_pak": 3597,
     "race_track2": 3597,
     "race_track3": 3597,
@@ -2892,7 +3111,8 @@
     "stunt_end": 21997,
     "stunt_short": 7197,
     "two_player": 3597,
-    "two_player_finish": 9597
+    "two_player_finish": 9597,
+    "unlock": 9597
    },
    "size": 128,
    "vram": "0x8010FBE0"
@@ -2907,7 +3127,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -2916,7 +3140,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2927,7 +3151,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 820,
    "vram": "0x800EEA7C"
@@ -2942,7 +3167,11 @@
     "battle_end": 1815,
     "circuit": 2713,
     "controls_frontend": 1745,
+    "ghost_delete_fail": 4224,
+    "ghost_pak": 5415,
     "ghost_race": 2712,
+    "ghost_reload": 1512,
+    "ghost_resave": 5415,
     "ghost_save": 5026,
     "options_menus": 2500,
     "other_car": 2712,
@@ -2951,7 +3180,7 @@
     "player_reload": 1512,
     "practice": 2712,
     "race": 1812,
-    "animPlace": 4819,
+    "race_finish": 4819,
     "race_pak": 1812,
     "race_track2": 1812,
     "race_track3": 1812,
@@ -2962,7 +3191,8 @@
     "stunt_end": 11015,
     "stunt_short": 3619,
     "two_player": 1812,
-    "two_player_finish": 4819
+    "two_player_finish": 4819,
+    "unlock": 4819
    },
    "size": 704,
    "vram": "0x800FD464"
@@ -2973,14 +3203,6 @@
    },
    "size": 1916,
    "vram": "0x800FFDE8"
-  },
-  "game_results_input": {
-   "scripts": {
-    "controls_frontend": 88880,
-    "pause_menus": 16800
-   },
-   "size": 1732,
-   "vram": "0x800FF724"
   },
   "game_results_render": {
    "scripts": {
@@ -3009,21 +3231,26 @@
   "ghost_race_setup": {
    "scripts": {
     "battle_end": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "player_finish": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 440,
    "vram": "0x800D510C"
   },
   "highscore_entry_anim": {
    "scripts": {
-    "animPlace": 98,
-    "two_player_finish": 491
+    "race_finish": 98,
+    "two_player_finish": 491,
+    "unlock": 60
    },
    "size": 188,
    "vram": "0x80104A58"
@@ -3038,7 +3265,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -3047,7 +3278,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3058,7 +3289,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 1048,
    "vram": "0x800C8B8C"
@@ -3070,7 +3302,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 2,
     "other_car": 1,
     "pause_menus": 2,
@@ -3078,7 +3314,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3088,7 +3324,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 1,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 712,
    "vram": "0x800FAF6C"
@@ -3102,7 +3339,11 @@
     "battle": 5786,
     "battle_end": 74,
     "circuit": 1865,
+    "ghost_delete_fail": 3001,
+    "ghost_pak": 3001,
     "ghost_race": 1955,
+    "ghost_reload": 725,
+    "ghost_resave": 3001,
     "ghost_save": 3066,
     "other_car": 1940,
     "pause_menus": 715,
@@ -3110,7 +3351,7 @@
     "player_reload": 455,
     "practice": 1955,
     "race": 935,
-    "animPlace": 3011,
+    "race_finish": 3011,
     "race_pak": 1145,
     "race_track2": 935,
     "race_track3": 935,
@@ -3120,7 +3361,8 @@
     "stunt_end": 8670,
     "stunt_short": 2221,
     "two_player": 1870,
-    "two_player_finish": 6373
+    "two_player_finish": 6373,
+    "unlock": 3011
    },
    "size": 3580,
    "vram": "0x800ADD58"
@@ -3134,7 +3376,11 @@
     "battle": 42229,
     "battle_end": 356,
     "circuit": 19100,
+    "ghost_delete_fail": 33251,
+    "ghost_pak": 33251,
     "ghost_race": 22851,
+    "ghost_reload": 6081,
+    "ghost_resave": 33251,
     "ghost_save": 33901,
     "other_car": 20519,
     "pause_menus": 6751,
@@ -3142,7 +3388,7 @@
     "player_reload": 4084,
     "practice": 18562,
     "race": 7949,
-    "animPlace": 35776,
+    "race_finish": 35776,
     "race_pak": 10120,
     "race_track2": 6522,
     "race_track3": 7382,
@@ -3152,38 +3398,17 @@
     "stunt_end": 79328,
     "stunt_short": 18902,
     "two_player": 16101,
-    "two_player_finish": 73781
+    "two_player_finish": 73781,
+    "unlock": 35776
    },
    "size": 1452,
    "vram": "0x800AD734"
   },
-  "animElapsedTimerText": {
-   "scripts": {
-    "audio_options": 1096,
-    "backward": 2026,
-    "circuit": 1936,
-    "ghost_race": 2026,
-    "ghost_save": 3268,
-    "other_car": 2011,
-    "pause_menus": 3736,
-    "player_finish": 2633,
-    "player_reload": 826,
-    "practice": 2026,
-    "race": 1096,
-    "animPlace": 3218,
-    "race_pak": 1216,
-    "race_track2": 1096,
-    "race_track3": 1096,
-    "race_track4": 1096,
-    "saves": 1651,
-    "two_player": 1096,
-    "two_player_finish": 3390
-   },
-   "size": 1232,
-   "vram": "0x8010761C"
-  },
   "menu_back": {
    "scripts": {
+    "ghost_delete_fail": 2,
+    "ghost_reload": 2,
+    "ghost_resave": 2,
     "ghost_save": 2
    },
    "size": 132,
@@ -3199,7 +3424,11 @@
     "battle_end": 17308,
     "circuit": 66365,
     "controls_frontend": 15886,
+    "ghost_delete_fail": 132738,
+    "ghost_pak": 141094,
     "ghost_race": 77663,
+    "ghost_reload": 35513,
+    "ghost_resave": 155868,
     "ghost_save": 139209,
     "options_menus": 27316,
     "other_car": 70366,
@@ -3208,7 +3437,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
-    "animPlace": 122021,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -3219,7 +3448,8 @@
     "stunt_end": 225208,
     "stunt_short": 63071,
     "two_player": 60760,
-    "two_player_finish": 213374
+    "two_player_finish": 213374,
+    "unlock": 121141
    },
    "size": 1280,
    "vram": "0x800B6BEC"
@@ -3233,7 +3463,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 2,
     "other_car": 1,
     "pause_menus": 2,
@@ -3241,7 +3475,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3251,7 +3485,8 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 1,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 992,
    "vram": "0x800B1B48"
@@ -3265,7 +3500,11 @@
     "battle": 6,
     "battle_end": 6,
     "circuit": 8,
+    "ghost_delete_fail": 4,
+    "ghost_pak": 2,
     "ghost_race": 2,
+    "ghost_reload": 4,
+    "ghost_resave": 4,
     "ghost_save": 4,
     "other_car": 12,
     "pause_menus": 14,
@@ -3273,7 +3512,7 @@
     "player_reload": 8,
     "practice": 3,
     "race": 8,
-    "animPlace": 14,
+    "race_finish": 14,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3283,7 +3522,8 @@
     "stunt_end": 3,
     "stunt_short": 4,
     "two_player": 10,
-    "two_player_finish": 16
+    "two_player_finish": 16,
+    "unlock": 14
    },
    "size": 1428,
    "vram": "0x800B15B4"
@@ -3303,7 +3543,11 @@
     "battle_end": 2931,
     "circuit": 2512,
     "controls_frontend": 1887,
+    "ghost_delete_fail": 5039,
+    "ghost_pak": 6326,
     "ghost_race": 2526,
+    "ghost_reload": 2836,
+    "ghost_resave": 6442,
     "ghost_save": 3511,
     "options_menus": 214,
     "other_car": 2146,
@@ -3312,7 +3556,7 @@
     "player_reload": 5043,
     "practice": 2348,
     "race": 2627,
-    "animPlace": 4306,
+    "race_finish": 4306,
     "race_pak": 1726,
     "race_track2": 2627,
     "race_track3": 2627,
@@ -3323,7 +3567,8 @@
     "stunt_end": 7620,
     "stunt_short": 3386,
     "two_player": 2924,
-    "two_player_finish": 3520
+    "two_player_finish": 3520,
+    "unlock": 5082
    },
    "size": 84,
    "vram": "0x800B3F50"
@@ -3338,7 +3583,11 @@
     "battle_end": 2000,
     "circuit": 1718,
     "controls_frontend": 1525,
+    "ghost_delete_fail": 1871,
+    "ghost_pak": 1871,
     "ghost_race": 1721,
+    "ghost_reload": 1871,
+    "ghost_resave": 1871,
     "ghost_save": 1881,
     "options_menus": 1226,
     "other_car": 1583,
@@ -3347,7 +3596,7 @@
     "player_reload": 1538,
     "practice": 1448,
     "race": 1508,
-    "animPlace": 1448,
+    "race_finish": 1448,
     "race_pak": 1268,
     "race_track2": 1508,
     "race_track3": 1508,
@@ -3358,10 +3607,19 @@
     "stunt_end": 10785,
     "stunt_short": 4246,
     "two_player": 1818,
-    "two_player_finish": 1758
+    "two_player_finish": 1758,
+    "unlock": 1448
    },
    "size": 112,
    "vram": "0x800B42F0"
+  },
+  "pak_delete_file_retry": {
+   "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_resave": 1
+   },
+   "size": 784,
+   "vram": "0x800A2680"
   },
   "particle_collision": {
    "scripts": {
@@ -3379,7 +3637,11 @@
     "battle_end": 5,
     "circuit": 6,
     "controls_frontend": 3,
+    "ghost_delete_fail": 5,
+    "ghost_pak": 5,
     "ghost_race": 5,
+    "ghost_reload": 5,
+    "ghost_resave": 5,
     "ghost_save": 5,
     "options_menus": 7,
     "other_car": 5,
@@ -3388,7 +3650,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
-    "animPlace": 5,
+    "race_finish": 5,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -3399,7 +3661,8 @@
     "stunt_end": 5,
     "stunt_short": 5,
     "two_player": 5,
-    "two_player_finish": 5
+    "two_player_finish": 5,
+    "unlock": 5
    },
    "size": 732,
    "vram": "0x800B8374"
@@ -3417,7 +3680,11 @@
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
     "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
     "ghost_save": 3268,
     "other_car": 2011,
     "pause_menus": 3736,
@@ -3425,7 +3692,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
-    "animPlace": 3218,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -3435,7 +3702,8 @@
     "stunt_end": 9336,
     "stunt_short": 2496,
     "two_player": 1096,
-    "two_player_finish": 3390
+    "two_player_finish": 3390,
+    "unlock": 3218
    },
    "size": 1464,
    "vram": "0x800B7A40"
@@ -3450,7 +3718,11 @@
     "battle_end": 3103,
     "circuit": 2698,
     "controls_frontend": 1738,
+    "ghost_delete_fail": 4508,
+    "ghost_pak": 5698,
     "ghost_race": 2998,
+    "ghost_reload": 1798,
+    "ghost_resave": 5698,
     "ghost_save": 5298,
     "options_menus": 2488,
     "other_car": 2698,
@@ -3459,7 +3731,7 @@
     "player_reload": 1498,
     "practice": 2698,
     "race": 1798,
-    "animPlace": 4798,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1798,
     "race_track3": 1798,
@@ -3470,7 +3742,8 @@
     "stunt_end": 10998,
     "stunt_short": 3598,
     "two_player": 3088,
-    "two_player_finish": 9118
+    "two_player_finish": 9118,
+    "unlock": 4798
    },
    "size": 1176,
    "vram": "0x8009EBC0"
@@ -3484,7 +3757,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 5,
+    "ghost_delete_fail": 5,
+    "ghost_pak": 5,
     "ghost_race": 5,
+    "ghost_reload": 5,
+    "ghost_resave": 5,
     "ghost_save": 6,
     "other_car": 5,
     "pause_menus": 7,
@@ -3492,7 +3769,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
-    "animPlace": 7,
+    "race_finish": 7,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -3502,7 +3779,8 @@
     "stunt_end": 1,
     "stunt_short": 3,
     "two_player": 5,
-    "two_player_finish": 7
+    "two_player_finish": 7,
+    "unlock": 7
    },
    "size": 920,
    "vram": "0x800B93A8"
@@ -3517,7 +3795,11 @@
     "battle_end": 1814,
     "circuit": 2712,
     "controls_frontend": 1744,
+    "ghost_delete_fail": 4223,
+    "ghost_pak": 5414,
     "ghost_race": 2711,
+    "ghost_reload": 1511,
+    "ghost_resave": 5414,
     "ghost_save": 5025,
     "options_menus": 2499,
     "other_car": 2711,
@@ -3526,7 +3808,7 @@
     "player_reload": 1511,
     "practice": 2711,
     "race": 1811,
-    "animPlace": 4818,
+    "race_finish": 4818,
     "race_pak": 1811,
     "race_track2": 1811,
     "race_track3": 1811,
@@ -3537,7 +3819,8 @@
     "stunt_end": 11014,
     "stunt_short": 3618,
     "two_player": 1811,
-    "two_player_finish": 4818
+    "two_player_finish": 4818,
+    "unlock": 4818
    },
    "size": 2544,
    "vram": "0x800CA3B4"
@@ -3551,7 +3834,11 @@
     "battle": 1,
     "battle_end": 1,
     "circuit": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 2,
     "other_car": 1,
     "pause_menus": 2,
@@ -3559,7 +3846,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3569,35 +3856,11 @@
     "stunt_end": 1,
     "stunt_short": 2,
     "two_player": 1,
-    "two_player_finish": 2
+    "two_player_finish": 2,
+    "unlock": 2
    },
    "size": 2180,
    "vram": "0x800F6AB8"
-  },
-  "animPlace": {
-   "scripts": {
-    "audio_options": 1096,
-    "backward": 2026,
-    "circuit": 1936,
-    "ghost_race": 2026,
-    "ghost_save": 3268,
-    "other_car": 2011,
-    "pause_menus": 3736,
-    "player_finish": 2633,
-    "player_reload": 826,
-    "practice": 2026,
-    "race": 1096,
-    "animPlace": 3218,
-    "race_pak": 1216,
-    "race_track2": 1096,
-    "race_track3": 1096,
-    "race_track4": 1096,
-    "saves": 1651,
-    "two_player": 1096,
-    "two_player_finish": 3390
-   },
-   "size": 1000,
-   "vram": "0x80107AF4"
   },
   "race_position_update": {
    "scripts": {
@@ -3607,7 +3870,11 @@
     "battle_end": 4181,
     "circuit": 100,
     "controls_frontend": 1110,
+    "ghost_delete_fail": 276,
+    "ghost_pak": 5196,
     "ghost_race": 100,
+    "ghost_reload": 276,
+    "ghost_resave": 5196,
     "ghost_save": 4900,
     "other_car": 205,
     "pause_menus": 939,
@@ -3615,7 +3882,7 @@
     "player_reload": 276,
     "practice": 100,
     "race": 100,
-    "animPlace": 1145,
+    "race_finish": 1145,
     "race_pak": 100,
     "race_track2": 100,
     "race_track3": 100,
@@ -3626,7 +3893,8 @@
     "stunt_end": 1090,
     "stunt_short": 380,
     "two_player": 281,
-    "two_player_finish": 1461
+    "two_player_finish": 1461,
+    "unlock": 1445
    },
    "size": 484,
    "vram": "0x800BE7BC"
@@ -3639,7 +3907,11 @@
     "battle_end": 4,
     "circuit": 4,
     "controls_frontend": 9,
+    "ghost_delete_fail": 4,
+    "ghost_pak": 4,
     "ghost_race": 4,
+    "ghost_reload": 4,
+    "ghost_resave": 4,
     "ghost_save": 4,
     "other_car": 4,
     "pause_menus": 9,
@@ -3647,7 +3919,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
-    "animPlace": 4,
+    "race_finish": 4,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -3657,7 +3929,8 @@
     "stunt_end": 4,
     "stunt_short": 4,
     "two_player": 4,
-    "two_player_finish": 4
+    "two_player_finish": 4,
+    "unlock": 4
    },
    "size": 132,
    "vram": "0x800D7D40"
@@ -3670,7 +3943,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 2,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "other_car": 1,
     "pause_menus": 2,
@@ -3678,7 +3955,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3688,7 +3965,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 196,
    "vram": "0x800D7DC4"
@@ -3703,7 +3981,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -3712,7 +3994,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3723,7 +4005,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 268,
    "vram": "0x800E7808"
@@ -3737,7 +4020,11 @@
     "battle": 1906,
     "battle_end": 2,
     "circuit": 1831,
+    "ghost_delete_fail": 3028,
+    "ghost_pak": 3028,
     "ghost_race": 1921,
+    "ghost_reload": 691,
+    "ghost_resave": 3028,
     "ghost_save": 3059,
     "other_car": 1906,
     "pause_menus": 647,
@@ -3745,7 +4032,7 @@
     "player_reload": 421,
     "practice": 1921,
     "race": 901,
-    "animPlace": 3009,
+    "race_finish": 3009,
     "race_pak": 1111,
     "race_track2": 901,
     "race_track3": 901,
@@ -3755,7 +4042,8 @@
     "stunt_end": 9082,
     "stunt_short": 2287,
     "two_player": 901,
-    "two_player_finish": 3181
+    "two_player_finish": 3181,
+    "unlock": 3009
    },
    "size": 924,
    "vram": "0x800FA9B4"
@@ -3772,16 +4060,21 @@
    "scripts": {
     "backward": 3,
     "circuit": 3,
+    "ghost_delete_fail": 6,
+    "ghost_pak": 3,
+    "ghost_reload": 2,
+    "ghost_resave": 6,
     "ghost_save": 3,
     "other_car": 1,
     "player_finish": 2,
     "player_reload": 1,
-    "animPlace": 2,
+    "race_finish": 2,
     "race_pak": 1,
     "saves": 1,
     "stunt_end": 10,
     "stunt_short": 3,
-    "two_player_finish": 3
+    "two_player_finish": 3,
+    "unlock": 2
    },
    "size": 1200,
    "vram": "0x800AF06C"
@@ -3795,7 +4088,11 @@
     "battle": 1907,
     "battle_end": 3,
     "circuit": 1832,
+    "ghost_delete_fail": 3029,
+    "ghost_pak": 3029,
     "ghost_race": 1922,
+    "ghost_reload": 692,
+    "ghost_resave": 3029,
     "ghost_save": 3061,
     "other_car": 1907,
     "pause_menus": 648,
@@ -3803,7 +4100,7 @@
     "player_reload": 422,
     "practice": 1922,
     "race": 902,
-    "animPlace": 3011,
+    "race_finish": 3011,
     "race_pak": 1112,
     "race_track2": 902,
     "race_track3": 902,
@@ -3813,7 +4110,8 @@
     "stunt_end": 9083,
     "stunt_short": 2289,
     "two_player": 902,
-    "two_player_finish": 3183
+    "two_player_finish": 3183,
+    "unlock": 3011
    },
    "size": 1396,
    "vram": "0x800F0100"
@@ -3827,7 +4125,11 @@
     "battle": 6,
     "battle_end": 6,
     "circuit": 8,
+    "ghost_delete_fail": 4,
+    "ghost_pak": 2,
     "ghost_race": 2,
+    "ghost_reload": 4,
+    "ghost_resave": 4,
     "ghost_save": 4,
     "other_car": 12,
     "pause_menus": 14,
@@ -3835,7 +4137,7 @@
     "player_reload": 8,
     "practice": 3,
     "race": 8,
-    "animPlace": 14,
+    "race_finish": 14,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3845,17 +4147,11 @@
     "stunt_end": 3,
     "stunt_short": 4,
     "two_player": 10,
-    "two_player_finish": 16
+    "two_player_finish": 16,
+    "unlock": 14
    },
    "size": 1248,
    "vram": "0x800B10D4"
-  },
-  "TitlePane": {
-   "scripts": {
-    "pause_menus": 1
-   },
-   "size": 332,
-   "vram": "0x800B574C"
   },
   "sound_position_update": {
    "scripts": {
@@ -3866,7 +4162,11 @@
     "battle_end": 1458,
     "circuit": 83640,
     "controls_frontend": 733,
+    "ghost_delete_fail": 61664,
+    "ghost_pak": 74737,
     "ghost_race": 38664,
+    "ghost_reload": 13711,
+    "ghost_resave": 74872,
     "ghost_save": 70630,
     "options_menus": 1251,
     "other_car": 87304,
@@ -3875,7 +4175,7 @@
     "player_reload": 23394,
     "practice": 48536,
     "race": 43708,
-    "animPlace": 152673,
+    "race_finish": 152673,
     "race_pak": 53494,
     "race_track2": 38619,
     "race_track3": 41174,
@@ -3886,7 +4186,8 @@
     "stunt_end": 45781,
     "stunt_short": 13157,
     "two_player": 43800,
-    "two_player_finish": 163937
+    "two_player_finish": 163937,
+    "unlock": 152623
    },
    "size": 444,
    "vram": "0x800951E0"
@@ -3901,7 +4202,11 @@
     "battle_end": 16470,
     "circuit": 65527,
     "controls_frontend": 15048,
+    "ghost_delete_fail": 131097,
+    "ghost_pak": 139893,
     "ghost_race": 76825,
+    "ghost_reload": 34675,
+    "ghost_resave": 154667,
     "ghost_save": 138188,
     "options_menus": 26388,
     "other_car": 69528,
@@ -3910,7 +4215,7 @@
     "player_reload": 31777,
     "practice": 55761,
     "race": 39049,
-    "animPlace": 120985,
+    "race_finish": 120985,
     "race_pak": 41699,
     "race_track2": 38995,
     "race_track3": 38881,
@@ -3921,7 +4226,8 @@
     "stunt_end": 224370,
     "stunt_short": 62233,
     "two_player": 59744,
-    "two_player_finish": 212101
+    "two_player_finish": 212101,
+    "unlock": 120105
    },
    "size": 396,
    "vram": "0x800B71D4"
@@ -3935,7 +4241,11 @@
     "battle": 2,
     "battle_end": 2,
     "circuit": 10,
+    "ghost_delete_fail": 8,
+    "ghost_pak": 4,
     "ghost_race": 3,
+    "ghost_reload": 4,
+    "ghost_resave": 8,
     "ghost_save": 6,
     "other_car": 8,
     "pause_menus": 12,
@@ -3943,7 +4253,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
-    "animPlace": 15,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3953,7 +4263,8 @@
     "stunt_end": 11,
     "stunt_short": 5,
     "two_player": 10,
-    "two_player_finish": 17
+    "two_player_finish": 17,
+    "unlock": 15
    },
    "size": 4700,
    "vram": "0x800D3B28"
@@ -3968,7 +4279,11 @@
     "battle_end": 1,
     "circuit": 1,
     "controls_frontend": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
     "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "options_menus": 1,
     "other_car": 1,
@@ -3977,7 +4292,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3988,7 +4303,8 @@
     "stunt_end": 1,
     "stunt_short": 1,
     "two_player": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 240,
    "vram": "0x800A501C"
@@ -4010,7 +4326,11 @@
     "battle_end": 7,
     "circuit": 7,
     "controls_frontend": 4,
+    "ghost_delete_fail": 7,
+    "ghost_pak": 7,
     "ghost_race": 7,
+    "ghost_reload": 7,
+    "ghost_resave": 7,
     "ghost_save": 11,
     "options_menus": 5,
     "other_car": 7,
@@ -4019,7 +4339,7 @@
     "player_reload": 7,
     "practice": 7,
     "race": 7,
-    "animPlace": 7,
+    "race_finish": 7,
     "race_pak": 7,
     "race_track2": 7,
     "race_track3": 7,
@@ -4030,18 +4350,11 @@
     "stunt_end": 7,
     "stunt_short": 7,
     "two_player": 7,
-    "two_player_finish": 7
+    "two_player_finish": 7,
+    "unlock": 7
    },
    "size": 372,
    "vram": "0x800A5BB8"
-  },
-  "PS_CreateFile": {
-   "scripts": {
-    "player_finish": 1,
-    "saves": 1
-   },
-   "size": 1752,
-   "vram": "0x800A2D4C"
   },
   "track_render_process": {
    "scripts": {
@@ -4053,7 +4366,11 @@
     "battle_end": 806,
     "circuit": 900,
     "controls_frontend": 1744,
+    "ghost_delete_fail": 1316,
+    "ghost_pak": 1098,
     "ghost_race": 810,
+    "ghost_reload": 826,
+    "ghost_resave": 1098,
     "ghost_save": 972,
     "options_menus": 2499,
     "other_car": 824,
@@ -4062,7 +4379,7 @@
     "player_reload": 1092,
     "practice": 810,
     "race": 918,
-    "animPlace": 930,
+    "race_finish": 930,
     "race_pak": 711,
     "race_track2": 918,
     "race_track3": 918,
@@ -4073,7 +4390,8 @@
     "stunt_end": 1040,
     "stunt_short": 1072,
     "two_player": 918,
-    "two_player_finish": 932
+    "two_player_finish": 932,
+    "unlock": 930
    },
    "size": 3200,
    "vram": "0x800A377C"
@@ -4081,13 +4399,17 @@
   "track_texture_load": {
    "scripts": {
     "battle_end": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
     "ghost_save": 1,
     "player_finish": 1,
-    "animPlace": 1,
+    "race_finish": 1,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
-    "two_player_finish": 1
+    "two_player_finish": 1,
+    "unlock": 1
    },
    "size": 1348,
    "vram": "0x800F5F90"
@@ -4119,7 +4441,11 @@
     "battle_end": 480,
     "circuit": 500,
     "controls_frontend": 480,
+    "ghost_delete_fail": 500,
+    "ghost_pak": 500,
     "ghost_race": 500,
+    "ghost_reload": 500,
+    "ghost_resave": 500,
     "ghost_save": 500,
     "options_menus": 480,
     "other_car": 500,
@@ -4128,7 +4454,7 @@
     "player_reload": 500,
     "practice": 500,
     "race": 500,
-    "animPlace": 540,
+    "race_finish": 540,
     "race_pak": 500,
     "race_track2": 520,
     "race_track3": 540,
@@ -4139,7 +4465,8 @@
     "stunt_end": 480,
     "stunt_short": 480,
     "two_player": 520,
-    "two_player_finish": 560
+    "two_player_finish": 560,
+    "unlock": 540
    },
    "size": 224,
    "vram": "0x800B4738"
@@ -4154,7 +4481,11 @@
     "battle_end": 1800,
     "circuit": 2700,
     "controls_frontend": 1740,
+    "ghost_delete_fail": 4300,
+    "ghost_pak": 5400,
     "ghost_race": 2700,
+    "ghost_reload": 1500,
+    "ghost_resave": 5400,
     "ghost_save": 5000,
     "options_menus": 2490,
     "other_car": 2700,
@@ -4163,7 +4494,7 @@
     "player_reload": 1500,
     "practice": 2700,
     "race": 1800,
-    "animPlace": 4800,
+    "race_finish": 4800,
     "race_pak": 1800,
     "race_track2": 1800,
     "race_track3": 1800,
@@ -4174,7 +4505,8 @@
     "stunt_end": 11000,
     "stunt_short": 3600,
     "two_player": 1800,
-    "two_player_finish": 4800
+    "two_player_finish": 4800,
+    "unlock": 4800
    },
    "size": 540,
    "vram": "0x800EDACC"
@@ -4194,7 +4526,11 @@
     "battle_end": 7199,
     "circuit": 10799,
     "controls_frontend": 6959,
+    "ghost_delete_fail": 17199,
+    "ghost_pak": 21599,
     "ghost_race": 10799,
+    "ghost_reload": 5999,
+    "ghost_resave": 21599,
     "ghost_save": 19999,
     "options_menus": 9959,
     "other_car": 10799,
@@ -4203,7 +4539,7 @@
     "player_reload": 5999,
     "practice": 10799,
     "race": 7199,
-    "animPlace": 19199,
+    "race_finish": 19199,
     "race_pak": 7199,
     "race_track2": 7199,
     "race_track3": 7199,
@@ -4214,7 +4550,8 @@
     "stunt_end": 43999,
     "stunt_short": 14399,
     "two_player": 7199,
-    "two_player_finish": 19199
+    "two_player_finish": 19199,
+    "unlock": 19199
    },
    "size": 464,
    "vram": "0x800EE5DC"
@@ -4229,7 +4566,11 @@
     "battle_end": 1800,
     "circuit": 2700,
     "controls_frontend": 1740,
+    "ghost_delete_fail": 4300,
+    "ghost_pak": 5400,
     "ghost_race": 2700,
+    "ghost_reload": 1500,
+    "ghost_resave": 5400,
     "ghost_save": 5000,
     "options_menus": 2490,
     "other_car": 2700,
@@ -4238,7 +4579,7 @@
     "player_reload": 1500,
     "practice": 2700,
     "race": 1800,
-    "animPlace": 4800,
+    "race_finish": 4800,
     "race_pak": 1800,
     "race_track2": 1800,
     "race_track3": 1800,
@@ -4249,7 +4590,8 @@
     "stunt_end": 11000,
     "stunt_short": 3600,
     "two_player": 1800,
-    "two_player_finish": 4800
+    "two_player_finish": 4800,
+    "unlock": 4800
    },
    "size": 712,
    "vram": "0x800ED804"
@@ -4266,7 +4608,11 @@
   "battle_end",
   "circuit",
   "controls_frontend",
+  "ghost_delete_fail",
+  "ghost_pak",
   "ghost_race",
+  "ghost_reload",
+  "ghost_resave",
   "ghost_save",
   "options_menus",
   "other_car",
@@ -4275,7 +4621,7 @@
   "player_reload",
   "practice",
   "race",
-  "animPlace",
+  "race_finish",
   "race_pak",
   "race_track2",
   "race_track3",
@@ -4286,8 +4632,9 @@
   "stunt_end",
   "stunt_short",
   "two_player",
-  "two_player_finish"
+  "two_player_finish",
+  "unlock"
  ],
- "tree": "w29r",
+ "tree": "unknown",
  "unmatched_source": "game functions not in blob_matched.lock.json"
 }

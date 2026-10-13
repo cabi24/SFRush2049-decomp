@@ -1,0 +1,32 @@
+# An unlock at the end of a race (w30r, Phase 10): race_finish.press (JUST PLAY, 1-lap single race, 6TH at 3676)
+# plus the scene lever 0x801164C0 := 1 (halfword): the developer unlock-everything flag that func_800CCEFC sets
+# for the player id "000F1CC5 EJK" (with gSaveGhostFiles 0x801148E4, see ghost_pak.press). The high-score screen's
+# _InitScreen (track_texture_load 0x800F5F90) snapshots the unlock tables (0x80150DD8.. -> 0x801426A0..), recomputes
+# them (net_state_validate 0x800F2A28 = GC CalcUnlockedStuff: with the flag every car is unlocked) and compares
+# (func_800A1910); a difference = SetHighScoreState(1) = ControlUnlocked (func_800F2718) -> DrawUnlocked
+# (func_80103D28). Frames: CONGRATULATIONS! YOU JUST UNLOCKED: LOCUST LX | GX-2 | MINI XS | VENOM | CRUSHER |
+# EURO LX | PANTHER 3742; then ENTER YOUR NAME 3840, BEST LAPS 3901, GAME OVER 4050, RACE AGAIN.
+frames 4800
+pak on
+4 START
+7 A
+10 A
+13 A
+15 DOWN
+16 LEFT
+17 LEFT
+19 A
+22 A
+25 A
+28 A 98
+124 A
+126 A
+128 A
+130 START
+135 A
+140 A
+146 A
+150 B
+153 DOWN
+155 A
+poke 30 801164C0 1 2

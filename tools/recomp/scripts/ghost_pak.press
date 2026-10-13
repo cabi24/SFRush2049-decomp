@@ -1,0 +1,31 @@
+# A ghost FILE on the controller pak (w30r, Phase 10; pak flow, written with script_probe --text).
+# ghost_save.press's AAAA 1-lap ghost race (`pak from saves`, lap byte 0x80152735 := 1 at 28 s) plus the scene lever
+# 0x801148E4 := 1: the N64 counterpart of GC gSaveGhostFiles (highscorescr.c updateHighScoreScreen: SaveGhost to
+# the pak only `if (gSaveGhostFile && gSaveGhostFiles)`, else into memory = SaveGhost(..., limbo 1)). On N64 only
+# func_800CCEFC sets it, when the player's id string equals the developer id "000F1CC5 EJK" (0x801211CC; it also
+# sets the unlock-everything halfwords 0x801164C0.., see unlock.press): retail players never save ghost files.
+# The high-score state machine (finish_state_normal 0x800F64D4, state 3) then goes to state 4 = SAVE GHOST
+# (FindGhosts, func_80104B14, func_800F1930) instead of the in-memory save.
+# Frames: finish 3775, SAVE GHOST 3836 (CURRENT GHOST | CONTROLLER PAK | NO GHOST | SAVE | DO NOT SAVE), DOWN + A =
+# SAVE: GHOST SAVED ON CONTROLLER PAK 1 (3990; func_800CC040 = SaveGhost writes note "RUSH2049AAAA1F", 256 B),
+# A: BEST GHOSTS 4080, GAME OVER 4980. Gas released at 127 s (a held A swallows the menu presses).
+# `pak from ghost_pak` (ghost_reload, ghost_resave, ghost_delete_fail) starts from the pak this leaves.
+frames 5400
+pak from saves
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+14.5 DOWN
+15.5 DOWN
+17 A
+20 A
+23 A
+26 A
+27 A 100
+poke 28 80152735 1 1
+poke 28 801148E4 1 1
+132 DOWN
+133 A
+136 A

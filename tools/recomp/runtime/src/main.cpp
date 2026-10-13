@@ -72,6 +72,8 @@ void usage() {
         "  --fb-every N: with --fb-dump, sample the framebuffer every N screen updates (default 30)\n"
         "  --pak-write: with --clock frames and --pak FILE, write the image back (save tests)\n"
         "  --no-pak: no controller pak (the boot notice NO CONTROLLER PAK DETECTED, as v1/v2)\n"
+        "  --pak-fail OP:N[:ERR][,...]: the Nth osPfs call of OP (delete, read, write, alloc, state; counted\n"
+        "      per OP) returns ERR (default 4, PFS_ERR_CONTRFAIL) and changes nothing (Phase 10 fault lever)\n"
         "  --poke FRAME:ADDR:VALUE[:BYTES][,...]: write VALUE (1, 2 or 4 bytes, default 4) at the N64 address\n"
         "      when graphics frame FRAME starts (a scene lever; both sides of a comparison get the same pokes)\n"
         "  --text-log PATH: strings the game draws, '<frame>\\t<text>' when they appear (needs the\n"
@@ -97,6 +99,7 @@ std::string press_file(const std::string& path, uint64_t& frames) {
         if (t == "pak") {
             std::string v;
             is >> v;
+            if (v == "from" || v == "fail") continue;   // harness lines (oracle.py: pak image / --pak-fail)
             if (v != "on" && v != "off") { fprintf(stderr, "[rush] %s: pak takes on|off\n", path.c_str()); std::exit(2); }
             script_pak = v == "on";
             continue;
@@ -283,6 +286,21 @@ int main(int argc, char** argv) {
         else if (a == "--fb-every") rush::set_fb_dump_every((uint32_t)std::stoul(next()));
         else if (a == "--no-pak") no_pak = true;
         else if (a == "--text-log") rush::oracle_text_log(next());
+        else if (a == "--pak-fail") {
+            // OP:N[:ERR][,...] (Phase 10: injected controller-pak failures; scripts: `pak fail`)
+            std::string list = next();
+            size_t pos = 0;
+            while (pos <= list.size()) {
+                size_t end = list.find(',', pos);
+                std::string item = list.substr(pos, end == std::string::npos ? std::string::npos : end - pos);
+                if (!item.empty() && !rush::pak_add_fail(item)) {
+                    fprintf(stderr, "[rush] bad --pak-fail item %s (delete|read|write|alloc|state:N[:ERR])\n", item.c_str());
+                    return 2;
+                }
+                if (end == std::string::npos) break;
+                pos = end + 1;
+            }
+        }
         else if (a == "--poke") {
             // FRAME:ADDR:VALUE[:BYTES][,...] (Phase 9 scene lever; scripts: `poke`)
             std::string list = next();

@@ -48,6 +48,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+try:
+    from . import static_layout               # python3 -m tools.recomp.replace
+except ImportError:                           # tools/recomp on sys.path (gen_config, draft_check)
+    import static_layout
+
 REPO = Path(__file__).resolve().parents[2]
 MANIFEST = REPO / "tools" / "recomp" / "replacements.json"
 REPL_VRAM = 0x80800000
@@ -365,7 +370,16 @@ def _local_name_at(elf, section, offset):
     return None
 
 
-def static_bindings(elf, function, func_obj, func_retail, image_word, named=None):
+def _layout_name_at(layout, section, offset):
+    """(name, start, function) of the object static_layout placed over
+    section+offset (Phase 10: IDO writes no symbol for statics), if any."""
+    for (sec, start), (name, size, func) in (layout or {}).items():
+        if sec == section and start <= offset < start + max(size or 1, 1):
+            return name, start, func
+    return None
+
+
+def static_bindings(elf, function, func_obj, func_retail, image_word, named=None, layout=None):
     """{(section, offset): (address, how)} for a replaced body's function-local
     statics (local symbols in .data/.bss/.sdata/.sbss), and [(key, why)] it
     could not bind. Sources of the address, in order:
@@ -376,7 +390,10 @@ def static_bindings(elf, function, func_obj, func_retail, image_word, named=None
                 only where both instruction words match the object's
                 outside their immediates (matched code, or a matching
                 stretch of a draft)
-    `image_word(vram)` reads the retail image (None outside it)."""
+    `image_word(vram)` reads the retail image (None outside it). Phase 10:
+    `layout` ({(section, start): (name, size, function)}, static_layout.py)
+    names the statics IDO leaves without a symbol (function-local and file
+    `static` objects), so "statics" can bind them by NAME or FUNCTION:NAME."""
     text_sec = next((s for s in elf["sections"] if s["name"] == ".text"), None)
     if text_sec is None:
         return {}, []
@@ -392,8 +409,18 @@ def static_bindings(elf, function, func_obj, func_retail, image_word, named=None
         if key in out:
             continue
         where = _local_name_at(elf, key[0], key[1]) if sym["type"] == 3 else (sym["name"], sym["value"])
-        if where and where[0] in named:
-            out[key] = (int(named[where[0]], 0) + key[1] - where[1], "manifest")
+        func_of = None
+        if where is None and sym["type"] == 3:
+            w = _layout_name_at(layout, key[0], key[1])
+            if w:
+                where, func_of = (w[0], w[1]), w[2]
+        hit = None
+        if where and func_of and "%s:%s" % (func_of, where[0]) in named:
+            hit = named["%s:%s" % (func_of, where[0])]
+        elif where and where[0] in named:
+            hit = named[where[0]]
+        if hit is not None:
+            out[key] = (int(hit, 0) if isinstance(hit, str) else int(hit)) + key[1] - where[1], "manifest"
             continue
         if where:
             m = _ADDR_NAME.match(where[0])
@@ -412,7 +439,12 @@ def static_bindings(elf, function, func_obj, func_retail, image_word, named=None
                 continue
         missing.append((key, where[0] if where else None))
     # keys every pair needs, for keys bound through another pair of the same static
-    return out, [(k, n) for k, n in missing if k not in out]
+    seen, left = set(), []
+    for k, n in missing:
+        if k not in out and k not in seen:
+            seen.add(k)
+            left.append((k, n))
+    return out, left
 
 
 def apply_static_bindings(raw, chunk_vram, text_base, elf, bindings):
@@ -831,21 +863,95 @@ def load_ipa_table(path=IPA_TABLE):
     return out
 
 
+GAME_SYMBOLS_JSON = REPO / "asm" / "us" / "blob" / "symbols.json"
+
+
+def current_game_names(symbols=GAME_SYMBOLS_JSON):
+    """{vram: current inventory name} of the game image's symbols."""
+    try:
+        doc = json.loads(Path(symbols).read_text())
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for name, addr in (doc.get("symbols") or {}).items():
+        try:
+            out.setdefault(int(addr, 16) if isinstance(addr, str) else int(addr), name)
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def frontier_facts(frontier=FRONTIER_JSON, symbols=GAME_SYMBOLS_JSON):
+    """build/frontier.json facts keyed by the CURRENT game names (Phase 10).
+    The scan is a build product and keeps the names of the day it ran; a
+    rename (wave 29: AdjustSpeed -> pak_delete_file_retry, func_80096CA8 ->
+    SetupWaveModel, ...) would otherwise drop the register-parameter and
+    unsaved-register facts of every renamed function (no shim, no refusal).
+    Each fact's "address" maps it to today's name; returns (facts, renamed)
+    with renamed = {old: new}."""
+    try:
+        facts = json.loads(Path(frontier).read_text()).get("facts") or {}
+    except (OSError, ValueError, AttributeError):
+        return {}, {}
+    names = current_game_names(symbols)
+    out, renamed = {}, {}
+    for name, f in facts.items():
+        new = name
+        if isinstance(f, dict) and names:
+            try:
+                a = int(f.get("address"), 16) if isinstance(f.get("address"), str) else None
+            except (TypeError, ValueError):
+                a = None
+            if a is not None and a in names and names[a] != name:
+                new = names[a]
+                renamed[name] = new
+        out.setdefault(new, f)
+    return out, renamed
+
+
+RENAME_TABLES = "cloud/work/frontier/*/renames.json"
+
+
+def stale_function_names(frontier=FRONTIER_JSON, symbols=GAME_SYMBOLS_JSON, repo=REPO):
+    """{old name: current name} for game functions renamed since a name was
+    written down (Phase 10): the frontier facts' addresses, the accepted
+    function rows of every lane's renames.json (w29n format), and address names
+    func_XXXXXXXX whose function has a real name now. Only targets that are
+    current inventory names."""
+    names = current_game_names(symbols)
+    current = set(names.values())
+    out = {o: n for o, n in frontier_facts(frontier, symbols)[1].items() if n in current}
+    for f in sorted(Path(repo).glob(RENAME_TABLES)):
+        try:
+            rows = json.loads(f.read_text()).get("renames") or []
+        except (OSError, ValueError, AttributeError):
+            continue
+        for r in rows:
+            if isinstance(r, dict) and r.get("kind") == "function" and r.get("status") == "accepted" \
+                    and r.get("new") in current and r.get("old") and r["old"] not in current:
+                out[r["old"]] = r["new"]
+    for a, n in names.items():
+        o = "func_%08X" % a
+        if o != n and o not in current:
+            out.setdefault(o, n)
+    return out
+
+
 def load_ipa_detection(members=IPA_MEMBERS, frontier=FRONTIER_JSON):
     """{name: why} for callees a standalone o32 call gets wrong (register
     parameters, unsaved callee-saved writes); {} when no scan is present."""
     out = {}
+    facts, renamed = frontier_facts(frontier)       # Phase 10: renamed functions keep their facts
     try:
         doc = json.loads(Path(members).read_text())
         for name, regs in doc.get("callees", {}).items():
             regs = [r for r in regs if r not in _ABI_IN]
             if regs:
-                out[name] = "register parameters " + ",".join(regs)
+                out[renamed.get(name, name)] = "register parameters " + ",".join(regs)
     except (OSError, ValueError):
         pass
     try:
-        doc = json.loads(Path(frontier).read_text())
-        for name, f in (doc.get("facts") or {}).items():       # frontier.py scan: per-function facts
+        for name, f in facts.items():       # frontier.py scan: per-function facts
             if not isinstance(f, dict):
                 continue
             regs = [r for r in f.get("register_params") or () if r not in _ABI_IN]
@@ -1145,6 +1251,17 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                                    f"{(proc.stderr or proc.stdout)[:2000]}")
             elf = read_elf(obj.read_bytes())
             elf["_data"] = obj.read_bytes()
+            # Phase 10: the statics' layout (IDO names none of them), from the
+            # source as IDO's own preprocessor sees it (raw text if -E fails)
+            pp = run(cmd[:1] + ["-E"] + cmd[2:cmd.index("-o")] + [str(src)], capture_output=True, text=True,
+                     cwd=str(work))
+            ptext = pp.stdout if pp.returncode == 0 and pp.stdout else text
+            try:
+                objs, problems = static_layout.layout(ptext, elf)
+                elf["_static_layout"] = static_layout.statics_by_key(objs)
+                elf["_static_layout_problems"] = problems
+            except Exception as ex:          # a parser gap must never fail the build
+                elf["_static_layout"], elf["_static_layout_problems"] = {}, ["static_layout: %s" % ex]
             return obj, elf
         obj, elf = compile_one(src, rid, text)
         table = address_table(functions, symbols, e["population"])
@@ -1256,7 +1373,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             if func_obj is None or func_lnk is None:
                 continue
             b, u = static_bindings(elf, m, func_obj, addrs.get(m), image_word,
-                                   e.get("statics") if m == e["function"] else None)
+                                   e.get("statics"),       # NAME or FUNCTION:NAME (any unit member)
+                                   elf.get("_static_layout"))
             raw, n = apply_static_bindings(raw, vram, func_lnk - func_obj["value"], elf,
                                            {k: v for k, v in b.items() if k not in bound})
             bound.update(b)
@@ -1325,6 +1443,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                                            for k, (a, how) in bound.items()),
                    "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
                                              for k, n in unbound),
+                   "static_layout_problems": elf.get("_static_layout_problems", []),
                    "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
                    "ipa_callees": dict(sorted(e["_ipa"].items())),
                    "capture": capture_layout(e["_text"], m, c.get("prototype"),
