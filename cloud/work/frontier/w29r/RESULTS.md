@@ -107,3 +107,16 @@ high-score state switch in func_800F1930/func_800F1210) and poke it, or steer a 
 `--gc --dry-run` on rocky (dc 15.6 GB): 0.4 GB to free (trees #13/#14 by last use, one superseded retail cache).
 
 # Checks
+
+- Pi worktree `make test-fast JOBS=4`: tests/cloud `806 passed, 202 skipped`; tests/conveyor `40 failed, 1511 passed,
+  817 skipped, 2 errors` = the known fresh-worktree environment (no mips_to_c submodule). tests/conveyor in the MAIN
+  checkout (wave29, with the submodule; this lane touches no conveyor code): `1618 passed, 774 skipped`.
+- Pi `python3 -m pytest tests/recomp tests/cloud/test_recomp_phase8.py tests/cloud/test_recomp_phase9.py`: all pass.
+- rocky clone `~/rush2049/scratch/w29r` (w29r 0104ad15, origin/master = 8c74d8b6, IDO from w28r, submodules
+  populated): `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` exit 0: tests/conveyor `2340 passed, 52 skipped`;
+  tests/cloud `1004 passed, 4 skipped, 8 warnings, 27 subtests passed` (phase9 e2e tests run there).
+- `draft_check --lane w28c` demo (stopped after two rows to free rocky): audio_doppler_full EQUIVALENT over 104,367
+  calls / 29 scripts; func_80106B3C EQUIVALENT over 25,581 calls / 6 scripts.
+
+## Permission denials
+None.
