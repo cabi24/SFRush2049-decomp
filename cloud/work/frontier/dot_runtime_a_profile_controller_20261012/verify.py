@@ -237,9 +237,11 @@ def inputs():
         require('text[32]' in function(source,'func_803A7B58')[2],'inherited capacity changed')
         paths=[GROUP/'group.c',GROUP/'group.json',HERE/'verify.py',HERE/'baseline_controller.c',HERE/'host.c',HERE/'trace.py',
                ROOT/'tests/cloud/test_runtime_a_profile_controller.py',ROOT/'src/blob/func_800A3424.c',
-               ROOT/'src/ovl_a/groups/runtime_a_profile_menu_20261006/group.c',
-               ROOT/'src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c',
-               ROOT/'src/ovl_a/groups/dot_runtime_a_menu_cleanup_20261007/group.c']
+               # w27p: pre-install snapshots of src/ovl_a/groups/<g>/group.c at wave26 46780d3e (the packet's base);
+               # the production sources moved when #359/#366 (and later installs) landed.
+               HERE/'baseline_runtime_a_profile_menu_20261006.c',
+               HERE/'baseline_dot_runtime_a_availability_refresh_20261007.c',
+               HERE/'baseline_dot_runtime_a_menu_cleanup_20261007.c']
         result=dict(protocol_version=2,files={str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in paths},
                     targets={},helper_targets={},symbols={},calls={},flags=spec['flags'],members=spec['members'],claims=spec['claims'],
                     context=CONTEXT,keep=KEEP,asset_sha256=ASSET_HASH,image_sha256=IMAGE_HASH)
