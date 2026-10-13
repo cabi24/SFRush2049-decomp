@@ -1,0 +1,80 @@
+{
+  "compiler": "ido7.1",
+  "oracle": {
+    "credit": false,
+    "differing_words": 0,
+    "operation": "move only promoted-ID PRE insertion from node 2 to node 1"
+  },
+  "oracle_is_matching_evidence": false,
+  "variants": {
+    "baseline": {
+      "differing_words": 4,
+      "promotion": {
+        "bit": 15,
+        "expression": "cvt.J(varP(3+2)r)",
+        "nodes": {
+          "antlocs": [
+            3
+          ],
+          "avlocs": [
+            3
+          ],
+          "delete": [
+            3
+          ],
+          "insert": [
+            2
+          ]
+        },
+        "table_address_bit": 10
+      },
+      "trace_fidelity": true
+    },
+    "candidate": {
+      "differing_words": 0,
+      "promotion": {
+        "bit": 8,
+        "expression": "cvt.J(varP(3+2)r)",
+        "nodes": {
+          "antlocs": [
+            3
+          ],
+          "avlocs": [
+            3
+          ],
+          "delete": [
+            3
+          ],
+          "insert": [
+            2
+          ]
+        },
+        "table_address_bit": 16
+      },
+      "trace_fidelity": true
+    },
+    "early_read": {
+      "differing_words": 2,
+      "promotion": {
+        "bit": 3,
+        "expression": "cvt.J(varP(3+2)r)",
+        "nodes": {
+          "antlocs": [
+            1,
+            5
+          ],
+          "avlocs": [
+            1,
+            5
+          ],
+          "delete": [
+            5
+          ],
+          "insert": []
+        },
+        "table_address_bit": 15
+      },
+      "trace_fidelity": true
+    }
+  }
+}
