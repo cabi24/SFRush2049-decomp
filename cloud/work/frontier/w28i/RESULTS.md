@@ -54,3 +54,36 @@ Static (632/667, 151,176 B, 94.06%), overlay A (81/193, 51,060 B) and overlay B 
 - rocky, clone `~/rush2049/scratch/w28i` (copy of ciclone, branch fetched from a bundle, `origin/master` =
   e3b1f926 set), `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor `2339 passed, 52 skipped`; cloud
   `986 passed, 4 skipped, 8 warnings, 27 subtests passed`; rc=0.
+
+## Job 2: frontier_billboard_render (w28a) — installed (merge of wave28 7a3b8eb5 first, fast-forward)
+
+func_800F0914 (GC _PrintScores, 1,584 B) and func_800F1210 (GC _SetHighScoreState, 1,816 B) move from context to
+members of the locked group of the same name (every old member kept); 3,400 B. Game 1017 -> 1019/1216, 346,896 B (53.61%).
+- Unit (`--with` every packet file, `--internal hs_font_set/hs_gfx_lock/hs_gfx_unlock`, `--neighbours`): 7/7 EQUAL
+  (F1210 454, F0914 396, billboard_render 244, F207C 421, F1930 245, F2718 92, slot_state_setup 58 words),
+  `locked bodies that differ in this unit: 0`.
+- watchman2 `score.py group … --claims`: func_800F0914 MATCH, func_800F1210 MATCH, rc=0 (context rows as in w28a).
+- `install_group.py … frontier_billboard_render frontier_billboard_render`: `spliced frontier_billboard_render: 5 members,
+  new: ['func_800F0914', 'func_800F1210']`.
+- **Trap found:** the packet's `context` list names func_800B669C and func_800D50E4 (byte-identical copies), which made
+  both internal in the shadow unit: `blob_unit check` -> `1017 equal, 2 differ` (B669C 5w -> 2w, D50E4 10w -> 2w,
+  bodies emptied by inlining). Fix: `force_keep` both (precedent func_8008B2B4), not prefer_definition. Then
+  `1019 locked bodies, 1019 equal …, 0 differ`. slot_state_setup/object_create were already internal: no change.
+- hs_font_set/hs_gfx_lock/hs_gfx_unlock: not on keep, so internal by the group rule; no force_internal added.
+  prefer_definition func_800F1210 left as is.
+- `blob_rom rom`: SHA-1 EXACT. symbols.json/blob.ld unchanged (no receipt re-pin). Slot-contract audit changed
+  (F0914/F1210 are slot_state_setup callers): `audit.py --write`, test counts updated (accepted callers +2,
+  unaccepted_caller_bytes 73804 -> 70404).
+- Tests at 8d49d150: rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` conveyor 2339 passed, 52 skipped; cloud 986
+  passed, 4 skipped; rc=0. Pi `make test-fast JOBS=4` (main checkout's submodules symlinked in temporarily): conveyor
+  1589 passed, 802 skipped; cloud 790 passed, 200 skipped; rc=0.
+
+## Job 3: attract_or_transition (w28d single) — spliced (merge of wave28 ba54b398 first)
+
+2,076 B, -O3; game 1019 -> 1020/1216, 348,972 B (53.93%). The name is a wrong label (per-frame display-list
+prologue); kept as is, noted in CLAIMS.
+- watchman2 `score.py fn`: `attract_or_transition: MATCH`. Unit `--neighbours`: `EQUAL attract_or_transition: 519 words
+  (kept)`, 0 locked bodies differ.
+- `splice_singles.py attract_or_transition`: `refused {}`, `image_ok True locked 1020`; group lock 0 / blob lock 1020
+  entries 0 problems; `blob_unit check` 1020/1020 equal, 0 differ; `blob_rom rom` SHA-1 EXACT. symbols.json/blob.ld
+  unchanged; audit no diff.
