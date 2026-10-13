@@ -389,7 +389,62 @@ int func_80015574(unsigned int a, unsigned int b, unsigned int c, unsigned int d
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_8001558C.s")
+/* PROMOTED 2026-10-12 — func_8001558C
+ * Source:   cloud/matches/boot_tail/func_8001558C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_8001558C.c:func_8001558C (score0); rom_tu.h context: cloud/work/frontier/w28p/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct { u32 metadata; u16 id; u16 type; u32 header[5]; u32 bank_a; u32 bank_b; u32 programs; } ResourceHeader;
+#pragma pack(1)
+typedef struct { u16 id; u8 data[130]; } Program;
+#pragma pack()
+extern void func_80014594(void);
+extern void func_800145DC(void);
+typedef struct Page_800178B0 Page_800178B0;
+typedef struct MidiSetup_800178B0 MidiSetup_800178B0;
+typedef struct Arr_800178B0 Arr_800178B0;
+typedef struct PlayPara_800178B0 PlayPara_800178B0;
+extern u32 func_800178B0(Page_800178B0 *, Page_800178B0 *, MidiSetup_800178B0 *, Arr_800178B0 *, PlayPara_800178B0 *);
+int func_8001558C(u16 id, u16 program_id, u32 stream, u32 options, u8 unlocked)
+{
+    int i;
+    ResourceHeader *resource;
+    void *bank_a;
+    void *bank_b;
+    Program *program;
+    int result;
+    if (D_8002C630) {
+        i = 0;
+        result = id;
+        for (; i < D_80038390; i++) {
+            resource = (ResourceHeader *)D_80038398[i];
+            if (resource->id == id) {
+                if (resource->type == 0) {
+                    bank_a = (u8 *)resource + resource->bank_a + 8;
+                    bank_b = (u8 *)resource + resource->bank_b + 8;
+                    program = (Program *)((u8 *)resource + resource->programs + 8);
+                    for (; program->id != 0xffff; program++) {
+                        if (program->id == program_id) {
+                            if (unlocked) {
+                                result = func_800178B0(bank_a, bank_b, (MidiSetup_800178B0 *)program, (Arr_800178B0 *)stream, (PlayPara_800178B0 *)options);
+                            }
+                            else {
+                                func_80014594();
+                                result = func_800178B0(bank_a, bank_b, (MidiSetup_800178B0 *)program, (Arr_800178B0 *)stream, (PlayPara_800178B0 *)options);
+                                func_800145DC();
+                            }
+                            return result;
+                        }
+                    }
+                }
+                return -1;
+            }
+        }
+    }
+    return -1;
+}
+
 /* PROMOTED 2026-10-11 — func_800156E8
  * Source:   cloud/work/frontier/w17g/sources/func_800156E8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
