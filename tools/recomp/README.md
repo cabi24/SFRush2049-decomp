@@ -618,6 +618,8 @@ options: --scripts race,two_player | all | reached   (default: the 6 census scri
          --unit A,B,C draft.c                (Phase 8: one TU, every member replaced; --params A:p=r,...)
          x --probe-callees F,G [--static-only]   (Phase 8: derive F's register convention, print --callee)
          x --gc [--dry-run] [--keep-trees N] [--gc-days D]   (Phase 8: clean ~/rush2049/recomp/dc)
+         --lane LANE [--scripts ...] [--remote rocky]   (Phase 9: every cloud/work/frontier/LANE/<NAME>/best.c,
+                                                  one table; per-draft options in <NAME>/dc.args)
 ```
 
 Output (exit status): `VERDICT: EQUIVALENT over N calls / K scripts (...)` (0); `VERDICT: DIVERGES` (1) after a
@@ -887,6 +889,17 @@ record, 128 B, but no ghost note is written: GC updateHighScoreScreen saves only
 counter pokes 0x8014A647/0x8014A980/0x801E0ECB/0x801F6178 did not shorten a 3-lap race), so the SaveServer ghost
 branch (draw_ui_element), the ghost-save menu (func_800F0F44 = GC _FindGhosts), func_80103D28 (DrawUnlocked: needs
 an unlock) and func_80104B14 stay unreached.
+
+**`draft_check --lane LANE`** (summary mode): runs draft_check on every `cloud/work/frontier/LANE/<NAME>/best.c`
+(or a directory path) one after the other, NAME = the directory; a `dc.args` file next to best.c holds that draft's
+extra options in shell syntax (`--unit A,B,C` replaces NAME, `--params`, `--callee`, `--scripts`; `#` comments);
+every other option on the command line (`--scripts`, `--remote rocky`, `--jobs`) applies to each draft. Prints one
+line per draft as it finishes, then a Markdown table (function, verdict, first divergence or EQUIVALENT line) and
+the verdict counts; `--json` writes the rows. Each draft's own run directory keeps its details.
+
+**`--gc` policy check** (rocky, 2026-10-13, after this lane's runs: 15.6 GB in dc): `--gc --dry-run` would free 0.4 GB
+(trees #13/#14 by last use, one superseded retail cache); the automatic collection (past 16 trees) keeps the dc
+directory bounded. `--gc` no longer needs a NAME word.
 
 **Census refresh** (2026-10-13, 30 scripts, 192 unmatched at wave29 = 8c74d8b6): **178 reached (194,028 B), 14
 never (14,912 B)** (was 183 of 206 / 23 at w28r; 14 functions were matched in wave 28). Newly reached: func_800C7EC8,

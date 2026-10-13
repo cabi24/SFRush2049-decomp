@@ -685,13 +685,102 @@ def suggest_callees(names, out=print):
         out("  suggested (derived; order by register number, check it): --callee '%s'" % rv.callee_spec(d))
 
 
+# ------------------------------------------------------------------ lane summary (Phase 9)
+
+LANE_ROOT = REPO / "cloud" / "work" / "frontier"
+
+
+def lane_drafts(lane, root=LANE_ROOT):
+    """[(name, best.c, extra args)] for every <lane>/<NAME>/best.c (NAME = the
+    directory: the function, or for a unit its first member). A `dc.args` file
+    next to best.c holds extra draft_check arguments (one line, shell syntax:
+    --unit A,B,C / --params / --callee / --scripts ...); with --unit its NAME
+    list replaces the directory name."""
+    d = Path(lane)
+    if not d.is_dir():
+        d = Path(root) / lane
+    if not d.is_dir():
+        raise DCError(f"no lane directory {lane} (looked in {root})")
+    out = []
+    for best in sorted(d.glob("*/best.c")):
+        extra = []
+        f = best.parent / "dc.args"
+        if f.is_file():
+            extra = shlex.split(" ".join(ln for ln in f.read_text().splitlines() if not ln.lstrip().startswith("#")))
+        name = best.parent.name
+        if "--unit" in extra:
+            i = extra.index("--unit")
+            if i + 1 < len(extra) and not extra[i + 1].startswith("-"):
+                name = extra.pop(i + 1)
+        out.append((name, best, extra))
+    return out
+
+
+def summarize_output(text, rc):
+    """(verdict, detail) from one draft_check run's stdout."""
+    verdict = {0: "EQUIVALENT", 1: "DIVERGES", 3: "NEVER CALLED"}.get(rc, "ERROR")
+    detail = ""
+    for line in text.splitlines():
+        if line.startswith("VERDICT: EQUIVALENT"):
+            detail = line[len("VERDICT: EQUIVALENT "):]
+        elif line.startswith("FIRST DIVERGENCE:") and not detail:
+            detail = line[len("FIRST DIVERGENCE: "):]
+        elif line.startswith("  fault:") and verdict == "DIVERGES" and "FAULTED" in detail:
+            detail += " |" + line[len("  fault:"):]
+    if verdict == "ERROR":
+        tail = [ln.strip() for ln in text.strip().splitlines() if ln.strip()]
+        detail = tail[-1] if tail else "?"
+    return verdict, detail
+
+
+def lane_main(args, argv):
+    """--lane LANE: draft_check every <lane>/<NAME>/best.c, one table."""
+    drafts = lane_drafts(args.lane)
+    if not drafts:
+        print("draft_check --lane %s: no */best.c" % args.lane)
+        return 3
+    fwd = []                           # every other option (--scripts, --remote, ...) applies to each draft
+    it = iter(argv)
+    for a in it:
+        if a == "--lane" or a == "--json":
+            next(it, None)
+            continue
+        if not a.startswith(("--lane=", "--json=")):
+            fwd.append(a)
+    rows = []
+    for name, best, extra in drafts:
+        unit = ["--unit"] if "--unit" in extra else []
+        extra = [x for x in extra if x != "--unit"]
+        cmd = [sys.executable, "-m", "tools.recomp.draft_check"] + unit + [name, str(best)] + extra + fwd
+        t0 = time.time()
+        proc = subprocess.run(cmd, cwd=str(REPO), capture_output=True, text=True)
+        verdict, detail = summarize_output(proc.stdout + proc.stderr, proc.returncode)
+        rows.append({"function": name, "draft": str(best), "verdict": verdict, "detail": detail,
+                     "seconds": round(time.time() - t0)})
+        print("  %-40s %-12s %s" % (name, verdict, detail[:160]), flush=True)
+    print()
+    print("| function | verdict | detail |")
+    print("|---|---|---|")
+    for r in rows:
+        print("| %s | %s | %s |" % (r["function"], r["verdict"], r["detail"].replace("|", "/")))
+    counts = {}
+    for r in rows:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    print("\nLANE %s: %s (EQUIVALENT is behaviour only, never a match)" % (
+        args.lane, ", ".join("%d %s" % (n, v) for v, n in sorted(counts.items()))))
+    if args.json:
+        Path(args.json).write_text(json.dumps(rows, indent=1) + "\n")
+    return 0
+
+
 # ------------------------------------------------------------------ main
 
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     ap = argparse.ArgumentParser(prog="python3 -m tools.recomp.draft_check", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("name", help="function to replace (inventory name, game or static); with --unit a comma "
+    ap.add_argument("name", nargs="?", default=None,
+                    help="function to replace (inventory name, game or static); with --unit a comma "
                     "list of the functions the draft defines, all replaced together")
     ap.add_argument("draft", nargs="?", default=None,
                     help="C file defining NAME (a /* flags: ... */ header picks the IDO flags)")
@@ -741,7 +830,19 @@ def main(argv=None):
                     "current checkout's)")
     ap.add_argument("--include-dir", action="append", default=[], help=argparse.SUPPRESS)
     ap.add_argument("--origin", default=None, help=argparse.SUPPRESS)
+    ap.add_argument("--lane", default=None, metavar="LANE",
+                    help="summary mode (Phase 9): check every cloud/work/frontier/LANE/<NAME>/best.c (or a "
+                    "directory path) and print one table; per-draft options in <NAME>/dc.args; the other options "
+                    "(--scripts, --remote, ...) apply to every draft")
     args = ap.parse_args(argv)
+    if args.lane:
+        try:
+            return lane_main(args, argv)
+        except DCError as exc:
+            print("draft_check: ERROR: %s" % exc, file=sys.stderr)
+            return 2
+    if args.name is None and not args.gc and not args.probe_callees:
+        ap.error("NAME is required (or --lane LANE)")
     try:
         if args.gc:
             if args.remote:

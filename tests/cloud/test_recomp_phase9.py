@@ -6,7 +6,8 @@ are parsed and mapped back to the N64 instruction, a truncated call log names
 the faulting call, oracle.run_hosts tolerates a signal death only where asked,
 draft_check words a fault as a divergence, the runtime pieces exist (fault.cpp,
 arg-home exclusion, call log v3), scripts' `pak from` / `poke` (parsing, the
-pak image made once by a producer run, the committed scripts). End to end on the recomp host only (rocky;
+pak image made once by a producer run, the committed scripts), draft_check --lane
+discovery and its table rows. End to end on the recomp host only (rocky;
 skipped elsewhere): a render_helper draft that reads a wild N64 address is
 reported as `draft FAULTED` with its PC, and w28c's func_8010AEAC draft with
 static helpers (the -11 crash) is EQUIVALENT on options_menus.
@@ -204,6 +205,37 @@ def test_host_poke_option_and_frame_hook():
     assert "--poke" in (src / "main.cpp").read_text()
     o = (src / "oracle.cpp").read_text()
     assert "bool rush::oracle_add_poke" in o and "apply_pokes(rdram, n)" in o
+
+
+# ------------------------------------------------------------------ draft_check --lane (summary mode)
+
+def test_lane_drafts_and_dc_args(tmp_path):
+    for n in ("func_A", "func_B"):
+        (tmp_path / n).mkdir()
+        (tmp_path / n / "best.c").write_text("/* x */\n")
+    (tmp_path / "func_B" / "dc.args").write_text("# unit\n--unit func_B,func_C --params func_C:x=s1\n")
+    (tmp_path / "notes").mkdir()
+    got = dc.lane_drafts(str(tmp_path))
+    assert [(n, b.parent.name, e) for n, b, e in got] == [
+        ("func_A", "func_A", []), ("func_B,func_C", "func_B", ["--unit", "--params", "func_C:x=s1"])]
+    with pytest.raises(dc.DCError):
+        dc.lane_drafts(str(tmp_path / "nope"))
+
+
+def test_summarize_output():
+    assert dc.summarize_output("x\nVERDICT: EQUIVALENT over 12 calls / 1 scripts (saves 12)\n", 0) == (
+        "EQUIVALENT", "over 12 calls / 1 scripts (saves 12)")
+    v, d = dc.summarize_output("FIRST DIVERGENCE: script saves, frame 4, f (draft) call #3 (global seq 3): the draft "
+                               "FAULTED (host signal; retail did not)\n  fault: SIGSEGV, N64 read of 0x01010000\n"
+                               "VERDICT: DIVERGES (1 of 1 scripts)\n", 1)
+    assert v == "DIVERGES" and d.startswith("script saves, frame 4") and d.endswith("N64 read of 0x01010000")
+    assert dc.summarize_output("draft_check: ERROR: IDO failed\n", 2) == ("ERROR", "draft_check: ERROR: IDO failed")
+
+
+def test_gc_still_runs_without_a_name():
+    import argparse   # noqa: F401  (main parses; --gc --dry-run on a fresh DC_HOME lists nothing)
+    src = (RECOMP / "draft_check.py").read_text()
+    assert "if args.name is None and not args.gc and not args.probe_callees:" in src
 
 
 # ------------------------------------------------------------------ end to end (recomp host only)

@@ -505,3 +505,32 @@ Owner decisions 2026-10-12: recomp time goes only to decompilation feedback; lap
   pokes at a frame, applied identically to both sides); overlay functions (image A reaches control_settings and
   save_settings); `--unit` across populations.
 
+
+## 18. Phase 9: host faults, static helpers, scene levers (lane w29r, 2026-10-13)
+
+Owner decisions unchanged: recomp time is for decomp feedback only; no package (no gameplay change). Detail and
+commands: `tools/recomp/README.md` "Phase 9"; lane notes: `cloud/work/frontier/w29r/RESULTS.md`.
+
+- **The wave-28 host crashes (-11) had two causes.** func_8010AEAC (w28c, options_menus): a HOST bug. IDO -O3
+  writes no symbol for a static function and replace.py retargeted `jal callee` to IPA shims only inside named
+  functions, so a static helper called slot_state_setup o32; its unsaved s3 clobber wiped the gfx queue pointer and
+  osSendMesg faulted. Fixed (`replace.code_ranges`: the object's whole .text); the draft is EQUIVALENT (1,649
+  calls, as a single and as the 3-member unit). func_800C813C (w28b, saves/attract_pak): a DRAFT bug (the per-pak
+  file list head read at +8 instead of +0, then dereferenced 0x01010000); with that field fixed the draft is
+  EQUIVALENT over 3,393 calls.
+- **A fault is now a verdict, not an error.** The host prints `[rush] FAULT` lines (N64 address, frame, thread, open
+  replaced call, pc/backtrace, registers) and flushes its logs; oracle.py symbolises to the N64 PC and instruction
+  (`func_800C813C+0x13C: lw $v0, 0x0($s2)`) and the call chain, compares the calls before the fault; draft_check
+  reports `the draft FAULTED` as the first divergence.
+- **Argument home slots** (16 bytes above the outermost replaced frame) are out of the call effect (log v3): two
+  wave-28 "one extra stack word" divergences (func_800C813C race, func_800CD104 saves) were o32 homing, not logic.
+- **Scene levers.** Scripts can `poke TIME ADDR VALUE [BYTES]` (host `--poke`, applied at the frame start on both
+  sides) and start from the pak another script leaves (`pak from SCRIPT`, image made once by the stock host).
+  Levers found by dump diffs: the race lap count byte 0x80152735 (a 1-lap ghost race), the battle points target
+  0x80142513 (0 ends the battle). Scripts player_reload, ghost_save, battle_end.
+- **Census**: 178 of 192 unmatched reached, 14 never (14,912 B): nine of the 23 reached (SaveServer's player
+  branch and its callees, BEST GHOSTS, the ghost reload of RACE AGAIN, the battle scoreboard).
+- **`draft_check --lane LANE`**: every `<lane>/<NAME>/best.c` (per-draft options in `dc.args`) in one table.
+- **Phase 10 needs**: a pak ghost file (the 1-lap ghost is not saved: find what sets the N64 gGhostToSave, or poke
+  it), an unlock (DrawUnlocked), a mine pickup in battle (func_8010C974), image-A-only control_settings (overlay
+  scripts), AdjustSpeed (a failing pak delete: a pak-fault option in pak.cpp).
