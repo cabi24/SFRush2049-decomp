@@ -3,9 +3,12 @@
  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
  * passthrough lines. */
 #include "rom_tu.h"
-/* ROM_OWNED_RODATA_BEGIN func_80011910 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011910.bss.s")
-/* ROM_OWNED_RODATA_END func_80011910 */
+/* owned .bss of func_80011910 (func_80011910): C definitions in place of the companion */
+void *D_800382F0;
+unsigned int D_800382F4;
+OSTask D_800382F8;
+struct AudioNode *D_80038338;
+unsigned char *D_8003833C;
 #include "boot_tail_audio_record.h"
 
 /* PROMOTED 2026-10-05 — func_80010A40
@@ -384,7 +387,38 @@ void func_800118C0(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011910.s")
+/* PROMOTED 2026-10-12 — func_80011910
+ * Source:   cloud/work/frontier/w28s/sources/func_80011910.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w28s/sources/func_80011910.c:func_80011910 (score0); rom_tu.h context: cloud/work/frontier/w28s/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+extern unsigned char D_80027DD0[];
+extern unsigned char D_80027EA0[];
+extern unsigned char D_8002A050[];
+extern unsigned char D_8002E210[];
+extern void (*D_80038000)(OSTask *);
+void func_80011910(void *commands, unsigned short count)
+{
+    OSTask *task = &D_800382F8;
+    if (count != 0) {
+        task->t.type = 2;
+        task->t.flags = 0;
+        task->t.ucode_boot = (u64 *) D_80027DD0;
+        task->t.ucode_boot_size = (unsigned int) D_80027EA0 - (unsigned int) D_80027DD0;
+        task->t.ucode = (u64 *) D_8002A050;
+        task->t.ucode_size = 4096;
+        task->t.ucode_data = (u64 *) D_8002E210;
+        task->t.ucode_data_size = 2048;
+        task->t.data_ptr = commands;
+        task->t.data_size = count;
+        osWritebackDCache(commands, count * 2576);
+        D_80038000(task);
+        D_800382CD = 1;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_800119E0
  * Source:   cloud/matches/boot_tail/func_800119E0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
