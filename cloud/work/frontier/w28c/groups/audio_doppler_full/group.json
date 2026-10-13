@@ -1,0 +1,15 @@
+{
+  "members": [
+    "audio_doppler_full"
+  ],
+  "files": [
+    "audio_doppler_full.c"
+  ],
+  "keep": [
+    "audio_doppler_full"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "audio_doppler_full"
+  ]
+}
