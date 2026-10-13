@@ -519,6 +519,62 @@ coordinator commits them — do it before an integration lane copies them; `test
 asserts no scout target is locked — re-record `native_audit.json` and extend the `landed` set when one lands; the two
 other tests in that file fail when the file is run alone (import isolation), pass in the suite.
 
+**Wave 30 outcome (2026-10-13, wave30 from `1b34f797`):** game 1041 → 1050/1216 (378,232 B, 58.45%), 9 functions,
+7,280 B, via the w30i worktree: the save chain (w30c: draw_speedometer = GC _CheckAndRepairPlayer — a separate
+counter `j` for the option-repair loops and `i`-indexed stats loops closed it; func_800C7EC8 = _ReadPlayer;
+draw_ui_element = _CheckAndRepairGhost (t0/t2/t1); func_800CBF2C = _ReadGhostData; stubs func_800C7EC0 = _NewPlayer,
+func_800CD0FC = _Pow, func_800C7300 = _FreeGhost; three pak getters re-typed on the D_80144030 record; the group
+`menu_save_options` now also absorbs slot_release and codex_func_800C7200_2 because superseding them with their stale
+drafts removed broke inlining on the builder), animPlace (w30d: the inlined pair_set's `Pair *p` local was one slot
+too many above the s16 spill homes — write the global directly; the split `x = placePos.x; … x -= w;` orders the v0/v1
+tie), func_80102980 = GC drawBattleScore (w30a: write the cell width through the existing local `other` everywhere so
+every `column*60` is a propagated expression — uopt emits hoisted expressions in expression-bit order), func_8010DCFC
+= _StartCone (w30b single; `vel` taken before `angV`; five disclosed unused locals as the exact frame residual),
+func_8010B5D0 (helpers on one source line settle the `sw v0,68(sp)` as1 tie), func_80108AB0 = animWrongWay (nesting
+font_select inside font_set stops FP-constant hoisting; a void HAL_SetFont wrapper closes 16 B; had to join
+credits_scroll_grp for the shared `lui at` of D_80118E20; the credits packet from w30b was UNIONed with w30d's
+animPlace one — the wave-27 trap again). REFUSED by blob_group: the func_8010AEAC/func_8010A8D0/func_8010A7A4 unit
+(3,452 B, MATCH in the group compile) because its own .rodata interleaves a jump table with func_80108AB0's literals
+(0x801248C4..CC) — repackage the three into credits_scroll_grp next wave. Context (w30n): func_80104704 registered
+(0x80104704..0x80104B14, 260 words; highscore_entry_anim retired as an interior label; closure had never been re-run
+since func_80105480 was registered — `register.sh` replays it, receipts re-pinned by undo proofs); 10 deferred renames
+applied (LoadTrack, animControls, gTotalNames, gRomObjDefPtrs, gTexDefPtrs, gPalDefPtrs, gCamera, gNumWindows,
+gCountDown, gNumModels) with the batch-aware `replay.sh`; traps: `cloud/matches` copies are byte-identical to src/blob
+sources so hash-only re-pins hit them too; an object's .strtab/.symtab change with a rename (dot_steady_camera
+OBJECT_PINS proved on rocky); w29n's followups had renamed the census SCRIPT race_finish → fixed; a `closure orphans`
+dry run would register 13 two-word `jr ra; nop` stubs (denominator 1216 → 1229) — owner decision, left alone. Recomp
+Phase 10 (w30r): retail writes a ghost file only for the developer id "000F1CC5 EJK" (func_800CCEFC sets
+0x801148E4 = gSaveGhostFiles; gGhostToSave = 0x80140800; the state machine is finish_state_normal 0x800F64D4 =
+updateHighScoreScreen) — scripts ghost_pak (poke 0x801148E4), ghost_reload (`pak from`), ghost_resave, unlock (poke
+0x801164C0: DrawUnlocked ×98), ghost_delete_fail (`--pak-fail OP:N[:ERR]`; the error dialog is drawn by
+control_settings + control_cell_text2); `--statics NAME=` binds initialised function-local statics via
+`static_layout.py` (IDO `cc -E`) — SaveServer EQUIVALENT over 3,490 calls without a dc.c; census 159/166 reached, 7
+never (func_8010C974 mine pickup; func_800DD0C0/control_cell_text/text3 image-A only; three unreferenced); facts in
+`build/frontier.json` are now matched by address (22 renamed functions had lost their register facts); draft bugs
+found: w28b pak_delete_file_retry passes `audio_reverb_update(address, 0)` where retail passes the handle in a1; the
+control_settings drafts fault (`lb a0,1(s0)`, s0=0) in the pak error dialog from save_settings. EQUIVALENT drafts for
+wave 31: SaveServer (176/225 in the group compile — it never reloads sInitCountdown inside the loop; find the call
+chain back into SaveServer and add it as context), CreatePlayer (241/272; the stub at 0x800CD0F4 is probably the
+inlined _GetUniqueExtension), pak_delete_file_retry (166/196; one inline area too many), LoadTrack (39/526, frame
+exact, no unused locals; one extra code-free temp-ring allocation between the second `D_80156994 || D_8014978C >= 6`
+test and `if (trackInited)`), control_settings (629/638, 283 rows; row/col miss s3/s4 by callee-saved cost arithmetic
+— col 55 vs 56.2, row 25 vs 36.4; func_800DD0C0 takes (row, col) on the caller's stack so it must be C in the same
+group), func_8010E8B4 (3/85 after 32 variants; y must leave h's register, `y + D2` y-first), func_800DB1E0 +
+func_800DA2C0 (EQUIVALENT; DA2C0 489/579 still carries w10e's pad arrays — rewrite on func_800B59F0),
+func_80105480 = animText@highscorescr.c (79 rows; callees func_80104704 = DrawName and func_80104B14 = DrawGhost),
+func_80103D28 (614/629 with its real caller; spills the per-category row pointers), func_80100E58 (180 rows; the
+`columns` live-range split is decided by uopt's f_addadjacents inequality `shared < old_regsleft && 2*regsleft >=
+numintf + shared` — at bb45 we have 24 < 27, retail needs numintf ≤ 20), the audio-options unit
+(game_results_render/update = audioscr.c animText/animButtonText, EQUIVALENT) and the controls unit (func_80100564 +
+game_results_exit = controlscr.c animText/animButtonText, EQUIVALENT) — both redefine the locked single func_800BEA3C
+(TB_FlashTextColors) with GC's `union {u8 c[4]; u32 rgba;}` type (packaging decision), func_8010EA08 + func_8010F218
+(videoscr.c pair, untouched), SetupWaveModel (idx weight comes from loop occurrences PRE deletes), func_800E543C.
+Lessons: an inlined helper's pointer local is a slot in the merged frame area; a split assignment renumbers a shared
+address web; "inline area below helper X" = a later inlined helper written with a parameter; by-value colour unions
+explain stack stores beside inlined colour helpers; write retail's last-emitted switch case last; helper nesting depth
+controls FP-constant hoisting and each void wrapper level adds 8 B per site; derive a pointer from the original object,
+not from another pointer local.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
