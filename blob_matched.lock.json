@@ -5828,6 +5828,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "func_800EB028": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800EB028.c",
+    "source_sha256": "3bbc31df15dcad7dfaae8d32871ddf1605c6e60ef862916f866f681cf0532625",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "func_800EB90C": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800EB90C.c",
