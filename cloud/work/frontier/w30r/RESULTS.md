@@ -106,7 +106,16 @@ is not the rename:
 
 # Checks
 
-CHECKS_PLACEHOLDER
+- Branch w30r = wave30 e4e580f3 merged (wave30 moved by three lane-results commits, no tool/src changes).
+- Pi worktree `make test-fast JOBS=4`: tests/cloud `820 passed, 204 skipped`; tests/conveyor `40 failed, 1511
+  passed, 819 skipped, 2 errors` = the known fresh-worktree environment (no tools/mips_to_c submodule; failures in
+  test_group_search.py / unit/test_reloc_blind.py). tests/conveyor in the MAIN checkout (wave30, with the submodule;
+  this lane touches no conveyor code): `1623 passed, 780 skipped`.
+- Pi `python3 -m pytest tests/recomp tests/cloud/test_recomp_phase8.py tests/cloud/test_recomp_phase9.py
+  tests/cloud/test_recomp_phase10.py`: all pass (e2e skipped off rocky).
+- rocky clone `~/rush2049/scratch/w30r` (w30r f1b3d2f7, origin/master = 1b34f797, submodules populated, CI env
+  `../w28s.env`): `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: tests/conveyor `2342 passed, 52 skipped`;
+  tests/cloud `1019 passed, 5 skipped, 8 warnings, 27 subtests passed` (the two Phase 10 e2e tests run there).
 
 ## Permission denials
 None.
