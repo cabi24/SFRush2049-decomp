@@ -93,6 +93,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "MaxPathZeroControls": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "NextMaxPath": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
@@ -2480,6 +2489,33 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "func_800A1BB4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_800A1C6C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_800A1DD4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
   },
   "func_800A1E94": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -7799,6 +7835,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "slot_state_lookup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "slot_state_setup": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
@@ -8192,6 +8237,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "track_collision_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "track_collision_wall": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_particle_knot",
@@ -8200,6 +8254,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "track_data_decompress": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "pak_write_cluster",
+    "source": "src/blob/groups/pak_write_cluster/group.json",
+    "source_sha256": "af75c5b74a8b9775619cfd425915bf5c41760798bbd93fcd99cbdab9584cb998",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
   },
   "track_info_display": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",

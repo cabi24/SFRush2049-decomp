@@ -4140,6 +4140,7 @@ func_800A1A60:
 .section .text.func_800A1BB4, "ax", @progbits
 .globl func_800A1BB4
 func_800A1BB4:
+    /* compiled from src/blob/func_800A1BB4.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -4190,6 +4191,7 @@ func_800A1BB4:
 .section .text.func_800A1C6C, "ax", @progbits
 .globl func_800A1C6C
 func_800A1C6C:
+    /* compiled from src/blob/func_800A1C6C.c */
     .word 0x8C830000
     .word 0x00001025
     .word 0x8C6E0048
@@ -4284,6 +4286,7 @@ func_800A1C6C:
 .section .text.func_800A1DD4, "ax", @progbits
 .globl func_800A1DD4
 func_800A1DD4:
+    /* compiled from src/blob/func_800A1DD4.c */
     .word 0x8C820000
     .word 0x8C4E0048
     .word 0x8DC30000
@@ -4374,6 +4377,7 @@ func_800A1E94:
 .section .text.track_data_decompress, "ax", @progbits
 .globl track_data_decompress
 track_data_decompress:
+    /* compiled from src/blob/track_data_decompress.c */
     .word 0x27BDFF90
     .word 0x14C00003
     .word 0xAFBF0024
@@ -4541,6 +4545,7 @@ track_data_decompress:
 .section .text.track_collision_setup, "ax", @progbits
 .globl track_collision_setup
 track_collision_setup:
+    /* compiled from src/blob/track_collision_setup.c */
     .word 0x27BDFF98
     .word 0x00047880
     .word 0x01E47823
@@ -4662,6 +4667,7 @@ track_collision_setup:
 .section .text.MaxPathZeroControls, "ax", @progbits
 .globl MaxPathZeroControls
 MaxPathZeroControls:
+    /* compiled from src/blob/MaxPathZeroControls.c */
     .word 0x27BDFFA8
     .word 0x3C028011
     .word 0x2442194C
@@ -4765,6 +4771,7 @@ MaxPathZeroControls:
 .section .text.slot_state_lookup, "ax", @progbits
 .globl slot_state_lookup
 slot_state_lookup:
+    /* compiled from src/blob/slot_state_lookup.c */
     .word 0x27BDFFE8
     .word 0x10800029
     .word 0xAFBF0014
