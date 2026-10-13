@@ -109,5 +109,9 @@ Track / world / camera / visuals
 
 ## Tests
 
-`make test-fast JOBS=4` on the Pi: see the final report (the worktree lacks the `tools/mips_to_c`
-submodule checkout, so the two m2c test files were run against the main checkout).
+`make test-fast JOBS=4` on the Pi, in the worktree: **tests/cloud 777 passed, 196 skipped** (includes the 6
+new `test_gcref.py` tests); tests/conveyor 1,511 passed, 40 failed, 2 collection errors, all environmental
+(the worktree has no `build/` and no submodule checkouts: `src.scorer` from the permuter, `tools/mips_to_c`
+for the m2c tests, bundled objdump/toolkit). The same tests/conveyor suite in the **main checkout** (same
+commit e3b1f926, which the w28g change does not touch in any conveyor path) gives **1,623 passed, 777
+skipped, 0 failed**, which covers the m2c test files there.
