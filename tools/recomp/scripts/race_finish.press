@@ -1,0 +1,29 @@
+# A single race run to its finish (pak flow; w28r, written with script_probe --text).
+# SELECT TRACK (13 s): DOWN to LAPS, LEFT x2 = 1 lap (default 3; LEFT wraps 1 -> 8); gas held from 28 s: the car finishes
+# 6TH at frame 3676 (TIME 1:36.5); ENTER YOUR NAME (3742, high-score entry: A x3 picks letters, START = END); BEST LAPS
+# (3901); GAME OVER menu (4200: LAP TIMES, RACE AGAIN, NEW TRACK, NEW CAR, QUIT): A on LAP TIMES shows the lap list,
+# B back, DOWN + A = RACE AGAIN (the race reloads ~4560). Menu presses are 0.2 s (0.5 s auto-repeats).
+# Reaches highscore_entry_anim, audio_update_d, func_800D5A04 and the end-of-race code before them.
+frames 4800
+pak on
+4 START
+7 A
+10 A
+13 A
+15 DOWN
+16 LEFT
+17 LEFT
+19 A
+22 A
+25 A
+28 A 98
+124 A
+126 A
+128 A
+130 START
+135 A
+140 A
+146 A
+150 B
+153 DOWN
+155 A

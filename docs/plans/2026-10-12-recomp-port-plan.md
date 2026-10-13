@@ -471,3 +471,29 @@ notes: `cloud/work/frontier/w27r/RESULTS.md`; package v4: `tools/recomp/VERSIONS
   `--probe-callees` option in draft_check to localise a divergence inside the draft; a cache-cleanup policy for
   `~/rush2049/recomp/dc` (trees ~250 MB per function); refreshing the service tree when wave27 moves (the
   coordinator's rsync line in the README); the v3/v4 tester report when the owner has time.
+
+## 17. Phase 8: decomp feedback, round two (lane w28r, 2026-10-12)
+
+Owner decisions 2026-10-12: recomp time goes only to decompilation feedback; laptop/gameplay tests gate nothing
+(no package this phase: no gameplay change). Detail and commands: `tools/recomp/README.md` "Phase 8" and
+"script_probe"; lane notes: `cloud/work/frontier/w28r/RESULTS.md`.
+
+- **No more hand-written `--callee` for the known conventions**: `ipa_callees.json` entries for slot_state_setup
+  (s2 / s0,s1,s3), sound_update_channel (t0), func_800B6748 (a0-a3,t0-t2), func_80096CA8 (s8,t0 / s0-s7),
+  func_80097164 (s8), func_800A1DD4 (a0,a1,a2,t3), each with its evidence.
+- **Interprocedural live-in**: a register parameter can stay live across a call to a callee that does not touch
+  it (sound_update_channel reads t0 after its first call); regmap_verify now follows static callees, and the
+  five known mappings are CONSISTENT (sound_update_channel was wrongly REFUTED before).
+- **`--probe-callees`** derives a callee's convention (live-in set, kinds from a capture, unsaved callee-saved
+  registers) and prints it in `--callee` syntax; parameter order and return type stay the lane's call (the call
+  sites' setter order is scheduled, not prototype order). draft_check suggests one for every register-parameter
+  callee it had to call o32.
+- **`draft_check --unit`**: a cluster draft (one TU) replaces all its members at once in one chunk; calls between
+  members stay inside the unit; both sides record only the outermost member call per thread; the first
+  divergence names the member. w27e pak cluster: 4 members EQUIVALENT over 684 calls once func_800A1C6C's
+  mapping was read off the first divergence (handle=a0, address=t2, bytes=a1, offset=t1).
+- **script_probe + host `--text-log`**: the strings the game queues for drawing (menu_input_process) per frame,
+  plus which probed functions a script reaches: menus, results and name entry readable headless, so scripts can
+  be written without RT64 screenshots.
+- **dc cleanup policy** (`--gc`, automatic past 16 trees): keep the 12 most recently used function trees, the
+  newest retail cache per function, 5 runs per function or 3 days.

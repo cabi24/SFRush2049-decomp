@@ -452,13 +452,19 @@ def run(args, mapping):
     if fn is None:
         raise VerifyError(f"{args.name} is not a game function")
     words = ipa_detect.body_words(image, fn["vram"], fn["size"])
-    live = ipa_detect.register_params(words, include_o32=True)
+    # Interprocedural (Phase 8): a register a callee does not write survives the
+    # call, and a register a callee reads is read at the call (sound_update_channel
+    # reads t0 after its first call; the w24t intra-procedural flow missed it).
+    ip = Interproc(image, funcs)
+    live = ipa_detect.register_params(words, include_o32=True, call_effects=ip.call_effects)
+    live = [r for r in live if r not in ("zero", "gp", "sp", "ra")]
     fwd = [r for r in ipa_detect.register_params(words, include_o32=True, call_reads=True) if r not in live]
     claimed = [r for r, _l, _k in mapping]
     print("regmap_verify %s (0x%08X, %d B): claim %s" % (args.name, fn["vram"], fn["size"],
                                                         ", ".join("%s=%s%s" % (r, l, "" if k == "any" else ":" + k)
                                                                   for r, l, k in mapping)))
-    print("  static callee: live-in registers (read before written on some path): %s" % (", ".join(live) or "none"))
+    print("  static callee: live-in registers (read before written on some path, through its callees): %s"
+          % (", ".join(live) or "none"))
     if fwd:
         print("  static callee: unset when a call is made (forwarded to a callee if they are arguments): %s"
               % ", ".join(fwd))

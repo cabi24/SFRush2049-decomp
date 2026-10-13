@@ -1,0 +1,27 @@
+# Stunt mode with the shortest timer (pak flow; w28r): stunt_end.press's end-of-stunt screens in 3600 frames
+# instead of 11000. SELECT MODE DOWN x4 (STUNT); SELECT TRACK (16 s; STUNT 1): DOWN to MINUTES, LEFT x4 = 1 (default 5);
+# gas held from 30 s; the timer ends at frame 2810: GAME OVER (SCOREBOARD, RACE AGAIN, NEW TRACK, NEW CAR, QUIT; POINTS,
+# BEST STUNT) alternating with the stunt table (BACK FLIP ... AIR TIME); A/B on SCOREBOARD, then RACE AGAIN.
+# Reaches the stunt results code (func_80101D84, func_80102448 and their callers, as stunt_end).
+frames 3600
+pak on
+4 START
+7 A
+10 A
+12 DOWN
+13 DOWN
+14 DOWN
+15 DOWN
+16 A
+18 DOWN
+19 LEFT
+20 LEFT
+21 LEFT
+22 LEFT
+24 A
+27 A
+30 A 62
+95 A
+98 B
+101 DOWN
+103 A

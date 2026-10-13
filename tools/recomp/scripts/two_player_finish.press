@@ -1,0 +1,38 @@
+# A two-player single race run to its finish (pak flow, 2 controllers; w28r).
+# START GAME RIGHT = 2 PLAYERS; both PLAYER screens JUST PLAY; SINGLE RACE; SELECT TRACK DOWN + LEFT x2 = 1 lap; both
+# hold gas from 31 s: 5TH PLACE (P1) / PLAYER 2 WINS ... 6TH PLACE at frames 3639/3644; ENTER YOUR NAME; BEST LAPS
+# (4021); GAME OVER (4140: LAP TIMES, RACE AGAIN ...); RACE AGAIN.
+# Reaches highscore_entry_anim (2P name entry) and the split-screen end-of-race code.
+frames 4800
+pak on
+4 START
+5.5 RIGHT
+7 A
+7.3 A@2
+10 A
+10.3 A@2
+13 A
+13.3 A@2
+15 DOWN
+16 LEFT
+17 LEFT
+19 A
+19.3 A@2
+22 A
+22.3 A@2
+25 A
+25.3 A@2
+28 A
+28.3 A@2
+31 A 95
+31 A@2 95
+126 A
+128 A
+130 A
+132 START
+135 A
+135.3 A@2
+140 A
+143 B
+146 DOWN
+148 A

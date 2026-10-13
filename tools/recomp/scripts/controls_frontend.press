@@ -1,0 +1,63 @@
+# The front-end controller-configuration editor (pak flow; w28r, written with script_probe --text).
+# 4 START; 7 A -> PLAYER 1 (JUST PLAY, CONTROLLER PAK, CREATE PLAYER, CONTROLS); DOWN x3 = CONTROLS, which is a
+# LEFT/RIGHT selector: RIGHT, then A opens the editor (frame 510: GAS, BRAKE, STEERING, SHIFT UP/DOWN, REVERSE, ABORT, VIEW,
+# WINGS/SHOOT, RUMBLE, RESET CONTROLS); LEFT/RIGHT/RIGHT on every row, A on RESET CONTROLS, B back.
+# (A on CONTROLS without the RIGHT starts JUST PLAY; the pause-menu CONTROLS screen is pause_menus.press.)
+# Reaches drone_throttle_calc and game_results_exit (the editor's per-player state, historical labels: reached by no
+# other script), func_80100564, game_results_input, func_800D816C (Astra's), func_800D9058, func_800D8078.
+frames 1740
+pak on
+4 START
+7 A
+9 DOWN
+11 DOWN
+13 DOWN
+15 RIGHT
+17 A
+19 LEFT
+19.7 RIGHT
+20.4 RIGHT
+21.1 DOWN
+21.8 LEFT
+22.5 RIGHT
+23.2 RIGHT
+23.9 DOWN
+24.6 LEFT
+25.3 RIGHT
+26 RIGHT
+26.7 DOWN
+27.4 LEFT
+28.1 RIGHT
+28.8 RIGHT
+29.5 DOWN
+30.2 LEFT
+30.9 RIGHT
+31.6 RIGHT
+32.3 DOWN
+33 LEFT
+33.7 RIGHT
+34.4 RIGHT
+35.1 DOWN
+35.8 LEFT
+36.5 RIGHT
+37.2 RIGHT
+37.9 DOWN
+38.6 LEFT
+39.3 RIGHT
+40 RIGHT
+40.7 DOWN
+41.4 LEFT
+42.1 RIGHT
+42.8 RIGHT
+43.5 DOWN
+44.2 LEFT
+44.9 RIGHT
+45.6 RIGHT
+46.3 DOWN
+47 LEFT
+47.7 RIGHT
+48.4 RIGHT
+49.1 DOWN
+51 A
+54 B
+56 B

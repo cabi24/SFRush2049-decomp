@@ -30,6 +30,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `draft_check.py` | Phase 7: one-command behavioural check of a draft against retail (section "draft_check") |
 | `regmap_verify.py` | Phase 7: register-parameter mapping verifier for internal callees (section "regmap_verify") |
 | `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census") |
+| `script_probe.py` | Phase 8: what a script reaches and which strings the game draws (section "script_probe") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -613,6 +614,9 @@ options: --scripts race,two_player | all | reached   (default: the 6 census scri
          --callee 'void f(s32 h, f32 x)=a0,f22[/s1,s2]'   (a register-parameter callee the draft calls)
          --statics name=0x80150F58           (bind a function-local static to its retail address)
          --frames N, --jobs N, --json PATH, --keep
+         --unit A,B,C draft.c                (Phase 8: one TU, every member replaced; --params A:p=r,...)
+         x --probe-callees F,G [--static-only]   (Phase 8: derive F's register convention, print --callee)
+         x --gc [--dry-run] [--keep-trees N] [--gc-days D]   (Phase 8: clean ~/rush2049/recomp/dc)
 ```
 
 Output (exit status): `VERDICT: EQUIVALENT over N calls / K scripts (...)` (0); `VERDICT: DIVERGES` (1) after a
@@ -722,3 +726,79 @@ Not imported from #325: `gen_wrapper.py` / `o32_abi.h` (a second o32 wrapper gen
 `replace.py`'s `render_wrapper`; its guest-pointer adapter mode belongs in `replace.py` as an option of
 `native` mode when a replacement first uses the accessors) and `.github/workflows/recomp-fixtures.yml`
 (GitHub CI scope is the owner's call; `make test-fast` runs only `tests/conveyor tests/cloud`, so run `python3 -m pytest tests/recomp -q -p no:cacheprovider` after recomp changes).
+
+## Phase 8: decomp feedback, round two (lane w28r, 2026-10-12)
+
+Lane notes: `cloud/work/frontier/w28r/RESULTS.md`; plan section 17. Not a matching lane; no gameplay change (no
+package).
+
+**Register-parameter callees without `--callee`.** `ipa_callees.json` now describes the callees lanes passed by
+hand in wave 27 (each entry's `evidence` says where the mapping comes from): `slot_state_setup` (s2; writes
+s0,s1,s3 unsaved), `sound_update_channel` (t0), `func_800B6748` (a0-a3 + t0-t2 for parameters 5-7),
+`func_80096CA8` (s8,t0; s0-s7 unsaved), `func_80097164` (s8), `func_800A1DD4` (a0,a1,a2,t3). A draft that calls
+them gets the shims automatically; a draft OF one of them gets its inbound shim and register capture without
+`--params` (the table entry is used as NAME's convention).
+
+**Interprocedural live-in** (`ipa_detect.register_params(..., call_effects=)`, `regmap_verify.Interproc`). IDO -O3
+keeps a register parameter alive across a call to a callee that does not touch it: `sound_update_channel` reads
+`force` in t0 after its first call, so the intra-procedural detector (calls clobber every caller-save register)
+missed it and regmap_verify REFUTED the lanes' (correct) claim. regmap_verify now follows static `jal` callees:
+a register a callee neither reads nor writes survives the call, one it reads is read at the call (jalr, calls out
+of the game image and recursion keep the old default). All five known mappings (slot_state_setup s2,
+sound_update_channel t0, func_800A1DD4 a0,a1,a2,t3, entity_transform_calc a0,f22-f28, audio_effect_setup s0) are
+CONSISTENT. replace.py's hazard detection (w24t) is unchanged.
+
+**`--probe-callees`** (`draft_check x --probe-callees F[,G] [--static-only] [--scripts S]`, or `regmap_verify F
+--derive`): derives F's convention from the retail body and its call sites and prints it in `--callee` syntax:
+parameters = the interprocedural live-in set (a0-a3, then other GPRs, then FP, each by register number), kinds
+from a capture run (or the instructions that set them at the static sites with `--static-only`), clobbers =
+callee-saved registers F (or a callee, transitively) writes without a prologue save (+ frontier facts). The
+parameter ORDER is a guess (the call sites' setter order is not usable: the scheduler reorders it), and so are
+the names and the return type: match them to the draft's prototype. Example: `--callee 's32
+func_800B6748(void *p0, ..., void *p6)=a0,a1,a2,a3,t0,t1,t2'` (2,024 race calls, all pointers). A normal
+draft_check run also prints a `suggested ... --callee` line for each register-parameter callee it had to call
+o32. Trap seen on the pak cluster: func_800A1C6C's live-in set is a0,a1,t1,t2 but the prototype order (handle,
+address, bytes, offset) maps to a0, t2, a1, t1 (found from the first divergence's written words; EQUIVALENT
+with `--params func_800A1C6C:handle=a0,address=t2,bytes=a1,offset=t1`).
+
+**`draft_check --unit A,B,C draft.c`.** The draft is one translation unit that defines every member; replace.py
+compiles and links it ONCE as one chunk (`-u` per member; an entry `"unit": [...]`, `"unit_capture"` for the
+non-first members' capture registers) and every member's entry hook calls into that chunk (member records
+`draft__<member>`; each with its own inbound shim from the table or `--params MEMBER:p=r,...`, its own static
+binding and self-call retargeting). Calls between members stay inside the chunk, in the unit's own conventions,
+so they pass no hook; to keep the logs comparable the generated hooks of a unit's members record a call only
+when no other member call is active on the same thread (`rush_unit_enter`/`rush_unit_exit`, runtime
+capture.cpp), on BOTH sides. The verdict counts calls per member; the first divergence names the member
+(`FIRST DIVERGING MEMBER: func_800A1C6C (unit ...)`); a member called only from inside the unit shows 0 outer
+calls (NOTE line). Default scripts: the census scripts with the most calls of any member. Checked: w27e cluster
+func_800A1BB4 + func_800A1DD4 EQUIVALENT (saves: 3 + 9 calls); slot_state_lookup + func_800A1DD4 +
+func_800A1C6C + func_800A1BB4 EQUIVALENT over 684 calls (with the mapping above); test
+`tests/cloud/test_recomp_phase8.py` (end-to-end pair with an injected bug on rocky).
+
+**Cleanup policy** (`draft_check x --gc [--dry-run]`; also automatic after every draft_check run once there are
+more than 16 function build trees). Under `~/rush2049/recomp/dc`: build trees (`trees/<checkout>/<NAME>`,
+~250 MB each): the 12 most recently used are kept (`$RUSH_DC_KEEP`, `--keep-trees`; last use = the mtime of the
+tree's build lock), never one being built; retail log caches (`cache/<NAME>`): dropped with their tree, else only
+the newest retail-binary key is kept; run dirs (`runs/<NAME>/*`): the newest 5 per function and anything younger
+than 3 days (`$RUSH_DC_DAYS`, `--gc-days`); `verify/`, `probe/`, `census/` runs and `inbox/` drafts older than 3
+days. A collected tree costs one first build (~30-50 s) when that function is checked again. Dry run at
+2026-10-12: 45 entries, 9.7 GB of 20.4 GB.
+
+## script_probe: what does a script reach, what is on screen? (Phase 8, lane w28r)
+
+```bash
+python3 tools/recomp/script_probe.py --remote rocky path/to/new.press [more.press ...] --text
+# options: --functions unreached (default: the census's never-reached list) | unmatched | NAME,...
+#          --text-from F --text-to F --all-text (HUD digits too) --frames N --pak FILE --pak-write FILE --json PATH
+```
+
+One capture build (cached tree `@probe-<set>`) with a probe on each chosen function and a text hook: an
+`--extra-hooks` entry in the game's string-queue function `menu_input_process` (0x800B6994, a0 = string, a1 =
+length or < 0) calls the host's `rush_text_log`, and the host option `--text-log PATH` writes `<frame>\t<text>`
+whenever a string appears that the previous frame did not draw. Each script runs headless (1,200 frames < 1 s,
+7,000 frames ~6 s); printed per script: every probed function reached (first frame, calls) and the text timeline,
+e.g. `3676  PLAYER 1 | 6TH PLACE | TIME 1:36.533`, `3742  ENTER YOUR NAME | A | B | ...`, `4200  GAME OVER | LAP
+TIMES | RACE AGAIN | NEW TRACK | NEW CAR | QUIT`. It replaces RT64 screenshots for script writing. Menu traps:
+a 0.5 s press auto-repeats (use the default 0.2 s, ~1 s apart); SELECT TRACK DOWN + LEFT x2 = 1 lap (default 3);
+with the accelerator held the default car finishes a 1-lap race on track 1 (6th, ~frame 3676).
+

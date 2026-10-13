@@ -1,0 +1,34 @@
+# A race run to its finish by a controller-pak player (pak flow; w28r): saves.press's CREATE PLAYER "AAAA" (note
+# RUSH2049AAAA, 2304 bytes written), A selects AAAA (27 s), SINGLE RACE, SELECT TRACK DOWN + LEFT x2 = 1 lap, gas from
+# 44 s: AAAA 6TH PLACE at frame 3820 (no name entry for a pak player), BEST LAPS (3877), BEST AVERAGES (4327), GAME OVER
+# (4410), DOWN x4 = QUIT. Pak writes: 32 B at 64 and the statistics (64 B at 1888, 32 B at 2016) at race start, 128 B
+# at 128 after the race. Reaches the pak save path with the race-end records (func_800A1DD4, func_800A1BB4,
+# func_800CD104: otherwise only saves.press) and the end-of-race screens with a player (func_80105480, func_80102F30,
+# func_8010221C, func_80100E58 ...).
+frames 5100
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+18 A
+20 A
+22 A
+24 START
+27 A
+30 A
+34 DOWN
+35 LEFT
+36 LEFT
+38 A
+41 A
+44 A 84
+150 DOWN
+152 DOWN
+154 DOWN
+156 DOWN
+158 A
+161 A
+164 A
