@@ -1009,10 +1009,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-13"
   },
   "crowd_cheer_play": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -6392,10 +6392,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-13"
   },
   "func_80100D24": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -6437,6 +6437,24 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_80107EDC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80108154": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "func_80108DA8": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_80108DA8.c",
@@ -6468,6 +6486,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
+  },
+  "func_8010A53C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "credits_scroll_grp",
+    "source": "src/blob/groups/credits_scroll_grp/group.json",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
   },
   "func_8010B520": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7883,10 +7910,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-13"
   },
   "slot_value_get": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -8487,9 +8514,9 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "credits_scroll_grp",
     "source": "src/blob/groups/credits_scroll_grp/group.json",
-    "source_sha256": "58bd0f8e11b8a40956a0843a57bbe0a891d7dcd2cd524f6ca7c964be1ea16e7c",
+    "source_sha256": "9dc735facc171a97b8c0861c505559f1e9234a6e6fd6bdb173d2009e3787be03",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-13"
   }
 }

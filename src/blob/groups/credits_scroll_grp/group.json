@@ -4,7 +4,10 @@
   "credits_scroll",
   "func_80100B8C",
   "slot_state_setup",
-  "world_trigger_check"
+  "world_trigger_check",
+  "func_8010A53C",
+  "func_80107EDC",
+  "func_80108154"
  ],
  "context": [
   "object_create",
@@ -32,7 +35,10 @@
   "gr3_c.c",
   "gr3_d.c",
   "gr3_e.c",
-  "gr3_w.c"
+  "gr3_w.c",
+  "gr3_a53c.c",
+  "gr3_edc.c",
+  "gr3_8154.c"
  ],
  "keep": [
   "object_byte9_set",
@@ -51,8 +57,11 @@
   "func_800D7634",
   "time_result_display",
   "world_trigger_check",
-  "__standin_func_800B6748"
+  "__standin_func_800B6748",
+  "func_8010A53C",
+  "func_80107EDC",
+  "func_80108154"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
- "provenance": "w27c 2026-10-12: func_80100B8C added (credits scroll helper); D_80118E20 defined in gr3_d.c | w27b: slot_state_setup moved from context to members (do{}while(0) flips the s0/s1 tie); world_trigger_check added (gr3_w.c) with byte-identical context copy of func_800B6748 + kept stand-in caller; object_byte9_set context copy gets the if(0) __unit_dead inline blocker | w27f: merged both; keep += world_trigger_check, __standin_func_800B6748"
+ "provenance": "w27c 2026-10-12: func_80100B8C added (credits scroll helper); D_80118E20 defined in gr3_d.c | w27b: slot_state_setup moved from context to members (do{}while(0) flips the s0/s1 tie); world_trigger_check added (gr3_w.c) with byte-identical context copy of func_800B6748 + kept stand-in caller; object_byte9_set context copy gets the if(0) __unit_dead inline blocker | w27f: merged both; keep += world_trigger_check, __standin_func_800B6748 | w28c: func_8010A53C added (gr3_a53c.c, credits page text); func_80107EDC added (gr3_edc.c, lap counter text); func_80108154 added (gr3_8154.c, animLapTime); gr3_c.c/gr3_d.c static gfx_lock/gfx_unlock/font_set made global as *_g3c/*_g3d (code unchanged, not on keep) so their deleted-procedure stubs carry symbols (w17j) - with the new files they otherwise land after world_trigger_check (3 extra words)"
 }

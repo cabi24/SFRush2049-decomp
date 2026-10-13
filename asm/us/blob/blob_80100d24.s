@@ -7174,6 +7174,7 @@ race_finish:
 .section .text.func_80107EDC, "ax", @progbits
 .globl func_80107EDC
 func_80107EDC:
+    /* compiled from src/blob/func_80107EDC.c */
     .word 0x27BDFFB8
     .word 0x3C028011
     .word 0x8C4274B4
@@ -7336,6 +7337,7 @@ func_80107EDC:
 .section .text.func_80108154, "ax", @progbits
 .globl func_80108154
 func_80108154:
+    /* compiled from src/blob/func_80108154.c */
     .word 0x27BDFF68
     .word 0xAFBF002C
     .word 0xAFB40028
@@ -9671,6 +9673,7 @@ func_80109F54:
 .section .text.func_8010A53C, "ax", @progbits
 .globl func_8010A53C
 func_8010A53C:
+    /* compiled from src/blob/func_8010A53C.c */
     .word 0x27BDFFC0
     .word 0x3C028011
     .word 0x8C4274B4

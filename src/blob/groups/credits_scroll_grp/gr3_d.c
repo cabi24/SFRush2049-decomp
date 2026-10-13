@@ -39,23 +39,23 @@ void dispatch_handler(s32);
 void camera_auto_follow(s32, s32, s32, s32, s32, s32, char *);
 void credits_scroll(void);
 void time_result_display(void);
-static void gfx_lock(void)
+void gfx_lock_g3d(void)
 {
     osRecvMesg(&D_801461D0, (void *)0, 1);
 }
 
-static void gfx_unlock(void)
+void gfx_unlock_g3d(void)
 {
     osSendMesg(&D_801461D0, (void *)0, 0);
 }
 
-static s32 font_set(s32 font)
+s32 font_set_g3d(s32 font)
 {
     s32 old;
 
-    gfx_lock();
+    gfx_lock_g3d();
     old = slot_state_setup(font);
-    gfx_unlock();
+    gfx_unlock_g3d();
     return old;
 }
 s32 game_timer_display(s32 arg0)
@@ -64,11 +64,11 @@ s32 game_timer_display(s32 arg0)
 
     if (!D_80110634) {
         if (!(state_word_a & 0x7C03FFFE)) {
-            font_set(13);
+            font_set_g3d(13);
             D_8011064C = !D_80156CF0[D_8015698C].flag;
             credits_scroll();
             h = object_bytes_sum_global() * 2 + 10;
-            font_set(10);
+            font_set_g3d(10);
             ambient_sound_set(D_80110650[0] - 8, h - 4, D_80110650[1] + D_80110650[0] + 8,
                               h + D_80110650[2] + 4, 176, 0, 0, 0);
         }
@@ -84,12 +84,12 @@ s32 func_80100B8C(s32 arg0)
     render_helper(0.0f);
     func_800B669C(1, 1);
     if (D_801613E8 == 1U) {   /* 1U shares the u32 1 of the inlined func_800B669C(1, 1) stores */
-        font_set(13);
+        font_set_g3d(13);
         dispatch_handler(22);
         camera_auto_follow(160, 10, 320, 110, -1, 0, D_8012029C);
         camera_auto_follow(160, 190, 320, 110, -1, 0, countdown_object[33]);
     } else {
-        font_set(11);
+        font_set_g3d(11);
         dispatch_handler(22);
         camera_auto_follow(160, 185, 320, 110, -1, 0, countdown_object[32]);
         dispatch_handler(1);

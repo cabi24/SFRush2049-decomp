@@ -39,23 +39,23 @@ void dispatch_handler(s32);
 void camera_auto_follow(s32, s32, s32, s32, s32, s32, char *);
 void credits_scroll(void);
 void time_result_display(void);
-static void gfx_lock(void)
+void gfx_lock_g3c(void)
 {
     osRecvMesg(&D_801461D0, (void *)0, 1);
 }
 
-static void gfx_unlock(void)
+void gfx_unlock_g3c(void)
 {
     osSendMesg(&D_801461D0, (void *)0, 0);
 }
 
-static s32 font_set(s32 font)
+s32 font_set_g3c(s32 font)
 {
     s32 old;
 
-    gfx_lock();
+    gfx_lock_g3c();
     old = slot_state_setup(font);
-    gfx_unlock();
+    gfx_unlock_g3c();
     return old;
 }
 void credits_scroll(void)
@@ -63,7 +63,7 @@ void credits_scroll(void)
     char buf[76];
     s32 w;
 
-    font_set(13);
+    font_set_g3c(13);
     if (D_8011064C) {
         fcvt_wrapper(buf, D_8011F6B0, D_8015698C + 1, countdown_object[233]);
         w = object_manager_update(buf, -1);
@@ -83,7 +83,7 @@ void time_result_display(void)
     char buf[76];
     s32 w;
 
-    font_set(13);
+    font_set_g3c(13);
     if (D_80116DA8) {
         fcvt_wrapper(buf, D_80121004, D_8015698C + 1, countdown_object[233]);
         w = object_manager_update(buf, -1);
