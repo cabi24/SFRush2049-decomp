@@ -1,0 +1,122 @@
+== frontier_menu_save_options --claims
+  3/33 words differ
+menu_transition:
+  MATCH
+AdjustSteer:
+  MATCH
+audio_reverb_update:
+  MATCH
+audio_buffer_sync:
+  MATCH
+func_800C7200:
+  MATCH
+func_800CC50C:
+    +0x034  want 27bdff98 addiu sp,sp,-104              got 27bdff70 addiu sp,sp,-144            
+    +0x058  want afa5006c sw a1,108(sp)                 got afa50094 sw a1,148(sp)               
+    +0x060  want 00809825 move s3,a0                    got 8c860054 lw a2,84(a0)                
+    +0x064  want 4600428d trunc.w.s $f10,$f8            got 00809825 move s3,a0                  
+    +0x068  want afb20058 sw s2,88(sp)                  got 4600428d trunc.w.s $f10,$f8          
+    +0x06c  want 8c860054 lw a2,84(a0)                  got 02462021 addu a0,s2,a2               
+    +0x074  want 02462021 addu a0,s2,a2                 got 00000000 nop                         
+    +0x080  want afa3005c sw v1,92(sp)                  got afa30048 sw v1,72(sp)                
+    +0x084  want 8fa3005c lw v1,92(sp)                  got 8fa30048 lw v1,72(sp)                
+    +0x08c  want 8e72004c lw s2,76(s3)                  got 8e62004c lw v0,76(s3)                
+    +0x098  want 02592021 addu a0,s2,t9                 got 00592021 addu a0,v0,t9               
+    +0x0a0  want 024e2821 addu a1,s2,t6                 got 004e2821 addu a1,v0,t6               
+  117/190 words differ (1 extra words (nonzero beyond target length))
+rc=0
+== frontier_menu_save_options (all)
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  176/225 words differ (18 section-relative relocations unverified: .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x58, .data+0x0 at +0x60, .data+0x8 at +0x40, .data+0x8 at +0x44, .data+0x4 at +0x64, .data+0x4 at +0x68, .data+0x4 at +0xf8, .data+0x4 at +0x120, .data+0x0 at +0x128, .data+0x0 at +0x12c, .data+0x0 at +0x308, .data+0x0 at +0x30c, .data+0x4 at +0x33c, .data+0x4 at +0x340, .data+0x0 at +0x344, .data+0x0 at +0x348; own .data+0x0: retail reads this one object at different addresses 0x8011742C, 0xF0217430, 0xFF889025; own .data+0x4: retail reads this one object at different addresses 0x80117430, 0x90214030)
+  246/272 words differ
+  MATCH
+  MATCH
+  29/224 words differ
+  MATCH
+  3/33 words differ
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  MATCH
+  117/190 words differ (1 extra words (nonzero beyond target length))
+== menu_cc040_20261004 --claims
+    +0x018  want afb10020 sw s1,32(sp)                  got afa50084 sw a1,132(sp)               
+    +0x01c  want afb0001c sw s0,28(sp)                  got afa60088 sw a2,136(sp)               
+    +0x020  want afa400b8 sw a0,184(sp)                 got 8cc20000 lw v0,0(a2)                 
+    +0x024  want afa500bc sw a1,188(sp)                 got 8c4f0028 lw t7,40(v0)                
+    +0x028  want afa600c0 sw a2,192(sp)                 got 10e00018 beqz a3,0x64                
+    +0x02c  want 8cc20000 lw v0,0(a2)                   got 8df00000 lw s0,0(t7)                 
+  223/224 words differ
+menu_back:
+    +0x000  want 27bdffe8 addiu sp,sp,-24               got 03e00008 jr ra                       
+    +0x004  want afbf0014 sw ra,20(sp)                  got 00000000 nop                         
+    +0x008  want 8e2e0000 lw t6,0(s1)                   got 00000000 nop                         
+    +0x00c  want 00002025 move a0,zero                  got (missing)
+    +0x010  want 8dcf0028 lw t7,40(t6)                  got (missing)
+    +0x014  want 8df00000 lw s0,0(t7)                   got (missing)
+    +0x018  want 8e18004c lw t8,76(s0)                  got (missing)
+    +0x01c  want 57000016 bnezl t8,0x5c                 got (missing)
+    +0x020  want 8fbf0014 lw ra,20(sp)                  got (missing)
+    +0x024  want 0c025d3b jal 0x974ec                   got (missing)
+    +0x028  want 8e050040 lw a1,64(s0)                  got (missing)
+    +0x02c  want 8e390000 lw t9,0(s1)                   got (missing)
+  33/33 words differ
+audio_reverb_update:
+  MATCH
+audio_buffer_sync:
+  MATCH
+rc=0
+== menu_cc040_20261004 (all)
+  MATCH
+  MATCH
+  17/17 words differ
+  223/224 words differ
+  33/33 words differ
+  MATCH
+  MATCH
+== codex_func_800C7200_2 --claims
+    +0x010  want 8c8e0000 lw t6,0(a0)                   got (missing)
+    +0x014  want 15c0000b bnez t6,0x30                  got (missing)
+    +0x018  want 00037880 sll t7,v1,0x2                 got (missing)
+    +0x01c  want 01e37823 subu t7,t7,v1                 got (missing)
+    +0x020  want 000f7880 sll t7,t7,0x2                 got (missing)
+    +0x024  want 01e37823 subu t7,t7,v1                 got (missing)
+    +0x028  want 3c188014 lui t8,0x8014                 got (missing)
+    +0x02c  want 2718f390 addiu t8,t8,-3184             got (missing)
+  64/64 words differ
+
+Context (informational; excluded from exit status):
+func_800CC50C:
+    +0x030  want c426afb4 lwc1 $f6,-20556(at)           got c432afb4 lwc1 $f18,-20556(at)        
+    +0x034  want 27bdff98 addiu sp,sp,-104              got 27bdff80 addiu sp,sp,-128            
+    +0x038  want afbf003c sw ra,60(sp)                  got afbf002c sw ra,44(sp)                
+    +0x03c  want 46205120 cvt.s.d $f4,$f10              got 46205420 cvt.s.d $f16,$f10           
+    +0x040  want afb40038 sw s4,56(sp)                  got afb10028 sw s1,40(sp)                
+    +0x044  want afb30034 sw s3,52(sp)                  got afb00024 sw s0,36(sp)                
+    +0x048  want afb20030 sw s2,48(sp)                  got afa50084 sw a1,132(sp)               
+    +0x04c  want 46062202 mul.s $f8,$f4,$f6             got 46128102 mul.s $f4,$f16,$f18         
+    +0x050  want afb1002c sw s1,44(sp)                  got 8c90004c lw s0,76(a0)                
+    +0x054  want afb00028 sw s0,40(sp)                  got 8c860054 lw a2,84(a0)                
+    +0x058  want afa5006c sw a1,108(sp)                 got 00808825 move s1,a0                  
+    +0x05c  want 8c92004c lw s2,76(a0)                  got 02062021 addu a0,s0,a2               
+  176/190 words differ (58 extra words (nonzero beyond target length))
+rc=0
+== codex_func_800C7200_2 (all)
+  64/64 words differ
+  176/190 words differ (58 extra words (nonzero beyond target length))

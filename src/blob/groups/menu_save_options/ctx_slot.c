@@ -1,3 +1,6 @@
+/* Context copy of src/blob/groups/menu_cc040_20261004/group.c (slot_release) with its func_800CBF2C context draft
+ * removed (the real body is in group.c). Callers of func_800CBF2C (func_800CC040, menu_item_value_get) and its IPA
+ * callee menu_back (s1) must be in this group's program for func_800CBF2C's register convention. */
 typedef signed char s8;typedef unsigned char u8;typedef short s16;typedef unsigned short u16;
 typedef signed int s32;typedef unsigned int u32;typedef float f32;
 #define NULL ((void *)0)
@@ -210,40 +213,7 @@ void menu_back(Handle h) {
     }
 }
 
-s32 func_800CBF2C(Handle h, s32 back, s32 select) {
-    Obj *o = *h;
-    void **data;
-
-    if (o->h40 != NULL) {
-        if (o->slot == NULL) {
-            if (back) {
-                menu_back(h);
-            }
-            return 1;
-        }
-        menu_transition(h);
-    }
-    drone_set_catchup(o->slot, 0, ((Slot *)*o->slot)->catchup);
-    data = ((Slot *)*o->slot)->data;
-    if (data == NULL) {
-        return 0;
-    }
-    o->h40 = data;
-    ((Slot *)*data)->f76 = 0;
-    if (draw_ui_element(h, 0, 1) && !draw_ui_element(h, 1, 1)) {
-        return 0;
-    }
-    if (back) {
-        menu_back(h);
-    }
-    if (select) {
-        menu_item_select(o->h40, 88);
-        func_800CB9D0(o->h40);
-        func_800CB9D0(o->h36);
-        ((Slot *)*o->h40)->f76 = *(s32 *)*o->h36;
-    }
-    return 1;
-}
+s32 func_800CBF2C(Handle h, s32 back, s32 select);  /* defined in group.c (w30c) */
 
 void cart_free(void **address) {
     osRecvMesg(&D_80152770, NULL, 1);

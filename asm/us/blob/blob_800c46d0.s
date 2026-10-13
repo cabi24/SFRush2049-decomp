@@ -2760,6 +2760,7 @@ scene_cleanup_slots:
 .section .text.draw_ui_element, "ax", @progbits
 .globl draw_ui_element
 draw_ui_element:
+    /* compiled from src/blob/draw_ui_element.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8D020000
@@ -3249,6 +3250,7 @@ func_800C77C4:
 .section .text.draw_speedometer, "ax", @progbits
 .globl draw_speedometer
 draw_speedometer:
+    /* compiled from src/blob/draw_speedometer.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0xAFA0001C
@@ -3686,6 +3688,7 @@ func_800C7EC0:
 .section .text.func_800C7EC8, "ax", @progbits
 .globl func_800C7EC8
 func_800C7EC8:
+    /* compiled from src/blob/func_800C7EC8.c */
     .word 0x3C158013
     .word 0x26B5E6D8
     .word 0x8EB20008
