@@ -560,7 +560,7 @@ commands: `tools/recomp/README.md` "Phase 10"; lane notes: `cloud/work/frontier/
 - **Renames**: frontier facts are keyed by today's names through their addresses (22 renamed functions had lost
   their register-parameter / clobber facts); `--lane` maps directory names and dc.args to today's names; the
   census refresh removed w29n's renaming of the script race_finish to animPlace in the committed census.
-- **Census**: 168 of 175 unmatched reached, 7 never (5,260 B): func_8010C974 (mine pickup in battle), func_800DD0C0,
+- **Census**: 159 of 166 unmatched reached (wave30 f0249900), 7 never (5,260 B): func_8010C974 (mine pickup in battle), func_800DD0C0,
   control_cell_text3, control_cell_text, world_effect_update, fp_call_wrapper, object_bytes23_sum.
 - **Phase 11 needs**: a mine pickup in battle (func_8010C974), the remaining control_settings cell kinds (image A's
   controller-settings screen), a regenerated build/frontier.json in the service tree after renames (the remap

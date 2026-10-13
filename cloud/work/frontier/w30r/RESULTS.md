@@ -59,8 +59,9 @@ without: `DIVERGES ... word 0x8011742C: retail 03000000->02000000 | draft unchan
 
 # 5. Census and the rename check
 
-Census (rocky, 34 scripts, 175 unmatched at wave30): **168 reached (184,796 B), 7 never (5,260 B)** (w29r: 178/192,
-14 never). Newly reached: func_80104B14, draw_ui_element, func_80103D28, pak_delete_file_retry, control_settings,
+Census (rocky, 34 scripts, 166 unmatched at wave30 f0249900 = after w30i's installs and w30n's func_80104704
+registration): **159 reached (178,368 B), 7 never (5,260 B)** (first run at 1b34f797: 168 of 175; w29r: 178/192, 14
+never). func_80104704 (new) is reached by race_finish, two_player_finish, unlock; draw_ui_element is matched now. Newly reached: func_80104B14, draw_ui_element, func_80103D28, pak_delete_file_retry, control_settings,
 control_cell_text2 (FindGhosts was matched in wave 29). Never: func_8010C974 (mine pickup in battle),
 func_800DD0C0, control_cell_text3, control_cell_text (other control_settings cell kinds; probably image A's
 controller-settings screen, unverified), world_effect_update, fp_call_wrapper, object_bytes23_sum (no static ref).
@@ -106,7 +107,7 @@ is not the rename:
 
 # Checks
 
-- Branch w30r = wave30 e4e580f3 merged (wave30 moved by three lane-results commits, no tool/src changes).
+- Branch w30r = wave30 f0249900 merged (census files conflicted with w30n's rename replay: regenerated).
 - Pi worktree `make test-fast JOBS=4`: tests/cloud `820 passed, 204 skipped`; tests/conveyor `40 failed, 1511
   passed, 819 skipped, 2 errors` = the known fresh-worktree environment (no tools/mips_to_c submodule; failures in
   test_group_search.py / unit/test_reloc_blind.py). tests/conveyor in the MAIN checkout (wave30, with the submodule;

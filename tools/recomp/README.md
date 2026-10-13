@@ -994,8 +994,9 @@ the rename; new first verdicts on reached-for-the-first-time functions (draw_ui_
 w28b pak_delete_file_retry and the w29c/w30d control_settings drafts FAULT on the new paths). Table:
 `cloud/work/frontier/w30r/RESULTS.md`.
 
-**Census refresh** (2026-10-13, 34 scripts, 175 unmatched at wave30 = 1b34f797): **168 reached (184,796 B), 7 never
-(5,260 B)** (w29r: 178 of 192 / 14). Newly reached: func_80104B14 (ghost_pak, ghost_resave, ghost_delete_fail),
+**Census refresh** (2026-10-13, 34 scripts, 166 unmatched at wave30 f0249900, after w30i's installs and w30n's
+func_80104704 registration): **159 reached (178,368 B), 7 never (5,260 B)** (first run at 1b34f797: 168 of 175; w29r:
+178 of 192 / 14). Newly reached: func_80104B14 (ghost_pak, ghost_resave, ghost_delete_fail),
 draw_ui_element (ghost_reload, ghost_resave, ghost_delete_fail), func_80103D28 (unlock), pak_delete_file_retry
 (ghost_resave, ghost_delete_fail), control_settings and control_cell_text2 (ghost_delete_fail: the pak error
 dialog). Still never: func_8010C974 (_AnimateMine: a mine pickup in battle), func_800DD0C0, control_cell_text3,
