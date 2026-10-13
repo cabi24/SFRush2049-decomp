@@ -62,7 +62,7 @@ Total: 11 functions, 14,132 B.
 - Pi `make test-fast JOBS=4` (main checkout's submodules symlinked in temporarily, removed afterwards): tests/conveyor
   `1 failed, 1588 passed, 804 skipped`; tests/cloud `806 passed, 202 skipped`; rc=2.
 - rocky clone `~/rush2049/scratch/w29i` (ciclone copy, branch from a bundle, `origin/master` = 8c74d8b6, CI venv),
-  `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: tests/conveyor `1 failed, 2340 passed, 52 skipped`; cloud: see report.
+  `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: tests/conveyor `1 failed, 2340 passed, 52 skipped`; tests/cloud `1004 passed, 4 skipped, 8 warnings, 27 subtests passed`; rc=2.
 - The ONE failure on both hosts: `tests/conveyor/test_dot_substantial_scout.py::test_native_metadata_replays_complete_current_extents`.
   The D02 scout receipt `cloud/work/dot_substantial_scout/native_audit.json` freezes `accepted_name_lock: false`
   for every target and the test asserts no target is locked; func_80102F30 is one of its targets and is now locked
