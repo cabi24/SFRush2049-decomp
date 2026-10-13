@@ -25,6 +25,7 @@ ADDRESS = 0x80010450
 SIZE = 372
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
 SOURCE = ROOT / 'cloud/matches/boot_tail/func_80010450.c'
+BASELINE_TU = HERE/'baseline_lib_11050.c'  # w28p: pre-install TU snapshot
 
 def require(value, message):
     if not value: raise ValueError(message)
@@ -123,6 +124,13 @@ def tu_check(work):
     p.PREFIX_DEDUP = {'rom/lib_11050'}
     candidate = dict(fn=NAME, seg=dict(rom_tu='rom/lib_11050', flagset=FLAGS),
                      src=str(SOURCE.relative_to(ROOT)), row=row, slot=None)
+    # w28p: the slot is promoted on master, so replay the splice against the packet's pre-install
+    # snapshot of the TU (byte-identical to src/rom/lib_11050.c at 55e17941/f45e3940), not the live TU.
+    base = work/'baseline_repo'; (base/'src/rom').mkdir(parents=True)
+    shutil.copyfile(BASELINE_TU, base/'src/rom/lib_11050.c')
+    (base/SOURCE.relative_to(ROOT)).parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(SOURCE, base/SOURCE.relative_to(ROOT))
+    p.REPO = base
     out = work/'tu'; out.mkdir()
     p.splice([candidate], out_dir=out)
     # The target is the TU's first slot, before the existing request typedef.
@@ -135,7 +143,7 @@ def tu_check(work):
     text=text[:at+len(declaration)]+tail.replace(declaration,'',1)
     tu.write_text(text)
     compiled = {}
-    for label, source in [('before', ROOT/'src/rom/lib_11050.c'), ('after', out/'lib_11050.c')]:
+    for label, source in [('before', BASELINE_TU), ('after', out/'lib_11050.c')]:
         obj = work/('tu_'+label+'.o')
         run([ctx.CC, '-c', *ctx.cflags_for(FLAGS), '-o', obj, source])
         _, symbols, _ = elf(obj)
@@ -151,7 +159,7 @@ def tu_check(work):
 
 
 def inputs():
-    own = [SOURCE, HERE/'verify.py', HERE/'native.py', HERE/'host.c',
+    own = [SOURCE, BASELINE_TU, HERE/'verify.py', HERE/'native.py', HERE/'host.c',
            ROOT/'tests/cloud/test_static_10450_match.py']
     accepted = [ROOT/'cloud/work/boot_tail_promotion/sources/func_80010628.c',
                 ROOT/'cloud/matches/boot_tail/func_80010714.c',

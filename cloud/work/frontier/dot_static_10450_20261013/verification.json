@@ -197,9 +197,10 @@
       "cloud/matches/boot_tail/func_800105C4.c": "396ca270d9f7c106ac279047dd279e56a4b2a8d1dc5e57cdcb48be8af0ec3f17",
       "cloud/matches/boot_tail/func_80010714.c": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
       "cloud/work/boot_tail_promotion/sources/func_80010628.c": "5f1ac5b951c6b8399c51afa00a6a54045f01e16aacfa3fedd3f9d9c9c727492e",
+      "cloud/work/frontier/dot_static_10450_20261013/baseline_lib_11050.c": "57db1af6958ac62148320f9e4a163c78dc6f821e317c4f0292903dd821bf9800",
       "cloud/work/frontier/dot_static_10450_20261013/host.c": "156e4eabe4c7152e3ca1fa1f8f71d32cef0ea68d62b406059eabfcc216721fa4",
       "cloud/work/frontier/dot_static_10450_20261013/native.py": "ca244500a372a71555b1b39ba6d414caa5d6dedade36ca6161c4d29de79d76ac",
-      "cloud/work/frontier/dot_static_10450_20261013/verify.py": "f1f72a17d8821def7170d8e8c0f6327d7e6c344475d4f1c1a392ffa71c337c9d",
+      "cloud/work/frontier/dot_static_10450_20261013/verify.py": "e5963490b594e21ac8c458d4ee38bd9a91de8e769158612078da23589b62b712",
       "cloud/work/frontier/w21c/sources/func_80012730.c": "02975cf09b932c65895e5b83e46f7ee85ed646d55031b6b24d17f115ca963b40",
       "tests/cloud/test_static_10450_match.py": "b937f4b4f1ac5f3d9cf7bc3c695d6c2747d4ff5505c215b9158853399dc9007e"
     },

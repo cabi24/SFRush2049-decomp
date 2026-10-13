@@ -115,7 +115,7 @@ def gnu(obj,work,task_definition=False):
                 relocations=len(relocs),differing_offsets=bad,extra_words=extra,allocated_task_bytes=64 if task_definition else 0,owned_data_bytes=0,hypothetical_bss_subalign=4 if task_definition else None),list(struct.unpack('>%dI'%(size//4),body[:size]))
 
 def inputs():
-    files=[HERE/n for n in ('candidate.c','baseline.c','verify.py','native.py','probes.py','trace.py','trace_summary.json')]
+    files=[HERE/n for n in ('candidate.c','baseline.c','verify.py','native.py','probes.py','trace.py','trace_summary.json','baseline_lib_11640.c')]
     files += [ROOT/'tests/cloud/test_static_11910_research.py']
     with population():
         manifest=score.target_manifest();words=score.targets()[NAME]
@@ -149,7 +149,8 @@ def tu_check(work):
     ctx.CC=compilers.tu_cc(TU,ROOT/'tools/cloud/ido/cc');ctx.COMPILER='ido7.1'
     row=ctx.check(NAME,work,str(SOURCE.relative_to(ROOT)))
     require(row['status']=='refused' and '.bss:64' in row['reason'] and 'outside an owned slot' in row['reason'],row)
-    original=ROOT/'src/rom'/(TU+'.c')
+    # w28p: lib_11640 gained promoted bodies on master; replay against the packet's pre-install snapshot.
+    original=HERE/('baseline_'+TU+'.c')
     needle='#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/'+TU+'/'+NAME+'.s")'
     text=original.read_text();require(text.count(needle)==1,'unpromoted TU slot required')
     scratch=work/'diagnostic_tu.c';scratch.write_text(text.replace(needle,SOURCE.read_text()))

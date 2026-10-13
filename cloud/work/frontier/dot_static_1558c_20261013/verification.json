@@ -70,11 +70,12 @@
     ],
     "files": {
       "cloud/matches/boot_tail/func_8001558C.c": "30def3e15e05da5d8947729ebc59acdfbbd13e0316133f15709d10e95958f2f6",
+      "cloud/work/frontier/dot_static_1558c_20261013/baseline_lib_15a10.c": "b2837126fd4f84e254106fe53460cd27fe1a549b925786c754e5188a724c9bef",
       "cloud/work/frontier/dot_static_1558c_20261013/host.c": "318b22efd9fb77dcc88d7b01bddaaf2b8f02552dc9c537ba8b3adf30775a8231",
       "cloud/work/frontier/dot_static_1558c_20261013/native.py": "e04fa78e519c517713cec20cfb964a3152b34235283aaf70a6836367b6096bae",
       "cloud/work/frontier/dot_static_1558c_20261013/trace.py": "1208460531d580cdba1667377f1920b5279dcbcd9cf6ae68a443fbf2217c7f1d",
       "cloud/work/frontier/dot_static_1558c_20261013/trace_summary.json": "da26b8e57ecf8fa64887f69e04bb7dc3eb034f62e34b17f4a26914bee1f4a974",
-      "cloud/work/frontier/dot_static_1558c_20261013/verify.py": "6dbc98082b17a0912cafc66031e1418ac1e57f9d37bc6378219849c6c487ade5",
+      "cloud/work/frontier/dot_static_1558c_20261013/verify.py": "06920dee18331f01d4ea0f41fa84be247f2ccfb328f7c8ecf3eabd4aa31c548d",
       "tests/cloud/test_static_1558c_match.py": "96944e9c2ba55019a72cac3776bbe7298a46b8553372d48a2c9847ba87e6301b"
     },
     "population": "static",

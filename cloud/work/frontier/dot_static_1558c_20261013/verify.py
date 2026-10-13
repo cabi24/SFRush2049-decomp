@@ -25,6 +25,7 @@ ADDRESS = 0x8001558c
 SIZE = 348
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
 SOURCE = ROOT / 'cloud/matches/boot_tail/func_8001558C.c'
+BASELINE_TU = HERE/'baseline_lib_15a10.c'  # w28p: pre-install TU snapshot
 
 def require(value, message):
     if not value: raise ValueError(message)
@@ -109,7 +110,7 @@ def gnu(obj,work):
                 relocations=len(relocs),differing_offsets=bad,extra_words=extra,owned_data_bytes=0),list(struct.unpack('>%dI'%(size//4),body[:size]))
 
 def inputs():
-    files = [SOURCE, HERE/'verify.py', HERE/'host.c', HERE/'native.py', HERE/'trace.py', HERE/'trace_summary.json',
+    files = [SOURCE, HERE/'verify.py', HERE/'host.c', HERE/'native.py', HERE/'trace.py', HERE/'trace_summary.json', BASELINE_TU,
              ROOT/'tests/cloud/test_static_1558c_match.py']
     result = dict(protocol_version=2, population='static', claims=[NAME],
                   candidate_bytes=SIZE, cartridge_coverage_claimed=False,
@@ -150,10 +151,17 @@ def tu_check(work):
     p.PREFIX_DEDUP = {'rom/lib_15a10'}
     candidate = dict(fn=NAME, seg=dict(rom_tu='rom/lib_15a10', flagset=FLAGS),
                      src=str(SOURCE.relative_to(ROOT)), row=row, slot=None)
+    # w28p: the slot is promoted on master, so replay the splice against the packet's pre-install
+    # snapshot of the TU (byte-identical to src/rom/lib_15a10.c at 55e17941/f45e3940), not the live TU.
+    base = work/'baseline_repo'; (base/'src/rom').mkdir(parents=True)
+    shutil.copyfile(BASELINE_TU, base/'src/rom/lib_15a10.c')
+    (base/SOURCE.relative_to(ROOT)).parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(SOURCE, base/SOURCE.relative_to(ROOT))
+    p.REPO = base
     out = work/'tu'; out.mkdir()
     p.splice([candidate], out_dir=out)
     compiled = {}
-    for label, source in [('before', ROOT/'src/rom/lib_15a10.c'), ('after', out/'lib_15a10.c')]:
+    for label, source in [('before', BASELINE_TU), ('after', out/'lib_15a10.c')]:
         obj = work/('tu_'+label+'.o')
         run([ctx.CC, '-c', *ctx.cflags_for(FLAGS), '-o', obj, source])
         _, symbols, _ = elf(obj)

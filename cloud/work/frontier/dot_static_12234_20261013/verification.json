@@ -155,9 +155,10 @@
     "files": {
       "cloud/matches/boot_tail/func_80012200.c": "fe3074328065426cc90f4fb7ee8cb290e2a2d844701e897b72995bafaa4268ff",
       "cloud/matches/boot_tail/func_80012234.c": "08c3404adbad82a8926da5bb80342d0b685ceb6f123e500de04df3d711e4a6cc",
+      "cloud/work/frontier/dot_static_12234_20261013/baseline_lib_11640.c": "c05043236e1142927b10eb32738a7494ecbf6a2a6332e9a1ea379f6bc25dee2c",
       "cloud/work/frontier/dot_static_12234_20261013/host.c": "78f0eb001637e4c435a781f7398d6541343f0d39bdef74dc063022d80230784d",
       "cloud/work/frontier/dot_static_12234_20261013/native.py": "1f983015dc8df954d3972dd2e479b3e181cf6f4097df9ce937322862fd075988",
-      "cloud/work/frontier/dot_static_12234_20261013/verify.py": "4c22134f86f8d974ac1d7bd26fa2bed41d5a64b5b35a25813f8bbb262c65c9aa",
+      "cloud/work/frontier/dot_static_12234_20261013/verify.py": "6f77c3645ab8c63d72cd3986983cf78af5d923c53204f09717ec3d53ddefa151",
       "cloud/work/frontier/w18c/sources/func_80011F60.c": "54cbe5f392499e2690f1dfd07ce4110db243b045b9313e700af40e48c19eccd4",
       "cloud/work/frontier/w21c/sources/func_80012730.c": "02975cf09b932c65895e5b83e46f7ee85ed646d55031b6b24d17f115ca963b40",
       "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
