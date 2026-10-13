@@ -1,0 +1,44 @@
+# builder: sh prove.sh $SCRATCH/ul J  (ultralib decompals e24c836, IDO 5.3 toolkit 796ae99a)
+aa8980ffd01a9f336804e0d08f0d7a155fc7bcdd0fdb0475494ed5ddebc2bb9e  ai.o
+55597e3092ae8281286b8f16890c56aa807705fef659a24ae6ae6bb804a8f73b  bcmp.o
+ed5bb9d4623762cc3f3977e6bffb79460ca24974c69c430b3b920f1f53c895db  bcopy.o
+8c137a7de04250d00aa4705f55b551bea6da8bbd4d04913c66f69965584ec06d  bzero.o
+81d229ca8282293848896d60baae34cae7d5c014c55f8490acd9787013bafae7  exceptasm.o
+5a93c82a7a22e9bd44479423b3d823f3e0d191de18792af78f49842e0022a859  getcause.o
+2a800ac6067d0f5fc77007ffae30481b767efee718d0120e8dc5d7ac869a4689  getcount.o
+7d9fbb7ee1c7ef78f0211bbc635a25606e6fbb8cd9aedf6db8f659e59e39d013  getsr.o
+1a40219795c8b63ea7e72f0d566ba45b0c7863810efc527b6ecb2b221519c477  interrupt.o
+8e789efe011566bf7f172505fc42c3c0878ee26398d022b841a1175bdfd91906  invaldcache.o
+ca86443f575a23e50ed950c2465cd5cbd2319d2b3e2ac83cbd1a52995a84f5a4  invalicache.o
+33b0007f79d4ce034a58ae4ba961d2b572243287d9d4128a7543cfb38d92d2d2  maptlbrdb.o
+2bf58ccbbbb56267e0657ebfa28ff71526ef35e9ec49619475c15340bbc39ed5  probetlb.o
+f2bb0a79c76a55eb8dd35238350687f2cb4cff7d66ebdfde5f1c52c15a4917a8  setcompare.o
+d94fefe6de3d1c4cd0833c11d6d805482b576d08ca955e4ba72fbbb7ce7b47b2  setfpccsr.o
+a475f7eb8ffc3336a49f2a0521593da8915925b092149edd8044b33cce24835e  setintmask.o
+0aecec46c3ba30edc451f18d5c45da19d83582c66b340dc6528cb6b843fdb103  setsr.o
+8d9bbee5ace76a55bde1d69ab4b4e9b3a355f4df106cc56f937b30c47d0f8c9c  sqrtf.o
+9c55884328877cb66af6f6bc1e2cf3faee83fbde7568b44dde4f0c972fa18625  unmaptlball.o
+7a6dfe7e573d8495c043dbec7957caefe39ec15e44926cd1aba6dd5c04964582  writebackdcacheall.o
+2e06681c2c2d88c36b7bdb0707ed55779842f80c3d1b23bb0f796086e0042ac4  writebackdcache.o
+# Pi: sh cloud/work/frontier/w28s/ceiling/compare.sh
+setintmask           0x800071D0  RESULT: IDENTICAL (40 words, 4 relocated fields compared by value, 0 differing words)
+writebackdcacheall   0x80007810  RESULT: IDENTICAL (12 words, 0 relocated fields compared by value, 0 differing words)
+writebackdcache      0x80007CA0  RESULT: IDENTICAL (32 words, 0 relocated fields compared by value, 0 differing words)
+invalicache          0x80008460  RESULT: IDENTICAL (32 words, 0 relocated fields compared by value, 0 differing words)
+invaldcache          0x800084E0  RESULT: IDENTICAL (44 words, 0 relocated fields compared by value, 0 differing words)
+bzero                0x80008590  RESULT: IDENTICAL (40 words, 0 relocated fields compared by value, 0 differing words)
+interrupt            0x8000C4B0  RESULT: IDENTICAL (36 words, 4 relocated fields compared by value, 0 differing words)
+getcount             0x8000C970  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+exceptasm            0x8000C980  RESULT: IDENTICAL (584 words, 76 relocated fields compared by value, 0 differing words)
+bcopy                0x8000D2B0  RESULT: IDENTICAL (196 words, 0 relocated fields compared by value, 0 differing words)
+setsr                0x8000D770  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+getsr                0x8000D780  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+setfpccsr            0x8000D790  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+unmaptlball          0x8000D840  RESULT: IDENTICAL (20 words, 0 relocated fields compared by value, 0 differing words)
+maptlbrdb            0x8000D890  RESULT: IDENTICAL (24 words, 0 relocated fields compared by value, 0 differing words)
+getcause             0x8000DBB0  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+sqrtf                0x8000E3C0  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+bcmp                 0x8000F8D0  RESULT: IDENTICAL (72 words, 0 relocated fields compared by value, 0 differing words)
+ai                   0x8000FB60  RESULT: IDENTICAL (12 words, 0 relocated fields compared by value, 0 differing words)
+setcompare           0x8000FB90  RESULT: IDENTICAL (4 words, 0 relocated fields compared by value, 0 differing words)
+probetlb             0x8000FCB0  RESULT: IDENTICAL (48 words, 0 relocated fields compared by value, 0 differing words)
