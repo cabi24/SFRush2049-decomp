@@ -4,6 +4,9 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
+/* w28p (#374): hoisted from func_80010628's declarations so that func_80010450, the first slot, sees it. */
+typedef struct TransferRequest { void *destination; void *source; unsigned int size; } TransferRequest;
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11050/func_80010450.s")
 /* PROMOTED 2026-10-04 — func_800105C4
  * Source:   cloud/matches/boot_tail/func_800105C4.c (in-repo, locked)
@@ -43,7 +46,6 @@ void func_8001061C(void)
  * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80010628.c:func_80010628 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct TransferRequest { void *destination; void *source; unsigned int size; } TransferRequest;
 extern TransferRequest D_80037FA8[];
 extern void func_80014594(void);
 extern void func_800145DC(void);
