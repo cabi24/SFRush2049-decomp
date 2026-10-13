@@ -9,7 +9,7 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "dba7617e9aab63b86d1d914651254bbd41cc196d3d2ae4a8e16062cbfa57a270",
+    "src/blob/groups/credits_scroll_grp/group.json": "fa6a41ee9eef374c82d520266d7ececc454ac684581b15491741950682a61339",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
     "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4"
   },
@@ -63,11 +63,12 @@
       "func_8010221C",
       "func_80102448",
       "func_80102F30",
+      "lap_complete",
       "func_80107EDC",
       "func_80108154",
       "func_8010A53C"
     ],
-    "unaccepted_caller_bytes": 60488,
+    "unaccepted_caller_bytes": 59256,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -971,7 +972,7 @@
       "start": "0x8010761C",
       "bytes": 1232,
       "body_sha256": "9c8af2bec57a0064bc733102f1b4b413ccab75dbf90cda7a240b35fbacf456f5",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x801078E8",
         "0x80107918"

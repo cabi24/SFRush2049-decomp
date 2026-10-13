@@ -6607,6 +6607,7 @@ checkpoint_hit:
 .section .text.lap_complete, "ax", @progbits
 .globl lap_complete
 lap_complete:
+    /* compiled from src/blob/lap_complete.c */
     .word 0x27BDFF48
     .word 0x3C028011
     .word 0x8C4274B4
