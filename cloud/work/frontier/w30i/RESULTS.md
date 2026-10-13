@@ -8,7 +8,11 @@ blob_unit cache, baserom); `blob_splice rebuild-stale` rebuilt 5 stale copied gr
 | (start) | — | — | 1041/1216, 370,952 B (57.33%) |
 | 1 | `menu_save_options` (frontier_menu_save_options) superseded by w30c's packet + merge of menu_cc040_20261004 and codex_func_800C7200_2 | 2,848 | 1045/1216, 373,800 B (57.77%) |
 | 2 | `credits_scroll_grp` superseded in place (w30d): + animPlace (gr3_7af4.c) | 1,000 | 1046/1216, 374,800 B (57.92%) |
-| 3 | `frontier_results_table` superseded in place (w30a): + func_80102980 | 1,456 | **1047/1216, 376,256 B (58.15%)** |
+| 3 | `frontier_results_table` superseded in place (w30a): + func_80102980 | 1,456 | 1047/1216, 376,256 B (58.15%) |
+| 4.1 | single func_8010DCFC (w30b) | 660 | 1048/1216, 376,916 B |
+| 4.2 | NEW group func_8010B5D0 (w30b) | 556 | 1049/1216, 377,472 B (58.34%) |
+| 4.3 | NEW group func_8010AEAC (w30b) — REFUSED by blob_group (own .rodata), not installed | 0 | — |
+| 4.4 | credits_scroll_grp superseded as the UNION of w30d (animPlace) + w30b (func_80108AB0) | 760 | **1050/1216, 378,232 B (58.45%)** |
 
 ## Job 1: w30c save packet
 New coverage: draw_speedometer 1,704, func_800C7EC8 628, draw_ui_element 240, func_800CBF2C 276 = 2,848 B. The three
@@ -79,3 +83,42 @@ status of every function unchanged; group.c/save.c/ctx files are w30c's byte-for
   All seven ctx_gr3_b.c copies still byte-identical to credits_scroll_grp/gr3_b.c.
 - Slot-contract audit re-written: func_80102980 accepted, unaccepted_caller_bytes 55236 -> 53780; test list/count updated.
   symbols.json/blob.ld unchanged; not a scout target; func_800BEA3C untouched; no provisional/data/unit_overrides changes.
+
+## Job 4: w30b (merge of wave30 931baefa first)
+Unit confirmations on the current tree (tag w30i, each `--neighbours`, `locked bodies that differ in this unit: 0`):
+`EQUAL func_8010DCFC: 165 words (kept)`; `EQUAL func_8010B5D0: 139 words (kept)` (5 *_B5D0 `--internal`);
+`EQUAL func_8010AEAC: 413 words (kept)`, `EQUAL func_8010A8D0: 375 (internal)`, `EQUAL func_8010A7A4: 75 (internal)`;
+union credits packet: `blob_unit score: 6/6 equal` (func_80108AB0 190 kept + own zero-initialised data consistent,
+animPlace, animElapsedTimerText, animLapTime, slot_state_setup, credits_scroll).
+Builder (scratch w30i, recreated and deleted): `score.py fn` func_8010DCFC MATCH; func_8010B5D0 group MATCH rc=0 with and
+without --claims; func_8010AEAC group rc=1: AEAC `NOT VERIFIED (4 section-relative relocations unverified ... 0x80121018
+for +0x0, 0x801248C0 for +0x5c)`, A8D0 MATCH (own .rodata 0x801248D8..0x8012491C), A7A4 MATCH (0x801248D4..0x801248D8);
+union credits_scroll_grp rc=0 all 10 MATCH, `--claims` func_80108AB0 MATCH (`own .bss placed at 0x8013F2F8`, own .rodata
+0x801248C4..0x801248CC). (`builder_job4.log`)
+
+- 4.1 `splice_singles.py func_8010DCFC` -> `image_ok True locked 1048`. No overrides.
+- 4.2 `install_group.py cloud/work/frontier/w30b/groups/func_8010B5D0 func_8010B5D0`; force_internal += gfx_lock_B5D0,
+  gfx_unlock_B5D0, font_set_B5D0, item_refresh_B5D0, TB_CenterText_B5D0 (as instructed; they are internal by the group
+  rule anyway, `unused_overrides: []` either way).
+- 4.3 **NOT INSTALLED.** `install_group.py ... func_8010AEAC` -> `FAILED: func_8010AEAC: own .rodata: this function's
+  references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c) ...; independent regions
+  refused: .rodata: relocated words (a jump table) need the one-base or jump-table proof [per-reference placement tried
+  because the whole-section placement was refused: .rodata: unmapped data between jump table entries]`; lock, sources and
+  image restored (`image after restore: OK`), the force_internal entries for it reverted. Cause: the TU's .rodata mixes
+  the string/literal objects with AEAC's jump table, so neither the one-base proof, the independent-regions proof (which
+  refuses relocated words) nor the jump-table-windows proof (which requires the section to be table entries only)
+  applies. Also retail interleaves func_80108AB0's literals (0x801248C4..CC) between AEAC's 0x801248C0 and A7A4's
+  0x801248D4, a hint that this unit shares a TU with the hud.c siblings in credits_scroll_grp. Coordinator decision:
+  package the three into credits_scroll_grp next to gr3_8ab0.c (and re-score), or a blob_group change (tools/, not mine).
+- 4.4 Union packet `groups/credits_scroll_grp/` (w30i): installed group (8 old members + animPlace) + w30b's
+  gr3_8ab0.c; members/files/keep += func_80108AB0/gr3_8ab0.c, context unchanged; all 12 .c files byte-identical to their
+  sources (old files cmp-checked against w30b's copies too). force_internal += gfx_lock_8AB0, gfx_unlock_8AB0,
+  font_select_8AB0, font_set_8AB0, TB_SetJust_8AB0, TB_GetFlashTextCycle_8AB0, HAL_SetFont_8AB0 (`unused_overrides: []`).
+  `spliced credits_scroll_grp: 10 members, new: ['func_80108AB0']`. D_8013F2F8: only extern DECLARATIONS exist (6 locked
+  files, include/game_globals.h), no definition to drop; symbols.json/blob.ld unchanged by the splice (no receipt re-pin).
+  All eight ctx_gr3_b.c copies byte-identical to credits_scroll_grp/gr3_b.c.
+- Gates after 4.1/4.2/4.4: `group lock: 0 problems`; `blob lock: N entries, 0 problems`; `blob_unit: N locked bodies, N
+  equal to the image ..., 0 differ` (N = 1048, 1049, 1050); `ROM build with the source-built blob: SHA-1 EXACT`,
+  `build/us/rush2049.us.z64: OK`. After the refused 4.3: lock 1049 entries, unit 1049/0 differ, SHA-1 EXACT.
+- Slot-contract audit re-written at 4.2 (B5D0 accepted, 53780 -> 53224) and 4.4 (credits_scroll_grp/group.json re-pinned,
+  80108AB0 accepted, 53224 -> 52464); frozen list/count in the test updated. 4.1: no audit change. No scout targets.
