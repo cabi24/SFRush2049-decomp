@@ -497,3 +497,11 @@ Owner decisions 2026-10-12: recomp time goes only to decompilation feedback; lap
   be written without RT64 screenshots.
 - **dc cleanup policy** (`--gc`, automatic past 16 trees): keep the 12 most recently used function trees, the
   newest retail cache per function, 5 runs per function or 3 days.
+- **Scripts + census**: seven new scripts (options, pause menus, controls editor, 1-lap race finish 1P/2P, pak
+  player finish, short stunt) with script_probe; census 183 of 206 unmatched reached, 23 never (22,768 B; was 51).
+  Left: the ghost-save branch (needs a finished ghost race), battle results and mines (needs scoring), the image-A
+  only control_settings family, HUD elements gated per object, three functions with no static reference.
+- **Phase 9 needs**: steering (a finished 3-lap ghost race, battle points) by script or a scene lever (memory
+  pokes at a frame, applied identically to both sides); overlay functions (image A reaches control_settings and
+  save_settings); `--unit` across populations.
+

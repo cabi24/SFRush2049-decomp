@@ -802,3 +802,25 @@ TIMES | RACE AGAIN | NEW TRACK | NEW CAR | QUIT`. It replaces RT64 screenshots f
 a 0.5 s press auto-repeats (use the default 0.2 s, ~1 s apart); SELECT TRACK DOWN + LEFT x2 = 1 lap (default 3);
 with the accelerator held the default car finishes a 1-lap race on track 1 (6th, ~frame 3676).
 
+**Phase 8 scripts** (lane w28r; pak flow; frames in brackets): `options_menus` [2490] front-end OPTIONS / AUDIO /
+VIDEO, every row changed; `pause_menus` [4320] pause -> OPTIONS, CONTROLS (every row), AUDIO, VIDEO, RUMBLE PAK,
+RESTART; `controls_frontend` [1740] PLAYER 1 -> CONTROLS editor (RIGHT on the row before A, else A starts JUST
+PLAY); `race_finish` [4800] 1-lap race to the finish, ENTER YOUR NAME, BEST LAPS, GAME OVER -> RACE AGAIN;
+`two_player_finish` [4800] the same for 2P; `player_finish` [5100] CREATE PLAYER "AAAA" then a 1-lap finish as
+that pak player (stat writes, BEST AVERAGES), QUIT; `stunt_short` [3600] stunt with MINUTES 1 (ends at frame
+2810; keep stunt_end for the four functions only it reaches). Traps: a held press counts on release; LAPS is
+fixed at 3 in ghost and circuit; the GAME OVER menu takes 0.2 s DOWN presses (A on LAP TIMES toggles the lap list,
+which is why w26r thought DOWN was dead).
+
+**Census refresh (2026-10-12, 26 scripts, 206 unmatched): 183 reached (197,184 B), 23 never (22,768 B)** (was
+167 of 218 / 51). Still unreached, with what is known (census/README.md has the table): func_80103D28,
+func_80104B14, func_800CC50C, func_800CC040 (ghost-save branch: D_80140B20 = 4 after a ghost race FINISHED with a
+ghost recorded; gas-only 3-lap ghost races end DNF against the 3:40 limit); func_80102980, func_80101904 (the
+game-mode-6 case of func_80102F30/func_8010221C: probably battle results; scripted battles never score);
+func_8010C974 (WPR_MINE weapon callback, table 0x80118BB0: needs a mine pickup in battle); control_settings,
+func_800DD0C0, attract_mode_handler, attract_demo_handler, attract_video_handler (callees of control_settings,
+which only image A reaches: the "attract" labels are wrong); draw_speedometer, draw_ui_element, func_800C7EC8,
+drone_set_catchup, AdjustSpeed, menu_back, func_800CBF2C (gated inside func_800C813C's per-object loop / props
+render); func_800F0F44; world_effect_update, fp_call_wrapper, object_bytes23_sum (no jal, pointer or lui/addiu
+reference in any image: dead or computed-jalr only).
+
