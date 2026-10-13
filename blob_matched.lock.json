@@ -6753,6 +6753,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "game_results_input": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/game_results_input.c",
+    "source_sha256": "935ea8e080efdc71105af7e40046686b88b532bfd7ea20d9da5b66831c249f44",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "game_state_check_handler": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/game_state_check_handler.c",

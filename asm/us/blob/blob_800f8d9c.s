@@ -7028,6 +7028,7 @@ game_results_render:
 .section .text.game_results_input, "ax", @progbits
 .globl game_results_input
 game_results_input:
+    /* compiled from src/blob/game_results_input.c */
     .word 0x27BDFF88
     .word 0xAFBF001C
     .word 0x8C82002C
