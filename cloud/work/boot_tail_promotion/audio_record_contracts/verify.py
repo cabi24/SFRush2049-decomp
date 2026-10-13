@@ -17,6 +17,8 @@ REPO = Path(__file__).resolve().parents[4]
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO))
 from tools.cloud import score
+sys.path.insert(0, str(HERE.parent))
+import owned_slots
 from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import body_sha, normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions
@@ -80,9 +82,20 @@ def function_symbols(obj):
     all_symbols = [sym for i, section in enumerate(sections) if section["type"] == 2
                    for sym in score._symbol_table(data, sections, i)]
     functions = {s["name"]: s for s in all_symbols if s["section"] == text and s["type"] == 2}
-    require(not any(s["size"] and s["name"] in DATA_SECTIONS for s in sections),
-            "unexpected allocated data section in the actual TU")
+    owned_sections(obj, sections)
     return functions, all_symbols
+
+
+def owned_sections(obj, sections):
+    """Allocated data in the actual TU only as a registered owned slot of it
+    (w28s: func_80011910's .bss window 0x800382F0/0x50, owned_slots.py);
+    {section: slot report}, empty for a TU without data."""
+    if not any(s["size"] and s["name"] in DATA_SECTIONS for s in sections):
+        return {}
+    try:
+        return owned_slots.allocated_sections(obj, TU)
+    except ValueError as error:
+        raise VerificationError("unexpected allocated data section in the actual TU: " + str(error))
 
 
 def exact_extent(symbols, name, expected):
@@ -115,6 +128,16 @@ def link_tu(obj, out, addresses):
         require(functions[name]["value"] + base == addresses[name],
                 name + ": actual TU layout no longer has the native offset")
     assigns = []
+    data, sections = score._elf(obj)
+    owned = owned_sections(obj, sections)
+    # Every object the TU defines in an owned slot sits at its retail address
+    # (the OWNED-OFFSETS rule); GNU ld then places the slot section there.
+    for sym in all_symbols:
+        section = sections[sym["section"]]["name"] if 0 < sym["section"] < len(sections) else None
+        if section in owned and sym["type"] == 1 and sym["name"]:
+            want = addresses.get(sym["name"], score.address_named(sym["name"]))
+            require(want == int(owned[section]["address"], 16) + sym["value"],
+                    sym["name"] + ": owned-slot object is not at its retail address")
     for sym in all_symbols:
         if sym["section"] != 0 or not sym["name"]:
             continue
@@ -124,7 +147,9 @@ def link_tu(obj, out, addresses):
                 "unresolved linker symbol: " + name)
         assigns.append(f"{name} = 0x{address:08x};")
     script = out / (obj.stem + ".ld")
-    script.write_text("\n".join(assigns) + "\nSECTIONS { . = 0x%08x; .text : { *(.text) } }\n" % base)
+    placed = "".join(" %s %s%s : { *(%s) }" % (n, r["address"], " (NOLOAD)" if r.get("nobits") else "", n)
+                     for n, r in sorted(owned.items()))
+    script.write_text("\n".join(assigns) + "\nSECTIONS { . = 0x%08x; .text : { *(.text) }%s }\n" % (base, placed))
     elf, binary = out / (obj.stem + ".elf"), out / (obj.stem + ".bin")
     checked(["mips-linux-gnu-ld", "-EB", "-T", script, "-o", elf, obj])
     checked(["mips-linux-gnu-objcopy", "-O", "binary", "--only-section=.text", elf, binary])
