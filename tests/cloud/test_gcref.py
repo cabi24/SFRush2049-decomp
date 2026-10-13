@@ -114,3 +114,30 @@ def test_correlate_seed_and_string_pair(gcfeats):
     assert callers
     ev = [e for n in callers[:20] for g, (s, evs) in corr.score_one(n, seeds, {}).items() for w, e in evs]
     assert any(e == 'call sprintf' for e in ev)
+
+
+def test_fields_gc_decoding():
+    # stdlib: D-form field accesses decoded straight from the ELF, relocated words skipped
+    from tools.gcref import fields
+    g = fields.gc_fields()
+    st = g['SetupTarget']
+    assert {'3C/4', '40/4', '65/1', '5A/2'} <= set(st)
+    # every key is (non-negative offset, width) off a pointer register; no small-data/stack bases leak in
+    assert all(int(k.split('/')[0], 16) < 0x8000 and k.split('/')[1] in ('1', '2', '4', '8') for c in g.values() for k in c)
+
+
+def test_fields_channel_ranks_struct_twin():
+    from tools.gcref import correlate, fields
+    try:
+        root = correlate.find_n64_root()
+    except SystemExit:
+        pytest.skip('N64 build/game_code.bin not available')
+    images, _ = correlate.load_n64(REPO if os.path.exists(os.path.join(REPO, 'asm', 'us', 'blob')) else root, root)
+    nf = {}
+    for img in images:
+        nf.update(fields.n64_fields(img))
+    fi = fields.FieldIndex(nf, fields.gc_fields())
+    # the N64 function at 0x800ABCC8 (string-anchored to GC targets.c SetupTarget) walks the same struct
+    name = [n for a, s, n in images[0].funcs if a == 0x800ABCC8][0]
+    sims = sorted(fi.similar(name).items(), key=lambda kv: -kv[1][0])
+    assert sims and sims[0][0] == 'SetupTarget' and sims[0][1][0] > 0.5

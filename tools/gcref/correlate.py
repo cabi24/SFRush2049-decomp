@@ -10,6 +10,8 @@ Anchors (each weighted, each reported in the evidence string):
   flt    shared float literal (bit pattern after rounding to float32) rare on both sides
   jt     switch table of the same size (>= 5 entries)
   file   N64 neighbours (+-4 functions in the image) already paired into the candidate's GC file
+  fld    struct-offset fingerprint: rare (offset, width) field accesses off a pointer register shared
+         by both functions (tools/gcref/fields.py; IDF-weighted cosine, capped)
   size   size similarity (weak tie-breaker, only added when there is other evidence)
 
 Outputs docs/external/gc/correlation.md and correlation.json. Precision is measured on held-out
@@ -36,11 +38,18 @@ from tools.gcref.elf import REPO  # noqa: E402
 GAME_BASE = 0x80086A50
 SEED_NAMES = ['sprintf', 'strlen', 'strchr', 'memcpy', 'memset', 'memchr', 'sinf', 'cosf', 'modf',
               'huft_build', 'inflate_block', 'inflate_dynamic', 'inflate_fixed', 'inflate_stored',
-              'AdjustSpeed', 'AdjustSteer', 'no_catchup']
+              'AdjustSteer', 'no_catchup']
 # The coordinator's list also named CheckCPs/DoDrones/InitDrones/MaxPathControls/find_best_gear: in
 # symbols.json those sit at placeholder addresses (0x800C0000, 0x800A0000 ...) that are not function
 # starts in asm/us/blob, so they cannot seed; inflate_codes/inflate_entry do not exist on GC.
-GAME_SEEDS = ['AdjustSpeed', 'AdjustSteer', 'no_catchup']
+# N64 AdjustSpeed (0x800A2680) was renamed pak_delete_file_retry by lane w29n (docs/external/gc/names.md).
+GAME_SEEDS = ['AdjustSteer', 'no_catchup', 'pak_delete_file_retry']
+# Struct-offset channel (w29n): weight x similarity (an IDF cosine, <= 1), for the FLD_TOP most similar GC
+# functions with similarity >= FLD_MIN. It re-ranks candidates only: confident pairs (and the call-graph
+# propagation built on them) are decided without it unless --fld-confident (see README "Correlation").
+FLD_WEIGHT = 1.0
+FLD_MIN = 0.5
+FLD_TOP = 3
 
 
 def sext16(v):
@@ -279,8 +288,14 @@ def n64_features(img, ext_names):
 # Correlation
 # ---------------------------------------------------------------------------------------------------
 class Correlator(object):
-    def __init__(self, n64, gc, n64_order):
+    def __init__(self, n64, gc, n64_order, fields=None, fld_weight=0.0, fld_min=FLD_MIN, fld_top=FLD_TOP,
+                 fld_confident=False):
         self.n64, self.gc = n64, gc
+        self.fields, self.fld_weight, self.fld_min, self.fld_top = fields, fld_weight, fld_min, fld_top
+        # fld_confident=False: the struct-offset channel re-ranks the candidates but confident pairs (and so
+        # the call-graph propagation) are decided without it, exactly as before the channel existed
+        self.fld_confident = fld_confident
+        self._fld = {}
         self.order = n64_order                     # N64 names in address order (per image)
         self.pos = {n: i for i, n in enumerate(n64_order)}
         for f in gc.values():
@@ -317,7 +332,7 @@ class Correlator(object):
                 idx[c].add(k)
         return idx
 
-    def score_one(self, n, pairs, gfile_of_pair, mask_strings=False, only_strings=False):
+    def score_one(self, n, pairs, gfile_of_pair, mask_strings=False, only_strings=False, use_fld=True):
         """dict gc -> (score, [evidence])."""
         f = self.n64[n]
         cand = defaultdict(lambda: [0.0, []])
@@ -367,6 +382,13 @@ class Correlator(object):
             if v >= 5 and gs and len(gs) <= 6:
                 for g in gs:
                     add(g, 0.8 / max(len(gs), len(self.n_jt[v])), 'jt %d' % v)
+        if use_fld and self.fields is not None and self.fld_weight > 0:
+            if n not in self._fld:              # only the best few: a struct family shares many keys
+                sims = sorted(self.fields.similar(n).items(), key=lambda kv: (-kv[1][0], kv[0]))
+                self._fld[n] = sims[:self.fld_top]
+            for g, (sim, keys) in self._fld[n]:
+                if sim >= self.fld_min and g in self.gc:
+                    add(g, self.fld_weight * sim, 'fld x%d %s' % (len(keys), ','.join(k.split('/')[0] for k in keys[:3])))
         # call-graph anchors
         for cn in f['callees'] + f['fn_refs']:
             cg = pairs.get(cn)
@@ -416,16 +438,22 @@ class Correlator(object):
             gfile = {n: self.gc[g]['file'] for n, g in pairs.items() if g in self.gc}
             results = {}
             best_for_g = defaultdict(lambda: (0.0, None))
+            confrank = {}
+            split = self.fields is not None and self.fld_weight > 0 and not self.fld_confident
             for n in self.n64:
                 cand = self.score_one(n, pairs, gfile, mask_strings=n in mask)
                 ranked = sorted(cand.items(), key=lambda kv: -kv[1][0])[:5]
                 results[n] = ranked
+                if split:
+                    cand = self.score_one(n, pairs, gfile, mask_strings=n in mask, use_fld=False)
+                    ranked = sorted(cand.items(), key=lambda kv: -kv[1][0])[:5]
+                confrank[n] = ranked
                 if ranked:
                     g, (s, ev) = ranked[0]
                     if s > best_for_g[g][0]:
                         best_for_g[g] = (s, n)
             new = 0
-            for n, ranked in results.items():
+            for n, ranked in confrank.items():
                 if n in seeds or not ranked:
                     continue
                 g, (s1, ev) = ranked[0]
@@ -470,6 +498,14 @@ def main(argv=None):
     ap.add_argument('--gc-features', default=os.path.join(REPO, 'reference', 'gc', 'features.json'))
     ap.add_argument('--out', default=os.path.join(REPO, 'docs', 'external', 'gc'))
     ap.add_argument('--no-eval', action='store_true')
+    ap.add_argument('--elf', default=os.path.join(REPO, 'rush_d.elf'),
+                    help='rush_d.elf for the struct-offset channel (skipped when absent)')
+    ap.add_argument('--fld-weight', type=float, default=FLD_WEIGHT,
+                    help='weight of the struct-offset channel (0 disables it)')
+    ap.add_argument('--fld-min', type=float, default=FLD_MIN, help='minimum field similarity scored')
+    ap.add_argument('--fld-top', type=int, default=FLD_TOP, help='most similar GC functions scored per N64 one')
+    ap.add_argument('--fld-confident', action='store_true',
+                    help='let the struct-offset channel count towards confident pairs (unvalidated; see README)')
     a = ap.parse_args(argv)
     root = find_n64_root(a.n64_root)
     if not os.path.exists(a.gc_features):
@@ -491,7 +527,15 @@ def main(argv=None):
     blob_lock = json.load(open(os.path.join(src, 'blob_matched.lock.json')))
     ovl_lock = json.load(open(os.path.join(src, 'ovl_matched.lock.json')))
     ovl_matched = set('ovl_%s:%s' % (t, k) for t in ('a', 'b') for k in ovl_lock.get(t, {}))
-    corr = Correlator(n64, gc, order)
+    fidx = None
+    if a.fld_weight > 0 and os.path.exists(a.elf):
+        from tools.gcref import fields as fieldsmod
+        nf = OrderedDict()
+        for img in images:
+            nf.update(fieldsmod.n64_fields(img))
+        fidx = fieldsmod.FieldIndex(nf, fieldsmod.gc_fields(elf_path=a.elf))
+    corr = Correlator(n64, gc, order, fields=fidx, fld_weight=a.fld_weight, fld_min=a.fld_min,
+                      fld_top=a.fld_top, fld_confident=a.fld_confident)
     seeds = {n: n for n in SEED_NAMES if n in gc and n not in GAME_SEEDS}   # N64 static callee == GC name
 
     report = OrderedDict()
@@ -547,9 +591,9 @@ def evaluate(corr, seeds):
     for n in GAME_SEEDS:
         top = res.get(n) or []
         chk.append('%s -> %s' % (n, top[0][0] if top else 'no candidate'))
-    rep['n64_label_check'] = ('N64 symbols named after arcade functions are speculative labels, not seeds: '
-                              + '; '.join(chk) + ' (N64 AdjustSpeed at 0x800A2680 calls osPfsDeleteFile/'
-                              'osPfsFreeBlocks: a controller-pak routine)')
+    rep['n64_label_check'] = ('N64 labels from arcade names are speculative, not seeds (top-1 shown, fld re-ranking included): '
+                              + '; '.join(chk) + ' (pak_delete_file_retry at 0x800A2680, labelled AdjustSpeed until'
+                              ' w29n, calls osPfsDeleteFile/osPfsFreeBlocks: a controller-pak routine)')
     truth = {}
     for n in corr.n64:
         if n in seeds:
@@ -590,8 +634,9 @@ def write_md(path, rows, report, seeds):
                 'build is a divergent later sibling. **conf** = confident pair (score >= 3, 1.5x the runner-up, '
                 'mutual best). Evidence weights in parentheses: `str` shared string (`(tbl)` = through a pointer '
                 'table), `call`/`caller` call-graph anchor through an already-paired function, `imm`/`flt` rare '
-                'shared constant, `jt` switch table size, `file` neighbours paired into that GC file, `size` size '
-                'similarity.\n\n')
+                'shared constant, `jt` switch table size, `fld x<n> <offsets>` struct-offset fingerprint (n rare '
+                'field offsets shared; re-ranks only, never makes a pair confident), `file` neighbours paired into '
+                'that GC file, `size` size similarity.\n\n')
         f.write('Held-out evaluation:\n\n')
         for k, v in report.items():
             f.write('- %s: %s\n' % (k, v))
