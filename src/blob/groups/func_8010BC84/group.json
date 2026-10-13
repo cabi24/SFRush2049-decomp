@@ -1,0 +1,22 @@
+{
+ "name": "func_8010BC84",
+ "members": [
+  "func_8010BC84"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "fbc84.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_8010BC84"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_8010BC84 (pause controller-status text) with inlined helpers (non-static *_BC84, not on keep). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup's s2 font convention). Unit install: force_internal += Hidden_BC84, getB6_BC84, TB_CenterText_BC84, gfx_lock_BC84, gfx_unlock_BC84, font_set_BC84.",
+ "provenance": "w28c draft (160/232) -> w29b MATCH; cloud/work/frontier/w29b/RESULTS.md"
+}
