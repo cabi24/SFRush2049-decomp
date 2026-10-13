@@ -382,6 +382,9 @@ void func_800118C0(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011910.s")
+/* ROM_OWNED_RODATA_BEGIN func_80011910 */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011910.bss.s")
+/* ROM_OWNED_RODATA_END func_80011910 */
 /* PROMOTED 2026-10-04 — func_800119E0
  * Source:   cloud/matches/boot_tail/func_800119E0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

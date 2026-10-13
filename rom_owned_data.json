@@ -238,6 +238,18 @@
       "size": "0x2d0",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s",
       "comment": "w24b/w24s: lib_1050_sdk's whole .bss, retail 0x8002E8E0..0x8002EBA7 (+8 B section pad): __osScRetraceTime, gScheduler (OSSched 0x284; gViTickCounter = its retraceCount), D_8002EB6C, __osScTaskCount, __osScAudioStart, __osScFrameTime, D_8002EB88, __osScElapsedTime, __osScDeltaTime, gViFrameDelta, gViAccumTime, gViAccumTotal, gViLastTick (definition order). The entry code clears .bss from 0x8002E8E0, so this TU's .bss is the first in the image."
+    },
+    {
+      "owner": "func_80011910",
+      "co_owners": [],
+      "tu": "src/rom/lib_11640.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x800382F0",
+      "offset": "0x0",
+      "size": "0x50",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_11640/func_80011910.bss.s",
+      "comment": "w28s (owner decision 2026-10-13): lib_11640's 16-byte aligned .bss window 0x800382F0..0x8003833F, all of it C-defined in func_80011910's source in retail order: D_800382F0 (void *, func_80010DD8/80010E80/800110C4), D_800382F4 (unsigned int, func_80010DD8), D_800382F8 (OSTask, 64 B, func_80011910 only), D_80038338 (struct AudioNode *, func_80011F60/800121BC), D_8003833C (unsigned char *, func_80011F60/800121BC). The TU's other zero-initialised words (D_80038290..D_800382EC below, D_80038340.. above) stay retail-addressed extern symbols. The compiled object's whole .bss is this window (0x50)."
     }
   ],
   "storage_blocks": [
