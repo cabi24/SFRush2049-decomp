@@ -1,0 +1,37 @@
+{
+ "name": "frontier_billboard_render",
+ "members": [
+  "billboard_render",
+  "func_800F207C",
+  "func_800F1930",
+  "func_800F0914",
+  "func_800F1210",
+  "func_800F0F44"
+ ],
+ "context": [
+  "func_800F2718",
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C",
+  "func_800D50E4"
+ ],
+ "files": [
+  "func_800F2718.c",
+  "func_800F207C.c",
+  "func_800F0F44.c",
+  "func_800F1210.c",
+  "func_800F0914.c",
+  "func_800F1930.c",
+  "billboard_render.c",
+  "ctx_gr3_b.c",
+  "ctx_func_800D50E4.c"
+ ],
+ "keep": [
+  "billboard_render"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 15 (w15f): billboard_render with provisional func_800F207C/func_800F1930 as real callees; unmatched context reconstructions func_800F0914/func_800F1210/func_800F0F44; cloud/work/frontier/w15f/RESULTS.md | w28a: func_800F0914 (GC _PrintScores) moved context->members, EQUAL in the unit with its real caller billboard_render; func_800F1210 (GC _SetHighScoreState) context->members, EQUAL in the unit | w29a: func_800F0F44 (GC _FindGhosts) context->members, = 2 arm first + one disclosed do {} while (0); EQUAL in the unit",
+ "claims": [
+  "func_800F0F44"
+ ]
+}
