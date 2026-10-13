@@ -24,7 +24,7 @@ typedef struct {
 
 extern CarPart D_80139320[];
 extern char *D_8011B438[];
-extern volatile u8 D_80140BDC;
+extern volatile u8 gNumModels;
 
 void *func_800B24EC(char *name, u16 *index, s8 lo, s8 hi, s32 err);
 void func_8008D870(s16 object, void *tex, s32 mode);
@@ -58,7 +58,7 @@ void sfx_stop(s16 part, s16 car, s16 tex)
     if (tex == -1) {
         model_data_load(D_80139320[car * 13 + part].model, 0, mask);
     } else {
-        t = func_800B24EC(D_8011B438[tex], &index, 0, D_80140BDC - 1, 1);
+        t = func_800B24EC(D_8011B438[tex], &index, 0, gNumModels - 1, 1);
         p = &D_80139320[car * 13 + part];
         func_8008D870(p->model, t, -1);
         model_transform_setup(p->model, 0, mask);

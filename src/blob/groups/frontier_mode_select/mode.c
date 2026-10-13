@@ -170,7 +170,7 @@ extern u32 state_word_a;
 extern SndSet D_80140420[];
 extern s32 gameplay_mode;
 extern s16 active_player_count;
-extern s16 D_80152032;
+extern s16 gCountDown;
 s32 leaderboard_update(s32 handle);
 f32 func_8008B2E4(f32 max);
 void player_conditional_check(LayerState *rec, s32 arg1);
@@ -259,7 +259,7 @@ void func_800E0050(MODELDAT *m) {
                 if (set->rec[3].handle != -1) {
                     player_conditional_check(&set->rec[3], 1);
                 }
-            } else if (0.75f < D_80152032) {
+            } else if (0.75f < gCountDown) {
                 if (set->rec[3].handle == -1 || leaderboard_update(set->rec[3].handle) == 0) {
                     if ((s32) func_8008B2E4(5.0f) == 0) {
                         set->rec[3].handle = camera_target_track(ref, (s32) ref, 400.0f, 0.0f, 1.0f, 0.0f,

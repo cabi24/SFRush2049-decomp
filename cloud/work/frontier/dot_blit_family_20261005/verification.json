@@ -396,9 +396,9 @@
     }
   },
   "context_source_sha256": {
-    "src/blob/func_800EF5B0.c": "b67eb68eed2d09822d6e94505261cd3ee6ba96751addf74a464d85e982fe4016",
-    "src/blob/collision_sound_play.c": "63b62b4b9ede11a3b384c71211ea5e0f92346b8aafa123318a7bdbbf655da3ee",
-    "src/blob/func_800B24EC.c": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b",
+    "src/blob/func_800EF5B0.c": "462ed5b19c4bb632310c73d1f9fe31c4f2af9589b03ce4c96f42ee0a87990027",
+    "src/blob/collision_sound_play.c": "df0445a28cc9efc2402bab22984ae523afc3e1931eec575b731dc5c44f05367f",
+    "src/blob/func_800B24EC.c": "1dfaf9c9e2f9a4f30ae3bd23aeec1c72e8ff9971008edcca2a52bf9f6f4d7738",
     "src/blob/groups/frontier_pad_config/group.c": "851ffac18d1fa64431c2961d9d2683f279982ae3e329bff67710abe893f94a1d"
   },
   "host_native_linked": {

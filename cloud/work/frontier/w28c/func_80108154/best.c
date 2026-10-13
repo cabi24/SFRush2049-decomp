@@ -47,7 +47,7 @@ typedef struct Pos {
 
 extern OSMesgQueue D_801461D0;
 extern u32 D_801174B4;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s8 D_8015723C;
 extern f32 D_80142740[];
 extern Car D_80152818[];
@@ -102,7 +102,7 @@ s32 animLapTime(Blit *blt)
     s8 fixedWidth;
 
     win = blt->data;
-    if (win >= D_80151AD0) {
+    if (win >= gNumWindows) {
         blt->state = 0;
         Hidden_8154(blt, 1);
         return 1;
@@ -111,7 +111,7 @@ s32 animLapTime(Blit *blt)
     if (Hidden_8154(blt, show)) {
         return 1;
     }
-    if (D_80151AD0 == 1) {
+    if (gNumWindows == 1) {
         font_set_8154(1);
     } else {
         font_set_8154(2);
@@ -126,9 +126,9 @@ s32 animLapTime(Blit *blt)
         D_80116188[win][3] = 192;
     }
     w = digitW * 7 + colonW * 2;
-    blt->x = D_80115EA8[D_80151AD0 - 1][win].x - w / 2;
+    blt->x = D_80115EA8[gNumWindows - 1][win].x - w / 2;
     blt->w = w;
-    blt->y = D_80115EA8[D_80151AD0 - 1][win].y;
+    blt->y = D_80115EA8[gNumWindows - 1][win].y;
     blt->h = object_bytes_sum_global();
     blt->alpha = D_80116188[win][3];
     blt->half18 = 100;

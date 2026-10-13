@@ -15,9 +15,9 @@
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "source_sha256": {
     "group/func_800F2718.c": "bbe4b97550a51adf3a7420d9cbf992b397c16d666f4b0259cad0539df59ba21c",
-    "group/func_800F207C.c": "6a60b7a5e4f5d5edad5a75f966bb994a7bbd807ce7c5f8041cbc7f5c1601aed7",
+    "group/func_800F207C.c": "d55f6386edfd423f913cd54739813c03647ebbe97549a6bf43f4670a3b40543e",
     "group/func_800F0F44.c": "ee09b75b1a421b0cc1a2c5bdb91da21c84df66ece06007f241006da1ae51d99b",
-    "group/func_800F1210.c": "0a678a3da531b8991e5a3c366b2f08e970650975486b7a95bfc6e754eda6d6e4",
+    "group/func_800F1210.c": "d465a66f360f287c38ddcf212c9dd16bf14beffd559c4ee37d122c19d228593d",
     "group/func_800F1930.c": "53d9a08b1cd05ad6706c535d03b5077db23a95e539a6b096a562d6bb5ad82006",
     "group/billboard_render.c": "a672930ba265029c0055059d25d5eeaf4461d8ab5ef85c60f9380299af6b44c4",
     "group/group.json": "2b2b89e29539d919e14120cee9f769a4ed153dceaa88359c5a40d839a791a75b",

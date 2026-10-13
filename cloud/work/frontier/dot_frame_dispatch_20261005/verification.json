@@ -81,10 +81,10 @@
       "D_80116178": 2148622712,
       "D_801170FC": 2148626684,
       "D_80123DE0": 2148679136,
-      "D_80150B70": 2148862832,
+      "gCamera": 2148862832,
       "D_80150BA0": 2148862880,
-      "D_80151AD0": 2148866768,
-      "D_80152032": 2148868146,
+      "gNumWindows": 2148866768,
+      "gCountDown": 2148868146,
       "Effects_UpdateEmitters": 2148237596,
       "ShowCountdown": 2148229628,
       "func_800B7FF8": 2148237304,
@@ -537,22 +537,22 @@
           {
             "offset": 8,
             "type": 5,
-            "symbol": "D_80151AD0"
+            "symbol": "gNumWindows"
           },
           {
             "offset": 12,
             "type": 6,
-            "symbol": "D_80151AD0"
+            "symbol": "gNumWindows"
           },
           {
             "offset": 48,
             "type": 5,
-            "symbol": "D_80150B70"
+            "symbol": "gCamera"
           },
           {
             "offset": 68,
             "type": 6,
-            "symbol": "D_80150B70"
+            "symbol": "gCamera"
           },
           {
             "offset": 52,
@@ -592,12 +592,12 @@
           {
             "offset": 204,
             "type": 5,
-            "symbol": "D_80152032"
+            "symbol": "gCountDown"
           },
           {
             "offset": 208,
             "type": 6,
-            "symbol": "D_80152032"
+            "symbol": "gCountDown"
           },
           {
             "offset": 216,
@@ -715,9 +715,9 @@
   },
   "source_bindings": {
     "cloud/matches/func_800B7FF8.c": "54ed29b8a95b66c6decd85ea936fdac2b805429cdedc3e2275b2c4505c1ac30b",
-    "src/blob/Effects_UpdateEmitters.c": "11aba2a2e741dedeccc1f3fd91b16d63dfcedbbad47616e70fdde2c75a5cd4c6",
+    "src/blob/Effects_UpdateEmitters.c": "f98237ee52023e2347d3a8291d2ae648f41db4cb6dfb033311071009a646bb93",
     "cloud/work/game_C31/func_800B7FF8.bits.c": "87c66542cc78e0a69711e6e2c1bcc9ee8755b3af5673bb0d592f9726b65ce72b",
-    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "4a33d5119c0d0479d4b47b8cd67f84da469ca37a13b3772db1483c21a82642a2",
+    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "01488407310b8a2a1cf6f98684a112af8f5066c800205d650e5daa5e29eaaceb",
     "cloud/work/frontier/dot_frame_dispatch_20261005/native.py": "2a4e50b4d7b198b7eb4961edd17f9e7b19411306e640ea38394f1f46eaaa4156",
     "cloud/work/frontier/dot_frame_dispatch_20261005/host.c": "323d99a9f8722524ff1e6e2beaf48a86f7d0d83b7d46faf14b45f6ef91b35d37",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",

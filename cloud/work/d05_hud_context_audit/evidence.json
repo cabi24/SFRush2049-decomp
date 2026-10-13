@@ -226,7 +226,7 @@
         }
       ]
     },
-    "game_results_input": {
+    "animControls": {
       "native_bytes": 1732,
       "target_sha256": "c814d5f50915301748b3ce32b0d960c34cf0d17ce049ee49104ac511aa5c8e9a",
       "frame_bytes": 120,

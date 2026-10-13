@@ -33,8 +33,8 @@ typedef struct NameTable {
 #define MBOX_FATAL 2
 #define WARN_MSG(s)
 
-extern volatile u8 D_80140BDC;
-extern NameTable D_80151AE8[];
+extern volatile u8 gNumModels;
+extern NameTable gTexDefPtrs[];
 extern char *func_800A473C(char *dst, char *src);
 extern s8 func_80092D80(s32 arg0);
 extern void *entity_name_copy(void *key, void *base, u32 n, u32 size, s32 (*compar)(void *, void *));
@@ -50,14 +50,14 @@ NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi, s32 err) {
     if (lo < 0) {
         lo = 0;
     }
-    if (hi < 0 || hi >= D_80140BDC) {
-        hi = D_80140BDC - 1;
+    if (hi < 0 || hi >= gNumModels) {
+        hi = gNumModels - 1;
     }
     for (i = lo; i <= hi; i++) {
         if (!func_80092D80(i)) {
             continue;
         }
-        found = entity_name_copy(buf, D_80151AE8[i].base, D_80151AE8[i].count, 36, pointer_compare_thunk);
+        found = entity_name_copy(buf, gTexDefPtrs[i].base, gTexDefPtrs[i].count, 36, pointer_compare_thunk);
         if (found != 0) {
             break;
         }
@@ -71,6 +71,6 @@ NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi, s32 err) {
         *out = 0;
         return 0;
     }
-    *out = (found - D_80151AE8[i].base) | (i << 10);
+    *out = (found - gTexDefPtrs[i].base) | (i << 10);
     return found;
 }

@@ -67,14 +67,14 @@ def compile_control(source, label, outdir, flags=FLAGS):
 
 def run_controls(outdir):
     old = (OLD / 'candidate.c').read_text()
-    volatile = old.replace('extern u8 D_80140BDC', 'extern volatile u8 D_80140BDC')
+    volatile = old.replace('extern u8 gNumModels', 'extern volatile u8 gNumModels')
     pointer = volatile.replace('typedef signed short s16;', 'typedef signed short s16;\ntypedef unsigned short u16;')
     pointer = pointer.replace('s32 handle; u8 unknown04[64];', 'char *handle; u8 unknown04[64];')
     pointer = pointer.replace('extern s32 D_80118E08[];', 'extern char *D_80118E08[];')
     pointer = pointer.replace('extern s32 sound_bank_load(s32, s16 *, s8, s8, s32);',
                               'extern char *sound_bank_load(char *, u16 *, s8, s8, s32);')
     pointer = pointer.replace('    s32 handle;', '    char *handle;').replace('    s16 resource_id;', '    u16 resource_id;')
-    four = pointer.replace('s8, s8, s32);', 's8, s8);').replace('(s8)(D_80140BDC - 1), 1);', '(s8)(D_80140BDC - 1));')
+    four = pointer.replace('s8, s8, s32);', 's8, s8);').replace('(s8)(gNumModels - 1), 1);', '(s8)(gNumModels - 1));')
     slot = pointer.replace('        D_8012E738[state->slot].handle = handle;',
                            '        kind = state->slot;\n        D_8012E738[kind].handle = handle;')
     variant = pointer.replace('    s8 variant;\n', '').replace(

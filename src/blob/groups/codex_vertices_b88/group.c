@@ -8,7 +8,7 @@ typedef struct Vertex20 {float x,y,z;s16 s,t;u32 color;} Vertex20;
 typedef struct Record88 {s16 count;u16 flags,parameter,unknown;Vertex20 vertices[4];} Record88;
 typedef struct Texture36 {u8 prefix[16];u16 width,height;u8 middle[8];u32 flags;u32 tail;} Texture36;
 typedef struct TextureList8 {Texture36 *entries;int count;} TextureList8;
-extern TextureList8 D_80151AE8[];
+extern TextureList8 gTexDefPtrs[];
 extern signed char D_80140A04;
 void func_8008C074(Record88 *record,int count,Vec3 *positions,u16 parameter,u8 *color,u16 flags,int indexed)
 {
@@ -22,7 +22,7 @@ void func_8008C074(Record88 *record,int count,Vec3 *positions,u16 parameter,u8 *
         record->flags|=0x400;
     }
     if(record->flags&0x400) {
-        texture=&D_80151AE8[record->parameter>>10].entries[record->parameter&0x3FF];
+        texture=&gTexDefPtrs[record->parameter>>10].entries[record->parameter&0x3FF];
     } else texture=0;
     for(i=0;i<count;i++) {
         if(texture) {

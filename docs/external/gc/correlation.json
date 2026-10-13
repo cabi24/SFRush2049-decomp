@@ -3,7 +3,7 @@
 "evaluation":{
 "n64_label_check":"N64 labels from arcade names are speculative, not seeds (top-1 shown, fld re-ranking included): AdjustSteer -> no candidate; no_catchup -> no candidate; pak_delete_file_retry -> _ReadPlayer (pak_delete_file_retry at 0x800A2680, labelled AdjustSpeed until w29n, calls osPfsDeleteFile/osPfsFreeBlocks: a controller-pak routine)",
 "string_holdout_truth":"22 string-anchored pairs (string score >= 3 and 2x runner-up), two-fold: each half held out with its string channel masked",
-"string_holdout_top1":"12/22 top-1 from the other channels (20 had any candidate; top-3 15)",
+"string_holdout_top1":"12/22 top-1 from the other channels (21 had any candidate; top-3 15)",
 "string_holdout_confident_precision":"4/4 confident pairs correct (recall 4/22)",
 "unmasked_agreement":"21/22 held-out truth pairs confident with all channels"
 },
@@ -402,24 +402,24 @@
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":3.93,
-"evidence":"caller SetSheen (0.6); caller StartFrame (0.5); size 372/292 (0.5); caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller StartSmoke (0.3); +5 more"
+"score":3.77,
+"evidence":"caller SetSheen (0.6); caller StartFrame (0.5); size 372/292 (0.5); caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller StartSmoke (0.3); +5 more"
 },
 {
 "gc":"MBOX_HideObject",
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":3.36,
-"evidence":"caller SetSheen (0.6); size 372/276 (0.5); caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller StartSmoke (0.3); caller AnimateFrame (0.2); +4 more"
+"score":3.2,
+"evidence":"caller SetSheen (0.6); size 372/276 (0.5); caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller StartSmoke (0.3); caller AnimateFrame (0.2); +4 more"
 },
 {
 "gc":"ZOID_SetTexture",
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":2.28,
-"evidence":"caller SetSheen (0.6); caller updateButtons (0.8); caller StartSmoke (0.3); caller AnimateFrame (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2)"
+"score":2.12,
+"evidence":"caller SetSheen (0.6); caller updateButtons (0.7); caller StartSmoke (0.3); caller AnimateFrame (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2)"
 }
 ]
 },
@@ -447,24 +447,24 @@
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":4.03,
-"evidence":"caller SetSheen (0.6); caller StartFrame (0.5); size 404/292 (0.4); caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller StartSmoke (0.3); +6 more"
+"score":3.86,
+"evidence":"caller SetSheen (0.6); caller StartFrame (0.5); size 404/292 (0.4); caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller StartSmoke (0.3); +6 more"
 },
 {
 "gc":"MBOX_HideObject",
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":3.32,
-"evidence":"caller SetSheen (0.6); size 404/276 (0.4); caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller StartSmoke (0.3); caller AnimateFrame (0.2); +4 more"
+"score":3.16,
+"evidence":"caller SetSheen (0.6); size 404/276 (0.4); caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller StartSmoke (0.3); caller AnimateFrame (0.2); +4 more"
 },
 {
 "gc":"ZOID_SetTexture",
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":2.42,
-"evidence":"caller SetSheen (0.6); caller updateButtons (0.8); caller StartSmoke (0.3); caller AnimateFrame (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2); +1 more"
+"score":2.25,
+"evidence":"caller SetSheen (0.6); caller updateButtons (0.7); caller StartSmoke (0.3); caller AnimateFrame (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2); +1 more"
 }
 ]
 },
@@ -527,7 +527,7 @@
 "file":"fmath.c",
 "address":"0x8009B818",
 "size":76,
-"score":0.99,
+"score":0.98,
 "evidence":"size 72/76 (0.6); caller AnimateWeapon (0.2); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -535,7 +535,7 @@
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":0.87,
+"score":0.86,
 "evidence":"size 72/96 (0.5); caller AnimateWeapon (0.2); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -543,7 +543,7 @@
 "file":"statll.c",
 "address":"0x80043198",
 "size":76,
-"score":0.82,
+"score":0.81,
 "evidence":"size 72/76 (0.6); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 }
 ]
@@ -562,24 +562,24 @@
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":2.52,
-"evidence":"size 116/112 (0.6); caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller showCarSelect (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); +1 more"
+"score":2.44,
+"evidence":"size 116/112 (0.6); caller AnimateRocketFlame (0.4); caller showCarSelect (0.3); caller updateButtons (0.7); caller initButtons (0.2); caller AnimateWeapon (0.2); +1 more"
 },
 {
 "gc":"MBOX_HideObject",
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":1.71,
-"evidence":"caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller initButtons (0.2); caller AnimateWeapon (0.2); size 116/276 (0.2)"
+"score":1.65,
+"evidence":"caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller initButtons (0.2); caller AnimateWeapon (0.2); size 116/276 (0.2)"
 },
 {
 "gc":"MBOX_ShowObject",
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":1.68,
-"evidence":"caller AnimateRocketFlame (0.4); caller updateButtons (0.8); caller initButtons (0.2); caller AnimateWeapon (0.2); size 116/292 (0.1)"
+"score":1.62,
+"evidence":"caller AnimateRocketFlame (0.4); caller updateButtons (0.7); caller initButtons (0.2); caller AnimateWeapon (0.2); size 116/292 (0.1)"
 }
 ]
 },
@@ -597,7 +597,7 @@
 "file":"mbox.c",
 "address":"0x80028B40",
 "size":36,
-"score":0.72,
+"score":0.71,
 "evidence":"size 40/36 (0.5); caller AnimateWeapon (0.2)"
 },
 {
@@ -632,24 +632,24 @@
 "file":"zoidpoly.c",
 "address":"0x80062D70",
 "size":16,
-"score":0.55,
-"evidence":"caller AnimateArrow (0.5); size 44/16 (0.1)"
+"score":0.52,
+"evidence":"caller AnimateArrow (0.4); size 44/16 (0.1)"
 },
 {
 "gc":"U64WorldVector",
 "file":"fmath.c",
 "address":"0x8009C1AC",
 "size":132,
-"score":0.51,
-"evidence":"caller AnimateArrow (0.5); size 44/132 (0.1)"
+"score":0.47,
+"evidence":"caller AnimateArrow (0.4); size 44/132 (0.1)"
 },
 {
 "gc":"ZOID_UpdatePoly",
 "file":"zoidpoly.c",
 "address":"0x80062B4C",
 "size":540,
-"score":0.46,
-"evidence":"caller AnimateArrow (0.5)"
+"score":0.42,
+"evidence":"caller AnimateArrow (0.4)"
 }
 ]
 },
@@ -871,16 +871,16 @@
 "file":"atan.c",
 "address":"0x8009CBD8",
 "size":188,
-"score":1.66,
-"evidence":"file atan.c x3 (1.2); caller AnimateArrow (0.5)"
+"score":1.62,
+"evidence":"file atan.c x3 (1.2); caller AnimateArrow (0.4)"
 },
 {
 "gc":"ZOID_UpdatePoly",
 "file":"zoidpoly.c",
 "address":"0x80062B4C",
 "size":540,
-"score":1.56,
-"evidence":"caller newWorldDamage (0.6); caller AnimateArrow (0.5); caller ShowCountdown (0.3); size 1232/540 (0.2)"
+"score":1.48,
+"evidence":"caller newWorldDamage (0.6); caller AnimateArrow (0.4); caller ShowCountdown (0.2); size 1232/540 (0.2)"
 },
 {
 "gc":"_SetupWaveModel",
@@ -906,8 +906,8 @@
 "file":"atan.c",
 "address":"0x8009CBD8",
 "size":188,
-"score":2.46,
-"evidence":"file atan.c x4 (1.5); size 156/188 (0.5); caller AnimateArrow (0.5)"
+"score":2.43,
+"evidence":"file atan.c x4 (1.5); size 156/188 (0.5); caller AnimateArrow (0.4)"
 },
 {
 "gc":"fsatan",
@@ -1046,8 +1046,8 @@
 "file":"atan.c",
 "address":"0x8009CBD8",
 "size":188,
-"score":4.78,
-"evidence":"call fsatan (1.2); call fatan (1.2); file atan.c x3 (1.2); caller AnimateArrow (0.5); size 268/188 (0.4); flt -3.14159 (0.2)"
+"score":4.75,
+"evidence":"call fsatan (1.2); call fatan (1.2); file atan.c x3 (1.2); size 268/188 (0.4); caller AnimateArrow (0.4); flt -3.14159 (0.2)"
 },
 {
 "gc":"fatan",
@@ -1326,15 +1326,15 @@
 "file":"fmath.c",
 "address":"0x8009B818",
 "size":76,
-"score":2.71,
-"evidence":"size 76/76 (0.6); caller initialize (0.6); caller AnimateRocketFlame (0.4); caller SetupTarget (0.2); caller update_camera (0.2); caller AnimateWeapon (0.2); +5 more"
+"score":2.68,
+"evidence":"size 76/76 (0.6); caller initialize (0.6); caller AnimateRocketFlame (0.4); caller update_camera (0.2); caller SetupTarget (0.2); caller AnimateWing (0.2); +5 more"
 },
 {
 "gc":"Random",
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":1.75,
+"score":1.71,
 "evidence":"size 76/96 (0.5); caller AnimateRocketFlame (0.4); caller CheckCameraView (0.3); caller SetupTarget (0.2); caller AnimateWeapon (0.2); caller ShotUpdate (0.1); +1 more"
 },
 {
@@ -1362,7 +1362,7 @@
 "address":"0x80061FBC",
 "size":104,
 "score":2.66,
-"evidence":"fld x4 24,28,2C (1.0); caller StartWeapon (0.7); size 104/104 (0.6); caller AnimateWeapon (0.2); caller AnimateWing (0.2)"
+"evidence":"fld x4 24,28,2C (1.0); caller StartWeapon (0.7); size 104/104 (0.6); caller AnimateWing (0.2); caller AnimateWeapon (0.2)"
 },
 {
 "gc":"MBOX_GetPosition",
@@ -1431,24 +1431,24 @@
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":2.65,
-"evidence":"caller SetSheen (0.6); size 104/64 (0.4); caller updateButtons (0.8); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); +2 more"
+"score":2.5,
+"evidence":"caller SetSheen (0.6); size 104/64 (0.4); caller updateButtons (0.7); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); +2 more"
 },
 {
 "gc":"MBOX_ShowObject",
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":2.28,
-"evidence":"caller SetSheen (0.6); caller updateButtons (0.8); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1); +1 more"
+"score":2.14,
+"evidence":"caller SetSheen (0.6); caller updateButtons (0.7); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1); +1 more"
 },
 {
 "gc":"MBOX_HideObject",
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":2.17,
-"evidence":"caller SetSheen (0.6); caller updateButtons (0.8); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); size 104/276 (0.1)"
+"score":2.03,
+"evidence":"caller SetSheen (0.6); caller updateButtons (0.7); caller StartSmoke (0.3); caller initButtons (0.2); caller AnimateWeapon (0.2); size 104/276 (0.1)"
 }
 ]
 },
@@ -1466,7 +1466,7 @@
 "file":"visuals.c",
 "address":"0x8005B2D4",
 "size":112,
-"score":0.93,
+"score":0.91,
 "evidence":"size 100/112 (0.5); caller AnimateFrame (0.2); caller AnimateWing (0.2)"
 },
 {
@@ -1474,7 +1474,7 @@
 "file":"visuals.c",
 "address":"0x8005451C",
 "size":96,
-"score":0.8,
+"score":0.78,
 "evidence":"size 100/96 (0.6); caller AnimateFrame (0.2)"
 },
 {
@@ -1536,7 +1536,7 @@
 "file":"zoidtexture.c",
 "address":"0x80062DFC",
 "size":32,
-"score":1.3,
+"score":1.26,
 "evidence":"size 44/32 (0.4); caller updateButtons (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -1544,7 +1544,7 @@
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":1.27,
+"score":1.23,
 "evidence":"size 44/64 (0.4); caller updateButtons (0.2); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -1552,7 +1552,7 @@
 "file":"mbox.c",
 "address":"0x80028B40",
 "size":36,
-"score":1.01,
+"score":0.99,
 "evidence":"size 44/36 (0.5); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1)"
 }
 ]
@@ -1581,7 +1581,7 @@
 "file":"fmath.c",
 "address":"0x8009C230",
 "size":124,
-"score":1.15,
+"score":1.14,
 "evidence":"size 140/124 (0.5); flt 1e-05 (0.3); caller StartSmoke (0.3)"
 },
 {
@@ -1589,7 +1589,7 @@
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":0.69,
+"score":0.67,
 "evidence":"size 140/96 (0.4); caller StartSmoke (0.3)"
 },
 {
@@ -1597,7 +1597,7 @@
 "file":"statll.c",
 "address":"0x80043198",
 "size":76,
-"score":0.57,
+"score":0.56,
 "evidence":"size 140/76 (0.3); caller StartSmoke (0.3)"
 }
 ]
@@ -1636,24 +1636,24 @@
 "file":"mbox.c",
 "address":"0x80028F58",
 "size":320,
-"score":1.38,
-"evidence":"caller SkyInit (0.6); size 300/320 (0.6); caller SetupTarget (0.2)"
-},
-{
-"gc":"SkyClear",
-"file":"sky.c",
-"address":"0x80040E7C",
-"size":160,
-"score":0.91,
-"evidence":"caller SkyInit (0.6); size 300/160 (0.3)"
+"score":1.26,
+"evidence":"size 300/320 (0.6); caller SkyInit (0.5); caller SetupTarget (0.2)"
 },
 {
 "gc":"MBOX_ShowObject",
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":0.86,
+"score":0.85,
 "evidence":"size 300/292 (0.6); caller StartSmoke (0.3)"
+},
+{
+"gc":"MBOX_HideObject",
+"file":"mbox.c",
+"address":"0x80028BCC",
+"size":276,
+"score":0.82,
+"evidence":"size 300/276 (0.6); caller StartSmoke (0.3)"
 }
 ]
 },
@@ -1671,7 +1671,7 @@
 "file":"mbox.c",
 "address":"0x80028B40",
 "size":36,
-"score":1.28,
+"score":1.25,
 "evidence":"size 40/36 (0.5); caller initButtons (0.2); caller AnimateWeapon (0.2); caller ShotUpdate (0.1); caller initScreen (0.1); caller _InitScreen (0.1)"
 },
 {
@@ -1679,7 +1679,7 @@
 "file":"zoidtexture.c",
 "address":"0x80062DFC",
 "size":32,
-"score":1.0,
+"score":0.97,
 "evidence":"size 40/32 (0.5); caller initButtons (0.2); caller AnimateWeapon (0.2); caller initScreen (0.1)"
 },
 {
@@ -1706,7 +1706,7 @@
 "file":"statll.c",
 "address":"0x80043198",
 "size":76,
-"score":1.28,
+"score":1.26,
 "evidence":"size 72/76 (0.6); caller StartSmoke (0.3); caller SetupTarget (0.2); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -1714,16 +1714,16 @@
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":1.16,
+"score":1.14,
 "evidence":"size 72/96 (0.5); caller StartSmoke (0.3); caller SetupTarget (0.2); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 },
 {
-"gc":"CopyUV",
-"file":"fmath.c",
-"address":"0x8009B818",
-"size":76,
+"gc":"InitWingSmoke",
+"file":"smoke.c",
+"address":"0x80041034",
+"size":72,
 "score":1.0,
-"evidence":"size 72/76 (0.6); caller SetupTarget (0.2); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
+"evidence":"size 72/72 (0.6); file smoke.c x1 (0.4)"
 }
 ]
 },
@@ -1741,7 +1741,7 @@
 "file":"smoke.c",
 "address":"0x8004107C",
 "size":1252,
-"score":2.32,
+"score":2.31,
 "evidence":"fld x18 56,54,7C (0.8); size 1544/1252 (0.5); file smoke.c x1 (0.4); flt 70 (0.3); caller StartSmoke (0.3)"
 },
 {
@@ -2082,7 +2082,7 @@
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":0.59,
+"score":0.58,
 "evidence":"size 44/64 (0.4); caller AnimateWeapon (0.2)"
 }
 ]
@@ -2101,24 +2101,24 @@
 "file":"targets.c",
 "address":"0x8004EF38",
 "size":280,
-"score":1.12,
-"evidence":"size 260/280 (0.6); caller _AnimateFlag (0.6)"
+"score":1.06,
+"evidence":"size 260/280 (0.6); caller _AnimateFlag (0.5)"
 },
 {
 "gc":"MBOX_FindTexture_WORK",
 "file":"mbox.c",
 "address":"0x800290B8",
 "size":296,
-"score":1.09,
-"evidence":"caller _AnimateFlag (0.6); size 260/296 (0.5)"
+"score":1.04,
+"evidence":"size 260/296 (0.5); caller _AnimateFlag (0.5)"
 },
 {
 "gc":"ReleaseEnviron",
 "file":"visuals.c",
 "address":"0x800555CC",
 "size":224,
-"score":1.08,
-"evidence":"caller _AnimateFlag (0.6); size 260/224 (0.5)"
+"score":1.03,
+"evidence":"size 260/224 (0.5); caller _AnimateFlag (0.5)"
 }
 ]
 },
@@ -2181,7 +2181,7 @@
 "file":"fmath.c",
 "address":"0x8009BD40",
 "size":220,
-"score":1.96,
+"score":1.95,
 "evidence":"caller MissileLock (0.7); size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller ShotUpdate (0.1)"
 },
 {
@@ -2189,7 +2189,7 @@
 "file":"fmath.c",
 "address":"0x8009BC64",
 "size":220,
-"score":1.96,
+"score":1.95,
 "evidence":"caller MissileLock (0.7); size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller ShotUpdate (0.1)"
 },
 {
@@ -2216,7 +2216,7 @@
 "file":"fmath.c",
 "address":"0x8009BD40",
 "size":220,
-"score":2.23,
+"score":2.21,
 "evidence":"caller MissileLock (0.7); size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller AnimateWing (0.2); caller ShotUpdate (0.1); +1 more"
 },
 {
@@ -2224,7 +2224,7 @@
 "file":"fmath.c",
 "address":"0x8009BC64",
 "size":220,
-"score":1.96,
+"score":1.95,
 "evidence":"caller MissileLock (0.7); size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller ShotUpdate (0.1)"
 },
 {
@@ -2671,7 +2671,7 @@
 "file":"visuals.c",
 "address":"0x80055310",
 "size":64,
-"score":1.16,
+"score":1.14,
 "evidence":"size 72/64 (0.5); file visuals.c x1 (0.4); caller AnimateFrame (0.2)"
 },
 {
@@ -2679,16 +2679,16 @@
 "file":"visuals.c",
 "address":"0x8005451C",
 "size":96,
-"score":1.08,
+"score":1.06,
 "evidence":"size 72/96 (0.5); file visuals.c x1 (0.4); caller AnimateFrame (0.2)"
 },
 {
-"gc":"CheckVisible",
+"gc":"exitVisuals",
 "file":"visuals.c",
-"address":"0x8005B2D4",
-"size":112,
+"address":"0x80055350",
+"size":72,
 "score":1.0,
-"evidence":"file visuals.c x1 (0.4); size 72/112 (0.4); caller AnimateFrame (0.2)"
+"evidence":"size 72/72 (0.6); file visuals.c x1 (0.4)"
 }
 ]
 },
@@ -2776,24 +2776,24 @@
 "file":"bsearch.c",
 "address":"0x80005E50",
 "size":224,
-"score":1.64,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); caller MBOX_FindObject_WORK (0.6); size 296/224 (0.5)"
+"score":1.47,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); caller MBOX_FindObject_WORK (0.5); size 296/224 (0.5)"
 },
 {
 "gc":"strcpy",
 "file":"_lib",
 "address":"0x800E7B88",
 "size":184,
-"score":1.55,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); caller MBOX_FindObject_WORK (0.6); size 296/184 (0.4)"
+"score":1.37,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); caller MBOX_FindObject_WORK (0.5); size 296/184 (0.4)"
 },
 {
-"gc":"ModelActive",
-"file":"waves.c",
-"address":"0x8005BC80",
-"size":68,
-"score":1.18,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); caller MBOX_FindObject_WORK (0.6)"
+"gc":"InitEnvs",
+"file":"visuals.c",
+"address":"0x80054044",
+"size":312,
+"score":1.08,
+"evidence":"size 296/312 (0.6); file visuals.c x1 (0.4); caller LoadTrack (0.1)"
 }
 ]
 },
@@ -2811,24 +2811,24 @@
 "file":"waves.c",
 "address":"0x8005BC80",
 "size":68,
-"score":1.73,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); caller MBOX_FindObject_WORK (0.6); size 76/68 (0.5)"
+"score":1.55,
+"evidence":"size 76/68 (0.5); caller MBOX_FindTexture_WORK (0.5); caller MBOX_FindObject_WORK (0.5)"
 },
 {
 "gc":"objcmp",
 "file":"mbox.c",
 "address":"0x80028E04",
 "size":60,
-"score":1.44,
-"evidence":"caller MBOX_FindObject_WORK (0.6); size 76/60 (0.5); file mbox.c x1 (0.4)"
+"score":1.38,
+"evidence":"caller MBOX_FindObject_WORK (0.5); size 76/60 (0.5); file mbox.c x1 (0.4)"
 },
 {
 "gc":"strcpy",
 "file":"_lib",
 "address":"0x800E7B88",
 "size":184,
-"score":1.34,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); caller MBOX_FindObject_WORK (0.6); size 76/184 (0.2)"
+"score":1.17,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); caller MBOX_FindObject_WORK (0.5); size 76/184 (0.2)"
 }
 ]
 },
@@ -2846,8 +2846,8 @@
 "file":"mbox.c",
 "address":"0x80028E04",
 "size":60,
-"score":1.32,
-"evidence":"caller MBOX_FindObject_WORK (0.6); file mbox.c x1 (0.4); size 96/60 (0.4)"
+"score":1.26,
+"evidence":"caller MBOX_FindObject_WORK (0.5); file mbox.c x1 (0.4); size 96/60 (0.4)"
 },
 {
 "gc":"SetSheenColor",
@@ -2858,12 +2858,12 @@
 "evidence":"size 96/96 (0.6); file visuals.c x1 (0.4)"
 },
 {
-"gc":"ModelActive",
-"file":"waves.c",
-"address":"0x8005BC80",
-"size":68,
-"score":0.99,
-"evidence":"caller MBOX_FindObject_WORK (0.6); size 96/68 (0.4)"
+"gc":"StartBrakeLights",
+"file":"visuals.c",
+"address":"0x8005A954",
+"size":100,
+"score":0.98,
+"evidence":"size 96/100 (0.6); file visuals.c x1 (0.4)"
 }
 ]
 },
@@ -2881,8 +2881,8 @@
 "file":"mbox.c",
 "address":"0x80028F58",
 "size":320,
-"score":4.89,
-"evidence":"str \"AAANULLOBJ\" (3.0); caller SkyInit (0.6); size 436/320 (0.4); caller AnimateFrame (0.2); caller initButtons (0.2); caller SetupTarget (0.2); +2 more"
+"score":4.73,
+"evidence":"str \"AAANULLOBJ\" (3.0); caller SkyInit (0.5); size 436/320 (0.4); caller AnimateFrame (0.2); caller initButtons (0.2); caller SetupTarget (0.2); +2 more"
 },
 {
 "gc":"InitVisuals",
@@ -2916,7 +2916,7 @@
 "file":"visuals.c",
 "address":"0x8005447C",
 "size":160,
-"score":1.54,
+"score":1.52,
 "evidence":"file visuals.c x2 (0.8); size 188/160 (0.5); caller AnimateFrame (0.2)"
 },
 {
@@ -2986,7 +2986,7 @@
 "file":"visuals.c",
 "address":"0x80055C3C",
 "size":1908,
-"score":4.3,
+"score":4.28,
 "evidence":"flt 0.58 (1.0); flt -5.6 (1.0); flt 0.28 (0.5); flt 0.55 (0.5); size 2684/1908 (0.4); file visuals.c x1 (0.4); +2 more"
 },
 {
@@ -3091,16 +3091,16 @@
 "file":"targets.c",
 "address":"0x8004EF38",
 "size":280,
-"score":2.42,
-"evidence":"fld x6 58,5A,50 (0.9); caller _AnimateFlag (0.6); size 332/280 (0.5); flt 0.0625 (0.5)"
+"score":2.37,
+"evidence":"fld x6 58,5A,50 (0.9); size 332/280 (0.5); flt 0.0625 (0.5); caller _AnimateFlag (0.5)"
 },
 {
 "gc":"ReleaseEnviron",
 "file":"visuals.c",
 "address":"0x800555CC",
 "size":224,
-"score":1.76,
-"evidence":"file visuals.c x2 (0.8); caller _AnimateFlag (0.6); size 332/224 (0.4)"
+"score":1.7,
+"evidence":"file visuals.c x2 (0.8); caller _AnimateFlag (0.5); size 332/224 (0.4)"
 },
 {
 "gc":"InitEnvs",
@@ -3276,24 +3276,24 @@
 "file":"blit.c",
 "address":"0x800A48D4",
 "size":160,
-"score":6.15,
-"evidence":"caller animOdometer (1.0); caller animRadar (1.0); fld x15 34,19,1E (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); +2 more"
+"score":5.52,
+"evidence":"fld x15 34,19,1E (1.0); caller animOdometer (0.9); caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); +2 more"
 },
 {
 "gc":"Hidden",
 "file":"hud.c",
 "address":"0x800223C0",
 "size":72,
-"score":4.75,
-"evidence":"caller animOdometer (1.0); caller animRadar (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); caller animControls (0.5); +1 more"
+"score":4.13,
+"evidence":"caller animOdometer (0.9); caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); caller animControls (0.4); +1 more"
 },
 {
 "gc":"RenameBlit",
 "file":"blit.c",
 "address":"0x800A4A90",
 "size":104,
-"score":3.92,
-"evidence":"caller animRadar (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); caller animControls (0.5); size 192/104 (0.3)"
+"score":3.43,
+"evidence":"caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); caller animControls (0.4); size 192/104 (0.3)"
 }
 ]
 },
@@ -3366,24 +3366,24 @@
 "file":"mbox.c",
 "address":"0x80029098",
 "size":32,
-"score":1.23,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); size 32/32 (0.6)"
+"score":1.11,
+"evidence":"size 32/32 (0.6); caller MBOX_FindTexture_WORK (0.5)"
 },
 {
 "gc":"ModelActive",
 "file":"waves.c",
 "address":"0x8005BC80",
 "size":68,
-"score":0.85,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); size 32/68 (0.2)"
+"score":0.73,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); size 32/68 (0.2)"
 },
 {
 "gc":"bsearch",
 "file":"bsearch.c",
 "address":"0x80005E50",
 "size":224,
-"score":0.62,
-"evidence":"caller MBOX_FindTexture_WORK (0.6)"
+"score":0.51,
+"evidence":"caller MBOX_FindTexture_WORK (0.5)"
 }
 ]
 },
@@ -3401,7 +3401,7 @@
 "file":"_lib",
 "address":"0x800E7918",
 "size":104,
-"score":0.73,
+"score":0.72,
 "evidence":"size 116/104 (0.5); caller SetupTarget (0.2)"
 },
 {
@@ -3409,7 +3409,7 @@
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":0.69,
+"score":0.68,
 "evidence":"size 116/96 (0.5); caller SetupTarget (0.2)"
 },
 {
@@ -3436,24 +3436,24 @@
 "file":"mbox.c",
 "address":"0x80028E04",
 "size":60,
-"score":1.09,
-"evidence":"caller MBOX_FindObject_WORK (0.6); size 52/60 (0.5)"
+"score":1.03,
+"evidence":"size 52/60 (0.5); caller MBOX_FindObject_WORK (0.5)"
 },
 {
 "gc":"ModelActive",
 "file":"waves.c",
 "address":"0x8005BC80",
 "size":68,
-"score":1.02,
-"evidence":"caller MBOX_FindObject_WORK (0.6); size 52/68 (0.5)"
+"score":0.97,
+"evidence":"caller MBOX_FindObject_WORK (0.5); size 52/68 (0.5)"
 },
 {
 "gc":"strncpy",
 "file":"_lib",
 "address":"0x800E7B44",
 "size":68,
-"score":1.02,
-"evidence":"caller MBOX_FindObject_WORK (0.6); size 52/68 (0.5)"
+"score":0.97,
+"evidence":"caller MBOX_FindObject_WORK (0.5); size 52/68 (0.5)"
 }
 ]
 },
@@ -4171,7 +4171,7 @@
 "file":"mb_wad.c",
 "address":"0x800288EC",
 "size":200,
-"score":0.66,
+"score":0.64,
 "evidence":"size 284/200 (0.4); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4179,7 +4179,7 @@
 "file":"ngcVu1pack.c",
 "address":"0x80096CC0",
 "size":404,
-"score":0.66,
+"score":0.64,
 "evidence":"size 284/404 (0.4); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4187,7 +4187,7 @@
 "file":"mb_wad.c",
 "address":"0x800289B4",
 "size":196,
-"score":0.65,
+"score":0.63,
 "evidence":"size 284/196 (0.4); caller _SetupWaveModel (0.2)"
 }
 ]
@@ -4232,7 +4232,7 @@
 "file":"ngcVu1pack.c",
 "address":"0x80096EEC",
 "size":472,
-"score":0.63,
+"score":0.6,
 "evidence":"size 716/472 (0.4); caller _SetupWaveModel (0.2)"
 }
 ]
@@ -4259,7 +4259,7 @@
 "file":"mb_wad.c",
 "address":"0x800288EC",
 "size":200,
-"score":0.71,
+"score":0.69,
 "evidence":"size 256/200 (0.5); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4267,7 +4267,7 @@
 "file":"mb_wad.c",
 "address":"0x800289B4",
 "size":196,
-"score":0.7,
+"score":0.68,
 "evidence":"size 256/196 (0.5); caller _SetupWaveModel (0.2)"
 }
 ]
@@ -4321,7 +4321,7 @@
 "file":"waves.c",
 "address":"0x8005C584",
 "size":124,
-"score":1.11,
+"score":1.08,
 "evidence":"size 96/124 (0.5); file waves.c x1 (0.4); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4329,7 +4329,7 @@
 "file":"waves.c",
 "address":"0x8005B768",
 "size":76,
-"score":1.0,
+"score":0.99,
 "evidence":"size 96/76 (0.5); file waves.c x1 (0.4); caller LoadTrack (0.1)"
 },
 {
@@ -4356,7 +4356,7 @@
 "file":"waves.c",
 "address":"0x8005C584",
 "size":124,
-"score":1.17,
+"score":1.14,
 "evidence":"size 108/124 (0.5); file waves.c x1 (0.4); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4391,7 +4391,7 @@
 "file":"waves.c",
 "address":"0x8005C584",
 "size":124,
-"score":1.22,
+"score":1.2,
 "evidence":"size 128/124 (0.6); file waves.c x1 (0.4); caller _SetupWaveModel (0.2)"
 },
 {
@@ -4721,7 +4721,7 @@
 "file":"visuals.c",
 "address":"0x8005417C",
 "size":436,
-"score":0.7,
+"score":0.69,
 "evidence":"size 520/436 (0.5); caller LoadTrack (0.1); caller _InitScreen (0.1)"
 },
 {
@@ -4729,7 +4729,7 @@
 "file":"visuals.c",
 "address":"0x80053C30",
 "size":548,
-"score":0.69,
+"score":0.68,
 "evidence":"size 520/548 (0.6); caller LoadTrack (0.1)"
 },
 {
@@ -5690,7 +5690,7 @@
 "file":"fmath.c",
 "address":"0x8009BE1C",
 "size":220,
-"score":1.41,
+"score":1.39,
 "evidence":"size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller AnimateWeapon (0.2); caller ShotUpdate (0.1)"
 },
 {
@@ -5706,7 +5706,7 @@
 "file":"fmath.c",
 "address":"0x8009BD40",
 "size":220,
-"score":1.24,
+"score":1.23,
 "evidence":"size 168/220 (0.5); flt -0.0001 (0.3); caller showCarSelect (0.3); caller ShotUpdate (0.1)"
 }
 ]
@@ -6337,7 +6337,7 @@
 "file":"paksysdc.c",
 "address":"0x8002FA6C",
 "size":196,
-"score":0.82,
+"score":0.81,
 "evidence":"size 228/196 (0.5); caller initScreen (0.2); caller updatePlayerScreen (0.1)"
 },
 {
@@ -6609,24 +6609,24 @@
 "file":"_lib",
 "address":"0x800E7918",
 "size":104,
-"score":1.24,
-"evidence":"caller _AnimateFlag (0.6); size 128/104 (0.5); caller SetupTarget (0.2)"
+"score":1.17,
+"evidence":"caller _AnimateFlag (0.5); size 128/104 (0.5); caller SetupTarget (0.2)"
 },
 {
 "gc":"ReleaseEnviron",
 "file":"visuals.c",
 "address":"0x800555CC",
 "size":224,
-"score":0.88,
-"evidence":"caller _AnimateFlag (0.6); size 128/224 (0.3)"
+"score":0.82,
+"evidence":"caller _AnimateFlag (0.5); size 128/224 (0.3)"
 },
 {
 "gc":"ZOID_SetTexture",
 "file":"zoidtexture.c",
 "address":"0x80062E58",
 "size":64,
-"score":0.81,
-"evidence":"caller _AnimateFlag (0.6); size 128/64 (0.3)"
+"score":0.75,
+"evidence":"caller _AnimateFlag (0.5); size 128/64 (0.3)"
 }
 ]
 },
@@ -6654,16 +6654,16 @@
 "file":"waves.c",
 "address":"0x8005BC80",
 "size":68,
-"score":1.09,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); size 52/68 (0.5)"
+"score":0.98,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); size 52/68 (0.5)"
 },
 {
 "gc":"texcmp",
 "file":"mbox.c",
 "address":"0x80029098",
 "size":32,
-"score":0.98,
-"evidence":"caller MBOX_FindTexture_WORK (0.6); size 52/32 (0.4)"
+"score":0.87,
+"evidence":"caller MBOX_FindTexture_WORK (0.5); size 52/32 (0.4)"
 },
 {
 "gc":"InitCheckpointData",
@@ -7443,8 +7443,8 @@
 "file":"zoidwindow.c",
 "address":"0x8006385C",
 "size":388,
-"score":2.66,
-"evidence":"flt 32767 (1.0); size 448/388 (0.5); flt -32768 (0.5); caller animControls (0.5); caller drawView (0.1); caller updateCarScreen (0.1)"
+"score":2.58,
+"evidence":"flt 32767 (1.0); size 448/388 (0.5); flt -32768 (0.5); caller animControls (0.4); caller drawView (0.1); caller updateCarScreen (0.1)"
 },
 {
 "gc":"CheckReadHuff4Bundle",
@@ -7486,7 +7486,7 @@
 "file":"zoidwindow.c",
 "address":"0x80062F34",
 "size":132,
-"score":0.91,
+"score":0.9,
 "evidence":"call ZOID_InitializeWindow (0.8); caller _InitScreen (0.1)"
 },
 {
@@ -7628,8 +7628,8 @@
 "file":"zoidpoly.c",
 "address":"0x80062B4C",
 "size":540,
-"score":1.14,
-"evidence":"caller newWorldDamage (0.6); caller ShowCountdown (0.3); size 252/540 (0.2)"
+"score":1.08,
+"evidence":"caller newWorldDamage (0.6); caller ShowCountdown (0.2); size 252/540 (0.2)"
 },
 {
 "gc":"findDamageSlot",
@@ -7644,8 +7644,8 @@
 "file":"zoidpoly.c",
 "address":"0x80062A50",
 "size":252,
-"score":0.99,
-"evidence":"size 252/252 (0.6); caller ShowCountdown (0.3); caller UpdateShots (0.1)"
+"score":0.94,
+"evidence":"size 252/252 (0.6); caller ShowCountdown (0.2); caller UpdateShots (0.1)"
 }
 ]
 },
@@ -7723,24 +7723,24 @@
 "file":"zoid.c",
 "address":"0x80061F48",
 "size":116,
-"score":1.23,
-"evidence":"caller SkyInit (0.6); size 132/116 (0.5); caller _InitScreen (0.1)"
+"score":1.12,
+"evidence":"size 132/116 (0.5); caller SkyInit (0.5); caller _InitScreen (0.1)"
 },
 {
 "gc":"SkyClear",
 "file":"sky.c",
 "address":"0x80040E7C",
 "size":160,
-"score":1.13,
-"evidence":"caller SkyInit (0.6); size 132/160 (0.5)"
+"score":1.01,
+"evidence":"caller SkyInit (0.5); size 132/160 (0.5)"
 },
 {
 "gc":"MBOX_FindObject_WORK",
 "file":"mbox.c",
 "address":"0x80028F58",
 "size":320,
-"score":0.86,
-"evidence":"caller SkyInit (0.6); size 132/320 (0.2); caller _InitScreen (0.1)"
+"score":0.74,
+"evidence":"caller SkyInit (0.5); size 132/320 (0.2); caller _InitScreen (0.1)"
 }
 ]
 },
@@ -8334,7 +8334,7 @@
 "file":"world.c",
 "address":"0x8005E02C",
 "size":192,
-"score":1.65,
+"score":1.64,
 "evidence":"fld x10 44,64,5C (1.0); size 252/192 (0.5); caller SetupTarget (0.2)"
 },
 {
@@ -8484,7 +8484,7 @@
 "file":"targets.c",
 "address":"0x8004C148",
 "size":868,
-"score":1.17,
+"score":1.16,
 "evidence":"size 896/868 (0.6); file targets.c x1 (0.4); caller SetupTarget (0.2)"
 },
 {
@@ -8554,7 +8554,7 @@
 "file":"mbox.c",
 "address":"0x80028E40",
 "size":196,
-"score":1.67,
+"score":1.66,
 "evidence":"fld x4 24,28,2C (1.0); size 248/196 (0.5); caller SetupTarget (0.2)"
 },
 {
@@ -9065,20 +9065,20 @@
 "confident":null,
 "candidates":[
 {
-"gc":"ShotToWorldCollision",
-"file":"stree.c",
-"address":"0x80045E24",
-"size":3016,
-"score":0.86,
-"evidence":"size 3580/3016 (0.5); flt 250 (0.2); caller UpdateShots (0.1)"
-},
-{
 "gc":"FindSurfaceUvsFromResPoint",
 "file":"resurrect.c",
 "address":"0x800356B8",
 "size":1764,
 "score":0.86,
 "evidence":"fld x4 C,A,8 (0.6); size 3580/1764 (0.2)"
+},
+{
+"gc":"ShotToWorldCollision",
+"file":"stree.c",
+"address":"0x80045E24",
+"size":3016,
+"score":0.86,
+"evidence":"size 3580/3016 (0.5); flt 250 (0.2); caller UpdateShots (0.1)"
 },
 {
 "gc":"matf2scopy",
@@ -9169,7 +9169,7 @@
 "file":"fmath.c",
 "address":"0x8009C0B4",
 "size":124,
-"score":0.67,
+"score":0.66,
 "evidence":"size 132/124 (0.6); caller UpdateShots (0.1)"
 },
 {
@@ -9177,7 +9177,7 @@
 "file":"fmath.c",
 "address":"0x8009C130",
 "size":124,
-"score":0.67,
+"score":0.66,
 "evidence":"size 132/124 (0.6); caller UpdateShots (0.1)"
 },
 {
@@ -9185,7 +9185,7 @@
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":0.62,
+"score":0.61,
 "evidence":"size 132/112 (0.5); caller UpdateShots (0.1)"
 }
 ]
@@ -9674,28 +9674,28 @@
 "confident":null,
 "candidates":[
 {
-"gc":"MBOX_FindTexture_WORK",
-"file":"mbox.c",
-"address":"0x800290B8",
-"size":296,
-"score":1.43,
-"evidence":"caller InitSmoke (1.2); size 128/296 (0.2)"
-},
-{
-"gc":"InitStatLL",
-"file":"statll.c",
-"address":"0x80043108",
-"size":48,
-"score":1.36,
-"evidence":"caller InitSmoke (1.2); size 128/48 (0.1)"
-},
-{
 "gc":"CircleBufferReadBytes",
 "file":"_lib",
 "address":"0x800E1294",
 "size":264,
 "score":1.24,
 "evidence":"fld x4 14,10,C (1.0); size 128/264 (0.2)"
+},
+{
+"gc":"CircleBufferWriteBytes",
+"file":"_lib",
+"address":"0x800E139C",
+"size":264,
+"score":1.24,
+"evidence":"fld x4 14,10,C (1.0); size 128/264 (0.2)"
+},
+{
+"gc":"MBOX_FindTexture_WORK",
+"file":"mbox.c",
+"address":"0x800290B8",
+"size":296,
+"score":1.2,
+"evidence":"caller InitSmoke (1.0); size 128/296 (0.2)"
 }
 ]
 },
@@ -9748,7 +9748,7 @@
 "file":"skids.c",
 "address":"0x800405BC",
 "size":624,
-"score":1.66,
+"score":1.65,
 "evidence":"imm 0x8A0 (1.5); caller LoadTrack (0.1); call memset (0.0)"
 },
 {
@@ -9972,24 +9972,24 @@
 "file":"mbox.c",
 "address":"0x800290B8",
 "size":296,
-"score":1.06,
-"evidence":"caller _AnimateFlag (0.6); size 364/296 (0.5)"
+"score":1.0,
+"evidence":"caller _AnimateFlag (0.5); size 364/296 (0.5)"
 },
 {
 "gc":"_AnimateObjSwapGeneric",
 "file":"targets.c",
 "address":"0x8004EF38",
 "size":280,
-"score":1.03,
-"evidence":"caller _AnimateFlag (0.6); size 364/280 (0.5)"
+"score":0.97,
+"evidence":"caller _AnimateFlag (0.5); size 364/280 (0.5)"
 },
 {
 "gc":"ReleaseEnviron",
 "file":"visuals.c",
 "address":"0x800555CC",
 "size":224,
-"score":0.92,
-"evidence":"caller _AnimateFlag (0.6); size 364/224 (0.4)"
+"score":0.86,
+"evidence":"caller _AnimateFlag (0.5); size 364/224 (0.4)"
 }
 ]
 },
@@ -10236,24 +10236,24 @@
 "file":"mbox.c",
 "address":"0x800290B8",
 "size":296,
-"score":6.38,
-"evidence":"caller initWorldDamage (2.5); caller InitSmoke (1.2); caller SetSheen (0.6); size 364/296 (0.5); caller updateButtons (0.8); caller ShowCountdown (0.3); +3 more"
+"score":5.24,
+"evidence":"caller initWorldDamage (1.8); caller InitSmoke (1.0); caller SetSheen (0.6); size 364/296 (0.5); caller updateButtons (0.7); caller ShowCountdown (0.2); +3 more"
 },
 {
 "gc":"MBOX_ShowObject",
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":2.23,
-"evidence":"caller SetSheen (0.6); size 364/292 (0.5); caller updateButtons (0.8); caller initButtons (0.2); caller initScreen (0.1)"
+"score":2.11,
+"evidence":"caller SetSheen (0.6); size 364/292 (0.5); caller updateButtons (0.7); caller initButtons (0.2); caller initScreen (0.1)"
 },
 {
 "gc":"MBOX_HideObject",
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":2.07,
-"evidence":"caller SetSheen (0.6); size 364/276 (0.5); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.95,
+"evidence":"caller SetSheen (0.6); size 364/276 (0.5); caller updateButtons (0.7); caller initButtons (0.2)"
 }
 ]
 },
@@ -10489,7 +10489,7 @@
 "file":"mb_wad.c",
 "address":"0x800288EC",
 "size":200,
-"score":0.68,
+"score":0.67,
 "evidence":"size 216/200 (0.6); caller LoadTrack (0.1)"
 },
 {
@@ -10746,7 +10746,7 @@
 "file":"blit.c",
 "address":"0x800A4C1C",
 "size":356,
-"score":2.03,
+"score":2.01,
 "evidence":"fld x21 1E,1C,22 (1.0); size 468/356 (0.5); caller initScreen (0.3); caller _SetHighScoreState (0.2); caller _InitScreen (0.1)"
 },
 {
@@ -10762,7 +10762,7 @@
 "file":"pane.c",
 "address":"0x800305E8",
 "size":536,
-"score":1.1,
+"score":1.08,
 "evidence":"size 468/536 (0.5); caller initScreen (0.3); caller _SetHighScoreState (0.2); caller _InitScreen (0.1)"
 }
 ]
@@ -10781,7 +10781,7 @@
 "file":"pane.c",
 "address":"0x80030800",
 "size":496,
-"score":2.34,
+"score":2.33,
 "evidence":"fld x9 14,16,E (1.0); size 400/496 (0.5); caller _PrintScores (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller updateCarScreen (0.1)"
 },
 {
@@ -10797,7 +10797,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":0.99,
+"score":0.97,
 "evidence":"caller _PrintScores (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller drawView (0.1); caller updateCarScreen (0.1)"
 }
 ]
@@ -10824,7 +10824,7 @@
 "file":"pane.c",
 "address":"0x800305E8",
 "size":536,
-"score":1.08,
+"score":1.06,
 "evidence":"size 448/536 (0.5); caller initScreen (0.3); caller _SetHighScoreState (0.2); caller _InitScreen (0.1)"
 },
 {
@@ -10832,7 +10832,7 @@
 "file":"blit.c",
 "address":"0x800A4C1C",
 "size":356,
-"score":1.05,
+"score":1.04,
 "evidence":"size 448/356 (0.5); caller initScreen (0.3); caller _SetHighScoreState (0.2); caller _InitScreen (0.1)"
 }
 ]
@@ -10916,7 +10916,7 @@
 "file":"TB_text.c",
 "address":"0x8004F4CC",
 "size":80,
-"score":2.57,
+"score":2.55,
 "evidence":"size 84/80 (0.6); caller calcMenuRect (0.8); caller _PrintScores (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller _SetHighScoreState (0.2); +2 more"
 },
 {
@@ -10924,7 +10924,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":2.46,
+"score":2.44,
 "evidence":"size 84/64 (0.5); caller calcMenuRect (0.8); caller _PrintScores (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller _SetHighScoreState (0.2); +2 more"
 },
 {
@@ -10932,7 +10932,7 @@
 "file":"HAL_text.c",
 "address":"0x8001AE0C",
 "size":444,
-"score":1.39,
+"score":1.37,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2); caller updateCarScreen (0.1)"
 }
 ]
@@ -10951,7 +10951,7 @@
 "file":"HAL_text.c",
 "address":"0x8001AE0C",
 "size":444,
-"score":1.9,
+"score":1.88,
 "evidence":"size 532/444 (0.5); caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2); caller updateCarScreen (0.1)"
 },
 {
@@ -10959,7 +10959,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":1.39,
+"score":1.37,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2); caller updateCarScreen (0.1)"
 },
 {
@@ -10967,7 +10967,7 @@
 "file":"TB_text.c",
 "address":"0x8004F4CC",
 "size":80,
-"score":1.39,
+"score":1.37,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2); caller updateCarScreen (0.1)"
 }
 ]
@@ -11006,7 +11006,7 @@
 "file":"HAL_text.c",
 "address":"0x8001AE0C",
 "size":444,
-"score":1.6,
+"score":1.58,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); size 232/444 (0.3); caller _SetHighScoreState (0.2)"
 },
 {
@@ -11014,7 +11014,7 @@
 "file":"TB_text.c",
 "address":"0x8004F4CC",
 "size":80,
-"score":1.39,
+"score":1.37,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2); size 232/80 (0.1)"
 },
 {
@@ -11022,7 +11022,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":1.33,
+"score":1.31,
 "evidence":"caller calcMenuRect (0.8); caller _PrintScores (0.3); caller _SetHighScoreState (0.2)"
 }
 ]
@@ -11051,24 +11051,24 @@
 "file":"TB_text.c",
 "address":"0x8004FA30",
 "size":140,
-"score":1.33,
-"evidence":"size 112/140 (0.5); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.32,
+"evidence":"size 112/140 (0.5); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"HAL_SetFont",
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":1.23,
-"evidence":"size 112/64 (0.3); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1); caller updateCarScreen (0.1)"
+"score":1.22,
+"evidence":"size 112/64 (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1); caller updateCarScreen (0.1)"
 },
 {
 "gc":"TB_DrawText",
 "file":"TB_text.c",
 "address":"0x8004FB78",
 "size":208,
-"score":1.14,
-"evidence":"size 112/208 (0.3); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.12,
+"evidence":"size 112/208 (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 }
 ]
 },
@@ -11086,16 +11086,16 @@
 "file":"TB_text.c",
 "address":"0x8004FA30",
 "size":140,
-"score":2.29,
-"evidence":"caller getScoreStr (1.0); caller calcMenuRect (0.4); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":2.28,
+"evidence":"caller getScoreStr (1.0); caller calcMenuRect (0.4); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"HAL_SetFont",
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":1.68,
-"evidence":"caller calcMenuRect (0.4); size 44/64 (0.4); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.67,
+"evidence":"caller calcMenuRect (0.4); size 44/64 (0.4); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"TB_GetFontLineHeight",
@@ -11499,7 +11499,7 @@
 "file":"paksysdc.c",
 "address":"0x8002F9B8",
 "size":8,
-"score":0.47,
+"score":0.46,
 "evidence":"size 12/8 (0.4); caller updateCarScreen (0.1)"
 },
 {
@@ -11507,7 +11507,7 @@
 "file":"paksysdc.c",
 "address":"0x8002F9C0",
 "size":8,
-"score":0.47,
+"score":0.46,
 "evidence":"size 12/8 (0.4); caller updateCarScreen (0.1)"
 }
 ]
@@ -11651,24 +11651,24 @@
 "file":"fmath.c",
 "address":"0x8009BA54",
 "size":220,
-"score":1.78,
-"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.73,
+"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.7); caller initButtons (0.2)"
 },
 {
 "gc":"WRollUV",
 "file":"fmath.c",
 "address":"0x8009BB30",
 "size":220,
-"score":1.78,
-"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.73,
+"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.7); caller initButtons (0.2)"
 },
 {
 "gc":"ScaleUV",
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":1.38,
-"evidence":"size 168/112 (0.4); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.33,
+"evidence":"size 168/112 (0.4); caller updateButtons (0.7); caller initButtons (0.2)"
 }
 ]
 },
@@ -11686,24 +11686,24 @@
 "file":"fmath.c",
 "address":"0x8009BA54",
 "size":220,
-"score":1.78,
-"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.73,
+"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.7); caller initButtons (0.2)"
 },
 {
 "gc":"WRollUV",
 "file":"fmath.c",
 "address":"0x8009BB30",
 "size":220,
-"score":1.78,
-"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.73,
+"evidence":"size 168/220 (0.5); flt -0.001 (0.3); caller updateButtons (0.7); caller initButtons (0.2)"
 },
 {
 "gc":"ScaleUV",
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":1.38,
-"evidence":"size 168/112 (0.4); caller updateButtons (0.8); caller initButtons (0.2)"
+"score":1.33,
+"evidence":"size 168/112 (0.4); caller updateButtons (0.7); caller initButtons (0.2)"
 }
 ]
 },
@@ -11801,7 +11801,7 @@
 "file":"audio.c",
 "address":"0x8009F048",
 "size":60,
-"score":1.23,
+"score":1.22,
 "evidence":"size 60/60 (0.6); caller updateOptionScreen (0.2); caller updateStartScreen (0.2); caller updateCircuitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -11951,7 +11951,7 @@
 "file":"zoid.c",
 "address":"0x80061F48",
 "size":116,
-"score":0.66,
+"score":0.65,
 "evidence":"size 112/116 (0.6); caller _InitScreen (0.1)"
 }
 ]
@@ -11978,7 +11978,7 @@
 "file":"fmath.c",
 "address":"0x8009B818",
 "size":76,
-"score":0.8,
+"score":0.79,
 "evidence":"size 84/76 (0.5); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 },
 {
@@ -11986,7 +11986,7 @@
 "file":"statll.c",
 "address":"0x80043198",
 "size":76,
-"score":0.8,
+"score":0.79,
 "evidence":"size 84/76 (0.5); caller ShotUpdate (0.1); caller UpdateShots (0.1)"
 }
 ]
@@ -12048,7 +12048,7 @@
 "file":"TB_text.c",
 "address":"0x8004FB78",
 "size":208,
-"score":0.89,
+"score":0.88,
 "evidence":"size 232/208 (0.5); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
@@ -12075,24 +12075,24 @@
 "file":"TB_text.c",
 "address":"0x8004F2F8",
 "size":16,
-"score":1.33,
-"evidence":"size 20/16 (0.5); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.32,
+"evidence":"size 20/16 (0.5); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"HAL_SetFont",
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":0.84,
-"evidence":"caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":0.83,
+"evidence":"caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"TB_DrawText",
 "file":"TB_text.c",
 "address":"0x8004FB78",
 "size":208,
-"score":0.84,
-"evidence":"caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":0.83,
+"evidence":"caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 }
 ]
 },
@@ -12299,16 +12299,16 @@
 "file":"TB_text.c",
 "address":"0x8004F308",
 "size":364,
-"score":1.4,
-"evidence":"size 396/364 (0.6); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.39,
+"evidence":"size 396/364 (0.6); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"TB_DrawText",
 "file":"TB_text.c",
 "address":"0x8004FB78",
 "size":208,
-"score":1.12,
-"evidence":"size 396/208 (0.3); caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":1.11,
+"evidence":"size 396/208 (0.3); caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 },
 {
 "gc":"ChangePaneSize",
@@ -12374,8 +12374,8 @@
 "file":"TB_text.c",
 "address":"0x8004F308",
 "size":364,
-"score":0.93,
-"evidence":"caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1); size 1028/364 (0.1)"
+"score":0.91,
+"evidence":"caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1); size 1028/364 (0.1)"
 },
 {
 "gc":"ngcBlackBackground",
@@ -12390,8 +12390,8 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":0.84,
-"evidence":"caller drawTotalStats (0.3); caller animBattlePoints (0.2); caller drawRaceStats (0.2); caller drawView (0.1)"
+"score":0.83,
+"evidence":"caller drawTotalStats (0.3); caller drawRaceStats (0.2); caller animBattlePoints (0.2); caller drawView (0.1)"
 }
 ]
 },
@@ -12525,7 +12525,7 @@
 "file":"mbox.c",
 "address":"0x80028BCC",
 "size":276,
-"score":0.64,
+"score":0.63,
 "evidence":"size 256/276 (0.6); caller _InitScreen (0.1)"
 }
 ]
@@ -12583,17 +12583,17 @@
 "evidence":"size 164/116 (0.4); file videoscr.c x1 (0.4)"
 },
 {
-"gc":"ZeroCameras",
-"file":"camera.c",
-"address":"0x80005F50",
-"size":112,
-"score":0.82,
-"evidence":"size 164/112 (0.4); caller initButtons (0.2); caller initScreen (0.1); caller _InitScreen (0.1)"
-},
-{
 "gc":"initScreen@videoscr.c",
 "file":"videoscr.c",
 "address":"0x8006425C",
+"size":240,
+"score":0.81,
+"evidence":"size 164/240 (0.4); file videoscr.c x1 (0.4)"
+},
+{
+"gc":"animPanes@videoscr.c",
+"file":"videoscr.c",
+"address":"0x800644C4",
 "size":240,
 "score":0.81,
 "evidence":"size 164/240 (0.4); file videoscr.c x1 (0.4)"
@@ -12808,8 +12808,8 @@
 "file":"mbox.c",
 "address":"0x80028B64",
 "size":56,
-"score":1.19,
-"evidence":"caller SkyInit (0.6); size 52/56 (0.6)"
+"score":1.07,
+"evidence":"size 52/56 (0.6); caller SkyInit (0.5)"
 },
 {
 "gc":"validOption@videoscr.c",
@@ -12894,7 +12894,7 @@
 "file":"visuals.c",
 "address":"0x80057890",
 "size":264,
-"score":0.67,
+"score":0.66,
 "evidence":"size 240/264 (0.6); caller LoadTrack (0.1)"
 }
 ]
@@ -13318,7 +13318,7 @@
 "file":"visuals.c",
 "address":"0x8005417C",
 "size":436,
-"score":0.66,
+"score":0.65,
 "evidence":"size 388/436 (0.5); caller LoadTrack (0.1)"
 }
 ]
@@ -13452,7 +13452,7 @@
 "file":"carload.c",
 "address":"0x800091B8",
 "size":1048,
-"score":0.99,
+"score":0.98,
 "evidence":"size 1372/1048 (0.5); flt 13 (0.3); caller LoadTrack (0.1); caller _InitScreen (0.1)"
 },
 {
@@ -13487,7 +13487,7 @@
 "file":"sky.c",
 "address":"0x80040D80",
 "size":252,
-"score":3.64,
+"score":3.63,
 "evidence":"str \"SKYSKY\" (3.0); size 344/252 (0.4); caller LoadTrack (0.1); call MBOX_FindObject_WORK (0.1)"
 },
 {
@@ -13579,7 +13579,7 @@
 ]
 },
 {
-"n64":"func_800BB9B0",
+"n64":"LoadTrack",
 "image":"game",
 "address":"0x800BB9B0",
 "size":2104,
@@ -13950,7 +13950,7 @@
 "file":"TB_text.c",
 "address":"0x8004FD1C",
 "size":828,
-"score":0.71,
+"score":0.7,
 "evidence":"size 1084/828 (0.5); caller animBattlePoints (0.2)"
 },
 {
@@ -15477,7 +15477,7 @@
 "file":"fmath.c",
 "address":"0x8009BC64",
 "size":220,
-"score":0.78,
+"score":0.77,
 "evidence":"size 224/220 (0.6); caller update_camera (0.2)"
 },
 {
@@ -15485,7 +15485,7 @@
 "file":"stree.c",
 "address":"0x80045D5C",
 "size":200,
-"score":0.73,
+"score":0.72,
 "evidence":"size 224/200 (0.5); caller update_camera (0.2)"
 },
 {
@@ -15493,7 +15493,7 @@
 "file":"camera.c",
 "address":"0x800079F0",
 "size":192,
-"score":0.71,
+"score":0.7,
 "evidence":"size 224/192 (0.5); caller update_camera (0.2)"
 }
 ]
@@ -15640,7 +15640,7 @@
 "file":"carscr.c",
 "address":"0x80092E6C",
 "size":132,
-"score":0.69,
+"score":0.68,
 "evidence":"size 148/132 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -16322,7 +16322,7 @@
 "file":"carscr.c",
 "address":"0x80093B10",
 "size":1380,
-"score":0.54,
+"score":0.53,
 "evidence":"size 1816/1380 (0.5); caller _InitScreen (0.1)"
 }
 ]
@@ -16761,7 +16761,7 @@
 "file":"save.c",
 "address":"0x800382C8",
 "size":344,
-"score":0.84,
+"score":0.81,
 "evidence":"size 316/344 (0.6); caller CheckCameraView (0.3)"
 },
 {
@@ -16769,7 +16769,7 @@
 "file":"resurrect.c",
 "address":"0x80036E70",
 "size":288,
-"score":0.83,
+"score":0.81,
 "evidence":"size 316/288 (0.6); caller CheckCameraView (0.3)"
 },
 {
@@ -16777,7 +16777,7 @@
 "file":"camera.c",
 "address":"0x8000787C",
 "size":208,
-"score":0.67,
+"score":0.65,
 "evidence":"size 316/208 (0.4); caller CheckCameraView (0.3)"
 }
 ]
@@ -17276,7 +17276,7 @@
 "file":"save.c",
 "address":"0x80038120",
 "size":344,
-"score":0.63,
+"score":0.62,
 "evidence":"size 316/344 (0.6); caller updateCarScreen (0.1)"
 },
 {
@@ -17284,7 +17284,7 @@
 "file":"save.c",
 "address":"0x80038470",
 "size":344,
-"score":0.63,
+"score":0.62,
 "evidence":"size 316/344 (0.6); caller updateCarScreen (0.1)"
 },
 {
@@ -17702,7 +17702,7 @@
 "file":"save.c",
 "address":"0x800382C8",
 "size":344,
-"score":0.85,
+"score":0.83,
 "evidence":"size 324/344 (0.6); caller CheckCameraView (0.3)"
 },
 {
@@ -17710,7 +17710,7 @@
 "file":"resurrect.c",
 "address":"0x80036E70",
 "size":288,
-"score":0.82,
+"score":0.8,
 "evidence":"size 324/288 (0.5); caller CheckCameraView (0.3)"
 },
 {
@@ -17718,7 +17718,7 @@
 "file":"camera.c",
 "address":"0x8000787C",
 "size":208,
-"score":0.66,
+"score":0.63,
 "evidence":"size 324/208 (0.4); caller CheckCameraView (0.3)"
 }
 ]
@@ -20324,7 +20324,7 @@
 "file":"pane.c",
 "address":"0x80030B54",
 "size":136,
-"score":0.69,
+"score":0.68,
 "evidence":"size 116/136 (0.5); caller _SetHighScoreState (0.2)"
 },
 {
@@ -22262,7 +22262,7 @@
 "file":"camera.c",
 "address":"0x8000794C",
 "size":164,
-"score":0.75,
+"score":0.74,
 "evidence":"size 152/164 (0.6); caller update_camera (0.2)"
 },
 {
@@ -22278,7 +22278,7 @@
 "file":"camera.c",
 "address":"0x800079F0",
 "size":192,
-"score":0.67,
+"score":0.66,
 "evidence":"size 152/192 (0.5); caller update_camera (0.2)"
 }
 ]
@@ -22307,7 +22307,7 @@
 "file":"camera.c",
 "address":"0x80008AD0",
 "size":960,
-"score":0.7,
+"score":0.69,
 "evidence":"size 804/960 (0.5); caller update_camera (0.2)"
 },
 {
@@ -22315,7 +22315,7 @@
 "file":"camera.c",
 "address":"0x800085D8",
 "size":1272,
-"score":0.56,
+"score":0.55,
 "evidence":"size 804/1272 (0.4); caller update_camera (0.2)"
 },
 {
@@ -22323,7 +22323,7 @@
 "file":"camera.c",
 "address":"0x80007FF0",
 "size":480,
-"score":0.53,
+"score":0.52,
 "evidence":"size 804/480 (0.3); caller update_camera (0.2)"
 }
 ]
@@ -22342,7 +22342,7 @@
 "file":"camera.c",
 "address":"0x80006138",
 "size":124,
-"score":0.79,
+"score":0.77,
 "evidence":"size 148/124 (0.5); caller CheckCameraView (0.3)"
 },
 {
@@ -22350,7 +22350,7 @@
 "file":"camera.c",
 "address":"0x8000787C",
 "size":208,
-"score":0.71,
+"score":0.68,
 "evidence":"size 148/208 (0.4); caller CheckCameraView (0.3)"
 },
 {
@@ -22358,7 +22358,7 @@
 "file":"fmath.c",
 "address":"0x8009C858",
 "size":96,
-"score":0.66,
+"score":0.64,
 "evidence":"size 148/96 (0.4); caller CheckCameraView (0.3)"
 }
 ]
@@ -22412,7 +22412,7 @@
 "file":"camera.c",
 "address":"0x800085D8",
 "size":1272,
-"score":0.65,
+"score":0.64,
 "evidence":"size 1684/1272 (0.5); caller update_camera (0.2)"
 },
 {
@@ -22420,7 +22420,7 @@
 "file":"camera.c",
 "address":"0x80006790",
 "size":2644,
-"score":0.56,
+"score":0.55,
 "evidence":"size 1684/2644 (0.4); caller update_camera (0.2)"
 },
 {
@@ -22447,7 +22447,7 @@
 "file":"camera.c",
 "address":"0x800083CC",
 "size":404,
-"score":1.74,
+"score":1.73,
 "evidence":"flt 0.157143 (1.0); size 444/404 (0.6); caller update_camera (0.2)"
 },
 {
@@ -22455,7 +22455,7 @@
 "file":"camera.c",
 "address":"0x80007FF0",
 "size":480,
-"score":0.75,
+"score":0.74,
 "evidence":"size 444/480 (0.6); caller update_camera (0.2)"
 },
 {
@@ -22463,7 +22463,7 @@
 "file":"camera.c",
 "address":"0x80007AB0",
 "size":276,
-"score":0.55,
+"score":0.54,
 "evidence":"size 444/276 (0.4); caller update_camera (0.2)"
 }
 ]
@@ -22517,7 +22517,7 @@
 "file":"camera.c",
 "address":"0x80007AB0",
 "size":276,
-"score":1.92,
+"score":1.91,
 "evidence":"flt 0.13 (1.0); file camera.c x1 (0.4); size 468/276 (0.3); caller update_camera (0.2)"
 },
 {
@@ -22552,7 +22552,7 @@
 "file":"camera.c",
 "address":"0x80007AB0",
 "size":276,
-"score":1.18,
+"score":1.17,
 "evidence":"size 280/276 (0.6); file camera.c x1 (0.4); caller update_camera (0.2)"
 },
 {
@@ -22568,7 +22568,7 @@
 "file":"camera.c",
 "address":"0x800079F0",
 "size":192,
-"score":1.0,
+"score":0.99,
 "evidence":"size 280/192 (0.4); file camera.c x1 (0.4); caller update_camera (0.2)"
 }
 ]
@@ -22587,7 +22587,7 @@
 "file":"camera.c",
 "address":"0x80006790",
 "size":2644,
-"score":3.29,
+"score":3.28,
 "evidence":"fld x19 AC,8C,88 (0.8); file camera.c x2 (0.8); size 3048/2644 (0.5); flt 140 (0.5); flt 0.0025 (0.2); flt 6 (0.2); +1 more"
 },
 {
@@ -22595,7 +22595,7 @@
 "file":"camera.c",
 "address":"0x800085D8",
 "size":1272,
-"score":1.15,
+"score":1.14,
 "evidence":"file camera.c x2 (0.8); caller update_camera (0.2); size 3048/1272 (0.2)"
 },
 {
@@ -22622,7 +22622,7 @@
 "file":"camera.c",
 "address":"0x80006760",
 "size":48,
-"score":1.36,
+"score":1.35,
 "evidence":"file camera.c x2 (0.8); size 76/48 (0.4); caller update_camera (0.2)"
 },
 {
@@ -22638,7 +22638,7 @@
 "file":"camera.c",
 "address":"0x8000794C",
 "size":164,
-"score":1.2,
+"score":1.19,
 "evidence":"file camera.c x2 (0.8); size 76/164 (0.2); caller update_camera (0.2)"
 }
 ]
@@ -22657,7 +22657,7 @@
 "file":"camera.c",
 "address":"0x800071E4",
 "size":1688,
-"score":5.57,
+"score":5.54,
 "evidence":"flt 2e-05 (1.0); flt -0.55 (1.0); flt -100000 (1.0); fld x15 16C,160,148 (0.7); size 1640/1688 (0.6); flt 3.2 (0.5); +3 more"
 },
 {
@@ -22692,7 +22692,7 @@
 "file":"camera.c",
 "address":"0x800081D0",
 "size":508,
-"score":2.57,
+"score":2.54,
 "evidence":"flt -999 (1.0); file camera.c x2 (0.8); size 636/508 (0.5); caller CheckCameraView (0.3)"
 },
 {
@@ -23304,24 +23304,24 @@
 "file":"hud.c",
 "address":"0x800223C0",
 "size":72,
-"score":4.35,
-"evidence":"caller animRadar (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); caller animControls (0.5); file hud.c x1 (0.4); +1 more"
+"score":3.86,
+"evidence":"caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); file hud.c x1 (0.4); caller animControls (0.4); +1 more"
 },
 {
 "gc":"RenameBlit",
 "file":"blit.c",
 "address":"0x800A4A90",
 "size":104,
-"score":4.2,
-"evidence":"caller animRadar (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); size 124/104 (0.5); caller animControls (0.5); +1 more"
+"score":3.71,
+"evidence":"caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); size 124/104 (0.5); caller animControls (0.4); +1 more"
 },
 {
 "gc":"UpdateBlit",
 "file":"blit.c",
 "address":"0x800A48D4",
 "size":160,
-"score":4.1,
-"evidence":"caller animRadar (1.0); caller animTach (0.8); caller animTrackMap (0.7); caller animStatBars (0.6); size 124/160 (0.5); caller animControls (0.5)"
+"score":3.6,
+"evidence":"caller animRadar (0.8); caller animTach (0.7); caller animStatBars (0.6); caller animTrackMap (0.5); size 124/160 (0.5); caller animControls (0.4)"
 }
 ]
 },
@@ -23549,7 +23549,7 @@
 "file":"highscorescr.c",
 "address":"0x80070C80",
 "size":844,
-"score":6.5,
+"score":6.49,
 "evidence":"str(tbl) x20 \"(-: TINA :-)\", \"CHEPS\", \"EVAN J KELLY\" (3.0); file highscorescr.c x3 (1.2); flt 6969 (1.0); str \"%01d:%02d.%03d\" (0.8); size 1584/844 (0.3); caller _SetHighScoreState (0.2); +1 more"
 },
 {
@@ -23592,7 +23592,7 @@
 "file":"highscorescr.c",
 "address":"0x80070344",
 "size":324,
-"score":2.09,
+"score":2.08,
 "evidence":"file highscorescr.c x4 (1.5); size 464/324 (0.4); caller _SetHighScoreState (0.2)"
 },
 {
@@ -24529,7 +24529,7 @@
 "file":"gamerecords.c",
 "address":"0x8001932C",
 "size":28,
-"score":0.68,
+"score":0.67,
 "evidence":"size 32/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -24537,7 +24537,7 @@
 "file":"gamerecords.c",
 "address":"0x80019348",
 "size":28,
-"score":0.68,
+"score":0.67,
 "evidence":"size 32/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -24545,7 +24545,7 @@
 "file":"gamerecords.c",
 "address":"0x8001939C",
 "size":28,
-"score":0.68,
+"score":0.67,
 "evidence":"size 32/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 }
 ]
@@ -24599,7 +24599,7 @@
 "file":"gamerecords.c",
 "address":"0x8001932C",
 "size":28,
-"score":0.67,
+"score":0.66,
 "evidence":"size 24/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -24607,7 +24607,7 @@
 "file":"gamerecords.c",
 "address":"0x80019348",
 "size":28,
-"score":0.67,
+"score":0.66,
 "evidence":"size 24/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -24615,7 +24615,7 @@
 "file":"gamerecords.c",
 "address":"0x8001939C",
 "size":28,
-"score":0.67,
+"score":0.66,
 "evidence":"size 24/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 }
 ]
@@ -24685,7 +24685,7 @@
 "file":"gamerecords.c",
 "address":"0x8001932C",
 "size":28,
-"score":0.62,
+"score":0.61,
 "evidence":"size 36/28 (0.5); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 }
 ]
@@ -24744,7 +24744,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A674",
 "size":64,
-"score":0.84,
+"score":0.83,
 "evidence":"size 64/64 (0.6); caller animBattlePoints (0.2)"
 },
 {
@@ -24752,7 +24752,7 @@
 "file":"HAL_text.c",
 "address":"0x8001A9C0",
 "size":88,
-"score":0.68,
+"score":0.67,
 "evidence":"size 64/88 (0.4); caller animBattlePoints (0.2)"
 },
 {
@@ -24760,7 +24760,7 @@
 "file":"gamerecords.c",
 "address":"0x80017AAC",
 "size":40,
-"score":0.61,
+"score":0.6,
 "evidence":"size 64/40 (0.4); caller animBattlePoints (0.2)"
 }
 ]
@@ -25695,7 +25695,7 @@
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":0.7,
+"score":0.69,
 "evidence":"size 148/112 (0.5); caller updateButtons (0.2)"
 },
 {
@@ -25703,7 +25703,7 @@
 "file":"fmath.c",
 "address":"0x8009B898",
 "size":112,
-"score":0.7,
+"score":0.69,
 "evidence":"size 148/112 (0.5); caller updateButtons (0.2)"
 },
 {
@@ -25711,7 +25711,7 @@
 "file":"fmath.c",
 "address":"0x8009BA54",
 "size":220,
-"score":0.64,
+"score":0.63,
 "evidence":"size 148/220 (0.4); caller updateButtons (0.2)"
 }
 ]
@@ -25909,16 +25909,16 @@
 "file":"blit.c",
 "address":"0x800A4AF8",
 "size":292,
-"score":1.9,
-"evidence":"fld x7 19,1E,1C (1.0); caller animControls (0.5); size 396/292 (0.4)"
+"score":1.83,
+"evidence":"fld x7 19,1E,1C (1.0); size 396/292 (0.4); caller animControls (0.4)"
 },
 {
 "gc":"UpdateBlit",
 "file":"blit.c",
 "address":"0x800A48D4",
 "size":160,
-"score":1.27,
-"evidence":"fld x7 19,1E,1C (0.7); caller animControls (0.5); size 396/160 (0.1)"
+"score":1.2,
+"evidence":"fld x7 19,1E,1C (0.7); caller animControls (0.4); size 396/160 (0.1)"
 },
 {
 "gc":"animStatBars",
@@ -26195,7 +26195,7 @@
 ]
 },
 {
-"n64":"game_results_input",
+"n64":"animControls",
 "image":"game",
 "address":"0x800FF724",
 "size":1732,
@@ -26637,29 +26637,37 @@
 ]
 },
 {
-"n64":"highscore_entry_anim",
+"n64":"func_80104704",
 "image":"game",
-"address":"0x80104A58",
-"size":188,
-"status":"unmatched",
+"address":"0x80104704",
+"size":1040,
+"status":"other",
 "seed":false,
 "confident":null,
 "candidates":[
-{
-"gc":"DrawName",
-"file":"highscorescr.c",
-"address":"0x80072998",
-"size":588,
-"score":1.2,
-"evidence":"str \"END\" (1.2)"
-},
 {
 "gc":"drawCreatePlayer",
 "file":"playerscr.c",
 "address":"0x8007D434",
 "size":1212,
-"score":1.2,
-"evidence":"str \"END\" (1.2)"
+"score":3.17,
+"evidence":"str \"END\" (1.2); str \"SPC\" (1.2); size 1040/1212 (0.5); str(tbl) x1 \"ABCDEFGHIJKLMNOPQRSTUVW (0.2)"
+},
+{
+"gc":"DrawName",
+"file":"highscorescr.c",
+"address":"0x80072998",
+"size":588,
+"score":2.96,
+"evidence":"str \"END\" (1.2); str \"SPC\" (1.2); size 1040/588 (0.3); str(tbl) x1 \"ABCDEFGHIJKLMNOPQRSTUVW (0.2)"
+},
+{
+"gc":"ControlName",
+"file":"highscorescr.c",
+"address":"0x800713A8",
+"size":1416,
+"score":0.7,
+"evidence":"size 1040/1416 (0.4); str(tbl) x1 \"ABCDEFGHIJKLMNOPQRSTUVW (0.2)"
 }
 ]
 },
@@ -28970,7 +28978,7 @@
 "file":"startscr.c",
 "address":"0x80086D5C",
 "size":72,
-"score":1.3,
+"score":1.29,
 "evidence":"size 88/72 (0.5); file startscr.c x1 (0.4); caller updateButtons (0.2); caller updateStartScreen (0.2)"
 },
 {
@@ -29320,7 +29328,7 @@
 "file":"selectcarload.c",
 "address":"0x8003BF00",
 "size":1728,
-"score":1.91,
+"score":1.89,
 "evidence":"call SetSheen (1.0); size 1700/1728 (0.6); caller showCarSelect (0.3)"
 },
 {
@@ -29328,7 +29336,7 @@
 "file":"carscr.c",
 "address":"0x8009398C",
 "size":388,
-"score":1.32,
+"score":1.3,
 "evidence":"call SetSheen (1.0); caller showCarSelect (0.3)"
 },
 {
@@ -29599,7 +29607,7 @@
 "file":"playerscr.c",
 "address":"0x8007EE28",
 "size":720,
-"score":0.89,
+"score":0.88,
 "evidence":"size 720/720 (0.6); caller initScreen (0.2); caller updatePlayerScreen (0.1)"
 },
 {
@@ -29607,7 +29615,7 @@
 "file":"playerscr.c",
 "address":"0x8007F0F8",
 "size":796,
-"score":0.84,
+"score":0.83,
 "evidence":"size 720/796 (0.5); caller initScreen (0.2); caller updatePlayerScreen (0.1)"
 },
 {
@@ -29642,7 +29650,7 @@
 "file":"pane.c",
 "address":"0x800305E8",
 "size":536,
-"score":0.65,
+"score":0.64,
 "evidence":"size 400/536 (0.5); caller initScreen (0.2)"
 },
 {
@@ -29650,7 +29658,7 @@
 "file":"front.c",
 "address":"0x80013C00",
 "size":544,
-"score":0.64,
+"score":0.63,
 "evidence":"size 400/544 (0.4); caller initScreen (0.2)"
 }
 ]
@@ -29714,7 +29722,7 @@
 "file":"playerscr.c",
 "address":"0x8007EE28",
 "size":720,
-"score":0.93,
+"score":0.92,
 "evidence":"size 728/720 (0.6); caller initScreen (0.2); caller updatePlayerScreen (0.1); call memset (0.0)"
 },
 {
@@ -29722,7 +29730,7 @@
 "file":"playerscr.c",
 "address":"0x8007F0F8",
 "size":796,
-"score":0.85,
+"score":0.84,
 "evidence":"size 728/796 (0.6); caller initScreen (0.2); caller updatePlayerScreen (0.1)"
 },
 {
@@ -29730,7 +29738,7 @@
 "file":"zoidwindow.c",
 "address":"0x8006358C",
 "size":720,
-"score":0.79,
+"score":0.78,
 "evidence":"size 728/720 (0.6); caller initScreen (0.2)"
 }
 ]
@@ -29994,7 +30002,7 @@
 "file":"playerscr.c",
 "address":"0x8007F6B4",
 "size":1228,
-"score":2.7,
+"score":2.69,
 "evidence":"file playerscr.c x2 (0.8); size 1308/1228 (0.6); flt 50.2 (0.3); str \"A1\" (0.3); flt 105 (0.2); caller initScreen (0.2); +4 more"
 },
 {
@@ -30589,7 +30597,7 @@
 "file":"circuitscr.c",
 "address":"0x80069BE0",
 "size":204,
-"score":0.65,
+"score":0.64,
 "evidence":"size 244/204 (0.5); caller initScreen (0.1)"
 },
 {
@@ -30597,7 +30605,7 @@
 "file":"mbox.c",
 "address":"0x80028CE0",
 "size":292,
-"score":0.65,
+"score":0.64,
 "evidence":"size 244/292 (0.5); caller initScreen (0.1)"
 },
 {
@@ -30846,7 +30854,7 @@
 "file":"circuitscr.c",
 "address":"0x8006A0AC",
 "size":584,
-"score":1.44,
+"score":1.43,
 "evidence":"file circuitscr.c x2 (0.8); size 712/584 (0.5); caller initScreen (0.1)"
 },
 {
@@ -30854,7 +30862,7 @@
 "file":"circuitscr.c",
 "address":"0x8006A2F4",
 "size":940,
-"score":1.4,
+"score":1.39,
 "evidence":"file circuitscr.c x2 (0.8); size 712/940 (0.5); caller initScreen (0.1)"
 },
 {
@@ -31171,7 +31179,7 @@
 "file":"carscr.c",
 "address":"0x80092F88",
 "size":400,
-"score":1.14,
+"score":1.13,
 "evidence":"size 404/400 (0.6); file carscr.c x1 (0.4); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -31187,7 +31195,7 @@
 "file":"carscr.c",
 "address":"0x800904CC",
 "size":364,
-"score":1.02,
+"score":1.01,
 "evidence":"size 404/364 (0.5); file carscr.c x1 (0.4); caller updateCarScreen (0.1)"
 }
 ]
@@ -31284,7 +31292,7 @@
 "file":"carscr.c",
 "address":"0x80092F88",
 "size":400,
-"score":1.02,
+"score":1.01,
 "evidence":"size 444/400 (0.5); file carscr.c x1 (0.4); caller updateCarScreen (0.1)"
 },
 {
@@ -31311,7 +31319,7 @@
 "file":"carscr.c",
 "address":"0x80092E6C",
 "size":132,
-"score":1.53,
+"score":1.52,
 "evidence":"file carscr.c x2 (0.8); size 136/132 (0.6); caller _InitScreen (0.1); caller updateCarScreen (0.1)"
 },
 {
@@ -31346,7 +31354,7 @@
 "file":"carscr.c",
 "address":"0x800910F8",
 "size":2096,
-"score":2.34,
+"score":2.33,
 "evidence":"file carscr.c x3 (1.2); size 2268/2096 (0.6); caller showCarSelect (0.3); jt 11 (0.1); call sprintf (0.1); call MBOX_FindObject_WORK (0.1)"
 },
 {
@@ -31354,7 +31362,7 @@
 "file":"carscr.c",
 "address":"0x80093118",
 "size":2076,
-"score":2.23,
+"score":2.21,
 "evidence":"file carscr.c x3 (1.2); size 2268/2076 (0.6); caller showCarSelect (0.3); call sprintf (0.1); call MBOX_FindObject_WORK (0.1)"
 },
 {
@@ -31381,7 +31389,7 @@
 "file":"carscr.c",
 "address":"0x8009398C",
 "size":388,
-"score":1.99,
+"score":1.97,
 "evidence":"file carscr.c x3 (1.2); size 480/388 (0.5); caller showCarSelect (0.3)"
 },
 {
@@ -31459,7 +31467,7 @@
 "file":"carscr.c",
 "address":"0x8008F904",
 "size":3016,
-"score":1.72,
+"score":1.71,
 "evidence":"file carscr.c x3 (1.2); size 4092/3016 (0.4); caller updateCarScreen (0.1)"
 },
 {
@@ -31486,7 +31494,7 @@
 "file":"carscr.c",
 "address":"0x80093B10",
 "size":1380,
-"score":3.08,
+"score":3.07,
 "evidence":"file carscr.c x3 (1.2); size 1428/1380 (0.6); flt 50.2 (0.3); str \"A1\" (0.3); str \"CURSOR\" (0.2); flt 105 (0.2); +4 more"
 },
 {
@@ -31537,7 +31545,7 @@
 "file":"carscr.c",
 "address":"0x8008F904",
 "size":3016,
-"score":2.15,
+"score":2.14,
 "evidence":"file carscr.c x4 (1.5); size 2880/3016 (0.6); caller updateCarScreen (0.1)"
 }
 ]
@@ -31564,7 +31572,7 @@
 "file":"carscr.c",
 "address":"0x8008EDDC",
 "size":2856,
-"score":1.73,
+"score":1.72,
 "evidence":"file carscr.c x3 (1.2); size 3796/2856 (0.5); caller updateCarScreen (0.1)"
 },
 {
@@ -32473,7 +32481,7 @@
 "file":"recordscr.c",
 "address":"0x800828DC",
 "size":596,
-"score":1.5,
+"score":1.49,
 "evidence":"file recordscr.c x2 (0.8); size 588/596 (0.6); caller drawView (0.1)"
 }
 ]
@@ -32492,7 +32500,7 @@
 "file":"recordscr.c",
 "address":"0x80084010",
 "size":1292,
-"score":1.88,
+"score":1.87,
 "evidence":"file recordscr.c x2 (0.8); call CalcUnlockedStuff (0.5); size 1664/1292 (0.5); caller drawView (0.1)"
 },
 {
@@ -32640,7 +32648,7 @@
 "file":"recordscr.c",
 "address":"0x80082C94",
 "size":532,
-"score":2.02,
+"score":2.01,
 "evidence":"file recordscr.c x2 (0.8); call getScoreStr (0.6); size 664/532 (0.5); caller drawView (0.1)"
 },
 {
@@ -32807,7 +32815,7 @@
 "file":"recordscr.c",
 "address":"0x800821E0",
 "size":1036,
-"score":5.0,
+"score":4.99,
 "evidence":"fld x12 52,4C,5C (0.8); str \"%01d.%01d\" (0.8); call getScoreStr (0.6); size 1184/1036 (0.5); imm 0x104 (0.5); str \"%d/8\" (0.4); +5 more"
 },
 {
@@ -32815,7 +32823,7 @@
 "file":"recordscr.c",
 "address":"0x800830C0",
 "size":968,
-"score":2.13,
+"score":2.12,
 "evidence":"str \"%01d.%01d\" (0.8); size 1184/968 (0.5); file recordscr.c x1 (0.4); imm 0x134 (0.4); caller drawView (0.1)"
 },
 {
@@ -32823,7 +32831,7 @@
 "file":"recordscr.c",
 "address":"0x80082EA8",
 "size":536,
-"score":1.71,
+"score":1.7,
 "evidence":"call getScoreStr (0.6); file recordscr.c x1 (0.4); imm 0x10E (0.4); size 1184/536 (0.2); caller drawView (0.1)"
 }
 ]
@@ -33388,7 +33396,7 @@
 "file":"weapons.c",
 "address":"0x8005C690",
 "size":120,
-"score":1.36,
+"score":1.35,
 "evidence":"file weapons.c x2 (0.8); size 184/120 (0.4); caller AnimateWeapon (0.2)"
 }
 ]
@@ -33415,7 +33423,7 @@
 "file":"weapons.c",
 "address":"0x8005C708",
 "size":184,
-"score":1.36,
+"score":1.35,
 "evidence":"file weapons.c x2 (0.8); size 120/184 (0.4); caller AnimateWeapon (0.2)"
 },
 {
@@ -33697,7 +33705,7 @@
 "file":"shots.c",
 "address":"0x8003DB80",
 "size":308,
-"score":2.68,
+"score":2.67,
 "evidence":"flt 0.18 (1.0); fld x7 60,34,30 (1.0); size 296/308 (0.6); caller UpdateShots (0.1)"
 },
 {
@@ -33732,7 +33740,7 @@
 "file":"fmath.c",
 "address":"0x8009C0B4",
 "size":124,
-"score":0.7,
+"score":0.69,
 "evidence":"size 124/124 (0.6); caller UpdateShots (0.1)"
 },
 {
@@ -33740,7 +33748,7 @@
 "file":"fmath.c",
 "address":"0x8009C130",
 "size":124,
-"score":0.7,
+"score":0.69,
 "evidence":"size 124/124 (0.6); caller UpdateShots (0.1)"
 },
 {
@@ -33748,7 +33756,7 @@
 "file":"fmath.c",
 "address":"0x8009B908",
 "size":112,
-"score":0.65,
+"score":0.64,
 "evidence":"size 124/112 (0.5); caller UpdateShots (0.1)"
 }
 ]
@@ -33767,7 +33775,7 @@
 "file":"shots.c",
 "address":"0x8003C6B8",
 "size":260,
-"score":1.07,
+"score":1.06,
 "evidence":"size 244/260 (0.6); file shots.c x1 (0.4); caller UpdateShots (0.1)"
 },
 {
@@ -33888,7 +33896,7 @@
 "file":"shots.c",
 "address":"0x8003C964",
 "size":544,
-"score":1.58,
+"score":1.57,
 "evidence":"file shots.c x2 (0.8); size 868/544 (0.4); call fatan2 (0.3); caller UpdateShots (0.1)"
 }
 ]
@@ -33907,7 +33915,7 @@
 "file":"shots.c",
 "address":"0x8003CE3C",
 "size":716,
-"score":3.58,
+"score":3.57,
 "evidence":"flt -0.03 (1.0); flt -0.04 (1.0); size 684/716 (0.6); file shots.c x1 (0.4); flt 0.03 (0.2); flt 0.04 (0.2); +1 more"
 },
 {
@@ -33942,7 +33950,7 @@
 "file":"shots.c",
 "address":"0x8003DA24",
 "size":172,
-"score":1.4,
+"score":1.39,
 "evidence":"file shots.c x2 (0.8); size 140/172 (0.5); caller UpdateShots (0.1)"
 },
 {

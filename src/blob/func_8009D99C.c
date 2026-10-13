@@ -23,7 +23,7 @@ typedef struct {
     f32 pos[3];
     u8 pad1[152 - 48];
 } Ent;
-extern Ent D_80150B70[];
+extern Ent gCamera[];
 float sqrtf(float);
 #pragma intrinsic (sqrtf)
 
@@ -41,9 +41,9 @@ s32 func_8009D99C(s32 idx, f32 (*m)[4], f32 *pos, Mtx *out, f32 w, s32 absolute)
         y = pos[1];
         z = pos[2];
     } else {
-        x = pos[0] - D_80150B70[idx].pos[0];
-        y = pos[1] - D_80150B70[idx].pos[1];
-        z = pos[2] - D_80150B70[idx].pos[2];
+        x = pos[0] - gCamera[idx].pos[0];
+        y = pos[1] - gCamera[idx].pos[1];
+        z = pos[2] - gCamera[idx].pos[2];
     }
     if (x <= -2048.0f || x >= 2048.0f) {
         return 0;

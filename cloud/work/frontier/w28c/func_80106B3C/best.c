@@ -50,7 +50,7 @@ extern OSMesgQueue D_801461D0;
 extern u32 D_801174B4;
 extern Pair D_80118E20;
 extern TblHdr *D_8017A4E4;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s32 D_801170FC;
 extern Player D_8014A118[];
 extern Control D_80144030[];
@@ -110,17 +110,17 @@ s32 func_80106B3C(Blit *blt)
     D_80118E20.b = 1;
     font_set(11);
     width = object_manager_update(D_8017A4E4->text, -1);
-    limit = (D_80151AD0 >= 3) ? 160 : ((D_80151AD0 >= 2) ? 240 : 320);
+    limit = (gNumWindows >= 3) ? 160 : ((gNumWindows >= 2) ? 240 : 320);
     if (limit + 8 < width) {
         gfx_lock();
         slot_state_setup(12);
         gfx_unlock();
     }
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         if ((D_801174B4 & 0x200000) && !D_801170FC) {
             if (!D_80144030[D_8014A118[i].control].b6) {
-                x = D_80115FA8[D_80151AD0 - 1][i].x;
-                y = D_80115FA8[D_80151AD0 - 1][i].y;
+                x = D_80115FA8[gNumWindows - 1][i].x;
+                y = D_80115FA8[gNumWindows - 1][i].y;
                 dispatch_handler(D_801146AC[i]);
                 state_utility(x, y, D_8017A4E4->text);
             }

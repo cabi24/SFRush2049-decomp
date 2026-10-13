@@ -34,7 +34,7 @@ extern s8 D_80152570;                   /* gBackwards */
 extern s8 D_8014978C;                   /* gTrackNum */
 extern s8 D_801148D0;                   /* gTable */
 extern s16 D_80142528;                  /* gThisTrack */
-extern Player **D_80151690[][3][5];     /* gTotalNames */
+extern Player **gTotalNames[][3][5];     /* gTotalNames */
 extern RaceStats D_80150F88[];          /* gTotalRaceStats */
 extern f32 gDefStartTimes[];                /* gDefStartTimes */
 extern char *D_801147C8[];              /* gDefaultNames (55 on N64) */
@@ -68,7 +68,7 @@ void PrintScores(void)
     s32 height;
 
     D_80142528 = (D_80152570 ? 6 : 0) + D_8014978C;
-    p = D_80151690[D_80142528][D_801148D0];
+    p = gTotalNames[D_80142528][D_801148D0];
     s = D_80150F88[D_80142528].scores[D_801148D0];
     defTime = gDefStartTimes[(D_80152570 ? 19 : 0) + D_8014978C];
     seed = defTime * 6969.0f;

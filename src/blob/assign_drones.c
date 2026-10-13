@@ -82,7 +82,7 @@ extern u8 D_80144018[];        /* laps driven per player */
 extern f32 D_80149A78[][8];    /* lap times per player */
 extern CarData D_80152818[];
 extern Record D_80150F88[];
-extern Owner D_80151690[];
+extern Owner gTotalNames[];
 extern s8 D_80151AC0[];
 void func_800CD8EC(Profile **prof, u8 track);
 
@@ -119,14 +119,14 @@ void assign_drones(void)
                             r->times[n] = r->times[n - 1];
                             if (j == 1) {
                                 D_80151AC0[n + 10] = D_80151AC0[n + 9];
-                                D_80151690[track].who[n] = D_80151690[track].who[n - 1];
+                                gTotalNames[track].who[n] = gTotalNames[track].who[n - 1];
                             }
                         }
                         r->times[k] = time;
                         if (j == 1) {
                             D_80151AC0[n + 10] = i;
                             if ((*D_8014A118[i].prof)->valid)
-                                D_80151690[track].who[k] = D_8014A118[i].prof;
+                                gTotalNames[track].who[k] = D_8014A118[i].prof;
                         }
                         break;
                     }

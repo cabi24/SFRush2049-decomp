@@ -18,7 +18,7 @@ typedef float f32;
 typedef s32 OSId;
 typedef struct OSThread OSThread;
 
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s32 D_80116DBC;
 
 extern s32 sound_control(s16 arg0, s16 arg1, void *arg2, s16 arg3);
@@ -45,7 +45,7 @@ void save_settings(s32 arg0, s32 mode, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     done = 0;
     snd = sound_control(0, 0, &D_80116DBC, 1);
     display_settings(arg0, mode, 10, 10, 300, 180);
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         func_800A7428(&a[i], &b[i], &c[i], &d[i], &e[i], &f[i], i);
         func_800A7480(1000, 999, 0, 0, 0, 255, i);
     }
@@ -59,7 +59,7 @@ void save_settings(s32 arg0, s32 mode, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
         control_settings(arg0, arg4, arg5, &done, arg6);
     }
     sound_stop(snd);
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         func_800A7480(a[i], b[i], c[i], d[i], e[i], f[i], i);
     }
 }

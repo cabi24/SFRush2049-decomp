@@ -8,7 +8,7 @@ typedef struct TextInfo { char unknown[54]; u16 index; } TextInfo;
 typedef struct TextState { s32 unknown[3]; TextInfo *info; char **strings; } TextState;
 extern TextState countdown_state;
 extern s32 gHighScoreState, D_801148CC, D_8014A110, D_80144DA0;
-extern s16 active_player_count, D_80151AD0;
+extern s16 active_player_count, gNumWindows;
 extern s8 *namePanes[], *codePane, *D_80149798[3], *D_80149778[2];
 extern s8 D_801460C0, D_801148D0;
 extern Rect D_801148E8[][4];
@@ -71,10 +71,10 @@ void SetHighScoreState(s32 mode)
     case 1:
         for (i = 0; i < active_player_count; i++) {
             if (namePanes[i] == 0) {
-                namePanes[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
-                    D_801148E8[D_80151AD0-1][i].y,
-                    D_801148E8[D_80151AD0-1][i].x + D_801148E8[D_80151AD0-1][i].w,
-                    D_801148E8[D_80151AD0-1][i].y + D_801148E8[D_80151AD0-1][i].h,176,0,0,0);
+                namePanes[i] = ambient_sound_set(D_801148E8[gNumWindows-1][i].x,
+                    D_801148E8[gNumWindows-1][i].y,
+                    D_801148E8[gNumWindows-1][i].x + D_801148E8[gNumWindows-1][i].w,
+                    D_801148E8[gNumWindows-1][i].y + D_801148E8[gNumWindows-1][i].h,176,0,0,0);
             }
         }
         viScheduleTick(600.0f);
@@ -86,10 +86,10 @@ void SetHighScoreState(s32 mode)
     case 3:
         for (i = 0; i < active_player_count; i++) {
             if (namePanes[i] == 0) {
-                namePanes[i] = ambient_sound_set(D_801148E8[D_80151AD0-1][i].x,
-                    D_801148E8[D_80151AD0-1][i].y,
-                    D_801148E8[D_80151AD0-1][i].x + D_801148E8[D_80151AD0-1][i].w,
-                    D_801148E8[D_80151AD0-1][i].y + D_801148E8[D_80151AD0-1][i].h,176,0,0,0);
+                namePanes[i] = ambient_sound_set(D_801148E8[gNumWindows-1][i].x,
+                    D_801148E8[gNumWindows-1][i].y,
+                    D_801148E8[gNumWindows-1][i].x + D_801148E8[gNumWindows-1][i].w,
+                    D_801148E8[gNumWindows-1][i].y + D_801148E8[gNumWindows-1][i].h,176,0,0,0);
             }
         }
         viScheduleTick(600.0f);

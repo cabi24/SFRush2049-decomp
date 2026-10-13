@@ -34,7 +34,7 @@ class Machine:
   self.r[4]=case[0]&MASK;self.r[5]=CAR;self.r[6]=POS;self.r[7]=0x2468;self.r[29]=STACK;self.r[31]=STOP
   self.saved_r=self.r[:];self.saved_f=self.f[:]
   for base,size in [(CAR,0x400),(POS,12),(Q,0x50),(HP,4),(HN,0x30),(STACK-0x800,0x880),
-                    (ADDR['D_8012E690'],48),(ADDR['D_801526A8'],48),(ADDR['D_80150B70'],608),
+                    (ADDR['D_8012E690'],48),(ADDR['D_801526A8'],48),(ADDR['gCamera'],608),
                     (ADDR['D_8012E6C8'],8),(ADDR['D_8012E6E8'],16),(ADDR['D_801526F8'],16),
                     (ADDR['D_801526E0'],16),(ADDR['D_80152720'],16),(ADDR['D_801108C8'],16),
                     (ADDR['D_8002EB94'],4),(ADDR['state_word_a'],4)]:self.map(base,size)
@@ -50,7 +50,7 @@ class Machine:
   for i in range(4):
    for n,vs in [('D_8012E690',[100+i,200+i,300+i]),('D_801526A8',[400+i,500+i,600+i])]:
     for j,v in enumerate(vs):self.put(ADDR[n]+12*i+4*j,4,bits(v))
-   for j,v in enumerate([700+i,800+i,900+i]):self.put(ADDR['D_80150B70']+152*i+132+4*j,4,bits(v))
+   for j,v in enumerate([700+i,800+i,900+i]):self.put(ADDR['gCamera']+152*i+132+4*j,4,bits(v))
    self.put(ADDR['D_8012E6C8']+2*i,2,3)
    for n,v in [('D_8012E6E8',10+i),('D_801526F8',20+i),('D_801526E0',12+i),('D_80152720',.25)]:self.put(ADDR[n]+4*i,4,bits(v))
   for j in range(3):self.put(ADDR['D_8012E690']+12*self.slot+4*j,4,c[17+j])
@@ -70,7 +70,7 @@ class Machine:
  def external(self,p):
   r=self.r
   if p==ADDR['vector_normalize_length']:
-   assert r[4]==POS and r[5]==ADDR['D_80150B70']+152*self.slot+96;self.event(1,r[4]);v=self.floats(r[4])
+   assert r[4]==POS and r[5]==ADDR['gCamera']+152*self.slot+96;self.event(1,r[4]);v=self.floats(r[4])
    for i,x in enumerate(v):self.put(r[5]+4*i,4,x)
   elif p==ADDR['func_800E9234']:
    assert r[4]==CAR;self.event(2)
@@ -79,7 +79,7 @@ class Machine:
   elif p==ADDR['func_800E8D50']:
    assert r[4]==CAR and r[5]==POS and r[6]==0x2468;self.event(4,r[5],r[7])
    a=self.floats(r[5]);b=self.floats(r[7])
-   for i in range(3):self.put(ADDR['D_80150B70']+152*self.slot+132+4*i,4,bits(value(a[i])+value(b[i])))
+   for i in range(3):self.put(ADDR['gCamera']+152*self.slot+132+4*i,4,bits(value(a[i])+value(b[i])))
   else:raise AssertionError(('unexpected call',hex(p)))
   # Full ordinary caller-save clobbers, including floating registers.
   for i in [1,*range(2,16),24,25]:r[i]=0xbad00000+i
@@ -174,14 +174,14 @@ class Machine:
   for n,width in [('D_8012E690',12),('D_801526A8',12),('D_8012E6C8',2),('D_8012E6E8',4),('D_80152720',4)]:
    a=ADDR[n]+width*self.slot;allowed.append((a,a+width))
   for off in [96,132]:
-   a=ADDR['D_80150B70']+152*self.slot+off;allowed.append((a,a+12))
+   a=ADDR['gCamera']+152*self.slot+off;allowed.append((a,a+12))
   for a in self.mem:
    if not any(lo<=a<hi for lo,hi in allowed):assert self.mem[a]==self.before[a],('untouched memory',hex(a))
   out=[signed(self.get(CAR+0x35d,1),8)&MASK,signed(self.get(CAR+0x35e,1),8)&MASK]+self.floats(POS)
   for i in range(4):
    out += [signed(self.get(ADDR['D_8012E6C8']+2*i,2),16)&MASK,self.get(ADDR['D_8012E6E8']+4*i,4),self.get(ADDR['D_80152720']+4*i,4)]
    out += self.floats(ADDR['D_8012E690']+12*i)+self.floats(ADDR['D_801526A8']+12*i)
-   out += self.floats(ADDR['D_80150B70']+152*i+132)+self.floats(ADDR['D_80150B70']+152*i+96)
+   out += self.floats(ADDR['gCamera']+152*i+132)+self.floats(ADDR['gCamera']+152*i+96)
   out += [len(self.events)]+self.events
   return out+[0]*(128-len(out))
 

@@ -34,7 +34,7 @@ typedef struct { u8 pad0[0x18]; Part part[4]; } Model;
 typedef struct { Model *models; s32 count; } ModelList;
 
 extern ResSlot gWaveInstance[];
-extern ModelList D_801161F4[];
+extern ModelList gRomObjDefPtrs[];
 extern s8 D_80140A04;
 
 void func_80096288(s32 index, s32 a, s32 b);
@@ -51,8 +51,8 @@ void entity_render_mode(s32 index)
     func_80096288(index, 1, 1);
     if (gWaveInstance[index].loaded) {
         if (gWaveInstance[index].mode != (D_80140A04 != 0)) {
-            m = D_801161F4[index].models;
-            count = D_801161F4[index].count;
+            m = gRomObjDefPtrs[index].models;
+            count = gRomObjDefPtrs[index].count;
             for (i = 0; i < count; i++) {
                 for (j = 0; j < 4; j++) {
                     if (m->part[j].dl) {

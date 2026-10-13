@@ -76,7 +76,7 @@ typedef struct RenderRec { u8 pad0[21]; u8 flags; u8 tail[10]; } RenderRec;
 typedef struct Clock { u8 pad0[636]; u32 tick; } Clock;
 
 extern s8 D_80142DB4[];
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s8 D_80156BDC;
 extern WorldPoint D_801407B4, D_801407D4;
 extern s32 D_801161C4;
@@ -111,7 +111,7 @@ s32 func_80109A60(Blit *blt)
 
     id = blt->AnimID;
     slot = D_80142DB4[id & 0xf];
-    if (Hidden(blt, D_80151AD0 >= 5 || slot == -1 || !D_80156BDC))
+    if (Hidden(blt, gNumWindows >= 5 || slot == -1 || !D_80156BDC))
         return 1;
     m = &D_8014A250[slot];
     car = &D_80152818[slot];
@@ -128,8 +128,8 @@ s32 func_80109A60(Blit *blt)
     }
     xo = (D_801161C4 - map_width - 8) / 2 + 4;
     yo = (D_801161C4 - map_height - 8) / 2 + 4;
-    blt->X = D_801160A8[D_80151AD0 - 1].x + xo - (size + D_801161C4) / 2;
-    blt->Y = D_801160A8[D_80151AD0 - 1].y + yo - (size + D_801161C4) / 2;
+    blt->X = D_801160A8[gNumWindows - 1].x + xo - (size + D_801161C4) / 2;
+    blt->Y = D_801160A8[gNumWindows - 1].y + yo - (size + D_801161C4) / 2;
     if (D_80140A04) {
         blt->X += (car->position[0] - D_801407D4.x) * map_width / world_width;
     } else {

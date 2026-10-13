@@ -57,7 +57,7 @@ extern f32 D_8013C098[][6];
 extern u8 D_8013F1E0[];
 extern u16 D_8013F380[];
 extern u16 D_80142948[];
-extern Bank D_80151AE8[];
+extern Bank gTexDefPtrs[];
 extern s8 D_80111299[];
 extern f32 D_8011744C[];
 extern s32 D_8011749C,D_801174A0,D_801174A4,D_801174A8,D_801174AC,D_801174B0;
@@ -297,7 +297,7 @@ void entity_spawn_init(s16 slot, u32 type, s32 fast, f32 *offset)
             break;
         case 5:
             D_8012E700[v->handle.word].scaleA = C_80123990;
-            func_8008D870(v->handle.part.id, D_80151AE8[D_8013F380[i] >> 10].data + (D_8013F380[i] & 0x3ff) * 36, -1);
+            func_8008D870(v->handle.part.id, gTexDefPtrs[D_8013F380[i] >> 10].data + (D_8013F380[i] & 0x3ff) * 36, -1);
             pos[0] = car->pos[0];
             pos[1] = car->pos[1];
             pos[2] = car->pos[2];

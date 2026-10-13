@@ -19,7 +19,7 @@ import score
 
 ARCHIVE = '433611408270ede7fe6acdb027f1b82179209511'
 MARKER = 'cloud/work/large_hud_marker/'
-TARGETS = ['func_80109A60', 'game_results_input', 'Input_ApplyPadConfig',
+TARGETS = ['func_80109A60', 'animControls', 'Input_ApplyPadConfig',
            'stat_race_update', 'input_new_data_wrapper']
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul'
 
@@ -97,9 +97,9 @@ def replay(build):
             score.compile_group(directory, obj)
         else:
             score.compile_single(candidate, FLAGS, obj)
-        result = score.compare(obj, 'game_results_input', show=0)
+        result = score.compare(obj, 'animControls', show=0)
         words = score.text_words(obj)
-        start = score.symbols(obj)['game_results_input'] // 4
+        start = score.symbols(obj)['animControls'] // 4
         actual = {'source_sha256': hashlib.sha256(source).hexdigest(),
                   'archived_source_sha256': receipt['source_sha256'],
                   'source_matches_archived_receipt': source_matches_receipt,

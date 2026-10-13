@@ -39,7 +39,7 @@ extern s32 state_word_a;
 extern s16 D_801543CA;
 extern s32 gameplay_mode;
 extern s8 D_8016137C;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern Pair D_80118E20;
 extern Pos D_80115CA8[4][4];
 extern Rgba D_80116168[];
@@ -95,7 +95,7 @@ s32 animPlace(s32 arg0)
     }
     render_helper(0.0f);
     pair_set_7AF4(1, 3);
-    if (D_80151AD0 == 1) {
+    if (gNumWindows == 1) {
         font_set_7AF4(8);
     } else {
         font_set_7AF4(5);
@@ -103,25 +103,25 @@ s32 animPlace(s32 arg0)
     w = camera_shake_update('8');
     str[1] = '/';
     str[2] = D_801543CA + '0';
-    for (i = 0; i < D_80151AD0; i++) {
+    for (i = 0; i < gNumWindows; i++) {
         if (func_800CF604(i) == 0 || player_array[i].finished == 1) {
             continue;
         }
-        x = D_80115CA8[D_80151AD0 - 1][i].x;
-        y = D_80115CA8[D_80151AD0 - 1][i].y;
+        x = D_80115CA8[gNumWindows - 1][i].x;
+        y = D_80115CA8[gNumWindows - 1][i].y;
         str[0] = player_array[i].place + '1';
         x -= w;
         for (k = 0; k < 3; k++) {
             ch[0] = str[k];
             ch[1] = 0;
             if (k < 2) {
-                if (D_80151AD0 == 1) {
+                if (gNumWindows == 1) {
                     font_set_7AF4(8);
                 } else {
                     font_set_7AF4(5);
                 }
             } else {
-                if (D_80151AD0 == 1) {
+                if (gNumWindows == 1) {
                     font_set_7AF4(5);
                 } else {
                     font_set_7AF4(6);

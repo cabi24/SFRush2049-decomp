@@ -26,7 +26,7 @@ typedef struct {
     char pad30[0x68];
 } View; /* 0x98 */
 
-extern View D_80150B70[];
+extern View gCamera[];
 
 extern f32 sqrtf(f32);
 #pragma intrinsic(sqrtf)
@@ -42,9 +42,9 @@ void func_8009D708(s32 idx, View *obj, u32 *m, f32 scale, s32 absolute) {
         y = obj->pos[1];
         z = obj->pos[2];
     } else {
-        x = obj->pos[0] - D_80150B70[idx].pos[0];
-        y = obj->pos[1] - D_80150B70[idx].pos[1];
-        z = obj->pos[2] - D_80150B70[idx].pos[2];
+        x = obj->pos[0] - gCamera[idx].pos[0];
+        y = obj->pos[1] - gCamera[idx].pos[1];
+        z = obj->pos[2] - gCamera[idx].pos[2];
     }
     s = sqrtf(x * x + y * y + z * z);
     if (s > 1600.0f) {

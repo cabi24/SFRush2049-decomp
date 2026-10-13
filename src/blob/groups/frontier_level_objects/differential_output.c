@@ -38,7 +38,7 @@ typedef struct Node104 {
 } Node104;
 extern Node104 *D_80149B80,*D_80149D94;
 extern s16 D_80149D90;
-extern volatile u8 D_80140BDC;
+extern volatile u8 gNumModels;
 extern u32 state_word_a;
 extern int transmission_ratio_get(Node104 *,s16,int,int,int,int,int);
 extern int string_copy_format(void *,s8,s8,int),func_8008E26C(int,f32 *,s16,u32);
@@ -56,7 +56,7 @@ void differential_output(Node104 *node,s16 parent)
         D_80149D94=current;
         if(!transmission_ratio_get(current,parent,0,1,-1,1,0)) {
             result=parent;
-            model=string_copy_format(current,0,D_80140BDC-1,1);
+            model=string_copy_format(current,0,gNumModels-1,1);
             if(state_word_a & 8)
                 result=(s16)func_8008E26C(model,current->transform,result,func_800AC660(current)|0xE00);
             else

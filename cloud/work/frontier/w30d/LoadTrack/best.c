@@ -69,7 +69,7 @@ extern u32 D_801174B4;             /* gGameState */
 extern s32 D_8014A110;             /* gRace */
 extern s8 D_80156994;
 extern s8 D_8014978C;              /* gTrackNum */
-extern s16 D_80151AD0;             /* gNumWindows */
+extern s16 gNumWindows;             /* gNumWindows */
 extern s16 D_80149D90;             /* Worlddlidx */
 extern volatile u32 D_80149B80;    /* WorldBase */
 extern char *D_8011A924[];         /* gWorldNames (N64: indexed by track) */
@@ -126,7 +126,7 @@ void w30_Clear(s8 *p) {
     p[1] = 0;
 }
 
-s32 func_800BB9B0(s32 track, s32 background, s32 reloading) {
+s32 LoadTrack(s32 track, s32 background, s32 reloading) {
     Wad wad;
     WorldHdr *whdr;
     u8 *worldptr;
@@ -219,7 +219,7 @@ s32 func_800BB9B0(s32 track, s32 background, s32 reloading) {
                 audio_frame_sync(81, 0, 0, 0, 0);
             }
             audio_frame_sync(64, 0, 0, 0, 0);
-            if (D_80151AD0 >= 2) {
+            if (gNumWindows >= 2) {
                 audio_frame_sync(66, 0, 0, 0, 0);
                 if (D_80156994 || D_8014978C >= 6) {
                     audio_frame_sync(65, 0, 0, 0, 0);

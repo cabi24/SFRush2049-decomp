@@ -135,7 +135,7 @@ extern Gfx D_8002E528[];
 extern Gfx D_8002E4A0[];
 extern void *D_8002EBB0;
 extern u32 D_80124FC8;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern s32 D_8015F738, D_80161380, D_80161398, D_801613A4;
 u32 osVirtualToPhysical(void *);
 void osViSetSpecialFeatures(u32);
@@ -171,7 +171,7 @@ void gfx_frame_begin(void) {
     gDPFillRectangle(D_801497C8++, 0,0,D_8002AFC0-1,D_8002AFC4-1);
     switch(wheel_render_full(0)) {
     case 2:
-        if(D_80151AD0==3) {
+        if(gNumWindows==3) {
             gDPPipeSync(D_801497C8++);
             gDPSetFillColor(D_801497C8++, 0x00010001);
             gDPFillRectangle(D_801497C8++, D_8002AFC0/2,D_8002AFC4/2,D_8002AFC0-1,D_8002AFC4-1);

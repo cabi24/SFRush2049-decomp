@@ -408,7 +408,7 @@
     "cloud/work/tiny_A44/func_80092BF4.c": "4115a8475f74a13776c4c0cd9fa9029a3928741b976006fdb0047f05332b4227",
     "src/blob/func_8008E06C.c": "1a9ab3db5502cd9978585b727330c246544e09b8252b12fad363e47550747a5e",
     "src/blob/func_80092BC8.c": "d65794805ccc71b72dd451ba9aa0f79f97ea55e8b3e1385e41523c59f7a18c7a",
-    "src/blob/sfx_stop.c": "97076af0d7a7f1e6be6c2fdde2b76992fb0bb97c64f9acc0b130a8cf3910cbe9"
+    "src/blob/sfx_stop.c": "55ad3e916e344d7eb39caa3a5d1f54382ba797eb9c504b7fb4fdf719c3e9b7c2"
   },
   "native": {
     "caller_alias_fixtures": 2880,
@@ -436,7 +436,7 @@
     "D_8012E73C": "0x8012e73c",
     "D_80139320": "0x80139320",
     "D_80139334": "0x80139334",
-    "D_80140BDC": "0x80140bdc",
+    "gNumModels": "0x80140bdc",
     "func_8008D870": "0x8008d870",
     "func_8008E06C": "0x8008e06c",
     "func_80092BC8": "0x80092bc8",
@@ -457,5 +457,5 @@
     "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
     "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
   },
-  "verifier_sha256": "11e7264438c1fe4f5373db736496b1b2bbaf09286206b698209a63802bf88881"
+  "verifier_sha256": "104fbebf5541ee3141533663a0dce8b61e987077f1f70dd69751537b402ad84c"
 }

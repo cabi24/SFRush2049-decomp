@@ -68,7 +68,7 @@ typedef struct CAR_DATA {
 } CAR_DATA;
 typedef struct { s32 x, y; } Pos;
 
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern volatile s16 D_801543CA;
 extern s8 D_80156CE8;
 extern s8 D_80140A04;
@@ -107,7 +107,7 @@ s32 func_80108F40(Blit *blt) {
     me = (blt->AnimID >> 8) & 0xF;
     hw = blt->Width * 0.125f;
     hh = blt->Height;
-    if (me >= D_80151AD0 || (state_word_a & 8) || D_801543CA < 2) {
+    if (me >= gNumWindows || (state_word_a & 8) || D_801543CA < 2) {
         blt->AnimFunc = 0;
         return Hidden(blt, 1);
     }
@@ -142,8 +142,8 @@ s32 func_80108F40(Blit *blt) {
     if (Hidden(blt, blt->X < hw || D_8011617C - hw < blt->X || blt->Y < hh || D_80116180 - hh < blt->Y)) {
         return 1;
     }
-    blt->X += D_80116028[D_80151AD0 - 1][me].x;
-    blt->Y += D_80116028[D_80151AD0 - 1][me].y;
+    blt->X += D_80116028[gNumWindows - 1][me].x;
+    blt->Y += D_80116028[gNumWindows - 1][me].y;
     if (m->drone_type == 2) {
         stat_race_update(blt, m->index, blt->Width * 0.125f, blt->Height);
     } else if (m->drone_type == 1) {

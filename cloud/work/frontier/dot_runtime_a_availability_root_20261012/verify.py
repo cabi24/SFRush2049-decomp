@@ -85,7 +85,7 @@ def inputs():
         # The declaration is inherited from this matched table-lookup source;
         # the packet does not introduce volatility merely to tune a score.
         volatile_source=ROOT/'src/blob/func_800B24EC.c'
-        require('extern volatile u8 D_80140BDC;' in volatile_source.read_text(),'table-count declaration provenance')
+        require('extern volatile u8 gNumModels;' in volatile_source.read_text(),'table-count declaration provenance')
         files=['group/group.c','group/group.json','baseline.c','baseline.json','context_baseline.c','verify.py','elf.py','trace.py','host.c']
         return {'targets':bound,'calls':calls,'symbols':external,'image_sha256':sha(image),'asset_sha256':ASSET_SHA,
                 'root_owned_data':{'address':'0x803B94E4','size':8,'sha256':sha(image[0x803B94E4-0x8038A400:0x803B94EC-0x8038A400])},

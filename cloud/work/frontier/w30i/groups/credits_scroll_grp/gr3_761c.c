@@ -27,7 +27,7 @@ extern OSMesgQueue D_801461D0;
 extern s32 state_word_a;
 extern s8 D_8015723C;
 extern f32 D_801543CC;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern Pair D_80118E20;
 extern Pos D_80115C88[];
 extern s32 osRecvMesg(OSMesgQueue *, void **, s32);
@@ -93,7 +93,7 @@ s32 animElapsedTimerText(s32 arg0)
     digits[8] = t % 10 + '0';
     render_helper(0.0f);
     pair_set_761C(1, 3);
-    if (D_80151AD0 == 1) {
+    if (gNumWindows == 1) {
         font_set_761C(1);
     } else {
         font_set_761C(2);
@@ -103,8 +103,8 @@ s32 animElapsedTimerText(s32 arg0)
     colonW = camera_shake_update(':') + 1;
     object_byte9_set(fixedWidth);
     str[1] = 0;
-    y = D_80115C88[D_80151AD0 - 1].y;
-    x = D_80115C88[D_80151AD0 - 1].x - (digitW * 5 + colonW * 2) / 2;
+    y = D_80115C88[gNumWindows - 1].y;
+    x = D_80115C88[gNumWindows - 1].x - (digitW * 5 + colonW * 2) / 2;
     for (digitIdx = 0; digitIdx < 8; digitIdx++) {
         if ((str[0] = digits[digitIdx]) != ':' && str[0] != '.') {
             str[0] = '8';

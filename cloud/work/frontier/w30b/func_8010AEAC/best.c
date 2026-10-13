@@ -71,7 +71,7 @@ extern s32 D_80116D0C;
 extern s16 D_80116D9C;
 extern ButtonInfo D_8011650C[];
 extern f32 D_80116CFC[3];
-extern u8 D_80150B70[];
+extern u8 gCamera[];
 extern Color D_801146BC[2];
 extern Color D_80118E28;
 extern Color D_80118E2C;
@@ -164,7 +164,7 @@ void func_8010A8D0(void)
     render_helper(0.0f);
     TB_SetJust(0, 1);
     render_helper(32320.0f);
-    brake_light_update(0, D_80116CFC, D_80150B70, 0, screenPos);
+    brake_light_update(0, D_80116CFC, gCamera, 0, screenPos);
     x = screenPos[0];
     y = screenPos[1];
     font_set(13);
@@ -178,7 +178,7 @@ void func_8010A8D0(void)
         }
         func_800ED66C(D_8011650C[i].alpha);
         render_helper(32384.0f);
-        brake_light_update(0, D_8011650C[i].pos, D_80150B70, 0, screenPos);
+        brake_light_update(0, D_8011650C[i].pos, gCamera, 0, screenPos);
         x = screenPos[0] + 50;
         y = screenPos[1];
         switch (i) {

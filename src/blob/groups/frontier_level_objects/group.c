@@ -142,7 +142,7 @@ extern Animation24 *D_801391F0;
 extern f32 D_8011418C[];
 extern u8 D_80118C10[];
 extern Vec3 D_80118DFC;
-extern volatile u8 D_80140BDC;
+extern volatile u8 gNumModels;
 extern s32 D_801515F0;
 extern s32 D_80151688;
 
@@ -301,7 +301,7 @@ s32 transmission_ratio_get(Place *rec, s16 parent, f32 *pos, void *src, s8 index
         if (mflags & 0x8000) {
             D_80150F78++;
         }
-        node->key = string_copy_format(md->file, 0, (s8)(D_80140BDC - 1), 1);
+        node->key = string_copy_format(md->file, 0, (s8)(gNumModels - 1), 1);
         node->metadata = i;
         shape = md->f20;
         node->f92 = -1;

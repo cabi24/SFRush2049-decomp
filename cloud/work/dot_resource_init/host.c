@@ -3,7 +3,7 @@
 #include <string.h>
 #include "candidate.c"
 s32 D_801170FC;
-u8 D_80140BDC;
+u8 gNumModels;
 u8 D_80121DA0[4],D_80121DA4[4],D_80121DA8[4];
 s32 D_80118E08[3];
 ResourceSlot D_8012E738[8];
@@ -33,7 +33,7 @@ void run(const uint32_t *x,uint32_t *out) {
     memset(&node,0xa5,sizeof(node));memset(&state,0xa5,sizeof(state));memset(D_8012E738,0xa5,sizeof(D_8012E738));
     node.variant=0x5432;node.state=&state;node.time=1.0f;node.callback=0;
     state.flags=(u8)x[2];state.slot=(s16)x[8];state.timer=0x4321;state.text=text;
-    D_801170FC=(s32)x[1];D_80140BDC=(u8)x[7];found[4]=(u8)x[6];
+    D_801170FC=(s32)x[1];gNumModels=(u8)x[7];found[4]=(u8)x[6];
     for(i=0;i<3;i++)D_80118E08[i]=(s32)(0x67800000u+i);
     before_node=node;before_state=state;memcpy(expected,D_8012E738,sizeof(expected));
     func_8010D85C(&node,(s16)x[0]);

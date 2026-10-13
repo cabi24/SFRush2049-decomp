@@ -1,7 +1,7 @@
 {
   "verdict": "NONMATCH_CONFIRMED",
   "claims": [],
-  "source_sha256": "0bbd160a8a1e0be1256899fe9d3f20021527fc9d9a58c1254057b54de1325bcc",
+  "source_sha256": "8ee7fd4f022d3258276eb02d6aaa705c391edb9fd00baa9113933af602189d17",
   "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
   "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
   "target_start": "0x800f1d04",
@@ -551,7 +551,7 @@
     "func_8008AD04": "0x8008ad04",
     "D_80151968": "0x80151968",
     "func_800A473C": "0x800a473c",
-    "D_80151690": "0x80151690"
+    "gTotalNames": "0x80151690"
   },
   "replay_method": "Fresh direct IDO compile then GNU ld and objcopy; full canonical relocation replay agrees; no masks"
 }

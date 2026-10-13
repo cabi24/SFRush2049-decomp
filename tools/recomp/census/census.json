@@ -13,6 +13,38 @@
    "size": 464,
    "vram": "0x800F0F44"
   },
+  "LoadTrack": {
+   "scripts": {
+    "attract": 35,
+    "attract_pak": 35,
+    "audio_options": 6,
+    "backward": 6,
+    "battle": 6,
+    "battle_end": 6,
+    "circuit": 6,
+    "ghost_race": 6,
+    "ghost_save": 12,
+    "other_car": 6,
+    "pause_menus": 7,
+    "player_finish": 6,
+    "player_reload": 6,
+    "practice": 6,
+    "race": 6,
+    "race_finish": 7,
+    "race_pak": 6,
+    "race_track2": 6,
+    "race_track3": 6,
+    "race_track4": 6,
+    "saves": 6,
+    "stunt": 6,
+    "stunt_end": 6,
+    "stunt_short": 7,
+    "two_player": 6,
+    "two_player_finish": 7
+   },
+   "size": 2104,
+   "vram": "0x800BB9B0"
+  },
   "PS_CreateFile": {
    "scripts": {
     "player_finish": 1,
@@ -23,7 +55,6 @@
   },
   "RaceStateMachine_Update": {
    "scripts": {
-    "animPlace": 3221,
     "audio_options": 1097,
     "backward": 2027,
     "battle": 2012,
@@ -37,6 +68,7 @@
     "player_reload": 827,
     "practice": 2027,
     "race": 1097,
+    "race_finish": 3221,
     "race_pak": 1217,
     "race_track2": 1097,
     "race_track3": 1097,
@@ -53,7 +85,6 @@
   },
   "SaveServer": {
    "scripts": {
-    "animPlace": 929,
     "attract": 9014,
     "attract_pak": 9014,
     "audio_options": 1451,
@@ -71,6 +102,7 @@
     "player_reload": 1091,
     "practice": 809,
     "race": 917,
+    "race_finish": 929,
     "race_pak": 710,
     "race_track2": 917,
     "race_track3": 917,
@@ -88,7 +120,6 @@
   },
   "SetupWaveModel": {
    "scripts": {
-    "animPlace": 77,
     "attract": 203,
     "attract_pak": 199,
     "audio_options": 79,
@@ -106,6 +137,7 @@
     "player_reload": 75,
     "practice": 70,
     "race": 79,
+    "race_finish": 77,
     "race_pak": 75,
     "race_track2": 79,
     "race_track3": 79,
@@ -128,9 +160,16 @@
    "size": 332,
    "vram": "0x800B574C"
   },
+  "animControls": {
+   "scripts": {
+    "controls_frontend": 88880,
+    "pause_menus": 16800
+   },
+   "size": 1732,
+   "vram": "0x800FF724"
+  },
   "animElapsedTimerText": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -142,6 +181,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -155,7 +195,6 @@
   },
   "animPlace": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -167,6 +206,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -180,7 +220,6 @@
   },
   "arb_rate_set": {
    "scripts": {
-    "animPlace": 31,
     "attract": 19,
     "attract_pak": 19,
     "audio_options": 28,
@@ -198,6 +237,7 @@
     "player_reload": 28,
     "practice": 28,
     "race": 28,
+    "race_finish": 31,
     "race_pak": 28,
     "race_track2": 28,
     "race_track3": 28,
@@ -215,7 +255,6 @@
   },
   "audio_bus_mix": {
    "scripts": {
-    "animPlace": 1832,
     "attract": 1604,
     "attract_pak": 1604,
     "audio_options": 1729,
@@ -233,6 +272,7 @@
     "player_reload": 1708,
     "practice": 1708,
     "race": 1729,
+    "race_finish": 1832,
     "race_pak": 1708,
     "race_track2": 1770,
     "race_track3": 1811,
@@ -250,7 +290,6 @@
   },
   "audio_doppler_calc": {
    "scripts": {
-    "animPlace": 122021,
     "attract": 20874,
     "attract_pak": 21222,
     "audio_options": 46128,
@@ -268,6 +307,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -285,7 +325,6 @@
   },
   "audio_effect_apply": {
    "scripts": {
-    "animPlace": 6,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 5,
@@ -301,6 +340,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -317,7 +357,6 @@
   },
   "audio_frame_sync": {
    "scripts": {
-    "animPlace": 76,
     "attract": 202,
     "attract_pak": 198,
     "audio_options": 78,
@@ -335,6 +374,7 @@
     "player_reload": 74,
     "practice": 69,
     "race": 78,
+    "race_finish": 76,
     "race_pak": 74,
     "race_track2": 78,
     "race_track3": 78,
@@ -352,7 +392,6 @@
   },
   "audio_frame_update": {
    "scripts": {
-    "animPlace": 12,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 6,
@@ -368,6 +407,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 6,
+    "race_finish": 12,
     "race_pak": 6,
     "race_track2": 6,
     "race_track3": 6,
@@ -384,7 +424,6 @@
   },
   "audio_interrupt_handler": {
    "scripts": {
-    "animPlace": 2,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 2,
@@ -400,6 +439,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
+    "race_finish": 2,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -416,7 +456,6 @@
   },
   "audio_mixer_main": {
    "scripts": {
-    "animPlace": 6,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 5,
@@ -432,6 +471,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -448,7 +488,6 @@
   },
   "audio_priority_find": {
    "scripts": {
-    "animPlace": 555,
     "attract": 645,
     "attract_pak": 645,
     "audio_options": 465,
@@ -464,6 +503,7 @@
     "player_reload": 465,
     "practice": 465,
     "race": 465,
+    "race_finish": 555,
     "race_pak": 465,
     "race_track2": 465,
     "race_track3": 450,
@@ -480,8 +520,8 @@
   },
   "audio_update_d": {
    "scripts": {
-    "animPlace": 1,
     "ghost_save": 1,
+    "race_finish": 1,
     "stunt_short": 1,
     "two_player_finish": 1
    },
@@ -490,7 +530,6 @@
   },
   "brake_force_apply": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -508,6 +547,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -525,7 +565,6 @@
   },
   "brake_light_update": {
    "scripts": {
-    "animPlace": 4032,
     "audio_options": 3090,
     "backward": 4030,
     "battle": 4071,
@@ -541,6 +580,7 @@
     "player_reload": 3936,
     "practice": 3712,
     "race": 3090,
+    "race_finish": 4032,
     "race_pak": 3180,
     "race_track2": 3090,
     "race_track3": 3090,
@@ -558,7 +598,6 @@
   },
   "camera_auto_follow": {
    "scripts": {
-    "animPlace": 184,
     "attract": 8998,
     "attract_pak": 8998,
     "audio_options": 238,
@@ -576,6 +615,7 @@
     "player_reload": 118,
     "practice": 118,
     "race": 238,
+    "race_finish": 184,
     "race_pak": 118,
     "race_track2": 238,
     "race_track3": 238,
@@ -593,7 +633,6 @@
   },
   "camera_follow_path": {
    "scripts": {
-    "animPlace": 15,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 7,
@@ -607,6 +646,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -622,7 +662,6 @@
   },
   "camera_look_at_point": {
    "scripts": {
-    "animPlace": 43095,
     "attract": 138015,
     "attract_pak": 138819,
     "audio_options": 6215,
@@ -636,6 +675,7 @@
     "player_reload": 7055,
     "practice": 26870,
     "race": 13756,
+    "race_finish": 43095,
     "race_pak": 16724,
     "race_track2": 8398,
     "race_track3": 12765,
@@ -649,7 +689,6 @@
   },
   "camera_play_script": {
    "scripts": {
-    "animPlace": 177500,
     "attract": 349477,
     "attract_pak": 352038,
     "audio_options": 30459,
@@ -665,6 +704,7 @@
     "player_reload": 31736,
     "practice": 34833,
     "race": 57014,
+    "race_finish": 177500,
     "race_pak": 72161,
     "race_track2": 51188,
     "race_track3": 49541,
@@ -681,7 +721,6 @@
   },
   "camera_transform": {
    "scripts": {
-    "animPlace": 9599,
     "attract": 17999,
     "attract_pak": 17999,
     "audio_options": 3599,
@@ -699,6 +738,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -716,7 +756,6 @@
   },
   "car_lod_select": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -734,6 +773,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -751,7 +791,6 @@
   },
   "car_shadow_render": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -769,6 +808,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -786,7 +826,6 @@
   },
   "checkpoint_hit": {
    "scripts": {
-    "animPlace": 3222,
     "audio_options": 1098,
     "backward": 2028,
     "circuit": 1938,
@@ -798,6 +837,7 @@
     "player_reload": 828,
     "practice": 2028,
     "race": 1098,
+    "race_finish": 3222,
     "race_pak": 1218,
     "race_track2": 1098,
     "race_track3": 1098,
@@ -831,7 +871,6 @@
   },
   "countdown": {
    "scripts": {
-    "animPlace": 4141,
     "audio_options": 474,
     "backward": 2034,
     "battle": 2019,
@@ -845,6 +884,7 @@
     "player_reload": 534,
     "practice": 2034,
     "race": 1014,
+    "race_finish": 4141,
     "race_pak": 1224,
     "race_track2": 1014,
     "race_track3": 1014,
@@ -861,7 +901,6 @@
   },
   "countdown_handler": {
    "scripts": {
-    "animPlace": 4798,
     "attract": 8998,
     "attract_pak": 8998,
     "audio_options": 1168,
@@ -879,6 +918,7 @@
     "player_reload": 1198,
     "practice": 2698,
     "race": 1708,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1708,
     "race_track3": 1708,
@@ -921,7 +961,6 @@
   },
   "display_enable": {
    "scripts": {
-    "animPlace": 5,
     "attract": 17,
     "attract_pak": 17,
     "audio_options": 4,
@@ -939,6 +978,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
+    "race_finish": 5,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -956,7 +996,6 @@
   },
   "display_list_flush": {
    "scripts": {
-    "animPlace": 7,
     "attract": 35,
     "attract_pak": 35,
     "audio_options": 6,
@@ -972,6 +1011,7 @@
     "player_reload": 6,
     "practice": 6,
     "race": 6,
+    "race_finish": 7,
     "race_pak": 6,
     "race_track2": 6,
     "race_track3": 6,
@@ -988,10 +1028,10 @@
   },
   "drawMain": {
    "scripts": {
-    "animPlace": 480,
     "battle_end": 60,
     "ghost_save": 124,
     "player_finish": 270,
+    "race_finish": 480,
     "saves": 1395,
     "stunt_end": 690,
     "stunt_short": 190,
@@ -1015,7 +1055,6 @@
   },
   "drone_ai_update": {
    "scripts": {
-    "animPlace": 19344,
     "attract": 46164,
     "attract_pak": 46512,
     "audio_options": 2808,
@@ -1031,6 +1070,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
+    "race_finish": 19344,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -1073,7 +1113,6 @@
   },
   "drone_target_update": {
    "scripts": {
-    "animPlace": 2,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 2,
@@ -1091,6 +1130,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
+    "race_finish": 2,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -1115,7 +1155,6 @@
   },
   "dust_cloud_effect": {
    "scripts": {
-    "animPlace": 3228,
     "audio_options": 1101,
     "backward": 2031,
     "circuit": 1941,
@@ -1127,6 +1166,7 @@
     "player_reload": 831,
     "practice": 2031,
     "race": 1101,
+    "race_finish": 3228,
     "race_pak": 1221,
     "race_track2": 1101,
     "race_track3": 1101,
@@ -1143,7 +1183,6 @@
   },
   "emitter_update": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -1155,6 +1194,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -1171,7 +1211,6 @@
   },
   "entity_ai_pathfind": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -1189,6 +1228,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -1206,7 +1246,6 @@
   },
   "entity_anim_texture": {
    "scripts": {
-    "animPlace": 6448,
     "audio_options": 936,
     "backward": 4056,
     "circuit": 3876,
@@ -1216,6 +1255,7 @@
     "player_reload": 1056,
     "practice": 4056,
     "race": 2016,
+    "race_finish": 6448,
     "race_pak": 2436,
     "race_track2": 2016,
     "race_track3": 2016,
@@ -1232,7 +1272,6 @@
   },
   "entity_iterate": {
    "scripts": {
-    "animPlace": 3011,
     "attract": 2390,
     "attract_pak": 2428,
     "audio_options": 395,
@@ -1248,6 +1287,7 @@
     "player_reload": 455,
     "practice": 1955,
     "race": 935,
+    "race_finish": 3011,
     "race_pak": 1145,
     "race_track2": 935,
     "race_track3": 935,
@@ -1264,13 +1304,13 @@
   },
   "entity_physics_update": {
    "scripts": {
-    "animPlace": 62,
     "backward": 93,
     "circuit": 93,
     "ghost_save": 93,
     "other_car": 31,
     "player_finish": 62,
     "player_reload": 31,
+    "race_finish": 62,
     "race_pak": 31,
     "saves": 31,
     "stunt_end": 310,
@@ -1282,7 +1322,6 @@
   },
   "entity_process_main": {
    "scripts": {
-    "animPlace": 19344,
     "attract": 46164,
     "attract_pak": 46512,
     "audio_options": 2808,
@@ -1298,6 +1337,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
+    "race_finish": 19344,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -1325,7 +1365,6 @@
   },
   "entity_tick_main": {
    "scripts": {
-    "animPlace": 3224,
     "attract": 1794,
     "attract_pak": 1794,
     "audio_options": 468,
@@ -1340,6 +1379,7 @@
     "player_reload": 528,
     "practice": 2028,
     "race": 1008,
+    "race_finish": 3224,
     "race_pak": 1218,
     "race_track2": 1008,
     "race_track3": 1008,
@@ -1356,13 +1396,13 @@
   },
   "entity_update_callback": {
    "scripts": {
-    "animPlace": 208,
     "backward": 312,
     "circuit": 311,
     "ghost_save": 311,
     "other_car": 104,
     "player_finish": 1384,
     "player_reload": 348,
+    "race_finish": 208,
     "race_pak": 104,
     "saves": 103,
     "stunt_end": 1032,
@@ -1374,7 +1414,6 @@
   },
   "explosion_effect": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -1386,6 +1425,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -1402,10 +1442,10 @@
   },
   "finish_state_alt": {
    "scripts": {
-    "animPlace": 751,
     "battle_end": 1005,
     "ghost_save": 125,
     "player_finish": 360,
+    "race_finish": 751,
     "saves": 1485,
     "stunt_end": 990,
     "stunt_short": 281,
@@ -1421,7 +1461,6 @@
   },
   "func_80087110": {
    "scripts": {
-    "animPlace": 384899,
     "attract": 311719,
     "attract_pak": 313865,
     "audio_options": 203950,
@@ -1439,6 +1478,7 @@
     "player_reload": 162662,
     "practice": 182338,
     "race": 169278,
+    "race_finish": 384899,
     "race_pak": 164120,
     "race_track2": 169226,
     "race_track3": 169112,
@@ -1456,13 +1496,13 @@
   },
   "func_80090308": {
    "scripts": {
-    "animPlace": 2,
     "backward": 3,
     "circuit": 3,
     "ghost_save": 3,
     "other_car": 1,
     "player_finish": 2,
     "player_reload": 1,
+    "race_finish": 2,
     "race_pak": 1,
     "saves": 1,
     "stunt_end": 10,
@@ -1474,7 +1514,6 @@
   },
   "func_80097164": {
    "scripts": {
-    "animPlace": 77,
     "attract": 203,
     "attract_pak": 199,
     "audio_options": 79,
@@ -1492,6 +1531,7 @@
     "player_reload": 75,
     "practice": 70,
     "race": 79,
+    "race_finish": 77,
     "race_pak": 75,
     "race_track2": 79,
     "race_track3": 79,
@@ -1509,7 +1549,6 @@
   },
   "func_800979A0": {
    "scripts": {
-    "animPlace": 4,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 2,
@@ -1527,6 +1566,7 @@
     "player_reload": 2,
     "practice": 2,
     "race": 2,
+    "race_finish": 4,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -1544,7 +1584,6 @@
   },
   "func_800988D8": {
    "scripts": {
-    "animPlace": 9599,
     "attract": 17999,
     "attract_pak": 17999,
     "audio_options": 3599,
@@ -1562,6 +1601,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -1579,7 +1619,6 @@
   },
   "func_80098FB8": {
    "scripts": {
-    "animPlace": 9599,
     "attract": 17999,
     "attract_pak": 17999,
     "audio_options": 3599,
@@ -1597,6 +1636,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -1614,7 +1654,6 @@
   },
   "func_8009F058": {
    "scripts": {
-    "animPlace": 4798,
     "attract": 8998,
     "attract_pak": 8998,
     "audio_options": 1798,
@@ -1632,6 +1671,7 @@
     "player_reload": 1498,
     "practice": 2698,
     "race": 1798,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1798,
     "race_track3": 1798,
@@ -1649,7 +1689,6 @@
   },
   "func_800A3640": {
    "scripts": {
-    "animPlace": 1,
     "attract_pak": 1,
     "backward": 1,
     "battle": 1,
@@ -1664,6 +1703,7 @@
     "player_finish": 1,
     "player_reload": 1,
     "practice": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "records": 1,
     "saves": 1,
@@ -1676,7 +1716,6 @@
   },
   "func_800A3724": {
    "scripts": {
-    "animPlace": 4,
     "attract": 4,
     "attract_pak": 4,
     "audio_options": 4,
@@ -1694,6 +1733,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
+    "race_finish": 4,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -1711,7 +1751,6 @@
   },
   "func_800A7480": {
    "scripts": {
-    "animPlace": 18,
     "attract": 41,
     "attract_pak": 41,
     "audio_options": 17,
@@ -1729,6 +1768,7 @@
     "player_reload": 17,
     "practice": 17,
     "race": 17,
+    "race_finish": 18,
     "race_pak": 17,
     "race_track2": 17,
     "race_track3": 17,
@@ -1746,7 +1786,6 @@
   },
   "func_800AD4C8": {
    "scripts": {
-    "animPlace": 189334,
     "attract": 365887,
     "attract_pak": 369856,
     "audio_options": 50944,
@@ -1762,6 +1801,7 @@
     "player_reload": 53737,
     "practice": 36110,
     "race": 81935,
+    "race_finish": 189334,
     "race_pak": 91774,
     "race_track2": 88711,
     "race_track3": 49809,
@@ -1778,7 +1818,6 @@
   },
   "func_800B0EA0": {
    "scripts": {
-    "animPlace": 1288,
     "attract": 3864,
     "attract_pak": 3864,
     "audio_options": 736,
@@ -1794,6 +1833,7 @@
     "player_reload": 736,
     "practice": 276,
     "race": 736,
+    "race_finish": 1288,
     "race_pak": 736,
     "race_track2": 736,
     "race_track3": 736,
@@ -1827,7 +1867,6 @@
   },
   "func_800B66B0": {
    "scripts": {
-    "animPlace": 122021,
     "attract": 20874,
     "attract_pak": 21222,
     "audio_options": 46128,
@@ -1845,6 +1884,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -1862,7 +1902,6 @@
   },
   "func_800B9740": {
    "scripts": {
-    "animPlace": 6,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 5,
@@ -1878,6 +1917,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
+    "race_finish": 6,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -1892,41 +1932,8 @@
    "size": 408,
    "vram": "0x800B9740"
   },
-  "func_800BB9B0": {
-   "scripts": {
-    "animPlace": 7,
-    "attract": 35,
-    "attract_pak": 35,
-    "audio_options": 6,
-    "backward": 6,
-    "battle": 6,
-    "battle_end": 6,
-    "circuit": 6,
-    "ghost_race": 6,
-    "ghost_save": 12,
-    "other_car": 6,
-    "pause_menus": 7,
-    "player_finish": 6,
-    "player_reload": 6,
-    "practice": 6,
-    "race": 6,
-    "race_pak": 6,
-    "race_track2": 6,
-    "race_track3": 6,
-    "race_track4": 6,
-    "saves": 6,
-    "stunt": 6,
-    "stunt_end": 6,
-    "stunt_short": 7,
-    "two_player": 6,
-    "two_player_finish": 7
-   },
-   "size": 2104,
-   "vram": "0x800BB9B0"
-  },
   "func_800C4F68": {
    "scripts": {
-    "animPlace": 15,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 7,
@@ -1942,6 +1949,7 @@
     "player_reload": 7,
     "practice": 1,
     "race": 8,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -1987,7 +1995,6 @@
   },
   "func_800D348C": {
    "scripts": {
-    "animPlace": 3,
     "audio_options": 1,
     "backward": 2,
     "circuit": 3,
@@ -1996,6 +2003,7 @@
     "other_car": 2,
     "player_finish": 1,
     "race": 2,
+    "race_finish": 3,
     "race_pak": 2,
     "race_track2": 2,
     "race_track3": 2,
@@ -2011,8 +2019,8 @@
   },
   "func_800D5A04": {
    "scripts": {
-    "animPlace": 1,
     "pause_menus": 1,
+    "race_finish": 1,
     "stunt_short": 1,
     "two_player_finish": 1
    },
@@ -2021,7 +2029,6 @@
   },
   "func_800D6160": {
    "scripts": {
-    "animPlace": 2,
     "audio_options": 5,
     "backward": 1,
     "battle": 1,
@@ -2035,6 +2042,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 3,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 3,
     "race_track3": 3,
@@ -2075,7 +2083,6 @@
   },
   "func_800D91A0": {
    "scripts": {
-    "animPlace": 91,
     "audio_options": 91,
     "backward": 91,
     "battle": 91,
@@ -2090,6 +2097,7 @@
     "player_reload": 181,
     "practice": 91,
     "race": 91,
+    "race_finish": 91,
     "race_pak": 91,
     "race_track2": 91,
     "race_track3": 91,
@@ -2135,7 +2143,6 @@
   },
   "func_800DE45C": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -2153,6 +2160,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2170,7 +2178,6 @@
   },
   "func_800E543C": {
    "scripts": {
-    "animPlace": 15,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 7,
@@ -2186,6 +2193,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -2202,7 +2210,6 @@
   },
   "func_800E56F8": {
    "scripts": {
-    "animPlace": 22519,
     "attract": 46086,
     "attract_pak": 46434,
     "audio_options": 3255,
@@ -2218,6 +2225,7 @@
     "player_reload": 3682,
     "practice": 4050,
     "race": 7035,
+    "race_finish": 22519,
     "race_pak": 8505,
     "race_track2": 7035,
     "race_track3": 7035,
@@ -2234,7 +2242,6 @@
   },
   "func_800E7038": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -2252,6 +2259,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2269,7 +2277,6 @@
   },
   "func_800E7134": {
    "scripts": {
-    "animPlace": 9599,
     "attract": 17999,
     "attract_pak": 17999,
     "audio_options": 3599,
@@ -2287,6 +2294,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -2304,7 +2312,6 @@
   },
   "func_800E73D8": {
    "scripts": {
-    "animPlace": 9599,
     "attract": 17999,
     "attract_pak": 17999,
     "audio_options": 3599,
@@ -2322,6 +2329,7 @@
     "player_reload": 2999,
     "practice": 5399,
     "race": 3599,
+    "race_finish": 9599,
     "race_pak": 3599,
     "race_track2": 3599,
     "race_track3": 3599,
@@ -2339,7 +2347,6 @@
   },
   "func_800E7FA0": {
    "scripts": {
-    "animPlace": 19338,
     "attract": 46128,
     "attract_pak": 46476,
     "audio_options": 2808,
@@ -2355,6 +2362,7 @@
     "player_reload": 3168,
     "practice": 2028,
     "race": 6048,
+    "race_finish": 19338,
     "race_pak": 7308,
     "race_track2": 6048,
     "race_track3": 6048,
@@ -2371,7 +2379,6 @@
   },
   "func_800E847C": {
    "scripts": {
-    "animPlace": 3223,
     "attract": 7688,
     "attract_pak": 7746,
     "audio_options": 468,
@@ -2387,6 +2394,7 @@
     "player_reload": 528,
     "practice": 2028,
     "race": 1008,
+    "race_finish": 3223,
     "race_pak": 1218,
     "race_track2": 1008,
     "race_track3": 1008,
@@ -2403,7 +2411,6 @@
   },
   "func_800EB028": {
    "scripts": {
-    "animPlace": 3223,
     "attract": 7688,
     "attract_pak": 7746,
     "audio_options": 468,
@@ -2419,6 +2426,7 @@
     "player_reload": 528,
     "practice": 2028,
     "race": 1008,
+    "race_finish": 3223,
     "race_pak": 1218,
     "race_track2": 1008,
     "race_track3": 1008,
@@ -2435,7 +2443,6 @@
   },
   "func_800EF288": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -2447,6 +2454,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2463,10 +2471,10 @@
   },
   "func_800F7F3C": {
    "scripts": {
-    "animPlace": 16,
     "battle_end": 4,
     "ghost_save": 1,
     "player_finish": 16,
+    "race_finish": 16,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
@@ -2477,10 +2485,10 @@
   },
   "func_800F857C": {
    "scripts": {
-    "animPlace": 6,
     "battle_end": 2,
     "ghost_save": 2,
     "player_finish": 3,
+    "race_finish": 6,
     "saves": 3,
     "stunt_end": 5,
     "stunt_short": 4,
@@ -2491,10 +2499,10 @@
   },
   "func_800F87A0": {
    "scripts": {
-    "animPlace": 481,
     "battle_end": 61,
     "ghost_save": 125,
     "player_finish": 270,
+    "race_finish": 481,
     "saves": 1395,
     "stunt_end": 690,
     "stunt_short": 191,
@@ -2513,10 +2521,10 @@
   },
   "func_80100D5C": {
    "scripts": {
-    "animPlace": 5520,
     "battle_end": 11820,
     "ghost_save": 620,
     "player_finish": 2610,
+    "race_finish": 5520,
     "saves": 10845,
     "stunt_end": 11250,
     "stunt_short": 3290,
@@ -2527,9 +2535,9 @@
   },
   "func_80100E58": {
    "scripts": {
-    "animPlace": 480,
     "ghost_save": 124,
     "player_finish": 270,
+    "race_finish": 480,
     "saves": 1395,
     "two_player_finish": 240
    },
@@ -2568,10 +2576,10 @@
   },
   "func_80102F30": {
    "scripts": {
-    "animPlace": 750,
     "battle_end": 1005,
     "ghost_save": 124,
     "player_finish": 360,
+    "race_finish": 750,
     "saves": 1485,
     "stunt_end": 990,
     "stunt_short": 280,
@@ -2592,9 +2600,9 @@
   },
   "func_80105480": {
    "scripts": {
-    "animPlace": 158,
     "ghost_save": 900,
     "player_finish": 863,
+    "race_finish": 158,
     "saves": 270,
     "two_player_finish": 496
    },
@@ -2603,7 +2611,6 @@
   },
   "func_80105EA8": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "battle": 2011,
@@ -2617,6 +2624,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2633,7 +2641,6 @@
   },
   "func_80106874": {
    "scripts": {
-    "animPlace": 212,
     "audio_options": 106,
     "backward": 106,
     "battle": 106,
@@ -2647,6 +2654,7 @@
     "player_reload": 106,
     "practice": 106,
     "race": 106,
+    "race_finish": 212,
     "race_pak": 106,
     "race_track2": 106,
     "race_track3": 106,
@@ -2663,7 +2671,6 @@
   },
   "func_80106B3C": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "battle": 2011,
@@ -2677,6 +2684,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2693,7 +2701,6 @@
   },
   "func_801084D4": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -2705,6 +2712,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2718,7 +2726,6 @@
   },
   "func_80108AB0": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -2730,6 +2737,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -2743,7 +2751,6 @@
   },
   "func_80109F54": {
    "scripts": {
-    "animPlace": 3220,
     "audio_options": 1097,
     "backward": 2027,
     "circuit": 1937,
@@ -2755,6 +2762,7 @@
     "player_reload": 827,
     "practice": 2027,
     "race": 1097,
+    "race_finish": 3220,
     "race_pak": 1217,
     "race_track2": 1097,
     "race_track3": 1097,
@@ -2892,7 +2900,6 @@
   },
   "func_8010FBE0": {
    "scripts": {
-    "animPlace": 9597,
     "attract": 17997,
     "attract_pak": 17997,
     "audio_options": 3597,
@@ -2910,6 +2917,7 @@
     "player_reload": 2997,
     "practice": 5397,
     "race": 3597,
+    "race_finish": 9597,
     "race_pak": 3597,
     "race_track2": 3597,
     "race_track3": 3597,
@@ -2927,7 +2935,6 @@
   },
   "game_late_init": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -2945,6 +2952,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -2962,7 +2970,6 @@
   },
   "game_loop": {
    "scripts": {
-    "animPlace": 4819,
     "attract": 9016,
     "attract_pak": 9016,
     "audio_options": 1812,
@@ -2980,6 +2987,7 @@
     "player_reload": 1512,
     "practice": 2712,
     "race": 1812,
+    "race_finish": 4819,
     "race_pak": 1812,
     "race_track2": 1812,
     "race_track3": 1812,
@@ -3001,14 +3009,6 @@
    },
    "size": 1916,
    "vram": "0x800FFDE8"
-  },
-  "game_results_input": {
-   "scripts": {
-    "controls_frontend": 88880,
-    "pause_menus": 16800
-   },
-   "size": 1732,
-   "vram": "0x800FF724"
   },
   "game_results_render": {
    "scripts": {
@@ -3036,10 +3036,10 @@
   },
   "ghost_race_setup": {
    "scripts": {
-    "animPlace": 1,
     "battle_end": 1,
     "ghost_save": 1,
     "player_finish": 1,
+    "race_finish": 1,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
@@ -3050,7 +3050,6 @@
   },
   "hud_setup": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -3068,6 +3067,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3085,7 +3085,6 @@
   },
   "init_state_continue": {
    "scripts": {
-    "animPlace": 2,
     "audio_options": 1,
     "backward": 1,
     "battle": 1,
@@ -3099,6 +3098,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3115,7 +3115,6 @@
   },
   "input_deadzone_apply": {
    "scripts": {
-    "animPlace": 3011,
     "attract": 2390,
     "attract_pak": 2428,
     "audio_options": 395,
@@ -3131,6 +3130,7 @@
     "player_reload": 455,
     "practice": 1955,
     "race": 935,
+    "race_finish": 3011,
     "race_pak": 1145,
     "race_track2": 935,
     "race_track3": 935,
@@ -3147,7 +3147,6 @@
   },
   "input_process_controller": {
    "scripts": {
-    "animPlace": 35776,
     "attract": 21193,
     "attract_pak": 21585,
     "audio_options": 4247,
@@ -3163,6 +3162,7 @@
     "player_reload": 4084,
     "practice": 18562,
     "race": 7949,
+    "race_finish": 35776,
     "race_pak": 10120,
     "race_track2": 6522,
     "race_track3": 7382,
@@ -3186,7 +3186,6 @@
   },
   "menu_input_process": {
    "scripts": {
-    "animPlace": 122021,
     "attract": 20874,
     "attract_pak": 21222,
     "audio_options": 46128,
@@ -3204,6 +3203,7 @@
     "player_reload": 32615,
     "practice": 56599,
     "race": 40065,
+    "race_finish": 122021,
     "race_pak": 42537,
     "race_track2": 40011,
     "race_track3": 39897,
@@ -3221,7 +3221,6 @@
   },
   "model_iteration": {
    "scripts": {
-    "animPlace": 6434,
     "attract": 15362,
     "attract_pak": 15478,
     "audio_options": 930,
@@ -3237,6 +3236,7 @@
     "player_reload": 1052,
     "practice": 4050,
     "race": 2010,
+    "race_finish": 6434,
     "race_pak": 2430,
     "race_track2": 2010,
     "race_track3": 2010,
@@ -3253,7 +3253,6 @@
   },
   "music_control": {
    "scripts": {
-    "animPlace": 2,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 1,
@@ -3269,6 +3268,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3285,7 +3285,6 @@
   },
   "music_seq_load": {
    "scripts": {
-    "animPlace": 14,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 8,
@@ -3301,6 +3300,7 @@
     "player_reload": 8,
     "practice": 3,
     "race": 8,
+    "race_finish": 14,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3322,7 +3322,6 @@
   },
   "object_bytes_sum_global": {
    "scripts": {
-    "animPlace": 4306,
     "attract": 9056,
     "attract_pak": 8998,
     "audio_options": 5748,
@@ -3340,6 +3339,7 @@
     "player_reload": 5043,
     "practice": 2348,
     "race": 2627,
+    "race_finish": 4306,
     "race_pak": 1726,
     "race_track2": 2627,
     "race_track3": 2627,
@@ -3357,7 +3357,6 @@
   },
   "object_create": {
    "scripts": {
-    "animPlace": 1448,
     "attract": 2396,
     "attract_pak": 2280,
     "audio_options": 1508,
@@ -3375,6 +3374,7 @@
     "player_reload": 1538,
     "practice": 1448,
     "race": 1508,
+    "race_finish": 1448,
     "race_pak": 1268,
     "race_track2": 1508,
     "race_track3": 1508,
@@ -3405,7 +3405,6 @@
   },
   "particle_lifetime_set": {
    "scripts": {
-    "animPlace": 5,
     "audio_options": 5,
     "backward": 5,
     "battle": 5,
@@ -3421,6 +3420,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
+    "race_finish": 5,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -3446,7 +3446,6 @@
   },
   "particles_update": {
    "scripts": {
-    "animPlace": 3218,
     "audio_options": 1096,
     "backward": 2026,
     "circuit": 1936,
@@ -3458,6 +3457,7 @@
     "player_reload": 826,
     "practice": 2026,
     "race": 1096,
+    "race_finish": 3218,
     "race_pak": 1216,
     "race_track2": 1096,
     "race_track3": 1096,
@@ -3474,7 +3474,6 @@
   },
   "physics_float_calc": {
    "scripts": {
-    "animPlace": 4798,
     "attract": 8998,
     "attract_pak": 8998,
     "audio_options": 1798,
@@ -3492,6 +3491,7 @@
     "player_reload": 1498,
     "practice": 2698,
     "race": 1798,
+    "race_finish": 4798,
     "race_pak": 1798,
     "race_track2": 1798,
     "race_track3": 1798,
@@ -3509,7 +3509,6 @@
   },
   "physics_response": {
    "scripts": {
-    "animPlace": 7,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 5,
@@ -3525,6 +3524,7 @@
     "player_reload": 5,
     "practice": 5,
     "race": 5,
+    "race_finish": 7,
     "race_pak": 5,
     "race_track2": 5,
     "race_track3": 5,
@@ -3541,7 +3541,6 @@
   },
   "playgame_state_change": {
    "scripts": {
-    "animPlace": 4818,
     "attract": 9015,
     "attract_pak": 9015,
     "audio_options": 1811,
@@ -3559,6 +3558,7 @@
     "player_reload": 1511,
     "practice": 2711,
     "race": 1811,
+    "race_finish": 4818,
     "race_pak": 1811,
     "race_track2": 1811,
     "race_track3": 1811,
@@ -3576,7 +3576,6 @@
   },
   "props_render": {
    "scripts": {
-    "animPlace": 2,
     "attract": 7,
     "attract_pak": 7,
     "audio_options": 1,
@@ -3592,6 +3591,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 2,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3608,7 +3608,6 @@
   },
   "race_position_update": {
    "scripts": {
-    "animPlace": 1145,
     "audio_options": 100,
     "backward": 85,
     "battle": 281,
@@ -3623,6 +3622,7 @@
     "player_reload": 276,
     "practice": 100,
     "race": 100,
+    "race_finish": 1145,
     "race_pak": 100,
     "race_track2": 100,
     "race_track3": 100,
@@ -3640,7 +3640,6 @@
   },
   "render_replay_ui": {
    "scripts": {
-    "animPlace": 4,
     "audio_options": 4,
     "backward": 4,
     "battle": 4,
@@ -3655,6 +3654,7 @@
     "player_reload": 4,
     "practice": 4,
     "race": 4,
+    "race_finish": 4,
     "race_pak": 4,
     "race_track2": 4,
     "race_track3": 4,
@@ -3671,7 +3671,6 @@
   },
   "render_results_screen": {
    "scripts": {
-    "animPlace": 1,
     "audio_options": 1,
     "backward": 1,
     "battle": 1,
@@ -3686,6 +3685,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3702,7 +3702,6 @@
   },
   "render_thread_entry": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -3720,6 +3719,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -3737,7 +3737,6 @@
   },
   "render_viewport_init": {
    "scripts": {
-    "animPlace": 3009,
     "attract": 7681,
     "attract_pak": 7739,
     "audio_options": 361,
@@ -3753,6 +3752,7 @@
     "player_reload": 421,
     "practice": 1921,
     "race": 901,
+    "race_finish": 3009,
     "race_pak": 1111,
     "race_track2": 901,
     "race_track3": 901,
@@ -3777,13 +3777,13 @@
   },
   "save_write_data": {
    "scripts": {
-    "animPlace": 2,
     "backward": 3,
     "circuit": 3,
     "ghost_save": 3,
     "other_car": 1,
     "player_finish": 2,
     "player_reload": 1,
+    "race_finish": 2,
     "race_pak": 1,
     "saves": 1,
     "stunt_end": 10,
@@ -3795,7 +3795,6 @@
   },
   "skid_mark_render": {
    "scripts": {
-    "animPlace": 3011,
     "attract": 7688,
     "attract_pak": 7746,
     "audio_options": 362,
@@ -3811,6 +3810,7 @@
     "player_reload": 422,
     "practice": 1922,
     "race": 902,
+    "race_finish": 3011,
     "race_pak": 1112,
     "race_track2": 902,
     "race_track3": 902,
@@ -3827,7 +3827,6 @@
   },
   "sound_bank_unload": {
    "scripts": {
-    "animPlace": 14,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 8,
@@ -3843,6 +3842,7 @@
     "player_reload": 8,
     "practice": 3,
     "race": 8,
+    "race_finish": 14,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3859,7 +3859,6 @@
   },
   "sound_position_update": {
    "scripts": {
-    "animPlace": 152673,
     "attract": 56,
     "audio_options": 21095,
     "backward": 86833,
@@ -3876,6 +3875,7 @@
     "player_reload": 23394,
     "practice": 48536,
     "race": 43708,
+    "race_finish": 152673,
     "race_pak": 53494,
     "race_track2": 38619,
     "race_track3": 41174,
@@ -3893,7 +3893,6 @@
   },
   "state_utility": {
    "scripts": {
-    "animPlace": 120985,
     "attract": 10378,
     "attract_pak": 10784,
     "audio_options": 45112,
@@ -3911,6 +3910,7 @@
     "player_reload": 31777,
     "practice": 55761,
     "race": 39049,
+    "race_finish": 120985,
     "race_pak": 41699,
     "race_track2": 38995,
     "race_track3": 38881,
@@ -3928,7 +3928,6 @@
   },
   "stunt_combo_display": {
    "scripts": {
-    "animPlace": 15,
     "attract": 42,
     "attract_pak": 42,
     "audio_options": 7,
@@ -3944,6 +3943,7 @@
     "player_reload": 6,
     "practice": 1,
     "race": 8,
+    "race_finish": 15,
     "race_pak": 8,
     "race_track2": 8,
     "race_track3": 8,
@@ -3960,7 +3960,6 @@
   },
   "suspension_setup": {
    "scripts": {
-    "animPlace": 1,
     "attract": 1,
     "attract_pak": 1,
     "audio_options": 1,
@@ -3978,6 +3977,7 @@
     "player_reload": 1,
     "practice": 1,
     "race": 1,
+    "race_finish": 1,
     "race_pak": 1,
     "race_track2": 1,
     "race_track3": 1,
@@ -4002,7 +4002,6 @@
   },
   "tire_compound_set": {
    "scripts": {
-    "animPlace": 7,
     "attract": 18,
     "attract_pak": 18,
     "audio_options": 7,
@@ -4020,6 +4019,7 @@
     "player_reload": 7,
     "practice": 7,
     "race": 7,
+    "race_finish": 7,
     "race_pak": 7,
     "race_track2": 7,
     "race_track3": 7,
@@ -4037,7 +4037,6 @@
   },
   "track_render_process": {
    "scripts": {
-    "animPlace": 930,
     "attract": 9015,
     "attract_pak": 9015,
     "audio_options": 1452,
@@ -4055,6 +4054,7 @@
     "player_reload": 1092,
     "practice": 810,
     "race": 918,
+    "race_finish": 930,
     "race_pak": 711,
     "race_track2": 918,
     "race_track3": 918,
@@ -4072,10 +4072,10 @@
   },
   "track_texture_load": {
    "scripts": {
-    "animPlace": 1,
     "battle_end": 1,
     "ghost_save": 1,
     "player_finish": 1,
+    "race_finish": 1,
     "saves": 1,
     "stunt_end": 1,
     "stunt_short": 1,
@@ -4103,7 +4103,6 @@
   },
   "voice_stop_2": {
    "scripts": {
-    "animPlace": 540,
     "attract": 480,
     "attract_pak": 480,
     "audio_options": 500,
@@ -4121,6 +4120,7 @@
     "player_reload": 500,
     "practice": 500,
     "race": 500,
+    "race_finish": 540,
     "race_pak": 500,
     "race_track2": 520,
     "race_track3": 540,
@@ -4138,7 +4138,6 @@
   },
   "world_collision_response": {
    "scripts": {
-    "animPlace": 4800,
     "attract": 9000,
     "attract_pak": 9000,
     "audio_options": 1800,
@@ -4156,6 +4155,7 @@
     "player_reload": 1500,
     "practice": 2700,
     "race": 1800,
+    "race_finish": 4800,
     "race_pak": 1800,
     "race_track2": 1800,
     "race_track3": 1800,
@@ -4178,7 +4178,6 @@
   },
   "world_trigger_activate": {
    "scripts": {
-    "animPlace": 19199,
     "attract": 35999,
     "attract_pak": 35999,
     "audio_options": 7199,
@@ -4196,6 +4195,7 @@
     "player_reload": 5999,
     "practice": 10799,
     "race": 7199,
+    "race_finish": 19199,
     "race_pak": 7199,
     "race_track2": 7199,
     "race_track3": 7199,
@@ -4213,7 +4213,6 @@
   },
   "world_velocity_integrate": {
    "scripts": {
-    "animPlace": 4800,
     "attract": 9000,
     "attract_pak": 9000,
     "audio_options": 1800,
@@ -4231,6 +4230,7 @@
     "player_reload": 1500,
     "practice": 2700,
     "race": 1800,
+    "race_finish": 4800,
     "race_pak": 1800,
     "race_track2": 1800,
     "race_track3": 1800,
@@ -4267,7 +4267,7 @@
   "player_reload",
   "practice",
   "race",
-  "animPlace",
+  "race_finish",
   "race_pak",
   "race_track2",
   "race_track3",

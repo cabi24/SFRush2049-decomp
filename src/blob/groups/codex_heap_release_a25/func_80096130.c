@@ -15,7 +15,7 @@ typedef unsigned int u32;
 typedef struct Slot20 { u8 pad0[6]; u8 resource; u8 pad7; u32 word8, allocation, word16; } Slot20;
 extern Slot20 gWaveInstance[64];
 extern volatile s16 D_8002EB70;
-extern u8 D_801161F4[], D_80151AE8[], D_80138670[];
+extern u8 gRomObjDefPtrs[], gTexDefPtrs[], gPalDefPtrs[];
 void *memset(void *, int, u32);
 void func_800960CC(u32 address);
 
@@ -36,7 +36,7 @@ void func_80096130(s32 index)
     func_800960CC(slot->allocation);
     if (slot) {}
     slot->allocation = 0;
-    memset(D_801161F4 + index * 8, 0, 8);
-    memset(D_80151AE8 + index * 8, 0, 8);
-    memset(D_80138670 + index * 8, 0, 8);
+    memset(gRomObjDefPtrs + index * 8, 0, 8);
+    memset(gTexDefPtrs + index * 8, 0, 8);
+    memset(gPalDefPtrs + index * 8, 0, 8);
 }

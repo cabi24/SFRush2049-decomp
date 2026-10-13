@@ -87,7 +87,7 @@
       "group/group.json": "43a85b8f3be43f5064ecc1c1eb222885fde829ef8780027778de6d010c8f424a",
       "host.c": "bb1eef691512bb309b3d6105eb43d0e3f28ed5c0b1465b938599c04cdef7e1eb",
       "trace.py": "66b5cb8d3995a3f131c5c3b3b480f250d1f086f882cb2e0f610a1f3d6e94737d",
-      "verify.py": "409d477da2b5b0195c1cd506fc4517359aaf7688f58ee9f1592e8bad1c432e66"
+      "verify.py": "b5f74d79cd69056c8cead10e4e1aede44046034bcac2c071cdd729866a51ab81"
     },
     "symbols": {
       "D_8011418C": "0x8011418c",
@@ -247,7 +247,7 @@
       }
     },
     "test_sha256": "d60369ae423de921a5ac517b8b9c26b0e929463438bd763e681eba10559557dd",
-    "texture_lookup_source_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b"
+    "texture_lookup_source_sha256": "1dfaf9c9e2f9a4f30ae3bd23aeec1c72e8ff9971008edcca2a52bf9f6f4d7738"
   },
   "installation_proposed": false,
   "negative_controls": [

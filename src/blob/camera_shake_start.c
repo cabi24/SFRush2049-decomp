@@ -41,7 +41,7 @@ extern Sequence20 *D_8011A31C[];
 extern Item12 D_8011905C[];
 extern u32 state_word_a;
 extern s8 D_80156994, D_80114650, D_8014978C;
-extern u8 D_80140BDC;
+extern u8 gNumModels;
 extern Resource32 *func_800B24EC(char *, u16 *, s8, s8, int);
 extern Resource32 *sound_bank_load(char *, u16 *, s8, s8, int);
 extern void *func_800BDA24(void *);
@@ -60,9 +60,9 @@ void camera_shake_start(void) {
     if (!row) goto second;
     while (row->name) {
         row->time = 0.0333333f;
-        if (row->kind >= 9) row->data = func_800B24EC(row->name, &id, 0, D_80140BDC - 1, 1)->data;
+        if (row->kind >= 9) row->data = func_800B24EC(row->name, &id, 0, gNumModels - 1, 1)->data;
         else {
-            resource = sound_bank_load(row->name, &id, 0, D_80140BDC - 1, 1);
+            resource = sound_bank_load(row->name, &id, 0, gNumModels - 1, 1);
             if (resource) row->data = resource->bank;
         }
         row++;
@@ -74,9 +74,9 @@ second:
     while (sequence->count) {
         for (i = 0; i < sequence->count; i++) {
             if (D_80156994 || D_8014978C >= 6) {
-                sequence->items[i].resource = func_800B24EC(sequence->items[i].name, &id, 0, D_80140BDC - 1, 1);
+                sequence->items[i].resource = func_800B24EC(sequence->items[i].name, &id, 0, gNumModels - 1, 1);
             } else if (!D_80156994 && D_8014978C >= 0 && D_8014978C < 6 && sequence->items != D_8011905C) {
-                sequence->items[i].resource = func_800B24EC(sequence->items[i].name, &id, 0, D_80140BDC - 1, 1);
+                sequence->items[i].resource = func_800B24EC(sequence->items[i].name, &id, 0, gNumModels - 1, 1);
             } else continue;
             resource = sequence->items[i].resource;
             if (resource->flags & 0x08000000) sequence->items[i].output = resource->data;

@@ -602,7 +602,7 @@ SECTIONS
         *(.text.camera_reset)
         *(.text.func_800BB7F4)
         *(.text.camera_lerp_position)
-        *(.text.func_800BB9B0)
+        *(.text.LoadTrack)
         *(.text.player_flag_clear_process)
         *(.text.func_800BC21C)
         *(.text.camera_dolly)
@@ -1158,7 +1158,7 @@ SECTIONS
         *(.text.game_timer_display)
         *(.text.game_results_update)
         *(.text.game_results_render)
-        *(.text.game_results_input)
+        *(.text.animControls)
         *(.text.game_results_exit)
         *(.text.func_80100564)
         *(.text.func_80100B8C)
@@ -3121,7 +3121,7 @@ SECTIONS
     PROVIDE(game_timer_display = 0x800FECA4);
     PROVIDE(gameover_handler = 0x800FEE04);
     PROVIDE(game_results_render = 0x800FF298);
-    PROVIDE(game_results_input = 0x800FF724);
+    PROVIDE(animControls = 0x800FF724);
     PROVIDE(game_results_exit = 0x800FFDF8);
     PROVIDE(callback_init = 0x80100D30);
     PROVIDE(timer_reset = 0x80100DF0);
@@ -3430,7 +3430,7 @@ SECTIONS
     PROVIDE(D_801161D0 = 0x801161D0);
     PROVIDE(D_801161D4 = 0x801161D4);
     PROVIDE(D_801161E4 = 0x801161E4);
-    PROVIDE(D_801161F4 = 0x801161F4);
+    PROVIDE(gRomObjDefPtrs = 0x801161F4);
     PROVIDE(D_801163F4 = 0x801163F4);
     PROVIDE(D_801163F8 = 0x801163F8);
     PROVIDE(D_80116488 = 0x80116488);
@@ -4588,7 +4588,7 @@ SECTIONS
     PROVIDE(D_80138660 = 0x80138660);
     PROVIDE(D_80138664 = 0x80138664);
     PROVIDE(D_80138668 = 0x80138668);
-    PROVIDE(D_80138670 = 0x80138670);
+    PROVIDE(gPalDefPtrs = 0x80138670);
     PROVIDE(D_80138870 = 0x80138870);
     PROVIDE(D_80138878 = 0x80138878);
     PROVIDE(D_80138880 = 0x80138880);
@@ -4703,7 +4703,7 @@ SECTIONS
     PROVIDE(gHighScoreState = 0x80140B20);
     PROVIDE(D_80140B28 = 0x80140B28);
     PROVIDE(D_80140BD8 = 0x80140BD8);
-    PROVIDE(D_80140BDC = 0x80140BDC);
+    PROVIDE(gNumModels = 0x80140BDC);
     PROVIDE(D_80140BE0 = 0x80140BE0);
     PROVIDE(pad_config = 0x80140BF0);
     PROVIDE(D_80140C06 = 0x80140C06);
@@ -5091,7 +5091,7 @@ SECTIONS
     PROVIDE(D_80150B60 = 0x80150B60);
     PROVIDE(D_80150B64 = 0x80150B64);
     PROVIDE(D_80150B68 = 0x80150B68);
-    PROVIDE(D_80150B70 = 0x80150B70);
+    PROVIDE(gCamera = 0x80150B70);
     PROVIDE(D_80150B7C = 0x80150B7C);
     PROVIDE(gSoundBufferTemp = 0x80150B80);
     PROVIDE(gSoundsEnabled = 0x80150B8C);
@@ -5158,7 +5158,7 @@ SECTIONS
     PROVIDE(D_80151610 = 0x80151610);
     PROVIDE(D_80151618 = 0x80151618);
     PROVIDE(D_80151688 = 0x80151688);
-    PROVIDE(D_80151690 = 0x80151690);
+    PROVIDE(gTotalNames = 0x80151690);
     PROVIDE(D_80151960 = 0x80151960);
     PROVIDE(D_80151964 = 0x80151964);
     PROVIDE(D_80151968 = 0x80151968);
@@ -5170,12 +5170,12 @@ SECTIONS
     PROVIDE(D_80151AB8 = 0x80151AB8);
     PROVIDE(D_80151AC0 = 0x80151AC0);
     PROVIDE(D_80151ACF = 0x80151ACF);
-    PROVIDE(D_80151AD0 = 0x80151AD0);
+    PROVIDE(gNumWindows = 0x80151AD0);
     PROVIDE(D_80151AD4 = 0x80151AD4);
     PROVIDE(D_80151AD8 = 0x80151AD8);
     PROVIDE(D_80151ADC = 0x80151ADC);
     PROVIDE(D_80151AE0 = 0x80151AE0);
-    PROVIDE(D_80151AE8 = 0x80151AE8);
+    PROVIDE(gTexDefPtrs = 0x80151AE8);
     PROVIDE(D_80151CE8 = 0x80151CE8);
     PROVIDE(D_80151CEC = 0x80151CEC);
     PROVIDE(D_80151CEE = 0x80151CEE);
@@ -5190,7 +5190,7 @@ SECTIONS
     PROVIDE(D_80152028 = 0x80152028);
     PROVIDE(D_80152030 = 0x80152030);
     PROVIDE(D_80152031 = 0x80152031);
-    PROVIDE(D_80152032 = 0x80152032);
+    PROVIDE(gCountDown = 0x80152032);
     PROVIDE(D_80152034 = 0x80152034);
     PROVIDE(D_80152038 = 0x80152038);
     PROVIDE(D_80152040 = 0x80152040);

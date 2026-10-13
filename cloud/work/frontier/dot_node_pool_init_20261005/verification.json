@@ -480,7 +480,7 @@
     "direct_callers": [
       {
         "address": "0x800bc104",
-        "name": "func_800BB9B0"
+        "name": "LoadTrack"
       }
     ],
     "end_exclusive": "0x800b2cb4",

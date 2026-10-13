@@ -60,7 +60,7 @@ extern f32 D_8015273C;
 extern f32 D_80152740;
 extern f32 D_8011418C[];
 extern volatile f32 D_8002EB94;
-extern volatile u8 D_80140BDC;
+extern volatile u8 gNumModels;
 extern Model68 D_8012E700[];
 
 f32 fabsf(f32);
@@ -179,9 +179,9 @@ void func_800DA2C0(void) {
         func_800B5898(D_8011650C[i].ang - 1.5707964f, D_8011650C[i].mat);
         func_800B5898(D_8011650C[i + 14].ang - 1.5707964f, D_8011650C[i + 14].mat);
         if (1.5707964f < D_8011650C[i].ang)
-            name = func_800B24EC("BUTTON_SELECT", &tex, 0, (s8)(D_80140BDC - 1), 1);
+            name = func_800B24EC("BUTTON_SELECT", &tex, 0, (s8)(gNumModels - 1), 1);
         else
-            name = func_800B24EC("BUTTON", &tex, 0, (s8)(D_80140BDC - 1), 1);
+            name = func_800B24EC("BUTTON", &tex, 0, (s8)(gNumModels - 1), 1);
         func_8008D870(D_8011650C[i].handle, name, -1);
         func_8008D870(D_8011650C[i + 14].handle, name, -1);
         if (140.0f < D_8011650C[i].pos[1] || D_8011650C[i].pos[1] < -160.0f)

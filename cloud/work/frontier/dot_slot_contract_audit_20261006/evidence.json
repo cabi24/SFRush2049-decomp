@@ -11,7 +11,7 @@
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
     "src/blob/groups/credits_scroll_grp/group.json": "54b995a95309a7ad07676ff1e83a12a8e80860a0fdf76830a13d5eff89913421",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
-    "src/blob/groups/slot_sound/group.c": "8484f7c1109f0613d9f6d11127fab652cec41df4a2e1a3acf1719a4cd68e0c26"
+    "src/blob/groups/slot_sound/group.c": "f45284d32c1be634058f3f1c6a47e2c0f98588e8caaa0771f2beef14232136b2"
   },
   "helpers": {
     "slot_state_setup": {

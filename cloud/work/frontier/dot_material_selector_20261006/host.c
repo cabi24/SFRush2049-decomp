@@ -7,7 +7,7 @@
 #define CANDIDATE "source.c"
 #endif
 #include CANDIDATE
-ModelBank D_801161F4[64];
+ModelBank gRomObjDefPtrs[64];
 static ModelRecord storage[1026];
 static ModelRecord snapshot[1026];
 static unsigned long read32(const unsigned char *p)
@@ -45,9 +45,9 @@ int main(void)
         handle=(u16)read32(raw); selector=(s16)read32(raw+4); value=(u16)read32(raw+8);
         index=handle&1023; bank=handle>>10;
         memset(storage,0xA5,sizeof(storage));
-        memset(D_801161F4,0,sizeof(D_801161F4));
-        D_801161F4[bank].records=&storage[1];
-        D_801161F4[bank].count=1024;
+        memset(gRomObjDefPtrs,0,sizeof(gRomObjDefPtrs));
+        gRomObjDefPtrs[bank].records=&storage[1];
+        gRomObjDefPtrs[bank].count=1024;
         record=&storage[1+index];
         for(i=0;i<44;i++) {
             half=(u16)((raw[12+2*i]<<8)|raw[13+2*i]);
@@ -58,7 +58,7 @@ int main(void)
             result=(unsigned int)func_8008B000(handle,selector,value);
             assert(memcmp(storage,snapshot,(1+index)*88)==0);
             assert(memcmp(&storage[2+index],&snapshot[2+index],(1024-index)*88)==0);
-            assert(D_801161F4[bank].records==&storage[1] && D_801161F4[bank].count==1024);
+            assert(gRomObjDefPtrs[bank].records==&storage[1] && gRomObjDefPtrs[bank].count==1024);
             output(result,record);
             value=(u16)~value;
         }

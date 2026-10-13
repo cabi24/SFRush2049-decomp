@@ -749,7 +749,7 @@
         ]
       ],
       "parsed_inventory_sha256": {
-        "blob": "b2f05ba4a66d0297d449ad6dd613396f2ca21166e7b1fe456d5d5169af94acfc",
+        "blob": "18f07e4476dcd2d18ad4d5c37c54ab6c13dcbbb4a249151d4ffcc471a34ddef0",
         "ovl_a": "d3e820b3769a09d066dc731b0eef91f8b74a503c049ff63fbfd19b2bd00e19c5",
         "ovl_b": "8201e1239936e959003f371657dad8c5b015e355c6976da7b61fb96a100e33ba"
       }

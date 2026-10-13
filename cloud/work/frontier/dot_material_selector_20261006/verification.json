@@ -10,7 +10,7 @@
   ],
   "candidate_bytes": 216,
   "accepted_byte_gain": 0,
-  "source_sha256": "0d8406b591b6f9fc081ac2de50555d6dba5b7611e3963688b99cf11cfc7deb8c",
+  "source_sha256": "2217b7ce4c78693d57be9cb96623f185a6e9fe220cc59c24ab8a919a5e597964",
   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
   "assembler_erratum_flag": "-Wab,-r4300_mul",
   "O2": {
@@ -31,12 +31,12 @@
       {
         "offset": 24,
         "type": 5,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 36,
         "type": 6,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       }
     ],
     "no_owned_data": true
@@ -59,12 +59,12 @@
       {
         "offset": 24,
         "type": 5,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 36,
         "type": 6,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       }
     ],
     "no_owned_data": true
@@ -88,12 +88,12 @@
       {
         "offset": 24,
         "type": 5,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 36,
         "type": 6,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       }
     ],
     "no_owned_data": true
@@ -136,12 +136,12 @@
       {
         "offset": 64,
         "type": 5,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 68,
         "type": 6,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 116,
@@ -237,17 +237,17 @@
       {
         "offset": 24,
         "type": 5,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       },
       {
         "offset": 36,
         "type": 6,
-        "symbol": "D_801161F4"
+        "symbol": "gRomObjDefPtrs"
       }
     ],
     "no_owned_data": true
   },
-  "archived_source_sha256": "d1d1655996bc2185272b81fc0c8f00b52d31ae05848a3c7ba4dd17d9e497f7fe",
+  "archived_source_sha256": "edad9dfb0f3c8f48488f13cd67719db6be3959ba5bdb3d2eea5388947569b789",
   "behavior": {
     "cases": 4480,
     "native_and_gnu_executions": 17920,
@@ -380,7 +380,7 @@
     "validate_and_call": "95fc3dfd6b129487175fdc64f099b529b2f45b9900c8f40db02e633ce22d3b45"
   },
   "consumed_symbols": {
-    "D_801161F4": "0x801161f4",
+    "gRomObjDefPtrs": "0x801161f4",
     "D_8012E700": "0x8012e700",
     "D_80156990": "0x80156990",
     "car_gear_shift": "0x800a7c9c",
@@ -389,7 +389,7 @@
     "func_80092DCC": "0x80092dcc"
   },
   "target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
-  "accepted_consumer_source_sha256": "28b49d1ae7307b8f08d337263eb42153dd9ea0688544f1fdcb17754833517094",
+  "accepted_consumer_source_sha256": "7fb61c5c775d87738aa26a22041d08dfb017ee48abc38baa97e934fd511fb668",
   "compiler_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
     "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
@@ -406,9 +406,9 @@
     "tools/conveyor/pipeline/blob_group.py": "b8faa781dc6da30515363817bf46e4fd89fc514103c71b919cd55df8e85b4070"
   },
   "packet_sha256": {
-    "verify.py": "3779d35ef9a21b7c28e4394758f4a65a86d4f8d62049dec4c24f643d08a97131",
+    "verify.py": "47ae0f7ff596db2b8d35392d2c328f4e7b914132e77e2b681b8280f999aadad8",
     "native.py": "4e3ea3e5b623cf0d913a7ce33ae24c4ee8589ff50de90f0f77cf8958cd5c39ff",
-    "host.c": "808dd3486d820c0b69bcc01a5dde56d6e13b270c1888446b46c757eb190305e6",
+    "host.c": "01114ffa9bffb083412d7519f1c92fb0ac7dbbc870cc2a39a26b8b3be09ce967",
     "claim.json": "86481e8c55b2bd702e5e5df75d902a23d719ecc5ee5df35d7656029600de613d"
   },
   "limitations": [

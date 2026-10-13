@@ -24,7 +24,7 @@ typedef struct ResourceNode {
 } ResourceNode;
 typedef struct ResourceSlot { s32 handle; u8 unknown04[64]; } ResourceSlot;
 extern s32 D_801170FC;
-extern u8 D_80140BDC;
+extern u8 gNumModels;
 extern u8 D_80121DA0[], D_80121DA4[], D_80121DA8[];
 extern s32 D_80118E08[];
 extern ResourceSlot D_8012E738[];
@@ -53,7 +53,7 @@ void func_8010D85C(ResourceNode *node, s16 enabled)
         if (func_800A464C(text, D_80121DA0)) kind = 2;
         else if (func_800A464C(text, D_80121DA4)) kind = 1;
         else kind = 0;
-        handle = sound_bank_load(D_80118E08[kind], &resource_id, 0, (s8)(D_80140BDC - 1), 1);
+        handle = sound_bank_load(D_80118E08[kind], &resource_id, 0, (s8)(gNumModels - 1), 1);
         D_8012E738[state->slot].handle = handle;
         found = func_800A464C(state->text, D_80121DA8);
         if (found) variant = found[4] - '0';

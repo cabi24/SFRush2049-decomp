@@ -7025,10 +7025,10 @@ game_results_render:
     .word 0x03E00008
     .word 0x27BD0120
 
-.section .text.game_results_input, "ax", @progbits
-.globl game_results_input
-game_results_input:
-    /* compiled from src/blob/game_results_input.c */
+.section .text.animControls, "ax", @progbits
+.globl animControls
+animControls:
+    /* compiled from src/blob/animControls.c */
     .word 0x27BDFF88
     .word 0xAFBF001C
     .word 0x8C82002C

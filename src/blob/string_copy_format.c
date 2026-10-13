@@ -32,8 +32,8 @@ typedef struct RecTable {
     u32 count;
 } RecTable;
 
-extern RecTable D_801161F4[];
-extern volatile u8 D_80140BDC;
+extern RecTable gRomObjDefPtrs[];
+extern volatile u8 gNumModels;
 
 s8 func_80092D80(s32 arg0);
 char *func_80092DCC(char *dst, char *src, s32 n);
@@ -54,14 +54,14 @@ s32 string_copy_format(char *name, s8 first, s8 last, s8 complain) {
     if (first < 0) {
         first = 0;
     }
-    if (last < 0 || last >= D_80140BDC) {
-        last = D_80140BDC - 1;
+    if (last < 0 || last >= gNumModels) {
+        last = gNumModels - 1;
     }
     for (i = first; i <= last; i++) {
         if (func_80092D80(i) == 0) {
             continue;
         }
-        found = entity_name_copy(&key, D_801161F4[i].base, D_801161F4[i].count, sizeof(Rec), validate_and_call);
+        found = entity_name_copy(&key, gRomObjDefPtrs[i].base, gRomObjDefPtrs[i].count, sizeof(Rec), validate_and_call);
         if (found != 0) {
             break;
         }
@@ -70,5 +70,5 @@ s32 string_copy_format(char *name, s8 first, s8 last, s8 complain) {
         if (complain) DEBUG_PRINT(("string_copy_format: %s not found\n", key.name));
         return -1;
     }
-    return (found - D_801161F4[i].base) | (i << 10);
+    return (found - gRomObjDefPtrs[i].base) | (i << 10);
 }

@@ -58,7 +58,7 @@ extern s32 D_8014A110;
 extern s8 D_801613A0;
 extern Pair D_80118E20;
 extern StrTable D_8017A4E0;
-extern s16 D_80151AD0;
+extern s16 gNumWindows;
 extern Car D_80152818[];
 extern f32 D_801543B8[];
 extern volatile f32 D_8002EB90;
@@ -126,7 +126,7 @@ s32 func_80108AB0(void *item)
     }
     render_helper(0.0f);
     TB_SetJust(1, 1);
-    for (slot = 0; slot < D_80151AD0; slot++) {
+    for (slot = 0; slot < gNumWindows; slot++) {
         if ((-1.5707964f <= D_80152818[slot].heading && D_80152818[slot].heading <= 1.5707964f) ||
             !(D_801174B4 & 0x400000) || D_80152818[slot].f239 == 1 || !D_801613A0 || D_8014A110 == 1) {
             D_801543B8[slot] = D_8002EB90;
@@ -137,14 +137,14 @@ s32 func_80108AB0(void *item)
         if (D_8002EB90 - D_801543B8[slot] < 2.0f) {
             continue;
         }
-        if (D_80151AD0 == 1) {
+        if (gNumWindows == 1) {
             HAL_SetFont(10);
         } else {
             HAL_SetFont(11);
         }
         func_800ED66C(255.0f * TB_GetFlashTextCycle());
-        x = D_80115F28[D_80151AD0 - 1][slot].x;
-        y = D_80115F28[D_80151AD0 - 1][slot].y;
+        x = D_80115F28[gNumWindows - 1][slot].x;
+        y = D_80115F28[gNumWindows - 1][slot].y;
         dispatch_handler(0);
         state_utility(x + 1, y + 1, D_8017A4E0.hdr->text);
         dispatch_handler(14);

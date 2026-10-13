@@ -52,7 +52,7 @@ typedef struct {
     u8 other148[4];
 } Camera;               /* 152 */
 extern Model D_8014A250[];
-extern Camera D_80150B70[];
+extern Camera gCamera[];
 extern Vec3 D_801526A8[];
 extern OSThread D_80034840;
 extern f32 D_80110688, D_8011068C, D_80110690, D_80110694, D_80110698, D_8011069C, D_801106A0;
@@ -71,7 +71,7 @@ extern void func_800E95DC(s16 mode, Object *object, f32 *pos, Mat3 *uvs);
 extern void func_800E8F10(s16 mode, Object *object, f32 *pos, Mat3 *uvs);
 extern s32 entity_iterate(void *arg0, void *arg1);
 
-#define CAM (D_80150B70[slot])
+#define CAM (gCamera[slot])
 void func_800EB028(Object *object)
 {
     s32 i;
