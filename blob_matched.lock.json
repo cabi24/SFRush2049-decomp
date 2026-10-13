@@ -6611,6 +6611,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-13"
   },
+  "func_8010B9C8": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8010B9C8",
+    "source": "src/blob/groups/func_8010B9C8/group.json",
+    "source_sha256": "2ecd37852b4147441782bcda074efa9f3ef836ca2bffa08c41b16121d0cd5aa3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
   "func_8010BC84": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8010BC84",

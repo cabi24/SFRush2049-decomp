@@ -1,0 +1,22 @@
+{
+ "name": "func_8010B9C8",
+ "members": [
+  "func_8010B9C8"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "fb9c8.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_8010B9C8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_8010B9C8 with inlined helpers (non-static *_B9C8, not on keep). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup's s2 font convention). Unit install: force_internal += gfx_lock_B9C8, gfx_unlock_B9C8, font_set_B9C8, item_disable_B9C8, TB_CenterText_B9C8.",
+ "provenance": "w27d draft -> w29b MATCH; cloud/work/frontier/w29b/RESULTS.md"
+}

@@ -70,9 +70,10 @@
       "func_80108154",
       "func_8010A53C",
       "func_8010B7FC",
+      "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 56936,
+    "unaccepted_caller_bytes": 56236,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -1173,7 +1174,7 @@
       "start": "0x8010B9C8",
       "bytes": 700,
       "body_sha256": "d4052a2411466efd872920dc4d288d592d31cfdcc6c400c48817aa837f672665",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x8010BA3C",
         "0x8010BA94"
