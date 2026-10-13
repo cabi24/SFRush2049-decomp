@@ -1,4 +1,13 @@
 {
+  "cloud/work/frontier/w28s/sources/func_80011910.c:func_80011910": {
+    "body_sha256": "6bc4a0160ec2ba66e665ded46fbea2cf2bdd3620a5cc93134b79e61f47f9d4e7",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80011910",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
