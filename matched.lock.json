@@ -8,15 +8,6 @@
     "verified": "score0",
     "verified_at": "2026-10-12"
   },
-  "cloud/matches/boot_tail/func_80010DD8.c:func_80010DD8": {
-    "body_sha256": "8769e892890d2f721487a5383d8189cd6267385ed3f40e153af21f0594d76ae4",
-    "compiler": "ido7.1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80010DD8",
-    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
-    "verified": "score0",
-    "verified_at": "2026-10-12"
-  },
   "cloud/matches/boot_tail/func_80012234.c:func_80012234": {
     "body_sha256": "6d67f6920c8ebb57a8c746585783aa299996cb507f88777e93c26e7dae7068a2",
     "compiler": "ido7.1",
@@ -444,6 +435,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
+  },
+  "src/rom/lib_11640.c:func_80010DD8": {
+    "body_sha256": "8769e892890d2f721487a5383d8189cd6267385ed3f40e153af21f0594d76ae4",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80010DD8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_11640.c:func_80010E80": {
     "body_sha256": "e99172fa44aaeccc7379dc5ec05cb46809a5dbc358635707119001bf2f2c9140",

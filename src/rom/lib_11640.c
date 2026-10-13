@@ -122,7 +122,29 @@ void func_80010D74(void)
     D_8003801C(D_800381F0);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010DD8.s")
+/* PROMOTED 2026-10-12 — func_80010DD8
+ * Source:   cloud/matches/boot_tail/func_80010DD8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80010DD8.c:func_80010DD8 (score0); rom_tu.h context: cloud/work/frontier/w28p/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned int D_800382F4;
+extern void *D_800382E8;
+extern void *D_800382F0;
+void func_80010DD8(unsigned int rate, unsigned short duration)
+{
+    unsigned int count;
+    if (duration != 0) {
+        count = duration * rate / 1000;
+        count = 192 - count % 192 + count;
+        D_800382F4 = count;
+        D_800382E8 = 0;
+        D_800382F0 = D_80038018(count * 2, 0);
+    } else {
+        D_800382F0 = 0;
+    }
+}
+
 /* PROMOTED 2026-10-11 — func_80010E80
  * Source:   cloud/work/frontier/w22c/sources/func_80010E80.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
