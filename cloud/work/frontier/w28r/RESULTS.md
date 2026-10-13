@@ -75,7 +75,16 @@ function or 3 days; verify/probe/census/inbox older than 3 days. Dry run on rock
 
 ## Checks
 
-See the final section (filled at the end of the lane).
+- rocky clone `~/rush2049/scratch/w28r` (branch w28r 5425113c + IDO from the w28p clone, origin/master ref set):
+  `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` exit 0: tests/conveyor `2339 passed, 52 skipped`; tests/cloud
+  `981 passed, 1 skipped, 8 warnings, 27 subtests passed`. `tests/cloud/test_recomp_phase8.py` alone on rocky:
+  15 passed (both end-to-end tests run there: script_probe title text; --unit EQUIVALENT + injected bug
+  `FIRST DIVERGING MEMBER: func_800A1BB4`).
+- Pi worktree `make test-fast JOBS=4`: tests/cloud `784 passed, 198 skipped`; tests/conveyor `40 failed, 1511
+  passed, 816 skipped, 2 errors` = the known fresh-worktree environment (no mips_to_c submodule / build
+  artifacts; same as w26r on its base). tests/conveyor in the MAIN checkout (wave28, with the submodule; this lane
+  touches no conveyor code): `1618 passed, 773 skipped`, exit 0.
+- Pi `python3 -m pytest tests/recomp -p no:cacheprovider`: all pass (5 skips: private inputs).
 
 ## Permission denials
 
