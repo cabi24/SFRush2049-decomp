@@ -1,0 +1,24 @@
+# Battle to its GAME OVER scoreboard (w29r, Phase 9): battle.press's 2P BATTLE 1 (POINTS 10) plus one scene lever:
+# the battle's points target is the byte 0x80142513 (10, 5 with POINTS LEFT in SELECT TRACK; found by dump diff);
+# poked to 0 at 24 s (the battle runs from ~22.5 s) the next score check ends the battle: GAME OVER | SCOREBOARD |
+# POINTS | DEATHS at frame 795. Reaches func_80101904 (the standings; scripted battles never
+# score otherwise); A on SCOREBOARD (28.5 s, frame 855) toggles it: func_80102980. Presses: battle.press.
+frames 1800
+pak on
+4 START
+5.5 RIGHT
+7 A
+7.3 A@2
+10 A
+10.3 A@2
+13 DOWN
+14 DOWN
+15 DOWN
+16.5 A
+16.8 A@2
+19.5 A
+19.8 A@2
+22.5 A
+22.8 A@2
+poke 24 80142513 0 1
+28.5 A

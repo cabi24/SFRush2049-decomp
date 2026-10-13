@@ -624,8 +624,12 @@ def parse_script(text, name="script"):
     time = frames/30; PORT 1-4, default 1; duration default 0.2), `frames N`
     (default run length), `pak on|off` (controller pak; scripts written for the
     boot notice NO CONTROLLER PAK DETECTED say `pak off`; default on), `# comment`.
-    Times need not be sorted."""
+    Phase 9: `pak from SCRIPT` (start from the pak image SCRIPT leaves: the
+    harness runs SCRIPT first on the stock host; see script_host_args) and
+    `poke TIME ADDR VALUE [BYTES]` (write VALUE, 1/2/4 bytes, at the N64 address
+    when the frame at TIME seconds starts; host --poke). Times need not be sorted."""
     items, frames, ports, pak = [], None, {1}, None
+    pak_from, pokes = None, []
     for n, raw in enumerate(text.splitlines(), 1):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -637,9 +641,23 @@ def parse_script(text, name="script"):
             frames = int(parts[1])
             continue
         if parts[0] == "pak":
+            if len(parts) == 3 and parts[1] == "from" and re.match(r"^\w+$", parts[2]):
+                pak, pak_from = True, parts[2]
+                continue
             if len(parts) != 2 or parts[1] not in ("on", "off"):
-                raise OracleError(f"{name}:{n}: pak takes on or off")
+                raise OracleError(f"{name}:{n}: pak takes on or off (or `from SCRIPT`)")
             pak = parts[1] == "on"
+            continue
+        if parts[0] == "poke":
+            try:
+                t, addr, val = float(parts[1]), int(parts[2], 16), int(parts[3], 16)
+                nb = int(parts[4]) if len(parts) == 5 else 4
+            except (ValueError, IndexError):
+                raise OracleError(f"{name}:{n}: poke takes TIME ADDR VALUE [BYTES] (hex address and value)")
+            if len(parts) > 5 or nb not in (1, 2, 4) or not 0x80000000 <= addr < 0x80800000 or addr % nb \
+                    or t < 0 or val >= 1 << (8 * nb):
+                raise OracleError(f"{name}:{n}: bad poke {line!r}")
+            pokes.append("%d:%08X:%X:%d" % (int(round(t * 30)), addr, val, nb))
             continue
         if len(parts) not in (2, 3):
             raise OracleError(f"{name}:{n}: expected TIME BUTTON[@PORT] [DURATION]")
@@ -664,8 +682,13 @@ def parse_script(text, name="script"):
     if not items and not frames:
         raise OracleError(f"{name}: no presses")     # a script without presses must at least say `frames N`
     items.sort()
-    return {"press": ",".join(i for _, _, i in items), "frames": frames, "controllers": max(ports),
-            "pak": True if pak is None else pak}
+    sc = {"press": ",".join(i for _, _, i in items), "frames": frames, "controllers": max(ports),
+          "pak": True if pak is None else pak}
+    if pak_from:
+        sc["pak_from"] = pak_from
+    if pokes:
+        sc["pokes"] = pokes
+    return sc
 
 
 def load_script(arg):
@@ -675,7 +698,59 @@ def load_script(arg):
         p = SCRIPT_DIR / (arg if arg.endswith(".press") else arg + ".press")
     if not p.is_file():
         raise OracleError(f"no input script {arg} (looked in {SCRIPT_DIR})")
-    return parse_script(p.read_text(), p.name)
+    sc = parse_script(p.read_text(), p.name)
+    sc["path"] = str(p)
+    return sc
+
+
+def pak_image(name, host, rom, cache_dir, _depth=0):
+    """The controller pak image script `name` leaves (it runs on `host`, from a
+    fresh pak or its own `pak from`): cached in cache_dir as
+    pak_<name>_<sha12 of the script chain>.mpk. Raises OracleError on failure."""
+    import hashlib
+    if _depth > 4:
+        raise OracleError("pak from: chain too deep (a loop?)")
+    sc = load_script(name)
+    chain = [Path(sc["path"]).read_bytes()]
+    parent = None
+    if sc.get("pak_from"):
+        parent = pak_image(sc["pak_from"], host, rom, cache_dir, _depth + 1)
+        chain.append(Path(parent).read_bytes())
+    key = hashlib.sha256(b"\0".join(chain)).hexdigest()[:12]
+    cache_dir = Path(cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    img = cache_dir / ("pak_%s_%s.mpk" % (name, key))
+    if img.is_file():
+        return img
+    import tempfile
+    tmp = Path(tempfile.mkdtemp(prefix=".pak_%s_" % name, dir=str(cache_dir)))
+    out = tmp / "pak.mpk"
+    if parent:
+        out.write_bytes(Path(parent).read_bytes())
+    frames = sc["frames"] or 1800
+    cmd = host_command(host, rom, tmp / "o.log", tmp / "home", frames, sc["press"], frames / 30.0 * 6 + 300,
+                       pak=True)
+    cmd += ["--pak", str(out), "--pak-write"] + (["--poke", ",".join(sc["pokes"])] if sc.get("pokes") else [])
+    with open(tmp / "err", "w") as fe:
+        rc = subprocess.run([str(c) for c in cmd], stdout=subprocess.DEVNULL, stderr=fe).returncode
+    if rc != 0 or not out.is_file():
+        raise OracleError("pak from %s: the producing run failed (exit %d, %s)" % (name, rc, tmp / "err"))
+    os.replace(out, img)
+    import shutil
+    shutil.rmtree(tmp, ignore_errors=True)
+    return img
+
+
+def script_host_args(sc, host, rom, cache_dir):
+    """Extra host arguments a script needs besides --press: `poke` lines
+    (--poke) and `pak from` (--pak IMAGE, read-only in lockstep: every run of
+    the comparison starts from the same bytes)."""
+    args = []
+    if sc.get("pak_from"):
+        args += ["--pak", str(pak_image(sc["pak_from"], host, rom, cache_dir))]
+    if sc.get("pokes"):
+        args += ["--poke", ",".join(sc["pokes"])]
+    return args
 
 
 # ------------------------------------------------------------------ running the host
@@ -986,6 +1061,9 @@ def main(argv=None):
             press = press or DEFAULT_PRESS
             seconds = frames / 30.0 * 4 + 120
             calls = not args.no_calls
+            # Phase 9: `pak from` (image made by the stock host) and `poke` lines
+            xargs = script_host_args(sc, args.stock_host, args.rom_stock, out) \
+                if args.script and not args.press else []
             jobs, stock_logs = [], []
             for i in range(args.stock_runs):
                 log = out / ("stock%d.log" % (i + 1))
@@ -994,10 +1072,10 @@ def main(argv=None):
                     continue
                 jobs.append((host_command(args.stock_host, args.rom_stock, log, out / ("home_s%d" % i),
                                           frames, press, seconds,
-                                          calls=out / "stock.calls" if calls and i == 0 else None, pak=pak),
+                                          calls=out / "stock.calls" if calls and i == 0 else None, pak=pak) + xargs,
                              out / ("stock%d.err" % (i + 1))))
             jobs.append((host_command(args.repl_host, args.rom_repl, out / "repl.log", out / "home_r",
-                                      frames, press, seconds, calls=out / "repl.calls" if calls else None, pak=pak),
+                                      frames, press, seconds, calls=out / "repl.calls" if calls else None, pak=pak) + xargs,
                          out / "repl.err"))
             rcs = run_hosts(jobs, tolerate=[out / "repl.err"])
             crash = None
@@ -1038,10 +1116,10 @@ def main(argv=None):
                     f = (cr["frame"] or 0) + 2
                     da, db = out / "detail_s.calls", out / "detail_r.calls"
                     run_hosts([(host_command(args.stock_host, args.rom_stock, out / "detail_s.log",
-                                             out / "home_cs", f, press, seconds, calls=da, detail=cr["seq"], pak=pak),
+                                             out / "home_cs", f, press, seconds, calls=da, detail=cr["seq"], pak=pak) + xargs,
                                 out / "detail_s.err"),
                                (host_command(args.repl_host, args.rom_repl, out / "detail_r.log",
-                                             out / "home_cr", f, press, seconds, calls=db, detail=cr["seq"], pak=pak),
+                                             out / "home_cr", f, press, seconds, calls=db, detail=cr["seq"], pak=pak) + xargs,
                                 out / "detail_r.err")], tolerate=[out / "detail_r.err"] if crash is not None else ())
                     with open(da) as fa, open(db) as fb:
                         cr["words"] = effect_diff(effect_words(fa, cr["seq"]), effect_words(fb, cr["seq"]),
@@ -1052,9 +1130,9 @@ def main(argv=None):
                 f = fd["frame"]
                 da, db = out / "stock_at_diff.bin", out / "repl_at_diff.bin"
                 run_hosts([(host_command(args.stock_host, args.rom_stock, out / "dump_s.log", out / "home_ds", f,
-                                         press, seconds, (f, da), pak=pak), out / "dump_s.err"),
+                                         press, seconds, (f, da), pak=pak) + xargs, out / "dump_s.err"),
                            (host_command(args.repl_host, args.rom_repl, out / "dump_r.log", out / "home_dr", f,
-                                         press, seconds, (f, db), pak=pak), out / "dump_r.err")],
+                                         press, seconds, (f, db), pak=pak) + xargs, out / "dump_r.err")],
                           tolerate=[out / "dump_r.err"] if crash is not None else ())
                 skip = stack_ranges([int(t, 16) for t in result["stacks"]])
                 skip += thread_word_ranges(result)

@@ -71,7 +71,8 @@ REMOTE_TREE = "rush2049/recomp/dc/repo"      # relative to the remote home
 REMOTE_INBOX = "rush2049/recomp/dc/inbox"
 CENSUS_DIR = HERE / "census"
 SCRIPT_DIR = HERE / "scripts"
-# saves_reload needs the pak image saves.press wrote (--pak FILE); not runnable alone.
+# saves_reload needs the pak image saves.press wrote (--pak FILE); not runnable alone. Phase 9:
+# player_reload.press is the same flow with `pak from saves` (the harness makes the image).
 UNRUNNABLE = {"saves_reload"}
 DEFAULT_MAX_SCRIPTS = 6
 REG_RE = re.compile(r"^(?:[atsv][0-9]|s8|fp|gp|f([0-9]|[12][0-9]|3[01])(:d)?|sp\+\d+)$")

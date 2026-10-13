@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-9 decomp feedback)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -31,6 +31,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `regmap_verify.py` | Phase 7: register-parameter mapping verifier for internal callees (section "regmap_verify") |
 | `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census") |
 | `script_probe.py` | Phase 8: what a script reaches and which strings the game draws (section "script_probe") |
+| `runtime/src/fault.cpp` | Phase 9: `[rush] FAULT` report when the host faults (section "Phase 9") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -621,7 +622,8 @@ options: --scripts race,two_player | all | reached   (default: the 6 census scri
 
 Output (exit status): `VERDICT: EQUIVALENT over N calls / K scripts (...)` (0); `VERDICT: DIVERGES` (1) after a
 `FIRST DIVERGENCE: script S, frame F, NAME (draft) call #C (global seq Q): arguments differ at entry | return value
-differs | memory written differs | call sequence differs`, then the differing values as `retail X | draft Y`, and
+differs | memory written differs | call sequence differs | the draft FAULTED (host signal; retail did not)` (Phase 9:
+then the fault's N64 address, PC + instruction, registers and N64 call chain), then the differing values as `retail X | draft Y`, and
 for memory every differing word with its data symbol (`word 0x80149B88: retail unchanged | draft 0->0x10
 D_80149B88+0x0`); `VERDICT: NEVER CALLED: function NAME never called in these scripts` (3); build errors (the IDO or
 linker message) exit 2. Per script one line (`race EQUIVALENT 21344 calls of render_helper (1800 frames, 7 s)`).
@@ -823,4 +825,74 @@ which only image A reaches: the "attract" labels are wrong); draw_speedometer, d
 drone_set_catchup, AdjustSpeed, menu_back, func_800CBF2C (gated inside func_800C813C's per-object loop / props
 render); func_800F0F44; world_effect_update, fp_call_wrapper, object_bytes23_sum (no jal, pointer or lui/addiu
 reference in any image: dead or computed-jalr only).
+
+## Phase 9: host faults, static helpers, scene levers (lane w29r, 2026-10-13)
+
+Lane notes: `cloud/work/frontier/w29r/RESULTS.md`; plan section 18. Not a matching lane; no gameplay change (no
+package).
+
+**The -11 crashes of wave 28.** Two causes. (1) Host bug, fixed: IDO -O3 writes no symbol for a `static` function,
+and replace.py retargeted a draft's `jal callee` to the callee's IPA shim only inside NAMED functions; a static
+helper's calls stayed o32. w28c's func_8010AEAC draft (`dc_static.c`: printOption/animButtonText as static helpers)
+called slot_state_setup (s2 parameter, clobbers s0,s1,s3) directly, s3 held the gfx message queue, and the next
+osSendMesg faulted. `replace.code_ranges`: every code range (shim retargeting, `$zero`-load nops, self-call
+retargets outside a unit) is the named functions plus the object's whole `.text`. The draft is now EQUIVALENT
+(options_menus 960 + pause_menus 689 calls). (2) Draft bug, now reported: w28b's func_800C813C draft read the
+per-pak file list head at +8 of D_80144D68's 16-byte entries (retail `lw s2, 0x4D68(s2)`: +0) and dereferenced
+0x01010000 (a TLB exception on the console too).
+
+**Fault report** (`runtime/src/fault.cpp`). A SIGSEGV/SIGBUS/SIGFPE/SIGILL/SIGABRT handler (capture's write-tracking
+handler chains to it for faults outside rdram) prints `[rush] FAULT` lines on stderr: signal, read/write, the N64
+address (host address - rdram + 0x80000000), frame, thread; the replaced/probed call open on that thread (every
+generated hook passes through `rush_cap_enter/exit`, capture or not); host pc + backtrace; that call's recomp
+context registers. It flushes the call log and the oracle log, then dies as before. `oracle.py run` tolerates a
+signal death of the REPLACED host only (stock runs must succeed), symbolises the pc and backtrace with addr2line,
+maps each recompiled-C line to the `// 0xADDR: insn` comment N64Recomp wrote above it, compares the call logs up to
+the fault (an earlier differing call is still reported first), and returns DIFFERENT with `crash`. draft_check:
+
+    saves          DIVERGES     3 calls of func_800C813C - draft FAULTED at frame 4  (4500 frames, 8 s)
+    FIRST DIVERGENCE: script saves, frame 4, func_800C813C (draft) call #3 (global seq 3): the draft FAULTED (host signal; retail did not)
+      fault: SIGSEGV, N64 read of 0x01010000 at frame 4 (thread game7)
+      N64 PC 0x8080013C `lw $v0, 0x0($s2)` = func_800C813C+0x13C (draft)
+      registers: v0=FFFFFFFF s2=01010000 sp=80031C90 ra=00000000 (thread context; may lag the host registers)
+      N64 call chain: func_800C813C (draft) <- func_800C813C <- input_aux_handler @0x800FD408 <- game_loop @0x800FD60C <- ...
+      faulting call: func_800C813C (draft) call #3 (global seq 3, entered at frame 4)
+
+The PC is in the draft's chunk (0x80800000+): `func_800C813C+0x13C` is the offset in the draft's compiled body
+(`mips-linux-gnu-objdump -d` of the IDO object, or the recompiled `RecompiledFuncs/funcs_*.c` in the build tree).
+
+**Argument home slots (call log v3).** The 16 bytes above the outermost replaced call's entry sp (o32: the caller's
+slots for a0-a3, which the callee may store its register arguments into) are no longer part of a call's effect.
+w28b's func_800C813C (race) and func_800CD104 (saves) "one extra own-stack word" divergences were the draft homing
+a0 there: both EQUIVALENT now.
+
+**Scene levers and chained paks** (scripts; every harness: oracle.py, draft_check, census, script_probe,
+regmap_verify):
+- `poke TIME ADDR VALUE [BYTES]`: host `--poke FRAME:ADDR:VALUE[:BYTES][,...]` writes the value (1/2/4 bytes, hex)
+  when that graphics frame starts, on the submitting game thread with the others suspended, before the frame's
+  hashes (event `E F poke ...` in the oracle log). Both sides of a comparison get the same pokes.
+- `pak from SCRIPT`: start from the pak image SCRIPT leaves. The harness runs SCRIPT once on the stock host
+  (`--pak IMG --pak-write`, recursively for its own `pak from`) and caches the image per script chain
+  (`pak_<script>_<sha12>.mpk` in the run dir); every compared run then reads it (lockstep: never written back).
+  `script_probe --pak-write FILE` now also writes a fresh image (it used to pass `--pak-write` only with `--pak`).
+
+Phase 9 scripts (frames in brackets): `player_reload.press` [1500] saves_reload with `pak from saves` (saves_reload
+itself stays "not runnable alone"); boot reads player AAAA: func_800C7EC8, drone_set_catchup, draw_speedometer.
+`ghost_save.press` [5000] AAAA ghost race made 1-lap by `poke 28 80152735 1 1` (the race's lap count byte; 3 in
+ghost/default races, 1 after LAPS 1; found by dump diff), finish 3775, BEST GHOSTS 3836, GAME OVER 4736, RACE AGAIN
+4860: func_800CC50C, func_800CC040, func_800CBF2C, menu_back (+ the player read). `battle_end.press` [1800] the 2P
+battle with its points target byte 0x80142513 poked to 0 at 24 s: GAME OVER scoreboard at 795, A on SCOREBOARD at
+855: func_80101904, func_80102980. Not found: a pak GHOST file (the 1-lap ghost enters BEST GHOSTS and the player
+record, 128 B, but no ghost note is written: GC updateHighScoreScreen saves only when gGhostToSave is set; lap
+counter pokes 0x8014A647/0x8014A980/0x801E0ECB/0x801F6178 did not shorten a 3-lap race), so the SaveServer ghost
+branch (draw_ui_element), the ghost-save menu (func_800F0F44 = GC _FindGhosts), func_80103D28 (DrawUnlocked: needs
+an unlock) and func_80104B14 stay unreached.
+
+**Census refresh** (2026-10-13, 30 scripts, 192 unmatched at wave29 = 8c74d8b6): **178 reached (194,028 B), 14
+never (14,912 B)** (was 183 of 206 / 23 at w28r; 14 functions were matched in wave 28). Newly reached: func_800C7EC8,
+drone_set_catchup, draw_speedometer, func_800CC50C, func_800CC040, func_800CBF2C, menu_back, func_80101904,
+func_80102980. Still never: func_8010C974 (mine pickup in battle), control_settings, func_800DD0C0 and the three
+"attract_*" handlers (image A only), func_80103D28, func_80104B14, func_800F0F44, draw_ui_element (need a pak ghost
+file or an unlock, above), AdjustSpeed (pak file delete with retry: needs a full or failing pak), world_effect_update,
+fp_call_wrapper, object_bytes23_sum (no static reference).
 

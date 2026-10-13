@@ -641,6 +641,7 @@ def dynamic(args, fn, p, sites):
         out.mkdir(parents=True, exist_ok=True)
         cmd = oracle.host_command(cap["host"], cap["rom"], out / "o.log", out / "home", frames, sc["press"],
                                   frames / 30.0 * 4 + 120, calls=out / "calls", pak=sc["pak"])
+        cmd += oracle.script_host_args(sc, cap["host"], cap["rom"], run_dir)     # pak from / poke (Phase 9)
         with open(out / "err", "w") as fe:
             rc = subprocess.run([str(c) for c in cmd], stdout=subprocess.DEVNULL, stderr=fe).returncode
         if rc != 0:

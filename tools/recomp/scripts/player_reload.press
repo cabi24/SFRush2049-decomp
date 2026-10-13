@@ -1,0 +1,15 @@
+# saves_reload.press with the pak saves.press leaves, made by the harness (`pak from saves`, w29r Phase 9): boot reads
+# player AAAA (SaveServer's player branch: func_800C7EC8, drone_set_catchup, draw_speedometer at frame 4).
+frames 1500
+pak from saves
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+19 A
+22 A
+25 A
+28 A 10
+40 START

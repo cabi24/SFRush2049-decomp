@@ -192,12 +192,22 @@ def run(args):
         cmd = oracle.host_command(cap["host"], cap["rom"], out / "o.log", out / "home", frames, sc["press"],
                                   frames / 30.0 * 6 + 300, calls=out / "calls", pak=sc["pak"])
         cmd += ["--text-log", str(out / "text.log")]
+        if sc.get("pokes"):
+            cmd += ["--poke", ",".join(sc["pokes"])]
+        if sc.get("pak_from") and not (args.pak or args.pak_write):
+            args_pak = oracle.pak_image(sc["pak_from"], cap["host"], cap["rom"], run_dir)
+            cmd += ["--pak", str(args_pak)]
+        elif sc.get("pak_from") and args.pak_write and not args.pak:
+            args.pak = str(oracle.pak_image(sc["pak_from"], cap["host"], cap["rom"], run_dir))
         if args.pak_write:
             src = Path(args.pak) if args.pak else None
             dst = Path(args.pak_write)
             if src:
                 dst.write_bytes(src.read_bytes())
-            cmd += ["--pak", str(dst)] + (["--pak-write"] if src else [])
+            elif dst.exists():
+                dst.unlink()            # a fresh image (the host creates and writes it)
+            # w29r: --pak-write was passed only with --pak, so a fresh image was never written
+            cmd += ["--pak", str(dst.resolve()), "--pak-write"]
         elif args.pak:
             cmd += ["--pak", str(Path(args.pak).resolve())]
         t = time.time()

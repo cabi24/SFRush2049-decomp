@@ -72,6 +72,8 @@ void usage() {
         "  --fb-every N: with --fb-dump, sample the framebuffer every N screen updates (default 30)\n"
         "  --pak-write: with --clock frames and --pak FILE, write the image back (save tests)\n"
         "  --no-pak: no controller pak (the boot notice NO CONTROLLER PAK DETECTED, as v1/v2)\n"
+        "  --poke FRAME:ADDR:VALUE[:BYTES][,...]: write VALUE (1, 2 or 4 bytes, default 4) at the N64 address\n"
+        "      when graphics frame FRAME starts (a scene lever; both sides of a comparison get the same pokes)\n"
         "  --text-log PATH: strings the game draws, '<frame>\\t<text>' when they appear (needs the\n"
         "      rush_text_log extra hook: tools/recomp/script_probe.py)\n");
 }
@@ -281,6 +283,21 @@ int main(int argc, char** argv) {
         else if (a == "--fb-every") rush::set_fb_dump_every((uint32_t)std::stoul(next()));
         else if (a == "--no-pak") no_pak = true;
         else if (a == "--text-log") rush::oracle_text_log(next());
+        else if (a == "--poke") {
+            // FRAME:ADDR:VALUE[:BYTES][,...] (Phase 9 scene lever; scripts: `poke`)
+            std::string list = next();
+            size_t pos = 0;
+            while (pos <= list.size()) {
+                size_t end = list.find(',', pos);
+                std::string item = list.substr(pos, end == std::string::npos ? std::string::npos : end - pos);
+                if (!item.empty() && !rush::oracle_add_poke(item)) {
+                    fprintf(stderr, "[rush] bad --poke item %s (FRAME:ADDR:VALUE[:1|2|4])\n", item.c_str());
+                    return 2;
+                }
+                if (end == std::string::npos) break;
+                pos = end + 1;
+            }
+        }
         else if (a == "--pak-write") pak_write = true;
         else if (a == "--keep-rom-copy") keep_rom_copy = true;
         else if (a == "--ai-per-vi") rush::set_ai_pacing(false);

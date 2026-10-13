@@ -373,6 +373,42 @@ extern "C" void rush_text_log(uint8_t* rdram, recomp_context* ctx) {
     }
 }
 
+// --poke (Phase 9, lane w29r): a scene lever. Each poke writes a value into
+// N64 memory when its graphics frame starts (here, on the game thread that
+// submits the frame, every other game thread suspended), before the frame's
+// hashes: deterministic, and identical on both sides of a comparison. Used by
+// scripts (`poke TIME ADDR VALUE [BYTES]`) to reach states input alone cannot
+// in reasonable time (a 1-lap ghost race: the lap count is fixed at 3).
+namespace {
+struct Poke { uint64_t frame; uint32_t addr; uint32_t value; int bytes; };
+std::vector<Poke> pokes;
+}
+
+bool rush::oracle_add_poke(const std::string& spec) {
+    unsigned long long f = 0;
+    unsigned int addr = 0, value = 0;
+    int bytes = 4;
+    int n = sscanf(spec.c_str(), "%llu:%x:%x:%d", &f, &addr, &value, &bytes);
+    if (n < 3 || (bytes != 1 && bytes != 2 && bytes != 4) || addr < 0x80000000u || addr >= 0x80800000u ||
+        addr % bytes)
+        return false;
+    pokes.push_back({f, addr, value, bytes});
+    return true;
+}
+
+static void apply_pokes(uint8_t* rdram, uint64_t n) {
+    for (const Poke& p : pokes) {
+        if (p.frame != n) continue;
+        gpr base = (gpr)(int32_t)p.addr;
+        if (p.bytes == 4) MEM_W(0, base) = (int32_t)p.value;
+        else if (p.bytes == 2) MEM_H(0, base) = (int16_t)p.value;
+        else MEM_B(0, base) = (int8_t)p.value;
+        char ev[64];
+        snprintf(ev, sizeof ev, "poke 0x%08X=0x%X/%d", p.addr, p.value, p.bytes);
+        rush::oracle_event(ev);
+    }
+}
+
 // patches.json hook in __scExec, before osSpTaskStartGo(&task->list).
 extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
     uint32_t sc_task = (uint32_t)MEM_W(0x24, ctx->r29);
@@ -380,6 +416,7 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
     uint32_t type = (uint32_t)MEM_W(0x00, (gpr)(int32_t)task);
     if (type != M_GFXTASK) return;
     uint64_t n = ++frames;
+    if (!pokes.empty()) apply_pokes(rdram, n);
     if (log_file) {
         DlWalk w{rdram};
         uint32_t data_ptr = (uint32_t)MEM_W(0x30, (gpr)(int32_t)task) & 0x1FFFFFFFu;

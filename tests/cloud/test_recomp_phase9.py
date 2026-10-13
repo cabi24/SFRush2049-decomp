@@ -1,11 +1,12 @@
-"""Recomp Phase 9 (lane w29r): host faults, static helpers, argument homes.
+"""Recomp Phase 9 (lane w29r): host faults, static helpers, argument homes, scene levers.
 
 Fast unit tests (no ROM, no recomp host): replace.code_ranges covers a static
 helper's code (IDO writes no symbol for it), the host's `[rush] FAULT` lines
 are parsed and mapped back to the N64 instruction, a truncated call log names
 the faulting call, oracle.run_hosts tolerates a signal death only where asked,
 draft_check words a fault as a divergence, the runtime pieces exist (fault.cpp,
-arg-home exclusion, call log v3). End to end on the recomp host only (rocky;
+arg-home exclusion, call log v3), scripts' `pak from` / `poke` (parsing, the
+pak image made once by a producer run, the committed scripts). End to end on the recomp host only (rocky;
 skipped elsewhere): a render_helper draft that reads a wild N64 address is
 reported as `draft FAULTED` with its PC, and w28c's func_8010AEAC draft with
 static helpers (the -11 crash) is EQUIVALENT on options_menus.
@@ -155,6 +156,54 @@ def test_runtime_has_fault_report_and_arg_homes():
 
 def test_duplicate_scripts_are_run_once():
     assert "list(dict.fromkeys(" in (RECOMP / "draft_check.py").read_text()
+
+
+# ------------------------------------------------------------------ scripts: `pak from`, `poke`
+
+def test_parse_pak_from_and_poke():
+    sc = oracle.parse_script("frames 100\npak from saves\n4 START\npoke 24 80142513 0 1\npoke 1.5 8014A110 12345678\n")
+    assert sc["pak"] is True and sc["pak_from"] == "saves"
+    assert set(oracle.parse_script("frames 9\n1 A\n")) == {"press", "frames", "controllers", "pak"}   # Phase 3 shape
+    assert sc["pokes"] == ["720:80142513:0:1", "45:8014A110:12345678:4"]
+    for bad in ("poke 24 80142513 100 1", "poke 24 70000000 0", "poke 24 80142513 0 3", "poke 24 80142511 0 2",
+                "poke x 80142513 0", "pak from ../x"):
+        with pytest.raises(oracle.OracleError):
+            oracle.parse_script("frames 10\n" + bad + "\n")
+
+
+def test_committed_phase9_scripts():
+    for name, pak_from, poke in (("player_reload", "saves", None), ("ghost_save", "saves", "80152735"),
+                                 ("battle_end", None, "80142513")):
+        sc = oracle.load_script(name)
+        assert sc.get("pak_from") == pak_from, name
+        assert (poke is None and not sc.get("pokes")) or any(poke in x for x in sc["pokes"]), name
+    assert "player_reload" in dc.all_scripts()       # runnable alone (saves_reload is not)
+
+
+def test_pak_image_runs_the_producer_once(tmp_path, monkeypatch):
+    host = tmp_path / "fakehost"
+    count = tmp_path / "runs"
+    host.write_text("#!%s\nimport sys\na = sys.argv\nopen(%r, 'a').write('x')\n"
+                    "p = a[a.index('--pak') + 1]\nassert '--pak-write' in a\n"
+                    "open(p, 'wb').write(bytes(32768))\n" % (sys.executable, str(count)))
+    host.chmod(0o755)
+    scripts = tmp_path / "scripts"
+    scripts.mkdir()
+    (scripts / "maker.press").write_text("frames 10\npak on\n1 A\n")
+    (scripts / "user.press").write_text("frames 10\npak from maker\npoke 1 80100000 1 1\n1 A\n")
+    monkeypatch.setattr(oracle, "SCRIPT_DIR", scripts)
+    sc = oracle.load_script("user")
+    args = oracle.script_host_args(sc, host, tmp_path / "rom", tmp_path / "cache")
+    assert args[0] == "--pak" and Path(args[1]).stat().st_size == 32768 and args[2:] == ["--poke", "30:80100000:1:1"]
+    oracle.script_host_args(sc, host, tmp_path / "rom", tmp_path / "cache")      # cached: no second run
+    assert count.read_text() == "x"
+
+
+def test_host_poke_option_and_frame_hook():
+    src = RECOMP / "runtime" / "src"
+    assert "--poke" in (src / "main.cpp").read_text()
+    o = (src / "oracle.cpp").read_text()
+    assert "bool rush::oracle_add_poke" in o and "apply_pokes(rdram, n)" in o
 
 
 # ------------------------------------------------------------------ end to end (recomp host only)

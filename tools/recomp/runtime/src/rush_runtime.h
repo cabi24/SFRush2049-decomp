@@ -90,7 +90,8 @@ void oracle_start(const std::string& path, uint64_t stop_frames);
 uint64_t oracle_frames();
 void oracle_event(const char* text);
 void oracle_finish(const char* why);
-void oracle_fault_flush();   // fault.cpp: flush the oracle log (not if a writer holds it)
+void oracle_fault_flush();
+bool oracle_add_poke(const std::string& spec);   // --poke FRAME:ADDR:VALUE[:BYTES]   // fault.cpp: flush the oracle log (not if a writer holds it)
 void oracle_note_stack(uint32_t top);
 void oracle_note_thread(uint32_t thread);  // OSThread struct (osCreateThread a0)
 void oracle_text_log(const std::string& path);  // --text-log: strings drawn (rush_text_log hook)
