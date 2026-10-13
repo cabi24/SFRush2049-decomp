@@ -264,6 +264,26 @@
   {
    "name": "font_set_BC84",
    "reason": "group func_8010BC84 (w29b): non-static inlined helper of func_8010BC84, caller-less after inlining"
+  },
+  {
+   "name": "gfx_lock_B7FC",
+   "reason": "group func_8010B7FC (w29b): non-static inlined helper of func_8010B7FC, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_B7FC",
+   "reason": "group func_8010B7FC (w29b): non-static inlined helper of func_8010B7FC, caller-less after inlining"
+  },
+  {
+   "name": "font_set_B7FC",
+   "reason": "group func_8010B7FC (w29b): non-static inlined helper of func_8010B7FC, caller-less after inlining"
+  },
+  {
+   "name": "item_refresh_B7FC",
+   "reason": "group func_8010B7FC (w29b): non-static inlined helper of func_8010B7FC, caller-less after inlining"
+  },
+  {
+   "name": "TB_CenterText_B7FC",
+   "reason": "group func_8010B7FC (w29b): non-static inlined helper of func_8010B7FC, caller-less after inlining"
   }
  ],
  "prefer_definition": [
