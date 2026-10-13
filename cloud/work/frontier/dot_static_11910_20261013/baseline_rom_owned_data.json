@@ -1,0 +1,533 @@
+{
+  "schema": 1,
+  "rom_slots": [
+    {
+      "owner": "osSpTaskLoad_full",
+      "tu": "src/rom/lib_e9a0.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6090",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "timer_services_pointer",
+      "storage_owner": "timer_services",
+      "tu": "src/rom/lib_cc50.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x4c20",
+      "size": "0x10",
+      "container_vram": "0x800277d0",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "sdk_initialize_data",
+      "storage_owner": "sdk_initialize",
+      "tu": "src/rom/lib_8a80.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x4b90",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "fcvt",
+      "tu": "src/rom/lib_34a0.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x5d88",
+      "size": "0x164",
+      "container_vram": "0x800277d0",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "alignment": 4,
+      "logical_extent": true,
+      "sha256": "6c8434640414a8bf729d13362022b6286e0ae23866e77d6e05d39a2b61262370",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_34a0/fcvt.table.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "__scScheduleCore",
+      "co_owners": [
+        "__scMain"
+      ],
+      "tu": "src/rom/lib_1050_sdk.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x5cc0",
+      "size": "0x30",
+      "container_vram": "0x800277d0",
+      "sha256": "fc92cc366be18841229a18427b5664ddec61f3602273680e97efb43f9918c0e1",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.table.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "comment": "w24s: replaces __scScheduleCore's 4-byte logical-extent row (0x5cd4/0x1c) in __scMain's promotion transaction (promote_batch --replace-slot, front growth). lib_1050_sdk's whole .rodata as C: jtbl_8002D490 (__scMain's switch 666..670, 0x14) + __scScheduleCore's table (0x1c) = 0x30 at 0x8002D490..0x8002D4BF."
+    },
+    {
+      "owner": "osAiSetNextBuffer",
+      "tu": "src/rom/lib_ca70.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "offset": "0x4bf0",
+      "size": "0x10",
+      "container_vram": "0x800277d0",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_ca70/osAiSetNextBuffer.data.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "__d_to_ull",
+      "co_owners": [
+        "__f_to_ull"
+      ],
+      "tu": "src/rom/lib_a5f0.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6030",
+      "size": "0x10",
+      "container_vram": "0x800277d0",
+      "sha256": "fa9ad8e381ae4fc97686921369c821ca3444d5deebd56c82faf9df71bb39ba79",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_a5f0/__d_to_ull.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_8001B9F8",
+      "co_owners": [
+        "func_8001BE14"
+      ],
+      "tu": "src/rom/lib_1a660.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6100",
+      "size": "0x30",
+      "container_vram": "0x800277d0",
+      "sha256": "5717092dbf75146e308b6c056b77cf871b775dc6155600a2a1670013b6979abd",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_80021548",
+      "tu": "src/rom/lib_21210.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6160",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "sha256": "626e96a8b7ad0e519ca7a368ddf278d6fd0e693412113f6e7e61eb1c7fe845de",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_21210/func_80021548.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_80023BDC",
+      "co_owners": [
+        "func_80023E9C"
+      ],
+      "tu": "src/rom/lib_22300.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6180",
+      "size": "0x1e0",
+      "container_vram": "0x800277d0",
+      "sha256": "8840692c9c1a1a9fe3fbd7f3f1f218599e8f10bffc717d046a662cc508f808cd",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "comment": "w22b/w22i: replaces func_80023BDC's 4-byte logical-extent row (0x6180/0x14) in func_80023E9C's promotion transaction (promote_batch --replace-slot). lib_22300's whole .rodata: jtbl_8002D950 (func_80023BDC, 0x14) + jtbl_8002D964 (func_80023E9C, 0x1C8, 114 words) + IDO's 4-byte zero pad = 0x1E0, ending 16-aligned at 0x8002DB30."
+    },
+    {
+      "owner": "func_80016E68",
+      "co_owners": [
+        "func_80016C20",
+        "func_80016CF0",
+        "func_80016EE0",
+        "func_80016F80",
+        "func_80017040"
+      ],
+      "tu": "src/rom/lib_16320.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x80042630",
+      "offset": "0x0",
+      "size": "0x80",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s",
+      "comment": "w23c (grows w20b's row 0x80042670/0x30 downward and upward; same owner/companion path): lib_16320's whole .bss, retail 0x80042630..0x800426AF = function-local statics in definition order, each function's block 8-aligned: func_80016C20 (dataGetMacro base/main/key/result = D_80042630/34/38/40, 0x14 + 4), func_80016CF0 (dataGetSample key/result/sheader = D_80042648/64/68, 0x24 + 4), func_80016E68/80016EE0/80016F80 (0x30, D_80042670..D_8004269C), func_80017040 (dataGetFX key = D_800426A0, 0xC + 4)"
+    },
+    {
+      "owner": "func_80022CD4",
+      "tu": "src/rom/lib_22300.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "offset": "0x5c90",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "sha256": "d4e31321fece0572035dbff61da4d641553c99cb09db340ed1999a568d384843",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80022CD4.data.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_8001C860",
+      "tu": "src/rom/lib_1cf90.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6130",
+      "size": "0x4",
+      "container_vram": "0x800277d0",
+      "sha256": "38a10f59b2149a66a1427a406c1a0724fee6349dbff4df8a24d5286b2c354ecc",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "alignment": 4,
+      "logical_extent": true,
+      "logical_kind": "constants"
+    },
+    {
+      "owner": "func_80023E9C",
+      "co_owners": [
+        "func_80022874"
+      ],
+      "tu": "src/rom/lib_22300.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x80056200",
+      "offset": "0x0",
+      "size": "0x30",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023E9C.bss.s",
+      "comment": "w22b: lib_22300's whole .bss (0x30), retail 0x80056200..0x8005622F: synthmacros.c's file-scope DebugMacroSteps (u8, 0x80056200, declared in func_80022874's source), func_80022874's sample record (28 B, 0x80056208, D_80056208..D_80056214) and func_80023E9C's static cstep (8 B, 0x80056228)"
+    },
+    {
+      "owner": "func_8001E0E0",
+      "tu": "src/rom/lib_1ece0.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6140",
+      "size": "0x14",
+      "container_vram": "0x800277d0",
+      "sha256": "44a21168797bd097fa1f27cd45ea169cb542117f280da5431b296ed2e064720c",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1ece0/func_8001E0E0.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "alignment": 4,
+      "logical_extent": true,
+      "logical_kind": "constants",
+      "comment": "w23c: func_8001E0E0's own float literals 32767.0f, 0.7079f x2, -0.7079f, 0.7079f (IDO 7.1 does not merge equal literals) at 0x8002D910..0x8002D923; func_8001E440's literal D_8002D924 (extern, locked) follows in lib_1ece0's retail .rodata"
+    },
+    {
+      "owner": "__scMain",
+      "co_owners": [
+        "__scExec"
+      ],
+      "tu": "src/rom/lib_1050_sdk.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x8002E8E0",
+      "offset": "0x0",
+      "size": "0x2d0",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s",
+      "comment": "w24b/w24s: lib_1050_sdk's whole .bss, retail 0x8002E8E0..0x8002EBA7 (+8 B section pad): __osScRetraceTime, gScheduler (OSSched 0x284; gViTickCounter = its retraceCount), D_8002EB6C, __osScTaskCount, __osScAudioStart, __osScFrameTime, D_8002EB88, __osScElapsedTime, __osScDeltaTime, gViFrameDelta, gViAccumTime, gViAccumTotal, gViLastTick (definition order). The entry code clears .bss from 0x8002E8E0, so this TU's .bss is the first in the image."
+    }
+  ],
+  "storage_blocks": [
+    {
+      "owner": "vi_manager",
+      "kind": "bss",
+      "active": true,
+      "tu": "src/rom/lib_7630.c",
+      "source": "cloud/work/frontier/w25a/rename/rebind/lib_7630.c",
+      "source_sha256": "873727988b5d4661d54dba06ebf13c03756ccf6a3b2edc62d5960747f713b53c",
+      "tu_before_source": "cloud/work/integration_B18/lib_7630_before.c",
+      "tu_before_sha256": "4af80035fc31c01579675a6ac0de620194a6a471b82e09b5997a95d4d10d02cf",
+      "passthrough_asm": "asm/us/7630.s",
+      "passthrough_sha256": "458dc638e056246731e5fe3cf1f1b8721497af5677819f672abd103a320d74c5",
+      "yaml_old_entry": "      - [0x7630, asm]",
+      "yaml_new_entry": "      - [0x7630, c, rom/lib_7630]",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_section": ".bss",
+      "input_section": ".bss.vi_manager",
+      "output_section": ".vi_manager_bss",
+      "vram_start": "0x800354F0",
+      "size": "0x1220",
+      "members": [
+        "osCreateViManager",
+        "vi_manager_main"
+      ],
+      "aliases": [
+        {
+          "symbol": "gViMgrThreadArg",
+          "offset": "0x0",
+          "size": "0x1b0"
+        },
+        {
+          "symbol": "gViMgrMesgQueue",
+          "offset": "0x11b0",
+          "size": "0x18"
+        },
+        {
+          "symbol": "gViMgrMesgBuffer",
+          "offset": "0x11c8",
+          "size": "0x14"
+        },
+        {
+          "symbol": "gViMgrEventDP",
+          "offset": "0x11e0",
+          "size": "0x18"
+        },
+        {
+          "symbol": "gViMgrEventSP",
+          "offset": "0x11f8",
+          "size": "0x18"
+        },
+        {
+          "symbol": "gViMgrRetraceCounter",
+          "offset": "0x1210",
+          "size": "0x2"
+        }
+      ],
+      "context_files": [
+        {
+          "path": "include/PR/os_thread.h",
+          "source": "cloud/work/integration_B18/os_thread_proposed.h",
+          "sha256": "fea1c5c918099102af7192a8cec76556adbd8440d22f7f51fbc0e5b81d2921eb",
+          "before_source": "cloud/work/integration_B18/os_thread_before.h",
+          "before_sha256": "718904ed6f51d6f423e64e9c49e5a0ee96d33d6e6768bf567e3e97b3e43784a2"
+        }
+      ],
+      "proofs": [
+        "cloud/work/integration_B18/module_strict.json",
+        "cloud/work/integration_B18/coordinator_D_linked.json",
+        "cloud/work/integration_B18/coordinator_D_startup.json"
+      ]
+    },
+    {
+      "owner": "timer_services",
+      "kind": "bss",
+      "activation_mode": "existing_tu",
+      "active": true,
+      "tu": "src/rom/lib_cc50.c",
+      "source": "cloud/work/frontier/w25a/rename/rebind/candidate.c",
+      "source_sha256": "8f53572cc4e15d3100b03cc7d112339d9615ee6ae2dfefc47db9b3ea0b42cdf4",
+      "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
+      "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+      "members": [
+        "__osDequeueThread",
+        "__osTimerServicesInit",
+        "__osTimerInterrupt",
+        "__osSetTimerIntr",
+        "__osInsertTimer",
+        "osGetThreadPri"
+      ],
+      "new_members": [
+        "__osTimerServicesInit"
+      ],
+      "prior_locks": {
+        "__osDequeueThread": {
+          "body_sha256": "73d8517ad035c7aae49f1a3d85da46bffcf8b1c51b22c49716dff9f0a73fc805",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "__osDequeueThread",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-10-01"
+        },
+        "__osTimerInterrupt": {
+          "body_sha256": "06afef209eb8e3c3fac962f481130ea2335c0bb6a0dead9a63b1972034b44407",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "__osTimerInterrupt",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-10-01"
+        },
+        "__osSetTimerIntr": {
+          "body_sha256": "8f9f5739eb5cac4201c1f0669bf635b98b2d155b2a01e899148fd9fc4ab8c238",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "__osSetTimerIntr",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-10-01"
+        },
+        "__osInsertTimer": {
+          "body_sha256": "dc31f6245d6579131328d696eabc68e1a929b963b5b8da7cb7bf030c068e2f2e",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "__osInsertTimer",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-10-01"
+        },
+        "osGetThreadPri": {
+          "body_sha256": "ba89309c36f7bfb4f5743bebb074a067575eebc41fc009b924bcdb6e837ecf04",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "osGetThreadPri",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-07-15"
+        }
+      },
+      "source_section": ".bss",
+      "input_section": ".bss.timer_services",
+      "output_section": ".timer_services_bss",
+      "vram_start": "0x80037c30",
+      "size": "0x40",
+      "aliases": [
+        {
+          "symbol": "__osBaseTimer",
+          "offset": 0,
+          "size": 32
+        },
+        {
+          "symbol": "__osCurrentTime",
+          "offset": 32,
+          "size": 8
+        },
+        {
+          "symbol": "__osBaseCounter",
+          "offset": 40,
+          "size": 4
+        },
+        {
+          "symbol": "__osViIntrCount",
+          "offset": 44,
+          "size": 4
+        },
+        {
+          "symbol": "__osTimerCounter",
+          "offset": 48,
+          "size": 4
+        }
+      ],
+      "context_files": [],
+      "strict_proof": "cloud/work/integration_B24/strict_verification.json",
+      "context_proof": "cloud/work/frontier/w27s/rebind/timer_services_context_hashes.json",
+      "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
+      "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
+      "context_proof_sha256": "782e116499bfa0f6121098154f4e7e2e95aa454da4faa255d223386ac0d75da1",
+      "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
+      "data_slot": {
+        "owner": "timer_services_pointer",
+        "storage_owner": "timer_services",
+        "tu": "src/rom/lib_cc50.c",
+        "source": "assets/us/data.bin",
+        "offset": "0x4c20",
+        "size": "0x10",
+        "container_vram": "0x800277d0",
+        "container_section": ".data",
+        "owner_section": ".data",
+        "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206",
+        "composed_source": "build/us/assets/us/data.composed.bin"
+      },
+      "startup_proof": "cloud/work/integration_B25/startup_proof.json",
+      "startup_proof_sha256": "71239e48d41518a9c2a69e43387ddd2dc39aed81acd26b2ca01dee6d4fed9f44"
+    },
+    {
+      "owner": "sdk_initialize",
+      "kind": "bss",
+      "activation_mode": "existing_tu",
+      "active": true,
+      "tu": "src/rom/lib_8a80.c",
+      "source": "cloud/work/frontier/w23g/rebind/full_module.c",
+      "source_sha256": "403a97d34d1c618222940942f046998a0aed0833648498a7f9b6b31efb1a3131",
+      "tu_before_source": "cloud/work/integration_B26/lib_8a80_before.c",
+      "tu_before_sha256": "9464866c77f194f86aa65deddf7e168be516700b5d41274faef95935adb820e1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+      "members": [
+        "__osInitialize_common",
+        "__osPiReadDeviceType"
+      ],
+      "new_members": [
+        "__osInitialize_common"
+      ],
+      "prior_locks": {
+        "__osPiReadDeviceType": {
+          "body_sha256": "745263f8efd78f723d93c4d0712733a42a0a665d8c20a5e41ab4c58208e24f25",
+          "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "target_id": "__osPiReadDeviceType",
+          "toolkit_sha": null,
+          "verified": "rom-sha1",
+          "verified_at": "2026-10-01"
+        }
+      },
+      "source_section": ".bss",
+      "input_section": ".bss.sdk_initialize",
+      "output_section": ".sdk_initialize_bss",
+      "vram_start": "0x800367d0",
+      "size": "0x10",
+      "aliases": [
+        {
+          "symbol": "gSpTaskState",
+          "offset": 0,
+          "size": 4
+        }
+      ],
+      "context_files": [],
+      "strict_proof": "cloud/work/static_C19/strict_verification.json",
+      "context_proof": "cloud/work/frontier/w27s/rebind/sdk_initialize_context_hashes.json",
+      "linked_proof": "cloud/work/integration_B26/linked_sections.json",
+      "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
+      "context_proof_sha256": "0d78df0705bd9b4017b3aa0a97e6965bd7149755cb81c4736a1a41f7696ec516",
+      "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
+      "data_slot": {
+        "owner": "sdk_initialize_data",
+        "storage_owner": "sdk_initialize",
+        "tu": "src/rom/lib_8a80.c",
+        "source": "assets/us/data.bin",
+        "offset": "0x4b90",
+        "size": "0x20",
+        "container_vram": "0x800277d0",
+        "container_section": ".data",
+        "owner_section": ".data",
+        "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
+        "composed_source": "build/us/assets/us/data.composed.bin"
+      },
+      "startup_proof": "cloud/work/integration_B26/startup_proof.json",
+      "startup_proof_sha256": "22a9062b752910d632ac06d79c29c9f9bd672be7688d4e20614f857dc441b894"
+    }
+  ],
+  "text_boundaries": [
+    {
+      "owner": "lib_8700",
+      "tu": "src/rom/lib_8700.c",
+      "function": "osSpTaskYield",
+      "rom_start": "0x8700",
+      "vram_start": "0x80007b00",
+      "next_rom_start": "0x8800",
+      "extent_bytes": 256,
+      "function_offset": 128,
+      "logical_body_bytes": 32,
+      "padding_bytes": 96,
+      "retail_extent_sha256": "db5545f782938a0c57331625e5d11d0dc7c06d385d9e7013604a52b12c4771fa",
+      "padding_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
+      "asm_authority": "cloud/work/frontier/w22g/rebind/lib_8700_endpoint_proof.json",
+      "asm_authority_sha256": "01c9ee0a47a7d2a3833bcf0f92515609c991e983640dd365eced681658526d7f",
+      "source": "cloud/work/frontier/w22g/rebind/osSpTaskYield.c",
+      "source_sha256": "0f0bdf4708ce985ac89fa288d09a7a7cd5807de82112983e6674e7e5b41ca5c5",
+      "body_sha256": "be21642fd0935e78458008d68fc450c5c8be9dd2d03b3c79db10b5d5456c3d0a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "aliases": [
+        {
+          "symbol": "osDpSetNextBuffer",
+          "offset": 0
+        },
+        {
+          "symbol": "osSpTaskYield",
+          "offset": 128
+        },
+        {
+          "symbol": "strchr",
+          "offset": 256
+        }
+      ]
+    }
+  ]
+}

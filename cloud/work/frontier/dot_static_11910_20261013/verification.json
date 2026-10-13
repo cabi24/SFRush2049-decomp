@@ -40,12 +40,13 @@
     "files": {
       "cloud/work/frontier/dot_static_11910_20261013/baseline.c": "9b0776027b9cc979f4db3695a4030504d60810029f3c24b280989f6bd65080a3",
       "cloud/work/frontier/dot_static_11910_20261013/baseline_lib_11640.c": "c05043236e1142927b10eb32738a7494ecbf6a2a6332e9a1ea379f6bc25dee2c",
+      "cloud/work/frontier/dot_static_11910_20261013/baseline_rom_owned_data.json": "1bf74b4ea2700f09656c907bddce9ea26e170fc15f56e52eb5a7f38375420bc6",
       "cloud/work/frontier/dot_static_11910_20261013/candidate.c": "be2d77ed2f9494321b0a62df78678b73a8afb7b1835356282dccdcb0b0bb21f7",
       "cloud/work/frontier/dot_static_11910_20261013/native.py": "ab53f9259f71c73cda56f702633c4d2b0b41bf1fd85643a206b304b59d08b843",
       "cloud/work/frontier/dot_static_11910_20261013/probes.py": "49c696b828a38139bc6e68f4b87dfdebafafcf8da00f7c3554cbf03891286cbb",
       "cloud/work/frontier/dot_static_11910_20261013/trace.py": "8f2deeb913dc11d44209c5244b5b155c4ce4bb143efc2e623d352e11f7e1bdd0",
       "cloud/work/frontier/dot_static_11910_20261013/trace_summary.json": "e8ea96de459090a1bb0e361ab53f75c5415c7ac7a97aa3e2e39656d2aae68464",
-      "cloud/work/frontier/dot_static_11910_20261013/verify.py": "f07d44b50b94626ab75fcf76d68f0327309832aee1b8b89dd3bb622408a9ba44",
+      "cloud/work/frontier/dot_static_11910_20261013/verify.py": "ff7d44b376954028034a2565eab96c4865f857a164dad945a67df9bc02410883",
       "tests/cloud/test_static_11910_research.py": "58b8f237a195224deaa9db66f3f75e242507869b291893b852bafe827f1fe96b"
     },
     "population": "static",
@@ -293,6 +294,7 @@
       "func_80014D14",
       "func_80014D1C"
     ],
+    "registry": "baseline_rom_owned_data.json (pre-install snapshot, w28s)",
     "task_bss_owner_registered": false,
     "temporary_only": true
   }

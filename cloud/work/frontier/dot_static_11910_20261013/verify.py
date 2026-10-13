@@ -115,7 +115,7 @@ def gnu(obj,work,task_definition=False):
                 relocations=len(relocs),differing_offsets=bad,extra_words=extra,allocated_task_bytes=64 if task_definition else 0,owned_data_bytes=0,hypothetical_bss_subalign=4 if task_definition else None),list(struct.unpack('>%dI'%(size//4),body[:size]))
 
 def inputs():
-    files=[HERE/n for n in ('candidate.c','baseline.c','verify.py','native.py','probes.py','trace.py','trace_summary.json','baseline_lib_11640.c')]
+    files=[HERE/n for n in ('candidate.c','baseline.c','verify.py','native.py','probes.py','trace.py','trace_summary.json','baseline_lib_11640.c','baseline_rom_owned_data.json')]
     files += [ROOT/'tests/cloud/test_static_11910_research.py']
     with population():
         manifest=score.target_manifest();words=score.targets()[NAME]
@@ -147,6 +147,16 @@ def layout_check(work):
 def tu_check(work):
     ctx=module(ROOT/'cloud/work/boot_tail_promotion/context_check.py','context11910')
     ctx.CC=compilers.tu_cc(TU,ROOT/'tools/cloud/ido/cc');ctx.COMPILER='ido7.1'
+    # w28s: #377 landed with an owned .bss slot (0x800382F0/0x50) registered in
+    # rom_owned_data.json. The packet's refusal is the pre-install registry's,
+    # so the gate replays against the packet's snapshot of it (= e3b1f926).
+    snap=work/'registry';snap.mkdir()
+    shutil.copyfile(HERE/'baseline_rom_owned_data.json',snap/'rom_owned_data.json')
+    live=ctx.owned_data
+    class PreInstall:
+        def __getattr__(self,name): return getattr(live,name)
+        def slots_for_function(self,repo,fn,tu=None): return live.slots_for_function(snap,fn,tu)
+    ctx.owned_data=PreInstall()
     row=ctx.check(NAME,work,str(SOURCE.relative_to(ROOT)))
     require(row['status']=='refused' and '.bss:64' in row['reason'] and 'outside an owned slot' in row['reason'],row)
     # w28p: lib_11640 gained promoted bodies on master; replay against the packet's pre-install snapshot.
@@ -168,7 +178,7 @@ def tu_check(work):
     require(all(not r['differing'] and not r['extra_words'] and not r['unresolved'] and not r['unverified'] and not r['errors'] for r in after.values()),'TU C body not exact')
     return {'context_gate':row,'preserved_exact_c_bodies':sorted(before),'candidate_in_tu':after[NAME],
             'temporary_only':True,'assembly_passthroughs_unchanged':True,'full_rom_not_run':True,
-            'integration_permitted':False,'task_bss_owner_registered':False}
+            'integration_permitted':False,'task_bss_owner_registered':False,'registry':'baseline_rom_owned_data.json (pre-install snapshot, w28s)'}
 
 
 def native_gnu(work):
