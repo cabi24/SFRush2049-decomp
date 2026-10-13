@@ -1,0 +1,25 @@
+{
+ "name": "func_80106B3C",
+ "members": [
+  "func_80106B3C"
+ ],
+ "claims": [
+  "func_80106B3C"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "f6b3c.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_80106B3C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_80106B3C (HUD title text per window) with its inlined helpers (non-static *_6B3C, not on keep). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA). Unit install: force_internal += Hidden_6B3C, TB_SetJust_6B3C, getB6_6B3C, gfx_lock_6B3C, gfx_unlock_6B3C, font_set_6B3C.",
+ "provenance": "w28c draft (50/150) -> w29b MATCH; cloud/work/frontier/w29b/RESULTS.md"
+}

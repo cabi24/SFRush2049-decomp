@@ -1,0 +1,31 @@
+{
+ "name": "physics_sym",
+ "members": [
+  "func_800B55F4",
+  "func_800B5688",
+  "func_800B59E8",
+  "func_800B59F0",
+  "physics_sym",
+  "sound_loop_set"
+ ],
+ "claims": [
+  "sound_loop_set"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "group.c",
+  "slp.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "physics_sym"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "physics_sym group (w15b) superseded: same name, all five old members kept, group.c byte-identical; + sound_loop_set (slp.c, = GC _TitlePane@optionscr.c, body from w28c). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA only when its body is in the program; object_create and func_800B669C come with the file, as in frontier_billboard_render). The lock/font helpers in slp.c are non-static (*_slp, not on keep: w17j stub rule) and written on ONE source line (as1 delay-slot tie: see slp.c header). Unit install needs unit_overrides: inline_blockers += sound_loop_set (retail calls it by jal from physics_sym and the asm func_8010E8B4; with physics_sym its only C caller umerge would inline it), force_internal += sound_loop_set, gfx_lock_slp, gfx_unlock_slp, font_select_slp, font_set_slp. func_800B59F0 keeps its NOT VERIFIED own-.rodata (two regions) line as in the locked group.",
+ "provenance": "w15b physics_sym group | w29b: sound_loop_set added (w28c body; one-line helpers + non-static names); cloud/work/frontier/w29b/RESULTS.md"
+}

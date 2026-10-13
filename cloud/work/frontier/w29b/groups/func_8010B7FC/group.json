@@ -1,0 +1,25 @@
+{
+ "name": "func_8010B7FC",
+ "members": [
+  "func_8010B7FC"
+ ],
+ "claims": [
+  "func_8010B7FC"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "fb7fc.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_8010B7FC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_8010B7FC with inlined helpers (non-static *_B7FC, not on keep). Context: ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup's s2 font convention). Unit install: force_internal += gfx_lock_B7FC, gfx_unlock_B7FC, font_set_B7FC, item_refresh_B7FC, TB_CenterText_B7FC.",
+ "provenance": "w27d draft -> w29b MATCH; cloud/work/frontier/w29b/RESULTS.md"
+}
