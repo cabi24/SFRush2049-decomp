@@ -1,0 +1,35 @@
+{
+ "name": "frontier_results_table",
+ "members": [
+  "func_80102F30",
+  "drawMain",
+  "func_80101904",
+  "func_80101D84",
+  "func_80102448",
+  "func_80100D5C",
+  "func_80102980"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "results_table.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_80102F30"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "w27c (func_80100D5C/func_80101904/func_80101D84 EQUAL with a stand-in caller), w28a (func_80102F30 complete draft, real caller chain), w29a (func_80102F30 frame via two font-helper shapes + cell local + continue; func_8010221C via continue); cloud/work/frontier/w29a/RESULTS.md. ctx_gr3_b.c = byte-identical copy of locked credits_scroll_grp/gr3_b.c (slot_state_setup's $s2 IPA parameter). | w29a: func_80102448 (stunt score table) added: text = value after the sprintf, left = 60 reused as the fill-loop cell width | w30a: func_80102980 (battle head-to-head matrix, GC drawBattleScore) added: the cell width 60 written through the existing local `other` everywhere (expression numbering after copy propagation); cloud/work/frontier/w30a/RESULTS.md",
+ "claims": [
+  "func_80102F30",
+  "drawMain",
+  "func_80101904",
+  "func_80101D84",
+  "func_80102448",
+  "func_80100D5C",
+  "func_80102980"
+ ]
+}

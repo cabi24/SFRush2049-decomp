@@ -1,0 +1,114 @@
+exit=0
+24
+Members:
+func_800CD058:
+  MATCH
+func_800CCEFC:
+  MATCH
+func_800CCCCC:
+  MATCH
+menu_save_options:
+  MATCH
+func_800A44E8:
+  MATCH
+func_800A370C:
+  MATCH
+draw_speedometer:
+  MATCH
+func_800C7EC0:
+  MATCH
+func_800C7EC8:
+  MATCH
+draw_ui_element:
+  MATCH
+func_800CBF2C:
+  MATCH
+func_800C7300:
+  MATCH
+func_800CD0FC:
+  MATCH
+func_800A361C:
+  MATCH
+func_800A1A3C:
+  MATCH
+func_80094FC4:
+  MATCH
+
+Context (informational; excluded from exit status):
+SaveServer:
+    +0x038  want 3c0e8011 lui t6,0x8011                 got 3c040000 lui a0,0x0                  
+    +0x03c  want 81ce742c lb t6,29740(t6)               got 80840000 lb a0,0(a0)                 
+    +0x048  want 29c10002 slti at,t6,2                  got 28810002 slti at,a0,2                
+    +0x054  want 25cfffff addiu t7,t6,-1                got 248fffff addiu t7,a0,-1              
+    +0x078  want 3c198011 lui t9,0x8011                 got 14800015 bnez a0,0x58                
+    +0x07c  want 8339742c lb t9,29740(t9)               got 8fb90054 lw t9,84(sp)                
+    +0x080  want 8fae0054 lw t6,84(sp)                  got 832e0000 lb t6,0(t9)                 
+    +0x084  want 57200016 bnezl t9,0x5c                 got 8faf009c lw t7,156(sp)               
+    +0x088  want 8fb80054 lw t8,84(sp)                  got 3c198014 lui t9,0x8014               
+    +0x08c  want 81cf0000 lb t7,0(t6)                   got 15c00010 bnez t6,0x44                
+    +0x090  want 8fb8009c lw t8,156(sp)                 got 000fc080 sll t8,t7,0x2               
+    +0x094  want 3c0e8014 lui t6,0x8014                 got 030fc023 subu t8,t8,t7               
+  176/225 words differ (18 section-relative relocations unverified: .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x58, .data+0x0 at +0x60, .data+0x8 at +0x40, .data+0x8 at +0x44, .data+0x4 at +0x64, .data+0x4 at +0x68, .data+0x4 at +0xf8, .data+0x4 at +0x120, .data+0x0 at +0x128, .data+0x0 at +0x12c, .data+0x0 at +0x308, .data+0x0 at +0x30c, .data+0x4 at +0x33c, .data+0x4 at +0x340, .data+0x0 at +0x344, .data+0x0 at +0x348; own .data+0x0: retail reads this one object at different addresses 0x8011742C, 0xF0217430, 0xFF889025; own .data+0x4: retail reads this one object at different addresses 0x80117430, 0x90214030)
+CreatePlayer:
+    +0x008  want afb60048 sw s6,72(sp)                  got afb40040 sw s4,64(sp)                
+    +0x01c  want afb50044 sw s5,68(sp)                  got afb60048 sw s6,72(sp)                
+    +0x020  want afb40040 sw s4,64(sp)                  got afb50044 sw s5,68(sp)                
+    +0x038  want 3c168012 lui s6,0x8012                 got 3c148012 lui s4,0x8012               
+    +0x03c  want 00a0b825 move s7,a1                    got afbf0054 sw ra,84(sp)                
+    +0x040  want afbf0054 sw ra,84(sp)                  got f7b60028 sdc1 $f22,40(sp)            
+    +0x044  want f7b60028 sdc1 $f22,40(sp)              got f7b40020 sdc1 $f20,32(sp)            
+    +0x048  want f7b40020 sdc1 $f20,32(sp)              got afa400e0 sw a0,224(sp)               
+    +0x04c  want afa400e0 sw a0,224(sp)                 got afa500e4 sw a1,228(sp)               
+    +0x050  want 26d611dc addiu s6,s6,4572              got 269411dc addiu s4,s4,4572            
+    +0x054  want afb90058 sw t9,88(sp)                  got afb9005c sw t9,92(sp)                
+    +0x060  want 00009025 move s2,zero                  got 24120004 li s2,4                     
+  246/272 words differ
+draw_number:
+  MATCH
+format_string_parse:
+  MATCH
+func_800CC040:
+    +0x000  want 27bdff48 addiu sp,sp,-184              got 27bdff78 addiu sp,sp,-136            
+    +0x020  want afa400b8 sw a0,184(sp)                 got afa40088 sw a0,136(sp)               
+    +0x024  want afa500bc sw a1,188(sp)                 got afa5008c sw a1,140(sp)               
+    +0x028  want afa600c0 sw a2,192(sp)                 got afa60090 sw a2,144(sp)               
+    +0x04c  want 8fb800c0 lw t8,192(sp)                 got 8fb80090 lw t8,144(sp)               
+    +0x08c  want 8fae00c0 lw t6,192(sp)                 got 8fae0090 lw t6,144(sp)               
+    +0x0ac  want 8faf00b8 lw t7,184(sp)                 got 8faf0088 lw t7,136(sp)               
+    +0x0d0  want afa600b0 sw a2,176(sp)                 got afa60080 sw a2,128(sp)               
+    +0x0d8  want 8fa600b0 lw a2,176(sp)                 got 8fa60080 lw a2,128(sp)               
+    +0x158  want afa600b0 sw a2,176(sp)                 got afa60080 sw a2,128(sp)               
+    +0x160  want 8fa600b0 lw a2,176(sp)                 got 8fa60080 lw a2,128(sp)               
+    +0x16c  want afa600b0 sw a2,176(sp)                 got afa60080 sw a2,128(sp)               
+  29/224 words differ
+menu_item_value_get:
+  MATCH
+menu_back:
+    +0x05c  want 00402825 move a1,v0                    got ae190054 sw t9,84(s0)                
+    +0x060  want ae190054 sw t9,84(s0)                  got 8e04004c lw a0,76(s0)                
+    +0x068  want 8e04004c lw a0,76(s0)                  got 00402825 move a1,v0                  
+  3/33 words differ
+menu_transition:
+  MATCH
+AdjustSteer:
+  MATCH
+audio_reverb_update:
+  MATCH
+audio_buffer_sync:
+  MATCH
+func_800C7200:
+  MATCH
+func_800CC50C:
+    +0x034  want 27bdff98 addiu sp,sp,-104              got 27bdff70 addiu sp,sp,-144            
+    +0x058  want afa5006c sw a1,108(sp)                 got afa50094 sw a1,148(sp)               
+    +0x060  want 00809825 move s3,a0                    got 8c860054 lw a2,84(a0)                
+    +0x064  want 4600428d trunc.w.s $f10,$f8            got 00809825 move s3,a0                  
+    +0x068  want afb20058 sw s2,88(sp)                  got 4600428d trunc.w.s $f10,$f8          
+    +0x06c  want 8c860054 lw a2,84(a0)                  got 02462021 addu a0,s2,a2               
+    +0x074  want 02462021 addu a0,s2,a2                 got 00000000 nop                         
+    +0x080  want afa3005c sw v1,92(sp)                  got afa30048 sw v1,72(sp)                
+    +0x084  want 8fa3005c lw v1,92(sp)                  got 8fa30048 lw v1,72(sp)                
+    +0x08c  want 8e72004c lw s2,76(s3)                  got 8e62004c lw v0,76(s3)                
+    +0x098  want 02592021 addu a0,s2,t9                 got 00592021 addu a0,v0,t9               
+    +0x0a0  want 024e2821 addu a1,s2,t6                 got 004e2821 addu a1,v0,t6               
+  117/190 words differ (1 extra words (nonzero beyond target length))
