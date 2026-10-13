@@ -1860,6 +1860,7 @@ func_80102448:
 .section .text.func_80102980, "ax", @progbits
 .globl func_80102980
 func_80102980:
+    /* compiled from src/blob/func_80102980.c */
     .word 0x3C028015
     .word 0x8442A108
     .word 0x27BDFE20

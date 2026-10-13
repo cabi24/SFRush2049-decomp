@@ -8,6 +8,7 @@ blob_unit cache, baserom); `blob_splice rebuild-stale` rebuilt 5 stale copied gr
 | (start) | — | — | 1041/1216, 370,952 B (57.33%) |
 | 1 | `menu_save_options` (frontier_menu_save_options) superseded by w30c's packet + merge of menu_cc040_20261004 and codex_func_800C7200_2 | 2,848 | 1045/1216, 373,800 B (57.77%) |
 | 2 | `credits_scroll_grp` superseded in place (w30d): + animPlace (gr3_7af4.c) | 1,000 | 1046/1216, 374,800 B (57.92%) |
+| 3 | `frontier_results_table` superseded in place (w30a): + func_80102980 | 1,456 | **1047/1216, 376,256 B (58.15%)** |
 
 ## Job 1: w30c save packet
 New coverage: draw_speedometer 1,704, func_800C7EC8 628, draw_ui_element 240, func_800CBF2C 276 = 2,848 B. The three
@@ -62,3 +63,19 @@ status of every function unchanged; group.c/save.c/ctx files are w30c's byte-for
 - Slot-contract audit `audit.py --write`: credits_scroll_grp/group.json re-pinned, animPlace accepted,
   unaccepted_caller_bytes 56236 -> 55236; frozen list/count in tests/cloud/test_slot_contract_audit.py updated.
   symbols.json/blob.ld unchanged. Not a scout target. No provisional/data/unit_overrides changes.
+
+## Job 3: w30a func_80102980
+- Packet check: ctx_gr3_b.c byte-identical to the installed copy; results_table.c = installed file + the 2980 body + header
+  comment; group.json differs only in members (+func_80102980), claims, provenance.
+- Unit (w30a's command, tag w30i): `blob_unit score: 8/8 equal`, `locked bodies that differ in this unit: 0`
+  (func_80102980 364 words internal, F30 890 kept).
+- Builder `score.py group cand/w30a/frontier_results_table`: with and without `--claims` rc=0, all 7 MATCH (F30 own .rodata
+  0x80124864..0x80124880, drawMain 0x80124848..0x80124864).
+- Install: `install_group.py cloud/work/frontier/w30a/groups/frontier_results_table frontier_results_table` -> `spliced
+  frontier_results_table: 7 members, new: ['func_80102980']`.
+- Gates: `group lock: 0 problems`; `blob lock: 1047 entries, 0 problems`; `blob_unit: 1047 locked bodies, 1047 equal to
+  the image in one 921-file unit, 0 differ`; `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- func_80102980 is internal in the unit manifest by the group rule (not on keep): no force_internal; `unused_overrides: []`.
+  All seven ctx_gr3_b.c copies still byte-identical to credits_scroll_grp/gr3_b.c.
+- Slot-contract audit re-written: func_80102980 accepted, unaccepted_caller_bytes 55236 -> 53780; test list/count updated.
+  symbols.json/blob.ld unchanged; not a scout target; func_800BEA3C untouched; no provisional/data/unit_overrides changes.

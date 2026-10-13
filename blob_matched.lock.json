@@ -1157,7 +1157,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6532,7 +6532,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6541,7 +6541,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6550,7 +6550,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6559,7 +6559,16 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-13"
+  },
+  "func_80102980": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_results_table",
+    "source": "src/blob/groups/frontier_results_table/group.json",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"
@@ -6568,7 +6577,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_results_table",
     "source": "src/blob/groups/frontier_results_table/group.json",
-    "source_sha256": "20a9f1ef69a874a7c233ab0934807fca7c95fdc9086942bd15f2ba9097e9eea4",
+    "source_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-13"

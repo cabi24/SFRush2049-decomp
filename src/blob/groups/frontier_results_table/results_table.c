@@ -1,13 +1,15 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
- * Game-over results screens, results-table family (group frontier_results_table, w27c/w28a/w29a).
+ * Game-over results screens, results-table family (group frontier_results_table, w27c/w28a/w29a/w30a).
  * func_80102F30 (kept): results dispatcher (GC gameoverscr.c draw dispatch) + race standings table
  *   (GC drawRaceScore: rows = laps+3, cols = players+1, str1[40] = value, c[4] = color);
  * func_8010221C = GC drawMain (menu items 0..6 via validOption = func_800F84B0, then the per-mode table);
  * func_80101904 / func_80101D84 (stunt/battle standings tables, GC drawBattle/StuntStandings family);
  * func_80100D5C = GC drawRect(x, y, w, h, color) (IPA registers t1,t3,t2,t4,a2).
  * func_80102448 = per-player stunt records table (13 rows; F30 calls it for gameplay_mode 4).
- * func_80100E58, func_80102980 stay asm (unmatched drafts: w29a/<fn>/best.c).
+ * func_80102980 = GC drawBattleScore (battle head-to-head matrix: rows = players+2, cols = players+1;
+ *   F30 calls it for gameplay_mode 6) (w30a).
+ * func_80100E58 stays asm (unmatched draft: w30a/func_80100E58/best.c).
  * Helpers: rt_gfx_lock/rt_gfx_unlock (the D_801461D0 font lock), rt_font_set (lock; slot_state_setup;
  *   unlock, 24 B inline area) and rt_font_set_b (lock helper + osSendMesg written out, 16 B inline area).
  *   Non-static so umerge leaves no deleted-procedure stubs; internal (not on keep). HELPER IDENTITY
@@ -26,8 +28,15 @@
  *    `left = 60` before the loops and `x = column*left` in the fill loop (left is reassigned in the header
  *    block): makes column*60 a propagated expression so x is numbered after `160 - width/2` as in retail
  *    (same cause as F30's `cell`; 2448's frame is exact without a new local).
- * Unit: blob_unit score F30 221C 1904 D84 D5C --with this file --internal <all but F30, rt_*> --neighbours
- *   -> 5/5 EQUAL, 0 locked bodies differ. See cloud/work/frontier/w29a/RESULTS.md.
+ *  - func_80102980: written-out pre-loop font site (rt_gfx_lock(); previous = slot_state_setup(11);
+ *    osSendMesg(...); if (previous) {} -- one inlined helper level, retail's 8 B inline area, w29a);
+ *    colour-init on four lines in the switch arms (w29a). CELL WIDTH THROUGH A VARIABLE (w30a): the
+ *    existing local `other = 60` is the cell width everywhere the 60 is a column multiplier
+ *    (160-columns*other/2, x = column*other, column*other-columns*other/2+190): uopt then enters these
+ *    expressions only after copy propagation, so &input_rec0[col] is numbered (and emitted) before
+ *    160-columns*60/2 and the x web after the left web, as in retail (same cause as F30's `cell`).
+ * Unit: blob_unit score F30 221C 1904 D84 2448 2980 D5C --with this file --internal <all but F30, rt_*>
+ *   --neighbours -> 7/7 EQUAL (+ slot_state_setup), 0 locked bodies differ. See w29a/w30a RESULTS.md.
  */
 /* Shared source model for native results callbacks. External record gaps are
  * observed offsets/strides, not compiler-pressure stack storage. */
@@ -428,6 +437,112 @@ extern s32 D_80138870;
 extern f32 D_80144DA4[];
 extern f32 D_80149A78[][8];
 extern char D_80120360[],D_80120370[],D_80120380[];
+void func_80102980(void)
+{
+    s32 x;
+    s32 previous;
+    s32 y;
+    char *text;
+    char value[40];
+    s32 rows,columns;
+    s32 row,column,total,other;
+    RGBA color;
+    char name[188];
+    char label[144];
+    rows=active_player_count+2;
+    columns=active_player_count+1;
+    other=60;
+    for(row=0;row<rows;row++) {
+        for(column=0;column<columns;column++) {
+            if(row!=0 || column!=0) {
+                y=row*16-rows*16/2+110;
+                x=column*other;
+                if(row>=2) {
+                    if(row==2 && column==0) {
+                        color.r=0;color.g=0;color.b=0;color.a=192;
+                        func_80100D5C(160-columns*other/2+x,y,columns*60,8,(u8 *)&color);
+                    }
+                    y+=8;
+                }
+                if(column==0 || row==0) {
+                    color.r=0;
+                    color.g=0;
+                    color.b=0;
+                    color.a=192;
+                } else if(column+1==row) {
+                    color.r=0;
+                    color.g=0;
+                    color.b=0;
+                    color.a=192;
+                    switch(D_8012E67C[column-1]) {
+                    case 0:color.b=64;break;
+                    case 1:color.r=64;break;
+                    case 2:color.r=64;color.g=64;break;
+                    case 3:color.g=64;break;
+                    }
+                } else {
+                    color.r=0;
+                    color.g=0;
+                    color.b=0;
+                    color.a=192;
+                    switch(D_8012E67C[column-1]) {
+                    case 0:color.b=128;break;
+                    case 1:color.r=128;break;
+                    case 2:color.r=128;color.g=128;break;
+                    case 3:color.g=128;break;
+                    }
+                }
+                func_80100D5C(160-columns*other/2+x,y,60,16,(u8 *)&color);
+            }
+        }
+    }
+    render_helper(0.0f);
+    D_80118E20[0]=1;D_80118E20[1]=1;
+    rt_gfx_lock(); previous = slot_state_setup(11); osSendMesg(&D_801461D0,0,0); if (previous) {}
+    for(row=0;row<rows;row++) {
+        for(column=0;column<columns;column++) {
+            if(row!=0 || column!=0) {
+                y=row*16-rows*16/2+110;
+                if(row>=2) y+=8;
+                if(row==0) {
+                    dispatch_handler(D_801146AC[D_8012E67C[column-1]]);
+                    text=input_rec0[column-1].name[0]+20;
+                    total=160-columns*other/2;
+                    x=column*other;
+                    race_position_update(name,text,60);
+                    state_utility(total+x+30,y+8,name);
+                } else if(column==0) {
+                    if(row==1) {
+                        dispatch_handler(1);
+                        text=countdown_state.fixed[130];
+                    } else {
+                        dispatch_handler(D_801146AC[D_8012E67C[row-2]]);
+                        text=input_rec0[row-2].name[0]+20;
+                        total=160-columns*other/2;
+                        x=column*other;
+                        race_position_update(label,text,60);
+                        state_utility(total+x+30,y+8,label);
+                    }
+                } else {
+                    if(row==1) {
+                        total=D_80152BBB[input_rec0[column-1].vehicle].score;
+                        dispatch_handler(1);
+                        fcvt_wrapper(value,D_8012039C,total);
+                        text=value;
+                    } else {
+                        if(column+1==row) dispatch_handler(4);
+                        else dispatch_handler(1);
+                        fcvt_wrapper(value,D_801203A0,D_80149428[column-1][row-2]);
+                        text=value;
+                    }
+                }
+                if(row!=0 && (column!=0 || row==1)) state_utility(column*other-columns*other/2+190,y+8,text);
+            }
+        }
+    }
+    render_helper(-1.0f);
+    D_80118E20[1]=3;D_80118E20[0]=0;
+}
 s32 rt_font_set_b(s32 font) {
     s32 previous;
     rt_gfx_lock();previous=slot_state_setup(font);osSendMesg(&D_801461D0,0,0);
