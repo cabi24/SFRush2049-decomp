@@ -1177,7 +1177,7 @@ SECTIONS
         *(.blobdata.op_80103d18)
         *(.text.func_80103D28)
         *(.blobdata.op_801046fc)
-        *(.text.highscore_entry_anim)
+        *(.text.func_80104704)
         *(.text.func_80104B14)
         *(.blobdata.op_80105478)
         *(.text.func_80105480)

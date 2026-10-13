@@ -41,11 +41,11 @@
     }
   },
   "summary": {
-    "callers": 65,
-    "sites": 170,
-    "adjacent_call_label_pairs": 167,
+    "callers": 66,
+    "sites": 171,
+    "adjacent_call_label_pairs": 168,
     "captures": {
-      "s0": 123,
+      "s0": 124,
       "s1": 7,
       "s4": 7,
       "s5": 2,
@@ -77,7 +77,7 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 52464,
+    "unaccepted_caller_bytes": 53504,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -864,6 +864,21 @@
         "state_utility"
       ]
     },
+    "func_80104704": {
+      "start": "0x80104704",
+      "bytes": 1040,
+      "body_sha256": "7ec34079ea4b33df62f69cb51957126ee37dc4772f57bb0e80896d4b5f34cb55",
+      "accepted": false,
+      "sites": [
+        "0x80104724"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
     "func_80104B14": {
       "start": "0x80104B14",
       "bytes": 2404,
@@ -909,6 +924,7 @@
       },
       "other_unaccepted_direct_game_calls": [
         "func_80103D28",
+        "func_80104704",
         "func_80104B14",
         "race_position_update",
         "state_utility"
