@@ -606,3 +606,30 @@ commands: `tools/recomp/README.md` "Phase 11"; lane notes: `cloud/work/frontier/
   overlay drafts (population ovl_a/ovl_b replacements exist in replace.py, untested end to end); a regenerated
   build/frontier.json with the stack-argument fix in the conveyor scanner (control_cell_text/2 facts).
 
+
+
+## 21. Phase 12: spill-aware clobbers, exact fault PCs, the boot-read pak crash, overlay drafts (lane w32r, 2026-10-14)
+
+Owner decisions unchanged: recomp time is for decomp feedback only; no package (no gameplay change). Detail and
+commands: `tools/recomp/README.md` "Phase 12"; lane notes: `cloud/work/frontier/w32r/RESULTS.md`.
+
+- **control_settings pak_nopak: harness, fixed.** Retail func_800DD0C0 writes s0/s1/s3 without saving them, but
+  also stores them to the stack (spills, a stack argument); the clobber derivation took those stores for prologue
+  saves, so the IPA shim around the draft's call let it destroy the draft's s0 (`lb t6,0(s0)`, s0 = 0xB). A store is
+  now a save only before any write of that register; the table entries (func_800DD0C0, func_80097164,
+  func_80104704) are corrected and draft_check widens table entries with the retail sets. w29c/w30d/w31d
+  control_settings: EQUIVALENT on all four dialog scripts; the drafts were right.
+- **Fault PCs**: the host build disables clang's tail merging in the recompiled game (`RUSH_EXACT_FAULT_LINES`), so
+  every host instruction keeps its N64 line; a line-0 frame still names its function.
+- **`pak fail read 1 ERR` on a `pak from` pak = a retail crash**: the pak error dialog pumps SaveServer, which
+  re-enters the suspended note read, deletes the note and frees its buffer; closing the dialog retries through a
+  NULL handle (read of 0x0, a TLB exception on hardware). Game bug, not the host; `pak fail` refuses the combination
+  (ERR 6/10/11 survive) unless `RUSH_PAK_FAIL_ALLOW_CRASH=1`.
+- **Overlay drafts**: `draft_check ovl_a:NAME draft.c` (overlay census for the default scripts, overlay lock in
+  `--all-lanes`); func_80396F44's own source EQUIVALENT over 2,047 calls, an injected bug DIVERGES.
+- **All lanes after the w32n renames**: 108 drafts: 47 EQUIVALENT, 56 MATCHED, 5 ERROR (unit directories without
+  dc.args, byte-identical to named twins); no divergence. A save now also needs its restore (control_cell_text2's
+  s8 stack argument). Census: 147 of 150 unmatched reached, 3 never (632 B).
+- **Phase 13 needs**: build/frontier.json regenerated with the conveyor scanner's stack-argument and spill rules
+  (its `unsaved_callee_regs` and the replace.py WARNING text still quote the old sets); image A's own pak-dialog
+  path (func_803990D0) and the unreached overlay functions.

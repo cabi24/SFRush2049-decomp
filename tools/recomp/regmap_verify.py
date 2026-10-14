@@ -225,13 +225,29 @@ class Interproc:
         try:
             live = ipa_detect.register_params(words, include_o32=True, call_effects=self.call_effects)
             keys = {_key(r) for r in live}
-            writes, saved = set(), set()
+            writes, saved, own = set(), set(), set()
             restores = ipa_detect._restores(words)
             for w in words:
                 _r, wr, call = ipa_detect.decode(w)
                 if ipa_detect._is_save(w, restores):
                     rt = (w >> 16) & 31
-                    saved.add(("f", rt & ~1) if w >> 26 in (0x39, 0x3D) else ("r", rt))
+                    k = ("f", rt & ~1) if w >> 26 in (0x39, 0x3D) else ("r", rt)
+                    # Phase 12 (w32r): a store of a register the body has already
+                    # written (lower address) is a spill or an outgoing stack
+                    # argument, not a prologue save: retail func_800DD0C0 writes
+                    # s0/s1/s3 (`move s0,v0`, `addiu s0,sp,0xAC`), spills s1/s3
+                    # around a call and passes s0 at 0x18(sp); counted as saves,
+                    # its clobber set lacked s0,s1,s3 (control_settings pak_nopak
+                    # fault). IDO saves in the entry block, before any write.
+                    # w32r job 3: and only if the body reloads it from that slot (an
+                    # IDO save always has its epilogue restore): control_cell_text2
+                    # passes its s8 parameter on as a stack argument BEFORE its first
+                    # write of s8, never reloads it, and then writes s8 unsaved.
+                    reloaded = (ipa_detect._LOAD_OF[w >> 26], (w >> 16) & 31, w & 0xFFFF) in restores[0]
+                    if k not in own and (k[0] != "f" or ("f", k[1] + 1) not in own) and \
+                            (reloaded or not restores[2]):
+                        saved.add(k)
+                own |= wr
                 writes |= wr
                 if call:
                     e = self.call_effects(w)

@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-11 decomp feedback)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-12 decomp feedback)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -1113,3 +1113,95 @@ only). Newly reached: func_8010C974 (battle_mine), control_cell_text (pak_corrup
 func_800DD0C0 (pak_nopak). Overlay census (same tree): image A 99 of 193 functions reached (unmatched: 45 of 112,
 92,504 of 101,892 B), image B 35 of 49 (unmatched: 19 of 28, 28,696 of 29,688 B); `census/OVERLAYS.md` lists them.
 
+
+
+## Phase 12: spill-aware clobbers, exact fault PCs, the boot-read pak crash, overlay drafts (lane w32r, 2026-10-14)
+
+Lane notes: `cloud/work/frontier/w32r/RESULTS.md`; plan section 21. Not a matching lane; no gameplay change (no
+package).
+
+**The control_settings pak_nopak fault was the harness.** w29c/w30d's control_settings drafts faulted on pak_nopak
+(cell type 2) at frame 721, N64 read of 0x8. With the PC (below) the faulting instruction is `lb t6,0($s0)` right
+after the draft's call of the retail func_800DD0C0 through its IPA shim, with s0 = 0xB. Retail func_800DD0C0 writes
+s0, s1 and s3 without saving them (`move s0,v0` = the font call's result 11, `addiu s0,sp,0xAC`, `move s1,v0`,
+`addu s3,t6,t7`); it also stores them to the stack (s1/s3 spilled around a call, s0 passed at 0x18(sp)), and
+`regmap_verify.Interproc` counted those stores as prologue saves, so the clobber set (and the hand-written
+`ipa_callees.json` entry: s2,s4-s8) lacked s0,s1,s3 and the shim did not protect the draft's s0. Rule now: a store
+of a register is a save only if the body has not written that register at a lower address (IDO saves in the entry
+block, before any write). Over the 1,216 game functions 24 unsaved sets grow (all checked writes: outgoing float
+stack arguments `swc1 f22,0x10(sp)`, spills); the table entries func_800DD0C0 (s0-s8), func_80097164 (s0-s7) and
+func_80104704 (+s5) are corrected, and draft_check widens every table entry the draft names with the retail set
+(`NOTE ...: clobbers widened`) so a stale entry cannot hide one again. Verdicts: w29c and w30d control_settings
+EQUIVALENT over 360 calls / 4 scripts (pak_nopak, pak_corrupt, pak_repair, ghost_delete_fail 90 each); w31d's group
+draft (func_800DD0C0 in the TU) EQUIVALENT on the same four; w31d's func_800DD0C0 alone (`draft_check func_800DD0C0`,
+inbound shim sp+0/sp+4) EQUIVALENT 90 calls pak_nopak. The draft was right. (replace.py's `WARNING ... writes
+callee-saved s2,s4,...` line still quotes build/frontier.json; the shim uses the corrected set.)
+
+**Fault reports always carry the N64 PC.** The PC is the `// 0xADDR` comment of the recompiled-C line addr2line
+gives for the host pc. clang merged identical tails of several N64 sites (here the `b join; lb t6,0(s0)` delay slot
+of every switch case of control_settings) into one block with line 0, so the report had no PC. The host build now
+compiles the recompiled game with `-mllvm -enable-tail-merge=false -mllvm -simplifycfg-sink-common=false` (GCC:
+`-fno-crossjumping`; CMake option `RUSH_EXACT_FAULT_LINES`, default ON; code size only). A line-0 frame still
+names its function (`N64 PC unknown in NAME: ...`). Report of the old fault with it: `N64 PC 0x80800C14 `lb $t6,
+0x0($s0)` = control_settings+0x368 (draft)`. Build trees made before Phase 12 rebuild once.
+
+**`pak fail read 1 ERR` on a `pak from` pak crashes the retail game** (the stock-host fault of Phase 11). The boot
+reads the player note (SaveServer -> func_800C7EC8 -> drone_set_catchup = the note read: buffer handle at +0x48 of
+the file record, 0x80146074 for player 1). A failed read opens the pak error dialog through the function pointer
+0x80144008 = save_settings, and save_settings pumps SaveServer every dialog frame: SaveServer re-enters
+func_800C7EC8 -> drone_set_catchup for the same note, finds the read in progress, and the player code
+(draw_speedometer -> pak_delete_file_retry) deletes the note and frees its buffer, clearing +0x48. When the dialog is
+closed the suspended read retries: `lw t8,0x48(s6)` = 0, `lw t9,0(t8)` = a read of 0x00000000, a TLB exception on
+the console (the game maps only 0xC0000000 with __osTlbInit). All game code (gdb backtrace, host breakpoints on
+each function); the host only injected the error. Sweep (stock host, player_reload + `pak fail read N ERR`, 600
+frames): read 1 with ERR 1, 2, 3, 4, 5, 7, 8, 9, 12 crash when the dialog closes (frame 120 or 210); ERR 6 shows no
+dialog, 10/11 the repair dialog (no crash in 600 frames); read 2 fails nothing at boot (one read). `parse_script` now
+refuses `pak fail read 1 ERR` (ERR not 6/10/11) in a script with `pak from`, naming the cause;
+`RUSH_PAK_FAIL_ALLOW_CRASH=1` runs it anyway. Fresh-pak scripts (pak_nopak etc.) are unaffected.
+
+**draft_check of overlay drafts.** NAME may be `ovl_a:NAME` or `ovl_b:NAME` (or `ovl_a_NAME`; a plain name is
+found in either image's extents.json; func_8038A400 exists in both and must be qualified). The draft replaces the
+function inside its image (replace.py's `population` ovl_a/ovl_b; the hook lives in the recompiled overlay section,
+so it runs whenever the game has that image loaded); default scripts come from `census/overlays.json`; build trees
+and run dirs are `ovl_a_NAME`; `--all-lanes` lists drafts of functions in ovl_matched.lock.json as MATCHED.
+Smoke test (rocky):
+
+```bash
+python3 -m tools.recomp.draft_check ovl_a:func_80396F44 src/ovl_a/func_80396F44.c          # its own locked source
+#   VERDICT: EQUIVALENT over 2047 calls / 6 scripts (controls_frontend 412, pak_corrupt 327, ... saves 327)
+python3 -m tools.recomp.draft_check ovl_b:func_8038A8CC src/ovl_b/func_8038A8CC.c          # image B
+#   VERDICT: EQUIVALENT over 16 calls / 6 scripts (attract 7, ...)
+# an injected bug (return found + 1): DIVERGES, controls_frontend frame 210 call #1: return value differs
+# from the Pi: python3 -m tools.recomp.draft_check --remote rocky ovl_a:NAME path/to/draft.c
+```
+
+A lane directory holding an overlay draft names it in its dc.args with `--name ovl_a:NAME`.
+
+**Saves need their restore** (job 3 follow-up, w32n's finding). A store before the first write can still be an
+outgoing stack argument: control_cell_text2 passes its s8 parameter on at 0x18(sp) before it writes s8, never reloads
+the slot, and then writes s8 unsaved. Interproc now also requires the slot to be reloaded somewhere in the body (every
+IDO save has its epilogue restore; a body without calls keeps the old answer). Eight more unsaved sets grow
+(audio_doppler_calc s0, best_times_display s2, control_cell_text2 s8, entity_tick_main s5, func_800B0A88 s1,s2,
+func_800E398C s7, render_replay_ui s4, save_validate s3; spot-checked: argument stores with no reload). CACHE_EPOCH
+`w32r-2`. func_80097164: the conveyor scan says s0-s4 (its own writes); ipa_callees.json keeps s0-s7 because the
+shim must cover the transitive set (s5-s7 are written, unsaved, by its callee SetupWaveModel,
+was func_80096CA8): Interproc derives s0-s7.
+
+**All lanes after the w32n renames** (2026-10-14, wave32 13219eb6 merged, build/frontier.json + ipa_members.json from
+the Pi's post-merge `ipa scan` / `frontier scan`): `ALL LANES w2[8-9]*,w3*: 108 drafts: 47 EQUIVALENT, 5 ERROR, 56
+MATCHED`, no DIVERGES/FAULT. The 5 ERRORs are unit directories without dc.args (w31a audio/f5ea8/hs, w32a hs, w32b
+audio), each byte-identical to a named twin directory that ran (or a matched pair); the w32a hs unit by hand with
+the new names (`--unit highscore_animText,DrawName,DrawGhost,DrawUnlocked`) is EQUIVALENT over 2,473 calls as before
+the rename. Log: rocky `~/rush2049/recomp/dc/lanes/w32r-all.{log,json}`.
+
+**Census refresh** (2026-10-14, wave32 13219eb6, 39 scripts, 150 unmatched): **147 reached (164,724 B), 3 never
+(632 B)**: world_effect_update, fp_call_wrapper, object_bytes23_sum (no static reference). Overlays unchanged: image
+A 99 of 193 (unmatched 45 of 112), image B 35 of 49 (unmatched 19 of 28).
+
+**Build cores.** `RUSH_DC_BUILD_JOBS=N` sets ninja's -j per side (the retail and draft sides build at once; default
+8 each).
+
+**Test**: `tests/cloud/test_recomp_phase12.py` (spill rule on synthetic bodies and on retail func_800DD0C0's
+committed words, table clobbers, widening, line-0 report, CMake flags, the refusal, overlay names/census/lock; on
+rocky: control_settings pak_nopak EQUIVALENT, the overlay own-source/injected-bug pair). `draft_check.CACHE_EPOCH`
+is `w32r-1`: every cached `--all-lanes` row reruns.

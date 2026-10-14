@@ -162,7 +162,7 @@ def register_params_fact(name, frontier=REPO / "build" / "frontier.json"):
 GENERIC_STACK = tuple(range(16, 48, 4))
 
 
-def retail_clobbers(text, p=None):
+def retail_clobbers(text, p=None, register_params=False):
     """{callee: [callee-saved registers it writes without a save]} for the game
     functions a draft's text names, from the RETAIL bodies (regmap_verify's
     interprocedural effects, transitive through static callees). Phase 11
@@ -170,7 +170,9 @@ def retail_clobbers(text, p=None):
     its scan covered; a MATCHED IPA callee such as func_800DCD58 (writes s0,s1)
     had none, got no clobber shim, and w29c/w30d's control_settings drafts
     faulted on the s0 it destroyed (`lb a0,1(s0)`, s0 = 0). Callees with
-    non-o32 register parameters are left out (they need a real table entry)."""
+    non-o32 register parameters are left out (they need a real table entry)
+    unless register_params (Phase 12: their table entries' clobbers are
+    widened with the retail set)."""
     import ipa_detect
     import regmap_verify as rv
     try:
@@ -184,7 +186,7 @@ def retail_clobbers(text, p=None):
         if f["name"] not in words:
             continue
         body = ipa_detect.body_words(image, f["vram"], f["size"])
-        if not body or ipa_detect.register_params(body):
+        if not body or (not register_params and ipa_detect.register_params(body)):
             continue
         regs = ip.unsaved(f["vram"])
         if regs:
@@ -221,19 +223,68 @@ def clobber_shims(table, frontier=REPO / "build" / "frontier.json", retail=None)
     return out
 
 
-def find_population(name, game_functions=None):
+OVL_NAME_RE = re.compile(r"^(ovl_[ab])[:_](\w+)$")
+
+
+def split_overlay_name(name):
+    """'ovl_a:NAME' / 'ovl_a_NAME' -> ('ovl_a', 'NAME'); anything else -> (None, name)."""
+    m = OVL_NAME_RE.match(name)
+    return (m.group(1), m.group(2)) if m else (None, name)
+
+
+def widen_clobbers(table, retail, members=()):
+    """Phase 12 (w32r): widen each ipa_callees table entry's clobbers with the
+    retail body's unsaved callee-saved set (func_800DD0C0's hand-written entry
+    lacked s0,s1,s3: the control_settings pak_nopak fault). Draft members are
+    left alone. Returns [(callee, added registers)]; updates table in place."""
+    out = []
+    for cname, regs in sorted(retail.items()):
+        e = table.get(cname)
+        if e is None or cname in members:
+            continue
+        extra = [r for r in regs if r not in (e.get("clobbers") or ())]
+        if extra:
+            table[cname] = dict(e, clobbers=list(e.get("clobbers") or ()) + extra)
+            out.append((cname, extra))
+    return out
+
+
+def find_population(name, game_functions=None, image=None):
+    """'game', 'static' or (Phase 12) 'ovl_a' / 'ovl_b' for an overlay function.
+    Both overlay images load at 0x8038A400, so a func_XXXXXXXX name can exist in
+    both: then the image must be named (`ovl_b:NAME`)."""
     sys.path.insert(0, str(HERE))
     import gen_config as gc
-    game = game_functions if game_functions is not None else gc.load_game_functions(REPO / "asm" / "us" / "blob")
-    if any(f.get("name") == name for f in game):
-        return "game"
-    for ovl in ("ovl_a", "ovl_b"):
+    if image is None:
+        game = game_functions if game_functions is not None else gc.load_game_functions(REPO / "asm" / "us" / "blob")
+        if any(f.get("name") == name for f in game):
+            return "game"
+    hits = []
+    for ovl in ((image,) if image else ("ovl_a", "ovl_b")):
         p = REPO / "asm" / "us" / ovl / "extents.json"
-        if p.is_file() and any(f.get("name") in (name, name.replace(ovl + "_", ""))
-                               for f in gc.load_extents_functions(p)):
-            raise DCError(f"{name} is an overlay function: not supported (overlays load per mode; "
-                          "the overlays are Astra's this wave)")
+        if p.is_file() and any(f.get("name") == name for f in gc.load_extents_functions(p)):
+            hits.append(ovl)
+    if len(hits) > 1:
+        raise DCError(f"{name} exists in both overlay images: name one (ovl_a:{name} or ovl_b:{name})")
+    if hits:
+        return hits[0]
+    if image:
+        raise DCError(f"{name} is not a function of {image} (asm/us/{image}/extents.json)")
     return "static"
+
+
+def overlay_census_scripts(pop, name, census_dir=CENSUS_DIR):
+    """census_scripts for an overlay function, from census/overlays.json (Phase 11
+    `census --overlays`; records named ovl_a_NAME)."""
+    try:
+        doc = json.loads((census_dir / "overlays.json").read_text())
+    except (OSError, ValueError):
+        return None, False
+    rec = doc.get("functions", {}).get("%s_%s" % (pop, name))
+    if rec is None:
+        return None, False
+    calls = rec.get("scripts", {})
+    return sorted(calls, key=lambda s: (-calls[s], s)), True
 
 
 def member_params(specs, members, unit):
@@ -826,11 +877,25 @@ def forwarded_options(argv, valued=("--lane", "--json"), optional=("--all-lanes"
 MATCHED_LOCK = REPO / "blob_matched.lock.json"
 
 
-def matched_functions(lock=MATCHED_LOCK):
+OVL_MATCHED_LOCK = REPO / "ovl_matched.lock.json"
+
+
+def matched_functions(lock=MATCHED_LOCK, ovl_lock=OVL_MATCHED_LOCK):
+    """Game names in blob_matched.lock.json, plus (Phase 12) the overlay locks'
+    functions as ovl_a:NAME / ovl_a_NAME (draft names of overlay drafts)."""
+    out = set()
     try:
-        return set(json.loads(Path(lock).read_text()))
+        out |= set(json.loads(Path(lock).read_text()))
     except (OSError, ValueError):
-        return set()
+        pass
+    try:
+        doc = json.loads(Path(ovl_lock).read_text())
+    except (OSError, ValueError):
+        doc = {}
+    for img in ("a", "b"):
+        for nm in doc.get(img) or {}:
+            out |= {"ovl_%s:%s" % (img, nm), "ovl_%s_%s" % (img, nm)}
+    return out
 
 
 LANES_CACHE = DC_HOME / "lanes" / "cache.json"
@@ -838,7 +903,7 @@ LANES_CACHE = DC_HOME / "lanes" / "cache.json"
 
 # Bump when a harness change can change a verdict for an unchanged draft (a shim, capture or comparison fix):
 # every cached --all-lanes row is then rerun. Draft, dc.args, scripts and ipa_callees.json are in the key anyway.
-CACHE_EPOCH = "w31r-1"
+CACHE_EPOCH = "w32r-2"
 
 
 def key_scripts(name, opts):
@@ -947,7 +1012,8 @@ def check_drafts(drafts, fwd, label, json_path=None, cache_path=None, refresh=Fa
         row = {"lane": lane, "dir": best.parent.name, "function": name, "draft": str(best)}
         members = name.split(",")
         if all(m in matched for m in members):
-            row.update(verdict="MATCHED", detail="in blob_matched.lock.json: no draft check needed", seconds=0)
+            row.update(verdict="MATCHED", detail="in %s: no draft check needed" % (
+                "ovl_matched.lock.json" if members[0].startswith("ovl_") else "blob_matched.lock.json"), seconds=0)
         else:
             key = draft_key(name, best, extra, fwd) if cache_path else None
             if key and not refresh:            # reread: concurrent runs over other globs add rows meanwhile
@@ -1165,6 +1231,9 @@ def local_main(args):
     draft = Path(args.draft).resolve()
     if not draft.is_file():
         raise DCError(f"no draft {args.draft}")
+    image = None
+    if not args.unit:
+        image, args.name = split_overlay_name(args.name)
     members = [m.strip() for m in args.name.split(",") if m.strip()] if args.unit else [args.name]
     if not members or len(set(members)) != len(members):
         raise DCError("--unit: give distinct member names, comma separated")
@@ -1178,7 +1247,7 @@ def local_main(args):
             protos[m] = rp.find_prototype(text, m)
         except rp.ReplaceError:
             raise DCError(f"{draft.name} has no definition of {m}")
-    pops = {m: find_population(m) for m in members}
+    pops = {m: find_population(m, image=image) for m in members}
     pop = pops[name]
     if len(set(pops.values())) != 1:
         raise DCError("--unit members span populations: %s" % pops)
@@ -1197,7 +1266,7 @@ def local_main(args):
     params = member_params(args.params, members, args.unit)
     for m in members:
         cap_fields = {}
-        regs_fact = register_params_fact(m)
+        regs_fact = register_params_fact(m) if pops[m] in ("game", "static") else []
         proto = protos[m]
         if m in params:
             cap, regs = parse_params(params[m], proto)
@@ -1222,8 +1291,10 @@ def local_main(args):
             entry.update(cap_fields)
         elif cap_fields:
             entry["unit_capture"][m] = cap_fields
-    auto = clobber_shims(table, retail=retail_clobbers(
-        "\n".join(f.read_text(errors="replace") for f in local_files(draft))))
+    draft_text = "\n".join(f.read_text(errors="replace") for f in local_files(draft))
+    auto = clobber_shims(table, retail=retail_clobbers(draft_text))
+    for cname, extra in widen_clobbers(table, retail_clobbers(draft_text, register_params=True), members):
+        print("  NOTE %s: clobbers widened with the retail unsaved set (+%s)" % (cname, ",".join(extra)))
     for m in members:
         auto.pop(m, None)            # members: inbound only through --params / the table
     table.update(auto)
@@ -1231,6 +1302,8 @@ def local_main(args):
         cname, ce = parse_callee(spec)
         table[cname] = ce
     key = name if not args.unit else "%s+unit%d" % (name, len(members))
+    if pop.startswith("ovl_"):
+        key = "%s_%s" % (pop, key)          # both images have func_8038A400.. names
     run_dir = DC_HOME / "runs" / key / ("%s-%d" % (time.strftime("%Y%m%d-%H%M%S"), os.getpid()))
     run_dir.mkdir(parents=True, exist_ok=True)
     manifest = run_dir / "replacements.json"
@@ -1243,7 +1316,8 @@ def local_main(args):
                                        " [%s]" % pop if pop != "game" else ""))
     print("  draft sha256 %s; run dir %s" % (hashlib.sha256(draft.read_bytes()).hexdigest()[:16], run_dir))
     if args.scripts in (None, "census", "reached"):
-        scripts, covered = census_scripts_for(members)
+        scripts, covered = (census_scripts_for(members) if not pop.startswith("ovl_")
+                            else overlay_census_scripts(pop, name))
         if covered and not scripts:
             how = "census: no script calls %s" % name
         elif covered and args.scripts != "reached" and len(scripts) > DEFAULT_MAX_SCRIPTS:
@@ -1264,8 +1338,9 @@ def local_main(args):
     print("  scripts (%s): %s" % (how, ", ".join(scripts) or "none"), flush=True)
     t0 = time.time()
     with ThreadPoolExecutor(2) as ex:
-        fc = ex.submit(build_side, "cap", key, manifest, run_dir, p, None, 8)
-        fr = ex.submit(build_side, "repl", key, manifest, run_dir, p, ipa_path, 8)
+        bj = int(os.environ.get("RUSH_DC_BUILD_JOBS") or 8)     # ninja -j per side (two sides build at once)
+        fc = ex.submit(build_side, "cap", key, manifest, run_dir, p, None, bj)
+        fr = ex.submit(build_side, "repl", key, manifest, run_dir, p, ipa_path, bj)
         cap, repl = fc.result(), fr.result()
     man = json.loads(Path(repl["manifest"]).read_text())
     rinfos = [r for r in man.get("replacements", {}).get("replaced", [])

@@ -1,14 +1,12 @@
 {
  "frames": 9000,
- "functions_probed": 166,
- "functions_reached": 80,
+ "functions_probed": 150,
+ "functions_reached": 78,
  "pak": false,
  "script": "attract",
- "seconds": 190.3,
+ "seconds": 105.6,
  "functions": {
- "GhostStart": {"args":{"a0":{"distinct":1,"kind":"int","max":"0x00000808","min":"0x00000808","values":["0x00000808"]},"a1":{"distinct":1,"kind":"int","max":"0x00000002","min":"0x00000002","values":["0x00000002"]},"a2":{"distinct":1,"kind":"int","max":"0x00000005","min":"0x00000005","values":["0x00000005"]},"a3":{"distinct":1,"kind":"int","max":"0x00000005","min":"0x00000005","values":["0x00000005"]}},"calls":7,"first_frame":300,"last_frame":6690,"sites":{"0x800FB754":7}},
  "LoadTrack": {"args":{"a0":{"distinct":6,"kind":"int","max":"0x00000005","min":"0x00000000","values":["0x00000000","0x00000001","0x00000002","0x00000003","0x00000004","0x00000005"]},"a1":{"distinct":1,"kind":"int","max":"0x00000001","min":"0x00000001","values":["0x00000001"]},"a2":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a3":{"distinct":2,"kind":"mixed","max":"0x80151ACF","min":"0x00000004","values":["0x00000004","0x80151ACF"]}},"calls":35,"first_frame":300,"last_frame":6694,"sites":{"0x800FB81C":35}},
- "SaveServer": {"args":{"a0":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a1":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a2":{"distinct":26,"kind":"mixed","max":"0xFFFFFFFF","min":"0x00000000"},"a3":{"distinct":16,"kind":"mixed","max":"0xFF000000","min":"0x00000000"}},"calls":9014,"first_frame":2,"last_frame":8999,"sites":{"0x800FD404":9014}},
  "SetupWaveModel": {"args":{"a0":{"distinct":1,"kind":"ptr","max":"0x8002F190","min":"0x8002F190","values":["0x8002F190"]},"a1":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a2":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a3":{"distinct":53,"kind":"mixed","max":"0x00ADFEF0","min":"0x00000005"},"s8":{"distinct":25,"kind":"int","max":"0x00000018","min":"0x00000000"},"t0":{"distinct":1,"kind":"int","max":"0x00000001","min":"0x00000001","values":["0x00000001"]}},"calls":203,"first_frame":0,"last_frame":6694,"sites":{"0x800972A4":203}},
  "arb_rate_set": {"args":{"a0":{"distinct":1,"kind":"zero","max":"0x00000000","min":"0x00000000","values":["0x00000000"]},"a1":{"distinct":1,"kind":"ptr","max":"0x8011EA30","min":"0x8011EA30","values":["0x8011EA30"]},"a2":{"distinct":1,"kind":"ptr","max":"0x80149870","min":"0x80149870","values":["0x80149870"]},"a3":{"distinct":1,"kind":"float","max":"0x42B40000","min":"0x42B40000","values":["0x42B40000"]}},"calls":19,"first_frame":0,"last_frame":6690,"sites":{"0x800A5AE4":19}},
  "audio_bus_mix": {"args":{"a0":{"distinct":4,"kind":"ptr","max":"0x8014615C","min":"0x80146150","values":["0x80146150","0x80146154","0x80146158","0x8014615C"]},"a1":{"distinct":41,"kind":"int","max":"0x00000028","min":"0x00000000"},"a2":{"distinct":10,"kind":"int","max":"0x00000045","min":"0x00000000"},"a3":{"distinct":8,"kind":"ptr","max":"0x8013B918","min":"0x8013A028","values":["0x8013A028","0x8013A0E8","0x8013A838","0x8013A8F8","0x8013B048","0x8013B108","0x8013B858","0x8013B918"]}},"calls":1604,"first_frame":0,"last_frame":0,"sites":{"0x800CCD80":84,"0x800CCDD4":1520}},
