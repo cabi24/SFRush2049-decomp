@@ -628,6 +628,63 @@ draft can still differ in `score.py group` (calling a locked wrapper did; a byte
 — always run the group score before claiming; a group compile that must reload a static needs the DEFINED callee as
 context.
 
+**Wave 32 outcome (2026-10-14, wave32 from `d1c53ab2`):** game 1056 → 1066/1216 (396,504 B, 61.28%), 10 functions,
+11,676 B, all through w32i (four packets, every member MATCH with and without `--claims`, image/ROM gates EXACT):
+`menu_save_options` superseded in place (w32c) with CompressGhost func_800CC50C (760 B; lever: as1 breaks ready-list
+ties on SOURCE LINE, so the first free's parameter load moves by defining the helper after the caller; `gh` coloured
+into a3 by assignment order; helpers ghost_blocks_from_size/ghost_free_start non-static, inlined) and props_render =
+GC GhostStart (2,180 B, first draft EQUAL; helper ReadGhostData); `codex_control_settings_a4` superseded in place
+(w32d) with control_cell_text/2/3 + func_800DD0C0 (2,684 B, no devices) — their ONLY caller control_settings is an
+EQUIVALENT draft (636/638, frame exact) in the same compile, so the four are installed and marked **provisional on
+the caller form** (coordinator decision: the members are byte-exact and their IPA conventions equal retail's, as
+regmap-verified; record the caveat, do not block coverage); NEW group `frontier_audioscr` (w32b, 2,336 B):
+audio_animText + audio_animButtonText with the locked single func_800BEA3C re-typed into the group
+(`--revert-single`; receipt dot_menu_row_caller_20261005 keeps an `accepted_func_800BEA3C.c`; lever: the toupper
+loop as GC's shape — explicit `!= 0` test and ONE unconditional ternary store — makes every use read the cvt web so
+it shares v0 with the load; `(u32)` compares close the move but emit sltiu); NEW group `frontier_optionscr_buttons`
+(w32b, 3,716 B): func_800DB1E0 + func_800DA2C0 (202/579 → MATCH once compiled together; both NOT VERIFIED two-region
+own .rodata, splice-proof replay image-identical). w32a landed no coverage: DrawGhost func_80104B14 17/601 → EQUAL in
+the unit (uopt excludes v0 for a PRE web when one occurrence sits after a call in the same block; a disclosed
+`do {} while (0);` block end after the arm's sprintf frees it; `s16 gFreePages` is the exact frame residual), DrawName
+EQUAL, but highscore_animText stays 27/445 frame-only (584 vs 704) — LAW: umerge charges ≥ 8 B of Mmt per inlined
+call in a function with memory locals, so retail's budget cannot hold our helper sites; the inline-area layout is
+the open lever; the frontier fact `register_params t9` on animResults is REFUTED (a0 is the screen object pointer).
+Rename batch w32n (19 functions; `renames.json` rows `batch: w32n`, `docs/external/gc/names.md` "Applied in wave 32";
+naming rule: a GC file-static name that recurs across GC files gets the N64 screen-file prefix and keeps GC's
+spelling — highscore_InitScreen (was track_texture_load), highscore_animText, options_animText/animButtonText/
+printOption, audio_animText/animButtonText (were game_results_render/update), controls_animText/animButtonText,
+DrawName, DrawGhost, DrawUnlocked, animResults, SaveGhost, CompressGhost, drawBattleScore, animWrongWay, StartCone,
+GhostStart; a GC-unique name keeps its spelling); the conveyor register facts in `tools/conveyor/pipeline/ipa.py` /
+`frontier.py` carry the w31r/w32r corrections (live DB renamed, backup `~/.conveyor/conveyor.pre-w32n.db`). Recomp
+Phase 12 (w32r, `tests/cloud/test_recomp_phase12.py`): the control_settings "func_800DD0C0 dialog" DIVERGE of wave 31
+was the HARNESS — retail func_800DD0C0 writes s0/s1/s3 without saving them and the clobber derivation mistook its
+spills for saves (a store now counts as a save only when its slot is reloaded; this also catches control_cell_text2's
+s8, and grows seven other clobber sets — `frontier.unsaved_callee_writes` in the conveyor still lacks the clause);
+`pak fail read 1 ERR` on a `pak from` pak is a REAL retail NULL-dereference crash (a game bug), now refused with an
+explanation; fault reports always carry the N64 PC; `draft_check ovl_a:NAME` works (func_80396F44 EQUIVALENT over
+2,047 calls, an injected bug DIVERGES); func_80097164's clobber set is s0–s4 for its own writes but s0–s7 through its
+callee SetupWaveModel, so a shim must save s0–s7. `draft_check --all-lanes` after the renames: 108 drafts, 47
+EQUIVALENT, 56 MATCHED, 0 DIVERGES/FAULT, 5 ERROR (unit directories without `--unit` dc.args: w31a audio/f5ea8/hs,
+w32a hs, w32b audio — run by hand they are EQUIVALENT as before); rename invariance holds. Census: 39 scripts, 150
+unmatched game functions, 147 reached (164,724 B), 3 never (world_effect_update, fp_call_wrapper,
+object_bytes23_sum); overlays A 99/193, B 35/49 reached. Rocky has no Conveyor DB: `ipa scan` there scans nothing —
+copy `build/frontier.json` + `build/ipa_members.json` from the Pi instead. Near-misses for wave 33: func_800DA0BC
+(184 B; its caller func_800DB1E0 is now locked, so it is packagable), the highscore unit (27/445 frame; once it
+closes, DrawName + DrawGhost land with it as group `highscore_anim`), DrawUnlocked (48 ops; per-category base-address
+hoisting), animResults (41 ops; `playerIdx*16` PRE above the font-height call), func_80100E58 (180 rows after the
+rebase onto results_table.c; bb45 `columns` split), controls pair controls_animText 253 rows / frame exact (p coloured
+s8 vs retail memory; constant-10 web; p+1 PRE) + controls_animButtonText 234, videoscr pair func_8010F218 536/611
+(uopt unrolling of the colour bars) + func_8010EA08 511/514 frame exact (FlashTextColors argument-copy idiom),
+func_8010E8B4 (3/85 after 58 variants; y must be a coloured web distinct from h's register), control_settings
+(636/638; three font-set return copies, s0/s1 colour, temp ring, case order), LoadTrack (39/526, stop rule reached),
+SetupWaveModel (idx colour; then func_80097164 is 4 rows), func_800E543C (not attempted), CreatePlayer (lead 256/272,
+120 rows, `lead_q3.c`-style), pak_delete_file_retry (`if (pfs) {}` colours pfs into s7 and makes the length exact —
+callee-saved colour only). Lessons: define a helper AFTER its caller to move an as1 tie; an EQUIVALENT draft as the
+only caller of MATCHing members is acceptable as a compile context (provisional caveat recorded); unit-EQUAL on both
+members of a pair does not make a group — run `score.py group` and the splice-proof replay before claiming; a lane
+that reads a frontier register fact must regmap-verify it before building on it (t9); a unit directory needs its own
+`dc.args` or `--all-lanes` reports ERROR.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
