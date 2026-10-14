@@ -6933,6 +6933,7 @@ track_lighting_setup:
 .section .text.track_texture_load, "ax", @progbits
 .globl track_texture_load
 track_texture_load:
+    /* compiled from src/blob/track_texture_load.c */
     .word 0x27BDFF88
     .word 0x3C118014
     .word 0x26312728

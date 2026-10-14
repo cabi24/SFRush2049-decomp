@@ -1,0 +1,235 @@
+Members:
+track_texture_load:
+  MATCH
+    own .rodata verified at 0x80124600..0x80124604
+
+Context (informational; excluded from exit status):
+billboard_render:
+  MATCH
+func_800F207C:
+  MATCH
+func_800F1930:
+  MATCH
+PrintScores:
+  MATCH
+SetHighScoreState:
+  MATCH
+FindGhosts:
+  MATCH
+func_800F2718:
+  MATCH
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got (missing)
+    +0x00c  want 03e00008 jr ra                         got (missing)
+    +0x010  want ac450004 sw a1,4(v0)                   got (missing)
+  5/5 words differ
+func_800D50E4:
+    +0x000  want 8c8e0000 lw t6,0(a0)                   got 03e00008 jr ra                       
+    +0x004  want 3c0141c6 lui at,0x41c6                 got 00000000 nop                         
+    +0x008  want 34214e6d ori at,at,0x4e6d              got (missing)
+    +0x00c  want 01c10019 multu t6,at                   got (missing)
+    +0x010  want 00007812 mflo t7                       got (missing)
+    +0x014  want 25f83039 addiu t8,t7,12345             got (missing)
+    +0x018  want 0018cc02 srl t9,t8,0x10                got (missing)
+    +0x01c  want ac980000 sw t8,0(a0)                   got (missing)
+    +0x020  want 03e00008 jr ra                         got (missing)
+    +0x024  want 33227fff andi v0,t9,0x7fff             got (missing)
+  10/10 words differ
+speed_set:
+  MATCH
+speed_mode0_wrapper:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want afbf0034 sw ra,52(sp)                  got 00000000 nop                         
+    +0x008  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x00c  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x010  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x014  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x018  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x01c  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x020  want 46006506 mov.s $f20,$f12               got (missing)
+    +0x024  want 46007586 mov.s $f22,$f14               got (missing)
+    +0x028  want 24110001 li s1,1                       got (missing)
+    +0x02c  want 0c032484 jal 0xc9210                   got (missing)
+  22/22 words differ
+speed_mode1_wrapper:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want afbf0034 sw ra,52(sp)                  got 00000000 nop                         
+    +0x008  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x00c  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x010  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x014  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x018  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x01c  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x020  want 46006506 mov.s $f20,$f12               got (missing)
+    +0x024  want 46007586 mov.s $f22,$f14               got (missing)
+    +0x028  want 00008825 move s1,zero                  got (missing)
+    +0x02c  want 0c032484 jal 0xc9210                   got (missing)
+  22/22 words differ
+continue_prompt:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want f7b40010 sdc1 $f20,16(sp)              got 00000000 nop                         
+    +0x008  want afbf0034 sw ra,52(sp)                  got (missing)
+    +0x00c  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x010  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x014  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x018  want 4480a000 mtc1 zero,$f20                got (missing)
+    +0x01c  want 3c018012 lui at,0x8012                 got (missing)
+    +0x020  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x024  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x028  want c4364280 lwc1 $f22,17024(at)           got (missing)
+    +0x02c  want 24110001 li s1,1                       got (missing)
+  23/23 words differ
+vsync_wait:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want 3c018011 lui at,0x8011                 got 00000000 nop                         
+    +0x008  want afbf0034 sw ra,52(sp)                  got (missing)
+    +0x00c  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x010  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x014  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x018  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x01c  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x020  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x024  want 10800004 beqz a0,0x14                  got (missing)
+    +0x028  want a024ffc0 sb a0,-64(at)                 got (missing)
+    +0x02c  want 44806000 mtc1 zero,$f12                got (missing)
+  37/37 words differ
+rc=0
+Members:
+billboard_render:
+  MATCH
+    own .rodata verified at 0x80124604..0x80124618
+func_800F207C:
+  MATCH
+func_800F1930:
+  MATCH
+PrintScores:
+  MATCH
+    own .rodata verified at 0x801245B4..0x801245B8
+SetHighScoreState:
+  MATCH
+    own .rodata verified at 0x801245B8..0x801245E4
+FindGhosts:
+  MATCH
+track_texture_load:
+  MATCH
+    own .rodata verified at 0x80124600..0x80124604
+
+Context (informational; excluded from exit status):
+func_800F2718:
+  MATCH
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got (missing)
+    +0x00c  want 03e00008 jr ra                         got (missing)
+    +0x010  want ac450004 sw a1,4(v0)                   got (missing)
+  5/5 words differ
+func_800D50E4:
+    +0x000  want 8c8e0000 lw t6,0(a0)                   got 03e00008 jr ra                       
+    +0x004  want 3c0141c6 lui at,0x41c6                 got 00000000 nop                         
+    +0x008  want 34214e6d ori at,at,0x4e6d              got (missing)
+    +0x00c  want 01c10019 multu t6,at                   got (missing)
+    +0x010  want 00007812 mflo t7                       got (missing)
+    +0x014  want 25f83039 addiu t8,t7,12345             got (missing)
+    +0x018  want 0018cc02 srl t9,t8,0x10                got (missing)
+    +0x01c  want ac980000 sw t8,0(a0)                   got (missing)
+    +0x020  want 03e00008 jr ra                         got (missing)
+    +0x024  want 33227fff andi v0,t9,0x7fff             got (missing)
+  10/10 words differ
+speed_set:
+  MATCH
+speed_mode0_wrapper:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want afbf0034 sw ra,52(sp)                  got 00000000 nop                         
+    +0x008  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x00c  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x010  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x014  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x018  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x01c  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x020  want 46006506 mov.s $f20,$f12               got (missing)
+    +0x024  want 46007586 mov.s $f22,$f14               got (missing)
+    +0x028  want 24110001 li s1,1                       got (missing)
+    +0x02c  want 0c032484 jal 0xc9210                   got (missing)
+  22/22 words differ
+speed_mode1_wrapper:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want afbf0034 sw ra,52(sp)                  got 00000000 nop                         
+    +0x008  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x00c  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x010  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x014  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x018  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x01c  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x020  want 46006506 mov.s $f20,$f12               got (missing)
+    +0x024  want 46007586 mov.s $f22,$f14               got (missing)
+    +0x028  want 00008825 move s1,zero                  got (missing)
+    +0x02c  want 0c032484 jal 0xc9210                   got (missing)
+  22/22 words differ
+continue_prompt:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want f7b40010 sdc1 $f20,16(sp)              got 00000000 nop                         
+    +0x008  want afbf0034 sw ra,52(sp)                  got (missing)
+    +0x00c  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x010  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x014  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x018  want 4480a000 mtc1 zero,$f20                got (missing)
+    +0x01c  want 3c018012 lui at,0x8012                 got (missing)
+    +0x020  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x024  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x028  want c4364280 lwc1 $f22,17024(at)           got (missing)
+    +0x02c  want 24110001 li s1,1                       got (missing)
+  23/23 words differ
+vsync_wait:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 03e00008 jr ra                       
+    +0x004  want 3c018011 lui at,0x8011                 got 00000000 nop                         
+    +0x008  want afbf0034 sw ra,52(sp)                  got (missing)
+    +0x00c  want afb30030 sw s3,48(sp)                  got (missing)
+    +0x010  want afb2002c sw s2,44(sp)                  got (missing)
+    +0x014  want afb10028 sw s1,40(sp)                  got (missing)
+    +0x018  want afb00024 sw s0,36(sp)                  got (missing)
+    +0x01c  want f7b60018 sdc1 $f22,24(sp)              got (missing)
+    +0x020  want f7b40010 sdc1 $f20,16(sp)              got (missing)
+    +0x024  want 10800004 beqz a0,0x14                  got (missing)
+    +0x028  want a024ffc0 sb a0,-64(at)                 got (missing)
+    +0x02c  want 44806000 mtc1 zero,$f12                got (missing)
+  37/37 words differ
+rc=0

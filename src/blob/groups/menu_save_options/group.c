@@ -15,16 +15,21 @@
  *   func_800A361C, func_800A1A3C, func_80094FC4 = locked pak-TU getters of D_80144030[pak] bytes 0/1/6, re-typed
  *                       here on the D_80144030 record (same bodies) so umerge's inlined copies in SaveServer share
  *                       one &D_80144030[pak] address web; their single files are superseded (--revert-single).
- * Context (not members): SaveServer (GC SaveServer: EQUAL in the whole-program unit, 176/225 in the group compile;
- *   see w30c RESULTS), CreatePlayer (GC CreatePlayer, w29d draft, 241/272 words), draw_number (locked elsewhere).
+ * w31c (wave 31) adds two members: SaveServer (GC SaveServer) and func_800CC040 (GC SaveGhost, in ctx_slot.c).
+ *   SaveServer's group-compile miss (176/225: sInitCountdown not reloaded in the pak loop) came from func_800950AC
+ *   (strncmp) being an UNDEFINED external in the group program: uopt assumes an undefined callee cannot modify the
+ *   TU's function-local statics, a defined one can. In the whole-program unit func_800950AC is defined (locked
+ *   single, kept), so retail reloads. ctx_strncmp.c = byte-identical copy of src/blob/func_800950AC.c (context, keep).
+ * Context (not members): CreatePlayer (GC CreatePlayer, w29d draft, 241/272 words), draw_number (locked elsewhere),
+ *   func_800950AC (strncmp, ctx_strncmp.c).
  * Context files: ctx_hash.c, ctx_slot.c, ctx_newghost.c (locked group sources; see group.json note).
  * Non-member helper: _ReadGhostHeader (GC static _ReadGhostHeader with GC _AlreadyReadGhost's loop inside it):
  *   non-static, not keep; umerge inlines it into SaveServer; retail has no stub for it.
  * Decisions / devices to review:
- *   - SaveServer is defined (void): retail never reads GC's (forceUpdate, rumbleOnly); with those parameters ugen stores
- *     a0/a1 to their homes (2 extra words). Locked callers (save_settings) declare (s32, s32) and call (0, 0): a
- *     parameter-list mismatch across TUs (no false return type). Alternative also EQUAL: (s32 forceUpdate,
- *     s32 rumbleOnly) plus a compiled-out `if (forceUpdate | rumbleOnly) {}` at the top.
+ *   - SaveServer is defined with GC's two parameters (s32 forceUpdate, s32 rumbleOnly), matching the locked callers'
+ *     declared prototype (save_settings/codex_input_aux call (0, 0), billboard_render (1, 0) and (0, 0)). Retail never
+ *     reads them; DEVICE (disclosed): a compiled-out `if (forceUpdate | rumbleOnly) {}` at the top -- without it ugen
+ *     stores a0/a1 to their homes (210/225). The (void) form is also MATCH without any device.
  *   - SaveServer's sInitCountdown/sLastPak/sReadingPak are function-local statics: the TU's own .data at 0x8011742C
  *     (= 3), 0x80117430 (= -1), 0x80117434 ({0,0,0,0}); only SaveServer references them in the image.
  *   - _ReadGhostHeader declares GC's `pak` local nowhere; no unused locals in any member.
@@ -694,7 +699,7 @@ Handle _ReadGhostHeader(Handle fileh) {
     return ghosth;
 }
 
-void SaveServer(void) {
+void SaveServer(s32 forceUpdate, s32 rumbleOnly) {
     s32 pak;
     Handle fileh;
     Handle next;
@@ -702,6 +707,8 @@ void SaveServer(void) {
     static s8 sLastPak = -1;                   /* 0x80117430 */
     static s8 sReadingPak[4] = { 0, 0, 0, 0 }; /* 0x80117434 */
 
+    if (forceUpdate | rumbleOnly) {
+    }
     track_render_process();
     if (sInitCountdown > 1) {
         sInitCountdown--;
