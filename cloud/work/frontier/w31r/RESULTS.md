@@ -180,3 +180,19 @@ world_effect_update (456), fp_call_wrapper (104), object_bytes23_sum (72) — no
 in any image (dead or computed-jalr only; w28r). Newly reached: func_8010C974 (battle_mine 573 calls),
 control_cell_text (pak_corrupt 90), control_cell_text3 (pak_repair 90), func_800DD0C0 (pak_nopak 90); control_settings
 now has 4 scripts. Was 159 of 166 (w30r).
+
+# Checks
+
+- Branch w31r = wave31 b90ca2c8 merged (92337388; no conflicts), head 4da575fe.
+- Pi worktree `make test-fast JOBS=4` (92337388): tests/cloud `841 passed, 205 skipped`; tests/conveyor in the worktree
+  `40 failed, 1511 passed, 814 skipped, 2 errors` = the known fresh-worktree environment (no tools/mips_to_c
+  submodule); tests/conveyor in the MAIN checkout (wave31 b90ca2c8, with the submodule; this lane touches no conveyor
+  code): `1621 passed, 771 skipped`. 4da575fe changes only the rocky-only e2e test (Pi: phase 11 file 22 passed, 1 skipped).
+- rocky clone `~/rush2049/scratch/w31r` (w31r 4da575fe, origin/master = 880e729e, submodules populated, IDO toolchains
+  copied from the w30r clone, CI env `../w28s.env`): `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: tests/conveyor
+  `2340 passed, 52 skipped`; tests/cloud `1041 passed, 5 skipped, 8 warnings, 27 subtests passed` (the Phase 11 e2e
+  test runs there).
+- `python3 -m pytest tests/recomp -q`: all pass (Pi).
+
+## Permission denials
+None.
