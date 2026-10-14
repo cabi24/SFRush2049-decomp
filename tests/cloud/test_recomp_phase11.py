@@ -224,7 +224,8 @@ def test_e2e_battle_mine_and_pak_repair_reach_their_functions():
                         "--functions", "func_8010C974,control_cell_text3,ovl_a:func_8039842C", "--frames", "1000"],
                        cwd=str(REPO), capture_output=True, text=True)
     assert p.returncode == 0, p.stdout + p.stderr
-    mine, repair = p.stdout.split("\npak_repair (")           # results print in argument order
+    body = p.stdout.split("\nbattle_mine (", 1)[1]               # skip the header (it names the probed list)
+    mine, repair = body.split("\npak_repair (")                  # results print in argument order
     assert "reached func_8010C974" in mine and "control_cell_text3" not in mine
     assert "reached control_cell_text3" in repair and "func_8010C974" not in repair
     assert p.stdout.count("reached ovl_a_func_8039842C") == 2          # the front end is image A
