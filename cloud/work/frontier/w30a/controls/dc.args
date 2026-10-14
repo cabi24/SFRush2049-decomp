@@ -1,0 +1,4 @@
+# w31r (Phase 11): this directory holds the controls unit (GC controlscr.c animText = func_80100564);
+# checked as w30a did (RESULTS "draft_check commands": EQUIVALENT 1,949 calls / 2 scripts).
+--name func_80100564
+--scripts controls_frontend,pause_menus

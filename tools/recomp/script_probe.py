@@ -58,17 +58,51 @@ def unreached(census_dir=census.OUT):
     return sorted(n for n, f in doc["functions"].items() if not f.get("scripts"))
 
 
+OVERLAYS = ("ovl_a", "ovl_b")
+
+
+def overlay_functions(pop):
+    """Functions of runtime image A or B (asm/us/<pop>/extents.json), tagged with
+    their population: probes on them carry the recompiler's `ovl_a_`/`ovl_b_` names."""
+    import gen_config as gc
+    return [dict(f, population=pop) for f in gc.load_extents_functions(REPO / "asm" / "us" / pop / "extents.json")]
+
+
 def choose(funcs, spec):
+    """Probed functions. `unreached` / `unmatched` (game image) or a comma list
+    of items: a game function NAME, `ovl_a` / `ovl_b` (every function of that
+    runtime image) or `ovl_a:NAME` (one overlay function). Overlay functions run
+    only while the game has that image loaded (Phase 11)."""
     if spec == "unreached":
         want = set(unreached())
         return [f for f in funcs if f["name"] in want]
     if spec == "unmatched":
         return census.unmatched_game(funcs)
-    want = set(x.strip() for x in spec.split(",") if x.strip())
+    items = [x.strip() for x in spec.split(",") if x.strip()]
+    out, want = [], set()
+    for it in items:
+        pop, _, name = it.partition(":")
+        if pop in OVERLAYS:
+            ovl = overlay_functions(pop)
+            if name:
+                hit = [f for f in ovl if f["name"] == name]
+                if not hit:
+                    raise dc.DCError("not a function of %s: %s" % (pop, name))
+                out += hit
+            else:
+                out += ovl
+        else:
+            want.add(it)
     missing = want - {f["name"] for f in funcs}
     if missing:
         raise dc.DCError("not game functions: " + ", ".join(sorted(missing)))
-    return [f for f in funcs if f["name"] in want]
+    return [f for f in funcs if f["name"] in want] + out
+
+
+def label(f):
+    """Printed name: game functions bare, overlay functions with their image prefix."""
+    pop = f.get("population", "game")
+    return f["name"] if pop == "game" else "%s_%s" % (pop, f["name"])
 
 
 def reached(calls_path, frame_of_fn=None):
@@ -112,7 +146,7 @@ def main(argv=None):
     ap.add_argument("scripts", nargs="+", help="script names (tools/recomp/scripts) or .press paths")
     ap.add_argument("--functions", default="unreached",
                     help="probed functions: unreached (census: no script reaches them; default), unmatched, or "
-                    "NAME,...")
+                    "a list of NAME, ovl_a, ovl_b (a whole runtime image) and ovl_a:NAME items")
     ap.add_argument("--text", action="store_true", help="print the on-screen text timeline")
     ap.add_argument("--text-from", type=int, default=None)
     ap.add_argument("--text-to", type=int, default=None)
@@ -169,7 +203,7 @@ def run(args):
     import gen_config as gc
     funcs = [f for f in gc.load_game_functions(REPO / "asm" / "us" / "blob") if f.get("name") and f.get("size")]
     chosen = choose(funcs, args.functions)
-    names = {f["name"] for f in chosen}
+    names = {label(f) for f in chosen}
     tag = "@probe-" + (args.functions if args.functions in ("unreached", "unmatched") else
                        "%d-%s" % (len(names), sorted(names)[0][:24]))
     run_dir = dc.DC_HOME / "probe" / ("%s-%d" % (time.strftime("%Y%m%d-%H%M%S"), os.getpid()))

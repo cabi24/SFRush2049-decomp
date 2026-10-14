@@ -126,14 +126,44 @@ def decode(word):
     return reads, writes, call
 
 
-def _is_save(word):
-    """A store of a callee-saved register to the stack (prologue save)."""
+def _is_save(word, restores=None):
+    """A store of a callee-saved register to the stack (prologue save).
+    restores: optional context from _save_context(body); then a store whose
+    register the body neither reloads from that slot nor ever writes, in a body
+    that makes calls, is an outgoing STACK ARGUMENT, i.e. a read (Phase 11,
+    w31r: retail control_cell_text passes its s7 register parameter on with
+    `jal camera_auto_follow; sw s7,24(sp)`; taken for a save, s7 was missing
+    from its live-in set)."""
     op, base, rt = word >> 26, (word >> 21) & 31, (word >> 16) & 31
     if base != SP:
         return False
     if op == 0x2B:
-        return rt in _CALLEE_SAVED_GPR
-    return op in (0x39, 0x3D) and rt >= 20
+        ok = rt in _CALLEE_SAVED_GPR
+    else:
+        ok = op in (0x39, 0x3D) and rt >= 20
+    if not ok or restores is None:
+        return ok
+    loads, written, calls = restores
+    if (_LOAD_OF[op], rt, word & 0xFFFF) in loads or not calls:
+        return True
+    key = ("r", rt) if op == 0x2B else ("f", rt)
+    return key in written or (op != 0x2B and ("f", rt + 1) in written)
+
+
+_LOAD_OF = {0x2B: 0x23, 0x39: 0x31, 0x3D: 0x35}        # sw -> lw, swc1 -> lwc1, sdc1 -> ldc1
+
+
+def _restores(words):
+    """Save-detection context of a body: ({(op, rt, offset)} of every load from
+    the stack, {register keys the body writes}, whether it makes a call)."""
+    loads = {(w >> 26, (w >> 16) & 31, w & 0xFFFF) for w in words
+             if (w >> 26) in (0x23, 0x31, 0x35) and ((w >> 21) & 31) == SP}
+    written, calls = set(), False
+    for w in words:
+        _r, wr, call = decode(w)
+        written |= wr
+        calls = calls or bool(call)
+    return loads, written, calls
 
 
 _ARG_REGS = (("r", 4), ("r", 5), ("r", 6), ("r", 7), ("f", 12), ("f", 14))
@@ -221,6 +251,7 @@ def register_params(words, include_o32=False, call_reads=False, call_effects=Non
                 IN[j] = frozenset(new)
                 work.append(j)
     found, linear = set(), set()
+    restores = _restores(words)
     for i, w in enumerate(words):
         reads, writes, call = dec[i]
 
@@ -232,7 +263,7 @@ def register_params(words, include_o32=False, call_reads=False, call_effects=Non
         if call_effects is not None and call_slot[i]:
             found.update(r for r in effects(i)[0] if r not in have and r not in writes and r not in _NOT_PARAMS
                          and (not _abi(r) or include_o32))
-        if not _is_save(w):
+        if not _is_save(w, restores):
             found.update(r for r in reads if r not in have and
                          (not _abi(r) or (include_o32 and r not in _NOT_PARAMS)))
         linear |= writes

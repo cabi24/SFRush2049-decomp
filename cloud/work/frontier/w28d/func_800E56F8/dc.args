@@ -1,0 +1,3 @@
+# w31r (Phase 11): func_800E56F8 takes one IPA register parameter in s4 (frontier facts; regmap_verify --derive:
+# s4 set at both static sites; clobbers s0,s1,s2,s3,s5,s6 unsaved).
+--params ipa_s4=s4

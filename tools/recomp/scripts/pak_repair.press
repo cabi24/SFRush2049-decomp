@@ -1,0 +1,23 @@
+# Pak dialog "UNSUPPORTED DEVICE ... ATTEMPT TO REPAIR?" (w31r, Phase 11): saves.press's CREATE PLAYER with the first
+# osPfsReadWriteFile failing PFS_ERR_ID_FATAL (`pak fail write 1 10`; 11 = PFS_ERR_DEVICE gives the same dialog).
+# control_settings cell type 10 from frame 721: CONTINUE WITHOUT SAVING | REPAIR | RETRY drawn by control_cell_text3,
+# with the three-way selection moved by DOWN (25 s, 25.7 s) and UP (26.4 s) before A (27 s) picks the entry.
+frames 1100
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+18 A
+20 A
+22 A
+24 START
+pak fail write 1 10
+25 DOWN
+25.7 DOWN
+26.4 UP
+27 A
+30 A
+33 A

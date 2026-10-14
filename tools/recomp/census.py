@@ -19,6 +19,12 @@ Writes (committed: they name functions, frames and values, no ROM bytes):
   tools/recomp/census/README.md       summary tables: reached functions, and the
                                       unmatched functions NO script reaches
 "Unmatched" = game functions (asm/us/blob) not in blob_matched.lock.json.
+
+`--overlays` (Phase 11, w31r): probe every function of the two runtime images
+(ovl_a, ovl_b; matched or not, ovl_matched.lock.json says which) instead and
+write only tools/recomp/census/overlays.json + OVERLAYS.md (which scripts
+execute which overlay functions; no call sites: the $ra hooks cover the game
+image only). The game census files are left alone.
 """
 import argparse
 import datetime
@@ -50,11 +56,12 @@ def unmatched_game(funcs, lock=REPO / "blob_matched.lock.json"):
 def probe_entries(chosen):
     entries, sets = {}, []
     for f in chosen:
-        regs = ["a0", "a1", "a2", "a3"] + [r for r in dc.register_params_fact(f["name"])
-                                           if r not in ("a0", "a1", "a2", "a3")]
+        pop = f.get("population", "game")          # Phase 11: overlay functions (script_probe ovl_a:NAME)
+        facts = dc.register_params_fact(f["name"]) if pop == "game" else []
+        regs = ["a0", "a1", "a2", "a3"] + [r for r in facts if r not in ("a0", "a1", "a2", "a3")]
         regs = [r for r in regs if r in dc.rp._GPR_NAMES or r.startswith("f")] + ["ra"]
-        rid = "c_" + f["name"]
-        entries[rid] = {"function": f["name"], "population": "game", "mode": "capture", "state": "probe",
+        rid = "c_" + ("" if pop == "game" else pop + "_") + f["name"]
+        entries[rid] = {"function": f["name"], "population": pop, "mode": "capture", "state": "probe",
                         "prototype": "void %s(void)" % f["name"], "capture_args": regs,
                         "capture_ret": "v0", "note": "census probe"}
         sets.append(rid)
@@ -106,7 +113,11 @@ def main(argv=None):
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--keep-logs", action="store_true")
     ap.add_argument("--tree", default=None, help="commit the tree was copied from (the service tree has no .git)")
+    ap.add_argument("--overlays", action="store_true",
+                    help="probe every ovl_a/ovl_b function; write census/overlays.json + OVERLAYS.md only")
     args = ap.parse_args(argv)
+    if args.overlays:
+        return overlay_census(args)
     p = dc.paths()
     import gen_config as gc
     rom = gc.read_rom(p["rom"])
@@ -174,6 +185,108 @@ def main(argv=None):
                 script, len(summ), len(names), sum(s["calls"] for s in summ.values())), flush=True)
     write_summary(out, chosen, results, args.functions, args.tree)
     return 0
+
+
+OVL_LOCK = REPO / "ovl_matched.lock.json"
+
+
+def overlay_functions():
+    """Every function of runtime images A and B, tagged population/label/matched."""
+    import gen_config as gc
+    try:
+        lock = json.loads(OVL_LOCK.read_text())
+    except (OSError, ValueError):
+        lock = {}
+    out = []
+    for pop, key in (("ovl_a", "a"), ("ovl_b", "b")):
+        for f in gc.load_extents_functions(REPO / "asm" / "us" / pop / "extents.json"):
+            out.append(dict(f, population=pop, label="%s_%s" % (pop, f["name"]),
+                            matched=f["name"] in (lock.get(key) or {})))
+    return out
+
+
+def overlay_census(args):
+    """Phase 11: which scripts execute which overlay functions (image A = the
+    front end, image B = the battle/weapons image; both at 0x8038A400, the host
+    dispatches by load state)."""
+    p = dc.paths()
+    chosen = overlay_functions()
+    scripts = dc.all_scripts() if args.scripts == "all" else args.scripts.split(",")
+    run_dir = dc.DC_HOME / "census" / ("ovl-" + time.strftime("%Y%m%d-%H%M%S"))
+    run_dir.mkdir(parents=True, exist_ok=True)
+    manifest = run_dir / "replacements.json"
+    manifest.write_text(json.dumps(probe_entries(chosen), indent=1))
+    print("census --overlays: %d functions, %d scripts; run dir %s" % (len(chosen), len(scripts), run_dir), flush=True)
+    t0 = time.time()
+    cap = dc.build_side("cap", "@census-overlays", manifest, run_dir, p, None, 12)
+    print("  built in %.0f s" % (time.time() - t0), flush=True)
+
+    def one(script):
+        sc = oracle.load_script(script)
+        frames = sc["frames"] or 1800
+        rd = run_dir / "runs" / script
+        rd.mkdir(parents=True, exist_ok=True)
+        cmd = oracle.host_command(cap["host"], cap["rom"], rd / "o.log", rd / "home", frames, sc["press"],
+                                  frames / 30.0 * 6 + 300, calls=rd / "calls", pak=sc["pak"])
+        cmd += oracle.script_host_args(sc, cap["host"], cap["rom"], run_dir)
+        with open(rd / "err", "w") as fe:
+            rc = subprocess.run([str(c) for c in cmd], stdout=subprocess.DEVNULL, stderr=fe).returncode
+        if rc != 0:
+            return script, None, "host exit %d: %s" % (rc, dc._tail(rd / "err", 3))
+        summ = summarise(rd / "calls", None)
+        if not args.keep_logs:
+            (rd / "calls").unlink()
+        return script, summ, None
+    results = {}
+    with ThreadPoolExecutor(max(1, args.jobs)) as ex:
+        for script, summ, err in ex.map(one, scripts):
+            if err:
+                print("  %-18s ERROR %s" % (script, err), flush=True)
+                continue
+            results[script] = summ
+            print("  %-18s %3d of %d overlay functions reached" % (script, len(summ), len(chosen)), flush=True)
+    write_overlay_summary(Path(args.out), chosen, results, args.tree)
+    return 0
+
+
+def write_overlay_summary(out, chosen, results, commit=None):
+    commit = commit or subprocess.run(["git", "-C", str(REPO), "rev-parse", "--short", "HEAD"],
+                                      capture_output=True, text=True).stdout.strip() or "unknown"
+    funcs = {}
+    for f in sorted(chosen, key=lambda f: (f["population"], f["vram"])):
+        sc = {s: r[f["label"]]["calls"] for s, r in sorted(results.items()) if f["label"] in r}
+        first = min((r[f["label"]]["first_frame"] for r in results.values() if f["label"] in r), default=None)
+        funcs[f["label"]] = {"image": f["population"], "name": f["name"], "vram": "0x%08X" % f["vram"],
+                             "size": f["size"], "matched": f["matched"], "scripts": sc}
+        if first is not None:
+            funcs[f["label"]]["first_frame"] = first
+    doc = {"generated": datetime.date.today().isoformat(), "tree": commit, "scripts": sorted(results),
+           "functions": funcs}
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "overlays.json").write_text(json.dumps(doc, indent=1, sort_keys=True) + "\n")
+    lines = ["# Overlay call census (recomp Phase 11, lane w31r)", "",
+             "Generated by `python3 -m tools.recomp.census --overlays` on rocky (%s, tree %s): one capture build "
+             "with a probe on every function of the two runtime images (image A = front end, image B = the "
+             "battle/weapon image; both load at 0x8038A400 through inflate_entry and the host dispatches calls by "
+             "which image is loaded), every committed script run headless. Detail: `overlays.json`." % (
+                 doc["generated"], commit), ""]
+    for pop in ("ovl_a", "ovl_b"):
+        fs = {n: f for n, f in funcs.items() if f["image"] == pop}
+        r = {n: f for n, f in fs.items() if f["scripts"]}
+        um = {n: f for n, f in fs.items() if not f["matched"]}
+        rum = {n: f for n, f in r.items() if not f["matched"]}
+        lines += ["## %s: %d of %d functions reached (%d B of %d B); unmatched: %d of %d reached (%d B of %d B)" % (
+            pop, len(r), len(fs), sum(f["size"] for f in r.values()), sum(f["size"] for f in fs.values()),
+            len(rum), len(um), sum(f["size"] for f in rum.values()), sum(f["size"] for f in um.values())), "",
+            "| function | bytes | matched | first frame | scripts | calls (script: n, top 4) |",
+            "|---|---:|---|---:|---:|---|"]
+        for n, f in sorted(fs.items(), key=lambda kv: kv[1]["vram"]):
+            top = sorted(f["scripts"].items(), key=lambda kv: -kv[1])[:4]
+            lines.append("| %s | %d | %s | %s | %d | %s |" % (
+                f["name"], f["size"], "yes" if f["matched"] else "", f.get("first_frame", ""), len(f["scripts"]),
+                ", ".join("%s: %d" % kv for kv in top) or "never"))
+        lines.append("")
+    (out / "OVERLAYS.md").write_text("\n".join(lines))
 
 
 def compact_json(doc):

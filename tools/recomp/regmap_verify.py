@@ -226,9 +226,10 @@ class Interproc:
             live = ipa_detect.register_params(words, include_o32=True, call_effects=self.call_effects)
             keys = {_key(r) for r in live}
             writes, saved = set(), set()
+            restores = ipa_detect._restores(words)
             for w in words:
                 _r, wr, call = ipa_detect.decode(w)
-                if ipa_detect._is_save(w):
+                if ipa_detect._is_save(w, restores):
                     rt = (w >> 16) & 31
                     saved.add(("f", rt & ~1) if w >> 26 in (0x39, 0x3D) else ("r", rt))
                 writes |= wr

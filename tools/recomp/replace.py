@@ -1025,6 +1025,11 @@ def ipa_shim(callee_vram, prototype, params, clobbers=(), direction="out"):
         dst = dst if not dst in _GPR_NAMES else "r%d" % _GPR_NAMES[dst]
         if direction == "in":
             src, dst = dst, src
+        # a stack SOURCE is the caller's frame, a stack DESTINATION the shim's outgoing area: two different
+        # words even at the same offset (w31r: `sp+16 -> sp+16` was skipped as a no-op move, so
+        # control_cell_text3's fifth and sixth parameters reached the o32 draft as garbage)
+        if src.startswith("sp+"):
+            src = "c" + src
         pairs.append((src, dst))
     # registers to save (32-bit slots): callee-saved destinations + clobbers;
     # FP registers with their odd partner (FR=0 doubles)
@@ -1081,8 +1086,8 @@ def ipa_shim(callee_vram, prototype, params, clobbers=(), direction="out"):
     for src, dst in order:
         if src == dst:
             continue
-        if src.startswith("sp+"):
-            off = caller_sp(int(src[3:]))
+        if src.startswith("csp+"):
+            off = caller_sp(int(src[4:]))
             if dst.startswith("sp+"):
                 w += [_i(0x23, SP, T9, off), _i(0x2B, SP, T9, int(dst[3:]))]
             elif _is_fpr(dst):

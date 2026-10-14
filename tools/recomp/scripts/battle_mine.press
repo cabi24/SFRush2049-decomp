@@ -1,0 +1,29 @@
+# Battle mines (w31r, Phase 11): battle.press's 2P BATTLE 1 plus one scene lever. Player 1's weapon slot is the
+# halfword car+0x384 (type byte, ammo byte at +0x385) of gGameCar 0x80152818 (stride 0x3B8): func_8010D3C0
+# (= GC _StartWeaponIcon) stores the picked-up weapon there (`sb a0,0x384(v0)`, `sb v1,0x385(v0)`, ammo from
+# the table 0x80121D60). Poked to type 3 (the mine; GC shot type 3 becomes a WPR_MINE target in UpdateShots) with
+# 9 rounds at 26 s; Z fires (B, L, R do not): each Z drops a mine whose environment callback is
+# func_8010C974 (_AnimateMine, targetInfo entry 0x80118BB0 WPR_MINE: start func_8010C7F4, animate func_8010C974).
+# First call at frame ~839 (Z at 27 s), ~870 calls. Types 0-2 and 4-7 with the same presses do not reach it.
+frames 1500
+pak on
+4 START
+5.5 RIGHT
+7 A
+7.3 A@2
+10 A
+10.3 A@2
+13 DOWN
+14 DOWN
+15 DOWN
+16.5 A
+16.8 A@2
+19.5 A
+19.8 A@2
+22.5 A
+22.8 A@2
+poke 26 80152B9C 0309 2
+28 A 20
+27 Z
+30 Z
+33 Z

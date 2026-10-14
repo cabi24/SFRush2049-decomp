@@ -1,0 +1,6 @@
+# w31r (Phase 11): control_cell_text (this directory's old name attract_mode_handler) takes IPA register parameters.
+# row = s5, col = s6 (set at all 7 static sites in control_settings), text = s7 (read in the delay slot of
+# `jal camera_auto_follow; sw s7,24(sp)`: a stack argument, which ipa_detect took for a prologue save before w31r;
+# regmap_verify --derive now lists s5,s6,s7). Reached by pak_corrupt / ghost_delete_fail-class dialogs.
+--params row=s5,col=s6,text=s7
+--scripts pak_corrupt,pak_repair,pak_nopak

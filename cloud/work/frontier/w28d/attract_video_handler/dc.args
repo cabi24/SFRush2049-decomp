@@ -1,0 +1,6 @@
+# w31r (Phase 11): control_cell_text2 (old name attract_video_handler): sel = s5 (C.sel1, `lb s5,1(s1)`), row = s6,
+# col = s7 (`move s6,s3; move s7,s4` at the call sites), text = s8 (`addiu s8,sp,1192`, stored as a stack argument
+# `sw s8,24(sp)` in the callee: live-in since w31r's save-detection fix). The caller's 12(sp)/16(sp) stores are
+# not read by the callee.
+--params sel=s5,row=s6,col=s7,text=s8
+--scripts ghost_delete_fail,pak_nopak,pak_corrupt

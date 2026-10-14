@@ -1,0 +1,6 @@
+# w31r (Phase 11): control_cell_text3 (old name attract_demo_handler), from the one call site 0x800DDCE4 in
+# control_settings and the callee's frame (56 B; it reads 64/68/72/76(sp) = entry sp+8..+20): sel1 = s5
+# (`lb s5,1(s1)`), row = s6, col = s7, sel2 = s8 (`lb s8,2(s1)`), text = sp+8 (msg[472]), s1 = sp+12 (msg[944]),
+# s2 = sp+16, s3 = sp+20 (the two option strings). Only pak_repair (PFS_ERR_ID_FATAL dialog) reaches it.
+--params sel1=s5,row=s6,text=sp+8,s1=sp+12,s2=sp+16,s3=sp+20,col=s7,sel2=s8
+--scripts pak_repair

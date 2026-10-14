@@ -689,7 +689,9 @@ def lane_drafts(lane, root=LANE_ROOT):
     directory: the function, or for a unit its first member). A `dc.args` file
     next to best.c holds extra draft_check arguments (one line, shell syntax:
     --unit A,B,C / --params / --callee / --scripts ...); with --unit its NAME
-    list replaces the directory name."""
+    list replaces the directory name, and `--name NAME` names a single draft
+    whose directory is not its function (w30a/audio_options holds
+    game_results_render)."""
     d = Path(lane)
     if not d.is_dir():
         d = Path(root) / lane
@@ -702,6 +704,11 @@ def lane_drafts(lane, root=LANE_ROOT):
         if f.is_file():
             extra = shlex.split(" ".join(ln for ln in f.read_text().splitlines() if not ln.lstrip().startswith("#")))
         name = best.parent.name
+        if "--name" in extra:              # Phase 11: a single draft in a directory not named after it
+            i = extra.index("--name")
+            if i + 1 < len(extra):
+                name = extra[i + 1]
+                del extra[i:i + 2]
         if "--unit" in extra:
             i = extra.index("--unit")
             if i + 1 < len(extra) and not extra[i + 1].startswith("-"):
@@ -757,48 +764,191 @@ def summarize_output(text, rc):
     return verdict, detail
 
 
+def forwarded_options(argv, valued=("--lane", "--json"), optional=("--all-lanes",),
+                      flags=("--refresh", "--include-matched")):
+    """The command line minus the summary-mode options (what applies to every
+    draft): `valued` options drop their value, `optional` ones their value when
+    the next word is not an option, `flags` drop alone."""
+    fwd, i = [], 0
+    while i < len(argv):
+        a = argv[i]
+        if a in valued:
+            i += 2
+            continue
+        if a in optional:
+            i += 2 if i + 1 < len(argv) and not argv[i + 1].startswith("-") else 1
+            continue
+        if a in flags or a.startswith(tuple(o + "=" for o in valued + optional)):
+            i += 1
+            continue
+        fwd.append(a)
+        i += 1
+    return fwd
+
+
+MATCHED_LOCK = REPO / "blob_matched.lock.json"
+
+
+def matched_functions(lock=MATCHED_LOCK):
+    try:
+        return set(json.loads(Path(lock).read_text()))
+    except (OSError, ValueError):
+        return set()
+
+
+LANES_CACHE = DC_HOME / "lanes" / "cache.json"
+
+
+# Bump when a harness change can change a verdict for an unchanged draft (a shim, capture or comparison fix):
+# every cached --all-lanes row is then rerun. Draft, dc.args, scripts and ipa_callees.json are in the key anyway.
+CACHE_EPOCH = "w31r-1"
+
+
+def draft_key(name, best, extra, fwd):
+    """Cache key of one summary row (Phase 11): the draft and every file it
+    includes, NAME, its dc.args options, the forwarded options, the committed
+    input scripts, ipa_callees.json, the census (default script choice) and
+    CACHE_EPOCH."""
+    h = hashlib.sha256(CACHE_EPOCH.encode())
+    for f in local_files(best):
+        h.update(str(f.name).encode() + b"\0" + f.read_bytes() + b"\0")
+    h.update(json.dumps([name, extra, fwd]).encode())
+    for f in sorted((HERE / "scripts").glob("*.press")) + [HERE / "ipa_callees.json", CENSUS_DIR / "census.json"]:
+        if f.is_file():
+            h.update(f.name.encode() + b"\0" + f.read_bytes())
+    return h.hexdigest()[:24]
+
+
+def _load_cache(path):
+    try:
+        return json.loads(Path(path).read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def _save_cache(path, cache):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(cache, indent=1, sort_keys=True) + "\n")
+    os.replace(str(tmp), str(path))
+
+
+def check_drafts(drafts, fwd, label, json_path=None, cache_path=None, refresh=False, include_matched=False):
+    """Run draft_check on [(lane, name, best.c, extra)], one line per draft, then
+    one Markdown table and the verdict counts. A function in
+    blob_matched.lock.json is MATCHED (not run: its draft is history) unless
+    include_matched. With cache_path, a row whose key (draft_key) is cached is
+    reused (`cached` column) instead of rebuilt and rerun."""
+    rows = []
+    stale = rp.stale_function_names()
+    matched = set() if include_matched else matched_functions()
+    cache = _load_cache(cache_path) if cache_path else {}
+    for lane, name, best, extra in drafts:
+        name, extra, renamed = current_names(name, extra, stale)
+        if renamed:
+            print("  NOTE %s/%s: renamed since the draft was saved: %s" % (
+                lane, best.parent.name, ", ".join("%s -> %s" % r for r in renamed)), flush=True)
+        row = {"lane": lane, "dir": best.parent.name, "function": name, "draft": str(best)}
+        members = name.split(",")
+        if all(m in matched for m in members):
+            row.update(verdict="MATCHED", detail="in blob_matched.lock.json: no draft check needed", seconds=0)
+        else:
+            key = draft_key(name, best, extra, fwd) if cache_path else None
+            hit = cache.get(key) if key and not refresh else None
+            if hit:
+                row.update(verdict=hit["verdict"], detail=hit["detail"], seconds=0, cached=hit.get("date", True))
+            else:
+                unit = ["--unit"] if "--unit" in extra else []
+                ex = [x for x in extra if x != "--unit"]
+                cmd = [sys.executable, "-m", "tools.recomp.draft_check"] + unit + [name, str(best)] + ex + fwd
+                t0 = time.time()
+                proc = subprocess.run(cmd, cwd=str(REPO), capture_output=True, text=True)
+                verdict, detail = summarize_output(proc.stdout + proc.stderr, proc.returncode)
+                row.update(verdict=verdict, detail=detail, seconds=round(time.time() - t0))
+                if key and verdict != "ERROR":
+                    cache[key] = {"verdict": verdict, "detail": detail, "function": name, "draft": str(best),
+                                  "date": time.strftime("%Y-%m-%d")}
+                    _save_cache(cache_path, cache)
+        rows.append(row)
+        print("  %-5s %-36s %-12s %s%s" % (lane, name[:36], row["verdict"], row["detail"][:150],
+                                          " (cached)" if row.get("cached") else ""), flush=True)
+    print()
+    print("| lane | function | verdict | detail |")
+    print("|---|---|---|---|")
+    for r in rows:
+        print("| %s | %s | %s | %s%s |" % (r["lane"], r["function"], r["verdict"], r["detail"].replace("|", "/"),
+                                          " (cached)" if r.get("cached") else ""))
+    counts = {}
+    for r in rows:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    print("\n%s: %d drafts: %s (EQUIVALENT is behaviour only, never a match)" % (
+        label, len(rows), ", ".join("%d %s" % (n, v) for v, n in sorted(counts.items()))))
+    if json_path:
+        Path(json_path).write_text(json.dumps(rows, indent=1) + "\n")
+    return rows
+
+
 def lane_main(args, argv):
     """--lane LANE: draft_check every <lane>/<NAME>/best.c, one table."""
     drafts = lane_drafts(args.lane)
     if not drafts:
         print("draft_check --lane %s: no */best.c" % args.lane)
         return 3
-    fwd = []                           # every other option (--scripts, --remote, ...) applies to each draft
-    it = iter(argv)
-    for a in it:
-        if a == "--lane" or a == "--json":
-            next(it, None)
-            continue
-        if not a.startswith(("--lane=", "--json=")):
-            fwd.append(a)
-    rows = []
-    stale = rp.stale_function_names()
-    for name, best, extra in drafts:
-        name, extra, renamed = current_names(name, extra, stale)
-        if renamed:
-            print("  NOTE %s: renamed since the draft was saved: %s" % (
-                best.parent.name, ", ".join("%s -> %s" % r for r in renamed)), flush=True)
-        unit = ["--unit"] if "--unit" in extra else []
-        extra = [x for x in extra if x != "--unit"]
-        cmd = [sys.executable, "-m", "tools.recomp.draft_check"] + unit + [name, str(best)] + extra + fwd
-        t0 = time.time()
-        proc = subprocess.run(cmd, cwd=str(REPO), capture_output=True, text=True)
-        verdict, detail = summarize_output(proc.stdout + proc.stderr, proc.returncode)
-        rows.append({"function": name, "draft": str(best), "verdict": verdict, "detail": detail,
-                     "seconds": round(time.time() - t0)})
-        print("  %-40s %-12s %s" % (name, verdict, detail[:160]), flush=True)
-    print()
-    print("| function | verdict | detail |")
-    print("|---|---|---|")
-    for r in rows:
-        print("| %s | %s | %s |" % (r["function"], r["verdict"], r["detail"].replace("|", "/")))
-    counts = {}
-    for r in rows:
-        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
-    print("\nLANE %s: %s (EQUIVALENT is behaviour only, never a match)" % (
-        args.lane, ", ".join("%d %s" % (n, v) for v, n in sorted(counts.items()))))
-    if args.json:
-        Path(args.json).write_text(json.dumps(rows, indent=1) + "\n")
+    fwd = forwarded_options(argv)     # every other option (--scripts, --remote, --jobs, ...) applies to each draft
+    lane = Path(args.lane).name
+    check_drafts([(lane, n, b, e) for n, b, e in drafts], fwd, "LANE %s" % args.lane, args.json,
+                 include_matched=True)
+    return 0
+
+
+DEFAULT_LANE_GLOBS = "w2[8-9]*,w3*"
+
+
+def all_lane_dirs(globs, root=LANE_ROOT):
+    out = []
+    for g in [x.strip() for x in globs.split(",") if x.strip()]:
+        out += [d for d in sorted(Path(root).glob(g)) if d.is_dir() and d not in out]
+    return out
+
+
+def all_lanes_main(args, argv):
+    """--all-lanes [GLOB,...]: every <lane>/<NAME>/best.c of the matching lane
+    directories (default w2[8-9]*,w3*) in one table; results cached per draft
+    (draft_key) in DC_HOME/lanes/cache.json; matched functions are not run.
+    With --remote HOST the drafts (and the files they include, and dc.args)
+    are copied into the service tree's cloud/work/frontier first and the whole
+    summary runs there."""
+    globs = args.all_lanes or DEFAULT_LANE_GLOBS
+    dirs = all_lane_dirs(globs)
+    drafts = []
+    for d in dirs:
+        drafts += [(d.name, n, b, e) for n, b, e in lane_drafts(str(d))]
+    if args.remote:
+        files = set()
+        for _l, _n, best, _e in drafts:
+            files.update(local_files(best))
+            if (best.parent / "dc.args").is_file():
+                files.add((best.parent / "dc.args").resolve())
+        rel = sorted(str(f.relative_to(REPO.resolve())) for f in files if str(f).startswith(str(REPO.resolve())))
+        with tempfile.NamedTemporaryFile("w", suffix=".lst", delete=False) as fl:
+            fl.write("\n".join(rel) + "\n")
+        rc = subprocess.run(["rsync", "-a", "--files-from=" + fl.name, str(REPO) + "/",
+                             "%s:%s/" % (args.remote, args.remote_tree)]).returncode
+        os.unlink(fl.name)
+        if rc != 0:
+            raise DCError("cannot copy the lane drafts to %s:%s" % (args.remote, args.remote_tree))
+        fwd = ["--all-lanes", globs] + forwarded_options(_strip_remote(argv), flags=())
+        cmd = "cd %s && python3 -m tools.recomp.draft_check %s" % (
+            args.remote_tree, " ".join(shlex.quote(a) for a in fwd))
+        print("draft_check --all-lanes: %d drafts in %d lane directories; running on %s" % (
+            len(drafts), len(dirs), args.remote), flush=True)
+        return subprocess.run(["ssh", args.remote, cmd]).returncode
+    print("draft_check --all-lanes %s: %d drafts in %d lane directories (%s)" % (
+        globs, len(drafts), len(dirs), ", ".join(d.name for d in dirs)), flush=True)
+    fwd = forwarded_options(argv)
+    check_drafts(drafts, fwd, "ALL LANES %s" % globs, args.json, cache_path=LANES_CACHE, refresh=args.refresh,
+                 include_matched=args.include_matched)
     return 0
 
 
@@ -865,7 +1015,20 @@ def main(argv=None):
                     help="summary mode (Phase 9): check every cloud/work/frontier/LANE/<NAME>/best.c (or a "
                     "directory path) and print one table; per-draft options in <NAME>/dc.args; the other options "
                     "(--scripts, --remote, ...) apply to every draft")
+    ap.add_argument("--all-lanes", nargs="?", const=DEFAULT_LANE_GLOBS, default=None, metavar="GLOB,...",
+                    help="summary over many lanes (Phase 11): every cloud/work/frontier/<GLOB>/<NAME>/best.c "
+                    "(default %s) in one table; cached per draft (DC_HOME/lanes/cache.json, --refresh to rerun); "
+                    "functions in blob_matched.lock.json are listed MATCHED and not run (--include-matched)"
+                    % DEFAULT_LANE_GLOBS)
+    ap.add_argument("--refresh", action="store_true", help="with --all-lanes: ignore cached rows")
+    ap.add_argument("--include-matched", action="store_true", help="with --all-lanes: also run matched functions")
     args = ap.parse_args(argv)
+    if args.all_lanes:
+        try:
+            return all_lanes_main(args, argv)
+        except DCError as exc:
+            print("draft_check: ERROR: %s" % exc, file=sys.stderr)
+            return 2
     if args.lane:
         try:
             return lane_main(args, argv)
@@ -873,7 +1036,7 @@ def main(argv=None):
             print("draft_check: ERROR: %s" % exc, file=sys.stderr)
             return 2
     if args.name is None and not args.gc and not args.probe_callees:
-        ap.error("NAME is required (or --lane LANE)")
+        ap.error("NAME is required (or --lane LANE / --all-lanes)")
     try:
         if args.gc:
             if args.remote:

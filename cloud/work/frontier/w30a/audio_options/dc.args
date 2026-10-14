@@ -1,0 +1,4 @@
+# w31r (Phase 11): this directory holds the audio-options unit (GC audioscr.c animText = game_results_render);
+# checked as w30a did (RESULTS "draft_check commands": EQUIVALENT 1,273 calls / 3 scripts).
+--name game_results_render
+--scripts audio_options,options_menus,pause_menus

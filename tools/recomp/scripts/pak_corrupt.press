@@ -1,0 +1,20 @@
+# Pak dialog "THIS CONTROLLER PAK IS CORRUPTED" (w31r, Phase 11): saves.press's CREATE PLAYER with the first
+# osPfsReadWriteFile failing PFS_ERR_INCONSISTENT (`pak fail write 1 3`). control_settings cell type with
+# control_cell_text from frame 721: CONTROLLER 1 | THIS CONTROLLER PAK IS CORRUPTED. | PRESS THE A BUTTON TO FIX THE
+# DATA. (ERR 6 = NOTE CORRUPTED, 7/8 = NOT ENOUGH SPACE, 12 = UNKNOWN ERROR ... PRESS THE A BUTTON draw it too.)
+frames 1100
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+18 A
+20 A
+22 A
+24 START
+pak fail write 1 3
+27 A
+30 A
+33 A

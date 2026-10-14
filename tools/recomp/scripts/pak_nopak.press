@@ -1,0 +1,21 @@
+# Pak dialog "NO CONTROLLER PAK" (w31r, Phase 11): saves.press's CREATE PLAYER with the first osPfsReadWriteFile
+# failing PFS_ERR_NOPACK (`pak fail write 1 1`). save_settings (0x800DE20C) runs control_settings' modal dialog from
+# frame 721: CONTROLLER 1 | NO CONTROLLER PAK CAN BE FOUND IN THIS CONTROLLER ... PRESS THE A BUTTON TO CONTINUE =
+# cell type 2, drawn by func_800DD0C0 (90 calls; A at 27 s closes it, PLAYER 1 at 810). Same dialog for
+# `pak fail alloc 1 1`. Then the player screen and SELECT MODE / SELECT TRACK (saves.press's presses up to 33 s).
+frames 1100
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+18 A
+20 A
+22 A
+24 START
+pak fail write 1 1
+27 A
+30 A
+33 A
