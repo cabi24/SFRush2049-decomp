@@ -89,7 +89,8 @@
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/host_test.c": "29355e1cc07e254fd51da225dfe548ecb5c2270f37ded23d1fa7990587293e7a",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/layout_probe.c": "83adf5458fecb805b96caa8719a402bdabd53ca8344e45438a9edce0a23a8df0",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verification.json": "16d36d58cbe481efbca345f5bbb26516cf03702a2cdcaad21bb641fdfe07d058",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py": "cbff2a66cfd0e9fbd55ba3123f08b7ca36d0d5c861063327bd4da883ce19036c",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py": "44c10f2e37d27e067315ce3d365bd9377e1c946d6961d123f284c6c0b8d05130",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/accepted_func_800BEA3C.c": "ced1420bc1b0bb4bb8dd693d4d83b7d7d004562da1268871fa1ef9657eeed173",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/peer_review.json": "0973a35f60eefbb268894ae090dc81efbbad04f1b72b28162bec8f9eb12a9301",
     "tests/conveyor/test_dot_menu_row_caller.py": "0a18d8a5f3ee56e24238498af1c006e5c9ef99c473cbe178d84fad61866b79e1"
   },
