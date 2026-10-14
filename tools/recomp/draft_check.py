@@ -846,7 +846,13 @@ def draft_key(name, best, extra, fwd):
     h = hashlib.sha256(CACHE_EPOCH.encode())
     for f in local_files(best):
         h.update(str(f.name).encode() + b"\0" + f.read_bytes() + b"\0")
-    h.update(json.dumps([name, extra, fwd]).encode())
+    opts, it = [], iter(fwd)
+    for a in it:                       # parallelism and run-dir housekeeping do not change a verdict
+        if a in ("--jobs", "--remote-tree"):
+            next(it, None)
+        elif not a.startswith(("--jobs=", "--keep")):
+            opts.append(a)
+    h.update(json.dumps([name, extra, opts]).encode())
     files = [SCRIPT_DIR / (sc + ".press") for sc in key_scripts(name, list(extra) + list(fwd))]
     for f in files + [HERE / "ipa_callees.json"]:
         h.update(f.name.encode() + b"\0" + (f.read_bytes() if f.is_file() else b"missing"))
@@ -860,12 +866,17 @@ def _load_cache(path):
         return {}
 
 
-def _save_cache(path, cache):
+def _save_cache(path, key, entry):
+    """Add one row under a lock, merging with what other --all-lanes runs wrote meanwhile."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(".tmp")
-    tmp.write_text(json.dumps(cache, indent=1, sort_keys=True) + "\n")
-    os.replace(str(tmp), str(path))
+    with open(str(path) + ".lock", "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        cache = _load_cache(path)
+        cache[key] = entry
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(cache, indent=1, sort_keys=True) + "\n")
+        os.replace(str(tmp), str(path))
 
 
 def check_drafts(drafts, fwd, label, json_path=None, cache_path=None, refresh=False, include_matched=False):
@@ -901,9 +912,8 @@ def check_drafts(drafts, fwd, label, json_path=None, cache_path=None, refresh=Fa
                 verdict, detail = summarize_output(proc.stdout + proc.stderr, proc.returncode)
                 row.update(verdict=verdict, detail=detail, seconds=round(time.time() - t0))
                 if key and verdict != "ERROR":
-                    cache[key] = {"verdict": verdict, "detail": detail, "function": name, "draft": str(best),
-                                  "date": time.strftime("%Y-%m-%d")}
-                    _save_cache(cache_path, cache)
+                    _save_cache(cache_path, key, {"verdict": verdict, "detail": detail, "function": name,
+                                                  "draft": str(best), "date": time.strftime("%Y-%m-%d")})
         rows.append(row)
         print("  %-5s %-36s %-12s %s%s" % (lane, name[:36], row["verdict"], row["detail"][:150],
                                           " (cached)" if row.get("cached") else ""), flush=True)

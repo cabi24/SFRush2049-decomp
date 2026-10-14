@@ -195,6 +195,7 @@ def test_check_drafts_skips_matched_and_reuses_cache(tmp_path, monkeypatch, caps
     def no_run(*a, **k):
         raise AssertionError("a cached or matched draft must not run")
     monkeypatch.setattr(dc.subprocess, "run", no_run)
+    monkeypatch.setattr(dc, "_save_cache", lambda *a: (_ for _ in ()).throw(AssertionError("no new rows")))
     rows = dc.check_drafts([("wX", "func_80000001", best, []), ("wX", "func_80000002", m / "best.c", [])], [],
                            "TEST", cache_path=cache)
     assert [r["verdict"] for r in rows] == ["EQUIVALENT", "MATCHED"]
@@ -202,6 +203,9 @@ def test_check_drafts_skips_matched_and_reuses_cache(tmp_path, monkeypatch, caps
     out = capsys.readouterr().out
     assert "TEST: 2 drafts: 1 EQUIVALENT, 1 MATCHED" in out and "(cached)" in out
     assert dc.draft_key("func_80000001", best, [], ["--scripts", "race"]) != key
+    assert dc.draft_key("func_80000001", best, [], ["--jobs", "3"]) == key       # parallelism is not in the key
+    (tmp_path / "wX" / "func_80000001" / "best.c").write_text("void func_80000001(void) { }\n")
+    assert dc.draft_key("func_80000001", best, [], []) != key                    # the draft is
 
 
 # ------------------------------------------------------------------ end to end (recomp host only)
