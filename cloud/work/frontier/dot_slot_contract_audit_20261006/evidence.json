@@ -55,6 +55,10 @@
     "accepted_callers": [
       "TitlePane",
       "credits_scroll",
+      "control_cell_text",
+      "control_cell_text3",
+      "control_cell_text2",
+      "func_800DD0C0",
       "world_trigger_check",
       "PrintScores",
       "SetHighScoreState",
@@ -79,7 +83,7 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 50352,
+    "unaccepted_caller_bytes": 47668,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -340,7 +344,7 @@
       "start": "0x800DC88C",
       "bytes": 264,
       "body_sha256": "4cf7e4dca62d3e45cff6f5ac33310c8009e7afc3976c3c5429611607af1d51f9",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DC8AC"
       ],
@@ -355,7 +359,7 @@
       "start": "0x800DC99C",
       "bytes": 820,
       "body_sha256": "27d3a8ed3371fc0abce83e343ced4995b40b9b43758bf72797fe2f40df3d0493",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DC9CC",
         "0x800DCB00",
@@ -375,7 +379,7 @@
       "start": "0x800DCDF4",
       "bytes": 692,
       "body_sha256": "29c9a74c6d39a53dea6170e17d3e588a1f302176a7ad904ff80dfbdfb63a4b6b",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DCE1C",
         "0x800DCF5C",
@@ -394,7 +398,7 @@
       "start": "0x800DD0C0",
       "bytes": 908,
       "body_sha256": "bb6dbb9f29beb77bcbd081f97a12640d638d1c435ccf14baa251f8fe6be1dd01",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DD0FC",
         "0x800DD2C0",
@@ -426,10 +430,6 @@
       },
       "other_unaccepted_direct_game_calls": [
         "camera_auto_follow",
-        "control_cell_text",
-        "control_cell_text2",
-        "control_cell_text3",
-        "func_800DD0C0",
         "state_utility"
       ]
     },

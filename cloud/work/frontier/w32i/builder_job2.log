@@ -1,0 +1,112 @@
+## score.py group cand/w32i/codex_control_settings_a4 --claims
+Members:
+func_800DCD58:
+  MATCH
+func_800DCCE0:
+  MATCH
+control_cell_text:
+  MATCH
+control_cell_text2:
+  MATCH
+control_cell_text3:
+  MATCH
+func_800DD0C0:
+  MATCH
+
+Context (informational; excluded from exit status):
+control_settings:
+    +0x0bc  want 1000022e b 0x8bc                       got 1000022c b 0x8b4                     
+    +0x0d0  want 0680023d bltz s4,0x8f8                 got 0680023b bltz s4,0x8f0               
+    +0x16c  want 00408025 move s0,v0                    got 00002825 move a1,zero                
+    +0x170  want 00002825 move a1,zero                  got 0c001d78 jal 0x75e0                  
+    +0x174  want 0c001d78 jal 0x75e0                    got 00003025 move a2,zero                
+    +0x178  want 00003025 move a2,zero                  got 0c02dd28 jal 0xb74a0                 
+    +0x17c  want 0c02dd28 jal 0xb74a0                   got 24040001 li a0,1                     
+    +0x180  want 24040001 li a0,1                       got 27b00718 addiu s0,sp,1816            
+    +0x18c  want 27a40718 addiu a0,sp,1816              got 02002025 move a0,s0                  
+    +0x198  want 8638001c lh t8,28(s1)                  got 02002025 move a0,s0                  
+    +0x19c  want 862e0018 lh t6,24(s1)                  got 0c02cfe9 jal 0xb3fa4                 
+    +0x1a0  want 27a40718 addiu a0,sp,1816              got 2405ffff li a1,-1                    
+  536/638 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x1f0, .rodata+0x0 at +0x1f8)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got (missing)
+  5/5 words differ
+rc=0
+## score.py group cand/w32i/codex_control_settings_a4 
+Members:
+func_800DCD58:
+  MATCH
+func_800DCCE0:
+  MATCH
+control_cell_text:
+  MATCH
+control_cell_text2:
+  MATCH
+control_cell_text3:
+  MATCH
+func_800DD0C0:
+  MATCH
+
+Context (informational; excluded from exit status):
+control_settings:
+    +0x0bc  want 1000022e b 0x8bc                       got 1000022c b 0x8b4                     
+    +0x0d0  want 0680023d bltz s4,0x8f8                 got 0680023b bltz s4,0x8f0               
+    +0x16c  want 00408025 move s0,v0                    got 00002825 move a1,zero                
+    +0x170  want 00002825 move a1,zero                  got 0c001d78 jal 0x75e0                  
+    +0x174  want 0c001d78 jal 0x75e0                    got 00003025 move a2,zero                
+    +0x178  want 00003025 move a2,zero                  got 0c02dd28 jal 0xb74a0                 
+    +0x17c  want 0c02dd28 jal 0xb74a0                   got 24040001 li a0,1                     
+    +0x180  want 24040001 li a0,1                       got 27b00718 addiu s0,sp,1816            
+    +0x18c  want 27a40718 addiu a0,sp,1816              got 02002025 move a0,s0                  
+    +0x198  want 8638001c lh t8,28(s1)                  got 02002025 move a0,s0                  
+    +0x19c  want 862e0018 lh t6,24(s1)                  got 0c02cfe9 jal 0xb3fa4                 
+    +0x1a0  want 27a40718 addiu a0,sp,1816              got 2405ffff li a1,-1                    
+  536/638 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x1f0, .rodata+0x0 at +0x1f8)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got (missing)
+  5/5 words differ
+rc=0

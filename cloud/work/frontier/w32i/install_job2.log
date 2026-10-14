@@ -1,0 +1,3 @@
+spliced codex_control_settings_a4: 6 members, new: ['control_cell_text', 'control_cell_text2', 'control_cell_text3', 'func_800DD0C0']
+image coverage: 1062/1216 functions, 390452/647072 bytes (60.34%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

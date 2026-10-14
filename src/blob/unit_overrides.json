@@ -452,6 +452,42 @@
   {
    "name": "ReadGhostData",
    "reason": "group menu_save_options (w32c props_render = GC GhostStart): non-static inlined helper (GC save.c ReadGhostData), caller-less after inlining"
+  },
+  {
+   "name": "control_cell_text",
+   "reason": "group codex_control_settings_a4 (w32d): IPA member, internal; only caller control_settings (context, EQUIVALENT draft \u2014 provisional on its caller form)"
+  },
+  {
+   "name": "control_cell_text2",
+   "reason": "group codex_control_settings_a4 (w32d): IPA member, internal; only caller control_settings (context, EQUIVALENT draft \u2014 provisional on its caller form)"
+  },
+  {
+   "name": "control_cell_text3",
+   "reason": "group codex_control_settings_a4 (w32d): IPA member, internal; only caller control_settings (context, EQUIVALENT draft \u2014 provisional on its caller form)"
+  },
+  {
+   "name": "func_800DD0C0",
+   "reason": "group codex_control_settings_a4 (w32d): IPA member, internal; only caller control_settings (context, EQUIVALENT draft \u2014 provisional on its caller form)"
+  },
+  {
+   "name": "gfx_lock_DC",
+   "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_DC",
+   "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_set_DC",
+   "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_set1_DC",
+   "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "pair_set_DC",
+   "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

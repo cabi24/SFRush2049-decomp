@@ -1061,6 +1061,33 @@
     "verified": "image_gate",
     "verified_at": "2026-10-11"
   },
+  "control_cell_text": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
+  "control_cell_text2": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
+  "control_cell_text3": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
   "controller_poll": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
@@ -5254,10 +5281,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_control_settings_a4",
     "source": "src/blob/groups/codex_control_settings_a4/group.json",
-    "source_sha256": "7bfa1dc9b8a1786803bd4b8a1757c361c4cd90194ebf2d3ba8b8af341f4d4543",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-01"
+    "verified_at": "2026-10-14"
   },
   "func_800DCD50": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5271,10 +5298,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_control_settings_a4",
     "source": "src/blob/groups/codex_control_settings_a4/group.json",
-    "source_sha256": "7bfa1dc9b8a1786803bd4b8a1757c361c4cd90194ebf2d3ba8b8af341f4d4543",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-01"
+    "verified_at": "2026-10-14"
   },
   "func_800DD0A8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5299,6 +5326,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800DD0C0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "530ac97c3995f3f150306c741ded287df266ef37b7a2d0e19276c3d39796b6b2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
   },
   "func_800DD44C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
