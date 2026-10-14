@@ -1,0 +1,4 @@
+group lock: 0 problems
+blob lock: 1062 entries, 0 problems
+blob_unit: 1062 locked bodies, 1062 equal to the image in one 932-file unit, 0 differ [1025 plain; stub tail 34, own bss 4; 444 own .rodata/.data references in 137 bodies checked against image bytes] (951 kept, 318 internal; IDO 2.0s, total 8.6s)
+unused_overrides []

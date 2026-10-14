@@ -7,7 +7,7 @@
   "func_80101D84",
   "func_80102448",
   "func_80100D5C",
-  "func_80102980"
+  "drawBattleScore"
  ],
  "context": [
   "slot_state_setup",

@@ -18,7 +18,7 @@
   },
   "inputs": {
     "caller_inventory": {
-      "blob": "18f07e4476dcd2d18ad4d5c37c54ab6c13dcbbb4a249151d4ffcc471a34ddef0",
+      "blob": "7ea8b7b7c9fd0503da1c4d0f776c5f1d2fe27387200646646c6489a2c6843289",
       "ovl_a": "d3e820b3769a09d066dc731b0eef91f8b74a503c049ff63fbfd19b2bd00e19c5",
       "ovl_b": "8201e1239936e959003f371657dad8c5b015e355c6976da7b61fb96a100e33ba"
     },

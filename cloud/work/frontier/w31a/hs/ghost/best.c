@@ -64,7 +64,7 @@ s32 du_font_set(s32 font)
     return old;
 }
 
-void func_80103D28(void)
+void DrawUnlocked(void)
 {
     s16 x;
     s32 y;
@@ -205,7 +205,7 @@ void hs_SetFont(s32 font)
 }
 
 /* func_80104704 = GC DrawName(p)@highscorescr.c: name-entry grid for player p (internal; p arrives in s5). */
-void func_80104704(s32 p)
+void DrawName(s32 p)
 {
     char ltr[2];
     s32 x;
@@ -328,7 +328,7 @@ void gh_SetFont(s32 font)
     gh_font_set(font);
 }
 
-void func_80104B14(void)
+void DrawGhost(void)
 {
     s32 i;
     s32 y;
@@ -435,25 +435,25 @@ void func_80104B14(void)
     }
 }
 
-s32 func_80105480(s32 arg0)
+s32 highscore_animText(s32 arg0)
 {
     s32 p;
 
     render_helper(0.0f);
     switch (gHighScoreState) {
     case 1:
-        func_80103D28();
+        DrawUnlocked();
         break;
     case 2:
         DrawCircuitCode();
         break;
     case 3:
         for (p = 0; p < active_player_count; p++) {
-            if (D_80143F18[p] == 1) func_80104704(p);
+            if (D_80143F18[p] == 1) DrawName(p);
         }
         break;
     case 4:
-        func_80104B14();
+        DrawGhost();
         break;
     case 5:
         DrawScores();

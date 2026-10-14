@@ -64,7 +64,7 @@ void func_800ED66C(f32);
 void dispatch_handler(s32);
 void state_utility(s16, s16, void *);
 
-s32 func_80108AB0(void *item)
+s32 animWrongWay(void *item)
 {
     s32 i;
     s32 x;

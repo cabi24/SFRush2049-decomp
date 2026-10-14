@@ -775,7 +775,7 @@ s32 PS_GetBlocks31(s32 size) {   /* GC PS_GetBlocks */
     return (size + 255) >> 8;
 }
 
-Handle func_800CC50C(GhostHeader *header, s8 *blocks) {
+Handle CompressGhost(GhostHeader *header, s8 *blocks) {
     Ghost *ghost;
     Handle ghosth;
     s32 maxsize;

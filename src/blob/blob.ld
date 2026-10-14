@@ -739,9 +739,9 @@ SECTIONS
         *(.text.menu_back)
         *(.text.menu_transition)
         *(.text.func_800CBF2C)
-        *(.text.func_800CC040)
+        *(.text.SaveGhost)
         *(.text.sound_play_menu)
-        *(.text.func_800CC50C)
+        *(.text.CompressGhost)
         *(.text.menu_item_value_get)
         *(.text.func_800CC848)
         *(.text.func_800CC8C8)
@@ -1072,11 +1072,11 @@ SECTIONS
         *(.text.place_cars_in_order)
         *(.text.func_800F56E0)
         *(.text.track_lighting_setup)
-        *(.text.track_texture_load)
+        *(.text.highscore_InitScreen)
         *(.text.billboard_render)
         *(.text.func_800F68A4)
         *(.text.func_800F6928)
-        *(.text.props_render)
+        *(.text.GhostStart)
         *(.text.UpdateActiveObjects)
         *(.text.audio_update_b)
         *(.text.func_800F7448)
@@ -1156,11 +1156,11 @@ SECTIONS
         *(.text.resource_type_select_simple)
         *(.text.func_800FEC9C)
         *(.text.game_timer_display)
-        *(.text.game_results_update)
-        *(.text.game_results_render)
+        *(.text.audio_animButtonText)
+        *(.text.audio_animText)
         *(.text.animControls)
-        *(.text.game_results_exit)
-        *(.text.func_80100564)
+        *(.text.controls_animButtonText)
+        *(.text.controls_animText)
         *(.text.func_80100B8C)
         /* blob_80100d24 */
         *(.text.func_80100D24)
@@ -1172,18 +1172,18 @@ SECTIONS
         *(.text.drawMain)
         *(.blobdata.op_80102440)
         *(.text.func_80102448)
-        *(.text.func_80102980)
+        *(.text.drawBattleScore)
         *(.text.func_80102F30)
         *(.blobdata.op_80103d18)
-        *(.text.func_80103D28)
+        *(.text.DrawUnlocked)
         *(.blobdata.op_801046fc)
-        *(.text.func_80104704)
-        *(.text.func_80104B14)
+        *(.text.DrawName)
+        *(.text.DrawGhost)
         *(.blobdata.op_80105478)
-        *(.text.func_80105480)
+        *(.text.highscore_animText)
         *(.text.func_80105B74)
         *(.text.func_80105DA8)
-        *(.text.func_80105EA8)
+        *(.text.animResults)
         *(.text.func_80106874)
         *(.text.func_80106B3C)
         *(.text.func_80106D94)
@@ -1194,7 +1194,7 @@ SECTIONS
         *(.text.func_80107EDC)
         *(.text.animLapTime)
         *(.text.func_801084D4)
-        *(.text.func_80108AB0)
+        *(.text.animWrongWay)
         *(.text.func_80108DA8)
         *(.text.func_80108F40)
         *(.text.func_80109468)
@@ -1202,9 +1202,9 @@ SECTIONS
         *(.text.func_80109F54)
         *(.blobdata.op_8010a534)
         *(.text.func_8010A53C)
-        *(.text.func_8010A7A4)
-        *(.text.func_8010A8D0)
-        *(.text.func_8010AEAC)
+        *(.text.options_printOption)
+        *(.text.options_animButtonText)
+        *(.text.options_animText)
         *(.text.func_8010B520)
         *(.text.struct_callback_init)
         *(.text.state_update_global)
@@ -1228,7 +1228,7 @@ SECTIONS
         *(.text.func_8010D9CC)
         *(.text.func_8010DAF8)
         *(.text.func_8010DBB8)
-        *(.text.func_8010DCFC)
+        *(.text.StartCone)
         *(.text.func_8010DF90)
         /* blob_8010e0fc */
         *(.text.func_8010E0FC)
@@ -3042,13 +3042,13 @@ SECTIONS
     PROVIDE(track_render_main = 0x800F5000);
     PROVIDE(place_cars_in_order = 0x800F54C0);
     PROVIDE(track_lighting_setup = 0x800F5EF8);
-    PROVIDE(track_texture_load = 0x800F5F90);
+    PROVIDE(highscore_InitScreen = 0x800F5F90);
     PROVIDE(track_culling_update = 0x800F6144);
     PROVIDE(track_render_alt = 0x800F6310);
     PROVIDE(finish_state_normal = 0x800F64D4);
     PROVIDE(sign_render = 0x800F6894);
     PROVIDE(sign_render_main = 0x800F6934);
-    PROVIDE(props_render = 0x800F6AB8);
+    PROVIDE(GhostStart = 0x800F6AB8);
     PROVIDE(prop_instance_render = 0x800F6AD8);
     PROVIDE(prop_batch_render = 0x800F6DBC);
     PROVIDE(prop_visibility_check = 0x800F724C);
@@ -3120,9 +3120,9 @@ SECTIONS
     PROVIDE(game_results_init = 0x800FEC78);
     PROVIDE(game_timer_display = 0x800FECA4);
     PROVIDE(gameover_handler = 0x800FEE04);
-    PROVIDE(game_results_render = 0x800FF298);
+    PROVIDE(audio_animText = 0x800FF298);
     PROVIDE(animControls = 0x800FF724);
-    PROVIDE(game_results_exit = 0x800FFDF8);
+    PROVIDE(controls_animButtonText = 0x800FFDE8);
     PROVIDE(callback_init = 0x80100D30);
     PROVIDE(timer_reset = 0x80100DF0);
     PROVIDE(countdown_start = 0x80100EE4);

@@ -96,8 +96,17 @@ def _regs(text):
 
 
 def parse(asm_text):
-    """[(labels, op, operand_text)] in order, one entry per instruction."""
-    insns, pending = [], []
+    """[(labels, op, operand_text)] in order, one entry per instruction.
+
+    The derived (m2c) assembly labels every real instruction with its address;
+    it renders a load/store off a pointer register as a SYNTHETIC
+    `lui $r,%hi(sym)` (carrying the address label) followed by the real
+    `op $x,%lo(sym)($r)` WITHOUT a label (824 such pairs in the image). The lui
+    is not in the image: it would add a write of $r and push the real
+    instruction out of a delay slot (animResults: `bnel ...; lh $t9,...` became
+    `bnel ...; lui $s3,...`, so t9 looked live on entry). Such a lui is dropped
+    and its labels go to the real instruction (w32n)."""
+    insns, pending, labelled = [], [], False
     for line in asm_text.splitlines():
         if line.startswith("glabel") or not line.strip():
             continue
@@ -107,7 +116,12 @@ def parse(asm_text):
             continue
         m = _INSN.match(line)
         if m:
-            insns.append((pending, m.group(1), m.group(2)))
+            op, operands = m.group(1), m.group(2)
+            if (not pending and labelled and insns and insns[-1][1] == "lui"
+                    and "%hi(" in insns[-1][2] and "%lo(" in operands):
+                pending = insns.pop()[0]
+            insns.append((pending, op, operands))
+            labelled = bool(pending)
             pending = []
     return insns
 
@@ -142,17 +156,64 @@ def _targets(op, operands):
     return labels if (op in BRANCHES or op == "j") else []
 
 
+_LOAD_OF = {"sw": "lw", "swc1": "lwc1", "sdc1": "ldc1", "sd": "ld"}
+_SP_SLOT = re.compile(r"^\s*\$(\w+)\s*,\s*(-?(?:0x[0-9A-Fa-f]+|\d+))\s*\(\s*\$sp\s*\)\s*$")
+
+
+def _sp_slot(operands):
+    """(register, offset) of `op $r, off($sp)`, or None."""
+    m = _SP_SLOT.match(operands)
+    if not m:
+        return None
+    return {"fp": "s8"}.get(m.group(1), m.group(1)), int(m.group(2), 0)
+
+
+def _save_context(insns):
+    """({(load op, register, offset)} of every load from the stack, whether
+    the body makes a call)."""
+    loads, calls = set(), False
+    for _, op, operands in insns:
+        if op in _LOAD_OF.values():
+            slot = _sp_slot(operands)
+            if slot:
+                loads.add((op, slot[0], slot[1]))
+        calls = calls or op in ("jal", "jalr")
+    return loads, calls
+
+
+def _is_save(op, operands, context):
+    """A store of a callee-saved register to the stack is a prologue save when
+    the body reloads the register from that slot or makes no call. Otherwise it
+    is an outgoing STACK ARGUMENT, i.e. a read of a register parameter (w31r,
+    tools/recomp/ipa_detect.py: retail control_cell_text passes its s7
+    parameter on with `jal camera_auto_follow; sw $s7,24($sp)`). Unlike
+    ipa_detect, a register the body also writes is NOT taken for saved:
+    control_cell_text2 passes its s8 parameter on the same way and later
+    reuses s8 without restoring it (an internal function clobbers freely); with
+    this rule the whole image changes in exactly control_cell_text (+s7) and
+    control_cell_text2 (+s8), the two corrections w31r measured (w32n)."""
+    slot = _sp_slot(operands)
+    if slot is None or op not in _LOAD_OF:
+        return True                 # unparsed: keep the old rule (a save)
+    reg, offset = slot
+    loads, calls = context
+    return (_LOAD_OF[op], reg, offset) in loads or not calls
+
+
 def analyze(asm_text):
     """{'live_in': set, 'preserved_reads': set} for one function's asm.
 
     live_in: registers read on some path before any write, excluding O32
-    inputs and stack saves of callee-saved registers.
+    inputs and stack saves of callee-saved registers (_is_save: a callee-saved
+    register stored to the stack and never reloaded from that slot, in a body
+    that calls, is a stack argument and counts as a read).
     preserved_reads: caller-save registers read after a call with no write
     since that call (on the straight-line path within a basic block chain).
     """
     insns = parse(asm_text)
     if not insns:
         return {"live_in": set(), "preserved_reads": set()}
+    context = _save_context(insns)
     index = {}
     for i, (labels, _, _) in enumerate(insns):
         for label in labels:
@@ -199,7 +260,7 @@ def analyze(asm_text):
                 continue
             _, op, operands = insns[j]
             reads, writes, is_call = uses_defs(op, operands)
-            if op in STORES and "$sp" in operands:
+            if op in STORES and "$sp" in operands and _is_save(op, operands, context):
                 reads = {r for r in reads if r not in CALLEE_SAVE}
             for r in reads:
                 if r in cl:

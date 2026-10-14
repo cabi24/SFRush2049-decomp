@@ -89,8 +89,8 @@ def test_new_pointer_interfaces_normalized_but_production_still_blocked():
     for source in [render, walker]:
         assert 'extern void *D_8014A160;' in source
     assert 'extern void *D_801461A8;' in render
-    assert 'extern s32 func_800CC040(s32, void *, void *, s32);' in render
-    assert 'extern void *func_800CC50C(s32, char *);' in render
+    assert 'extern s32 SaveGhost(s32, void *, void *, s32);' in render
+    assert 'extern void *CompressGhost(s32, char *);' in render
     for source in [render, transition]:
         assert 'extern s8 *namePanes[]' in source
         assert 'extern void sound_handles_array_clear(s8 *);' in source

@@ -20,7 +20,7 @@ sys.path.insert(0,str(ROOT))
 from tools.cloud import score
 spec=importlib.util.spec_from_file_location('cone_start_native',HERE/'native.py')
 native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
-FN='func_8010DCFC'; START=0x8010DCFC
+FN='StartCone'; START=0x8010DCFC
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 CONTEXT=['func_80090284','vector_normalize_length','math_utility']
 SYMS={k:int(v,16) for k,v in json.loads((ROOT/'asm/us/blob/symbols.json').read_text())['symbols'].items()}
@@ -87,7 +87,7 @@ def compiler_proof(work):
  controls={}
  sources={
   'o2':(source.read_text(),FLAGS.replace('-O3','-O2')),
-  'authentic_scale_macro':(source.read_text().replace('void func_8010DCFC(Target *t)', '#define ScaleVector(v1,s,r) (r[0] = v1[0]*(s), r[1] = v1[1]*(s), r[2] = v1[2]*(s))\nvoid func_8010DCFC(Target *t)').replace('    velocity[0] = car->velocity[0] * 0.125f;\n    velocity[1] = car->velocity[1] * 0.125f;\n    velocity[2] = car->velocity[2] * 0.125f;', '    ScaleVector((car->velocity),0.125f,velocity);'),FLAGS),
+  'authentic_scale_macro':(source.read_text().replace('void StartCone(Target *t)', '#define ScaleVector(v1,s,r) (r[0] = v1[0]*(s), r[1] = v1[1]*(s), r[2] = v1[2]*(s))\nvoid StartCone(Target *t)').replace('    velocity[0] = car->velocity[0] * 0.125f;\n    velocity[1] = car->velocity[1] * 0.125f;\n    velocity[2] = car->velocity[2] * 0.125f;', '    ScaleVector((car->velocity),0.125f,velocity);'),FLAGS),
   'genuine_basis_36':(source.read_text().replace('    MATRIX tmat;','    struct { f32 uvs[3][3]; } tmat;').replace('tmat.mat3.uvs','tmat.uvs'),FLAGS),
   'archived_singleformal':((ROOT/'cloud/work/heads_B14/func_8010DCFC_singleformal.c').read_text(),FLAGS.replace('-O3','-O2')),
  }

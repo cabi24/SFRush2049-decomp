@@ -1,0 +1,3 @@
+spliced menu_save_options: 24 members, new: ['func_800CC50C', 'props_render']
+image coverage: 1058/1216 functions, 387768/647072 bytes (59.93%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

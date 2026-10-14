@@ -114,7 +114,7 @@ void HAL_SetFont_8AB0(s32 font)
     font_set_8AB0(font);
 }
 
-s32 func_80108AB0(void *item)
+s32 animWrongWay(void *item)
 {
     s32 x;
     s32 y;

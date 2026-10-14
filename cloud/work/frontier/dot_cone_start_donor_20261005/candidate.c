@@ -59,7 +59,7 @@ extern void save_write_data(void *, s32, f32, s32);
 extern void vector_normalize_length(f32 *, f32 [3][3]);
 extern void math_utility(void *, void *);
 extern s32 stat_lap_split(s32, s32, f32 *, u8);
-void func_8010DCFC(Target *t)
+void StartCone(Target *t)
 {
     Visual *v;
     MATRIX tmat;

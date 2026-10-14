@@ -1,0 +1,1 @@
+--internal game_results_update --internal au_gfx_lock --internal au_gfx_unlock --internal au_font_set --internal au_CenterText --internal au_RightText --internal au_SetJust --internal au_SetFont --internal au_validOption

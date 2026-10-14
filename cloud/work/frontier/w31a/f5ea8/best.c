@@ -83,7 +83,7 @@ void ar_SetFont(s32 font)
     ar_font_set(font);
 }
 
-s32 func_80105EA8(s32 arg0)
+s32 animResults(s32 arg0)
 {
     s32 playerIdx;
     s32 x;

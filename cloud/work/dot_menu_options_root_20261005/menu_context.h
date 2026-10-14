@@ -38,8 +38,8 @@ extern void fcvt_wrapper(char *, char *, ...);
 extern u32 object_manager_update(void *, s16);
 extern void state_utility(s16, s16, void *);
 extern s32 object_bytes_sum_global(void);
-extern void func_8010A7A4(s32, s32, s32, void *, void *);
-extern void func_8010A8D0(void);
+extern void options_printOption(s32, s32, s32, void *, void *);
+extern void options_animButtonText(void);
 extern void func_800ED66C(f32);
 extern void func_800BEA3C(Color4, Color4);
 #endif

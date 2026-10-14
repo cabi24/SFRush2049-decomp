@@ -162,16 +162,16 @@
   "image_rom_gate_run": false,
   "source_artifact_sha256": {
     "cloud/work/dot_menu_options_root_20261005/REPORT.md": "1f1291c3643300981432feb3d9639a7ea873c3e6b10a9695282b3e50a46a44de",
-    "cloud/work/dot_menu_options_root_20261005/host_root_test.c": "24054cd3a1f9fa5a6834000883eee2656cb7e88278e1a48ed11ddb61d2271713",
+    "cloud/work/dot_menu_options_root_20261005/host_root_test.c": "4db202f13c27c16f7144936a4798c68cd70342d5dafa1d16c67e11ed9bce177e",
     "cloud/work/dot_menu_options_root_20261005/host_slot_test.c": "2388c274641f0f2295193669ea7c7faebdf8671f391c5838178d96004d325b1a",
     "cloud/work/dot_menu_options_root_20261005/layout_probe.c": "258be2755b8dfb7a8f275bc1b79b52a3828ddb40162ded24482d606ed7b7059c",
-    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06",
-    "cloud/work/dot_menu_options_root_20261005/peer_review.json": "eddd8bfa0c9bf7f4a63dd5d3867cd65652275f7ddbe6616f4525ac03e4d76076",
-    "cloud/work/dot_menu_options_root_20261005/root.c": "8f788d7e4b00e4bd85bf49254e4bc926c1de62b2bc091b8b448ab5120239de42",
+    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "3d462271cde6c9c73f9a824db2d5e6ea9e3a5391a77fa44e28c6a08641c717cc",
+    "cloud/work/dot_menu_options_root_20261005/peer_review.json": "8290353ed1f7993ff156ef3a67bb368b28970dcf8f76442043e933fe58e42804",
+    "cloud/work/dot_menu_options_root_20261005/root.c": "667e77e05e8a60baf996bf14a08feb5d25e3821937057046d6c6a70b3c0b937b",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "cloud/work/dot_menu_options_root_20261005/verification.json": "233e5acf7bd0774ddac17c687505fa15acfb417ffe26d3f402f5cd3f1d520d1b",
-    "cloud/work/dot_menu_options_root_20261005/verify.py": "8f5c0d6f61150db77b44259583c6b4cf908836ce017e7f94284bdcad53365cc5",
-    "tests/conveyor/test_dot_menu_options_root.py": "1a4241e93050e06a3e0cea663c28687e5a9413b00787140f10d200b276aa6671"
+    "cloud/work/dot_menu_options_root_20261005/verification.json": "531c870f0657d18cf7b1b0e7233aba01cb5d45b681f8471fd315f98de364b723",
+    "cloud/work/dot_menu_options_root_20261005/verify.py": "d438e6d8e2b2b05a51e3b27828d617ee37382697cd9078a7eb0aa7b4bda676a9",
+    "tests/conveyor/test_dot_menu_options_root.py": "c2876b582c257dc65f63c763a9f94efc2c9f98d2e18828d9e0e9834a5247a04c"
   },
   "publication_scope": "Only source, tests and sanitized hashes/counts/research verification. No ROM bytes, raw assembly dumps, generated binaries, credentials or unrelated private data."
 }

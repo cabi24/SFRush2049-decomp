@@ -48,7 +48,7 @@
       "playgame_state_change": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
       "speed_mode0_wrapper": "71c500cfc0c18d2a306e57a277d7aa0b1ea07b5eba55cfcc8be0f3eca8a70f52",
       "speed_mode1_wrapper": "78790a2c0ce7c981e572ac576f2caf3e06e6b408a1420dbc8868a4921840853a",
-      "track_texture_load": "ee143ee84039e77ca2074c3a4574ae5a7d2d7710a81c8a9c0538515b0e690c7f",
+      "highscore_InitScreen": "ee143ee84039e77ca2074c3a4574ae5a7d2d7710a81c8a9c0538515b0e690c7f",
       "vsync_wait": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
     },
     "native_starts": {
@@ -63,7 +63,7 @@
       "playgame_state_change": "0x800CA3B4",
       "speed_mode0_wrapper": "0x800C92DC",
       "speed_mode1_wrapper": "0x800C93AC",
-      "track_texture_load": "0x800F5F90",
+      "highscore_InitScreen": "0x800F5F90",
       "vsync_wait": "0x800FB234"
     },
     "scope": "Manifest-verified registered game bodies; direct JAL instructions only. No computed, static-image or overlay call proof."
@@ -175,7 +175,7 @@
   },
   "gnu_total_relocations": 20,
   "inputs": {
-    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/callers.json": "26ddd8ab7aa3f5ec17c080a5002ec8d5de92c8cf6a7791c20596deb290f77723",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/callers.json": "dfee72ed69c41a96b53c0adcb78b581efecd8b21e9e006fe9f38ba730e45f2f7",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c": "dcf3c3460dc2dc12297b75bcbe48a0f6808d3244dd1c8107d1c30e7cf0f7a757",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.json": "15e33843ad08fa394ce6b50753c534a5d4711977ae1b3e35e9b7f61b5d47fe6c",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": "f63af02871112cc3bf652866430957f10c7873f5c610d820fd36e3e646df6c46",

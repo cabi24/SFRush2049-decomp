@@ -96,9 +96,9 @@ class DepsTests(unittest.TestCase):
         self.assertGreater(st['within_cap'], st['bounded_discovery'])
 
     def test_tail_label_is_not_classified(self):
-        # w30n retired the last registered tail label (highscore_entry_anim, inside func_80104704)
+        # w30n retired the last registered tail label (highscore_entry_anim, inside DrawName)
         self.assertNotIn('highscore_entry_anim', self.m.corpus.funcs)
-        self.assertNotEqual(self.m.classify('func_80104704')[0], 'TAIL')
+        self.assertNotEqual(self.m.classify('DrawName')[0], 'TAIL')
         self.assertEqual([f.name for f in self.m.corpus.funcs.values() if f.tail_of], [])
 
 

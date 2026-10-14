@@ -1,0 +1,217 @@
+{
+ "map": {
+  "game_results_update": "audio_animButtonText",
+  "track_texture_load": "highscore_InitScreen",
+  "func_80104704": "DrawName",
+  "func_80104B14": "DrawGhost",
+  "func_80103D28": "DrawUnlocked",
+  "func_80105480": "highscore_animText",
+  "func_80105EA8": "animResults",
+  "func_800CC040": "SaveGhost",
+  "func_800CC50C": "CompressGhost",
+  "func_80102980": "drawBattleScore",
+  "func_80108AB0": "animWrongWay",
+  "func_8010DCFC": "StartCone",
+  "func_8010AEAC": "options_animText",
+  "func_8010A8D0": "options_animButtonText",
+  "func_8010A7A4": "options_printOption",
+  "game_results_render": "audio_animText",
+  "func_80100564": "controls_animText",
+  "game_results_exit": "controls_animButtonText",
+  "props_render": "GhostStart"
+ },
+ "base": "HEAD",
+ "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+ "bodies": 1066,
+ "rekeyed": [
+  "func_800CC040 -> SaveGhost",
+  "func_800CC50C -> CompressGhost",
+  "func_80102980 -> drawBattleScore",
+  "func_80108AB0 -> animWrongWay",
+  "func_8010A7A4 -> options_printOption",
+  "func_8010A8D0 -> options_animButtonText",
+  "func_8010AEAC -> options_animText",
+  "func_8010DCFC -> StartCone",
+  "game_results_render -> audio_animText",
+  "game_results_update -> audio_animButtonText",
+  "props_render -> GhostStart",
+  "track_texture_load -> highscore_InitScreen"
+ ],
+ "entries": [
+  {
+   "kind": "group",
+   "name": "menu_save_options",
+   "old_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
+   "new_sha256": "677dfad1d66c5eb8c905f9a1c5365433fb48f2470c2ac9ba0d442c47a556a4c0",
+   "changed_files": [
+    "src/blob/groups/menu_save_options/group.json",
+    "src/blob/groups/menu_save_options/ctx_slot.c",
+    "src/blob/groups/menu_save_options/ctx_newghost.c",
+    "src/blob/groups/menu_save_options/props.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "CompressGhost",
+    "GhostStart",
+    "SaveGhost"
+   ],
+   "members": [
+    "AdjustSteer",
+    "CompressGhost",
+    "GhostStart",
+    "SaveGhost",
+    "SaveServer",
+    "draw_speedometer",
+    "draw_ui_element",
+    "func_80094FC4",
+    "func_800A1A3C",
+    "func_800A361C",
+    "func_800A370C",
+    "func_800A44E8",
+    "func_800C7200",
+    "func_800C7300",
+    "func_800C7EC0",
+    "func_800C7EC8",
+    "func_800CBF2C",
+    "func_800CCCCC",
+    "func_800CCEFC",
+    "func_800CD058",
+    "func_800CD0FC",
+    "menu_item_value_get",
+    "menu_save_options",
+    "menu_transition"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_billboard_render",
+   "old_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
+   "new_sha256": "af868d2af12aadee7ff65bc2e173d6cbb825a51aa59fe1028f8b11d04851f950",
+   "changed_files": [
+    "src/blob/groups/frontier_billboard_render/group.json",
+    "src/blob/groups/frontier_billboard_render/func_800F1930.c",
+    "src/blob/groups/frontier_billboard_render/billboard_render.c",
+    "src/blob/groups/frontier_billboard_render/track_texture_load.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "highscore_InitScreen"
+   ],
+   "members": [
+    "FindGhosts",
+    "PrintScores",
+    "SetHighScoreState",
+    "billboard_render",
+    "func_800F1930",
+    "func_800F207C",
+    "highscore_InitScreen"
+   ]
+  },
+  {
+   "kind": "single",
+   "name": "StartCone",
+   "old_sha256": "51e150b98a07119b965d361d15a449fca6a47c71009732b1ab17ea4fafd01b2b",
+   "new_sha256": "3550a7ab5bac09d45299842cd2efe72f040353b43d8ee7384984dc22a68d3998",
+   "changed_files": [
+    "src/blob/StartCone.c"
+   ],
+   "moved_from": "src/blob/func_8010DCFC.c",
+   "renamed_members": [
+    "StartCone"
+   ],
+   "members": [
+    "StartCone"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "credits_scroll_grp",
+   "old_sha256": "10b5f80ac53d3adfab30a9802353255d22aba965808f034451ae4d4d32b0d4be",
+   "new_sha256": "0ae0d59b1402e669e9c6162b2247705ccb15d7aecf77feccb3772883b103a89f",
+   "changed_files": [
+    "src/blob/groups/credits_scroll_grp/group.json",
+    "src/blob/groups/credits_scroll_grp/gr3_8ab0.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "animWrongWay"
+   ],
+   "members": [
+    "animElapsedTimerText",
+    "animLapTime",
+    "animPlace",
+    "animWrongWay",
+    "credits_scroll",
+    "func_80100B8C",
+    "func_80107EDC",
+    "func_8010A53C",
+    "slot_state_setup",
+    "world_trigger_check"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_audioscr",
+   "old_sha256": "d56427d69f9285dbad9956829bfd9bb4f79491f98f996b766ac6d8a0b1a26a99",
+   "new_sha256": "59e71ca75f497f1a1c5774e0435154e0946cc43edda3da2f33f212391dfdb76a",
+   "changed_files": [
+    "src/blob/groups/frontier_audioscr/group.json",
+    "src/blob/groups/frontier_audioscr/audio.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "audio_animButtonText",
+    "audio_animText"
+   ],
+   "members": [
+    "audio_animButtonText",
+    "audio_animText",
+    "func_800BEA3C"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "frontier_results_table",
+   "old_sha256": "111edb40a355199b5b2762b24fe33a737900d74e2c88fb3387c33a907d3789a7",
+   "new_sha256": "337824a340d54066b5b1c09425cca2ded8910e95f35ceb1c845dc124223488fb",
+   "changed_files": [
+    "src/blob/groups/frontier_results_table/group.json",
+    "src/blob/groups/frontier_results_table/results_table.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "drawBattleScore"
+   ],
+   "members": [
+    "drawBattleScore",
+    "drawMain",
+    "func_80100D5C",
+    "func_80101904",
+    "func_80101D84",
+    "func_80102448",
+    "func_80102F30"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "func_8010AEAC",
+   "old_sha256": "13ccfb6deab58f5c2f1c0e77a7c8fef74f26b98918dea845dfcb5214a1bf89bf",
+   "new_sha256": "1cc3beb6327f716c2560eb73cd45b7c9e4a00dd66e4472cc82a419a7c339f5ad",
+   "changed_files": [
+    "src/blob/groups/func_8010AEAC/group.json",
+    "src/blob/groups/func_8010AEAC/faeac.c"
+   ],
+   "moved_from": null,
+   "renamed_members": [
+    "options_animButtonText",
+    "options_animText",
+    "options_printOption"
+   ],
+   "members": [
+    "options_animButtonText",
+    "options_animText",
+    "options_printOption"
+   ]
+  }
+ ]
+}

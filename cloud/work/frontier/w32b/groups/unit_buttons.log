@@ -1,0 +1,4 @@
+  EQUAL func_800DB1E0: 350 words (kept, c_buttons.c)
+  EQUAL func_800DA2C0: 579 words (internal, c_buttons.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  locked bodies that differ in this unit: 0
+blob_unit score: 2/2 equal; object build/blob_unit/w32b/unit.o (9.9s)

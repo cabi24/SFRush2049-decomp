@@ -15,11 +15,11 @@ PACKET = ROOT / 'cloud/work/ipa-groups/dot_menu_row_caller_20261005'
 def test_proof_is_full_extent_and_not_caller_credit():
     proof = json.loads((PACKET/'verification.json').read_text())
     spec = json.loads((PACKET/'group.json').read_text())
-    assert spec['claims'] == proof['claims'] == ['func_8010A7A4']
+    assert spec['claims'] == proof['claims'] == ['options_printOption']
     assert proof['source_sha256'] == hashlib.sha256((PACKET/'group.c').read_bytes()).hexdigest()
     assert proof['manifest_sha256'] == hashlib.sha256((PACKET/'group.json').read_bytes()).hexdigest()
     rows = {row['function']: row for row in proof['results']}
-    helper = rows['func_8010A7A4']
+    helper = rows['options_printOption']
     assert helper['elf_st_size'] == helper['extent_to_next_symbol_or_text_end'] == helper['target_bytes'] == 300
     assert helper['production_relocation_full_extent_equal']
     assert helper['independent_gnu_link_full_extent_equal']
@@ -27,8 +27,8 @@ def test_proof_is_full_extent_and_not_caller_credit():
     assert helper['canonical_comparison']['differing'] == helper['canonical_comparison']['extra_words'] == 0
     assert not helper['unresolved_after_proof'] and not helper['unverified_after_proof']
     assert proof['own_literal']['verified']
-    assert not rows['func_8010A8D0']['claimed']
-    assert rows['func_8010A8D0']['canonical_comparison']['differing'] > 0
+    assert not rows['options_animButtonText']['claimed']
+    assert rows['options_animButtonText']['canonical_comparison']['differing'] > 0
     assert not rows['func_800BEA3C']['claimed']
     assert rows['func_800BEA3C']['production_relocation_full_extent_equal']
     assert proof['host_behavior_cases'] == 1769 and proof['native_layout_checks'] == 9
@@ -39,7 +39,7 @@ def test_genuine_context_has_no_standins_or_pressure_locals():
     source = (PACKET/'group.c').read_text()
     assert 'volatile' not in source and '__inline' not in source
     assert 'caller_a' not in source and 'caller_b' not in source
-    assert source.count('func_8010A7A4(') == 15
+    assert source.count('options_printOption(') == 15
     assert 'D_80118E28.rgba = first.rgba;' in source
     assert 'D_80118E2C.rgba = second.rgba;' in source
     assert 'dispatch_handler(index == D_80116D9C ? 22 : 1);' in source

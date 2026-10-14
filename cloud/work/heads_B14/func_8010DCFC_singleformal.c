@@ -795,10 +795,10 @@ void stat_lap_split();
 void vector_normalize_length();
 
 /* group functions */
-void func_8010DCFC(void *arg0);
+void StartCone(void *arg0);
 
 
-void func_8010DCFC(void *arg0) {
+void StartCone(void *arg0) {
     M2C_UNK *sp84;
     f32 sp54[3];
     void *sp44;

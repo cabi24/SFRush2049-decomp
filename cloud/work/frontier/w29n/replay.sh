@@ -4,7 +4,8 @@
 #   RENAME_BATCH=w30n sh cloud/work/frontier/w29n/replay.sh [MAIN_CHECKOUT]
 #
 # renames.json is the single table; every accepted row names the `batch` that applies it
-# (w29n: wave 29; w30n: the 10 rows w29n deferred, wave 30). RENAME_BATCH (default w30n)
+# (w29n: wave 29; w30n: the 10 rows w29n deferred, wave 30; w32n: 19 GC screen/ghost names, wave 32).
+# RENAME_BATCH (default w30n)
 # selects the batch; tools that act on names the tree must still carry (inventory, symbol_addrs,
 # sources, lock re-key, CLAIMS) get only that batch (tools/batch.py), token-only tools the
 # whole table (they are idempotent on applied rows). Builder dirs: rush2049/scratch/frontier/$RENAME_BATCH.
@@ -25,7 +26,8 @@
 #      + src/rom/storage_overrides.mk regenerated (owned_storage generate)
 #   4  sources: users.py finds every src/blob C/H file that USES an old name (all
 #      singles and groups, incl. ones installed after the w29n base); permute_c; the same for
-#      the lane drafts cloud/work/frontier/w2[89]?/<fn>/best.c
+#      the lane drafts (every tracked C/H file of cloud/work/frontier/w2[89]?/ and w3[0-9]?/);
+#      lane_rename.py: their dc.args argument lines and group.json name values
 #   5  group.json/unit_overrides names, git mv of renamed singles (json_rename.py)
 #   6  lock: rename_resplice.py apply (keys, pure-rename proofs, recompile on watchman2,
 #      image gate) -> w29n/blob_lock_migration.json; blob_tu symbols
@@ -59,6 +61,10 @@ mkdir -p "$DATA"; rm -f "$DATA/conveyor.db"
 python3 -c "import sqlite3,sys; s=sqlite3.connect('file:'+sys.argv[1]+'?mode=ro',uri=True); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close()" \
   "$HOME/.conveyor/conveyor.db" "$DATA/conveyor.db"
 python3 -m tools.conveyor.pipeline.closure --data "$DATA" run --report build/${BATCH}_closure.json | tail -3
+# w32n: objects copied from the main checkout can be stale (bound to pre-rename sources): rebuild them on
+# the PRE-rename tree first, or the lock step cannot compose the image (LockedBodyError)
+python3 -m tools.conveyor.pipeline.blob_layout --data "$DATA" derive | tail -1
+python3 -m tools.conveyor.pipeline.blob_splice --data "$DATA" rebuild-stale | head -1
 python3 $L/tools/db_rename.py $DELTA --data "$DATA" --apply
 python3 -m tools.conveyor.pipeline.blob_layout --data "$DATA" derive | tail -1
 echo "== 2 GAME_SYMBOLS"; python3 $L/tools/gamesyms.py $MAP
@@ -73,9 +79,13 @@ files=$(python3 $L/tools/users.py $DELTA $(find src/blob \( -name '*.c' -o -name
 [ -z "$files" ] || python3 -m tools.conveyor.pipeline.static_rename source $DELTA $files
 # lane drafts reused next wave (w28*/w29* <fn>/best.c, not this lane): same rule, so they keep linking
 # + every tracked C/H file of the wave-30+ lane dirs (drafts, group packets with their ctx_*.c files)
-drafts=$( (ls cloud/work/frontier/w2[89]?/*/best.c 2>/dev/null; git ls-files 'cloud/work/frontier/w3[0-9]?/*.c' 'cloud/work/frontier/w3[0-9]?/*.h') \
-  | grep -v '^cloud/work/frontier/w29n/\|^cloud/work/frontier/w30n/' | sort -u | xargs -r python3 $L/tools/users.py $DELTA | cut -d: -f1)
+# + (w32n) every tracked C/H file of the w28/w29 lane dirs too (e.g. w28c's dc_static.c, which a recomp test runs)
+drafts=$( (ls cloud/work/frontier/w2[89]?/*/best.c 2>/dev/null; git ls-files 'cloud/work/frontier/w2[89]?/*.c' 'cloud/work/frontier/w2[89]?/*.h' \
+           'cloud/work/frontier/w3[0-9]?/*.c' 'cloud/work/frontier/w3[0-9]?/*.h') \
+  | grep -v '^cloud/work/frontier/w29n/\|^cloud/work/frontier/w30n/\|^cloud/work/frontier/w32n/' | sort -u | xargs -r python3 $L/tools/users.py $DELTA | cut -d: -f1)
 [ -z "$drafts" ] || python3 -m tools.conveyor.pipeline.static_rename source $DELTA $drafts
+# w32n: the lane dirs' dc.args argument lines and group packets' group.json name values
+python3 $L/tools/lane_rename.py $DELTA --write
 echo "== 5 group.json / unit_overrides / singles"; python3 $L/tools/json_rename.py $DELTA
 echo "== 6 lock"
 python3 $L/tools/rename_resplice.py apply $DELTA --base HEAD --out blob_lock_migration_$BATCH.json
@@ -89,7 +99,7 @@ for r in cloud/work/frontier/dot_nearest_point_donor_20261005/verification.json 
 done
 python3 cloud/work/frontier/dot_slot_contract_audit_20261006/audit.py --write > /dev/null
 python3 $L/tools/rebind.py --base HEAD --map $DELTA --write
-python3 $L/tools/rebind_packets.py --base HEAD --map $DELTA --write \
+python3 $L/tools/rebind_packets.py --base HEAD --map $DELTA --users-only --write \
   cloud/work/encoded_string_mapping cloud/work/frontier/dot_runtime_a_writer_bounds_20261012 \
   cloud/work/frontier/dot_audio_bus_reopen cloud/work/frontier/dot_billboard_context_20261005 \
   tests/conveyor/test_billboard_save_input_packet.py tests/conveyor/test_encoded_string_mapping_reconstruction.py \
@@ -109,7 +119,13 @@ python3 $L/tools/rebind_packets.py --base HEAD --map $DELTA --write \
   cloud/work/ipa-groups/dot_steady_camera_20261005 cloud/work/near-miss/func_8008B000/base.c \
   cloud/work/dot_resource_init tests/conveyor/test_resource_init_research.py \
   cloud/work/frontier/dot_resource_initializer tests/conveyor/test_frontier_resource_initializer.py \
-  cloud/work/frontier/dot_slot_setter_boundary_20261006 tests/conveyor/test_dot_slot_setter_boundary_20261006.py
+  cloud/work/frontier/dot_slot_setter_boundary_20261006 tests/conveyor/test_dot_slot_setter_boundary_20261006.py \
+  tests/cloud/test_ipakit_deps.py tests/cloud/test_ipakit_heads.py tests/cloud/test_recomp_phase11.py \
+  cloud/work/ipa-groups/dot_menu_row_caller_20261005 tests/conveyor/test_dot_menu_row_caller.py \
+  cloud/work/dot_menu_options_root_20261005 tests/conveyor/test_dot_menu_options_root.py \
+  cloud/work/frontier/dot_cone_start_donor_20261005 tests/conveyor/test_cone_start_donor.py \
+  cloud/work/ipa-groups/dot_speed_flags_c9210_20261006 tests/conveyor/test_speed_flags_contract.py \
+  cloud/work/ipa-groups/billboard_render/br.c cloud/work/heads_B14/func_8010DCFC_singleformal.c
 # w30n: exact game-side edits in fixtures that also hold frozen runtime-image spellings
 python3 $L/tools/rebind_edits.py --base HEAD --map $DELTA --write
 echo "== 8 CLAIMS, recomp follow-ups, correlation"

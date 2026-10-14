@@ -1,7 +1,7 @@
 {
   "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
   "target": {
-    "name": "func_8010DCFC",
+    "name": "StartCone",
     "start": "0x8010DCFC",
     "end": "0x8010DF90",
     "bytes": 660

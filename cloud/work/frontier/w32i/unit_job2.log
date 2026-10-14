@@ -1,0 +1,23 @@
+  FAIL control_settings: 534 of 638 words differ; compiled body is 636 words, target 638; +0x1f8: .rodata+0x650: retail words encode 0x000f7080, outside the image
+       defined by c_group.c (kept)
+       +0x0bc  image 1000022e  unit 1000022c
+       +0x0d0  image 0680023d  unit 0680023b
+       +0x16c  image 00408025  unit 00002825
+       +0x170  image 00002825  unit 0c001d78
+       +0x174  image 0c001d78  unit 00003025
+       +0x178  image 00003025  unit 0c02dd28
+       umerge inlined into it: font_set_DC
+  EQUAL control_cell_text: 66 words (internal, c_group.c)
+  EQUAL control_cell_text3: 205 words (internal, c_group.c)
+  EQUAL control_cell_text2: 173 words (internal, c_group.c)
+  EQUAL func_800DD0C0: 227 words (internal, c_group.c)
+  EQUAL func_800DCD58: 39 words (internal, c_group.c)
+  EQUAL func_800DCCE0: 28 words (internal, c_group.c)
+  EQUAL slot_state_setup: 58 words (internal, g_credits_scroll_grp__gr3_b.c)
+  FAIL object_create: 2 of 28 words differ; compiled body is 2 words, target 28
+       defined by g_credits_scroll_grp__gr3_b.c (internal)
+       +0x000  image 27bdffd0  unit 03e00008
+       +0x004  image afa40030  unit 00000000
+  EQUAL func_800B669C: 5 words (kept, s_func_800B669C.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 8/10 equal; object build/blob_unit/w32i/unit.o (8.7s)

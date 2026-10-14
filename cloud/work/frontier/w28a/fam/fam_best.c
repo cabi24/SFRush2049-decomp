@@ -362,7 +362,7 @@ void func_80102448(void)
     D_80118E20[1]=3;D_80118E20[0]=0;
 }
 
-void func_80102980(void)
+void drawBattleScore(void)
 {
     s32 x;
     s32 previous;
@@ -620,7 +620,7 @@ s32 func_80102F30(s32 arg0)
             func_80102448();
             break;
         case 6:
-            func_80102980();
+            drawBattleScore();
             break;
         case 0:case 2:case 3:case 5:
             rows=D_80152734+3;

@@ -9,7 +9,7 @@
     "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
     "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "54b995a95309a7ad07676ff1e83a12a8e80860a0fdf76830a13d5eff89913421",
+    "src/blob/groups/credits_scroll_grp/group.json": "26e65f76691e3455a3549953884c650b9b3637104b182b9d3f661b219c58d4a6",
     "src/blob/groups/credits_scroll_grp/gr3_c.c": "232480bd8d62ede6bca6ca1452cbd92b34c6091b06594d7fdb486c8a1553d818",
     "src/blob/groups/slot_sound/group.c": "f45284d32c1be634058f3f1c6a47e2c0f98588e8caaa0771f2beef14232136b2"
   },
@@ -55,31 +55,37 @@
     "accepted_callers": [
       "TitlePane",
       "credits_scroll",
+      "control_cell_text",
+      "control_cell_text3",
+      "control_cell_text2",
+      "func_800DD0C0",
       "world_trigger_check",
       "PrintScores",
       "SetHighScoreState",
+      "audio_animButtonText",
+      "audio_animText",
       "func_80100B8C",
       "func_80101904",
       "func_80101D84",
       "drawMain",
       "func_80102448",
-      "func_80102980",
+      "drawBattleScore",
       "func_80102F30",
       "func_80106B3C",
       "animElapsedTimerText",
       "animPlace",
       "func_80107EDC",
       "animLapTime",
-      "func_80108AB0",
+      "animWrongWay",
       "func_8010A53C",
-      "func_8010A8D0",
-      "func_8010AEAC",
+      "options_animButtonText",
+      "options_animText",
       "func_8010B5D0",
       "func_8010B7FC",
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 50352,
+    "unaccepted_caller_bytes": 45332,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -100,7 +106,7 @@
       "address": "0x800D9098"
     },
     {
-      "function": "game_results_render",
+      "function": "audio_animText",
       "address": "0x800FF434"
     },
     {
@@ -340,7 +346,7 @@
       "start": "0x800DC88C",
       "bytes": 264,
       "body_sha256": "4cf7e4dca62d3e45cff6f5ac33310c8009e7afc3976c3c5429611607af1d51f9",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DC8AC"
       ],
@@ -355,7 +361,7 @@
       "start": "0x800DC99C",
       "bytes": 820,
       "body_sha256": "27d3a8ed3371fc0abce83e343ced4995b40b9b43758bf72797fe2f40df3d0493",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DC9CC",
         "0x800DCB00",
@@ -375,7 +381,7 @@
       "start": "0x800DCDF4",
       "bytes": 692,
       "body_sha256": "29c9a74c6d39a53dea6170e17d3e588a1f302176a7ad904ff80dfbdfb63a4b6b",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DCE1C",
         "0x800DCF5C",
@@ -394,7 +400,7 @@
       "start": "0x800DD0C0",
       "bytes": 908,
       "body_sha256": "bb6dbb9f29beb77bcbd081f97a12640d638d1c435ccf14baa251f8fe6be1dd01",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DD0FC",
         "0x800DD2C0",
@@ -426,10 +432,6 @@
       },
       "other_unaccepted_direct_game_calls": [
         "camera_auto_follow",
-        "control_cell_text",
-        "control_cell_text2",
-        "control_cell_text3",
-        "func_800DD0C0",
         "state_utility"
       ]
     },
@@ -618,11 +620,11 @@
         "object_bytes_sum_global"
       ]
     },
-    "game_results_update": {
+    "audio_animButtonText": {
       "start": "0x800FEE04",
       "bytes": 1172,
       "body_sha256": "47db3878607e637a6fd562be228622ef93925ee055c26698cfa4473d80856ce8",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800FEE44",
         "0x800FEEE8"
@@ -635,11 +637,11 @@
         "state_utility"
       ]
     },
-    "game_results_render": {
+    "audio_animText": {
       "start": "0x800FF298",
       "bytes": 1164,
       "body_sha256": "96d4e33c9339f376d6dd006b4f1a2bb46f3f4133c86f58188d9ca39b60ab4fad",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800FF324",
         "0x800FF434"
@@ -648,12 +650,11 @@
         "s0": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "game_results_update",
         "object_bytes_sum_global",
         "state_utility"
       ]
     },
-    "game_results_exit": {
+    "controls_animButtonText": {
       "start": "0x800FFDE8",
       "bytes": 1916,
       "body_sha256": "cf431b860003f6c5d8401b823ece11a12597053cf50b9e991e96377d39a92ce7",
@@ -677,7 +678,7 @@
         "state_utility"
       ]
     },
-    "func_80100564": {
+    "controls_animText": {
       "start": "0x80100564",
       "bytes": 1576,
       "body_sha256": "64a8aed5a727c7a07f01a1a5864e51038f60e537b0c51e8a74e701982097a770",
@@ -690,7 +691,7 @@
       },
       "other_unaccepted_direct_game_calls": [
         "camera_auto_follow",
-        "game_results_exit",
+        "controls_animButtonText",
         "object_bytes_sum_global",
         "race_position_update",
         "state_utility"
@@ -807,7 +808,7 @@
         "state_utility"
       ]
     },
-    "func_80102980": {
+    "drawBattleScore": {
       "start": "0x80102980",
       "bytes": 1456,
       "body_sha256": "3a39ddabf997cb61c9e8e4d89617e76991963337e4a62f004aa01690b8099d99",
@@ -849,7 +850,7 @@
         "state_utility"
       ]
     },
-    "func_80103D28": {
+    "DrawUnlocked": {
       "start": "0x80103D28",
       "bytes": 2516,
       "body_sha256": "2f1df67e368d3d85cf7244a10421cdbdac1ae9633568b30e5fa32368af54cad2",
@@ -865,7 +866,7 @@
         "state_utility"
       ]
     },
-    "func_80104704": {
+    "DrawName": {
       "start": "0x80104704",
       "bytes": 1040,
       "body_sha256": "7ec34079ea4b33df62f69cb51957126ee37dc4772f57bb0e80896d4b5f34cb55",
@@ -880,7 +881,7 @@
         "state_utility"
       ]
     },
-    "func_80104B14": {
+    "DrawGhost": {
       "start": "0x80104B14",
       "bytes": 2404,
       "body_sha256": "31fd308b3137e7391dba4c91dc6eb4a29179bd991b9cbced0fa6bca6f2beb354",
@@ -906,7 +907,7 @@
         "state_utility"
       ]
     },
-    "func_80105480": {
+    "highscore_animText": {
       "start": "0x80105480",
       "bytes": 1780,
       "body_sha256": "863ca583ebb7454187921952f1afb165e58ba2f18c5897622db53ff81c70d8e8",
@@ -924,14 +925,14 @@
         "stack_word": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "func_80103D28",
-        "func_80104704",
-        "func_80104B14",
+        "DrawGhost",
+        "DrawName",
+        "DrawUnlocked",
         "race_position_update",
         "state_utility"
       ]
     },
-    "func_80105EA8": {
+    "animResults": {
       "start": "0x80105EA8",
       "bytes": 2508,
       "body_sha256": "dd1cc1dcfadabb3bd3e326b60ad6da9c5fc8c735d4968e58784ef9f684542f88",
@@ -1075,7 +1076,7 @@
         "state_utility"
       ]
     },
-    "func_80108AB0": {
+    "animWrongWay": {
       "start": "0x80108AB0",
       "bytes": 760,
       "body_sha256": "6fd1e202ddda9cf171d89702d30617080135529d0e41ba1533b927f697e8fa3b",
@@ -1120,7 +1121,7 @@
         "state_utility"
       ]
     },
-    "func_8010A8D0": {
+    "options_animButtonText": {
       "start": "0x8010A8D0",
       "bytes": 1500,
       "body_sha256": "c304dbcbcf457681079f085c834ae2401537000281b3ce1bd1336f4aa28914a6",
@@ -1137,7 +1138,7 @@
         "state_utility"
       ]
     },
-    "func_8010AEAC": {
+    "options_animText": {
       "start": "0x8010AEAC",
       "bytes": 1652,
       "body_sha256": "f3e943ca4521f85900d4ebf6463ce1595d9187ab43dbcae17b6e9f199ad24321",

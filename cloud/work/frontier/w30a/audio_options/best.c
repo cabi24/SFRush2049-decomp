@@ -72,7 +72,7 @@ s16 au_RightText(char *text, s16 rightX)
     return rightX - object_manager_update(text, -1);
 }
 
-void game_results_update(void)
+void audio_animButtonText(void)
 {
     s32 i;
     s32 x;
@@ -138,7 +138,7 @@ void game_results_update(void)
     render_helper(-1.0f);
 }
 
-s32 game_results_render(s32 arg0)
+s32 audio_animText(s32 arg0)
 {
     s32 i;
     s32 x;
@@ -147,7 +147,7 @@ s32 game_results_render(s32 arg0)
     char *charPtr;
 
     if (D_801105B4 == 1) {
-        game_results_update();
+        audio_animButtonText();
         return 1;
     }
     render_helper(0.0f);

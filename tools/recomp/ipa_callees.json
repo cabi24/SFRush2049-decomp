@@ -111,8 +111,8 @@
    ],
    "evidence": "w27r regmap_verify: live-in a0,a1,a2,t3 (a1 buffer pointers, a2 sizes 0x10..0x900, t3 = 0 from track_data_decompress / 1 from slot_state_lookup); w27e draft_check --params handle=a0,address=a1,bytes=a2,mark=t3 EQUIVALENT (saves, 9 calls); prototype w27e pak_write_cluster/cluster.c (C96Handle * as void *)"
   },
-  "func_80104704": {
-   "prototype": "void func_80104704(s32 p)",
+  "DrawName": {
+   "prototype": "void DrawName(s32 p)",
    "params": [
     "s5"
    ],

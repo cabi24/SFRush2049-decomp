@@ -1,0 +1,170 @@
+## score.py group cand/w32i/menu_save_options --claims
+Members:
+func_800CD058:
+  MATCH
+func_800CCEFC:
+  MATCH
+func_800CCCCC:
+  MATCH
+menu_save_options:
+  MATCH
+func_800A44E8:
+  MATCH
+func_800A370C:
+  MATCH
+draw_speedometer:
+  MATCH
+func_800C7EC0:
+  MATCH
+func_800C7EC8:
+  MATCH
+draw_ui_element:
+  MATCH
+func_800CBF2C:
+  MATCH
+func_800C7300:
+  MATCH
+func_800CD0FC:
+  MATCH
+func_800A361C:
+  MATCH
+func_800A1A3C:
+  MATCH
+func_80094FC4:
+  MATCH
+menu_item_value_get:
+  MATCH
+menu_transition:
+  MATCH
+AdjustSteer:
+  MATCH
+func_800C7200:
+  MATCH
+SaveServer:
+  MATCH
+    own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)
+    own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)
+    own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)
+func_800CC040:
+  MATCH
+func_800CC50C:
+  MATCH
+props_render:
+  MATCH
+
+Context (informational; excluded from exit status):
+CreatePlayer:
+    +0x008  want afb60048 sw s6,72(sp)                  got afb40040 sw s4,64(sp)                
+    +0x01c  want afb50044 sw s5,68(sp)                  got afb60048 sw s6,72(sp)                
+    +0x020  want afb40040 sw s4,64(sp)                  got afb50044 sw s5,68(sp)                
+    +0x038  want 3c168012 lui s6,0x8012                 got 3c148012 lui s4,0x8012               
+    +0x03c  want 00a0b825 move s7,a1                    got afbf0054 sw ra,84(sp)                
+    +0x040  want afbf0054 sw ra,84(sp)                  got f7b60028 sdc1 $f22,40(sp)            
+    +0x044  want f7b60028 sdc1 $f22,40(sp)              got f7b40020 sdc1 $f20,32(sp)            
+    +0x048  want f7b40020 sdc1 $f20,32(sp)              got afa400e0 sw a0,224(sp)               
+    +0x04c  want afa400e0 sw a0,224(sp)                 got afa500e4 sw a1,228(sp)               
+    +0x050  want 26d611dc addiu s6,s6,4572              got 269411dc addiu s4,s4,4572            
+    +0x054  want afb90058 sw t9,88(sp)                  got afb9005c sw t9,92(sp)                
+    +0x060  want 00009025 move s2,zero                  got 24120004 li s2,4                     
+  246/272 words differ
+draw_number:
+  MATCH
+format_string_parse:
+  MATCH
+menu_back:
+    +0x05c  want 00402825 move a1,v0                    got ae190054 sw t9,84(s0)                
+    +0x060  want ae190054 sw t9,84(s0)                  got 8e04004c lw a0,76(s0)                
+    +0x068  want 8e04004c lw a0,76(s0)                  got 00402825 move a1,v0                  
+  3/33 words differ
+audio_reverb_update:
+  MATCH
+audio_buffer_sync:
+  MATCH
+func_800950AC:
+  MATCH
+rc=0
+## score.py group cand/w32i/menu_save_options
+Members:
+func_800CD058:
+  MATCH
+func_800CCEFC:
+  MATCH
+func_800CCCCC:
+  MATCH
+menu_save_options:
+  MATCH
+func_800A44E8:
+  MATCH
+func_800A370C:
+  MATCH
+draw_speedometer:
+  MATCH
+func_800C7EC0:
+  MATCH
+func_800C7EC8:
+  MATCH
+draw_ui_element:
+  MATCH
+func_800CBF2C:
+  MATCH
+func_800C7300:
+  MATCH
+func_800CD0FC:
+  MATCH
+func_800A361C:
+  MATCH
+func_800A1A3C:
+  MATCH
+func_80094FC4:
+  MATCH
+menu_item_value_get:
+  MATCH
+menu_transition:
+  MATCH
+AdjustSteer:
+  MATCH
+func_800C7200:
+  MATCH
+SaveServer:
+  MATCH
+    own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)
+    own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)
+    own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)
+func_800CC040:
+  MATCH
+func_800CC50C:
+  MATCH
+props_render:
+  MATCH
+
+Context (informational; excluded from exit status):
+CreatePlayer:
+    +0x008  want afb60048 sw s6,72(sp)                  got afb40040 sw s4,64(sp)                
+    +0x01c  want afb50044 sw s5,68(sp)                  got afb60048 sw s6,72(sp)                
+    +0x020  want afb40040 sw s4,64(sp)                  got afb50044 sw s5,68(sp)                
+    +0x038  want 3c168012 lui s6,0x8012                 got 3c148012 lui s4,0x8012               
+    +0x03c  want 00a0b825 move s7,a1                    got afbf0054 sw ra,84(sp)                
+    +0x040  want afbf0054 sw ra,84(sp)                  got f7b60028 sdc1 $f22,40(sp)            
+    +0x044  want f7b60028 sdc1 $f22,40(sp)              got f7b40020 sdc1 $f20,32(sp)            
+    +0x048  want f7b40020 sdc1 $f20,32(sp)              got afa400e0 sw a0,224(sp)               
+    +0x04c  want afa400e0 sw a0,224(sp)                 got afa500e4 sw a1,228(sp)               
+    +0x050  want 26d611dc addiu s6,s6,4572              got 269411dc addiu s4,s4,4572            
+    +0x054  want afb90058 sw t9,88(sp)                  got afb9005c sw t9,92(sp)                
+    +0x060  want 00009025 move s2,zero                  got 24120004 li s2,4                     
+  246/272 words differ
+draw_number:
+  MATCH
+format_string_parse:
+  MATCH
+menu_back:
+    +0x05c  want 00402825 move a1,v0                    got ae190054 sw t9,84(s0)                
+    +0x060  want ae190054 sw t9,84(s0)                  got 8e04004c lw a0,76(s0)                
+    +0x068  want 8e04004c lw a0,76(s0)                  got 00402825 move a1,v0                  
+  3/33 words differ
+audio_reverb_update:
+  MATCH
+audio_buffer_sync:
+  MATCH
+func_800950AC:
+  MATCH
+rc=0

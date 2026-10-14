@@ -11,7 +11,7 @@
   "asan_ubsan": "passed",
   "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
   "claims": [
-    "func_8010A7A4"
+    "options_printOption"
   ],
   "compiler_sha256": {
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
@@ -23,7 +23,7 @@
   },
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "host_behavior_cases": 1769,
-  "manifest_sha256": "29597162ae65df2172ca51781f385fac535e5c30e3596d769518f6c2327bea19",
+  "manifest_sha256": "8ba36461fdce6d851a13087693e72cd9a771e0a9a752ca461c21b91c751b12bb",
   "native_layout_checks": 9,
   "new_verified_function_bytes": 300,
   "own_literal": {
@@ -53,7 +53,7 @@
         "unverified": []
       },
       "name": "aggregate_byte_copy",
-      "source_sha256": "fbb0c377272270ace3f81d3fe0ff16de957d47bd611f65aa915c8e1c000204c5"
+      "source_sha256": "bdd77b0fc2ef0bdda9b0a444f3ab637035d2b0c0baa99fecaa466e02fcfd455f"
     },
     {
       "accepted_context_comparison": {
@@ -73,7 +73,7 @@
         "unverified": []
       },
       "name": "aggregate_word_copy",
-      "source_sha256": "e4c4debc727c75709fa2f7f9d625c127c84d2ab1941756791821dce0a11e06a1"
+      "source_sha256": "0aa6a28c2e9790d8b0786529e3e5e28f6b11990eb6a582926009eeb09a235ebc"
     },
     {
       "accepted_context_comparison": {
@@ -93,7 +93,7 @@
         "unverified": []
       },
       "name": "separate_dispatch_calls",
-      "source_sha256": "8d1aaeca103848ce8f607a71482f5fce3e97b01a17a54f0ef3ddc523e9426063"
+      "source_sha256": "fb74dab65a0bd02d3d24db3f92f41e470b3f53acb29aa34c6652bacb9fff0fe6"
     }
   ],
   "results": [
@@ -111,7 +111,7 @@
       "errors_after_proof": [],
       "extent_to_next_symbol_or_text_end": 300,
       "fully_resolved_sha256": "f3f0584d805b34bbc651a8cae1e520b55e0b67b89396833d19882bbdae84327c",
-      "function": "func_8010A7A4",
+      "function": "options_printOption",
       "independent_gnu_link_full_extent_equal": true,
       "production_relocation_full_extent_equal": true,
       "target_address": "0x8010A7A4",
@@ -141,7 +141,7 @@
       "claimed": false,
       "elf_st_size": 1480,
       "extent_to_next_symbol_or_text_end": 1480,
-      "function": "func_8010A8D0",
+      "function": "options_animButtonText",
       "status": "complete genuine caller; NONMATCH; no context coverage credit",
       "target_address": "0x8010A8D0",
       "target_bytes": 1500,
@@ -171,5 +171,5 @@
       "unverified_after_proof": []
     }
   ],
-  "source_sha256": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe"
+  "source_sha256": "2ffe2e35742beb383be3a33aab580ee73d87d3647d9c5198ea0d90667091c695"
 }

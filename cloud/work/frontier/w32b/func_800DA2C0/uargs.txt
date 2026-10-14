@@ -1,0 +1,1 @@
+--internal func_800DA2C0 --internal ZOID_SetColor_da --internal ZOID_GetInst_da --internal ZOID_SetColorW_da --internal ZOID_SetColorP_da

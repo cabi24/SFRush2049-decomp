@@ -1,7 +1,7 @@
 # N64 game symbols named from the GameCube build (and wrong labels replaced)
 
 Lane w29n (wave 29) renamed these game symbols; lane w30n (wave 30) applied the ten it had deferred
-(last table of this section). Machine-readable table with evidence and the `batch` of each row:
+(last table of this section); lane w32n (wave 32) applied 19 screen/save/hud/ghost names (section "Applied in wave 32"). Machine-readable table with evidence and the `batch` of each row:
 [`cloud/work/frontier/w29n/renames.json`](../../../cloud/work/frontier/w29n/renames.json); procedure and gates:
 [`cloud/work/frontier/w29n/RESULTS.md`](../../../cloud/work/frontier/w29n/RESULTS.md). Style: GC names keep
 their spelling without the leading underscore of CodeWarrior file statics (`_PrintScores` → `PrintScores`);
@@ -72,6 +72,38 @@ exactly the old text renamed; `was_deferred` in renames.json, procedure in
 | 0x80152032 | D_80152032 | gCountDown | countdown.c (ShowCountdown, s16) | `dot_frame_dispatch_20261005` pins Effects_UpdateEmitters.c |
 | 0x80140BDC | D_80140BDC | gNumModels | global u8 (ShowCountdown, volatile) | `dot_runtime_a_availability_root_20261012` checks `extern volatile u8 D_80140BDC;`; sources pinned by `dot_slot_setter_boundary_20261006`, multiblit/blit_bar contracts |
 
+## Applied in wave 32 by lane w32n (batch `w32n`)
+
+Same procedure (`RENAME_BATCH=w32n sh cloud/work/frontier/w29n/replay.sh`; table rows carry `batch: w32n`;
+[`cloud/work/frontier/w32n/RESULTS.md`](../../../cloud/work/frontier/w32n/RESULTS.md)). Naming rule for this batch:
+a GC file-static name that occurs in several GC source files (`_InitScreen` in 3, `animText` in 17, `animButtonText`
+in 8, `printOption` in 2) gets the N64 screen-file prefix — `highscore_` (highscorescr.c), `options_` (optionscr.c),
+`audio_` (audioscr.c), `controls_` (controlscr.c) — and keeps GC's spelling after it; a GC name unique in the GC
+build keeps its spelling without the CodeWarrior underscore (as PrintScores, SetHighScoreState, animLapTime,
+CreatePlayer, SaveServer).
+
+| Address | Old | New | GC source | Evidence |
+|---|---|---|---|---|
+| 0x800F5F90 | track_texture_load | highscore_InitScreen | highscorescr.c _InitScreen | wrong label; matched (w31d, frontier_billboard_render) from GC _InitScreen; snapshots the unlock tables (w30r) |
+| 0x80104704 | func_80104704 | DrawName | highscorescr.c DrawName(p) | w31a draft EQUAL in the 5480 unit; p in s5 (w31r regmap_verify) |
+| 0x80104B14 | func_80104B14 | DrawGhost | highscorescr.c DrawGhost | w31a draft 17/601 from GC; only caller highscore_animText state 4 |
+| 0x80103D28 | func_80103D28 | DrawUnlocked | highscorescr.c DrawUnlocked | corr 3.8; w29a–w31a draft EQUIVALENT (unlock, 98 calls) |
+| 0x80105480 | func_80105480 | highscore_animText | highscorescr.c animText | w30a/w31a draft EQUIVALENT 2,473 calls; calls DrawName/DrawGhost/DrawUnlocked |
+| 0x80105EA8 | func_80105EA8 | animResults | hud.c animResults | corr 2.8 (str "%s\n%s"); w31a draft (41 ops) |
+| 0x800CC040 | func_800CC040 | SaveGhost | save.c SaveGhost | matched (w31c, menu_save_options) |
+| 0x800CC50C | func_800CC50C | CompressGhost | save.c CompressGhost | ghost-save chain before SaveGhost (w30r); w31c draft 9/190 |
+| 0x80102980 | func_80102980 | drawBattleScore | gameoverscr.c drawBattleScore | matched (w30a, frontier_results_table) |
+| 0x80108AB0 | func_80108AB0 | animWrongWay | hud.c animWrongWay | matched (w30b, credits_scroll_grp) |
+| 0x8010DCFC | func_8010DCFC | StartCone | targets.c _StartCone (arcade StartCone) | matched (w30b, single) |
+| 0x8010AEAC | func_8010AEAC | options_animText | optionscr.c animText | matched (w31i, group func_8010AEAC) |
+| 0x8010A8D0 | func_8010A8D0 | options_animButtonText | optionscr.c animButtonText | matched (w31i, group func_8010AEAC) |
+| 0x8010A7A4 | func_8010A7A4 | options_printOption | optionscr.c printOption | matched (w31i, group func_8010AEAC) |
+| 0x800FF298 | game_results_render | audio_animText | audioscr.c animText | wrong label; w30a/w31a draft EQUIVALENT 1,273 calls |
+| 0x800FEE04 | game_results_update | audio_animButtonText | audioscr.c animButtonText | wrong label; same unit (w29a lead) |
+| 0x80100564 | func_80100564 | controls_animText | controlscr.c animText | w30a draft EQUIVALENT 1,949 calls |
+| 0x800FFDE8 | game_results_exit | controls_animButtonText | controlscr.c animButtonText(signed char p) | wrong label; same unit |
+| 0x800F6AB8 | props_render | GhostStart | ghost.c GhostStart | wrong label; matched by w32c (menu_save_options, wave 32) |
+
 ## GC names recorded by wave-28 lanes, not applied yet
 
 Weaker evidence, or the N64 label is in active use by an open lane; apply with the same procedure when a
@@ -80,10 +112,6 @@ match or a second anchor confirms them.
 | N64 | GC name | Source of the lead |
 |---|---|---|
 | func_800F1114 | _UninitScreen (highscorescr.c) | same (w28a); the GC name exists in several files |
-| func_8010AEAC / func_8010A8D0 / func_8010A7A4 | animText / animButtonText / printOption (optionscr.c) | w28c (register-parameter order = GC prototype order); corr ~3 |
-| func_80108AB0 | animWrongWay (hud.c) | w28c names only |
-| func_80105EA8 | animResults (hud.c) | corr 2.8 (str "%s\n%s") |
-| func_80103D28 | DrawUnlocked (highscorescr.c) | corr 3.8, runner-up 3.5 |
 | func_800CCCCC | _InitPlayer (save.c) | CreatePlayer's call (w28b) |
 | func_800CD0FC | _Pow (inlined; caller-less stub) | w28b |
 | track_render_process | PS_PakServer | SaveServer's call (w28b) |
@@ -119,8 +147,9 @@ func_800A557C → ftan.
 Accepted by the coordinator (2026-10-13) and applied with the replay:
 func_800F0F44 → FindGhosts (w29a matched it from GC _FindGhosts), func_8010221C → drawMain (GC gameoverscr.c,
 w29a), func_800E6AF8 → model_iteration (arcade mdrive.c, w29c), lap_complete → animElapsedTimerText (GC hud.c,
-w29c), race_finish → animPlace (GC hud.c, w29c draft); still a candidate: the wrong-label lead game_results_update /
-game_results_render = the audio-options screen (GC audioscr.c animButtonText/animText; w29a; needs an N64 name).
+w29c), race_finish → animPlace (GC hud.c, w29c draft); the wrong-label lead game_results_update /
+game_results_render = the audio-options screen (GC audioscr.c animButtonText/animText; w29a) was applied in wave 32
+as audio_animButtonText / audio_animText.
 Helper identifiers the later packets introduce (rt_gfx_lock, rt_gfx_unlock, rt_font_set, rt_font_set_b;
 update_drone_models, update_model, gfx_lock_761C, gfx_unlock_761C, font_set_761C, pair_set_761C; w29b's *_slp, *_6B3C,
 *_BC84, *_B7FC, *_B9C8 helpers, listed in renames.json) are not

@@ -158,10 +158,10 @@ func_800CBF2C:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_800CC040, "ax", @progbits
-.globl func_800CC040
-func_800CC040:
-    /* compiled from src/blob/func_800CC040.c */
+.section .text.SaveGhost, "ax", @progbits
+.globl SaveGhost
+SaveGhost:
+    /* compiled from src/blob/SaveGhost.c */
     .word 0x27BDFF48
     .word 0xAFBF0034
     .word 0xAFB50030
@@ -475,9 +475,10 @@ sound_play_menu:
     .word 0x03E00008
     .word 0x24E20020
 
-.section .text.func_800CC50C, "ax", @progbits
-.globl func_800CC50C
-func_800CC50C:
+.section .text.CompressGhost, "ax", @progbits
+.globl CompressGhost
+CompressGhost:
+    /* compiled from src/blob/CompressGhost.c */
     .word 0x3C0E8015
     .word 0x81CE978C
     .word 0x3C018011

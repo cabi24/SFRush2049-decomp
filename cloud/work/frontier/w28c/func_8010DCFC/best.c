@@ -83,7 +83,7 @@ void vector_normalize_length(void *, void *);
 void math_utility(void *, void *);
 s32 stat_lap_split(s32, s32, void *, u8);
 
-void func_8010DCFC(Obj *obj)
+void StartCone(Obj *obj)
 {
     ObjType *type;
     Car *car;

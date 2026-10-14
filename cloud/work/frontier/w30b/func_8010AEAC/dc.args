@@ -1,1 +1,1 @@
---unit func_8010AEAC,func_8010A8D0,func_8010A7A4 --params func_8010A7A4:x=s1,y=s2,item=a0,name=s3,value=s4
+--unit options_animText,options_animButtonText,options_printOption --params options_printOption:x=s1,y=s2,item=a0,name=s3,value=s4

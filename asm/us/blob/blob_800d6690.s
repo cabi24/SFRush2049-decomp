@@ -3954,6 +3954,7 @@ time_result_display:
 .section .text.func_800DA2C0, "ax", @progbits
 .globl func_800DA2C0
 func_800DA2C0:
+    /* compiled from src/blob/func_800DA2C0.c */
     .word 0x3C188011
     .word 0x8F186D0C
     .word 0x3C0F8011
@@ -4940,6 +4941,7 @@ replay_save_prompt:
 .section .text.func_800DB1E0, "ax", @progbits
 .globl func_800DB1E0
 func_800DB1E0:
+    /* compiled from src/blob/func_800DB1E0.c */
     .word 0x27BDFF80
     .word 0x3C0E8011
     .word 0x8DCE74B4
@@ -6454,6 +6456,7 @@ tournament_unlock_check:
 .section .text.control_cell_text, "ax", @progbits
 .globl control_cell_text
 control_cell_text:
+    /* compiled from src/blob/control_cell_text.c */
     .word 0x27BDFFD8
     .word 0x3C148014
     .word 0x269461D0
@@ -6531,6 +6534,7 @@ func_800DC994:
 .section .text.control_cell_text3, "ax", @progbits
 .globl control_cell_text3
 control_cell_text3:
+    /* compiled from src/blob/control_cell_text3.c */
     .word 0x27BDFFC8
     .word 0x3C038012
     .word 0x3C148014
@@ -6838,6 +6842,7 @@ func_800DCD58:
 .section .text.control_cell_text2, "ax", @progbits
 .globl control_cell_text2
 control_cell_text2:
+    /* compiled from src/blob/control_cell_text2.c */
     .word 0x27BDFFD0
     .word 0xAFBF0024
     .word 0x0C02DD28
@@ -7036,6 +7041,7 @@ func_800DD0B8:
 .section .text.func_800DD0C0, "ax", @progbits
 .globl func_800DD0C0
 func_800DD0C0:
+    /* compiled from src/blob/func_800DD0C0.c */
     .word 0x3C148011
     .word 0x8E9474B4
     .word 0x3C017C03

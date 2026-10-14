@@ -265,7 +265,7 @@ def test_e2e_wild_read_is_reported_not_an_error(tmp_path):
 @rocky
 def test_e2e_static_helper_draft_no_longer_crashes():
     src = REPO / "cloud" / "work" / "frontier" / "w28c" / "func_8010AEAC" / "dc_static.c"
-    p = subprocess.run([sys.executable, "-m", "tools.recomp.draft_check", "func_8010AEAC", str(src),
+    p = subprocess.run([sys.executable, "-m", "tools.recomp.draft_check", "options_animText", str(src),
                         "--scripts", "options_menus"], cwd=str(REPO), capture_output=True, text=True)
     assert p.returncode == 0, p.stdout + p.stderr
     assert "ipa shim slot_state_setup: 4 call site(s)" in p.stdout

@@ -361,7 +361,7 @@ void func_80102448(void)
     D_80118E20[1]=3;D_80118E20[0]=0;
 }
 
-void func_80102980(void)
+void drawBattleScore(void)
 {
     s32 x;
     s32 previous;
@@ -601,8 +601,8 @@ void standin_1904(void)
     if (D_80152744 == 7) func_8010221C();
     func_80102448();
     if (D_80152744 == 5) func_80102448();
-    func_80102980();
-    if (D_80152744 == 4) func_80102980();
+    drawBattleScore();
+    if (D_80152744 == 4) drawBattleScore();
     c[0]=0;c[1]=0;c[2]=0;c[3]=192;
     func_80100D5C(D_80152744, 4, 60, 14, c);
 }

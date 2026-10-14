@@ -818,7 +818,7 @@ void track_render_process();
 /* group functions */
 void **func_800C7200(void);
 void SaveServer(s32 forceUpdate, s32 rumbleOnly);
-void **func_800CC50C(s32 *arg0, s8 *arg1);
+void **CompressGhost(s32 *arg0, s8 *arg1);
 s32 draw_ui_element(void **ipa_t0, s32 ipa_t1, s32 ipa_t2);
 extern void **func_800C7EC8(void **);
 
@@ -858,7 +858,7 @@ exhausted:;
 /* SaveServer: defined in group.c (w30c) */
 
 
-void **func_800CC50C(s32 *arg0, s8 *arg1) {
+void **CompressGhost(s32 *arg0, s8 *arg1) {
     void **sp60;
     s32 sp5C;
     s32 *sp58;

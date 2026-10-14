@@ -12,7 +12,7 @@
 #error A test must explicitly supply its own header storage capacity
 #endif
 
-s32 func_8010AEAC(void *state)
+s32 options_animText(void *state)
 {
     s32 index;
     s32 y;
@@ -23,7 +23,7 @@ s32 func_8010AEAC(void *state)
     (void)state; /* Genuine SoundClearRecord callback input, unused here. */
 
     if (D_80116D0C == 1) {
-        func_8010A8D0();
+        options_animButtonText();
         return 1;
     }
     render_helper(0.0f);
@@ -53,59 +53,59 @@ s32 func_8010AEAC(void *state)
         }
         switch (index) {
         case 1:
-            func_8010A7A4(1, 160, y, D_8017A4E0.labels[13],
+            options_printOption(1, 160, y, D_8017A4E0.labels[13],
                 D_8017A4E0.values[D_80146108[10] + D_8017A4E0.header->string_offset]);
             break;
         case 2:
-            func_8010A7A4(2, 160, y, D_8017A4E0.labels[15],
+            options_printOption(2, 160, y, D_8017A4E0.labels[15],
                 D_8017A4E0.values[D_80146108[0] + D_8017A4E0.header->string_offset]);
             break;
         case 3:
-            func_8010A7A4(3, 160, y, D_8017A4E0.labels[16],
+            options_printOption(3, 160, y, D_8017A4E0.labels[16],
                 D_8017A4E0.values[D_80146108[1] + D_8017A4E0.header->string_offset]);
             break;
         case 4:
-            func_8010A7A4(4, 160, y, D_8017A4E0.labels[17],
+            options_printOption(4, 160, y, D_8017A4E0.labels[17],
                 D_8017A4E0.values[D_80146108[2] + D_8017A4E0.header->string_offset]);
             break;
         case 5:
-            func_8010A7A4(5, 160, y, D_8017A4E0.labels[18],
+            options_printOption(5, 160, y, D_8017A4E0.labels[18],
                 D_8017A4E0.values[D_80146108[3] + D_8017A4E0.header->string_offset]);
             break;
         case 6:
-            func_8010A7A4(6, 160, y, D_8017A4E0.labels[19],
+            options_printOption(6, 160, y, D_8017A4E0.labels[19],
                 D_8017A4E0.values[D_80146108[4] + D_8017A4E0.header->string_offset]);
             break;
         case 7:
-            func_8010A7A4(7, 160, y, D_8017A4E0.labels[20],
+            options_printOption(7, 160, y, D_8017A4E0.labels[20],
                 D_8017A4E0.values[D_80146108[5] + D_8017A4E0.header->string_offset]);
             break;
         case 8:
-            func_8010A7A4(8, 160, y, D_8017A4E0.labels[21],
+            options_printOption(8, 160, y, D_8017A4E0.labels[21],
                 D_8017A4E0.values[D_80146108[6] + D_8017A4E0.header->string_offset]);
             break;
         case 9:
-            func_8010A7A4(9, 160, y, D_8017A4E0.labels[22],
+            options_printOption(9, 160, y, D_8017A4E0.labels[22],
                 D_8017A4E0.values[D_80146108[7] + D_8017A4E0.header->string_offset]);
             break;
         case 10:
-            func_8010A7A4(10, 160, y, D_8017A4E0.labels[23],
+            options_printOption(10, 160, y, D_8017A4E0.labels[23],
                 D_8017A4E0.values[D_80146108[8] + D_8017A4E0.header->string_offset]);
             break;
         case 11:
-            func_8010A7A4(11, 160, y, D_8017A4E0.labels[24],
+            options_printOption(11, 160, y, D_8017A4E0.labels[24],
                 D_8017A4E0.values[D_80146108[9] + D_8017A4E0.header->string_offset]);
             break;
         case 12:
-            func_8010A7A4(12, 160, y, D_8017A4E0.labels[26],
+            options_printOption(12, 160, y, D_8017A4E0.labels[26],
                 D_8017A4E0.values[D_80146108[18] + D_8017A4E0.header->string_offset]);
             break;
         case 13:
-            func_8010A7A4(13, 160, y, D_8017A4E0.labels[14],
+            options_printOption(13, 160, y, D_8017A4E0.labels[14],
                 D_8017A4E0.values[D_80146108[11] + D_8017A4E0.header->string_offset]);
             break;
         case 0:
-            func_8010A7A4(0, 160, y, D_8017A4E0.labels[25], D_801164D0[D_8013FEC8]);
+            options_printOption(0, 160, y, D_8017A4E0.labels[25], D_801164D0[D_8013FEC8]);
             break;
         }
         y += object_bytes_sum_global();

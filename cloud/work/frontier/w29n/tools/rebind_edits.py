@@ -20,7 +20,8 @@ EDITS lists the exact strings that refer to the GAME side. Rules (refuse otherwi
      its --base text renamed (static_rename.permute_c). Hash-only matching is not used:
      cloud/matches copies are byte-identical to the src/blob sources they were
      installed from, and keep their spelling.
-Idempotent: an edit already applied (old absent, new present `count` times) is skipped.
+Idempotent: an edit already applied (old absent, new present `count` times) is skipped, and so is
+an edit of another batch (its old text holds none of the batch's names; w32n).
 """
 import argparse
 import hashlib
@@ -44,6 +45,11 @@ EDITS = [
     ("cloud/work/frontier/dot_runtime_a_availability_root_20261012/verify.py",
      "require('extern volatile u8 D_80140BDC;' in volatile_source.read_text(),'table-count declaration provenance')",
      "require('extern volatile u8 gNumModels;' in volatile_source.read_text(),'table-count declaration provenance')", 1),
+    # w32n: the rocky-only e2e test runs w28c's dc_static.c draft (renamed by replay.sh) under the function's
+    # current name; the directory `w28c/func_8010AEAC` in the same test is a path and keeps its spelling
+    ("tests/cloud/test_recomp_phase9.py",
+     '"tools.recomp.draft_check", "func_8010AEAC", str(src),',
+     '"tools.recomp.draft_check", "options_animText", str(src),', 1),
 ]
 # receipts whose pins follow the edited files / renamed sources
 PINS = [
@@ -78,6 +84,58 @@ OBJECT_PINS = [
 ]
 
 
+# w32n: hashes of control sources a verifier DERIVES from a renamed packet source by text replacements
+# (rejected/compiler controls). (receipt, source, [(old, new) replacements as the verifier writes them, in
+# the PRE-rename spelling]). Proof, else refuse: the live source is its --base text renamed (permute_c), the
+# base text with the replacements hashes to a value the receipt pins exactly once, and the live text with the
+# renamed replacements is that derived text renamed; the pin then moves to the live derived text's hash.
+_ROW = "cloud/work/ipa-groups/dot_menu_row_caller_20261005"
+_CONE = "cloud/work/frontier/dot_cone_start_donor_20261005"
+DERIVED = [
+    (f"{_ROW}/verification.json", f"{_ROW}/group.c",       # verify.py cases: aggregate_byte_copy
+     [("union Color4 { struct { u8 r,g,b,a; } channels; u32 rgba; }", "struct Color4 { u8 r,g,b,a; }"),
+      ("D_80118E28.rgba = first.rgba;", "D_80118E28 = first;"),
+      ("D_80118E2C.rgba = second.rgba;", "D_80118E2C = second;")]),
+    (f"{_ROW}/verification.json", f"{_ROW}/group.c",       # aggregate_word_copy
+     [("D_80118E28.rgba = first.rgba;", "D_80118E28 = first;"),
+      ("D_80118E2C.rgba = second.rgba;", "D_80118E2C = second;")]),
+    (f"{_ROW}/verification.json", f"{_ROW}/group.c",       # separate_dispatch_calls
+     [("dispatch_handler(index == D_80116D9C ? 22 : 1);",
+       "if (index == D_80116D9C) dispatch_handler(22); else dispatch_handler(1);")]),
+    (f"{_CONE}/verification.json", f"{_CONE}/candidate.c",  # authentic_scale_macro
+     [("void func_8010DCFC(Target *t)", "#define ScaleVector(v1,s,r) (r[0] = v1[0]*(s), r[1] = v1[1]*(s), "
+       "r[2] = v1[2]*(s))\nvoid func_8010DCFC(Target *t)"),
+      ("    velocity[0] = car->velocity[0] * 0.125f;\n    velocity[1] = car->velocity[1] * 0.125f;\n"
+       "    velocity[2] = car->velocity[2] * 0.125f;", "    ScaleVector((car->velocity),0.125f,velocity);")]),
+    (f"{_CONE}/verification.json", f"{_CONE}/candidate.c",  # genuine_basis_36
+     [("    MATRIX tmat;", "    struct { f32 uvs[3][3]; } tmat;"), ("tmat.mat3.uvs", "tmat.uvs")]),
+]
+
+
+def derived_pins(base, names, texts, log):
+    for receipt, rel, pairs in DERIVED:
+        old_src = git_bytes(base, rel)
+        live = (REPO / rel).read_text()
+        if old_src is None or old_src.decode() == live:
+            continue                                       # source untouched by this batch
+        old_src = old_src.decode()
+        if static_rename.permute_c(old_src, names) != live:
+            sys.exit(f"refusing: {rel} is not the {base} text renamed")
+        a, b = old_src, live
+        for o, n in pairs:
+            a = a.replace(o, n)
+            b = b.replace(tokens(o, names), tokens(n, names))
+        if static_rename.permute_c(a, names) != b:
+            sys.exit(f"refusing: {rel}: the derived control text is not the base control renamed")
+        text = texts.get(receipt, (REPO / receipt).read_text())
+        old, new = sha(a.encode()), sha(b.encode())
+        if text.count(old) != 1:
+            if text.count(old) == 0 and text.count(new) == 1:
+                continue
+            sys.exit(f"refusing: {receipt}: derived control hash {old[:12]} pinned {text.count(old)}x")
+        texts[receipt] = text.replace(old, new)
+        log.append(f"pin     {receipt}: derived control of {Path(rel).name} {old[:12]} -> {new[:12]}")
+
 def sha(b):
     return hashlib.sha256(b).hexdigest()
 
@@ -102,6 +160,8 @@ def main():
     pins, log = {}, []
     texts = {}
     for rel, old, new, count in EDITS:
+        if tokens(old, names) == old:            # w32n: an edit of another batch (none of this batch's names)
+            continue
         if tokens(old, names) != new:
             sys.exit(f"refusing: {rel}: the new text is not the old text renamed")
         path = REPO / rel
@@ -160,6 +220,7 @@ def main():
         new = json.dumps(walk(doc, str(Path(rel).parent), rel), indent=2) + "\n"
         if new != text:
             texts[rel] = new
+    derived_pins(a.base, names, texts, log)
     for rel, old, new in OBJECT_PINS:
         text = texts.get(rel, (REPO / rel).read_text())
         if old in text:

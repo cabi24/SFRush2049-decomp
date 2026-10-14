@@ -152,6 +152,8 @@ def main():
     for receipt, rel in SOURCE_PINS:
         base = git_show(a.base, rel)
         live = (REPO / rel).read_bytes()
+        if live == base:                 # w32n: a batch that does not touch the file (its prelude may still
+            continue                     # declare a batch name: users.py leaves declarations alone)
         if static_rename.permute_c(base.decode(), names).encode() != live:
             raise SystemExit(f"refusing: {rel} is not the {a.base} text renamed")
         replace_once(FR / receipt, sha(base), sha(live), a.write, log)
@@ -163,6 +165,8 @@ def main():
     for rel, old, new, count in LOOKUPS:
         path = FR / rel
         text = path.read_text()
+        if a.map and rebind_tokens(old, names) == old:   # w32n: an edit of another batch
+            continue
         # a later batch may have renamed other tokens of the edited text (w30n: D_80152032 -> gCountDown)
         if text.count(old) == 0 and (text.count(new) == count
                                      or text.count(rebind_tokens(new, names)) == count):

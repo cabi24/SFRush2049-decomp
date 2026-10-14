@@ -231,7 +231,7 @@ void slot_forget(Handle node) {
     }
 }
 
-s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
+s32 SaveGhost(s32 id, Handle owner, Handle self, s32 release) {
     MenuData *m;
     Handle node;
     char buf[32];

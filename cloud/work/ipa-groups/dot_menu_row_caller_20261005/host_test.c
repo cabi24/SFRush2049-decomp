@@ -56,7 +56,7 @@ int main(void) {
         reset(); D_80116D0C=mode; D_80116D9C=selected;
         D_8011650C[index].angle=angle==0 ? 0.0f : angle==1 ? 1.57079637f : 3.0f;
         D_80118E28.rgba=0; D_80118E2C.rgba=0;
-        func_8010A7A4(index, 200, -10, labels[0], values[0]);
+        options_printOption(index, 200, -10, labels[0], values[0]);
         assert(mode_count==1 && draws==2);
         assert(modes[0]==(mode==1 ? (angle==0 ? 1 : 22) : (index==selected ? 22 : 1)));
         assert(draw_log[0].x==95 && draw_log[1].x==240);
@@ -74,7 +74,7 @@ int main(void) {
             D_8011650C[i].position[0]=(float)(100+i);
             D_8011650C[i].position[1]=(float)(50+i);
         }
-        func_8010A8D0();
+        options_animButtonText();
         assert(locks==2 && releases==2 && select_count==2 && selects[0]==13 && selects[1]==11);
         assert(complete==1 && D_80118E20==0 && D_80118E24==3);
         assert(draw_log[0].x==155 && draw_log[0].y==20 && draw_log[0].object==labels[50]);

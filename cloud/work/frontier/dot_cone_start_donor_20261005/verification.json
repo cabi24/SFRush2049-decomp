@@ -548,7 +548,7 @@
             "symbol": "stat_lap_split"
           }
         ],
-        "source_sha256": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340",
+        "source_sha256": "7d88e0737b3537c0900cb7d6b1a8c8bfff4aa2b34f821a7f41d428be97ff6f62",
         "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
       },
       "authentic_scale_macro": {
@@ -822,7 +822,7 @@
             "symbol": "stat_lap_split"
           }
         ],
-        "source_sha256": "fd33ac2eec77800af2592f3394919b7587bfe6a9975bb2d7f02c2bbcf87c2741",
+        "source_sha256": "d10fc33c658f60f523feb8cc18ef280660b7f36de6f512e0d68f1cb41b9d6632",
         "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
       },
       "genuine_basis_36": {
@@ -1096,7 +1096,7 @@
             "symbol": "stat_lap_split"
           }
         ],
-        "source_sha256": "adecf56663a790a5bed8cafd4a76d5f786149c54186966359a4a61caaaa7052b",
+        "source_sha256": "2cda0c5406ca37e5f4f90ebec5190b789004e0685ba44a66e8fdb9542cf8ad02",
         "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
       },
       "archived_singleformal": {
@@ -1379,12 +1379,12 @@
             "symbol": "stat_lap_split"
           }
         ],
-        "source_sha256": "5d102f7267dcf9c3595f67622d4b54349145950a608d426304564ff8d06a3b9c",
+        "source_sha256": "7bfe614061dc74c0107cc337340b91312a0ef5c5fd9405e0d009fbbd2f5583ec",
         "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
       }
     },
     "context": {
-      "func_8010DCFC": {
+      "StartCone": {
         "differing": 148,
         "total": 165,
         "unresolved": [],
@@ -1775,7 +1775,7 @@
         "context_literal_sha256": "fdccad0b4acccd3e8dcf06db120dd6b23f4573dd96b434af2fb919836a3615d4"
       }
     },
-    "source_sha256": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340",
+    "source_sha256": "7d88e0737b3537c0900cb7d6b1a8c8bfff4aa2b34f821a7f41d428be97ff6f62",
     "context_source_sha256": {
       "src/blob/func_80090284.c": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
       "src/blob/vector_normalize_length.c": "deb2f02cbc046c7f9be0b30a058cec7af8109c4d73d579902455b9b372dca264",
@@ -2061,10 +2061,10 @@
     "limit": "Data pointers support callback registration, not runtime dispatcher execution or an original C signature."
   },
   "source_hashes": {
-    "candidate.c": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340",
-    "host.c": "f71f9574ccb7a5ea5ea56c5d3f5231db62a9b4f066a39f92375e29e58a16c74c",
+    "candidate.c": "7d88e0737b3537c0900cb7d6b1a8c8bfff4aa2b34f821a7f41d428be97ff6f62",
+    "host.c": "168c13c94a73c099c04df04d99f9572dae426b35c0f3f5cadb1fa7b5e25c3dcf",
     "native.py": "dccfac67477c9c9fb9365562e2d725a8089e2e2c2d47a143b15cff2eb4624936",
-    "verify.py": "50ae33a2701b413aee36742300edb388995f1e1ca61ca80d11fef6da4059ee25"
+    "verify.py": "1c9d5b0e1696f234d2d46fa04ea5ec86fb9c6191cf5187f2752e011c8bdc20c7"
   },
   "toolchain_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",

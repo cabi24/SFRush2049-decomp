@@ -265,15 +265,15 @@
           "offset": 100
         },
         {
-          "function": "func_800CC50C",
+          "function": "CompressGhost",
           "offset": 180
         },
         {
-          "function": "func_800CC50C",
+          "function": "CompressGhost",
           "offset": 480
         },
         {
-          "function": "func_800CC50C",
+          "function": "CompressGhost",
           "offset": 504
         },
         {

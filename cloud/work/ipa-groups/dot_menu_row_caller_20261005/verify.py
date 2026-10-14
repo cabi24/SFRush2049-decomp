@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 from tools.cloud import score, owndata
 from tools.conveyor.pipeline import blob_group
 
-CLAIM = 'func_8010A7A4'
+CLAIM = 'options_printOption'
 CONTEXT = 'func_800BEA3C'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 sha = lambda data: hashlib.sha256(data).hexdigest()
@@ -111,8 +111,11 @@ def verify():
         rows.append(row)
     # The copied endpoint logic and packed view must preserve the accepted
     # standalone setter, in addition to the grouped context replay above.
+    # accepted_func_800BEA3C.c is a byte copy of the locked single
+    # src/blob/func_800BEA3C.c as it was before wave 32 (w32i), when the setter
+    # moved into the group frontier_audioscr (GC union type, same 7 words).
     accepted_obj = build / 'accepted.o'
-    score.compile_single(ROOT/'src/blob/func_800BEA3C.c', score.DEFAULT_FLAGS, accepted_obj)
+    score.compile_single(HERE/'accepted_func_800BEA3C.c', score.DEFAULT_FLAGS, accepted_obj)
     accepted = comparison(accepted_obj, CONTEXT)
     assert accepted == {'differing': 0, 'total': 7, 'unresolved': [], 'unverified': [], 'errors': [], 'extra_words': 0}
     score.compile_single(HERE/'layout_probe.c', FLAGS, build/'layout.o')
@@ -149,7 +152,7 @@ def verify():
         'promotion_status': 'research proof only; no splice, lock or ROM claim',
         'flags': FLAGS, 'source_sha256': sha((HERE/'group.c').read_bytes()),
         'manifest_sha256': sha((HERE/'group.json').read_bytes()),
-        'accepted_context_source_sha256': sha((ROOT/'src/blob/func_800BEA3C.c').read_bytes()),
+        'accepted_context_source_sha256': sha((HERE/'accepted_func_800BEA3C.c').read_bytes()),
         'accepted_context_standalone': accepted,
         'own_literal': {'address': '0x801248D4', 'bytes': 4, 'references': own.references,
             'sha256': sha(image.read(0x801248D4, 4)), 'verified': own.ok},

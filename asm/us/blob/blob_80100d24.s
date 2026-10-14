@@ -1857,10 +1857,10 @@ func_80102448:
     .word 0x03E00008
     .word 0x27BD0178
 
-.section .text.func_80102980, "ax", @progbits
-.globl func_80102980
-func_80102980:
-    /* compiled from src/blob/func_80102980.c */
+.section .text.drawBattleScore, "ax", @progbits
+.globl drawBattleScore
+drawBattleScore:
+    /* compiled from src/blob/drawBattleScore.c */
     .word 0x3C028015
     .word 0x8442A108
     .word 0x27BDFE20
@@ -3124,9 +3124,9 @@ func_80102F30:
 .section .blobdata.op_80103d18, "ax", @progbits
     .incbin "build/game_code.bin", 512712, 16
 
-.section .text.func_80103D28, "ax", @progbits
-.globl func_80103D28
-func_80103D28:
+.section .text.DrawUnlocked, "ax", @progbits
+.globl DrawUnlocked
+DrawUnlocked:
     .word 0x27BDFEF8
     .word 0x3C148014
     .word 0x269461D0
@@ -3760,9 +3760,9 @@ func_80103D28:
 .section .blobdata.op_801046fc, "ax", @progbits
     .incbin "build/game_code.bin", 515244, 8
 
-.section .text.func_80104704, "ax", @progbits
-.globl func_80104704
-func_80104704:
+.section .text.DrawName, "ax", @progbits
+.globl DrawName
+DrawName:
     .word 0x27BDFF78
     .word 0x3C148014
     .word 0x269461D0
@@ -4024,9 +4024,9 @@ func_80104704:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_80104B14, "ax", @progbits
-.globl func_80104B14
-func_80104B14:
+.section .text.DrawGhost, "ax", @progbits
+.globl DrawGhost
+DrawGhost:
     .word 0x27BDFDC0
     .word 0xAFBF0024
     .word 0x3C118014
@@ -4632,9 +4632,9 @@ func_80104B14:
 .section .blobdata.op_80105478, "ax", @progbits
     .incbin "build/game_code.bin", 518696, 8
 
-.section .text.func_80105480, "ax", @progbits
-.globl func_80105480
-func_80105480:
+.section .text.highscore_animText, "ax", @progbits
+.globl highscore_animText
+highscore_animText:
     .word 0x27BDFDB8
     .word 0xAFBF004C
     .word 0x44806000
@@ -5296,9 +5296,9 @@ func_80105DA8:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_80105EA8, "ax", @progbits
-.globl func_80105EA8
-func_80105EA8:
+.section .text.animResults, "ax", @progbits
+.globl animResults
+animResults:
     .word 0x27BDFE70
     .word 0xAFBE0050
     .word 0x3C1E8015
@@ -8165,10 +8165,10 @@ func_801084D4:
     .word 0x03E00008
     .word 0x27BD00E0
 
-.section .text.func_80108AB0, "ax", @progbits
-.globl func_80108AB0
-func_80108AB0:
-    /* compiled from src/blob/func_80108AB0.c */
+.section .text.animWrongWay, "ax", @progbits
+.globl animWrongWay
+animWrongWay:
+    /* compiled from src/blob/animWrongWay.c */
     .word 0x27BDFF38
     .word 0x3C0E8015
     .word 0x8DCEA110
@@ -10053,10 +10053,10 @@ func_8010A53C:
     .word 0x03E00008
     .word 0x27BD0040
 
-.section .text.func_8010A7A4, "ax", @progbits
-.globl func_8010A7A4
-func_8010A7A4:
-    /* compiled from src/blob/func_8010A7A4.c */
+.section .text.options_printOption, "ax", @progbits
+.globl options_printOption
+options_printOption:
+    /* compiled from src/blob/options_printOption.c */
     .word 0x3C0E8011
     .word 0x8DCE6D0C
     .word 0x27BDFFC8
@@ -10133,10 +10133,10 @@ func_8010A7A4:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_8010A8D0, "ax", @progbits
-.globl func_8010A8D0
-func_8010A8D0:
-    /* compiled from src/blob/func_8010A8D0.c */
+.section .text.options_animButtonText, "ax", @progbits
+.globl options_animButtonText
+options_animButtonText:
+    /* compiled from src/blob/options_animButtonText.c */
     .word 0x27BDFF68
     .word 0xAFBF001C
     .word 0x44806000
@@ -10513,10 +10513,10 @@ func_8010A8D0:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_8010AEAC, "ax", @progbits
-.globl func_8010AEAC
-func_8010AEAC:
-    /* compiled from src/blob/func_8010AEAC.c */
+.section .text.options_animText, "ax", @progbits
+.globl options_animText
+options_animText:
+    /* compiled from src/blob/options_animText.c */
     .word 0x27BDFF10
     .word 0x3C0E8011
     .word 0x8DCE6D0C
@@ -13584,10 +13584,10 @@ func_8010DBB8:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_8010DCFC, "ax", @progbits
-.globl func_8010DCFC
-func_8010DCFC:
-    /* compiled from src/blob/func_8010DCFC.c */
+.section .text.StartCone, "ax", @progbits
+.globl StartCone
+StartCone:
+    /* compiled from src/blob/StartCone.c */
     .word 0x27BDFF78
     .word 0xAFBF001C
     .word 0xAFB00018
