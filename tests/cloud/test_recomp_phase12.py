@@ -67,6 +67,17 @@ def test_prologue_save_is_still_a_save():
     assert "s0" not in rv.Interproc(image, funcs).unsaved(0x80100000)
 
 
+SW_S8_24 = 0xAFBE0018            # sw s8,24(sp): an outgoing stack argument
+MOVE_S8_V0 = 0x0040F025          # or s8,v0,zero
+
+
+def test_stack_argument_before_the_first_write_is_not_a_save():
+    # control_cell_text2: passes its s8 parameter on at 0x18(sp), never reloads it, then writes s8 unsaved
+    image, funcs = _image([ADDIU_SP_M40, SW_RA_36, JAL_OUT, SW_S8_24, MOVE_S8_V0, JAL_OUT, NOP,
+                           LW_RA_36, JR_RA, ADDIU_SP_P40])
+    assert "s8" in rv.Interproc(image, funcs).unsaved(0x80100000)
+
+
 def _retail_words(name):
     """The committed .word body of a game function (asm/us/blob)."""
     for asm in sorted((REPO / "asm" / "us" / "blob").glob("blob_*.s")):
@@ -88,7 +99,7 @@ def test_ipa_callee_clobbers_are_the_retail_sets():
     t = json.loads((RECOMP / "ipa_callees.json").read_text())["callees"]
     assert t["func_800DD0C0"]["clobbers"] == ["s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"]
     assert t["func_80097164"]["clobbers"] == ["s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7"]
-    assert "s5" in t["func_80104704"]["clobbers"]
+    assert "s5" in t["DrawName"]["clobbers"]
     words = rp.ipa_shim(0x80800000, t["func_800DD0C0"]["prototype"], t["func_800DD0C0"]["params"],
                         t["func_800DD0C0"]["clobbers"], "out")
     saved = {(w >> 16) & 31 for w in words if w >> 26 == 0x2B and (w >> 21) & 31 == 29}     # sw REG,off(sp)
@@ -103,7 +114,7 @@ def test_widen_clobbers_keeps_members_and_order():
 
 
 def test_cache_epoch_bumped():
-    assert dc.CACHE_EPOCH == "w32r-1"
+    assert dc.CACHE_EPOCH == "w32r-2"
 
 
 # ------------------------------------------------------------------ fault report

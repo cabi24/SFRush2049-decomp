@@ -903,7 +903,7 @@ LANES_CACHE = DC_HOME / "lanes" / "cache.json"
 
 # Bump when a harness change can change a verdict for an unchanged draft (a shim, capture or comparison fix):
 # every cached --all-lanes row is then rerun. Draft, dc.args, scripts and ipa_callees.json are in the key anyway.
-CACHE_EPOCH = "w32r-1"
+CACHE_EPOCH = "w32r-2"
 
 
 def key_scripts(name, opts):

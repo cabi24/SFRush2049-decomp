@@ -239,7 +239,13 @@ class Interproc:
                     # around a call and passes s0 at 0x18(sp); counted as saves,
                     # its clobber set lacked s0,s1,s3 (control_settings pak_nopak
                     # fault). IDO saves in the entry block, before any write.
-                    if k not in own and (k[0] != "f" or ("f", k[1] + 1) not in own):
+                    # w32r job 3: and only if the body reloads it from that slot (an
+                    # IDO save always has its epilogue restore): control_cell_text2
+                    # passes its s8 parameter on as a stack argument BEFORE its first
+                    # write of s8, never reloads it, and then writes s8 unsaved.
+                    reloaded = (ipa_detect._LOAD_OF[w >> 26], (w >> 16) & 31, w & 0xFFFF) in restores[0]
+                    if k not in own and (k[0] != "f" or ("f", k[1] + 1) not in own) and \
+                            (reloaded or not restores[2]):
                         saved.add(k)
                 own |= wr
                 writes |= wr
