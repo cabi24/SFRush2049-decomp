@@ -252,7 +252,6 @@
         "stack_word": 3
       },
       "other_unaccepted_direct_game_calls": [
-        "SaveServer",
         "audio_frame_sync",
         "display_enable",
         "func_800A7480",

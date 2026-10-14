@@ -3850,6 +3850,7 @@ func_800C7EC8:
 .section .text.SaveServer, "ax", @progbits
 .globl SaveServer
 SaveServer:
+    /* compiled from src/blob/SaveServer.c */
     .word 0x27BDFF60
     .word 0xAFBF004C
     .word 0xAFBE0048

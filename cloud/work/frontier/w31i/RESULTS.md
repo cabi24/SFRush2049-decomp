@@ -93,3 +93,22 @@ ipa-groups/dot_masked_random_b23e0_20261006 (only that hash changed; precedent e
   wave-31 landed row; w31d's control_settings/func_800DD0C0/codex_control_settings_a4 packet state, LoadTrack,
   func_800E543C (track pool row) and SetupWaveModel/func_80097164 (resource loader row) with next levers + the
   unsaved-callee-saved draft_check lesson.
+
+## Job 3: w31c SaveServer + func_800CC040 via menu_save_options (merge of wave31 f4a9ddd8 first)
+- Packet check: ctx_hash.c, save.c cmp-identical to the installed group; ctx_strncmp.c cmp-identical to src/blob/func_800950AC.c;
+  ctx_newghost.c differs by the one prototype line (`void SaveServer(s32 forceUpdate, s32 rumbleOnly);`); group.json: members
+  (first 20 identical, in order) + SaveServer, func_800CC040; context - those two + func_800950AC; keep + func_800950AC;
+  files + ctx_strncmp.c; same name frontier_menu_save_options.
+- force_internal += ghost_heap_lock, ghost_heap_unlock, cart_free_direct, DeleteGhost, GhostDirName (before install).
+- Builder (`builder_job3.log`) `score.py group cand/w31i/menu_save_options --claims`: rc=0, all 22 members MATCH;
+  SaveServer `own .data verified at 0x8011742C`, `0x80117430`, `0x80117434 (4 bytes, all zero ...)`.
+- Install: `spliced menu_save_options: 22 members, new: ['SaveServer', 'func_800CC040']`.
+- Gates (`gates_job3.log`, `rom_job3.log`): `group lock: 0 problems`; `blob lock: 1056 entries, 0 problems`;
+  `blob_unit: 1056 locked bodies, 1056 equal to the image in one 930-file unit, 0 differ`; `unused_overrides []`;
+  func_800950AC: kept, duplicates chooses `s_func_800950AC.c` (locked single), so no force_keep;
+  `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- symbols.json / blob.ld unchanged (2 provenance comments + SHA256SUMS): no re-pin. Slot-contract audit re-written:
+  only SaveServer leaves one caller's other_unaccepted list (counts unchanged; test passes). Not provisional.
+- Coverage: 1054 -> **1056/1216, 383,032 -> 384,828 B (59.19% -> 59.47%)**.
+- CLAIMS: SaveServer, func_800CC040 (+ devices/hypotheses) on the wave-31 landed row; save row rewritten with
+  func_800CC50C 9/190 (= CompressGhost), pak_delete_file_retry (colour only, `--callee` a1,a2/s0,s1), CreatePlayer 241/272.

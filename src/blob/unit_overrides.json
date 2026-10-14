@@ -420,6 +420,26 @@
   {
    "name": "SaveFlush_TTL",
    "reason": "group frontier_billboard_render (w31d track_texture_load): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ghost_heap_lock",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ghost_heap_unlock",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "cart_free_direct",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "DeleteGhost",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "GhostDirName",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [
