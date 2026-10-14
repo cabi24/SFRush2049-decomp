@@ -10056,6 +10056,7 @@ func_8010A53C:
 .section .text.func_8010A7A4, "ax", @progbits
 .globl func_8010A7A4
 func_8010A7A4:
+    /* compiled from src/blob/func_8010A7A4.c */
     .word 0x3C0E8011
     .word 0x8DCE6D0C
     .word 0x27BDFFC8
@@ -10135,6 +10136,7 @@ func_8010A7A4:
 .section .text.func_8010A8D0, "ax", @progbits
 .globl func_8010A8D0
 func_8010A8D0:
+    /* compiled from src/blob/func_8010A8D0.c */
     .word 0x27BDFF68
     .word 0xAFBF001C
     .word 0x44806000
@@ -10514,6 +10516,7 @@ func_8010A8D0:
 .section .text.func_8010AEAC, "ax", @progbits
 .globl func_8010AEAC
 func_8010AEAC:
+    /* compiled from src/blob/func_8010AEAC.c */
     .word 0x27BDFF10
     .word 0x3C0E8011
     .word 0x8DCE6D0C

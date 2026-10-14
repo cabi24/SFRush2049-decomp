@@ -66,6 +66,22 @@
   {
    "name": "func_800D50E4",
    "reason": "locked single rand_r; group frontier_billboard_render lists it as context (byte-identical copy ctx_func_800D50E4.c, w28a, inlined three times into func_800F0914) which makes it internal in the unit and empties the body (10w -> 2w)"
+  },
+  {
+   "name": "continue_prompt",
+   "reason": "locked in codex_vsync_a145 (group.c); group frontier_billboard_render lists it as context (byte-identical copy ctx_vsync_a145.c, w31d) which makes it internal in the unit and empties the body (23w -> 2w)"
+  },
+  {
+   "name": "speed_mode0_wrapper",
+   "reason": "locked in codex_vsync_a145 (group.c); group frontier_billboard_render lists it as context (byte-identical copy ctx_vsync_a145.c, w31d) which makes it internal in the unit and empties the body (22w -> 2w)"
+  },
+  {
+   "name": "speed_mode1_wrapper",
+   "reason": "locked in codex_vsync_a145 (group.c); group frontier_billboard_render lists it as context (byte-identical copy ctx_vsync_a145.c, w31d) which makes it internal in the unit and empties the body (22w -> 2w)"
+  },
+  {
+   "name": "vsync_wait",
+   "reason": "locked in codex_vsync_a145 (group.c); group frontier_billboard_render lists it as context (byte-identical copy ctx_vsync_a145.c, w31d) which makes it internal in the unit and empties the body (37w -> 2w)"
   }
  ],
  "force_internal": [
@@ -352,6 +368,78 @@
   {
    "name": "HAL_SetFont_8AB0",
    "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "func_8010A7A4",
+   "reason": "group func_8010AEAC (w30b): printOption, internal callee of func_8010AEAC (register parameters)"
+  },
+  {
+   "name": "func_8010A8D0",
+   "reason": "group func_8010AEAC (w30b): animButtonText, internal callee of func_8010AEAC"
+  },
+  {
+   "name": "gfx_lock_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "font_set_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_FlashTextColors_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_CenterText_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "track_texture_load",
+   "reason": "group frontier_billboard_render (w31d): GC _InitScreen, IPA-internal, only caller billboard_render"
+  },
+  {
+   "name": "AudKillSong_TTL",
+   "reason": "group frontier_billboard_render (w31d track_texture_load): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "AudSetMusicVol_TTL",
+   "reason": "group frontier_billboard_render (w31d track_texture_load): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "AudPlaySong_TTL",
+   "reason": "group frontier_billboard_render (w31d track_texture_load): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "SaveFlush_TTL",
+   "reason": "group frontier_billboard_render (w31d track_texture_load): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ghost_heap_lock",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ghost_heap_unlock",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "cart_free_direct",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "DeleteGhost",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "GhostDirName",
+   "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

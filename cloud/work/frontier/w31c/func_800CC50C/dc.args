@@ -1,0 +1,4 @@
+# best.c = group.c of the packet + the CompressGhost draft (renamed helper RGH31 for unit tests).
+# audio_reverb_update is IPA-internal: address a1, tag a2, clobbers s0/s1.
+--scripts ghost_save,ghost_pak
+--callee 'void audio_reverb_update(u32 address, s32 tag)=a1,a2/s0,s1'

@@ -389,7 +389,7 @@
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "b8faa781dc6da30515363817bf46e4fd89fc514103c71b919cd55df8e85b4070"
+    "tools/conveyor/pipeline/blob_group.py": "a2d1bce8758b06f9f45e3089bdf9fcb828fd791ed00c692b97a2bd32e4614093"
   },
   "limitations": [
     "Matching candidate only; no source-image, shadow, compression, ROM or gameplay gates.",

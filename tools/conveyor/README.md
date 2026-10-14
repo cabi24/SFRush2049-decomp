@@ -532,6 +532,22 @@ functions, 4,346 symbols in all — and the extent decides how many bytes it
 contributes. Splice at the flagset the sweep recorded as scoring 0, not the
 default: a body matches under one optimization level and not the other.
 
+**Own `.rodata` in several retail windows (groups only).** `score.py` and the
+single splice keep owndata's one-base rule (a function's references into one
+read-only section must agree on one image base) and print NOT VERIFIED otherwise.
+`blob_group` may replace exactly that refusal with `_independent_regions`: each
+window (a reference's offset up to the next referenced object) is compared whole
+against the retail bytes its HI16/LO16 words encode, must sit in one opaque run and
+must not share image bytes with another window. A window may hold relocated words
+only through the jump-table branch (w31i, from w31b's func_8010AEAC proof): every
+relocated word of the section must be an aligned `R_MIPS_32` against the text
+section, every one inside the function's windows must target the function's own
+text, and the window is compared AFTER each entry becomes `function image address
++ (target - function start)`. Any other relocation type, an entry leaving the
+function, or a relocated window that differs from retail refuses with its own
+message; another member's table outside this function's windows is left to that
+member's proof. Tests: `tests/conveyor/test_owndata.py` (`rodata_regions`).
+
 Stage 1 verifies image coverage. Stage 2 makes those splices cartridge coverage;
 `make progress` reports static and game code separately under one cartridge
 heading. Never merge their denominators. The 005 firewall still protects the

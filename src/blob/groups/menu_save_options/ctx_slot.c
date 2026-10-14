@@ -215,10 +215,19 @@ void menu_back(Handle h) {
 
 s32 func_800CBF2C(Handle h, s32 back, s32 select);  /* defined in group.c (w30c) */
 
-void cart_free(void **address) {
+/* GC DeallocateMemory as used by SaveGhost's main path: heap lock/unlock as nested inlined helpers (w31c frame
+ * evidence: the inlined `address` slot sits at retail's 80(sp) only with the two nested 8 B areas below it, as
+ * pak_delete_file_retry's pak_buffer_free). Non-static, internal (not on keep). */
+void ghost_heap_lock(void) {
     osRecvMesg(&D_80152770, NULL, 1);
-    audio_reverb_update((u32)address, 0);
+}
+void ghost_heap_unlock(void) {
     osSendMesg(&D_80152770, NULL, 0);
+}
+void cart_free(void **address) {
+    ghost_heap_lock();
+    audio_reverb_update((u32)address, 0);
+    ghost_heap_unlock();
 }
 
 void slot_forget(Handle node) {
@@ -231,6 +240,35 @@ void slot_forget(Handle node) {
     }
 }
 
+void func_800C7300(Handle ghosth);   /* GC _FreeGhost (group.c member, stub 0x800C7300) */
+/* SaveGhost's limbo-path free: the same heap free written without nested helpers (one 8 B inline area; frame
+ * evidence, w31c). Identity hypothesis: disclosed in RESULTS.md. */
+void cart_free_direct(void **address) {
+    osRecvMesg(&D_80152770, NULL, 1);
+    audio_reverb_update((u32)address, 0);
+    osSendMesg(&D_80152770, NULL, 0);
+}
+void DeleteGhost(Handle ghosth) {   /* GC save.c DeleteGhost */
+    if ((*ghosth)->slot != NULL) {
+        pak_delete_file_retry((*ghosth)->slot);
+    }
+}
+
+/* "BCK"/"FWD" for the ghost file extension (GC SaveGhost picks it inline next to GetGhostExtension); an inlined
+ * helper taking the header pointer (w31c: 8 B inline area + retail's temp-ring register for the byte load). */
+char *GhostDirName(MenuData *header) {
+    if (header->variant) {
+        return D_801211EC;
+    }
+    return D_801211F0;
+}
+
+/* func_800CC040 = GC save.c SaveGhost(pak, saveGhosth, limbo), N64 form (pak, player, saveGhosth, limbo); member
+ * since w31c (EQUAL in the whole-program unit, MATCH in the group compile). Parameter names kept from the w2d draft:
+ * id = pak, owner = player handle, self = saveGhosth, release = limbo; m = header, node = before, buf = str,
+ * obj = ghost, created = fileh. GC calls: SaveGhostInLimbo = func_800CB748, DeallocateMemory = cart_free /
+ * cart_free_direct, _FreeGhost = func_800C7300, _ReadGhostData = func_800CBF2C, DeleteGhost, GetPtrSize =
+ * audio_buffer_sync, InsertLLE = func_80091FBC, gGhostFiles = D_80152020. */
 s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
     MenuData *m;
     Handle node;
@@ -238,16 +276,12 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
     Obj *obj;
     Handle created;
     u32 size;
-    void **gone;
 
     m = *(MenuData **)(*self)->h40;
     if (release) {
         func_800CB748(m, m->data);
-        gone = (*self)->h40;
-        osRecvMesg(&D_80152770, NULL, 1);
-        audio_reverb_update((u32)gone, 0);
-        osSendMesg(&D_80152770, NULL, 0);
-        *self = NULL;
+        cart_free_direct((*self)->h40);
+        func_800C7300(self);
         return 1;
     }
     for (node = D_80152020.head; node != NULL; node = obj->next) {
@@ -258,9 +292,7 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
             slot_forget(node);
             if (func_800CBF2C(node, 0, 0)) {
                 func_800CB748(*obj->h40, ((MenuData *)*obj->h40)->data);
-                if ((*node)->slot != NULL) {
-                    pak_delete_file_retry((*node)->slot);
-                }
+                DeleteGhost(node);
             }
             break;
         }
@@ -268,7 +300,7 @@ s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
     obj = *self;
     size = (u32)audio_buffer_sync((u32)obj->h40);
     sprintf(buf, D_801211E4, (char *)*M2C_FIELD(*owner, void ***, 8) + 18, m->index + 1,
-            m->variant ? D_801211EC : D_801211F0);
+            GhostDirName(m));
     created = PS_CreateFile(id, buf, D_801211F4, size, 0x3544, 0x4E525545);
     if (created == NULL) {
         return 0;

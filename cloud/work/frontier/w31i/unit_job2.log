@@ -1,0 +1,4 @@
+  EQUAL track_texture_load: 337 words (internal, c_track_texture_load.c)
+  EQUAL billboard_render: 244 words (kept, g_frontier_billboard_render__billboard_render.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 2/2 equal; object build/blob_unit/w31i/unit.o (10.6s)

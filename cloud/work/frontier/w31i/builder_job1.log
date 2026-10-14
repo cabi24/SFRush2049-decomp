@@ -1,0 +1,74 @@
+Members:
+func_8010AEAC:
+  NOT VERIFIED (4 section-relative relocations unverified: .rodata+0x0 at +0xd0, .rodata+0x0 at +0xe8, .rodata+0x5c at +0x208, .rodata+0x5c at +0x210; own .rodata: this function's references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c): the literals are not laid out as in retail)
+func_8010A8D0:
+  MATCH
+    own .rodata verified at 0x801248D8..0x8012491C
+func_8010A7A4:
+  MATCH
+    own .rodata verified at 0x801248D4..0x801248D8
+
+Context (informational; excluded from exit status):
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+Members:
+func_8010AEAC:
+  NOT VERIFIED (4 section-relative relocations unverified: .rodata+0x0 at +0xd0, .rodata+0x0 at +0xe8, .rodata+0x5c at +0x208, .rodata+0x5c at +0x210; own .rodata: this function's references disagree on the section's image address (0x80121018 for +0x0, 0x801248C0 for +0x5c): the literals are not laid out as in retail)
+func_8010A8D0:
+  MATCH
+    own .rodata verified at 0x801248D8..0x8012491C
+func_8010A7A4:
+  MATCH
+    own .rodata verified at 0x801248D4..0x801248D8
+
+Context (informational; excluded from exit status):
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1

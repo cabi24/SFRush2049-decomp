@@ -1,0 +1,5 @@
+  EQUAL func_8010AEAC: 413 words (kept, c_faeac.c)
+  EQUAL func_8010A8D0: 375 words (internal, c_faeac.c)
+  EQUAL func_8010A7A4: 75 words (internal, c_faeac.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w31i/unit.o (19.8s)
