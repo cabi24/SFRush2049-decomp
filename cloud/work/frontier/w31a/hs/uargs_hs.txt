@@ -1,0 +1,1 @@
+--internal func_80103D28 --internal du_gfx_lock --internal du_gfx_unlock --internal du_font_set --internal DrawCircuitCode --internal DrawScores --internal hs_CenterText --internal hs_RightText --internal hs_font_set --internal func_80104704 --internal hs_SetFont --internal func_80104B14 --internal hs_SetJust --internal gh_SetFont --internal gh_font_set
