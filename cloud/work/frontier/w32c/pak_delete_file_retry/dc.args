@@ -1,0 +1,4 @@
+# audio_reverb_update is an IPA-internal callee: address in a1, tag in a2, clobbers s0/s1 unsaved
+# (regmap_verify --derive audio_reverb_update, ghost_resave 120 calls). w31c: EQUIVALENT with this shim.
+--scripts ghost_resave,ghost_delete_fail
+--callee 'void audio_reverb_update(u32 address, s32 tag)=a1,a2/s0,s1'

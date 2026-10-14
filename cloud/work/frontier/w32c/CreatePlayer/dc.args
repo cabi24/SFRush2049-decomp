@@ -1,0 +1,3 @@
+--scripts saves,player_finish
+# func_800CCCCC is an IPA member (h in s5) that touches s0,s1,s2,s4,s6 in retail (read from its disassembly, w32c); the EQUIVALENT run used this list (s3 extra, harmless):
+--callee 'void func_800CCCCC(void **h)=s5/s0,s1,s2,s3,s4,s6'
