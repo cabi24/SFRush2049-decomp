@@ -156,3 +156,18 @@ from a bundle, origin/master = d1c53ab2).
 
 ## Permission denials
 None.
+
+## Final application on W = 7d835eb4 (w32i installs merged; game 1066/1216)
+
+Series: inputs 08656246 (facts) / ad4c02fc (rename table + replay) cherry-picked, output 8b92a0ef
+(`RENAME_BATCH=w32n sh cloud/work/frontier/w29n/replay.sh`, untouched), RESULTS 4dca3668 + this section.
+Replay: 19 inventory rows (DB copy), 4 symbol_addrs definitions, 11 src/blob sources (incl. the newly installed
+menu_save_options props.c, codex_control_settings_a4, frontier_audioscr, frontier_optionscr_buttons files that use a
+batch name) + 73 lane C/H files (w28*–w32*), 12 lock keys re-keyed, 55 entries re-pinned; derived-control pins as
+before; no tracked src/blob C/H still USES an old name (users.py; only prose notes keep them).
+Gates: `image matches (647072 bytes) bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d`;
+`blob lock: 1066 entries, 0 problems`; `group lock: 0 problems`; `blob_unit: 1066 locked bodies, 1066 equal to the
+image in one 934-file unit, 0 differ`; `ROM build with the source-built blob: SHA-1 EXACT`.
+Tests: Pi `make test-fast JOBS=4` conveyor `1591 passed, 799 skipped`, cloud `841 passed, 205 skipped`, rc=0 (main
+checkout submodules symlinked temporarily, removed); rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` (ci.env on
+PATH) conveyor `2338 passed, 52 skipped`, cloud `1041 passed, 5 skipped, 27 subtests passed`, rc=0.
