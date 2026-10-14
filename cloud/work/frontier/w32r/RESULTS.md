@@ -102,7 +102,17 @@ image A 99 of 193 reached (unmatched 45 of 112), image B 35 of 49 (unmatched 19 
 
 # Checks
 
-(see below; filled at the end)
+- Branch w32r: 06f0d856 (jobs 1/2/4), merge of wave32 13219eb6 (44c2b43d, auto-merged ipa_callees.json with the
+  DrawName rename), 2cc1b6d2 (restore rule), b50fa00e (all-lanes, census, docs). wave32 did not move after that.
+- Pi worktree `make test-fast JOBS=4` (2cc1b6d2): tests/cloud `854 passed, 207 skipped`; tests/conveyor in the
+  worktree `40 failed, 1513 passed, 813 skipped, 2 errors` = the known fresh-worktree environment (no tools/mips_to_c
+  submodule); tests/conveyor in the MAIN checkout (wave32 13219eb6, with the submodule; this lane changes no conveyor
+  code): `1625 passed, 774 skipped` (serial: none selected). At b50fa00e: tests/cloud `854 passed, 207 skipped`,
+  tests/recomp `158 passed, 5 skipped`.
+- rocky clone `~/rush2049/scratch/w32r` (from the w32n clone, w32r b50fa00e via bundle, origin/master = d1c53ab2,
+  submodules populated, CI env `../w28s.env`): `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: tests/conveyor
+  `2338 passed, 52 skipped`; tests/cloud `1056 passed, 5 skipped, 8 warnings, 27 subtests passed`; rc=0 (the Phase 12
+  e2e tests run there).
 
 ## Permission denials
 None.
