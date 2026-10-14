@@ -64,7 +64,114 @@ regmap_verify --derive after the fix. FindGhosts (s8) and SetHighScoreState (s2)
 --all-lanes lists matched functions as MATCHED without running them. w30a's unit directories got dc.args with the
 new `--name` (audio_options -> game_results_render, controls -> func_80100564; scripts as w30a's RESULTS ran them).
 
-# 4. draft_check --all-lanes: see "All-lanes table" below
+# 4. draft_check --all-lanes: 76 drafts: 33 EQUIVALENT, 3 DIVERGES, 40 MATCHED (not run)
+
+`python3 -m tools.recomp.draft_check --all-lanes` (default globs `w2[8-9]*,w3*`: 29 lane directories incl. w31b and
+the wave-3 w3a-d; rocky service tree = this branch + wave31 882c9f77), final aggregate all from the cache
+(`~/rush2049/recomp/dc/lanes/all-final.{log,json}`; the rows were computed by four concurrent `--all-lanes` workers over
+disjoint globs, --jobs 2 each). Four HARNESS gaps were found on the way and fixed, after which every affected row was
+rerun (rows whose drafts name a changed callee were dropped from the cache, not re-keyed):
+- audio_reverb_update takes (address, tag) in a1/a2 (IPA; regmap_verify CONSISTENT). It was the cause of the w28b
+  pak_delete_file_retry FAULT that wave 30 called a draft bug, and of the w3b sound_bank_unload / w3c display_enable
+  FAULTs: all three EQUIVALENT with the ipa_callees.json entry. **w31c: the draft's `audio_reverb_update(address, 0)`
+  is right; do not "fix" it.**
+- func_80104704 takes p in s5: w30a func_80105480 FAULTED (o32 call) -> EQUIVALENT 4,921 calls / 6 scripts.
+- matched IPA callees with unsaved callee-saved writes had no clobber shim (frontier facts cover only scanned
+  functions): func_800DCD58 writes s0,s1 -> the control_settings `lb a0,1(s0)`, s0 = 0 fault (wave 30 "draft bug").
+  draft_check now derives them from the retail bodies.
+- func_800DD0C0 takes (row, col) at the caller's sp+0/sp+4 (entry added; the pak_nopak fault below remains).
+Stale args fixed: SaveServer drafts (w29d func_800C813C, w30c SaveServer) had no `--statics` -> dc.args -> EQUIVALENT
+19,422 calls / 6 scripts each.
+
+DIVERGES / FAULT with cause:
+| draft | first divergence | cause |
+|---|---|---|
+| w28b SaveServer (func_800C813C) | attract_pak frame 4, FAULT, N64 read of 0x01010000 | DRAFT bug (known since w29r): reads the per-pak file list head at +8 of D_80144D68's 16-byte entries; retail +0 (w29d's later draft is EQUIVALENT) |
+| w29c control_settings | pak_nopak frame 721, FAULT, N64 read of 0x00000008 | OPEN (cell type 2 = func_800DD0C0 path only; ghost_delete_fail/pak_corrupt/pak_repair EQUIVALENT after the clobber fix). Suspected harness (func_800DD0C0's stack-parameter convention, entry sp+0/sp+4 added, still faults; the report has no N64 PC) or the draft's type-2 branch; next: `--keep` and read the faulting host pc in RecompiledFuncs |
+| w30d control_settings | same | same |
+
+| lane | function | verdict | detail |
+|---|---|---|---|
+| w28a | PrintScores | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28a | FindGhosts | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28a | SetHighScoreState | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28a | drawMain | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28a | func_80102F30 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28b | pak_delete_file_retry | EQUIVALENT | over 2 calls / 2 scripts (ghost_delete_fail 1, ghost_resave 1) |
+| w28b | SaveServer | DIVERGES | script attract_pak, frame 4, SaveServer (draft) call #3 (global seq 3): the draft FAULTED (host signal; retail did not) / SIGSEGV, N64 read of 0x01010000 at frame 4 (thread game7) |
+| w28b | CreatePlayer | EQUIVALENT | over 5 calls / 5 scripts (pak_corrupt 1, pak_nopak 1, pak_repair 1, player_finish 1, saves 1) |
+| w28c | ShowCountdown | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_80106B3C | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_80107EDC | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | animLapTime | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_80108AB0 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_8010A53C | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_8010AEAC | EQUIVALENT | over 1649 calls / 2 scripts (options_menus 960, pause_menus 689) |
+| w28c | func_8010BC84 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_8010DCFC | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | func_8010E8B4 | EQUIVALENT | over 571 calls / 2 scripts (options_menus 331, pause_menus 240) |
+| w28c | animControls | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28c | TitlePane | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28d | control_cell_text3 | EQUIVALENT | over 90 calls / 1 scripts (pak_repair 90) |
+| w28d | control_cell_text | EQUIVALENT | over 90 calls / 1 scripts (pak_corrupt 90); never called in: pak_repair, pak_nopak |
+| w28d | control_cell_text2 | EQUIVALENT | over 90 calls / 1 scripts (ghost_delete_fail 90); never called in: pak_nopak, pak_corrupt |
+| w28d | SetupWaveModel | EQUIVALENT | over 637 calls / 6 scripts (attract 203, attract_pak 75, ghost_save 116, two_player 83, two_player_finish 81, audio_options 79) |
+| w28d | func_800E543C | EQUIVALENT | over 126 calls / 6 scripts (attract 42, attract_pak 25, two_player_finish 17, race_finish 15, unlock 15, pause_menus 12) |
+| w28d | func_800E56F8 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w28d | animPlace | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29a | FindGhosts | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29a | func_80100E58 | EQUIVALENT | over 3405 calls / 6 scripts (saves 1395, race_finish 480, ghost_pak 420, ghost_resave 420, unlock 420, player_finish 270) |
+| w29a | func_80102448 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29a | func_80102980 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29a | func_80103D28 | EQUIVALENT | over 98 calls / 1 scripts (unlock 98) |
+| w29b | func_80106B3C | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010B5D0 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010B7FC | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010B9C8 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010BC84 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010DCFC | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29b | func_8010E8B4 | EQUIVALENT | over 571 calls / 2 scripts (options_menus 331, pause_menus 240) |
+| w29b | animControls | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29c | control_settings | DIVERGES | script pak_nopak, frame 721, control_settings (draft) call #1 (global seq 1): the draft FAULTED (host signal; retail did not) / SIGSEGV, N64 read of 0x00000008 at frame 721 (thread game7) |
+| w29c | animPlace | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29d | draw_ui_element | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29d | SetupWaveModel | EQUIVALENT | over 282 calls / 2 scripts (race 79, attract 203) |
+| w29d | LoadTrack | EQUIVALENT | over 41 calls / 2 scripts (race 6, attract 35) |
+| w29d | func_800C7EC8 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w29d | SaveServer | EQUIVALENT | over 19422 calls / 6 scripts (attract 9014, attract_pak 908, pause_menus 3691, options_menus 2498, controls_frontend 1743, saves 1568) |
+| w29d | CreatePlayer | EQUIVALENT | over 2 calls / 2 scripts (saves 1, player_finish 1) |
+| w30a | game_results_render | EQUIVALENT | over 1273 calls / 3 scripts (audio_options 434, options_menus 540, pause_menus 299) |
+| w30a | func_80100564 | EQUIVALENT | over 1949 calls / 2 scripts (controls_frontend 1110, pause_menus 839) |
+| w30a | func_80100E58 | EQUIVALENT | over 3405 calls / 6 scripts (saves 1395, race_finish 480, ghost_pak 420, ghost_resave 420, unlock 420, player_finish 270) |
+| w30a | func_80105480 | EQUIVALENT | over 4921 calls / 6 scripts (ghost_pak 1144, ghost_resave 1144, ghost_save 900, player_finish 863, two_player_finish 496, ghost_delete_fail 374) |
+| w30b | func_800DB1E0,func_800DA2C0 | EQUIVALENT | over 961 calls / 1 scripts (options_menus 961) |
+| w30b | func_80108AB0 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w30b | func_8010AEAC,func_8010A8D0,func_8010A7A4 | EQUIVALENT | over 1649 calls / 2 scripts (pause_menus 689, options_menus 960) |
+| w30b | func_8010B5D0 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w30b | func_8010DCFC | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w30b | func_8010E8B4 | EQUIVALENT | over 571 calls / 2 scripts (options_menus 331, pause_menus 240) |
+| w30c | CreatePlayer | EQUIVALENT | over 5 calls / 5 scripts (pak_corrupt 1, pak_nopak 1, pak_repair 1, player_finish 1, saves 1) |
+| w30c | SaveServer | EQUIVALENT | over 19422 calls / 6 scripts (attract 9014, attract_pak 908, pause_menus 3691, options_menus 2498, controls_frontend 1743, saves 1568) |
+| w30d | LoadTrack | EQUIVALENT | over 41 calls / 2 scripts (race 6, attract 35) |
+| w30d | animPlace | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w30d | control_settings | DIVERGES | script pak_nopak, frame 721, control_settings (draft) call #1 (global seq 1): the draft FAULTED (host signal; retail did not) / SIGSEGV, N64 read of 0x00000008 at frame 721 (thread game7) |
+| w31b | func_800DB1E0,func_800DA2C0 | EQUIVALENT | over 961 calls / 1 scripts (options_menus 961) |
+| w31b | func_8010E8B4 | EQUIVALENT | over 571 calls / 2 scripts (options_menus 331, pause_menus 240) |
+| w3b | audio_mixer_main | EQUIVALENT | over 36 calls / 6 scripts (attract 7, attract_pak 5, ghost_save 6, pause_menus 6, race_finish 6, two_player_finish 6) |
+| w3b | sound_bank_unload | EQUIVALENT | over 108 calls / 6 scripts (attract 42, attract_pak 8, two_player_finish 16, pause_menus 14, race_finish 14, unlock 14) |
+| w3c | display_enable | EQUIVALENT | over 42 calls / 6 scripts (attract 17, attract_pak 4, ghost_save 6, pause_menus 5, race_finish 5, stunt_short 5) |
+| w3c | func_800B9740 | EQUIVALENT | over 36 calls / 6 scripts (attract 7, attract_pak 5, ghost_save 6, pause_menus 6, race_finish 6, two_player_finish 6) |
+| w3d | arb_rate_set | EQUIVALENT | over 232 calls / 6 scripts (ghost_save 48, two_player_finish 40, battle 36, battle_end 36, battle_mine 36, battle_weapons 36) |
+| w3d | camera_shake_start | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w3d | func_800A4CB8 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w3d | func_800E8D50 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w3d | func_800F6928 | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w3d | model_transform_setup | MATCHED | in blob_matched.lock.json: no draft check needed |
+| w3d | steering_sensitivity | MATCHED | in blob_matched.lock.json: no draft check needed |
+
+ALL LANES w2[8-9]*,w3*: 76 drafts: 3 DIVERGES, 33 EQUIVALENT, 40 MATCHED (EQUIVALENT is behaviour only, never a match)
+
+(The 40 MATCHED rows are drafts of functions in blob_matched.lock.json at wave31: listed, not run.)
 
 # 5. Census refresh: DONE
 
