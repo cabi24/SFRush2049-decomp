@@ -627,6 +627,9 @@ commands: `tools/recomp/README.md` "Phase 12"; lane notes: `cloud/work/frontier/
   (ERR 6/10/11 survive) unless `RUSH_PAK_FAIL_ALLOW_CRASH=1`.
 - **Overlay drafts**: `draft_check ovl_a:NAME draft.c` (overlay census for the default scripts, overlay lock in
   `--all-lanes`); func_80396F44's own source EQUIVALENT over 2,047 calls, an injected bug DIVERGES.
+- **All lanes after the w32n renames**: 108 drafts: 47 EQUIVALENT, 56 MATCHED, 5 ERROR (unit directories without
+  dc.args, byte-identical to named twins); no divergence. A save now also needs its restore (control_cell_text2's
+  s8 stack argument). Census: 147 of 150 unmatched reached, 3 never (632 B).
 - **Phase 13 needs**: build/frontier.json regenerated with the conveyor scanner's stack-argument and spill rules
   (its `unsaved_callee_regs` and the replace.py WARNING text still quote the old sets); image A's own pak-dialog
   path (func_803990D0) and the unreached overlay functions.

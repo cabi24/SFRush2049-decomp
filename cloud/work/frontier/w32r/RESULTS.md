@@ -1,5 +1,4 @@
-STATUS (2026-10-14): INTERIM (jobs 1, 2, 4 done; job 3 `--all-lanes` waits for the coordinator; job 5 census at
-the end). Recomp Phase 12 (decomp feedback tooling), branch w32r (worktree, from wave32 d1c53ab2). Not a matching
+STATUS (2026-10-14): DONE (jobs 1-5). wave32 13219eb6 (w32i installs + w32n renames) merged. Recomp Phase 12 (decomp feedback tooling), branch w32r (worktree, from wave32 d1c53ab2). Not a matching
 lane: no src/, asm/, lock or coverage change. Docs: tools/recomp/README.md "Phase 12"; plan §21. Test:
 tests/cloud/test_recomp_phase12.py. Rocky service tree `~/rush2049/recomp/dc/repo` = this branch (rsynced).
 
@@ -59,17 +58,51 @@ value differs (v0: retail 00000000 | draft 00000001)`; image B `ovl_b:func_8038A
 `VERDICT: EQUIVALENT over 16 calls / 6 scripts`. (`found = 2` instead of 1 stayed EQUIVALENT: no script makes it
 true; the return-value bug is the proof.)
 
+# 3. draft_check --all-lanes after the w32n renames: 108 drafts: 47 EQUIVALENT, 56 MATCHED, 5 ERROR, no divergence
+
+Service tree = w32r with wave32 13219eb6 merged; build/frontier.json + build/ipa_members.json copied from the Pi main
+checkout's post-merge `ipa scan` / `frontier scan` (15:06; rocky has no Conveyor DB: `ipa scan` there scanned 0
+targets, so the old files were restored first). CACHE_EPOCH w32r-2, so every row was recomputed ("(cached)" rows are
+byte-identical drafts in two lane dirs, computed earlier in the same run).
+`ALL LANES w2[8-9]*,w3*: 108 drafts: 47 EQUIVALENT, 5 ERROR, 56 MATCHED` (log/json: rocky
+`~/rush2049/recomp/dc/lanes/w32r-all.{log,json}`).
+- DIVERGES / FAULT: none. The three DIVERGES of w31r are gone: w28b SaveServer is MATCHED now; w29c/w30d
+  control_settings EQUIVALENT over 360 calls / 4 scripts (job 1).
+- ERROR (5): w31a `audio`, `f5ea8`, `hs`, w32a `hs`, w32b `audio`: unit directories with no dc.args (NAME = the
+  directory name). Not rename damage: each best.c is byte-identical to a named twin that ran (w31a f5ea8 =
+  func_80105EA8 -> animResults EQUIVALENT 26,166 calls; w31a/w32a hs = func_80105480 -> highscore_animText EQUIVALENT
+  4,921 calls) or drafts a matched pair (audio_animText/audio_animButtonText). By hand: `draft_check --unit
+  highscore_animText,DrawName,DrawGhost,DrawUnlocked w32a/hs/best.c --scripts ghost_pak,unlock,player_finish,race_finish`
+  -> `VERDICT: EQUIVALENT over 2473 calls / 4 scripts` = w32a's pre-rename result. Lanes wanting the row: add
+  `--unit ...` dc.args to those dirs.
+- Rename invariance: every renamed draft's verdict and call count equals w31r's (e.g. DrawUnlocked 98, func_80100E58
+  3,405, highscore_animText 4,921, CreatePlayer 5, LoadTrack 41, SetupWaveModel 282); no stale-dc.args ERROR.
+
+Reconciliations asked by the coordinator:
+- control_cell_text2's s8: confirmed undetected by my spill rule (the stack-argument store comes BEFORE its first
+  write). Fixed here: a save also needs a reload of its slot (IDO always restores; a call-free body keeps the old
+  rule). Interproc now gives control_cell_text2 +s8; 7 more functions grow (audio_doppler_calc s0,
+  best_times_display s2, entity_tick_main s5, func_800B0A88 s1,s2, func_800E398C s7, render_replay_ui s4,
+  save_validate s3; spot-checked: an sp store before the write, never reloaded). The conveyor's
+  `frontier.unsaved_callee_writes` needs the same clause (not touched here).
+- func_80097164 s0-s4 (conveyor) vs s0-s7 (table): both right for what they measure. The scan lists the function's
+  own unsaved writes; Interproc is transitive and func_80097164 calls SetupWaveModel (was func_80096CA8, `jal
+  0x80096CA8`), which writes s5-s7 unsaved. A shim around a call must save the transitive set: keep s0-s7.
+
+# 5. Census refresh
+
+wave32 13219eb6, 39 scripts, 150 unmatched: **147 reached (164,724 B), 3 never (632 B)**: world_effect_update,
+fp_call_wrapper, object_bytes23_sum (no static reference). Was 163 of 166 at wave31. Overlays (`--overlays`):
+image A 99 of 193 reached (unmatched 45 of 112), image B 35 of 49 (unmatched 19 of 28), unchanged.
+
 # Other
 
 - `RUSH_DC_BUILD_JOBS=N`: ninja -j per build side (two sides build concurrently; default 8 each). This lane ran
   with 4 (8 cores).
 
-# Checks (interim)
+# Checks
 
-- Pi: `pytest tests/cloud/test_recomp_phase12.py tests/cloud/test_recomp_phase11.py` pass (e2e skipped);
-  `pytest tests/recomp` pass; `pytest tests/cloud -k recomp` pass.
-- rocky (CI venv, service tree): `pytest tests/cloud/test_recomp_phase12.py` 14 passed (both e2e tests ran).
-- make test-fast (Pi, rocky clone): at the end.
+(see below; filled at the end)
 
 ## Permission denials
 None.

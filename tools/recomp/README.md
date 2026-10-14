@@ -1177,6 +1177,27 @@ python3 -m tools.recomp.draft_check ovl_b:func_8038A8CC src/ovl_b/func_8038A8CC.
 
 A lane directory holding an overlay draft names it in its dc.args with `--name ovl_a:NAME`.
 
+**Saves need their restore** (job 3 follow-up, w32n's finding). A store before the first write can still be an
+outgoing stack argument: control_cell_text2 passes its s8 parameter on at 0x18(sp) before it writes s8, never reloads
+the slot, and then writes s8 unsaved. Interproc now also requires the slot to be reloaded somewhere in the body (every
+IDO save has its epilogue restore; a body without calls keeps the old answer). Eight more unsaved sets grow
+(audio_doppler_calc s0, best_times_display s2, control_cell_text2 s8, entity_tick_main s5, func_800B0A88 s1,s2,
+func_800E398C s7, render_replay_ui s4, save_validate s3; spot-checked: argument stores with no reload). CACHE_EPOCH
+`w32r-2`. func_80097164: the conveyor scan says s0-s4 (its own writes); ipa_callees.json keeps s0-s7 because the
+shim must cover the transitive set (s5-s7 are written, unsaved, by its callee SetupWaveModel,
+was func_80096CA8): Interproc derives s0-s7.
+
+**All lanes after the w32n renames** (2026-10-14, wave32 13219eb6 merged, build/frontier.json + ipa_members.json from
+the Pi's post-merge `ipa scan` / `frontier scan`): `ALL LANES w2[8-9]*,w3*: 108 drafts: 47 EQUIVALENT, 5 ERROR, 56
+MATCHED`, no DIVERGES/FAULT. The 5 ERRORs are unit directories without dc.args (w31a audio/f5ea8/hs, w32a hs, w32b
+audio), each byte-identical to a named twin directory that ran (or a matched pair); the w32a hs unit by hand with
+the new names (`--unit highscore_animText,DrawName,DrawGhost,DrawUnlocked`) is EQUIVALENT over 2,473 calls as before
+the rename. Log: rocky `~/rush2049/recomp/dc/lanes/w32r-all.{log,json}`.
+
+**Census refresh** (2026-10-14, wave32 13219eb6, 39 scripts, 150 unmatched): **147 reached (164,724 B), 3 never
+(632 B)**: world_effect_update, fp_call_wrapper, object_bytes23_sum (no static reference). Overlays unchanged: image
+A 99 of 193 (unmatched 45 of 112), image B 35 of 49 (unmatched 19 of 28).
+
 **Build cores.** `RUSH_DC_BUILD_JOBS=N` sets ninja's -j per side (the retail and draft sides build at once; default
 8 each).
 
