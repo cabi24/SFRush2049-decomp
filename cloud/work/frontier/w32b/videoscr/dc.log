@@ -1,0 +1,16 @@
+draft_check: running on rocky (inbox rush2049/recomp/dc/inbox/cburnes-func_8010F218,func_8010EA08-20261014-143528-1650602)
+draft_check func_8010F218, func_8010EA08 (unit) <- /home/cburnes/projects/rush2049-decomp/cloud/work/frontier/w32b/videoscr/best.c
+  draft sha256 4ee4dbcf65014c71; run dir /home/cburnes/rush2049/recomp/dc/runs/func_8010F218+unit2/20261014-143532-3455053
+  scripts (chosen): options_menus, pause_menus
+  built in 36 s (draft compiled with ido5.3)
+  replace: WARNING draft: calls IPA register-parameter callees (slot_state_setup: register parameters s2); built with --allow-ipa: register shims for slot_state_setup
+  ipa shim slot_state_setup: 3 call site(s)
+  ipa shim slot_state_setup: 3 call site(s)
+  options_menus  EQUIVALENT   330 member calls (func_8010F218 330, func_8010EA08 0)  (2490 frames, 20 s, retail cached)
+  pause_menus    EQUIVALENT   239 member calls (func_8010F218 239, func_8010EA08 0)  (4320 frames, 37 s, retail cached)
+
+VERDICT: EQUIVALENT over 569 calls / 2 scripts (options_menus 330, pause_menus 239)
+  unit members (outermost calls compared): func_8010F218 569, func_8010EA08 0
+  NOTE never called from outside the unit: func_8010EA08 (exercised only through other members, inside their compared calls)
+  Behaviour only: every call's arguments, return value and memory writes match retail. This is NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.
+  details: /home/cburnes/rush2049/recomp/dc/runs/func_8010F218+unit2/20261014-143532-3455053

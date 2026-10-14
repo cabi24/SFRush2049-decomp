@@ -1,0 +1,13 @@
+draft_check: running on rocky (inbox rush2049/recomp/dc/inbox/cburnes-func_80100564-20261014-143645-1652401)
+draft_check func_80100564 <- /home/cburnes/projects/rush2049-decomp/cloud/work/frontier/w32b/controls/best.c
+  draft sha256 2d5b5f3992a2fe4a; run dir /home/cburnes/rush2049/recomp/dc/runs/func_80100564/20261014-143648-3457274
+  scripts (chosen): controls_frontend, pause_menus
+  built in 142 s (draft compiled with ido5.3)
+  replace: WARNING draft: calls IPA register-parameter callees (slot_state_setup: register parameters s2); built with --allow-ipa: register shims for slot_state_setup
+  ipa shim slot_state_setup: 8 call site(s)
+  controls_frontend EQUIVALENT   1110 calls of func_80100564  (1740 frames, 14 s)
+  pause_menus    EQUIVALENT   839 calls of func_80100564  (4320 frames, 30 s)
+
+VERDICT: EQUIVALENT over 1949 calls / 2 scripts (controls_frontend 1110, pause_menus 839)
+  Behaviour only: every call's arguments, return value and memory writes match retail. This is NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.
+  details: /home/cburnes/rush2049/recomp/dc/runs/func_80100564/20261014-143648-3457274
