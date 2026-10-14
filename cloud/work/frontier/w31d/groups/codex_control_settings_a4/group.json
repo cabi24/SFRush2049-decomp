@@ -1,0 +1,28 @@
+{
+ "name": "codex_control_settings_a4",
+ "members": [
+  "func_800DCD58",
+  "func_800DCCE0",
+  "control_settings",
+  "control_cell_text",
+  "control_cell_text2",
+  "control_cell_text3",
+  "func_800DD0C0"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "group.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "control_settings"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [],
+ "note": "NOT INSTALLABLE (control_settings/text2/text3/func_800DD0C0 not matching). Supersedes codex_control_settings_a4 in place (old members func_800DCD58, func_800DCCE0 kept, bodies verbatim). ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup s2 convention). Unit install: force_internal control_cell_text, control_cell_text2, control_cell_text3, func_800DD0C0, gfx_lock_DC, gfx_unlock_DC, font_set_DC, font_set1_DC, pair_set_DC.",
+ "provenance": "w29c/w30d drafts -> w31d; cloud/work/frontier/w31d/RESULTS.md"
+}
