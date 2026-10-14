@@ -55,3 +55,17 @@ Tests (tests/conveyor/test_owndata.py; the old `test_rodata_regions_refuse_jump_
 - provisional.json: func_8010A7A4 retired (its real caller A8D0 is now locked). All nine ctx_gr3_b.c copies
   byte-identical to credits_scroll_grp/gr3_b.c. Not a scout target. No data-symbol changes.
 - CLAIMS: wave-31 landed row added; menus open row now carries w31b's func_800DA2C0 202/579 + DB1E0 pair, func_8010E8B4 3/85.
+
+## Receipt rebind (commit fb90f65f)
+The blob_group.py change moves its sha256 (b8faa781 -> a2d1bce8), pinned as `tools_sha256` by four receipts:
+dot_material_selector_20261006, dot_billboard_context_20261005, ipa-groups/dot_random_range_b2e4_20261005,
+ipa-groups/dot_masked_random_b23e0_20261006 (only that hash changed; precedent eae0c646). Their four test files: 35 passed on rocky.
+
+## Tests
+- Pi `make test-fast JOBS=4` at c4c94e49 (main checkout's tools/mips_to_c and tools/decomp-permuter symlinked in temporarily,
+  removed afterwards): conveyor `1593 passed, 799 skipped`; cloud `820 passed, 204 skipped`; rc=0.
+- rocky clone `~/rush2049/scratch/w31i` (copy of the w30i clone, branch from a bundle, `origin/master` = 880e729e, submodules
+  populated, CI venv) `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: at c4c94e49 2 failures (the two receipt tests above,
+  tools_sha256 of blob_group.py) -> rebind; at fb90f65f conveyor `2340 passed, 52 skipped`; cloud `1019 passed, 5 skipped,
+  8 warnings, 27 subtests passed`; rc=0.
+- Builder scratch watchman2:~/rush2049/scratch/frontier/w31i and unit/w31i deleted.
