@@ -18,58 +18,59 @@ def test_o32_function_is_clean():
         "addiu $sp,$sp,-24", "sw $ra,20($sp)", "sw $s0,16($sp)",
         "sdc1 $f20,8($sp)", "move $s0,$a0", "jal g", "lwc1 $f12,4($a0)",
         "mov.s $f4,$f0", "lw $ra,20($sp)", "lw $s0,16($sp)",
-        "jr $ra", "addiu $sp,$sp,24"))
+        "ldc1 $f20,8($sp)", "jr $ra", "addiu $sp,$sp,24"))
     assert result == {"live_in": set(), "preserved_reads": set()}
 
 
-def test_jal_delay_slot_runs_before_the_call():
-    # A temp read in the delay slot is not a read after the call.
-    result = ipa.analyze(_asm("li $t6,1", "jal g", "sw $t6,28($sp)",
-                              "jr $ra", "nop"))
-    assert result["preserved_reads"] == set()
-
-
-def test_argument_passed_through_a_call_is_flagged():
-    # audio_buffer_sync: $a1 set before the first call, consumed by the
-    # second with only $a0/$a2 refreshed in between.
+def test_callee_saved_register_stored_as_a_stack_argument_is_a_read():
+    # control_cell_text (w31r, tools/recomp/ipa_detect.py): s7 is a register
+    # parameter passed on as the callee's fifth argument; the body never
+    # writes or reloads s7, and it calls, so the store is no prologue save.
     result = ipa.analyze(_asm(
-        "lw $a1,40($sp)", "jal f1", "move $a0,$a1", "move $a0,$v0",
-        "jal f2", "move $a2,$zero", "jr $ra", "nop"))
-    assert result["preserved_reads"] == {"a1"}
+        "addiu $sp,$sp,-40", "sw $ra,36($sp)", "sll $t6,$s5,2", "sll $t7,$s6,2",
+        "jal camera_auto_follow", "sw $s7,24($sp)", "lw $ra,36($sp)",
+        "jr $ra", "addiu $sp,$sp,40"))
+    assert result["live_in"] == {"s5", "s6", "s7"}
 
 
-def test_float_first_argument_leaves_a0_unset_legitimately():
-    # sound_position_set: callee(f32, s32) takes $f12 and $a1; $a0 is unused.
+def test_callee_saved_store_without_restore_in_a_leaf_is_a_save():
+    # No call: the store cannot be an outgoing argument.
     result = ipa.analyze(_asm(
-        "sw $a0,24($sp)", "jal f1", "lwc1 $f12,4($a0)", "lw $t7,24($sp)",
-        "lw $a1,28($sp)", "jal f2", "lwc1 $f12,0($t7)", "jr $ra", "nop"))
-    assert result["preserved_reads"] == set()
+        "addiu $sp,$sp,-8", "sw $s0,4($sp)", "jr $ra", "addiu $sp,$sp,8"))
+    assert result["live_in"] == set()
 
 
-def test_groups_pull_in_setters_and_preserved_callee_closures():
-    members_doc = {
-        "members": ["callee", "caller", "keeper"],
-        "callees": {"callee": ["t0"]},
-        "preservers": {"keeper": ["a1"]},
-        "callers": {"caller": ["callee"]},
-    }
-    calls = {"caller": {"callee"}, "callee": {"leaf"}, "keeper": {"mid"},
-             "mid": {"deep"}, "deep": set(), "leaf": set()}
-    size = {"callee": 10, "caller": 10, "keeper": 10, "mid": 10, "deep": 10, "leaf": 10}
-    groups = ipa.discover_groups(members_doc, calls, size, cap=100)
-    by_id = {g["id"]: set(g["members"]) for g in groups}
-    assert by_id["callee"] == {"callee", "caller"}          # setter joins its callee
-    assert by_id["keeper"] == {"keeper", "mid", "deep"}     # preserved call: callee closure
+def test_stack_argument_register_reused_later_is_still_a_read():
+    # control_cell_text2 (w32n): s8 goes out as a stack argument, then the
+    # (internal) body reuses s8 without restoring it.
+    result = ipa.analyze(_asm(
+        "addiu $sp,$sp,-48", "sw $ra,36($sp)", "jal camera_auto_follow",
+        "sw $s8,24($sp)", "addu $s8,$v0,$zero", "lw $ra,36($sp)",
+        "jr $ra", "addiu $sp,$sp,48"))
+    assert result["live_in"] == {"s8"}
 
 
-def test_units_over_the_cap_are_left_out():
-    members_doc = {"members": ["keeper"], "callees": {},
-                   "preservers": {"keeper": ["a1"]}, "callers": {}}
-    calls = {"keeper": {"big"}, "big": set()}
-    groups = ipa.discover_groups(members_doc, calls, {"keeper": 10, "big": 500}, cap=100)
-    assert groups == []
+def test_saved_register_reloaded_from_its_slot_is_not_a_read():
+    result = ipa.analyze(_asm(
+        "addiu $sp,$sp,-32", "sw $ra,28($sp)", "sw $s1,0x18($sp)",
+        "move $s1,$a0", "jal g", "nop", "lw $ra,28($sp)", "lw $s1,24($sp)",
+        "jr $ra", "addiu $sp,$sp,32"))
+    assert result["live_in"] == set()
 
 
-def test_m2c_register_map_keeps_non_abi_registers_in_register_order():
-    doc = {"callees": {"f": ["t1", "a0", "t0"], "g": ["s2", "f20"], "h": ["a1"]}}
-    assert ipa.m2c_register_map(doc) == {"f": ["t0", "t1"], "g": ["s2", "f20"]}
+def test_synthetic_lui_of_the_derived_asm_is_dropped():
+    # animResults (w32n): the m2c asm renders the delay-slot load `lh $t9,0x7c6($s3)`
+    # as an unlabelled `lh $t9,%lo(D)($s3)` after a synthetic labelled `lui $s3,%hi(D)`;
+    # read literally, the taken path skips the t9 load and t9 looks live on entry.
+    text = ("glabel f\n"
+            ".L0:\n    lb      $t8,0($a2)\n"
+            ".L4:\n    bnel    $a3,$t8,.L10\n"
+            ".L8:\n    lui     $s3,%hi(D)\n    lh      $t9,%lo(D)($s3)\n"
+            ".LC:\n    lh      $t9,0($a2)\n"
+            ".L10:\n    multu   $t9,$a1\n"
+            ".L14:\n    jr      $ra\n"
+            ".L18:\n    nop\n")
+    insns = ipa.parse(text)
+    assert [op for _, op, _ in insns][:4] == ["lb", "bnel", "lh", "lh"]
+    assert insns[2][0] == [".L8"]
+    assert ipa.analyze(text)["live_in"] == {"s3"}

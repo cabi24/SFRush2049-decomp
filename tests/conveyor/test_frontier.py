@@ -102,6 +102,8 @@ def test_unsaved_callee_saved_write_needs_a_group():
     save_s0 = (43 << 26) | (29 << 21) | (16 << 16) | 20  # sw $s0,20($sp)
     assert frontier.unsaved_callee_writes([move_s0_a0]) == ["s0"]
     assert frontier.unsaved_callee_writes([save_s0, move_s0_a0]) == []
+    # w32r: a store AFTER the first write is a spill / stack argument, not a save
+    assert frontier.unsaved_callee_writes([move_s0_a0, save_s0]) == ["s0"]
     facts = frontier.analyze({"f": set()}, {"f": 8}, set(), None, {"f": ["s0"]})
     assert facts["f"]["recipe"] == "group"
 

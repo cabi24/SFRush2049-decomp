@@ -165,10 +165,20 @@ _REG_NAMES = {**{16 + i: f"s{i}" for i in range(8)}, 30: "s8"}
 def unsaved_callee_writes(words):
     """Callee-saved integer registers a function writes without storing them
     to its frame first: legal only when whole-program -O3 knows no caller
-    needs them, so the function cannot match compiled alone."""
+    needs them, so the function cannot match compiled alone.
+
+    A store of the register to the stack is a save only before the body first
+    writes it (IDO saves in the entry block); a later store is a spill or an
+    outgoing stack argument of the clobbered value (w32r, regmap_verify
+    Interproc: retail func_800DD0C0 writes s0/s1/s3, then spills s1/s3 around
+    a call and passes s0 at 0x18(sp))."""
     written, saved = set(), set()
     for w in words:
         op, rs, rt, rd = w >> 26, (w >> 21) & 31, (w >> 16) & 31, (w >> 11) & 31
+        if op in (43, 63) and rs == 29:                 # sw / sd reg, off(sp)
+            if rt not in written:
+                saved.add(rt)
+            continue
         if op == 0:
             if (w & 63) not in _NO_RD and w != 0:
                 written.add(rd)
@@ -176,8 +186,6 @@ def unsaved_callee_writes(words):
             written.add(rt)
         elif op == 17 and rs in (0, 2):                 # mfc1 / cfc1
             written.add(rt)
-        elif op in (43, 63) and rs == 29:               # sw / sd reg, off(sp)
-            saved.add(rt)
     return sorted(_REG_NAMES[r] for r in (written & _CALLEE_SAVED) - saved)
 
 
