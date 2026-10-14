@@ -352,6 +352,38 @@
   {
    "name": "HAL_SetFont_8AB0",
    "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "func_8010A7A4",
+   "reason": "group func_8010AEAC (w30b): printOption, internal callee of func_8010AEAC (register parameters)"
+  },
+  {
+   "name": "func_8010A8D0",
+   "reason": "group func_8010AEAC (w30b): animButtonText, internal callee of func_8010AEAC"
+  },
+  {
+   "name": "gfx_lock_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "font_set_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_FlashTextColors_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
+  },
+  {
+   "name": "TB_CenterText_AEAC",
+   "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
   }
  ],
  "prefer_definition": [

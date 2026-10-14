@@ -23,10 +23,6 @@
   "evidence": "cloud/work/ipa-groups/dot_palette_generation_20261005",
   "note": "PR #87: strict MATCH as an internal callee with its real caller sound_bank_unload, which is 262/312 words off; closes when the caller matches"
  },
- "func_8010A7A4": {
-  "evidence": "cloud/work/ipa-groups/dot_menu_row_caller_20261005",
-  "note": "PR #88: strict MATCH (own literal verified) as a register-parameter callee with its real caller func_8010A8D0, which is 367/375 words off"
- },
  "drone_throttle_calc": {
   "evidence": "cloud/work/frontier/w16f/groups/frontier_pause_quit",
   "note": "wave 6 (w6d) body, wave 16 (w16f) repackaged: code-identical and passes the w15j own-data gate (strings 0x80120254.., floats 0x801241FC..), but its only caller func_800D91A0 is unmatched so the body needs a stand-in caller; closes when func_800D91A0 matches. pause_quit = drone_throttle_calc. Unused locals k,u0,u1,u2 are the exact frame residual (112 vs 96), disclosed."

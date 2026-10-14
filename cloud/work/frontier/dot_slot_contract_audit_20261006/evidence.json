@@ -72,12 +72,14 @@
       "animLapTime",
       "func_80108AB0",
       "func_8010A53C",
+      "func_8010A8D0",
+      "func_8010AEAC",
       "func_8010B5D0",
       "func_8010B7FC",
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 53504,
+    "unaccepted_caller_bytes": 50352,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "func_800D9058": 328,
@@ -1123,7 +1125,7 @@
       "start": "0x8010A8D0",
       "bytes": 1500,
       "body_sha256": "c304dbcbcf457681079f085c834ae2401537000281b3ce1bd1336f4aa28914a6",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x8010A94C",
         "0x8010A9C8"
@@ -1133,7 +1135,6 @@
       },
       "other_unaccepted_direct_game_calls": [
         "brake_light_update",
-        "func_8010A7A4",
         "state_utility"
       ]
     },
@@ -1141,7 +1142,7 @@
       "start": "0x8010AEAC",
       "bytes": 1652,
       "body_sha256": "f3e943ca4521f85900d4ebf6463ce1595d9187ab43dbcae17b6e9f199ad24321",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x8010AF2C",
         "0x8010B038"
@@ -1151,8 +1152,6 @@
         "s7": 1
       },
       "other_unaccepted_direct_game_calls": [
-        "func_8010A7A4",
-        "func_8010A8D0",
         "object_bytes_sum_global",
         "state_utility"
       ]
