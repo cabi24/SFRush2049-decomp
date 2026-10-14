@@ -112,3 +112,9 @@ ipa-groups/dot_masked_random_b23e0_20261006 (only that hash changed; precedent e
 - Coverage: 1054 -> **1056/1216, 383,032 -> 384,828 B (59.19% -> 59.47%)**.
 - CLAIMS: SaveServer, func_800CC040 (+ devices/hypotheses) on the wave-31 landed row; save row rewritten with
   func_800CC50C 9/190 (= CompressGhost), pak_delete_file_retry (colour only, `--callee` a1,a2/s0,s1), CreatePlayer 241/272.
+
+## Tests after Jobs 2–3 (branch w31i at d18f91a2)
+- Pi `make test-fast JOBS=4` (submodule symlinks in temporarily, removed): conveyor `1593 passed, 799 skipped`; cloud `820 passed, 204 skipped`; rc=0.
+- rocky clone `~/rush2049/scratch/w31i` (`origin/master` = 880e729e) `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor
+  `2340 passed, 52 skipped`; cloud `1019 passed, 5 skipped, 8 warnings, 27 subtests passed`; rc=0.
+- Builder scratch frontier/w31i and unit/w31i deleted again.
