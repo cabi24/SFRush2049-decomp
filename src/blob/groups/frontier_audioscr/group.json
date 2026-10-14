@@ -1,0 +1,25 @@
+{
+ "name": "frontier_audioscr",
+ "members": [
+  "game_results_render",
+  "game_results_update",
+  "func_800BEA3C"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "audio.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "game_results_render",
+  "func_800BEA3C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Audio-options screen (GC audioscr.c): game_results_render = animText (kept, function-pointer entry), game_results_update = animButtonText (internal, sole caller game_results_render), func_800BEA3C = TB_FlashTextColors re-typed to GC's union {u8 c[4]; u32 rgba;} (bytes identical to the locked single, which this group supersedes: install with --revert-single func_800BEA3C; it stays KEPT, other callers). Context ctx_gr3_b.c = byte-identical copy of credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA only with its body in the program). Inlined helpers au_* are non-static and not on keep (w17j stub rule): unit_overrides force_internal += game_results_update and the au_* helpers if the group rule does not derive them.",
+ "provenance": "w30a draft (audio_options/best.c) | w31a levers (validOption, union, SetFont/SetJust helpers) | w32b: toupper loop as GC's unconditional ternary store with an explicit `!= 0` loop test (shares the cvt web with the loaded byte); cloud/work/frontier/w32b/RESULTS.md"
+}

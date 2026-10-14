@@ -488,6 +488,42 @@
   {
    "name": "pair_set_DC",
    "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "game_results_update",
+   "reason": "group frontier_audioscr (w32b, GC animButtonText@audioscr.c): member, internal (not on keep; its caller is in the same group)"
+  },
+  {
+   "name": "au_gfx_lock",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_gfx_unlock",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_font_set",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_CenterText",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_RightText",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_SetJust",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_SetFont",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "au_validOption",
+   "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

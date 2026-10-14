@@ -10,6 +10,7 @@ Builder scratch watchman2:~/rush2049/scratch/frontier/w32i (copy of base + rsync
 | (start) | — | — | 1056/1216, 384,828 B (59.47%) |
 | 1 | `menu_save_options` superseded in place (w32c): + func_800CC50C (CompressGhost), + props_render (GhostStart) | 2,940 | **1058/1216, 387,768 B (59.93%)** |
 | 2 | `codex_control_settings_a4` superseded in place (w32d): + control_cell_text, control_cell_text2, control_cell_text3, func_800DD0C0 (provisional on the caller) | 2,684 | **1062/1216, 390,452 B (60.34%)** |
+| 3a | NEW group `frontier_audioscr` (w32b): game_results_render + game_results_update; func_800BEA3C re-typed (`--revert-single`) | 2,336 | **1064/1216, 392,788 B (60.70%)** |
 
 ## Job 1: w32c menu_save_options packet
 - Packet check: group.c, save.c, ctx_hash.c, ctx_slot.c, ctx_strncmp.c `cmp`-identical to src/blob/groups/menu_save_options;
@@ -58,3 +59,29 @@ Builder scratch watchman2:~/rush2049/scratch/frontier/w32i (copy of base + rsync
 - CLAIMS: the four on the wave-32 landed row, marked PROVISIONAL on control_settings' caller form (coordinator decision);
   race/world row: w32d control_settings 636/638 + measured inline-frame law + lead, LoadTrack stop rule; resource-loader row:
   SetupWaveModel j-loop analysis.
+
+## Job 3 (merge of wave32 e9e1359b first): w32b's two new groups
+Builder (`builder_job3.log`, both groups, with and without `--claims`): frontier_audioscr — `game_results_render: MATCH`
+(`own .rodata verified at 0x8011F6C4..0x8011F6D4`, `0x8011F6D8..0x8011F6E0`), `func_800BEA3C: MATCH`, `game_results_update:
+NOT VERIFIED (14 section-relative relocations unverified ...; own .rodata ... 0x8011F6E0 for +0x0/+0x4, 0x80124804 for +0x24..+0x34)`;
+frontier_optionscr_buttons — `func_800DB1E0: MATCH` (`own .rodata verified at 0x80124248..0x80124280`), `func_800DA2C0: NOT VERIFIED
+(32 section-relative relocations unverified ...)`, `own .bss placed at 0x8015273C`, `0x80152740`. rc=1 only from the two
+expected two-region NOT VERIFIED lines; the install's splice proof (blob_group.group_bodies) is the gate for those.
+force_internal is NOT derived for non-keep group members/helpers (without it the unit kept au_font_set: game_results_render 264/291
+`refers to au_font_set, which has no image address`), so: += game_results_update, au_gfx_lock, au_gfx_unlock, au_font_set,
+au_CenterText, au_RightText, au_SetJust, au_SetFont, au_validOption (3a); += func_800DA2C0, ZOID_SetColor_da, ZOID_SetColorP_da (3b).
+Unit (`unit_job3.log`, overrides in place): `EQUAL game_results_render: 291 words (kept, c_audio.c)`, `EQUAL game_results_update:
+293 words (internal, c_audio.c)`, `EQUAL func_800BEA3C: 7 words (kept, c_audio.c)`, 0 locked differ, 3/3; `EQUAL func_800DB1E0:
+350 words (kept, c_buttons.c)`, `EQUAL func_800DA2C0: 579 words (internal, c_buttons.c); own zero-initialised data (addresses
+consistent ...)`, 0 locked differ, 2/2.
+
+### 3a: frontier_audioscr
+- ctx_gr3_b.c cmp-identical to credits_scroll_grp/gr3_b.c; func_800B669C already on force_keep.
+- Install (`install_job3a.log`): `install_group.py cloud/work/frontier/w32b/groups/frontier_audioscr frontier_audioscr
+  --revert-single func_800BEA3C` -> `spliced frontier_audioscr: 3 members, new: ['game_results_render', 'game_results_update']`,
+  `image coverage: 1064/1216 functions, 392788/647072 bytes (60.70%)`; src/blob/func_800BEA3C.c removed (body now in audio.c, kept).
+- Gates (`gates_job3a.log`, `rom_job3a.log`): `group lock: 0 problems`; `blob lock: 1064 entries, 0 problems`; `blob_unit: 1064
+  locked bodies, 1064 equal to the image in one 933-file unit, 0 differ`; `unused_overrides []`; `ROM build with the source-built
+  blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- symbols.json / blob.ld unchanged (2 provenance comments + SHA256SUMS): no re-pin. Slot-contract audit: the pair accepted,
+  unaccepted_caller_bytes 47668 -> 45332, frozen list/count updated.

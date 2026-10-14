@@ -1,0 +1,9 @@
+  EQUAL game_results_render: 291 words (kept, c_audio.c)
+  EQUAL game_results_update: 293 words (internal, c_audio.c)
+  EQUAL func_800BEA3C: 7 words (kept, c_audio.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w32i/unit.o (8.3s)
+  EQUAL func_800DB1E0: 350 words (kept, c_buttons.c)
+  EQUAL func_800DA2C0: 579 words (internal, c_buttons.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  locked bodies that differ in this unit: 0
+blob_unit score: 2/2 equal; object build/blob_unit/w32i/unit.o (8.1s)

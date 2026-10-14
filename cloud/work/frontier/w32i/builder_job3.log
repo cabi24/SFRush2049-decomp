@@ -1,0 +1,96 @@
+## score.py group cand/w32i/frontier_audioscr --claims
+Members:
+game_results_render:
+  MATCH
+    own .rodata verified at 0x8011F6C4..0x8011F6D4
+    own .rodata verified at 0x8011F6D8..0x8011F6E0
+game_results_update:
+  NOT VERIFIED (14 section-relative relocations unverified: .rodata+0x24 at +0x108, .rodata+0x24 at +0x10c, .rodata+0x28 at +0x110, .rodata+0x28 at +0x114, .rodata+0x2c at +0x118, .rodata+0x2c at +0x11c, .rodata+0x30 at +0x120, .rodata+0x30 at +0x124, .rodata+0x34 at +0x1b0, .rodata+0x34 at +0x1b4, .rodata+0x0 at +0x2c8, .rodata+0x0 at +0x2cc, .rodata+0x4 at +0x2e0, .rodata+0x4 at +0x2e4; own .rodata: this function's references disagree on the section's image address (0x8011F6E0 for +0x0/+0x4, 0x80124804 for +0x24/+0x28/+0x2c/+0x30/+0x34): the literals are not laid out as in retail)
+func_800BEA3C:
+  MATCH
+
+Context (informational; excluded from exit status):
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+## score.py group cand/w32i/frontier_audioscr 
+Members:
+game_results_render:
+  MATCH
+    own .rodata verified at 0x8011F6C4..0x8011F6D4
+    own .rodata verified at 0x8011F6D8..0x8011F6E0
+game_results_update:
+  NOT VERIFIED (14 section-relative relocations unverified: .rodata+0x24 at +0x108, .rodata+0x24 at +0x10c, .rodata+0x28 at +0x110, .rodata+0x28 at +0x114, .rodata+0x2c at +0x118, .rodata+0x2c at +0x11c, .rodata+0x30 at +0x120, .rodata+0x30 at +0x124, .rodata+0x34 at +0x1b0, .rodata+0x34 at +0x1b4, .rodata+0x0 at +0x2c8, .rodata+0x0 at +0x2cc, .rodata+0x4 at +0x2e0, .rodata+0x4 at +0x2e4; own .rodata: this function's references disagree on the section's image address (0x8011F6E0 for +0x0/+0x4, 0x80124804 for +0x24/+0x28/+0x2c/+0x30/+0x34): the literals are not laid out as in retail)
+func_800BEA3C:
+  MATCH
+
+Context (informational; excluded from exit status):
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+## score.py group cand/w32i/frontier_optionscr_buttons --claims
+Members:
+func_800DB1E0:
+  MATCH
+    own .rodata verified at 0x80124248..0x80124280
+func_800DA2C0:
+  NOT VERIFIED (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5ac, .rodata+0x0 at +0x5c4, .rodata+0x10 at +0x580, .rodata+0x10 at +0x590, .bss+0x4 at +0x8ec, .bss+0x4 at +0x8f0; own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)
+    own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80152740 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+rc=1
+## score.py group cand/w32i/frontier_optionscr_buttons 
+Members:
+func_800DB1E0:
+  MATCH
+    own .rodata verified at 0x80124248..0x80124280
+func_800DA2C0:
+  NOT VERIFIED (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5ac, .rodata+0x0 at +0x5c4, .rodata+0x10 at +0x580, .rodata+0x10 at +0x590, .bss+0x4 at +0x8ec, .bss+0x4 at +0x8f0; own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)
+    own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80152740 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+rc=1

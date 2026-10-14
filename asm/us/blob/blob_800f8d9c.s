@@ -6436,6 +6436,7 @@ game_timer_display:
 .section .text.game_results_update, "ax", @progbits
 .globl game_results_update
 game_results_update:
+    /* compiled from src/blob/game_results_update.c */
     .word 0x27BDFF10
     .word 0xAFBF001C
     .word 0x44806000
@@ -6733,6 +6734,7 @@ game_results_update:
 .section .text.game_results_render, "ax", @progbits
 .globl game_results_render
 game_results_render:
+    /* compiled from src/blob/game_results_render.c */
     .word 0x27BDFEE0
     .word 0x3C0E8011
     .word 0x8DCE05B4
