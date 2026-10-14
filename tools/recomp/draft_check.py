@@ -900,6 +900,8 @@ def check_drafts(drafts, fwd, label, json_path=None, cache_path=None, refresh=Fa
             row.update(verdict="MATCHED", detail="in blob_matched.lock.json: no draft check needed", seconds=0)
         else:
             key = draft_key(name, best, extra, fwd) if cache_path else None
+            if key and not refresh:            # reread: concurrent runs over other globs add rows meanwhile
+                cache = _load_cache(cache_path)
             hit = cache.get(key) if key and not refresh else None
             if hit:
                 row.update(verdict=hit["verdict"], detail=hit["detail"], seconds=0, cached=hit.get("date", True))

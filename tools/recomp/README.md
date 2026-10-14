@@ -1079,11 +1079,11 @@ its function (w30a `audio_options` = game_results_render, `controls` = func_8010
 **`draft_check --all-lanes [GLOB,...]`** (default `w2[8-9]*,w3*`): every `<lane>/<NAME>/best.c` of the matching lane
 directories, one line per draft, then one Markdown table (lane, function, verdict, detail) and the counts. A function
 in blob_matched.lock.json is MATCHED and not run (`--include-matched` runs it). Rows are cached in
-`~/rush2049/recomp/dc/lanes/cache.json` keyed by the draft and its includes, NAME, dc.args, forwarded options, the
+`~/rush2049/recomp/dc/lanes/cache.json` keyed by the draft and its includes, NAME, dc.args, forwarded options (not `--jobs`), the
 text of every script the run uses (the census default choice and `pak from` chains), ipa_callees.json and
 `CACHE_EPOCH` (bump it with a harness fix that can change verdicts); `--refresh` ignores the cache; ERROR rows are
 never cached. `--remote rocky` copies the drafts, their includes and dc.args into the service tree and runs there.
-`--lane` keeps its old behaviour (runs everything, no cache).
+`--lane` keeps its old behaviour (runs everything, no cache). Concurrent `--all-lanes` runs over disjoint globs share the cache (rows merged under a lock); a last run over all globs then prints the one table from the cache.
 
 **Census refresh** (2026-10-14, 39 scripts, 166 unmatched at wave31 880e729e): **163 reached (182,996 B), 3 never
 (632 B)**: world_effect_update, fp_call_wrapper, object_bytes23_sum (no static reference: dead or computed-jalr
