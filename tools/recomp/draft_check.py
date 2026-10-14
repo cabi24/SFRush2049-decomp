@@ -840,12 +840,16 @@ def key_scripts(name, opts):
 
 def draft_key(name, best, extra, fwd):
     """Cache key of one summary row (Phase 11): the draft and every file it
-    includes, NAME, its dc.args options, the forwarded options, the text of
-    every script the run uses (key_scripts: the census default choice
-    included), ipa_callees.json and CACHE_EPOCH."""
+    includes, NAME, its dc.args options, the forwarded options (not --jobs),
+    the text of every script the run uses (key_scripts: the census default
+    choice included), the ipa_callees.json entries the draft names, and
+    CACHE_EPOCH."""
     h = hashlib.sha256(CACHE_EPOCH.encode())
+    text = b""
     for f in local_files(best):
-        h.update(str(f.name).encode() + b"\0" + f.read_bytes() + b"\0")
+        data = f.read_bytes()
+        text += data + b"\n"
+        h.update(str(f.name).encode() + b"\0" + data + b"\0")
     opts, it = [], iter(fwd)
     for a in it:                       # parallelism and run-dir housekeeping do not change a verdict
         if a in ("--jobs", "--remote-tree"):
@@ -854,8 +858,17 @@ def draft_key(name, best, extra, fwd):
             opts.append(a)
     h.update(json.dumps([name, extra, opts]).encode())
     files = [SCRIPT_DIR / (sc + ".press") for sc in key_scripts(name, list(extra) + list(fwd))]
-    for f in files + [HERE / "ipa_callees.json"]:
+    for f in files:
         h.update(f.name.encode() + b"\0" + (f.read_bytes() if f.is_file() else b"missing"))
+    # only the ipa_callees.json entries the draft can use (named in its text, or NAME itself): a new entry for
+    # an unrelated callee does not invalidate every row
+    try:
+        table = json.loads((HERE / "ipa_callees.json").read_text()).get("callees", {})
+    except (OSError, ValueError):
+        table = {}
+    words = set(re.findall(rb"[A-Za-z_][A-Za-z0-9_]*", text)) | {n.encode() for n in name.split(",")}
+    used = {n: e for n, e in table.items() if n.encode() in words}
+    h.update(json.dumps(used, sort_keys=True).encode())
     return h.hexdigest()[:24]
 
 

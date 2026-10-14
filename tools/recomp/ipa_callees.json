@@ -107,6 +107,23 @@
     "t3"
    ],
    "evidence": "w27r regmap_verify: live-in a0,a1,a2,t3 (a1 buffer pointers, a2 sizes 0x10..0x900, t3 = 0 from track_data_decompress / 1 from slot_state_lookup); w27e draft_check --params handle=a0,address=a1,bytes=a2,mark=t3 EQUIVALENT (saves, 9 calls); prototype w27e pak_write_cluster/cluster.c (C96Handle * as void *)"
+  },
+  "func_80104704": {
+   "prototype": "void func_80104704(s32 p)",
+   "params": [
+    "s5"
+   ],
+   "clobbers": [
+    "s0",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s6",
+    "s7",
+    "s8"
+   ],
+   "evidence": "w31r Phase 11: regmap_verify --derive (interprocedural live-in s5 only; 60 captured calls over unlock, one static site in func_80105480: s5 set 5 instructions before the jal); clobbers = callee-saved registers written without a save. = GC DrawName(p) (w30n registration; w31a lane notes: takes p in s5). Without it w30a's func_80105480 draft called it o32 and FAULTED (object_manager_update read of 0x00E884D3) in two_player_finish"
   }
  }
 }

@@ -1080,7 +1080,7 @@ its function (w30a `audio_options` = game_results_render, `controls` = func_8010
 directories, one line per draft, then one Markdown table (lane, function, verdict, detail) and the counts. A function
 in blob_matched.lock.json is MATCHED and not run (`--include-matched` runs it). Rows are cached in
 `~/rush2049/recomp/dc/lanes/cache.json` keyed by the draft and its includes, NAME, dc.args, forwarded options (not `--jobs`), the
-text of every script the run uses (the census default choice and `pak from` chains), ipa_callees.json and
+text of every script the run uses (the census default choice and `pak from` chains), the ipa_callees.json entries the draft names and
 `CACHE_EPOCH` (bump it with a harness fix that can change verdicts); `--refresh` ignores the cache; ERROR rows are
 never cached. `--remote rocky` copies the drafts, their includes and dc.args into the service tree and runs there.
 `--lane` keeps its old behaviour (runs everything, no cache). Concurrent `--all-lanes` runs over disjoint globs share the cache (rows merged under a lock); a last run over all globs then prints the one table from the cache.
