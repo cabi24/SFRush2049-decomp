@@ -136,6 +136,22 @@
     "s1"
    ],
    "evidence": "w31r Phase 11: regmap_verify 'a1=address:ptr,a2=tag:int' CONSISTENT (attract: the live-in set is exactly a1,a2; a0 is not read), --derive clobbers s0,s1. The matched callers (src/blob groups codex_heap_release_a25, frontier_score_insert: 'internal audio_reverb_update(address in a1, tag in a2)') call it as audio_reverb_update(address, 0) and IDO -O3 IPA passes those in a1/a2. Without this entry every draft calling it passed the address in a0 and FAULTED in the callee (w28b pak_delete_file_retry, w3b sound_bank_unload, w3c display_enable); w30r read that as a draft bug"
+  },
+  "func_800DD0C0": {
+   "prototype": "void func_800DD0C0(s32 row, s32 col)",
+   "params": [
+    "sp+0",
+    "sp+4"
+   ],
+   "clobbers": [
+    "s2",
+    "s4",
+    "s5",
+    "s6",
+    "s7",
+    "s8"
+   ],
+   "evidence": "w31r Phase 11: retail call site 0x800DD868 in control_settings `sw s3,0(sp); sw s4,4(sp); jal func_800DD0C0` (row, col in the caller's first two outgoing words, not a0/a1), callee frame 440 reads 440(sp)/444(sp) = entry sp+0/+4; clobbers = frontier unsaved_callee_regs. w30d's control_settings header names the convention; without the entry the draft's o32 call FAULTED (pak_nopak, cell type 2)"
   }
  }
 }

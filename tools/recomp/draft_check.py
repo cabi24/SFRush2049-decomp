@@ -162,14 +162,49 @@ def register_params_fact(name, frontier=REPO / "build" / "frontier.json"):
 GENERIC_STACK = tuple(range(16, 48, 4))
 
 
-def clobber_shims(table, frontier=REPO / "build" / "frontier.json"):
+def retail_clobbers(text, p=None):
+    """{callee: [callee-saved registers it writes without a save]} for the game
+    functions a draft's text names, from the RETAIL bodies (regmap_verify's
+    interprocedural effects, transitive through static callees). Phase 11
+    (w31r): build/frontier.json has unsaved_callee_regs only for the functions
+    its scan covered; a MATCHED IPA callee such as func_800DCD58 (writes s0,s1)
+    had none, got no clobber shim, and w29c/w30d's control_settings drafts
+    faulted on the s0 it destroyed (`lb a0,1(s0)`, s0 = 0). Callees with
+    non-o32 register parameters are left out (they need a real table entry)."""
+    import ipa_detect
+    import regmap_verify as rv
+    try:
+        image, funcs = rv.load_inputs(p or paths())
+    except Exception:                 # noqa: BLE001 -- no ROM here: frontier facts only
+        return {}
+    words = set(re.findall(r"[A-Za-z_][A-Za-z0-9_]*", text))
+    ip = rv.Interproc(image, funcs)
+    out = {}
+    for f in funcs:
+        if f["name"] not in words:
+            continue
+        body = ipa_detect.body_words(image, f["vram"], f["size"])
+        if not body or ipa_detect.register_params(body):
+            continue
+        regs = ip.unsaved(f["vram"])
+        if regs:
+            out[f["name"]] = regs
+    return out
+
+
+def clobber_shims(table, frontier=REPO / "build" / "frontier.json", retail=None):
     """ipa_callees entries for callees that take o32 arguments but write
     callee-saved registers without saving them (frontier facts
     unsaved_callee_regs, no register_params): a shim that passes a0-a3 and
     eight stack words through unchanged (f12/f14 are not touched) and saves
     the clobbered registers around the call, so the draft's s-registers
     survive as they would in the whole-program build."""
-    facts = rp.frontier_facts(frontier)[0]       # keyed by today's names (Phase 10)
+    facts = dict(rp.frontier_facts(frontier)[0])       # keyed by today's names (Phase 10)
+    for name, regs in (retail or {}).items():          # Phase 11: retail-derived, for callees the scan lacks
+        f = dict(facts.get(name) or {})
+        f["unsaved_callee_regs"] = sorted(set(f.get("unsaved_callee_regs") or ()) | set(regs))
+        f["_retail"] = True
+        facts[name] = f
     out = {}
     for name, f in facts.items():
         if not isinstance(f, dict) or name in table or not f.get("unsaved_callee_regs"):
@@ -180,7 +215,9 @@ def clobber_shims(table, frontier=REPO / "build" / "frontier.json"):
         out[name] = {"prototype": "void %s(%s)" % (name, ", ".join("s32 p%d" % i for i in range(n))),
                      "params": ["a0", "a1", "a2", "a3"] + ["sp+%d" % o for o in GENERIC_STACK],
                      "clobbers": list(f["unsaved_callee_regs"]),
-                     "evidence": "draft_check: frontier unsaved_callee_regs (o32 pass-through + saves)"}
+                     "evidence": "draft_check: %s (o32 pass-through + saves)" % (
+                         "retail unsaved callee-saved writes (regmap_verify.Interproc)" if f.get("_retail")
+                         else "frontier unsaved_callee_regs")}
     return out
 
 
@@ -1185,7 +1222,8 @@ def local_main(args):
             entry.update(cap_fields)
         elif cap_fields:
             entry["unit_capture"][m] = cap_fields
-    auto = clobber_shims(table)
+    auto = clobber_shims(table, retail=retail_clobbers(
+        "\n".join(f.read_text(errors="replace") for f in local_files(draft))))
     for m in members:
         auto.pop(m, None)            # members: inbound only through --params / the table
     table.update(auto)

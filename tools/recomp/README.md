@@ -1067,6 +1067,28 @@ slot is also sp+N (5th/6th parameter) was a "move" from `sp+16` to `sp+16` and s
 caller's frame and the destination the shim's outgoing area: control_cell_text3's s2/s3 reached the draft as garbage
 (draft FAULTED in state_utility). Sources are now named `csp+N` internally.
 
+**Three callee conventions and matched clobberers** (found by the all-lanes run; every one was a harness gap that
+made a correct draft FAULT):
+- `audio_reverb_update` takes (address, tag) in **a1, a2** under IPA (regmap_verify `a1=address:ptr,a2=tag:int`
+  CONSISTENT: the live-in set is exactly a1,a2; the matched callers in codex_heap_release_a25 / frontier_score_insert
+  call it `audio_reverb_update(address, 0)`). Not an o32 hazard ipa_detect can see (a1/a2 are argument registers),
+  so drafts passed the address in a0 and faulted in the callee. w30r read this as a w28b draft bug; it was not:
+  with the `ipa_callees.json` entry w28b's pak_delete_file_retry, w3b's sound_bank_unload and w3c's display_enable
+  are EQUIVALENT.
+- `func_80104704` (= GC DrawName) takes p in **s5** (regmap_verify --derive, 60 calls; clobbers s0-s4,s6-s8): w30a's
+  func_80105480 draft is EQUIVALENT with it (was a fault in object_manager_update).
+- `func_800DD0C0` takes (row, col) in the caller's first two outgoing stack words (**sp+0, sp+4**: retail `sw
+  s3,0(sp); sw s4,4(sp); jal`, the callee's 440-byte frame reads 440/444(sp)).
+- **Clobber shims from the retail bodies** (`draft_check.retail_clobbers`): build/frontier.json has
+  unsaved_callee_regs only for functions its scan covered, so a MATCHED IPA callee that writes callee-saved
+  registers without saving them got no shim. func_800DCD58 (control_settings' cell frame, matched) writes s0,s1:
+  that was the `lb a0,1(s0)`, s0 = 0 fault of the w29c/w30d control_settings drafts (wave-30 "known draft bug").
+  draft_check now derives the unsaved set of every game function the draft's text names from the retail body
+  (regmap_verify.Interproc, transitive) and merges it with the facts; callees with non-o32 register parameters
+  still need a table entry. w30d's control_settings: EQUIVALENT on ghost_delete_fail, pak_corrupt and pak_repair (90
+  calls each); pak_nopak (cell type 2, func_800DD0C0) still FAULTS (N64 read of 0x8 at frame 721, no N64 PC in the
+  report) with the sp+0/sp+4 entry: open.
+
 **dc.args for every `--lane` ERROR** (w28d): `attract_mode_handler/dc.args` control_cell_text `--params
 row=s5,col=s6,text=s7`; `attract_video_handler` control_cell_text2 `sel=s5,row=s6,col=s7,text=s8`; `attract_demo_handler`
 control_cell_text3 `sel1=s5,row=s6,text=sp+8,s1=sp+12,s2=sp+16,s3=sp+20,col=s7,sel2=s8` (the callee's 56-byte frame

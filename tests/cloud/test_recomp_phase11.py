@@ -241,3 +241,26 @@ def test_inbound_shim_copies_a_stack_parameter_at_the_same_offset():
     sw_t9 = [(w & 0xFFFF) for w in words if w >> 16 == 0xAFB9]          # sw t9,off(sp)
     # s2 (o32 sp+16) and s3 (sp+20) come from the retail caller's sp+16/+20, i.e. frame+16/+20 inside the shim
     assert frame + 16 in lw_t9 and frame + 20 in lw_t9 and 16 in sw_t9 and 20 in sw_t9
+
+
+# ------------------------------------------------------------------ retail clobber shims, new callee entries
+
+def test_clobber_shims_take_retail_unsaved_registers(tmp_path):
+    fr = tmp_path / "frontier.json"
+    fr.write_text(json.dumps({"facts": {"func_800DD0C0": {"address": "0x800DD0C0",
+                                                          "unsaved_callee_regs": ["s2", "s4"]}}}))
+    out = dc.clobber_shims({}, fr, retail={"func_800DCD58": ["s0", "s1"], "func_800DD0C0": ["s5"]})
+    assert out["func_800DCD58"]["clobbers"] == ["s0", "s1"]                  # matched: not in the scan
+    assert "retail" in out["func_800DCD58"]["evidence"]
+    assert out["func_800DD0C0"]["clobbers"] == ["s2", "s4", "s5"]             # union with the facts
+    assert out["func_800DCD58"]["params"][:4] == ["a0", "a1", "a2", "a3"]
+
+
+def test_phase11_callee_entries():
+    t = json.loads((RECOMP / "ipa_callees.json").read_text())["callees"]
+    assert t["audio_reverb_update"]["params"] == ["a1", "a2"]
+    assert t["func_80104704"]["params"] == ["s5"]
+    assert t["func_800DD0C0"]["params"] == ["sp+0", "sp+4"]
+    for n in ("audio_reverb_update", "func_80104704", "func_800DD0C0"):
+        words = rp.ipa_shim(0x80800000, t[n]["prototype"], t[n]["params"], t[n]["clobbers"], "out")
+        assert words and words[-1] == 0x27BD0000 | (words[-1] & 0xFFFF)       # addiu sp,sp,frame

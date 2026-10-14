@@ -587,13 +587,21 @@ commands: `tools/recomp/README.md` "Phase 11"; lane notes: `cloud/work/frontier/
   for a prologue save (control_cell_text's s7, control_cell_text2's s8 were missing from their live-in sets; the
   conveyor's frontier facts have the same gap); the inbound IPA shim skipped a stack parameter whose o32 slot has the
   same offset (`sp+16 -> sp+16`), so control_cell_text3's fifth and sixth parameters were garbage.
+- **Four more harness gaps from the all-lanes run**: audio_reverb_update takes (address, tag) in a1/a2 (the
+  w28b pak_delete_file_retry "draft bug" of wave 30 was this; with the entry it and the wave-3 sound_bank_unload /
+  display_enable drafts are EQUIVALENT); func_80104704 takes p in s5 (w30a func_80105480 EQUIVALENT);
+  func_800DD0C0 takes (row, col) at sp+0/sp+4; and matched IPA callees that write callee-saved registers unsaved
+  had no clobber shim (frontier facts cover only scanned functions): draft_check now derives them from the retail
+  bodies. func_800DCD58's s0/s1 writes were the control_settings `lb a0,1(s0)` fault (now EQUIVALENT on three of
+  the four dialog scripts; pak_nopak still faults).
 - **dc.args** for the three cells (all EQUIVALENT now) and func_800E56F8; `--name` for unit directories (w30a); the
   matched FindGhosts / SetHighScoreState need none.
 - **`draft_check --all-lanes`**: one table over `w2[8-9]*,w3*` lane drafts, matched functions listed not run, rows
   cached by draft + options + the scripts used + CACHE_EPOCH.
 - **Census**: 163 of 166 unmatched reached (wave31 880e729e), 3 never (632 B): world_effect_update, fp_call_wrapper,
   object_bytes23_sum (no static reference).
-- **Phase 12 needs**: image A's own pak-dialog path (func_803990D0, flag 0x803B46B4) and its four large unreached
+- **Phase 12 needs**: the pak_nopak fault of the control_settings draft (cell type 2 / func_800DD0C0);
+  image A's own pak-dialog path (func_803990D0, flag 0x803B46B4) and its four large unreached
   functions (func_803A9088, func_80395E8C, func_8039C910, func_803A5358); image B's func_8038F938; draft_check of
   overlay drafts (population ovl_a/ovl_b replacements exist in replace.py, untested end to end); a regenerated
   build/frontier.json with the stack-argument fix in the conveyor scanner (control_cell_text/2 facts).
