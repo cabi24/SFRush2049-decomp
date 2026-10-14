@@ -524,6 +524,18 @@
   {
    "name": "au_validOption",
    "reason": "group frontier_audioscr (w32b): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "func_800DA2C0",
+   "reason": "group frontier_optionscr_buttons (w32b, GC updateButtons@optionscr.c): member, internal (its only caller func_800DB1E0 is in the same group)"
+  },
+  {
+   "name": "ZOID_SetColor_da",
+   "reason": "group frontier_optionscr_buttons (w32b, GC ZOID_SetColor@zoidtexture.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ZOID_SetColorP_da",
+   "reason": "group frontier_optionscr_buttons (w32b, GC ZOID_SetColor@zoidtexture.c): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

@@ -11,6 +11,7 @@ Builder scratch watchman2:~/rush2049/scratch/frontier/w32i (copy of base + rsync
 | 1 | `menu_save_options` superseded in place (w32c): + func_800CC50C (CompressGhost), + props_render (GhostStart) | 2,940 | **1058/1216, 387,768 B (59.93%)** |
 | 2 | `codex_control_settings_a4` superseded in place (w32d): + control_cell_text, control_cell_text2, control_cell_text3, func_800DD0C0 (provisional on the caller) | 2,684 | **1062/1216, 390,452 B (60.34%)** |
 | 3a | NEW group `frontier_audioscr` (w32b): game_results_render + game_results_update; func_800BEA3C re-typed (`--revert-single`) | 2,336 | **1064/1216, 392,788 B (60.70%)** |
+| 3b | NEW group `frontier_optionscr_buttons` (w32b): func_800DB1E0 + func_800DA2C0 | 3,716 | **1066/1216, 396,504 B (61.28%)** |
 
 ## Job 1: w32c menu_save_options packet
 - Packet check: group.c, save.c, ctx_hash.c, ctx_slot.c, ctx_strncmp.c `cmp`-identical to src/blob/groups/menu_save_options;
@@ -85,3 +86,16 @@ consistent ...)`, 0 locked differ, 2/2.
   blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
 - symbols.json / blob.ld unchanged (2 provenance comments + SHA256SUMS): no re-pin. Slot-contract audit: the pair accepted,
   unaccepted_caller_bytes 47668 -> 45332, frozen list/count updated.
+
+### 3b: frontier_optionscr_buttons
+- Install (`install_job3b.log`): `spliced frontier_optionscr_buttons: 2 members, new: ['func_800DA2C0', 'func_800DB1E0']`,
+  `image coverage: 1066/1216 functions, 396504/647072 bytes (61.28%)`. No revert (neither was locked).
+- Gates (`gates_job3b.log`, `rom_job3b.log`): `group lock: 0 problems`; `blob lock: 1066 entries, 0 problems`; `blob_unit: 1066
+  locked bodies, 1066 equal to the image in one 934-file unit, 0 differ [... own bss 5 ...]`; `unused_overrides []`;
+  `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- symbols.json / blob.ld unchanged (the two statics D_8015273C/D_80152740 stay as they were; asm diff = 2 provenance comments +
+  SHA256SUMS): no receipt re-pin. Slot-contract audit: no change. Not provisional. func_800D816C/func_800D91A0 untouched.
+- Lead for the coordinator: provisional `func_800DA0BC` (184 B, EQUAL with a stand-in caller, unlocked) now has its real caller
+  func_800DB1E0 locked — a packaging candidate (not touched: provisional.json is edited only to retire entries installed here).
+- CLAIMS: both on the wave-32 landed row (devices); menus row (func_8010E8B4 force-oracle finding, videoscr pair draft) and
+  results row (audio pair landed, controls pair 253/234 rows + next lever) rewritten from w32b RESULTS.

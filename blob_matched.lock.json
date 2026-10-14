@@ -5197,6 +5197,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800DA2C0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_optionscr_buttons",
+    "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
+    "source_sha256": "348adfd05f13730f92f11cff20b70d17ec6e0b6571459d233dc2f81e2356365c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
   "func_800DABCC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800DABCC.c",
@@ -5212,6 +5221,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800DB1E0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_optionscr_buttons",
+    "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
+    "source_sha256": "348adfd05f13730f92f11cff20b70d17ec6e0b6571459d233dc2f81e2356365c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
   },
   "func_800DC080": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

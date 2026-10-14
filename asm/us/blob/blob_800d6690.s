@@ -3954,6 +3954,7 @@ time_result_display:
 .section .text.func_800DA2C0, "ax", @progbits
 .globl func_800DA2C0
 func_800DA2C0:
+    /* compiled from src/blob/func_800DA2C0.c */
     .word 0x3C188011
     .word 0x8F186D0C
     .word 0x3C0F8011
@@ -4940,6 +4941,7 @@ replay_save_prompt:
 .section .text.func_800DB1E0, "ax", @progbits
 .globl func_800DB1E0
 func_800DB1E0:
+    /* compiled from src/blob/func_800DB1E0.c */
     .word 0x27BDFF80
     .word 0x3C0E8011
     .word 0x8DCE74B4
