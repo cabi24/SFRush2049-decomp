@@ -1,0 +1,3 @@
+# w31r (Phase 11): SaveServer's initialised function-local statics bound to their retail .data words (Phase 10
+# `--statics`; without them the draft writes its private copies: DIVERGES at attract frame 2, word 0x8011742C).
+--statics sInitCountdown=0x8011742C,sLastPak=0x80117430,sReadingPak=0x80117434
