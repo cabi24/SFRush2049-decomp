@@ -1,0 +1,5 @@
+group_bodies OK: func_800BEA3C, game_results_render, game_results_update
+  func_800BEA3C: 7 words, 0 differ from the image
+  game_results_render: 291 words, 0 differ from the image
+  game_results_update: 293 words, 0 differ from the image
+3/3 members image-identical

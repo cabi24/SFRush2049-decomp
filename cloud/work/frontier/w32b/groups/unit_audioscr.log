@@ -1,0 +1,5 @@
+  EQUAL game_results_render: 291 words (kept, c_audio.c)
+  EQUAL game_results_update: 293 words (internal, c_audio.c)
+  EQUAL func_800BEA3C: 7 words (kept, c_audio.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w32b/unit.o (14.1s)
