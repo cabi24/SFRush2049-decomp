@@ -575,6 +575,59 @@ explain stack stores beside inlined colour helpers; write retail's last-emitted 
 controls FP-constant hoisting and each void wrapper level adds 8 B per site; derive a pointer from the original object,
 not from another pointer local.
 
+**Wave 31 outcome (2026-10-14, wave31 from `880e729e`):** game 1050 → 1056/1216 (384,828 B, 59.47%), 6 functions,
+6,596 B, all through w31i: the options text unit func_8010AEAC/func_8010A8D0/func_8010A7A4 (3,452 B) under a NEW
+splice rule — `blob_group._independent_regions` now accepts an own-.rodata window holding relocated words only when
+every relocation in the section is an aligned R_MIPS_32 against the text section, every entry inside the function's
+windows targets the function's own text, and the window equals the retail image after each entry is rewritten to
+`address + (target - start)` (tests in `tests/conveyor/test_owndata.py`, docs `tools/conveyor/README.md` §008; the
+file's sha256 is pinned by four receipts — dot_material_selector, dot_billboard_context, dot_random_range_b2e4,
+dot_masked_random_b23e0 — update the pinned hash, precedent eae0c646); w31b proved the refusal was never about
+interleaved literals: AEAC's string window (0x80121018) and jump-table window (0x8012491C) are 0x3904 apart and can
+never share a base; track_texture_load (1,348 B; w31d; it is GC `_InitScreen@highscorescr.c` — rename pending; u8
+flag bytes share one register, memcmp size as u32, a separate ranks counter, every inlined call reserves 8 B; needs
+`force_keep` for the context-listed singles continue_prompt, speed_mode0_wrapper, speed_mode1_wrapper, vsync_wait);
+SaveServer (900 B; w31c; the group compile reloads sInitCountdown only when the strncmp callee func_800950AC is
+DEFINED in the compile — a defined callee may change the file's statics, an undefined external may not — so
+`ctx_strncmp.c` on keep; GC two-parameter prototype matching the locked callers with a disclosed compiled-out
+`if (forceUpdate | rumbleOnly) {}`); func_800CC040 = GC SaveGhost (896 B; GC's helpers as inlined non-static helpers,
+no unused locals). Recomp Phase 11 (w31r): a mine is FIRED not picked up — weapon slot halfword at 0x80152B9C
+(gGameCar + 0x384: type, ammo; `battle_mine` pokes 0309) reaches func_8010C974; the lockstep host RUNS OVERLAY CODE
+(images load through inflate_entry; A = front end, stays loaded in a race; B = race-time weapons) — `script_probe
+--functions ovl_a|ovl_b`, `census --overlays` (A 99/193 reached, B 35/49; `census/OVERLAYS.md` — a lead list for
+Astra), the "image-A only" trio were mislabelled: they are cell kinds of control_settings' pak error dialog, reached
+by `pak fail write 1 ERR` during CREATE PLAYER (ERR 1 → func_800DD0C0, 10/11 → control_cell_text3, 3/6/7/8/12 →
+control_cell_text; scripts pak_nopak/pak_repair/pak_corrupt); harness fixes: ipa_detect mistook a callee-saved
+register stored as an outgoing stack argument for a prologue save (control_cell_text s7, text2 s8), the inbound shim
+skipped a same-offset stack parameter, matched IPA callees that clobber callee-saved registers now get clobber shims
+derived from retail (func_800DCD58 s0/s1 — the control_settings "fault" of wave 30), audio_reverb_update takes
+(address, tag) in a1/a2 (the pak_delete_file_retry "a1 bug" of wave 30 was the harness — the draft is right),
+func_80104704 takes p in s5, func_800DD0C0 takes (row, col) at the caller's sp+0/+4; `draft_check --all-lanes`: 76
+drafts, 33 EQUIVALENT, 3 DIVERGES (w28b SaveServer +8 bug; the control_settings drafts fault only in the
+func_800DD0C0 dialog — open), 40 matched; census 163/166 reached (the 3 never are unreferenced). Near-misses for
+wave 32: func_80105480 (33 rows, frame 704 vs 584 — the inlined DrawScores/DrawCircuitCode must carry no inline
+areas, retail spends 24 B) with DrawName func_80104704 EQUAL in the unit and DrawGhost func_80104B14 17/601 ops 0 (one
+unused `s16 gFreePages` as the frame residual), func_80103D28 = DrawUnlocked (48 ops, length/frame exact; colour),
+func_80105EA8 = animResults (41 ops, frame exact; `--params arg0=a0`; the frontier fact `register_params t9` is
+suspect), the audio-options pair (14/23 rows: `cvt.J(*charPtr)` should share the loaded register; the SetJust store
+order), the controls pair (378/234 rows), func_80100E58 (31 rows with the forced split; no source form yet),
+func_800CC50C = CompressGhost (9/190: the first free's parameter load lands in osRecvMesg's delay slot; `gh` web v1
+vs a3), pak_delete_file_retry (colour only: the callback constant takes s0, pfs split vs retail s8; the "one inline
+area too many" was the named `pfs` local), CreatePlayer (241/272; retail's digit loop reads through the file base s8
+and stores through `ext` = sp+193 in s5), control_settings (634/638, frame exact; retail has `move s0,v0` at all 4
+font-set sites but only 24 B of inline area — contradiction open; func_800DD0C0 22 rows; packet
+codex_control_settings_a4 prepared, text2/text3/DD0C0/control_settings not yet MATCH in the group compile),
+func_800DA2C0 (202/579 no pads, EQUIVALENT; yi s6 vs s8; 32 B of frame below `color`) + func_800DB1E0, func_8010E8B4
+(3/85 after 46 variants: an inlined helper taking `(s32 h, s16 y)`?), LoadTrack (39/526; SCHED=1 ugt.sh on a
+retail-shaped gRace), SetupWaveModel (idx loses an exact tie 100 vs 100; needs ~3 inner-loop occurrences; then
+func_80097164 is 4 rows), func_800E543C (`index` must survive PRE after the stunt call), func_8010EA08 +
+func_8010F218 (videoscr.c; callee map in w31b RESULTS §4), props_render (GC GhostStart lead). Lessons: a locked
+callee that clobbers callee-saved registers silently breaks draft_check unless its body is in the draft file or the
+shim knows (now automatic); signedness/type of constants (u8 flags, u32 sizes) decide register sharing; a unit-EQUAL
+draft can still differ in `score.py group` (calling a locked wrapper did; a byte-identical copy in the file fixed it)
+— always run the group score before claiming; a group compile that must reload a static needs the DEFINED callee as
+context.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
