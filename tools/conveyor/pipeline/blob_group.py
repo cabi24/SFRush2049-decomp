@@ -248,7 +248,7 @@ ONE_BASE_REFUSAL = ": this function's references disagree on the section's image
 SECTION_PADDING = 16        # IDO aligns (and pads) its data sections to 16 bytes
 
 
-def _independent_regions(obj, name, want, start, image, failures, data_runs):
+def _independent_regions(obj, name, want, start, image, failures, data_runs, address=None):
     """{section name: [(object lo, hi, image address, "rodata")]} proving that
     `name`'s own read-only sections whose windows owndata refused for lack of
     one common base sit, window by window, at the retail addresses; else
@@ -266,8 +266,16 @@ def _independent_regions(obj, name, want, start, image, failures, data_runs):
         SECTION_PADDING bytes of IDO section padding (another owner's data in
         the image, exactly as owndata treats it);
       * every access through a window fits in it (8 bytes for ldc1/sdc1/ld/sd);
-      * a window holds no relocated word (jump tables keep the one-base or
-        table proofs);
+      * a window holds no relocated word, with ONE exception, the jump-table
+        branch (`_own_jump_table_entries`, needs the function's image
+        `address`): every relocated word inside a window is an aligned
+        R_MIPS_32 whose target lies in this function's own text, and the
+        window is compared AFTER each such word becomes `address + (target -
+        function start)`. Any other relocation in the section, or an entry
+        leaving the function, refuses; a relocated window that differs from
+        retail is refused with its own message. Relocated words outside this
+        function's windows (another member's table) are not compared here:
+        that member's own proof covers them (func_8010AEAC, w31b);
       * each window lies inside one non-function run of the image (`data_runs`,
         the layout's opaque entries), and no two windows share image bytes.
     """
@@ -295,9 +303,12 @@ def _independent_regions(obj, name, want, start, image, failures, data_runs):
         raw = elf.raw(index)
         if raw is None:
             raise GroupError(f"{section_name}: no bytes")
+        entries = {}
         if elf.relocations(index):
-            raise GroupError(f"{section_name}: relocated words (a jump table) need the "
-                             "one-base or jump-table proof")
+            if address is None:
+                raise GroupError(f"{section_name}: relocated words (a jump table) need the "
+                                 "one-base or jump-table proof")
+            entries = _own_jump_table_entries(elf, index, raw, text, section_name)
         starts = sorted({ref.offset for _sym, ref in refs if ref.section == index})
         windows = {}
         for _sym, ref in refs:
@@ -310,19 +321,22 @@ def _independent_regions(obj, name, want, start, image, failures, data_runs):
                       for site in ref.hi_sites}
             if len(retail) != 1:
                 raise GroupError(f"{section_name}+0x{ref.offset:x}: retail HI16 words disagree")
-            address = retail.pop() & 0xFFFFFFFF
-            seen = windows.setdefault(ref.offset, [address, 4])
-            if seen[0] != address:
+            read_at = retail.pop() & 0xFFFFFFFF
+            seen = windows.setdefault(ref.offset, [read_at, 4])
+            if seen[0] != read_at:
                 raise GroupError(f"{section_name}+0x{ref.offset:x}: read at two retail "
                                  "addresses")
             if ref.opcode in owndata.DOUBLEWORD_OPCODES:
                 seen[1] = 8
         placed = []
-        for offset, (address, widest) in sorted(windows.items()):
+        for offset, (retail_at, widest) in sorted(windows.items()):
             if not 0 <= offset < len(raw):
                 raise GroupError(f"{section_name}+0x{offset:x}: outside the section")
             stop = min([s for s in starts if s > offset] + [len(raw)])
-            data = raw[offset:stop]
+            data, relocated = raw[offset:stop], 0
+            if entries:
+                data, relocated = _relocate_own_jump_table(
+                    data, offset, entries, lo, hi, address, name, section_name)
             if len(data) < widest:
                 raise GroupError(f"{section_name}+0x{offset:x}: {widest}-byte access, but the "
                                  f"next referenced object starts {len(data)} bytes later")
@@ -333,21 +347,28 @@ def _independent_regions(obj, name, want, start, image, failures, data_runs):
                                      "uncompared bytes at the section end are more than "
                                      "its padding")
                 data = data[:min(length, len(data))]
-            expected = image.read(address, len(data))
+            expected = image.read(retail_at, len(data))
             if expected is None:
                 raise GroupError(f"{section_name}+0x{offset:x}: retail bytes "
-                                 f"0x{address:08X}+{len(data)} are not available")
+                                 f"0x{retail_at:08X}+{len(data)} are not available")
             if expected != data:
                 first = next(i for i in range(len(data)) if expected[i] != data[i])
+                if relocated:
+                    first &= ~3             # name the whole entry word
+                    raise GroupError(
+                        f"{section_name}+0x{offset:x}..+0x{offset + len(data):x} (jump-table "
+                        f"window, {relocated} entries relocated) differs from retail "
+                        f"0x{retail_at:08X} at +0x{first:x} after relocation (retail "
+                        f"{expected[first:first + 4].hex()}, got {data[first:first + 4].hex()})")
                 raise GroupError(
                     f"{section_name}+0x{offset:x}..+0x{offset + len(data):x} differs from "
-                    f"retail 0x{address:08X} at +0x{first:x} (retail "
+                    f"retail 0x{retail_at:08X} at +0x{first:x} (retail "
                     f"{expected[first:first + 4].hex()}, got {data[first:first + 4].hex()}; "
                     "whole extent compared)")
-            if not any(r_lo <= address and address + len(data) <= r_hi for r_lo, r_hi in runs):
-                raise GroupError(f"{section_name}+0x{offset:x} at 0x{address:08X}+{len(data)}: "
+            if not any(r_lo <= retail_at and retail_at + len(data) <= r_hi for r_lo, r_hi in runs):
+                raise GroupError(f"{section_name}+0x{offset:x} at 0x{retail_at:08X}+{len(data)}: "
                                  "not inside one non-function run of the image")
-            placed.append((offset, offset + len(data), address, "rodata"))
+            placed.append((offset, offset + len(data), retail_at, "rodata"))
         ordered = sorted(placed, key=lambda p: p[2])
         for a, b in zip(ordered, ordered[1:]):
             if b[2] < a[2] + a[1] - a[0]:
@@ -355,6 +376,47 @@ def _independent_regions(obj, name, want, start, image, failures, data_runs):
                                  f"occupy the same image bytes at 0x{b[2]:08X}")
         out[section_name] = placed
     return out
+
+
+def _own_jump_table_entries(elf, index, raw, text, section_name):
+    """{section offset: object .text offset} of every relocated word in the
+    read-only section `index`: each must be a word-aligned R_MIPS_32 against
+    the function's text section (its section symbol or a function in it).
+    Any other relocation refuses the independent-regions proof as before."""
+    entries = {}
+    for roff, rtype, rsym in elf.relocations(index):
+        if rtype != owndata.R_MIPS_32 or roff % 4 or roff + 4 > len(raw):
+            raise GroupError(f"{section_name}+0x{roff:x}: relocation type {rtype} is not a "
+                             "jump-table entry (only aligned R_MIPS_32 words into the "
+                             "function's own text are accepted)")
+        if rsym["section"] != text:
+            raise GroupError(f"{section_name}+0x{roff:x}: relocated word against "
+                             f"{rsym['name'] or rsym['section']} is not a jump-table entry "
+                             "into the function's text")
+        addend, = struct.unpack_from(">I", raw, roff)
+        entries[roff] = (rsym["value"] + addend) & 0xFFFFFFFF
+    return entries
+
+
+def _relocate_own_jump_table(data, offset, entries, lo, hi, address, name, section_name):
+    """(window bytes with each jump-table entry relocated, count): an entry
+    at window offset k becomes `address + (target - lo)`, exactly as the
+    linker would write it once the function sits at its retail `address`.
+    An entry whose target leaves [lo, hi) — this function's text — refuses."""
+    data = bytearray(data)
+    count = 0
+    for roff, target in sorted(entries.items()):
+        if not offset <= roff < offset + len(data):
+            continue
+        if roff + 4 > offset + len(data):
+            raise GroupError(f"{section_name}+0x{roff:x}: jump-table entry straddles the "
+                             "window end")
+        if not lo <= target < hi:
+            raise GroupError(f"{section_name}+0x{roff:x}: jump-table entry targets .text+0x"
+                             f"{target:x}, outside {name} (.text+0x{lo:x}..+0x{hi:x})")
+        struct.pack_into(">I", data, roff - offset, (address + target - lo) & 0xFFFFFFFF)
+        count += 1
+    return bytes(data), count
 
 
 def verify_own_data(obj, name, want, address, image, start=None, addresses=None,
@@ -369,7 +431,7 @@ def verify_own_data(obj, name, want, address, image, start=None, addresses=None,
         return result
     try:
         placed = _independent_regions(obj, name, want, start, image, result.failures,
-                                      data_runs)
+                                      data_runs, address=address)
     except GroupError as exc:
         result.failures.append(f"independent regions refused: {exc}")
         return result

@@ -429,13 +429,88 @@ def test_rodata_regions_section_padding_is_bounded(tmp_path):
     assert not result.ok and "more than its padding" in result.failures[-1]
 
 
-def test_rodata_regions_refuse_jump_tables(tmp_path):
-    # a relocated word in the section keeps the one-base / table proofs
-    obj = build(tmp_path, LITERAL_WORDS, LITERAL_RELS, rodata=FLOATS + bytes(8),
-                rodata_rels=[(8, ".text", 2)])
-    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:] + w(F)))
-    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img)
-    assert not result.ok and "relocated words" in result.failures[-1]
+# The jump-table branch (func_8010AEAC, w31b): a string window and a jump-table
+# window of one function, 0x3904 bytes apart in retail. f = two loads (string at
+# +0, table at +4) then three words the table enters; a second function g follows.
+JT_WORDS = LITERAL_WORDS + [0, JR_RA, 0]                 # f = .text+0x0..+0x24
+JT_FUNCTIONS = [("f", 0, 0x24), ("g", 0x24, 8)]
+JT_TABLE = RODATA + 0x100
+
+
+def jt_object(tmp_path, entries=(0x18, 0x20), rtype=2, symbol=".text"):
+    rodata = w(0x3B23D70A, *entries) + bytes(4)
+    return build(tmp_path, JT_WORDS + [JR_RA, 0], LITERAL_RELS, rodata=rodata,
+                 rodata_rels=[(4 + 4 * i, symbol, rtype) for i in range(len(entries))],
+                 functions=JT_FUNCTIONS)
+
+
+def jt_want():
+    return literal_want(second=JT_TABLE) + [0, JR_RA, 0]
+
+
+def jt_regions(obj, img, address=F):
+    from tools.conveyor.pipeline import blob_group
+    failures = [f"own .rodata{blob_group.ONE_BASE_REFUSAL} (test)"]
+    return blob_group._independent_regions(obj, "f", jt_want(), None, img, failures,
+                                           ANYWHERE, address=address)
+
+
+def test_rodata_regions_accept_a_jump_table_into_the_function(tmp_path):
+    """Each relocated word is an R_MIPS_32 into f's own text and equals retail
+    once relocated at f's image address: the table window is placed apart."""
+    img = image((RODATA, FLOATS[:4]), (JT_TABLE, w(F + 0x18, F + 0x20)))
+    obj = jt_object(tmp_path)
+    result = verify(obj, jt_want(), img)
+    assert not result.ok and "disagree on the section's image address" in result.failures[0]
+    result = regions_verify(obj, jt_want(), img)
+    assert result.ok and result.sites == {0, 4, 8, 12}
+    assert result.placements[".rodata"] == [(0, 4, RODATA, "rodata"),
+                                            (4, 12, JT_TABLE, "rodata")]
+    # the entries written against f's own symbol are the same proof
+    assert regions_verify(jt_object(tmp_path, symbol="f"), jt_want(), img).ok
+    # without the function's image address the branch is not taken
+    from tools.conveyor.pipeline import blob_group
+    with pytest.raises(blob_group.GroupError, match="relocated words"):
+        jt_regions(obj, img, address=None)
+
+
+def test_rodata_regions_refuse_a_jump_table_entry_outside_the_function(tmp_path):
+    # entry 1 enters g (.text+0x24): owndata verifies it through g's address,
+    # the jump-table branch refuses it
+    from tools.conveyor.pipeline import blob_group
+    obj = jt_object(tmp_path, entries=(0x18, 0x24))
+    img = image((RODATA, FLOATS[:4]), (JT_TABLE, w(F + 0x18, 0x80200000)))
+    result = blob_group.verify_own_data(obj, "f", jt_want(), F, img, data_runs=ANYWHERE,
+                                        addresses={"g": 0x80200000}.get)
+    assert not result.ok and not result.sites and ".rodata" not in result.placements
+    assert ("independent regions refused: .rodata+0x8: jump-table entry targets .text+0x24, "
+            "outside f (.text+0x0..+0x24)") in result.failures
+
+
+def test_rodata_regions_refuse_a_jump_table_that_differs_after_relocation(tmp_path):
+    # owndata compares each window first, so this is the branch's own guard:
+    # retail's second entry is f+0x1c, ours relocates to f+0x20
+    from tools.conveyor.pipeline import blob_group
+    obj = jt_object(tmp_path)
+    img = image((RODATA, FLOATS[:4]), (JT_TABLE, w(F + 0x18, F + 0x1C)))
+    with pytest.raises(blob_group.GroupError,
+                       match=r"jump-table window, 2 entries relocated\) differs from retail "
+                             r"0x80124100 at \+0x4 after relocation \(retail 8010001c, "
+                             r"got 80100020\)"):
+        jt_regions(obj, img)
+    assert not regions_verify(obj, jt_want(), img).ok
+
+
+def test_rodata_regions_refuse_other_relocations(tmp_path):
+    # anything but R_MIPS_32 into the text refuses as before
+    from tools.conveyor.pipeline import blob_group
+    img = image((RODATA, FLOATS[:4]), (JT_TABLE, w(F + 0x18, F + 0x20)))
+    with pytest.raises(blob_group.GroupError, match="relocation type 4 is not a jump-table entry"):
+        jt_regions(jt_object(tmp_path, rtype=4), img)
+    with pytest.raises(blob_group.GroupError, match="is not a jump-table entry into the "
+                                                    "function's text"):
+        jt_regions(jt_object(tmp_path, symbol=".data"), img)
+
 
 # --- zero-initialised own data (.bss): verified by address only ----------------
 
