@@ -701,7 +701,23 @@ def parse_script(text, name="script"):
         sc["pokes"] = pokes
     if pak_fail:
         sc["pak_fail"] = pak_fail
+    crash = [f for f in pak_fail if pak_from and f.startswith("read:1:") and
+             int(f.split(":")[2]) not in BOOT_READ_FAIL_SURVIVES]
+    if crash and not os.environ.get("RUSH_PAK_FAIL_ALLOW_CRASH"):
+        raise OracleError(
+            f"{name}: `pak fail read 1 ERR` on a `pak from` pak fails the BOOT read of the player note, and the "
+            "retail game then crashes when its error dialog is closed (stock host: N64 read of 0x00000000; a TLB "
+            "exception on the console). Game bug, not the host: the dialog (save_settings) pumps SaveServer, "
+            "which re-enters the read of the same note (drone_set_catchup), deletes it through "
+            "pak_delete_file_retry and clears the buffer handle (+0x48) the suspended read then dereferences. "
+            "ERR 6/10/11 survive (no dialog / the repair dialog); see tools/recomp/README.md Phase 12. "
+            "Set RUSH_PAK_FAIL_ALLOW_CRASH=1 to run it anyway")
     return sc
+
+
+# Phase 12 (w32r): PFS errors on the boot read (`pak from` pak, read call 1)
+# that do NOT end in the retail crash above (sweep of ERR 1-12 on player_reload).
+BOOT_READ_FAIL_SURVIVES = (6, 10, 11)
 
 
 def load_script(arg):
@@ -901,6 +917,10 @@ def symbolize(host, addrs, exe_base=0):
         if rec["line"] and "RecompiledFuncs" in path:
             pc, insn, func, start = _n64_at(path, rec["line"])
             rec.update(n64_pc=pc, insn=insn, n64_function=func, n64_start=start)
+        elif "RecompiledFuncs" in path and re.match(r"^[A-Za-z_]\w*$", rec["function"]):
+            # Phase 12 (w32r): line 0 = host code the compiler shared between
+            # several N64 sites (tail merge); the function is still known.
+            rec.update(n64_pc=None, insn=None, n64_function=rec["function"], n64_start=None, merged=True)
         out.append(rec)
     return out
 
@@ -924,6 +944,7 @@ def fault_report(err_text, host):
             chain.append({k: f.get(k) for k in ("n64_function", "n64_pc", "insn", "n64_start")})
     info["n64_chain"] = chain
     if chain:
+        info["pc_merged"] = bool(frames and frames[0].get("merged"))
         info["n64_pc"] = chain[0]["n64_pc"]
         info["insn"] = chain[0]["insn"]
         info["n64_function"] = chain[0]["n64_function"]
@@ -977,6 +998,10 @@ def fault_lines(fault):
         if used:
             out.append("  registers: %s (thread context; may lag the host registers)" % " ".join(
                 "%s=%s" % (r, regs[r]) for r in dict.fromkeys(used + ["sp", "ra"]) if r in regs))
+    elif fault.get("n64_function"):
+        out.append("  N64 PC unknown in %s: the faulting host instruction has no line (the host compiler merged "
+                   "identical code of several N64 sites; RUSH_EXACT_FAULT_LINES=ON, the default since Phase 12, "
+                   "prevents it: rebuild the tree)" % _draft_name(fault["n64_function"]))
     elif fault.get("host_function"):
         out.append("  host function %s (pc %s): not recompiled game code" % (fault["host_function"], fault.get("pc")))
     chain = fault.get("n64_chain") or []

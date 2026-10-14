@@ -120,6 +120,18 @@ else()
     target_compile_options(RecompiledFuncs PRIVATE
         -fno-strict-aliasing -w
         $<$<COMPILE_LANGUAGE:C>:-Wno-implicit-function-declaration>)
+    # Phase 12 (w32r): no cross-jumping/tail merging in the recompiled game, so
+    # every host instruction keeps the line of its `// 0xADDR` comment and a
+    # fault report can name the N64 PC (identical delay-slot tails of several
+    # N64 sites were merged into line-0 code: control_settings' pak_nopak fault
+    # had no PC). Code size only; behaviour is unchanged.
+    option(RUSH_EXACT_FAULT_LINES "keep one host code copy per N64 site (fault PCs)" ON)
+    if(RUSH_EXACT_FAULT_LINES AND CMAKE_C_COMPILER_ID MATCHES "Clang")
+        target_compile_options(RecompiledFuncs PRIVATE
+            "SHELL:-mllvm -enable-tail-merge=false" "SHELL:-mllvm -simplifycfg-sink-common=false")
+    elseif(RUSH_EXACT_FAULT_LINES AND CMAKE_C_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(RecompiledFuncs PRIVATE -fno-crossjumping)
+    endif()
 endif()
 target_include_directories(RecompiledFuncs PRIVATE
     ${N64MODERNRUNTIME_DIR}/N64Recomp/include
