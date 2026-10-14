@@ -1085,9 +1085,9 @@ text of every script the run uses (the census default choice and `pak from` chai
 never cached. `--remote rocky` copies the drafts, their includes and dc.args into the service tree and runs there.
 `--lane` keeps its old behaviour (runs everything, no cache).
 
-**Census refresh** (2026-10-14, 38 scripts, 166 unmatched at wave31 880e729e): **163 reached (182,996 B), 3 never
+**Census refresh** (2026-10-14, 39 scripts, 166 unmatched at wave31 880e729e): **163 reached (182,996 B), 3 never
 (632 B)**: world_effect_update, fp_call_wrapper, object_bytes23_sum (no static reference: dead or computed-jalr
 only). Newly reached: func_8010C974 (battle_mine), control_cell_text (pak_corrupt), control_cell_text3 (pak_repair),
 func_800DD0C0 (pak_nopak). Overlay census (same tree): image A 99 of 193 functions reached (unmatched: 45 of 112,
-92,504 of 101,892 B), image B 32 of 49 (unmatched: 16 of 28, 27,624 of 29,688 B); `census/OVERLAYS.md` lists them.
+92,504 of 101,892 B), image B 35 of 49 (unmatched: 19 of 28, 28,696 of 29,688 B); `census/OVERLAYS.md` lists them.
 

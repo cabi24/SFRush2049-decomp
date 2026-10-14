@@ -578,7 +578,7 @@ commands: `tools/recomp/README.md` "Phase 11"; lane notes: `cloud/work/frontier/
   (`battle_weapons`, a side result for the overlay lane).
 - **Overlay code runs in the host** (image A = front end, B = race-time/weapons; loaded through inflate_entry, calls
   dispatched by load state). `script_probe` and the census probe overlay functions (`ovl_a`, `ovl_a:NAME`);
-  `census --overlays` writes `census/overlays.json` / `OVERLAYS.md` (image A 99 of 193 reached, B 32 of 49).
+  `census --overlays` writes `census/overlays.json` / `OVERLAYS.md` (image A 99 of 193 reached, B 35 of 49).
 - **The "image-A-only" cells were pak-dialog cells**: control_settings is the modal controller-pak dialog that
   save_settings runs for every PFS error; `pak fail write 1 ERR` during CREATE PLAYER picks the dialog, so ERR 1
   reaches func_800DD0C0, 10/11 control_cell_text3, 3/6/7/8/12 control_cell_text (`pak_nopak`, `pak_repair`,

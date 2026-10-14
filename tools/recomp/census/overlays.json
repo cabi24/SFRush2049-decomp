@@ -13,6 +13,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "controls_frontend": 1,
     "ghost_delete_fail": 1,
@@ -67,6 +68,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "ghost_delete_fail": 91,
     "ghost_pak": 91,
@@ -110,6 +112,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "ghost_delete_fail": 90,
     "ghost_pak": 90,
@@ -153,6 +156,7 @@
     "battle": 5755,
     "battle_end": 5755,
     "battle_mine": 5755,
+    "battle_weapons": 5755,
     "circuit": 5755,
     "ghost_delete_fail": 5755,
     "ghost_pak": 5755,
@@ -196,6 +200,7 @@
     "battle": 3,
     "battle_end": 3,
     "battle_mine": 3,
+    "battle_weapons": 3,
     "circuit": 3,
     "ghost_delete_fail": 3,
     "ghost_pak": 3,
@@ -247,6 +252,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -301,6 +307,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "ghost_delete_fail": 90,
     "ghost_pak": 90,
@@ -344,6 +351,7 @@
     "battle": 27,
     "battle_end": 27,
     "battle_mine": 27,
+    "battle_weapons": 27,
     "circuit": 20,
     "ghost_delete_fail": 21,
     "ghost_pak": 21,
@@ -403,6 +411,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -443,6 +452,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "ghost_delete_fail": 91,
     "ghost_pak": 91,
@@ -486,6 +496,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "ghost_delete_fail": 91,
     "ghost_pak": 91,
@@ -537,6 +548,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -628,6 +640,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -671,6 +684,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -714,6 +728,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "ghost_delete_fail": 91,
     "ghost_pak": 91,
@@ -759,6 +774,7 @@
     "battle": 29,
     "battle_end": 29,
     "battle_mine": 29,
+    "battle_weapons": 29,
     "circuit": 29,
     "controls_frontend": 29,
     "ghost_delete_fail": 29,
@@ -805,6 +821,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "controls_frontend": 151,
     "ghost_delete_fail": 91,
@@ -867,6 +884,7 @@
     "battle": 1901,
     "battle_end": 1901,
     "battle_mine": 1901,
+    "battle_weapons": 1901,
     "circuit": 1901,
     "controls_frontend": 3161,
     "ghost_delete_fail": 1901,
@@ -913,6 +931,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "controls_frontend": 151,
     "ghost_delete_fail": 91,
@@ -975,6 +994,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "controls_frontend": 2,
     "ghost_delete_fail": 1,
@@ -1021,6 +1041,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "controls_frontend": 151,
     "ghost_delete_fail": 91,
@@ -1067,6 +1088,7 @@
     "battle": 8,
     "battle_end": 8,
     "battle_mine": 8,
+    "battle_weapons": 8,
     "circuit": 4,
     "ghost_delete_fail": 4,
     "ghost_pak": 2,
@@ -1115,6 +1137,7 @@
     "battle": 4,
     "battle_end": 4,
     "battle_mine": 4,
+    "battle_weapons": 4,
     "circuit": 2,
     "ghost_delete_fail": 2,
     "ghost_pak": 1,
@@ -1166,6 +1189,7 @@
     "battle": 5252,
     "battle_end": 5252,
     "battle_mine": 5252,
+    "battle_weapons": 5252,
     "circuit": 2626,
     "ghost_delete_fail": 1414,
     "ghost_pak": 1313,
@@ -1206,6 +1230,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -1246,6 +1271,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -1425,6 +1451,7 @@
     "battle": 98,
     "battle_end": 98,
     "battle_mine": 98,
+    "battle_weapons": 98,
     "circuit": 95,
     "controls_frontend": 1477,
     "ghost_delete_fail": 185,
@@ -1469,6 +1496,7 @@
     "battle": 92,
     "battle_end": 92,
     "battle_mine": 92,
+    "battle_weapons": 92,
     "circuit": 92,
     "controls_frontend": 1472,
     "ghost_delete_fail": 182,
@@ -1521,6 +1549,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "controls_frontend": 1,
     "ghost_delete_fail": 1,
@@ -1565,6 +1594,7 @@
     "battle": 4,
     "battle_end": 4,
     "battle_mine": 4,
+    "battle_weapons": 4,
     "circuit": 2,
     "controls_frontend": 3,
     "ghost_delete_fail": 2,
@@ -1609,6 +1639,7 @@
     "battle": 182,
     "battle_end": 182,
     "battle_mine": 182,
+    "battle_weapons": 182,
     "circuit": 91,
     "controls_frontend": 1472,
     "ghost_delete_fail": 181,
@@ -1669,6 +1700,7 @@
     "battle": 101,
     "battle_end": 101,
     "battle_mine": 101,
+    "battle_weapons": 101,
     "circuit": 91,
     "controls_frontend": 363,
     "ghost_delete_fail": 303,
@@ -1780,6 +1812,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "controls_frontend": 412,
     "ghost_delete_fail": 180,
@@ -1818,6 +1851,7 @@
     "battle": 101,
     "battle_end": 101,
     "battle_mine": 101,
+    "battle_weapons": 101,
     "circuit": 91,
     "controls_frontend": 360,
     "ghost_delete_fail": 181,
@@ -1862,6 +1896,7 @@
     "battle": 2,
     "battle_end": 2,
     "battle_mine": 2,
+    "battle_weapons": 2,
     "circuit": 1,
     "controls_frontend": 1,
     "ghost_delete_fail": 1,
@@ -1914,6 +1949,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "controls_frontend": 1,
     "ghost_delete_fail": 1,
@@ -1958,6 +1994,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "controls_frontend": 1471,
     "ghost_delete_fail": 181,
@@ -2090,6 +2127,7 @@
     "battle": 2939,
     "battle_end": 2939,
     "battle_mine": 2939,
+    "battle_weapons": 2939,
     "circuit": 2711,
     "ghost_delete_fail": 1808,
     "ghost_pak": 1810,
@@ -2133,6 +2171,7 @@
     "battle": 196,
     "battle_end": 196,
     "battle_mine": 196,
+    "battle_weapons": 196,
     "circuit": 181,
     "ghost_delete_fail": 121,
     "ghost_pak": 121,
@@ -2184,6 +2223,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2227,6 +2267,7 @@
     "battle": 196,
     "battle_end": 196,
     "battle_mine": 196,
+    "battle_weapons": 196,
     "circuit": 181,
     "ghost_delete_fail": 121,
     "ghost_pak": 121,
@@ -2280,6 +2321,7 @@
     "battle": 91,
     "battle_end": 91,
     "battle_mine": 91,
+    "battle_weapons": 91,
     "circuit": 91,
     "controls_frontend": 91,
     "ghost_delete_fail": 91,
@@ -2534,6 +2576,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2574,6 +2617,7 @@
     "battle": 103,
     "battle_end": 103,
     "battle_mine": 103,
+    "battle_weapons": 103,
     "circuit": 92,
     "ghost_delete_fail": 92,
     "ghost_pak": 92,
@@ -2614,6 +2658,7 @@
     "battle": 7714,
     "battle_end": 7714,
     "battle_mine": 7714,
+    "battle_weapons": 7714,
     "circuit": 3857,
     "ghost_delete_fail": 3857,
     "ghost_pak": 3857,
@@ -2654,6 +2699,7 @@
     "battle": 202,
     "battle_end": 202,
     "battle_mine": 202,
+    "battle_weapons": 202,
     "circuit": 101,
     "ghost_delete_fail": 101,
     "ghost_pak": 101,
@@ -2702,6 +2748,7 @@
     "battle": 2,
     "battle_end": 2,
     "battle_mine": 2,
+    "battle_weapons": 2,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2808,6 +2855,7 @@
     "battle": 101,
     "battle_end": 101,
     "battle_mine": 101,
+    "battle_weapons": 101,
     "circuit": 101,
     "ghost_delete_fail": 101,
     "ghost_pak": 101,
@@ -2848,6 +2896,7 @@
     "battle": 2,
     "battle_end": 2,
     "battle_mine": 2,
+    "battle_weapons": 2,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2888,6 +2937,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2928,6 +2978,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -2968,6 +3019,7 @@
     "battle": 101,
     "battle_end": 101,
     "battle_mine": 101,
+    "battle_weapons": 101,
     "circuit": 101,
     "ghost_delete_fail": 101,
     "ghost_pak": 101,
@@ -3008,6 +3060,7 @@
     "battle": 612,
     "battle_end": 612,
     "battle_mine": 612,
+    "battle_weapons": 612,
     "circuit": 312,
     "ghost_delete_fail": 312,
     "ghost_pak": 312,
@@ -3056,6 +3109,7 @@
     "battle": 816,
     "battle_end": 816,
     "battle_mine": 816,
+    "battle_weapons": 816,
     "circuit": 416,
     "ghost_delete_fail": 416,
     "ghost_pak": 416,
@@ -3096,6 +3150,7 @@
     "battle": 8,
     "battle_end": 8,
     "battle_mine": 8,
+    "battle_weapons": 8,
     "circuit": 808,
     "ghost_delete_fail": 8,
     "ghost_pak": 8,
@@ -3136,6 +3191,7 @@
     "battle": 100,
     "battle_end": 100,
     "battle_mine": 100,
+    "battle_weapons": 100,
     "circuit": 100,
     "ghost_delete_fail": 100,
     "ghost_pak": 100,
@@ -3192,6 +3248,7 @@
     "battle": 100,
     "battle_end": 100,
     "battle_mine": 100,
+    "battle_weapons": 100,
     "circuit": 100,
     "ghost_delete_fail": 100,
     "ghost_pak": 100,
@@ -3285,6 +3342,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "controls_frontend": 90,
     "ghost_delete_fail": 90,
@@ -3331,6 +3389,7 @@
     "battle": 195,
     "battle_end": 195,
     "battle_mine": 195,
+    "battle_weapons": 195,
     "circuit": 180,
     "ghost_delete_fail": 120,
     "ghost_pak": 120,
@@ -3430,6 +3489,7 @@
     "battle": 99,
     "battle_end": 99,
     "battle_mine": 99,
+    "battle_weapons": 99,
     "circuit": 90,
     "controls_frontend": 359,
     "ghost_delete_fail": 180,
@@ -3472,6 +3532,7 @@
     "battle": 81,
     "battle_end": 81,
     "battle_mine": 81,
+    "battle_weapons": 81,
     "two_player": 81,
     "two_player_finish": 81
    },
@@ -3536,6 +3597,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "controls_frontend": 1470,
     "ghost_delete_fail": 180,
@@ -3715,6 +3777,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "controls_frontend": 150,
     "ghost_delete_fail": 90,
@@ -3761,6 +3824,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "controls_frontend": 150,
     "ghost_delete_fail": 90,
@@ -3809,6 +3873,7 @@
     "battle": 28,
     "battle_end": 28,
     "battle_mine": 28,
+    "battle_weapons": 28,
     "circuit": 28,
     "controls_frontend": 28,
     "ghost_delete_fail": 28,
@@ -3871,6 +3936,7 @@
     "battle": 728,
     "battle_end": 728,
     "battle_mine": 728,
+    "battle_weapons": 728,
     "circuit": 728,
     "ghost_delete_fail": 728,
     "ghost_pak": 728,
@@ -3914,6 +3980,7 @@
     "battle": 728,
     "battle_end": 728,
     "battle_mine": 728,
+    "battle_weapons": 728,
     "circuit": 728,
     "ghost_delete_fail": 728,
     "ghost_pak": 728,
@@ -3989,6 +4056,7 @@
     "battle": 90,
     "battle_end": 90,
     "battle_mine": 90,
+    "battle_weapons": 90,
     "circuit": 90,
     "ghost_delete_fail": 90,
     "ghost_pak": 90,
@@ -4087,6 +4155,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "circuit": 1,
     "ghost_delete_fail": 1,
     "ghost_pak": 1,
@@ -4117,18 +4186,24 @@
    "vram": "0x8038A8CC"
   },
   "ovl_b_func_8038A95C": {
+   "first_frame": 1080,
    "image": "ovl_b",
    "matched": false,
    "name": "func_8038A95C",
-   "scripts": {},
+   "scripts": {
+    "battle_weapons": 1
+   },
    "size": 184,
    "vram": "0x8038A95C"
   },
   "ovl_b_func_8038AA14": {
+   "first_frame": 1380,
    "image": "ovl_b",
    "matched": false,
    "name": "func_8038AA14",
-   "scripts": {},
+   "scripts": {
+    "battle_weapons": 1
+   },
    "size": 120,
    "vram": "0x8038AA14"
   },
@@ -4140,7 +4215,8 @@
    "scripts": {
     "battle": 4026,
     "battle_end": 220,
-    "battle_mine": 1626
+    "battle_mine": 1626,
+    "battle_weapons": 2226
    },
    "size": 7812,
    "vram": "0x8038AA8C"
@@ -4153,7 +4229,8 @@
    "scripts": {
     "battle": 2,
     "battle_end": 2,
-    "battle_mine": 2
+    "battle_mine": 2,
+    "battle_weapons": 2
    },
    "size": 276,
    "vram": "0x8038C910"
@@ -4166,7 +4243,8 @@
    "scripts": {
     "battle": 2,
     "battle_end": 2,
-    "battle_mine": 2
+    "battle_mine": 2,
+    "battle_weapons": 2
    },
    "size": 236,
    "vram": "0x8038CA24"
@@ -4195,7 +4273,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 1332,
    "vram": "0x8038CB20"
@@ -4216,7 +4295,8 @@
    "scripts": {
     "battle": 1,
     "battle_end": 1,
-    "battle_mine": 1
+    "battle_mine": 1,
+    "battle_weapons": 1
    },
    "size": 88,
    "vram": "0x8038D1A8"
@@ -4227,7 +4307,8 @@
    "matched": false,
    "name": "func_8038D200",
    "scripts": {
-    "battle_mine": 90
+    "battle_mine": 90,
+    "battle_weapons": 25
    },
    "size": 296,
    "vram": "0x8038D200"
@@ -4238,7 +4319,8 @@
    "matched": false,
    "name": "func_8038D328",
    "scripts": {
-    "battle_mine": 8
+    "battle_mine": 8,
+    "battle_weapons": 12
    },
    "size": 124,
    "vram": "0x8038D328"
@@ -4255,10 +4337,13 @@
    "vram": "0x8038D3A4"
   },
   "ovl_b_func_8038D498": {
+   "first_frame": 1411,
    "image": "ovl_b",
    "matched": false,
    "name": "func_8038D498",
-   "scripts": {},
+   "scripts": {
+    "battle_weapons": 84
+   },
    "size": 768,
    "vram": "0x8038D498"
   },
@@ -4276,7 +4361,8 @@
    "matched": false,
    "name": "func_8038DA78",
    "scripts": {
-    "battle_mine": 90
+    "battle_mine": 90,
+    "battle_weapons": 22
    },
    "size": 868,
    "vram": "0x8038DA78"
@@ -4290,12 +4376,13 @@
    "vram": "0x8038DDDC"
   },
   "ovl_b_func_8038E088": {
-   "first_frame": 840,
+   "first_frame": 818,
    "image": "ovl_b",
    "matched": false,
    "name": "func_8038E088",
    "scripts": {
-    "battle_mine": 3
+    "battle_mine": 3,
+    "battle_weapons": 12
    },
    "size": 140,
    "vram": "0x8038E088"
@@ -4308,7 +4395,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 5196,
    "vram": "0x8038E114"
@@ -4329,7 +4417,8 @@
    "scripts": {
     "battle": 3812,
     "battle_end": 4,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1592
    },
    "size": 976,
    "vram": "0x8038F568"
@@ -4358,7 +4447,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 3056,
    "vram": "0x8038FCE0"
@@ -4371,7 +4461,8 @@
    "scripts": {
     "battle": 1,
     "battle_end": 1,
-    "battle_mine": 1
+    "battle_mine": 1,
+    "battle_weapons": 1
    },
    "size": 560,
    "vram": "0x803908D0"
@@ -4400,7 +4491,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 552,
    "vram": "0x80390B10"
@@ -4413,7 +4505,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 552,
    "vram": "0x80390D38"
@@ -4426,7 +4519,8 @@
    "scripts": {
     "battle": 1906,
     "battle_end": 2,
-    "battle_mine": 706
+    "battle_mine": 706,
+    "battle_weapons": 1006
    },
    "size": 988,
    "vram": "0x80390F60"
@@ -4439,7 +4533,8 @@
    "scripts": {
     "battle": 1,
     "battle_end": 1,
-    "battle_mine": 1
+    "battle_mine": 1,
+    "battle_weapons": 1
    },
    "size": 340,
    "vram": "0x8039133C"
@@ -4452,7 +4547,8 @@
    "scripts": {
     "battle": 8,
     "battle_end": 8,
-    "battle_mine": 8
+    "battle_mine": 8,
+    "battle_weapons": 8
    },
    "size": 24,
    "vram": "0x80391490"
@@ -4465,7 +4561,8 @@
    "scripts": {
     "battle": 1,
     "battle_end": 1,
-    "battle_mine": 1
+    "battle_mine": 1,
+    "battle_weapons": 1
    },
    "size": 12,
    "vram": "0x803914A8"
@@ -4506,7 +4603,8 @@
    "scripts": {
     "battle": 2011,
     "battle_end": 106,
-    "battle_mine": 811
+    "battle_mine": 811,
+    "battle_weapons": 1111
    },
    "size": 532,
    "vram": "0x80391650"
@@ -4519,7 +4617,8 @@
    "scripts": {
     "battle": 2011,
     "battle_end": 106,
-    "battle_mine": 811
+    "battle_mine": 811,
+    "battle_weapons": 1111
    },
    "size": 668,
    "vram": "0x80391864"
@@ -4533,6 +4632,7 @@
     "battle": 2011,
     "battle_end": 106,
     "battle_mine": 811,
+    "battle_weapons": 1111,
     "stunt": 1096,
     "stunt_end": 9336,
     "stunt_short": 2496
@@ -4570,6 +4670,7 @@
     "battle": 1,
     "battle_end": 1,
     "battle_mine": 1,
+    "battle_weapons": 1,
     "stunt": 1,
     "stunt_end": 1,
     "stunt_short": 2
@@ -4598,7 +4699,8 @@
    "scripts": {
     "battle": 8052,
     "battle_end": 432,
-    "battle_mine": 3252
+    "battle_mine": 3252,
+    "battle_weapons": 4452
    },
    "size": 1332,
    "vram": "0x80392FE4"
@@ -4611,7 +4713,8 @@
    "scripts": {
     "battle": 2011,
     "battle_end": 106,
-    "battle_mine": 811
+    "battle_mine": 811,
+    "battle_weapons": 1111
    },
    "size": 400,
    "vram": "0x80393518"
@@ -4624,7 +4727,8 @@
    "scripts": {
     "battle": 2011,
     "battle_end": 106,
-    "battle_mine": 811
+    "battle_mine": 811,
+    "battle_weapons": 1111
    },
    "size": 1164,
    "vram": "0x803936A8"
@@ -4639,6 +4743,7 @@
   "battle",
   "battle_end",
   "battle_mine",
+  "battle_weapons",
   "circuit",
   "controls_frontend",
   "ghost_delete_fail",
@@ -4671,5 +4776,5 @@
   "two_player_finish",
   "unlock"
  ],
- "tree": "4d953057"
+ "tree": "c49bc16b"
 }
