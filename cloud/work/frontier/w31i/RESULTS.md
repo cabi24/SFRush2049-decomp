@@ -69,3 +69,27 @@ ipa-groups/dot_masked_random_b23e0_20261006 (only that hash changed; precedent e
   tools_sha256 of blob_group.py) -> rebind; at fb90f65f conveyor `2340 passed, 52 skipped`; cloud `1019 passed, 5 skipped,
   8 warnings, 27 subtests passed`; rc=0.
 - Builder scratch watchman2:~/rush2049/scratch/frontier/w31i and unit/w31i deleted.
+
+## Job 2: w31d track_texture_load via frontier_billboard_render (merge of wave31 0237fa4c first)
+- Packet check: all 9 old files cmp-identical to src/blob/groups/frontier_billboard_render; ctx_vsync_a145.c cmp-identical
+  to codex_vsync_a145/group.c; group.json differs only in members (+track_texture_load), context (+speed_set,
+  speed_mode0_wrapper, speed_mode1_wrapper, continue_prompt, vsync_wait — all locked members of codex_vsync_a145), files, claims, provenance.
+- Unit (`unit_job2.log`, force_internal added first): `EQUAL track_texture_load: 337 words (internal, c_track_texture_load.c)`,
+  `EQUAL billboard_render: 244 words (kept)`, `locked bodies that differ in this unit: 0`, `2/2 equal`.
+- Builder (`builder_job2.log`) `score.py group cand/w31i/frontier_billboard_render` with and without `--claims`: rc=0, all
+  8 members MATCH (track_texture_load, billboard_render, func_800F207C, func_800F1930, PrintScores, SetHighScoreState,
+  FindGhosts, func_800F2718); context informational (speed_set MATCH).
+- Install: `spliced frontier_billboard_render: 7 members, new: ['track_texture_load']`.
+- FORCE_KEEP TRAP hit: first unit check `1054 locked bodies, 1049 equal ..., 5 differ` — continue_prompt, speed_mode0_wrapper,
+  speed_mode1_wrapper, vsync_wait emptied to 2 words (context in the packet makes them internal), plus func_800D7634 as a
+  knock-on. force_keep += the four (speed_set stays fine) -> `blob_unit: 1054 locked bodies, 1054 equal to the image in one
+  929-file unit, 0 differ`; `group lock: 0 problems`; `blob lock: 1054 entries, 0 problems`; `unused_overrides []`;
+  `ROM build with the source-built blob: SHA-1 EXACT`, `build/us/rush2049.us.z64: OK`.
+- force_internal += track_texture_load, AudKillSong_TTL, AudSetMusicVol_TTL, AudPlaySong_TTL, SaveFlush_TTL.
+- symbols.json / blob.ld unchanged (1 provenance comment + SHA256SUMS): no re-pin. Slot-contract audit: no change.
+  ctx_gr3_b.c copies all identical. Not provisional, not a scout target. No data-symbol changes.
+- Coverage: 1053 -> **1054/1216, 381,684 -> 383,032 B (58.99% -> 59.19%)**.
+- CLAIMS: track_texture_load (+ wrong-name note: = GC _InitScreen@highscorescr.c, rename next batch, + devices) on the
+  wave-31 landed row; w31d's control_settings/func_800DD0C0/codex_control_settings_a4 packet state, LoadTrack,
+  func_800E543C (track pool row) and SetupWaveModel/func_80097164 (resource loader row) with next levers + the
+  unsaved-callee-saved draft_check lesson.

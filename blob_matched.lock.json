@@ -20,10 +20,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "InitMaxPath": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -159,19 +159,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "SetHighScoreState": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "ShowCountdown": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -570,10 +570,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "buffer_swap": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
@@ -6076,10 +6076,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "func_800F1D04": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -6093,10 +6093,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_billboard_render",
     "source": "src/blob/groups/frontier_billboard_render/group.json",
-    "source_sha256": "f6e8196de87822ec5a0b74bdd347a8d67a41014374f9648d41e1f3cf95c99d5d",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-13"
+    "verified_at": "2026-10-14"
   },
   "func_800F2710": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8623,6 +8623,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-04"
+  },
+  "track_texture_load": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_billboard_render",
+    "source": "src/blob/groups/frontier_billboard_render/group.json",
+    "source_sha256": "b40f66b215cb0ff23e428449e17dc02766ea5920e08a0968ab2570aecb0a5c1e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
   },
   "traction_control": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

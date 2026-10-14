@@ -6,14 +6,20 @@
   "func_800F1930",
   "PrintScores",
   "SetHighScoreState",
-  "FindGhosts"
+  "FindGhosts",
+  "track_texture_load"
  ],
  "context": [
   "func_800F2718",
   "slot_state_setup",
   "object_create",
   "func_800B669C",
-  "func_800D50E4"
+  "func_800D50E4",
+  "speed_set",
+  "speed_mode0_wrapper",
+  "speed_mode1_wrapper",
+  "continue_prompt",
+  "vsync_wait"
  ],
  "files": [
   "func_800F2718.c",
@@ -24,11 +30,13 @@
   "func_800F1930.c",
   "billboard_render.c",
   "ctx_gr3_b.c",
-  "ctx_func_800D50E4.c"
+  "ctx_func_800D50E4.c",
+  "track_texture_load.c",
+  "ctx_vsync_a145.c"
  ],
  "keep": [
   "billboard_render"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "frontier wave 15 (w15f): billboard_render with provisional func_800F207C/func_800F1930 as real callees; unmatched context reconstructions func_800F0914/func_800F1210/func_800F0F44; cloud/work/frontier/w15f/RESULTS.md | w28a: func_800F0914 (GC _PrintScores) moved context->members, EQUAL in the unit with its real caller billboard_render; func_800F1210 (GC _SetHighScoreState) context->members, EQUAL in the unit | w29a: func_800F0F44 (GC _FindGhosts) context->members, = 2 arm first + one disclosed do {} while (0); EQUAL in the unit"
+ "provenance": "frontier wave 15 (w15f): billboard_render with provisional func_800F207C/func_800F1930 as real callees; unmatched context reconstructions func_800F0914/func_800F1210/func_800F0F44; cloud/work/frontier/w15f/RESULTS.md | w28a: func_800F0914 (GC _PrintScores) moved context->members, EQUAL in the unit with its real caller billboard_render; func_800F1210 (GC _SetHighScoreState) context->members, EQUAL in the unit | w29a: func_800F0F44 (GC _FindGhosts) context->members, = 2 arm first + one disclosed do {} while (0); EQUAL in the unit | w31d: track_texture_load (GC _InitScreen@highscorescr.c) added as member (its only caller billboard_render is here); ctx_vsync_a145.c = byte-identical copy of codex_vsync_a145/group.c (speed_set IPA f20/f22/s1/s2 convention and the inlined speed_mode0_wrapper); cloud/work/frontier/w31d/RESULTS.md"
 }

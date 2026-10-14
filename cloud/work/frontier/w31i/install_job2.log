@@ -1,0 +1,3 @@
+spliced frontier_billboard_render: 7 members, new: ['track_texture_load']
+image coverage: 1054/1216 functions, 383032/647072 bytes (59.19%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.
