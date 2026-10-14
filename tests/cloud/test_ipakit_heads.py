@@ -28,7 +28,7 @@ class HeadTests(unittest.TestCase):
         self.assertEqual(bad, [])
 
     def test_remaining_heads_match_current_audit(self):
-        remaining = set()   # w30n registered the last one, func_80104704 (cloud/work/frontier/w30n/heads.json)
+        remaining = set()   # w30n registered the last one, DrawName (cloud/work/frontier/w30n/heads.json)
         self.assertEqual(set(self.rows), remaining)
         self.assertTrue(all(not r['registered'] for r in self.rows.values()))
 
@@ -75,14 +75,14 @@ class HeadTests(unittest.TestCase):
             self.assertNotIn(a, self.rows)
         # w30n: registered by `closure run`; its old tail label highscore_entry_anim is retired
         self.assertEqual((self.c.by_addr[0x80104704].name, len(self.c.by_addr[0x80104704].words)),
-                         ('func_80104704', 260))
+                         ('DrawName', 260))
         self.assertNotIn(0x80104704, self.rows)
 
     def test_tail_labels_are_not_heads(self):
         for tail in (0x80108098, 0x801089CC, 0x8010BE7C, 0x80103A08, 0x80104A58):
             self.assertNotIn(tail, self.rows)
             self.assertIsNotNone(self.c.containing(tail), hex(tail))
-        self.assertEqual(self.c.containing(0x80104A58).name, 'func_80104704')
+        self.assertEqual(self.c.containing(0x80104A58).name, 'DrawName')
 
     def test_prologue_does_not_cross_a_jr_ra(self):
         # 0x80103D20 is `jr ra; nop`, the next function's addiu sp is 3 words away: no prologue

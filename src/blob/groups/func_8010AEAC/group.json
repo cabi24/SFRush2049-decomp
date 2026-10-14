@@ -1,9 +1,9 @@
 {
- "name": "func_8010AEAC",
+ "name": "options_animText",
  "members": [
-  "func_8010AEAC",
-  "func_8010A8D0",
-  "func_8010A7A4"
+  "options_animText",
+  "options_animButtonText",
+  "options_printOption"
  ],
  "context": [
   "slot_state_setup",
@@ -15,7 +15,7 @@
   "ctx_gr3_b.c"
  ],
  "keep": [
-  "func_8010AEAC"
+  "options_animText"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],

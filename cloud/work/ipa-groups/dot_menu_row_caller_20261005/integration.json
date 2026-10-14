@@ -2,11 +2,11 @@
   "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
   "reviewed_intake_commit": "7487788a0ed4aae747aeb9bb0309e45fa78e1d9b",
   "reviewed_intake_tree": "a5da3d8c0d9393fea22f1615b825c5ad54090cd4",
-  "sole_match_claim": "func_8010A7A4",
+  "sole_match_claim": "options_printOption",
   "new_strict_complete_function_bytes": 300,
   "new_image_or_rom_coverage_bytes": 0,
   "caller_nonmatch": {
-    "function": "func_8010A8D0",
+    "function": "options_animButtonText",
     "target_bytes": 1500,
     "elf_st_size": 1480,
     "differing_words": 367,
@@ -84,15 +84,15 @@
   "promotion_limit": "Canonical setter source/type reconciliation and whole-unit/image verification are required before eventual promotion. Standalone setter equality does not establish the inlined contract.",
   "source_artifact_sha256": {
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/REPORT.md": "0a18fb9e4a14c209a053f4af466cae3e6ab865894236ba03ffd257eeb120a23d",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.c": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.json": "29597162ae65df2172ca51781f385fac535e5c30e3596d769518f6c2327bea19",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/host_test.c": "29355e1cc07e254fd51da225dfe548ecb5c2270f37ded23d1fa7990587293e7a",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.c": "2ffe2e35742beb383be3a33aab580ee73d87d3647d9c5198ea0d90667091c695",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.json": "8ba36461fdce6d851a13087693e72cd9a771e0a9a752ca461c21b91c751b12bb",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/host_test.c": "098c04e8c4186f67116fa3312645634d15617615e730a993b066e3f9fccde15b",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/layout_probe.c": "83adf5458fecb805b96caa8719a402bdabd53ca8344e45438a9edce0a23a8df0",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verification.json": "16d36d58cbe481efbca345f5bbb26516cf03702a2cdcaad21bb641fdfe07d058",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py": "44c10f2e37d27e067315ce3d365bd9377e1c946d6961d123f284c6c0b8d05130",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py": "61f527eee382b201df05fe68ef59d05a3338f904422514530957e1f62df3f4b4",
     "cloud/work/ipa-groups/dot_menu_row_caller_20261005/accepted_func_800BEA3C.c": "ced1420bc1b0bb4bb8dd693d4d83b7d7d004562da1268871fa1ef9657eeed173",
-    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/peer_review.json": "0973a35f60eefbb268894ae090dc81efbbad04f1b72b28162bec8f9eb12a9301",
-    "tests/conveyor/test_dot_menu_row_caller.py": "0a18d8a5f3ee56e24238498af1c006e5c9ef99c473cbe178d84fad61866b79e1"
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/peer_review.json": "239032f7ab0462b054765ef372bf56f7d7c8f868fba1acfe8e0dce4a90a7bec4",
+    "tests/conveyor/test_dot_menu_row_caller.py": "80c9029098bc35c206f3c4755b114da9f628c9903396651fba7eb66e47755f0d"
   },
   "publication_scope": "Source, tests, hashes, counts and sanitized research/verification only. No ROM bytes, raw assembly dumps, generated binaries, credentials, or unrelated private data.",
   "remote_ci_initial": {

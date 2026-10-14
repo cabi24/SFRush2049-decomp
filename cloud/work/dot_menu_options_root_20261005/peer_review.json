@@ -13,7 +13,7 @@
     "Private register ABI and genuine downstream compiler context remain unproved.",
     "No root native compile, score, relocated-byte proof, ELF/literal-ownership proof, image/ROM gate, or new matching bytes."
   ],
-  "verification_receipt_sha256": "233e5acf7bd0774ddac17c687505fa15acfb417ffe26d3f402f5cd3f1d520d1b",
+  "verification_receipt_sha256": "531c870f0657d18cf7b1b0e7233aba01cb5d45b681f8471fd315f98de364b723",
   "checks": [
     "Fresh pinned scoped suite: 9 passed at the reviewed intake.",
     "Fresh pinned verify.py replay equals tracked verification.json byte for byte.",

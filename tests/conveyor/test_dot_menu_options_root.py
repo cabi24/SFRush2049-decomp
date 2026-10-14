@@ -39,8 +39,8 @@ def test_native_extent_switch_callback_and_format():
 
 def test_source_is_genuine_control_flow_without_pressure_code():
     root = (PACKET/'root.c').read_text()
-    assert 's32 func_8010AEAC(void *state)' in root
-    assert root.count('func_8010A7A4(') == 14
+    assert 's32 options_animText(void *state)' in root
+    assert root.count('options_printOption(') == 14
     assert 'char header[MENU_OPTIONS_HEADER_CAPACITY]' in root
     assert not any(text in root for text in ['volatile','__inline','asm(','if (0)'])
     assert root.count('slot_state_setup(') == 2

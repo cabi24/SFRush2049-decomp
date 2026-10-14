@@ -113,7 +113,7 @@ static void Flag1600(Lap *lap)
     }
 }
 
-void func_8010DCFC(Obj *obj)
+void StartCone(Obj *obj)
 {
     Node *vis;
     f32 tmat[4][3];

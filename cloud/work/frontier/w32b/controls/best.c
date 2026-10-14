@@ -67,7 +67,7 @@ void func_800BEA3C(TextColor first, TextColor second)   /* TB_FlashTextColors */
     D_80118E28.rgba = first.rgba;
     D_80118E2C.rgba = second.rgba;
 }
-void game_results_exit(s8 p);
+void controls_animButtonText(s8 p);
 
 void ct_gfx_lock(void) { osRecvMesg(&D_801461D0, 0, 1); }
 void ct_gfx_unlock(void) { osSendMesg(&D_801461D0, 0, 0); }
@@ -107,7 +107,7 @@ s32 ct_validOption(u8 player, s32 item)
     return valid;
 }
 
-void game_results_exit(s8 p)
+void controls_animButtonText(s8 p)
 {
     s32 i;
     s32 x;
@@ -186,7 +186,7 @@ end:
     render_helper(0.0f);
 }
 
-s32 func_80100564(s32 arg0)
+s32 controls_animText(s32 arg0)
 {
     s32 i;
     s32 p;
@@ -200,7 +200,7 @@ s32 func_80100564(s32 arg0)
     render_helper(0.0f);
     for (p = 0; p < gNumWindows; p++) {
         if (D_80154618[p] == 1) {
-            game_results_exit(p);
+            controls_animButtonText(p);
             continue;
         }
         ct_SetFont(11);

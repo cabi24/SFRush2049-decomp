@@ -53,7 +53,7 @@ void host_case(const unsigned *in,unsigned *output) {
     D_80117530[1].sound=123;D_80117530[2].sound=456;D_801391F0=&old_head;
     for(i=0;i<3;i++) {D_80152818[0].velocity[i]=value(in[9+i]);motion.angle[i]=value(in[12+i]);motion.velocity[i]=value(in[15+i]);}
     for(i=0;i<3;i++)for(j=0;j<3;j++)target.orientation[i][j]=value(in[18+i*3+j]);
-    func_8010DCFC(&target);
+    StartCone(&target);
     out[0]=target.flags;out[1]=(unsigned)(u8)D_80152818[0].hit;out[2]=(unsigned)(u8)D_80152818[1].hit;
     out[3]=(unsigned)(u8)D_8014A250[0].hit;out[4]=(unsigned)(u8)D_8014A250[1].hit;
     out[5]=visual.next==&old_head?1:visual.next==&changed_head?2:0;out[6]=(unsigned)(unsigned short)visual.index;

@@ -11607,7 +11607,7 @@
 "image":"game",
 "address":"0x800B574C",
 "size":332,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -15548,7 +15548,7 @@
 "image":"game",
 "address":"0x800C7110",
 "size":240,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -15678,7 +15678,7 @@
 "image":"game",
 "address":"0x800C7818",
 "size":1704,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -15723,7 +15723,7 @@
 "image":"game",
 "address":"0x800C7EC8",
 "size":628,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -16592,7 +16592,7 @@
 "image":"game",
 "address":"0x800CBF2C",
 "size":276,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -16623,7 +16623,7 @@
 ]
 },
 {
-"n64":"func_800CC040",
+"n64":"SaveGhost",
 "image":"game",
 "address":"0x800CC040",
 "size":896,
@@ -16693,7 +16693,7 @@
 ]
 },
 {
-"n64":"func_800CC50C",
+"n64":"CompressGhost",
 "image":"game",
 "address":"0x800CC50C",
 "size":760,
@@ -21792,7 +21792,7 @@
 "image":"game",
 "address":"0x800E56F8",
 "size":1436,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -21993,7 +21993,7 @@
 "image":"game",
 "address":"0x800E6AF8",
 "size":1336,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -22648,7 +22648,7 @@
 "image":"game",
 "address":"0x800EB028",
 "size":1640,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":"update_camera",
 "candidates":[
@@ -23575,7 +23575,7 @@
 "image":"game",
 "address":"0x800F0F44",
 "size":464,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -24301,7 +24301,7 @@
 "candidates":[]
 },
 {
-"n64":"track_texture_load",
+"n64":"highscore_InitScreen",
 "image":"game",
 "address":"0x800F5F90",
 "size":1348,
@@ -24416,7 +24416,7 @@
 ]
 },
 {
-"n64":"props_render",
+"n64":"GhostStart",
 "image":"game",
 "address":"0x800F6AB8",
 "size":2180,
@@ -26125,7 +26125,7 @@
 ]
 },
 {
-"n64":"game_results_update",
+"n64":"audio_animButtonText",
 "image":"game",
 "address":"0x800FEE04",
 "size":1172,
@@ -26160,7 +26160,7 @@
 ]
 },
 {
-"n64":"game_results_render",
+"n64":"audio_animText",
 "image":"game",
 "address":"0x800FF298",
 "size":1164,
@@ -26199,7 +26199,7 @@
 "image":"game",
 "address":"0x800FF724",
 "size":1732,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":"animControls",
 "candidates":[
@@ -26230,7 +26230,7 @@
 ]
 },
 {
-"n64":"game_results_exit",
+"n64":"controls_animButtonText",
 "image":"game",
 "address":"0x800FFDE8",
 "size":1916,
@@ -26265,7 +26265,7 @@
 ]
 },
 {
-"n64":"func_80100564",
+"n64":"controls_animText",
 "image":"game",
 "address":"0x80100564",
 "size":1576,
@@ -26409,7 +26409,7 @@
 "image":"game",
 "address":"0x80100D5C",
 "size":252,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26479,7 +26479,7 @@
 "image":"game",
 "address":"0x80101904",
 "size":1152,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26514,7 +26514,7 @@
 "image":"game",
 "address":"0x80101D84",
 "size":1176,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26549,7 +26549,7 @@
 "image":"game",
 "address":"0x8010221C",
 "size":548,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -26559,17 +26559,17 @@
 "image":"game",
 "address":"0x80102448",
 "size":1336,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
 },
 {
-"n64":"func_80102980",
+"n64":"drawBattleScore",
 "image":"game",
 "address":"0x80102980",
 "size":1456,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -26579,7 +26579,7 @@
 "image":"game",
 "address":"0x80102F30",
 "size":3560,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26602,7 +26602,7 @@
 ]
 },
 {
-"n64":"func_80103D28",
+"n64":"DrawUnlocked",
 "image":"game",
 "address":"0x80103D28",
 "size":2516,
@@ -26637,11 +26637,11 @@
 ]
 },
 {
-"n64":"func_80104704",
+"n64":"DrawName",
 "image":"game",
 "address":"0x80104704",
 "size":1040,
-"status":"other",
+"status":"unmatched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26672,7 +26672,7 @@
 ]
 },
 {
-"n64":"func_80104B14",
+"n64":"DrawGhost",
 "image":"game",
 "address":"0x80104B14",
 "size":2404,
@@ -26707,7 +26707,7 @@
 ]
 },
 {
-"n64":"func_80105480",
+"n64":"highscore_animText",
 "image":"game",
 "address":"0x80105480",
 "size":1780,
@@ -26787,7 +26787,7 @@
 ]
 },
 {
-"n64":"func_80105EA8",
+"n64":"animResults",
 "image":"game",
 "address":"0x80105EA8",
 "size":2508,
@@ -26861,7 +26861,7 @@
 "image":"game",
 "address":"0x80106B3C",
 "size":600,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -26966,7 +26966,7 @@
 "image":"game",
 "address":"0x8010761C",
 "size":1232,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -27036,7 +27036,7 @@
 "image":"game",
 "address":"0x80107AF4",
 "size":1000,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -27172,11 +27172,11 @@
 ]
 },
 {
-"n64":"func_80108AB0",
+"n64":"animWrongWay",
 "image":"game",
 "address":"0x80108AB0",
 "size":760,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -27417,7 +27417,7 @@
 ]
 },
 {
-"n64":"func_8010A7A4",
+"n64":"options_printOption",
 "image":"game",
 "address":"0x8010A7A4",
 "size":300,
@@ -27452,7 +27452,7 @@
 ]
 },
 {
-"n64":"func_8010A8D0",
+"n64":"options_animButtonText",
 "image":"game",
 "address":"0x8010A8D0",
 "size":1500,
@@ -27487,7 +27487,7 @@
 ]
 },
 {
-"n64":"func_8010AEAC",
+"n64":"options_animText",
 "image":"game",
 "address":"0x8010AEAC",
 "size":1652,
@@ -27556,7 +27556,7 @@
 "image":"game",
 "address":"0x8010B5D0",
 "size":556,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[
@@ -27591,7 +27591,7 @@
 "image":"game",
 "address":"0x8010B7FC",
 "size":460,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -27601,7 +27601,7 @@
 "image":"game",
 "address":"0x8010B9C8",
 "size":700,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -27611,7 +27611,7 @@
 "image":"game",
 "address":"0x8010BC84",
 "size":928,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[]
@@ -28007,11 +28007,11 @@
 ]
 },
 {
-"n64":"func_8010DCFC",
+"n64":"StartCone",
 "image":"game",
 "address":"0x8010DCFC",
 "size":660,
-"status":"unmatched",
+"status":"matched",
 "seed":false,
 "confident":null,
 "candidates":[

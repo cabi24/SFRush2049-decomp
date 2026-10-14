@@ -122,7 +122,7 @@ extern s32 fcvt_wrapper(char *,char *,...);
 extern s32 osRecvMesg(OSMesgQueue *,void **,s32),osSendMesg(OSMesgQueue *,void *,s32);
 extern s32 slot_state_setup(s32);
 void func_80100D5C(s32 x, s32 y, s32 w, s32 h, u8 *color);
-extern void func_80101904(void),func_80101D84(void),func_80100E58(void),func_80102980(void);
+extern void func_80101904(void),func_80101D84(void),func_80100E58(void),drawBattleScore(void);
 void func_80102448(void);
 extern s32 func_800F84B0(s32),object_bytes_sum_global(void);
 void rt_gfx_lock(void) {osRecvMesg(&D_801461D0,0,1);}
@@ -437,7 +437,7 @@ extern s32 D_80138870;
 extern f32 D_80144DA4[];
 extern f32 D_80149A78[][8];
 extern char D_80120360[],D_80120370[],D_80120380[];
-void func_80102980(void)
+void drawBattleScore(void)
 {
     s32 x;
     s32 previous;
@@ -572,7 +572,7 @@ s32 func_80102F30(s32 arg0)
             func_80102448();
             break;
         case 6:
-            func_80102980();
+            drawBattleScore();
             break;
         case 0:case 2:case 3:case 5:
             rows=D_80152734+3;

@@ -86,7 +86,7 @@ static f32 TB_GetFlashTextCycle(void)
     return D_8017A630;
 }
 
-s32 func_80108AB0(void *item)
+s32 animWrongWay(void *item)
 {
     s32 x;
     s32 y;

@@ -6930,10 +6930,10 @@ track_lighting_setup:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.track_texture_load, "ax", @progbits
-.globl track_texture_load
-track_texture_load:
-    /* compiled from src/blob/track_texture_load.c */
+.section .text.highscore_InitScreen, "ax", @progbits
+.globl highscore_InitScreen
+highscore_InitScreen:
+    /* compiled from src/blob/highscore_InitScreen.c */
     .word 0x27BDFF88
     .word 0x3C118014
     .word 0x26312728
@@ -7664,10 +7664,10 @@ func_800F6928:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.props_render, "ax", @progbits
-.globl props_render
-props_render:
-    /* compiled from src/blob/props_render.c */
+.section .text.GhostStart, "ax", @progbits
+.globl GhostStart
+GhostStart:
+    /* compiled from src/blob/GhostStart.c */
     .word 0x27BDFF48
     .word 0x3C0E8015
     .word 0x81CE6994

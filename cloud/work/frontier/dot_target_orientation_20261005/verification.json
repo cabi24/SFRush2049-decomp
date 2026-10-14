@@ -238,7 +238,7 @@
   },
   "input_sha256": {
     "asm/us/blob/SHA256SUMS": "7e71e911b80a278b1bd5b0328e33435aa8d3e6e6069c52c898ff363a46a38d33",
-    "asm/us/blob/symbols.json": "13c3849fe076dee7fa07a5d8a829cb5a5bba3bd8c80def12dac98e83afd6b981",
+    "asm/us/blob/symbols.json": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
   },
   "behavior": {

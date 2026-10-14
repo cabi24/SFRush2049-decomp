@@ -10,7 +10,7 @@ u32 D_80156944, D_8015694C;
 void *D_8014A160, *D_801461A8;
 static int saves, save_result, save_force, save_slot, transitions, next_state;
 static int status_calls, status_slot, mutate_selection;
-s32 func_800CC040(s32 slot, void *data, void *output, s32 force)
+s32 SaveGhost(s32 slot, void *data, void *output, s32 force)
 {
     assert(data == D_8014A160 && output == D_801461A8);
     saves++; save_force = force; save_slot = slot;

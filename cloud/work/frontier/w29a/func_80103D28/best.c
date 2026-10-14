@@ -63,7 +63,7 @@ s32 du_font_set(s32 font)
     return old;
 }
 
-void func_80103D28(void)
+void DrawUnlocked(void)
 {
     s16 x;
     s32 y;

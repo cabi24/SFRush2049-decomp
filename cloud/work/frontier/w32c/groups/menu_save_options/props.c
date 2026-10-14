@@ -134,7 +134,7 @@ extern s8 D_801115C0[][13];                                 /* GC gCarHorn */
 extern f32 D_801112DC[][13];                                /* GC gFrontTireScale */
 extern f32 D_801113E0[][13];                                /* GC gRearTireScale */
 
-void props_render(void) {
+void GhostStart(void) {
     GhostHeader *g;
     s32 i;
     s32 j;

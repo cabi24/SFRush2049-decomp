@@ -1,5 +1,15 @@
 {
  "functions": {
+  "CompressGhost": {
+   "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
+    "ghost_save": 1
+   },
+   "size": 760,
+   "vram": "0x800CC50C"
+  },
   "CreatePlayer": {
    "scripts": {
     "pak_corrupt": 1,
@@ -10,6 +20,70 @@
    },
    "size": 1088,
    "vram": "0x800CD104"
+  },
+  "DrawGhost": {
+   "scripts": {
+    "ghost_delete_fail": 374,
+    "ghost_pak": 244,
+    "ghost_resave": 244
+   },
+   "size": 2404,
+   "vram": "0x80104B14"
+  },
+  "DrawName": {
+   "scripts": {
+    "race_finish": 98,
+    "two_player_finish": 491,
+    "unlock": 60
+   },
+   "size": 1040,
+   "vram": "0x80104704"
+  },
+  "DrawUnlocked": {
+   "scripts": {
+    "unlock": 98
+   },
+   "size": 2516,
+   "vram": "0x80103D28"
+  },
+  "GhostStart": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "battle_end": 1,
+    "battle_mine": 1,
+    "battle_weapons": 1,
+    "circuit": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_race": 1,
+    "ghost_reload": 1,
+    "ghost_resave": 1,
+    "ghost_save": 2,
+    "other_car": 1,
+    "pause_menus": 2,
+    "player_finish": 1,
+    "player_reload": 1,
+    "practice": 1,
+    "race": 1,
+    "race_finish": 2,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "stunt_short": 2,
+    "two_player": 1,
+    "two_player_finish": 2,
+    "unlock": 2
+   },
+   "size": 2180,
+   "vram": "0x800F6AB8"
   },
   "LoadTrack": {
    "scripts": {
@@ -101,6 +175,16 @@
    "size": 2148,
    "vram": "0x800DB81C"
   },
+  "SaveGhost": {
+   "scripts": {
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
+    "ghost_save": 1
+   },
+   "size": 896,
+   "vram": "0x800CC040"
+  },
   "SaveServer": {
    "scripts": {
     "attract": 9014,
@@ -191,6 +275,43 @@
    "size": 1204,
    "vram": "0x80096CA8"
   },
+  "animResults": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "battle": 2011,
+    "battle_end": 106,
+    "battle_mine": 811,
+    "battle_weapons": 1111,
+    "circuit": 1936,
+    "ghost_delete_fail": 3132,
+    "ghost_pak": 3132,
+    "ghost_race": 2026,
+    "ghost_reload": 796,
+    "ghost_resave": 3132,
+    "ghost_save": 3268,
+    "other_car": 2011,
+    "pause_menus": 3736,
+    "player_finish": 2633,
+    "player_reload": 826,
+    "practice": 2026,
+    "race": 1096,
+    "race_finish": 3218,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "stunt_short": 2496,
+    "two_player": 1096,
+    "two_player_finish": 3390,
+    "unlock": 3218
+   },
+   "size": 2508,
+   "vram": "0x80105EA8"
+  },
   "arb_rate_set": {
    "scripts": {
     "attract": 19,
@@ -235,6 +356,22 @@
    },
    "size": 312,
    "vram": "0x800A5908"
+  },
+  "audio_animButtonText": {
+   "scripts": {
+    "options_menus": 540
+   },
+   "size": 1172,
+   "vram": "0x800FEE04"
+  },
+  "audio_animText": {
+   "scripts": {
+    "audio_options": 434,
+    "options_menus": 540,
+    "pause_menus": 299
+   },
+   "size": 1164,
+   "vram": "0x800FF298"
   },
   "audio_bus_mix": {
    "scripts": {
@@ -1019,6 +1156,21 @@
    },
    "size": 2552,
    "vram": "0x800DD4AC"
+  },
+  "controls_animButtonText": {
+   "scripts": {
+    "controls_frontend": 1110
+   },
+   "size": 1916,
+   "vram": "0x800FFDE8"
+  },
+  "controls_animText": {
+   "scripts": {
+    "controls_frontend": 1110,
+    "pause_menus": 839
+   },
+   "size": 1576,
+   "vram": "0x80100564"
   },
   "countdown": {
    "scripts": {
@@ -2345,26 +2497,6 @@
    "size": 1416,
    "vram": "0x800C4F68"
   },
-  "func_800CC040": {
-   "scripts": {
-    "ghost_delete_fail": 1,
-    "ghost_pak": 1,
-    "ghost_resave": 1,
-    "ghost_save": 1
-   },
-   "size": 896,
-   "vram": "0x800CC040"
-  },
-  "func_800CC50C": {
-   "scripts": {
-    "ghost_delete_fail": 1,
-    "ghost_pak": 1,
-    "ghost_resave": 1,
-    "ghost_save": 1
-   },
-   "size": 760,
-   "vram": "0x800CC50C"
-  },
   "func_800D348C": {
    "scripts": {
     "audio_options": 1,
@@ -2920,14 +3052,6 @@
    "size": 968,
    "vram": "0x800F87A0"
   },
-  "func_80100564": {
-   "scripts": {
-    "controls_frontend": 1110,
-    "pause_menus": 839
-   },
-   "size": 1576,
-   "vram": "0x80100564"
-  },
   "func_80100E58": {
    "scripts": {
     "ghost_pak": 420,
@@ -2941,83 +3065,6 @@
    },
    "size": 2732,
    "vram": "0x80100E58"
-  },
-  "func_80103D28": {
-   "scripts": {
-    "unlock": 98
-   },
-   "size": 2516,
-   "vram": "0x80103D28"
-  },
-  "func_80104704": {
-   "scripts": {
-    "race_finish": 98,
-    "two_player_finish": 491,
-    "unlock": 60
-   },
-   "size": 1040,
-   "vram": "0x80104704"
-  },
-  "func_80104B14": {
-   "scripts": {
-    "ghost_delete_fail": 374,
-    "ghost_pak": 244,
-    "ghost_resave": 244
-   },
-   "size": 2404,
-   "vram": "0x80104B14"
-  },
-  "func_80105480": {
-   "scripts": {
-    "ghost_delete_fail": 374,
-    "ghost_pak": 1144,
-    "ghost_resave": 1144,
-    "ghost_save": 900,
-    "player_finish": 863,
-    "race_finish": 158,
-    "saves": 270,
-    "two_player_finish": 496,
-    "unlock": 308
-   },
-   "size": 1780,
-   "vram": "0x80105480"
-  },
-  "func_80105EA8": {
-   "scripts": {
-    "audio_options": 1096,
-    "backward": 2026,
-    "battle": 2011,
-    "battle_end": 106,
-    "battle_mine": 811,
-    "battle_weapons": 1111,
-    "circuit": 1936,
-    "ghost_delete_fail": 3132,
-    "ghost_pak": 3132,
-    "ghost_race": 2026,
-    "ghost_reload": 796,
-    "ghost_resave": 3132,
-    "ghost_save": 3268,
-    "other_car": 2011,
-    "pause_menus": 3736,
-    "player_finish": 2633,
-    "player_reload": 826,
-    "practice": 2026,
-    "race": 1096,
-    "race_finish": 3218,
-    "race_pak": 1216,
-    "race_track2": 1096,
-    "race_track3": 1096,
-    "race_track4": 1096,
-    "saves": 1651,
-    "stunt": 1096,
-    "stunt_end": 9336,
-    "stunt_short": 2496,
-    "two_player": 1096,
-    "two_player_finish": 3390,
-    "unlock": 3218
-   },
-   "size": 2508,
-   "vram": "0x80105EA8"
   },
   "func_80106874": {
    "scripts": {
@@ -3115,29 +3162,6 @@
    },
    "size": 1504,
    "vram": "0x80109F54"
-  },
-  "func_8010A7A4": {
-   "scripts": {
-    "options_menus": 7032,
-    "pause_menus": 8957
-   },
-   "size": 300,
-   "vram": "0x8010A7A4"
-  },
-  "func_8010A8D0": {
-   "scripts": {
-    "options_menus": 960
-   },
-   "size": 1500,
-   "vram": "0x8010A8D0"
-  },
-  "func_8010AEAC": {
-   "scripts": {
-    "options_menus": 960,
-    "pause_menus": 689
-   },
-   "size": 1652,
-   "vram": "0x8010AEAC"
   },
   "func_8010C974": {
    "scripts": {
@@ -3324,29 +3348,6 @@
    "size": 704,
    "vram": "0x800FD464"
   },
-  "game_results_exit": {
-   "scripts": {
-    "controls_frontend": 1110
-   },
-   "size": 1916,
-   "vram": "0x800FFDE8"
-  },
-  "game_results_render": {
-   "scripts": {
-    "audio_options": 434,
-    "options_menus": 540,
-    "pause_menus": 299
-   },
-   "size": 1164,
-   "vram": "0x800FF298"
-  },
-  "game_results_update": {
-   "scripts": {
-    "options_menus": 540
-   },
-   "size": 1172,
-   "vram": "0x800FEE04"
-  },
   "game_timer_display": {
    "scripts": {
     "audio_options": 435,
@@ -3372,6 +3373,39 @@
    },
    "size": 440,
    "vram": "0x800D510C"
+  },
+  "highscore_InitScreen": {
+   "scripts": {
+    "battle_end": 1,
+    "ghost_delete_fail": 1,
+    "ghost_pak": 1,
+    "ghost_resave": 1,
+    "ghost_save": 1,
+    "player_finish": 1,
+    "race_finish": 1,
+    "saves": 1,
+    "stunt_end": 1,
+    "stunt_short": 1,
+    "two_player_finish": 1,
+    "unlock": 1
+   },
+   "size": 1348,
+   "vram": "0x800F5F90"
+  },
+  "highscore_animText": {
+   "scripts": {
+    "ghost_delete_fail": 374,
+    "ghost_pak": 1144,
+    "ghost_resave": 1144,
+    "ghost_save": 900,
+    "player_finish": 863,
+    "race_finish": 158,
+    "saves": 270,
+    "two_player_finish": 496,
+    "unlock": 308
+   },
+   "size": 1780,
+   "vram": "0x80105480"
   },
   "hud_setup": {
    "scripts": {
@@ -3761,6 +3795,29 @@
    "size": 112,
    "vram": "0x800B42F0"
   },
+  "options_animButtonText": {
+   "scripts": {
+    "options_menus": 960
+   },
+   "size": 1500,
+   "vram": "0x8010A8D0"
+  },
+  "options_animText": {
+   "scripts": {
+    "options_menus": 960,
+    "pause_menus": 689
+   },
+   "size": 1652,
+   "vram": "0x8010AEAC"
+  },
+  "options_printOption": {
+   "scripts": {
+    "options_menus": 7032,
+    "pause_menus": 8957
+   },
+   "size": 300,
+   "vram": "0x8010A7A4"
+  },
   "pak_delete_file_retry": {
    "scripts": {
     "ghost_delete_fail": 1,
@@ -3992,45 +4049,6 @@
    },
    "size": 2544,
    "vram": "0x800CA3B4"
-  },
-  "props_render": {
-   "scripts": {
-    "attract": 7,
-    "attract_pak": 7,
-    "audio_options": 1,
-    "backward": 1,
-    "battle": 1,
-    "battle_end": 1,
-    "battle_mine": 1,
-    "battle_weapons": 1,
-    "circuit": 1,
-    "ghost_delete_fail": 1,
-    "ghost_pak": 1,
-    "ghost_race": 1,
-    "ghost_reload": 1,
-    "ghost_resave": 1,
-    "ghost_save": 2,
-    "other_car": 1,
-    "pause_menus": 2,
-    "player_finish": 1,
-    "player_reload": 1,
-    "practice": 1,
-    "race": 1,
-    "race_finish": 2,
-    "race_pak": 1,
-    "race_track2": 1,
-    "race_track3": 1,
-    "race_track4": 1,
-    "saves": 1,
-    "stunt": 1,
-    "stunt_end": 1,
-    "stunt_short": 2,
-    "two_player": 1,
-    "two_player_finish": 2,
-    "unlock": 2
-   },
-   "size": 2180,
-   "vram": "0x800F6AB8"
   },
   "race_position_update": {
    "scripts": {
@@ -4619,24 +4637,6 @@
    },
    "size": 3200,
    "vram": "0x800A377C"
-  },
-  "track_texture_load": {
-   "scripts": {
-    "battle_end": 1,
-    "ghost_delete_fail": 1,
-    "ghost_pak": 1,
-    "ghost_resave": 1,
-    "ghost_save": 1,
-    "player_finish": 1,
-    "race_finish": 1,
-    "saves": 1,
-    "stunt_end": 1,
-    "stunt_short": 1,
-    "two_player_finish": 1,
-    "unlock": 1
-   },
-   "size": 1348,
-   "vram": "0x800F5F90"
   },
   "voice_stop": {
    "scripts": {

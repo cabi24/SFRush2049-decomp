@@ -6433,10 +6433,10 @@ game_timer_display:
     .word 0x03E00008
     .word 0x24020001
 
-.section .text.game_results_update, "ax", @progbits
-.globl game_results_update
-game_results_update:
-    /* compiled from src/blob/game_results_update.c */
+.section .text.audio_animButtonText, "ax", @progbits
+.globl audio_animButtonText
+audio_animButtonText:
+    /* compiled from src/blob/audio_animButtonText.c */
     .word 0x27BDFF10
     .word 0xAFBF001C
     .word 0x44806000
@@ -6731,10 +6731,10 @@ game_results_update:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.game_results_render, "ax", @progbits
-.globl game_results_render
-game_results_render:
-    /* compiled from src/blob/game_results_render.c */
+.section .text.audio_animText, "ax", @progbits
+.globl audio_animText
+audio_animText:
+    /* compiled from src/blob/audio_animText.c */
     .word 0x27BDFEE0
     .word 0x3C0E8011
     .word 0x8DCE05B4
@@ -7465,9 +7465,9 @@ animControls:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.game_results_exit, "ax", @progbits
-.globl game_results_exit
-game_results_exit:
+.section .text.controls_animButtonText, "ax", @progbits
+.globl controls_animButtonText
+controls_animButtonText:
     .word 0x3C0E8015
     .word 0x85CE1AD0
     .word 0x3C018011
@@ -7948,9 +7948,9 @@ game_results_exit:
     .word 0x03E00008
     .word 0x00000000
 
-.section .text.func_80100564, "ax", @progbits
-.globl func_80100564
-func_80100564:
+.section .text.controls_animText, "ax", @progbits
+.globl controls_animText
+controls_animText:
     .word 0x27BDFE98
     .word 0xAFBF007C
     .word 0x44806000

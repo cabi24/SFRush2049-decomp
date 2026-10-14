@@ -43,7 +43,7 @@ extern void *D_8014A160;
 extern u32 D_8015694C;
 extern s8 D_801148D0;
 
-extern void track_texture_load(void);
+extern void highscore_InitScreen(void);
 extern void func_800C813C(s32, s32);
 extern void visual_objects_update(s32);
 extern void func_800F1210(s32);
@@ -54,8 +54,8 @@ extern void func_800F207C(s32);
 extern void sound_handles_array_clear(s8 *);
 extern void wheel_setup_initial(s32);
 extern char D_803BA7EB[];
-extern void *func_800CC50C(s32, char *);
-extern s32 func_800CC040(s32, void *, void *, s32);
+extern void *CompressGhost(s32, char *);
+extern s32 SaveGhost(s32, void *, void *, s32);
 extern void func_800F1930(void);
 extern void audio_doppler(u32);
 extern void func_800F0914(void);
@@ -71,7 +71,7 @@ void billboard_render(void)
     s32 i;
 
     if (D_801148A4 == 0) {
-        track_texture_load();
+        highscore_InitScreen();
         func_800C813C(1, 0);
         visual_objects_update(0);
     }
@@ -108,12 +108,12 @@ void billboard_render(void)
         if (flag == 1) {
             if (D_8014A110 == 2 && D_80140800 != 0) {
                 wheel_setup_initial(D_8014978C + 139);
-                D_801461A8 = func_800CC50C(D_80140800, D_803BA7EB);
+                D_801461A8 = CompressGhost(D_80140800, D_803BA7EB);
                 D_80140800 = 0;
                 if (D_801148E4 != 0) {
                     func_800F1210(4);
                 } else {
-                    func_800CC040(D_801460C0, D_8014A160, D_801461A8, 1);
+                    SaveGhost(D_801460C0, D_8014A160, D_801461A8, 1);
                     D_801461A8 = 0;
                     func_800F1210(5);
                 }

@@ -55,7 +55,7 @@ void state_utility(s16 x, s16 y, void *text) {
 s32 object_bytes_sum_global(void) {
     height_calls++; return selected == 13 ? header_height : row_height;
 }
-void func_8010A7A4(s32 index, s32 x, s32 y, void *label, void *value) {
+void options_printOption(s32 index, s32 x, s32 y, void *label, void *value) {
     assert(selected == 11 && !locked && x == 160);
     assert(label == D_8017A4E0.labels[label_index[index]]);
     assert(value == (index == 0 ? D_801164D0[D_8013FEC8] :
@@ -67,7 +67,7 @@ void func_8010A7A4(s32 index, s32 x, s32 y, void *label, void *value) {
         D_80149B84 = 2;
     }
 }
-void func_8010A8D0(void) { event(13); }
+void options_animButtonText(void) { event(13); }
 void func_800ED66C(f32 alpha) { assert(alpha == -1.0f); alpha_resets++; event(10); }
 void func_800BEA3C(Color4 a, Color4 b) {
     assert(a.rgba == D_801146BC.rgba && b.rgba == D_801146C0.rgba); color_resets++; event(11);
@@ -108,7 +108,7 @@ int main(void) {
     for (mask = 0; mask < (1U << 14); mask++) for (a = 0; a < 5; a++) for (b = 0; b < 5; b++) {
         reset(); first = firsts[a]; max = counts[b]; D_80149DA2 = first; D_80149B84 = max;
         for (i = 0; i < 14; i++) D_80116D14[i] = (mask & (1U << i)) ? (i%2 ? -1 : 2) : 0;
-        assert(func_8010AEAC(0) == 1);
+        assert(options_animText(0) == 1);
         expected = 0;
         for (i = 0; i < 14; i++) if ((mask & (1U << i)) && i >= first && expected < max) {
             assert(row_index[expected] == i && row_y[expected] == 24 + 11*expected); expected++;
@@ -118,17 +118,17 @@ int main(void) {
     for (bit = 0; bit < 32; bit++) for (enabled = -1; enabled <= 1; enabled++) for (w = 0; w < 8; w++) {
         reset(); D_801174B4 = 1U << bit; D_80116DA8 = enabled; D_8015698C = 2;
         D_80149B84 = 0; width = widths[w];
-        assert(func_8010AEAC(0) == 1);
+        assert(options_animText(0) == 1);
         expected = bit >= 18 && bit <= 22 && enabled != 0;
         assert(formatted == expected && dynamic_header == expected);
         if (expected) assert(strcmp(header_text, "CONTROLLER 3 OPTIONS") == 0);
         check_prefix_and_tail(); cases++;
     }
     reset(); D_80116D0C = 1;
-    assert(func_8010AEAC(0) == 1 && event_count == 1 && events[0] == 13); cases++;
+    assert(options_animText(0) == 1 && event_count == 1 && events[0] == 13); cases++;
     reset(); for (i = 0; i < 14; i++) D_80116D14[i] = 1;
     D_80149DA2 = 0; D_80149B84 = 14; mutate_after_first = 1;
-    assert(func_8010AEAC(0) == 1 && row_count == 2 && row_index[0] == 0 && row_index[1] == 3);
+    assert(options_animText(0) == 1 && row_count == 2 && row_index[0] == 0 && row_index[1] == 3);
     check_prefix_and_tail(); cases++;
     assert(cases == 410370UL);
     printf("root host cases: %lu\n", cases);

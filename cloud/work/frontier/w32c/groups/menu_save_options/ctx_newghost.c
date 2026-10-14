@@ -822,7 +822,7 @@ void track_render_process();
 void **func_800C7200(void);
 void SaveServer(s32 forceUpdate, s32 rumbleOnly);
 struct GhostHeader;
-void **func_800CC50C(struct GhostHeader *header, s8 *blocks);
+void **CompressGhost(struct GhostHeader *header, s8 *blocks);
 s32 draw_ui_element(void **ipa_t0, s32 ipa_t1, s32 ipa_t2);
 extern void **func_800C7EC8(void **);
 
@@ -912,7 +912,7 @@ s32 ghost_blocks_from_size(s32 size) {   /* GC PS_GetBlocks */
     return (size + 255) >> 8;
 }
 
-void **func_800CC50C(GhostHeader *header, s8 *blocks) {
+void **CompressGhost(GhostHeader *header, s8 *blocks) {
     Ghost *ghost;
     void **ghosth;
     s32 maxsize;

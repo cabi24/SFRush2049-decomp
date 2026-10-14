@@ -7,7 +7,7 @@
   "PrintScores",
   "SetHighScoreState",
   "FindGhosts",
-  "track_texture_load"
+  "highscore_InitScreen"
  ],
  "context": [
   "func_800F2718",

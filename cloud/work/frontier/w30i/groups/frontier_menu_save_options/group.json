@@ -49,11 +49,11 @@
   "CreatePlayer",
   "draw_number",
   "format_string_parse",
-  "func_800CC040",
+  "SaveGhost",
   "menu_back",
   "audio_reverb_update",
   "audio_buffer_sync",
-  "func_800CC50C"
+  "CompressGhost"
  ],
  "files": [
   "group.c",
@@ -73,12 +73,12 @@
   "func_800A361C",
   "func_800A1A3C",
   "func_80094FC4",
-  "func_800CC040",
+  "SaveGhost",
   "menu_item_value_get",
   "menu_transition",
   "AdjustSteer",
   "audio_buffer_sync",
-  "func_800CC50C"
+  "CompressGhost"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
  "note": "Supersedes the locked frontier_menu_save_options (same name, all six old members kept, save.c unchanged) and adds the save unit: draw_speedometer (GC _CheckAndRepairPlayer), func_800C7EC8 (_ReadPlayer), draw_ui_element (_CheckAndRepairGhost), func_800CBF2C (_ReadGhostData), the stub helpers func_800C7EC0 (_NewPlayer), func_800C7300 (_FreeGhost), func_800CD0FC (_Pow), and the pak-TU getters func_800A361C/func_800A1A3C/func_80094FC4 re-typed on the D_80144030 record (same bytes; their singles are superseded: --revert-single). Internal (IPA) members not on keep: draw_speedometer s8, func_800C7EC8 s0, draw_ui_element t0/t2/t1, func_800CBF2C s0/s1/s3, func_800CCCCC s5; stubs internal. SaveServer is CONTEXT (EQUAL in the shadow unit, 176/225 in the group compile: sInitCountdown reload). Context files are locked group sources: ctx_hash.c = codex_hash_a80/group.c, ctx_slot.c = menu_cc040_20261004/group.c minus its func_800CBF2C draft, ctx_newghost.c = codex_func_800C7200_2/group.c minus its SaveServer draft; keep mirrors the shadow unit (format_string_parse, menu_back, audio_reverb_update, func_800C7200 internal). Non-member non-static helper _ReadGhostHeader. See cloud/work/frontier/w30c/RESULTS.md. Integration (w30i): the locked groups menu_cc040_20261004 (slot_release: AdjustSteer, menu_transition, menu_item_value_get) and codex_func_800C7200_2 (func_800C7200) are merged into this group as members (their bodies already compile here from ctx_slot.c/ctx_newghost.c, MATCH) so the unit holds ONE definition of func_800CBF2C and SaveServer; superseding them in place without the stale drafts broke menu_item_value_get (17/17) and func_800C7200 (inlined, 64/64). Keep/internal status unchanged.",

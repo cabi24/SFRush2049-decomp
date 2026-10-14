@@ -59,7 +59,7 @@ extern u32 object_manager_update(void *, s16);
 extern void func_800ED66C(f32);
 extern void particle_velocity_set(void);
 
-void func_8010A7A4(s32 index, s32 x, s32 y, void *label, void *value)
+void options_printOption(s32 index, s32 x, s32 y, void *label, void *value)
 {
     s16 row_y;
     if (D_80116D0C == 1) {
@@ -78,7 +78,7 @@ void func_8010A7A4(s32 index, s32 x, s32 y, void *label, void *value)
     state_utility(x + 40, row_y, value);
 }
 
-void func_8010A8D0(void)
+void options_animButtonText(void)
 {
     s32 index;
     s32 x, y;
@@ -115,59 +115,59 @@ void func_8010A8D0(void)
         y = screen[1];
         switch (index) {
         case 1:
-            func_8010A7A4(1, x, y, D_8017A4E0.labels[13],
+            options_printOption(1, x, y, D_8017A4E0.labels[13],
                 D_8017A4E0.values[D_80146108[10] + D_8017A4E0.header->string_offset]);
             break;
         case 2:
-            func_8010A7A4(2, x, y, D_8017A4E0.labels[15],
+            options_printOption(2, x, y, D_8017A4E0.labels[15],
                 D_8017A4E0.values[D_80146108[0] + D_8017A4E0.header->string_offset]);
             break;
         case 3:
-            func_8010A7A4(3, x, y, D_8017A4E0.labels[16],
+            options_printOption(3, x, y, D_8017A4E0.labels[16],
                 D_8017A4E0.values[D_80146108[1] + D_8017A4E0.header->string_offset]);
             break;
         case 4:
-            func_8010A7A4(4, x, y, D_8017A4E0.labels[17],
+            options_printOption(4, x, y, D_8017A4E0.labels[17],
                 D_8017A4E0.values[D_80146108[2] + D_8017A4E0.header->string_offset]);
             break;
         case 5:
-            func_8010A7A4(5, x, y, D_8017A4E0.labels[18],
+            options_printOption(5, x, y, D_8017A4E0.labels[18],
                 D_8017A4E0.values[D_80146108[3] + D_8017A4E0.header->string_offset]);
             break;
         case 6:
-            func_8010A7A4(6, x, y, D_8017A4E0.labels[19],
+            options_printOption(6, x, y, D_8017A4E0.labels[19],
                 D_8017A4E0.values[D_80146108[4] + D_8017A4E0.header->string_offset]);
             break;
         case 7:
-            func_8010A7A4(7, x, y, D_8017A4E0.labels[20],
+            options_printOption(7, x, y, D_8017A4E0.labels[20],
                 D_8017A4E0.values[D_80146108[5] + D_8017A4E0.header->string_offset]);
             break;
         case 8:
-            func_8010A7A4(8, x, y, D_8017A4E0.labels[21],
+            options_printOption(8, x, y, D_8017A4E0.labels[21],
                 D_8017A4E0.values[D_80146108[6] + D_8017A4E0.header->string_offset]);
             break;
         case 9:
-            func_8010A7A4(9, x, y, D_8017A4E0.labels[22],
+            options_printOption(9, x, y, D_8017A4E0.labels[22],
                 D_8017A4E0.values[D_80146108[7] + D_8017A4E0.header->string_offset]);
             break;
         case 10:
-            func_8010A7A4(10, x, y, D_8017A4E0.labels[23],
+            options_printOption(10, x, y, D_8017A4E0.labels[23],
                 D_8017A4E0.values[D_80146108[8] + D_8017A4E0.header->string_offset]);
             break;
         case 11:
-            func_8010A7A4(11, x, y, D_8017A4E0.labels[24],
+            options_printOption(11, x, y, D_8017A4E0.labels[24],
                 D_8017A4E0.values[D_80146108[9] + D_8017A4E0.header->string_offset]);
             break;
         case 12:
-            func_8010A7A4(12, x, y, D_8017A4E0.labels[26],
+            options_printOption(12, x, y, D_8017A4E0.labels[26],
                 D_8017A4E0.values[D_80146108[18] + D_8017A4E0.header->string_offset]);
             break;
         case 13:
-            func_8010A7A4(13, x, y, D_8017A4E0.labels[14],
+            options_printOption(13, x, y, D_8017A4E0.labels[14],
                 D_8017A4E0.values[D_80146108[11] + D_8017A4E0.header->string_offset]);
             break;
         case 0:
-            func_8010A7A4(0, x, y, D_8017A4E0.labels[25], D_801164D0[D_8013FEC8]);
+            options_printOption(0, x, y, D_8017A4E0.labels[25], D_801164D0[D_8013FEC8]);
             break;
         }
     }

@@ -18,10 +18,10 @@
     "group/func_800F207C.c": "d55f6386edfd423f913cd54739813c03647ebbe97549a6bf43f4670a3b40543e",
     "group/func_800F0F44.c": "ee09b75b1a421b0cc1a2c5bdb91da21c84df66ece06007f241006da1ae51d99b",
     "group/func_800F1210.c": "d465a66f360f287c38ddcf212c9dd16bf14beffd559c4ee37d122c19d228593d",
-    "group/func_800F1930.c": "53d9a08b1cd05ad6706c535d03b5077db23a95e539a6b096a562d6bb5ad82006",
-    "group/billboard_render.c": "a672930ba265029c0055059d25d5eeaf4461d8ab5ef85c60f9380299af6b44c4",
+    "group/func_800F1930.c": "a532ac309c7bfa8cb4cfeeb8c734278e6fdb92380c0ce9d77a6be80760466049",
+    "group/billboard_render.c": "fa6f94e893cc3232f2ae9f6b2ef037613a6c03b2df467759fbde2e35036297ce",
     "group/group.json": "2b2b89e29539d919e14120cee9f769a4ed153dceaa88359c5a40d839a791a75b",
-    "semantic_test.c": "23606c490e956fdbe5e0e32a71b63746d789fc92c9ab593fa7da59c4955fc8c5"
+    "semantic_test.c": "5a94cffc12436d5c5ba29fbaf4417ffbe22716f76d9f76af74021104058fdb94"
   },
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
@@ -350,7 +350,7 @@
   },
   "slot_context_inputs_sha256": {
     "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06"
+    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "3d462271cde6c9c73f9a824db2d5e6ea9e3a5391a77fa44e28c6a08641c717cc"
   },
   "host_test": "103 save-input scenarios passed"
 }

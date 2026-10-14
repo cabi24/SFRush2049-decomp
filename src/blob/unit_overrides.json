@@ -370,11 +370,11 @@
    "reason": "group credits_scroll_grp (w30b func_80108AB0): non-static inlined helper, caller-less after inlining"
   },
   {
-   "name": "func_8010A7A4",
+   "name": "options_printOption",
    "reason": "group func_8010AEAC (w30b): printOption, internal callee of func_8010AEAC (register parameters)"
   },
   {
-   "name": "func_8010A8D0",
+   "name": "options_animButtonText",
    "reason": "group func_8010AEAC (w30b): animButtonText, internal callee of func_8010AEAC"
   },
   {
@@ -402,7 +402,7 @@
    "reason": "group func_8010AEAC (w30b): non-static inlined helper of func_8010AEAC, caller-less after inlining"
   },
   {
-   "name": "track_texture_load",
+   "name": "highscore_InitScreen",
    "reason": "group frontier_billboard_render (w31d): GC _InitScreen, IPA-internal, only caller billboard_render"
   },
   {
@@ -490,7 +490,7 @@
    "reason": "group codex_control_settings_a4 (w32d): non-static inlined helper, caller-less after inlining"
   },
   {
-   "name": "game_results_update",
+   "name": "audio_animButtonText",
    "reason": "group frontier_audioscr (w32b, GC animButtonText@audioscr.c): member, internal (not on keep; its caller is in the same group)"
   },
   {

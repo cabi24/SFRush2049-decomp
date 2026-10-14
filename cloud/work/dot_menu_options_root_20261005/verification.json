@@ -91,19 +91,19 @@
   "native_root_compiled": false,
   "native_root_scored": false,
   "new_verified_function_bytes": 0,
-  "previous_menu_context_sha256": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe",
+  "previous_menu_context_sha256": "2ffe2e35742beb383be3a33aab580ee73d87d3647d9c5198ea0d90667091c695",
   "production_changes": false,
   "root_compilation_gate": "passed fail-closed test",
   "sanitizers": "ASan and UBSan passed",
   "slot_ido_syntax_check": true,
   "source_sha256": {
-    "host_root_test.c": "24054cd3a1f9fa5a6834000883eee2656cb7e88278e1a48ed11ddb61d2271713",
+    "host_root_test.c": "4db202f13c27c16f7144936a4798c68cd70342d5dafa1d16c67e11ed9bce177e",
     "host_slot_test.c": "2388c274641f0f2295193669ea7c7faebdf8671f391c5838178d96004d325b1a",
     "layout_probe.c": "258be2755b8dfb7a8f275bc1b79b52a3828ddb40162ded24482d606ed7b7059c",
-    "menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06",
-    "root.c": "8f788d7e4b00e4bd85bf49254e4bc926c1de62b2bc091b8b448ab5120239de42",
+    "menu_context.h": "3d462271cde6c9c73f9a824db2d5e6ea9e3a5391a77fa44e28c6a08641c717cc",
+    "root.c": "667e77e05e8a60baf996bf14a08feb5d25e3821937057046d6c6a70b3c0b937b",
     "slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "verify.py": "8f5c0d6f61150db77b44259583c6b4cf908836ce017e7f94284bdcad53365cc5"
+    "verify.py": "d438e6d8e2b2b05a51e3b27828d617ee37382697cd9078a7eb0aa7b4bda676a9"
   },
   "status": "complete control-flow reconstruction; native declaration/ABI blocked"
 }

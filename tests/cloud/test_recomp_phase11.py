@@ -260,8 +260,8 @@ def test_clobber_shims_take_retail_unsaved_registers(tmp_path):
 def test_phase11_callee_entries():
     t = json.loads((RECOMP / "ipa_callees.json").read_text())["callees"]
     assert t["audio_reverb_update"]["params"] == ["a1", "a2"]
-    assert t["func_80104704"]["params"] == ["s5"]
+    assert t["DrawName"]["params"] == ["s5"]
     assert t["func_800DD0C0"]["params"] == ["sp+0", "sp+4"]
-    for n in ("audio_reverb_update", "func_80104704", "func_800DD0C0"):
+    for n in ("audio_reverb_update", "DrawName", "func_800DD0C0"):
         words = rp.ipa_shim(0x80800000, t[n]["prototype"], t[n]["params"], t[n]["clobbers"], "out")
         assert words and words[-1] == 0x27BD0000 | (words[-1] & 0xFFFF)       # addiu sp,sp,frame

@@ -26,17 +26,17 @@ def direct_calls(words):
 def native_contracts():
     targets, symbols = score.targets(), score.image_symbols()
     image = owndata.ImageData.from_artifact(ROOT/'asm/us/blob_data')
-    root = targets['func_8010AEAC']
+    root = targets['options_animText']
     slot = targets['slot_state_setup']
     assert len(root)*4 == 1652 and len(slot)*4 == 232
-    assert symbols['func_8010AEAC'] == 0x8010AEAC
+    assert symbols['options_animText'] == 0x8010AEAC
     calls = direct_calls(root)
-    for name, count in [('func_8010A8D0',1), ('func_8010A7A4',14),
+    for name, count in [('options_animButtonText',1), ('options_printOption',14),
                         ('slot_state_setup',2), ('osRecvMesg',2), ('osSendMesg',2),
                         ('fcvt_wrapper',1), ('object_manager_update',2),
                         ('object_bytes_sum_global',2), ('state_utility',2)]:
         assert calls[symbols[name]] == count
-    incoming_calls = sum(direct_calls(words)[symbols['func_8010AEAC']] for words in targets.values())
+    incoming_calls = sum(direct_calls(words)[symbols['options_animText']] for words in targets.values())
     assert incoming_calls == 0
     # Check source semantics against table destinations without publishing
     # the extracted table or native instruction words.
@@ -48,7 +48,7 @@ def native_contracts():
         assert 0x8010AEAC <= start < 0x8010B520
         end = min([a for a in branches if a > start] + [0x8010B46C])
         arm = root[(start-0x8010AEAC)//4:(end-0x8010AEAC)//4]
-        assert direct_calls(arm)[symbols['func_8010A7A4']] == 1
+        assert direct_calls(arm)[symbols['options_printOption']] == 1
         label_loads = [w & 0xffff for w in arm if w >> 26 == 0x23 and (w >> 16) & 31 == 19]
         assert label_loads == [labels[case]*4]
         selector_loads = [w & 0xffff for w in arm if w >> 26 == 0x20 and (w >> 21) & 31 == 23]
@@ -57,7 +57,7 @@ def native_contracts():
     assert format_bytes == b'CONTROLLER %d %s\0'
     callback_slots = [0x80116D68, 0x80116D8C]
     for address in callback_slots:
-        assert struct.unpack('>I', image.read(address,4))[0] == symbols['func_8010AEAC']
+        assert struct.unpack('>I', image.read(address,4))[0] == symbols['options_animText']
     # Store a0 at the caller home and save/restores are ABI evidence; none
     # of these observations fixes the char array's source extent.
     stores = [(w >> 16 & 31, w & 0xffff) for w in root if w >> 26 == 0x2b and w >> 21 & 31 == 29]

@@ -138,7 +138,7 @@ void SaveFlush_TTL(s32 x)
 {
 }
 
-void track_texture_load(void)
+void highscore_InitScreen(void)
 {
     s32 p;
     s32 i;

@@ -64,7 +64,7 @@ s32 du_font_set(s32 font)
     return old;
 }
 
-void func_80103D28(void)
+void DrawUnlocked(void)
 {
     s16 x;
     s32 y;
@@ -162,8 +162,8 @@ extern void render_helper(f32);
 extern u32 func_800BE744(char *);                /* strlen */
 extern s32 sprintf(char *, const char *, ...);
 extern void race_position_update(char *, char *, s32);
-extern void func_80104704(s32);                  /* DrawName(p) (unregistered head) */
-extern void func_80104B14(void);                 /* DrawGhost */
+extern void DrawName(s32);                  /* DrawName(p) (unregistered head) */
+extern void DrawGhost(void);                 /* DrawGhost */
 
 s16 hs_CenterText(char *text, s16 centerX)
 {
@@ -245,25 +245,25 @@ void DrawScores(void)
     }
 }
 
-s32 func_80105480(s32 arg0)
+s32 highscore_animText(s32 arg0)
 {
     s32 p;
 
     render_helper(0.0f);
     switch (gHighScoreState) {
     case 1:
-        func_80103D28();
+        DrawUnlocked();
         break;
     case 2:
         DrawCircuitCode();
         break;
     case 3:
         for (p = 0; p < active_player_count; p++) {
-            if (D_80143F18[p] == 1) func_80104704(p);
+            if (D_80143F18[p] == 1) DrawName(p);
         }
         break;
     case 4:
-        func_80104B14();
+        DrawGhost();
         break;
     case 5:
         DrawScores();

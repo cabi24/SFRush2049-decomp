@@ -110,7 +110,7 @@ static void AddToEnvList(Node *e)
     D_801391F0 = e;
 }
 
-void func_8010DCFC(Obj *obj)
+void StartCone(Obj *obj)
 {
     Node *node;
     f32 tmat[4][3];

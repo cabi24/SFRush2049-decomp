@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 from tools.cloud import score, owndata
 from tools.conveyor.pipeline import blob_group
 
-CLAIM = 'func_8010A7A4'
+CLAIM = 'options_printOption'
 CONTEXT = 'func_800BEA3C'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 sha = lambda data: hashlib.sha256(data).hexdigest()

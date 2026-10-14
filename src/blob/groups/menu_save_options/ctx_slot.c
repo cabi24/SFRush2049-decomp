@@ -269,7 +269,7 @@ char *GhostDirName(MenuData *header) {
  * obj = ghost, created = fileh. GC calls: SaveGhostInLimbo = func_800CB748, DeallocateMemory = cart_free /
  * cart_free_direct, _FreeGhost = func_800C7300, _ReadGhostData = func_800CBF2C, DeleteGhost, GetPtrSize =
  * audio_buffer_sync, InsertLLE = func_80091FBC, gGhostFiles = D_80152020. */
-s32 func_800CC040(s32 id, Handle owner, Handle self, s32 release) {
+s32 SaveGhost(s32 id, Handle owner, Handle self, s32 release) {
     MenuData *m;
     Handle node;
     char buf[32];

@@ -1,8 +1,8 @@
 {
  "name": "frontier_audioscr",
  "members": [
-  "game_results_render",
-  "game_results_update",
+  "audio_animText",
+  "audio_animButtonText",
   "func_800BEA3C"
  ],
  "context": [
@@ -15,7 +15,7 @@
   "ctx_gr3_b.c"
  ],
  "keep": [
-  "game_results_render",
+  "audio_animText",
   "func_800BEA3C"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",

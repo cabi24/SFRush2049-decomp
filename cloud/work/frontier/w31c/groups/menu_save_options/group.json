@@ -22,7 +22,7 @@
   "AdjustSteer",
   "func_800C7200",
   "SaveServer",
-  "func_800CC040"
+  "SaveGhost"
  ],
  "claims": [
   "func_800CD058",
@@ -46,7 +46,7 @@
   "AdjustSteer",
   "func_800C7200",
   "SaveServer",
-  "func_800CC040"
+  "SaveGhost"
  ],
  "context": [
   "CreatePlayer",
@@ -55,7 +55,7 @@
   "menu_back",
   "audio_reverb_update",
   "audio_buffer_sync",
-  "func_800CC50C",
+  "CompressGhost",
   "func_800950AC"
  ],
  "files": [
@@ -77,12 +77,12 @@
   "func_800A361C",
   "func_800A1A3C",
   "func_80094FC4",
-  "func_800CC040",
+  "SaveGhost",
   "menu_item_value_get",
   "menu_transition",
   "AdjustSteer",
   "audio_buffer_sync",
-  "func_800CC50C",
+  "CompressGhost",
   "func_800950AC"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
