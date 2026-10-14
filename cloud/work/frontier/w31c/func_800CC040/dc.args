@@ -1,0 +1,4 @@
+# draft_check source: dc_draft.c (= the packet's ctx_slot.c draft + func_800C7300's body, which lives in group.c).
+# func_800CBF2C is IPA: h s1, back s0, select s3; clobbers s2 (regmap_verify --derive, ghost_resave).
+--scripts ghost_save,ghost_pak,ghost_resave,ghost_delete_fail
+--callee 's32 func_800CBF2C(void *h, s32 back, s32 select)=s1,s0,s3/s2'
