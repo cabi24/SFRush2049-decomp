@@ -9,7 +9,7 @@ For the integrator, after merging w29n (and w29r, which edits the same recomp fi
     by its new name; evidence text that names the old label is left as history;
   - tests/cloud/test_recomp_phase8.py: the committed-table assertion on that key;
   - tools/recomp/census/*.json: function names in the generated census (or regenerate
-    the census on rocky instead).
+    the census on rocky instead); census/README.md: the first cell of its table rows (w32n).
 Only whole identifiers that are an accepted old name of renames.json are changed.
 """
 import argparse
@@ -74,6 +74,18 @@ def census(path, table):
     return CENSUS.compact_json(doc)
 
 
+def census_readme(text, table):
+    """census/README.md (written by census.py): a table row whose FIRST cell is an old
+    function name gets the new one; prose and the other cells (script names) stay."""
+    out = []
+    for line in text.splitlines(True):
+        m = re.match(r"^\| ([A-Za-z_]\w*) \|", line)
+        if m and m.group(1) in table:
+            line = "| %s |%s" % (table[m.group(1)], line[m.end():])
+        out.append(line)
+    return "".join(out)
+
+
 def _census_module():
     import importlib.util
     spec = importlib.util.spec_from_file_location("recomp_census", REPO / "tools/recomp/census.py")
@@ -97,7 +109,11 @@ def main():
     text = path.read_text()
     edits.append((path, text.replace('t["func_80096CA8"]', 't["SetupWaveModel"]')))
     for path in sorted((REPO / "tools/recomp/census").glob("*.json")):
+        if path.name == "overlays.json":    # w31r `census --overlays`: runtime-image functions, frozen names
+            continue
         edits.append((path, census(path, table)))
+    path = REPO / "tools/recomp/census/README.md"      # w32n: the generated tables' function cells
+    edits.append((path, census_readme(path.read_text(), table)))
     for path, new in edits:
         if new != path.read_text():
             print(f"{'rewrite' if a.write else 'would rewrite'} {path.relative_to(REPO)}")

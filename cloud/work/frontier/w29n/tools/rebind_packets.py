@@ -34,6 +34,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(REPO))
 from tools.conveyor.pipeline import static_rename  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import users  # noqa: E402
 
 MAP = REPO / "cloud/work/frontier/w29n/renames.json"
 HEX = re.compile(r"\b[0-9a-f]{64}\b")
@@ -90,6 +92,11 @@ def main():
     p.add_argument("paths", nargs="+")
     p.add_argument("--base", default="894a4d1ef", help="the pre-rename revision")
     p.add_argument("--write", action="store_true")
+    p.add_argument("--users-only", action="store_true",
+                   help="w32n: rename the C/H files of a PATH (packet) only when one of them USES a name "
+                        "(users.py: not only declares it in a generated prelude), the rule replay.sh applies to "
+                        "src/blob, so a packet copy of an untouched src/blob file stays byte-equal to it "
+                        "(dot_steady_camera's submission group.c)")
     p.add_argument("--map", default=None, help="rename table to apply (replay: the batch, batch.py output); "
                    "default the whole renames.json. A batch map keeps the source-pin proof exact: sources keep "
                    "stale prelude declarations of earlier batches' old names, which a whole-table rename would touch")
@@ -99,7 +106,15 @@ def main():
     texts = {f: f.read_text() for f in files}
     new = {}
     pins = proven_src_pins(a.base, names)
+    skip = set()
+    if a.users_only:            # per PATH argument (packet): its C/H files move together, or not at all
+        for path in a.paths:
+            cfiles = [f for f in files_of([path]) if f.suffix in (".c", ".h")]
+            if not any(users.uses(texts[f], set(names)) for f in cfiles):
+                skip.update(cfiles)
     for f, text in texts.items():
+        if f in skip:
+            continue
         t = static_rename.permute_c(text, names) if f.suffix in (".c", ".h") else tokens(text, names)
         if t != text:
             new[f] = t

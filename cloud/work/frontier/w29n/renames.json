@@ -1,5 +1,5 @@
 {
- "note": "w29n game-symbol rename table (static_rename format; only 'accepted' rows apply; `batch` = the lane that applied the row: w29n (27 rows: 22 functions, 5 data; wave 29), w30n (the 10 rows deferred by w29n until their fixtures moved; wave 30). replay.sh applies one batch: RENAME_BATCH=w29n|w30n). kind function = Conveyor inventory target (game, extracted population); kind data = GAME_SYMBOLS entry. Evidence per row; mapping table with GC sources in docs/external/gc/names.md.",
+ "note": "w29n game-symbol rename table (static_rename format; only 'accepted' rows apply; `batch` = the lane that applied the row: w29n (27 rows: 22 functions, 5 data; wave 29), w30n (the 10 rows deferred by w29n until their fixtures moved; wave 30), w32n (19 GC names for the high-score, results, save/ghost, hud, options, audio and controls screens; wave 32). replay.sh applies one batch: RENAME_BATCH=w29n|w30n|w32n). File-static GC names that recur in several GC source files get the N64 screen-file prefix (highscore_, options_, audio_, controls_); unique GC names keep their spelling without the CodeWarrior underscore. kind function = Conveyor inventory target (game, extracted population); kind data = GAME_SYMBOLS entry. Evidence per row; mapping table with GC sources in docs/external/gc/names.md.",
  "renames": [
   {
    "vram": "0x800DC88C",
@@ -384,14 +384,196 @@
   {
    "vram": "0x800FEE04",
    "old": "game_results_update",
-   "new": "(audio-options screen; GC audioscr.c animButtonText)",
+   "new": "audio_animButtonText",
    "kind": "function",
-   "source": "GC audioscr.c",
-   "evidence": "w29a wrong-label lead: music-track string table Flier/Garage/Night; with game_results_render (animText)",
-   "status": "candidate"
+   "source": "GC audioscr.c animButtonText (file static; prefixed with the screen file)",
+   "evidence": "wrong label; w29a lead (candidate row since wave 29); w30a/w31a draft (same unit as audio_animText): buttonsInited == 1 -> animButtonText, ZOID_ProjectWindow of buttonInfo with gCamera as in GC animButtonText@audioscr.c",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x800F5F90",
+   "old": "track_texture_load",
+   "new": "highscore_InitScreen",
+   "kind": "function",
+   "source": "GC highscorescr.c _InitScreen (file static; the GC name recurs in trackscr.c/carscr.c, so prefixed with the screen file)",
+   "evidence": "matched (w31d, locked in frontier_billboard_render): written from GC _InitScreen (u8 flag bytes, memcmp of the unlock tables, ranks counter); w30r: snapshots the per-player unlock tables 0x80150DD8.. -> 0x801426A0 (unlock.press); old label was wrong",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80104704",
+   "old": "func_80104704",
+   "new": "DrawName",
+   "kind": "function",
+   "source": "GC highscorescr.c DrawName(p)",
+   "evidence": "w31a draft EQUAL in the func_80105480 unit; p in s5 (w31r regmap_verify --derive, 60 calls); data del$1225/end$1226/spc$1227 = D_801149A8/AC/B0 \"DEL\"/\"END\"/\"SPC\"; registered by w30n (0x80104704..0x80104B14)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80104B14",
+   "old": "func_80104B14",
+   "new": "DrawGhost",
+   "kind": "function",
+   "source": "GC highscorescr.c DrawGhost",
+   "evidence": "w31a draft 17/601 (ops 0) written from GC DrawGhost (locals incl. gFreePages); only caller func_80105480 state 4 (ghost-save menu; ghost_pak/ghost_resave scripts)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80103D28",
+   "old": "func_80103D28",
+   "new": "DrawUnlocked",
+   "kind": "function",
+   "source": "GC highscorescr.c DrawUnlocked",
+   "evidence": "corr 3.8 (runner-up 3.5); w29a/w30a/w31a draft EQUIVALENT (unlock script, 98 calls) on GC DrawUnlocked's per-player unlock lists; reached through ControlUnlocked from SetHighScoreState(1)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80105480",
+   "old": "func_80105480",
+   "new": "highscore_animText",
+   "kind": "function",
+   "source": "GC highscorescr.c animText (file static; animText recurs in 17 GC files, so prefixed with the screen file)",
+   "evidence": "w30a/w31a draft EQUIVALENT (2,473 calls / 6 scripts): switch on gHighScoreState 1..5 via the jump table at 0x801248A0, callees DrawName/DrawGhost/DrawUnlocked as in GC animText@highscorescr.c",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80105EA8",
+   "old": "func_80105EA8",
+   "new": "animResults",
+   "kind": "function",
+   "source": "GC hud.c animResults",
+   "evidence": "corr 2.8 (str \"%s\\n%s\"); w31a draft (41 ops, frame exact) follows GC animResults",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x800CC040",
+   "old": "func_800CC040",
+   "new": "SaveGhost",
+   "kind": "function",
+   "source": "GC save.c SaveGhost",
+   "evidence": "matched (w31c, locked in menu_save_options): GC's helpers as inlined non-static helpers; writes the pak ghost note \"RUSH2049AAAA1F\" (ghost_pak.press); deletes an old file first via pak_delete_file_retry (ghost_resave)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x800CC50C",
+   "old": "func_800CC50C",
+   "new": "CompressGhost",
+   "kind": "function",
+   "source": "GC save.c CompressGhost",
+   "evidence": "w30r: called before SaveGhost in the ghost-save chain; w31c draft 9/190 (frame exact) written from GC CompressGhost",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80102980",
+   "old": "func_80102980",
+   "new": "drawBattleScore",
+   "kind": "function",
+   "source": "GC gameoverscr.c drawBattleScore",
+   "evidence": "matched (w30a, locked in frontier_results_table) from GC drawBattleScore; reached by battle_end.press (SCOREBOARD)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80108AB0",
+   "old": "func_80108AB0",
+   "new": "animWrongWay",
+   "kind": "function",
+   "source": "GC hud.c animWrongWay",
+   "evidence": "matched (w30b, locked in credits_scroll_grp gr3_8ab0.c): \"WRONG WAY\" text per window, function-local static wasStrayed as in GC",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x8010DCFC",
+   "old": "func_8010DCFC",
+   "new": "StartCone",
+   "kind": "function",
+   "source": "GC targets.c _StartCone (arcade targets.c StartCone)",
+   "evidence": "matched (w30b, locked single) from GC static void _StartCone(struct tTarget *t) (rush_d.elf 0x8004E6BC); arcade ancestor targets.c:1496 StartCone",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x8010AEAC",
+   "old": "func_8010AEAC",
+   "new": "options_animText",
+   "kind": "function",
+   "source": "GC optionscr.c animText (file static; prefixed with the screen file)",
+   "evidence": "matched (w31b/w31i, locked group func_8010AEAC): register-parameter order = GC prototype order (w28c); calls options_animButtonText/options_printOption",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x8010A8D0",
+   "old": "func_8010A8D0",
+   "new": "options_animButtonText",
+   "kind": "function",
+   "source": "GC optionscr.c animButtonText (file static; prefixed with the screen file)",
+   "evidence": "matched (w31i, locked group func_8010AEAC) from GC animButtonText@optionscr.c (w28c)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x8010A7A4",
+   "old": "func_8010A7A4",
+   "new": "options_printOption",
+   "kind": "function",
+   "source": "GC optionscr.c printOption (file static; also in cheatscr.c, prefixed with the screen file)",
+   "evidence": "matched (w31i, locked group func_8010AEAC) from GC printOption@optionscr.c (x=s1, y=s2, item=a0, name=s3, value=s4)",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x800FF298",
+   "old": "game_results_render",
+   "new": "audio_animText",
+   "kind": "function",
+   "source": "GC audioscr.c animText (file static; prefixed with the screen file)",
+   "evidence": "wrong label; w30a/w31a draft EQUIVALENT 1,273 calls / 3 scripts (audio_options, options_menus, pause_menus) written from GC animText@audioscr.c; w29a lead: music-track string table Flier/Garage/Night",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x80100564",
+   "old": "func_80100564",
+   "new": "controls_animText",
+   "kind": "function",
+   "source": "GC controlscr.c animText (file static; prefixed with the screen file)",
+   "evidence": "w30a draft EQUIVALENT 1,949 calls / 2 scripts (controls_frontend, pause_menus) written from GC animText@controlscr.c; caller of controls_animButtonText",
+   "status": "accepted",
+   "batch": "w32n"
+  },
+  {
+   "vram": "0x800FFDE8",
+   "old": "game_results_exit",
+   "new": "controls_animButtonText",
+   "kind": "function",
+   "source": "GC controlscr.c animButtonText(signed char p) (file static; prefixed with the screen file)",
+   "evidence": "wrong label; w30a draft (same unit as controls_animText); retail passes p as GC's signed char; symbol_addrs.us.txt defined the old label at 0x800FFDF8 (16 B inside; no jal/pointer to it; the only call is jal 0x800FFDE8 at 0x80100604 in controls_animText), moved to the function start",
+   "status": "accepted",
+   "batch": "w32n",
+   "symbol_addrs_was": "0x800FFDF8"
+  },
+  {
+   "vram": "0x800F6AB8",
+   "old": "props_render",
+   "new": "GhostStart",
+   "kind": "function",
+   "source": "GC ghost.c GhostStart (void GhostStart(void))",
+   "evidence": "wrong label (not a props renderer); w32c matched it from GC GhostStart (lands in menu_save_options via w32i, wave 32); lead noted by w31d/w32 lane map (GC GhostStart)",
+   "status": "accepted",
+   "batch": "w32n"
   }
  ],
- "candidates_note": "status 'candidate' rows are NOT applied (every w29n tool uses 'accepted' rows only). The five wave-29 candidates (FindGhosts, drawMain, model_iteration, animElapsedTimerText, animPlace) were accepted by the coordinator; the game_results_update/render lead stays unnamed.",
+ "candidates_note": "status 'candidate' rows are NOT applied (every w29n tool uses 'accepted' rows only). The five wave-29 candidates (FindGhosts, drawMain, model_iteration, animElapsedTimerText, animPlace) were accepted by the coordinator; the game_results_update/render lead stays unnamed. w32n accepted the audio-options lead: game_results_render -> audio_animText, game_results_update -> audio_animButtonText (batch w32n).",
  "later_lane_names": {
   "note": "identifiers introduced by later wave-29 packets (not inventory targets; not renamed). replay.sh renames the OLD names those packets use (users.py finds them once installed in src/blob): w29a frontier_billboard_render uses func_800F0914/func_800F1210/func_800C813C/D_80140B20/D_80149418/D_80146208/D_8002E870, w29c credits_scroll_grp gr3_8154.c uses func_80108154. None collides with a new name. w29b's helper suffixes follow the old function names (*_slp for sound_loop_set = TitlePane); helpers are not renamed.",
   "w29a": [

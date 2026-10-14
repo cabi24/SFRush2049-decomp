@@ -7,7 +7,9 @@ static_rename.rewrite_symbols writes a libultra comment; this does the same
 one-pass rename for the game rows of MAP.json that symbol_addrs defines (each
 exactly once, at the row's vram), with a comment naming the old label and the
 table. Rows symbol_addrs does not define are skipped (their name comes from the
-inventory). `dup-addr` comment lines are left alone.
+inventory). `dup-addr` comment lines are left alone. A row with `symbol_addrs_was` names
+a stale definition address (an unreferenced label inside the function): that definition is
+renamed AND moved to the row's vram (w32n: game_results_exit = 0x800FFDF8, function 0x800FFDE8).
 """
 import json
 import re
@@ -31,13 +33,19 @@ def main():
             sys.exit(f"refusing: {m.group(2)} already defined")
         if m and m.group(2) in by_old:
             r = by_old[m.group(2)]
-            if int(m.group(4), 16) != int(r["vram"], 16):
-                sys.exit(f"refusing: {m.group(2)} defined at {m.group(4)}, table {r['vram']}")
+            addr, note = m.group(4), ""
+            if int(addr, 16) != int(r["vram"], 16):
+                # w32n: a row may record a stale definition address (`symbol_addrs_was`, an unreferenced
+                # label inside the function); the definition then moves to the function start (vram)
+                if int(r.get("symbol_addrs_was", "-1"), 16) != int(addr, 16):
+                    sys.exit(f"refusing: {m.group(2)} defined at {m.group(4)}, table {r['vram']}")
+                note = f"; was {addr}, not the function start"
+                addr = "0x%08X" % int(r["vram"], 16)
             seen[r["old"]] = seen.get(r["old"], 0) + 1
             kind = "type:func " if "type:func" in m.group(6) else ""
             nl = "\n" if line.endswith("\n") else ""
-            line = (f"{m.group(1)}{r['new']}{m.group(3)}{m.group(4)}{m.group(5)} // {kind}{r['source']}"
-                    f" (renamed from {r['old']}, {r.get('batch', 'w29n')}; cloud/work/frontier/w29n/renames.json){nl}")
+            line = (f"{m.group(1)}{r['new']}{m.group(3)}{addr}{m.group(5)} // {kind}{r['source']}"
+                    f" (renamed from {r['old']}{note}, {r.get('batch', 'w29n')}; cloud/work/frontier/w29n/renames.json){nl}")
         out.append(line)
     if any(n > 1 for n in seen.values()):
         sys.exit(f"refusing: defined twice: {[k for k, n in seen.items() if n > 1]}")
