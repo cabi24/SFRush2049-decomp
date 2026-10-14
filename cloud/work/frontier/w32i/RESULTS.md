@@ -99,3 +99,19 @@ consistent ...)`, 0 locked differ, 2/2.
   func_800DB1E0 locked — a packaging candidate (not touched: provisional.json is edited only to retire entries installed here).
 - CLAIMS: both on the wave-32 landed row (devices); menus row (func_8010E8B4 force-oracle finding, videoscr pair draft) and
   results row (audio pair landed, controls pair 253/234 rows + next lever) rewritten from w32b RESULTS.
+
+## Receipt re-pin (Job 3a follow-up, commit 51ebf500)
+`--revert-single func_800BEA3C` deleted src/blob/func_800BEA3C.c, which cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py
+compiled as the "accepted standalone setter" (rocky: `test_dot_menu_row_caller.py::test_toolchain_replays_full_extent_proof` failed).
+Fix: `accepted_func_800BEA3C.c` in the receipt = the pre-wave-32 single byte for byte (sha256 ced1420b..., equal to peer_review.json
+`accepted_setter_sha256`); verify.py reads it (2 lines + comment); verification.json unchanged; integration.json lists the new
+verify.py hash (44c10f2e...) and the copy. TRAP for future `--revert-single`: grep receipts for `src/blob/<fn>.c` first.
+
+## Tests (final head 51ebf500)
+- Pi `make test-fast JOBS=4` (main checkout's tools/mips_to_c and tools/decomp-permuter symlinked in temporarily, removed afterwards):
+  conveyor `1593 passed, 798 skipped`; cloud `841 passed, 205 skipped`; rc=0.
+- rocky clone `~/rush2049/scratch/w32i` (copy of the w32n clone, `git clean -fd`, branch from a bundle, `origin/master` = d1c53ab2,
+  submodules populated; env: `. ~/rush2049/scratch/ci.env; PATH=$CI_VENV/bin:$CI_PATH:$PATH` — without it 300+ toolchain/sanitizer
+  failures) `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor `2339 passed, 52 skipped`; cloud `1041 passed, 5 skipped, 8 warnings,
+  27 subtests passed`; rc=0 (before the re-pin: 1 failed, the receipt above).
+- Builder scratch watchman2:~/rush2049/scratch/frontier/w32i and unit/w32i deleted.
