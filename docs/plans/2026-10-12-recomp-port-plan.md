@@ -565,3 +565,36 @@ commands: `tools/recomp/README.md` "Phase 10"; lane notes: `cloud/work/frontier/
 - **Phase 11 needs**: a mine pickup in battle (func_8010C974), the remaining control_settings cell kinds (image A's
   controller-settings screen), a regenerated build/frontier.json in the service tree after renames (the remap
   covers it meanwhile).
+
+
+## 20. Phase 11: battle mines, overlay reach, pak dialogs, stack arguments, all lanes (lane w31r, 2026-10-14)
+
+Owner decisions unchanged: recomp time is for decomp feedback only; no package (no gameplay change). Detail and
+commands: `tools/recomp/README.md` "Phase 11"; lane notes: `cloud/work/frontier/w31r/RESULTS.md`.
+
+- **Mine pickup**: player 1's weapon slot is car+0x384 of gGameCar 0x80152818 (type, ammo; written by func_8010D3C0 =
+  GC _StartWeaponIcon); `poke 26 80152B9C 0309 2` (type 3 = mine) and Z drop mines: func_8010C974 (_AnimateMine)
+  reached (`battle_mine`). Types 0/1/7 reach image B's cannon/gatling muzzle-flash removers and func_8038D498
+  (`battle_weapons`, a side result for the overlay lane).
+- **Overlay code runs in the host** (image A = front end, B = race-time/weapons; loaded through inflate_entry, calls
+  dispatched by load state). `script_probe` and the census probe overlay functions (`ovl_a`, `ovl_a:NAME`);
+  `census --overlays` writes `census/overlays.json` / `OVERLAYS.md` (image A 99 of 193 reached, B 32 of 49).
+- **The "image-A-only" cells were pak-dialog cells**: control_settings is the modal controller-pak dialog that
+  save_settings runs for every PFS error; `pak fail write 1 ERR` during CREATE PLAYER picks the dialog, so ERR 1
+  reaches func_800DD0C0, 10/11 control_cell_text3, 3/6/7/8/12 control_cell_text (`pak_nopak`, `pak_repair`,
+  `pak_corrupt`; the full ERR -> dialog -> cell table is in the README).
+- **Two harness bugs fixed on the way**: ipa_detect took a callee-saved register stored as an outgoing stack argument
+  for a prologue save (control_cell_text's s7, control_cell_text2's s8 were missing from their live-in sets; the
+  conveyor's frontier facts have the same gap); the inbound IPA shim skipped a stack parameter whose o32 slot has the
+  same offset (`sp+16 -> sp+16`), so control_cell_text3's fifth and sixth parameters were garbage.
+- **dc.args** for the three cells (all EQUIVALENT now) and func_800E56F8; `--name` for unit directories (w30a); the
+  matched FindGhosts / SetHighScoreState need none.
+- **`draft_check --all-lanes`**: one table over `w2[8-9]*,w3*` lane drafts, matched functions listed not run, rows
+  cached by draft + options + the scripts used + CACHE_EPOCH.
+- **Census**: 163 of 166 unmatched reached (wave31 880e729e), 3 never (632 B): world_effect_update, fp_call_wrapper,
+  object_bytes23_sum (no static reference).
+- **Phase 12 needs**: image A's own pak-dialog path (func_803990D0, flag 0x803B46B4) and its four large unreached
+  functions (func_803A9088, func_80395E8C, func_8039C910, func_803A5358); image B's func_8038F938; draft_check of
+  overlay drafts (population ovl_a/ovl_b replacements exist in replace.py, untested end to end); a regenerated
+  build/frontier.json with the stack-argument fix in the conveyor scanner (control_cell_text/2 facts).
+

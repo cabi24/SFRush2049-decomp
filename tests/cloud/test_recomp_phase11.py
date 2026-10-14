@@ -51,6 +51,12 @@ def test_battle_mine_script():
     assert "\n27 Z\n" in text and "func_8010C974" in text
 
 
+def test_battle_weapons_script():
+    sc = oracle.load_script("battle_weapons")
+    assert [x.split(":")[2] for x in sc["pokes"]] == ["9", "109", "709"]       # types 0, 1, 7 with 9 rounds
+    assert all(":80152B9C:" in x for x in sc["pokes"]) and "battle_weapons" in dc.all_scripts()
+
+
 @pytest.mark.parametrize("name,err,fn", [("pak_nopak", 1, "func_800DD0C0"), ("pak_repair", 10, "control_cell_text3"),
                                          ("pak_corrupt", 3, "control_cell_text")])
 def test_pak_dialog_scripts(name, err, fn):

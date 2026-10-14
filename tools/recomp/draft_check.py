@@ -804,18 +804,52 @@ LANES_CACHE = DC_HOME / "lanes" / "cache.json"
 CACHE_EPOCH = "w31r-1"
 
 
+def key_scripts(name, opts):
+    """The scripts a draft_check run with these options would use (the same
+    choice as local_main) plus every script they start from (`pak from`)."""
+    spec = None
+    for i, a in enumerate(opts):
+        if a == "--scripts" and i + 1 < len(opts):
+            spec = opts[i + 1]
+        elif a.startswith("--scripts="):
+            spec = a.split("=", 1)[1]
+    if spec in (None, "census", "reached"):
+        scripts, covered = census_scripts_for(name.split(","))
+        if not covered:
+            scripts = all_scripts()
+        elif spec != "reached":
+            scripts = scripts[:DEFAULT_MAX_SCRIPTS]
+    elif spec == "all":
+        scripts = all_scripts()
+    else:
+        scripts = [x.strip() for x in spec.split(",") if x.strip()]
+    out, todo = [], list(scripts)
+    while todo:
+        sc = todo.pop(0)
+        if sc in out:
+            continue
+        out.append(sc)
+        try:
+            frm = oracle.load_script(sc).get("pak_from")
+        except oracle.OracleError:
+            frm = None
+        if frm:
+            todo.append(frm)
+    return out
+
+
 def draft_key(name, best, extra, fwd):
     """Cache key of one summary row (Phase 11): the draft and every file it
-    includes, NAME, its dc.args options, the forwarded options, the committed
-    input scripts, ipa_callees.json, the census (default script choice) and
-    CACHE_EPOCH."""
+    includes, NAME, its dc.args options, the forwarded options, the text of
+    every script the run uses (key_scripts: the census default choice
+    included), ipa_callees.json and CACHE_EPOCH."""
     h = hashlib.sha256(CACHE_EPOCH.encode())
     for f in local_files(best):
         h.update(str(f.name).encode() + b"\0" + f.read_bytes() + b"\0")
     h.update(json.dumps([name, extra, fwd]).encode())
-    for f in sorted((HERE / "scripts").glob("*.press")) + [HERE / "ipa_callees.json", CENSUS_DIR / "census.json"]:
-        if f.is_file():
-            h.update(f.name.encode() + b"\0" + f.read_bytes())
+    files = [SCRIPT_DIR / (sc + ".press") for sc in key_scripts(name, list(extra) + list(fwd))]
+    for f in files + [HERE / "ipa_callees.json"]:
+        h.update(f.name.encode() + b"\0" + (f.read_bytes() if f.is_file() else b"missing"))
     return h.hexdigest()[:24]
 
 

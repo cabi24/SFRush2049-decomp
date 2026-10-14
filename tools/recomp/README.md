@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-10 decomp feedback)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio, Phase 6 controller pak, Phases 7-11 decomp feedback)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -29,7 +29,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
 | `draft_check.py` | Phase 7: one-command behavioural check of a draft against retail (section "draft_check") |
 | `regmap_verify.py` | Phase 7: register-parameter mapping verifier for internal callees (section "regmap_verify") |
-| `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census") |
+| `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census"); Phase 11: `--overlays` (`census/overlays.json`, `OVERLAYS.md`: image A/B functions per script) |
 | `script_probe.py` | Phase 8: what a script reaches and which strings the game draws (section "script_probe") |
 | `runtime/src/fault.cpp` | Phase 9: `[rush] FAULT` report when the host faults (section "Phase 9") |
 | `static_layout.py` | Phase 10: where IDO put a draft's statics (no symbols), for `--statics` by name (section "Phase 10") |
@@ -1003,3 +1003,91 @@ dialog). Still never: func_8010C974 (_AnimateMine: a mine pickup in battle), fun
 control_cell_text (control_settings' other cell kinds: the error dialog draws only control_cell_text2; probably
 image A's controller-settings screen, unverified), world_effect_update, fp_call_wrapper, object_bytes23_sum (no static
 reference: dead or computed-jalr only).
+
+
+## Phase 11: battle mines, overlay reach, pak dialogs, stack arguments, all lanes (lane w31r, 2026-10-14)
+
+Lane notes: `cloud/work/frontier/w31r/RESULTS.md`; plan section 20. Not a matching lane; no gameplay change (no
+package).
+
+**Battle mines** (script `battle_mine.press` [1500]). Player 1's weapon slot is the halfword car+0x384 of gGameCar
+0x80152818 (stride 0x3B8): type byte, ammo byte. func_8010D3C0 (= GC _StartWeaponIcon, the pick-up) stores it
+(`sb a0,0x384(v0)`, `sb v1,0x385(v0)`, ammo from the table 0x80121D60); GC tCarData.battle.weapon {type, ammoCnt} is
+the same pair. battle.press + `poke 26 80152B9C 0309 2` (type 3 = mine, 9 rounds) + Z (B, L, R do not fire) drops a
+mine: the WPR_MINE target (targetInfo entry 0x80118BB0: name WPR_MINE / WPR_MINEBASE, start func_8010C7F4 =
+_StartMine, animate func_8010C974 = _AnimateMine) from frame ~839, 573 calls of func_8010C974 and 2 of _StartMine.
+Types 0-2 and 4-7 do not reach it. Side result for the overlay lane, `battle_weapons.press` [1800]: type 0 + Z
+reaches image B's func_8038A95C (= GC _RemoveCannMFlash), type 1 func_8038AA14 (_RemoveGattMFlash), type 7
+func_8038D498.
+
+**Overlay reach: the host runs image A and B code.** The game loads both images through `inflate_entry`
+(`rush_hook_inflate` -> `load_overlays`; both at 0x8038A400, a call from outside dispatches by load state), so any
+script that opens a screen runs that image's recompiled functions. `script_probe --functions` and the census now
+probe overlay functions: items `ovl_a` / `ovl_b` (a whole image) and `ovl_a:NAME` (records name them
+`ovl_a_NAME`; replacements.json entries with `"population": "ovl_a"`). `python3 -m tools.recomp.census --overlays`
+probes all 242 overlay functions over every script and writes `census/overlays.json` + `census/OVERLAYS.md` only
+(the game census files are left alone; no call sites: the `$ra` hooks cover the game image). Image A is the front
+end (title, PLAYER, mode/track/car selection; it stays loaded through a normal race: 69 image-A functions in
+`race`), image B the race-time image (1 function in a normal race, 23-28 in battle: the weapons).
+
+**The "image A only" functions were not image A only.** control_cell_text, control_cell_text3 and func_800DD0C0 are
+cell kinds of control_settings, the modal controller-pak dialog: save_settings (0x800DE20C, game image) runs it for
+every pak error, and image A's player screen (func_803990D0, a second caller at 0x803991B4) only when its own flag
+0x803B46B4 is set (not reached by any script). A failing osPfsReadWriteFile/osPfsAllocateFile during CREATE PLAYER
+(saves.press, frame 720) shows the dialog for the PFS error code (`pak fail write 1 ERR`; read/delete/state faults
+in that flow show none):
+
+| ERR | dialog (frame 721) | cell drawn by |
+|---|---|---|
+| 1 NOPACK | NO CONTROLLER PAK CAN BE FOUND ... PRESS THE A BUTTON TO CONTINUE | func_800DD0C0 |
+| 2 NEW_PACK | THIS IS A DIFFERENT CONTROLLER PAK ... CONTINUE WITHOUT SAVING / RETRY | control_cell_text2 |
+| 3 INCONSISTENT | THIS CONTROLLER PAK IS CORRUPTED. PRESS THE A BUTTON TO FIX THE DATA. | control_cell_text |
+| 4 CONTRFAIL, 5 INVALID | UNKNOWN ERROR ... CONTINUE WITHOUT SAVING / RETRY | control_cell_text2 |
+| 6 BAD_DATA | THIS NOTE HAS BEEN CORRUPTED ... FIX THE DATA | control_cell_text |
+| 7 DATA_FULL, 8 DIR_FULL | THERE IS NOT ENOUGH SPACE ON THIS CONTROLLER PAK ... | control_cell_text |
+| 9 EXIST | THERE IS ALREADY A NOTE WITH THAT NAME ... CONTINUE WITHOUT SAVING / RETRY | control_cell_text2 |
+| 10 ID_FATAL, 11 DEVICE | UNSUPPORTED DEVICE ... ATTEMPT TO REPAIR? CONTINUE WITHOUT SAVING / REPAIR / RETRY | control_cell_text3 |
+| 12 (other) | UNKNOWN ERROR ... PRESS THE A BUTTON TO CONTINUE | control_cell_text |
+
+Scripts (saves.press up to the CREATE PLAYER START, then A at 27 s; [1100]): `pak_nopak.press` (ERR 1,
+func_800DD0C0), `pak_repair.press` (ERR 10, control_cell_text3, DOWN DOWN UP before A), `pak_corrupt.press` (ERR 3,
+control_cell_text). Observed, not pursued: `pak fail read 1 3` on player_reload (the boot read of player AAAA) makes
+the STOCK host fault at frame 120 (N64 read of 0x00000000; a TLB exception on the console too, if it is the game's).
+
+**Stack arguments are reads** (`ipa_detect`). A store of a callee-saved register to the stack counted as a prologue
+save, never as a read; retail control_cell_text passes its register parameter s7 on as a stack argument (`jal
+camera_auto_follow; sw s7,24(sp)`), so s7 was missing from its live-in set (regmap_verify REFUTED a correct claim,
+--derive omitted it). Now such a store is a save only if the body reloads the register from that slot, writes the
+register somewhere, or makes no call; over the 1,216 game functions this changes exactly control_cell_text (s5,s6 ->
+s5,s6,s7) and control_cell_text2 (s5,s6,s7 -> s5-s8). The frontier facts (`build/frontier.json`, tools/conveyor's
+scanner) list the old sets for both.
+
+**Inbound shim, stack parameter at the same offset** (`replace.ipa_shim`). A retail stack parameter at sp+N whose o32
+slot is also sp+N (5th/6th parameter) was a "move" from `sp+16` to `sp+16` and skipped, though the source is the
+caller's frame and the destination the shim's outgoing area: control_cell_text3's s2/s3 reached the draft as garbage
+(draft FAULTED in state_utility). Sources are now named `csp+N` internally.
+
+**dc.args for every `--lane` ERROR** (w28d): `attract_mode_handler/dc.args` control_cell_text `--params
+row=s5,col=s6,text=s7`; `attract_video_handler` control_cell_text2 `sel=s5,row=s6,col=s7,text=s8`; `attract_demo_handler`
+control_cell_text3 `sel1=s5,row=s6,text=sp+8,s1=sp+12,s2=sp+16,s3=sp+20,col=s7,sel2=s8` (the callee's 56-byte frame
+reads 64..76(sp)); `func_800E56F8` `ipa_s4=s4` (matched since; not run by --all-lanes). All three cells EQUIVALENT
+(control_cell_text 90 calls pak_corrupt, control_cell_text2 90 ghost_delete_fail, control_cell_text3 90 pak_repair).
+FindGhosts (s8) and SetHighScoreState (s2), the other two `--lane` ERRORs of Phase 10, are matched: their drafts need
+no check and --all-lanes lists them MATCHED. `--name NAME` in a dc.args names a single draft whose directory is not
+its function (w30a `audio_options` = game_results_render, `controls` = func_80100564).
+
+**`draft_check --all-lanes [GLOB,...]`** (default `w2[8-9]*,w3*`): every `<lane>/<NAME>/best.c` of the matching lane
+directories, one line per draft, then one Markdown table (lane, function, verdict, detail) and the counts. A function
+in blob_matched.lock.json is MATCHED and not run (`--include-matched` runs it). Rows are cached in
+`~/rush2049/recomp/dc/lanes/cache.json` keyed by the draft and its includes, NAME, dc.args, forwarded options, the
+text of every script the run uses (the census default choice and `pak from` chains), ipa_callees.json and
+`CACHE_EPOCH` (bump it with a harness fix that can change verdicts); `--refresh` ignores the cache; ERROR rows are
+never cached. `--remote rocky` copies the drafts, their includes and dc.args into the service tree and runs there.
+`--lane` keeps its old behaviour (runs everything, no cache).
+
+**Census refresh** (2026-10-14, 38 scripts, 166 unmatched at wave31 880e729e): **163 reached (182,996 B), 3 never
+(632 B)**: world_effect_update, fp_call_wrapper, object_bytes23_sum (no static reference: dead or computed-jalr
+only). Newly reached: func_8010C974 (battle_mine), control_cell_text (pak_corrupt), control_cell_text3 (pak_repair),
+func_800DD0C0 (pak_nopak). Overlay census (same tree): image A 99 of 193 functions reached (unmatched: 45 of 112,
+92,504 of 101,892 B), image B 32 of 49 (unmatched: 16 of 28, 27,624 of 29,688 B); `census/OVERLAYS.md` lists them.
+
