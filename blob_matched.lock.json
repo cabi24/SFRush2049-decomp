@@ -3,7 +3,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -168,7 +168,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -1200,7 +1200,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -1225,7 +1225,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -2087,7 +2087,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -2613,7 +2613,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -2746,7 +2746,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -2755,7 +2755,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -2796,7 +2796,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4371,7 +4371,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4380,7 +4380,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4406,7 +4406,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4415,7 +4415,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4525,7 +4525,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4534,7 +4534,16 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
+  "func_800CC50C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "menu_save_options",
+    "source": "src/blob/groups/menu_save_options/group.json",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4577,7 +4586,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4595,7 +4604,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4604,7 +4613,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -4621,7 +4630,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -7234,7 +7243,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -7276,7 +7285,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -7294,7 +7303,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
     "source": "src/blob/groups/menu_save_options/group.json",
-    "source_sha256": "c84f1fa71882bac5c55370171c78dc8ca0c21f9616738add873d60777c8bb29b",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-14"
@@ -7880,6 +7889,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "props_render": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "menu_save_options",
+    "source": "src/blob/groups/menu_save_options/group.json",
+    "source_sha256": "5db641c36536cc7722783d1be0b035cad5abdb69dedeb86dc9e8beb234b05f1a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
   },
   "race_countdown_display": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

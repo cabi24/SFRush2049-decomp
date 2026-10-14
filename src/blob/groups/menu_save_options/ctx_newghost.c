@@ -1,5 +1,7 @@
 /* Context copy of src/blob/groups/codex_func_800C7200_2/group.c with its SaveServer context draft removed (the real
- * body is in group.c): func_800C7200 (GC _NewGhost) is internal in the unit, SaveServer calls it. */
+ * body is in group.c): func_800C7200 (GC _NewGhost) is internal in the unit, SaveServer calls it.
+ * w32c (wave 32): func_800CC50C (GC CompressGhost) is a MEMBER now; its body and the helpers ghost_blocks_from_size /
+ * ghost_free_start are at the end of this file (see the comments there). */
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Real C7200 callsites; only the allocator is claimed. */
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
@@ -775,7 +777,7 @@ float sqrtf(float);
 #pragma intrinsic (sqrtf)
 
 /* referenced data (types guessed from access width) */
-extern M2C_UNK D_80111754;
+extern f32 D_80111754[];   /* GC ghostRaceTimes */
 extern s8 D_80117428;
 extern s8 D_8011742C;
 extern s8 D_80117430;
@@ -798,27 +800,29 @@ extern M2C_UNK D_80152770;
 /* callees outside the group */
 void pak_delete_file_retry();
 void AdjustSteer();
-s32 audio_buffer_sync();
-void audio_reverb_update();
-s32 audio_task_complete();
-s32 car_angular_velocity_clamp();
+void *audio_buffer_sync(u32 address);                               /* GC GetPtrSize */
+void audio_reverb_update(u32 address, s32 tag);
+void **audio_task_complete(void *heap, u32 size);                   /* GC AllocateHandleHeap */
+u32 car_angular_velocity_clamp(u8 *next_in, u32 avail_in, u8 *next_out, u32 avail_out,
+                               s32 level, s32 windowBits, s32 memLevel);   /* GC zip */
 s32 draw_speedometer(void *ipa_fp);
 void draw_text();
 void drone_set_catchup();
-s32 format_string_parse();
+u32 format_string_parse(u8 *, u32);                                 /* GC _CalcChecksum */
 s32 func_8008AD04();
 void func_80091FBC();
 s32 func_800950AC();
-void func_800A47C0();
+void *func_800A47C0(void *dst, const void *src, u32 n);            /* GC memmove */
 void func_800A510C();
 s32 reverb_setup();
-s32 sound_play_menu();
+void *sound_play_menu(void *heap, u32 size);                        /* GC AllocateMemoryHeapHigh */
 void track_render_process();
 
 /* group functions */
 void **func_800C7200(void);
 void SaveServer(s32 forceUpdate, s32 rumbleOnly);
-void **func_800CC50C(s32 *arg0, s8 *arg1);
+struct GhostHeader;
+void **func_800CC50C(struct GhostHeader *header, s8 *blocks);
 s32 draw_ui_element(void **ipa_t0, s32 ipa_t1, s32 ipa_t2);
 extern void **func_800C7EC8(void **);
 
@@ -858,77 +862,112 @@ exhausted:;
 /* SaveServer: defined in group.c (w30c) */
 
 
-void **func_800CC50C(s32 *arg0, s8 *arg1) {
-    void **sp60;
-    s32 sp5C;
-    s32 *sp58;
-    s32 *sp54;
-    s32 sp50;
-    s32 sp44;
-    s32 **temp_a0;
-    s32 **temp_a3;
-    s32 **temp_v0_3;
-    s32 *temp_s2;
-    s32 *temp_s2_2;
-    s32 *temp_s2_3;
-    s32 *temp_v0_2;
-    s32 *temp_v1;
-    s32 temp_a1;
-    s32 temp_a2;
-    s32 temp_a2_2;
-    s32 temp_f10;
-    void **temp_v0;
-    void *temp_s2_4;
+/* ===== func_800CC50C = GC save.c CompressGhost(header, blocks), N64 form (w31c draft, closed by w32c) =====
+ * GC transcription: memmove = func_800A47C0, _CalcChecksum = format_string_parse, AllocateMemoryHeapHigh =
+ * sound_play_menu, zip = car_angular_velocity_clamp, _NewGhost = func_800C7200, AllocateHandleHeap =
+ * audio_task_complete, GetPtrSize = audio_buffer_sync, ghostRaceTimes = D_80111754, gRetraceRate = D_8002AFB4,
+ * gTrackNum = D_8014978C; PS_GetBlocks inlined as ghost_blocks_from_size; GC `DeallocateMemory(header->start)` as
+ * the inlined helper ghost_free_start (defined AFTER this function, see there).
+ * Shaping (w32c): `gh` (= ghost->header) is a named local assigned twice -- once for track/backward/name, again after
+ * the data memcpy for playerId/finish/GetPtrSize (retail: first web in a3, second in a0; a single assignment gives
+ * the first web v1). No unused locals; no compiled-out reads. */
+typedef struct GhostHeader {      /* GC __anon_49776; N64 layout 0x58 (w29d, from the retail words) */
+    u32 headerChecksum;           /* 0x00 */
+    u8 revision;                  /* 0x04 */
+    s8 flag;                      /* 0x05 */
+    s8 track;                     /* 0x06 */
+    u8 backward;                  /* 0x07 */
+    u8 pad08[0x16 - 0x08];
+    u8 name[13];                  /* 0x16 */
+    u8 pad23[0x28 - 0x23];
+    u32 playerId[2];              /* 0x28 */
+    u8 pad30[0x38 - 0x30];
+    f32 finish;                   /* 0x38 */
+    u32 zippedSize;               /* 0x3C */
+    u32 unzippedSize;             /* 0x40 */
+    u32 zippedChecksum;           /* 0x44 */
+    u32 unzippedChecksum;         /* 0x48 */
+    u8 *start;                    /* 0x4C */
+    u32 offset;                   /* 0x50 */
+    u32 size;                     /* 0x54 */
+} GhostHeader;
 
-    temp_s2 = M2C_FIELD(arg0, s32 **, 0x4C);
-    temp_f10 = (s32) ((f32) ((f64) *((f32 *)((u8 *) &D_80111754 + (D_8014978C * 4))) + 10.0) * D_8002AFB4);
-    sp58 = temp_s2;
-    temp_a2 = M2C_FIELD(arg0, s32 *, 0x54);
-    sp5C = temp_f10;
-    func_800A47C0((s32 *) ((u8 *) temp_s2 + temp_a2), (s32 *) ((u8 *) temp_s2 + temp_f10), temp_a2);
-    temp_a2_2 = M2C_FIELD(arg0, s32 *, 0x54);
-    temp_s2_2 = M2C_FIELD(arg0, s32 **, 0x4C);
-    func_800A47C0((s32 *) ((u8 *) temp_s2_2 + (temp_a2_2 * 2)), (s32 *) ((u8 *) temp_s2_2 + (temp_f10 * 2)), temp_a2_2);
-    temp_a1 = M2C_FIELD(arg0, s32 *, 0x54) * 3;
-    sp44 = format_string_parse(sp58, temp_a1);
-    M2C_FIELD(arg0, s16 *, 0x24) = 0;
-    temp_v0_2 = sound_play_menu(0, temp_a1);
-    sp54 = temp_v0_2;
-    sp50 = car_angular_velocity_clamp(sp58, temp_a1, temp_v0_2, temp_a1, 9, 0xA, 4);
-    temp_s2_3 = M2C_FIELD(arg0, s32 **, 0x4C);
-    func_80007270(&D_80152770, 0, 1);
-    audio_reverb_update(0, temp_s2_3, 0);
-    func_800075e0(&D_80152770, 0, 0);
-    M2C_FIELD(arg0, s32 **, 0x4C) = NULL;
-    temp_v0 = func_800C7200();
-    sp60 = temp_v0;
-    temp_s2_4 = *temp_v0;
-    func_80002790(temp_s2_4, 0, 0x2C);
-    temp_v0_3 = audio_task_complete(0, sp50 + 0x58);
-    M2C_FIELD(temp_s2_4, s32 ***, 0x28) = temp_v0_3;
-    func_80007c68(*temp_v0_3, arg0, 0x58);
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s8 *, 4) = 0x11;
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x4C) = 0;
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x50) = 0;
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x54) = 0;
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x3C) = sp50;
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x40) = temp_a1;
-    temp_v1 = *M2C_FIELD(temp_s2_4, s32 ***, 0x28);
-    **M2C_FIELD(temp_s2_4, s32 ***, 0x28) = format_string_parse(temp_v1 + 1, ((s32) temp_v1 * 0) + 0x40);
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x44) = format_string_parse(sp54, sp50);
-    M2C_FIELD(*M2C_FIELD(temp_s2_4, s32 ***, 0x28), s32 *, 0x48) = sp44;
-    func_80007c68(*M2C_FIELD(temp_s2_4, s32 ***, 0x28) + 0x16, sp54, sp50);
-    func_80007270(&D_80152770, 0, 1);
-    audio_reverb_update(0, sp54, 0);
-    func_800075e0(&D_80152770, 0, 0);
-    temp_a3 = M2C_FIELD(temp_s2_4, s32 ***, 0x28);
-    M2C_FIELD(temp_s2_4, s8 *, 8) = (s8) M2C_FIELD(*temp_a3, s8 *, 6);
-    M2C_FIELD(temp_s2_4, u8 *, 9) = (u8) M2C_FIELD(*temp_a3, u8 *, 7);
-    func_80007c68((u8 *) temp_s2_4 + 0xA, (s32 *) ((u8 *) *temp_a3 + 0x16), 0xD, temp_a3);
-    temp_a0 = M2C_FIELD(temp_s2_4, s32 ***, 0x28);
-    M2C_FIELD(temp_s2_4, s32 *, 0x18) = (s32) M2C_FIELD(*temp_a0, s32 *, 0x28);
-    M2C_FIELD(temp_s2_4, s32 *, 0x1C) = (s32) M2C_FIELD(*temp_a0, s32 *, 0x2C);
-    M2C_FIELD(temp_s2_4, f32 *, 0x20) = (f32) M2C_FIELD(*temp_a0, f32 *, 0x38);
-    *arg1 = (s8) ((s32) (audio_buffer_sync(temp_a0) + 0xFF) >> 8);
-    return temp_v0;
+typedef struct Ghost {            /* GC __anon_49a9c; N64 layout 0x2C */
+    void *ll;                     /* 0x00 */
+    void **fileh;                 /* 0x04 */
+    s8 track;                     /* 0x08 */
+    u8 backward;                  /* 0x09 */
+    u8 name[13];                  /* 0x0A */
+    u8 pad17;
+    u32 playerId[2];              /* 0x18 */
+    f32 finish;                   /* 0x20 */
+    u8 **datah;                   /* 0x24 */
+    GhostHeader **header;         /* 0x28 */
+} Ghost;
+
+void *memcpy(void *, const void *, u32);
+void ghost_free_start(GhostHeader *header);
+
+s32 ghost_blocks_from_size(s32 size) {   /* GC PS_GetBlocks */
+    return (size + 255) >> 8;
 }
+
+void **func_800CC50C(GhostHeader *header, s8 *blocks) {
+    Ghost *ghost;
+    void **ghosth;
+    s32 maxsize;
+    u8 *sorted;
+    u8 *gdata;
+    u32 dataSize;
+    u32 num;
+    GhostHeader **gh;
+    u32 unzippedChecksum;
+
+    sorted = header->start;
+    maxsize = (f32)(D_80111754[D_8014978C] + 10.0) * D_8002AFB4;
+    func_800A47C0(header->start + header->size, header->start + maxsize, header->size);
+    func_800A47C0(header->start + header->size * 2, header->start + maxsize * 2, header->size);
+    num = header->size * 3;
+    unzippedChecksum = format_string_parse(sorted, num);
+    *(s16 *)((u8 *)header + 36) = 0;
+    gdata = sound_play_menu(NULL, num);
+    dataSize = car_angular_velocity_clamp(sorted, num, gdata, num, 9, 10, 4);
+    ghost_free_start(header);
+    header->start = NULL;
+    ghosth = func_800C7200();
+    ghost = *ghosth;
+    memset(ghost, 0, 44);
+    ghost->header = (GhostHeader **)audio_task_complete(NULL, dataSize + 88);
+    memcpy(*ghost->header, header, 88);
+    (*ghost->header)->revision = 17;
+    (*ghost->header)->start = NULL;
+    (*ghost->header)->offset = 0;
+    (*ghost->header)->size = 0;
+    (*ghost->header)->zippedSize = dataSize;
+    (*ghost->header)->unzippedSize = num;
+    (*ghost->header)->headerChecksum = format_string_parse(&(*ghost->header)->revision,
+        (u8 *)&(*ghost->header)->zippedChecksum - (u8 *)*ghost->header - 4);
+    (*ghost->header)->zippedChecksum = format_string_parse(gdata, dataSize);
+    (*ghost->header)->unzippedChecksum = unzippedChecksum;
+    memcpy((u8 *)*ghost->header + 88, gdata, dataSize);
+    osRecvMesg((OSMesgQueue *)&D_80152770, NULL, 1);
+    audio_reverb_update((u32)gdata, 0);
+    osSendMesg((OSMesgQueue *)&D_80152770, NULL, 0);
+    gh = ghost->header;
+    ghost->track = (*gh)->track;
+    ghost->backward = (*gh)->backward;
+    memcpy(ghost->name, (*gh)->name, 13);
+    gh = ghost->header;
+    ghost->playerId[0] = (*gh)->playerId[0];
+    ghost->playerId[1] = (*gh)->playerId[1];
+    ghost->finish = (*gh)->finish;
+    *blocks = ghost_blocks_from_size((s32)audio_buffer_sync((u32)gh));
+    return ghosth;
+}
+
+/* GC DeallocateMemory(header->start) for CompressGhost's first free, written as an inlined helper that reads the
+ * pointer itself, on ONE line, defined AFTER func_800CC50C (w32c, as1 evidence): as1 breaks scheduling ties by
+ * source line; retail schedules `lw s2,76(s3)` between the lock's `la a0` and `move a1` with `li a2,1` in the delay
+ * slot, which needs the pointer load on the lock's line and that line after the caller's `dataSize = ...` line.
+ * Identity hypothesis (disclosed): the GC code calls DeallocateMemory(header->start) directly. Non-static, internal. */
+void ghost_free_start(GhostHeader *header) { u8 *p = header->start; osRecvMesg((OSMesgQueue *)&D_80152770, NULL, 1); audio_reverb_update((u32)p, 0); osSendMesg((OSMesgQueue *)&D_80152770, NULL, 0); }

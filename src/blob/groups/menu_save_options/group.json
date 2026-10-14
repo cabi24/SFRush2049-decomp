@@ -22,7 +22,9 @@
   "AdjustSteer",
   "func_800C7200",
   "SaveServer",
-  "func_800CC040"
+  "func_800CC040",
+  "func_800CC50C",
+  "props_render"
  ],
  "context": [
   "CreatePlayer",
@@ -31,7 +33,6 @@
   "menu_back",
   "audio_reverb_update",
   "audio_buffer_sync",
-  "func_800CC50C",
   "func_800950AC"
  ],
  "files": [
@@ -40,7 +41,8 @@
   "ctx_hash.c",
   "ctx_slot.c",
   "ctx_newghost.c",
-  "ctx_strncmp.c"
+  "ctx_strncmp.c",
+  "props.c"
  ],
  "keep": [
   "CreatePlayer",
@@ -59,9 +61,10 @@
   "AdjustSteer",
   "audio_buffer_sync",
   "func_800CC50C",
-  "func_800950AC"
+  "func_800950AC",
+  "props_render"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
- "note": "Supersedes the locked frontier_menu_save_options (same name, all six old members kept, save.c unchanged) and adds the save unit: draw_speedometer (GC _CheckAndRepairPlayer), func_800C7EC8 (_ReadPlayer), draw_ui_element (_CheckAndRepairGhost), func_800CBF2C (_ReadGhostData), the stub helpers func_800C7EC0 (_NewPlayer), func_800C7300 (_FreeGhost), func_800CD0FC (_Pow), and the pak-TU getters func_800A361C/func_800A1A3C/func_80094FC4 re-typed on the D_80144030 record (same bytes; their singles are superseded: --revert-single). Internal (IPA) members not on keep: draw_speedometer s8, func_800C7EC8 s0, draw_ui_element t0/t2/t1, func_800CBF2C s0/s1/s3, func_800CCCCC s5; stubs internal. SaveServer is CONTEXT (EQUAL in the shadow unit, 176/225 in the group compile: sInitCountdown reload). Context files are locked group sources: ctx_hash.c = codex_hash_a80/group.c, ctx_slot.c = menu_cc040_20261004/group.c minus its func_800CBF2C draft, ctx_newghost.c = codex_func_800C7200_2/group.c minus its SaveServer draft; keep mirrors the shadow unit (format_string_parse, menu_back, audio_reverb_update, func_800C7200 internal). Non-member non-static helper _ReadGhostHeader. See cloud/work/frontier/w30c/RESULTS.md. Integration (w30i): the locked groups menu_cc040_20261004 (slot_release: AdjustSteer, menu_transition, menu_item_value_get) and codex_func_800C7200_2 (func_800C7200) are merged into this group as members (their bodies already compile here from ctx_slot.c/ctx_newghost.c, MATCH) so the unit holds ONE definition of func_800CBF2C and SaveServer; superseding them in place without the stale drafts broke menu_item_value_get (17/17) and func_800C7200 (inlined, 64/64). Keep/internal status unchanged. w31c (wave 31): SaveServer and func_800CC040 become members. SaveServer: the group compile needs func_800950AC (strncmp) DEFINED in the program (ctx_strncmp.c = byte-identical copy of src/blob/func_800950AC.c, context + keep, as in the shadow unit where it is a kept locked single); defined with GC's (s32 forceUpdate, s32 rumbleOnly) + a compiled-out `if (forceUpdate | rumbleOnly) {}` (disclosed device; ctx_newghost.c's prototype updated to match). func_800CC040 = GC SaveGhost (N64 form) in ctx_slot.c with new non-static internal helpers ghost_heap_lock/ghost_heap_unlock (nested in cart_free), cart_free_direct, DeleteGhost, GhostDirName (frame/temp-ring evidence; see cloud/work/frontier/w31c/RESULTS.md).",
- "provenance": "frontier wave 31 (w31c), 2026-10-14, superseding the wave-30 packet (w30c, integrated by w30i); cloud/work/frontier/w31c/RESULTS.md"
+ "note": "Supersedes the locked frontier_menu_save_options (same name, all six old members kept, save.c unchanged) and adds the save unit: draw_speedometer (GC _CheckAndRepairPlayer), func_800C7EC8 (_ReadPlayer), draw_ui_element (_CheckAndRepairGhost), func_800CBF2C (_ReadGhostData), the stub helpers func_800C7EC0 (_NewPlayer), func_800C7300 (_FreeGhost), func_800CD0FC (_Pow), and the pak-TU getters func_800A361C/func_800A1A3C/func_80094FC4 re-typed on the D_80144030 record (same bytes; their singles are superseded: --revert-single). Internal (IPA) members not on keep: draw_speedometer s8, func_800C7EC8 s0, draw_ui_element t0/t2/t1, func_800CBF2C s0/s1/s3, func_800CCCCC s5; stubs internal. SaveServer is CONTEXT (EQUAL in the shadow unit, 176/225 in the group compile: sInitCountdown reload). Context files are locked group sources: ctx_hash.c = codex_hash_a80/group.c, ctx_slot.c = menu_cc040_20261004/group.c minus its func_800CBF2C draft, ctx_newghost.c = codex_func_800C7200_2/group.c minus its SaveServer draft; keep mirrors the shadow unit (format_string_parse, menu_back, audio_reverb_update, func_800C7200 internal). Non-member non-static helper _ReadGhostHeader. See cloud/work/frontier/w30c/RESULTS.md. Integration (w30i): the locked groups menu_cc040_20261004 (slot_release: AdjustSteer, menu_transition, menu_item_value_get) and codex_func_800C7200_2 (func_800C7200) are merged into this group as members (their bodies already compile here from ctx_slot.c/ctx_newghost.c, MATCH) so the unit holds ONE definition of func_800CBF2C and SaveServer; superseding them in place without the stale drafts broke menu_item_value_get (17/17) and func_800C7200 (inlined, 64/64). Keep/internal status unchanged. w31c (wave 31): SaveServer and func_800CC040 become members. SaveServer: the group compile needs func_800950AC (strncmp) DEFINED in the program (ctx_strncmp.c = byte-identical copy of src/blob/func_800950AC.c, context + keep, as in the shadow unit where it is a kept locked single); defined with GC's (s32 forceUpdate, s32 rumbleOnly) + a compiled-out `if (forceUpdate | rumbleOnly) {}` (disclosed device; ctx_newghost.c's prototype updated to match). func_800CC040 = GC SaveGhost (N64 form) in ctx_slot.c with new non-static internal helpers ghost_heap_lock/ghost_heap_unlock (nested in cart_free), cart_free_direct, DeleteGhost, GhostDirName (frame/temp-ring evidence; see cloud/work/frontier/w31c/RESULTS.md). w32c (wave 32): func_800CC50C (GC CompressGhost) becomes a member: new body in ctx_newghost.c with real prototypes for its callees (memmove func_800A47C0 returning void *, etc.), the named `gh` local assigned twice, GC PS_GetBlocks as the inlined non-static helper ghost_blocks_from_size and GC DeallocateMemory(header->start) as the one-line inlined non-static helper ghost_free_start defined after it (as1 line-number tie evidence; see cloud/work/frontier/w32c/RESULTS.md). Both helpers are internal (not keep). props_render (= GC ghost.c GhostStart) joins as a member in the new file props.c: it calls the IPA member func_800CBF2C (_ReadGhostData, s1/s0/s3) through the inlined non-static helper ReadGhostData (GC save.c ReadGhostData, internal, not keep); props_render itself is kept (o32, external callers).",
+ "provenance": "frontier wave 32 (w32c), 2026-10-14, superseding the wave-31 packet (w31c, integrated by w31i); cloud/work/frontier/w32c/RESULTS.md"
 }

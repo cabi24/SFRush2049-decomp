@@ -7667,6 +7667,7 @@ func_800F6928:
 .section .text.props_render, "ax", @progbits
 .globl props_render
 props_render:
+    /* compiled from src/blob/props_render.c */
     .word 0x27BDFF48
     .word 0x3C0E8015
     .word 0x81CE6994

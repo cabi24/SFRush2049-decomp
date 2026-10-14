@@ -440,6 +440,18 @@
   {
    "name": "GhostDirName",
    "reason": "group menu_save_options (w31c func_800CC040 = GC SaveGhost): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "ghost_free_start",
+   "reason": "group menu_save_options (w32c func_800CC50C = GC CompressGhost): non-static inlined helper (GC DeallocateMemory(header->start)), caller-less after inlining"
+  },
+  {
+   "name": "ghost_blocks_from_size",
+   "reason": "group menu_save_options (w32c func_800CC50C = GC CompressGhost): non-static inlined helper (GC PS_GetBlocks), caller-less after inlining"
+  },
+  {
+   "name": "ReadGhostData",
+   "reason": "group menu_save_options (w32c props_render = GC GhostStart): non-static inlined helper (GC save.c ReadGhostData), caller-less after inlining"
   }
  ],
  "prefer_definition": [

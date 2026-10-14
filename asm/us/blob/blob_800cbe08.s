@@ -478,6 +478,7 @@ sound_play_menu:
 .section .text.func_800CC50C, "ax", @progbits
 .globl func_800CC50C
 func_800CC50C:
+    /* compiled from src/blob/func_800CC50C.c */
     .word 0x3C0E8015
     .word 0x81CE978C
     .word 0x3C018011
