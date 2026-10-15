@@ -1,0 +1,21 @@
+{
+ "name": "frontier_route_cross",
+ "members": [
+  "audio_priority_find",
+  "audio_mixer_main"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "audio_mixer_main"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "audio_priority_find",
+  "audio_mixer_main"
+ ],
+ "note": "w33p scoring of Astra's PR #379 route experiment routes/unsigned_above.c (GC SyncCheckpointsToPaths + static FindPathDistances + unsigned GetNextCheckpoint, private gc_lane_* helper names, inlined) plus two disclosed unused s32 locals as the exact 8 B frame residual. audio_priority_find (provisional since w2b) is internal; its only caller audio_mixer_main is now a member. Supersedes the w2b provisional evidence group cloud/work/frontier/w2b/groups/frontier_route_cross (never installed).",
+ "provenance": "w2b/w6b audio_mixer_main best.c (31/183) | PR #379 gc_informed_n64_unscored_20261015/routes/unsigned_above.c (6/183, frame only) | w33p: unused1/unused2 (EQUAL in unit)"
+}

@@ -1,0 +1,14 @@
+## score.py group cand/frontier_route_cross --claims
+Members:
+audio_priority_find:
+  MATCH
+audio_mixer_main:
+  MATCH
+rc=0
+## score.py group cand/frontier_route_cross 
+Members:
+audio_priority_find:
+  MATCH
+audio_mixer_main:
+  MATCH
+rc=0

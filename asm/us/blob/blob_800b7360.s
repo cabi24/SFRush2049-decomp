@@ -3313,6 +3313,7 @@ func_800BA2B8:
 .section .text.audio_priority_find, "ax", @progbits
 .globl audio_priority_find
 audio_priority_find:
+    /* compiled from src/blob/audio_priority_find.c */
     .word 0x27BDFFE8
     .word 0xAFA4001C
     .word 0x00047400
@@ -3536,6 +3537,7 @@ func_800BA61C:
 .section .text.audio_mixer_main, "ax", @progbits
 .globl audio_mixer_main
 audio_mixer_main:
+    /* compiled from src/blob/audio_mixer_main.c */
     .word 0x27BDFFB0
     .word 0xAFBE0038
     .word 0x3C1E8015

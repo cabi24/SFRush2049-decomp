@@ -1,0 +1,270 @@
+== tests/conveyor: parallel (-n 4)
+bringing up nodes...
+bringing up nodes...
+
+............................................s........................... [  3%]
+..............................................................ss.sssss.s [  6%]
+.sssss.sssssssssss.ssss.ssssss.ss.sss.sss.s.ss.ssss.sss.ssss.sss........ [  9%]
+.....ssssssss.sssssssssssssssssss..ssssssss.sssss.sssss.s.s.ssssssssssss [ 12%]
+sssssssssssss.ss.s.sss.sssssss.ssss.sss.s..sssssssss...sssss...sss.s.ss. [ 15%]
+sss.sss..ss.ssss..ssss.s.s.ssss..sss.ssssss...ss..ssssssss..ssssss.s.sss [ 18%]
+.ss.s.sss.ssssssss.ssssssssssssssssss.ss.ssssss.sssssssssss.ssssssssssss [ 21%]
+sssssssssssssssssssssss.ssssssss.ssssssss.ssssssssssssssssssssssssssssss [ 24%]
+ssssssssssssssssssssssssssssssssssssss.ssssssssss.ssssssssssssssssssssss [ 27%]
+sssssssssss.ssssssss.sssssssssssssss.sssssssssssssss.sss.ss.ss.ssss.ssss [ 30%]
+ssssssssssss.ssssssssssssss.ssssss.ssssssssssssssssss.sssssssss.sssss.ss [ 33%]
+ssssssssss.sssssssssssssssssssss.sss.sssssssssssssssssssssssssssssss.sss [ 36%]
+ssssssssssssssssss.ssssssssssssssssssssss.ssssssssssssssssssssssssssssss [ 39%]
+.sssssss................s...s.s.s................................ss.s... [ 42%]
+.....................s..................sssssssssssss.sssssssss.sss.ssss [ 45%]
+........................................................................ [ 48%]
+........................................................................ [ 51%]
+........................................................................ [ 54%]
+........................................................................ [ 57%]
+........................................................................ [ 60%]
+........................................................................ [ 63%]
+........................................................................ [ 66%]
+.............................sss..............s......................... [ 69%]
+...........................................ss..........s................ [ 72%]
+.................s...................................................... [ 75%]
+............................................................s.s......... [ 78%]
+...............sssssssss................................................ [ 81%]
+...........s...ssss.....................sss.....s....................... [ 84%]
+..............................................................sss...s... [ 87%]
+....s......................s............s............................... [ 90%]
+..s......sss.......................................s.................sss [ 93%]
+s...ss.........................s..s...s.............................ss.. [ 96%]
+.......s............s...s.....................................s.s....... [ 99%]
+sss...s.......                                                           [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/conveyor/test_animation_setter_contract.py:49: pinned IDO is not installed
+SKIPPED [692] tests/conveyor/test_cloud_score.py:316: needs tools/cloud/ido/cc (or IDO_DIR)
+SKIPPED [2] tests/conveyor/test_cloud_score.py:328: needs tools/cloud/ido/cc (or IDO_DIR)
+SKIPPED [2] tests/conveyor/test_cloud_score.py:341: needs tools/cloud/ido/cc (or IDO_DIR)
+SKIPPED [4] tests/conveyor/test_cloud_score.py:359: needs tools/cloud/ido/cc (or IDO_DIR)
+SKIPPED [1] tests/conveyor/test_dot_entity_motion.py:48: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/conveyor/test_dot_fresh_small_20261005.py:59: IDO/GNU MIPS/host toolchain unavailable
+SKIPPED [2] tests/conveyor/test_dot_matrix_row02.py:39: IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_dot_matrix_rows.py:112: set IDO_DIR to replay compiled-object rejection tests
+SKIPPED [1] tests/conveyor/test_dot_matrix_rows.py:134: set IDO_DIR to replay compiled-object rejection tests
+SKIPPED [1] tests/conveyor/test_dot_slot_setter_boundary_20261006.py:43: required toolchain unavailable
+SKIPPED [1] tests/conveyor/test_encoded_string_mapping_reconstruction.py:124: requires pinned IDO
+SKIPPED [1] tests/conveyor/test_name_lookup_caller_contract.py:57: IDO unavailable
+SKIPPED [1] tests/conveyor/test_name_lookup_caller_contract.py:73: IDO unavailable
+SKIPPED [1] tests/conveyor/test_name_lookup_caller_contract.py:96: IDO unavailable
+SKIPPED [1] tests/conveyor/unit/test_initialization_aliases.py:39: canonical SDK checkout absent
+SKIPPED [12] tests/conveyor/unit/test_initialization_aliases.py:47: canonical SDK checkout absent
+SKIPPED [6] tests/conveyor/unit/test_initialization_aliases.py:57: canonical SDK checkout absent
+SKIPPED [7] tests/conveyor/unit/test_initialization_aliases.py:73: canonical SDK checkout absent
+SKIPPED [1] tests/conveyor/test_voice_list_promotion.py:39: IDO compiler absent
+SKIPPED [2] tests/conveyor/test_voice_list_promotion.py:59: IDO compiler absent
+SKIPPED [1] tests/conveyor/test_cloud_submissions.py:101: needs x86 IDO
+SKIPPED [9] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/conveyor/test_voice_list_promotion.py:103: IDO compiler absent
+SKIPPED [2] tests/conveyor/test_dot_target_overlap.py:42: Pinned IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:40: IDO missing
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:51: IDO missing
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:59: IDO missing
+SKIPPED [3] tests/conveyor/test_queue_wrapper_promotion.py:83: IDO missing
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:100: IDO missing
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:107: IDO missing
+SKIPPED [1] tests/conveyor/test_queue_wrapper_promotion.py:116: IDO missing
+SKIPPED [1] tests/conveyor/test_dot_viewport_rate_reopen.py:112: requires pinned local IDO and MIPS binutils
+SKIPPED [4] tests/conveyor/test_dot_target_sphere.py:50: Pinned IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_entity_vector_boundaries.py:79: Toolchain absent: IDO_DIR/cc
+SKIPPED [1] tests/conveyor/test_entity_vector_boundaries.py:85: Toolchain absent: IDO_DIR/cc
+SKIPPED [1] tests/conveyor/test_entity_vector_boundaries.py:97: Toolchain absent: IDO_DIR/cc
+SKIPPED [1] tests/conveyor/test_frontier_resource_initializer.py:59: pinned IDO/GNU MIPS toolchain unavailable
+SKIPPED [1] tests/conveyor/test_dot_material_selector_20261006.py:24: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/conveyor/test_dot_material_selector_20261006.py:33: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/conveyor/test_dot_material_selector_20261006.py:44: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/conveyor/test_dot_audio_bus_reopen.py:101: requires pinned local IDO and MIPS binutils
+SKIPPED [1] tests/conveyor/test_dot_menu_options_root.py:76: IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_dot_route_tracker.py:90: IDO or GNU MIPS tools unavailable; source-bound tests still run
+SKIPPED [1] tests/conveyor/test_billboard_save_input_packet.py:78: pinned compiler or GNU MIPS tools unavailable
+SKIPPED [3] tests/conveyor/test_runtime_b_reset_match.py:53: requires IDO and MIPS GNU/host compiler tools:
+SKIPPED [1] tests/conveyor/test_billboard_name_entry_packet.py:74: pinned compiler or GNU MIPS toolchain unavailable
+SKIPPED [1] tests/conveyor/test_palette_steering_evidence.py:42: IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_palette_steering_evidence.py:75: IDO compiler unavailable
+SKIPPED [2] tests/conveyor/test_palette_steering_evidence.py:89: IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_seed_vector_match.py:55: IDO compiler unavailable; run verify.py with the documented toolchain
+SKIPPED [1] tests/conveyor/test_seed_vector_match.py:67: IDO compiler unavailable; run verify.py with the documented toolchain
+SKIPPED [1] tests/conveyor/test_dot_vertex_bounds.py:38: pinned IDO and GNU MIPS binutils unavailable
+SKIPPED [1] tests/conveyor/unit/test_typed_target_aliases.py:39: canonical SDK checkout absent
+SKIPPED [1] tests/conveyor/test_audio_output_setup_reconstruction.py:16: requires pinned IDO and MIPS binutils
+SKIPPED [1] tests/conveyor/test_dot_menu_row_caller.py:63: IDO compiler unavailable
+SKIPPED [1] tests/conveyor/test_rational_reduction_research.py:13: pinned IDO and GNU MIPS tools needed for complete replay
+SKIPPED [1] tests/conveyor/test_resource_init_research.py:46: pinned IDO/GNU MIPS toolchain unavailable
+SKIPPED [1] tests/conveyor/test_pool_object_research.py:23: pinned IDO and GNU MIPS linker required
+SKIPPED [1] tests/conveyor/unit/test_dll_init_alias.py:19: canonical SDK checkout absent
+SKIPPED [1] tests/conveyor/test_name_cache_research.py:25: requires pinned IDO and GNU MIPS link tools
+1592 passed, 798 skipped in 32.28s
+== tests/conveyor: serial
+
+2399 deselected in 0.66s
+== tests/cloud: parallel (-n 4)
+bringing up nodes...
+bringing up nodes...
+
+ss.ss...ss.s............................................................ [  6%]
+.........s...s.............s........s..ssss...s...........s...s......... [ 13%]
+....s...s...................s...........................sssssss.......s. [ 20%]
+sssssssss.sss........................................s.................. [ 27%]
+ss...........s......................................s...............s... [ 33%]
+...................s.ssss........ss..sss.....................ss......... [ 40%]
+...ss...............ss............................s...ssss.........s.... [ 47%]
+......s.s.....s.............ss.....ssssss....................ss......... [ 54%]
+......s..................s........s...........s..........s..........s... [ 61%]
+................s..ssss..ss...........s......ss.................s....... [ 67%]
+......s.....ssss..s............sss....sssss.........s.........ssss.s.... [ 74%]
+..........ss....s..sssss.................ssssss......s.ss..ss.sss...s... [ 81%]
+.s..s........................................s......ss..............s.s. [ 88%]
+..s..ssssss.ssss......sssssssssssssssssss.ssssssssssssssssssssssssss.... [ 95%]
+...................................................ss                    [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/cloud/test_cone_motion_donor.py:24: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_cone_motion_donor.py:27: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_cone_motion_donor.py:35: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_cone_motion_donor.py:41: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_cone_motion_donor.py:49: pinned IDO and MIPS GNU linker required
+SKIPPED [2] tests/cloud/test_cone_motion_donor.py:17: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_dot_model_clock.py:70: IDO/GNU MIPS/host toolchain unavailable
+SKIPPED [1] tests/cloud/test_dot_quadtree_donor.py:60: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_heap_max_contract.py:81: Pinned IDO unavailable
+SKIPPED [1] tests/cloud/test_object_sound_match.py:78: Pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_radar_traffic_contract.py:24: IDO unavailable
+SKIPPED [1] tests/cloud/test_radar_traffic_contract.py:34: IDO unavailable
+SKIPPED [1] tests/cloud/test_radar_traffic_contract.py:38: IDO unavailable
+SKIPPED [1] tests/cloud/test_radar_traffic_contract.py:43: IDO unavailable
+SKIPPED [1] tests/cloud/test_radar_traffic_contract.py:77: IDO unavailable
+SKIPPED [1] tests/cloud/test_runtime_a_float_product.py:53: IDO toolchain is not installed
+SKIPPED [1] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/usr/bin/python3', '/home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/cloud/work/r...ojects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)\n').returncode
+SKIPPED [1] tests/cloud/test_target_orientation_research.py:103: pinned IDO and GNU MIPS linker required
+SKIPPED [1] tests/cloud/test_task_enqueue_research.py:73: IDO is unavailable; receipt checks are not a fresh replay
+SKIPPED [1] tests/cloud/test_recomp_phase11.py:221: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:17: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:20: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:27: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:33: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:43: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:50: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:66: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:90: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:97: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [3] tests/cloud/test_dot_nearest_path_context.py:104: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_e0b8_verification.py:137: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:125: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_e0b8_verification.py:156: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:139: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:145: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:161: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:170: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_dot_nearest_path_context.py:176: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_runtime_a_list_control.py:86: Native replay needs: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc, /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cfe, /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/uopt, /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/ugen, /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/as1
+SKIPPED [1] tests/cloud/test_search.py:307: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_search.py:317: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_sequence_context_contract.py:76: IDO unavailable
+SKIPPED [1] tests/cloud/test_probe.py:266: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_dot_frame_dispatch_match.py:121: pinned IDO and GNU MIPS toolchain required
+SKIPPED [1] tests/cloud/test_layer_update_packet.py:14: pinned IDO and GNU MIPS tools required
+SKIPPED [2] tests/cloud/test_layer_update_packet.py:83: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/cloud/test_layer_update_packet.py:89: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/cloud/test_layer_update_packet.py:95: pinned IDO and GNU MIPS tools required
+SKIPPED [2] tests/cloud/test_node_pool_init_match.py:25: requires IDO/GNU/host compiler
+SKIPPED [1] tests/cloud/test_ipakit_groupgen.py:176: needs IDO, tools/mips_to_c and mips-linux-gnu-objdump
+SKIPPED [1] tests/cloud/test_ipakit_groupgen.py:165: needs IDO, tools/mips_to_c and mips-linux-gnu-objdump
+SKIPPED [1] tests/cloud/test_ipakit_groupgen.py:155: IDO not installed (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_recomp_phase9.py:251: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_recomp_phase9.py:265: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [2] tests/cloud/test_dot_trig_kernel_packet.py:107: pinned IDO and GNU MIPS required
+SKIPPED [1] tests/cloud/test_corpus.py:143: IDO not installed
+SKIPPED [1] tests/cloud/test_corpus.py:152: IDO not installed
+SKIPPED [1] cloud/work/boot_tail_promotion/macro_wrapper_contracts/test_verify.py:169: IDO unavailable
+SKIPPED [1] tests/cloud/test_masked_random_b23e0.py:32: IDO, GNU MIPS tools and host compiler required
+SKIPPED [1] tests/cloud/test_masked_random_b23e0.py:35: IDO, GNU MIPS tools and host compiler required
+SKIPPED [1] tests/cloud/test_masked_random_b23e0.py:43: IDO, GNU MIPS tools and host compiler required
+SKIPPED [1] tests/cloud/test_masked_random_b23e0.py:48: IDO, GNU MIPS tools and host compiler required
+SKIPPED [1] tests/cloud/test_masked_random_b23e0.py:101: IDO required
+SKIPPED [1] cloud/work/boot_tail_promotion/macro_wrapper_contracts/test_verify.py:166: IDO unavailable
+SKIPPED [1] cloud/work/boot_tail_promotion/macro_wrapper_contracts/test_verify.py:172: IDO unavailable
+SKIPPED [1] tests/cloud/test_macro_wrapper_contracts.py:27: IDO unavailable
+SKIPPED [1] tests/cloud/test_recomp_phase8.py:269: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_recomp_phase8.py:281: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_recomp_phase12.py:198: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_recomp_phase12.py:205: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [4] tests/cloud/test_macro_stream_contracts.py:22: IDO unavailable
+SKIPPED [1] tests/cloud/test_recomp_phase10.py:214: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_recomp_phase10.py:226: recomp host only (ROM, N64Recomp, IDO toolkits)
+SKIPPED [1] tests/cloud/test_texture_rect_schedule_constraints.py:155: stock IDO and GNU MIPS tools are not configured
+SKIPPED [1] tests/cloud/test_dot_fresh_masked_rng.py:46: IDO toolchain not installed
+SKIPPED [1] tests/cloud/test_texture_rect_verification.py:77: pinned IDO and GNU MIPS binutils required
+SKIPPED [1] tests/cloud/test_directional_sound_match.py:70: pinned IDO and GNU MIPS tools required
+SKIPPED [1] tests/cloud/test_identifier_contract.py:62: IDO unavailable
+SKIPPED [1] tests/cloud/test_report.py:110: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_dot_audio_force_packet.py:96: pinned IDO and GNU MIPS toolchain required
+SKIPPED [1] tests/cloud/test_dot_tire_constants.py:39: IDO missing
+SKIPPED [1] tests/cloud/test_dot_tire_constants.py:48: IDO missing
+SKIPPED [1] tests/cloud/test_dot_tire_constants.py:54: IDO missing
+SKIPPED [1] tests/cloud/test_dot_tire_constants.py:62: IDO missing
+SKIPPED [2] tests/cloud/test_dot_tire_constants.py:18: IDO missing
+SKIPPED [1] tests/cloud/test_dot_voice_free.py:143: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_dot_steady_camera.py:64: IDO/GNU/host toolchain unavailable
+SKIPPED [1] tests/cloud/test_dot_steady_camera.py:72: IDO/GNU toolchain unavailable
+SKIPPED [1] tests/cloud/test_multiblit_contract.py:77: Pinned IDO, MIPS GNU linker and host compiler required
+SKIPPED [1] tests/cloud/test_runtime_a_menu_loop_packet.py:25: IDO toolchain unavailable at /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido: missing cc, cfe, uopt, ugen, as1
+SKIPPED [1] tests/cloud/test_scene_parent_contract.py:40: Pinned IDO, GNU MIPS linker and host compiler are required
+SKIPPED [1] tests/cloud/test_scene_parent_contract.py:45: Pinned IDO, GNU MIPS linker and host compiler are required
+SKIPPED [1] tests/cloud/test_scene_parent_contract.py:55: Pinned IDO, GNU MIPS linker and host compiler are required
+SKIPPED [1] tests/cloud/test_scene_parent_contract.py:68: Pinned IDO, GNU MIPS linker and host compiler are required
+SKIPPED [1] tests/cloud/test_scene_parent_contract.py:101: Pinned IDO, GNU MIPS linker and host compiler are required
+SKIPPED [1] tests/cloud/test_dot_hidden_callback.py:45: Pinned IDO, GNU MIPS binutils and host C compiler required
+SKIPPED [1] tests/cloud/test_dot_hidden_callback.py:49: Pinned IDO, GNU MIPS binutils and host C compiler required
+SKIPPED [1] tests/cloud/test_dot_hidden_callback.py:55: Pinned IDO, GNU MIPS binutils and host C compiler required
+SKIPPED [1] tests/cloud/test_dot_model_snapshot.py:39: IDO missing
+SKIPPED [1] tests/cloud/test_dot_model_snapshot.py:46: IDO missing
+SKIPPED [1] tests/cloud/test_dot_model_snapshot.py:52: IDO missing
+SKIPPED [1] tests/cloud/test_dot_model_snapshot.py:58: IDO missing
+SKIPPED [1] tests/cloud/test_dot_model_snapshot.py:17: IDO missing
+SKIPPED [1] tests/cloud/test_dot_voice_unblock.py:77: IDO or MIPS binutils unavailable
+SKIPPED [1] tests/cloud/test_audio_record_contracts.py:94: IDO unavailable
+SKIPPED [1] tests/cloud/test_audio_record_contracts.py:117: IDO unavailable
+SKIPPED [2] tests/cloud/test_audio_record_contracts.py:149: IDO unavailable
+SKIPPED [1] tests/cloud/test_graphics_init_match.py:36: IDO compiler unavailable
+SKIPPED [52] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33i/tools/cloud/ido/cc missing: run tools/cloud/setup.sh (or set IDO_DIR)
+SKIPPED [1] tests/cloud/test_select_blit_contract.py:37: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_select_blit_contract.py:47: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_select_blit_contract.py:53: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_select_blit_contract.py:58: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_select_blit_contract.py:67: IDO toolchain unavailable
+SKIPPED [1] tests/cloud/test_builder.py:91: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_builder.py:53: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_builder.py:105: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_builder.py:113: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_builder.py:77: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_builder.py:59: IDO missing (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_dot_heap_unlink.py:86: IDO/GNU MIPS/host toolchain unavailable
+SKIPPED [4] tests/cloud/test_dot_records_cleanup.py:23: IDO unavailable; no compiler replay performed
+SKIPPED [1] tests/cloud/test_random_range_contract.py:32: IDO, GNU MIPS tools and host C compiler required
+SKIPPED [1] tests/cloud/test_random_range_contract.py:40: IDO, GNU MIPS tools and host C compiler required
+SKIPPED [1] tests/cloud/test_random_range_contract.py:47: IDO, GNU MIPS tools and host C compiler required
+SKIPPED [1] tests/cloud/test_runtime_a_marker_color.py:50: pinned IDO required
+SKIPPED [1] tests/cloud/test_runtime_a_marker_color.py:42: pinned IDO required
+SKIPPED [1] tests/cloud/test_runtime_a_resource_cache.py:84: IDO unavailable
+SKIPPED [1] tests/cloud/test_nearest_point_donor.py:54: pinned IDO and MIPS GNU linker required
+SKIPPED [1] tests/cloud/test_sample_buffer_contract.py:41: requires pinned IDO and MIPS binutils
+SKIPPED [1] tests/cloud/test_sample_buffer_contract.py:54: requires IDO and a host C compiler
+SKIPPED [1] tests/cloud/test_selector_d9058_contract.py:89: Pinned IDO/MIPS/host tools unavailable
+SKIPPED [1] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: lib_22300: ido7.1 compiler absent; run tools/cloud/setup.sh
+SKIPPED [1] tests/cloud/test_autopilot.py:250: IDO missing (tools/cloud/setup.sh)
+SKIPPED [4] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: lib_11640: ido7.1 compiler absent; run tools/cloud/setup.sh
+SKIPPED [1] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: lib_15a10: ido7.1 compiler absent; run tools/cloud/setup.sh
+SKIPPED [1] ../../../../../.local/lib/python3.11/site-packages/pluggy/_callers.py:53: IDO missing: lib_11050: ido7.1 compiler absent; run tools/cloud/setup.sh
+SKIPPED [1] tests/cloud/test_mutate.py:3199: IDO not installed (tools/cloud/setup.sh)
+SKIPPED [1] tests/cloud/test_mutate.py:3236: IDO not installed (tools/cloud/setup.sh)
+854 passed, 207 skipped in 150.73s (0:02:30)
+== tests/cloud: serial
+
+1061 deselected in 0.84s
