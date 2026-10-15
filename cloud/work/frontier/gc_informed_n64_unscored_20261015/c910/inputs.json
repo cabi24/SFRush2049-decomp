@@ -1,0 +1,63 @@
+{
+  "base_revision": "c226123281724be9459ffa5d8ea41850bede3187",
+  "blob_regions": [
+    "blob_80086a50.s",
+    "blob_8008d0c0.s",
+    "blob_800aeb54.s"
+  ],
+  "claims": [],
+  "files": {
+    "candidate.c": "2a8785d549728e850e0919c7b60f2a4fcfe249f94c89baa83530521d402dc560",
+    "native_reference.py": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b",
+    "prior-candidate.c": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403",
+    "verify_native.py": "29a38cb0af37d8ede7b9a916791e4344cdfc59bd943a1b251a8e89397dc5dac7",
+    "weapons_types.h": "49168237ea5aeb7f4de9644a250c61216e566166dfd52c729dcd81de01c85be4"
+  },
+  "image": {
+    "base": "0x8038A400",
+    "image": "B",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "rom_offset": "0xB6FEC4"
+  },
+  "new_matching_bytes": 0,
+  "population": "ovl_b",
+  "protocol_version": 2,
+  "targets": {
+    "audio_frame_update": {
+      "size": 600,
+      "words_sha256": "ae535dd3033af9f9a9f9c3d1cef65104b96903a68e879252dc96a31c0086a81d"
+    },
+    "func_8008D6FC": {
+      "size": 104,
+      "words_sha256": "fea0f2ff6d35ed6b505b3d8d24d1a2e1ad65d2a9dcf61f05bade3e6ca1432a47"
+    },
+    "func_8008E26C": {
+      "size": 300,
+      "words_sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90"
+    },
+    "func_8038A95C": {
+      "size": 184,
+      "words_sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+    },
+    "func_8038AA14": {
+      "size": 120,
+      "words_sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+    },
+    "func_8038AA8C": {
+      "size": 7812,
+      "words_sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    },
+    "func_8038C910": {
+      "size": 276,
+      "words_sha256": "792a927c17040f381a69c0a5220e168255ad4f3dc8fa6a380cc26fd314813cbf"
+    },
+    "func_8038CA24": {
+      "size": 236,
+      "words_sha256": "dca68f3488638137802f7df43e1d19698c650ea22758e9ca6eefd37a4d6b22f2"
+    },
+    "save_slot_valid": {
+      "size": 176,
+      "words_sha256": "b89311d3d75de32579666b981caf829d775d05b8fd1252a068539c530821c2d4"
+    }
+  }
+}
