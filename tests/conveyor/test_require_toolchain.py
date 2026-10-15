@@ -19,5 +19,6 @@ def test_toolchain_skip_reasons_are_recognised():
 def test_missing_private_inputs_stay_skips():
     for reason in ("baserom.us.z64 not present", "corpus data missing",
                    "no conveyor DB — run the matrix first", "derived asm not present",
-                   "canonical SDK checkout absent", "corpus unavailable"):
+                   "canonical SDK checkout absent", "corpus unavailable",
+                   "recomp host only (ROM, N64Recomp, IDO toolkits)"):
         assert not shared.is_toolchain_skip(reason), reason

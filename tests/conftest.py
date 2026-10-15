@@ -26,7 +26,17 @@ def skip_reason(report):
     return str(longrepr)
 
 
+# Skips that name a private host rather than a tool: the recomp end-to-end
+# tests (tests/cloud/test_recomp_phase*.py) run only where the ROM, N64Recomp
+# and the IDO toolkits all live (the recomp host; the rocky CI-equivalent run
+# executes them). Their reason mentions IDO, so without this exemption
+# REQUIRE_TOOLCHAIN=1 reported them as failures on every GitHub run since wave 28.
+PRIVATE_HOST_SKIP = re.compile(r"recomp host only", re.IGNORECASE)
+
+
 def is_toolchain_skip(reason):
+    if PRIVATE_HOST_SKIP.search(reason):
+        return False
     return bool(TOOLCHAIN_SKIP.search(reason))
 
 
