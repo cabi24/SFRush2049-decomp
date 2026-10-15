@@ -1,7 +1,8 @@
 {
   "collection_audit": {
     "four_locked_context_source_hashes_match_current_records": true,
-    "original_artifacts_hashed": 38,
+    "original_artifacts_hashed": 41,
+    "patch_roundtrip_scope": "original submitted packets before disclosed layout correction",
     "patch_roundtrips": [
       {
         "files_equal": 1,
@@ -26,6 +27,17 @@
     "new_matching_bytes": 0,
     "rom_verification": false,
     "scorer_executed": false
+  },
+  "layout_correction": {
+    "all_other_materialized_sources_preserved": true,
+    "claims": [],
+    "compiler_run": false,
+    "corrected_c910_materialization_roundtrip": true,
+    "fresh_score": null,
+    "git_blob_and_existing_lock_source_verified": true,
+    "initializer_source_sha256": "1a407096f10ef074e4a2f99b2116deb8a1e7de5f8a036b6d98260b0c3b5e7fb0",
+    "old_visual_model_rejected": true,
+    "source_and_native_replay_normal_optimized_equal": true
   },
   "published_native_replay": {
     "candidate_compiled": false,
@@ -118,10 +130,23 @@
       "aggregate": 400,
       "battle": 52,
       "blast": 84,
+      "car_stride": 952,
       "checkpoint_slots": 200,
+      "collidable_offset": 776,
       "defense": 20,
+      "initializer_records": 21,
+      "n64_visual_base": 272,
+      "n64_visual_count": 21,
       "successor_model_cases": 385,
-      "visual": 24
+      "visual": 24,
+      "visual_negative_controls_rejected": [
+        "old inferred model",
+        "wrong base",
+        "wrong count",
+        "wrong index"
+      ],
+      "weapon_index": 20,
+      "weapon_offset": 752
     },
     "negative_controls_rejected": [
       "source mutation",

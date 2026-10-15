@@ -3,6 +3,8 @@
  * GC names come from ELF DWARF; consumed N64 offsets come from image B at
  * c226123281724be9459ffa5d8ea41850bede3187. See ../RESEARCH.md.
  * Native 32-bit pointers are required. Preserve the existing lock contracts.
+ * Source correction: locked func_800B27E4 initializes 21 N64 visuals at +0x110.
+ * GC has 22 at +0x110. N64 weapon index20 remains at +0x2f0; no compiler proof.
  */
 #ifndef RESEARCH_N64_WEAPONS_TYPES_H
 #define RESEARCH_N64_WEAPONS_TYPES_H
@@ -77,8 +79,8 @@ typedef struct WpnBattle {
 /* Only this subsystem's consumed fields are named. Unknown arrays preserve
  * persistent record storage; they are not stack-pressure devices. */
 typedef struct WpnCar {
-    WpnU8 unknown000[0xf8];
-    WpnVisual visuals[22];           /* 0x0f8; visuals[21] = car+0x2f0 */
+    WpnU8 unknown000[0x110];         /* includes native +0xf8 rwmph; unused here */
+    WpnVisual visuals[21];           /* +0x110; visuals[20] = car+0x2f0 */
     WpnS8 collidable;                /* 0x308 */
     WpnU8 unknown309[0x43];
     WpnU32 IRclr;                    /* 0x34c; RGBA union suitable for color use */

@@ -7,11 +7,11 @@
   ],
   "claims": [],
   "files": {
-    "candidate.c": "2a8785d549728e850e0919c7b60f2a4fcfe249f94c89baa83530521d402dc560",
+    "candidate.c": "df699e2f7d853502d6ca7b1661d943dd6faf76a85fe9e31ba5ea6ee377ed4a6b",
     "native_reference.py": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b",
     "prior-candidate.c": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403",
     "verify_native.py": "29a38cb0af37d8ede7b9a916791e4344cdfc59bd943a1b251a8e89397dc5dac7",
-    "weapons_types.h": "49168237ea5aeb7f4de9644a250c61216e566166dfd52c729dcd81de01c85be4"
+    "weapons_types.h": "c9e20e76e231b26644c291868a9fc0166940e7086c6d0aedcf947a680a05c5a4"
   },
   "image": {
     "base": "0x8038A400",

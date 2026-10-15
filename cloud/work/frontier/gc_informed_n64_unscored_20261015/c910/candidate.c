@@ -1,7 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* UNCOMPILED RESEARCH, EMPTY CLAIMS. Image B, C910..CA24, 276 native bytes.
- * GC weapons.c supplies names, the embedded visuals[22] declaration and the
- * two-argument callback type. N64 targets supply consumed offsets and ABI.
+ * GC weapons.c supplies names and the two-argument callback type. N64's locked
+ * func_800B27E4 establishes 21 visuals at car+0x110, unlike GC's 22 at +0x110.
+ * Source correction: weapon visuals[20] remains at car+0x2f0. The earlier
+ * +0xf8/22/index21 inference was wrong despite forming the same byte address.
+ * N64 targets supply consumed offsets and ABI. No compiler result is inferred.
  * This is the natural embedded-visual experiment requested by the handoff.
  * It has no new score and does not supersede the historical 13/69 draft.
  *
@@ -43,8 +46,8 @@ void func_8038C910(WpnS16 slot)
     WpnVisual *v;
     WpnCarParts *parts;
 
-    if (D_80152818[slot].visuals[21].objnum < 0) {
-        v = &D_80152818[slot].visuals[21];
+    if (D_80152818[slot].visuals[20].objnum < 0) {
+        v = &D_80152818[slot].visuals[20];
         v->index = 0;
         v->func = func_8038AA8C;
         v->timeStamp = D_8002EB90;

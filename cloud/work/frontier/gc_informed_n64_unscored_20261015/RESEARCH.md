@@ -21,8 +21,8 @@ No GC source tree, ELF, raw target listing or ROM payload is published.
    each in the real unit, retaining the locked normalization group. Diagnose
    entry copies/homes and FP temporary order before another source lever.
 
-2. **StartWeapon / C910 (276 B), through Astra.** Natural `v=&car.visuals[21]`,
-   embedded `visuals[22]`, authentic two-argument callback and CarParts naming
+2. **StartWeapon / C910 (276 B), through Astra.** Corrected natural
+   `v=&car.visuals[20]`, N64 `visuals[21]` at +0x110, authentic two-argument callback and CarParts naming
    replace the old opaque declarations. Keep the full-word creation-result store,
    narrowed visual handle, unsigned model-byte load and post-call model reread.
    Historical differences are thirteen words at +0x60..+0xA0 in outgoing setup;
@@ -125,8 +125,18 @@ No GC source tree, ELF, raw target listing or ROM payload is published.
 
 ## Type, layout and behavior constraints
 
-- N64 car stride **0x3B8**, GC **0x3CC**. N64 visuals start +0xF8 and entry 21
-  is +0x2F0; GC +0x110/+0x308. A visual is 0x18 with signed halfwords at
+- N64 car stride **0x3B8**, GC **0x3CC**. The locked
+  [func_800B27E4 initializer](https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/src/blob/func_800B27E4.c)
+  starts at **+0x110**, iterates **0x15=21** records with stride0x18, clears
+  callback+0x14 and writes handle+6=-1. N64 weapon **entry20 is +0x2F0** and
+  the array ends at collidable +0x308. GC has **22** records at **+0x110**, weapon
+  entry21 at +0x308 and collidable +0x320. The earlier N64 +0xF8/22/index21
+  inference is withdrawn; +0xF8 belongs to the nonvisual prefix (native signed
+  rwmph loads corroborate it). The prior weapon byte address was sound. The
+  corrected type/expression preserve that address and car+0x308 onward, but no
+  compiler or alias/code-generation equivalence has been proved. Unknown prefix
+  fields remain opaque; this proof does not validate a complete GC car transplant.
+  A visual is 0x18 with signed halfwords at
   +4/+6/+8, data +C, time +10, callback +14. Callback takes `(visual*, s16 op)`.
 - N64 defense adds a float phase at **car+0x39C**, absent in GC. Defense is 0x14,
   battle 0x34. N64 shoot/fade/loaded/time/pitch/yaw follow at 3A0/3A1/3A4/3A8/

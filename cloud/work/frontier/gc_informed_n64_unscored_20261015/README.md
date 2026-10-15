@@ -19,6 +19,15 @@ matching compiled code. Complete target body hashes, native paths, source hashes
 provenance and group recipes are in [packet.json](packet.json). The N64 native
 target is the authority whenever GC differs.
 
+**Visual layout source correction:** the locked
+[func_800B27E4 initializer](https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/src/blob/func_800B27E4.c)
+establishes **21 N64 records at car+0x110**, so the weapon callback is **index20
+at +0x2F0**. GC has 22 records at +0x110 and weapon index21 at +0x308. This
+supersedes this handoff's earlier N64 +0xF8/22/index21 inference. The C910 source
+expression and type proposal now use +0x110/21/index20; the consumed byte address
+and later field offsets stay the same. This is an uncompiled source correction,
+not evidence of unchanged compiler output or an improved match score.
+
 | N64 target / address | Population / bytes | GC donor / original address / bytes | Available C and current evidence |
 |---|---:|---|---|
 | `func_80090308` / `80090308` | game / 1,128 | `StartNewBlast` / `80057998` / 816 | [Inherited natural draft](blast/effects.c). Historical **different device-based w26c source**: 202/282 words differ. Do not assign that score to this file. |
@@ -59,7 +68,10 @@ bounded source/layout controls without a compiler. The native-only C910 replay
 requires a private full checkout and reads its protected targets directly.
 
 The original source patches were applied in fresh private directories and their
-results compared byte-for-byte with the candidate files. The seventeen-entry
+results compared byte-for-byte with the original submitted candidates before
+the disclosed publication/layout adaptations. The corrected C910 source/header
+intentionally differ from that original packet; both hashes remain in the receipt.
+The seventeen-entry
 blast ZIP was inspected and compared with its unpacked tree. The ZIP, private
 claim copy, full recovered GC source/ELF, native listings, opaque image data and
 compiled objects are excluded. Only scoped N64 C, research declarations and

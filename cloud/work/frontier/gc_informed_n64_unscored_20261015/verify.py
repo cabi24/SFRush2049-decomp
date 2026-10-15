@@ -70,6 +70,14 @@ def check(packet, blobs):
     need(packet['c910_owner']['owner']=='Astra' and 'handoff' in packet['c910_owner']['purpose'], 'ownership lost')
     candidate=blobs['entity/candidate.c'].decode('utf-8')
     need('Surface *surfaceptr;' in candidate and 'temp[0] * 0.25f' in candidate, 'entity source contract')
+    header=blobs['c910/weapons_types.h'].decode('utf-8')
+    weapon=blobs['c910/candidate.c'].decode('utf-8')
+    need('WpnU8 unknown000[0x110];' in header and 'WpnVisual visuals[21];' in header,
+         'N64 visual base/count must follow locked initializer')
+    need(weapon.count('.visuals[20]')==2 and '.visuals[21]' not in weapon,
+         'N64 weapon source must use index20')
+    layout=packet['visual_layout_correction']['n64']
+    need((layout['base'],layout['count'],layout['weapon_index'])==(0x110,21,20), 'visual correction receipt')
 
 
 def layouts():
@@ -89,13 +97,47 @@ def layouts():
         _fields_=[('weapon',C.c_uint8*8),('defense',Defense),('shoot',C.c_int8),
                   ('fade',C.c_uint8),('state',C.c_int8),('points',C.c_int8),
                   ('loaded',C.c_int32),('times_angles',C.c_float*4)]
+    class Car(C.Structure):
+        _fields_=[('unknown000',C.c_uint8*0x110),('visuals',Visual*21),
+                  ('collidable',C.c_int8),('unknown309',C.c_uint8*0x43),
+                  ('IRclr',C.c_uint32),('unknown350',C.c_uint8*0xb),
+                  ('slot',C.c_int8),('camera',C.c_int8),('view',C.c_int8),
+                  ('unknown35e',C.c_uint8*0x26),('battle',Battle)]
     need(C.sizeof(Visual)==24 and Visual.slot.offset==8 and Visual.callback.offset==20, 'visual layout')
     need(C.sizeof(Blast)==84 and Blast.height.offset==80, 'blast layout')
     need(C.sizeof(Aggregate)==400 and Aggregate.matrix.offset==340, 'aggregate layout')
     need(C.sizeof(Defense)==0x14 and C.sizeof(Battle)==0x34, 'N64 shield phase')
     need(0x384+Battle.defense.offset+Defense.phase.offset==0x39c, 'shield phase offset')
     need(0x384+Battle.shoot.offset==0x3a0, 'shoot offset')
-    need(0xf8+21*C.sizeof(Visual)==0x2f0, 'embedded visual')
+    need(Car.visuals.offset==0x110 and len(Car().visuals)==21, 'N64 visual array')
+    need(Car.visuals.offset+20*C.sizeof(Visual)==0x2f0, 'N64 weapon index20')
+    need(Car.collidable.offset==0x308 and Car.battle.offset==0x384
+         and C.sizeof(Car)==0x3b8, 'corrected car later offsets/stride')
+    # Independent address arithmetic from the locked initializer's postincrement
+    # stores, compared with the fixed-width declaration model above.
+    native_writes=[]
+    cursor=0x110
+    for i in range(0x15):
+        cursor+=0x18
+        native_writes.extend([(cursor-4,4,0),(cursor-0x12,2,-1)])
+    def proposal_writes(base,count):
+        result=[]
+        for i in range(count):
+            record=base+i*C.sizeof(Visual)
+            result.extend([(record+Visual.callback.offset,4,0),
+                           (record+Visual.handle.offset,2,-1)])
+        return result
+    need(proposal_writes(Car.visuals.offset,len(Car().visuals))==native_writes,
+         'declaration/locked-initializer store map')
+    need(cursor==Car.collidable.offset, 'initializer end boundary')
+    rejected_visual=[]
+    for name,base,count,index in [('old inferred model',0xf8,22,21),
+                                   ('wrong base',0xf8,21,20),
+                                   ('wrong count',0x110,22,20),
+                                   ('wrong index',0x110,21,21)]:
+        valid=proposal_writes(base,count)==native_writes and base+index*C.sizeof(Visual)==0x2f0
+        need(not valid, 'invalid visual model accepted: '+name)
+        rejected_visual.append(name)
     memory=bytearray(0x32c)
     for cp in range(10):
         for path in range(20):
@@ -116,7 +158,11 @@ def layouts():
                 cases+=1
     need(wrong,'semantic negative not detected')
     return {'checkpoint_slots':200,'successor_model_cases':cases,
-            'visual':24,'blast':84,'aggregate':400,'defense':20,'battle':52}
+            'visual':24,'blast':84,'aggregate':400,'defense':20,'battle':52,
+            'n64_visual_base':Car.visuals.offset,'n64_visual_count':len(Car().visuals),
+            'weapon_index':20,'weapon_offset':0x2f0,'collidable_offset':Car.collidable.offset,
+            'car_stride':C.sizeof(Car),'initializer_records':21,
+            'visual_negative_controls_rejected':rejected_visual}
 
 
 def main():

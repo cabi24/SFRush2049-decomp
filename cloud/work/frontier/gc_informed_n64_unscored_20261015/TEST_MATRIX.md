@@ -62,8 +62,14 @@ python3 -B -O "$H/c910/verify_native.py" --repo .
 The main check pins packet sources and its own verifier, audits eight route
 configurations, authentic helper/type identity, empty claims and internal/keep
 roles, 200 fixed-width checkpoint offsets, 385 valid-domain successor model
-cases and N64 visual/blast/defense layouts. It rejects source mutation, false
-claim insertion and accidental keeping of the internal blast callee.
+cases and N64 visual/blast/defense layouts. The corrected visual checks tie the
+proposal to the locked initializer's +0x110 base, 21-record bound and 0x18 stride,
+then check weapon index20 at +0x2F0, array end/collidable +0x308 and car size0x3B8.
+Wrong base/count/index models are rejected, including the old model that happened
+to produce the right weapon byte address. These are source/fixed-width layout
+checks, not C compilation or code-generation evidence. The verifier also rejects
+source mutation, false claim insertion and accidental keeping of the internal
+blast callee.
 
 The C910 replay retains the earlier fail-closed interpreter, not an independent
 compiler/relocation implementation. It authenticates complete selected bodies
