@@ -1,0 +1,164 @@
+{
+  "collection_audit": {
+    "four_locked_context_source_hashes_match_current_records": true,
+    "original_artifacts_hashed": 41,
+    "patch_roundtrip_scope": "original submitted packets before disclosed layout correction",
+    "patch_roundtrips": [
+      {
+        "files_equal": 1,
+        "packet": "entity"
+      },
+      {
+        "files_equal": 8,
+        "packet": "c910"
+      },
+      {
+        "files_equal": 1,
+        "packet": "blast"
+      }
+    ],
+    "zip_members_inspected_and_equal": 17
+  },
+  "compiler_and_integration": {
+    "claims": [],
+    "compiled_regression": false,
+    "ido_executed": false,
+    "image_identity": false,
+    "new_matching_bytes": 0,
+    "rom_verification": false,
+    "scorer_executed": false
+  },
+  "layout_correction": {
+    "all_other_materialized_sources_preserved": true,
+    "claims": [],
+    "compiler_run": false,
+    "corrected_c910_materialization_roundtrip": true,
+    "fresh_score": null,
+    "git_blob_and_existing_lock_source_verified": true,
+    "initializer_source_sha256": "1a407096f10ef074e4a2f99b2116deb8a1e7de5f8a036b6d98260b0c3b5e7fb0",
+    "old_visual_model_rejected": true,
+    "source_and_native_replay_normal_optimized_equal": true
+  },
+  "published_native_replay": {
+    "candidate_compiled": false,
+    "claims": [],
+    "complete_target_hashes": {
+      "audio_frame_update": {
+        "size": 600,
+        "words_sha256": "ae535dd3033af9f9a9f9c3d1cef65104b96903a68e879252dc96a31c0086a81d"
+      },
+      "func_8008D6FC": {
+        "size": 104,
+        "words_sha256": "fea0f2ff6d35ed6b505b3d8d24d1a2e1ad65d2a9dcf61f05bade3e6ca1432a47"
+      },
+      "func_8008E26C": {
+        "size": 300,
+        "words_sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90"
+      },
+      "func_8038A95C": {
+        "size": 184,
+        "words_sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+      },
+      "func_8038AA14": {
+        "size": 120,
+        "words_sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+      },
+      "func_8038AA8C": {
+        "size": 7812,
+        "words_sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+      },
+      "func_8038C910": {
+        "size": 276,
+        "words_sha256": "792a927c17040f381a69c0a5220e168255ad4f3dc8fa6a380cc26fd314813cbf"
+      },
+      "func_8038CA24": {
+        "size": 236,
+        "words_sha256": "dca68f3488638137802f7df43e1d19698c650ea22758e9ca6eefd37a4d6b22f2"
+      },
+      "save_slot_valid": {
+        "size": 176,
+        "words_sha256": "b89311d3d75de32579666b981caf829d775d05b8fd1252a068539c530821c2d4"
+      }
+    },
+    "fresh_candidate_score": null,
+    "limits": "native target versus finite semantic hooks only; candidate C, genuine helper execution, gameplay, relocation replay and regression builds are not verified",
+    "native_contract": {
+      "A95C": "low-halfword slot input in s4; requires genuine private context",
+      "AA14": "low-halfword a0 slot; s0-s3 are not saved in this helper",
+      "AA8C": "saves s0-s7/ra and consumes operation in signed low a1",
+      "AF5E0": "tail forwards E26C v0; no instruction after its final call redefines v0",
+      "C910_caller": {
+        "call_offset": "0xd4",
+        "function": "audio_frame_update"
+      },
+      "E26C": "narrows scene index through left16/arithmetic-right16, saves it at stack+24, then restores it to v0"
+    },
+    "native_only_fixtures": {
+      "complete_instruction_coverage": {
+        "native_C910": 69
+      },
+      "domain": "four backed players; sampled model bytes; signed16 helper results; synchronous side-effecting contract hooks",
+      "executions": 1024,
+      "fixtures": 1024
+    },
+    "negative_controls": [
+      "wrong native creation flag rejected",
+      "unknown instruction rejected"
+    ],
+    "new_matching_bytes": 0,
+    "population": "ovl_b",
+    "protocol_version": 2
+  },
+  "scratch_materialization": {
+    "blast_groups": 2,
+    "changed_locked_context_refused_before_writes": true,
+    "claims": [],
+    "compiler_executed": false,
+    "existing_output_refused": true,
+    "fixture_is_full_checkout": false,
+    "limits": "uses authenticated source/target snapshots; no compilation or coordinator builder",
+    "route_configurations": 8,
+    "source_and_manifest_roundtrip": true,
+    "state": "SCRATCH_ONLY_UNSCORED"
+  },
+  "source_integrity_layout": {
+    "claims": [],
+    "compiler_run": false,
+    "files_checked": 25,
+    "fresh_score": null,
+    "layout_models": {
+      "aggregate": 400,
+      "battle": 52,
+      "blast": 84,
+      "car_stride": 952,
+      "checkpoint_slots": 200,
+      "collidable_offset": 776,
+      "defense": 20,
+      "initializer_records": 21,
+      "n64_visual_base": 272,
+      "n64_visual_count": 21,
+      "successor_model_cases": 385,
+      "visual": 24,
+      "visual_negative_controls_rejected": [
+        "old inferred model",
+        "wrong base",
+        "wrong count",
+        "wrong index"
+      ],
+      "weapon_index": 20,
+      "weapon_offset": 752
+    },
+    "negative_controls_rejected": [
+      "source mutation",
+      "false claim",
+      "kept internal blast"
+    ],
+    "population_bytes": {
+      "blob": 12996,
+      "ovl_b": 8392
+    },
+    "scorer_run": false,
+    "state": "SOURCE_INTEGRITY_AND_LAYOUT_ONLY",
+    "targets": 14
+  }
+}

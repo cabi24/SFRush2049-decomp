@@ -1,0 +1,1184 @@
+{
+  "archive_inspection": {
+    "all_entries_equal_unpacked_tree": true,
+    "entries": 17,
+    "excluded": "private claim copy, raw/oversized diagnostic metadata and copied genuine upstream context; scoped C published directly",
+    "published_zip": false
+  },
+  "base_tree": "776f0fdcabf77e068cf18fa2b379bbd31dc3eb14",
+  "blast_context": {
+    "ctx_color.c": {
+      "path": "src/blob/func_8008E06C.c",
+      "source_sha256": "1a9ab3db5502cd9978585b727330c246544e09b8252b12fad363e47550747a5e",
+      "symbol": "func_8008E06C"
+    },
+    "ctx_random.c": {
+      "path": "src/blob/groups/frontier_entity_spawn_init/func_8008B2E4.c",
+      "source_sha256": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+      "symbol": "func_8008B2E4"
+    },
+    "ctx_texture.c": {
+      "path": "src/blob/func_80090770.c",
+      "source_sha256": "74beff9a631d97d9f734372aea9fbc8a0a1378d897ff4222df3ed121058f74b7",
+      "symbol": "func_80090770"
+    },
+    "ctx_visual_alloc.c": {
+      "path": "src/blob/func_80090284.c",
+      "source_sha256": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+      "symbol": "func_80090284"
+    }
+  },
+  "blast_group": {
+    "claims": [],
+    "context": [
+      "func_8008E06C",
+      "func_80090770",
+      "func_8008B2E4",
+      "func_80090284"
+    ],
+    "files": [
+      "effects.c",
+      "start_blast.c",
+      "ctx_color.c",
+      "ctx_texture.c",
+      "ctx_random.c",
+      "ctx_visual_alloc.c"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "keep": [
+      "entity_physics_update",
+      "save_write_data",
+      "func_8008E06C",
+      "func_80090770",
+      "func_8008B2E4",
+      "func_80090284"
+    ],
+    "members": [
+      "func_80090308",
+      "entity_physics_update",
+      "save_write_data"
+    ],
+    "note": "RESEARCH ONLY. Empty claims. func_80090308 deliberately internal; actual callers are entity_physics_update and save_write_data. Cold group and full unit diagnostics required before any new experiment or promotion. No integration requested.",
+    "provenance": "c226123281724be9459ffa5d8ea41850bede3187; natural w24e effects baseline and w26c StartBlast initializer hypothesis; GC native reference read-only."
+  },
+  "c910_native_fixture_report": {
+    "candidate_compiled": false,
+    "claims": [],
+    "complete_target_hashes": {
+      "audio_frame_update": {
+        "size": 600,
+        "words_sha256": "ae535dd3033af9f9a9f9c3d1cef65104b96903a68e879252dc96a31c0086a81d"
+      },
+      "func_8008D6FC": {
+        "size": 104,
+        "words_sha256": "fea0f2ff6d35ed6b505b3d8d24d1a2e1ad65d2a9dcf61f05bade3e6ca1432a47"
+      },
+      "func_8008E26C": {
+        "size": 300,
+        "words_sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90"
+      },
+      "func_8038A95C": {
+        "size": 184,
+        "words_sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+      },
+      "func_8038AA14": {
+        "size": 120,
+        "words_sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+      },
+      "func_8038AA8C": {
+        "size": 7812,
+        "words_sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+      },
+      "func_8038C910": {
+        "size": 276,
+        "words_sha256": "792a927c17040f381a69c0a5220e168255ad4f3dc8fa6a380cc26fd314813cbf"
+      },
+      "func_8038CA24": {
+        "size": 236,
+        "words_sha256": "dca68f3488638137802f7df43e1d19698c650ea22758e9ca6eefd37a4d6b22f2"
+      },
+      "save_slot_valid": {
+        "size": 176,
+        "words_sha256": "b89311d3d75de32579666b981caf829d775d05b8fd1252a068539c530821c2d4"
+      }
+    },
+    "fresh_candidate_score": null,
+    "limits": "native target versus finite semantic hooks only; candidate C, genuine helper execution, gameplay, relocation replay and regression builds are not verified",
+    "native_contract": {
+      "A95C": "low-halfword slot input in s4; requires genuine private context",
+      "AA14": "low-halfword a0 slot; s0-s3 are not saved in this helper",
+      "AA8C": "saves s0-s7/ra and consumes operation in signed low a1",
+      "AF5E0": "tail forwards E26C v0; no instruction after its final call redefines v0",
+      "C910_caller": {
+        "call_offset": "0xd4",
+        "function": "audio_frame_update"
+      },
+      "E26C": "narrows scene index through left16/arithmetic-right16, saves it at stack+24, then restores it to v0"
+    },
+    "native_only_fixtures": {
+      "complete_instruction_coverage": {
+        "native_C910": 69
+      },
+      "domain": "four backed players; sampled model bytes; signed16 helper results; synchronous side-effecting contract hooks",
+      "executions": 1024,
+      "fixtures": 1024
+    },
+    "negative_controls": [
+      "wrong native creation flag rejected",
+      "unknown instruction rejected"
+    ],
+    "new_matching_bytes": 0,
+    "population": "ovl_b",
+    "protocol_version": 2
+  },
+  "c910_owner": {
+    "claim_row": "| ovl_b | func_8038A408 (projected-surface ring, 105/305, frame matches, last three instructions missing), func_8038C910 (callback initializer, 13/69) | Astra | 2026-10-12 | #361 packet `dot_runtime_b_surface_ring_20261012` and #364 packet `dot_runtime_b_callback_init_20261012` imported by w26p; no coverage |",
+    "claim_source": "cloud/work/CLAIMS.md",
+    "existing_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/364",
+    "owner": "Astra",
+    "purpose": "research handoff to existing claim owner; no takeover, claim edit or ready duplicate"
+  },
+  "claims": [],
+  "compiler": {
+    "actual_fingerprint": null,
+    "assembler_erratum": "-r4300_mul",
+    "executed": false,
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "official_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "required": "stock IDO 5.3 v1.2, x86-64 Linux"
+  },
+  "fresh_score": null,
+  "gc_donor": {
+    "elf_sha256": "d4a06e4516ab9a75e6de780beee10ea07b8358016e4964a8baf9e8eaa282908c",
+    "role": "inherited original ELF/DWARF research; native N64 is authority; ELF/source trees excluded"
+  },
+  "imports": [
+    {
+      "artifact_id": "best.c",
+      "original_sha256": "8c9cd84a90cd5efadb1120b9ec8941a059787c34b10c352770f852cc62c3c0a0",
+      "packet": "task-46",
+      "path": "entity/candidate.c",
+      "published_sha256": "8c9cd84a90cd5efadb1120b9ec8941a059787c34b10c352770f852cc62c3c0a0",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "original-seed.c",
+      "original_sha256": "5969a3617beff07b156b0f7c5ec5f15f307a0fbebd8cc5c1e9216fb5356625a3",
+      "packet": "task-46",
+      "path": "entity/original-seed.c",
+      "published_sha256": "5969a3617beff07b156b0f7c5ec5f15f307a0fbebd8cc5c1e9216fb5356625a3",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "8e5be50bcbfc449a3894db154faef07bddf333986e8322a436780323b7841689",
+      "packet": "task-47",
+      "path": "routes/baseline_w6b.c",
+      "published_sha256": "4395c18ff51591240fa2deeabf2e0879136d6c67b23b3d3833f67a92c0305d52",
+      "transformation": "disclosed historical-header notice, comment link or required-repo replay adaptation"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "53b8b4c5f732ec704f0c7b5cc604c0541684f4b0b05190187350cd147a2fa18d",
+      "packet": "task-47",
+      "path": "routes/distance_boundary_control.c",
+      "published_sha256": "53b8b4c5f732ec704f0c7b5cc604c0541684f4b0b05190187350cd147a2fa18d",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "ef9df7a5f5a8edc22c03b52994483a33f1fd0fa3693372c632be3f6146a29001",
+      "packet": "task-47",
+      "path": "routes/signed_above.c",
+      "published_sha256": "ef9df7a5f5a8edc22c03b52994483a33f1fd0fa3693372c632be3f6146a29001",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "1af2df54346b969caec04717792a3130cb1c8509d2f939c3bb2b64eb27ed192c",
+      "packet": "task-47",
+      "path": "routes/signed_below.c",
+      "published_sha256": "1af2df54346b969caec04717792a3130cb1c8509d2f939c3bb2b64eb27ed192c",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "b416958f765861f38fcbf8f7f056c9186f0065630a4bf5a1799b78a94f3153ed",
+      "packet": "task-47",
+      "path": "routes/unsigned_above.c",
+      "published_sha256": "b416958f765861f38fcbf8f7f056c9186f0065630a4bf5a1799b78a94f3153ed",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "9717258cbada69dcfbff2bf112984dfea7fef28062578569575a6fd9e82a0041",
+      "packet": "task-47",
+      "path": "routes/unsigned_below.c",
+      "published_sha256": "9717258cbada69dcfbff2bf112984dfea7fef28062578569575a6fd9e82a0041",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "group.c",
+      "original_sha256": "8325d574abab7ec0f36551d1d286046f3b0d0aaa61f7098c7b8911a95ed6403b",
+      "packet": "task-47",
+      "path": "routes/negative_successor_plus2.c",
+      "published_sha256": "8325d574abab7ec0f36551d1d286046f3b0d0aaa61f7098c7b8911a95ed6403b",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "effects.c",
+      "original_sha256": "eb74eed118df281063fe0bb78b6ac12950ed8596939fa7f2a41ec87e055cea3f",
+      "packet": "task-48",
+      "path": "blast/effects.c",
+      "published_sha256": "eb74eed118df281063fe0bb78b6ac12950ed8596939fa7f2a41ec87e055cea3f",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "start_blast.c",
+      "original_sha256": "e27e4f0a8d22db675182257b10bce8036caca7b5734de7a63ad19692bea1a36c",
+      "packet": "task-48",
+      "path": "blast/start_blast.c",
+      "published_sha256": "e27e4f0a8d22db675182257b10bce8036caca7b5734de7a63ad19692bea1a36c",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "start_blast.c",
+      "original_sha256": "35be4e5129e416e066ddf8131ec9bdefd388b5601a80ebd7bc0e8c26a965754f",
+      "packet": "task-48",
+      "path": "blast/baseline_start_blast.c",
+      "published_sha256": "35be4e5129e416e066ddf8131ec9bdefd388b5601a80ebd7bc0e8c26a965754f",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "blast_layout_guidance.h",
+      "original_sha256": "2655f195f2c0e73e8d1eae7c9ca82398ff3c6d5485b925d9d498aa6cdef08db3",
+      "packet": "task-48",
+      "path": "blast/blast_layout_guidance.h",
+      "published_sha256": "2655f195f2c0e73e8d1eae7c9ca82398ff3c6d5485b925d9d498aa6cdef08db3",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "smoke_layout_guidance.h",
+      "original_sha256": "b3460b5cfd152dae42d3eafe37ed0e58691069f4c69f38271345aa779f1c2d3d",
+      "packet": "task-42",
+      "path": "smoke_layout_guidance.h",
+      "published_sha256": "b3460b5cfd152dae42d3eafe37ed0e58691069f4c69f38271345aa779f1c2d3d",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "candidate.c",
+      "original_sha256": "2a8785d549728e850e0919c7b60f2a4fcfe249f94c89baa83530521d402dc560",
+      "packet": "task-49",
+      "path": "c910/candidate.c",
+      "published_sha256": "df699e2f7d853502d6ca7b1661d943dd6faf76a85fe9e31ba5ea6ee377ed4a6b",
+      "transformation": "corrected N64 visual base/count/index from locked initializer; native weapon byte address retained; source remains uncompiled/unscored"
+    },
+    {
+      "artifact_id": "prior-candidate.c",
+      "original_sha256": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403",
+      "packet": "task-49",
+      "path": "c910/prior-candidate.c",
+      "published_sha256": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "weapons_types.h",
+      "original_sha256": "95989929311633c9a32f37a2424424e88a79110ba1ba52135a53bd6d491182bf",
+      "packet": "task-49",
+      "path": "c910/weapons_types.h",
+      "published_sha256": "c9e20e76e231b26644c291868a9fc0166940e7086c6d0aedcf947a680a05c5a4",
+      "transformation": "corrected N64 visual base/count/index from locked initializer; native weapon byte address retained; source remains uncompiled/unscored"
+    },
+    {
+      "artifact_id": "native_reference.py",
+      "original_sha256": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b",
+      "packet": "task-49",
+      "path": "c910/native_reference.py",
+      "published_sha256": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b",
+      "transformation": "byte-identical"
+    },
+    {
+      "artifact_id": "verify_native.py",
+      "original_sha256": "de7582d2dd706906ae7966eb276768faf4a32f46d3620bd0d71620ba9121376e",
+      "packet": "task-49",
+      "path": "c910/verify_native.py",
+      "published_sha256": "29a38cb0af37d8ede7b9a916791e4344cdfc59bd943a1b251a8e89397dc5dac7",
+      "transformation": "disclosed historical-header notice, comment link or required-repo replay adaptation"
+    }
+  ],
+  "new_matching_bytes": 0,
+  "original_artifacts": [
+    {
+      "artifact_id": "smoke_creation_handoff.md",
+      "bytes": 23475,
+      "packet": "task-42",
+      "sha256": "94325f14d05d30ef986ed1ae0aca25b60f5d5530f16ad2e90c6bbcf61e004906"
+    },
+    {
+      "artifact_id": "smoke_layout_guidance.h",
+      "bytes": 3104,
+      "packet": "task-42",
+      "sha256": "b3460b5cfd152dae42d3eafe37ed0e58691069f4c69f38271345aa779f1c2d3d"
+    },
+    {
+      "artifact_id": "COLLISION_N64_HANDOFF.md",
+      "bytes": 22381,
+      "packet": "task-43",
+      "sha256": "2a564c2f08df8cfdc0c5bbc92d9329189fa346b4705a461daabdce3230dae1a7"
+    },
+    {
+      "artifact_id": "camera-collision-seed.c",
+      "bytes": 959,
+      "packet": "task-43",
+      "sha256": "5969a3617beff07b156b0f7c5ec5f15f307a0fbebd8cc5c1e9216fb5356625a3"
+    },
+    {
+      "artifact_id": "HANDOFF.md",
+      "bytes": 29325,
+      "packet": "task-44",
+      "sha256": "bea0d8b06e00298806e1d67ab8dde43550c64ddc45bd7cf1b9d0e63889f9359d"
+    },
+    {
+      "artifact_id": "mapping.json",
+      "bytes": 17140,
+      "packet": "task-44",
+      "sha256": "3577e98d4adf5bc6f87d3edba334423b3331642eb5a890ec002c7c60dcc6abe8"
+    },
+    {
+      "artifact_id": "weapons-n64-handoff.md",
+      "bytes": 27061,
+      "packet": "task-45",
+      "sha256": "4a2cd6d281d51b37ca6198f1a606f46c8e9a35d0c42d1604b17dd0509f035496"
+    },
+    {
+      "artifact_id": "n64-weapons-type-proposal.h",
+      "bytes": 6240,
+      "packet": "task-45",
+      "sha256": "95989929311633c9a32f37a2424424e88a79110ba1ba52135a53bd6d491182bf"
+    },
+    {
+      "artifact_id": "entity_iterate-source.patch",
+      "bytes": 1920,
+      "packet": "task-46",
+      "sha256": "eda7c890f21ef013484a1d1fdb07544f788ac010c258d9133cbdbff0394c0760"
+    },
+    {
+      "artifact_id": "RESULTS.md",
+      "bytes": 6919,
+      "packet": "task-46",
+      "sha256": "5f78172fedc30fe19dd8de64881a8f2e193d1da29618d74b7bf5c94c674bd40e"
+    },
+    {
+      "artifact_id": "REPLAY.md",
+      "bytes": 3574,
+      "packet": "task-46",
+      "sha256": "b51de1a1d2fe7aacb43be1af7512a9da6381d56d902eba3e266ac8b54281cbe4"
+    },
+    {
+      "artifact_id": "receipt.json",
+      "bytes": 3540,
+      "packet": "task-46",
+      "sha256": "ad029d0493a60439a260c85a5bcde86163171f08a0e43f86fdaadc362e08923b"
+    },
+    {
+      "artifact_id": "HANDOFF.md",
+      "bytes": 9757,
+      "packet": "task-47",
+      "sha256": "e2bb33371f2b042e873d46ec8a6cdc0bb6f41cd00c227577712ed195009e5ba1"
+    },
+    {
+      "artifact_id": "candidate-matrix.json",
+      "bytes": 3083,
+      "packet": "task-47",
+      "sha256": "fcebc7ba69b56d9cabbd1511bb62b80abd29d3cba8408d796de47c44e9e79307"
+    },
+    {
+      "artifact_id": "README.md",
+      "bytes": 10689,
+      "packet": "task-48",
+      "sha256": "3bb4a0436c2d67b4b3bdf701be65b2bc320ebb66d2ec1ea953146117a7c4c74d"
+    },
+    {
+      "artifact_id": "blast-lane-unscored-source-handoff.zip",
+      "bytes": 65767,
+      "packet": "task-48",
+      "sha256": "256895c776d2b7d90399f5095f19238cb6d904e9d2b6e1c8720d5213d716749e"
+    },
+    {
+      "artifact_id": "task49-c910-research-source-only.patch",
+      "bytes": 42868,
+      "packet": "task-49",
+      "sha256": "e6856af083471530e9338194cec4cbb16255d9b1d9b208306ce63813b76df440"
+    },
+    {
+      "artifact_id": "RESULTS.md",
+      "bytes": 10312,
+      "packet": "task-49",
+      "sha256": "017bd051e544c3cc5ac74c9f11384e17f027dab74b0eb1bf79eb35c7268383d0"
+    },
+    {
+      "artifact_id": "native-checks.json",
+      "bytes": 2613,
+      "packet": "task-49",
+      "sha256": "5fdf5c05f7e615c6c050e3ae36b04fe53155e2358977386da59d87ad8263cb17"
+    },
+    {
+      "artifact_id": "best.c",
+      "bytes": 1611,
+      "packet": "task-46",
+      "sha256": "8c9cd84a90cd5efadb1120b9ec8941a059787c34b10c352770f852cc62c3c0a0"
+    },
+    {
+      "artifact_id": "original-seed.c",
+      "bytes": 959,
+      "packet": "task-46",
+      "sha256": "5969a3617beff07b156b0f7c5ec5f15f307a0fbebd8cc5c1e9216fb5356625a3"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5848,
+      "packet": "task-47",
+      "sha256": "8e5be50bcbfc449a3894db154faef07bddf333986e8322a436780323b7841689"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5003,
+      "packet": "task-47",
+      "sha256": "53b8b4c5f732ec704f0c7b5cc604c0541684f4b0b05190187350cd147a2fa18d"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5063,
+      "packet": "task-47",
+      "sha256": "ef9df7a5f5a8edc22c03b52994483a33f1fd0fa3693372c632be3f6146a29001"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5109,
+      "packet": "task-47",
+      "sha256": "1af2df54346b969caec04717792a3130cb1c8509d2f939c3bb2b64eb27ed192c"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5082,
+      "packet": "task-47",
+      "sha256": "b416958f765861f38fcbf8f7f056c9186f0065630a4bf5a1799b78a94f3153ed"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5146,
+      "packet": "task-47",
+      "sha256": "9717258cbada69dcfbff2bf112984dfea7fef28062578569575a6fd9e82a0041"
+    },
+    {
+      "artifact_id": "group.c",
+      "bytes": 5082,
+      "packet": "task-47",
+      "sha256": "8325d574abab7ec0f36551d1d286046f3b0d0aaa61f7098c7b8911a95ed6403b"
+    },
+    {
+      "artifact_id": "effects.c",
+      "bytes": 8720,
+      "packet": "task-48",
+      "sha256": "eb74eed118df281063fe0bb78b6ac12950ed8596939fa7f2a41ec87e055cea3f"
+    },
+    {
+      "artifact_id": "start_blast.c",
+      "bytes": 5335,
+      "packet": "task-48",
+      "sha256": "e27e4f0a8d22db675182257b10bce8036caca7b5734de7a63ad19692bea1a36c"
+    },
+    {
+      "artifact_id": "start_blast.c",
+      "bytes": 4980,
+      "packet": "task-48",
+      "sha256": "35be4e5129e416e066ddf8131ec9bdefd388b5601a80ebd7bc0e8c26a965754f"
+    },
+    {
+      "artifact_id": "blast_layout_guidance.h",
+      "bytes": 2270,
+      "packet": "task-48",
+      "sha256": "2655f195f2c0e73e8d1eae7c9ca82398ff3c6d5485b925d9d498aa6cdef08db3"
+    },
+    {
+      "artifact_id": "smoke_layout_guidance.h",
+      "bytes": 3104,
+      "packet": "task-42",
+      "sha256": "b3460b5cfd152dae42d3eafe37ed0e58691069f4c69f38271345aa779f1c2d3d"
+    },
+    {
+      "artifact_id": "candidate.c",
+      "bytes": 2444,
+      "packet": "task-49",
+      "sha256": "2a8785d549728e850e0919c7b60f2a4fcfe249f94c89baa83530521d402dc560"
+    },
+    {
+      "artifact_id": "prior-candidate.c",
+      "bytes": 2777,
+      "packet": "task-49",
+      "sha256": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403"
+    },
+    {
+      "artifact_id": "weapons_types.h",
+      "bytes": 6240,
+      "packet": "task-49",
+      "sha256": "95989929311633c9a32f37a2424424e88a79110ba1ba52135a53bd6d491182bf"
+    },
+    {
+      "artifact_id": "native_reference.py",
+      "bytes": 6916,
+      "packet": "task-49",
+      "sha256": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b"
+    },
+    {
+      "artifact_id": "verify_native.py",
+      "bytes": 8114,
+      "packet": "task-49",
+      "sha256": "de7582d2dd706906ae7966eb276768faf4a32f46d3620bd0d71620ba9121376e"
+    },
+    {
+      "artifact_id": "HANDOFF.md",
+      "bytes": 20450,
+      "packet": "task-55",
+      "sha256": "9b2048fd1651350f9da27bae323187f3156d81b1804329e611622df870a0d4a6"
+    },
+    {
+      "artifact_id": "mapping.json",
+      "bytes": 14825,
+      "packet": "task-55",
+      "sha256": "0e6341255566b99dddc2ed20fd4179249af950e69e3db0e108b5937e07f54e1f"
+    },
+    {
+      "artifact_id": "layout-correction.json",
+      "bytes": 1962,
+      "packet": "task-55",
+      "sha256": "11c2f0f75ba76d87579dc29e663bb69a3e0c1552a3fff560bcd0ca294ff00df6"
+    }
+  ],
+  "original_patch_roundtrips": [
+    {
+      "files_equal": 1,
+      "packet": "entity"
+    },
+    {
+      "files_equal": 8,
+      "packet": "c910"
+    },
+    {
+      "files_equal": 1,
+      "packet": "blast"
+    }
+  ],
+  "population_bytes": {
+    "blob": 12996,
+    "ovl_b": 8392
+  },
+  "protocol_version": 2,
+  "provenance_note": "Original artifacts identified by source packet ID and basename/hash; private source paths removed. Scope/source receipts checked locally; no GC rebuild.",
+  "published_files": {
+    "README.md": "6c4ed0dcfe2e802839fc9682579d6ae68b91af9820633c4b9d65ab3980459cb3",
+    "RESEARCH.md": "34f0c5a1855c5548472e6fdf815c06163fb57b2e1bcf433fca243415be33c074",
+    "TEST_MATRIX.md": "32024e0d011bf7c21f0665fc0a3b1aee074d20bae4d7f10c0fc2a23042dcae4f",
+    "blast/baseline_start_blast.c": "35be4e5129e416e066ddf8131ec9bdefd388b5601a80ebd7bc0e8c26a965754f",
+    "blast/blast_layout_guidance.h": "2655f195f2c0e73e8d1eae7c9ca82398ff3c6d5485b925d9d498aa6cdef08db3",
+    "blast/effects.c": "eb74eed118df281063fe0bb78b6ac12950ed8596939fa7f2a41ec87e055cea3f",
+    "blast/start_blast.c": "e27e4f0a8d22db675182257b10bce8036caca7b5734de7a63ad19692bea1a36c",
+    "c910/candidate.c": "df699e2f7d853502d6ca7b1661d943dd6faf76a85fe9e31ba5ea6ee377ed4a6b",
+    "c910/inputs.json": "cae1fe495d04f733ed7b10c5eea2000cdbf9e5aa9832c862e38d71f911fb698b",
+    "c910/native_reference.py": "6c0c4cad372a6d9e149d31a5637c2403193f059195d1cd2388d5f7b42faffe8b",
+    "c910/prior-candidate.c": "02bbae844ed3d3a09c32510e3afbf660500f72ed4f63043cedf67d60964fe403",
+    "c910/verify_native.py": "29a38cb0af37d8ede7b9a916791e4344cdfc59bd943a1b251a8e89397dc5dac7",
+    "c910/weapons_types.h": "c9e20e76e231b26644c291868a9fc0166940e7086c6d0aedcf947a680a05c5a4",
+    "entity/candidate.c": "8c9cd84a90cd5efadb1120b9ec8941a059787c34b10c352770f852cc62c3c0a0",
+    "entity/original-seed.c": "5969a3617beff07b156b0f7c5ec5f15f307a0fbebd8cc5c1e9216fb5356625a3",
+    "materialize.py": "5151186a60096deeecc8348a6860485c35903b8b3ed87cdc4bc89cb8b0de7750",
+    "routes/baseline_w6b.c": "4395c18ff51591240fa2deeabf2e0879136d6c67b23b3d3833f67a92c0305d52",
+    "routes/distance_boundary_control.c": "53b8b4c5f732ec704f0c7b5cc604c0541684f4b0b05190187350cd147a2fa18d",
+    "routes/negative_successor_plus2.c": "8325d574abab7ec0f36551d1d286046f3b0d0aaa61f7098c7b8911a95ed6403b",
+    "routes/signed_above.c": "ef9df7a5f5a8edc22c03b52994483a33f1fd0fa3693372c632be3f6146a29001",
+    "routes/signed_below.c": "1af2df54346b969caec04717792a3130cb1c8509d2f939c3bb2b64eb27ed192c",
+    "routes/unsigned_above.c": "b416958f765861f38fcbf8f7f056c9186f0065630a4bf5a1799b78a94f3153ed",
+    "routes/unsigned_below.c": "9717258cbada69dcfbff2bf112984dfea7fef28062578569575a6fd9e82a0041",
+    "smoke_layout_guidance.h": "b3460b5cfd152dae42d3eafe37ed0e58691069f4c69f38271345aa779f1c2d3d",
+    "verify.py": "0a8d61fd491997a8adef55c383da75e3d8422afc7b403a82b664bee604f52bb4"
+  },
+  "repository": "cabi24/SFRush2049-decomp",
+  "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+  "route_groups": {
+    "baseline_w6b": {
+      "axes": {},
+      "description": "Exact recorded w6b source; inherited pad[2] is diagnostic only.",
+      "source": "routes/baseline_w6b.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. Exact recorded w6b source; inherited pad[2] is diagnostic only. Not installable: both members require strict fresh matching."
+      }
+    },
+    "distance_boundary_control": {
+      "axes": {
+        "static_distances": true,
+        "successor": "open-coded signed baseline"
+      },
+      "description": "Static distance boundary only; original signed open-coded successor is unchanged.",
+      "source": "routes/distance_boundary_control.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. Static distance boundary only; original signed open-coded successor is unchanged. Not installable: both members require strict fresh matching."
+      }
+    },
+    "negative_kept_helper": {
+      "axes": {
+        "keep_helper": true,
+        "negative_control": true
+      },
+      "description": "NEGATIVE CONTROL: force the IPA helper to ordinary kept ABI. Never install.",
+      "source": "routes/unsigned_above.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main",
+          "audio_priority_find"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. NEGATIVE CONTROL: force the IPA helper to ordinary kept ABI. Never install. Not installable: both members require strict fresh matching."
+      }
+    },
+    "negative_successor_plus2": {
+      "axes": {
+        "negative_control": true
+      },
+      "description": "NEGATIVE CONTROL: deliberately wrong next checkpoint. Never install.",
+      "source": "routes/negative_successor_plus2.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. NEGATIVE CONTROL: deliberately wrong next checkpoint. Never install. Not installable: both members require strict fresh matching."
+      }
+    },
+    "signed_above": {
+      "axes": {
+        "static_distances": true,
+        "successor_placement": "above",
+        "successor_type": "s32"
+      },
+      "description": "signed successor defined above its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer.",
+      "source": "routes/signed_above.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. signed successor defined above its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer. Not installable: both members require strict fresh matching."
+      }
+    },
+    "signed_below": {
+      "axes": {
+        "static_distances": true,
+        "successor_placement": "below",
+        "successor_type": "s32"
+      },
+      "description": "signed successor defined below its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer.",
+      "source": "routes/signed_below.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. signed successor defined below its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer. Not installable: both members require strict fresh matching."
+      }
+    },
+    "unsigned_above": {
+      "axes": {
+        "static_distances": true,
+        "successor_placement": "above",
+        "successor_type": "unsigned int"
+      },
+      "description": "unsigned successor defined above its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer.",
+      "source": "routes/unsigned_above.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. unsigned successor defined above its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer. Not installable: both members require strict fresh matching."
+      }
+    },
+    "unsigned_below": {
+      "axes": {
+        "static_distances": true,
+        "successor_placement": "below",
+        "successor_type": "unsigned int"
+      },
+      "description": "unsigned successor defined below its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer.",
+      "source": "routes/unsigned_below.c",
+      "spec": {
+        "claims": [],
+        "context": [],
+        "files": [
+          "group.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "audio_mixer_main"
+        ],
+        "members": [
+          "audio_priority_find",
+          "audio_mixer_main"
+        ],
+        "note": "PRIVATE RESEARCH, UNSCORED. unsigned successor defined below its direct caller FindPathDistances; FindPathDistances is always defined below the synchronizer. Not installable: both members require strict fresh matching."
+      }
+    }
+  },
+  "source_validation": {
+    "claims": [],
+    "fresh_compiler_score": null,
+    "patch_roundtrips": "collection-time entity 1, C910 8 and StartBlast 1 source files reproduced; later corrected C910 source/header intentionally differ and are separately pinned",
+    "task46_source_receipt": "all pins checked; four inherited integrity negatives rerun",
+    "task47_source_receipt": "all input pins checked; complete controlled variants retained",
+    "task48_manifest": "all pins checked; all 17 zip entries compared; four locked context source hashes match current records",
+    "task49_receipt": "all source/artifact pins checked; native-only 1024-fixture replay rerun",
+    "visual_layout_correction": "task55 artifacts hashed; locked initializer actual C equals fresh Git blob and existing source lock hash; original layout inference withdrawn; no compiler proof"
+  },
+  "state": "RESEARCH_HANDOFF_UNSCORED",
+  "targets": [
+    {
+      "address": "0x80090308",
+      "body_sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169",
+      "bytes": 1128,
+      "classification": "inherited draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x80057998",
+      "gc_bytes": 816,
+      "gc_identity": "StartNewBlast",
+      "name": "func_80090308",
+      "native_path": "asm/us/blob/blob_8008d0c0.s",
+      "population": "blob",
+      "prior_residual": "202/282 in different device-based w26c source; natural source not freshly scored",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "blast/effects.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 282
+    },
+    {
+      "address": "0x800908A0",
+      "body_sha256": "1b79380ce3f4ffed899490871ba429397a8051c8786fe77c33b0e7fcfec36fa2",
+      "bytes": 712,
+      "classification": "inherited draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x800587C0",
+      "gc_bytes": 428,
+      "gc_identity": "AnimateBlast",
+      "name": "entity_physics_update",
+      "native_path": "asm/us/blob/blob_8008d0c0.s",
+      "population": "blob",
+      "prior_residual": "21/178 historical natural baseline",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "blast/effects.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 178
+    },
+    {
+      "address": "0x800AF06C",
+      "body_sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1",
+      "bytes": 1200,
+      "classification": "new source experiment",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x800585E4",
+      "gc_bytes": 476,
+      "gc_identity": "StartBlast",
+      "name": "save_write_data",
+      "native_path": "asm/us/blob/blob_800aeb54.s",
+      "population": "blob",
+      "prior_residual": "149/300 historical baseline, frame 248 vs native 352; proposal unscored",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "blast/start_blast.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 300
+    },
+    {
+      "address": "0x800BF45C",
+      "body_sha256": "0a4d6ecae3d2374db2d6f188e740ce8d0555ba769cda4399675b73c623712231",
+      "bytes": 796,
+      "classification": "existing upstream draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8004B2C0",
+      "gc_bytes": 632,
+      "gc_identity": "_PlayMoveSound",
+      "name": "camera_look_at_point",
+      "native_path": "asm/us/blob/blob_800bdd90.s",
+      "population": "blob",
+      "prior_residual": "38/199 historical context residual",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "src/blob/groups/camera_aspect_ratio/group.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 199
+    },
+    {
+      "address": "0x800B9740",
+      "body_sha256": "bc8379404dfd8076e68b4e343ad1925a28b1c1d1aea315136c892e7023f67e8b",
+      "bytes": 408,
+      "classification": "existing upstream draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x800331B4",
+      "gc_bytes": 368,
+      "gc_identity": "CalcResPathBounds",
+      "name": "func_800B9740",
+      "native_path": "asm/us/blob/blob_800b7360.s",
+      "population": "blob",
+      "prior_residual": "83/102 strict historical; discarded 77 result invalid",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "cloud/work/frontier/w14r/func_800B9740/best.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 102
+    },
+    {
+      "address": "0x800BA7C4",
+      "body_sha256": "5a1c1e88cc6e133f1e0a0ac7c4556fd1b5699abb22f567942fe6e1b5e0e2e835",
+      "bytes": 732,
+      "classification": "new source experiment",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x80031B10 / 800325BC",
+      "gc_bytes": 540,
+      "gc_identity": "SyncCheckpointsToPaths + inline FindPathDistances",
+      "name": "audio_mixer_main",
+      "native_path": "asm/us/blob/blob_800b7360.s",
+      "population": "blob",
+      "prior_residual": "31/183 historical; provisional audio_priority_find 108/108 excluded from new credit",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "routes/unsigned_above.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 183
+    },
+    {
+      "address": "0x800BAAA0",
+      "body_sha256": "858f0df463716ab7595fbf66906ac5720c6347c9c8a5afe47b66b9c65d6a0d60",
+      "bytes": 696,
+      "classification": "existing upstream draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8003220C",
+      "gc_bytes": 944,
+      "gc_identity": "ReadPathData",
+      "name": "audio_effect_apply",
+      "native_path": "asm/us/blob/blob_800b7360.s",
+      "population": "blob",
+      "prior_residual": "no reliable fresh score; caller of provisional physics_response 920 B",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "cloud/work/frontier/w17h/groups/physics_response/ctx.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 174
+    },
+    {
+      "address": "0x800C69C0",
+      "body_sha256": "b735da48328dc2262791e6c434d70110cf8f2269e0ec447cc0b74240e8795f97",
+      "bytes": 224,
+      "classification": "new source experiment",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x80045D5C",
+      "gc_bytes": 200,
+      "gc_identity": "CameraCollision",
+      "name": "entity_iterate",
+      "native_path": "asm/us/blob/blob_800c46d0.s",
+      "population": "blob",
+      "prior_residual": "no measured baseline or candidate score",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "entity/candidate.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 56
+    },
+    {
+      "address": "0x800C5644",
+      "body_sha256": "f6c75cb21f06ba63c5a22d4533fab31f6b231a11767262530583787fd7c5a066",
+      "bytes": 3520,
+      "classification": "existing upstream draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x800472A0",
+      "gc_bytes": 2280,
+      "gc_identity": "CollideCarBodyAgainstSurface",
+      "name": "camera_play_script",
+      "native_path": "asm/us/blob/blob_800c46d0.s",
+      "population": "blob",
+      "prior_residual": "27 aligned rows; strict 793/880 incl own-rodata failure and candidate extent 879",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "cloud/work/frontier/w18d/camera_play_script/best.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 880
+    },
+    {
+      "address": "0x800ADD58",
+      "body_sha256": "b758d5b5b7440827aed3f338fc70068543d0b1a9d98c6b2326bde65443db1403",
+      "bytes": 3580,
+      "classification": "existing upstream draft",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x80045E24",
+      "gc_bytes": 3016,
+      "gc_identity": "ShotToWorldCollision",
+      "name": "input_deadzone_apply",
+      "native_path": "asm/us/blob/blob_800a7df0.s",
+      "population": "blob",
+      "prior_residual": "122/895 historical; provisional input_process_controller context",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "cloud/work/frontier/w12a/ida/best.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 895
+    },
+    {
+      "address": "0x8038AA14",
+      "body_sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d",
+      "bytes": 120,
+      "classification": "research only",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8005C690",
+      "gc_bytes": 120,
+      "gc_identity": "_RemoveGattMFlash",
+      "name": "func_8038AA14",
+      "native_path": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "population": "ovl_b",
+      "prior_residual": "no proposed N64 C; private helper ABI",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": null,
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 30
+    },
+    {
+      "address": "0x8038A95C",
+      "body_sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e",
+      "bytes": 184,
+      "classification": "research only",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8005C708",
+      "gc_bytes": 184,
+      "gc_identity": "_RemoveCannMFlash",
+      "name": "func_8038A95C",
+      "native_path": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "population": "ovl_b",
+      "prior_residual": "no proposed N64 C; s4 private input",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": null,
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 46
+    },
+    {
+      "address": "0x8038C910",
+      "body_sha256": "792a927c17040f381a69c0a5220e168255ad4f3dc8fa6a380cc26fd314813cbf",
+      "bytes": 276,
+      "classification": "new source experiment; Astra owner handoff",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8005C7C0",
+      "gc_bytes": 244,
+      "gc_identity": "StartWeapon",
+      "name": "func_8038C910",
+      "native_path": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "population": "ovl_b",
+      "prior_residual": "13/69 historical prior draft; new source unscored",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "c910/candidate.c",
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 69
+    },
+    {
+      "address": "0x8038AA8C",
+      "body_sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39",
+      "bytes": 7812,
+      "classification": "research only",
+      "confidence": "very high identity; byte equality unproved",
+      "evidence": "packet.json; RESEARCH.md",
+      "gc_address": "0x8005C8B4",
+      "gc_bytes": 5284,
+      "gc_identity": "AnimateWeapon",
+      "name": "func_8038AA8C",
+      "native_path": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "population": "ovl_b",
+      "prior_residual": "no new N64 C; native-led reconstruction with real helpers required",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": null,
+      "status": "open/unlocked; UNSCORED proposals; claims empty",
+      "words": 1953
+    }
+  ],
+  "verified_source_links": [
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w26c/f308/best_effects.c",
+      "sha": "b2006c21ffd60fca007581f2885cb3d04db9e722",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w26c/f308/best_effects.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w26c/f308/best_effects_w26c.c",
+      "sha": "d35a0cbb458d628d1066b4666118000dcf863e54",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w26c/f308/best_effects_w26c.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w26c/f308/swd_best.c",
+      "sha": "1109219ffc2b00ce3130e6033a34fecb103dea79",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w26c/f308/swd_best.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w6b/audio_mixer_main/best.c",
+      "sha": "a94e360b3db2beac83c1779fa362053eb4ef589c",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w6b/audio_mixer_main/best.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w14r/func_800B9740/best.c",
+      "sha": "95f7b731147d8b8d8156c7eef22c1d6d782231fa",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w14r/func_800B9740/best.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w18d/camera_play_script/best.c",
+      "sha": "6cd2c5d4115e2931ae34ab589214999f786ff260",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w18d/camera_play_script/best.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w12a/ida/best.c",
+      "sha": "ba700d5e1a15e676d42c725a5bc2c78814e7138b",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w12a/ida/best.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/w17h/groups/physics_response/ctx.c",
+      "sha": "e16e9e8f28ea6868c75005135a46c15ab8bae3c6",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/w17h/groups/physics_response/ctx.c"
+    },
+    {
+      "error": false,
+      "path": "src/blob/groups/camera_aspect_ratio/group.c",
+      "sha": "91115c7960f758e03055544b5bb1ac5810fa23d5",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/src/blob/groups/camera_aspect_ratio/group.c"
+    },
+    {
+      "error": false,
+      "path": "cloud/work/frontier/dot_runtime_b_callback_init_20261012/candidate.c",
+      "sha": "372139da30e3b9c05f8112e256c017341d06415d",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/cloud/work/frontier/dot_runtime_b_callback_init_20261012/candidate.c"
+    }
+  ],
+  "visual_layout_correction": {
+    "byte_address_unchanged": true,
+    "candidate_expression": "D_80152818[slot].visuals[20]",
+    "claims": [],
+    "compiler_output_equality": "NOT_TESTED",
+    "fresh_score": null,
+    "gc": {
+      "array_end_collidable": 800,
+      "base": 272,
+      "car_stride": 972,
+      "count": 22,
+      "weapon_index": 21,
+      "weapon_offset": 776
+    },
+    "n64": {
+      "array_end_collidable": 776,
+      "base": 272,
+      "car_stride": 952,
+      "count": 21,
+      "element_bytes": 24,
+      "weapon_index": 20,
+      "weapon_offset": 752
+    },
+    "original_patch_roundtrips": "collection-time originals; corrected C910 C/header intentionally differ",
+    "proof": {
+      "existing_lock_state": "image_gate; source hash independently checked",
+      "git_blob_sha1": "261eb9b4cc700b7945b7ada0546a5ada76ed3c0e",
+      "method": "locked initializer base/bound/stride and postincrement stores; no raw instructions published",
+      "revision": "c226123281724be9459ffa5d8ea41850bede3187",
+      "source": "src/blob/func_800B27E4.c",
+      "source_sha256": "1a407096f10ef074e4a2f99b2116deb8a1e7de5f8a036b6d98260b0c3b5e7fb0",
+      "url": "https://github.com/cabi24/SFRush2049-decomp/blob/c226123281724be9459ffa5d8ea41850bede3187/src/blob/func_800B27E4.c"
+    },
+    "remaining_ambiguity": "opaque prefix fields and source/code-generation/alias behavior remain unproved; shared AF5E0 prototype reconciliation still required",
+    "state": "SOURCE_CORRECTION_UNCOMPILED_UNSCORED",
+    "supersedes": {
+      "incorrect_n64_base": 248,
+      "incorrect_n64_count": 22,
+      "incorrect_n64_weapon_index": 21
+    }
+  }
+}
