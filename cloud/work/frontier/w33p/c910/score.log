@@ -1,0 +1,32 @@
+=== prior-candidate
+func_8038C910:
+    +0x060  want a4680008 sh t0,8(v1)                   got a46e0008 sh t6,8(v1)                 
+    +0x064  want 3c0d8014 lui t5,0x8014                 got 000e6180 sll t4,t6,0x6               
+    +0x06c  want 25ad9320 addiu t5,t5,-27872            got 3c0d8014 lui t5,0x8014               
+    +0x070  want 00086180 sll t4,t0,0x6                 got 25ad9320 addiu t5,t5,-27872          
+    +0x074  want 018d4821 addu t1,t4,t5                 got afae0010 sw t6,16(sp)                
+    +0x078  want 3c048014 lui a0,0x8014                 got 240effff li t6,-1                    
+    +0x07c  want 240effff li t6,-1                      got 018d4821 addu t1,t4,t5               
+    +0x080  want 240f0001 li t7,1                       got 3c048014 lui a0,0x8014               
+    +0x084  want afaf0018 sw t7,24(sp)                  got 240f0001 li t7,1                     
+    +0x088  want afae0014 sw t6,20(sp)                  got afaf0018 sw t7,24(sp)                
+    +0x098  want a7a80042 sh t0,66(sp)                  got afae0014 sw t6,20(sp)                
+    +0x09c  want afa30030 sw v1,48(sp)                  got a7a80042 sh t0,66(sp)                
+  13/69 words differ
+rc=1
+=== candidate
+func_8038C910:
+    +0x024  want 01f81021 addu v0,t7,t8                 got 01f81821 addu v1,t7,t8               
+    +0x028  want 845902f6 lh t9,758(v0)                 got 847902f6 lh t9,758(v1)               
+    +0x02c  want 27bdffc0 addiu sp,sp,-64               got 27bdffc8 addiu sp,sp,-56             
+    +0x034  want afa40040 sw a0,64(sp)                  got afa40038 sw a0,56(sp)                
+    +0x038  want 07210032 bgez t9,0xcc                  got 07210031 bgez t9,0xc8                
+    +0x040  want 244302f0 addiu v1,v0,752               got 3c0a8039 lui t2,0x8039               
+    +0x044  want 3c0a8039 lui t2,0x8039                 got 254aaa8c addiu t2,t2,-21876          
+    +0x048  want 254aaa8c addiu t2,t2,-21876            got a46002f4 sh zero,756(v1)             
+    +0x04c  want 3c0b8003 lui t3,0x8003                 got ac6a0304 sw t2,772(v1)               
+    +0x050  want a4600004 sh zero,4(v1)                 got 3c018003 lui at,0x8003               
+    +0x054  want ac6a0014 sw t2,20(v1)                  got c424eb90 lwc1 $f4,-5232(at)          
+    +0x058  want 256beb90 addiu t3,t3,-5232             got 000e5980 sll t3,t6,0x6               
+  58/69 words differ
+rc=1

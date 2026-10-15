@@ -1,0 +1,3 @@
+spliced frontier_route_cross: 2 members, new: ['audio_mixer_main', 'audio_priority_find']
+image coverage: 1068/1216 functions, 397668/647072 bytes (61.46%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

@@ -1,0 +1,15 @@
+draft_check: running on rocky (inbox rush2049/recomp/dc/inbox/cburnes-entity_iterate-20261014-223144-2314499)
+draft_check entity_iterate <- /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33p/cloud/work/frontier/gc_informed_n64_unscored_20261015/entity/candidate.c
+  draft sha256 8c9cd84a90cd5efa; run dir /home/cburnes/rush2049/recomp/dc/runs/entity_iterate/20261014-223145-3735773
+  scripts (census: 33 scripts call entity_iterate; the 6 with the most calls (--scripts reached: all 33)): stunt_end, two_player_finish, battle, ghost_save, race_finish, unlock
+  built in 33 s (draft compiled with ido5.3)
+  stunt_end      EQUIVALENT   8670 calls of entity_iterate  (11000 frames, 29 s)
+  two_player_finish EQUIVALENT   6373 calls of entity_iterate  (4800 frames, 20 s)
+  battle         EQUIVALENT   3880 calls of entity_iterate  (2700 frames, 11 s)
+  ghost_save     EQUIVALENT   3066 calls of entity_iterate  (5000 frames, 25 s)
+  race_finish    EQUIVALENT   3011 calls of entity_iterate  (4800 frames, 18 s)
+  unlock         EQUIVALENT   3011 calls of entity_iterate  (4800 frames, 18 s)
+
+VERDICT: EQUIVALENT over 28011 calls / 6 scripts (stunt_end 8670, two_player_finish 6373, battle 3880, ghost_save 3066, race_finish 3011, unlock 3011)
+  Behaviour only: every call's arguments, return value and memory writes match retail. This is NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.
+  details: /home/cburnes/rush2049/recomp/dc/runs/entity_iterate/20261014-223145-3735773

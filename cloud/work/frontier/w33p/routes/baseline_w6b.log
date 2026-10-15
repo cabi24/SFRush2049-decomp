@@ -1,0 +1,11 @@
+  FAIL audio_mixer_main: 31 of 183 words differ
+       defined by c_baseline_w6b.c (kept)
+       +0x1e0  image 3c138015  unit 3c148015
+       +0x1e4  image 26732800  unit 26942800
+       +0x1e8  image e6680000  unit e6880000
+       +0x1ec  image c66a0000  unit c68a0000
+       +0x1f0  image 3c148015  unit 3c158015
+       +0x1f4  image 269443ac  unit 26b543ac
+  EQUAL audio_priority_find: 108 words (internal, c_baseline_w6b.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 1/2 equal; object build/blob_unit/w33p/unit.o (10.8s)

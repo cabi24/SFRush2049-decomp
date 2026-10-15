@@ -1,0 +1,19 @@
+  FAIL audio_mixer_main: 110 of 183 words differ
+       defined by c_unsigned_above.c (kept)
+       +0x000  image 27bdffb0  unit 27bdffb8
+       +0x038  image afa40050  unit afa40048
+       +0x05c  image c6c4000c  unit c6d00014
+       +0x060  image c6c80010  unit c6c4000c
+       +0x064  image 87b90052  unit c6c80010
+       +0x068  image 4600218d  unit 4600848d
+       umerge inlined into it: gc_lane_FindPathDistances
+  FAIL audio_priority_find: 63 of 108 words differ
+       defined by c_unsigned_above.c (kept)
+       +0x000  image 27bdffe8  unit 3c068014
+       +0x004  image afa4001c  unit 24c607f0
+       +0x008  image 00047400  unit 90c80008
+       +0x00c  image 3c068014  unit 27bdffe8
+       +0x010  image 24c607f0  unit afa5001c
+       +0x014  image 000e2403  unit 0005c400
+  locked bodies that differ in this unit: 0
+blob_unit score: 0/2 equal; object build/blob_unit/w33p/unit.o (9.4s)

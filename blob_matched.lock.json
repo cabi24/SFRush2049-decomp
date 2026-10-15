@@ -492,6 +492,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "audio_mixer_main": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_route_cross",
+    "source": "src/blob/groups/frontier_route_cross/group.json",
+    "source_sha256": "7c4b6cfa677167f88f4018308c928c681a3ba0570f5ef7e4bb90ed4d78c72ebe",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
+  },
   "audio_occlusion": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/audio_occlusion.c",
@@ -517,6 +526,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "audio_priority_find": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_route_cross",
+    "source": "src/blob/groups/frontier_route_cross/group.json",
+    "source_sha256": "7c4b6cfa677167f88f4018308c928c681a3ba0570f5ef7e4bb90ed4d78c72ebe",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-14"
   },
   "audio_queue_process": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

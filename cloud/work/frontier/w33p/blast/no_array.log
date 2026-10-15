@@ -1,0 +1,29 @@
+  FAIL func_80090308: 210 of 282 words differ; +0x1a8: .rodata+0x17c: retail words encode 0x005439b8, outside the image; +0x228: .rodata+0x180: retail words encode 0xfffbc012, outside the image; +0x3b8: .rodata+0x184: retail words encode 0x00d50010, outside the image (+2 more)
+       defined by c_effects.c (internal)
+       +0x008  image 27bdfef0  unit 27bdff60
+       +0x014  image afae00d4  unit afae0080
+       +0x018  image 104000fe  unit 10400100
+       +0x01c  image afa2010c  unit afa2009c
+       +0x040  image 87b80112  unit 87b800a2
+       +0x044  image 240e00cd  unit 240f0014
+       umerge inlined into it: func_8008B2E4, func_8008E06C
+  FAIL entity_physics_update: 21 of 178 words differ
+       defined by c_effects.c (kept)
+       +0x064  image 84e50008  unit 84e20008
+       +0x098  image 84e50008  unit 84e20008
+       +0x0a0  image 04a0002e  unit 0440002e
+       +0x0a4  image 00057200  unit 00027200
+       +0x0a8  image 01c57021  unit 01c27021
+       +0x0c4  image 00aa0019  unit 004a0019
+       umerge inlined into it: func_80090770
+  FAIL save_write_data: 149 of 300 words differ; +0x1f8: .rodata+0x470: retail words encode 0x3bff8014, outside the image
+       defined by c_start_blast.c (kept)
+       +0x000  image 27bdfea0  unit 27bdff38
+       +0x04c  image afa40160  unit afa400c8
+       +0x050  image afa50164  unit afa500cc
+       +0x054  image afa60168  unit afa600d0
+       +0x05c  image afa7016c  unit afa700d4
+       +0x074  image 8fb90164  unit 8fb900cc
+       umerge inlined into it: blast_init, play_at
+  locked bodies that differ in this unit: 0
+blob_unit score: 0/3 equal; object build/blob_unit/w33p/unit.o (10.5s)
