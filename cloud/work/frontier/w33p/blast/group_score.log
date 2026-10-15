@@ -1,0 +1,128 @@
+=== baseline
+Members:
+func_80090308:
+    +0x008  want 27bdfef0 addiu sp,sp,-272              got 27bdff60 addiu sp,sp,-160            
+    +0x014  want afae00d4 sw t6,212(sp)                 got afae0080 sw t6,128(sp)               
+    +0x018  want 104000fe beqz v0,0x3fc                 got 10400100 beqz v0,0x404               
+    +0x01c  want afa2010c sw v0,268(sp)                 got afa2009c sw v0,156(sp)               
+    +0x040  want 87b80112 lh t8,274(sp)                 got 87b800a2 lh t8,162(sp)               
+    +0x044  want 240e00cd li t6,205                     got 240f0014 li t7,20                    
+    +0x048  want 240f0014 li t7,20                      got 240e00cd li t6,205                   
+    +0x050  want 87b80112 lh t8,274(sp)                 got 87b800a2 lh t8,162(sp)               
+    +0x054  want a3b900d4 sb t9,212(sp)                 got a3b90080 sb t9,128(sp)               
+    +0x06c  want a3ae00d5 sb t6,213(sp)                 got a3af0082 sb t7,130(sp)               
+    +0x070  want a3af00d6 sb t7,214(sp)                 got a3ae0081 sb t6,129(sp)               
+    +0x0bc  want 3c128014 lui s2,0x8014                 got 3c138014 lui s3,0x8014               
+  210/282 words differ (1 extra words (nonzero beyond target length); 16 section-relative relocations unverified: .rodata+0x0 at +0x38, .rodata+0x0 at +0x58, .rodata+0x4 at +0x78, .rodata+0x4 at +0x7c, .rodata+0x8 at +0x94, .rodata+0x8 at +0xa0, .rodata+0xc at +0x17c, .rodata+0xc at +0x1a8, .rodata+0x10 at +0x1b0, .rodata+0x10 at +0x228, .rodata+0x14 at +0x3a4, .rodata+0x14 at +0x3b8, .rodata+0x18 at +0x3cc, .rodata+0x18 at +0x3d0, .rodata+0x1c at +0x3f8, .rodata+0x1c at +0x400)
+    own .rodata verified at 0x801239A8..0x801239B4
+    not verified: .rodata+0xc at +0x1a8: retail bytes at 0x005439B8 are not available
+    not verified: .rodata+0x10 at +0x228: retail bytes at 0xFFFBC012 are not available
+    not verified: .rodata+0x14 at +0x3b8: retail bytes at 0x00D50010 are not available
+    not verified: .rodata+0x18 at +0x3d0: retail bytes at 0xC07FC023 are not available
+    not verified: .rodata+0x1c at +0x400: retail bytes at 0x39C40000 are not available
+entity_physics_update:
+    +0x064  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x098  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x0a0  want 04a0002e bltz a1,0xbc                  got 0440002e bltz v0,0xbc                
+    +0x0a4  want 00057200 sll t6,a1,0x8                 got 00027200 sll t6,v0,0x8               
+    +0x0a8  want 01c57021 addu t6,t6,a1                 got 01c27021 addu t6,t6,v0               
+    +0x0c4  want 00aa0019 multu a1,t2                   got 004a0019 multu v0,t2                 
+    +0x158  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x188  want 04a00008 bltz a1,0x24                  got 04400008 bltz v0,0x24                
+    +0x190  want 04a2003c bltzl a1,0xf4                 got 0442003c bltzl v0,0xf4               
+    +0x1b4  want 84e40004 lh a0,4(a3)                   got 84e50004 lh a1,4(a3)                 
+    +0x1c0  want 5081ffaa beql a0,at,0xfffffffffffffeac  got 50a1ffaa beql a1,at,0xfffffffffffffeac
+    +0x1c8  want 84e20006 lh v0,6(a3)                   got 84e30006 lh v1,6(a3)                 
+  21/178 words differ
+    own .rodata verified at 0x801239C8..0x801239CC
+save_write_data:
+    +0x000  want 27bdfea0 addiu sp,sp,-352              got 27bdff08 addiu sp,sp,-248            
+    +0x04c  want afa40160 sw a0,352(sp)                 got afa400f8 sw a0,248(sp)               
+    +0x050  want afa50164 sw a1,356(sp)                 got afa500fc sw a1,252(sp)               
+    +0x054  want afa60168 sw a2,360(sp)                 got afa60100 sw a2,256(sp)               
+    +0x05c  want afa7016c sw a3,364(sp)                 got afa70104 sw a3,260(sp)               
+    +0x074  want 8fb90164 lw t9,356(sp)                 got 8fb900fc lw t9,252(sp)               
+    +0x08c  want 8fb90164 lw t9,356(sp)                 got 8fb900fc lw t9,252(sp)               
+    +0x0a4  want 8faf0160 lw t7,352(sp)                 got 8faf00f8 lw t7,248(sp)               
+    +0x0bc  want afb9010c sw t9,268(sp)                 got afb900ac sw t9,172(sp)               
+    +0x0c4  want a7b8014a sh t8,330(sp)                 got a7b800ea sh t8,234(sp)               
+    +0x0d0  want 87a2014a lh v0,330(sp)                 got 87a200ea lh v0,234(sp)               
+    +0x118  want afa80144 sw t0,324(sp)                 got afa800e4 sw t0,228(sp)               
+  149/300 words differ (4 section-relative relocations unverified: .rodata+0x20 at +0x1f4, .rodata+0x20 at +0x1f8, .rodata+0x24 at +0x260, .rodata+0x24 at +0x268)
+    own .rodata verified at 0x80123C04..0x80123C08
+    not verified: .rodata+0x20 at +0x1f8: retail bytes at 0x3BFF8014 are not available
+
+Context (informational; excluded from exit status):
+func_8008E06C:
+  MISMATCH (2 extra words (nonzero beyond target length))
+func_80090770:
+  MATCH
+func_8008B2E4:
+  MATCH
+func_80090284:
+  MISMATCH (1 extra words (nonzero beyond target length))
+rc=1
+=== no_array
+Members:
+func_80090308:
+    +0x008  want 27bdfef0 addiu sp,sp,-272              got 27bdff60 addiu sp,sp,-160            
+    +0x014  want afae00d4 sw t6,212(sp)                 got afae0080 sw t6,128(sp)               
+    +0x018  want 104000fe beqz v0,0x3fc                 got 10400100 beqz v0,0x404               
+    +0x01c  want afa2010c sw v0,268(sp)                 got afa2009c sw v0,156(sp)               
+    +0x040  want 87b80112 lh t8,274(sp)                 got 87b800a2 lh t8,162(sp)               
+    +0x044  want 240e00cd li t6,205                     got 240f0014 li t7,20                    
+    +0x048  want 240f0014 li t7,20                      got 240e00cd li t6,205                   
+    +0x050  want 87b80112 lh t8,274(sp)                 got 87b800a2 lh t8,162(sp)               
+    +0x054  want a3b900d4 sb t9,212(sp)                 got a3b90080 sb t9,128(sp)               
+    +0x06c  want a3ae00d5 sb t6,213(sp)                 got a3af0082 sb t7,130(sp)               
+    +0x070  want a3af00d6 sb t7,214(sp)                 got a3ae0081 sb t6,129(sp)               
+    +0x0bc  want 3c128014 lui s2,0x8014                 got 3c138014 lui s3,0x8014               
+  210/282 words differ (1 extra words (nonzero beyond target length); 16 section-relative relocations unverified: .rodata+0x0 at +0x38, .rodata+0x0 at +0x58, .rodata+0x4 at +0x78, .rodata+0x4 at +0x7c, .rodata+0x8 at +0x94, .rodata+0x8 at +0xa0, .rodata+0xc at +0x17c, .rodata+0xc at +0x1a8, .rodata+0x10 at +0x1b0, .rodata+0x10 at +0x228, .rodata+0x14 at +0x3a4, .rodata+0x14 at +0x3b8, .rodata+0x18 at +0x3cc, .rodata+0x18 at +0x3d0, .rodata+0x1c at +0x3f8, .rodata+0x1c at +0x400)
+    own .rodata verified at 0x801239A8..0x801239B4
+    not verified: .rodata+0xc at +0x1a8: retail bytes at 0x005439B8 are not available
+    not verified: .rodata+0x10 at +0x228: retail bytes at 0xFFFBC012 are not available
+    not verified: .rodata+0x14 at +0x3b8: retail bytes at 0x00D50010 are not available
+    not verified: .rodata+0x18 at +0x3d0: retail bytes at 0xC07FC023 are not available
+    not verified: .rodata+0x1c at +0x400: retail bytes at 0x39C40000 are not available
+entity_physics_update:
+    +0x064  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x098  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x0a0  want 04a0002e bltz a1,0xbc                  got 0440002e bltz v0,0xbc                
+    +0x0a4  want 00057200 sll t6,a1,0x8                 got 00027200 sll t6,v0,0x8               
+    +0x0a8  want 01c57021 addu t6,t6,a1                 got 01c27021 addu t6,t6,v0               
+    +0x0c4  want 00aa0019 multu a1,t2                   got 004a0019 multu v0,t2                 
+    +0x158  want 84e50008 lh a1,8(a3)                   got 84e20008 lh v0,8(a3)                 
+    +0x188  want 04a00008 bltz a1,0x24                  got 04400008 bltz v0,0x24                
+    +0x190  want 04a2003c bltzl a1,0xf4                 got 0442003c bltzl v0,0xf4               
+    +0x1b4  want 84e40004 lh a0,4(a3)                   got 84e50004 lh a1,4(a3)                 
+    +0x1c0  want 5081ffaa beql a0,at,0xfffffffffffffeac  got 50a1ffaa beql a1,at,0xfffffffffffffeac
+    +0x1c8  want 84e20006 lh v0,6(a3)                   got 84e30006 lh v1,6(a3)                 
+  21/178 words differ
+    own .rodata verified at 0x801239C8..0x801239CC
+save_write_data:
+    +0x000  want 27bdfea0 addiu sp,sp,-352              got 27bdff38 addiu sp,sp,-200            
+    +0x04c  want afa40160 sw a0,352(sp)                 got afa400c8 sw a0,200(sp)               
+    +0x050  want afa50164 sw a1,356(sp)                 got afa500cc sw a1,204(sp)               
+    +0x054  want afa60168 sw a2,360(sp)                 got afa600d0 sw a2,208(sp)               
+    +0x05c  want afa7016c sw a3,364(sp)                 got afa700d4 sw a3,212(sp)               
+    +0x074  want 8fb90164 lw t9,356(sp)                 got 8fb900cc lw t9,204(sp)               
+    +0x08c  want 8fb90164 lw t9,356(sp)                 got 8fb900cc lw t9,204(sp)               
+    +0x0a4  want 8faf0160 lw t7,352(sp)                 got 8faf00c8 lw t7,200(sp)               
+    +0x0bc  want afb9010c sw t9,268(sp)                 got afb900ac sw t9,172(sp)               
+    +0x0c4  want a7b8014a sh t8,330(sp)                 got a7b800ba sh t8,186(sp)               
+    +0x0d0  want 87a2014a lh v0,330(sp)                 got 87a200ba lh v0,186(sp)               
+    +0x118  want afa80144 sw t0,324(sp)                 got afa800b4 sw t0,180(sp)               
+  149/300 words differ (4 section-relative relocations unverified: .rodata+0x20 at +0x1f4, .rodata+0x20 at +0x1f8, .rodata+0x24 at +0x260, .rodata+0x24 at +0x268)
+    own .rodata verified at 0x80123C04..0x80123C08
+    not verified: .rodata+0x20 at +0x1f8: retail bytes at 0x3BFF8014 are not available
+
+Context (informational; excluded from exit status):
+func_8008E06C:
+  MISMATCH (2 extra words (nonzero beyond target length))
+func_80090770:
+  MATCH
+func_8008B2E4:
+  MATCH
+func_80090284:
+  MISMATCH (1 extra words (nonzero beyond target length))
+rc=1

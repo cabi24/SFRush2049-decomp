@@ -1,0 +1,10 @@
+  FAIL entity_iterate: 15 of 56 words differ
+       defined by c_candidate.c (kept)
+       +0x08c  image c7aa0024  unit c7b00024
+       +0x094  image 46005402  unit 46008482
+       +0x098  image c4b20000  unit c4aa0000
+       +0x09c  image c4aa0004  unit c4a60004
+       +0x0a0  image 46128100  unit 46125100
+       +0x0a4  image e4a40000  unit c4b20008
+  locked bodies that differ in this unit: 0
+blob_unit score: 0/1 equal; object build/blob_unit/w33p/unit.o (10.6s)

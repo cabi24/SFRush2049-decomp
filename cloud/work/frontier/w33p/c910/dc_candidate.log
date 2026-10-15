@@ -1,0 +1,13 @@
+draft_check: running on rocky (inbox rush2049/recomp/dc/inbox/cburnes-ovl_b:func_8038C910-20261014-223253-2316038)
+draft_check func_8038C910 <- /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33p/cloud/work/frontier/gc_informed_n64_unscored_20261015/c910/candidate.c [ovl_b]
+  draft sha256 2a8785d549728e85; run dir /home/cburnes/rush2049/recomp/dc/runs/ovl_b_func_8038C910/20261014-223254-3737060
+  scripts (census: 4 script(s) call func_8038C910): battle, battle_end, battle_mine, battle_weapons
+  built in 34 s (draft compiled with ido5.3)
+  battle         EQUIVALENT   2 calls of func_8038C910  (2700 frames, 10 s)
+  battle_end     EQUIVALENT   2 calls of func_8038C910  (1800 frames, 8 s)
+  battle_mine    EQUIVALENT   2 calls of func_8038C910  (1500 frames, 7 s)
+  battle_weapons EQUIVALENT   2 calls of func_8038C910  (1800 frames, 8 s)
+
+VERDICT: EQUIVALENT over 8 calls / 4 scripts (battle 2, battle_end 2, battle_mine 2, battle_weapons 2)
+  Behaviour only: every call's arguments, return value and memory writes match retail. This is NOT a match and NOT coverage (score.py / blob_unit decide that); never put it in cloud/matches.
+  details: /home/cburnes/rush2049/recomp/dc/runs/ovl_b_func_8038C910/20261014-223254-3737060

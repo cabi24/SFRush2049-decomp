@@ -1,0 +1,12 @@
+  FAIL audio_mixer_main: 37 of 183 words differ
+       defined by c_distance_boundary_control.c (kept)
+       +0x000  image 27bdffb0  unit 27bdffb8
+       +0x038  image afa40050  unit afa40048
+       +0x064  image 87b90052  unit 87b9004a
+       +0x124  image 87ae0052  unit 87ae004a
+       +0x12c  image 87a50052  unit 87a5004a
+       +0x1e0  image 3c138015  unit 3c148015
+       umerge inlined into it: gc_lane_FindPathDistances
+  EQUAL audio_priority_find: 108 words (internal, c_distance_boundary_control.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 1/2 equal; object build/blob_unit/w33p/unit.o (10.5s)
