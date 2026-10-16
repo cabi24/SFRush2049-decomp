@@ -1,0 +1,3 @@
+# w33r: high-score unit (GC highscorescr.c), checked as w32r did by hand (Phase 12 RESULTS section 3).
+--unit highscore_animText,DrawName,DrawGhost,DrawUnlocked
+--scripts ghost_pak,unlock,player_finish,race_finish
