@@ -643,3 +643,5 @@ Detail: `tools/recomp/README.md` "Phase 13"; lane notes: `cloud/work/frontier/w3
 - **The conveyor's clobber facts carry the restore clause** (a stack store in a calling body is a save only if its
   slot is reloaded): exactly regmap_verify's eight sets grow; among unmatched functions audio_doppler_calc +s0,
   entity_tick_main +s5, render_replay_ui +s4. Calibration unchanged (0/692 standalone locks).
+- **Wave 33 final all lanes**: 115 drafts, 40 EQUIVALENT, 73 MATCHED, 2 ERROR (new w33a dirs `ar`, `f0e58`: dc.args
+  `--name` added, both EQUIVALENT by hand), no divergence; census 136 of 139 unmatched reached, 3 never.

@@ -1,5 +1,4 @@
-STATUS (2026-10-15): jobs 1, 2 DONE; job 3 (--all-lanes + census on the final wave tree) waits for the coordinator's
-ping; job 4: no package. Recomp Phase 13, branch w33r (worktree, from origin/master 58425072b). Not a matching lane:
+STATUS (2026-10-15): DONE (jobs 1-3; job 4: no package). Final wave tree wave33 1fe5fe8c0 merged into w33r. Recomp Phase 13, branch w33r (worktree, from origin/master 58425072b). Not a matching lane:
 no src/, asm/, lock or coverage change. Docs: tools/recomp/README.md "Phase 13"; plan section 22.
 
 # 1. dc.args for the five --all-lanes ERROR unit dirs
@@ -44,6 +43,39 @@ python3 -m tools.conveyor.pipeline.frontier scan          # writes build/frontie
 # (ipa_members.json is unaffected by this change; refresh it with `ipa scan` only if the wave needs it)
 scp build/frontier.json build/ipa_members.json rocky:rush2049/recomp/dc/repo/build/
 ```
+
+# 3. --all-lanes + census on the final wave tree (wave33 1fe5fe8c0, game 1077/1216)
+
+Rocky service tree `~/rush2049/recomp/dc/repo` rsynced by the coordinator from wave33 1fe5fe8c0, with its freshly
+scanned build/frontier.json (new clause, 1077 matched) and build/ipa_members.json. Every row recomputed with
+`--refresh` (the cache is ignored, rows rewritten; same effect as an epoch bump without editing the service tree's
+code, which this lane was told not to sync). Command (on rocky, in the service tree):
+`RUSH_DC_BUILD_JOBS=8 python3 -m tools.recomp.draft_check --all-lanes --refresh --json ~/rush2049/recomp/dc/lanes/w33r-all.json`
+Log/JSON: rocky `~/rush2049/recomp/dc/lanes/w33r-all.{log,json}`.
+
+`ALL LANES w2[8-9]*,w3*: 115 drafts: 40 EQUIVALENT, 2 ERROR, 73 MATCHED`; DIVERGES 0, FAULT 0.
+- The five formerly-ERROR dirs: w31a/hs and w32a/hs EQUIVALENT 2,473 calls / 4 scripts; w31a/f5ea8 (animResults)
+  EQUIVALENT 26,166 calls / 6 scripts; w31a/audio and w32b/audio MATCHED.
+- w33a/hs (its own dc.args, `--unit ... --params DrawName:p=s5`, default scripts): EQUIVALENT over 4,921 calls /
+  6 scripts (ghost_pak 1144, ghost_resave 1144, two_player_finish 496, ghost_save 900, player_finish 863,
+  ghost_delete_fail 374). DrawName/DrawGhost/DrawUnlocked are locked now; highscore_animText is not, so it runs.
+- The 2 ERRORs were new w33a unit dirs whose NAME is not the directory: `w33a/ar` (dc.args had only
+  `--params arg0=a0`) and `w33a/f0e58` (no dc.args). Fixed here: `ar/dc.args` `--name animResults --params arg0=a0`,
+  `f0e58/dc.args` `--name func_80100E58`. Run by hand on rocky (drafts already in the service tree):
+  `draft_check animResults cloud/work/frontier/w33a/ar/best.c --params arg0=a0` ->
+  `VERDICT: EQUIVALENT over 26166 calls / 6 scripts (stunt_end 9336, pause_menus 3736, two_player_finish 3390, ghost_save 3268, race_finish 3218, unlock 3218)`;
+  `draft_check func_80100E58 cloud/work/frontier/w33a/f0e58/best.c` ->
+  `VERDICT: EQUIVALENT over 3405 calls / 6 scripts (saves 1395, race_finish 480, ghost_pak 420, ghost_resave 420, unlock 420, player_finish 270)`.
+  With those dc.args the table would read 42 EQUIVALENT, 0 ERROR, 73 MATCHED once the service tree has them.
+- Newly MATCHED this wave (rows w33d control_settings, w33p entity_iterate, plus older lanes' drafts of the wave-33
+  matches) - no draft check needed.
+
+Census (rocky, same tree, 39 scripts; logs `~/rush2049/recomp/dc/lanes/w33r-census{,-ovl}.log`; files copied back to
+tools/recomp/census/ and committed): **139 unmatched: 136 reached (152,616 B), 3 never (632 B)**:
+world_effect_update (456), fp_call_wrapper (104), object_bytes23_sum (72), unchanged since wave 31 (no static
+reference). Was 147 of 150 at wave 32. Overlays (`--overlays`): image A 99 of 193 reached (unmatched 45 of 112,
+92,504 of 101,892 B), image B 35 of 49 (unmatched 19 of 28, 28,696 of 29,688 B): unchanged (no overlay matches in
+the census tree's ovl lock change their reach).
 
 # Checks
 
