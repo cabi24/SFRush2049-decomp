@@ -160,6 +160,7 @@ _WRITES_RT = ({8, 9, 10, 11, 12, 13, 14, 15, 24, 25}          # immediates, lui
 _NO_RD = {8, 9, 16, 17, 18, 19, 24, 25, 26, 27, 12, 13}       # jr/jalr handled, hi/lo, mult/div
 _CALLEE_SAVED = set(range(16, 24)) | {30}
 _REG_NAMES = {**{16 + i: f"s{i}" for i in range(8)}, 30: "s8"}
+_RELOAD_OF = {43: 35, 63: 55}                                # sw -> lw, sd -> ld
 
 
 def unsaved_callee_writes(words):
@@ -171,12 +172,22 @@ def unsaved_callee_writes(words):
     writes it (IDO saves in the entry block); a later store is a spill or an
     outgoing stack argument of the clobbered value (w32r, regmap_verify
     Interproc: retail func_800DD0C0 writes s0/s1/s3, then spills s1/s3 around
-    a call and passes s0 at 0x18(sp))."""
+    a call and passes s0 at 0x18(sp)).
+
+    It is also a save only if the body reloads the register from that slot
+    (every IDO save has its epilogue restore), unless the body makes no call
+    (w33r, regmap_verify Interproc's w32r job-3 clause: control_cell_text2
+    passes its s8 parameter on at 0x18(sp) before it first writes s8, never
+    reloads that slot, and then writes s8 unsaved)."""
+    words = list(words)
+    reloads = {(w >> 26, (w >> 16) & 31, w & 0xFFFF) for w in words
+               if (w >> 26) in (35, 55) and ((w >> 21) & 31) == 29}    # lw / ld reg, off(sp)
+    calls = any(w >> 26 == 3 or (w >> 26 == 0 and (w & 63) == 9) for w in words)   # jal / jalr
     written, saved = set(), set()
     for w in words:
         op, rs, rt, rd = w >> 26, (w >> 21) & 31, (w >> 16) & 31, (w >> 11) & 31
         if op in (43, 63) and rs == 29:                 # sw / sd reg, off(sp)
-            if rt not in written:
+            if rt not in written and (not calls or (_RELOAD_OF[op], rt, w & 0xFFFF) in reloads):
                 saved.add(rt)
             continue
         if op == 0:

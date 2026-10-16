@@ -1,0 +1,3 @@
+# w33r: audio-options unit (GC audioscr.c animText/animButtonText; both locked since wave 32, so --all-lanes lists it MATCHED).
+--unit audio_animText,audio_animButtonText
+--scripts audio_options,options_menus,pause_menus
