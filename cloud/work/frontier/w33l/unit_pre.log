@@ -1,0 +1,9 @@
+  EQUAL control_settings: 638 words (kept, c_w33l_cand.c)
+  EQUAL control_cell_text: 66 words (internal, c_w33l_cand.c)
+  EQUAL control_cell_text3: 205 words (internal, c_w33l_cand.c)
+  EQUAL control_cell_text2: 173 words (internal, c_w33l_cand.c)
+  EQUAL func_800DD0C0: 227 words (internal, c_w33l_cand.c)
+  EQUAL func_800DCD58: 39 words (internal, c_w33l_cand.c)
+  EQUAL func_800DCCE0: 28 words (internal, c_w33l_cand.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 7/7 equal; object build/blob_unit/w33l/unit.o (19.0s)

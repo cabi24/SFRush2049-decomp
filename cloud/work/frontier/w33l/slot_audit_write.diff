@@ -1,0 +1,45 @@
+diff --git a/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json b/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
+index ea8d9cd5b..ad853faa3 100644
+--- a/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
++++ b/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
+@@ -59,6 +59,7 @@
+       "control_cell_text3",
+       "control_cell_text2",
+       "func_800DD0C0",
++      "control_settings",
+       "world_trigger_check",
+       "PrintScores",
+       "SetHighScoreState",
+@@ -88,7 +89,7 @@
+       "func_8010B9C8",
+       "func_8010BC84"
+     ],
+-    "unaccepted_caller_bytes": 39372,
++    "unaccepted_caller_bytes": 36820,
+     "only_selector_unaccepted_direct_game_dependency": {
+       "object_create": 112,
+       "func_800D9058": 328,
+@@ -423,7 +424,7 @@
+       "start": "0x800DD4AC",
+       "bytes": 2552,
+       "body_sha256": "4d3aa255622988f9aca73eb9930959b55cc3660dfcab2437f92e642d8dfa2363",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800DD5B4",
+         "0x800DD600",
+diff --git a/tests/cloud/test_slot_contract_audit.py b/tests/cloud/test_slot_contract_audit.py
+index 692c1bd6f..d391d0cc1 100644
+--- a/tests/cloud/test_slot_contract_audit.py
++++ b/tests/cloud/test_slot_contract_audit.py
+@@ -29,8 +29,8 @@ def test_counts_are_bounded_dependency_surface_not_matches():
+     result = receipt()['summary']
+     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (66, 171, 168)
+     assert sum(result['captures'].values()) == 162
+-    assert result['accepted_callers'] == ['TitlePane', 'credits_scroll', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'world_trigger_check', 'PrintScores', 'SetHighScoreState', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'animWrongWay', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15)
+-    assert result['unaccepted_caller_bytes'] == 39372
++    assert result['accepted_callers'] == ['TitlePane', 'credits_scroll', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'PrintScores', 'SetHighScoreState', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'animWrongWay', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15)
++    assert result['unaccepted_caller_bytes'] == 36820
+     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 6
+     assert result['bounded_dependency_bytes'] == 4520
+ 

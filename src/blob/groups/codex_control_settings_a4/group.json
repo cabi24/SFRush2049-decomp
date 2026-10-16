@@ -6,10 +6,10 @@
   "control_cell_text",
   "control_cell_text2",
   "control_cell_text3",
-  "func_800DD0C0"
+  "func_800DD0C0",
+  "control_settings"
  ],
  "context": [
-  "control_settings",
   "slot_state_setup",
   "object_create",
   "func_800B669C"
@@ -22,5 +22,5 @@
   "control_settings"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "w29c/w30d/w31d drafts -> w32d; cloud/work/frontier/w32d/RESULTS.md"
+ "provenance": "w29c/w30d/w31d/w32d drafts -> w33d; cloud/work/frontier/w33d/RESULTS.md"
 }
