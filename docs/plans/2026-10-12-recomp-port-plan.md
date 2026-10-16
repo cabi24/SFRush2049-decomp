@@ -633,3 +633,13 @@ commands: `tools/recomp/README.md` "Phase 12"; lane notes: `cloud/work/frontier/
 - **Phase 13 needs**: build/frontier.json regenerated with the conveyor scanner's stack-argument and spill rules
   (its `unsaved_callee_regs` and the replace.py WARNING text still quote the old sets); image A's own pak-dialog
   path (func_803990D0) and the unreached overlay functions.
+
+## 22. Phase 13: unit dc.args, the conveyor's save clause (lane w33r, 2026-10-15)
+
+Detail: `tools/recomp/README.md` "Phase 13"; lane notes: `cloud/work/frontier/w33r/RESULTS.md`.
+
+- **The five `--all-lanes` ERROR unit directories have dc.args**: the two high-score units EQUIVALENT (2,473 calls
+  each), w31a f5ea8 = animResults EQUIVALENT (26,166 calls), the two audio-options units MATCHED (both members locked).
+- **The conveyor's clobber facts carry the restore clause** (a stack store in a calling body is a save only if its
+  slot is reloaded): exactly regmap_verify's eight sets grow; among unmatched functions audio_doppler_calc +s0,
+  entity_tick_main +s5, render_replay_ui +s4. Calibration unchanged (0/692 standalone locks).

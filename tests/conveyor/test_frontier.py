@@ -108,6 +108,36 @@ def test_unsaved_callee_saved_write_needs_a_group():
     assert facts["f"]["recipe"] == "group"
 
 
+def test_a_save_in_a_calling_body_needs_its_reload():
+    """w33r (regmap_verify Interproc's w32r clause): with a call in the body, a
+    stack store before the first write is a save only if that slot is reloaded;
+    otherwise it is an outgoing stack argument (control_cell_text2's s8)."""
+    s8 = 30
+    jal = (3 << 26) | 0x100
+    jalr = (31 << 11) | (25 << 21) | 9                   # jalr $ra,$t9
+    store_s8 = (43 << 26) | (29 << 21) | (s8 << 16) | 0x18   # sw $s8,0x18($sp)
+    load_s8 = (35 << 26) | (29 << 21) | (s8 << 16) | 0x18    # lw $s8,0x18($sp)
+    load_s8_other = (35 << 26) | (29 << 21) | (s8 << 16) | 0x1C
+    move_s8_v0 = (2 << 21) | (s8 << 11) | 0x25           # or $s8,$v0,$zero
+    # stack argument, never reloaded, then an unsaved write
+    assert frontier.unsaved_callee_writes([store_s8, jal, 0, move_s8_v0]) == ["s8"]
+    assert frontier.unsaved_callee_writes([store_s8, jalr, 0, move_s8_v0]) == ["s8"]
+    # a reload of another slot does not restore this one
+    assert frontier.unsaved_callee_writes([store_s8, jal, 0, move_s8_v0, load_s8_other]) == ["s8"]
+    # the IDO save/restore pair
+    assert frontier.unsaved_callee_writes([store_s8, jal, 0, move_s8_v0, load_s8]) == []
+    # a call-free body keeps the w32r answer (store before the write = save)
+    assert frontier.unsaved_callee_writes([store_s8, move_s8_v0]) == []
+    # sd/ld pair (64-bit save)
+    sd_s0 = (63 << 26) | (29 << 21) | (16 << 16) | 0x20
+    ld_s0 = (55 << 26) | (29 << 21) | (16 << 16) | 0x20
+    move_s0_a0 = (4 << 21) | (16 << 11) | 0x25
+    assert frontier.unsaved_callee_writes([sd_s0, jal, 0, move_s0_a0, ld_s0]) == []
+    assert frontier.unsaved_callee_writes([sd_s0, jal, 0, move_s0_a0]) == ["s0"]
+    # a generator is accepted (the scan passes a tuple; callers may pass iterators)
+    assert frontier.unsaved_callee_writes(iter([store_s8, jal, 0, move_s8_v0])) == ["s8"]
+
+
 # --- word builders -----------------------------------------------------------
 T0, T5, T6, T7, T8, T9, RA, SP, A0, V0 = 8, 13, 14, 15, 24, 25, 31, 29, 4, 2
 JR_RA, NOP = 0x03E00008, 0

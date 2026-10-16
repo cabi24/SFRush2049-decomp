@@ -1205,3 +1205,26 @@ A 99 of 193 (unmatched 45 of 112), image B 35 of 49 (unmatched 19 of 28).
 committed words, table clobbers, widening, line-0 report, CMake flags, the refusal, overlay names/census/lock; on
 rocky: control_settings pak_nopak EQUIVALENT, the overlay own-source/injected-bug pair). `draft_check.CACHE_EPOCH`
 is `w32r-1`: every cached `--all-lanes` row reruns.
+
+
+
+## Phase 13: unit dc.args, the conveyor's save clause (lane w33r, 2026-10-15)
+
+Lane notes: `cloud/work/frontier/w33r/RESULTS.md`; plan section 22. Not a matching lane; no package.
+
+**dc.args for the five unit directories** `--all-lanes` reported ERROR (Phase 12): w31a `audio`, w32b `audio`
+(`--unit audio_animText,audio_animButtonText --scripts audio_options,options_menus,pause_menus`; both members are
+locked, so the row is MATCHED), w31a `hs`, w32a `hs` (`--unit highscore_animText,DrawName,DrawGhost,DrawUnlocked
+--scripts ghost_pak,unlock,player_finish,race_finish`: EQUIVALENT over 2,473 calls / 4 scripts each) and w31a
+`f5ea8` (`--name animResults --params arg0=a0`: EQUIVALENT over 26,166 calls / 6 scripts, = its twin
+w31a/func_80105EA8).
+
+**`frontier.unsaved_callee_writes` has Interproc's restore clause.** The conveyor scanner (`build/frontier.json`
+`unsaved_callee_regs`, the `group` recipe, the replace.py WARNING text) already took a stack store after the first
+write for a spill (w32n); it now also requires the slot's reload (`lw`/`ld` of that register from that offset) when
+the body makes a call, as `regmap_verify.Interproc` does since Phase 12. Over the 1,216 game functions exactly
+Interproc's eight sets grow (audio_doppler_calc +s0, entity_tick_main +s5, render_replay_ui +s4 among the unmatched;
+save_validate +s3, func_800B0A88 +s1,s2, best_times_display +s2, control_cell_text2 +s8, func_800E398C +s7 locked,
+so not in the facts); no recipe changes; `frontier calibrate` still flags 0 of 692 standalone locks. Regenerate with
+`python3 -m tools.conveyor.pipeline.frontier scan` (no Conveyor DB needed) and copy build/frontier.json to rocky's
+service tree. Test: `tests/conveyor/test_frontier.py::test_a_save_in_a_calling_body_needs_its_reload`.
