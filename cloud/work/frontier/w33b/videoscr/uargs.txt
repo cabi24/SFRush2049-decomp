@@ -1,0 +1,1 @@
+--internal func_8010EA08 --internal vs_gfx_lock --internal vs_gfx_unlock --internal vs_font_set --internal vs_SetFont --internal vs_CenterText --internal vs_RightText --internal vs_SetJust --internal vs_drawColorBars
