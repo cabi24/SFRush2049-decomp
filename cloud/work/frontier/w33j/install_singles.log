@@ -1,0 +1,3 @@
+flags {'func_800B9740': '-O3', 'entity_iterate': '-O3'}
+refused {}
+image_ok True locked 1070

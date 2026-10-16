@@ -1,0 +1,40 @@
+## score.py fn cand/entity_iterate.c entity_iterate --flags "-g0 -O3 -mips2 -G 0 -non_shared" --claims
+usage: score.py [-h] {fn,group} ...
+score.py: error: unrecognized arguments: --claims
+rc=2
+## score.py fn cand/entity_iterate.c entity_iterate --flags "-g0 -O3 -mips2 -G 0 -non_shared" 
+entity_iterate:
+  MATCH
+rc=0
+## score.py fn cand/func_800B9740.c func_800B9740 --flags "-g0 -O3 -mips2 -G 0 -non_shared" --claims
+usage: score.py [-h] {fn,group} ...
+score.py: error: unrecognized arguments: --claims
+rc=2
+## score.py fn cand/func_800B9740.c func_800B9740 --flags "-g0 -O3 -mips2 -G 0 -non_shared" 
+func_800B9740:
+  MATCH
+rc=0
+## score.py group cand/frontier_read_path_data --claims
+Members:
+physics_response:
+  MATCH
+    own .rodata verified at 0x80123DF4..0x80123DF8
+audio_effect_apply:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800B930C:
+  MATCH
+rc=0
+## score.py group cand/frontier_read_path_data 
+Members:
+physics_response:
+  MATCH
+    own .rodata verified at 0x80123DF4..0x80123DF8
+audio_effect_apply:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800B930C:
+  MATCH
+rc=0
