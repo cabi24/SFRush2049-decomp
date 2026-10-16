@@ -1,21 +1,26 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
- * codex_control_settings_a4 group TU (lane w32d, from w31d best.c): control_cell_text (0x800DC88C), control_cell_text3
- * (0x800DC99C), func_800DCCE0 + func_800DCD58 (LOCKED bodies, verbatim m2c text), control_cell_text2 (0x800DCDF4),
- * func_800DD0C0 (0x800DD0C0), control_settings (0x800DD4AC; CONTEXT, not matching).
- * STATE: score.py group MATCH for func_800DCD58, func_800DCCE0, control_cell_text, control_cell_text2,
- * control_cell_text3, func_800DD0C0 (with and without --claims); unit EQUAL for all six, locked bodies differing 0.
- * control_settings (their only caller, kept) is a non-matching draft: unit 636/638 body, rows 277, ops 56, frame
- * 1896/1896 (cell timeouts read the volatile scheduler frameCount D_8002E8E8+0x27C as display_settings.c); draft_check EQUIVALENT over 360 calls / 4 scripts. Its IPA conventions for the six callees equal retail's.
- * w32d levers: TB_SetJust pair (pair_set_DC, D_80118E20) takes s32 values (GC TB_SetJust(enum, enum): enums are
- * 4-byte ints) -> the constant 1 shares the osRecvMesg argument web; text2/text3: separate fh and x locals declared
- * c, y, fh, x (each named local takes a slot in declaration order); func_800DD0C0: no cell pointer local (cell
- * indexed directly, so the big-block loads get .noalias against the y spill), declarations x, y, fh, buf, big, and
- * operand order x + w/2, y + (h - k)/2 + 20, y + h - fh*3.
- * DEVICES (control_settings only, disclosed, oracle-grade): compiled-out `if (row) {}` twice and `if (col) {}` once
- * in the column-search loop. The callees carry no devices.
- * Frame: control_settings' first FONT_SET is a nested font_set_DC (3 inlined calls = 24 B = retail 1896-1872); the
- * other three FONT_SET sites lack retail's `move s0,v0` (shape unresolved, see w32d/RESULTS.md).
+ * codex_control_settings_a4 group TU (lane w33d, superseding w32d's packet): control_cell_text (0x800DC88C),
+ * control_cell_text3 (0x800DC99C), func_800DCCE0 + func_800DCD58 (LOCKED bodies, verbatim m2c text),
+ * control_cell_text2 (0x800DCDF4), func_800DD0C0 (0x800DD0C0) and control_settings (0x800DD4AC) -- the N64 pak
+ * error dialog: control_settings finds the active cell of a row, draws the header and dispatches on the cell type.
+ * STATE: unit EQUAL for all seven (blob_unit, locked bodies differing 0); see cloud/work/frontier/w33d/RESULTS.md.
+ * w33d levers (control_settings, from 636/638 rows 277):
+ *  - GC-style per-dialog draw/control helpers inlined into control_settings (cs_draw1/3, cs_drawT0..3, cs_wait11..13,
+ *    cs_ctl10): each owns `u8 str[256]`, which reproduces retail's buffer offsets and its 24 B of inline areas; the
+ *    header = two font sets with return copies (fsS_DC single-level, fsL_DC with the nested gfx lock) + an inlined
+ *    GC TB_CenterText (TB_CenterText_DC; s16 return copy `move a0,t8`); pair_set_DC writes D_80118E20 directly (an
+ *    inlined `Pair *p` local is one inline-area slot too many, as w30d animPlace).
+ *  - control_cell_text2/text3 parameter order (row, col, text, a, b, sel) / (row, col, text, s1, s2, s3, sel1, sel2):
+ *    ugen evaluates IPA register arguments in prototype order, and retail loads sel/sel1 last; the callee bodies are
+ *    unchanged and stay byte-identical (their IPA colours do not depend on the order).
+ *  - (strings + lang[n])[1] for the second of a strings pair (retail CSEs the row address), `C.x + C.w / 2` /
+ *    `C.y + (C.h - 20) / 2 + 20` operand order (temp ring), the timeout test written on one line (as1 delay slot).
+ *  - Source-line layout is load-bearing (as1 ties on line numbers): fsS_DC/fsL_DC keep `old = ...; osSendMesg(...)`
+ *    on one line; TB_CenterText_DC and fsL_DC are defined after control_settings.
+ * DEVICE (disclosed): one compiled-out `if (row) {}` in control_settings' column-search loop (w31d/w32d had three).
+ * No unused locals. Earlier levers (w32d): TB_SetJust pair takes s32; text2/text3 separate fh/x locals declared
+ * c, y, fh, x; func_800DD0C0 indexes the cell directly, declarations x, y, fh, buf, big.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -110,17 +115,14 @@ s32 font_set1_DC(s32 font)
     s32 old;
 
     osRecvMesg(&D_801461D0, (void *)0, 1);
-    old = slot_state_setup(font);
-    osSendMesg(&D_801461D0, (void *)0, 0);
+    old = slot_state_setup(font); osSendMesg(&D_801461D0, (void *)0, 0);
     return old;
 }
 
 void pair_set_DC(s32 first, s32 second)
 {
-    Pair *p = &D_80118E20;
-
-    p->first = first;
-    p->second = second;
+    D_80118E20.first = first;
+    D_80118E20.second = second;
 }
 
 void control_cell_text(s32 row, s32 col, u8 *text)
@@ -135,7 +137,7 @@ void control_cell_text(s32 row, s32 col, u8 *text)
     pair_set_DC(0, 3);
 }
 
-void control_cell_text3(s32 sel1, s32 row, u8 *text, char *s1, char *s2, char *s3, s32 col, s32 sel2)
+void control_cell_text3(s32 row, s32 col, u8 *text, char *s1, char *s2, char *s3, s32 sel1, s32 sel2)
 {
     Cell *c;
     s32 y;
@@ -193,7 +195,7 @@ void func_800DCD58(s32 arg0, s32 arg1)
   }
 }
 
-void control_cell_text2(s32 sel, s32 row, s32 col, char *a, char *b, s32 text)
+void control_cell_text2(s32 row, s32 col, s32 text, char *a, char *b, s32 sel)
 {
     Cell *c;
     s32 y;
@@ -248,19 +250,136 @@ void func_800DD0C0(s32 row, s32 col)
     font_set_DC(11);
 }
 
+s32 fsS_DC(s32 font)
+{
+    s32 old;
+
+    osRecvMesg(&D_801461D0, (void *)0, 1);
+    old = slot_state_setup(font); osSendMesg(&D_801461D0, (void *)0, 0);
+    return old;
+}
+
+s16 TB_CenterText_DC(char *text, s16 centerX);
+s32 fsL_DC(s32 font);
 #define C (D_80153FD8[row][col])
-#define FONT_SET(f) osRecvMesg(&D_801461D0, (void *)0, 1); slot_state_setup(f); osSendMesg(&D_801461D0, (void *)0, 0)
+void cs_draw1_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    font_set_DC(11);
+    dispatch_handler(1);
+    func_800BE6A4(str, D_8017A4E0.msg[404 / 4]);
+    func_800BE4F0(str, (u8 *)D_80121070);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[408 / 4]);
+    pair_set_DC(1, 1);
+    camera_auto_follow(C.x + C.w / 2, C.y + (C.h - 20) / 2 + 20, C.w, C.h - 20, -1, 0, str);
+    pair_set_DC(0, 3);
+    font_set_DC(11);
+}
+
+void cs_draw3_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    func_800BE6A4(str, C.alt ? D_8017A4E0.msg[424 / 4] : D_8017A4E0.msg[428 / 4]);
+    func_800BE4F0(str, (u8 *)D_80121074);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[432 / 4]);
+    control_cell_text2(row, col, (s32)str, D_8017A4E0.strings[D_8017A4E0.lang[25]], D_8017A4E0.msg[944 / 4], C.sel1);
+}
+
+void cs_drawT0_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    func_800BE6A4(str, D_8017A4E0.msg[436 / 4]);
+    func_800BE4F0(str, (u8 *)D_80121078);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[440 / 4]);
+    control_cell_text(row, col, str);
+}
+
+void cs_drawT1_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    func_800BE6A4(str, D_8017A4E0.msg[444 / 4]);
+    func_800BE4F0(str, (u8 *)D_80121088);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[408 / 4]);
+    control_cell_text(row, col, str);
+}
+
+void cs_drawT2_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    func_800BE6A4(str, D_8017A4E0.msg[452 / 4]);
+    func_800BE4F0(str, (u8 *)D_8012107C);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[456 / 4]);
+    control_cell_text(row, col, str);
+}
+
+void cs_drawT3_DC(s32 row, s32 col)
+{
+    u8 str[256];
+
+    func_800BE6A4(str, D_8017A4E0.msg[460 / 4]);
+    func_800BE4F0(str, (u8 *)D_80121080);
+    func_800BE4F0(str, (u8 *)D_8017A4E0.msg[440 / 4]);
+    control_cell_text(row, col, str);
+}
+
+void cs_wait11_DC(s32 row, s32 col)
+{
+    if (C.timeout < D_8002E8E8.frameCount) C.done = 1;
+    control_cell_text(row, col, (u8 *)D_8017A4E0.msg[476 / 4]);
+}
+
+void cs_wait12_DC(s32 row, s32 col)
+{
+    if (C.timeout < D_8002E8E8.frameCount) C.done = 1;
+    control_cell_text(row, col, (u8 *)D_8017A4E0.msg[480 / 4]);
+}
+
+void cs_wait13_DC(s32 row, s32 col)
+{
+    if (C.timeout < D_8002E8E8.frameCount) C.done = 1;
+    control_cell_text(row, col, (u8 *)D_8017A4E0.msg[484 / 4]);
+}
+
+void cs_ctl10_DC(Cell *c)
+{
+    if (c->buttons & 0x800) {
+        audio_distance_atten(c->buttons);
+        if (c->sel1) {
+            c->sel1 = 0;
+            c->sel2 = 1;
+        } else if (c->sel2) {
+            c->sel2 = 0;
+        } else {
+            c->sel1 = 1;
+        }
+    }
+    if (c->buttons & 0x400) {
+        audio_distance_atten(c->buttons);
+        if (c->sel1) {
+            c->sel1 = 0;
+        } else if (c->sel2) {
+            c->sel2 = 0;
+            c->sel1 = 1;
+        } else {
+            c->sel2 = 1;
+        }
+    }
+    if (c->buttons & 2) {
+        entity_flags_apply(37, 0, 1, 0);
+        c->done = 1;
+    }
+}
+
 void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
 {
     s32 col;
-    char num[76];
-    u8 t1[296];
-    u8 t3[328];
-    u8 t4[272];
-    u8 t15[264];
-    u8 t6[264];
-    u8 t9[264];
     s32 i;
+    char num[72];
 
     if (poll != 0 && poll() != 0) {
         func_800DD45C(row);
@@ -268,10 +387,6 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
     for (col = 1; col >= 0; col--) {
         if (C.type != 0) {
             break;
-        }
-        if (row) {
-        }
-        if (col) {
         }
         if (row) {
         }
@@ -288,24 +403,16 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
     }
     C.buttons = D_8015694C;
     C.held = D_80156944;
-    font_set_DC(11);
+    fsS_DC(11);
     dispatch_handler(1);
-    FONT_SET(11);
+    fsL_DC(11);
     dispatch_handler(1);
     sprintf(num, D_80121060, row + 1);
-    state_utility((s16)(C.w / 2 + C.x) - (object_manager_update(num, -1) >> 1), C.y, num);
+    state_utility(TB_CenterText_DC(num, C.x + C.w / 2), C.y, num);
     switch (C.type) {
     case 1:
         func_800DCD58(row, col);
-        FONT_SET(11);
-        dispatch_handler(1);
-        func_800BE6A4(t1, D_8017A4E0.msg[404 / 4]);
-        func_800BE4F0(t1, (u8 *)D_80121070);
-        func_800BE4F0(t1, (u8 *)D_8017A4E0.msg[408 / 4]);
-        D_80118E20.first = 1; D_80118E20.second = 1;
-        camera_auto_follow(C.w / 2 + C.x, (C.h - 20) / 2 + C.y + 20, C.w, C.h - 20, -1, 0, t1);
-        D_80118E20.first = 0; D_80118E20.second = 3;
-        FONT_SET(11);
+        cs_draw1_DC(row, col);
         break;
     case 2:
         if (!(state_word_a & 0x7C03FFFE)) {
@@ -317,99 +424,45 @@ void control_settings(s32 row, s8 *sel1, s8 *sel2, s8 *done, s32 (*poll)(void))
         break;
     case 3:
         func_800DCD58(row, col);
-        func_800BE6A4(t3, C.alt ? D_8017A4E0.msg[424 / 4] : D_8017A4E0.msg[428 / 4]);
-        func_800BE4F0(t3, (u8 *)D_80121074);
-        func_800BE4F0(t3, (u8 *)D_8017A4E0.msg[432 / 4]);
-        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[25]],
-                              D_8017A4E0.msg[944 / 4], (s32)t3);
+        cs_draw3_DC(row, col);
         break;
     case 4:
         func_800DCCE0(row, col);
-        func_800BE6A4(t4, D_8017A4E0.msg[436 / 4]);
-        func_800BE4F0(t4, (u8 *)D_80121078);
-        func_800BE4F0(t4, (u8 *)D_8017A4E0.msg[440 / 4]);
-        control_cell_text(row, col, t4);
+        cs_drawT0_DC(row, col);
         break;
     case 15:
         func_800DCCE0(row, col);
-        func_800BE6A4(t15, D_8017A4E0.msg[444 / 4]);
-        func_800BE4F0(t15, (u8 *)D_80121088);
-        func_800BE4F0(t15, (u8 *)D_8017A4E0.msg[408 / 4]);
-        control_cell_text(row, col, t15);
+        cs_drawT1_DC(row, col);
         break;
     case 5:
     case 7:
         func_800DCD58(row, col);
-        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[26] + 1],
-                              D_8017A4E0.msg[944 / 4], (s32)D_8017A4E0.msg[444 / 4]);
+        control_cell_text2(row, col, (s32)D_8017A4E0.msg[444 / 4], (D_8017A4E0.strings + D_8017A4E0.lang[26])[1], D_8017A4E0.msg[944 / 4], C.sel1);
         break;
     case 8:
         func_800DCD58(row, col);
-        control_cell_text2(C.sel1, row, col, D_8017A4E0.strings[D_8017A4E0.lang[24]],
-                              D_8017A4E0.strings[D_8017A4E0.lang[24] + 1], (s32)D_8017A4E0.msg[448 / 4]);
+        control_cell_text2(row, col, (s32)D_8017A4E0.msg[448 / 4], D_8017A4E0.strings[D_8017A4E0.lang[24]], (D_8017A4E0.strings + D_8017A4E0.lang[24])[1], C.sel1);
         break;
     case 6:
         func_800DCD58(row, col);
-        func_800BE6A4(t6, D_8017A4E0.msg[452 / 4]);
-        func_800BE4F0(t6, (u8 *)D_8012107C);
-        func_800BE4F0(t6, (u8 *)D_8017A4E0.msg[456 / 4]);
-        control_cell_text(row, col, t6);
+        cs_drawT2_DC(row, col);
         break;
     case 9:
         func_800DCCE0(row, col);
-        func_800BE6A4(t9, D_8017A4E0.msg[460 / 4]);
-        func_800BE4F0(t9, (u8 *)D_80121080);
-        func_800BE4F0(t9, (u8 *)D_8017A4E0.msg[440 / 4]);
-        control_cell_text(row, col, t9);
+        cs_drawT3_DC(row, col);
         break;
     case 10:
-        if (C.buttons & 0x800) {
-            audio_distance_atten(C.buttons);
-            if (C.sel1) {
-                C.sel1 = 0;
-                C.sel2 = 1;
-            } else if (C.sel2) {
-                C.sel2 = 0;
-            } else {
-                C.sel1 = 1;
-            }
-        }
-        if (C.buttons & 0x400) {
-            audio_distance_atten(C.buttons);
-            if (C.sel1) {
-                C.sel1 = 0;
-            } else if (C.sel2) {
-                C.sel2 = 0;
-                C.sel1 = 1;
-            } else {
-                C.sel2 = 1;
-            }
-        }
-        if (C.buttons & 2) {
-            entity_flags_apply(37, 0, 1, 0);
-            C.done = 1;
-        }
-        control_cell_text3(C.sel1, row, (u8 *)D_8017A4E0.msg[472 / 4], D_8017A4E0.msg[944 / 4],
-                             D_8017A4E0.strings[D_8017A4E0.lang[26]], D_8017A4E0.strings[D_8017A4E0.lang[26] + 1],
-                             col, C.sel2);
+        cs_ctl10_DC(&C);
+        control_cell_text3(row, col, (u8 *)D_8017A4E0.msg[472 / 4], D_8017A4E0.msg[944 / 4], D_8017A4E0.strings[D_8017A4E0.lang[26]], (D_8017A4E0.strings + D_8017A4E0.lang[26])[1], C.sel1, C.sel2);
         break;
     case 11:
-        if (C.timeout < D_8002E8E8.frameCount) {
-            C.done = 1;
-        }
-        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[476 / 4]);
+        cs_wait11_DC(row, col);
         break;
     case 12:
-        if (C.timeout < D_8002E8E8.frameCount) {
-            C.done = 1;
-        }
-        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[480 / 4]);
+        cs_wait12_DC(row, col);
         break;
     case 13:
-        if (C.timeout < D_8002E8E8.frameCount) {
-            C.done = 1;
-        }
-        control_cell_text(row, col, (u8 *)D_8017A4E0.msg[484 / 4]);
+        cs_wait13_DC(row, col);
         break;
     case 14:
         C.done = 1;
@@ -427,4 +480,18 @@ apply:
         }
         process_inputs();
     }
+}
+
+s16 TB_CenterText_DC(char *text, s16 centerX)
+{
+    return centerX - (object_manager_update(text, -1) >> 1);
+}
+
+s32 fsL_DC(s32 font)
+{
+    s32 old;
+
+    gfx_lock_DC();
+    old = slot_state_setup(font); osSendMesg(&D_801461D0, (void *)0, 0);
+    return old;
 }

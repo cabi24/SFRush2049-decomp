@@ -7313,6 +7313,7 @@ func_800DD45C:
 .section .text.control_settings, "ax", @progbits
 .globl control_settings
 control_settings:
+    /* compiled from src/blob/control_settings.c */
     .word 0x27BDF898
     .word 0x8FA80778
     .word 0xAFB30034
