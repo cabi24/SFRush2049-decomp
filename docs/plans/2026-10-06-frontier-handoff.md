@@ -685,6 +685,67 @@ members of a pair does not make a group — run `score.py group` and the splice-
 that reads a frontier register fact must regmap-verify it before building on it (t9); a unit directory needs its own
 `dc.args` or `--all-lanes` reports ERROR.
 
+**Wave 33 outcome (2026-10-15, wave33 from `58425072b`; preceded by the PR #379 round `0f2db604e`..`58425072b`):**
+game 1068 → 1077/1216 (408,612 B, 63.15%), 9 functions, 10,944 B (plus the PR round's audio_mixer_main +
+audio_priority_find, 1,164 B, group `frontier_route_cross`, from Astra's draft PR #379 scored by w33p: the UNSIGNED
+checkpoint successor removed w6b's whole 31-word mechanism, two disclosed unused s32 locals = the exact 8 B frame
+residual; #379 merged as research under `cloud/work/frontier/gc_informed_n64_unscored_20261015/`; GitHub CI on master
+was red since wave 28 because the recomp phase tests' "recomp host only (ROM, N64Recomp, IDO toolkits)" skip matched
+the REQUIRE_TOOLCHAIN IDO pattern — `tests/conftest.py` now exempts that reason, first green run `58425072b`).
+Landings, three integration lanes (w33j, w33k, w33l; all gates EXACT, no unit_overrides needed in any — the lock
+derives the helpers internal, so stop adding `force_internal` for lane helpers): w33c (GC-driven, from #379's
+RESEARCH.md): entity_iterate = GC CameraCollision (224 B; from 15/56: GC `fmadds a,b,c` gives the N64 add's operand
+order — write `c + a*b` in GC's multiply order), func_800B9740 = CalcResPathBounds (408 B; EQUAL on the FIRST typed
+GC port after 1,252 w14 variants at 83/102: s16 extrema, `validPt`, indexed alternate ranges, no early break, a
+ternary per axis), NEW group `frontier_read_path_data` = audio_effect_apply (GC ReadPathData, 696 B; two GC stores
+from one `li r0,0` = a chained assignment `gResPath.alt = gAltPaths = 0;` that uopt carries into the next loop) +
+physics_response (920 B, off provisional.json; context func_800B930C verbatim); w33b: func_800DA0BC = GC
+uninitScreen@optionscr.c (184 B; GC's indexed loop replaced the w14ob `.loc` device; `frontier_optionscr_buttons`
+superseded in place, w14ob provisional row retired); w33a: NEW group `highscore_anim` = DrawName (1,040) + DrawGhost
+(2,404) + DrawUnlocked (2,516; the 48-op residual was `s16 x` vs GC `int x`; then a disclosed `if (p) {}` and the
+unlock helper defined after the font helper) — PROVISIONAL ON THE CALLER FORM (highscore_animText is context,
+EQUIVALENT 27/445 frame-only; add it to this group when it closes); w33d: control_settings (2,552 B; the 2-word
+residual was MISSING INLINED HELPERS, not variables — per-case `str1[256]` draw helpers modelled on GC playerscr.c
+`draw*`; one disclosed `if (row) {}`; source-line layout is load-bearing: timeout test on one line, `old = ...;
+osSendMesg(...)` on one line, TB_CenterText/fsL defined after the caller; control_cell_text2/3 parameters REORDERED to
+`(row, col, text, ...)` with bodies unchanged — the harness map is by name so still valid; `codex_control_settings_a4`
+superseded in place with 7 members and the wave-32 "provisional on the caller form" caveat on the four cells is
+REMOVED). Recomp (w33r, "Phase 13"): the five ERROR unit dirs have `--unit` dc.args; the conveyor's
+`frontier.unsaved_callee_writes` got the spill-aware reload clause (a stack store of s0–s8 in a calling body is a save
+only if that slot is reloaded; 8 clobber sets grow, 3 frontier facts change: audio_doppler_calc s0–s8,
+entity_tick_main s0–s7, render_replay_ui s0–s4; calibrate still 0/692); a lane's rsync to the rocky service tree
+was refused by the permission classifier — the coordinator does it after the merge; the classifier also refuses PR
+merges ("merge without review"), REQUIRE_TOOLCHAIN edits/runs ("CI bypass") and receipt re-pins ("security test
+removal") — route those to the owner (`! gh pr merge N --merge`). Tests touched by landings: the slot-contract audit
+frozen list (w33k, w33l; `slot_audit_write.diff` in each lane dir), the phase-12 census test's unmatched example is
+now LoadTrack, and the `dot_entity_vector_boundaries_20261005` receipt asserts entity_iterate UNLOCKED (verify.py
+line 214 + verification.json `locked`/sha — owner re-pin pending at the time of writing). Drafts that moved: animResults
+358 → 228 rows, 15 ops, frame + length exact (`playerIdx << 4` stops the hoist; a named `h`; convert `time` once;
+w33a `ar/best.c`); func_80090308 87 → 16 ops, 180/282 (GC's statement order around inlined Random calls; frame 168
+vs 272 open; `w33c/blast/best_effects.c`); controls_animText 253 → 155 rows, frame exact (p*2 takes s8 over the
+constant 10; `f(p + 1)` and `p++` are PRE'd as one expression, only a no-code identity `(p * 1) + 1` separates them —
+disclosed); controls_animButtonText 234 → 227, frame now exact; func_8010F218 529 → 324 rows (the 32-bar loop IS
+unrolled by 4 — w32b's note was wrong — with per-copy IVs only when the body uses `c * 8`; the 3-trip colour-block
+loop is the open problem); highscore_animText frame unchanged after ~3 h (umerge places each inlined call at
+`align8(caller_size + callee_param_size)` — a K&R `()` definition has param size 0, an ANSI `(void)` one costs 8 B per
+site; retail's layout leaves NO stack for the helpers' dead `move s0,v0` copies yet they exist — contradiction open,
+`tools/mmt.py` dumps where umerge put every inlined area; w33a RESULTS §1); SetupWaveModel unchanged (`first` takes
+s8, `idx` split); CreatePlayer unchanged (`i` in a3 vs s0; retail keeps a3 for an `attempt` copy); pak_delete_file_retry
+lead_q3 unchanged (stop); camera_look_at_point 38/199 unchanged (GC `ratio` form byte-identical; no GC lever left);
+entity_physics_update 21/178 unchanged (a1-vs-v0 web; also waits on func_80090308); save_write_data 149/300 frame
+mapped only; func_800E543C skipped (its callees func_800C4F68 / stunt_combo_display are unmatched — a match would be
+provisional). Name leads (NOT applied; next rename batch): audio_mixer_main = SyncCheckpointsToPaths,
+audio_priority_find = FindAltPathIntersect, entity_iterate = CameraCollision, func_800B9740 = CalcResPathBounds,
+audio_effect_apply = ReadPathData, physics_response = CalcCheckpointTimes, physics_friction_apply = SyncAltPaths,
+func_800DA0BC = uninitScreen@optionscr.c. Lessons: check GC parameter/local TYPES (`docs/external/gc/functions.json`)
+before any register-colour hunt (DrawUnlocked `int x`, the unsigned successor); a direct typed GC port can beat a
+thousand-variant sweep (func_800B9740); a frame gap can be missing inlined helpers (control_settings) — `lay.sh`/
+`mmt.py` test a layout hypothesis in one run; ugen sets IPA register arguments in prototype order, so reordering an
+internal callee's parameters can leave its body byte-identical while fixing the caller's schedule; `(base + i)[1]`
+lets uopt share the row address where `base[i + 1]` does not; try one-line statements and define-after-caller before
+colour work; re-score old failed variants in the current unit (`<< 4` failed in w31a, works now). Open owner items:
+the entity_iterate receipt re-pin; the 13 two-word stubs; GC ELF placement.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
