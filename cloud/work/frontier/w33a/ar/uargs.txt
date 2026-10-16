@@ -1,0 +1,1 @@
+--internal ar_font_set --internal ar_SetJust --internal ar_SetFont
