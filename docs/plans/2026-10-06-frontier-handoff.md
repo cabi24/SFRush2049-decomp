@@ -744,7 +744,12 @@ thousand-variant sweep (func_800B9740); a frame gap can be missing inlined helpe
 internal callee's parameters can leave its body byte-identical while fixing the caller's schedule; `(base + i)[1]`
 lets uopt share the row address where `base[i + 1]` does not; try one-line statements and define-after-caller before
 colour work; re-score old failed variants in the current unit (`<< 4` failed in w31a, works now). Open owner items:
-the entity_iterate receipt re-pin; the 13 two-word stubs; GC ELF placement.
+the entity_iterate receipt re-pin; the 13 two-word stubs; GC ELF placement. `draft_check --all-lanes` on the final tree (w33r Job 3, every row
+recomputed with `--refresh`): 115 drafts, 40 EQUIVALENT, 73 MATCHED, 0 DIVERGES/FAULT, 2 ERROR (w33a `ar`/`f0e58` dirs
+not named after their function — fixed with `--name` dc.args: animResults EQUIVALENT 26,166 calls / 6 scripts,
+func_80100E58 EQUIVALENT 3,405 calls / 6 scripts; a lane dir named differently from its function NEEDS `--name` in
+dc.args). Census: 139 unmatched game functions, 136 reached (152,616 B), 3 never (world_effect_update,
+fp_call_wrapper, object_bytes23_sum — unreferenced); overlays A 99/193, B 35/49 reached, unchanged.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
