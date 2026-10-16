@@ -41,7 +41,7 @@ is reachable only through OpenCode's own auth.
 
 | # | Path | Result |
 |---|---|---|
-| 8 | OpenCode, tool-less `draft` agent, inlined prompt | rc=0 in seconds, empty text (header only). JSON-event rerun pending at the time of writing. |
+| 8 | OpenCode, tool-less `draft` agent, inlined prompt | rc=0 in seconds, empty text (header only). The `--format json` rerun hung 15 min with 0 bytes — the same as DeepSeek's run 4, so `--format json` itself stalls in OpenCode 1.19.2 here regardless of model; do not use it for diagnosis. |
 | 9a | Direct `POST watchman2:11434/api/chat`, think=false, num_ctx 16384, temp 0.2, num_predict 4096 | 54 s, 4096 tokens: degenerate — `s16 id; s16 state; s16 count; s16 temp1; … s16 temp416;` and no body before the budget ran out. |
 | 9b | Direct, think=true, repeat_penalty 1.15, num_predict 8192 | 197 s: 21,418 characters of thinking, 0 characters of answer (budget exhausted while reasoning). |
 
