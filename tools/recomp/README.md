@@ -1228,3 +1228,9 @@ save_validate +s3, func_800B0A88 +s1,s2, best_times_display +s2, control_cell_te
 so not in the facts); no recipe changes; `frontier calibrate` still flags 0 of 692 standalone locks. Regenerate with
 `python3 -m tools.conveyor.pipeline.frontier scan` (no Conveyor DB needed) and copy build/frontier.json to rocky's
 service tree. Test: `tests/conveyor/test_frontier.py::test_a_save_in_a_calling_body_needs_its_reload`.
+
+**All lanes, wave 33 final** (wave33 1fe5fe8c0, game 1077/1216, `--refresh`): `115 drafts: 40 EQUIVALENT, 2 ERROR, 73
+MATCHED`, no DIVERGES/FAULT; the five old unit dirs produce rows (hs 2,473 calls each, f5ea8 26,166, audio MATCHED).
+The two ERRORs were new w33a dirs not named after their function (`ar`, `f0e58`); their dc.args now carry `--name`
+(EQUIVALENT 26,166 and 3,405 calls by hand). Census: 136 of 139 unmatched reached (152,616 B), the same 3 never
+(632 B); overlays unchanged (A 99/193, B 35/49).

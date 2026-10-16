@@ -1,1 +1,3 @@
+# w33r: single draft of animResults (unit flags in uargs.txt); NAME is not the directory.
+--name animResults
 --params arg0=a0
