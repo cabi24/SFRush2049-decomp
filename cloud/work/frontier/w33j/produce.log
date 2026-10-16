@@ -1,0 +1,3 @@
+blob_rom: image 647072 B (1072 spliced) -> blob 326180 B sha256 9e632d21b7d0d293…
+  byte-identical to the ROM's stream: True
+  -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33j/build/blob/game_code.deflate

@@ -1,0 +1,31 @@
+## default derivation
+  EQUAL entity_iterate: 56 words (kept, c_entity_iterate.c); stub tail: 2 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL func_800B9740: 102 words (kept, c_func_800B9740.c)
+  FAIL audio_effect_apply: 158 of 174 words differ; compiled body is 162 words, target 174
+       defined by c_audio_effect_apply.c (kept)
+       +0x000  image 27bdffb0  unit 27bdffd8
+       +0x00c  image afbf004c  unit afbf0024
+       +0x010  image afb60048  unit afb30020
+       +0x014  image afb50044  unit afb2001c
+       +0x018  image afb40040  unit afb10018
+       +0x01c  image afb3003c  unit 11c0000d
+  FAIL physics_response: 229 of 230 words differ; compiled body is 247 words, target 230; +0x3c: .rodata+0x4c0: retail words encode 0x3df40002, outside the image
+       defined by c_physics_response.c (kept)
+       +0x000  image 27bdffc0  unit 27bdff88
+       +0x004  image 3c018012  unit afb3003c
+       +0x008  image 3c138015  unit f7b80028
+       +0x00c  image 4480c000  unit afb50044
+       +0x010  image afbf0014  unit f7b60020
+       +0x014  image 26731ce8  unit 3c138015
+       umerge inlined into it: func_800B930C
+  locked bodies that differ in this unit: 0
+blob_unit score: 2/4 equal; object build/blob_unit/w33j/unit.o (20.1s)
+rc=1
+## --internal physics_response
+  EQUAL entity_iterate: 56 words (kept, c_entity_iterate.c); stub tail: 2 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL func_800B9740: 102 words (kept, c_func_800B9740.c)
+  EQUAL audio_effect_apply: 174 words (kept, c_audio_effect_apply.c)
+  EQUAL physics_response: 230 words (internal, c_physics_response.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 4/4 equal; object build/blob_unit/w33j/unit.o (8.5s)
+rc=0

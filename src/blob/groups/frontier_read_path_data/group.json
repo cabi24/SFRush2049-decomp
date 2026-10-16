@@ -1,0 +1,21 @@
+{
+ "name": "frontier_read_path_data",
+ "members": [
+  "physics_response",
+  "audio_effect_apply"
+ ],
+ "context": [
+  "func_800B930C"
+ ],
+ "files": [
+  "physics_response.c",
+  "audio_effect_apply.c"
+ ],
+ "keep": [
+  "audio_effect_apply",
+  "func_800B930C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w33c (wave 33): audio_effect_apply = GC ReadPathData (first draft from the GC body; else arm as GC's chain gResPath.alt = gAltPaths = 0) with its only caller-callee partner physics_response (= GC CalcCheckpointTimes, w17h provisional MATCH; file byte-identical to cloud/work/frontier/w17h/groups/physics_response/physics_response.c, which defines the locked kept func_800B930C verbatim above it so umerge inlines it, as world_physics_tick.c does). physics_response is internal (its only caller is audio_effect_apply; it writes s0-s6/$f20-$f24 unsaved). Disclosed devices (w17h, physics_response only): two compiled-out do {} while (0) block ends. Supersedes the w17h provisional evidence group (never installed); remove provisional.json physics_response on install.",
+ "provenance": "w2a/w17h physics_response (provisional MATCH) | w17h ctx.c audio_effect_apply stand-in (codex_physics_a13) replaced by w33c's GC ReadPathData port | func_800B9740 (CalcResPathBounds) matched by w33c, cloud/matches/func_800B9740.c"
+}

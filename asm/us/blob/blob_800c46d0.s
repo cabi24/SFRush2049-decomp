@@ -2278,6 +2278,7 @@ camera_victory:
 .section .text.entity_iterate, "ax", @progbits
 .globl entity_iterate
 entity_iterate:
+    /* compiled from src/blob/entity_iterate.c */
     .word 0x27BDFFA8
     .word 0x00A04025
     .word 0x00802825

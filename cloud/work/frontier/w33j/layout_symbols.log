@@ -1,0 +1,9 @@
+## blob_layout derive
+image 647072 bytes @ 0x80086A50 sha256 bf7da3fa6283…
+regions:  22
+functions:  1216    561860 bytes (86.8%)
+opaque:       11     85212 bytes (13.2%)
+largest opaque runs: 0x8010FD7C+85108, 0x80103D18+16, 0x8010C7E4+16, 0x8010FBA4+16, 0x80102440+8
+map -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33j/build/blob_layout.json
+## blob_tu symbols
+blob_tu: symbol table -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33j/asm/us/blob/symbols.json; target hashes -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33j/asm/us/blob/SHA256SUMS

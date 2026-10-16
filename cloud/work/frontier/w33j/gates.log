@@ -1,0 +1,16 @@
+## blob_group check
+group lock: 0 problems
+rc=0
+## blob_splice check
+blob lock: 1072 entries, 0 problems
+rc=0
+## lock check
+  ok     src/rom/lib_f700.c:__osPfsRWInode
+  ok     src/rom/lib_f700.c:__osRepairPackId
+  ok     src/rom/lib_f700.c:__osSumcalc
+  ok     src/rom_auto/osPiReadIo.c:osPiReadIo
+  ok     src/rom_auto/osViGetNextFramebuffer.c:osViGetNextFramebuffer
+all 635 locked functions intact
+rc=0
+## blob_unit check
+blob_unit: 1072 locked bodies, 1072 equal to the image in one 939-file unit, 0 differ [1033 plain; stub tail 35, own bss 5; 463 own .rodata/.data references in 142 bodies checked against image bytes] (957 kept, 332 internal; IDO 2.0s, total 8.4s)

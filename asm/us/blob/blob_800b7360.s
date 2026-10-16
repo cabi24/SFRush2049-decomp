@@ -2192,6 +2192,7 @@ func_800B9338:
 .section .text.physics_response, "ax", @progbits
 .globl physics_response
 physics_response:
+    /* compiled from src/blob/physics_response.c */
     .word 0x27BDFFC0
     .word 0x3C018012
     .word 0x3C138015
@@ -2426,6 +2427,7 @@ physics_response:
 .section .text.func_800B9740, "ax", @progbits
 .globl func_800B9740
 func_800B9740:
+    /* compiled from src/blob/func_800B9740.c */
     .word 0x3C058014
     .word 0x24A507D4
     .word 0x240E7FFF
@@ -3725,6 +3727,7 @@ audio_mixer_main:
 .section .text.audio_effect_apply, "ax", @progbits
 .globl audio_effect_apply
 audio_effect_apply:
+    /* compiled from src/blob/audio_effect_apply.c */
     .word 0x27BDFFB0
     .word 0x3C0E8011
     .word 0x81CE4650

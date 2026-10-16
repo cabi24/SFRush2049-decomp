@@ -439,6 +439,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "audio_effect_apply": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_read_path_data",
+    "source": "src/blob/groups/frontier_read_path_data/group.json",
+    "source_sha256": "58b3b4b277827cdf4ca096f9f9e49f2ce957ad213a2a6efe08f46dc559e81612",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
+  },
   "audio_effect_process": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
@@ -1455,6 +1464,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "entity_iterate": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/entity_iterate.c",
+    "source_sha256": "dde46710d8d4834fc17af640e77f7b8810944daa2321555c2c3802529746c485",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
   },
   "entity_lod_select": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -4076,6 +4093,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800B9740": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800B9740.c",
+    "source_sha256": "054bf53a69b3bfb7ecb7ff0a65035834bb2e09521435b402579e82c54904a947",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
   },
   "func_800B98D8": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -7795,6 +7820,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"
+  },
+  "physics_response": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_read_path_data",
+    "source": "src/blob/groups/frontier_read_path_data/group.json",
+    "source_sha256": "58b3b4b277827cdf4ca096f9f9e49f2ce957ad213a2a6efe08f46dc559e81612",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
   },
   "physics_sym": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
