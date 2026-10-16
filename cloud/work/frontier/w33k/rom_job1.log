@@ -1,0 +1,13 @@
+## blob_rom produce
+blob_rom: image 647072 B (1073 spliced) -> blob 326180 B sha256 9e632d21b7d0d293…
+  byte-identical to the ROM's stream: True
+  -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w33k/build/blob/game_code.deflate
+## blob_rom rom
+blob objects: 0 stale singles, 0 stale groups
+ROM build with the source-built blob: SHA-1 EXACT
+  Verifying built ROM hash...
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  MAKE=0 TEST=0

@@ -1,0 +1,1 @@
+--internal ct_gfx_lock --internal ct_gfx_unlock --internal ct_font_set --internal ct_CenterText --internal ct_RightText --internal ct_PakRumble --internal ct_validOption --internal controls_animButtonText --internal ct_SetFont --internal ct_touch --internal ct_SetJust

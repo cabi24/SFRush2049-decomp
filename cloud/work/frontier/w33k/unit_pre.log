@@ -1,0 +1,21 @@
+## job1
+  EQUAL func_800DA0BC: 46 words (internal, c_buttons.c)
+  EQUAL func_800DB1E0: 350 words (kept, c_buttons.c)
+  EQUAL func_800DA2C0: 579 words (internal, c_buttons.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w33k/unit.o (24.7s)
+## job2 (packet highscore.c with the w33k header paragraph)
+  FAIL highscore_animText: 27 of 445 words differ
+       defined by c_highscore.c (kept)
+       +0x000  image 27bdfdb8  unit 27bdfd40
+       +0x03c  image afa40248  unit afa402c0
+       +0x16c  image a3a001f1  unit a3a00269
+       +0x1bc  image 27b501f0  unit 27b50268
+       +0x1d8  image afa3023c  unit afa302b4
+       +0x1dc  image afa70234  unit afa702ac
+       umerge inlined into it: DrawCircuitCode, DrawScores
+  EQUAL DrawName: 260 words (internal, c_highscore.c)
+  EQUAL DrawGhost: 601 words (internal, c_highscore.c)
+  EQUAL DrawUnlocked: 629 words (internal, c_highscore.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/4 equal; object build/blob_unit/w33k/unit.o (10.8s)

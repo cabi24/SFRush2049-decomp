@@ -1,0 +1,24 @@
+{
+ "name": "frontier_optionscr_buttons",
+ "members": [
+  "func_800DB1E0",
+  "func_800DA2C0",
+  "func_800DA0BC"
+ ],
+ "context": [],
+ "files": [
+  "buttons.c"
+ ],
+ "keep": [
+  "func_800DB1E0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Options-screen button pair (GC optionscr.c): func_800DB1E0 = updateOptionScreen (kept), func_800DA2C0 = updateButtons (internal; sole caller func_800DB1E0, unsaved s0-s8/f20-f30). Inlined helpers ZOID_SetColor_da/ZOID_SetColorP_da (GC zoidtexture.c ZOID_SetColor(s16, union *) and one nested level) are non-static and not on keep (w17j stub rule). unit_overrides: force_internal += func_800DA2C0, ZOID_SetColor_da, ZOID_SetColorP_da if the group rule does not derive them. Own .bss: the function-local statics D_8015273C / D_80152740 (GC cursorSpeed$472 / scrollSpeed$473). func_800D816C / func_800D91A0 (Astra's) untouched. w33b: + func_800DA0BC (GC uninitScreen@optionscr.c with uninitButtons written in place; internal, sole caller func_800DB1E0, unsaved s0-s2); force_internal += func_800DA0BC if not derived; provisional.json entry func_800DA0BC retires.",
+ "provenance": "w30b pair file | w31b DA2C0 rewrite (no pads, GC statics) | w32b: inlined ZOID_SetColor (two levels: frame exact), weaker yi holders, block breaks; cloud/work/frontier/w32b/RESULTS.md | w33b: func_800DA0BC added (w14ob provisional body rewritten in GC form, no device); cloud/work/frontier/w33b/RESULTS.md",
+ "claims": [
+  "func_800DB1E0",
+  "func_800DA2C0",
+  "func_800DA0BC"
+ ]
+}

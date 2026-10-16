@@ -1,0 +1,1 @@
+--with src/blob/groups/frontier_results_table/ctx_gr3_b.c --internal func_80101904 --internal func_80100D5C --internal func_80101D84 --internal drawMain --internal func_80102448 --internal rt_gfx_lock --internal rt_gfx_unlock --internal rt_font_set --internal rt_font_set_b --internal func_80100E58 --internal func_80102980

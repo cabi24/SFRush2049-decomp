@@ -1,0 +1,3 @@
+spliced highscore_anim: 3 members, new: ['DrawGhost', 'DrawName', 'DrawUnlocked']
+image coverage: 1076/1216 functions, 406060/647072 bytes (62.75%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

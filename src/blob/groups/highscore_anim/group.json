@@ -1,0 +1,23 @@
+{
+ "name": "highscore_anim",
+ "members": [
+  "DrawName",
+  "DrawGhost",
+  "DrawUnlocked"
+ ],
+ "context": [
+  "highscore_animText",
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "highscore.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "highscore_animText"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "w29a-w32a drafts -> w33a; cloud/work/frontier/w33a/RESULTS.md. Members DrawName, DrawGhost, DrawUnlocked are MATCH in the group compile and EQUAL in the whole-program unit; their only caller highscore_animText is an EQUIVALENT draft (27/445, frame 704 vs 584) kept as context: provisional on the caller form (w32d precedent). ctx_gr3_b.c = byte-identical copy of locked frontier_results_table/ctx_gr3_b.c (slot_state_setup's $s2 IPA parameter). Shaping devices: see highscore.c header."
+}
