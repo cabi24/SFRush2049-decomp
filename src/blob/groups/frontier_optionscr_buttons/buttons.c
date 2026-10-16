@@ -18,6 +18,10 @@
  *      1.5707964f $f28 as retail (force oracle: the tie was the whole residual).
  *  - `u0` is one unused named local (GC has a `tex` pointer local the N64 code does not use): frame 152 with or
  *    without it (8-B rounding), but without it texIdx/color sit 4 B higher (106/100 vs retail 102/96).
+ * w33b superseding packet: func_800DA0BC = GC uninitScreen@optionscr.c (184 B, internal; sole caller func_800DB1E0)
+ * with GC uninitButtons@optionscr.c written in place (the 32-entry buttonInfo loop: ZOID_RemoveObject =
+ * entity_spawn_callback, handle := -1; buttonsInited = D_80116D0C := 0; inited = D_80116D94 := 0). No shaping
+ * devices: the natural indexed loop replaces w14ob's one-line `slot = &D_8011650C; do {` .loc device.
  * GC-derived names: see w30b's list. GC updateButtons locals: buttonIdx, i, prevPos[3] (= old), selectedPos
  * (= sel_y), clearScrollSpeed (s8, = flag), whichItem, buttonY (= yi, int), tex, texIdx (u16 at sp+102),
  * buttonColor (union, sp+96).
@@ -73,6 +77,40 @@ void func_800B5940(f32 angle, f32 uv[][3]);
 void func_8008B32C(f32 (*dst)[3], f32 (*src)[3], f32 s);
 void model_data_load();
 void model_transform_setup();
+
+extern u32 state_word_a;
+extern s32 D_80116DA4;
+extern s32 D_80116D98;
+extern s8 D_80116D94;
+void sound_handles_clear(s32 arg0);
+void sound_stop(s32 sound_id);
+void ambient_sounds_clear(void);
+void entity_spawn_callback(s16 arg0, s32 arg1, s32 arg2);
+
+
+void func_800DA0BC(void)
+{
+    if (!(state_word_a & 0x7C03FFFE)) {
+        sound_handles_clear(0);
+        D_80116DA4 = 0;
+    }
+    if (D_80116D98 != 0) {
+        sound_stop(D_80116D98);
+        D_80116D98 = 0;
+    }
+    ambient_sounds_clear();
+    {
+        s32 i;
+        for (i = 0; i < 32; i++) {
+            if (D_8011650C[i].handle != -1) {
+                entity_spawn_callback(D_8011650C[i].handle, 0, 0);
+                D_8011650C[i].handle = -1;
+            }
+        }
+        D_80116D0C = 0;
+    }
+    D_80116D94 = 0;
+}
 
 void ZOID_SetColorP_da(s16 objnum, Color *col)
 {

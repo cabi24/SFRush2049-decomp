@@ -3127,6 +3127,7 @@ func_80102F30:
 .section .text.DrawUnlocked, "ax", @progbits
 .globl DrawUnlocked
 DrawUnlocked:
+    /* compiled from src/blob/DrawUnlocked.c */
     .word 0x27BDFEF8
     .word 0x3C148014
     .word 0x269461D0
@@ -3763,6 +3764,7 @@ DrawUnlocked:
 .section .text.DrawName, "ax", @progbits
 .globl DrawName
 DrawName:
+    /* compiled from src/blob/DrawName.c */
     .word 0x27BDFF78
     .word 0x3C148014
     .word 0x269461D0
@@ -4027,6 +4029,7 @@ DrawName:
 .section .text.DrawGhost, "ax", @progbits
 .globl DrawGhost
 DrawGhost:
+    /* compiled from src/blob/DrawGhost.c */
     .word 0x27BDFDC0
     .word 0xAFBF0024
     .word 0x3C118014

@@ -1,5 +1,13 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
+ * w33k (wave 33 integration, coordinator decision): group highscore_anim landed with members DrawName, DrawGhost and
+ *   DrawUnlocked PROVISIONAL ON THE CALLER FORM. The members are byte-exact (group MATCH; DrawGhost's two-region own
+ *   .rodata proven by the splice replay) and EQUAL in the whole-program unit, but their only caller highscore_animText
+ *   below is an EQUIVALENT draft (27/445, frame 704 vs retail 584) kept as context, not a match. The calling
+ *   conventions it imposes are regmap-verified (DrawName takes p in s5, ipa_callees.json). Wave 32 precedent: the
+ *   codex_control_settings_a4 cells on control_settings. When highscore_animText closes, add it as a member here.
+ */
+/*
  * w33a: DrawUnlocked now EQUAL in the unit (was 588/629, 48 ops). Levers, in order of effect:
  *   (1) GC type: `x` is `int` (GC DrawUnlocked locals x,y,i,p int; str[64]; stuffCount int) -- the s16 x of w29a-w32a
  *       was the whole 48-op residual (588 -> 68 words, ops 0);

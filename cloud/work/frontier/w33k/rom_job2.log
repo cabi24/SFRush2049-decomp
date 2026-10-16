@@ -1,0 +1,9 @@
+## blob_rom rom
+blob objects: 0 stale singles, 0 stale groups
+ROM build with the source-built blob: SHA-1 EXACT
+  Verifying built ROM hash...
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  MAKE=0 TEST=0

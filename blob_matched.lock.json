@@ -17,6 +17,33 @@
     "verified": "image_gate",
     "verified_at": "2026-10-14"
   },
+  "DrawGhost": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "highscore_anim",
+    "source": "src/blob/groups/highscore_anim/group.json",
+    "source_sha256": "4da4e5121c88e398b9bc5d92c74c87b5f31f30f0ebf4e6f32c83607a2afd8650",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
+  },
+  "DrawName": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "highscore_anim",
+    "source": "src/blob/groups/highscore_anim/group.json",
+    "source_sha256": "4da4e5121c88e398b9bc5d92c74c87b5f31f30f0ebf4e6f32c83607a2afd8650",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
+  },
+  "DrawUnlocked": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "highscore_anim",
+    "source": "src/blob/groups/highscore_anim/group.json",
+    "source_sha256": "4da4e5121c88e398b9bc5d92c74c87b5f31f30f0ebf4e6f32c83607a2afd8650",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
+  },
   "Effects_UpdateEmitters": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/Effects_UpdateEmitters.c",
@@ -5293,14 +5320,23 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800DA0BC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_optionscr_buttons",
+    "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
+    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-15"
+  },
   "func_800DA2C0": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_optionscr_buttons",
     "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
-    "source_sha256": "348adfd05f13730f92f11cff20b70d17ec6e0b6571459d233dc2f81e2356365c",
+    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-14"
+    "verified_at": "2026-10-15"
   },
   "func_800DABCC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5322,10 +5358,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_optionscr_buttons",
     "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
-    "source_sha256": "348adfd05f13730f92f11cff20b70d17ec6e0b6571459d233dc2f81e2356365c",
+    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-14"
+    "verified_at": "2026-10-15"
   },
   "func_800DC080": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

@@ -1,0 +1,21 @@
+## blob_group check
+group lock: 0 problems
+## blob_splice check
+blob lock: 1076 entries, 0 problems
+## lock check
+all 635 locked functions intact
+## blob_unit manifest
+build/blob_unit.json: 940 files, 1076 locked bodies, 1305 functions (957 kept, 348 internal), 11 inline blockers, 158 names defined more than once (149 locked), 29 stand-ins renamed
+## blob_unit check
+blob_unit: 1076 locked bodies, 1076 equal to the image in one 941-file unit, 0 differ [1037 plain; stub tail 35, own bss 5; 466 own .rodata/.data references in 143 bodies checked against image bytes] (958 kept, 348 internal; IDO 2.1s, total 8.5s)
+DrawName internal 
+DrawGhost internal 
+DrawUnlocked internal 
+highscore_animText  keep
+du_font_set internal 
+hs_SetFont internal 
+gh_font_set internal 
+DrawScores internal 
+DrawCircuitCode internal 
+func_800DA0BC internal 
+unused_overrides []

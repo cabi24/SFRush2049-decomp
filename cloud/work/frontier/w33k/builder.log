@@ -1,0 +1,224 @@
+## score.py group cand/frontier_optionscr_buttons --claims
+Members:
+func_800DB1E0:
+  MATCH
+    own .rodata verified at 0x80124248..0x80124280
+func_800DA2C0:
+  NOT VERIFIED (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5ac, .rodata+0x0 at +0x5c4, .rodata+0x10 at +0x580, .rodata+0x10 at +0x590, .bss+0x4 at +0x8ec, .bss+0x4 at +0x8f0; own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)
+    own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80152740 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+func_800DA0BC:
+  MATCH
+rc=1
+## score.py group cand/frontier_optionscr_buttons 
+Members:
+func_800DB1E0:
+  MATCH
+    own .rodata verified at 0x80124248..0x80124280
+func_800DA2C0:
+  NOT VERIFIED (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5ac, .rodata+0x0 at +0x5c4, .rodata+0x10 at +0x580, .rodata+0x10 at +0x590, .bss+0x4 at +0x8ec, .bss+0x4 at +0x8f0; own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)
+    own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80152740 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+func_800DA0BC:
+  MATCH
+rc=1
+## score.py group cand/highscore_anim --claims
+Members:
+DrawName:
+  MATCH
+DrawGhost:
+  NOT VERIFIED (6 section-relative relocations unverified: .rodata+0x4 at +0x1ec, .rodata+0x4 at +0x1f0, .rodata+0x24 at +0x640, .rodata+0x24 at +0x648, .rodata+0x14 at +0x6c4, .rodata+0x14 at +0x6cc; own .rodata: this function's references disagree on the section's image address (0x80120650 for +0x4/+0x14, 0x8012485C for +0x24): the literals are not laid out as in retail)
+DrawUnlocked:
+  MATCH
+
+Context (informational; excluded from exit status):
+highscore_animText:
+    +0x000  want 27bdfdb8 addiu sp,sp,-584              got 27bdfd40 addiu sp,sp,-704            
+    +0x03c  want afa40248 sw a0,584(sp)                 got afa402c0 sw a0,704(sp)               
+    +0x16c  want a3a001f1 sb zero,497(sp)               got a3a00269 sb zero,617(sp)             
+    +0x1bc  want 27b501f0 addiu s5,sp,496               got 27b50268 addiu s5,sp,616             
+    +0x1d8  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x1dc  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x1e4  want a3b801f0 sb t8,496(sp)                 got a3b80268 sb t8,616(sp)               
+    +0x1e8  want 8fa3023c lw v1,572(sp)                 got 8fa302b4 lw v1,692(sp)               
+    +0x1f0  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+    +0x210  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x218  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x21c  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+  27/445 words differ (4 section-relative relocations unverified: .rodata+0x44 at +0x58, .rodata+0x44 at +0x60, .rodata+0x0 at +0x3cc, .rodata+0x0 at +0x3d8; own .rodata: this function's references disagree on the section's image address (0x80120674 for +0x0, 0x8012485C for +0x44): the literals are not laid out as in retail)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+## score.py group cand/highscore_anim 
+Members:
+DrawName:
+  MATCH
+DrawGhost:
+  NOT VERIFIED (6 section-relative relocations unverified: .rodata+0x4 at +0x1ec, .rodata+0x4 at +0x1f0, .rodata+0x24 at +0x640, .rodata+0x24 at +0x648, .rodata+0x14 at +0x6c4, .rodata+0x14 at +0x6cc; own .rodata: this function's references disagree on the section's image address (0x80120650 for +0x4/+0x14, 0x8012485C for +0x24): the literals are not laid out as in retail)
+DrawUnlocked:
+  MATCH
+
+Context (informational; excluded from exit status):
+highscore_animText:
+    +0x000  want 27bdfdb8 addiu sp,sp,-584              got 27bdfd40 addiu sp,sp,-704            
+    +0x03c  want afa40248 sw a0,584(sp)                 got afa402c0 sw a0,704(sp)               
+    +0x16c  want a3a001f1 sb zero,497(sp)               got a3a00269 sb zero,617(sp)             
+    +0x1bc  want 27b501f0 addiu s5,sp,496               got 27b50268 addiu s5,sp,616             
+    +0x1d8  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x1dc  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x1e4  want a3b801f0 sb t8,496(sp)                 got a3b80268 sb t8,616(sp)               
+    +0x1e8  want 8fa3023c lw v1,572(sp)                 got 8fa302b4 lw v1,692(sp)               
+    +0x1f0  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+    +0x210  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x218  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x21c  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+  27/445 words differ (4 section-relative relocations unverified: .rodata+0x44 at +0x58, .rodata+0x44 at +0x60, .rodata+0x0 at +0x3cc, .rodata+0x0 at +0x3d8; own .rodata: this function's references disagree on the section's image address (0x80120674 for +0x0, 0x8012485C for +0x44): the literals are not laid out as in retail)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+## (after header edit) score.py group cand/highscore_anim --claims
+Members:
+DrawName:
+  MATCH
+DrawGhost:
+  NOT VERIFIED (6 section-relative relocations unverified: .rodata+0x4 at +0x1ec, .rodata+0x4 at +0x1f0, .rodata+0x24 at +0x640, .rodata+0x24 at +0x648, .rodata+0x14 at +0x6c4, .rodata+0x14 at +0x6cc; own .rodata: this function's references disagree on the section's image address (0x80120650 for +0x4/+0x14, 0x8012485C for +0x24): the literals are not laid out as in retail)
+DrawUnlocked:
+  MATCH
+
+Context (informational; excluded from exit status):
+highscore_animText:
+    +0x000  want 27bdfdb8 addiu sp,sp,-584              got 27bdfd40 addiu sp,sp,-704            
+    +0x03c  want afa40248 sw a0,584(sp)                 got afa402c0 sw a0,704(sp)               
+    +0x16c  want a3a001f1 sb zero,497(sp)               got a3a00269 sb zero,617(sp)             
+    +0x1bc  want 27b501f0 addiu s5,sp,496               got 27b50268 addiu s5,sp,616             
+    +0x1d8  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x1dc  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x1e4  want a3b801f0 sb t8,496(sp)                 got a3b80268 sb t8,616(sp)               
+    +0x1e8  want 8fa3023c lw v1,572(sp)                 got 8fa302b4 lw v1,692(sp)               
+    +0x1f0  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+    +0x210  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x218  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x21c  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+  27/445 words differ (4 section-relative relocations unverified: .rodata+0x44 at +0x58, .rodata+0x44 at +0x60, .rodata+0x0 at +0x3cc, .rodata+0x0 at +0x3d8; own .rodata: this function's references disagree on the section's image address (0x80120674 for +0x0, 0x8012485C for +0x44): the literals are not laid out as in retail)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
+## (after header edit) score.py group cand/highscore_anim 
+Members:
+DrawName:
+  MATCH
+DrawGhost:
+  NOT VERIFIED (6 section-relative relocations unverified: .rodata+0x4 at +0x1ec, .rodata+0x4 at +0x1f0, .rodata+0x24 at +0x640, .rodata+0x24 at +0x648, .rodata+0x14 at +0x6c4, .rodata+0x14 at +0x6cc; own .rodata: this function's references disagree on the section's image address (0x80120650 for +0x4/+0x14, 0x8012485C for +0x24): the literals are not laid out as in retail)
+DrawUnlocked:
+  MATCH
+
+Context (informational; excluded from exit status):
+highscore_animText:
+    +0x000  want 27bdfdb8 addiu sp,sp,-584              got 27bdfd40 addiu sp,sp,-704            
+    +0x03c  want afa40248 sw a0,584(sp)                 got afa402c0 sw a0,704(sp)               
+    +0x16c  want a3a001f1 sb zero,497(sp)               got a3a00269 sb zero,617(sp)             
+    +0x1bc  want 27b501f0 addiu s5,sp,496               got 27b50268 addiu s5,sp,616             
+    +0x1d8  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x1dc  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x1e4  want a3b801f0 sb t8,496(sp)                 got a3b80268 sb t8,616(sp)               
+    +0x1e8  want 8fa3023c lw v1,572(sp)                 got 8fa302b4 lw v1,692(sp)               
+    +0x1f0  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+    +0x210  want afa3023c sw v1,572(sp)                 got afa302b4 sw v1,692(sp)               
+    +0x218  want afa70234 sw a3,564(sp)                 got afa702ac sw a3,684(sp)               
+    +0x21c  want 8fa70234 lw a3,564(sp)                 got 8fa702ac lw a3,684(sp)               
+  27/445 words differ (4 section-relative relocations unverified: .rodata+0x44 at +0x58, .rodata+0x44 at +0x60, .rodata+0x0 at +0x3cc, .rodata+0x0 at +0x3d8; own .rodata: this function's references disagree on the section's image address (0x80120674 for +0x0, 0x8012485C for +0x44): the literals are not laid out as in retail)
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got 00000000 nop                         
+    +0x00c  want 03e00008 jr ra                         got 00000000 nop                         
+    +0x010  want ac450004 sw a1,4(v0)                   got 00000000 nop                         
+  5/5 words differ
+rc=1
