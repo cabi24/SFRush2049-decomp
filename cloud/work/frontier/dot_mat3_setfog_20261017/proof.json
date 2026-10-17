@@ -1,0 +1,560 @@
+{
+  "accepted_image_bytes": 0,
+  "host_semantic_controls": {
+    "wrong_alpha": "mutation rejected with exact differential exit code and message",
+    "wrong_green_mask": "mutation rejected with exact differential exit code and message",
+    "wrong_min": "mutation rejected with exact differential exit code and message",
+    "wrong_return": "mutation rejected with exact differential exit code and message"
+  },
+  "host_semantics": "262144 state/return cases across four windows and every signed-short value; 16777216 exhaustive RGB triples; unsigned native-shift helper model; UBSan clean; checksum=0",
+  "image_gate": "not run",
+  "inputs": {
+    "compiler": "ido5.3",
+    "context_sha256": {
+      "cloud/work/frontier/w9d/func_800A7480/a.c": "ba0baa07070356802852f0501997b35ec32c97ce9b2079973aff3f0cb2fbd523",
+      "src/blob/func_800A5560.c": "311b85532cdeb92f10f8d05f269c4f27c14e8d1b3ddf121a9ef8f9b1ee4a295c"
+    },
+    "packet_sha256": {
+      "candidate.c": "c366351453d9a404d5be059ed38e162782733ae7050cb76d4da9dd03fc4b591e",
+      "group.json": "9d1bd521d614e79fe84a0ca5bf0263443494d4f577952a394c10cde46c5ff8a0",
+      "replay.py": "a4496e6fba9985f4a45789064a8b1aec97412032e7cf0ee7d3485440e5cce4af",
+      "semantics.c": "5db705e51d1bda399c1955a7a50c0756d12c611386e47bd5511a0ddc4e534627"
+    },
+    "population": "game_blob",
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [
+        "func_800A7480"
+      ],
+      "context": [
+        "func_800A5560"
+      ],
+      "files": [
+        "candidate.c",
+        "fill.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "func_800A7480",
+        "func_800A5560"
+      ],
+      "members": [
+        "func_800A7480"
+      ],
+      "note": "New isolated fog-setter group using unchanged canonical background-color helper. Only the root is new credit. Canonical integration and whole-unit/image/ROM gates pending."
+    },
+    "targets": {
+      "func_800A5560": {
+        "address": "0x800a5560",
+        "bytes": 28,
+        "sha256": "76184fd6c015cf21fe58364196050c5e16ab217345bb9c1b3bd2e664ec473af5"
+      },
+      "func_800A7480": {
+        "address": "0x800a7480",
+        "bytes": 136,
+        "sha256": "8cc32c413970ff5ac27818b4883ae0cf517bdec2f5a6058cb7b974d4ef97a093"
+      }
+    }
+  },
+  "negative_controls": {
+    "cast_only": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 33,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "b29d266c0a4dbd4f9a14c9d1e0642875e5f4d86c50260dfcb5ea4d418db71695"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "d2935291eafe49669d59609e0a9963a1c42ab9cd8fb29fed5752a9a64dc862b8"
+        }
+      }
+    },
+    "natural_void": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 33,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "b29d266c0a4dbd4f9a14c9d1e0642875e5f4d86c50260dfcb5ea4d418db71695"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "2b5abc950ace7cf36bd75cc11e3feea0ab5f637070b7f61804850d86e045c39a"
+        }
+      }
+    },
+    "return_only": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 9,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "801e72176d2504571c90d8d84386d574cb3f1ef5ac39b4c4407b938ce823aaaf"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "675dfb334156c298a9e3c75fb38272d4cea96c4dda17a30d2920feca542db3e0"
+        }
+      }
+    },
+    "wrong_alpha": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 132,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 11,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "1dab538b4567fdf94c31ceaccbdf0b3323c95fd35de173d3ddf7031eb17ce305"
+        },
+        ".text": {
+          "bytes": 160,
+          "sha256": "7c854f3d053eefacfaa243bff041c1262de2caedd32a0f1342019dd41957e75d"
+        }
+      }
+    },
+    "wrong_green_mask": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 1,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "a56867a1e75c114be855fb0eea037d5e066655112ab73351659dae8cc2632a46"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "7a08128a15b763bef7b0e0548ec874bc2aae8147dc2b375b9a61dda6cbc4ae8c"
+        }
+      }
+    },
+    "wrong_min": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 26,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "3015b178aa7743d19a978f6669580cd9d0f6b1b01b7abfa6a0439dfcce0a1bb8"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "a9599a46917f903ad66f8204b211aca361faa18c20fa9994c58cd97a1a31d79e"
+        }
+      }
+    },
+    "wrong_return": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 33,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "b29d266c0a4dbd4f9a14c9d1e0642875e5f4d86c50260dfcb5ea4d418db71695"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "ddb3d9c03fe4db8eebe2ca7cfcdf84615af0fb5ee6f30d52d90083b223f43c89"
+        }
+      }
+    }
+  },
+  "new_individually_strict_bytes": 136,
+  "positive": {
+    "direct_index": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "a56867a1e75c114be855fb0eea037d5e066655112ab73351659dae8cc2632a46"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "8e433281d59fe05114a5b84c8671e79f6c28340e8167089bcc20acde475204ff"
+        }
+      }
+    },
+    "first": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "a56867a1e75c114be855fb0eea037d5e066655112ab73351659dae8cc2632a46"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "8e433281d59fe05114a5b84c8671e79f6c28340e8167089bcc20acde475204ff"
+        }
+      }
+    },
+    "repeat": {
+      "layout": {
+        "emitted_functions": [
+          "func_800A5560",
+          "func_800A7480"
+        ],
+        "function_extents": {
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A7480": {
+            "bytes": 136,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": null
+      },
+      "scores": {
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A7480": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 34,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 48,
+          "sha256": "a56867a1e75c114be855fb0eea037d5e066655112ab73351659dae8cc2632a46"
+        },
+        ".text": {
+          "bytes": 176,
+          "sha256": "8e433281d59fe05114a5b84c8671e79f6c28340e8167089bcc20acde475204ff"
+        }
+      }
+    }
+  },
+  "preserved_helpers": [
+    "func_800A5560"
+  ],
+  "rom_gate": "not run",
+  "semantic_scope": "Valid window indices and storage; all RGB byte triples and all signed-short values are covered. Host background helper uses defined unsigned 32-bit shifts to model native operations; the unchanged canonical helper spelling is not an ISO-C correctness claim.",
+  "whole_unit_gate": "not run"
+}

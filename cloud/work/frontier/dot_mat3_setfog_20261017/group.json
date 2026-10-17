@@ -1,0 +1,21 @@
+{
+  "files": [
+    "candidate.c",
+    "fill.c"
+  ],
+  "keep": [
+    "func_800A7480",
+    "func_800A5560"
+  ],
+  "members": [
+    "func_800A7480"
+  ],
+  "context": [
+    "func_800A5560"
+  ],
+  "claims": [
+    "func_800A7480"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "New isolated fog-setter group using unchanged canonical background-color helper. Only the root is new credit. Canonical integration and whole-unit/image/ROM gates pending."
+}

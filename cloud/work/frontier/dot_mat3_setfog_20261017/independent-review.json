@@ -1,0 +1,35 @@
+{
+  "status": "PASS_EXACT_CANDIDATE",
+  "reviewer": "renderer lane independent review",
+  "date": "2026-10-17",
+  "candidate": "func_800A7480 / ZOID_SetFog 0x800A7480",
+  "new_candidate_bytes": 136,
+  "accepted_image_bytes": 0,
+  "packet_sha256": {
+    "candidate.c": "c366351453d9a404d5be059ed38e162782733ae7050cb76d4da9dd03fc4b591e",
+    "group.json": "9d1bd521d614e79fe84a0ca5bf0263443494d4f577952a394c10cde46c5ff8a0",
+    "replay.py": "a4496e6fba9985f4a45789064a8b1aec97412032e7cf0ee7d3485440e5cce4af",
+    "semantics.c": "5db705e51d1bda399c1955a7a50c0756d12c611386e47bd5511a0ddc4e534627",
+    "proof.json": "7ddaaad3a5b45d41883dfb4e9fe9f793f0a5fcd6a1337138b72094b45d8db5c7",
+    "README.md": "9ae9f7aedbf5308e2c137481f122b9e2d83949f23fe56a88b55ba15c7e294c58"
+  },
+  "test_sha256": "44080d85cb2530b3cbb21cfddba53708f962f14c6ed5a5b18ec4c495b4973b5a",
+  "checks": [
+    "Independently inspected exact MAT3 source and DWARF-backed parameter, local, field and return contracts.",
+    "Source boundary begins at the natural unsigned-color historical draft; no pointer laundering or signed-red device.",
+    "Fresh python3 -O replay.py --check matched the source-bound proof exactly.",
+    "Fresh focused pytest: 2 passed.",
+    "Root136/helper28 ELF extents strict; root frameless; repeated and direct-index positives identical.",
+    "All mismatch and exact semantic-failure controls preserve the existing helper.",
+    "262,144 full-state/return cases cover every signed-short value in both range fields over four windows; all 16,777,216 RGB triples compared against independent bit-slice model; fatal UBSan.",
+    "Independent IDO-emitted layout constants [72,64,66,68,69,70,71] confirm record extent and all fog/color field offsets.",
+    "Canonical helper signed-promotion shift limitation is explicitly disclosed; host uses defined unsigned operations to model native arithmetic.",
+    "Reviewed root-ELF-extent frame-scan hardening and independently reran optimized full replay against refreshed proof7ddaaad3; source, semantics and all result counts unchanged."
+  ],
+  "limits": [
+    "No canonical, whole-unit, image, compression or ROM gate.",
+    "Host model assumes valid storage and four valid indices; no invalid-index/pointer behavior claim.",
+    "Historical canonical background-helper C spelling remains unchanged; review does not claim its high-color shift is defined ISO C.",
+    "Unrelated historical caller declarations are outside this isolated packet."
+  ]
+}
