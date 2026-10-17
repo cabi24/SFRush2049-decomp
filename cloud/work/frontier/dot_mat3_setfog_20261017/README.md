@@ -48,7 +48,7 @@ This is an isolated candidate packet, not canonical integration. Whole-unit/imag
 
 The source, recipe, semantic model and every previous result field are unchanged.
 The receipt now binds this README, scorer, own-data verifier, accepted lock and
-all eight IDO stage executables. Standard compiler lookup preserves local
+all nine IDO stage executables. Standard compiler lookup preserves local
 missing-tool skips and the REQUIRE_TOOLCHAIN=1 failure policy.
 
 Explicit optimized-safe guards validate the complete recipe, single-root claim,
@@ -56,5 +56,9 @@ actual strict-result fields, both ELF extents and the root's frameless shape in
 all three positive and seven negative builds. The existing root-bounded frame
 scan is retained and has a focused boundary test. All seven negative outcomes
 and four exact host-negative results are required. Four focused tests include
-114 optimized false-receipt refusals and a full checked replay. No source or
+115 optimized false-receipt refusals and a full checked replay. No source or
 additional candidate-byte credit is introduced.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.

@@ -1,0 +1,33 @@
+{
+  "independent_checks": [
+    "Only verifier-code change is adding ujoin through Path(score.ido(...)).",
+    "Stock cc -show -j independently confirms cfe then ujoin.",
+    "All 24 focused tests across six packets pass, including complete optimized replay and explicit stale-ujoin refusals.",
+    "Final refreshed input bindings equal current files and tools.",
+    "All prior output, source, recipe, object, extent, comparison, layout and semantic fields remain identical."
+  ],
+  "limits": [
+    "Prior source-shaping and semantic-domain disclosures remain applicable.",
+    "No canonical unit/image/ROM gates or additional acceptance claim."
+  ],
+  "prior_verifier_sha256": "9d916d1a5aacf39320d760463def272d8b54ddb6b48f9000f1fa1de8f8c13955",
+  "proof_sha256": "26762af68b691bc9f44fe1b89a94516fd0de0b4c6ae0e48f9d2c00916cd24f9e",
+  "reviewed_at_utc": "2026-10-17T22:22:00Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_setfog_20261017/README.md": "83ee095da0c8c9b89f9ac8fb93db26eb63962daa83986d1f3aa74dead13dc4ca",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/candidate.c": "c366351453d9a404d5be059ed38e162782733ae7050cb76d4da9dd03fc4b591e",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/group.json": "9d1bd521d614e79fe84a0ca5bf0263443494d4f577952a394c10cde46c5ff8a0",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/proof.json": "26762af68b691bc9f44fe1b89a94516fd0de0b4c6ae0e48f9d2c00916cd24f9e",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/replay.py": "1725185aec00dc1e3f82999c946efacb50de7bef628bfebf8b66e6b8aa6c7e72",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/semantics.c": "5db705e51d1bda399c1955a7a50c0756d12c611386e47bd5511a0ddc4e534627",
+    "tests/cloud/test_mat3_setfog.py": "358fef572c14add7001fcc7904d648e31e0679259537b5266d8decca0067ccd4"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Compiler-input fingerprint correction only; no source or matching-credit expansion.",
+  "status": "PASS",
+  "verified_receipt_changes": [
+    "/inputs/compiler_sha256/ujoin",
+    "/inputs/packet_sha256/README.md",
+    "/inputs/packet_sha256/replay.py"
+  ]
+}
