@@ -112,3 +112,23 @@ do not close it.
 This packet records verified semantic reconstructions, not new byte matches.
 Build outputs, target bytes, object files, and raw assembly/trace dumps remain
 outside the publication packet.
+
+## Verification hardening follow-up
+
+The original verifier checked source, target and object hashes but did not compare
+the complete saved result. A reproduced negative showed altered receipt claims
+and an unverified comparison row being ignored. Protocol 2 now validates the
+entire saved report before compilation and requires exact equality after replay.
+It binds the actual IDO executables, scorer and own-data verifier, accepted-match
+lock, protected target manifest and symbol table, accepted process-input source,
+and this README. All seven emitted native functions are inventoried and their
+complete extents and protected word counts enforced. No C, recipe, old comparison
+row, complete-object hash, model, fixture set or semantic outcome was changed.
+
+The focused tests include an optimized full replay, receipt/input refusal cases
+under Python -O, and the standard missing-IDO diagnostic. Tool fingerprints use
+the scorer's availability check, so absent IDO skips locally and fails when
+REQUIRE_TOOLCHAIN=1. The original independent review remains the source/behavior
+review; the separate hardening review covers this verifier-only update.
+
+    python3 -m pytest tests/cloud/test_mat3_input_snapshot_research.py -q

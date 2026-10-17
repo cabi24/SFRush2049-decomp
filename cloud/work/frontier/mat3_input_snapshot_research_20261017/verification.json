@@ -4,13 +4,14 @@
   "new_matching_bytes": 0,
   "canonical_or_ROM_verification": false,
   "inputs_sha256": {
+    "README.md": "15d4f376e01ac0dac7379e3fb58a8c49cf985a93fd8f4e28d59bbf1e38eaee35",
     "group/process.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
     "init_behavior.py": "1932367a54463b41f33db3e7bd769c5475bc3b0ba768b4410aca120fcb12e1da",
     "init_host_behavior.py": "8f274cb43312fa85e6fc155338eef9c8677672b72f1daee048ecc4add77e5ff6",
     "init_negative_controls.py": "5662e98276a4182bc65a3dd035131028092dec51b04ac2a80e06d8001063d0a4",
     "group/group.c": "d2121eb3fb2d4875c5006d72b8753a1b590e7b4dbd2ca5e48d43d785b9a35b7a",
     "group/group.json": "9a6b7034503d25affeaa03603cf1a1220782e600482a4a1f22b4d68954378df7",
-    "verify.py": "9fb51cb1214f868d2bfc6ef11b7c8176b5b7cead45cb0a6d0d2866df5f2711ee",
+    "verify.py": "4c0edf4294a65333757def54a8ae29c741de1b50b68185bb63c9d50b483cb9f4",
     "behavior.py": "943b2fdc00a67f35ab5c23c4718405f1f51253fc6d991d27c00503387e0415ce",
     "host_behavior.py": "711db62d107473af73fd3cdc78e5fb90e2a9087ca2e54e7b7ac5e77eb62f4684",
     "negative_controls.py": "36006190be80bc66171c5ae5a2d319d1ef1eba3a9e2bfbb44850851bc37964d6",
@@ -25,18 +26,80 @@
     "player_state_set": "666e073e6efe5bb36e53d12745e8741b6d55c071467496e96b3a74e99117a660",
     "process_inputs": "8b07c3e82d086a4b20139280fbdcce6b6a3bd5a0efb0471cb64341c4dbda1850"
   },
+  "verification_inputs": {
+    "protocol_version": 2,
+    "toolchain_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    },
+    "verifier_sha256": {
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+    },
+    "context_sha256": {
+      "cloud/matches/process_inputs.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0"
+    },
+    "target_manifest_sha256": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+    "target_symbols_sha256": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd",
+    "targets": {
+      "func_800E7134": {
+        "address": "0x800e7134",
+        "bytes": 676
+      },
+      "func_800E7038": {
+        "address": "0x800e7038",
+        "bytes": 252
+      },
+      "controller_poll": {
+        "address": "0x800c95dc",
+        "bytes": 928
+      },
+      "func_800C9590": {
+        "address": "0x800c9590",
+        "bytes": 76
+      },
+      "player_mode_set": {
+        "address": "0x800c84c0",
+        "bytes": 60
+      },
+      "player_state_set": {
+        "address": "0x800c9158",
+        "bytes": 60
+      },
+      "process_inputs": {
+        "address": "0x800c997c",
+        "bytes": 356
+      }
+    }
+  },
   "object_sha256": "8442e499592e621f18e21afb6796d0835426dc4a2d69b7de89f96ad8eebb60a4",
   "function_bytes": 676,
   "frame_bytes": 48,
   "function_extents": {
-    "func_800E7134": 676,
-    "func_800E7038": 248,
     "controller_poll": 928,
     "func_800C9590": 76,
-    "player_mode_set": 60,
+    "func_800E7038": 248,
     "player_state_set": 60,
+    "player_mode_set": 60,
+    "func_800E7134": 676,
     "process_inputs": 356
   },
+  "emitted_functions": [
+    "controller_poll",
+    "func_800C9590",
+    "func_800E7038",
+    "func_800E7134",
+    "player_mode_set",
+    "player_state_set",
+    "process_inputs"
+  ],
   "rows": {
     "func_800E7134": {
       "differing": 108,
