@@ -1,0 +1,20 @@
+{
+  "byte_identical": true,
+  "candidate_object_sha256": "4f2782ad8a057ac8ec3c11d46d2a9ad6a116e0fe9fef12ef5bf6a68772fd37e4",
+  "claims": [],
+  "forced_registers": false,
+  "new_accepted_credit": 0,
+  "observation_only": true,
+  "stages": [
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "stock_stage_object_sha256": "4f2782ad8a057ac8ec3c11d46d2a9ad6a116e0fe9fef12ef5bf6a68772fd37e4",
+  "trace_knobs": [
+    "CDX_LOG=1",
+    "CDX_DETAIL_WEB=all",
+    "W5D_LEVEL=3"
+  ],
+  "traced_object_sha256": "4f2782ad8a057ac8ec3c11d46d2a9ad6a116e0fe9fef12ef5bf6a68772fd37e4"
+}

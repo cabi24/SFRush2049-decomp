@@ -1,0 +1,1353 @@
+{
+  "canonical_installation_or_image_acceptance": false,
+  "claims": [],
+  "conditional_clock_qualification": true,
+  "emitted_functions": {
+    "ambient_sound_set": 448,
+    "camera_shake_update": 180,
+    "crowd_cheer_play": 400,
+    "display_list_alloc": 92,
+    "du_gfx_lock": 8,
+    "du_gfx_unlock": 8,
+    "entity_render_mode": 284,
+    "func_8008B2B4": 48,
+    "func_8008B2E4": 72,
+    "func_80096288": 16,
+    "func_800A4E58": 444,
+    "func_800B3D0C": 12,
+    "func_800B669C": 20,
+    "func_800B6748": 64,
+    "func_800F68A4": 132,
+    "mode_byte2_set": 80,
+    "mode_byte_set": 80,
+    "object_byte9_set": 64,
+    "object_bytes23_sum": 72,
+    "object_bytes_sum_global": 84,
+    "object_create": 112,
+    "object_type_byte2_get": 40,
+    "object_type_byte3_get": 40,
+    "player_state_get": 60,
+    "skid_mark_render": 1396,
+    "slot_deactivate": 88,
+    "slot_state_setup": 232,
+    "slot_value_get": 60,
+    "sound_control": 468,
+    "sound_handles_clear": 196,
+    "sound_update_channel": 488,
+    "tournament_unlock_check": 248,
+    "world_trigger_check": 216,
+    "world_velocity_integrate": 724
+  },
+  "members": {
+    "ambient_sound_set": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 112,
+      "unresolved": [],
+      "unverified": []
+    },
+    "camera_shake_update": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 45,
+      "unresolved": [],
+      "unverified": []
+    },
+    "crowd_cheer_play": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 100,
+      "unresolved": [],
+      "unverified": []
+    },
+    "display_list_alloc": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 23,
+      "unresolved": [],
+      "unverified": []
+    },
+    "entity_render_mode": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 71,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_8008B2B4": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 12,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_8008B2E4": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 18,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80096288": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 4,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800A4E58": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 111,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800B3D0C": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 3,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800B669C": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .data verified at 0x80118E20 (8 bytes; .data is laid out per translation unit)"
+      ],
+      "summary": "MATCH",
+      "total": 5,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800B6748": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 16,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800F68A4": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 33,
+      "unresolved": [],
+      "unverified": []
+    },
+    "mode_byte2_set": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 20,
+      "unresolved": [],
+      "unverified": []
+    },
+    "mode_byte_set": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 20,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_byte9_set": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 16,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_bytes23_sum": {
+      "accepted": false,
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "4/18 words differ",
+      "total": 18,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_bytes_sum_global": {
+      "accepted": false,
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "4/21 words differ",
+      "total": 21,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_create": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 28,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_type_byte2_get": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 10,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_type_byte3_get": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 10,
+      "unresolved": [],
+      "unverified": []
+    },
+    "player_state_get": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 15,
+      "unresolved": [],
+      "unverified": []
+    },
+    "skid_mark_render": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+        "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+      ],
+      "summary": "MATCH",
+      "total": 349,
+      "unresolved": [],
+      "unverified": []
+    },
+    "slot_deactivate": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "slot_state_setup": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 58,
+      "unresolved": [],
+      "unverified": []
+    },
+    "slot_value_get": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 15,
+      "unresolved": [],
+      "unverified": []
+    },
+    "sound_control": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 117,
+      "unresolved": [],
+      "unverified": []
+    },
+    "sound_handles_clear": {
+      "accepted": false,
+      "differing": 43,
+      "errors": [],
+      "extra_words": 5,
+      "notes": [],
+      "summary": "43/44 words differ (5 extra words (nonzero beyond target length))",
+      "total": 44,
+      "unresolved": [],
+      "unverified": []
+    },
+    "sound_update_channel": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 122,
+      "unresolved": [],
+      "unverified": []
+    },
+    "tournament_unlock_check": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 62,
+      "unresolved": [],
+      "unverified": []
+    },
+    "world_trigger_check": {
+      "accepted": true,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "MATCH",
+      "total": 54,
+      "unresolved": [],
+      "unverified": []
+    },
+    "world_velocity_integrate": {
+      "accepted": false,
+      "differing": 158,
+      "errors": [],
+      "extra_words": 3,
+      "notes": [
+        "not verified: .rodata+0x0 at +0x118: retail bytes at 0x00010001 are not available"
+      ],
+      "summary": "158/178 words differ (3 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x110, .rodata+0x0 at +0x118)",
+      "total": 178,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x110",
+        ".rodata+0x0 at +0x118"
+      ]
+    }
+  },
+  "native_layout_checks": {
+    "candidate.c": [
+      "sizeof_RecordSlot",
+      "sizeof_RecordRow",
+      "row_second",
+      "multi_extent",
+      "multi_callback",
+      "table_extent",
+      "table_indices",
+      "table_strings"
+    ],
+    "panes.c": [
+      "blit_extent",
+      "pane_extent",
+      "blit_width",
+      "blit_callback",
+      "pane_children"
+    ],
+    "peer_gr3.c": [
+      "font_header_extent",
+      "font_entry_extent"
+    ],
+    "peer_slot_group.c": [
+      "same_font_header_extent",
+      "resource_slot_extent",
+      "resource_data_offset"
+    ]
+  },
+  "negatives": {
+    "external_static_storage": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 187,
+        "errors": [],
+        "extra_words": 1,
+        "notes": [],
+        "summary": "187/349 words differ (1 extra words (nonzero beyond target length))",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "old_while_credit_count": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 2,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "2/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "reversed_corner_assignments": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 10,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "10/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_coin_record_stride": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 7,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "7/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_credit_divisor": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 1,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "1/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_credit_font": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 1,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "1/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_native_bottom_corner": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 2,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "2/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_native_hud_count": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 1,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "1/349 words differ",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    },
+    "wrong_pane_permanence": {
+      "other_member_results_unchanged": true,
+      "receipt": {
+        "accepted": false,
+        "differing": 21,
+        "errors": [],
+        "extra_words": 1,
+        "notes": [
+          "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+          "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+        ],
+        "summary": "21/349 words differ (1 extra words (nonzero beyond target length))",
+        "total": 349,
+        "unresolved": [],
+        "unverified": []
+      },
+      "rejected": true,
+      "target": "skid_mark_render"
+    }
+  },
+  "new_accepted_credit": 0,
+  "source_evidence_controls": {
+    "ordinary_seconds": {
+      "emitted_sections_equal": false,
+      "members": {
+        "ambient_sound_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "camera_shake_update": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        },
+        "crowd_cheer_play": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 100,
+          "unresolved": [],
+          "unverified": []
+        },
+        "display_list_alloc": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_render_mode": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 71,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096288": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 4,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A4E58": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 111,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B3D0C": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 3,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B669C": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (8 bytes; .data is laid out per translation unit)"
+          ],
+          "summary": "MATCH",
+          "total": 5,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B6748": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 16,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800F68A4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "mode_byte2_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 20,
+          "unresolved": [],
+          "unverified": []
+        },
+        "mode_byte_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 20,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_byte9_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 16,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_bytes23_sum": {
+          "accepted": false,
+          "differing": 4,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "4/18 words differ",
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_bytes_sum_global": {
+          "accepted": false,
+          "differing": 4,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "4/21 words differ",
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_create": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_type_byte2_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 10,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_type_byte3_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 10,
+          "unresolved": [],
+          "unverified": []
+        },
+        "player_state_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 15,
+          "unresolved": [],
+          "unverified": []
+        },
+        "skid_mark_render": {
+          "accepted": false,
+          "differing": 190,
+          "errors": [
+            "own .bss+0x0 (referenced at +0x1854, +0x1898): native address mapping is inconsistent (values omitted)",
+            "own .bss+0x4 (referenced at +0x1864, +0x186c, +0x18e8): native address mapping is inconsistent (values omitted)"
+          ],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "190/349 words differ (10 section-relative relocations unverified: .bss+0x0 at +0x280, .bss+0x0 at +0x288, .bss+0x4 at +0x294, .bss+0x4 at +0x298, .bss+0x4 at +0x29c, .bss+0x4 at +0x2a0, .bss+0x0 at +0x2c0, .bss+0x0 at +0x2cc, .bss+0x4 at +0x2e8, .bss+0x4 at +0x31c; own .bss+0x0 (referenced at +0x1854, +0x1898): native address mapping is inconsistent (values omitted); own .bss+0x4 (referenced at +0x1864, +0x186c, +0x18e8): native address mapping is inconsistent (values omitted))",
+          "total": 349,
+          "unresolved": [],
+          "unverified": [
+            ".bss+0x0 at +0x280",
+            ".bss+0x0 at +0x288",
+            ".bss+0x4 at +0x294",
+            ".bss+0x4 at +0x298",
+            ".bss+0x4 at +0x29c",
+            ".bss+0x4 at +0x2a0",
+            ".bss+0x0 at +0x2c0",
+            ".bss+0x0 at +0x2cc",
+            ".bss+0x4 at +0x2e8",
+            ".bss+0x4 at +0x31c"
+          ]
+        },
+        "slot_deactivate": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "slot_state_setup": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        },
+        "slot_value_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 15,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_control": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 117,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_handles_clear": {
+          "accepted": false,
+          "differing": 43,
+          "errors": [],
+          "extra_words": 5,
+          "notes": [],
+          "summary": "43/44 words differ (5 extra words (nonzero beyond target length))",
+          "total": 44,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_update_channel": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 122,
+          "unresolved": [],
+          "unverified": []
+        },
+        "tournament_unlock_check": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 62,
+          "unresolved": [],
+          "unverified": []
+        },
+        "world_trigger_check": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "world_velocity_integrate": {
+          "accepted": false,
+          "differing": 158,
+          "errors": [],
+          "extra_words": 3,
+          "notes": [
+            "not verified: .rodata+0x0 at +0x118: retail bytes at 0x00010001 are not available"
+          ],
+          "summary": "158/178 words differ (3 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x110, .rodata+0x0 at +0x118)",
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x110",
+            ".rodata+0x0 at +0x118"
+          ]
+        }
+      },
+      "whole_object_equal": false
+    },
+    "three_named_local_diagnostic": {
+      "emitted_sections_equal": true,
+      "members": {
+        "ambient_sound_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "camera_shake_update": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        },
+        "crowd_cheer_play": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 100,
+          "unresolved": [],
+          "unverified": []
+        },
+        "display_list_alloc": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_render_mode": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 71,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096288": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 4,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A4E58": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 111,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B3D0C": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 3,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B669C": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (8 bytes; .data is laid out per translation unit)"
+          ],
+          "summary": "MATCH",
+          "total": 5,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800B6748": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 16,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800F68A4": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "mode_byte2_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 20,
+          "unresolved": [],
+          "unverified": []
+        },
+        "mode_byte_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 20,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_byte9_set": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 16,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_bytes23_sum": {
+          "accepted": false,
+          "differing": 4,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "4/18 words differ",
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_bytes_sum_global": {
+          "accepted": false,
+          "differing": 4,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "4/21 words differ",
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_create": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_type_byte2_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 10,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_type_byte3_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 10,
+          "unresolved": [],
+          "unverified": []
+        },
+        "player_state_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 15,
+          "unresolved": [],
+          "unverified": []
+        },
+        "skid_mark_render": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .bss placed at 0x8015462C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+            "own .bss placed at 0x80154644 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+          ],
+          "summary": "MATCH",
+          "total": 349,
+          "unresolved": [],
+          "unverified": []
+        },
+        "slot_deactivate": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "slot_state_setup": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        },
+        "slot_value_get": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 15,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_control": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 117,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_handles_clear": {
+          "accepted": false,
+          "differing": 43,
+          "errors": [],
+          "extra_words": 5,
+          "notes": [],
+          "summary": "43/44 words differ (5 extra words (nonzero beyond target length))",
+          "total": 44,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sound_update_channel": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 122,
+          "unresolved": [],
+          "unverified": []
+        },
+        "tournament_unlock_check": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 62,
+          "unresolved": [],
+          "unverified": []
+        },
+        "world_trigger_check": {
+          "accepted": true,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "summary": "MATCH",
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "world_velocity_integrate": {
+          "accepted": false,
+          "differing": 158,
+          "errors": [],
+          "extra_words": 3,
+          "notes": [
+            "not verified: .rodata+0x0 at +0x118: retail bytes at 0x00010001 are not available"
+          ],
+          "summary": "158/178 words differ (3 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x110, .rodata+0x0 at +0x118)",
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x110",
+            ".rodata+0x0 at +0x118"
+          ]
+        }
+      },
+      "whole_object_equal": false
+    }
+  }
+}
