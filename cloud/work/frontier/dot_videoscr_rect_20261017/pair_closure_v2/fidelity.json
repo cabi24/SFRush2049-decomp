@@ -1,0 +1,22 @@
+{
+  "byte_identical": true,
+  "candidate_object_sha256": "8a58d8e2cb166ef6b21ba82f7978854d6ab1624250c630e7f8458ab84c2af0c1",
+  "canonical_changes": false,
+  "claims": [],
+  "full_unit_verified": false,
+  "new_accepted_credit": 0,
+  "non_native_helper_word_extents": {
+    "font_select_slp": 2,
+    "font_set_slp": 2,
+    "gfx_lock_slp": 2,
+    "gfx_unlock_slp": 2,
+    "video_setColor": 4,
+    "video_validOption": 2,
+    "vr_font_lock": 2,
+    "vr_font_set": 2,
+    "vr_font_unlock": 2
+  },
+  "rom_verified": false,
+  "stock_stage_object_sha256": "8a58d8e2cb166ef6b21ba82f7978854d6ab1624250c630e7f8458ab84c2af0c1",
+  "traced_object_sha256": "8a58d8e2cb166ef6b21ba82f7978854d6ab1624250c630e7f8458ab84c2af0c1"
+}

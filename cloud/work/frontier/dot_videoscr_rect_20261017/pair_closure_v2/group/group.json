@@ -1,0 +1,39 @@
+{
+  "name": "videoscr_pair_closure_research",
+  "members": [
+    "func_800B55F4",
+    "func_800B5688",
+    "func_800B59E8",
+    "func_800B59F0",
+    "physics_sym",
+    "TitlePane",
+    "particle_render",
+    "particle_collision",
+    "func_8008E26C",
+    "sign_extend_call",
+    "func_800B8810",
+    "slot_state_setup",
+    "object_create",
+    "func_800B669C"
+  ],
+  "context": [],
+  "files": [
+    "group.c",
+    "slp.c",
+    "ctx_gr3_b.c",
+    "rect.c",
+    "caller.c",
+    "allocator.c"
+  ],
+  "keep": [
+    "physics_sym",
+    "func_8008E26C",
+    "sign_extend_call",
+    "func_800B8810"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "note": "Research only. Exact local videoscr rectangle/initializer with genuine native allocator, MBOX wrapper and SaveGlobals retained. Fourteen known native bodies explicitly reported; inherited context/refusal states preserved. No canonical installation, full-unit proof or coverage credit.",
+  "provenance": "w15b physics_sym group | w29b: sound_loop_set added (w28c body; one-line helpers + non-static names); cloud/work/frontier/w29b/RESULTS.md",
+  "claims": []
+}
