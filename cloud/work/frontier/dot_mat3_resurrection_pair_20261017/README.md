@@ -118,3 +118,7 @@ mutation guards were also exercised without changing protected repository inputs
 
 A clean staging replay using current-master tools and target inputs passes the
 bounded pytest with REQUIRE_TOOLCHAIN=1 (1 passed, no skips).
+
+## Proof hardening
+
+The verifier now uses explicit exceptions for every proof guard, including under `python3 -O`. The optimized-interpreter negative test rejects false claims, changed source/verifier/target, and an unverified relocation. This maintenance changes only verifier enforcement and its bound hash. All C sources, source and target hashes, result counts, and empty coverage claims are unchanged. Two focused tests pass on the intended 58425072 inputs; the fresh seven-build report is identical to the original report.
