@@ -1,0 +1,30 @@
+Members (research; no claims):
+entity_tick_main: 47/671 words differ
+  own .data verified at 0x8011B464 (4 bytes; .data is laid out per translation unit)
+  own .rodata verified at 0x80123A00..0x80123A60
+drone_ai_update: 537/820 words differ
+  own .rodata verified at 0x80123A60..0x80123A64
+Context (informational):
+entity_anim_texture: MATCH
+matrix_scale_apply: MATCH; 2 extra nonzero words
+anim_state_update: MATCH
+  own .rodata verified at 0x8012393C..0x8012394C
+buffer_swap: MATCH
+  own .rodata verified at 0x801239F0..0x80123A00
+model_bounds_calc: MATCH
+func_8008B2B4: 12/12 words differ
+func_8008B2E4: MATCH
+entity_transform_calc: MATCH
+client_sync: MATCH
+entity_hierarchy_update: MATCH
+stat_lap_complete: MATCH
+game_timer_resume: MATCH
+func_80091BA8: MATCH
+func_80091B00: 11/42 words differ
+scheduler_recv: MATCH
+func_8008B3A0: 2/10 words differ
+func_8008E06C: 2/11 words differ
+func_80092BF4: 12/25 words differ; 1 extra nonzero words
+func_80092BC8: 2/11 words differ
+func_8008AE64: 2/10 words differ
+func_8008AE48: MATCH

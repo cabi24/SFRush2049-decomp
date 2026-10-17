@@ -1,0 +1,315 @@
+{
+  "status": "VERIFIED_RESEARCH_PARTIAL",
+  "base_commit": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "runtime_or_ROM_verification": false,
+  "inputs_sha256": {
+    "verify.py": "242ddc2addd96631ae44ca4a384c8275c16d0956639c74252e87183f0d5f72c1",
+    "trace_fidelity.py": "bb78da74c8e18aa7e815a2a12b332c75f40b3dfe7a7b9c23c1147d0f3e611f35",
+    "test_palette_semantics.py": "49d084d17e0cd996f845f5c24e026c240e91c404d2cd10140697680244ea2760",
+    "group/group.json": "157d0f8b590a73185980d95902a396b3e3baaea0ee624f13199cac97cb60b2a7",
+    "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
+    "group/anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/visibility_wrappers.c": "17bbed89f524369dfd1b46d5ac3da2fc800a90549314dabdf64e951036f0f4b8",
+    "group/entity_anim_texture.c": "29dbabfa138aabcd9d8931b6580813a599f937512a21b2ec435b59a1720f5982",
+    "group/func_8008B2E4.c": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+    "group/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768",
+    "group/rocket.c": "fb0c251d03f5e1237af6040d011893893df9dbb2093aa09e77c3b382099f7319",
+    "group/func_80092BF4.c": "3965708e7ab9c2ec98a8d4d165fb9984a27c299b3c63196c8f6b1f6f407c3bc2",
+    "group/func_80092BC8.c": "6c84ea7ee799cb75fbbb5af8b04bf9df72694a90681acf8a8864dede3e7219fc"
+  },
+  "target_words_sha256": {
+    "entity_tick_main": "40199c801720807651f3a07273d3b4cb46dbe764b1d0846d1de16bccb11a6c76",
+    "drone_ai_update": "68578132c51bce7ee65265521c37c5ca61ccedda12f606c8817ea1eb3d1d25e7"
+  },
+  "positive_object_sha256": "e273b9a3c44fce7c7c4066d9ab17091129cfaace57ed4508c1993ff142ba746b",
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "positive": {
+    "entity_tick_main": {
+      "differing": 47,
+      "total": 671,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .data verified at 0x8011B464 (4 bytes; .data is laid out per translation unit)",
+        "own .rodata verified at 0x80123A00..0x80123A60"
+      ]
+    },
+    "drone_ai_update": {
+      "differing": 537,
+      "total": 820,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x80123A60..0x80123A64"
+      ]
+    },
+    "entity_anim_texture": {
+      "differing": 0,
+      "total": 159,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "matrix_scale_apply": {
+      "differing": 0,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2,
+      "notes": []
+    },
+    "anim_state_update": {
+      "differing": 0,
+      "total": 460,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x8012393C..0x8012394C"
+      ]
+    },
+    "buffer_swap": {
+      "differing": 0,
+      "total": 419,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x801239F0..0x80123A00"
+      ]
+    },
+    "model_bounds_calc": {
+      "differing": 0,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B2B4": {
+      "differing": 12,
+      "total": 12,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B2E4": {
+      "differing": 0,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "stat_lap_complete": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "game_timer_resume": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B3A0": {
+      "differing": 2,
+      "total": 10,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008E06C": {
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_80092BF4": {
+      "differing": 12,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1,
+      "notes": []
+    },
+    "func_80092BC8": {
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008AE64": {
+      "differing": 2,
+      "total": 10,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008AE48": {
+      "differing": 0,
+      "total": 7,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    }
+  },
+  "negative_control": {
+    "entity_tick_main": {
+      "differing": 48,
+      "total": 671,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .data verified at 0x8011B464 (4 bytes; .data is laid out per translation unit)",
+        "own .rodata verified at 0x80123A00..0x80123A60"
+      ]
+    },
+    "drone_ai_update": {
+      "differing": 537,
+      "total": 820,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x80123A60..0x80123A64"
+      ]
+    },
+    "entity_anim_texture": {
+      "differing": 0,
+      "total": 159,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "anim_state_update": {
+      "differing": 0,
+      "total": 460,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x8012393C..0x8012394C"
+      ]
+    },
+    "buffer_swap": {
+      "differing": 0,
+      "total": 419,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x801239F0..0x80123A00"
+      ]
+    }
+  },
+  "rocket_residual": {
+    "count": 47,
+    "kind": "stack/frame immediates only",
+    "native_frame_bytes": 368,
+    "candidate_frame_bytes": 352,
+    "immediate_delta_counts": {
+      "-16": 1,
+      "16": 31,
+      "20": 15
+    }
+  },
+  "negative_mutation": "Rocket translucent alpha 128 -> 129"
+}
