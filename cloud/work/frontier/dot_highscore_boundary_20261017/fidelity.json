@@ -1,0 +1,15 @@
+{
+  "candidate_object_sha256": "dad01737e911aeec221151d0c23370df55c7bb3d0c8b8f4b126e8cc3d32e48f7",
+  "staged_stock_object_sha256": "dad01737e911aeec221151d0c23370df55c7bb3d0c8b8f4b126e8cc3d32e48f7",
+  "traced_uopt_object_sha256": "dad01737e911aeec221151d0c23370df55c7bb3d0c8b8f4b126e8cc3d32e48f7",
+  "byte_identical": true,
+  "known_native_members": 31,
+  "other_compiler_symbol_extents_bytes": {
+    "DrawCircuitCode": 8,
+    "DrawScores": 8,
+    "du_gfx_lock": 8,
+    "du_gfx_unlock": 8
+  },
+  "new_accepted_credit": 0,
+  "claims": []
+}
