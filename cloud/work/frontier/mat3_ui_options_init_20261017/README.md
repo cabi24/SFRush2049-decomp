@@ -1,10 +1,19 @@
-# Options initScreen: authentic boundaries, two frame words open
+# Options initScreen: source boundaries and unresolved type dependency
 
 Research only, baseline `58425072b49e95f0fbe5c4c239988fb4885f7c5c`.
 `replay_save_prompt` is the historical label for optionscr `initScreen` at
 0x800DABDC, 1,540 bytes. It is not a replay-save dialog. Claims are empty.
 No canonical edits, integration, full-ROM gate, behavior harness, or new
 accepted-image credit are included.
+
+**Unresolved source dependency:** the two-frame-word result requires the
+inherited volatile model-count declaration. All 26 original MAT3 DWARF entries
+instead record ordinary unsigned char; the available header is generated from
+that DWARF, not independent original-header evidence. Changing both native
+aliases coherently to ordinary unsigned char produces 237/385 differences and
+ten unverified section references in the initializer. The MAT3 type does not
+establish N64's declaration. The earlier near-match is therefore a
+volatile-dependent diagnostic, not authenticated installable source.
 
 ## Result
 
@@ -53,6 +62,8 @@ controller record rather than a two-dimensional byte array removes15
 register-only differences (24 ->9). A genuine SaveGlobals source unit removes
 the initial four scheduling differences (9 ->5). Its native four-word
 function identity at B8810 was verified against the protected target.
+This score improvement does not independently justify the volatile qualifier;
+the later original-type evidence and full control below qualify that result.
 
 The original MAT3 MBOX_NewObject DWARF and current matching donor agree on
 int parent, signed-short dlidx, and signed-short return. ZOID_AddObject takes
@@ -110,3 +121,15 @@ flattened SaveGlobals, and wrong owned literal. It uses explicit exceptions,
 not removable assertions. Normal and python -O outputs are identical. The
 wrong-literal result proves that a low instruction difference alone cannot
 hide bad data. Compared retail byte values are omitted from the receipt.
+
+## Original model-count type control
+
+`ordinary_model_count.json` preserves the complete nine-member control receipt.
+Both `gNumModels` and its address-named alias `D_80140BDC` change to ordinary
+unsigned char. The initializer becomes 237/385 with ten unverified references;
+the already-refused DA2C0 becomes 223/579, with its owned-data refusals. DB1E0
+and all other members preserve their prior outcomes. The verifier recompiles
+this control as `source_evidence_controls`, explicitly separate from the
+wrong-source negatives. Baseline source and receipts remain available for
+comparison; neither variant grants complete-group or image credit. Original
+native type/access evidence is still needed to adopt the initializer.

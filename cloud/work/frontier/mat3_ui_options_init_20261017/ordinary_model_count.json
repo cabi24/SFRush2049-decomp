@@ -1,0 +1,160 @@
+{
+  "func_800B669C": {
+    "accepted": false,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 1,
+    "notes": [],
+    "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+    "total": 5,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800B8810": {
+    "accepted": false,
+    "differing": 4,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "4/4 words differ",
+    "total": 4,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800DA2C0": {
+    "accepted": false,
+    "differing": 223,
+    "errors": [
+      "own .rodata+0x10 referenced at +0x58c differs from retail 0x80120BDC (+0x0: compared byte values omitted; 8 bytes compared)",
+      "own .bss+0x4 (referenced at +0x6a8, +0x754, +0x758, +0x790, +0xb58): retail reads this one object at different addresses 0x00010002, 0x80152740"
+    ],
+    "extra_words": 0,
+    "notes": [
+      "own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+      "own .rodata verified at 0x80124224..0x80124238",
+      "not verified: .rodata+0x0 at +0x5ac: retail bytes at 0xFFFF8012 are not available"
+    ],
+    "summary": "223/579 words differ (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5a8, .rodata+0x0 at +0x5ac, .rodata+0x10 at +0x580, .rodata+0x10 at +0x58c, .bss+0x4 at +0x8e4, .bss+0x4 at +0x8e8; own .rodata+0x10 referenced at +0x58c differs from retail 0x80120BDC (+0x0: compared byte values omitted; 8 bytes compared); own .bss+0x4 (referenced at +0x6a8, +0x754, +0x758, +0x790, +0xb58): retail reads this one object at different addresses 0x00010002, 0x80152740)",
+    "total": 579,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x18 at +0x84",
+      ".rodata+0x18 at +0x88",
+      ".bss+0x0 at +0x150",
+      ".bss+0x0 at +0x154",
+      ".bss+0x0 at +0x20c",
+      ".bss+0x0 at +0x220",
+      ".bss+0x0 at +0x248",
+      ".bss+0x0 at +0x25c",
+      ".bss+0x0 at +0x228",
+      ".bss+0x0 at +0x260",
+      ".rodata+0x1c at +0x26c",
+      ".rodata+0x1c at +0x270",
+      ".rodata+0x20 at +0x29c",
+      ".rodata+0x20 at +0x2a0",
+      ".rodata+0x24 at +0x2b0",
+      ".rodata+0x24 at +0x2b4",
+      ".rodata+0x28 at +0x2c0",
+      ".rodata+0x28 at +0x300",
+      ".bss+0x4 at +0x434",
+      ".bss+0x4 at +0x438",
+      ".bss+0x4 at +0x4cc",
+      ".bss+0x4 at +0x4e4",
+      ".bss+0x4 at +0x4ac",
+      ".bss+0x4 at +0x4e8",
+      ".bss+0x4 at +0x50c",
+      ".bss+0x4 at +0x520",
+      ".rodata+0x0 at +0x5a8",
+      ".rodata+0x0 at +0x5ac",
+      ".rodata+0x10 at +0x580",
+      ".rodata+0x10 at +0x58c",
+      ".bss+0x4 at +0x8e4",
+      ".bss+0x4 at +0x8e8"
+    ]
+  },
+  "func_800DB1E0": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .rodata verified at 0x80124248..0x80124280"
+    ],
+    "summary": "MATCH",
+    "total": 350,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_create": {
+    "accepted": false,
+    "differing": 28,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "28/28 words differ",
+    "total": 28,
+    "unresolved": [],
+    "unverified": []
+  },
+  "replay_save_prompt": {
+    "accepted": false,
+    "differing": 237,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .data verified at 0x80116DAC (4 bytes; .data is laid out per translation unit)",
+      "not verified: .rodata+0x2c at +0x398: retail bytes at 0x20251F1A are not available",
+      "not verified: .rodata+0x30 at +0x3ac: retail bytes at 0x2824D626 are not available",
+      "not verified: .rodata+0x34 at +0x3bc: retail bytes at 0x423C42C8 are not available",
+      "not verified: .rodata+0x38 at +0x408: retail bytes at 0xA305D626 are not available"
+    ],
+    "summary": "237/385 words differ (10 section-relative relocations unverified: .data+0x0 at +0x1fc, .data+0x0 at +0x200, .rodata+0x2c at +0x394, .rodata+0x2c at +0x398, .rodata+0x30 at +0x3a8, .rodata+0x30 at +0x3ac, .rodata+0x34 at +0x3b8, .rodata+0x34 at +0x3bc, .rodata+0x38 at +0x404, .rodata+0x38 at +0x408)",
+    "total": 385,
+    "unresolved": [],
+    "unverified": [
+      ".data+0x0 at +0x1fc",
+      ".data+0x0 at +0x200",
+      ".rodata+0x2c at +0x394",
+      ".rodata+0x2c at +0x398",
+      ".rodata+0x30 at +0x3a8",
+      ".rodata+0x30 at +0x3ac",
+      ".rodata+0x34 at +0x3b8",
+      ".rodata+0x34 at +0x3bc",
+      ".rodata+0x38 at +0x404",
+      ".rodata+0x38 at +0x408"
+    ]
+  },
+  "sign_extend_call": {
+    "accepted": false,
+    "differing": 10,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "10/10 words differ",
+    "total": 10,
+    "unresolved": [],
+    "unverified": []
+  },
+  "slot_state_setup": {
+    "accepted": false,
+    "differing": 2,
+    "errors": [],
+    "extra_words": 2,
+    "notes": [],
+    "summary": "2/58 words differ (2 extra words (nonzero beyond target length))",
+    "total": 58,
+    "unresolved": [],
+    "unverified": []
+  },
+  "time_result_display": {
+    "accepted": false,
+    "differing": 2,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "2/83 words differ",
+    "total": 83,
+    "unresolved": [],
+    "unverified": []
+  }
+}

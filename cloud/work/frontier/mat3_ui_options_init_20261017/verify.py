@@ -29,7 +29,7 @@ def scrub(text):
 def describe(result):
     row = dataclasses.asdict(result)
     row.update(accepted=result.accepted(), summary=scrub(result.summary()),
-               notes=list(result.notes))
+               notes=[scrub(text) for text in result.notes])
     row['errors'] = [scrub(text) for text in row['errors']]
     return row
 
@@ -116,6 +116,28 @@ def run():
             else:
                 require(bad['differing'] > 2, 'Negative did not worsen partial: ' + label)
             results['negatives'][label] = bad
+        # Original MAT3 type evidence, not a wrong-source negative. The native
+        # version's qualifier remains unestablished; change both aliases.
+        child = root / 'ordinary_model_count'
+        shutil.copytree(base, child)
+        for filename, old, new in [
+                ('buttons.c', 'volatile u8 gNumModels', 'u8 gNumModels'),
+                ('replay_caller.c', 'volatile u8 D_80140BDC', 'u8 D_80140BDC')]:
+            path = child / filename
+            source = path.read_text()
+            require(source.count(old) == 1, 'Stale model-count type control')
+            path.write_text(source.replace(old, new))
+        measured = measure(child, root / 'ordinary_model_count.o', spec['members'])
+        ordinary = json.loads((HERE / 'ordinary_model_count.json').read_text())
+        require(measured == ordinary, 'Original-type complete receipt changed')
+        for name in spec['members']:
+            if name not in ['func_800DA2C0', 'replay_save_prompt']:
+                require(measured[name] == rows[name], 'Original-type preserved member changed')
+        require(measured['replay_save_prompt']['differing'] == 237 and
+                not measured['replay_save_prompt']['accepted'],
+                'Unresolved qualifier dependency changed; review source boundary')
+        results['source_evidence_controls'] = {'ordinary_model_count': measured}
+        results['initializer_volatile_source_authenticated'] = False
         print(json.dumps(results, indent=2, sort_keys=True))
 
 
