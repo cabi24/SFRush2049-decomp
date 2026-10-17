@@ -1,0 +1,82 @@
+{
+  "protocol_version": 2,
+  "population": "game",
+  "function": "func_800B9740",
+  "native_address": "0x800B9740",
+  "native_bytes": 408,
+  "base": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "claims": [
+    "func_800B9740"
+  ],
+  "deliverable": "cloud/matches/func_800B9740.c",
+  "source_sha256": "42ad10a492b2de5170ca7c10f781b3a004cb56637c429ecb61903084563107ce",
+  "target_words_sha256": "bc8379404dfd8076e68b4e343ad1925a28b1c1d1aea315136c892e7023f67e8b",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "strict_verdict": "MATCH",
+  "controls": [
+    {
+      "name": "endpoint_pointer_arithmetic",
+      "source_sha256": "c4da70d04e9692728758cf1533ef4cde7e17a45eb0baf53717afff179042c1c6",
+      "comparison": {
+        "differing": 1,
+        "total": 102,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false,
+      "summary": "1/102 words differ"
+    },
+    {
+      "name": "wrong_kind",
+      "source_sha256": "59e69f7ec5cf0ee477994f7ca3e229e12e1389df64f2806c69554ac3903551d8",
+      "comparison": {
+        "differing": 84,
+        "total": 102,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      },
+      "accepted": false,
+      "summary": "84/102 words differ (3 extra words (nonzero beyond target length))"
+    },
+    {
+      "name": "early_break",
+      "source_sha256": "6bbefe44534079e57763a23e9ab687cfae69ec080ad38589fd05445c144dee22",
+      "comparison": {
+        "differing": 24,
+        "total": 102,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false,
+      "summary": "24/102 words differ"
+    },
+    {
+      "name": "conditional_extrema_stores",
+      "source_sha256": "1d74910bd0c113b57356e66e83935430a65388e919e6e2f9fea01c2fa12b4bbc",
+      "comparison": {
+        "differing": 32,
+        "total": 102,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false,
+      "summary": "32/102 words differ"
+    }
+  ],
+  "limits": [
+    "isolated source scoring only",
+    "no installation, image identity, or ROM verification"
+  ],
+  "shaping_devices": [
+    "Exclusive end pointer uses byte offset count * sizeof(Vertex). No unused locals, dead reads, padding arrays, stand-in context, or false prototypes."
+  ],
+  "verify_sha256": "353bb80fef826c85f180c028de24eb1f406f9e32108aa9ce9239c43898186ad8"
+}
