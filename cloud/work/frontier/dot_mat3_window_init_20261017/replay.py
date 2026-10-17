@@ -24,6 +24,15 @@ HISTORICAL = 'cloud/work/frontier/w9d/arb_rate_set/best.c'
 OLD_PACK = 'GPACK_RGBA5551(D_8017A510[index].red,D_8017A510[index].green,D_8017A510[index].blue,1)'
 NEW_PACK = '(u16)(((D_8017A510[index].red<<8)&0xf800)|((D_8017A510[index].green<<3)&0x7c0)|((D_8017A510[index].blue>>2)&0x3e))|1'
 
+EXTENTS = {NAME: 312, 'func_800A5560': 28, 'exhaust_smoke_effect': 452}
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
+NEGATIVES = {'cast_only': (312, 56, 23, 0, 0, 0), 'donor_local_pointer': (312, 56, 6, 0, 0, 0), 'historical_void': (312, 56, 25, 0, 0, 0), 'return_only': (312, 56, 6, 0, 0, 0), 'wrong_alpha': (308, 56, 17, 0, 0, 0), 'wrong_backclip': (312, 56, 1, 0, 0, 0), 'wrong_frontclip': (312, 56, 36, 0, 2, 0), 'wrong_return': (320, 56, 18, 2, 0, 0)}
+SEMANTICS = '20324 finite state/call/return cases; 16777216 exhaustive RGB-byte packing cases; valid signed-short boundaries; UBSan clean; checksum=0'
+SEMANTIC_CONTROLS = {'wrong_alpha': 'mutation rejected with exact differential exit code and message', 'wrong_frontclip': 'mutation rejected with exact differential exit code and message', 'wrong_return': 'mutation rejected with exact differential exit code and message'}
+
+def require(condition, message):
+    if not condition: raise RuntimeError(message)
+
 def digest(b): return hashlib.sha256(b).hexdigest()
 def recipe(): return json.loads((HERE / 'group.json').read_text())
 def source(): return (HERE / 'candidate.c').read_text()
@@ -48,10 +57,12 @@ def materialize(d):
 
 def inputs():
     targets, syms = score.targets(), score.image_symbols()
-    return dict(protocol_version=2, population='game_blob', compiler='ido5.3', recipe=recipe(),
-        packet_sha256={p: digest((HERE / p).read_bytes()) for p in ['candidate.c', 'group.json', 'replay.py', 'semantics.c']},
+    return dict(protocol_version=3, population='game_blob', compiler='ido5.3', recipe=recipe(),
+        packet_sha256={p: digest((HERE / p).read_bytes()) for p in ['candidate.c', 'group.json', 'replay.py', 'semantics.c', 'README.md']},
         context_sha256={p: digest((ROOT / p).read_bytes()) for p in sorted([HISTORICAL] + list(CONTEXT.values()))},
-        targets={n: dict(address=hex(syms[n]), bytes=len(targets[n])*4, sha256=digest(b''.join(struct.pack('>I', w) for w in targets[n]))) for n in STRICT})
+        targets={n: dict(address=hex(syms[n]), bytes=len(targets[n])*4, sha256=digest(b''.join(struct.pack('>I', w) for w in targets[n]))) for n in STRICT},
+        tooling_sha256={p: digest((ROOT / p).read_bytes()) for p in ['tools/cloud/score.py', 'tools/cloud/owndata.py', 'blob_matched.lock.json']},
+        compiler_sha256={n: digest(Path(score.ido(n)).read_bytes()) for n in ['cc', 'cfe', 'uld', 'usplit', 'umerge', 'uopt', 'ugen', 'as1']})
 
 def diagnostic(s):
     return re.sub(r'retail [0-9a-fA-F]+, got [0-9a-fA-F]+', 'retail [redacted], got [redacted]', s)
@@ -66,15 +77,19 @@ def sections(obj):
     return {s['name']: dict(bytes=s['size'], sha256=digest(data[s['off']:s['off']+s['size']]))
         for s in secs if s['name'] in {'.text', '.rel.text', '.rodata', '.rel.rodata', '.data', '.rel.data'}}
 
+def root_frame(words, start, extent):
+    frames = [65536-(w&65535) for w in words[start:start+min(60, extent//4)] if w>>16 == 0x27bd and w&0x8000]
+    return frames[0] if frames else None
+
 def layout(obj):
     words = score.text_words(obj); start = score.symbols(obj)[NAME] // 4
-    frames = [65536-(w&65535) for w in words[start:start+60] if w>>16 == 0x27bd and w&0x8000]
     elf = owndata._Object(obj)
     funcs = [sym for i, sec in enumerate(elf.sections) if sec['type'] == owndata.SHT_SYMTAB
              for sym in elf.symbols(i) if sym['type'] == owndata.STT_FUNC and 0 < sym['section'] < len(elf.sections)]
+    extent = next(sym['size'] for sym in funcs if sym['name'] == NAME)
     return dict(emitted_functions=sorted(sym['name'] for sym in funcs),
-        function_extents={sym['name']: dict(offset=sym['value'], bytes=sym['size']) for sym in funcs},
-        root_frame_bytes=frames[0] if frames else None)
+                function_extents={sym['name']: dict(offset=sym['value'], bytes=sym['size']) for sym in funcs},
+                root_frame_bytes=root_frame(words, start, extent))
 
 def group_result(obj):
     return dict(scores={n: result(obj, n) for n in STRICT}, sections=sections(obj), layout=layout(obj))
@@ -117,26 +132,57 @@ def verify():
             report['negative_controls'][label] = group_result(obj)
         report['host_semantics'] = semantic_check(d)
         report['host_semantic_controls'] = {label: semantic_check(d, variants[label]) for label in ['wrong_frontclip', 'wrong_alpha', 'wrong_return']}
-    pos, neg = report['positive'], report['negative_controls']
-    if pos['first'] != pos['repeat']: raise RuntimeError('repeated executable sections differ')
-    for label, group in pos.items():
-        if any(not r['strict_match'] for r in group['scores'].values()): raise RuntimeError('strict closure failed')
-        if group['layout']['emitted_functions'] != sorted(STRICT): raise RuntimeError('unexpected emitted functions')
-        if group['layout']['root_frame_bytes'] != 56: raise RuntimeError('native frame changed')
-        for n in STRICT:
-            if group['layout']['function_extents'][n]['bytes'] != report['inputs']['targets'][n]['bytes']: raise RuntimeError('function extent changed: '+n)
-    for label, group in neg.items():
-        if group['scores'][NAME]['strict_match']: raise RuntimeError('negative incorrectly accepted: '+label)
-        if any(not group['scores'][n]['strict_match'] for n in STRICT[1:]): raise RuntimeError('control damaged a preserved helper')
-    if neg['historical_void']['scores'][NAME]['differing_words'] != 25 or neg['return_only']['scores'][NAME]['differing_words'] != 6: raise RuntimeError('causal controls changed')
+    verify_report(report)
+    return report
+
+def verify_report(report):
+    require(report['inputs'] == inputs(), 'source, target, compiler or tooling binding changed')
+    spec = report['inputs']['recipe']
+    require(spec['members'] == [NAME] and spec['claims'] == [NAME] and spec['context'] == STRICT[1:]
+            and spec['keep'] == STRICT and spec['files'] == ['candidate.c', 'fill.c', 'set_window.c']
+            and spec['flags'] == FLAGS, 'complete recipe or claims changed')
+    require({n: report['inputs']['targets'][n]['bytes'] for n in STRICT} == EXTENTS, 'protected target extents changed')
+    require(report['new_individually_strict_bytes'] == 312 and report['accepted_image_bytes'] == 0, 'false byte credit')
+    require(report['preserved_helpers'] == STRICT[1:], 'preserved helper claims changed')
+    require(all(report[k] == 'not run' for k in ['whole_unit_gate', 'image_gate', 'rom_gate']), 'false integration credit')
+    pos = report['positive']; neg = report['negative_controls']
+    require(set(pos) == {'first', 'repeat'} and set(neg) == set(NEGATIVES), 'build inventory changed')
+    require(pos['first'] == pos['repeat'], 'positive object sections differ')
+    for label, group in list(pos.items()) + list(neg.items()):
+        positive = label in pos
+        require(set(group['scores']) == set(STRICT), 'score inventory changed: ' + label)
+        layout = group['layout']; extents = layout['function_extents']
+        require(layout['emitted_functions'] == sorted(STRICT) and set(extents) == set(STRICT), 'emitted function inventory changed: ' + label)
+        expected_extents = dict(EXTENTS)
+        if not positive: expected_extents[NAME] = NEGATIVES[label][0]
+        require({n: extents[n]['bytes'] for n in STRICT} == expected_extents, 'function extent changed: ' + label)
+        require(layout['root_frame_bytes'] == (56 if positive else NEGATIVES[label][1]), 'root frame changed: ' + label)
+        for n, row in group['scores'].items():
+            require(row['target_words'] == EXTENTS[n]//4, 'target word count changed: ' + label + ':' + n)
+            strict = row['differing_words'] == 0 and row['extra_nonzero_words'] == 0 and not row['unresolved'] and not row['unverified'] and not row['errors']
+            require(row['strict_match'] is strict, 'inconsistent strict fields: ' + label + ':' + n)
+            if positive or n != NAME:
+                require(strict, 'preserved strict closure failed: ' + label + ':' + n)
+            else:
+                require(not strict, 'negative incorrectly accepted: ' + label + ':' + n)
+        if not positive:
+            row = group['scores'][NAME]
+            require((row['differing_words'], row['extra_nonzero_words'], len(row['unverified']), len(row['errors'])) == NEGATIVES[label][2:]
+                    and not row['unresolved'], 'negative outcome changed: ' + label)
+    require(report['host_semantics'] == SEMANTICS and report['host_semantic_controls'] == SEMANTIC_CONTROLS, 'semantic scope or outcome changed')
+
+def checked_verify():
+    saved = json.loads((HERE / 'proof.json').read_text())
+    verify_report(saved)
+    report = verify()
+    require(report == saved, 'fresh receipt differs')
     return report
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__); ap.add_argument('--check', action='store_true'); ap.add_argument('--materialize', type=Path); args = ap.parse_args()
     if args.materialize:
         args.materialize.mkdir(parents=True, exist_ok=True); materialize(args.materialize); return
-    report = verify()
-    if args.check and report != json.loads((HERE / 'proof.json').read_text()): raise RuntimeError('fresh receipt differs')
+    report = checked_verify() if args.check else verify()
     print(json.dumps(report, indent=2, sort_keys=True))
 
 if __name__ == '__main__': main()

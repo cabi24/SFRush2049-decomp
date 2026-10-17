@@ -52,3 +52,19 @@ The proof binds packet, context and protected-target hashes, function offsets an
 The host harness compares full historical/candidate state, pre-callback records, seven callback arguments and callback counts over **20,324 finite cases**, and independently checks the newly restored return pointer. A bounded projection-callback stand-in records and updates actual interface fields; it is not a trigonometric implementation. The native helper is independently matched in the group. Signed-short conversion boundaries stay within range. UBSan is fatal, and wrong clip, alpha and return mutations must produce the exact differential failure code and message. No claims are made for invalid indices, invalid objects, arbitrary out-of-range float conversions or arbitrary NaNs.
 
 No ROM bytes, literal target-data dumps, raw assembly, compiled objects, private traces or credentials are included. Independent review is recorded separately.
+
+## Protocol 3 verification follow-up
+
+This verification-only update preserves the C, recipe, semantic harness and all
+previous result fields. It binds this README, the scorer, own-data verifier,
+accepted lock and all eight IDO stage executables. Compiler lookup uses the
+standard missing-tool diagnostic, preserving local skips and the required-tool
+failure policy.
+
+Explicit guards check the complete recipe and single-root claim, every positive
+and negative score's actual strict fields, all three function extents in each
+of the ten builds, and each root frame. The frame scan stops at the root's ELF
+extent. The eight negative outcomes and all three precise host-negative results
+are required. Four focused tests cover the complete optimized replay,133
+optimized false-receipt refusals, bounded frame controls and missing-tool policy.
+No source or candidate-byte credit is added.

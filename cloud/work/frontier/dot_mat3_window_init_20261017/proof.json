@@ -9,19 +9,30 @@
   "image_gate": "not run",
   "inputs": {
     "compiler": "ido5.3",
+    "compiler_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
     "context_sha256": {
       "cloud/work/frontier/w9d/arb_rate_set/best.c": "8b34670059a199afccde76d0c5696a79f1684d91c1922dccc8ca2fdf85acbffe",
       "src/blob/exhaust_smoke_effect.c": "59200d38648fee1fa298a598531cc832d0aea608b6b7a0e7bfb198a5828b7be7",
       "src/blob/func_800A5560.c": "311b85532cdeb92f10f8d05f269c4f27c14e8d1b3ddf121a9ef8f9b1ee4a295c"
     },
     "packet_sha256": {
+      "README.md": "754c235185431a182049cf1550f2a59e9da16b26b89333b7def348d90b171ce5",
       "candidate.c": "f19e5f5d8cfce0ad58c3c8688dcc5f742044145fdcc9f168964a5bc45b599413",
       "group.json": "3e49f8185bdd3d47fc3a947b9a6374b88266f6ac72ad615b01872686c6fcd36c",
-      "replay.py": "b2cbe6eea232241cf18eafd0802d6a2cfc929e733dec41e55c321702faf0aa0d",
+      "replay.py": "b485eed8a243bf9c9292f304e3b4d8a9ef6515f549da6f2003692f4f01b8aaba",
       "semantics.c": "5628e62fb4eaf42e9ae65dce6972930f6376eda1747b806e47dc74b75fa0ca25"
     },
     "population": "game_blob",
-    "protocol_version": 2,
+    "protocol_version": 3,
     "recipe": {
       "claims": [
         "arb_rate_set"
@@ -62,6 +73,11 @@
         "bytes": 28,
         "sha256": "76184fd6c015cf21fe58364196050c5e16ab217345bb9c1b3bd2e664ec473af5"
       }
+    },
+    "tooling_sha256": {
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
     }
   },
   "negative_controls": {
