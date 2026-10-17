@@ -1,0 +1,171 @@
+{
+  "status": "PARTIAL_RESEARCH",
+  "claims": [],
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0,
+  "strict": {
+    "slot_state_setup": 232,
+    "display_list_alloc": 92,
+    "sound_update_channel": 488,
+    "object_byte9_set": 64,
+    "func_800B669C": 20,
+    "func_800B6748": 64,
+    "world_trigger_check": 216,
+    "object_type_byte2_get": 40,
+    "object_type_byte3_get": 40,
+    "func_800B3D0C": 12,
+    "func_800F68A4": 132,
+    "camera_shake_update": 180,
+    "func_80096288": 16,
+    "slot_value_get": 60,
+    "player_state_get": 60,
+    "slot_deactivate": 88,
+    "mode_byte2_set": 80,
+    "mode_byte_set": 80,
+    "func_800A4E58": 444,
+    "entity_render_mode": 284,
+    "func_800B70EC": 60,
+    "func_800ED66C": 248,
+    "func_800B7360": 132,
+    "object_create": 112,
+    "func_8008A38C": 88,
+    "func_8008A148": 580,
+    "func_800878E0": 296,
+    "func_8008A3E4": 136,
+    "func_8008705C": 180,
+    "object_render": 10048,
+    "func_800B66B0": 152,
+    "func_80086A50": 1548,
+    "func_8008A46C": 472,
+    "sound_init": 400,
+    "object_manager_update": 532,
+    "sound_pitch_diff_calc": 48,
+    "sound_pitch_diff_halved": 52
+  },
+  "partial": {
+    "object_bytes23_sum": {
+      "bytes": 72,
+      "frames": [
+        24
+      ],
+      "differing": 4,
+      "total": 18,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "object_bytes_sum_global": {
+      "bytes": 84,
+      "frames": [
+        24
+      ],
+      "differing": 4,
+      "total": 21,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "world_velocity_integrate": {
+      "bytes": 768,
+      "frames": [
+        96
+      ],
+      "differing": 151,
+      "total": 178,
+      "extra_words": 14,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x14 at +0x108",
+        ".rodata+0x14 at +0x110"
+      ],
+      "errors": []
+    },
+    "audio_doppler_calc": {
+      "bytes": 1124,
+      "frames": [
+        112
+      ],
+      "differing": 46,
+      "total": 281,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "menu_input_process": {
+      "bytes": 1276,
+      "frames": [
+        376
+      ],
+      "differing": 258,
+      "total": 320,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "state_utility": {
+      "bytes": 396,
+      "frames": [
+        24
+      ],
+      "differing": 14,
+      "total": 99,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  },
+  "residues": {
+    "du_gfx_lock": 8,
+    "du_gfx_unlock": 8
+  },
+  "native_members": [
+    "slot_state_setup",
+    "object_create",
+    "func_800B669C",
+    "world_trigger_check",
+    "object_byte9_set",
+    "object_bytes23_sum",
+    "func_800B3D0C",
+    "object_bytes_sum_global",
+    "func_800F68A4",
+    "camera_shake_update",
+    "func_80096288",
+    "slot_value_get",
+    "display_list_alloc",
+    "player_state_get",
+    "slot_deactivate",
+    "sound_update_channel",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "mode_byte_set",
+    "func_800A4E58",
+    "entity_render_mode",
+    "func_800B6748",
+    "world_velocity_integrate",
+    "func_800ED66C",
+    "func_800B7360",
+    "func_8008A38C",
+    "func_800B70EC",
+    "audio_doppler_calc",
+    "menu_input_process",
+    "func_800B66B0",
+    "func_80086A50",
+    "func_8008705C",
+    "func_800878E0",
+    "func_8008A148",
+    "func_8008A46C",
+    "sound_init",
+    "object_render",
+    "func_8008A3E4",
+    "object_manager_update",
+    "sound_pitch_diff_calc",
+    "sound_pitch_diff_halved",
+    "state_utility"
+  ]
+}

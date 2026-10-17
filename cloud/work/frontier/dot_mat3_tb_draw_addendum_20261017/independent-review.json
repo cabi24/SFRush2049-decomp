@@ -1,0 +1,61 @@
+{
+  "status": "PASS_RESEARCH_ONLY",
+  "scope": "Independent review of the compact genuine TB_DrawText caller addendum; all inherited reconstruction limitations remain explicit. No acceptance or integration claim.",
+  "packet_files_sha256": {
+    "README.md": "b181a8fb1974d7f611f2be489c3e6c5df47dd19c7114b89ddb59b5886e8772c3",
+    "group.json": "f0d87643295c1aef9d26002b5dde78c95805eab5a252a24609c9dab6c523f785",
+    "inheritance.json": "2e5d337e89027bd8d8bb69168d804e8aeb2c74480c3b5debdf533656168e6c2e",
+    "proof.json": "a75d464df0ec29b9b3144877c602d2eeada6294ae3b495388e6c6482d894db38",
+    "replay.py": "cfff2f087a7d2c6bce56eed128fdf62799881b93ed703de0c6aa27ac8903f84e",
+    "scope.json": "7cca1bddefbbee6da949b6c0acbccfb6da476e8c7936ea2a58b14d64621a89ad",
+    "semantics.c": "f6ac532f141dd384aa489cad642bdd6d0e6033364dd09fd2130c61d3b6d9b57c",
+    "semantics.py": "1483eb5a04073120b62362bb01e76bf8f0714154e498cc51c893f96974cb760c",
+    "tb_draw.c": "a347177c692162227d79cbf6b4dc35416c40b5878a812a32549aac5cfd6f126b",
+    "text_width.c": "a9e52cb5e5725677b8d8f3dac1f4a745ce1cc1ca31c9dad52dec6b4c977308ea",
+    "trace.json": "fc71ce5ecb8680f517134f488e05f76f951434476c16394a6a9f3363a6f047be",
+    "trace.py": "e7349c5e8acc0612eb22f16b8d6d4eec2bb6b429abce0d0c8f05c20e37b89595"
+  },
+  "focused_test_sha256": "0dd2605064f87601cb754d65bcd45618a7c765d2f71d24dc87ccd99602955f48",
+  "proof_sha256": "a75d464df0ec29b9b3144877c602d2eeada6294ae3b495388e6c6482d894db38",
+  "trace_sha256": "fc71ce5ecb8680f517134f488e05f76f951434476c16394a6a9f3363a6f047be",
+  "independent_checks": {
+    "normal_full_replay": true,
+    "four_focused_tests_passed": true,
+    "optimized_full_and_relocated_replays": true,
+    "precise_optimized_refusals": 1142,
+    "fresh_stock_instrumented_whole_object_identity": true,
+    "whole_object_sha256": "3771a8c5a10b4d1d1b528859fc5c36a43a1493939cf1430b75bacec15777ac7c",
+    "inherited_sources_equal_current_PR415": true,
+    "native_bodies": 43,
+    "strict_bodies": 37,
+    "inherited_native_outcomes_preserved": 39,
+    "root_differing_words": 14,
+    "root_total_words": 99,
+    "root_bytes": 396,
+    "root_frame": 24,
+    "nonnative_residues_bytes": [
+      8,
+      8
+    ],
+    "bounded_host_fixtures": 37748736,
+    "exact_semantic_negatives": 4,
+    "complete_Just_bytes": 8
+  },
+  "source_findings": [
+    "The retrieved TB_DrawText donor and original-local evidence agree with the no-local root, signed-short parameters/helper returns, unsigned horizontal width shift and signed vertical division. Native unscaled position updates and sentinel behavior are retained.",
+    "The actual CenterText and RightText boundaries are present and strict; flattening them is a measured negative, not the adopted source.",
+    "The native enum-sized Just layout is checked from emitted data. The independent full eight-byte ownership check covers the trailing vertical initializer even when the setter scorer selects only four bytes. The wrong trailing initializer produces the precise expected rejection.",
+    "The file-static Just control remains a disclosed diagnostic; the externally visible reconstruction is not asserted as recovered original N64 linkage.",
+    "The inherited width body remains compiler context. Its pointer-counter arithmetic, uninitialized monospace local and scheduling choices are clearly disclosed and excluded from the host-model claim.",
+    "The host oracle separately computes coordinate narrowing and sentinel preservation; the actual root, Center/Right helpers and SetTextPos execute against captured width/height/draw services. The paired x/y domain and deterministic service limit are explicit.",
+    "All original PR415 C hashes match the current published packet; no inherited body was silently changed. Complete result equality retains every failure, function extent, residue and ownership refusal."
+  ],
+  "limits": [
+    "Root remains partial: 14 of 99 words differ. All six graph failures remain explicit.",
+    "No native rendering or width-algorithm behavioral equivalence is claimed by the placement harness.",
+    "No canonical integration, whole-image verification, ROM verification, new matching credit or accepted bytes."
+  ],
+  "claims": [],
+  "new_candidate_bytes": 0,
+  "publication_blockers": []
+}

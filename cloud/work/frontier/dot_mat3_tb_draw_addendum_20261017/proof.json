@@ -1,0 +1,4797 @@
+{
+  "status": "PARTIAL_RESEARCH",
+  "claims": [],
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0,
+  "inputs": {
+    "packet": {
+      "README.md": "b181a8fb1974d7f611f2be489c3e6c5df47dd19c7114b89ddb59b5886e8772c3",
+      "replay.py": "cfff2f087a7d2c6bce56eed128fdf62799881b93ed703de0c6aa27ac8903f84e",
+      "semantics.py": "1483eb5a04073120b62362bb01e76bf8f0714154e498cc51c893f96974cb760c",
+      "semantics.c": "f6ac532f141dd384aa489cad642bdd6d0e6033364dd09fd2130c61d3b6d9b57c",
+      "tb_draw.c": "a347177c692162227d79cbf6b4dc35416c40b5878a812a32549aac5cfd6f126b",
+      "text_width.c": "a9e52cb5e5725677b8d8f3dac1f4a745ce1cc1ca31c9dad52dec6b4c977308ea",
+      "group.json": "f0d87643295c1aef9d26002b5dde78c95805eab5a252a24609c9dab6c523f785",
+      "scope.json": "7cca1bddefbbee6da949b6c0acbccfb6da476e8c7936ea2a58b14d64621a89ad",
+      "inheritance.json": "2e5d337e89027bd8d8bb69168d804e8aeb2c74480c3b5debdf533656168e6c2e",
+      "trace.py": "e7349c5e8acc0612eb22f16b8d6d4eec2bb6b429abce0d0c8f05c20e37b89595",
+      "trace.json": "fc71ce5ecb8680f517134f488e05f76f951434476c16394a6a9f3363a6f047be"
+    },
+    "inherited_sources": {
+      "ctx_gr3_b.c": "cbcde624aa5b5d726ab007badf55d7eeb70bd04f2bd522d1ec6cc0220af701d2",
+      "world.c": "f99c444a3f2c4a9e7e3d81410ef77bddbfb05c10db2a52055f63575efaec4624",
+      "peer_gr3.c": "8c3cc6247a66359dd7d64bbe212120ba403c0e8560cb977200d31dd693fb4c30",
+      "peer_slot_group.c": "b93f40f00c6847a267e69621be405996dadad7ad3e2bf82711661da37d90a97f",
+      "peer_slot_func_800A4E58.c": "bf3a17569ca1dedf0ce2bd4ee5ac680337f6ebf5fdcec9d7e61683646d8ef8d3",
+      "peer_slot_entity_render_mode.c": "34fd2052fff46ce6fe52827a98b4aa4459fbc7fccfcd5ac425da801e8c98079e",
+      "text_replay.c": "3732d060b3a1f6cf77ec6bab30451ced02add789c7982b9811290be67eabe91f",
+      "hal_font.c": "fac41c59be68aba6467c5e58776a2f1d513a0764cd98b270207d78d66ebcc198",
+      "func_800ED66C.c": "b255933ab70aa57ce448a59719fcfd3e91dc19aefab90918b2a9c197ddd6b104",
+      "func_800B7360.c": "2e18aeabd5b3f9350453be3602686fd989b65b06e52c7ca09c90a9b5bd4db9ea",
+      "func_8008A38C.c": "58db65afa0a14855b25ffead3896297a88c9cfda9a0d55cea2e0c36b406d9c66",
+      "func_800B70EC.c": "5afc062a1b5ea5efe70f36085aee39ef064362cd20f3181ecd557f27a8374c84",
+      "drawtext.c": "49cbd92561706506f5bc43c039bbb38eae75ae39bda3941e433eaf61b42f8b9d",
+      "text_storage.c": "111e62f90a8d69d6e577d74d96cf796ccf7468beabf47ec2d92eb129f03a62cc",
+      "func_800B66B0.c": "1b516aeaf0cb0ff1caa0960641cd6eea4b899bf97114bb2bd9dcd1574fc13600",
+      "gfx_func_80086A50.c": "6550ec6da46a6b474c088ae89d03f4e62593758d4aa11c842f51e63437d4b3e1",
+      "gfx_modes.c": "bb685680603f1ed4f2433f359747715ffaa2085c402b66d1109fb6bb17e40df4",
+      "gfx_func_8008A148.c": "7de40c951eb651b658bc6f1de412cc9fbc70851edc7e8c13047d1ef31a9d551f",
+      "gfx_rect.c": "a1feb67072ebbdc68d6e578a9dac22d89675f6ad8ee5f11ec2b87183b803d929",
+      "gfx_init.c": "d2ba0467dcd2e4e5291fe35410415634144dda97f072b5c8e5f15e6bc1a1d9fe",
+      "gfx_object_render.c": "8a64edd158153fab62931bdbfdbd10eaa85968c48bd3ce9412e769fdbb8a71fc",
+      "func_8008A3E4.c": "34b76c03a8a85f8b0a4dd65ee5fc470d8a0db8786b558cb806e152b10f1b466f",
+      "group.json": "c817a451738cd82d05d74783b5183365fc01e76ffea665c696dd3f911ee90fa4"
+    },
+    "focused_test_sha256": "0dd2605064f87601cb754d65bcd45618a7c765d2f71d24dc87ccd99602955f48",
+    "recipe": {
+      "members": [
+        "slot_state_setup",
+        "object_create",
+        "func_800B669C",
+        "world_trigger_check",
+        "object_byte9_set",
+        "object_bytes23_sum",
+        "func_800B3D0C",
+        "object_bytes_sum_global",
+        "func_800F68A4",
+        "camera_shake_update",
+        "func_80096288",
+        "slot_value_get",
+        "display_list_alloc",
+        "player_state_get",
+        "slot_deactivate",
+        "sound_update_channel",
+        "mode_byte2_set",
+        "object_type_byte2_get",
+        "object_type_byte3_get",
+        "mode_byte_set",
+        "func_800A4E58",
+        "entity_render_mode",
+        "func_800B6748",
+        "world_velocity_integrate",
+        "func_800ED66C",
+        "func_800B7360",
+        "func_8008A38C",
+        "func_800B70EC",
+        "audio_doppler_calc",
+        "menu_input_process",
+        "func_800B66B0",
+        "func_80086A50",
+        "func_8008705C",
+        "func_800878E0",
+        "func_8008A148",
+        "func_8008A46C",
+        "sound_init",
+        "object_render",
+        "func_8008A3E4",
+        "object_manager_update",
+        "sound_pitch_diff_calc",
+        "sound_pitch_diff_halved",
+        "state_utility"
+      ],
+      "files": [
+        "ctx_gr3_b.c",
+        "world.c",
+        "peer_gr3.c",
+        "peer_slot_group.c",
+        "peer_slot_func_800A4E58.c",
+        "peer_slot_entity_render_mode.c",
+        "text_replay.c",
+        "hal_font.c",
+        "func_800ED66C.c",
+        "func_800B7360.c",
+        "func_8008A38C.c",
+        "func_800B70EC.c",
+        "drawtext.c",
+        "text_storage.c",
+        "func_800B66B0.c",
+        "gfx_func_80086A50.c",
+        "gfx_modes.c",
+        "gfx_func_8008A148.c",
+        "gfx_rect.c",
+        "gfx_init.c",
+        "gfx_object_render.c",
+        "func_8008A3E4.c",
+        "text_width.c",
+        "tb_draw.c"
+      ],
+      "keep": [
+        "func_800B669C",
+        "object_create",
+        "world_trigger_check",
+        "object_byte9_set",
+        "object_bytes23_sum",
+        "func_800B3D0C",
+        "object_bytes_sum_global",
+        "func_800F68A4",
+        "camera_shake_update",
+        "slot_value_get",
+        "display_list_alloc",
+        "player_state_get",
+        "slot_deactivate",
+        "mode_byte2_set",
+        "object_type_byte2_get",
+        "object_type_byte3_get",
+        "mode_byte_set",
+        "func_800A4E58",
+        "entity_render_mode",
+        "world_velocity_integrate",
+        "func_800ED66C",
+        "func_800B7360",
+        "func_8008A38C",
+        "func_800B70EC",
+        "menu_input_process",
+        "func_8008705C",
+        "func_800878E0",
+        "func_8008A148",
+        "func_8008A46C",
+        "sound_init",
+        "object_render",
+        "func_8008A3E4",
+        "object_manager_update",
+        "sound_pitch_diff_calc",
+        "sound_pitch_diff_halved",
+        "state_utility"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "claims": [],
+      "context": [],
+      "note": "Additive research: unchanged PR415 pipeline plus genuine TB_DrawText and native width/CenterText/RightText. All failures and nonnative residues explicit; empty claims."
+    },
+    "compiler": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    },
+    "tools": {
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+    },
+    "target_metadata": {
+      "SHA256SUMS": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+      "symbols.json": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd"
+    },
+    "owned_manifest": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
+    "targets": {
+      "slot_state_setup": {
+        "address": "0x800b4200",
+        "bytes": 232,
+        "sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144"
+      },
+      "object_create": {
+        "address": "0x800b42f0",
+        "bytes": 112,
+        "sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858"
+      },
+      "func_800B669C": {
+        "address": "0x800b669c",
+        "bytes": 20,
+        "sha256": "b8afbed98b9ba3628a0f09bfd44fe0013653321610eb1ab113a5cc6dc1855fdb"
+      },
+      "world_trigger_check": {
+        "address": "0x800edce8",
+        "bytes": 216,
+        "sha256": "c61e640dd5a9e43b9f4946fc6d76a154f4c1609d4ae1d3c302b601f2d5282612"
+      },
+      "object_byte9_set": {
+        "address": "0x800b41c0",
+        "bytes": 64,
+        "sha256": "cd19e3089685917a05f400f998bf57a4bd6e370863561775900968e6879f93f6"
+      },
+      "object_bytes23_sum": {
+        "address": "0x800b7128",
+        "bytes": 72,
+        "sha256": "b8f61f2841b30eececf506faff05d2f4c662758d695130102bdbe21c1c53502d"
+      },
+      "func_800B3D0C": {
+        "address": "0x800b3d0c",
+        "bytes": 12,
+        "sha256": "549ead2c41ceb44d8c3e0f7fbfc3537cbcef605e4ac08a0a0afdb57e62625f74"
+      },
+      "object_bytes_sum_global": {
+        "address": "0x800b3f50",
+        "bytes": 84,
+        "sha256": "1f195feade67d0cbc0e3608addd9d498dce8ad0f3acd3e16431a453ecfbfe82f"
+      },
+      "func_800F68A4": {
+        "address": "0x800f68a4",
+        "bytes": 132,
+        "sha256": "febbc91d69ee2eef018a81c4ac51d3ad99b99e717d761cbc5e81633a18026253"
+      },
+      "camera_shake_update": {
+        "address": "0x800bddfc",
+        "bytes": 180,
+        "sha256": "1879d0d67a8b443453a229392970374c91cd0d3eba15b4202072e2b983520a82"
+      },
+      "func_80096288": {
+        "address": "0x80096288",
+        "bytes": 16,
+        "sha256": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422"
+      },
+      "slot_value_get": {
+        "address": "0x80096298",
+        "bytes": 60,
+        "sha256": "a2b66ce0b15f868f70b64d0c115582c5f2268bbeb4d10780c310abe8f2c77107"
+      },
+      "display_list_alloc": {
+        "address": "0x8009638c",
+        "bytes": 92,
+        "sha256": "925d61111a6284ee7c38677c1e9de4e9353a03010f23aa5136831c0f2bcbe107"
+      },
+      "player_state_get": {
+        "address": "0x800ac898",
+        "bytes": 60,
+        "sha256": "8c712aaafe3da947e08b74482a1dfe64a64bd5e522437303b50169c531b52da6"
+      },
+      "slot_deactivate": {
+        "address": "0x800ac840",
+        "bytes": 88,
+        "sha256": "2e0dee14905b533c7c61fb9872672d6254588924486a76e3d944330966e65504"
+      },
+      "sound_update_channel": {
+        "address": "0x800b3d18",
+        "bytes": 488,
+        "sha256": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c"
+      },
+      "mode_byte2_set": {
+        "address": "0x800ed7b4",
+        "bytes": 80,
+        "sha256": "33691475c095be5342c2896d3a3bf45f6a35831db7f17bf47e4e35af3e0817bf"
+      },
+      "object_type_byte2_get": {
+        "address": "0x800b3f00",
+        "bytes": 40,
+        "sha256": "56e4cac9497d637b614f3b196446b8531beb6757076b4bd78513529b04a5983c"
+      },
+      "object_type_byte3_get": {
+        "address": "0x800b3f28",
+        "bytes": 40,
+        "sha256": "64dbd6e150c4bc2f983d312cca237d496a1732af6e193d7f6af8b77e83633074"
+      },
+      "mode_byte_set": {
+        "address": "0x800ed764",
+        "bytes": 80,
+        "sha256": "5d64830391538398b2e3fb785f86495d1625c4d101a78b4b6fde3fef6213bd8f"
+      },
+      "func_800A4E58": {
+        "address": "0x800a4e58",
+        "bytes": 444,
+        "sha256": "98bc9eb66c284347869b42228644fd991008eca5257dffc9071b75c36c3d8570"
+      },
+      "entity_render_mode": {
+        "address": "0x800965bc",
+        "bytes": 284,
+        "sha256": "6eaf7b0ac1636d3ea87d4ee6ea2cccdefbc0b73dce3c4bd0f3d886893bec350f"
+      },
+      "func_800B6748": {
+        "address": "0x800b6748",
+        "bytes": 64,
+        "sha256": "ccda3cf148e9bca7e4e9d64ba964b01c1091b5c792b49691d401bdce0014df2b"
+      },
+      "world_velocity_integrate": {
+        "address": "0x800ed804",
+        "bytes": 712,
+        "sha256": "6106dde1822a60576d5e86b119b0b4022513b68cebe2ce5e5e789ca6eafb4f4b"
+      },
+      "func_800ED66C": {
+        "address": "0x800ed66c",
+        "bytes": 248,
+        "sha256": "efe1ec9043b996730fda43abe3f05d78bb6ad0bb4a40fe6630bd114ce1e724c7"
+      },
+      "func_800B7360": {
+        "address": "0x800b7360",
+        "bytes": 132,
+        "sha256": "22700d38ddaad48bde81bfb27dafaca3128bc7dc40c5b7d60dc26969750f5a10"
+      },
+      "func_8008A38C": {
+        "address": "0x8008a38c",
+        "bytes": 88,
+        "sha256": "72a9f5a4baf8d7646542f5193e30aed7e97590049f7f269662f92a92b06b81e1"
+      },
+      "func_800B70EC": {
+        "address": "0x800b70ec",
+        "bytes": 60,
+        "sha256": "025a13bc3cd5a89f467ed6e16f6e72107a042e4b1310a8ea840b27c6a42038dc"
+      },
+      "audio_doppler_calc": {
+        "address": "0x800b6788",
+        "bytes": 1124,
+        "sha256": "078373435e7a2f3f83008bdedc28480fd1e340e45e8134a6b6bdd11a1b27465e"
+      },
+      "menu_input_process": {
+        "address": "0x800b6bec",
+        "bytes": 1280,
+        "sha256": "4b18d7c8e44e1b522c1d6c84be4c42820beb1ff810eb01dff8c8dd65bc5abdd8"
+      },
+      "func_800B66B0": {
+        "address": "0x800b66b0",
+        "bytes": 152,
+        "sha256": "b1160e27fc4aeb496aaf3b5c10277f8bc43eb411e133c4be5ed85ccfec29b0b0"
+      },
+      "func_80086A50": {
+        "address": "0x80086a50",
+        "bytes": 1548,
+        "sha256": "945eedfdd9b852633b98c2b855a03f76b7b611382e2f36076d3aa35a771fd60f"
+      },
+      "func_8008705C": {
+        "address": "0x8008705c",
+        "bytes": 180,
+        "sha256": "6b717318f61515e078e75bdd4bb570c50e9fe676ff2847d0f7c43d7e01eb9ac1"
+      },
+      "func_800878E0": {
+        "address": "0x800878e0",
+        "bytes": 296,
+        "sha256": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f"
+      },
+      "func_8008A148": {
+        "address": "0x8008a148",
+        "bytes": 580,
+        "sha256": "2e8d6ff8fe95e13f22f813166207832cd1060ff4fd5eb23ac8644635deb3ffb5"
+      },
+      "func_8008A46C": {
+        "address": "0x8008a46c",
+        "bytes": 472,
+        "sha256": "8c0ebf3191642ab97feca93283dadddc6e039c865f99e542d4302bdc8e05905c"
+      },
+      "sound_init": {
+        "address": "0x800a4934",
+        "bytes": 400,
+        "sha256": "dac85a66df515c931ee79094a8f3b9cda18d34f3844b4e9039ff7c88728af9e2"
+      },
+      "object_render": {
+        "address": "0x80087a08",
+        "bytes": 10048,
+        "sha256": "510cd6c2e1c0453264f9f912090e3de3063d7654d30fdf68cb4fd2fc6fed1e36"
+      },
+      "func_8008A3E4": {
+        "address": "0x8008a3e4",
+        "bytes": 136,
+        "sha256": "f1154abfba3619fc994bad948065dd97a0e74ee049696cce626868c084e5a04d"
+      },
+      "object_manager_update": {
+        "address": "0x800b3fa4",
+        "bytes": 532,
+        "sha256": "a515631a895e84ae58c25c34a7ee3f91dca40939f027356c4b417140d846ffb1"
+      },
+      "sound_pitch_diff_calc": {
+        "address": "0x800b7170",
+        "bytes": 48,
+        "sha256": "87ecfab8bf4ec168f75329166bd2c20b811f8a264e58193a55b71a71e2e80bb2"
+      },
+      "sound_pitch_diff_halved": {
+        "address": "0x800b71a0",
+        "bytes": 52,
+        "sha256": "4b2a589b72f13635fc22d5fccce384a854d5a902bf5d9796eb5747784874941b"
+      },
+      "state_utility": {
+        "address": "0x800b71d4",
+        "bytes": 396,
+        "sha256": "636951ffa0efe5e074676c7f3f0456d1149fa0bb76caf89dcdf5331c916bf6e6"
+      }
+    }
+  },
+  "builds": {
+    "baseline": {
+      "rows": {
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (8 bytes; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 12,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "cc89d5e9af5ed8113fad241f201211febb164a74f5dad0dbc92e8b11013b0aa3",
+        ".rodata": "4aaca11f0443a63c87d66c8b58ca4dcafa198ea39d36a35f4efb491fa6a2e9bb",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "453aa422ffec51da6238bd670c39d8228ed23260ae3222692d97f95925222f40",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "52e79b2053c0c9d243c38524675f14ec63c4a345ab0d7ee74ba2831356cdd3b5"
+    },
+    "first": {
+      "rows": {
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 396,
+          "frames": [
+            24
+          ],
+          "differing": 14,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+            "own .data verified at 0x80118E24 (4 bytes; .data is laid out per translation unit)"
+          ],
+          "strict": false
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 8,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "cf6886e0449d4bfd6d6c20726f6ac03dc1dcc5c38c480a2fd37a7173002d736a",
+        ".rodata": "635d0beb8628830aee48cb5cb13404a37764093d3b76b67a58ba844939a91dcf",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "6eeea5c7cd06e9d9c684f816d4c087cc91f5d9a4bf3447c7656965207cd05ca4",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "3771a8c5a10b4d1d1b528859fc5c36a43a1493939cf1430b75bacec15777ac7c"
+    },
+    "repeat": {
+      "rows": {
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 396,
+          "frames": [
+            24
+          ],
+          "differing": 14,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+            "own .data verified at 0x80118E24 (4 bytes; .data is laid out per translation unit)"
+          ],
+          "strict": false
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 8,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "cf6886e0449d4bfd6d6c20726f6ac03dc1dcc5c38c480a2fd37a7173002d736a",
+        ".rodata": "635d0beb8628830aee48cb5cb13404a37764093d3b76b67a58ba844939a91dcf",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "6eeea5c7cd06e9d9c684f816d4c087cc91f5d9a4bf3447c7656965207cd05ca4",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "3771a8c5a10b4d1d1b528859fc5c36a43a1493939cf1430b75bacec15777ac7c"
+    },
+    "flat_horizontal": {
+      "rows": {
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 388,
+          "frames": [
+            24
+          ],
+          "differing": 77,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [
+            ".data+0x0 at +0x0",
+            ".data+0x0 at +0x4",
+            ".data+0x4 at +0x9c",
+            ".data+0x4 at +0xa0"
+          ],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+            "not verified: .data+0x4 at +0xa0: retail bytes at 0x74035025 are not available"
+          ],
+          "strict": false
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 0,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "bcfff20d660c1c22f9d8cffdccccaaf5d8d07bf0628644dc424c1873dece6f03",
+        ".rodata": "6a21d10307b4be1aa95c08c5bd55d0880b0faba2cf2ac64fff30d3ee770924ba",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "8adaa1751470ed4fa6c3d78993a04665f69d908804c02e99f93b736422148631",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "8bcb789b9e44dde994f6bcad66b72a5692350b32c2992d1a83bed4846bcdd926"
+    },
+    "old_header": {
+      "rows": {
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 396,
+          "frames": [
+            24
+          ],
+          "differing": 14,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+            "own .data verified at 0x80118E24 (4 bytes; .data is laid out per translation unit)"
+          ],
+          "strict": false
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 8,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "cf6886e0449d4bfd6d6c20726f6ac03dc1dcc5c38c480a2fd37a7173002d736a",
+        ".rodata": "635d0beb8628830aee48cb5cb13404a37764093d3b76b67a58ba844939a91dcf",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "6eeea5c7cd06e9d9c684f816d4c087cc91f5d9a4bf3447c7656965207cd05ca4",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "876785dcc3c33e695f73c993394d3853a2209d1d0ea7b45b5e9932e0be4a6d56"
+    },
+    "private_just": {
+      "rows": {
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 396,
+          "frames": [
+            24
+          ],
+          "differing": 14,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+            "own .data verified at 0x80118E24 (4 bytes; .data is laid out per translation unit)"
+          ],
+          "strict": false
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 8,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "76fe2e42ae90d4cbb9e6e8517b84094a8e49394251706bc7720db759a7bb720e",
+        ".rodata": "27bd187fd791ebfc9b2a11c3c8eb2f9f329159d56ac3f8af640f6a975c532eb3",
+        ".data": "2b7ebe6c2639dc181ae42be423f1e13278e408c48cc41d71d9a8c823df46b62e",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "16582db03542f9d4c975839ba8baa4cd41fe6cbec50c637db04f4c8a3250d8bc",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "f63f6d0700b41066263941c2beb2f5b85540d9a28b435f5184c7cb3270898a10"
+    },
+    "wrong_just_value": {
+      "rows": {
+        "du_gfx_unlock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_800B66B0": {
+          "bytes": 152,
+          "frames": [],
+          "differing": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B6748": {
+          "bytes": 64,
+          "frames": [],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "du_gfx_lock": {
+          "bytes": 8,
+          "frames": []
+        },
+        "func_80086A50": {
+          "bytes": 1548,
+          "frames": [],
+          "differing": 0,
+          "total": 387,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .rodata verified at 0x80123870..0x80123884"
+          ],
+          "strict": true
+        },
+        "func_800878E0": {
+          "bytes": 296,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 74,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_render": {
+          "bytes": 10048,
+          "frames": [
+            632
+          ],
+          "differing": 0,
+          "total": 2512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A148": {
+          "bytes": 580,
+          "frames": [],
+          "differing": 0,
+          "total": 145,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008705C": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A3E4": {
+          "bytes": 136,
+          "frames": [],
+          "differing": 0,
+          "total": 34,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_80096288": {
+          "bytes": 16,
+          "frames": [],
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_value_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_update_channel": {
+          "bytes": 488,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "audio_doppler_calc": {
+          "bytes": 1124,
+          "frames": [
+            112
+          ],
+          "differing": 46,
+          "total": 281,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "menu_input_process": {
+          "bytes": 1276,
+          "frames": [
+            376
+          ],
+          "differing": 258,
+          "total": 320,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "func_800B70EC": {
+          "bytes": 60,
+          "frames": [],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte3_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_type_byte2_get": {
+          "bytes": 40,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes23_sum": {
+          "bytes": 72,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "object_manager_update": {
+          "bytes": 532,
+          "frames": [
+            64
+          ],
+          "differing": 0,
+          "total": 133,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_calc": {
+          "bytes": 48,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "sound_pitch_diff_halved": {
+          "bytes": 52,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "state_utility": {
+          "bytes": 396,
+          "frames": [
+            24
+          ],
+          "differing": 14,
+          "total": 99,
+          "unresolved": [],
+          "unverified": [
+            ".data+0x0 at +0x0",
+            ".data+0x0 at +0x4",
+            ".data+0x4 at +0xa4",
+            ".data+0x4 at +0xa8"
+          ],
+          "errors": [
+            "own .data+0x4 referenced at +0xa8 differs from retail 0x80118E24 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+          ],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": false
+        },
+        "sound_init": {
+          "bytes": 400,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A46C": {
+          "bytes": 472,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 118,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_8008A38C": {
+          "bytes": 88,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B7360": {
+          "bytes": 132,
+          "frames": [],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800ED66C": {
+          "bytes": 248,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 62,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_byte9_set": {
+          "bytes": 64,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "display_list_alloc": {
+          "bytes": 92,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 23,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_state_setup": {
+          "bytes": 232,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_create": {
+          "bytes": 112,
+          "frames": [
+            48
+          ],
+          "differing": 0,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "mode_byte2_set": {
+          "bytes": 80,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 20,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "world_velocity_integrate": {
+          "bytes": 768,
+          "frames": [
+            96
+          ],
+          "differing": 151,
+          "total": 178,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x14 at +0x108",
+            ".rodata+0x14 at +0x110"
+          ],
+          "errors": [],
+          "extra_words": 14,
+          "notes": [
+            "not verified: .rodata+0x14 at +0x110: retail bytes at 0x00000001 are not available"
+          ],
+          "strict": false
+        },
+        "entity_render_mode": {
+          "bytes": 284,
+          "frames": [
+            88
+          ],
+          "differing": 0,
+          "total": 71,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800A4E58": {
+          "bytes": 444,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 111,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "slot_deactivate": {
+          "bytes": 88,
+          "frames": [
+            32
+          ],
+          "differing": 0,
+          "total": 22,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "player_state_get": {
+          "bytes": 60,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 15,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "camera_shake_update": {
+          "bytes": 180,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800F68A4": {
+          "bytes": 132,
+          "frames": [
+            24
+          ],
+          "differing": 0,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B3D0C": {
+          "bytes": 12,
+          "frames": [],
+          "differing": 0,
+          "total": 3,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "object_bytes_sum_global": {
+          "bytes": 84,
+          "frames": [
+            24
+          ],
+          "differing": 4,
+          "total": 21,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": false
+        },
+        "world_trigger_check": {
+          "bytes": 216,
+          "frames": [
+            56
+          ],
+          "differing": 0,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "strict": true
+        },
+        "func_800B669C": {
+          "bytes": 20,
+          "frames": [],
+          "differing": 0,
+          "total": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "notes": [
+            "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+          ],
+          "strict": true
+        }
+      },
+      "zero_alignment_bytes": 8,
+      "sections": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".text": "cf6886e0449d4bfd6d6c20726f6ac03dc1dcc5c38c480a2fd37a7173002d736a",
+        ".rodata": "635d0beb8628830aee48cb5cb13404a37764093d3b76b67a58ba844939a91dcf",
+        ".data": "860fd3d66723bcc787a74d83b91274ed11ac987c5316631e85cddc607312085a",
+        ".options": "d900ef36bd27496c02f3fe36b8ec56fe76a2bd483792b0673dd228c215016682",
+        ".reginfo": "f286dbadbd0dd237995ea911d81a3f2277f0ce583fcef1c268808b99ba508fcb",
+        ".rel.text": "6eeea5c7cd06e9d9c684f816d4c087cc91f5d9a4bf3447c7656965207cd05ca4",
+        ".rel.rodata": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e",
+        ".gptab.data": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902",
+        ".gptab.bss": "5ad0f0a0bdd75c18ba3b5d9da675f9e2b35e6991e037cd859bf2e7b9e756a902"
+      },
+      "object_sha256": "3ea2084f9294b7c643e9c70519eb4f853539ff3d88d80f855b710b2f0b10aba7"
+    }
+  },
+  "just_data": {
+    "baseline": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "named symbol"
+    },
+    "first": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "named symbol"
+    },
+    "repeat": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "named symbol"
+    },
+    "flat_horizontal": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "named symbol"
+    },
+    "old_header": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "named symbol"
+    },
+    "private_just": {
+      "address": "0x80118E20",
+      "checked_bytes": 8,
+      "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+      "object_offset": 0,
+      "native_equal": true,
+      "basis": "sole private initializer at data offset zero"
+    }
+  },
+  "wrong_data": "rejected: complete eight-byte Just data mismatch",
+  "layout": {
+    "native": [
+      8,
+      0,
+      4
+    ],
+    "wrong_capacity": [
+      12,
+      0,
+      4
+    ]
+  },
+  "semantics": {
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-misleading-indentation",
+      "-fsanitize=undefined",
+      "-fno-sanitize-recover=undefined"
+    ],
+    "results": {
+      "positive": {
+        "returncode": 0,
+        "stdout": "37748736 bounded text placement fixtures passed\n",
+        "stderr": ""
+      },
+      "wrong_horizontal_shift": {
+        "returncode": 3,
+        "stdout": "",
+        "stderr": "text placement differential failure at 197\n"
+      },
+      "wrong_vertical_division": {
+        "returncode": 3,
+        "stdout": "",
+        "stderr": "text placement differential failure at 34\n"
+      },
+      "wrong_draw_bound": {
+        "returncode": 3,
+        "stdout": "",
+        "stderr": "text placement differential failure at 1\n"
+      },
+      "wrong_position_sentinel": {
+        "returncode": 3,
+        "stdout": "",
+        "stderr": "text placement differential failure at 1\n"
+      }
+    },
+    "fixtures": 37748736
+  }
+}
