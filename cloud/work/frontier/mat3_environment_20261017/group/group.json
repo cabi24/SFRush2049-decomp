@@ -1,0 +1,15 @@
+{
+  "members": [
+    "music_control"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "context": [],
+  "keep": [
+    "music_control"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Research-only StartEnvironment reconstruction, 18/248 stack-only differences. Native 21-entry visual array and genuine two-argument callback contract. Historical B97 control, accepted MAT3 StartEnvironment/StartArrow, and partial MAT3 StartShadow comparison disclosed in README."
+}

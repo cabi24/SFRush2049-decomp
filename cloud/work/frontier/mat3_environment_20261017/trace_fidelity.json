@@ -1,0 +1,20 @@
+{
+  "complete_objects_identical": true,
+  "stock_object_sha256": "a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5",
+  "trace_object_sha256": "a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5",
+  "tracing_enabled": [
+    "CDX_LOG",
+    "CDX_DETAIL_WEB",
+    "W5D_LEVEL",
+    "SPLOG"
+  ],
+  "inputs_sha256": {
+    "verify.py": "e166c3cd600327b2884502133be03dc0df20b8d6cce8eeb5068e4923a29e35f0",
+    "environment_behavior.py": "46260942b8d2e7d2439f4a7e7301c104dedde8d836141ce8709de8c301718c2b",
+    "environment_layout.py": "10ce522da3b60807956a097ff3b950d0bd6fbd81001f75a58b036f06bb7ca651",
+    "environment_negatives.py": "1335eae13b0c9a334a798b50ab787342ac4690a55d2419ca7c1c852442c26bfc",
+    "trace_fidelity.py": "c8816aeddbd11c614c84abb38a887c9041a83c11efb7763cfc244e19b799cb40",
+    "group/group.c": "5d9c04297276147c78346f9bfad9b2cdccdbdb43c6f9c7335d647ef8b262e7bc",
+    "group/group.json": "c12dc13fe40b4a5aec297eb3011b8dbc1acf4e84ae63ddfe50b43dd99fa6df57"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS_RESEARCH_ONLY",
+  "reviewer": "independent AI/path lane",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "bound_inputs_sha256": {
+    "verify.py": "e166c3cd600327b2884502133be03dc0df20b8d6cce8eeb5068e4923a29e35f0",
+    "environment_behavior.py": "46260942b8d2e7d2439f4a7e7301c104dedde8d836141ce8709de8c301718c2b",
+    "environment_layout.py": "10ce522da3b60807956a097ff3b950d0bd6fbd81001f75a58b036f06bb7ca651",
+    "environment_negatives.py": "1335eae13b0c9a334a798b50ab787342ac4690a55d2419ca7c1c852442c26bfc",
+    "trace_fidelity.py": "c8816aeddbd11c614c84abb38a887c9041a83c11efb7763cfc244e19b799cb40",
+    "group/group.c": "5d9c04297276147c78346f9bfad9b2cdccdbdb43c6f9c7335d647ef8b262e7bc",
+    "group/group.json": "c12dc13fe40b4a5aec297eb3011b8dbc1acf4e84ae63ddfe50b43dd99fa6df57"
+  },
+  "verification_sha256": "dba0c372bb5af663d0e8ab28e65c87d0cf3d40b0a2c4c4e06d048794bdf9f449",
+  "trace_receipt_sha256": "518126cc6a41d5df79228360fb4ce7783202cb59801216c8bb3653d859de027a",
+  "independently_replayed": [
+    "focused pytest: 2 passed, no skips, including optimized proof refusal controls",
+    "full optimized replay of previous proof version; final proof adds explicit FPR preservation and decoded frame checks, exercised by final focused pytest",
+    "fresh stock/traced complete object identity a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5"
+  ],
+  "findings": [
+    "Complete symbol is 992 bytes; strict 18/248 differences have identical opcode/register fields and differ only in stack/frame immediates. Native/candidate frame sizes are explicitly decoded as 160/112.",
+    "Separate field/event model is independent of instruction decoder and compares native plus candidate memory and call observations over 512 deterministic fixtures. Three separately compiled semantic mistakes are rejected.",
+    "Native 21-entry visual array at offset 272 repairs the historical peers[2] C bounds defect. Main/arrow/cleanup offsets 512/536/584 and two-argument N64 visual callback contract agree with existing native sources.",
+    "The signed 16-bit polygon depth field is source-bound and matches native layout; the source store of one remains unchanged.",
+    "Meaningful checks use explicit exceptions and survive optimized Python. Source, target and trace object binding are verified. Empty claims are enforced."
+  ],
+  "limits": [
+    "Stable globals and deterministic CreateCar/StartCar/NewPoly boundary stubs; no execution of these callees.",
+    "Fixtures use valid six-car/team indices, zero through four windows and initialized native-width fields; this is bounded behavior evidence.",
+    "240/248 native instructions are exercised; integer-division error paths remain outside the fixtures.",
+    "No matching coverage, canonical installation, complete runtime, image or ROM verification is claimed."
+  ],
+  "publication_blockers": []
+}

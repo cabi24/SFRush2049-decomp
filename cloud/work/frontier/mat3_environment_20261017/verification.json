@@ -1,0 +1,86 @@
+{
+  "status": "VERIFIED_RESEARCH_PARTIAL",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "canonical_or_ROM_verification": false,
+  "inputs_sha256": {
+    "verify.py": "e166c3cd600327b2884502133be03dc0df20b8d6cce8eeb5068e4923a29e35f0",
+    "environment_behavior.py": "46260942b8d2e7d2439f4a7e7301c104dedde8d836141ce8709de8c301718c2b",
+    "environment_layout.py": "10ce522da3b60807956a097ff3b950d0bd6fbd81001f75a58b036f06bb7ca651",
+    "environment_negatives.py": "1335eae13b0c9a334a798b50ab787342ac4690a55d2419ca7c1c852442c26bfc",
+    "trace_fidelity.py": "c8816aeddbd11c614c84abb38a887c9041a83c11efb7763cfc244e19b799cb40",
+    "group/group.c": "5d9c04297276147c78346f9bfad9b2cdccdbdb43c6f9c7335d647ef8b262e7bc",
+    "group/group.json": "c12dc13fe40b4a5aec297eb3011b8dbc1acf4e84ae63ddfe50b43dd99fa6df57"
+  },
+  "target_words_sha256": "c902fdd3c06ce58b1f2b7d2b15d5f44d12fed6bbe75ca322ac8f9d44b0cc28de",
+  "object_sha256": "a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5",
+  "comparison": {
+    "differing": 18,
+    "total": 248,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "summary": "18/248 words differ"
+  },
+  "original_flag_control": {
+    "differing": 172,
+    "total": 248,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "summary": "172/248 words differ"
+  },
+  "complete_symbol_bytes": 992,
+  "native_frame_bytes": 160,
+  "candidate_frame_bytes": 112,
+  "residual_kind": "18 stack/frame immediates only; identical opcode and register fields",
+  "emitted_type_layout": {
+    "status": "PASS",
+    "native_layout": [
+      952,
+      24,
+      21,
+      272,
+      512,
+      536,
+      584,
+      20,
+      2056,
+      1992,
+      88,
+      6
+    ],
+    "wrong_capacity_rejected": true
+  },
+  "behavior": {
+    "status": "PASS",
+    "fixtures": 512,
+    "executions": 1024,
+    "executed_words": [
+      240,
+      240
+    ],
+    "branch_outcomes": [
+      35,
+      35
+    ],
+    "limits": "Stable globals and deterministic CreateCar/StartCar/NewPoly stubs; no callee or runtime equivalence claim",
+    "matching_claim": false
+  },
+  "negative_controls": {
+    "shadow_alpha": {
+      "rejected": true,
+      "first_divergent_case": 8
+    },
+    "arrow_z": {
+      "rejected": true,
+      "first_divergent_case": 13
+    },
+    "team_arrow_flags": {
+      "rejected": true,
+      "first_divergent_case": 15
+    }
+  }
+}
