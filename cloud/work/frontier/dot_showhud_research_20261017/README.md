@@ -75,7 +75,9 @@ at +12; MultiBlit is 36 bytes. The table loader and HUD share one complete
 40-byte native resource-table view. All queue declarations use one opaque
 tagged type. Spacing/leading globals are signed bytes, as original font type
 evidence records. Font and resource-slot definitions also share their complete
-16/20-byte native views; the character-width return is unsigned and the
+16/20-byte native views. The header nonProp field is unsigned; its setter
+API returns signed char. Foreground/background color storage is eight bytes.
+The character-width return is unsigned and the
 two-getter height wrapper has no named local, following original evidence.
 Native target-compiler checks verify 18 record sizes and
 offsets. Opaque gaps describe native record layout, not automatic frame filler.

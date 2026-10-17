@@ -9,7 +9,7 @@ extern s32 osRecvMesg(OSMesgQueue *, void **, s32);
 extern s32 osSendMesg(OSMesgQueue *, void *, s32);
 extern s32 slot_state_setup(s32 selection);
 
-extern s32 D_80149B48;
+extern u8 D_80149B48[8];
 extern f32 D_80114748;
 extern s16 D_80149D92, D_80149D9E;
 extern s8 D_80149DA0, D_80149B60, D_80149B70;

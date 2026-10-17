@@ -101,7 +101,7 @@ typedef struct Bank {
     /* 0x6 */ u8 f6;
     /* 0x7 */ u8 f7;
     /* 0x8 */ u8 f8;
-    /* 0x9 */ s8 f9;
+    /* 0x9 */ u8 f9;
     /* 0xA */ u8 f10;
     /* 0xB */ u8 f11;
     /* 0xC */ u8 f12;
