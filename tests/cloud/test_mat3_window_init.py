@@ -72,6 +72,7 @@ for label in m.NEGATIVES:
     ]:refusal(lambda z:change(z['negative_controls'][label]),reason)
 for change in [
     lambda z:z['inputs']['compiler_sha256'].update(cc='0'*64),
+    lambda z:z['inputs']['compiler_sha256'].update(ujoin='0'*64),
     lambda z:z['inputs']['tooling_sha256'].update({'tools/cloud/score.py':'0'*64}),
     lambda z:z['inputs']['packet_sha256'].update({'candidate.c':'0'*64}),
     lambda z:z['inputs']['packet_sha256'].update({'README.md':'0'*64}),
@@ -79,14 +80,14 @@ for change in [
     lambda z:z['inputs']['recipe'].update(claims=[]),
     lambda z:z['inputs']['recipe'].update(flags='-O2'),
 ]:refusal(change,'binding')
-if count!=133:raise RuntimeError('unexpected refusal count: '+str(count))
+if count!=134:raise RuntimeError('unexpected refusal count: '+str(count))
 if m.root_frame([0,0x27bdffb8],0,4) is not None:raise RuntimeError('frame scan escaped root extent')
 if m.root_frame([0x27bdffb8,0],0,4)!=72:raise RuntimeError('in-extent frame lost')
-print('133 optimized integrity refusals and bounded frame controls pass')
+print('134 optimized integrity refusals and bounded frame controls pass')
 '''
     r = subprocess.run([sys.executable, '-O', '-c', program, str(HERE)], capture_output=True, text=True)
     assert r.returncode == 0, r.stdout+r.stderr
-    assert r.stdout == '133 optimized integrity refusals and bounded frame controls pass\n'
+    assert r.stdout == '134 optimized integrity refusals and bounded frame controls pass\n'
 
 
 def test_window_init_optimized_stock_compiler_replay():

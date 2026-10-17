@@ -57,7 +57,7 @@ No ROM bytes, literal target-data dumps, raw assembly, compiled objects, private
 
 This verification-only update preserves the C, recipe, semantic harness and all
 previous result fields. It binds this README, the scorer, own-data verifier,
-accepted lock and all eight IDO stage executables. Compiler lookup uses the
+accepted lock and all nine IDO stage executables. Compiler lookup uses the
 standard missing-tool diagnostic, preserving local skips and the required-tool
 failure policy.
 
@@ -65,6 +65,10 @@ Explicit guards check the complete recipe and single-root claim, every positive
 and negative score's actual strict fields, all three function extents in each
 of the ten builds, and each root frame. The frame scan stops at the root's ELF
 extent. The eight negative outcomes and all three precise host-negative results
-are required. Four focused tests cover the complete optimized replay,133
+are required. Four focused tests cover the complete optimized replay,134
 optimized false-receipt refusals, bounded frame controls and missing-tool policy.
 No source or candidate-byte credit is added.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.
