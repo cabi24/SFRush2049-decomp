@@ -58,3 +58,12 @@ same-tool comparison.
 
 Ownership line to add in the publication PR:
 `| game | func_800B9740 / CalcResPathBounds (408 B), strict single MATCH | Astra/dot lane4 | 2026-10-17 | MAT3 loop/type insight; independent IDO replay; coordinator installation pending |`
+
+## Proof-guard maintenance
+
+The verifier uses explicit exceptions, including under Python `-O`. Focused
+optimized-interpreter tests reject changed source/script/target inputs, false
+claims or byte credit, and unsupported relocation. Existing C source, target
+hashes, claims, comparison counts and negative-control meanings are unchanged.
+For a source-only checkout, set `N64_RESEARCH_REPO` to a complete unchanged
+checkout containing the protected artifacts.

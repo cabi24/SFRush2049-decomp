@@ -6,19 +6,24 @@ from pathlib import Path
 import struct, sys, tempfile
 HERE = Path(__file__).resolve().parent
 
+def require(ok, message):
+    if not ok:
+        raise RuntimeError(message)
+
 def verify(repo=None, compile=True, source=None):
     repo = Path(repo).resolve() if repo else HERE.parents[3]
     source = Path(source) if source else repo / 'cloud/matches/func_800B9740.c'
     receipt = json.loads((HERE / 'receipt.json').read_text())
-    assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest() == receipt['verify_sha256'], 'replay script mutation'
+    require(receipt['protocol_version'] == 2, 'unsupported proof protocol')
+    require(hashlib.sha256(Path(__file__).read_bytes()).hexdigest() == receipt['verify_sha256'], 'replay script mutation')
     data = source.read_bytes()
-    assert hashlib.sha256(data).hexdigest() == receipt['source_sha256'], 'source mutation'
-    assert receipt['claims'] == ['func_800B9740'] and receipt['native_bytes'] == 408
+    require(hashlib.sha256(data).hexdigest() == receipt['source_sha256'], 'source mutation')
+    require(receipt['claims'] == ['func_800B9740'] and receipt['native_bytes'] == 408, 'proof condition failed')
     sys.path.insert(0, str(repo / 'tools/cloud'))
     import score
     words = score.targets()['func_800B9740']
-    assert len(words) == 102
-    assert hashlib.sha256(struct.pack('>102I', *words)).hexdigest() == receipt['target_words_sha256'], 'target row changed'
+    require(len(words) == 102, 'proof condition failed')
+    require(hashlib.sha256(struct.pack('>102I', *words)).hexdigest() == receipt['target_words_sha256'], 'target row changed')
     if not compile:
         return {'input_integrity': True, 'compiler_run': False}
     code = data.decode()
@@ -35,14 +40,14 @@ def verify(repo=None, compile=True, source=None):
         try:
             os.chdir(tmp)
             for name, text in variants.items():
-                assert name == 'candidate' or text != code, 'control did not mutate source'
+                require(name == 'candidate' or text != code, 'control did not mutate source')
                 path = Path(tmp) / (name + '.c')
                 obj = path.with_suffix('.o')
                 path.write_text(text)
                 score.compile_single(path, receipt['flags'], obj)
                 with redirect_stdout(io.StringIO()):
                     comparison = score.compare(obj, 'func_800B9740', show=0)
-                assert comparison.accepted() == (name == 'candidate'), name + ': ' + comparison.summary()
+                require(comparison.accepted() == (name == 'candidate'), name + ': ' + comparison.summary())
                 results[name] = comparison.summary()
         finally:
             os.chdir(old)

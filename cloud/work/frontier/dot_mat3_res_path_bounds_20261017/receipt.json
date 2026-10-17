@@ -78,5 +78,5 @@
   "shaping_devices": [
     "Exclusive end pointer uses byte offset count * sizeof(Vertex). No unused locals, dead reads, padding arrays, stand-in context, or false prototypes."
   ],
-  "verify_sha256": "353bb80fef826c85f180c028de24eb1f406f9e32108aa9ce9239c43898186ad8"
+  "verify_sha256": "a6e4e8048dc1f47b42b61e43fe4f51ed1884dbeccea258544884665b2342be0e"
 }
