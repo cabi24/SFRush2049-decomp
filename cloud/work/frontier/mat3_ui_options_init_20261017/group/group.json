@@ -1,0 +1,29 @@
+{
+  "name": "ui_options_init_research",
+  "files": [
+    "buttons.c",
+    "ctx_gr3_b.c",
+    "display.c",
+    "save_globals.c",
+    "replay_caller.c"
+  ],
+  "members": [
+    "time_result_display",
+    "func_800DB1E0",
+    "func_800DA2C0",
+    "slot_state_setup",
+    "object_create",
+    "func_800B669C",
+    "replay_save_prompt",
+    "func_800B8810",
+    "sign_extend_call"
+  ],
+  "context": [],
+  "keep": [
+    "func_800DB1E0",
+    "func_800B669C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "note": "Research only. Genuine DB1E0 caller, both DA174 callers, authentic options init helpers, and complete known emitted member inventory. Empty claims; all incomplete bodies and own-data refusals remain explicit."
+}

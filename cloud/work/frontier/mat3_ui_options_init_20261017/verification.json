@@ -1,0 +1,144 @@
+{
+  "time_result_display": {
+    "differing": 2,
+    "total": 83,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "2/83 words differ",
+    "notes": []
+  },
+  "func_800DB1E0": {
+    "differing": 0,
+    "total": 350,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": true,
+    "summary": "MATCH",
+    "notes": [
+      "own .rodata verified at 0x80124248..0x80124280"
+    ]
+  },
+  "func_800DA2C0": {
+    "differing": 0,
+    "total": 579,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x18 at +0x84",
+      ".rodata+0x18 at +0x88",
+      ".bss+0x0 at +0x150",
+      ".bss+0x0 at +0x154",
+      ".bss+0x0 at +0x20c",
+      ".bss+0x0 at +0x220",
+      ".bss+0x0 at +0x248",
+      ".bss+0x0 at +0x25c",
+      ".bss+0x0 at +0x228",
+      ".bss+0x0 at +0x260",
+      ".rodata+0x1c at +0x26c",
+      ".rodata+0x1c at +0x270",
+      ".rodata+0x20 at +0x29c",
+      ".rodata+0x20 at +0x2a0",
+      ".rodata+0x24 at +0x2b0",
+      ".rodata+0x24 at +0x2b4",
+      ".rodata+0x28 at +0x2c0",
+      ".rodata+0x28 at +0x300",
+      ".bss+0x4 at +0x434",
+      ".bss+0x4 at +0x438",
+      ".bss+0x4 at +0x4cc",
+      ".bss+0x4 at +0x4e4",
+      ".bss+0x4 at +0x4ac",
+      ".bss+0x4 at +0x4e8",
+      ".bss+0x4 at +0x50c",
+      ".bss+0x4 at +0x520",
+      ".rodata+0x0 at +0x5ac",
+      ".rodata+0x0 at +0x5c4",
+      ".rodata+0x10 at +0x580",
+      ".rodata+0x10 at +0x590",
+      ".bss+0x4 at +0x8ec",
+      ".bss+0x4 at +0x8f0"
+    ],
+    "errors": [
+      "own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail"
+    ],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "NOT VERIFIED (32 section-relative relocations unverified: .rodata+0x18 at +0x84, .rodata+0x18 at +0x88, .bss+0x0 at +0x150, .bss+0x0 at +0x154, .bss+0x0 at +0x20c, .bss+0x0 at +0x220, .bss+0x0 at +0x248, .bss+0x0 at +0x25c, .bss+0x0 at +0x228, .bss+0x0 at +0x260, .rodata+0x1c at +0x26c, .rodata+0x1c at +0x270, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2b0, .rodata+0x24 at +0x2b4, .rodata+0x28 at +0x2c0, .rodata+0x28 at +0x300, .bss+0x4 at +0x434, .bss+0x4 at +0x438, .bss+0x4 at +0x4cc, .bss+0x4 at +0x4e4, .bss+0x4 at +0x4ac, .bss+0x4 at +0x4e8, .bss+0x4 at +0x50c, .bss+0x4 at +0x520, .rodata+0x0 at +0x5ac, .rodata+0x0 at +0x5c4, .rodata+0x10 at +0x580, .rodata+0x10 at +0x590, .bss+0x4 at +0x8ec, .bss+0x4 at +0x8f0; own .rodata: this function's references disagree on the section's image address (0x80121048 for +0x0/+0x10, 0x8012420C for +0x18/+0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)",
+    "notes": [
+      "own .bss placed at 0x8015273C (4 bytes; zero-initialised: verified by address only, nothing to compare)",
+      "own .bss placed at 0x80152740 (4 bytes; zero-initialised: verified by address only, nothing to compare)"
+    ]
+  },
+  "slot_state_setup": {
+    "differing": 2,
+    "total": 58,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "accepted": false,
+    "summary": "2/58 words differ (2 extra words (nonzero beyond target length))",
+    "notes": []
+  },
+  "object_create": {
+    "differing": 28,
+    "total": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "28/28 words differ",
+    "notes": []
+  },
+  "func_800B669C": {
+    "differing": 0,
+    "total": 5,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 1,
+    "accepted": false,
+    "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+    "notes": []
+  },
+  "replay_save_prompt": {
+    "differing": 2,
+    "total": 385,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "2/385 words differ",
+    "notes": [
+      "own .data verified at 0x80116DAC (4 bytes; .data is laid out per translation unit)",
+      "own .rodata verified at 0x80124238..0x80124248"
+    ]
+  },
+  "func_800B8810": {
+    "differing": 4,
+    "total": 4,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "4/4 words differ",
+    "notes": []
+  },
+  "sign_extend_call": {
+    "differing": 10,
+    "total": 10,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "accepted": false,
+    "summary": "10/10 words differ",
+    "notes": []
+  }
+}
