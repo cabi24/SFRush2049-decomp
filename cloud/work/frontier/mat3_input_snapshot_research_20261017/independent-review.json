@@ -1,0 +1,35 @@
+{
+  "reviewer": "effects lane",
+  "reviewed_at_utc": "2026-10-17T19:19:08Z",
+  "decision": "PASS_RESEARCH_ONLY",
+  "tests": [
+    "python3 verify.py",
+    "python3 -O verify.py"
+  ],
+  "checks": {
+    "target_differing": 108,
+    "target_words": 169,
+    "existing_matches_preserved": 4,
+    "fixtures_native_candidate_host": 1014,
+    "semantic_negatives_rejected": 4,
+    "emitted_layout_negative_rejected": true,
+    "claims": []
+  },
+  "limitations": [
+    "Queue and initialization are deterministic boundary stubs.",
+    "Research context remains unfinished and cannot be installed as a replacement group.",
+    "No canonical or ROM verification; no new matching bytes."
+  ],
+  "files_sha256": {
+    "README.md": "24e8aea85362bfe8fa53f3e8a00040d54534a5fd1894f6e9bd2fc2b41e4ef973",
+    "behavior.py": "943b2fdc00a67f35ab5c23c4718405f1f51253fc6d991d27c00503387e0415ce",
+    "group/group.c": "065a46b9fc8c7e239e005c6fe8a061d0c9a21fe1034918e2cc7ee14931d302ae",
+    "group/group.json": "d13c83d59b0dc859e51061ed6397398fb89a931724fa43de856bbe53ee38c8a6",
+    "host_behavior.py": "711db62d107473af73fd3cdc78e5fb90e2a9087ca2e54e7b7ac5e77eb62f4684",
+    "layout.py": "c97402548734ae3f85e65c66efaea206d169c479bde4d361a91fbeafd2cdf46e",
+    "negative_controls.py": "36006190be80bc66171c5ae5a2d319d1ef1eba3a9e2bfbb44850851bc37964d6",
+    "verification.json": "973edab988c0482e1b3fe9479ba0132f0bb70db56ffc6b847c2a3acee222e0ad",
+    "verify.py": "cbacfdee1ed84ef4fdcdeaff3bd20502ed34f685c5a9384fefc345de93947b82"
+  },
+  "followup_review": "Only verify.py and verification.json changed: encoded prologue word replaced with equivalent decoded ADDIU/SP/SP/-48 check. Field-isolated negatives reject wrong opcode, source register, destination register, and displacement. Source, group, behavior/model files unchanged."
+}
