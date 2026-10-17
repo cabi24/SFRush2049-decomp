@@ -1,0 +1,38 @@
+{
+  "reviewer": "AI/path lane, independent source, model and replay audit",
+  "status": "PASS_RESEARCH_ONLY",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "source_sha256": {
+    "README.md": "88a43b8633bfb6d64d54e5c5813fe58c224366249d936491fadb4e7d57ca08b7",
+    "verify.py": "0bc830bd458da5a28f7cfd7fb60b408a9988fc89df6f336f44df905e021b5adc",
+    "behavior.py": "fa1b4facd1d2ebea40281a7920e6f9e129ff5bba7aa4e746c242f82cb1ac2c39",
+    "layout.py": "e11f204a001127471ec5eddd2985fd28e584adc127b040fe2f02835538549b1c",
+    "trace_fidelity.py": "321e48f0b45a131ee0f66c51c26b84532a7836170519e6a6a05dba737e89b84a",
+    "verification.json": "37bd602e7e53ad4ae2758c57777124dce4afc7f91f7531d7947191c69c7770a4",
+    "trace_fidelity.json": "9bd96b0cb98e644b9f634b2bdd51863ef9067660ea097a6caac39442f0a6fc08",
+    "group/group.c": "7678fbe34d09dfd6f72ff47dc053706d1016a301d066705b6a2e17025e0df9e0",
+    "group/group.json": "a215ced89a5b1813acbba0d2d50f1931c880b25941aeeb30b21dba23d4ab75d1"
+  },
+  "focused_test_sha256": "327914bd6f6b1bb0911777ffec90dd8a1e5a07eda139023c3af1da6230972106",
+  "checks": {
+    "focused_tests": "Both passed, including all optimized integrity refusals",
+    "optimized_replay": "Passed independently",
+    "complete_stock_traced_object_sha256": "203de3fd19a56afcd138674cc7944608ed3a1dc731e87f26411cc04232a2c00f",
+    "callback": "499/659 different; actual ELF extent2632 versus native2636; frame344 versus392",
+    "allocator": "300-byte body zero word differences; three adjacent nonzero deleted-procedure words explicitly excluded from credit",
+    "bounds": "Four pointer slots, two 4x3 matrices, three-by-three temporary orientation and byte alpha accesses are within the stated valid-state domain",
+    "model_independence": "Field/event model independently selects the first maximum positive-age mine and expresses ring state, slot removal and cleanup; MIPS executor separately follows native/candidate control flow",
+    "behavior": "206 fixtures; native654/659 and candidate653/658 callback instructions; all19 native CopyUV instructions",
+    "negatives": "Wrong alpha changes bytes only, oldest tie changes selected age bytes, wrong damage changes events only",
+    "layout": "28 emitted facts and all three genuine type mutations checked",
+    "ABI": "Preserved GPR/FPR/SP state and fifth O32 damage argument validated"
+  },
+  "limits": [
+    "Research only, no accepted bytes or complete integration proof.",
+    "Native and candidate executions share deterministic boundary models; actual allocation, RoadPosition, release, list removal, display, blast and radius callees are not executed.",
+    "Valid live animation object IDs, valid owner/team indices, sufficient backing storage, ordinary finite floats and stable frame time are assumed.",
+    "Five native callback instructions remain uncovered; invalid states, exhaustion, NaNs, full-game C aliasing and runtime behavior are not proved."
+  ],
+  "blockers": []
+}

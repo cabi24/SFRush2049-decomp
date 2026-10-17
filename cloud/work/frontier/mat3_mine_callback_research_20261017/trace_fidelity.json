@@ -1,0 +1,21 @@
+{
+  "complete_objects_identical": true,
+  "stock_object_sha256": "203de3fd19a56afcd138674cc7944608ed3a1dc731e87f26411cc04232a2c00f",
+  "trace_object_sha256": "203de3fd19a56afcd138674cc7944608ed3a1dc731e87f26411cc04232a2c00f",
+  "tracing_enabled": [
+    "CDX_LOG",
+    "CDX_DETAIL_WEB",
+    "W5D_LEVEL",
+    "SPLOG"
+  ],
+  "inputs_sha256": {
+    "verify.py": "0bc830bd458da5a28f7cfd7fb60b408a9988fc89df6f336f44df905e021b5adc",
+    "behavior.py": "fa1b4facd1d2ebea40281a7920e6f9e129ff5bba7aa4e746c242f82cb1ac2c39",
+    "layout.py": "e11f204a001127471ec5eddd2985fd28e584adc127b040fe2f02835538549b1c",
+    "trace_fidelity.py": "321e48f0b45a131ee0f66c51c26b84532a7836170519e6a6a05dba737e89b84a",
+    "group/group.c": "7678fbe34d09dfd6f72ff47dc053706d1016a301d066705b6a2e17025e0df9e0",
+    "group/group.json": "a215ced89a5b1813acbba0d2d50f1931c880b25941aeeb30b21dba23d4ab75d1"
+  },
+  "claims": [],
+  "new_matching_bytes": 0
+}

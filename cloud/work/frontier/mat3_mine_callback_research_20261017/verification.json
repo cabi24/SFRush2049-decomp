@@ -1,0 +1,264 @@
+{
+  "status": "VERIFIED_RESEARCH_PARTIAL",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "inputs_sha256": {
+    "verify.py": "0bc830bd458da5a28f7cfd7fb60b408a9988fc89df6f336f44df905e021b5adc",
+    "behavior.py": "fa1b4facd1d2ebea40281a7920e6f9e129ff5bba7aa4e746c242f82cb1ac2c39",
+    "layout.py": "e11f204a001127471ec5eddd2985fd28e584adc127b040fe2f02835538549b1c",
+    "trace_fidelity.py": "321e48f0b45a131ee0f66c51c26b84532a7836170519e6a6a05dba737e89b84a",
+    "group/group.c": "7678fbe34d09dfd6f72ff47dc053706d1016a301d066705b6a2e17025e0df9e0",
+    "group/group.json": "a215ced89a5b1813acbba0d2d50f1931c880b25941aeeb30b21dba23d4ab75d1"
+  },
+  "target_words_sha256": {
+    "func_8010C974": "038c6b05ae52d2f07622ac981c8b16d1f9759f447573dd8aca9e7d71b1ef9052",
+    "func_8008E26C": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90",
+    "math_utility": "e2b566e9e8acf312ddb9d228ba6cfb6fdbc517c14b00cbd5386e37ec51fc8159"
+  },
+  "object_sha256": "203de3fd19a56afcd138674cc7944608ed3a1dc731e87f26411cc04232a2c00f",
+  "callback": {
+    "comparison": {
+      "differing": 499,
+      "total": 659,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "symbol_bytes": 2632,
+    "frame_bytes": 344
+  },
+  "allocator_context": {
+    "comparison": {
+      "differing": 0,
+      "total": 75,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 3
+    },
+    "symbol_bytes": 300,
+    "frame_bytes": 40
+  },
+  "behavior": {
+    "status": "PASS_BOUNDED",
+    "fixtures": 206,
+    "executed_words": [
+      673,
+      672
+    ],
+    "mine_executed_words": [
+      654,
+      653
+    ],
+    "copyuv_executed_words": [
+      19,
+      19
+    ],
+    "native_missing": [
+      "0x1bc",
+      "0x714",
+      "0x87c",
+      "0x90c",
+      "0x918"
+    ],
+    "branches": [
+      87,
+      87
+    ],
+    "claims": []
+  },
+  "emitted_layout": {
+    "native": {
+      "values": {
+        "target_bytes": 112,
+        "target_flags": 4,
+        "target_model": 12,
+        "target_matrix": 20,
+        "target_position": 68,
+        "target_owner": 101,
+        "target_age": 104,
+        "target_data": 108,
+        "mine_bytes": 136,
+        "mine_matrix": 16,
+        "mine_elapsed": 112,
+        "mine_step": 120,
+        "mine_alpha": 122,
+        "mine_scale": 124,
+        "mine_phase": 132,
+        "mine_active": 134,
+        "visual_bytes": 24,
+        "visual_data": 12,
+        "visual_callback": 20,
+        "object_bytes": 68,
+        "object_color": 60,
+        "slots_bytes": 20,
+        "slots_count": 16,
+        "pool_bytes": 24,
+        "pool_head": 16,
+        "texture_bytes": 36,
+        "signed_step": 4294967295,
+        "alpha_width": 1
+      },
+      "mismatches": []
+    },
+    "wide_alpha": {
+      "values": {
+        "target_bytes": 112,
+        "target_flags": 4,
+        "target_model": 12,
+        "target_matrix": 20,
+        "target_position": 68,
+        "target_owner": 101,
+        "target_age": 104,
+        "target_data": 108,
+        "mine_bytes": 140,
+        "mine_matrix": 16,
+        "mine_elapsed": 112,
+        "mine_step": 120,
+        "mine_alpha": 122,
+        "mine_scale": 128,
+        "mine_phase": 136,
+        "mine_active": 138,
+        "visual_bytes": 24,
+        "visual_data": 12,
+        "visual_callback": 20,
+        "object_bytes": 68,
+        "object_color": 60,
+        "slots_bytes": 20,
+        "slots_count": 16,
+        "pool_bytes": 24,
+        "pool_head": 16,
+        "texture_bytes": 36,
+        "signed_step": 4294967295,
+        "alpha_width": 2
+      },
+      "mismatches": [
+        "mine_bytes",
+        "mine_scale",
+        "mine_phase",
+        "mine_active",
+        "alpha_width"
+      ]
+    },
+    "wrong_slots": {
+      "values": {
+        "target_bytes": 112,
+        "target_flags": 4,
+        "target_model": 12,
+        "target_matrix": 20,
+        "target_position": 68,
+        "target_owner": 101,
+        "target_age": 104,
+        "target_data": 108,
+        "mine_bytes": 136,
+        "mine_matrix": 16,
+        "mine_elapsed": 112,
+        "mine_step": 120,
+        "mine_alpha": 122,
+        "mine_scale": 124,
+        "mine_phase": 132,
+        "mine_active": 134,
+        "visual_bytes": 24,
+        "visual_data": 12,
+        "visual_callback": 20,
+        "object_bytes": 68,
+        "object_color": 60,
+        "slots_bytes": 16,
+        "slots_count": 12,
+        "pool_bytes": 24,
+        "pool_head": 16,
+        "texture_bytes": 36,
+        "signed_step": 4294967295,
+        "alpha_width": 1
+      },
+      "mismatches": [
+        "slots_bytes",
+        "slots_count"
+      ]
+    },
+    "wrong_object_color": {
+      "values": {
+        "target_bytes": 112,
+        "target_flags": 4,
+        "target_model": 12,
+        "target_matrix": 20,
+        "target_position": 68,
+        "target_owner": 101,
+        "target_age": 104,
+        "target_data": 108,
+        "mine_bytes": 136,
+        "mine_matrix": 16,
+        "mine_elapsed": 112,
+        "mine_step": 120,
+        "mine_alpha": 122,
+        "mine_scale": 124,
+        "mine_phase": 132,
+        "mine_active": 134,
+        "visual_bytes": 24,
+        "visual_data": 12,
+        "visual_callback": 20,
+        "object_bytes": 68,
+        "object_color": 56,
+        "slots_bytes": 20,
+        "slots_count": 16,
+        "pool_bytes": 24,
+        "pool_head": 16,
+        "texture_bytes": 36,
+        "signed_step": 4294967295,
+        "alpha_width": 1
+      },
+      "mismatches": [
+        "object_color"
+      ]
+    }
+  },
+  "negative_controls": {
+    "wrong_alpha": {
+      "detail": {
+        "comparison": {
+          "differing": 499,
+          "total": 659,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2632,
+        "frame_bytes": 344
+      },
+      "rejection": "behavior mismatch program 1 case 74, bytes ['0x8051007b', '0x8012ea2b'], events True"
+    },
+    "wrong_oldest_tie": {
+      "detail": {
+        "comparison": {
+          "differing": 503,
+          "total": 659,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2632,
+        "frame_bytes": 344
+      },
+      "rejection": "behavior mismatch program 1 case 129, bytes ['0x805000d8', '0x805000d9', '0x805001b8', '0x805001b9'], events True"
+    },
+    "wrong_damage": {
+      "detail": {
+        "comparison": {
+          "differing": 499,
+          "total": 659,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2632,
+        "frame_bytes": 344
+      },
+      "rejection": "behavior mismatch program 1 case 65, bytes [], events False"
+    }
+  },
+  "canonical_or_ROM_verification": false
+}
