@@ -30,6 +30,7 @@
       "unverified": []
     }
   },
+  "initializer_volatile_source_authenticated": false,
   "members": {
     "TitlePane": {
       "accepted": true,
@@ -355,5 +356,203 @@
       ]
     }
   },
-  "new_accepted_credit": 0
+  "new_accepted_credit": 0,
+  "source_evidence_controls": {
+    "ordinary_model_count": {
+      "TitlePane": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .rodata verified at 0x80122614..0x80122624"
+        ],
+        "summary": "MATCH",
+        "total": 83,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_8008E26C": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 75,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B55F4": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 2,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B5688": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 49,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B59E8": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 2,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B59F0": {
+        "accepted": false,
+        "differing": 205,
+        "errors": [
+          "own .rodata+0x10 referenced at +0x224 differs from retail 0x80120BDC (+0x0: compared byte values omitted; 8 bytes compared)"
+        ],
+        "extra_words": 0,
+        "notes": [
+          "own .rodata verified at 0x80123DC4..0x80123DD0",
+          "not verified: .rodata+0x0 at +0x244: retail bytes at 0xFFFF8012 are not available",
+          "not verified: .rodata+0x48 at +0x368: retail bytes at 0x1F1A000C are not available"
+        ],
+        "summary": "205/343 words differ (12 section-relative relocations unverified: .rodata+0x3c at +0x1c, .rodata+0x3c at +0x20, .rodata+0x40 at +0x24, .rodata+0x40 at +0x28, .rodata+0x44 at +0x2c, .rodata+0x44 at +0x30, .rodata+0x0 at +0x240, .rodata+0x0 at +0x244, .rodata+0x10 at +0x218, .rodata+0x10 at +0x224, .rodata+0x48 at +0x364, .rodata+0x48 at +0x368; own .rodata+0x10 referenced at +0x224 differs from retail 0x80120BDC (+0x0: compared byte values omitted; 8 bytes compared))",
+        "total": 343,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x3c at +0x1c",
+          ".rodata+0x3c at +0x20",
+          ".rodata+0x40 at +0x24",
+          ".rodata+0x40 at +0x28",
+          ".rodata+0x44 at +0x2c",
+          ".rodata+0x44 at +0x30",
+          ".rodata+0x0 at +0x240",
+          ".rodata+0x0 at +0x244",
+          ".rodata+0x10 at +0x218",
+          ".rodata+0x10 at +0x224",
+          ".rodata+0x48 at +0x364",
+          ".rodata+0x48 at +0x368"
+        ]
+      },
+      "func_800B669C": {
+        "accepted": false,
+        "differing": 5,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "5/5 words differ",
+        "total": 5,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B8810": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 4,
+        "unresolved": [],
+        "unverified": []
+      },
+      "object_create": {
+        "accepted": false,
+        "differing": 28,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "28/28 words differ",
+        "total": 28,
+        "unresolved": [],
+        "unverified": []
+      },
+      "particle_collision": {
+        "accepted": false,
+        "differing": 214,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .data verified at 0x8011AD88 (4 bytes; .data is laid out per translation unit)",
+          "not verified: .rodata+0x4c at +0x1d8: retail bytes at 0x20251F1A are not available",
+          "not verified: .rodata+0x50 at +0x1ec: retail bytes at 0x2824D626 are not available",
+          "not verified: .rodata+0x54 at +0x1fc: retail bytes at 0x3DE842C8 are not available",
+          "not verified: .rodata+0x58 at +0x248: retail bytes at 0xA305D626 are not available"
+        ],
+        "summary": "214/253 words differ (10 section-relative relocations unverified: .data+0x0 at +0x3c, .data+0x0 at +0x40, .rodata+0x4c at +0x1d4, .rodata+0x4c at +0x1d8, .rodata+0x50 at +0x1e8, .rodata+0x50 at +0x1ec, .rodata+0x54 at +0x1f8, .rodata+0x54 at +0x1fc, .rodata+0x58 at +0x244, .rodata+0x58 at +0x248)",
+        "total": 253,
+        "unresolved": [],
+        "unverified": [
+          ".data+0x0 at +0x3c",
+          ".data+0x0 at +0x40",
+          ".rodata+0x4c at +0x1d4",
+          ".rodata+0x4c at +0x1d8",
+          ".rodata+0x50 at +0x1e8",
+          ".rodata+0x50 at +0x1ec",
+          ".rodata+0x54 at +0x1f8",
+          ".rodata+0x54 at +0x1fc",
+          ".rodata+0x58 at +0x244",
+          ".rodata+0x58 at +0x248"
+        ]
+      },
+      "particle_render": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [
+          "own .rodata verified at 0x8012267C..0x8012268C"
+        ],
+        "summary": "MATCH",
+        "total": 112,
+        "unresolved": [],
+        "unverified": []
+      },
+      "physics_sym": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 313,
+        "unresolved": [],
+        "unverified": []
+      },
+      "sign_extend_call": {
+        "accepted": true,
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "MATCH",
+        "total": 10,
+        "unresolved": [],
+        "unverified": []
+      },
+      "slot_state_setup": {
+        "accepted": false,
+        "differing": 2,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "2/58 words differ",
+        "total": 58,
+        "unresolved": [],
+        "unverified": []
+      }
+    }
+  }
 }

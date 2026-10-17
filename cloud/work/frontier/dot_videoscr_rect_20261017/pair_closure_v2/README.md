@@ -3,7 +3,10 @@
 Baseline: `58425072b49e95f0fbe5c4c239988fb4885f7c5c`.
 This supersedes the local five-word initializer residual documented in draft PR #392's first packet. It remains **research only, with empty claims and zero new accepted coverage credit**. No canonical source has been installed, and no full-unit or ROM verification has been performed for this candidate.
 
-## Exact local result
+
+**Unresolved source dependency:** the initializer's exact local result requires the inherited `volatile unsigned char gNumModels` view in both source units. A later read of all26 original MAT3 declarations found ordinary unsigned char. Coherently applying that original type here leaves the rectangle and genuine root exact, but changes initScreen to214/253 differing words with10 unverified section references; the already-refused B59F0 becomes205/343 with its ownership failure. The MAT3 type does not establish the N64 declaration. The exact initializer therefore remains a volatile-dependent diagnostic result, not an authenticated installable source result.
+
+## Conditional exact local result
 
 The stock IDO 5.3 O3 group pipeline accepts:
 
@@ -33,7 +36,7 @@ The complete stock object, a separately staged stock rebuild, and an instrumente
 
 Additional non-native helper symbol extents are disclosed in `fidelity.json`. Those inlining/deleted-body artifacts are not separately identified native targets and earn no match credit. The entire group must not be described as matched, accepted or integrated.
 
-## Authentic source and coherent types
+## Recovered source and coherent types
 
 MAT3 videoscr DWARF records calcMenuRect's locals in this order: menuSize, optionWidth, valueWidth, menuIdx, then unsigned-byte str1[40]. The candidate restores that extent and ordering, with explicit casts at the character-string API boundary. validOption has its recorded signed-byte return and real signed-byte local. N64 uses font 11, unsigned width comparisons and array-only validity; the later MAT3 state/cable condition is not transplanted.
 
@@ -80,3 +83,7 @@ Eight current-source mutations must be rejected:
 The two definition-order controls must reproduce the entire baseline member receipt. `test_results.json` contains all fourteen baseline results, eight negative outcomes and both equivalence controls. Raw compared literal byte values are omitted from publication receipts.
 
 This package contains source, verification logic and research receipts only. It contains no target objects, ROM bytes, raw assembly dumps, toolchain binaries or private trace streams. Independent review and any subsequent acceptance gates remain separate from this local result.
+
+## Model-count source-evidence control
+
+The full ordinary-type fourteen-member receipt is `ordinary_model_count.json` and is replayed under `source_evidence_controls`. This is not labeled a wrong-source negative: its declaration has stronger original MAT3 evidence, while the native version remains unresolved. No qualifier is inferred merely because it improves the N64 score. Both declarations change together; the allocator, signed-short MBOX wrapper, SaveGlobals, rectangle and real control root remain strict. The baseline source and earlier result are retained transparently for comparison, with empty claims and no new credit. Native syntax or an independently established N64 access boundary is needed before adopting the initializer.

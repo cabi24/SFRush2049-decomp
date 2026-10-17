@@ -31,7 +31,7 @@ def describe(result):
     scrub = lambda text: re.sub(r'retail [0-9a-f]+, got [0-9a-f]+',
                                'compared byte values omitted', text)
     row = {**dataclasses.asdict(result), 'accepted': result.accepted(),
-           'summary': scrub(result.summary()), 'notes': list(result.notes)}
+           'summary': scrub(result.summary()), 'notes': [scrub(t) for t in result.notes]}
     row['errors'] = [scrub(text) for text in row['errors']]
     return row
 
@@ -145,6 +145,21 @@ def main():
             require(measured == expected,
                     'Definition-order equivalence control changed member results: ' + label)
             output['definition_order_controls'][label] = measured['particle_collision']
+        # Source-evidence control, not a wrong-source negative: MAT3 records
+        # ordinary unsigned char. N64 volatility has not been authenticated.
+        child = root / 'ordinary_model_count'
+        shutil.copytree(base, child)
+        for file in ['group.c', 'caller.c']:
+            replace_one(child, file, 'volatile u8 gNumModels', 'u8 gNumModels')
+        measured = measure(child, root / 'ordinary_model_count.o', spec['members'])
+        ordinary = json.loads((HERE / 'ordinary_model_count.json').read_text())
+        require(measured == ordinary, 'Ordinary model-count boundary changed')
+        require(measured['particle_render']['accepted'] and measured['physics_sym']['accepted'],
+                'Ordinary model-count control lost preserved rectangle/root')
+        require(not measured['particle_collision']['accepted'],
+                'Volatile dependency silently disappeared; review source boundary')
+        output['source_evidence_controls'] = {'ordinary_model_count': measured}
+        output['initializer_volatile_source_authenticated'] = False
         print(json.dumps(output, indent=2, sort_keys=True))
 
 
