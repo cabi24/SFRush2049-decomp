@@ -4,9 +4,13 @@
   "new_matching_bytes": 0,
   "canonical_or_ROM_verification": false,
   "inputs_sha256": {
-    "group/group.c": "065a46b9fc8c7e239e005c6fe8a061d0c9a21fe1034918e2cc7ee14931d302ae",
-    "group/group.json": "d13c83d59b0dc859e51061ed6397398fb89a931724fa43de856bbe53ee38c8a6",
-    "verify.py": "cbacfdee1ed84ef4fdcdeaff3bd20502ed34f685c5a9384fefc345de93947b82",
+    "group/process.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
+    "init_behavior.py": "1932367a54463b41f33db3e7bd769c5475bc3b0ba768b4410aca120fcb12e1da",
+    "init_host_behavior.py": "8f274cb43312fa85e6fc155338eef9c8677672b72f1daee048ecc4add77e5ff6",
+    "init_negative_controls.py": "5662e98276a4182bc65a3dd035131028092dec51b04ac2a80e06d8001063d0a4",
+    "group/group.c": "d2121eb3fb2d4875c5006d72b8753a1b590e7b4dbd2ca5e48d43d785b9a35b7a",
+    "group/group.json": "9a6b7034503d25affeaa03603cf1a1220782e600482a4a1f22b4d68954378df7",
+    "verify.py": "9fb51cb1214f868d2bfc6ef11b7c8176b5b7cead45cb0a6d0d2866df5f2711ee",
     "behavior.py": "943b2fdc00a67f35ab5c23c4718405f1f51253fc6d991d27c00503387e0415ce",
     "host_behavior.py": "711db62d107473af73fd3cdc78e5fb90e2a9087ca2e54e7b7ac5e77eb62f4684",
     "negative_controls.py": "36006190be80bc66171c5ae5a2d319d1ef1eba3a9e2bfbb44850851bc37964d6",
@@ -14,14 +18,25 @@
   },
   "target_words_sha256": {
     "func_800E7134": "81ea459c5ca128423afa15068d5db2aee64fa78b890c1cea553663fdd38dd849",
+    "func_800E7038": "e2f4c2655d621299898864fb01a65c21aeac1613290274aff697c07a1f161046",
     "controller_poll": "74aec6d0b44fc6c7d50e1b4cb845f564f4506d18a691d80cc8c415d3a26156d6",
     "func_800C9590": "84468b8c64513cbaf99476cb96ce7a1eab18340cfc28b93a467bcd3e72240eac",
     "player_mode_set": "afe934210ca29ae9d33a6c23152089b37e8b469ddfd075f417d3a2ce936c3c76",
-    "player_state_set": "666e073e6efe5bb36e53d12745e8741b6d55c071467496e96b3a74e99117a660"
+    "player_state_set": "666e073e6efe5bb36e53d12745e8741b6d55c071467496e96b3a74e99117a660",
+    "process_inputs": "8b07c3e82d086a4b20139280fbdcce6b6a3bd5a0efb0471cb64341c4dbda1850"
   },
-  "object_sha256": "ad7c26eb9ab2de0e90dd280fa6e52c5f0804a020eced65dd43d9bd6129d0a759",
+  "object_sha256": "8442e499592e621f18e21afb6796d0835426dc4a2d69b7de89f96ad8eebb60a4",
   "function_bytes": 676,
   "frame_bytes": 48,
+  "function_extents": {
+    "func_800E7134": 676,
+    "func_800E7038": 248,
+    "controller_poll": 928,
+    "func_800C9590": 76,
+    "player_mode_set": 60,
+    "player_state_set": 60,
+    "process_inputs": 356
+  },
   "rows": {
     "func_800E7134": {
       "differing": 108,
@@ -69,22 +84,22 @@
       "summary": "MATCH"
     },
     "func_800E7038": {
-      "differing": 48,
+      "differing": 47,
       "total": 63,
       "unresolved": [],
       "unverified": [],
       "errors": [],
       "extra_words": 0,
-      "summary": "48/63 words differ"
+      "summary": "47/63 words differ"
     },
     "process_inputs": {
-      "differing": 86,
+      "differing": 0,
       "total": 89,
       "unresolved": [],
       "unverified": [],
       "errors": [],
-      "extra_words": 1,
-      "summary": "86/89 words differ (1 extra words (nonzero beyond target length))"
+      "extra_words": 0,
+      "summary": "MATCH"
     }
   },
   "emitted_type_layout": {
@@ -127,5 +142,57 @@
     "collapsed_y_output": "host mismatch case 0",
     "wrong_direction_threshold": "host mismatch case 52",
     "edge_history_overwrite": "host mismatch case 0"
+  },
+  "initialization_behavior": {
+    "status": "PASS",
+    "fixtures": 216,
+    "executions": 432,
+    "native_words_executed": 79,
+    "candidate_words_executed": 78,
+    "native_total_words": 93,
+    "native_init_words_executed": 63,
+    "boundary_stubs": [
+      "osCreateMesgQueue",
+      "osSendMesg",
+      "controller_poll"
+    ],
+    "real_native_helpers": [
+      "player_state_set",
+      "player_mode_set"
+    ],
+    "claims": []
+  },
+  "initialization_host": {
+    "status": "PASS",
+    "host_fixtures": 216,
+    "source": "unchanged extracted initialization and setter bodies",
+    "boundary_stubs": [
+      "queue creation",
+      "queue seed",
+      "controller poll",
+      "scripted volatile query reads"
+    ]
+  },
+  "initialization_negatives": {
+    "misplaced_first_y_reset": {
+      "rejected": true,
+      "reason": "case 18, program 1"
+    },
+    "word_width_query": {
+      "rejected": true,
+      "reason": "query status is not byte-wide"
+    },
+    "wrong_queue_capacity": {
+      "rejected": true,
+      "reason": "queue creation protocol"
+    },
+    "blocked_queue_seed": {
+      "rejected": true,
+      "reason": "queue seed protocol"
+    },
+    "repeat_player_defaults": {
+      "rejected": true,
+      "reason": "case 54, program 1"
+    }
   }
 }

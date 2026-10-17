@@ -876,7 +876,7 @@ extern s32 D_801117B4;
 extern s32 D_801117C4;
 extern s32 D_801118E4;
 extern s8 D_8011194C;
-extern s32 D_80111950;
+extern volatile u8 D_80111950;
 extern s8 D_80111954;
 extern s32 D_8011195C;
 extern s32 D_80111960;
@@ -2341,7 +2341,7 @@ extern s8 D_8014978C;
 extern s32 D_80149790;
 extern s32 D_80149798;
 extern s32 D_801497A4;
-extern s32 D_801497A8;
+extern OSMesgQueue D_801497A8;
 extern s32 D_801497C0;
 extern s32 D_801497D0;
 extern s8 D_801497E8;
@@ -2359,7 +2359,7 @@ extern s32 D_80149870;
 extern s16 D_80149878;
 extern f32 D_80149A4C;
 extern s32 D_80149A78;
-extern s8 D_80149AF8;
+volatile s8 D_80149AF8[4][2];
 extern s8 D_80149AF9;
 extern s8 D_80149AFA;
 extern s8 D_80149AFB;
@@ -2556,7 +2556,7 @@ extern f32 D_801526F8;
 extern s32 D_80152708;
 extern s8 D_80152718;
 extern f32 D_80152720;
-extern s32 D_80152730;
+extern OSMesg D_80152730[1];
 extern s32 D_80152738;
 extern s16 D_8015273A;
 extern f32 D_8015273C;
@@ -3805,28 +3805,22 @@ f32 func_800C9590(f32 range, f32 calib, s32 raw)
 }
 
 void func_800E7038(void) {
+    s32 i;
     if (D_80111954 == 0) {
         player_state_set(-1, 1);
         player_mode_set(-1, 1);
     }
     D_80111954 = 1;
-    D_80149AFE = 0x46;
-    D_80149AFF = 0x46;
-    D_80149AFC = 0x46;
-    D_80149AFD = 0x46;
-    D_80149AFA = 0x46;
-    D_80149AFB = 0x46;
-    D_80149AF8 = 0x46;
+    for (i = 0; i < 4; i++) {
+        D_80149AF8[i][0] = D_80149AF8[i][1] = 70;
+    }
     if (D_80111968 == 0) {
-        D_80149AF9 = 0x46;
         D_80111968 = 1;
         osCreateMesgQueue((OSMesgQueue *) &D_801497A8, (void **) &D_80152730, 1);
         osSendMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
     }
     if (D_80111950 == 0x80) {
-        do {
-
-        } while (D_80111950 == 0x80);
+        do {} while (D_80111950 == 0x80);
     }
     controller_poll();
 }
@@ -3914,62 +3908,4 @@ void player_state_set(s32 player, s32 value)
         D_80149B64[player] = value;
     }
 }
-
-void process_inputs(void) {
-    D_80156958_Entry *temp_a1;
-    D_80156958_Entry *temp_a2;
-    InputRecord *var_a0;
-    s32 var_a3;
-
-    controller_poll();
-    var_a0 = &input_rec1;
-    var_a3 = 0;
-    do {
-        if ((M2C_FIELD(&D_8014A119, u8 *, 0) == 5) || (var_a3 >= active_player_count)) {
-            M2C_FIELD(&D_8014A119, s32 *, 8) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0xC) = 0;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x10) = 0.0f;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x14) = 0.0f;
-        } else {
-            temp_a1 = &D_80156958[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 8) = (s32) D_80156978[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, u8 *, 0) = (s32) D_80156998[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 0xC) = (s32) D_80143A00[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, f32 *, 0x10) = (f32) temp_a1->unk0;
-            M2C_FIELD(&D_8014A119, f32 *, 0x14) = (f32) temp_a1->unk4;
-        }
-        if ((u8) D_8014A165 != 5) {
-            if (var_a3 < (active_player_count - 1)) {
-                var_a0 = (InputRecord *) &D_8014A165;
-                ((InputRecord *) &D_8014A165)->unk08 = D_80156978[M2C_ERROR(/* Read from unset register $a1 */)];
-                temp_a2 = &D_80156958[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk04 = D_80156998[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk0C = D_80143A00[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk10 = temp_a2->unk0;
-                ((InputRecord *) &D_8014A165)->unk14 = temp_a2->unk4;
-            } else {
-                goto block_10;
-            }
-        } else {
-block_10:
-            var_a0->unk08 = 0;
-            var_a0->unk04 = 0;
-            var_a0->unk0C = 0;
-            var_a0->unk10 = 0.0f;
-            var_a0->unk14 = 0.0f;
-        }
-        var_a3 += 2;
-        var_a0 = (InputRecord *) ((u8 *) var_a0 + 0x98);
-    } while (var_a3 != 4);
-}
-
-
-
-
-
-
-
-
-
 

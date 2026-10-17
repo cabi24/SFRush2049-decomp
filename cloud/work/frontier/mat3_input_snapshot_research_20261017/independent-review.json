@@ -1,35 +1,52 @@
 {
   "reviewer": "effects lane",
-  "reviewed_at_utc": "2026-10-17T19:19:08Z",
+  "reviewed_at_utc": "2026-10-17T19:34:00Z",
   "decision": "PASS_RESEARCH_ONLY",
   "tests": [
     "python3 verify.py",
-    "python3 -O verify.py"
+    "python3 -O verify.py",
+    "byte identity of group/process.c against cloud/matches/process_inputs.c"
   ],
   "checks": {
-    "target_differing": 108,
-    "target_words": 169,
-    "existing_matches_preserved": 4,
-    "fixtures_native_candidate_host": 1014,
-    "semantic_negatives_rejected": 4,
+    "snapshot_differing": 108,
+    "snapshot_words": 169,
+    "initialization_differing": 47,
+    "initialization_words": 63,
+    "initialization_symbol_bytes": 248,
+    "native_initialization_bytes": 252,
+    "existing_matches_preserved": 5,
+    "snapshot_fixtures_native_candidate_host": 1014,
+    "initialization_fixtures_native_candidate_host": 216,
+    "native_initialization_words_executed": 63,
+    "semantic_negatives_rejected": 9,
     "emitted_layout_negative_rejected": true,
     "claims": []
   },
+  "review_findings": [
+    "Calibration reset now includes all eight bytes independently of the queue-initialized flag.",
+    "Asynchronous query status is correctly modeled as byte-wide volatile state; scripted host reads and native/candidate loads verify width, sequence, and count.",
+    "Real player-state and mode setters execute in the native/candidate initializer tests.",
+    "Five prior matches are source-bound with explicit extents and no new matching credit."
+  ],
   "limitations": [
-    "Queue and initialization are deterministic boundary stubs.",
-    "Research context remains unfinished and cannot be installed as a replacement group.",
+    "Queue creation, queue seed, and controller polling are deterministic initialization boundary stubs.",
+    "Snapshot initialization and queue calls remain deterministic boundary stubs; the real normalization helper executes.",
+    "Initializer still differs 47/63 and is one word short; snapshot remains108/169.",
     "No canonical or ROM verification; no new matching bytes."
   ],
   "files_sha256": {
-    "README.md": "24e8aea85362bfe8fa53f3e8a00040d54534a5fd1894f6e9bd2fc2b41e4ef973",
+    "README.md": "60ec930dc773146f6ec976f8f1cfebe815aa1f49bb9d6cbb095d65388bfd856f",
     "behavior.py": "943b2fdc00a67f35ab5c23c4718405f1f51253fc6d991d27c00503387e0415ce",
-    "group/group.c": "065a46b9fc8c7e239e005c6fe8a061d0c9a21fe1034918e2cc7ee14931d302ae",
-    "group/group.json": "d13c83d59b0dc859e51061ed6397398fb89a931724fa43de856bbe53ee38c8a6",
+    "group/group.c": "d2121eb3fb2d4875c5006d72b8753a1b590e7b4dbd2ca5e48d43d785b9a35b7a",
+    "group/group.json": "9a6b7034503d25affeaa03603cf1a1220782e600482a4a1f22b4d68954378df7",
+    "group/process.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
     "host_behavior.py": "711db62d107473af73fd3cdc78e5fb90e2a9087ca2e54e7b7ac5e77eb62f4684",
+    "init_behavior.py": "1932367a54463b41f33db3e7bd769c5475bc3b0ba768b4410aca120fcb12e1da",
+    "init_host_behavior.py": "8f274cb43312fa85e6fc155338eef9c8677672b72f1daee048ecc4add77e5ff6",
+    "init_negative_controls.py": "5662e98276a4182bc65a3dd035131028092dec51b04ac2a80e06d8001063d0a4",
     "layout.py": "c97402548734ae3f85e65c66efaea206d169c479bde4d361a91fbeafd2cdf46e",
     "negative_controls.py": "36006190be80bc66171c5ae5a2d319d1ef1eba3a9e2bfbb44850851bc37964d6",
-    "verification.json": "973edab988c0482e1b3fe9479ba0132f0bb70db56ffc6b847c2a3acee222e0ad",
-    "verify.py": "cbacfdee1ed84ef4fdcdeaff3bd20502ed34f685c5a9384fefc345de93947b82"
-  },
-  "followup_review": "Only verify.py and verification.json changed: encoded prologue word replaced with equivalent decoded ADDIU/SP/SP/-48 check. Field-isolated negatives reject wrong opcode, source register, destination register, and displacement. Source, group, behavior/model files unchanged."
+    "verification.json": "ac13b32c803c9c1733a12ae70bea0f4c09b32308a4869433b952c772f931bbcd",
+    "verify.py": "9fb51cb1214f868d2bfc6ef11b7c8176b5b7cead45cb0a6d0d2866df5f2711ee"
+  }
 }

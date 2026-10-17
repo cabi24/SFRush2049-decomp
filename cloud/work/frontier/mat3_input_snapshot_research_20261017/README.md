@@ -19,12 +19,17 @@ references, or scorer errors are observed for this function.
 
 The group retains the genuine controller polling, normalization, player-mode,
 player-state, initialization, and process-input routines. Inherited legacy
-stand-in callers were removed. Four existing members remain strict matches:
+stand-in callers were removed. Five existing functions remain strict matches:
 controller_poll (928 bytes), func_800C9590 (76), player_mode_set (60), and
-player_state_set (60). These were already matched and receive no new credit.
+player_state_set (60), and process_inputs (356). The latter is copied unchanged
+from the accepted cloud/matches/process_inputs.c, replacing obsolete inherited
+context. These were already matched and receive no new credit.
 
-Other context is unfinished and explicitly recorded: initialization is
-48/63 words different; process_inputs is 86/89 with one extra nonzero word.
+Initialization is also repaired: every calibration byte resets on every call,
+including the first Y byte that inherited decompiler output had incorrectly
+placed under the queue-creation branch. The asynchronously updated query status
+is an unsigned byte, rather than the inherited word declaration. The corrected
+initialization remains 47/63 words different and 248 bytes versus native 252.
 This packet is not an installable replacement group.
 
 The best type-correct controller service remains 4/149 words different with
@@ -44,12 +49,13 @@ python3 -O cloud/work/frontier/mat3_input_snapshot_research_20261017/verify.py
 ```
 
 The replay binds complete inputs and authenticated native target hashes,
-checks the full group, and enforces the empty-claims/nonmatch boundary.
+checks the full group and exact function extents, binds the complete object,
+and enforces the empty-claims/nonmatch boundary.
 It validates type layout by reading constants emitted by IDO, rather than
 assuming compilation success proves a negative-array assertion. A deliberately
 wrong reserved-byte width is detected by the emitted layout.
 
-The behavior checks contain 1,014 fixtures and three independent executions:
+The snapshot behavior checks contain 1,014 fixtures and three independent executions:
 
 - Native MIPS body and its real 19-word normalization helper
 - Compiled candidate MIPS body and that matched helper
@@ -68,9 +74,27 @@ normalization helper itself executes, including its private integer/FP
 argument convention. The native tests reach 186 of 188 combined instructions;
 two uncovered duplicate paths arise from branch-likely scheduling.
 
-Four independently compiled semantic negatives fail: wrong Y calibration,
+Four independently compiled snapshot negatives fail: wrong Y calibration,
 collapsed Y output, the wrong analog-direction threshold, and replacing
 accumulated pressed history instead of OR-ing it.
+
+The initialization checks add 216 native/candidate/host fixtures. Both real
+60-byte player-default setter helpers execute in the MIPS checks; every one
+of the 63 native initialization instructions is reached. Cases cover zero and
+nonzero initialization flags, first and later queue setup, all eight calibration
+bytes, and six query-byte scripts including repeated busy values before release.
+All visible state, queue arguments and ordering, query-read counts, saved
+registers, and stack restoration are checked against a separate model.
+
+Queue creation, queue seeding, and controller_poll are boundary stubs in these
+initialization tests. The host C body and setter bodies are extracted unchanged;
+volatile query reads use a scripted accessor to represent asynchronous updates.
+No real-time scheduling or complete controller subsystem claim is made.
+
+Five independently compiled initialization negatives are rejected: skipping the
+first Y reset after queue creation, using a word-width query read, the wrong
+queue capacity, a blocking initial seed, and reapplying player defaults on every
+call. All proof checks use explicit exceptions and remain active under Python -O.
 
 ## Remaining work
 
@@ -81,6 +105,10 @@ cast, real-call-context, axis-loop, and shared-field controls did not close it.
 Explicit raw-value locals improve one local sequence but expand the frame;
 those variants are not delivered as improvements.
 
-This packet records a verified semantic reconstruction, not a byte match.
+Initialization additionally retains an unmatched constant-one lifetime and
+queue-status addressing sequence. Ordinary loop and native field-type controls
+do not close it.
+
+This packet records verified semantic reconstructions, not new byte matches.
 Build outputs, target bytes, object files, and raw assembly/trace dumps remain
 outside the publication packet.

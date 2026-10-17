@@ -3,7 +3,8 @@
     "func_800E7134"
   ],
   "files": [
-    "group.c"
+    "group.c",
+    "process.c"
   ],
   "keep": [
     "controller_poll",
@@ -24,6 +25,6 @@
     "func_800E7038",
     "process_inputs"
   ],
-  "provenance": "Research-only native controller snapshot reconstruction. Genuine controller and initialization routines retained; inherited legacy stand-in callers removed. No canonical-group replacement and no match claims.",
+  "provenance": "Research-only native controller snapshot and initialization reconstruction. Accepted process_inputs source retained unchanged; genuine controller, initialization, and setter context. No legacy stand-in callers, canonical replacement, or match claims.",
   "claims": []
 }
