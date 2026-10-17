@@ -1,10 +1,11 @@
 {
   "status": "VERIFIED_RESEARCH_PARTIAL",
+  "protocol_version": 2,
   "claims": [],
   "new_matching_bytes": 0,
   "canonical_or_ROM_verification": false,
   "inputs_sha256": {
-    "verify.py": "e166c3cd600327b2884502133be03dc0df20b8d6cce8eeb5068e4923a29e35f0",
+    "verify.py": "d6eb9ae8b9c739d0ebe0cc8ed2b16bff72247d5efb151f7ab406498c0ec7a1d3",
     "environment_behavior.py": "46260942b8d2e7d2439f4a7e7301c104dedde8d836141ce8709de8c301718c2b",
     "environment_layout.py": "10ce522da3b60807956a097ff3b950d0bd6fbd81001f75a58b036f06bb7ca651",
     "environment_negatives.py": "1335eae13b0c9a334a798b50ab787342ac4690a55d2419ca7c1c852442c26bfc",
@@ -13,6 +14,40 @@
     "group/group.json": "c12dc13fe40b4a5aec297eb3011b8dbc1acf4e84ae63ddfe50b43dd99fa6df57"
   },
   "target_words_sha256": "c902fdd3c06ce58b1f2b7d2b15d5f44d12fed6bbe75ca322ac8f9d44b0cc28de",
+  "environment_inputs": {
+    "files": {
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
+      "tests/cloud/test_mat3_environment_20261017.py": "d56aaf139f61fa978990ecd520612d225b4dbbe0df6bd07fd18135b63abd75ea"
+    },
+    "readme_sha256": "00f5762f560ad12c5e6e7703e3f7bcbc981027a8913886bfdae31e0540588a17",
+    "tools": {
+      "score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+      "owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
+    },
+    "compiler": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    },
+    "native_manifest_sha256": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+    "native_symbols_sha256": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd",
+    "own_data_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594"
+  },
+  "inventory": {
+    "functions": {
+      "music_control": {
+        "offset": 0,
+        "bytes": 992
+      }
+    },
+    "text_bytes": 992
+  },
   "object_sha256": "a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5",
   "comparison": {
     "differing": 18,

@@ -1,0 +1,51 @@
+{
+  "status": "PASS_VERIFICATION_ONLY",
+  "reviewer": "independent AI/path lane",
+  "date_utc": "2026-10-17T22:12:40Z",
+  "scope": "PR398 sealed-proof hardening only; original source review retained",
+  "proof_sha256": "0dacb1879af27b8a241b420668fff1063c4388afca0d6693cdfa01f2bc0513f3",
+  "trace_receipt_sha256": "5098cc325b1b94c5004ae86ab1a6bf02bc77e13c09461342a09af3b411bcfacb",
+  "files_sha256": {
+    "cloud/work/frontier/mat3_environment_20261017/README.md": "00f5762f560ad12c5e6e7703e3f7bcbc981027a8913886bfdae31e0540588a17",
+    "cloud/work/frontier/mat3_environment_20261017/environment_behavior.py": "46260942b8d2e7d2439f4a7e7301c104dedde8d836141ce8709de8c301718c2b",
+    "cloud/work/frontier/mat3_environment_20261017/environment_layout.py": "10ce522da3b60807956a097ff3b950d0bd6fbd81001f75a58b036f06bb7ca651",
+    "cloud/work/frontier/mat3_environment_20261017/environment_negatives.py": "1335eae13b0c9a334a798b50ab787342ac4690a55d2419ca7c1c852442c26bfc",
+    "cloud/work/frontier/mat3_environment_20261017/group/group.c": "5d9c04297276147c78346f9bfad9b2cdccdbdb43c6f9c7335d647ef8b262e7bc",
+    "cloud/work/frontier/mat3_environment_20261017/group/group.json": "c12dc13fe40b4a5aec297eb3011b8dbc1acf4e84ae63ddfe50b43dd99fa6df57",
+    "cloud/work/frontier/mat3_environment_20261017/independent_review.json": "32f7e0c74e479057b494e4c8487fb09de62eac549d1883dfcd314befa2377880",
+    "cloud/work/frontier/mat3_environment_20261017/trace_fidelity.json": "5098cc325b1b94c5004ae86ab1a6bf02bc77e13c09461342a09af3b411bcfacb",
+    "cloud/work/frontier/mat3_environment_20261017/trace_fidelity.py": "c8816aeddbd11c614c84abb38a887c9041a83c11efb7763cfc244e19b799cb40",
+    "cloud/work/frontier/mat3_environment_20261017/verification.json": "0dacb1879af27b8a241b420668fff1063c4388afca0d6693cdfa01f2bc0513f3",
+    "cloud/work/frontier/mat3_environment_20261017/verify.py": "d6eb9ae8b9c739d0ebe0cc8ed2b16bff72247d5efb151f7ab406498c0ec7a1d3",
+    "tests/cloud/test_mat3_environment_20261017.py": "d56aaf139f61fa978990ecd520612d225b4dbbe0df6bd07fd18135b63abd75ea"
+  },
+  "independent_checks": {
+    "focused_tests": 4,
+    "optimized_report_scope_refusals": 42,
+    "relocated_entry_point_refusals": 15,
+    "full_optimized_replay": "PASS",
+    "missing_ido_modes": "2 skipped, 2 passed; explicit standard diagnostic",
+    "fresh_stock_traced_objects_identical": true,
+    "whole_object_sha256": "a6cbcdc13f2c60eb6c535154cc48ffe2463c1b221c36f2e4796ce83beec307f5",
+    "original_source_recipe_models_review_unchanged": true,
+    "all_previous_result_fields_unchanged_except": [
+      "inputs_sha256.verify.py"
+    ],
+    "new_receipt_fields": [
+      "protocol_version",
+      "environment_inputs",
+      "inventory"
+    ],
+    "actual_cc_subprocesses": [
+      "cfe",
+      "ujoin"
+    ]
+  },
+  "findings": [
+    "Explicit saved-report checks and full fresh equality close the reproduced optimized-interpreter gap.",
+    "Actual compiler stages include ujoin, observed independently through verbose cc; its binding and refusal are now included.",
+    "One complete 992-byte function, 18 stack/frame residuals, 512 bounded fixtures and all old controls remain unchanged.",
+    "Empty claims, zero matching credit and original bounded model/callee-stub limits remain intact."
+  ],
+  "publication_blockers": []
+}

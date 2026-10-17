@@ -82,3 +82,21 @@ python3 cloud/work/frontier/mat3_environment_20261017/trace_fidelity.py \
 The complete stock and traced objects are byte-identical. Raw target words,
 assembly, traces, and binaries remain in ignored build storage. There is no
 canonical installation, full integration, image, runtime, or ROM verification.
+
+## Sealed-proof hardening
+
+Protocol 2 validates the saved report before compilation and compares the entire
+fresh result with it. The previous replay recomputed correct empty claims but
+ignored altered saved claims, credit and comparison fields; an optimized replay
+reproduced that gap before this repair. Source, compiler recipe, complete object,
+18-word residual, layouts and bounded behavior results are unchanged.
+
+The receipt now also binds the actual compiler stages (including cc’s ujoin subprocess), scorer and own-data
+implementation, lock, protected manifests and symbol map, README and focused
+test. The emitted inventory contains exactly one 992-byte function and no
+unaccounted text. Four tests cover optimized full replay, 42 direct report/scope
+refusals, a separate relocated checkout with 15 real entry-point binding/report
+refusals, and the standard missing-IDO diagnostic. Ordinary missing-tool runs
+skip compiler-dependent tests; REQUIRE_TOOLCHAIN=1 makes those skips failures.
+The original source review is retained, with a separate review for this proof
+change. These checks do not change the source or expand the stated model domain.

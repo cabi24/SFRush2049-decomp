@@ -11,6 +11,34 @@ TARGET='music_control'
 INPUTS=['verify.py','environment_behavior.py','environment_layout.py','environment_negatives.py',
         'trace_fidelity.py','group/group.c','group/group.json']
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def environment_inputs():
+    return {'files':{p:digest(ROOT/p) for p in ['blob_matched.lock.json','tests/cloud/test_mat3_environment_20261017.py']},
+            'readme_sha256':digest(HERE/'README.md'),
+            'tools':{'score.py':digest(Path(score.__file__)),'owndata.py':digest(Path(score.owndata.__file__))},
+            'compiler':{n:digest(Path(score.ido(n))) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},
+            'native_manifest_sha256':digest(score.ASM_DIR/'SHA256SUMS'),
+            'native_symbols_sha256':digest(score.ASM_DIR/'symbols.json'),
+            'own_data_manifest_sha256':digest(score.owndata.artifact_dir(score.ASM_DIR)/'SHA256SUMS')}
+def verify_scope(spec):
+    require(spec['claims']==[] and spec['members']==[TARGET] and spec['context']==[],'research scope changed')
+    require(spec['files']==['group.c'] and spec['keep']==[TARGET] and spec['flags']=='-g0 -O3 -mips2 -G 0 -non_shared','compiler recipe changed')
+    require(not spec.get('allow_unverified') and not spec.get('unprototyped'),'uncertain compiler contract')
+def verify_report(r):
+    require(r['protocol_version']==2 and r['status']=='VERIFIED_RESEARCH_PARTIAL' and r['claims']==[] and r['new_matching_bytes']==0 and r['canonical_or_ROM_verification'] is False,'false research credit')
+    for key,count in [('comparison',18),('original_flag_control',172)]:
+        c=r[key];require(c['differing']==count and c['total']==248 and not any(c[n] for n in ['extra_words','unresolved','unverified','errors']),'comparison boundary changed')
+    require(r['complete_symbol_bytes']==992 and r['native_frame_bytes']==160 and r['candidate_frame_bytes']==112,'extent or frame changed')
+    require(r['inventory']=={'functions':{TARGET:{'offset':0,'bytes':992}},'text_bytes':992},'complete emitted inventory changed')
+    b=r['behavior'];require(b['status']=='PASS' and b['fixtures']==512 and b['executions']==1024 and b['executed_words']==[240,240] and b['branch_outcomes']==[35,35] and b['matching_claim'] is False,'behavior boundary changed')
+    require(r['emitted_type_layout']=={'status':'PASS','native_layout':[952,24,21,272,512,536,584,20,2056,1992,88,6],'wrong_capacity_rejected':True},'layout boundary changed')
+    require(r['negative_controls']=={k:{'rejected':True,'first_divergent_case':v} for k,v in [('shadow_alpha',8),('arrow_z',13),('team_arrow_flags',15)]},'semantic negative changed')
+def verify_seal(actual,saved):
+    verify_report(actual);verify_report(saved);require(actual==saved,'fresh sealed receipt changed')
+def inventory(obj):
+    data,sections=score._elf(obj);ti=score._text_index(sections)
+    symbols=[s for i,sec in enumerate(sections) if sec['type']==2 for s in score._symbol_table(data,sections,i) if s['section']==ti and s['type']==2]
+    require(len(symbols)==1 and symbols[0]['name']==TARGET and symbols[0]['value']==0 and symbols[0]['size']==sections[ti]['size']==992,'complete emitted function boundary changed')
+    return {'functions':{TARGET:{'offset':0,'bytes':992}},'text_bytes':992}
 def compare(obj):
     with contextlib.redirect_stdout(io.StringIO()):row=score.compare(obj,TARGET,show=0)
     require(not any((row.extra_words,row.unresolved,row.unverified,row.errors)),'uncertain comparison')
@@ -20,16 +48,21 @@ def stack_only(w,g):
 def verify(out,record=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     spec=json.loads((HERE/'group/group.json').read_text())
-    require(spec['claims']==[] and spec['members']==[TARGET] and spec['context']==[],'research scope changed')
+    verify_scope(spec)
     require('__standin_' not in (HERE/'group/group.c').read_text(),'stand-in caller')
     inputs={p:digest(HERE/p) for p in INPUTS}
+    environment=environment_inputs()
     target=score.targets()[TARGET];target_hash=hashlib.sha256(struct.pack('>%dI'%len(target),*target)).hexdigest()
     if not record:
         receipt=json.loads((HERE/'verification.json').read_text())
+        verify_report(receipt)
         require(receipt['inputs_sha256']==inputs,'source changed')
+        require(receipt['environment_inputs']==environment,'tool or environment binding changed')
         require(receipt['target_words_sha256']==target_hash,'native target changed')
         trace=json.loads((HERE/'trace_fidelity.json').read_text())
         require(trace['inputs_sha256']==inputs,'trace input binding changed')
+        require(trace['environment_inputs']==environment,'trace environment binding changed')
+        require(trace['complete_objects_identical'] is True and trace['stock_object_sha256']==trace['trace_object_sha256']==receipt['object_sha256'],'trace pair changed')
     obj=out/'candidate.o';score.compile_group(HERE/'group',obj);row=compare(obj)
     if not record:
         require(digest(obj)==trace['stock_object_sha256']==trace['trace_object_sha256'],'trace object binding changed')
@@ -49,13 +82,16 @@ def verify(out,record=False):
     (old/'group.c').write_text(source.replace(spelling,'flags|0x8200'))
     old_obj=out/'old_flag.o';score.compile_group(old,old_obj);old_row=compare(old_obj)
     require(old_row['differing']==172,'historical control changed')
-    result=dict(status='VERIFIED_RESEARCH_PARTIAL',claims=[],new_matching_bytes=0,
+    result=dict(status='VERIFIED_RESEARCH_PARTIAL',protocol_version=2,claims=[],new_matching_bytes=0,
                 canonical_or_ROM_verification=False,inputs_sha256=inputs,target_words_sha256=target_hash,
+                environment_inputs=environment,inventory=inventory(obj),
                 object_sha256=digest(obj),comparison=row,original_flag_control=old_row,
                 complete_symbol_bytes=992,native_frame_bytes=160,candidate_frame_bytes=112,
                 residual_kind='18 stack/frame immediates only; identical opcode and register fields',
                 emitted_type_layout=layout_verify(out),behavior=behavior_verify(obj),negative_controls=negative_verify(out))
+    verify_report(result)
     if record:(HERE/'verification.json').write_text(json.dumps(result,indent=2)+'\n')
+    else:verify_seal(result,receipt)
     return result
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--record',action='store_true');p.add_argument('--out',type=Path,default=ROOT/'build/mat3_environment_20261017')
