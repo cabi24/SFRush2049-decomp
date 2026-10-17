@@ -92,7 +92,11 @@ proofs are reusable when the caller is resolved.
 
 No raw assembly, ROM data, objects, credentials, or private traces are included.
 
-## Protocol-v2 recovery verification (2026-10-17)
+## Historical protocol-v2 recovery verification (2026-10-17)
+
+This subsection records the earlier published proof and is superseded by the
+protocol-3 sealing section below. Its tool-binding and test-count statements
+apply only to that historical version.
 
 The replay now checks the explicit empty-claim declaration, all twelve preserved
 locked members, all seventeen target rows, the unchanged full group sources,
@@ -122,3 +126,37 @@ bounded pytest with REQUIRE_TOOLCHAIN=1 (1 passed, no skips).
 ## Proof hardening
 
 The verifier now uses explicit exceptions for every proof guard, including under `python3 -O`. The optimized-interpreter negative test rejects false claims, changed source/verifier/target, and an unverified relocation. This maintenance changes only verifier enforcement and its bound hash. All C sources, source and target hashes, result counts, and empty coverage claims are unchanged. Two focused tests pass on the intended 58425072 inputs; the fresh seven-build report is identical to the original report.
+
+## Complete receipt sealing
+
+Protocol 3 closes a separate saved-report gap: the earlier explicit-guard replay
+recomputed the correct scores but ignored changes to the saved status and
+control results. An optimized CLI run reproduced successful exit after the
+saved natural caller was falsely labeled MATCH and its extent was altered.
+
+The updated replay validates the research status and empty claims, reproduces
+all previous control results exactly, and compares complete fresh rows and
+extents for all seventeen native functions. All twelve preserved bodies must
+have their exact native extent in every control. Every emitted function and
+zero-alignment region is inventoried; full object and section hashes are
+sealed. Actual compiler stages, scorer, own-data implementation, lock, protected
+manifests and symbols, source, and proof scripts are bound. A second complete
+natural build must be byte-identical. A fresh observation-only trace binds the
+current final source rather than the earlier four-float intermediate.
+
+This is verification-only maintenance. The five C files and group recipe are
+unchanged, as are every earlier result count, diagnostic, source/target hash,
+and empty coverage claim. Existing unmatched context and its own-data refusals
+remain explicit. Error receipts retain locations and categories but omit raw
+native byte excerpts. The focused test and independent review bind the new
+receipt; missing IDO is reported through the standard setup diagnostic.
+
+Four focused tests now cover full optimized replay, 53 direct report/scope
+refusals, 16 entry-point or actual-input refusals, relocated replay, and the
+standard missing-IDO diagnostic.
+
+A source-only checkout can set N64_RESEARCH_REPO to a complete current checkout
+when running the focused tests. To reproduce the trace independently:
+
+    python3 cloud/work/frontier/dot_mat3_resurrection_pair_20261017/trace_fidelity.py \
+      --repo /path/to/current-checkout --traced-uopt /path/to/instrumented/uopt

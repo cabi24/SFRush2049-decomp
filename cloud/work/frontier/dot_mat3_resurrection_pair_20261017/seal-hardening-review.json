@@ -1,0 +1,38 @@
+{
+  "reviewer": "independent physics lane",
+  "status": "PASS",
+  "scope": "PR389 verification-only complete receipt sealing; no source or credit expansion.",
+  "receipt_sha256": "efe6caaccf1536a2dbd9bcd5ad726bc0232667efcaaf06e1b887834a27c1ad09",
+  "trace_fidelity_sha256": "90283b2e635bb5790ffaee200b83c2676ec62979cec021f9ab86ebc2cdba7c22",
+  "prior_receipt_sha256": "42b6ed119f855c031cdc5ff62a5c6518e0b67d3de9fc238dfabbba5c7248d50d",
+  "old_fields_changed": [
+    "protocol_version",
+    "verify_sha256"
+  ],
+  "source_review": "All five C files and group recipe are byte-identical to the frozen published packet. Every prior result/control/source/target field is unchanged; natural caller remains 17/354 and the six-unused-local exact result is explicitly diagnostic.",
+  "guard_review": "Explicit status, scope, input, full object/section/inventory/extent and complete fresh-result comparison closes the demonstrated stale-report gap. All twelve preserved functions require accepted comparisons and native full extents in each of seven builds. Repeat whole-object identity and current-source trace binding are enforced. Historical documentation is marked superseded.",
+  "independent_tests": {
+    "focused": "4 passed",
+    "optimized_direct_refusals": 53,
+    "entrypoint_and_input_refusals": 16,
+    "missing_IDO": "2 passed, 2 skipped",
+    "stock_traced_complete_object": "dbcbbba423d67df6d29c1802c8e07348fb9842760840c3a02a5a419e454cdf0e",
+    "logs": "private/physics_resurrection_review2220"
+  },
+  "current_files": {
+    "trace_fidelity.json": "90283b2e635bb5790ffaee200b83c2676ec62979cec021f9ab86ebc2cdba7c22",
+    "verify.py": "dd6666e207e8f76acbf30c1b3d2c07f3df0b124c0cce625a078e961baf29a682",
+    "trace_fidelity.py": "882b809d9bc7b30ea1351f4ad37fc6d081af44e09550b0c8b18afe07650f2caf",
+    "README.md": "c454d4724fa8d962287e6f6924a96d8b72527aaba69b21e9198702671a5bceb3",
+    "receipt.json": "efe6caaccf1536a2dbd9bcd5ad726bc0232667efcaaf06e1b887834a27c1ad09",
+    "group/particle_context.c": "89822deb830d3c30203a4d483e410485499562e46663326a358d990d7dd17242",
+    "group/group.json": "6247459accd1ecbb1f24c810befb71fea11a9b368834983a1c6f8276be51657b",
+    "group/resurrection.c": "b2e022e86382d4dc3eea120fa79d37e73ff0f4dfbf996bdbd73e06d9b3291cab",
+    "group/func_8008B2B4.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/entry_context.c": "6569b6eaa6fa14151fe35194cf497559960e61d34c3d00327e858156d44e6410",
+    "group/camera_pair.c": "1302119375c2803db74ef1582ff5a51453d6f3f9eb1216ad7ac43a6d6b3c1e60"
+  },
+  "focused_test_sha256": "2bbe63d2452285c58b04f3f2bccccbc208ac25656bfdb04eab4668fe84759964",
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}
