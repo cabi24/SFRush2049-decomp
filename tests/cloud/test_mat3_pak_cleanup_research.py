@@ -43,3 +43,8 @@ print('optimized guards reject false credit, diagnostics, extents, inventory, se
  r=subprocess.run([sys.executable,'-O','-c',script,str(HERE)],capture_output=True,text=True)
  assert r.returncode==0,(r.stdout,r.stderr)
  assert r.stdout=='optimized guards reject false credit, diagnostics, extents, inventory, semantics and stale inputs\n'
+
+def test_missing_ido_uses_standard_diagnostic(monkeypatch, tmp_path):
+ monkeypatch.setattr(packet.score, "IDO", tmp_path/"missing_ido")
+ with pytest.raises(SystemExit, match="run tools/cloud/setup.sh"):
+  packet.inputs()

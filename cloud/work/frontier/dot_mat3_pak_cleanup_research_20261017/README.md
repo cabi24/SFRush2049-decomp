@@ -99,3 +99,7 @@ or scheduler behavior. Host handles are real host pointers; the address scalar
 is widened to uintptr_t so the harness does not truncate them. Native 32-bit
 layouts are checked separately. The full unmatched server is not executed by
 this harness. No canonical integration, ROM/image build, merge or CI monitoring.
+
+## Missing-tool portability follow-up
+
+Compiler fingerprints now resolve through the scorer's standard IDO availability check. When the toolchain is absent, tests follow the shared local-skip policy; REQUIRE_TOOLCHAIN=1 still makes those skips failures. The new diagnostic test pins that boundary. C, recipe, target data and all comparison/semantic results are unchanged. The refreshed proof and narrow availability review supplement the original source/semantics review. No claims or byte credit are added.

@@ -31,7 +31,7 @@ def verify_scope(sp):
  require(sp['flags']=='-g0 -O3 -mips2 -G 0 -non_shared' and not sp.get('allow_unverified'),'compiler contract changed')
 def inputs():
  ts=score.targets();sy=score.image_symbols();h=heap_recipe()
- return {'packet_sha256':{n:sha((HERE/n).read_bytes()) for n in PACKET},'context_sha256':{HEAP+'/'+n:sha((ROOT/HEAP/n).read_bytes()) for n in h['files']+['group.json']},'targets':{n:{'address':hex(sy[n]),'bytes':len(ts[n])*4,'sha256':sha(struct.pack('>%dI'%len(ts[n]),*ts[n]))} for n in names()},'recipe':recipe(),'protocol_version':2,'toolchain_sha256':{n:sha((score.IDO/n).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
+ return {'packet_sha256':{n:sha((HERE/n).read_bytes()) for n in PACKET},'context_sha256':{HEAP+'/'+n:sha((ROOT/HEAP/n).read_bytes()) for n in h['files']+['group.json']},'targets':{n:{'address':hex(sy[n]),'bytes':len(ts[n])*4,'sha256':sha(struct.pack('>%dI'%len(ts[n]),*ts[n]))} for n in names()},'recipe':recipe(),'protocol_version':2,'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
 def materialize(d,s=None,sp=None):
  (d/'candidate.c').write_text(s or source())
  for n in heap_recipe()['files']:shutil.copyfile(ROOT/HEAP/n,d/('heap_'+n))
