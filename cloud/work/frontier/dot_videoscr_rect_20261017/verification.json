@@ -1,0 +1,161 @@
+{
+  "baseline_commit": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "candidate_object_sha256": "a0bd0e9b9f760afc4dde7acfb0172adcb160f89b0433becb2153325031d81e41",
+  "source_sha256": {
+    "group.c": "aea1e8114777b58cd3145d1db582fefcf2797094c435ed8694def83920da65f8",
+    "slp.c": "663489235f20aeee4e8cae07d14dc4892fdc10ff7c2dca8fdda0f22c36bc776d",
+    "ctx_gr3_b.c": "f8d201fda3530afedc9aae905d5e3a62de78f792a1098e70aebf99224f76b3b6",
+    "rect.c": "8d2b910f8a859149df1a7deec7f19c6717936988e6c88263358d7297ce50c65e",
+    "caller.c": "7d14792485e966c136e9885d8aa9d49702d75f1ca91a57a0f1a873a746ba32b7"
+  },
+  "results": {
+    "func_800B55F4": {
+      "differing": 0,
+      "total": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": []
+    },
+    "func_800B5688": {
+      "differing": 0,
+      "total": 49,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": []
+    },
+    "func_800B59E8": {
+      "differing": 0,
+      "total": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": []
+    },
+    "func_800B59F0": {
+      "differing": 0,
+      "total": 343,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x3c at +0x1c",
+        ".rodata+0x3c at +0x20",
+        ".rodata+0x40 at +0x24",
+        ".rodata+0x40 at +0x28",
+        ".rodata+0x44 at +0x2c",
+        ".rodata+0x44 at +0x30",
+        ".rodata+0x0 at +0x244",
+        ".rodata+0x0 at +0x25c",
+        ".rodata+0x10 at +0x218",
+        ".rodata+0x10 at +0x228",
+        ".rodata+0x48 at +0x36c",
+        ".rodata+0x48 at +0x370"
+      ],
+      "errors": [
+        "own .rodata: this function's references disagree on the section's image address (0x801226A8 for +0x0/+0x10, 0x80123D88 for +0x3c/+0x40/+0x44/+0x48): the literals are not laid out as in retail"
+      ],
+      "extra_words": 0,
+      "accepted": false,
+      "summary": "NOT VERIFIED (12 section-relative relocations unverified: .rodata+0x3c at +0x1c, .rodata+0x3c at +0x20, .rodata+0x40 at +0x24, .rodata+0x40 at +0x28, .rodata+0x44 at +0x2c, .rodata+0x44 at +0x30, .rodata+0x0 at +0x244, .rodata+0x0 at +0x25c, .rodata+0x10 at +0x218, .rodata+0x10 at +0x228, .rodata+0x48 at +0x36c, .rodata+0x48 at +0x370; own .rodata: this function's references disagree on the section's image address (0x801226A8 for +0x0/+0x10, 0x80123D88 for +0x3c/+0x40/+0x44/+0x48): the literals are not laid out as in retail)",
+      "notes": []
+    },
+    "physics_sym": {
+      "differing": 0,
+      "total": 313,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": []
+    },
+    "TitlePane": {
+      "differing": 0,
+      "total": 83,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": [
+        "own .rodata verified at 0x80122614..0x80122624"
+      ]
+    },
+    "particle_render": {
+      "differing": 0,
+      "total": 112,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": true,
+      "summary": "MATCH",
+      "notes": [
+        "own .rodata verified at 0x8012267C..0x8012268C"
+      ]
+    },
+    "particle_collision": {
+      "differing": 5,
+      "total": 253,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": false,
+      "summary": "5/253 words differ",
+      "notes": [
+        "own .rodata verified at 0x80123DE4..0x80123DF4"
+      ]
+    },
+    "slot_state_setup": {
+      "differing": 2,
+      "total": 58,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": false,
+      "summary": "2/58 words differ",
+      "notes": []
+    },
+    "object_create": {
+      "differing": 28,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": false,
+      "summary": "28/28 words differ",
+      "notes": []
+    },
+    "func_800B669C": {
+      "differing": 5,
+      "total": 5,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "accepted": false,
+      "summary": "5/5 words differ",
+      "notes": []
+    }
+  },
+  "stock_traced_object_equal": true,
+  "new_verified_local_candidate": "particle_render",
+  "canonical_changes": false,
+  "full_unit_verified": false,
+  "rom_verified": false,
+  "new_coverage_claimed": false
+}

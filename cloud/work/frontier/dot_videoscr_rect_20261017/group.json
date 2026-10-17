@@ -1,0 +1,32 @@
+{
+  "name": "videoscr_calcMenuRect_research",
+  "members": [
+    "func_800B55F4",
+    "func_800B5688",
+    "func_800B59E8",
+    "func_800B59F0",
+    "physics_sym",
+    "TitlePane",
+    "particle_render",
+    "particle_collision",
+    "slot_state_setup",
+    "object_create",
+    "func_800B669C"
+  ],
+  "context": [],
+  "files": [
+    "group.c",
+    "slp.c",
+    "ctx_gr3_b.c",
+    "rect.c",
+    "caller.c"
+  ],
+  "keep": [
+    "physics_sym"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "note": "Research-only local true-zero calcMenuRect candidate in genuine physics_sym -> initScreen -> calcMenuRect call graph. initScreen remains unmatched; no canonical/full-unit/ROM/coverage claim. Source-only package.",
+  "provenance": "w15b physics_sym group | w29b: sound_loop_set added (w28c body; one-line helpers + non-static names); cloud/work/frontier/w29b/RESULTS.md",
+  "claims": []
+}
