@@ -97,3 +97,7 @@ build storage and are excluded. No canonical build, integration, runtime,
 image, cartridge, or full-ROM verification is claimed.
 
 The observed scorer hash is informational only; replay does not pin shared tools.
+
+### Optimized-interpreter guard check
+
+Verification and trace-identity conditions use explicit exceptions, so `python3 -O` cannot remove them. The focused pytest additionally runs an optimized interpreter and confirms rejection of an unverified relocation, a false matching claim, and a changed source receipt. Normal and optimized full replays retain the same 47/671 Rocket and 537/820 Frame partials and the same complete object hash.

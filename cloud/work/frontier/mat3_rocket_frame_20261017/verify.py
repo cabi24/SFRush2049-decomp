@@ -23,6 +23,11 @@ FRAME = 'drone_ai_update'
 PRESERVED_EXACT = ['entity_anim_texture', 'anim_state_update', 'buffer_swap']
 
 
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -37,7 +42,7 @@ def inspect(obj, names):
 
 
 def clean(row):
-    assert not any(row[k] for k in ('extra_words', 'unverified', 'unresolved', 'errors')), row
+    require(not any(row[k] for k in ('extra_words', 'unverified', 'unresolved', 'errors')), row)
 
 
 def residuals(obj, name):
@@ -50,9 +55,9 @@ def residuals(obj, name):
     end = min(end, start+4*len(want))
     resolved, masks, unresolved, unverified, errors = score.relocate(
         obj, words, start, end, score.image_symbols())
-    assert not unresolved and not errors
+    require(not unresolved and not errors, 'verification check failed at 53')
     got = resolved[start//4:end//4]
-    assert len(got) == len(want)
+    require(len(got) == len(want), 'verification check failed at 55')
     return [(i, w, g) for i, (w, g) in enumerate(zip(want, got))
             if (w & masks.get(start+4*i, 0xffffffff)) !=
                (g & masks.get(start+4*i, 0xffffffff))]
@@ -73,29 +78,29 @@ def verify(out, frozen=True):
     out.mkdir(parents=True, exist_ok=True)
     group = HERE/'group'
     spec = json.loads((group/'group.json').read_text())
-    assert spec['claims'] == []
-    assert spec['members'] == [ROCKET, FRAME]
+    require(spec['claims'] == [], 'verification check failed at 76')
+    require(spec['members'] == [ROCKET, FRAME], 'verification check failed at 77')
     inputs = {p: digest(HERE/p) for p in ['verify.py', 'trace_fidelity.py', 'test_palette_semantics.py',
         'group/group.json'] + ['group/'+f for f in spec['files']]}
     targets = {name: hashlib.sha256(b''.join(struct.pack('>I', w)
         for w in score.targets()[name])).hexdigest() for name in spec['members']}
     if frozen:
         old = json.loads((HERE/'verification.json').read_text())
-        assert inputs == old['inputs_sha256'], 'source changed; reverify receipt'
-        assert targets == old['target_words_sha256'], 'native target changed'
+        require(inputs == old['inputs_sha256'], 'source changed; reverify receipt')
+        require(targets == old['target_words_sha256'], 'native target changed')
     positive_obj = out/'positive.o'
     score.compile_group(group, positive_obj)
     positive = inspect(positive_obj, spec['members']+spec['context'])
     for name, expected in [(ROCKET, 47), (FRAME, 537)]:
         clean(positive[name])
-        assert positive[name]['differing'] == expected, positive[name]
-        assert not score.Comparison(**{k: positive[name][k] for k in
-            ['differing','total','unresolved','unverified','errors','extra_words']}).accepted()
+        require(positive[name]['differing'] == expected, positive[name])
+        require(not score.Comparison(**{k: positive[name][k] for k in
+            ['differing','total','unresolved','unverified','errors','extra_words']}).accepted(), 'verification check failed at 92')
     for name in PRESERVED_EXACT:
-        clean(positive[name]); assert positive[name]['differing'] == 0
+        clean(positive[name]); require(positive[name]['differing'] == 0, 'verification check failed at 95')
     differences = residuals(positive_obj, ROCKET)
-    assert len(differences) == 47
-    assert all(is_stack_immediate(w, g) for _, w, g in differences)
+    require(len(differences) == 47, 'verification check failed at 97')
+    require(all(is_stack_immediate(w, g) for _, w, g in differences), 'verification check failed at 98')
     histogram = Counter(signed16(w)-signed16(g) for _, w, g in differences)
     negative = out/'negative'
     if negative.exists():
@@ -104,17 +109,17 @@ def verify(out, frozen=True):
     source = negative/'rocket.c'
     body = source.read_text()
     old = 'if(D_8014A110==2 && slot>0) clr.b[3]=128;'
-    assert body.count(old) == 1
+    require(body.count(old) == 1, 'verification check failed at 107')
     source.write_text(body.replace(old, old.replace('=128;', '=129;')))
     negative_obj = out/'negative.o'
     score.compile_group(negative, negative_obj)
     negative_rows = inspect(negative_obj, [ROCKET, FRAME]+PRESERVED_EXACT)
-    clean(negative_rows[ROCKET]); assert negative_rows[ROCKET]['differing'] == 48
-    assert negative_rows[FRAME] == positive[FRAME]
+    clean(negative_rows[ROCKET]); require(negative_rows[ROCKET]['differing'] == 48, 'verification check failed at 112')
+    require(negative_rows[FRAME] == positive[FRAME], 'verification check failed at 113')
     nbad = residuals(negative_obj, ROCKET)
-    assert sum(not is_stack_immediate(w,g) for _,w,g in nbad) == 1
+    require(sum(not is_stack_immediate(w,g) for _,w,g in nbad) == 1, 'verification check failed at 115')
     for name in PRESERVED_EXACT:
-        assert negative_rows[name] == positive[name]
+        require(negative_rows[name] == positive[name], 'verification check failed at 117')
     return {'status': 'VERIFIED_RESEARCH_PARTIAL', 'base_commit':
         '58425072b49e95f0fbe5c4c239988fb4885f7c5c', 'claims': [],
         'new_matching_bytes': 0, 'runtime_or_ROM_verification': False,

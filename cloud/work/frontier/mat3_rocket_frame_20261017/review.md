@@ -12,3 +12,11 @@ Approved for research-only draft publication after independent replay:
 - Context differences and all nonmatch/integration limits remain explicit.
 
 No exact-match, runtime, image, or ROM gate is implied by this review.
+
+## Follow-up guard review
+
+The independent renderer lane reviewed the explicit exception replacements in
+verify.py and trace_fidelity.py and replayed both focused pytest cases. Both
+passed, including optimized-Python rejection of false claims, unverified
+references, and changed source receipts. Source/group files and the compiled
+object are unchanged. No blocker to updating the same research-only draft.

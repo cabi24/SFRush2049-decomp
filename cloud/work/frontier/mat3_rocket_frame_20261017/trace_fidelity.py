@@ -11,6 +11,11 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 
 
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
 def run(out, traced_uopt):
     out = Path(out).resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -46,7 +51,7 @@ def run(out, traced_uopt):
                          "gen."+kind, "-o", kind+".o", "-t", "st."+kind]]:
             subprocess.run([str(ido / command[0]), *command[1:]], cwd=out, check=True, capture_output=True)
     stock = (out / "stock.o").read_bytes()
-    assert stock == (out / "trace.o").read_bytes(), "instrumented compiler changed the object"
+    require(stock == (out / "trace.o").read_bytes(), "instrumented compiler changed the object")
     return {"complete_objects_identical": True, "stock_object_sha256": hashlib.sha256(stock).hexdigest(),
             "trace_object_sha256": hashlib.sha256(stock).hexdigest(),
             "tracing_enabled": ["CDX_LOG", "CDX_DETAIL_WEB", "W5D_LEVEL", "SPLOG"]}
