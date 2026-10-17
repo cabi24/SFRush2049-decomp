@@ -1,0 +1,62 @@
+{
+  "decision": "PASS_ISOLATED_CANDIDATE",
+  "reviewer": "renderer lane",
+  "reviewed_at_utc": "2026-10-17T19:39:00Z",
+  "proof_sha256": "2a06d3e54d76ffd4ef288fb73de66b636259edac75dc9b73080f591ba0df7d41",
+  "claims": [
+    "brake_light_update"
+  ],
+  "new_individually_strict_bytes": 448,
+  "accepted_image_bytes": 0,
+  "tests": [
+    "optimized-Python replay.py --check against refreshed proof",
+    "tests/cloud/test_mat3_project_window.py:2 passed",
+    "independent fresh group compilation and ELF symbol extent read",
+    "IDO-emitted View/Port size and field-offset probe"
+  ],
+  "observations": {
+    "root_words_equal": 112,
+    "root_extent_bytes": 448,
+    "helper_extent_bytes": {
+      "func_800A61B0": 148,
+      "func_800A6078": 28
+    },
+    "root_frame_bytes": 72,
+    "emitted_type_layout": [
+      48,
+      72,
+      36,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48
+    ],
+    "host_finite_cases": 19216,
+    "wrong_depth_exit": 3,
+    "wrong_depth_stderr": "project-window differential mismatch\n"
+  },
+  "source_review": [
+    "Only genuine getter restoration, unused padding removal, and body-inert inverse/getter ordering change from documented native baseline",
+    "Canonical helpers materialized unchanged",
+    "N64 depth2.5 and vertical scale retained; MAT3 differences rejected by controls",
+    "Every positive function symbol extent now enforced against the native target",
+    "Negative scorer diagnostics redact literal target/data byte values"
+  ],
+  "limitations": [
+    "Only root gets new candidate credit; both helpers already locked",
+    "Host test is differential against historical N64 reconstruction with host helper implementations, supplementing strict native byte proof",
+    "Finite valid-window/nonoverlapping-buffer domain; no arbitrary NaN or invalid index claim",
+    "No whole-unit/image/ROM integration gate"
+  ],
+  "files_sha256": {
+    "README.md": "2868a8357ee069883a277b7b2ae2fcf849227a02dd0173582ea8fa330446398f",
+    "candidate.c": "941621643e3fd5f0bfd9aa9420f2403f87cf99fbfa4a7cb02eef62c077cea633",
+    "group.json": "43be8b84cc70446513d31818779ddc1288715dc713248a7888a018fba2f90596",
+    "proof.json": "2a06d3e54d76ffd4ef288fb73de66b636259edac75dc9b73080f591ba0df7d41",
+    "replay.py": "a6ceabd244d3cdea9ac75b8b3ce6e6902b624d033ebd84ab0fab92645173f7fd",
+    "semantics.c": "9d7d42020ef95f95e89e00fc375d1ad68fc4c1af6063dd4411a41594155f9d71"
+  },
+  "test_sha256": "9286533ab03dc546bf072b19258816db65940648b80600ed4dd56da91c78f18f"
+}
