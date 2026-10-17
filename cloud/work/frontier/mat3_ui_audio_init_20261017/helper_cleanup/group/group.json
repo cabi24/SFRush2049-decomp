@@ -1,0 +1,19 @@
+{
+  "members": [
+    "model_transform_setup",
+    "model_data_load",
+    "func_8008D870"
+  ],
+  "context": [],
+  "files": [
+    "helpers.c"
+  ],
+  "keep": [
+    "model_transform_setup",
+    "model_data_load",
+    "func_8008D870"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "note": "Supporting source-cleanup research only; existing locked bodies, no new claims."
+}

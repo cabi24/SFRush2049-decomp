@@ -1,0 +1,39 @@
+{
+  "reviewer": "renderer lane",
+  "scope": "source/native-layout review only; full proof/tests independently assigned to HUD",
+  "result": "PASS supporting source cleanup; zero new matching credit",
+  "reviewed_files_sha256": {
+    "README.md": "7b775e464d9869df61606683466c3a243882ffe2f1f5d7b547d07810c99d20d1",
+    "group/helpers.c": "279e8286e406ebbe2be2f6612d0c5cff4191b132d3f69269be5c29cafcbf408d",
+    "group/group.json": "3cd71b77e54af4de3b6387c5b6e38172ead49f0b27a1e4e361095a6b1985abc3",
+    "inputs.json": "6740cc5f4416434c0630339b9dddfc6ea34e39fa1f199a330d08721b244096af",
+    "verification.json": "377b492d0f9e3e2ed7c65db161afe5335843c028a2d49b5b48d7364ac610b69d",
+    "verify.py": "7475c8edb5c4ac0b94f9b0a3cb473bc1e9c55882bc020bc1a6614c15a883fecd",
+    "fidelity.json": "05c4b4f5ee57ffb687572f22f9b7822af08c9e807cc155cd30ffe7cd1672bd30"
+  },
+  "independent_emitted_layout": [
+    68,
+    0,
+    22,
+    24,
+    32,
+    36,
+    40,
+    44,
+    4,
+    2
+  ],
+  "layout_probe_sha256": "d1738b82c42938121d5e447935609f5260da6cf6d19d3c1d4062d4b23212a185",
+  "evidence": [
+    "Saved MAT3 visibility bodies and nested helpers agree under native function/global renaming; original signed-short flag getter versus int setter is retained.",
+    "The native 0x44 object view has flags at 0, signed child/next at 0x16/0x18, and four pointer slots at 0x20..0x2c. Stock IDO emitted offsets and widths were independently decoded.",
+    "Texture setter retains the authenticated signed-short object argument, int lod and sole object pointer local.",
+    "The duplicated mode-zero branch is disclosed as saved-source syntax, not recoverable native historical spelling.",
+    "All four eight-byte accessor residues remain explicitly unmapped and unclaimed.",
+    "No false prototype, padding local, added volatile access or compiled-out negative-index shaping was introduced."
+  ],
+  "limits": [
+    "This review does not independently replay the complete 51-member graph; HUD owns that replay.",
+    "Valid object indices, acyclic child/next traversal, camera mask inputs and texture slot bounds remain caller/domain contracts. No unbounded runtime behavior or whole-program integration proof is claimed."
+  ]
+}

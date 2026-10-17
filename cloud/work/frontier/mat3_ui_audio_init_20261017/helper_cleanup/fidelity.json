@@ -1,0 +1,17 @@
+{
+  "whole_object_identical": true,
+  "stock_object_sha256": "c2a8832beaaab91ba81eee7983f59dee1a7d50d94a85d21ed9dcdbae5f8b3f08",
+  "traced_object_sha256": "c2a8832beaaab91ba81eee7983f59dee1a7d50d94a85d21ed9dcdbae5f8b3f08",
+  "stages": [
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "trace_knobs": [
+    "CDX_LOG=1",
+    "DKWB_UGEN_TRACE=1",
+    "DKWB_UGEN_SCHED=1"
+  ],
+  "observation_only": true,
+  "forced_registers": false
+}

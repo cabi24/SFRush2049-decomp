@@ -148,3 +148,15 @@ and settings are recorded in `fidelity.json`. Only the stock compiler and
 strict comparisons establish the result. No objects, ROM bytes, raw assembly
 dumps, or compiler traces are included. No canonical installation, integration
 build, ROM gate, or CI watcher is claimed.
+
+## Supporting helper source cleanup
+
+`helper_cleanup/` separately proves the three already-locked MBOX visibility
+and texture-setter bodies from their genuine source/helper boundaries. It
+removes older compiled-out diagnostic and unreachable-block devices from
+those supporting sources. All three are strict before and after; five source
+negatives reject, and accessor definition order is neutral. The real audio
+graph grows to 51 explicit native bodies while all original 48 outcomes and
+six failures stay identical. The baseline group above is unchanged. There is
+no new accepted-byte claim. See the supporting README, before/after receipt,
+fidelity fingerprint and four `test_mat3_mbox_helper_cleanup.py` guards.
