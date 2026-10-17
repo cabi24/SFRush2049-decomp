@@ -104,7 +104,7 @@ def inputs():
                     for w in targets[name])).hexdigest()) for name in OLD+[NAME]},
                 references=refs,
                 compiler_executables={name: digest(Path(score.ido(name))) for name in
-                    ("cc", "cfe", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
+                    ("cc", "cfe", "ujoin", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
                 verification_tools={name: digest(ROOT/name) for name in
                     ("tools/cloud/score.py", "tools/cloud/owndata.py", "blob_matched.lock.json")})
 

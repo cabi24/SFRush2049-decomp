@@ -86,7 +86,7 @@ covering every signed option-byte value, all stores, unchanged player-record
 bytes, and the ordered external calls.
 
 The protocol-v3 receipt hashes source/recipe/replay/semantics inputs, relevant
-target words and extents, referenced addresses, all eight actual IDO compiler
+target words and extents, referenced addresses, all nine actual IDO compiler
 stage executables, the scorer/owned-data verifier and the master lock. Both
 positive builds require complete native ELF symbol extents for all seven
 members. Every negative build records its full function inventory and requires
@@ -94,7 +94,7 @@ the six preserved members' exact extents. The frame scan is bounded to the
 root symbol. Strict-result flags are cross-checked against the actual counts
 and unresolved/unverified/error fields rather than trusted independently.
 The object layout report distinguishes compiler storage metadata from native
-addresses. Four focused tests include 71 optimized integrity refusals, a
+addresses. Four focused tests include 72 optimized integrity refusals, a
 full optimized replay, and the standard missing-compiler diagnostic. Absent
 IDO remains a local test skip and fails under `REQUIRE_TOOLCHAIN=1`.
 The semantic test uses fatal UBSan and requires empty
@@ -106,3 +106,7 @@ checked the unchanged sources and known-data rebinding path, and reproduced
 the helper/extern controls before publication. A separate source-bound
 independent review is required for the protocol-v3 hardening. The independent
 whole-unit/image/ROM gates have not run.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.

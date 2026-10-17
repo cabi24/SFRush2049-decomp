@@ -86,13 +86,15 @@ for mode in ['source','target','protocol']:
     elif mode=='target':z['inputs']['targets'][m.NAME]['words_sha256']='0'*64
     else:z['inputs']['protocol_version']=2
     refuse(lambda:m.check_saved(z),'saved inputs changed')
-if count!=71:raise RuntimeError('negative scope changed: '+str(count))
-print('71 optimized integrity refusals pass')
+z=copy.deepcopy(r);z['inputs']['compiler_executables']['ujoin']='0'*64
+refuse(lambda:m.check_saved(z),'saved inputs changed')
+if count!=72:raise RuntimeError('negative scope changed: '+str(count))
+print('72 optimized integrity refusals pass')
 '''
     run = subprocess.run([sys.executable, '-O', '-c', program, str(HERE)],
                          capture_output=True, text=True)
     assert run.returncode == 0, run.stdout+run.stderr
-    assert run.stdout == '71 optimized integrity refusals pass\n'
+    assert run.stdout == '72 optimized integrity refusals pass\n'
 
 
 def test_race_reset_full_optimized_replay():
