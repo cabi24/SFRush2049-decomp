@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | hud_setup (0x800C8B8C, actual sound-system initialization, 1,048 B) | renderer MAT3 lane | 2026-10-17 | strict cloud MATCH; packet `mat3_sound_init_match_20261017/groups/menu_save_options` preserves all 24 prior members and all seven old C files; independent replay passed; initialized one-byte static flag in verified four-byte .data window, explicit u32 bit-scan argument conversion, inferred non-static list helper with unclaimed eight-byte residue disclosed; pending checker unit/image gates |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

@@ -1,0 +1,741 @@
+{
+  "protocol_version": 2,
+  "status": "STRICT_CLOUD_MATCH_PENDING_UNIT_IMAGE_GATES",
+  "new_code_bytes": 1048,
+  "prior_members": 24,
+  "source_sha256": {
+    "groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "groups/menu_save_options/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "groups/menu_save_options/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "groups/menu_save_options/group.json": "6d4cc165cd5a0fefa586b8b9351968063967c8a724e0b8c313a128c72425f724",
+    "groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
+    "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "observe.py": "940a0b0babc295cf4bc91bc5113fe801266466a160800cf4b731fe46cc797f46",
+    "replay.py": "5bed7d8738e2043f1689d5cbb70b34274d9def2970cef6c86c8828b257b17ea5"
+  },
+  "target_sha256": {
+    "func_800CD058": {
+      "address": "0x800cd058",
+      "bytes": 156,
+      "words_sha256": "ff394b2d826655a18dbc063659f2cc0d85ed671211135d1795920d21525a4a76"
+    },
+    "func_800CCEFC": {
+      "address": "0x800ccefc",
+      "bytes": 348,
+      "words_sha256": "dea8f487a631dba34d0ba87d8c6343298b69cc6924d840e3d96e661f3402c060"
+    },
+    "func_800CCCCC": {
+      "address": "0x800ccccc",
+      "bytes": 400,
+      "words_sha256": "63a0a6cc0a7985ecb15e7cb6da69b1f51158b7a59cef54ecf987c7d9cd567248"
+    },
+    "menu_save_options": {
+      "address": "0x800cdeec",
+      "bytes": 768,
+      "words_sha256": "4d33a036fe8ba4c0693349acee9ca44e9d8a57fcc2e2b4a7fe30ede1eb6cdbe7"
+    },
+    "func_800A44E8": {
+      "address": "0x800a44e8",
+      "bytes": 32,
+      "words_sha256": "46fae46aee4941cab14fab6e3adafddcebcb1d79aa4a22638e385ba5f23e3438"
+    },
+    "func_800A370C": {
+      "address": "0x800a370c",
+      "bytes": 16,
+      "words_sha256": "f68f313ee2e78da7184b2aff284064d2e93489f20645fc24d5ed3367b1d83480"
+    },
+    "draw_speedometer": {
+      "address": "0x800c7818",
+      "bytes": 1704,
+      "words_sha256": "4585bbe55d46f3d722c32180915ab0d091472669a38a92e925d181ce5eb0a28a"
+    },
+    "func_800C7EC0": {
+      "address": "0x800c7ec0",
+      "bytes": 8,
+      "words_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+    },
+    "func_800C7EC8": {
+      "address": "0x800c7ec8",
+      "bytes": 628,
+      "words_sha256": "66d712ae390c57c49f457203708c3e1ec073e45c3b6ba02947b60f017ec4f555"
+    },
+    "draw_ui_element": {
+      "address": "0x800c7110",
+      "bytes": 240,
+      "words_sha256": "58a605199a524dd383dcc7e5193284f4e4b3230bb3ffb083ed18fc593b05e204"
+    },
+    "func_800CBF2C": {
+      "address": "0x800cbf2c",
+      "bytes": 276,
+      "words_sha256": "d36dac81b4fcc6991db3038ac848c5eee67d16a70531a3a78aee798768648fca"
+    },
+    "func_800C7300": {
+      "address": "0x800c7300",
+      "bytes": 8,
+      "words_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+    },
+    "func_800CD0FC": {
+      "address": "0x800cd0fc",
+      "bytes": 8,
+      "words_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+    },
+    "func_800A361C": {
+      "address": "0x800a361c",
+      "bytes": 36,
+      "words_sha256": "3908faef4b963544a0f909d3c8910a9608332d35d614c230aabe57434dc686a2"
+    },
+    "func_800A1A3C": {
+      "address": "0x800a1a3c",
+      "bytes": 36,
+      "words_sha256": "145fc57acf3fa3e21c62a874d266b0be4c71af80c968c4f43270dc7b112d4bee"
+    },
+    "func_80094FC4": {
+      "address": "0x80094fc4",
+      "bytes": 36,
+      "words_sha256": "fe70bccfb7d70ab9d899c9ed66164cd92af7958fcc04832fb4cf4a7561d8ed7d"
+    },
+    "menu_item_value_get": {
+      "address": "0x800cc804",
+      "bytes": 68,
+      "words_sha256": "511e7cf6983fa9907fa431d878cfc325aac65a72d27d13c304b946485005780f"
+    },
+    "menu_transition": {
+      "address": "0x800cbe8c",
+      "bytes": 160,
+      "words_sha256": "967f76b93563216d6dbd0414337d38c8dd7f6c909ab2c3aef6e5986fbcb41192"
+    },
+    "AdjustSteer": {
+      "address": "0x800a25c0",
+      "bytes": 176,
+      "words_sha256": "e3787cdd8aa25b6ea05182259debfebfa86779aa1a465d40e42c2c9b3f590d41"
+    },
+    "func_800C7200": {
+      "address": "0x800c7200",
+      "bytes": 256,
+      "words_sha256": "3ecc9760eaa03e72303baf5efcc64647552451ba7aad1727b56fe58acbbdbfdc"
+    },
+    "SaveServer": {
+      "address": "0x800c813c",
+      "bytes": 900,
+      "words_sha256": "a21ccb1d5f1b194767b7476a101287720c2cec5ef25822bf6cfc3e4f71f7b817"
+    },
+    "SaveGhost": {
+      "address": "0x800cc040",
+      "bytes": 896,
+      "words_sha256": "0adf7c6d4911eddabd5b7f61fdb6d35dba0f9baaddb0b5d7e66280e9310b9551"
+    },
+    "CompressGhost": {
+      "address": "0x800cc50c",
+      "bytes": 760,
+      "words_sha256": "27095b235f9295431b1562f93214a6036043e71ab47b62f077adcbf8be1e7e30"
+    },
+    "GhostStart": {
+      "address": "0x800f6ab8",
+      "bytes": 2180,
+      "words_sha256": "f70cc4999d8882d7d3489641e8f929b258cf5fa311251c45d4e86607d72870d6"
+    },
+    "hud_setup": {
+      "address": "0x800c8b8c",
+      "bytes": 1048,
+      "words_sha256": "57d3af3080b07796d49363ff2de6d0daf10e090bbf7a6dec1ffbc26e4c089da1"
+    }
+  },
+  "once_flag": {
+    "logical_bytes": 1,
+    "verified_window_bytes": 4,
+    "address": "0x80110274",
+    "window_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+  },
+  "results": {
+    "candidate": {
+      "hud_setup": {
+        "differing": 0,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": [
+          "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+        ]
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "func_800A370C",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {},
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 0,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": [
+            "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        }
+      },
+      "unclaimed_helper_residue_bytes": 8
+    },
+    "without_count_conversion": {
+      "hud_setup": {
+        "differing": 24,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "24/262 words differ",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": [
+          "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+        ]
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "func_800A370C",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {}
+    },
+    "external_once_flag": {
+      "hud_setup": {
+        "differing": 8,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "8/262 words differ",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": []
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "func_800A370C",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {}
+    },
+    "uninitialized_local_flag": {
+      "hud_setup": {
+        "differing": 0,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [
+          ".bss+0x0 at +0xa8",
+          ".bss+0x0 at +0xac",
+          ".bss+0x0 at +0xc0",
+          ".bss+0x0 at +0xc8"
+        ],
+        "errors": [
+          "own .bss+0x0 (referenced at +0xc4, +0xe0): retail address 0x80110274 (+1 bytes) is not in a known game .bss range; retail has initialised bytes there"
+        ],
+        "extra_words": 0,
+        "verdict": "NOT VERIFIED (4 section-relative relocations unverified: .bss+0x0 at +0xa8, .bss+0x0 at +0xac, .bss+0x0 at +0xc0, .bss+0x0 at +0xc8; own .bss+0x0 (referenced at +0xc4, +0xe0): retail address 0x80110274 (+1 bytes) is not in a known game .bss range; retail has initialised bytes there)",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": []
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "func_800A370C",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {}
+    },
+    "static_list_helper": {
+      "hud_setup": {
+        "differing": 0,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": [
+          "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+        ]
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 1,
+          "verdict": "MISMATCH (1 extra words (nonzero beyond target length))",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        }
+      }
+    },
+    "wrong_initial_flag": {
+      "hud_setup": {
+        "differing": 0,
+        "total": 262,
+        "unresolved": [],
+        "unverified": [
+          ".data+0xc at +0xa8",
+          ".data+0xc at +0xac",
+          ".data+0xc at +0xc0",
+          ".data+0xc at +0xc8"
+        ],
+        "errors": [
+          "own .data+0xc referenced at +0xac, +0xc8 differs from retail 0x80110274 (+0x0: data differs (bytes omitted); 4 bytes compared)"
+        ],
+        "extra_words": 0,
+        "verdict": "NOT VERIFIED (4 section-relative relocations unverified: .data+0xc at +0xa8, .data+0xc at +0xac, .data+0xc at +0xc0, .data+0xc at +0xc8; own .data+0xc referenced at +0xac, +0xc8 differs from retail 0x80110274 (+0x0: data differs (bytes omitted); 4 bytes compared))",
+        "symbol_bytes": 1048,
+        "native_bytes": 1048,
+        "own_data_notes": []
+      },
+      "preserved_members": [
+        "func_800CD058",
+        "func_800CCEFC",
+        "func_800CCCCC",
+        "menu_save_options",
+        "func_800A44E8",
+        "func_800A370C",
+        "draw_speedometer",
+        "func_800C7EC0",
+        "func_800C7EC8",
+        "draw_ui_element",
+        "func_800CBF2C",
+        "func_800C7300",
+        "func_800CD0FC",
+        "func_800A361C",
+        "func_800A1A3C",
+        "func_80094FC4",
+        "menu_item_value_get",
+        "menu_transition",
+        "AdjustSteer",
+        "func_800C7200",
+        "SaveServer",
+        "SaveGhost",
+        "CompressGhost",
+        "GhostStart"
+      ],
+      "failed_old_members": {}
+    }
+  }
+}
