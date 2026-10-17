@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "review_scope": "Independent verification-only review of PR387 sound-initialization proof hardening.",
+  "reviewer": "continue_n64_physics",
+  "reviewed_at_utc": "2026-10-17T20:58:00Z",
+  "verification_sha256": "8054d12135d60b24dfa909a088aec35318f452eea4a5342099354c48ab1682e6",
+  "compiler_observations_sha256": "8a4f95f961b105a34cbcc33333431924fddc02c996a71e7ec083287a69ffbfad",
+  "source_bound_files": {
+    "cloud/work/frontier/mat3_sound_init_match_20261017/README.md": "065693bb9bf358a37c4df4948e026b500dffefc10270354cee86822500b6ada1",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/compiler-decisions.json": "8a4f95f961b105a34cbcc33333431924fddc02c996a71e7ec083287a69ffbfad",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/group.json": "6d4cc165cd5a0fefa586b8b9351968063967c8a724e0b8c313a128c72425f724",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/replay.py": "8ab715af895bbc9b90ed5c41e0e68ac4f4ce6063ea0679818f9e52cb11a06e09",
+    "cloud/work/frontier/mat3_sound_init_match_20261017/verification.json": "8054d12135d60b24dfa909a088aec35318f452eea4a5342099354c48ab1682e6",
+    "tests/cloud/test_mat3_sound_init_match.py": "dd70c8c07d0d51d2e6e27c6c824b653b999228cdd35cfc126e2801db3cf8ab77"
+  },
+  "checks": [
+    "Fresh python3 -O full six-build replay reproduces 25 strict members, exact native/ELF extents, unchanged seven inherited context rows, and precise failed controls.",
+    "Fresh python3 -O observation reproduces complete stock/instrumented object identity for the candidate and no-count-conversion control.",
+    "All three focused pytest tests pass, including 36 optimized refusal cases and relocation of the packet path.",
+    "The reproduced empty-observation and incorrect variant-source-hash gaps are closed by explicit runtime guards. The entire compiler-observations file digest is now sealed in the verification receipt.",
+    "Source/group recipe files have no diff from the prior committed packet, and all original result fields apart from protocol/source-verifier bindings remain equal.",
+    "The logical one-byte initialized flag, checked four-byte data window, unclaimed eight-byte helper residue and explicit inherited failures retain their stated scope."
+  ],
+  "limitations": [
+    "This review changes no C, compilation flags, target data, claims or matching result.",
+    "No additional candidate-byte credit or image/ROM integration credit is established.",
+    "The review does not repeat or expand the prior source semantics approval."
+  ],
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}

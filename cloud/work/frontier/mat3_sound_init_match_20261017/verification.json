@@ -1,5 +1,34 @@
 {
-  "protocol_version": 2,
+  "compiler_observations_sha256": "8a4f95f961b105a34cbcc33333431924fddc02c996a71e7ec083287a69ffbfad",
+  "claims": [
+    "func_800CD058",
+    "func_800CCEFC",
+    "func_800CCCCC",
+    "menu_save_options",
+    "func_800A44E8",
+    "func_800A370C",
+    "draw_speedometer",
+    "func_800C7EC0",
+    "func_800C7EC8",
+    "draw_ui_element",
+    "func_800CBF2C",
+    "func_800C7300",
+    "func_800CD0FC",
+    "func_800A361C",
+    "func_800A1A3C",
+    "func_80094FC4",
+    "menu_item_value_get",
+    "menu_transition",
+    "AdjustSteer",
+    "func_800C7200",
+    "SaveServer",
+    "SaveGhost",
+    "CompressGhost",
+    "GhostStart",
+    "hud_setup"
+  ],
+  "accepted_image_bytes": 0,
+  "protocol_version": 3,
   "status": "STRICT_CLOUD_MATCH_PENDING_UNIT_IMAGE_GATES",
   "new_code_bytes": 1048,
   "prior_members": 24,
@@ -13,8 +42,8 @@
     "groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
     "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
     "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
-    "observe.py": "940a0b0babc295cf4bc91bc5113fe801266466a160800cf4b731fe46cc797f46",
-    "replay.py": "5bed7d8738e2043f1689d5cbb70b34274d9def2970cef6c86c8828b257b17ea5"
+    "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
+    "replay.py": "8ab715af895bbc9b90ed5c41e0e68ac4f4ce6063ea0679818f9e52cb11a06e09"
   },
   "target_sha256": {
     "func_800CD058": {
@@ -500,6 +529,95 @@
           ]
         }
       },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "c507cc6c3d2efb8193f1d9668553fafcb0e5af0c8ed88a7efd57fc2987ac46cf",
       "unclaimed_helper_residue_bytes": 8
     },
     "without_count_conversion": {
@@ -543,7 +661,404 @@
         "CompressGhost",
         "GhostStart"
       ],
-      "failed_old_members": {}
+      "failed_old_members": {},
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 24,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "24/262 words differ",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": [
+            "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        }
+      },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "c8611d40e36e4380f3f2a0c01f6ed5f4acf7f5662748a2fd4a6d47384aa01a28"
     },
     "external_once_flag": {
       "hud_setup": {
@@ -584,7 +1099,402 @@
         "CompressGhost",
         "GhostStart"
       ],
-      "failed_old_members": {}
+      "failed_old_members": {},
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 8,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "8/262 words differ",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": []
+        }
+      },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "4a45cac6a3a98c0049cf970872ebe3b6f93327f8f66ea851431a732591e96ab6"
     },
     "uninitialized_local_flag": {
       "hud_setup": {
@@ -632,7 +1542,409 @@
         "CompressGhost",
         "GhostStart"
       ],
-      "failed_old_members": {}
+      "failed_old_members": {},
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 0,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [
+            ".bss+0x0 at +0xa8",
+            ".bss+0x0 at +0xac",
+            ".bss+0x0 at +0xc0",
+            ".bss+0x0 at +0xc8"
+          ],
+          "errors": [
+            "own .bss+0x0 (referenced at +0xc4, +0xe0): retail address 0x80110274 (+1 bytes) is not in a known game .bss range; retail has initialised bytes there"
+          ],
+          "extra_words": 0,
+          "verdict": "NOT VERIFIED (4 section-relative relocations unverified: .bss+0x0 at +0xa8, .bss+0x0 at +0xac, .bss+0x0 at +0xc0, .bss+0x0 at +0xc8; own .bss+0x0 (referenced at +0xc4, +0xe0): retail address 0x80110274 (+1 bytes) is not in a known game .bss range; retail has initialised bytes there)",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": []
+        }
+      },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "b5cb963d08b6ee29af4424ecfa94e121da1ef7c59f70a53098ad077182aa47e2"
     },
     "static_list_helper": {
       "hud_setup": {
@@ -687,7 +1999,404 @@
           "native_bytes": 16,
           "own_data_notes": []
         }
-      }
+      },
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 1,
+          "verdict": "MISMATCH (1 extra words (nonzero beyond target length))",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 0,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": [
+            "own .data verified at 0x80110274 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        }
+      },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "fe2bf5bb1399d6ce13c04965648ce23d713231375e9d3905d95a33c83dde1478"
     },
     "wrong_initial_flag": {
       "hud_setup": {
@@ -735,7 +2444,409 @@
         "CompressGhost",
         "GhostStart"
       ],
-      "failed_old_members": {}
+      "failed_old_members": {},
+      "all_members": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 156,
+          "native_bytes": 156,
+          "own_data_notes": []
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 348,
+          "native_bytes": 348,
+          "own_data_notes": []
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 400,
+          "native_bytes": 400,
+          "own_data_notes": []
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 768,
+          "native_bytes": 768,
+          "own_data_notes": []
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 32,
+          "native_bytes": 32,
+          "own_data_notes": []
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "own_data_notes": []
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 1704,
+          "native_bytes": 1704,
+          "own_data_notes": []
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 628,
+          "native_bytes": 628,
+          "own_data_notes": []
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 240,
+          "native_bytes": 240,
+          "own_data_notes": []
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 276,
+          "native_bytes": 276,
+          "own_data_notes": []
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 8,
+          "native_bytes": 8,
+          "own_data_notes": []
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 36,
+          "native_bytes": 36,
+          "own_data_notes": []
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 68,
+          "native_bytes": 68,
+          "own_data_notes": []
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 160,
+          "native_bytes": 160,
+          "own_data_notes": []
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 176,
+          "native_bytes": 176,
+          "own_data_notes": []
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 256,
+          "native_bytes": 256,
+          "own_data_notes": []
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 900,
+          "native_bytes": 900,
+          "own_data_notes": [
+            "own .data verified at 0x8011742C (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117430 (4 bytes; .data is laid out per translation unit)",
+            "own .data verified at 0x80117434 (4 bytes, all zero; .data is laid out per translation unit)"
+          ]
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 896,
+          "native_bytes": 896,
+          "own_data_notes": []
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 760,
+          "native_bytes": 760,
+          "own_data_notes": []
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 2180,
+          "native_bytes": 2180,
+          "own_data_notes": []
+        },
+        "hud_setup": {
+          "differing": 0,
+          "total": 262,
+          "unresolved": [],
+          "unverified": [
+            ".data+0xc at +0xa8",
+            ".data+0xc at +0xac",
+            ".data+0xc at +0xc0",
+            ".data+0xc at +0xc8"
+          ],
+          "errors": [
+            "own .data+0xc referenced at +0xac, +0xc8 differs from retail 0x80110274 (+0x0: data differs (bytes omitted); 4 bytes compared)"
+          ],
+          "extra_words": 0,
+          "verdict": "NOT VERIFIED (4 section-relative relocations unverified: .data+0xc at +0xa8, .data+0xc at +0xac, .data+0xc at +0xc0, .data+0xc at +0xc8; own .data+0xc referenced at +0xac, +0xc8 differs from retail 0x80110274 (+0x0: data differs (bytes omitted); 4 bytes compared))",
+          "symbol_bytes": 1048,
+          "native_bytes": 1048,
+          "own_data_notes": []
+        }
+      },
+      "context": {
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "246/272 words differ",
+          "symbol_bytes": 1068,
+          "native_bytes": 1088,
+          "own_data_notes": []
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 440,
+          "native_bytes": 440,
+          "own_data_notes": []
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 180,
+          "native_bytes": 180,
+          "own_data_notes": [
+            "own .rodata verified at 0x80123C20..0x80123C38"
+          ]
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "3/33 words differ",
+          "symbol_bytes": 132,
+          "native_bytes": 132,
+          "own_data_notes": []
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 244,
+          "native_bytes": 244,
+          "own_data_notes": []
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 104,
+          "native_bytes": 104,
+          "own_data_notes": []
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0,
+          "verdict": "MATCH",
+          "symbol_bytes": 116,
+          "native_bytes": 116,
+          "own_data_notes": []
+        }
+      },
+      "object_sha256": "88d98c1fec91a2ccbbb044c70a12393f1c89efc4324b9c9633dd8f3d4f9a973c"
     }
   }
 }

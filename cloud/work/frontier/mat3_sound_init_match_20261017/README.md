@@ -42,3 +42,25 @@ Controls, with the 24 prior members preserved unless stated:
 ## Checker integration
 
 Supersede the existing **menu_save_options** group in place, retaining every previous member/file. Add the new kept `hud_setup` body, preserve the existing definition preference for `func_800A370C`, and make `sound_list_init` internal. The named residue is not a new target or claimed function. Preserve previous own-data placements; install the new verified initialized-data window at its existing address. Replay the whole-unit and image gates before coverage promotion. No merge or CI watcher is requested.
+
+## Verification hardening, 2026-10-17
+
+The C sources, group recipe, flags, claims, native words and comparison results
+are unchanged. Replay and compiler-observation guards now use explicit runtime
+exceptions so optimized Python cannot remove them. Protocol 3 seals every
+claimed member and all seven inherited context rows for all six builds, verifies
+native/ELF extents and diagnostics, and records each complete object hash.
+
+The stock/traced candidate and no-count-conversion objects must match byte for
+byte. Their observation receipts bind the complete source/verifier inputs and
+both object hashes and exact variant-source hashes; nonempty allocation decisions
+are required. The normal replay seals the complete observation-file digest and
+checks those bindings against fresh objects. The one-byte initialized flag, four-byte checked data window and
+unclaimed eight-byte helper residue remain explicit. Zero image-byte credit is
+now an explicit field. The inherited context remains unclaimed, including its
+nonmatching bodies.
+
+Focused tests include optimized-interpreter refusal controls and replay after
+moving the packet to a different path. Run the same replay and observe commands
+with `python3 -O` to exercise the optimized-interpreter path. No source or
+matching-credit expansion accompanies this verification-only change.

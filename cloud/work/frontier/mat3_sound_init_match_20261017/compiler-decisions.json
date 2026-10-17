@@ -2,6 +2,21 @@
   "candidate": {
     "scope": "complete deliverable group, all 24 prior members exact",
     "complete_stock_object_identity": true,
+    "inputs_sha256": {
+      "groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+      "groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+      "groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+      "groups/menu_save_options/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+      "groups/menu_save_options/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+      "groups/menu_save_options/group.json": "6d4cc165cd5a0fefa586b8b9351968063967c8a724e0b8c313a128c72425f724",
+      "groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
+      "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+      "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+      "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
+      "replay.py": "8ab715af895bbc9b90ed5c41e0e68ac4f4ce6063ea0679818f9e52cb11a06e09"
+    },
+    "stock_object_sha256": "c507cc6c3d2efb8193f1d9668553fafcb0e5af0c8ed88a7efd57fc2987ac46cf",
+    "traced_object_sha256": "c507cc6c3d2efb8193f1d9668553fafcb0e5af0c8ed88a7efd57fc2987ac46cf",
     "source_sha256": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
     "target": {
       "differing": 0,
@@ -203,6 +218,21 @@
   "without_count_conversion": {
     "scope": "complete deliverable group, all 24 prior members exact",
     "complete_stock_object_identity": true,
+    "inputs_sha256": {
+      "groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+      "groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+      "groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+      "groups/menu_save_options/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+      "groups/menu_save_options/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+      "groups/menu_save_options/group.json": "6d4cc165cd5a0fefa586b8b9351968063967c8a724e0b8c313a128c72425f724",
+      "groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3",
+      "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+      "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+      "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
+      "replay.py": "8ab715af895bbc9b90ed5c41e0e68ac4f4ce6063ea0679818f9e52cb11a06e09"
+    },
+    "stock_object_sha256": "c8611d40e36e4380f3f2a0c01f6ed5f4acf7f5662748a2fd4a6d47384aa01a28",
+    "traced_object_sha256": "c8611d40e36e4380f3f2a0c01f6ed5f4acf7f5662748a2fd4a6d47384aa01a28",
     "source_sha256": "967ae996b004954613caeae55d131512f13b271a9a761a87a01de33733e11cf0",
     "target": {
       "differing": 24,

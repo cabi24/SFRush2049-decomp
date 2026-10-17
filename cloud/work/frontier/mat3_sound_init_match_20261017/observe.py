@@ -26,7 +26,7 @@ def observe(work,uopt):
         try:
             replay.score._run=stage;replay.score.compile_group(d,traced)
         finally:replay.score._run=original
-        assert stock.read_bytes()==traced.read_bytes(),'instrumentation changed output'
+        replay.check_trace_identity(stock.read_bytes(),traced.read_bytes())
         proc=re.search(r'ordinal proc=hud_setup cdx_proc=(\d+)',(d/'pre.log').read_text())[1]
         decisions=[]
         for line in (d/'color.log').read_text().splitlines():
@@ -34,11 +34,12 @@ def observe(work,uopt):
                 r=dict(re.findall(r'(\w+)=([^ ]+)',line))
                 if r.get('bestreg') in ['v0','v1','a0']:
                     decisions.append({k:r[k] for k in ['web','save','nocs','totalsave','bestcost','bestreg','forbidden0','numintf','decision','forced']})
-        assert all(replay.complete(replay.inspect(stock,n)) for n in names if n!='hud_setup')
-        results[label]={'scope':'complete deliverable group, all 24 prior members exact','complete_stock_object_identity':True,'source_sha256':replay.sha(src.read_bytes()),'target':replay.inspect(stock,replay.FN),'allocation_decisions':decisions}
+        replay.require(all(replay.complete(replay.inspect(stock,n)) for n in names if n!='hud_setup'),'trace changed preserved members')
+        results[label]={'scope':'complete deliverable group, all 24 prior members exact','complete_stock_object_identity':True,'inputs_sha256':replay.source_bindings(),'stock_object_sha256':replay.sha(stock.read_bytes()),'traced_object_sha256':replay.sha(traced.read_bytes()),'source_sha256':replay.sha(src.read_bytes()),'target':replay.inspect(stock,replay.FN),'allocation_decisions':decisions}
     return results
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('--uopt',required=True,type=Path);ap.add_argument('--work',required=True,type=Path);ap.add_argument('--record',action='store_true');args=ap.parse_args()
     result=observe(args.work,args.uopt.resolve())
     if args.record:(replay.HERE/'compiler-decisions.json').write_text(json.dumps(result,indent=2)+'\n')
+    else:replay.require(result==json.loads((replay.HERE/'compiler-decisions.json').read_text()),'fresh compiler observation differs')
     print('Both complete instrumented objects equal stock; allocation observations recorded.' if args.record else 'Both complete instrumented objects equal stock.')
