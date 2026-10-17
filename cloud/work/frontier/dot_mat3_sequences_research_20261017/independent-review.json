@@ -1,0 +1,41 @@
+{
+  "accepted_image_bytes": 0,
+  "checks": [
+    "Compared source to the supplied MAT3 ProcessSequences donor and its three-pointer DWARF locals. The additional signed state local is explicitly a native reconstruction choice.",
+    "Independently replayed the entire packet under optimized Python after the final guard hardening.",
+    "Independently ran all three focused tests, including repeated-row diagnostic mutations under optimized Python.",
+    "Confirmed 380-byte root/frame24, the single BNE operand-reversal relation, 16 strict surrounding extents, all20 emitted functions, and the three inherited failure boundaries.",
+    "Confirmed 32768 finite donor-flow/candidate fixtures, three exact exit3 semantic negatives, native emitted layouts, and the cursor-width negative.",
+    "Reviewed the native timeout rollover, saved successor before callbacks, byte cursor and four-ID limit, unchecked successful lookup boundary, and explicit host/native ABI distinction."
+  ],
+  "claims": [],
+  "disposition": "passes for research-only draft publication",
+  "limits": [
+    "Research only: root differs by one word, owner and two other contexts remain unmatched.",
+    "The finite host test compares the candidate with native-adapted donor flow using controlled service models; it does not execute the native image or establish scheduler/concurrency/full allocation behavior.",
+    "Initial cursors are0..3 with valid list/tag storage, finite clocks and successful playback/tag lookup. The initial cursor4 out-of-array read is explicitly excluded.",
+    "Existing context shaping is preserved and disclosed; no new credit is assigned to it.",
+    "No canonical integration, ROM/image build, merge or CI monitoring performed."
+  ],
+  "new_candidate_bytes": 0,
+  "proof_sha256": "641a7742765b352443d629d9a75ab079562a9a741c77f75bd79ccb8e1d96b30f",
+  "reviewed_at_utc": "2026-10-17T20:33:31.591581+00:00",
+  "reviewed_sha256": {
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/README.md": "9e7fca714f91e0be5bba536a6dbd1d5f5abf392d47c3614e92746fba36072fa8",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/proof.json": "641a7742765b352443d629d9a75ab079562a9a741c77f75bd79ccb8e1d96b30f",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/replay.py": "522c7126a02a7c36f300f5c7a8294e599dc788cd04465e95afcfb93917d13394",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93",
+    "tests/cloud/test_mat3_sequences_research.py": "d2270b57d1c6c0e14a74d78c92e80d0a39b881afb21a3df428c3f461992359b5"
+  },
+  "reviewer": "continue_n64_renderer",
+  "source_context_bound": {
+    "cloud/work/lean_effect_tick_20261006/candidate.c": "587fdfad3a5867d6d8de5c4faa96391dd6c93f3f079c3689a527707a15ef1549",
+    "src/blob/func_80095198.c": "178c47cea2c7ae34649422f3652d697d6c5000a8c903573a9fad8b61eb951bca",
+    "src/blob/groups/engine_sound_sync/audio_effect_setup_b132.c": "b2353c5a4a038cb7cae1743d3fc990f45a9cf89998ac58b1e16061411189024b",
+    "src/blob/groups/engine_sound_sync/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768",
+    "src/blob/groups/engine_sound_sync/engine_sound_sync.c": "796bb4f354ee95e796552ed412b90ce11f6668da461903c933ccc3ec425f3ad1",
+    "src/blob/groups/engine_sound_sync/group.json": "c8d17e019769d54181347ebaf290055867ca024af322464f5d7c7d4f6615ba95"
+  }
+}

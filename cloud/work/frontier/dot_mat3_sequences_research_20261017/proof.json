@@ -1,0 +1,2363 @@
+{
+  "accepted_image_bytes": 0,
+  "claims": [],
+  "controls": {
+    "donor_only": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 21,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "7be2e5a303c4825c8cb43f5ca5ed9ecef2991a4f54895fb8e26c792289266bf4"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "632a361892101fdcbdee57bf11b650b306333b8cc52063e705705cb523410220"
+        }
+      }
+    },
+    "historical": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 388,
+          "differing": 80,
+          "errors": [],
+          "extra_words": 1,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "d921ae0945fb8a6a08034c8b4287e922b9d8a5e5e252ba96955048a4b7ec5afc"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "b29eededabb030864fb104e58a5e395b220cdb8aea0c7390f53b2a495f91f9e4"
+        }
+      }
+    },
+    "lost_successor": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 82,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "469a5ef5c11077313b0db848f3fd60014ebda72008dc6a6653b3bb4442a946a5"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "bc3348120e6c5f8160f60300ed37a85a72319a322bc0ca2374b7347a5730db3f"
+        }
+      }
+    },
+    "real_thread": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_ai_pathfind",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_ai_pathfind": {
+          "bytes": 2308,
+          "differing": 499,
+          "errors": [
+            "own .rodata+0x0 referenced at +0xfc differs from retail 0x80123A8C (jump table entry 2: retail [redacted], got [redacted]; 48 bytes compared)"
+          ],
+          "extra_words": 28,
+          "frame": 152,
+          "strict": false,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0xf4",
+            ".rodata+0x0 at +0xfc"
+          ]
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 1,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 760,
+          "differing": 166,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e"
+        },
+        ".rel.text": {
+          "bytes": 2016,
+          "sha256": "76d4ded4a524f824103436aa8a46b8538a85d5e3fd32e72cfb1e1d8939a89862"
+        },
+        ".rodata": {
+          "bytes": 48,
+          "sha256": "b0b2f910289391deb822d54c84cde4dbb0b8f29085499285b6359462fbcb8521"
+        },
+        ".text": {
+          "bytes": 7488,
+          "sha256": "18b832c231c5cec869ab5bfb85a08a391c66c5f74889b0094c46f0ef71daef39"
+        }
+      }
+    },
+    "wrong_id_bound": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 3,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "7be2e5a303c4825c8cb43f5ca5ed9ecef2991a4f54895fb8e26c792289266bf4"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "2f44fc5a9193093b62f2d3742eb5ade6fbf9b4785c1595ff23b2d8ef4554bd2a"
+        }
+      }
+    },
+    "wrong_state": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 2,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "7be2e5a303c4825c8cb43f5ca5ed9ecef2991a4f54895fb8e26c792289266bf4"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "58c90ad809bab1e927cd2c608586f84a35ccb16a36513c43e5fa09ac0fc3ef23"
+        }
+      }
+    }
+  },
+  "host_semantics": "32768 finite sequence-list fixtures",
+  "inputs": {
+    "context_sha256": {
+      "cloud/work/lean_effect_tick_20261006/candidate.c": "587fdfad3a5867d6d8de5c4faa96391dd6c93f3f079c3689a527707a15ef1549",
+      "src/blob/func_80095198.c": "178c47cea2c7ae34649422f3652d697d6c5000a8c903573a9fad8b61eb951bca",
+      "src/blob/groups/engine_sound_sync/audio_effect_setup_b132.c": "b2353c5a4a038cb7cae1743d3fc990f45a9cf89998ac58b1e16061411189024b",
+      "src/blob/groups/engine_sound_sync/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768",
+      "src/blob/groups/engine_sound_sync/engine_sound_sync.c": "796bb4f354ee95e796552ed412b90ce11f6668da461903c933ccc3ec425f3ad1",
+      "src/blob/groups/engine_sound_sync/group.json": "c8d17e019769d54181347ebaf290055867ca024af322464f5d7c7d4f6615ba95"
+    },
+    "packet_sha256": {
+      "README.md": "9e7fca714f91e0be5bba536a6dbd1d5f5abf392d47c3614e92746fba36072fa8",
+      "candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
+      "group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
+      "replay.py": "522c7126a02a7c36f300f5c7a8294e599dc788cd04465e95afcfb93917d13394",
+      "semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93"
+    },
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [],
+      "context": [
+        "engine_sound_sync",
+        "audio_effect_setup",
+        "func_80098ADC",
+        "func_80091FBC",
+        "func_8009211C",
+        "audio_pitch_adjust",
+        "entity_flag_check",
+        "func_80098FB8",
+        "func_80091AF0",
+        "func_80091AF8",
+        "entity_transform_calc",
+        "client_sync",
+        "entity_hierarchy_update",
+        "stat_lap_complete",
+        "game_timer_resume",
+        "func_80091BA8",
+        "func_80091B00",
+        "scheduler_recv",
+        "func_80095198"
+      ],
+      "files": [
+        "engine_sound_sync.c",
+        "audio_effect_setup_b132.c",
+        "codex_transform_b109.c",
+        "timeout.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "engine_sound_sync",
+        "func_80098FB8",
+        "func_80091FBC",
+        "func_8009211C",
+        "client_sync",
+        "entity_hierarchy_update",
+        "scheduler_recv",
+        "stat_lap_complete",
+        "game_timer_resume",
+        "func_80095198"
+      ],
+      "members": [
+        "func_800988D8"
+      ],
+      "note": "Research only. replay.py materializes the complete current engine_sound_sync context and replaces only the sequence body; no existing source shaping is removed or claimed."
+    },
+    "targets": {
+      "audio_effect_setup": {
+        "address": "0x80095800",
+        "bytes": 184,
+        "sha256": "61b641180b3b020d9ca4006a2429722d8f7554e0f8b072c66942cd447fcc127f"
+      },
+      "audio_pitch_adjust": {
+        "address": "0x800959dc",
+        "bytes": 72,
+        "sha256": "9460f577622f3f6c94832b99dbc7723ea5cfb9abe0b38203abd867a469aad504"
+      },
+      "client_sync": {
+        "address": "0x80091e5c",
+        "bytes": 216,
+        "sha256": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5"
+      },
+      "engine_sound_sync": {
+        "address": "0x80098ae4",
+        "bytes": 1236,
+        "sha256": "07cf679c0b6ce672a2f135926795276bb89e563fa5af7155214fa152782ecc64"
+      },
+      "entity_ai_pathfind": {
+        "address": "0x800992ac",
+        "bytes": 2180,
+        "sha256": "2233831b7327b104866c53259186738294d12fce8de28fd1e186d26e076e97b9"
+      },
+      "entity_flag_check": {
+        "address": "0x80098874",
+        "bytes": 100,
+        "sha256": "c016e44e3b3f52bfcbc3d883e3f416236e8ab4c8b474d8940ef20ac0e60f178c"
+      },
+      "entity_hierarchy_update": {
+        "address": "0x80091f34",
+        "bytes": 136,
+        "sha256": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf"
+      },
+      "entity_transform_calc": {
+        "address": "0x80091ca4",
+        "bytes": 440,
+        "sha256": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995"
+      },
+      "func_80091AF0": {
+        "address": "0x80091af0",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80091AF8": {
+        "address": "0x80091af8",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80091B00": {
+        "address": "0x80091b00",
+        "bytes": 168,
+        "sha256": "c466f1dbe7e0596f1266860f7e6612ab26338fcab2d5f1e664723d1527f722e9"
+      },
+      "func_80091BA8": {
+        "address": "0x80091ba8",
+        "bytes": 84,
+        "sha256": "d5dc025c1f81860dabb7d7dbd3e69ba459a34f8343918c63767b506f42aa9655"
+      },
+      "func_80091FBC": {
+        "address": "0x80091fbc",
+        "bytes": 352,
+        "sha256": "f8d5ad3a803810f13581c07ee33389ef6ac7e7e536c566e80cce8c3574064255"
+      },
+      "func_8009211C": {
+        "address": "0x8009211c",
+        "bytes": 348,
+        "sha256": "80e4ec28bf08e115019c1f294ce349b309d6ac9b6324bbd70cabc50728d075bb"
+      },
+      "func_80095198": {
+        "address": "0x80095198",
+        "bytes": 72,
+        "sha256": "52008d6da8616cbd1ab1eda189e5274b026c2abe2d8d3c16ef50b096d2c32302"
+      },
+      "func_800988D8": {
+        "address": "0x800988d8",
+        "bytes": 380,
+        "sha256": "fd73d2e411088c141e34639928978014c64661027a22c58b91f36f016d235bc5"
+      },
+      "func_80098ADC": {
+        "address": "0x80098adc",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80098FB8": {
+        "address": "0x80098fb8",
+        "bytes": 756,
+        "sha256": "c5e24bb6beae27e0d9b201e2e00684b1c693e2e0bf2847a1ee6460506dd773b7"
+      },
+      "game_timer_resume": {
+        "address": "0x800fe848",
+        "bytes": 220,
+        "sha256": "5297500d8e20b977e756d1cc73ccca7ed36e3fef45c5b73eb4cc1126ad899767"
+      },
+      "scheduler_recv": {
+        "address": "0x80091c04",
+        "bytes": 160,
+        "sha256": "790caccf464952f67072f0db5e5659b07a46b5a348c561ff73bc3ecc826fc8d9"
+      },
+      "stat_lap_complete": {
+        "address": "0x800fe924",
+        "bytes": 220,
+        "sha256": "101dc3bbf6663579ad460d602c4e688e14ec410e4aae11b236de1cef9a38920a"
+      }
+    },
+    "toolchain_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
+    "verifier_sha256": {
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+    }
+  },
+  "layout": {
+    "emitted": [
+      60,
+      0,
+      8,
+      12,
+      13,
+      14,
+      16,
+      20,
+      24,
+      1,
+      28,
+      44,
+      48,
+      52,
+      56,
+      68,
+      8,
+      12,
+      16,
+      20,
+      24,
+      25,
+      26,
+      27,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      16,
+      4,
+      8,
+      12,
+      4
+    ],
+    "wrong_width_emitted": [
+      60,
+      0,
+      8,
+      12,
+      13,
+      14,
+      16,
+      20,
+      24,
+      2,
+      28,
+      44,
+      48,
+      52,
+      56,
+      68,
+      8,
+      12,
+      16,
+      20,
+      24,
+      25,
+      26,
+      27,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      16,
+      4,
+      8,
+      12,
+      4
+    ]
+  },
+  "new_candidate_bytes": 0,
+  "positive": {
+    "first": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 1,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "7be2e5a303c4825c8cb43f5ca5ed9ecef2991a4f54895fb8e26c792289266bf4"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "7da02cd8aa7611259fdd480f65a181afaec8aea4843250bcc91e286dd1fa8cc9"
+        }
+      }
+    },
+    "repeat": {
+      "emitted_functions": [
+        "audio_effect_setup",
+        "audio_pitch_adjust",
+        "client_sync",
+        "engine_sound_sync",
+        "entity_flag_check",
+        "entity_hierarchy_update",
+        "entity_transform_calc",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80091B00",
+        "func_80091BA8",
+        "func_80091FBC",
+        "func_8009211C",
+        "func_80095198",
+        "func_800988D8",
+        "func_80098ADC",
+        "func_80098FB8",
+        "game_timer_resume",
+        "scheduler_recv",
+        "stat_lap_complete"
+      ],
+      "rows": {
+        "audio_effect_setup": {
+          "bytes": 184,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 46,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_pitch_adjust": {
+          "bytes": 8,
+          "differing": 18,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "client_sync": {
+          "bytes": 216,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 54,
+          "unresolved": [],
+          "unverified": []
+        },
+        "engine_sound_sync": {
+          "bytes": 1236,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 376,
+          "strict": true,
+          "total": 309,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_flag_check": {
+          "bytes": 100,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 25,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_hierarchy_update": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "entity_transform_calc": {
+          "bytes": 440,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 110,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091B00": {
+          "bytes": 168,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091BA8": {
+          "bytes": 84,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 21,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091FBC": {
+          "bytes": 352,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 88,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009211C": {
+          "bytes": 348,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 87,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095198": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800988D8": {
+          "bytes": 380,
+          "differing": 1,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 95,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098ADC": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80098FB8": {
+          "bytes": 860,
+          "differing": 189,
+          "errors": [],
+          "extra_words": 25,
+          "frame": 104,
+          "strict": false,
+          "total": 189,
+          "unresolved": [],
+          "unverified": []
+        },
+        "game_timer_resume": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        },
+        "scheduler_recv": {
+          "bytes": 160,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 40,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_lap_complete": {
+          "bytes": 220,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 55,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 1408,
+          "sha256": "7be2e5a303c4825c8cb43f5ca5ed9ecef2991a4f54895fb8e26c792289266bf4"
+        },
+        ".text": {
+          "bytes": 5216,
+          "sha256": "7da02cd8aa7611259fdd480f65a181afaec8aea4843250bcc91e286dd1fa8cc9"
+        }
+      }
+    }
+  },
+  "residual": {
+    "accepted": false,
+    "offset": 176,
+    "relation": "BNE source operands reversed; opcode and branch displacement identical"
+  },
+  "semantic_negatives": {
+    "lost_successor": "rejected with exact differential exit 3 and message",
+    "wrong_id_bound": "rejected with exact differential exit 3 and message",
+    "wrong_state": "rejected with exact differential exit 3 and message"
+  }
+}

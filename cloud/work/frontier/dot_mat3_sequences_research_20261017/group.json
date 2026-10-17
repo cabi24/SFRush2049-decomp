@@ -1,0 +1,47 @@
+{
+  "members": [
+    "func_800988D8"
+  ],
+  "context": [
+    "engine_sound_sync",
+    "audio_effect_setup",
+    "func_80098ADC",
+    "func_80091FBC",
+    "func_8009211C",
+    "audio_pitch_adjust",
+    "entity_flag_check",
+    "func_80098FB8",
+    "func_80091AF0",
+    "func_80091AF8",
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv",
+    "func_80095198"
+  ],
+  "files": [
+    "engine_sound_sync.c",
+    "audio_effect_setup_b132.c",
+    "codex_transform_b109.c",
+    "timeout.c"
+  ],
+  "keep": [
+    "engine_sound_sync",
+    "func_80098FB8",
+    "func_80091FBC",
+    "func_8009211C",
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_80095198"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Research only. replay.py materializes the complete current engine_sound_sync context and replaces only the sequence body; no existing source shaping is removed or claimed.",
+  "claims": []
+}
