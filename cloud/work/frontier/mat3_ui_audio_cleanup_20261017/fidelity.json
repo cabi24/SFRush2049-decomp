@@ -1,0 +1,18 @@
+{
+  "date_utc": "2026-10-17",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Recorded complete-object fidelity check; binaries and trace listings are deliberately excluded. Verification uses only the stock compiler.",
+  "stages": [
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "stock_object_sha256": "9d350242db3c272299607fe2e987fa02aa67b098845add55b6677fe7fba9f2c9",
+  "trace_knobs": [
+    "CDX_LOG=1",
+    "DKWB_UGEN_TRACE=1",
+    "DKWB_UGEN_SCHED=1"
+  ],
+  "traced_object_sha256": "9d350242db3c272299607fe2e987fa02aa67b098845add55b6677fe7fba9f2c9",
+  "whole_object_identical": true
+}

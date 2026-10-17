@@ -1,0 +1,51 @@
+{
+  "members": [
+    "credits_screen",
+    "func_800D690C",
+    "func_800D6914",
+    "func_800D7634",
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "sync_entry_register",
+    "func_80091B00",
+    "func_80091AF0",
+    "func_80091AF8",
+    "func_800D6160",
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "object_type1_create",
+    "sound_call_simple",
+    "sound_call_minimal"
+  ],
+  "context": [],
+  "files": [
+    "func_800D7634.c",
+    "codex_vsync_a145.c",
+    "sync_entry_register.c",
+    "func_80091B00.c",
+    "func_80091AF0.c",
+    "func_80091AF8.c",
+    "func_800D6160.c",
+    "cleanup.c"
+  ],
+  "keep": [
+    "func_800D7634",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait",
+    "sync_entry_register",
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "sound_call_simple",
+    "sound_call_minimal",
+    "object_type1_create"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Research-only genuine audio-options cleanup caller closure. All known native bodies are explicit members, including inherited failures. No installation or accepted-image claim.",
+  "provenance": "Native source baseline audio_options_menu plus MAT3 audioscr cleanup and helper evidence; see packet notes.",
+  "claims": []
+}

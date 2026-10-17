@@ -1,0 +1,230 @@
+{
+  "continue_prompt": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .rodata verified at 0x80124280..0x80124284"
+    ],
+    "summary": "MATCH",
+    "total": 23,
+    "unresolved": [],
+    "unverified": []
+  },
+  "credits_screen": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 74,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_80091AF0": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 2,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_80091AF8": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 2,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_80091B00": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 42,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800D6160": {
+    "accepted": false,
+    "differing": 65,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "65/76 words differ",
+    "total": 76,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800D690C": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 2,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800D6914": {
+    "accepted": false,
+    "differing": 0,
+    "errors": [
+      "own .rodata: this function's references disagree on the section's image address (0x8011F70C for +0x0/+0x10, 0x80124194 for +0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail"
+    ],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "NOT VERIFIED (12 section-relative relocations unverified: .rodata+0x1c at +0x1c, .rodata+0x1c at +0x20, .rodata+0x20 at +0x24, .rodata+0x20 at +0x28, .rodata+0x24 at +0x2c, .rodata+0x24 at +0x30, .rodata+0x0 at +0x238, .rodata+0x0 at +0x23c, .rodata+0x10 at +0x20c, .rodata+0x10 at +0x220, .rodata+0x28 at +0x2fc, .rodata+0x28 at +0x300; own .rodata: this function's references disagree on the section's image address (0x8011F70C for +0x0/+0x10, 0x80124194 for +0x1c/+0x20/+0x24/+0x28): the literals are not laid out as in retail)",
+    "total": 315,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x1c at +0x1c",
+      ".rodata+0x1c at +0x20",
+      ".rodata+0x20 at +0x24",
+      ".rodata+0x20 at +0x28",
+      ".rodata+0x24 at +0x2c",
+      ".rodata+0x24 at +0x30",
+      ".rodata+0x0 at +0x238",
+      ".rodata+0x0 at +0x23c",
+      ".rodata+0x10 at +0x20c",
+      ".rodata+0x10 at +0x220",
+      ".rodata+0x28 at +0x2fc",
+      ".rodata+0x28 at +0x300"
+    ]
+  },
+  "func_800D7634": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .rodata verified at 0x801241D4..0x801241E8"
+    ],
+    "summary": "MATCH",
+    "total": 451,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_type1_create": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 26,
+    "unresolved": [],
+    "unverified": []
+  },
+  "physics_init_mode0": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 23,
+    "unresolved": [],
+    "unverified": []
+  },
+  "physics_init_mode1": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 23,
+    "unresolved": [],
+    "unverified": []
+  },
+  "sound_call_minimal": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 12,
+    "unresolved": [],
+    "unverified": []
+  },
+  "sound_call_simple": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 11,
+    "unresolved": [],
+    "unverified": []
+  },
+  "speed_mode0_wrapper": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 22,
+    "unresolved": [],
+    "unverified": []
+  },
+  "speed_mode1_wrapper": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 22,
+    "unresolved": [],
+    "unverified": []
+  },
+  "speed_set": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 51,
+    "unresolved": [],
+    "unverified": []
+  },
+  "sync_entry_register": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 31,
+    "unresolved": [],
+    "unverified": []
+  },
+  "vsync_wait": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 37,
+    "unresolved": [],
+    "unverified": []
+  }
+}
