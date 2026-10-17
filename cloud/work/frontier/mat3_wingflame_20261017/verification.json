@@ -6,8 +6,8 @@
   "cartridge_coverage_claimed": false,
   "base_commit": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
   "inputs_sha256": {
-    "verify.py": "57e8dcca293fa5b948b8dafac414eb41100390bca21a26cb6fcc629073340627",
-    "trace_fidelity.py": "a3cf11eea3e546409df8c1854061db064998630f6160f14edcaed215f16b0036",
+    "verify.py": "095e23998d3467b55d7e7da8ac57e76b3dc391ef53f6a275173ae9b4566e8f17",
+    "trace_fidelity.py": "426f14b9785407bdea9fbc6b2172601e684ab82f1c84eadbd420467eceb720a0",
     "group/group.json": "614693cef8ae4dba1f469ea7a0253bb39bfe70fdd27fb851fccf492211fbd1a8",
     "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
     "group/anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
@@ -223,5 +223,30 @@
       "notes": []
     }
   },
+  "claims": [
+    "matrix_scale_apply",
+    "anim_state_update",
+    "buffer_swap",
+    "entity_anim_texture"
+  ],
+  "symbol_bytes": {
+    "matrix_scale_apply": 100,
+    "anim_state_update": 1840,
+    "buffer_swap": 1676,
+    "entity_anim_texture": 636,
+    "model_bounds_calc": 72,
+    "func_8008B2B4": 8,
+    "func_8008B2E4": 72,
+    "entity_transform_calc": 440,
+    "client_sync": 216,
+    "entity_hierarchy_update": 136,
+    "stat_lap_complete": 220,
+    "game_timer_resume": 220,
+    "func_80091BA8": 84,
+    "func_80091B00": 168,
+    "scheduler_recv": 160,
+    "func_8008B3A0": 40
+  },
+  "object_sha256": "e17e3b2614cfb17a8fe3d56bed2583cef833335f226bf624610eb53c94ce67c5",
   "negative_mutation": "translucency XOR mask 0x80000000U -> 0x40000000U"
 }

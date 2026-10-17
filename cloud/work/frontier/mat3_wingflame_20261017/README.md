@@ -98,3 +98,19 @@ are identical to each other and to the independently generated stock scoring
 object; hashes and source binding are recorded in `trace_fidelity.json`. Raw
 objects, listings, traces, and negative-control scratch stay under ignored
 `build/`, outside this packet.
+
+## Verification guard hardening
+
+The initial packet used Python assertions for its proof guards. Those assertions
+were effective in the recorded normal replay but disappear under Python `-O`.
+The verifier and stock/traced identity check now raise explicit errors. Three
+focused tests include twenty reason-specific optimized refusal cases and a
+relocated-packet replay. All four claimed ELF symbol extents are checked against
+the protected targets, and the fresh full receipt must equal the sealed receipt.
+The fresh complete object must also equal both source-bound trace hashes.
+
+The C sources, recipe, compiler flags, strict comparisons and candidate credit
+are unchanged. A fresh stock/traced run reproduces the original complete object
+hash. Informational context remains fully recorded with its existing nonmatches;
+this repair does not expand the four-function claim set or assert new closure,
+canonical integration, runtime or image coverage.

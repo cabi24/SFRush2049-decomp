@@ -46,7 +46,8 @@ def run(out, traced_uopt):
                          "gen."+kind, "-o", kind+".o", "-t", "st."+kind]]:
             subprocess.run([str(ido / command[0]), *command[1:]], cwd=out, check=True, capture_output=True)
     stock = (out / "stock.o").read_bytes()
-    assert stock == (out / "trace.o").read_bytes(), "instrumented compiler changed the object"
+    if stock != (out / "trace.o").read_bytes():
+        raise RuntimeError("instrumented compiler changed the object")
     return {"complete_objects_identical": True, "stock_object_sha256": hashlib.sha256(stock).hexdigest(),
             "trace_object_sha256": hashlib.sha256(stock).hexdigest(),
             "tracing_enabled": ["CDX_LOG", "CDX_DETAIL_WEB", "W5D_LEVEL", "SPLOG"]}
