@@ -1,0 +1,64 @@
+{
+  "status": "PASS_RESEARCH_ONLY",
+  "reviewer": "independent effects lane",
+  "reviewed_at_utc": "2026-10-17T20:37:08.627949+00:00",
+  "receipt_sha256": "4cfa52ba13d03649a23ca08c41b8c0d9efbab14d20b6b8dd37fde172dfe783c7",
+  "trace_fidelity_sha256": "706f529ddd96684b32c068cf21d3a5fba5816cb19b0b2a9db3ec0d6c8fc9974c",
+  "readme_sha256": "f7ce3546c0a0119aed6d43a12ba4ff716a762a8174e07cf62bb90734a53f1704",
+  "focused_test_sha256": "e225da3e639682ebc656c7398012740edaf2abf456b343890db812d75c13816a",
+  "source_sha256": {
+    "behavior.py": "d55eefc2caa517ac6fed6ac1564a399c36115152e6a599ee128f64cc7a05d73f",
+    "group/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "group/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "group/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "group/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "group/ghost.c": "f46c47f7418dc8afc54f87b39d95f63421bbd5b7b4a81b2a02daa08bd653f369",
+    "group/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "group/group.json": "43d53ee7bd97e00d614db592427d6a6ad1bc4655a88683268ac75a32997d2b7d",
+    "group/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "group/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "group/wheel_params_set.c": "d63dd2f3b4392663fcb8174ca1604daa8a08557a4d6f7645a6e3c1f1acf61fe1",
+    "historical_typed.c": "ea4083cb79f1b293ee14f24b73739da6754fddefcecbff24767d6c49f83d540a",
+    "layout.py": "7818960c61550d6d29941611717545718592afb269fddd748f3b0d334ee3972e",
+    "trace.py": "d490977ed98eb8ea8552e8b66cde4d6112cd95b02ef8d711bf2f9e68311961bf",
+    "verify.py": "0f9a920cf6d53fdd60270e59fcc66d6c49f5205cac5785e361fdd8091b6a300e"
+  },
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "independent_checks": {
+    "focused_tests": 2,
+    "optimized_integrity_refusals": 8,
+    "full_optimized_replay": "PASS",
+    "fresh_stock_traced_object_identity": true,
+    "object_sha256": "1a84fa4ac87252adb9b493a90a63ed58ce9b262c3e4db9c1acdbe07cf4572f41",
+    "preserved_strict_bodies": 33,
+    "separate_delay_slot_CFG": {
+      "reachable_native_words": 108,
+      "unreachable_native_offsets": [
+        248,
+        292
+      ]
+    },
+    "unchanged_canonical_save_files": [
+      "group.c",
+      "save.c",
+      "ctx_hash.c",
+      "ctx_slot.c",
+      "ctx_newghost.c",
+      "ctx_strncmp.c",
+      "props.c"
+    ]
+  },
+  "findings": [
+    "The fixture-field/event model selects cases independently from the C pointer-chain walk; native and candidate memory/event outcomes agree in the stated domain.",
+    "Ghost44/Header88, model2056 signed-halfword run field, and car952 byte/float fields are correctly bounded for four aligned records. Negative counts safely skip the loop; sizes are bounded to 0..65535.",
+    "A separately implemented state traversal tracks branch delay slots and likely-annulled paths, confirming the two native dead prefixes independently from the packet CFG routine.",
+    "The real native heap/free helper context is preserved. The behavior runner explicitly stubs purge, free and queue operations and simulates caller clobbers, including the internal free s0/s1 convention.",
+    "All group members and context are retained and scored. The authentic donor root remains54/110 with448-byte extent versus440 native; typed historical16/110 is a disclosed control. CreatePlayer and menu_back remain unmatched and unclaimed.",
+    "The later source is configured Matching but lacks a freshly established standalone acceptance receipt; its block-local ghost and inherited volatile flag are accurately distinguished from original DWARF/native evidence."
+  ],
+  "limits": [
+    "No callee allocator/ghost side effects, concurrency, actual queue timing, arbitrary aliases or invalid pointers are modeled.",
+    "No whole-program integration, image/ROM verification, canonical merge or new match credit follows from this packet."
+  ]
+}

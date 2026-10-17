@@ -1,0 +1,2371 @@
+{
+  "protocol_version": 2,
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "source_sha256": {
+    "behavior.py": "d55eefc2caa517ac6fed6ac1564a399c36115152e6a599ee128f64cc7a05d73f",
+    "group/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "group/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "group/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "group/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "group/ghost.c": "f46c47f7418dc8afc54f87b39d95f63421bbd5b7b4a81b2a02daa08bd653f369",
+    "group/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "group/group.json": "43d53ee7bd97e00d614db592427d6a6ad1bc4655a88683268ac75a32997d2b7d",
+    "group/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "group/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "group/wheel_params_set.c": "d63dd2f3b4392663fcb8174ca1604daa8a08557a4d6f7645a6e3c1f1acf61fe1",
+    "historical_typed.c": "ea4083cb79f1b293ee14f24b73739da6754fddefcecbff24767d6c49f83d540a",
+    "layout.py": "7818960c61550d6d29941611717545718592afb269fddd748f3b0d334ee3972e",
+    "trace.py": "d490977ed98eb8ea8552e8b66cde4d6112cd95b02ef8d711bf2f9e68311961bf",
+    "verify.py": "0f9a920cf6d53fdd60270e59fcc66d6c49f5205cac5785e361fdd8091b6a300e"
+  },
+  "target_words_sha256": {
+    "func_800CD058": "ff394b2d826655a18dbc063659f2cc0d85ed671211135d1795920d21525a4a76",
+    "func_800CCEFC": "dea8f487a631dba34d0ba87d8c6343298b69cc6924d840e3d96e661f3402c060",
+    "func_800CCCCC": "63a0a6cc0a7985ecb15e7cb6da69b1f51158b7a59cef54ecf987c7d9cd567248",
+    "menu_save_options": "4d33a036fe8ba4c0693349acee9ca44e9d8a57fcc2e2b4a7fe30ede1eb6cdbe7",
+    "func_800A44E8": "46fae46aee4941cab14fab6e3adafddcebcb1d79aa4a22638e385ba5f23e3438",
+    "func_800A370C": "f68f313ee2e78da7184b2aff284064d2e93489f20645fc24d5ed3367b1d83480",
+    "draw_speedometer": "4585bbe55d46f3d722c32180915ab0d091472669a38a92e925d181ce5eb0a28a",
+    "func_800C7EC0": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800C7EC8": "66d712ae390c57c49f457203708c3e1ec073e45c3b6ba02947b60f017ec4f555",
+    "draw_ui_element": "58a605199a524dd383dcc7e5193284f4e4b3230bb3ffb083ed18fc593b05e204",
+    "func_800CBF2C": "d36dac81b4fcc6991db3038ac848c5eee67d16a70531a3a78aee798768648fca",
+    "func_800C7300": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800CD0FC": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800A361C": "3908faef4b963544a0f909d3c8910a9608332d35d614c230aabe57434dc686a2",
+    "func_800A1A3C": "145fc57acf3fa3e21c62a874d266b0be4c71af80c968c4f43270dc7b112d4bee",
+    "func_80094FC4": "fe70bccfb7d70ab9d899c9ed66164cd92af7958fcc04832fb4cf4a7561d8ed7d",
+    "menu_item_value_get": "511e7cf6983fa9907fa431d878cfc325aac65a72d27d13c304b946485005780f",
+    "menu_transition": "967f76b93563216d6dbd0414337d38c8dd7f6c909ab2c3aef6e5986fbcb41192",
+    "AdjustSteer": "e3787cdd8aa25b6ea05182259debfebfa86779aa1a465d40e42c2c9b3f590d41",
+    "func_800C7200": "3ecc9760eaa03e72303baf5efcc64647552451ba7aad1727b56fe58acbbdbfdc",
+    "SaveServer": "a21ccb1d5f1b194767b7476a101287720c2cec5ef25822bf6cfc3e4f71f7b817",
+    "SaveGhost": "0adf7c6d4911eddabd5b7f61fdb6d35dba0f9baaddb0b5d7e66280e9310b9551",
+    "CompressGhost": "27095b235f9295431b1562f93214a6036043e71ab47b62f077adcbf8be1e7e30",
+    "GhostStart": "f70cc4999d8882d7d3489641e8f929b258cf5fa311251c45d4e86607d72870d6",
+    "wheel_params_set": "d734aa82069f48c83a6a0f5fb8bc9f266991ed2599ba4104fa560746d383a4df",
+    "CreatePlayer": "ce6694fcdd72490102a019b19de21291120b886e7daffef8d44dadb3a921fca0",
+    "draw_number": "f03cc2f8e35de15ad4981dbbb2f0c60976576496174afc51b937563ac03b7408",
+    "format_string_parse": "f8537dbeb5e899bf215a2380e1f44dc25689bb46dca8be6deb664bc5bfbd4c0d",
+    "menu_back": "6b5303134a6d6101789158c65cce7f1e5d3265a409641cec82f5937f2494d3eb",
+    "audio_reverb_update": "9819b47716bced504227b5117fa1e0bf3144db7f0ffab1b198909a1c9421e221",
+    "audio_buffer_sync": "4168a3f1be6c135cf761a9699932fdc70d407a235be6cce157f57b7c848b3a1a",
+    "func_800950AC": "3c9b2b3bd9be2cfb03680eab94164b809b8df12b4f1a5214d947ed387ee6aad1",
+    "ghost_race_setup": "4d144db91d0853b1638408ca13d31fb47bae64f2051d31cbd357080f9a2cf2ab",
+    "func_800960CC": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_80095CF4": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_80095CFC": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+  },
+  "baseline_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+  },
+  "preserved_locked_members": [
+    "func_800CD058",
+    "func_800CCEFC",
+    "func_800CCCCC",
+    "menu_save_options",
+    "func_800A44E8",
+    "func_800A370C",
+    "draw_speedometer",
+    "func_800C7EC0",
+    "func_800C7EC8",
+    "draw_ui_element",
+    "func_800CBF2C",
+    "func_800C7300",
+    "func_800CD0FC",
+    "func_800A361C",
+    "func_800A1A3C",
+    "func_80094FC4",
+    "menu_item_value_get",
+    "menu_transition",
+    "AdjustSteer",
+    "func_800C7200",
+    "SaveServer",
+    "SaveGhost",
+    "CompressGhost",
+    "GhostStart",
+    "wheel_params_set",
+    "draw_number",
+    "format_string_parse",
+    "audio_reverb_update",
+    "audio_buffer_sync",
+    "func_800950AC",
+    "func_800960CC",
+    "func_80095CF4",
+    "func_80095CFC"
+  ],
+  "results": {
+    "natural": {
+      "object_sha256": "1a84fa4ac87252adb9b493a90a63ed58ce9b262c3e4db9c1acdbe07cf4572f41",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 54,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 448,
+      "root_frame": 64,
+      "behavior": {
+        "fixtures": 192,
+        "executions": 384,
+        "instruction_coverage": [
+          108,
+          110
+        ],
+        "unreachable_instruction_offsets": [
+          [
+            248,
+            292
+          ],
+          [
+            248,
+            300
+          ]
+        ],
+        "branch_outcomes": [
+          16,
+          16
+        ],
+        "callee_side_effects_validated": false,
+        "root_only": true
+      }
+    },
+    "repeat": {
+      "object_sha256": "1a84fa4ac87252adb9b493a90a63ed58ce9b262c3e4db9c1acdbe07cf4572f41",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 54,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 448,
+      "root_frame": 64,
+      "behavior": {
+        "fixtures": 192,
+        "executions": 384,
+        "instruction_coverage": [
+          108,
+          110
+        ],
+        "unreachable_instruction_offsets": [
+          [
+            248,
+            292
+          ],
+          [
+            248,
+            300
+          ]
+        ],
+        "branch_outcomes": [
+          16,
+          16
+        ],
+        "callee_side_effects_validated": false,
+        "root_only": true
+      }
+    },
+    "historical_typed": {
+      "object_sha256": "23a4d5bc79e7b40ad315a093710253776e9f6066ae2e3ec0d6bb6b35752da361",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 16,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 440,
+      "root_frame": 64,
+      "behavior": {
+        "fixtures": 192,
+        "executions": 384,
+        "instruction_coverage": [
+          108,
+          109
+        ],
+        "unreachable_instruction_offsets": [
+          [
+            248,
+            292
+          ],
+          [
+            248
+          ]
+        ],
+        "branch_outcomes": [
+          16,
+          16
+        ],
+        "callee_side_effects_validated": false,
+        "root_only": true
+      }
+    },
+    "expanded_free": {
+      "object_sha256": "5e928a30a6d89ad0f62c9295c50a511f2173ed9f3449ed24597251a79567181e",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 54,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 1
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 444,
+      "root_frame": 64,
+      "behavior": {
+        "fixtures": 192,
+        "executions": 384,
+        "instruction_coverage": [
+          108,
+          109
+        ],
+        "unreachable_instruction_offsets": [
+          [
+            248,
+            292
+          ],
+          [
+            248,
+            300
+          ]
+        ],
+        "branch_outcomes": [
+          16,
+          16
+        ],
+        "callee_side_effects_validated": false,
+        "root_only": true
+      }
+    },
+    "wrong_modelrun_byte": {
+      "object_sha256": "68e7f44da6a763f37930beb74423f6cc97f575111fb241e7d3e0943e4247a1fc",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 55,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 448,
+      "root_frame": 64,
+      "behavior": {
+        "rejected": true,
+        "reason": "fixture 5 model mismatch"
+      }
+    },
+    "wrong_recorded_size": {
+      "object_sha256": "644f9e555971640920a608f6faf49e3f55efab8748ec5f699a99fa2532a706f7",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 54,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 1
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 444,
+      "root_frame": 64,
+      "behavior": {
+        "rejected": true,
+        "reason": "fixture 11 model mismatch"
+      }
+    },
+    "wrong_free_pointer": {
+      "object_sha256": "c63a204b9796911120f53c9cf0309f830462b9a6c0cf27e5fcff2e06e0b74ab2",
+      "scores": {
+        "func_800CD058": {
+          "differing": 0,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCEFC": {
+          "differing": 0,
+          "total": 87,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CCCCC": {
+          "differing": 0,
+          "total": 100,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_save_options": {
+          "differing": 0,
+          "total": 192,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A44E8": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A370C": {
+          "differing": 0,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_speedometer": {
+          "differing": 0,
+          "total": 426,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC0": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7EC8": {
+          "differing": 0,
+          "total": 157,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_ui_element": {
+          "differing": 0,
+          "total": 60,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CBF2C": {
+          "differing": 0,
+          "total": 69,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7300": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800CD0FC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A361C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800A1A3C": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80094FC4": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_item_value_get": {
+          "differing": 0,
+          "total": 17,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_transition": {
+          "differing": 0,
+          "total": 40,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "AdjustSteer": {
+          "differing": 0,
+          "total": 44,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800C7200": {
+          "differing": 0,
+          "total": 64,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveServer": {
+          "differing": 0,
+          "total": 225,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "SaveGhost": {
+          "differing": 0,
+          "total": 224,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CompressGhost": {
+          "differing": 0,
+          "total": 190,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "GhostStart": {
+          "differing": 0,
+          "total": 545,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "wheel_params_set": {
+          "differing": 0,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "CreatePlayer": {
+          "differing": 246,
+          "total": 272,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "draw_number": {
+          "differing": 0,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "format_string_parse": {
+          "differing": 0,
+          "total": 45,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "menu_back": {
+          "differing": 3,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_reverb_update": {
+          "differing": 0,
+          "total": 61,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "audio_buffer_sync": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_800950AC": {
+          "differing": 0,
+          "total": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "ghost_race_setup": {
+          "differing": 54,
+          "total": 110,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 3
+        },
+        "func_800960CC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CF4": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "func_80095CFC": {
+          "differing": 0,
+          "total": 2,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      },
+      "root_bytes": 452,
+      "root_frame": 64,
+      "behavior": {
+        "rejected": true,
+        "reason": "fixture 76 model mismatch"
+      }
+    }
+  },
+  "layout": {
+    "native": {
+      "values": {
+        "header_bytes": 88,
+        "header_flag": 5,
+        "header_finish": 56,
+        "header_start": 76,
+        "header_offset": 80,
+        "header_size": 84,
+        "ghost_bytes": 44,
+        "ghost_data_handle": 36,
+        "ghost_header_handle": 40,
+        "car_bytes": 952,
+        "car_locked": 239,
+        "car_score": 240,
+        "model_bytes": 2056,
+        "model_run": 1820,
+        "model_run_bytes": 2,
+        "header_flag_signed": 4294967295
+      },
+      "mismatches": []
+    },
+    "run_byte": {
+      "values": {
+        "header_bytes": 88,
+        "header_flag": 5,
+        "header_finish": 56,
+        "header_start": 76,
+        "header_offset": 80,
+        "header_size": 84,
+        "ghost_bytes": 44,
+        "ghost_data_handle": 36,
+        "ghost_header_handle": 40,
+        "car_bytes": 952,
+        "car_locked": 239,
+        "car_score": 240,
+        "model_bytes": 2056,
+        "model_run": 1820,
+        "model_run_bytes": 1,
+        "header_flag_signed": 4294967295
+      },
+      "mismatches": [
+        "model_run_bytes"
+      ]
+    },
+    "car_stride": {
+      "values": {
+        "header_bytes": 88,
+        "header_flag": 5,
+        "header_finish": 56,
+        "header_start": 76,
+        "header_offset": 80,
+        "header_size": 84,
+        "ghost_bytes": 44,
+        "ghost_data_handle": 36,
+        "ghost_header_handle": 40,
+        "car_bytes": 956,
+        "car_locked": 239,
+        "car_score": 240,
+        "model_bytes": 2056,
+        "model_run": 1820,
+        "model_run_bytes": 2,
+        "header_flag_signed": 4294967295
+      },
+      "mismatches": [
+        "car_bytes"
+      ]
+    },
+    "header_shift": {
+      "values": {
+        "header_bytes": 92,
+        "header_flag": 5,
+        "header_finish": 60,
+        "header_start": 80,
+        "header_offset": 84,
+        "header_size": 88,
+        "ghost_bytes": 44,
+        "ghost_data_handle": 36,
+        "ghost_header_handle": 40,
+        "car_bytes": 952,
+        "car_locked": 239,
+        "car_score": 240,
+        "model_bytes": 2056,
+        "model_run": 1820,
+        "model_run_bytes": 2,
+        "header_flag_signed": 4294967295
+      },
+      "mismatches": [
+        "header_bytes",
+        "header_finish",
+        "header_start",
+        "header_offset",
+        "header_size"
+      ]
+    }
+  },
+  "canonical_or_ROM_verification": false
+}

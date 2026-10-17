@@ -1,0 +1,24 @@
+{
+  "observation_only": true,
+  "forced_colors": false,
+  "complete_objects_identical": true,
+  "object_sha256": "1a84fa4ac87252adb9b493a90a63ed58ce9b262c3e4db9c1acdbe07cf4572f41",
+  "inputs_sha256": {
+    "behavior.py": "d55eefc2caa517ac6fed6ac1564a399c36115152e6a599ee128f64cc7a05d73f",
+    "group/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "group/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "group/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "group/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "group/ghost.c": "f46c47f7418dc8afc54f87b39d95f63421bbd5b7b4a81b2a02daa08bd653f369",
+    "group/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "group/group.json": "43d53ee7bd97e00d614db592427d6a6ad1bc4655a88683268ac75a32997d2b7d",
+    "group/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "group/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "group/wheel_params_set.c": "d63dd2f3b4392663fcb8174ca1604daa8a08557a4d6f7645a6e3c1f1acf61fe1",
+    "historical_typed.c": "ea4083cb79f1b293ee14f24b73739da6754fddefcecbff24767d6c49f83d540a",
+    "layout.py": "7818960c61550d6d29941611717545718592afb269fddd748f3b0d334ee3972e",
+    "trace.py": "d490977ed98eb8ea8552e8b66cde4d6112cd95b02ef8d711bf2f9e68311961bf",
+    "verify.py": "0f9a920cf6d53fdd60270e59fcc66d6c49f5205cac5785e361fdd8091b6a300e"
+  },
+  "traced_uopt_sha256": "915d6eefffd835b52e6591eea1e3133f64cfb826aa93b16cbcf6f8c84358c16b"
+}
