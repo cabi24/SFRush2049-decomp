@@ -1,0 +1,1900 @@
+{
+  "accepted_image_bytes": 0,
+  "claims": [],
+  "existing_context_functions": 10,
+  "host_semantics": "4224 finite candidate/model state-and-service-trace cases; all 8 branch classes covered",
+  "inputs": {
+    "context_sha256": {
+      "cloud/work/frontier/w8c/func_800B23E0/rand_arc_unit.c": "b320f52640cdd1c873026e9085cb48023cab1ec24fb6a3f7f12ae9be567212c0",
+      "src/blob/func_8008B2B4.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+      "src/blob/func_800BB02C.c": "21b2b62f08ea4efeed4213cca6cb80784f25bd6fc952017bd83ecbbe6a7f5ef6",
+      "src/blob/groups/codex_state_audio_a146/group.c": "b600734ec871644fb471440278d3d287d8fcb43f6b1768317caee8d798b5744a",
+      "src/blob/groups/frontier_heap_free_total/group.c": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41"
+    },
+    "packet_sha256": {
+      "PROVENANCE.md": "7581c7b4f2231ecd04311f5fa9e8981fc3da127a4864d249702e100d703187be",
+      "README.md": "a0f2a941193a76edb81acbca06916251c8e13d56dcc80aa765d2df005892ec06",
+      "group/group.json": "a1c708b808dafbb7d610139d59f8bd945650ca5c991f17398063d5a4388de1e7",
+      "group/heap_total.c": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41",
+      "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+      "group/random.c": "b320f52640cdd1c873026e9085cb48023cab1ec24fb6a3f7f12ae9be567212c0",
+      "group/resource.c": "cb8e7caacd4fe56104ffdc55e8afbf1df52a93cb450b400ad672c85f6347987b",
+      "group/root.c": "1db1f4a44992a114bdf2d793af2cce151c7dad4404853ee343ce7e41ab127b69",
+      "group/setup.c": "21b2b62f08ea4efeed4213cca6cb80784f25bd6fc952017bd83ecbbe6a7f5ef6",
+      "replay.py": "65002e3ddfc63086dd9369bf8ecd4702880a572091fbf259bb143ac26f889799",
+      "semantics.c": "123aa4d9b8c0d988f5be634853126bd726e1d4715cdc5121c2ec973d74edb68f"
+    },
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [],
+      "context": [
+        "func_8009768C",
+        "audio_output_setup",
+        "func_800BAF90",
+        "func_800BB02C",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "state_change_preprocess",
+        "resource_slot_clear",
+        "func_80097694",
+        "resource_slots_clear_multiple",
+        "audio_frame_sync"
+      ],
+      "files": [
+        "root.c",
+        "setup.c",
+        "rand.c",
+        "random.c",
+        "resource.c",
+        "heap_total.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_800BB02C",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "state_change_preprocess",
+        "resource_slots_clear_multiple",
+        "audio_frame_sync"
+      ],
+      "members": [
+        "audio_interrupt_handler"
+      ]
+    },
+    "targets": {
+      "audio_frame_sync": {
+        "address": "0x80097798",
+        "bytes": 520,
+        "sha256": "2f8938578f2c7228afcf595ebfc5965922de56a80e88bfcdb6450ecfef77b63c"
+      },
+      "audio_interrupt_handler": {
+        "address": "0x800bb140",
+        "bytes": 1372,
+        "sha256": "96a0437df75f54a05446eda06b028c93e40674096641ba64ac7f2ddd415dd90f"
+      },
+      "audio_output_setup": {
+        "address": "0x800baf98",
+        "bytes": 148,
+        "sha256": "98c4c6c289c72d7dc03cdd06e078110775a5c33b331b5f2256ce1fb0cfb146ee"
+      },
+      "func_8008B2B4": {
+        "address": "0x8008b2b4",
+        "bytes": 48,
+        "sha256": "fed3efb3a551d286be3bcf5cb50bd0b46fb94f874f1773499a50d4094da77e67"
+      },
+      "func_8008B2E4": {
+        "address": "0x8008b2e4",
+        "bytes": 72,
+        "sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095"
+      },
+      "func_8009768C": {
+        "address": "0x8009768c",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80097694": {
+        "address": "0x80097694",
+        "bytes": 260,
+        "sha256": "812f59a4358d1a55a10e7896d02fcda6d207b0d3429364f8d1b8221392014d77"
+      },
+      "func_800BAF90": {
+        "address": "0x800baf90",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_800BB02C": {
+        "address": "0x800bb02c",
+        "bytes": 276,
+        "sha256": "f532fe56d438df31558558295611f9982e782eaa4a5e03a59b1e6a8fe641444e"
+      },
+      "resource_slot_clear": {
+        "address": "0x800c9334",
+        "bytes": 72,
+        "sha256": "24a20ad46d189f9b1fd8c2fc8d606d10fec32e9b0b8f1361ab4fd304a240b99a"
+      },
+      "resource_slots_clear_multiple": {
+        "address": "0x800c937c",
+        "bytes": 48,
+        "sha256": "7e9dbd34e226489097e33a0d66c9201c8c4c908994c027a3cf26ac8ee3ab16da"
+      },
+      "state_change_preprocess": {
+        "address": "0x800ca300",
+        "bytes": 180,
+        "sha256": "a561cb0cca4143ff4ffae0ec964bf85f74874734ee3e84997aa6c7913a367ac9"
+      }
+    },
+    "toolchain_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
+    "verifier_sha256": {
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+    }
+  },
+  "layout": {
+    "emitted": [
+      8,
+      1,
+      2,
+      3,
+      4,
+      2056,
+      1996,
+      4,
+      4,
+      1,
+      2,
+      4
+    ],
+    "wrong_stride_emitted": [
+      8,
+      1,
+      2,
+      3,
+      4,
+      2052,
+      1992,
+      4,
+      4,
+      1,
+      2,
+      4
+    ],
+    "wrong_stride_rejected": true
+  },
+  "locally_exact_root_bytes": 1372,
+  "negative_controls": {
+    "artificial_wave_record": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "4dec06f96f71aada249daf92639243a924c93fb072cce49f31d21c22d7afd0b6",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1392,
+          "differing": 320,
+          "errors": [],
+          "extra_words": 5,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 928,
+          "sha256": "cae8aef19e158cd5603572b13cf4892a19673611d40bb5590d28abc28f4ff5f4"
+        },
+        ".text": {
+          "bytes": 2960,
+          "sha256": "6deddc510441fd7ef658cc7faf733ee7e2c8cbce9ab64741e6b51ac3b648f5af"
+        }
+      }
+    },
+    "flattened_find_call": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "e29c6334c0ab3ab0d5b51c2b39be12f92d7693f75e966bdf799b00ddce132c82",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 2,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 160,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "9e1620b582f4a6602206a976515acbb0d56eefdaf14eba8c316699f63e75e149"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "82e227b3cdec020d0ea1de10aac549b1c5a010a52d9c3cf631e4e30807cc36d0"
+        }
+      }
+    },
+    "missing_mode2_setup": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "7afc0d431fb3426e17755f10456199586c95ed901680ba8683d080f3617bcefa",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1356,
+          "differing": 56,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 888,
+          "sha256": "91241b9d707444a139e9ce4522e690cdd8839c244534efcc74f857e50fa9c488"
+        },
+        ".text": {
+          "bytes": 2928,
+          "sha256": "4ad831edf10e1064cd3fba79714baa2889e7ac66b0af0d8a2bf67ecc8754da87"
+        }
+      }
+    },
+    "without_resource_context": {
+      "emitted_functions": [
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_800BAF90",
+        "func_800BB02C"
+      ],
+      "object_sha256": "f24cdee701fa6ec6d558132b4263fb5d9d339d8f0224b5c834d9757522432766",
+      "rows": {
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 119,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 560,
+          "sha256": "3772ec040e9e5423a50572069834cb05315aa07c48bf0eed7c8a72581a97de14"
+        },
+        ".text": {
+          "bytes": 1952,
+          "sha256": "52b62279d9648f33a0711b3262188eeb65e683935da9a5c3802a91ee998d53ad"
+        }
+      }
+    },
+    "wrong_active_bound": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "09ecb035e92c054a22fb9465aafd64d5fb24efae19caaa711100022aad9c995c",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 3,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "bf2a6342bb0e4878e92840f77de12b562314cbaab0736a85b3518e55f1d9705e"
+        }
+      }
+    },
+    "wrong_find_handle": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "3af4221ea2f51ad5a30afab0c775d25590d0abb49ba69672d3f99339f8e8c12b",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 1,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "2da7792806d3ea415881dcb988ce607528d79dcc24c26b6a829c41387ba4ad3a"
+        }
+      }
+    },
+    "wrong_margin": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "d7def236888a839434a51448eef616f5008322ebdc7d55157d21cee95b79d3be",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 5,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "b70cc2396e41f8486dcd72de727a877710f303f54a35062b47bebad5dde15f1b"
+        }
+      }
+    },
+    "wrong_metadata": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "eb8e96bc52c89a3ab2deb8067ddc6743a85c9d189ccd7a3e28e01bd7cece16b8",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1360,
+          "differing": 232,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 880,
+          "sha256": "cb5398d9755e147a8ba5ff214fac51e6b75e942f5b9b03a8d3a840e013d87086"
+        },
+        ".text": {
+          "bytes": 2928,
+          "sha256": "717a4316c0bc110b827d796c4e5209f9349174f54fe5346ae4c5ba1c81c67a12"
+        }
+      }
+    },
+    "wrong_wave_base": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "bb4887a7227a3da60ba95a9f3f50f95a2a83130c97d9de39adac4b0d6702968d",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": false,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "5571989c9eb925a1d88e7923e542756523ee8ae0671a8a1be1908943d70b72f4"
+        }
+      }
+    }
+  },
+  "new_candidate_bytes": 0,
+  "positive": {
+    "first": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "ab1bf866a1a71160dc388b0f8a218ad69c23d5cc4ab07ed30070c977f0a35fa0",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": true,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "916f9df2ab22c0f99b8aa83182d898dc40767561bbb9eac7af38ccc8db5acc79"
+        }
+      }
+    },
+    "repeat": {
+      "emitted_functions": [
+        "audio_frame_sync",
+        "audio_interrupt_handler",
+        "audio_output_setup",
+        "func_8008B2B4",
+        "func_8008B2E4",
+        "func_8009768C",
+        "func_80097694",
+        "func_800BAF90",
+        "func_800BB02C",
+        "resource_slot_clear",
+        "resource_slots_clear_multiple",
+        "state_change_preprocess"
+      ],
+      "object_sha256": "ab1bf866a1a71160dc388b0f8a218ad69c23d5cc4ab07ed30070c977f0a35fa0",
+      "rows": {
+        "audio_frame_sync": {
+          "bytes": 432,
+          "differing": 130,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 48,
+          "strict": false,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_interrupt_handler": {
+          "bytes": 1372,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 168,
+          "strict": true,
+          "total": 343,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_output_setup": {
+          "bytes": 148,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 37,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2B4": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8008B2E4": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_8009768C": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80097694": {
+          "bytes": 260,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BAF90": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800BB02C": {
+          "bytes": 276,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 69,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slot_clear": {
+          "bytes": 72,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 18,
+          "unresolved": [],
+          "unverified": []
+        },
+        "resource_slots_clear_multiple": {
+          "bytes": 48,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 12,
+          "unresolved": [],
+          "unverified": []
+        },
+        "state_change_preprocess": {
+          "bytes": 180,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 45,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 896,
+          "sha256": "52881c42cfd2002ac54b7b6f8c6c907de069491e9d99e85e177507fb1fb589aa"
+        },
+        ".text": {
+          "bytes": 2944,
+          "sha256": "916f9df2ab22c0f99b8aa83182d898dc40767561bbb9eac7af38ccc8db5acc79"
+        }
+      }
+    }
+  },
+  "promotion_boundary": "Research only: full context contains unmatched LoadWave; without it LoadCars differs by 119 words. The 8-byte FindWaveInstance wrapper is already locked and receives no new credit.",
+  "semantic_negatives": {
+    "missing_mode2_setup": "rejected with exact differential exit 3 and message",
+    "wrong_active_bound": "rejected with exact differential exit 3 and message",
+    "wrong_find_handle": "rejected with exact differential exit 3 and message",
+    "wrong_margin": "rejected with exact differential exit 3 and message",
+    "wrong_metadata": "rejected with exact differential exit 3 and message",
+    "wrong_wave_base": "rejected with exact differential exit 3 and message"
+  }
+}

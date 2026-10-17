@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "reviewer": "independent physics lane",
+  "reviewed_at_utc": "2026-10-17T20:11:50Z",
+  "scope": "Research-only LoadCars packet; empty claims and zero new candidate/image bytes. No integration or runtime execution claim.",
+  "proof_sha256": "8d1c6588dde5835ef8e17afef8a1a40ca00a289882fff40f2fbbfcf13f01f324",
+  "packet_sha256": {
+    "PROVENANCE.md": "7581c7b4f2231ecd04311f5fa9e8981fc3da127a4864d249702e100d703187be",
+    "README.md": "a0f2a941193a76edb81acbca06916251c8e13d56dcc80aa765d2df005892ec06",
+    "group/group.json": "a1c708b808dafbb7d610139d59f8bd945650ca5c991f17398063d5a4388de1e7",
+    "group/heap_total.c": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/random.c": "b320f52640cdd1c873026e9085cb48023cab1ec24fb6a3f7f12ae9be567212c0",
+    "group/resource.c": "cb8e7caacd4fe56104ffdc55e8afbf1df52a93cb450b400ad672c85f6347987b",
+    "group/root.c": "1db1f4a44992a114bdf2d793af2cce151c7dad4404853ee343ce7e41ab127b69",
+    "group/setup.c": "21b2b62f08ea4efeed4213cca6cb80784f25bd6fc952017bd83ecbbe6a7f5ef6",
+    "replay.py": "65002e3ddfc63086dd9369bf8ecd4702880a572091fbf259bb143ac26f889799",
+    "semantics.c": "123aa4d9b8c0d988f5be634853126bd726e1d4715cdc5121c2ec973d74edb68f"
+  },
+  "test_sha256": "e9ca51ed1b7281481f2e79357d92dd9e8cbdbbc34ef00d7ca3ccf53774bb1dc2",
+  "fresh_checks": [
+    "Stock-ID0 group compilation from the supplied source and complete context.",
+    "Full finalized replay under python3 -O.",
+    "Three focused tests, including full stock replay and optimized-interpreter corruption guards.",
+    "Independent IDO-emitted layout probe: 8-byte selection and 2056-byte vehicle, mode1996, alignment4, native pointer4.",
+    "All 10 preserved bodies have exact words, relocation checks, and ELF extents.",
+    "Root exact1372 bytes and frame168; repeated complete object identity.",
+    "Nine structural negatives and six exact semantic differential failures reproduced.",
+    "4224 finite state/service-trace fixtures across all eight branch classes.",
+    "After compiler/scorer input-receipt hardening, refreshed optimized full replay and all three focused tests pass. Source/recipe/semantics hashes are unchanged; fresh proof binds actual stock IDO stages and scorer/own-data verifier."
+  ],
+  "source_review": [
+    "The genuine three-local donor body and FindWaveInstance wrapper are used without arbitrary root padding or register forcing.",
+    "The native signed/unsigned field layouts, wavebase88, heap reserve512, metadata tables and mode2 fallback setup are retained.",
+    "Actual unsigned wave-size array replaces the artificial archive field view.",
+    "Host services are controlled models; the unmatched loader is not executed. Canonical rand signed-overflow scope and host pointer-field substitution are explicitly disclosed.",
+    "Unmatched LoadWave remains130/130, emitted432/native520, frame48/native112; without its context root differs119/343. No closure credit."
+  ],
+  "limitations": [
+    "No canonical integration, image or ROM build, merge or CI watcher.",
+    "No attempt to validate arbitrary allocation failure, asynchronous runtime state or all random-sequence termination."
+  ],
+  "previous_proof_sha256": "12709ee7de6b4f3e0897d04bfcd0f635d6df95e41d5ecec2026e583ed8fac8f7"
+}
