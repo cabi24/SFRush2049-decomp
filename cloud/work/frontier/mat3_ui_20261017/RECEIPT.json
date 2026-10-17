@@ -1,0 +1,37 @@
+{
+  "base": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "caller_offsets": {
+    "func_800DB1E0": [
+      1192,
+      1272
+    ]
+  },
+  "new_accepted_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "new_source_exact_bytes": 184,
+  "population": "game",
+  "sources": {
+    "groups/frontier_optionscr_buttons/buttons.c": "56e8c41592b8d65e5c7deb2f3d53edb738ae9aa329394689a663362e580b0f65",
+    "groups/frontier_optionscr_buttons/group.json": "3bc8c535c3244656a8d24780924ed50a3584bd553713dec9190eeaf275a84489",
+    "groups/frontier_optionscr_buttons/uninit.c": "34caeee384774fff6e2e86bb7a4822ec2bdd61e13f0630f97b0b3110b2ce0173",
+    "verify.py": "06b457ea1b3a9028eb14fc56cffb1027f35d662a344f5e2ee9cad7717ba4825c"
+  },
+  "targets": {
+    "func_800DA0BC": {
+      "address": "0x800da0bc",
+      "bytes": 184,
+      "sha256": "c6aab1369578fbef543419e33e183ad2e2c866f51e97592b6f409c7a770288e6"
+    },
+    "func_800DA2C0": {
+      "address": "0x800da2c0",
+      "bytes": 2316,
+      "sha256": "2ed12afcc36d778ce28343bd8c354be554507d1a40ca6813040c88a35e74d96d"
+    },
+    "func_800DB1E0": {
+      "address": "0x800db1e0",
+      "bytes": 1400,
+      "sha256": "3390a63f486313daef71dd4bd32d663cd5f923ffbaa11048451c81e649885775"
+    }
+  },
+  "test_sha256": "4ebaf66a209190ea7978ad57b0eac624b3c4ad551c7769df50609a52ba601bc9"
+}

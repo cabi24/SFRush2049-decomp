@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | func_800DA0BC (options teardown, 184 B) | dot | 2026-10-17 | Genuine locked DB1E0 caller removes the old stand-in; strict MATCH and independent GNU body proof. Packet `cloud/work/frontier/mat3_ui_20261017`; complete `frontier_optionscr_buttons` members/claims preserved. DA2C0 retains the canonical split-rodata refusal, resolved by independent owned-region proof. Draft pending independent checker; no image/ROM credit. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
