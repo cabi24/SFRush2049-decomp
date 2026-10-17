@@ -1,11 +1,1403 @@
 {
   "accepted_image_bytes": 0,
+  "complete_layouts": {
+    "first": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "22def384d5344408e570d2a1b4ca89c77b514024d4f5be3c49cd92eb75224705",
+      "text_bytes": 15744
+    },
+    "historical": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "d4776b3fffadf9573bdcaf3a129517a372805393dc9cacc9ddb6badf3c7add9b",
+      "text_bytes": 15744
+    },
+    "interpolation_only": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "3207e07357f766f2a5389998c56c190fbbc7d695d2976f12e07b6c4165a829d2",
+      "text_bytes": 15744
+    },
+    "meaningful_state": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "abdaf22d7f595647af766c9bd4edb05168d74d42ed3dc837f57d09ee87d0b644",
+      "text_bytes": 15744
+    },
+    "repeat": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "22def384d5344408e570d2a1b4ca89c77b514024d4f5be3c49cd92eb75224705",
+      "text_bytes": 15744
+    },
+    "state_32bit": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            408
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "65d9a7ec1ca72e4e79f5c98be66308e5be25c07a5279909b87394e00a91fcbac",
+      "text_bytes": 15744
+    },
+    "unbounded_static_residue": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [
+        {
+          "bytes": 8,
+          "nonzero_words": 1,
+          "offset": 4444
+        }
+      ],
+      "object_sha256": "e4b6b4ae2f39e8d61828972258e65a94f146316ff8921e8eed73d6ffa30c4100",
+      "text_bytes": 15744
+    },
+    "wrong_radius": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "f7c9e429aafad6095d98e4c9316b6184464a9d26ca32bc665611238c915a8b57",
+      "text_bytes": 15744
+    },
+    "z_arguments_only": {
+      "functions": {
+        "__standin_c36a0_a": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "__standin_c36a0_b": {
+          "bytes": 104,
+          "frames": [
+            64
+          ]
+        },
+        "camera_first_person": {
+          "bytes": 944,
+          "frames": [
+            240
+          ]
+        },
+        "camera_trigger_check": {
+          "bytes": 1232,
+          "frames": [
+            320
+          ]
+        },
+        "camera_victory": {
+          "bytes": 1468,
+          "frames": [
+            584
+          ]
+        },
+        "effect_cleanup": {
+          "bytes": 96,
+          "frames": [
+            24
+          ]
+        },
+        "func_8008E098": {
+          "bytes": 32,
+          "frames": []
+        },
+        "func_8008E0B8": {
+          "bytes": 140,
+          "frames": [
+            40
+          ]
+        },
+        "func_8009E820": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800A61B0": {
+          "bytes": 148,
+          "frames": []
+        },
+        "func_800AC9BC": {
+          "bytes": 224,
+          "frames": []
+        },
+        "func_800AD4C8": {
+          "bytes": 264,
+          "frames": []
+        },
+        "func_800AD5D0": {
+          "bytes": 128,
+          "frames": []
+        },
+        "func_800AD650": {
+          "bytes": 228,
+          "frames": []
+        },
+        "func_800ADCE0": {
+          "bytes": 120,
+          "frames": []
+        },
+        "func_800B61A8": {
+          "bytes": 84,
+          "frames": [
+            24
+          ]
+        },
+        "func_800BF780": {
+          "bytes": 184,
+          "frames": []
+        },
+        "func_800C36A0": {
+          "bytes": 1072,
+          "frames": [
+            96
+          ]
+        },
+        "func_800C3AD0": {
+          "bytes": 1448,
+          "frames": [
+            160
+          ]
+        },
+        "func_800C54F0": {
+          "bytes": 244,
+          "frames": [
+            24
+          ]
+        },
+        "handbrake_apply": {
+          "bytes": 216,
+          "frames": [
+            24
+          ]
+        },
+        "input_deadzone_apply": {
+          "bytes": 3580,
+          "frames": [
+            400
+          ]
+        },
+        "input_process_controller": {
+          "bytes": 1452,
+          "frames": [
+            184
+          ]
+        },
+        "lsq": {
+          "bytes": 8,
+          "frames": []
+        },
+        "math_utility": {
+          "bytes": 76,
+          "frames": []
+        },
+        "steering_sensitivity": {
+          "bytes": 928,
+          "frames": [
+            104
+          ]
+        },
+        "traction_control": {
+          "bytes": 992,
+          "frames": [
+            224
+          ]
+        },
+        "vector_diff_process": {
+          "bytes": 80,
+          "frames": [
+            40
+          ]
+        }
+      },
+      "gaps": [],
+      "object_sha256": "300d4f60e97b1f6bf417e844578175b7091855b47acd957e2fa944c5d441b3bb",
+      "text_bytes": 15744
+    }
+  },
   "fp_scope": "Exact stock-IDO target output and bounded finite host differential cases; not a claim about arbitrary NaN payloads or original historical source spelling.",
   "host_semantic_control": "wrong-radius mutation rejected by differential assertion",
   "host_semantics": "70898 finite differential cases; all 65536 s16 returns; 480 traversal exits; 140670 accepted hits; 1800 snap calls; 1800 normalizations; UBSan clean",
   "image_gate": "not run",
   "inputs": {
     "compiler": "ido5.3",
+    "compiler_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
     "context_sha256": {
       "cloud/work/frontier/w12a/ida/best.c": "be932b339506d92900ed50de979eef8e48b9c111c4c9be94244b0720a4c1d2df",
       "cloud/work/frontier/w12a/ida/hdr_ipcorder.h": "f74e7bfa67cf178c58594710039e12cce9d7d31dd4928de1e4394bd885cfa9c1",
@@ -25,10 +1417,12 @@
       "src/blob/groups/func_800AD4C8/group.json": "ecb40a104159f0db03ea93a689718a8b2a1612228ac100a84409ed0e2fa15fe9",
       "src/blob/math_utility.c": "7472a0bf25b17015688a9ef94a5ee1a56e789b6b2d6fab169f90729d1f4085b6"
     },
+    "owned_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
     "packet_sha256": {
+      "README.md": "7669f2b41c4e21cbc57e46a0dd51196c10b6c34527720b19b83388377a59961e",
       "candidate.c": "ecc07389870aa201ebccbb0b43ecc924d59d9ab67a4ab644ff365be2698b2594",
       "group.json": "3c874dedda0427516fe2b85a59c628e6e40e8045a13d01724fb0385dac548f85",
-      "replay.py": "a948643f5529be5e94d749fcaa9cd0587dabfdaa3884d414e8ed914b2f72c4e9",
+      "replay.py": "7d78262e3f9b84b0e6d1da320e36c8949112a30ad24c59395b1d50130a53812e",
       "semantics.c": "7eb372d31980ae51559f028bfb786fcbf72fc051c11f31e3a2f77d0da0e61c04"
     },
     "population": "game_blob",
@@ -48,7 +1442,7 @@
       "normalize.c": "dae0d6c43b1d3cf25e41f0d7d625214aff3c8a3bd7303513b515441d30f7d43f",
       "steering.c": "76873052985a8585d674b57f0e632858d7fc4e0729aea788f5452ebb60084943"
     },
-    "protocol_version": 2,
+    "protocol_version": 3,
     "recipe": {
       "claims": [
         "func_800AD650",
@@ -132,6 +1526,10 @@
       "note": "Preserves all six canonical members and adds input_deadzone_apply. Real callers replace the three AD4C8/input_process_controller stand-ins. Existing lsq is non-static and unkept to delimit deleted-procedure residue. func_800AC9BC and the unrelated C36A0 stand-ins are inherited and unclaimed. All other context is strict; full-build, image and ROM gates are pending. Materialized from canonical sources by replay.py.",
       "provenance": "N64 w11b/w12a candidate; MAT3 ShotToWorldCollision/CylinderInSurf donor cross-reference; natural C closure, 2026-10-17.",
       "unprototyped": []
+    },
+    "target_metadata": {
+      "SHA256SUMS": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+      "symbols.json": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd"
     },
     "targets": {
       "camera_first_person": {
@@ -259,6 +1657,12 @@
         "bytes": 80,
         "sha256": "613caffec06da75b0b6a2575a94bc83159edae0f9e90590bbae9ef4b0198a329"
       }
+    },
+    "tooling_sha256": {
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+      "tools/conveyor/pipeline/blob_unit.py": "d1fedca1aa6993a92fb217ab46e47540d44216e6145191df1a3cddd5a79ec7f3"
     }
   },
   "negative_controls": {

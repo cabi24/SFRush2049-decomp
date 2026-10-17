@@ -57,3 +57,30 @@ The separate static-helper control fails closure even though the root remains ex
 The host harness runs 70,898 finite differential cases against the historical body, exhausts all 65,536 signed-short returns, exercises traversal faces/corner ties, filtering, extended list offsets, both snap branches, and normalization. Undefined-behavior sanitization is fatal. An intentionally unsquared radius must also fail the same semantic comparison. These are bounded supporting checks, not substitutes for the strict N64 proof.
 
 The receipt contains source/recipe/prepared-context/target hashes, full scores, output-section hashes and function boundaries. It contains no ROM bytes or raw assembly. Independent review is recorded separately once complete.
+
+## Complete verification-input and extent follow-up
+
+Protocol 3 retains the source, recipe, all existing comparison/section results
+and the 70,898-case semantic harness unchanged. It additionally seals the nine
+active IDO stages (including the frontend's ujoin), scorer, own-data checker,
+source-materialization transformer, accepted lock, protected target metadata
+and this README. Standard compiler lookup preserves the local missing-tool
+skip and required-tool failure policy.
+
+All nine fresh builds now record and require every complete ELF function extent
+and bounded frame scan. The 24 strict native bodies and the unclaimed AC9BC
+partial are explicit in every positive/control. The two inherited 104-byte
+C36A0 stand-ins and named eight-byte lsq residue remain nonnative, unclaimed
+context; the static-lsq packaging negative records its exact unnamed nonzero
+gap. Whole-object repeat identity and full text extent accounting are required.
+
+The wrong-radius host negative now requires SIGABRT at the exact compare
+assertion, with empty stdout and the expected assertion diagnostic. A sanitizer,
+compiler or setup failure no longer counts as the semantic negative. The
+original finite-input and source-spelling limitations remain unchanged.
+
+Four focused tests now run the full optimized replay, 995 precise integrity
+refusals, bounded frame-scan checks and the standard missing-IDO diagnostic.
+Absent tools produce three skips and one pass locally; required-tool mode
+produces three expected failures and one pass. The original source review is
+retained unchanged; this verifier-only follow-up has a separate review.
