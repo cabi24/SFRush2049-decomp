@@ -1,0 +1,205 @@
+{
+  "claims": [],
+  "frame_bytes": {
+    "candidate": 88,
+    "target": 88
+  },
+  "guard_tests": {
+    "normal_and_optimized_replay_identical": true,
+    "passed": 3
+  },
+  "members": {
+    "func_800B4FB0": {
+      "accepted": false,
+      "differing": 8,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "8/368 words differ",
+      "total": 368,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800B669C": {
+      "accepted": false,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 1,
+      "notes": [],
+      "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+      "total": 5,
+      "unresolved": [],
+      "unverified": []
+    },
+    "object_create": {
+      "accepted": false,
+      "differing": 28,
+      "errors": [],
+      "extra_words": 0,
+      "notes": [],
+      "summary": "28/28 words differ",
+      "total": 28,
+      "unresolved": [],
+      "unverified": []
+    },
+    "slot_state_setup": {
+      "accepted": false,
+      "differing": 2,
+      "errors": [],
+      "extra_words": 5,
+      "notes": [],
+      "summary": "2/58 words differ (5 extra words (nonzero beyond target length))",
+      "total": 58,
+      "unresolved": [],
+      "unverified": []
+    },
+    "voice_stop": {
+      "accepted": false,
+      "differing": 0,
+      "errors": [],
+      "extra_words": 1,
+      "notes": [],
+      "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+      "total": 138,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "negatives": {
+    "wrong_menu_count": {
+      "comparison": {
+        "accepted": false,
+        "differing": 8,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "8/368 words differ",
+        "total": 368,
+        "unresolved": [],
+        "unverified": []
+      },
+      "residual": {
+        "candidate_frame_bytes": 88,
+        "only_s1_s2_swap": false,
+        "target_frame_bytes": 88,
+        "word_offsets": [
+          72,
+          75,
+          85,
+          88,
+          89,
+          93,
+          94,
+          95
+        ]
+      }
+    },
+    "wrong_player_center": {
+      "comparison": {
+        "accepted": false,
+        "differing": 9,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "9/368 words differ",
+        "total": 368,
+        "unresolved": [],
+        "unverified": []
+      },
+      "residual": {
+        "candidate_frame_bytes": 88,
+        "only_s1_s2_swap": false,
+        "target_frame_bytes": 88,
+        "word_offsets": [
+          72,
+          75,
+          85,
+          88,
+          89,
+          93,
+          94,
+          95,
+          148
+        ]
+      }
+    },
+    "wrong_text_table": {
+      "comparison": {
+        "accepted": false,
+        "differing": 9,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "9/368 words differ",
+        "total": 368,
+        "unresolved": [],
+        "unverified": []
+      },
+      "residual": {
+        "candidate_frame_bytes": 88,
+        "only_s1_s2_swap": false,
+        "target_frame_bytes": 88,
+        "word_offsets": [
+          72,
+          75,
+          79,
+          85,
+          88,
+          89,
+          93,
+          94,
+          95
+        ]
+      }
+    },
+    "wrong_title_font": {
+      "comparison": {
+        "accepted": false,
+        "differing": 9,
+        "errors": [],
+        "extra_words": 0,
+        "notes": [],
+        "summary": "9/368 words differ",
+        "total": 368,
+        "unresolved": [],
+        "unverified": []
+      },
+      "residual": {
+        "candidate_frame_bytes": 88,
+        "only_s1_s2_swap": false,
+        "target_frame_bytes": 88,
+        "word_offsets": [
+          44,
+          72,
+          75,
+          85,
+          88,
+          89,
+          93,
+          94,
+          95
+        ]
+      }
+    }
+  },
+  "new_exact_bytes": 0,
+  "residual": {
+    "candidate_frame_bytes": 88,
+    "only_s1_s2_swap": true,
+    "target_frame_bytes": 88,
+    "word_offsets": [
+      72,
+      75,
+      85,
+      88,
+      89,
+      93,
+      94,
+      95
+    ]
+  },
+  "tool_fidelity": {
+    "whole_object_sha256": "1b7284469d59eb13c42dcaa60b712f77c6b6e561eedcb451eec7efd55cc9791d",
+    "whole_object_stock_equals_trace": true
+  }
+}

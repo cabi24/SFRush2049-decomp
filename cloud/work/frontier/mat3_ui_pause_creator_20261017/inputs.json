@@ -1,0 +1,17 @@
+{
+  "baseline_commit": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "new_exact_bytes": 0,
+  "source_sha256": {
+    "candidate.c": "87ec1b85aec372ef382be9508e491d157bd10cfcff5db809b2fad157bac9862d",
+    "ctx_gr3_b.c": "f8d201fda3530afedc9aae905d5e3a62de78f792a1098e70aebf99224f76b3b6",
+    "group.json": "dab6ca0616347b063f2b34290bb107b3749aa1ccad4b9bff59a1f8cee6e800c0",
+    "voice.c": "93a7983bf436d29157eedf119b9c281b34c2774f027cd59319cb9344423e54d4"
+  },
+  "target_words_sha256": {
+    "func_800B4FB0": "823415c6364620b5724c15b28de0736e89b1304d957b818b7301a634015403c2",
+    "func_800B669C": "b8afbed98b9ba3628a0f09bfd44fe0013653321610eb1ab113a5cc6dc1855fdb",
+    "object_create": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858",
+    "slot_state_setup": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144",
+    "voice_stop": "36d01d43f0e04c7f9772101adac59dc18eb372e5302a5ccd7238062887e36b65"
+  }
+}

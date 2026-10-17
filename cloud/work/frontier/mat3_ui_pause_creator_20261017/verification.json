@@ -1,0 +1,57 @@
+{
+  "func_800B4FB0": {
+    "accepted": false,
+    "differing": 8,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "8/368 words differ",
+    "total": 368,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800B669C": {
+    "accepted": false,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 1,
+    "notes": [],
+    "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+    "total": 5,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_create": {
+    "accepted": false,
+    "differing": 28,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "28/28 words differ",
+    "total": 28,
+    "unresolved": [],
+    "unverified": []
+  },
+  "slot_state_setup": {
+    "accepted": false,
+    "differing": 2,
+    "errors": [],
+    "extra_words": 5,
+    "notes": [],
+    "summary": "2/58 words differ (5 extra words (nonzero beyond target length))",
+    "total": 58,
+    "unresolved": [],
+    "unverified": []
+  },
+  "voice_stop": {
+    "accepted": false,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 1,
+    "notes": [],
+    "summary": "MISMATCH (1 extra words (nonzero beyond target length))",
+    "total": 138,
+    "unresolved": [],
+    "unverified": []
+  }
+}
