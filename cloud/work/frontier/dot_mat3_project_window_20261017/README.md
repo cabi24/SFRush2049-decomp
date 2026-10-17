@@ -51,7 +51,7 @@ Source, recipe, canonical context, target hashes, complete scores, executable/re
 
 The source and all existing matching/semantic outcomes are unchanged. The receipt
 now also binds this README, the scorer, own-data verifier, accepted lock, and the
-actual eight IDO stage executables. Compiler lookup uses the scorer's normal
+actual nine IDO stage executables. Compiler lookup uses the scorer's normal
 missing-tool diagnostic. A missing tool skips the focused compiler-dependent
 tests locally, while REQUIRE_TOOLCHAIN=1 turns those skips into failures.
 
@@ -63,3 +63,7 @@ preserve the unaffected helpers, including their full extents; the deliberate
 wrong-stride getter failure is required explicitly. Optimized-interpreter tests
 exercise inconsistent repeated rows, altered claims/inputs/extents and changed
 negative/semantic results, and independently run the full checked replay.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.

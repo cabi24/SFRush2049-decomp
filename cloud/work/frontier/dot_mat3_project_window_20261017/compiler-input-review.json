@@ -1,0 +1,33 @@
+{
+  "independent_checks": [
+    "Only verifier-code change is adding ujoin through Path(score.ido(...)).",
+    "Stock cc -show -j independently confirms cfe then ujoin.",
+    "All 24 focused tests across six packets pass, including complete optimized replay and explicit stale-ujoin refusals.",
+    "Final refreshed input bindings equal current files and tools.",
+    "All prior output, source, recipe, object, extent, comparison, layout and semantic fields remain identical."
+  ],
+  "limits": [
+    "Prior source-shaping and semantic-domain disclosures remain applicable.",
+    "No canonical unit/image/ROM gates or additional acceptance claim."
+  ],
+  "prior_verifier_sha256": "7ac7dfde89aaa633d495a4d6c619a06135b40a7ae9fa81f367db516ae4c35926",
+  "proof_sha256": "ddb9827c5d4df35f0a8ba7ee51b7c7193c9d0500696cf40750fb227e7528307e",
+  "reviewed_at_utc": "2026-10-17T22:22:00Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_project_window_20261017/README.md": "0de5bb7ba738f1bda343dfa7d7ab2b35ea915dd7b16c753f6c8f7599555bba2a",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/candidate.c": "941621643e3fd5f0bfd9aa9420f2403f87cf99fbfa4a7cb02eef62c077cea633",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/group.json": "43be8b84cc70446513d31818779ddc1288715dc713248a7888a018fba2f90596",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/proof.json": "ddb9827c5d4df35f0a8ba7ee51b7c7193c9d0500696cf40750fb227e7528307e",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/replay.py": "12d1015edf740e547ee8cd6adda862292e654c98028d49dd07a0e3f3cd8aa8d3",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/semantics.c": "9d7d42020ef95f95e89e00fc375d1ad68fc4c1af6063dd4411a41594155f9d71",
+    "tests/cloud/test_mat3_project_window.py": "e8bbe110170cac81408d4ffe9d8af48a62204599bcb6c4f219d865ff44d79333"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Compiler-input fingerprint correction only; no source or matching-credit expansion.",
+  "status": "PASS",
+  "verified_receipt_changes": [
+    "/inputs/compiler_sha256/ujoin",
+    "/inputs/packet_sha256/README.md",
+    "/inputs/packet_sha256/replay.py"
+  ]
+}
