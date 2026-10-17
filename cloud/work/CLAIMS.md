@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | func_800D5A04 + preserved frontier_slot18_alloc closure | dot UI | 2026-10-17 | `mat3_ui_transition_20261017`: all 13 complete members strict MATCH; 428 new source-exact bytes, genuine internal allocator dependency; 0 image/ROM credit pending independent checker. Supersedes w27d preceding-procedure explanation. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

@@ -1,0 +1,23 @@
+{
+  "members": {
+    "func_800D5A04": "MATCH",
+    "func_80091B00": "MATCH",
+    "func_800D5828": "MATCH",
+    "func_800D5524": "MATCH",
+    "records_screen": "MATCH",
+    "players_frame_update": "MATCH",
+    "func_800B0580": "MATCH",
+    "entity_audio_update": "MATCH",
+    "object_type7_create": "MATCH",
+    "object_type1_create": "MATCH",
+    "func_800D6348": "MATCH",
+    "sync_entry_register": "MATCH",
+    "player_conditional_check": "MATCH"
+  },
+  "new_source_exact_bytes": 428,
+  "new_accepted_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "gnu_original_object": "428/428 bytes exact",
+  "wrong_operation_differences": 1,
+  "external_allocator_differences": 13
+}

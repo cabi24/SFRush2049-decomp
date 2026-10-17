@@ -1,0 +1,48 @@
+{
+  "genuine_internal_allocator": {
+    "complete_object_identical": true,
+    "initial_removed_registers": [
+      2,
+      3,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "allocated_registers": [
+      14,
+      15,
+      24,
+      25,
+      14,
+      15,
+      24,
+      25,
+      14,
+      15,
+      24
+    ]
+  },
+  "external_allocator_control": {
+    "complete_object_identical": true,
+    "initial_removed_registers": [
+      2,
+      3
+    ],
+    "allocated_registers": [
+      14,
+      15,
+      24,
+      25,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  }
+}

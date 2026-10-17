@@ -1,0 +1,95 @@
+{
+  "allocator_call_offsets": [
+    240
+  ],
+  "base": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "new_accepted_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "new_source_exact_bytes": 428,
+  "population": "game",
+  "sources": {
+    "groups/frontier_slot18_alloc/entity_audio_update.c": "cf465fd8479eb675423c9e4b674a9e90931e4a530e8ccd94ce390ee525864d56",
+    "groups/frontier_slot18_alloc/func_80091B00.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
+    "groups/frontier_slot18_alloc/func_800B0580.c": "25d0fafa136e572d7121d1455cf881deebc2f4dc9fbd407255f43d1bc9b382e4",
+    "groups/frontier_slot18_alloc/func_800D5524.c": "c296897d76f497b9dbf401dbc81986020bb057cce23ccce210bd8f74609535de",
+    "groups/frontier_slot18_alloc/func_800D5828.c": "7e29ae282eaa3c1f991d57758d5583eb9654eb85d6ec0a6e2c2188a57e625cd5",
+    "groups/frontier_slot18_alloc/func_800D6348.c": "cd3df2d602ccf31cbb5b7b2291dbc39eddd8343ec9572071eb729656bbaa2d15",
+    "groups/frontier_slot18_alloc/group.c": "6f5e3406e4810552ca5e5824b2c412242335b369e201c438e39ae713b0e62881",
+    "groups/frontier_slot18_alloc/group.json": "86015f8738e77176c66591af1c6bc1a2fb34fb9a9ccb96dbe41bfff6b4175f5d",
+    "groups/frontier_slot18_alloc/object_type1_create.c": "8b955bce087f94739d22d7e02b3f9fcea0d506200c10dfffc4833f8a70c1f5f6",
+    "groups/frontier_slot18_alloc/object_type7_create.c": "791e6a3d79dd60b8df2a2c7339d3de23256574db9851e81f8a11a1bd02776b91",
+    "groups/frontier_slot18_alloc/players_frame_update.c": "a4025c335f637514be96c645142bcc4a96d046d80eefbd6f449adeda61047dbd",
+    "groups/frontier_slot18_alloc/records_screen.c": "82a5c08cfdd6710ce9a1d6bab1181a2f856526095829722c6e15ea199fe44798",
+    "groups/frontier_slot18_alloc/sync_entry_register.c": "8810a2ae33ea777f927b138aeb8f1a6984dcfd21d02d6fd692e2564fde3bbe77",
+    "trace_verify.py": "a4565c6100907cec150d15017bf8f550e780a5a75731ef0bc6339a311041786d",
+    "verify.py": "30cf1be5bb2336ff8bf202add9f0bc36377a5ec399663bfd4592bc488a1ed9aa"
+  },
+  "targets": {
+    "entity_audio_update": {
+      "address": "0x800b6138",
+      "bytes": 112,
+      "sha256": "34c7cb01f1851ec5ed30e0f1a91a86fbc196f703bec9182bd05d740cd639e8e7"
+    },
+    "func_80091B00": {
+      "address": "0x80091b00",
+      "bytes": 168,
+      "sha256": "c466f1dbe7e0596f1266860f7e6612ab26338fcab2d5f1e664723d1527f722e9"
+    },
+    "func_800B0580": {
+      "address": "0x800b0580",
+      "bytes": 152,
+      "sha256": "1f48a846e914386fd83ed5716fec7bb2fdcafba45f6a45155eb8f7b5073e9e9b"
+    },
+    "func_800D5524": {
+      "address": "0x800d5524",
+      "bytes": 628,
+      "sha256": "c8f07ad20e578b17abbd7f562fe7ef3e57317056dca1f13a1b2884d241f26755"
+    },
+    "func_800D5828": {
+      "address": "0x800d5828",
+      "bytes": 100,
+      "sha256": "35e6aa7dbb8eb9eac5e5c6d5842ef6d10e771d75e14af5113a9b44f5cd724a0b"
+    },
+    "func_800D5A04": {
+      "address": "0x800d5a04",
+      "bytes": 428,
+      "sha256": "eca899a1e5d264a30536183c949abcb75cde02c113fbe639f7b203687c5b3dee"
+    },
+    "func_800D6348": {
+      "address": "0x800d6348",
+      "bytes": 104,
+      "sha256": "7c069fef3ebcb67af2125aaeb952fd5a8fe19c6a6f863a3c2a47f083829f290a"
+    },
+    "object_type1_create": {
+      "address": "0x800c87f4",
+      "bytes": 104,
+      "sha256": "8902e248dfe436ff4e4a3c37d97a158d163072d888fa3a5ee34eabb4a3a47197"
+    },
+    "object_type7_create": {
+      "address": "0x800c878c",
+      "bytes": 104,
+      "sha256": "3953674972717a957c34adbbb3f877d27c62b831e0743348617436169b0daaca"
+    },
+    "player_conditional_check": {
+      "address": "0x800d54e0",
+      "bytes": 68,
+      "sha256": "24ea753fc6be6a2c1df793aa6a6298eed3c9efc1fa2d02d68dbb380193a8f3d6"
+    },
+    "players_frame_update": {
+      "address": "0x800d5798",
+      "bytes": 144,
+      "sha256": "aefac1165535b4e3ffd38250dd9d630e38441254ddbbd2ec38f39ddaacb6ea1c"
+    },
+    "records_screen": {
+      "address": "0x800d58cc",
+      "bytes": 312,
+      "sha256": "8bc788ec8d193185d9285d90d41bcf883934f5677ed2dbb59c50a665a4beb397"
+    },
+    "sync_entry_register": {
+      "address": "0x800c9194",
+      "bytes": 124,
+      "sha256": "e71eb30f509e65c68e52f0e2d197fd15d8cb475c4ec67aa3150da93982a34d9d"
+    }
+  },
+  "test_sha256": "8f7f3a0baac3c44e234d03b88053b4c366c59f0daa4ce610f45dedf2ddc5d531"
+}
