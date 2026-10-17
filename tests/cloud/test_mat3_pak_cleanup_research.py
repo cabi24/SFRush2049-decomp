@@ -37,6 +37,7 @@ for mutation in [lambda x:x.update(claims=[m.NAME]),lambda x:x.update(new_candid
 original=m.inputs
 for key in ['packet_sha256','context_sha256','toolchain_sha256','verifier_sha256']:
  b=original();n=next(iter(b[key]));b[key][n]='0'*64;m.inputs=lambda:b;rejected(lambda:m.verify())
+m.inputs=original;b=original();b['toolchain_sha256']['ujoin']='0'*64;m.inputs=lambda:b;rejected(lambda:m.verify())
 m.inputs=original;b=original();b['targets'][m.NAME]['sha256']='0'*64;m.inputs=lambda:b;rejected(lambda:m.verify())
 print('optimized guards reject false credit, diagnostics, extents, inventory, semantics and stale inputs')
 '''
