@@ -72,11 +72,13 @@ python3 cloud/work/frontier/dot_mat3_physics_20261017/mdrive/replay.py --check
 python3 -m pytest -q tests/cloud/test_mat3_init_mdrive.py
 ```
 
-`proof.json` follows packet protocol v2: it binds the C source, group recipe,
-replay and host semantic test, the target's complete word hash and extent,
-and referenced symbol addresses. It does not pin mutable tooling, lock files
-or assembly text. Replay reads the current checkout and works after the
-function becomes locked; it does not use historical git objects.
+`proof.json` follows packet protocol 3: it binds the C source, group recipe,
+replay, host semantic test and README, the target's complete word hash and
+extent, and referenced symbol addresses. It also pins the actual eight IDO
+stage executables, scorer, own-data verifier and canonical lock. Replay reads
+the current checkout, without historical git objects. A source, tool or lock
+change requires a fresh reviewed receipt; absence of the compiler follows
+the shared toolchain policy.
 
 Replay makes two independent group compiles and one single-function compile.
 Five controls are freshly compiled and must reject:
@@ -89,10 +91,15 @@ Five controls are freshly compiled and must reject:
 | Join active/state assignment lines | 2 / 175 | 72 B |
 | Join final gear assignment lines | 2 / 175 | 72 B |
 
-The one fast pytest test validates the stored inputs, compiles and runs the
-host layout/branch/order test with UBSan (288 bounded cases), then performs
-one stock group compile. The host test is a regression check for the stated
-semantics, not a separate native-MIPS behavioral-equivalence claim. Full
-negative-control replay is kept out of the pytest test. Both complete in
-under a second on the verification host. Toolchain absence uses the shared
-repository skip policy; `REQUIRE_TOOLCHAIN=1` makes missing tools a failure.
+The four focused tests validate the stored inputs and strict compile, execute
+110 optimized-Python refusal checks, run the complete optimized replay with
+all five compiled controls, and check the missing-compiler diagnostic. The
+unchanged host layout/branch/order model runs 288 bounded cases under fatal
+UBSan with an empty-stderr requirement. It is a regression check for the
+stated semantics, not a separate native-MIPS behavioral-equivalence claim.
+Toolchain absence uses the shared repository skip policy;
+`REQUIRE_TOOLCHAIN=1` makes missing tools a failure.
+
+## Verification hardening (protocol 3)
+
+The source, recipe, five source controls and all prior comparison results are unchanged. The replay now pins the actual eight IDO-stage executables, scorer, own-data verifier and canonical lock; compiler lookups use the shared missing-tool policy. It records and enforces the complete emitted function inventory and 700-byte ELF extent for all three positives and all five controls, with frame scans bounded to that extent. Explicit guards check complete claims, compiler flags, all comparison fields, control counts, native frame and zero image credit. These checks remain active under optimized Python. The unchanged 288-case host model now also runs inside the full replay with fatal UBSan and an empty-stderr requirement. The original source-shaping and volatile-global disclosures above remain in force.
