@@ -1,0 +1,67 @@
+{
+  "members": [
+    "func_800AD650",
+    "handbrake_apply",
+    "func_800C36A0",
+    "camera_trigger_check",
+    "camera_victory",
+    "func_800C3AD0",
+    "camera_play_script"
+  ],
+  "files": [
+    "camera_play_script.c",
+    "group.c",
+    "camera_victory.c",
+    "camera_trigger_check.c",
+    "effect_cleanup.c",
+    "func_800C54F0.c",
+    "func_800A61B0.c",
+    "math_utility.c",
+    "func_800B61A8.c",
+    "func_8009E820.c"
+  ],
+  "keep": [
+    "__standin_func_800AD4C8",
+    "__standin_input_process_controller_a",
+    "__standin_input_process_controller_b",
+    "func_800AD5D0",
+    "handbrake_apply",
+    "func_800AC9BC",
+    "__standin_c36a0_a",
+    "__standin_c36a0_b",
+    "camera_trigger_check",
+    "camera_victory",
+    "camera_play_script",
+    "effect_cleanup",
+    "func_800C54F0",
+    "func_800A61B0",
+    "math_utility",
+    "func_800B61A8",
+    "func_8009E820"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [
+    "func_800AD4C8",
+    "input_process_controller",
+    "func_800AD5D0",
+    "func_800AC9BC",
+    "effect_cleanup",
+    "func_800C54F0",
+    "func_800A61B0",
+    "math_utility",
+    "func_800B61A8",
+    "func_8009E820"
+  ],
+  "provenance": "MAT3 CollideCarBodyAgainstSurface matched reconstruction informs shared endpoint index; N64 w18d draft; 2026-10-17 dot carbody packet.",
+  "note": "Supersedes func_800AD4C8 in place, preserving all six locked members. The historical stand-ins/context and unmatched func_800AC9BC are inherited unchanged. Existing lsq is non-static/unkept solely to give its deleted-procedure residue a symbol boundary. Added locked callees are copied verbatim as context. camera_play_script has one disclosed multiply-by-one source-shaping device in two uses; no claim of original spelling. Whole-unit, image and ROM gates remain pending.",
+  "claims": [
+    "func_800AD650",
+    "handbrake_apply",
+    "func_800C36A0",
+    "camera_trigger_check",
+    "camera_victory",
+    "func_800C3AD0",
+    "camera_play_script"
+  ]
+}
