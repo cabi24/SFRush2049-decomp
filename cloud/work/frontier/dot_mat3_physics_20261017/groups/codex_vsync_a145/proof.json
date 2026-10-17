@@ -1,0 +1,759 @@
+{
+  "accepted_image_bytes": 0,
+  "as1_extra_flag": "-r4300_mul",
+  "claims": [
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "func_800DE45C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "image_gate": "not run",
+  "inputs": {
+    "compiler": "ido5.3",
+    "files": {
+      "func_800D6530.c": "56f8c8580b0731fc6fe2d015885e9d5b47ffbb5fe30081a07d218505670f46c9",
+      "func_800DE45C.c": "e5ae29e7b33793b67caf2f294aba8ae032dadb3d3e5313f3cc6afa41e8355f5a",
+      "group.c": "d376ef06a9a7fdd10e69aff27b9541223a19a5d180d7d8474a7666790a74b86d",
+      "group.json": "a1e116d441d6283eed31a6c37858ab5aa5b8f838296e3603c3296678261970b4",
+      "replay.py": "7420a84e7d3bb861dfaf376ea7e355313c89905b8c6a9840635e937b17749038",
+      "semantics.c": "c2eb5870f579a8e3ce2e477c8c539f886bddf9ebaa7604142c46ffc5e9544be2"
+    },
+    "population": "game_blob",
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [
+        "speed_set",
+        "vsync_wait",
+        "speed_mode0_wrapper",
+        "speed_mode1_wrapper",
+        "continue_prompt",
+        "func_800D6530",
+        "func_800DE45C"
+      ],
+      "context": [],
+      "files": [
+        "group.c",
+        "func_800D6530.c",
+        "func_800DE45C.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "speed_mode0_wrapper",
+        "speed_mode1_wrapper",
+        "continue_prompt",
+        "vsync_wait",
+        "func_800D6530",
+        "func_800DE45C"
+      ],
+      "members": [
+        "speed_set",
+        "vsync_wait",
+        "speed_mode0_wrapper",
+        "speed_mode1_wrapper",
+        "continue_prompt",
+        "func_800D6530",
+        "func_800DE45C"
+      ]
+    },
+    "references": {
+      "D_8010FFC0": 2148597696,
+      "D_80114198": 2148614552,
+      "D_801141A4": 2148614564,
+      "D_801141B0": 2148614576,
+      "D_801164A4": 2148623524,
+      "D_801174B4": 2148627636,
+      "D_801247EC": 2148681708,
+      "D_8013F1D8": 2148790744,
+      "D_8013F1D9": 2148790745,
+      "D_8013F2FC": 2148791036,
+      "D_8013FEC8": 2148794056,
+      "D_8013FECC": 2148794060,
+      "D_8013FECD": 2148794061,
+      "D_801403D0": 2148795344,
+      "D_80140418": 2148795416,
+      "D_8014061A": 2148795930,
+      "D_801407B0": 2148796336,
+      "D_801407BC": 2148796348,
+      "D_801407D0": 2148796368,
+      "D_801407DC": 2148796380,
+      "D_80140804": 2148796420,
+      "D_80140A00": 2148796928,
+      "D_80140A04": 2148796932,
+      "D_80140AD8": 2148797144,
+      "D_80140B08": 2148797192,
+      "D_80140BD8": 2148797400,
+      "D_80142510": 2148803856,
+      "D_801426EC": 2148804332,
+      "D_80142724": 2148804388,
+      "D_80142726": 2148804390,
+      "D_80142728": 2148804392,
+      "D_80142760": 2148804448,
+      "D_801427A0": 2148804512,
+      "D_801427A1": 2148804513,
+      "D_801427A8": 2148804520,
+      "D_80142B00": 2148805376,
+      "D_80142DB0": 2148806064,
+      "D_80143F1C": 2148810524,
+      "D_80146108": 2148819208,
+      "D_80146115": 2148819221,
+      "D_80146180": 2148819328,
+      "D_8014A108": 2148835592,
+      "D_8014A110": 2148835600,
+      "D_8014A118": 2148835608,
+      "D_80150EFC": 2148863740,
+      "D_80151AD0": 2148866768,
+      "D_80151AD8": 2148866776,
+      "D_80152030": 2148868144,
+      "D_80152570": 2148869488,
+      "D_80152734": 2148869940,
+      "D_801543C8": 2148877256,
+      "D_80156BDC": 2148887516,
+      "D_80156CE8": 2148887784,
+      "D_8015723C": 2148889148,
+      "D_8015B24C": 2148905548,
+      "D_8015B25C": 2148905564,
+      "D_8015F72C": 2148923180,
+      "D_8015F734": 2148923188,
+      "D_8016137C": 2148930428,
+      "D_80161394": 2148930452,
+      "D_801613A0": 2148930464,
+      "D_801613A8": 2148930472,
+      "D_801613A9": 2148930473,
+      "D_801613AA": 2148930474,
+      "D_801613AB": 2148930475,
+      "D_8017A4D8": 2149033176,
+      "D_8017A634": 2149033524,
+      "continue_prompt": 2148382552,
+      "drone_target_update": 2148368008,
+      "func_80091B00": 2148080384,
+      "func_800CCB40": 2148322112,
+      "func_800D63EC": 2148361196,
+      "func_800D6530": 2148361520,
+      "func_800D6E00": 2148363776,
+      "func_800DE45C": 2148394076,
+      "input_rec0": 2148835608,
+      "osRecvMesg": 2147512944,
+      "osSendMesg": 2147513824,
+      "speed_mode0_wrapper": 2148307676,
+      "speed_mode1_wrapper": 2148307884,
+      "speed_set": 2148307472,
+      "vsync_wait": 2148512308
+    },
+    "targets": {
+      "continue_prompt": {
+        "address": "0x800db758",
+        "size": 92,
+        "words_sha256": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d"
+      },
+      "func_800D6530": {
+        "address": "0x800d6530",
+        "size": 352,
+        "words_sha256": "ff98dedc682a4187c342b43aee12dd91b3899076efe40bdc2adf896470fc7cd9"
+      },
+      "func_800DE45C": {
+        "address": "0x800de45c",
+        "size": 1020,
+        "words_sha256": "f620679a2314881ca0b15b49542cc255d1a257dc9e9f28081dd623bb280adec1"
+      },
+      "speed_mode0_wrapper": {
+        "address": "0x800c92dc",
+        "size": 88,
+        "words_sha256": "71c500cfc0c18d2a306e57a277d7aa0b1ea07b5eba55cfcc8be0f3eca8a70f52"
+      },
+      "speed_mode1_wrapper": {
+        "address": "0x800c93ac",
+        "size": 88,
+        "words_sha256": "78790a2c0ce7c981e572ac576f2caf3e06e6b408a1420dbc8868a4921840853a"
+      },
+      "speed_set": {
+        "address": "0x800c9210",
+        "size": 204,
+        "words_sha256": "79077417308e89d366e20e56c9b0ac2e72f1d9ea00e5369cb40521a4b3115b76"
+      },
+      "vsync_wait": {
+        "address": "0x800fb234",
+        "size": 148,
+        "words_sha256": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+      }
+    }
+  },
+  "negative_controls": {
+    "extern_player_records": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 240,
+        "errors": [],
+        "extra_nonzero_words": 2,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x114",
+          ".rodata+0x0 at +0x118",
+          ".rodata+0x4 at +0x148",
+          ".rodata+0x4 at +0x14c"
+        ]
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "extern_tail_flags": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 17,
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x4b4"
+        ],
+        "extra_nonzero_words": 3,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "inline_count_stores": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 2,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "joined_tail_loop_line": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 4,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "shared_initial_counter": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 251,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x9c",
+          ".rodata+0x0 at +0xa0",
+          ".rodata+0x4 at +0xd0",
+          ".rodata+0x4 at +0xd4"
+        ]
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "wrong_option_count": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 1,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": false,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    }
+  },
+  "new_individually_strict_bytes": 1020,
+  "object_layout": {
+    "emitted_functions": [
+      "continue_prompt",
+      "func_800D6530",
+      "func_800DE45C",
+      "speed_mode0_wrapper",
+      "speed_mode1_wrapper",
+      "speed_set",
+      "vsync_wait"
+    ],
+    "named_objects": {
+      "D_80146180": {
+        "image_address": "0x80146180",
+        "object_offset": 304,
+        "object_section": ".bss",
+        "section_type": 8,
+        "size": 4
+      },
+      "input_rec0": {
+        "image_address": "0x8014a118",
+        "object_offset": 0,
+        "object_section": ".bss",
+        "section_type": 8,
+        "size": 304
+      }
+    },
+    "root_frame_bytes": 56
+  },
+  "positive": {
+    "group_first": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "group_repeat": {
+      "continue_prompt": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800D6530": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800DE45C": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 255,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode0_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_mode1_wrapper": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "speed_set": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 51,
+        "unresolved": [],
+        "unverified": []
+      },
+      "vsync_wait": {
+        "differing_words": 0,
+        "errors": [],
+        "extra_nonzero_words": 0,
+        "strict_match": true,
+        "target_words": 37,
+        "unresolved": [],
+        "unverified": []
+      }
+    }
+  },
+  "preserved_members": [
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530"
+  ],
+  "rom_gate": "not run",
+  "whole_unit_gate": "not run"
+}

@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | func_800DE45C; codex_vsync_a145 preserved members speed_set, vsync_wait, speed_mode0_wrapper, speed_mode1_wrapper, continue_prompt, func_800D6530 | dot cloud physics | 2026-10-17 | Exact candidate: new 1,020 B; all seven strict, six prior members preserved. Packet `cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145` extends the same-named group. Inferred helper/data-definition ownership and statement-line scheduling disclosed; code-only existing-storage rebinding reviewed. Protocol-v2 replay, six rejected controls and 256 host cases; whole-unit/image/ROM gates pending. Supersedes only the historical w27d DE45C draft, no other pool target. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

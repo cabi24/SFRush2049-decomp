@@ -1,0 +1,35 @@
+{
+  "members": [
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "func_800DE45C"
+  ],
+  "context": [],
+  "files": [
+    "group.c",
+    "func_800D6530.c",
+    "func_800DE45C.c"
+  ],
+  "keep": [
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait",
+    "func_800D6530",
+    "func_800DE45C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "func_800DE45C"
+  ]
+}
