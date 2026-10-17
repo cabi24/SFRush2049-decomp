@@ -50,3 +50,8 @@ print('optimized guards rejected false claims, credit, relocation, extent, loade
  run=subprocess.run([sys.executable,'-O','-c',textwrap.dedent(code)],capture_output=True,text=True)
  assert run.returncode==0,run.stderr
  assert run.stdout.startswith('optimized guards rejected')
+
+def test_missing_ido_uses_standard_diagnostic(monkeypatch, tmp_path):
+ monkeypatch.setattr(packet.score, "IDO", tmp_path/"missing_ido")
+ with pytest.raises(SystemExit, match="run tools/cloud/setup.sh"):
+  packet.inputs()
