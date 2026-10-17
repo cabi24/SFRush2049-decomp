@@ -116,3 +116,11 @@ standard missing-IDO diagnostic when tools are absent. It changes no C, recipe,
 object, comparison row or semantic result. A focused diagnostic test verifies
 that path; ordinary local missing-tool skips remain failures when
 REQUIRE_TOOLCHAIN=1.
+
+## Compiler-stage binding follow-up
+
+The environment fingerprint includes `ujoin`, which the stock `cc -j` driver
+actually invokes for this group. A targeted optimized test redirects just that
+stage to changed local bytes and requires the source/tool binding guard to reject
+it before compilation. No shared toolchain file is modified. C, recipes, whole
+objects, matching results and behavior results are unchanged.

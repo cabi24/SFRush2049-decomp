@@ -40,7 +40,9 @@ for change,reason in [
 ]:
     z=copy.deepcopy(r);change(z);refusal(lambda:m.verify_report(z),reason)
 original=Path.read_text
-for mode,reason in [('input','source or target binding'),('target','source or target binding'),('trace_input','trace input binding'),('trace_pair','trace pair changed'),('trace_object','trace object changed'),('sealed','fresh sealed receipt'),('group_claims','complete group claims')]:
+original_ido=m.score.ido
+stage=Path(sys.argv[2])/'altered-ujoin';stage.write_text('changed stage bytes')
+for mode,reason in [('input','source or target binding'),('actual_stage','source or target binding'),('target','source or target binding'),('trace_input','trace input binding'),('trace_pair','trace pair changed'),('trace_object','trace object changed'),('sealed','fresh sealed receipt'),('group_claims','complete group claims')]:
     def read(path,*args,**kwargs):
         text=original(path,*args,**kwargs)
         if path==p/'verification.json':
@@ -59,14 +61,15 @@ for mode,reason in [('input','source or target binding'),('target','source or ta
             z=json.loads(text);z['claims']=[];return json.dumps(z)
         return text
     Path.read_text=read
+    if mode=='actual_stage':m.score.ido=lambda n:str(stage) if n=='ujoin' else original_ido(n)
     try:refusal(lambda:m.verify(Path(sys.argv[2])/mode),reason)
-    finally:Path.read_text=original
-if count!=25:raise RuntimeError('refusal scope changed')
-print('25 optimized integrity refusals pass')
+    finally:Path.read_text=original;m.score.ido=original_ido
+if count!=26:raise RuntimeError('refusal scope changed')
+print('26 optimized integrity refusals pass')
 '''
     r=subprocess.run([sys.executable,'-O','-c',program,str(PACKET),str(tmp_path)],capture_output=True,text=True)
     assert r.returncode==0,r.stdout+r.stderr
-    assert r.stdout=='25 optimized integrity refusals pass\n'
+    assert r.stdout=='26 optimized integrity refusals pass\n'
 
 def test_music_relocated_packet(tmp_path):
     moved=tmp_path/'different_checkout'/'music';shutil.copytree(PACKET,moved,ignore=shutil.ignore_patterns('__pycache__'))
