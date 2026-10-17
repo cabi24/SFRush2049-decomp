@@ -13,7 +13,7 @@
     },
     "packet_sha256": {
       "PROVENANCE.md": "7581c7b4f2231ecd04311f5fa9e8981fc3da127a4864d249702e100d703187be",
-      "README.md": "7d14e9224ad260b1dfb04f19d96c9e3d6df6ae3ccd6ed68ed4617e8124d229b1",
+      "README.md": "d33aad15c8d1fdc0f4816e091bcb2fd99dd8252bd8e220e47207e43cf29b14e9",
       "group/group.json": "a1c708b808dafbb7d610139d59f8bd945650ca5c991f17398063d5a4388de1e7",
       "group/heap_total.c": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41",
       "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
@@ -21,7 +21,7 @@
       "group/resource.c": "cb8e7caacd4fe56104ffdc55e8afbf1df52a93cb450b400ad672c85f6347987b",
       "group/root.c": "1db1f4a44992a114bdf2d793af2cce151c7dad4404853ee343ce7e41ab127b69",
       "group/setup.c": "21b2b62f08ea4efeed4213cca6cb80784f25bd6fc952017bd83ecbbe6a7f5ef6",
-      "replay.py": "d1503dc7eabeebd6fa9e8d170a4743d17e6c16e0579f68f6def8bbc49914b3fb",
+      "replay.py": "fe6dd75abc08ad2c89227b91c5e8139c91acc45ac95febe186f147452b5c692e",
       "semantics.c": "123aa4d9b8c0d988f5be634853126bd726e1d4715cdc5121c2ec973d74edb68f"
     },
     "protocol_version": 2,
@@ -130,6 +130,7 @@
       "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
       "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
       "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
       "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
       "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
       "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",

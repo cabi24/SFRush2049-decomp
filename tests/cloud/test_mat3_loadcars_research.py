@@ -42,7 +42,7 @@ with tempfile.TemporaryDirectory() as tmp:
  for name in ['group/root.c','replay.py']:
   original=(d/name).read_text();(d/name).write_text(original+'\n/* changed receipt input */\n');rejects(lambda:p.verify());(d/name).write_text(original)
  bad=copy.deepcopy(saved);bad['inputs']['targets'][p.NAME]['sha256']='0'*64;(d/'proof.json').write_text(json.dumps(bad));rejects(lambda:p.verify());(d/'proof.json').write_text(json.dumps(saved))
- for key,item in [('toolchain_sha256','uopt'),('verifier_sha256','tools/cloud/score.py')]:
+ for key,item in [('toolchain_sha256','uopt'),('toolchain_sha256','ujoin'),('verifier_sha256','tools/cloud/score.py')]:
   bad=copy.deepcopy(saved);bad['inputs'][key][item]='0'*64;(d/'proof.json').write_text(json.dumps(bad));rejects(lambda:p.verify());(d/'proof.json').write_text(json.dumps(saved))
  recipe=json.loads((d/'group/group.json').read_text());recipe['claims']=[p.NAME];(d/'group/group.json').write_text(json.dumps(recipe));rejects(lambda:p.verify())
 print('optimized guards rejected false claims, credit, relocation, extent, loader status, source, verifier, target/compiler/scorer receipts and manifest')

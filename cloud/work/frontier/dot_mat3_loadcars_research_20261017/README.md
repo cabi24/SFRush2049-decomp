@@ -29,3 +29,7 @@ The host harness substitutes controlled heap, load, find, random, setup, and sel
 ## Missing-tool portability follow-up
 
 Compiler fingerprints now resolve through the scorer's standard IDO availability check. When the toolchain is absent, tests follow the shared local-skip policy; REQUIRE_TOOLCHAIN=1 still makes those skips failures. The new diagnostic test pins that boundary. C, recipe, target data and all comparison/semantic results are unchanged. The refreshed proof and narrow availability review supplement the original source/semantics review. No claims or byte credit are added.
+
+The compiler fingerprint includes `ujoin`, which stock `cc -j` invokes after
+`cfe` on this group-build path. A stale `ujoin` digest is rejected under Python
+`-O`; source, comparison rows, semantic results and credit are unchanged.

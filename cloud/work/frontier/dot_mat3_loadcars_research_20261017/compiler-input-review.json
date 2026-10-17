@@ -1,0 +1,36 @@
+{
+  "reviewer": "independent physics lane",
+  "status": "PASS",
+  "scope": "Compiler-input seal correction only; no source, result, semantic or credit expansion.",
+  "proof_sha256": "cc6acbf50fc1d5c8130a6c96d0df99e57dfe20a80e1f060e4acca6e331279884",
+  "prior_proof_sha256": "1ac48adcb09b393b8bb5bcf195a88cd8f077e700373a1e7d191ff5a905177181",
+  "changed_receipt_fields": [
+    "/inputs/packet_sha256/README.md",
+    "/inputs/packet_sha256/replay.py",
+    "/inputs/toolchain_sha256/ujoin"
+  ],
+  "code_review": "The sole verifier code change adds ujoin to the existing standard score.ido compiler lookup and hash inventory. The optimized test specifically rejects a stale ujoin digest. Stock cc -j frontend evidence confirms cfe then ujoin.",
+  "preservation": "Independent recursive comparison reproduced exactly the three listed input changes; all other receipt fields, source/recipe hashes, complete objects, comparison rows, extents and semantics are identical.",
+  "independent_tests": {
+    "three_packet_focused_suite": "12 passed, including each full optimized replay and stale-ujoin refusal",
+    "missing_IDO": "3 passed, 9 skipped",
+    "logs": "build/physics_ujoin_review2221"
+  },
+  "current_files": {
+    "semantics.c": "123aa4d9b8c0d988f5be634853126bd726e1d4715cdc5121c2ec973d74edb68f",
+    "proof.json": "cc6acbf50fc1d5c8130a6c96d0df99e57dfe20a80e1f060e4acca6e331279884",
+    "PROVENANCE.md": "7581c7b4f2231ecd04311f5fa9e8981fc3da127a4864d249702e100d703187be",
+    "README.md": "d33aad15c8d1fdc0f4816e091bcb2fd99dd8252bd8e220e47207e43cf29b14e9",
+    "replay.py": "fe6dd75abc08ad2c89227b91c5e8139c91acc45ac95febe186f147452b5c692e",
+    "group/resource.c": "cb8e7caacd4fe56104ffdc55e8afbf1df52a93cb450b400ad672c85f6347987b",
+    "group/setup.c": "21b2b62f08ea4efeed4213cca6cb80784f25bd6fc952017bd83ecbbe6a7f5ef6",
+    "group/group.json": "a1c708b808dafbb7d610139d59f8bd945650ca5c991f17398063d5a4388de1e7",
+    "group/heap_total.c": "49d4a175669d1b2563723e3a15b0523549f51e9e23a9ffff095809eb15946a41",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/root.c": "1db1f4a44992a114bdf2d793af2cce151c7dad4404853ee343ce7e41ab127b69",
+    "group/random.c": "b320f52640cdd1c873026e9085cb48023cab1ec24fb6a3f7f12ae9be567212c0"
+  },
+  "focused_test_sha256": "280434abda3537604a2d3d1fa40b8ca0a2a63522b68b28a07ee0a73182cd684e",
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}

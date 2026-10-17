@@ -29,7 +29,7 @@ def verify_context():
   require((HERE/'group'/n).read_text()==expected,'preserved context source changed: '+n)
 def inputs():
  targets=score.targets();syms=score.image_symbols()
- return {'packet_sha256':{p:sha((HERE/p).read_bytes()) for p in PACKET},'context_sha256':{p:sha((ROOT/p).read_bytes()) for p in CONTEXT.values()},'targets':{n:{'address':hex(syms[n]),'bytes':4*len(targets[n]),'sha256':sha(struct.pack('>%dI'%len(targets[n]),*targets[n]))} for n in [NAME]+PRESERVED+[UNMATCHED]},'recipe':recipe(),'protocol_version':2,'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
+ return {'packet_sha256':{p:sha((HERE/p).read_bytes()) for p in PACKET},'context_sha256':{p:sha((ROOT/p).read_bytes()) for p in CONTEXT.values()},'targets':{n:{'address':hex(syms[n]),'bytes':4*len(targets[n]),'sha256':sha(struct.pack('>%dI'%len(targets[n]),*targets[n]))} for n in [NAME]+PRESERVED+[UNMATCHED]},'recipe':recipe(),'protocol_version':2,'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
 def object_result(obj,spec):
  data,sections=score._elf(obj);ti=score._text_index(sections)
  symbols=[s for i,sec in enumerate(sections) if sec['type']==2 for s in score._symbol_table(data,sections,i) if s['type']==2 and s['section']==ti]
