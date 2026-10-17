@@ -1,0 +1,46 @@
+{
+  "members": [
+    "render_display_list",
+    "func_80099B30",
+    "func_8009C3F8",
+    "camera_update_c",
+    "select_screen_update",
+    "particle_system",
+    "track_collision_wall",
+    "Input_ProcessGameplayPad",
+    "func_800BFD8C",
+    "func_800D3430",
+    "func_8008B2B4",
+    "func_8008B2E4"
+  ],
+  "context": [
+    "func_800D348C",
+    "stunt_combo_display",
+    "func_8009F058",
+    "camera_follow_path",
+    "func_800C4F68"
+  ],
+  "files": [
+    "resurrection.c",
+    "camera_pair.c",
+    "particle_context.c",
+    "entry_context.c",
+    "func_8008B2B4.c"
+  ],
+  "keep": [
+    "camera_update_c",
+    "select_screen_update",
+    "Input_ProcessGameplayPad",
+    "func_800BFD8C",
+    "stunt_combo_display",
+    "func_800C4F68",
+    "func_8008B2E4",
+    "func_800D3430",
+    "func_8008B2B4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "note": "NONMATCH research: exact private camera_follow_path in genuine but unmatched caller context; natural caller differs only in stack-related instructions. No new coverage.",
+  "provenance": "frontier wave 8 (w8a), 2026-10-05; cloud/work/frontier/w8a/RESULTS.md",
+  "claims": []
+}

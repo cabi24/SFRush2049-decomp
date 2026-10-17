@@ -1,0 +1,184 @@
+{
+  "base": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "status": "NONMATCH research",
+  "claims": [],
+  "source_sha256": {
+    "group/camera_pair.c": "1302119375c2803db74ef1582ff5a51453d6f3f9eb1216ad7ac43a6d6b3c1e60",
+    "group/entry_context.c": "6569b6eaa6fa14151fe35194cf497559960e61d34c3d00327e858156d44e6410",
+    "group/func_8008B2B4.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/group.json": "6247459accd1ecbb1f24c810befb71fea11a9b368834983a1c6f8276be51657b",
+    "group/particle_context.c": "89822deb830d3c30203a4d483e410485499562e46663326a358d990d7dd17242",
+    "group/resurrection.c": "b2e022e86382d4dc3eea120fa79d37e73ff0f4dfbf996bdbd73e06d9b3291cab"
+  },
+  "verify_sha256": "bf40ed410f7f39fc8f6ffedd514484cb37f01085e769fb2a00d8c7fd2ca9773d",
+  "target_words_sha256": {
+    "render_display_list": "e4035b95a4fec33e3ef86f01fdf3df0583ac3fcae78fc87a2df0d32d7f8e5504",
+    "func_80099B30": "5b785c3e1a215be13d13dff3023cf2ca1c0506631a0ad493f35dd9dfddc0c5eb",
+    "func_8009C3F8": "3b38ececf11ac95f6d792549c2fc9337703741283c9171745e1d8333496065e0",
+    "camera_update_c": "c39cff2bc58286a145a2b2d4664692de6d07d08836cc93451f77b5fbbba40d6d",
+    "select_screen_update": "c8287716c83ec41e7e6473a9f22f2a25288b3fc1a5195ed5160f41caf28cb2c1",
+    "particle_system": "5c00e677b48693d029dbe2f3adc501f14c13e29d25c76e5e48587f4033e1c760",
+    "track_collision_wall": "291a3c373e154007a9b7abe4ad4823ecfa1cd7022dfbfe3bc7723dfe5cce32c8",
+    "Input_ProcessGameplayPad": "5f2ee16f0d95d0093b823edb8bf4581d33a3533d0503ecae3bc3ac5d4b14c94c",
+    "func_800BFD8C": "8658dbb7d58443bbd8ba3b413fc79291509490214452f20bddf5c4ab1e0a385a",
+    "func_800D3430": "20b8e1edb018ef61df5648369280b6b69d00aec85b51ae3ce5cadd02cc786b80",
+    "func_8008B2B4": "fed3efb3a551d286be3bcf5cb50bd0b46fb94f874f1773499a50d4094da77e67",
+    "func_8008B2E4": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095",
+    "func_800D348C": "d50f3a0ea6722787bae30e15966a6dbef80f1388e18342398e2a9e607865b59f",
+    "stunt_combo_display": "ab9cc42ef0cd22b58ca845f080f8ca49e36ea6169fd908c65603938df9ba9fce",
+    "func_8009F058": "fb4d20e82f93418264ac60dba146236a3e6ab8938a97b2a04a761172369d0557",
+    "camera_follow_path": "f941d1265b00c6bdfc63ed676861edca12921a9b00e371a9397e1d179694845c",
+    "func_800C4F68": "c93afe430e8e16ad491026338e7ff7367e111738e8ce6c1474b9db219877dd03"
+  },
+  "protocol_version": 2,
+  "population": "game",
+  "preserved_locked_members": [
+    "render_display_list",
+    "func_80099B30",
+    "func_8009C3F8",
+    "camera_update_c",
+    "select_screen_update",
+    "particle_system",
+    "track_collision_wall",
+    "Input_ProcessGameplayPad",
+    "func_800BFD8C",
+    "func_800D3430",
+    "func_8008B2B4",
+    "func_8008B2E4"
+  ],
+  "scored_context": [
+    "func_800D348C",
+    "stunt_combo_display",
+    "func_8009F058",
+    "camera_follow_path",
+    "func_800C4F68"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "variants": [
+    "natural",
+    "inherited_six_unused_diagnostic",
+    "wrong_resurrection_point_stride",
+    "wrong_checkpoint_stride",
+    "flatten_fasin_wrapper",
+    "sequential_fallback_stores",
+    "wrong_fasin_axis"
+  ],
+  "limits": [
+    "Empty new-coverage claims; natural caller remains nonmatching.",
+    "Six-unused-local variant is diagnostic only, not accepted original source.",
+    "No production source, canonical integration, full image/ROM build or CI watcher."
+  ],
+  "control_results": {
+    "natural": {
+      "camera_follow_path": "MATCH",
+      "func_800C4F68": "17/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1484,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "inherited_six_unused_diagnostic": {
+      "camera_follow_path": "MATCH",
+      "func_800C4F68": "MATCH",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1484,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 104
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "wrong_resurrection_point_stride": {
+      "camera_follow_path": "359/371 words differ (2 section-relative relocations unverified: .rodata+0x48 at +0x4cc, .rodata+0x48 at +0x4e0)",
+      "func_800C4F68": "115/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1428,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1404,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "wrong_checkpoint_stride": {
+      "camera_follow_path": "197/371 words differ (3 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x48 at +0x514, .rodata+0x48 at +0x528)",
+      "func_800C4F68": "17/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1500,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "flatten_fasin_wrapper": {
+      "camera_follow_path": "57/371 words differ",
+      "func_800C4F68": "17/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1484,
+          "frame": 96
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "sequential_fallback_stores": {
+      "camera_follow_path": "5/371 words differ",
+      "func_800C4F68": "17/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1484,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    },
+    "wrong_fasin_axis": {
+      "camera_follow_path": "11/371 words differ",
+      "func_800C4F68": "17/354 words differ",
+      "extents": {
+        "camera_follow_path": {
+          "bytes": 1484,
+          "frame": 104
+        },
+        "func_800C4F68": {
+          "bytes": 1416,
+          "frame": 80
+        }
+      },
+      "preserved_locked_matches": 12
+    }
+  },
+  "mutation_guards": [
+    "source rejected",
+    "replay script rejected",
+    "target row digest rejected"
+  ],
+  "bounded_test": "tests/cloud/test_mat3_resurrection_pair.py"
+}
