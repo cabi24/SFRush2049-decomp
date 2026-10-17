@@ -1,0 +1,61 @@
+{
+  "reviewer": "renderer lane",
+  "scope": "PR385 verification-only guard and complete-extent hardening",
+  "result": "PASS",
+  "proof_sha256": "5c4df24cacee51e6a0927e678ad13c5c79bd596e9026927c53b9c808047250df",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/README.md": "3c0a55a2cb2d51317db65fc9f99777e82bc18ae993861397c5964aa8152baae3",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/replay.py": "f251e85f4f1fcaf6fb4ff9108917424e1c76c080c896bf4b9fd0a08f51df056e",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/proof.json": "5c4df24cacee51e6a0927e678ad13c5c79bd596e9026927c53b9c808047250df",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/group.json": "a1e116d441d6283eed31a6c37858ab5aa5b8f838296e3603c3296678261970b4",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/group.c": "d376ef06a9a7fdd10e69aff27b9541223a19a5d180d7d8474a7666790a74b86d",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/func_800D6530.c": "56f8c8580b0731fc6fe2d015885e9d5b47ffbb5fe30081a07d218505670f46c9",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/func_800DE45C.c": "e5ae29e7b33793b67caf2f294aba8ae032dadb3d3e5313f3cc6afa41e8355f5a",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/semantics.c": "c2eb5870f579a8e3ce2e477c8c539f886bddf9ebaa7604142c46ffc5e9544be2",
+    "tests/cloud/test_mat3_race_reset.py": "ffa8cc457a9a028b6a6017ce3586c46e6e2754e44434f6d338a10aa106b40d42"
+  },
+  "unchanged_source_recipe_sha256": {
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/group.c": "d376ef06a9a7fdd10e69aff27b9541223a19a5d180d7d8474a7666790a74b86d",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/func_800D6530.c": "56f8c8580b0731fc6fe2d015885e9d5b47ffbb5fe30081a07d218505670f46c9",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/func_800DE45C.c": "e5ae29e7b33793b67caf2f294aba8ae032dadb3d3e5313f3cc6afa41e8355f5a",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/group.json": "a1e116d441d6283eed31a6c37858ab5aa5b8f838296e3603c3296678261970b4",
+    "cloud/work/frontier/dot_mat3_physics_20261017/groups/codex_vsync_a145/semantics.c": "c2eb5870f579a8e3ce2e477c8c539f886bddf9ebaa7604142c46ffc5e9544be2"
+  },
+  "prior_receipt_sha256": "6922c48737b320a2673b34794da264f0fb4efb30dfa233578ede380e9fc67637",
+  "preservation_checks": {
+    "positive": true,
+    "negative_controls": true,
+    "claims": true,
+    "preserved_members": true,
+    "new_individually_strict_bytes": true,
+    "accepted_image_bytes": true,
+    "recipe": true,
+    "targets": true,
+    "references": true,
+    "unchanged_source_hashes": true
+  },
+  "independent_checks": [
+    "Four focused tests pass with REQUIRE_TOOLCHAIN=1, including full optimized replay and 71 optimized refusals.",
+    "Missing-IDO run without REQUIRE_TOOLCHAIN gives one diagnostic test pass and three skips.",
+    "Missing-IDO run with REQUIRE_TOOLCHAIN=1 gives the expected three failures and one pass.",
+    "Native positive ELF extents enforced for all seven members; all six preserved members retain exact extents in every negative control.",
+    "Root frame scan is restricted to the root STT_FUNC extent.",
+    "Strict result booleans are cross-checked against differences, extras, unresolved and unverified references, and errors.",
+    "Source/recipe/targets/references and all prior positive/negative rows are unchanged; compiler/scorer/lock bindings are now sealed.",
+    "Host fixtures are unchanged at256; UBSan is now fatal and empty stderr is required."
+  ],
+  "function_extents_bytes": {
+    "continue_prompt": 92,
+    "func_800D6530": 352,
+    "func_800DE45C": 1020,
+    "speed_mode0_wrapper": 88,
+    "speed_mode1_wrapper": 88,
+    "speed_set": 204,
+    "vsync_wait": 148
+  },
+  "fixed_during_review": "New compiler-input hashing initially bypassed the shared missing-tool skip policy. Path(score.ido(name)) restores its canonical diagnostic and is protected by a focused test.",
+  "limits": [
+    "Review covers verification hardening only; prior source-shape and storage-ownership limits remain unchanged.",
+    "No new function, candidate-byte credit, image/ROM acceptance, canonical integration or merge is implied."
+  ]
+}

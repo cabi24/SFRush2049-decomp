@@ -85,10 +85,24 @@ words separately. `semantics.c` runs 256 bounded host cases under UBSan,
 covering every signed option-byte value, all stores, unchanged player-record
 bytes, and the ordered external calls.
 
-The protocol-v2 receipt hashes source/recipe/replay/semantics inputs, relevant
-target words and extents, and referenced addresses. It does not pin compiler
-tools, locks, or assembler text. The object layout report distinguishes
-compiler storage metadata from native addresses. A separate cloud worker
-independently replayed the complete group, checked the unchanged sources and
-known-data rebinding path, and reproduced the helper/extern controls before
-publication. The independent whole-unit/image/ROM gates have not run.
+The protocol-v3 receipt hashes source/recipe/replay/semantics inputs, relevant
+target words and extents, referenced addresses, all eight actual IDO compiler
+stage executables, the scorer/owned-data verifier and the master lock. Both
+positive builds require complete native ELF symbol extents for all seven
+members. Every negative build records its full function inventory and requires
+the six preserved members' exact extents. The frame scan is bounded to the
+root symbol. Strict-result flags are cross-checked against the actual counts
+and unresolved/unverified/error fields rather than trusted independently.
+The object layout report distinguishes compiler storage metadata from native
+addresses. Four focused tests include 71 optimized integrity refusals, a
+full optimized replay, and the standard missing-compiler diagnostic. Absent
+IDO remains a local test skip and fails under `REQUIRE_TOOLCHAIN=1`.
+The semantic test uses fatal UBSan and requires empty
+stderr. These verification-only changes preserve every previous comparison
+row, C source, recipe, semantic fixture and candidate-credit claim.
+
+A separate cloud worker independently replayed the original complete group,
+checked the unchanged sources and known-data rebinding path, and reproduced
+the helper/extern controls before publication. A separate source-bound
+independent review is required for the protocol-v3 hardening. The independent
+whole-unit/image/ROM gates have not run.
