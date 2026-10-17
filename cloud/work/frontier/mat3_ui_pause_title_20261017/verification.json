@@ -1,0 +1,15 @@
+{
+  "members": {
+    "func_800B4FB0": "314/368 words differ",
+    "func_800B669C": "MATCH",
+    "object_create": "28/28 words differ",
+    "slot_state_setup": "2/58 words differ (3 extra words (nonzero beyond target length))",
+    "voice_stop": "MATCH"
+  },
+  "negative_controls": {
+    "font12": "1/138 words differ",
+    "helper_locations": "4/138 words differ",
+    "wrong_text_index": "2/138 words differ"
+  },
+  "new_accepted_bytes": 0
+}

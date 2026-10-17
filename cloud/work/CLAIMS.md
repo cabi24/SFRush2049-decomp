@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | voice_stop (800B438C, pausescr title pane), real B4FB0 caller | dot UI | 2026-10-17 | `mat3_ui_pause_title_20261017`: title strict MATCH 138/138 with donor64/live str and genuine font helpers; B4FB0 314/368 and selector 2/58 remain partial. Empty claims; no accepted-image credit. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
