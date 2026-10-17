@@ -43,3 +43,18 @@ The host harness checks **262,144 full-state/return cases**, covering every sign
 The host background helper deliberately uses unsigned 32-bit shifts to model the native machine operation. The unchanged canonical helper's historical C spelling has signed integer promotion on its left shift for high colors; this packet does not claim that spelling is defined ISO C for every input or modify the already-locked helper. Exact native helper comparison is independent of this bounded host model. The signed maximum is converted to its unsigned-short field with the intended modulo representation. Tests assume valid indices and storage; they do not claim invalid-pointer or out-of-range-index behavior.
 
 This is an isolated candidate packet, not canonical integration. Whole-unit/image/ROM gates remain pending, and unrelated caller declarations are not harmonized here. No ROM bytes, raw assembly, literal target-data dumps, compiled objects, private traces or secrets are included. Independent review is recorded separately.
+
+## Protocol 3 verification follow-up
+
+The source, recipe, semantic model and every previous result field are unchanged.
+The receipt now binds this README, scorer, own-data verifier, accepted lock and
+all eight IDO stage executables. Standard compiler lookup preserves local
+missing-tool skips and the REQUIRE_TOOLCHAIN=1 failure policy.
+
+Explicit optimized-safe guards validate the complete recipe, single-root claim,
+actual strict-result fields, both ELF extents and the root's frameless shape in
+all three positive and seven negative builds. The existing root-bounded frame
+scan is retained and has a focused boundary test. All seven negative outcomes
+and four exact host-negative results are required. Four focused tests include
+114 optimized false-receipt refusals and a full checked replay. No source or
+additional candidate-byte credit is introduced.

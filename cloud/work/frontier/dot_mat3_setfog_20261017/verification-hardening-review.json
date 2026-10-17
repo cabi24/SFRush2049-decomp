@@ -1,0 +1,40 @@
+{
+  "boundaries": [
+    "The same 136-byte root claim and preserved 28-byte helper remain; no unit, image or ROM gate was run.",
+    "The host helper still uses unsigned shifts to model native output; the unchanged canonical helper signed-promotion limitation remains explicitly disclosed.",
+    "Finite valid state/return cases and the existing pointer/index limits are unchanged.",
+    "The receipt pins actual compiler stages, scorer, own-data verifier and accepted lock; legitimate dependency changes require reviewed refresh."
+  ],
+  "independent_checks": [
+    "Inspected the complete replay, focused test and README diff against the saved prior packet.",
+    "Compared the frozen source, recipe and semantic harness byte for byte; recursively compared every prior output field and target/context binding.",
+    "Ran all four focused tests with stock IDO, including full optimized replay, 114 optimized false-receipt refusals and bounded frame controls.",
+    "Ran missing-tool paths: three skips and one diagnostic pass locally, three expected failures and one pass with REQUIRE_TOOLCHAIN=1.",
+    "Verified both ELF extents in each of ten builds, complete score/function inventory, target word counts, root framelessness and explicit strict/count/uncertainty consistency.",
+    "Verified the preserved helper remains strict in every negative, all seven root-negative outcomes are pinned, and all four semantic controls require their precise differential failure."
+  ],
+  "preservation": {
+    "all_prior_non_input_fields_identical": true,
+    "positive_and_control_sections_identical": true,
+    "target_context_recipe_bindings_identical": true
+  },
+  "proof_sha256": "3169ae6215fc345d9eda728abf776f22308fdc92bcef44e69aa9e0331932d90b",
+  "result": "PASS",
+  "reviewed_at_utc": "2026-10-17T22:07:56Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_setfog_20261017/README.md": "27c35daf329c2924278ad92659df2808c811bb54afe78532756c4614942caeb3",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/candidate.c": "c366351453d9a404d5be059ed38e162782733ae7050cb76d4da9dd03fc4b591e",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/group.json": "9d1bd521d614e79fe84a0ca5bf0263443494d4f577952a394c10cde46c5ff8a0",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/proof.json": "3169ae6215fc345d9eda728abf776f22308fdc92bcef44e69aa9e0331932d90b",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/replay.py": "9d916d1a5aacf39320d760463def272d8b54ddb6b48f9000f1fa1de8f8c13955",
+    "cloud/work/frontier/dot_mat3_setfog_20261017/semantics.c": "5db705e51d1bda399c1955a7a50c0756d12c611386e47bd5511a0ddc4e534627",
+    "tests/cloud/test_mat3_setfog.py": "c792e09f8a5524ff54a5d87bc2d4531a1a3508e33a8637c565a96bdd89cd5431"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Verification-only hardening of the existing PR400 candidate. No source, semantic-domain, claim or credit expansion.",
+  "unchanged_source_recipe_semantics_sha256": {
+    "candidate.c": "c366351453d9a404d5be059ed38e162782733ae7050cb76d4da9dd03fc4b591e",
+    "group.json": "9d1bd521d614e79fe84a0ca5bf0263443494d4f577952a394c10cde46c5ff8a0",
+    "semantics.c": "5db705e51d1bda399c1955a7a50c0756d12c611386e47bd5511a0ddc4e534627"
+  }
+}
