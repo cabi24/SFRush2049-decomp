@@ -1,0 +1,44 @@
+{
+  "reviewer": "independent physics lane",
+  "scope": "PR412 compiler-availability verifier follow-up only",
+  "result": "PASS",
+  "verification_sha256": "9939b66480d6528a0faca825e62f2c08b32c2a000b9666fe6b05fba1d9be8d02",
+  "trace_fidelity_sha256": "6fc51266de16124c8f4235c07f8ae39053d8d567b52852e495104675434a5730",
+  "files": {
+    "README.md": "81e2bba66b66e4e5a856d73ba1df323477b41a56088efee7c73651260f2e4557",
+    "behavior.py": "3e23be4d5e25b7a5f8dd0540f5b57bbeb70e94cd51b4fdd9b7cb3a34fc72898d",
+    "closure/func_80091FBC/source.c": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
+    "closure/func_8009211C/source.c": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99",
+    "closure/func_800D63EC/source.c": "4aa8a308e5362c17faa6b30188c6e7d0bf1c58d83723be03f2286e4eb31e725a",
+    "closure.json": "69a19b64d6ad1325194facbe74e1312da45b74774da0a4f51a18ac2a8ccb0737",
+    "group/codex_vsync_a145.c": "099e1a28f54934078a76c24bb85fa77c5ef4a3c536fede38e4851028a2fbd402",
+    "group/func_80091B00.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
+    "group/func_800D6160.c": "37250cf0b6ed9ccd9737ff8d196647c073a9b5152325f8c15f881c1aaec14ed8",
+    "group/func_800D6530.c": "56f8c8580b0731fc6fe2d015885e9d5b47ffbb5fe30081a07d218505670f46c9",
+    "group/group.json": "218724e1afb3c528a260b7a9dd6c6a66c7d6eafe27bcc5889f0138e77823acf9",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/random.c": "97798559c85ab06d505b1a3ebffdf2683e07b8254bf1a515472d7da21c572e56",
+    "group/sync_entry_register.c": "09eec479c4e9538819018981caf01bb5ecea4ea60fed4cba3302648987e9d252",
+    "independent-review.json": "a4b8b9f1db3a5d6da02a385ae6569809cfa532e2e01b38e4261c87d34c036a1e",
+    "semantics.c": "d4b9a78870ab7ddf0cecc64959dcea24acff1294c6ab4826712597f2f5ed2044",
+    "trace_fidelity.json": "6fc51266de16124c8f4235c07f8ae39053d8d567b52852e495104675434a5730",
+    "trace_fidelity.py": "2e6ac28f9d8513509755fdfbc95043a92f037ba896b3d7523a0f8a95fb3613a0",
+    "verification.json": "9939b66480d6528a0faca825e62f2c08b32c2a000b9666fe6b05fba1d9be8d02",
+    "verify.py": "4339783403fffb1b99fa6969f19fe1b2a446289bbcaecc487a3e4db4a8298c8a"
+  },
+  "test_sha256": "4ff288e54c4abd8074df5342f3cf2663bc31ea34ef99408e0ed937182b830800",
+  "code_review": "The sole verifier code change replaces direct compiler-stage path hashing with Path(score.ido(name)) so missing tools use the canonical diagnostic before hashing. The exact compiler-stage contents remain bound when present. Existing source review is unchanged.",
+  "preservation": "Both receipts recursively equal their saved originals after removing only inputs.files.verify.py. All other saved packet source, recipe, behavior, trace and source-review files are byte-identical. README adds an accurate availability note, and the new focused test exercises the standard diagnostic under optimized Python.",
+  "independent_checks": {
+    "toolchain_present": "4 passed, including complete replay, 25 optimized refusals, relocated replay and missing-tool diagnostic",
+    "toolchain_absent": "1 passed / 3 skipped; exit0",
+    "toolchain_required_absent": "1 passed / 3 expected failures; exit1"
+  },
+  "logs": {
+    "present.log": "c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+    "absent.log": "c6fa76823d5c68c63f0fa0ca9417b57241600b52e1b790520786d337a50bc700",
+    "required.log": "27533fa91336888745b9976142eb93dfae42f1711f319c366deff32598c0ce2a"
+  },
+  "credit_change": 0,
+  "scope_limits": "No new C, claim, source-semantic or canonical/image/ROM acceptance review. Existing 304-byte candidate accounting is unchanged."
+}

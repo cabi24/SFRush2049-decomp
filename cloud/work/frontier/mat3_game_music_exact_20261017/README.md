@@ -107,3 +107,12 @@ python -m pytest -q tests/cloud/test_mat3_game_music_exact_20261017.py
 
 Base: 58425072b49e95f0fbe5c4c239988fb4885f7c5c. Independent review is required
 before publication or candidate counting. No integration, merge or CI watcher.
+
+## Compiler availability follow-up
+
+Compiler fingerprints now use the scorer's normal availability check before
+reading stage files. This keeps the full hash binding while reporting the
+standard missing-IDO diagnostic when tools are absent. It changes no C, recipe,
+object, comparison row or semantic result. A focused diagnostic test verifies
+that path; ordinary local missing-tool skips remain failures when
+REQUIRE_TOOLCHAIN=1.

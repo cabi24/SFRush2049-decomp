@@ -72,3 +72,20 @@ def test_music_relocated_packet(tmp_path):
     moved=tmp_path/'different_checkout'/'music';shutil.copytree(PACKET,moved,ignore=shutil.ignore_patterns('__pycache__'))
     m=module();m.HERE=moved
     assert m.verify(tmp_path/'objects')['new_candidate_bytes']==304
+
+
+def test_music_missing_ido_diagnostic(tmp_path):
+    program=r'''
+from pathlib import Path
+import importlib.util,json,sys
+p=Path(sys.argv[1]);s=importlib.util.spec_from_file_location('music_availability',p/'verify.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+m.score.IDO=Path(sys.argv[2])
+try:m.inputs(json.loads((p/'group/group.json').read_text()),json.loads((p/'closure.json').read_text()))
+except SystemExit as e:
+    if 'run tools/cloud/setup.sh' not in str(e):raise
+else:raise RuntimeError('missing IDO did not use the standard diagnostic')
+print('standard missing-IDO diagnostic passes')
+'''
+    r=subprocess.run([sys.executable,'-O','-c',program,str(PACKET),str(tmp_path/'missing_ido')],capture_output=True,text=True)
+    assert r.returncode==0,r.stdout+r.stderr
+    assert r.stdout=='standard missing-IDO diagnostic passes\n'
