@@ -1,0 +1,244 @@
+{
+  "date_utc": "2026-10-17",
+  "emitted_functions": {
+    "audio_initButtons": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "camera_shake_update": {
+      "extent_bytes": 180,
+      "native_member": true
+    },
+    "continue_prompt": {
+      "extent_bytes": 92,
+      "native_member": true
+    },
+    "credits_screen": {
+      "extent_bytes": 296,
+      "native_member": true
+    },
+    "display_list_alloc": {
+      "extent_bytes": 92,
+      "native_member": true
+    },
+    "drone_collision_avoid": {
+      "extent_bytes": 852,
+      "native_member": true
+    },
+    "drone_pathfind_main": {
+      "extent_bytes": 1124,
+      "native_member": true
+    },
+    "du_gfx_lock": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "du_gfx_unlock": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "entity_render_mode": {
+      "extent_bytes": 284,
+      "native_member": true
+    },
+    "func_8008E26C": {
+      "extent_bytes": 300,
+      "native_member": true
+    },
+    "func_80091AF0": {
+      "extent_bytes": 8,
+      "native_member": true
+    },
+    "func_80091AF8": {
+      "extent_bytes": 8,
+      "native_member": true
+    },
+    "func_80091B00": {
+      "extent_bytes": 168,
+      "native_member": true
+    },
+    "func_80096288": {
+      "extent_bytes": 16,
+      "native_member": true
+    },
+    "func_800A4E58": {
+      "extent_bytes": 444,
+      "native_member": true
+    },
+    "func_800B3D0C": {
+      "extent_bytes": 12,
+      "native_member": true
+    },
+    "func_800B6748": {
+      "extent_bytes": 64,
+      "native_member": true
+    },
+    "func_800B8810": {
+      "extent_bytes": 16,
+      "native_member": true
+    },
+    "func_800D6160": {
+      "extent_bytes": 288,
+      "native_member": true
+    },
+    "func_800D690C": {
+      "extent_bytes": 8,
+      "native_member": true
+    },
+    "func_800D6914": {
+      "extent_bytes": 1256,
+      "native_member": true
+    },
+    "func_800D6E74": {
+      "extent_bytes": 8,
+      "native_member": true
+    },
+    "func_800D7634": {
+      "extent_bytes": 1816,
+      "native_member": true
+    },
+    "func_800F68A4": {
+      "extent_bytes": 132,
+      "native_member": true
+    },
+    "mode_byte2_set": {
+      "extent_bytes": 80,
+      "native_member": true
+    },
+    "mode_byte_set": {
+      "extent_bytes": 80,
+      "native_member": true
+    },
+    "object_byte9_set": {
+      "extent_bytes": 64,
+      "native_member": true
+    },
+    "object_bytes23_sum": {
+      "extent_bytes": 72,
+      "native_member": true
+    },
+    "object_bytes_sum_global": {
+      "extent_bytes": 84,
+      "native_member": true
+    },
+    "object_create": {
+      "extent_bytes": 112,
+      "native_member": true
+    },
+    "object_type1_create": {
+      "extent_bytes": 104,
+      "native_member": true
+    },
+    "object_type_byte2_get": {
+      "extent_bytes": 40,
+      "native_member": true
+    },
+    "object_type_byte3_get": {
+      "extent_bytes": 40,
+      "native_member": true
+    },
+    "physics_init_mode0": {
+      "extent_bytes": 92,
+      "native_member": true
+    },
+    "physics_init_mode1": {
+      "extent_bytes": 92,
+      "native_member": true
+    },
+    "player_state_get": {
+      "extent_bytes": 60,
+      "native_member": true
+    },
+    "post_msg_a": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "post_msg_b": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "setButtonColor": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "sign_extend_call": {
+      "extent_bytes": 40,
+      "native_member": true
+    },
+    "slot_deactivate": {
+      "extent_bytes": 88,
+      "native_member": true
+    },
+    "slot_state_setup": {
+      "extent_bytes": 232,
+      "native_member": true
+    },
+    "slot_value_get": {
+      "extent_bytes": 60,
+      "native_member": true
+    },
+    "sound_call_minimal": {
+      "extent_bytes": 48,
+      "native_member": true
+    },
+    "sound_call_simple": {
+      "extent_bytes": 44,
+      "native_member": true
+    },
+    "sound_update_channel": {
+      "extent_bytes": 488,
+      "native_member": true
+    },
+    "speed_mode0_wrapper": {
+      "extent_bytes": 88,
+      "native_member": true
+    },
+    "speed_mode1_wrapper": {
+      "extent_bytes": 88,
+      "native_member": true
+    },
+    "speed_set": {
+      "extent_bytes": 204,
+      "native_member": true
+    },
+    "sync_entry_register": {
+      "extent_bytes": 124,
+      "native_member": true
+    },
+    "ui_ProcessCommand": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "ui_uninitButtons": {
+      "extent_bytes": 8,
+      "native_member": false
+    },
+    "vsync_wait": {
+      "extent_bytes": 148,
+      "native_member": true
+    },
+    "world_trigger_check": {
+      "extent_bytes": 216,
+      "native_member": true
+    },
+    "world_velocity_integrate": {
+      "extent_bytes": 724,
+      "native_member": true
+    }
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "All known native bodies are explicit. Eight additional source-helper symbols are emitted eight-byte inlining stubs, with no identified separate native target. Binaries and trace dumps are excluded.",
+  "stages": [
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "stock_object_sha256": "70dbd04a13e24a882a4eedfcbe601134fe0137fe6402b083204783b3dd37d207",
+  "trace_knobs": [
+    "CDX_LOG=1",
+    "DKWB_UGEN_TRACE=1",
+    "DKWB_UGEN_SCHED=1"
+  ],
+  "traced_object_sha256": "70dbd04a13e24a882a4eedfcbe601134fe0137fe6402b083204783b3dd37d207",
+  "whole_object_identical": true
+}
