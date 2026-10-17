@@ -1,0 +1,37 @@
+{
+  "normal_optimized_identical": true,
+  "normal_optimized_output_sha256": "767fe2ad856eb900feaa2cfdb06c3a28cc1435c7d1e9cfe7d0b9612e1b31d9a3",
+  "test_sha256": "a01fb81ead8a25aa18132bf44214a3493b74239eed6f142f01c69d421d9d85b1",
+  "tests": {
+    "required_tools_missing": {
+      "normal": {
+        "expected_failure": true,
+        "failed": 1,
+        "passed": 10
+      },
+      "optimized": {
+        "expected_failure": true,
+        "failed": 1,
+        "passed": 10
+      }
+    },
+    "with_tools": {
+      "normal": {
+        "passed": 11
+      },
+      "optimized": {
+        "passed": 11
+      }
+    },
+    "without_tools": {
+      "normal": {
+        "passed": 10,
+        "skipped": 1
+      },
+      "optimized": {
+        "passed": 10,
+        "skipped": 1
+      }
+    }
+  }
+}

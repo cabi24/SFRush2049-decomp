@@ -1,0 +1,205 @@
+{
+  "accepted": true,
+  "alignment_bytes": 0,
+  "allocated_own_data_bytes": 0,
+  "anchors": {
+    "D_80111310": 2148602640,
+    "D_80111414": 2148602900,
+    "D_8014A108": 2148835592,
+    "D_80150B70": 2148862832,
+    "D_803AF9A8": 2151348648,
+    "D_803B97A8": 2151389096,
+    "D_803B97AC": 2151389100,
+    "D_803B97B0": 2151389104,
+    "D_803B97B4": 2151389108,
+    "D_803B97B8": 2151389112,
+    "D_803B9FD0": 2151391184,
+    "D_803BA028": 2151391272,
+    "Input_ApplyPadConfig": 2148093640,
+    "brake_light_update": 2148164164,
+    "input_new_data_wrapper": 2148093832
+  },
+  "behavior": {
+    "all_signed_halfword_heights": 65536,
+    "helper_implementation": "bounded side-effecting hooks",
+    "host_cases": 68306,
+    "native_execution": false,
+    "trace_sha256": "06c4959a2650e90c54b2b5ce05440a9d2ad50e03914a5a7cef3daf9d3141c036"
+  },
+  "claims": [
+    "func_803A3DA4"
+  ],
+  "comparison": {
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "total": 228,
+    "unresolved": [],
+    "unverified": []
+  },
+  "controls": {
+    "direct_slot_only.c": {
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "total": 228,
+      "unresolved": [],
+      "unverified": []
+    },
+    "inline_quarter_only.c": {
+      "differing": 27,
+      "errors": [],
+      "extra_words": 0,
+      "total": 228,
+      "unresolved": [],
+      "unverified": []
+    },
+    "named_slot_and_height.c": {
+      "differing": 23,
+      "errors": [],
+      "extra_words": 0,
+      "total": 228,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "delivery_path": "cloud/matches/ovl_a/func_803A3DA4.c",
+  "delivery_sha256": "67deabe7ff97d7ec8e49c96edf6494096a1d523703a3b9525447c10e44e89601",
+  "function_bytes": 912,
+  "gnu_complete_body_equal": true,
+  "historical_baseline_accepted": true,
+  "image": "A",
+  "native_callback_identity": {
+    "anim_ids": [
+      851968,
+      851969,
+      917504,
+      917505,
+      851984,
+      851985,
+      917520,
+      917521,
+      852000,
+      852001,
+      917536,
+      917537,
+      852016,
+      852017,
+      917552,
+      917553
+    ],
+    "definition_stride": 36,
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "pointer_addresses": [
+      2151361236,
+      2151361272,
+      2151361308,
+      2151361344,
+      2151361380,
+      2151361416,
+      2151361452,
+      2151361488,
+      2151361524,
+      2151361560,
+      2151361596,
+      2151361632,
+      2151361668,
+      2151361704,
+      2151361740,
+      2151361776
+    ],
+    "record_count": 16,
+    "resource": "SLIDER"
+  },
+  "native_layout": {
+    "Alpha": 24,
+    "AnimFunc": 40,
+    "AnimID": 44,
+    "Blit_size": 64,
+    "Bot": 30,
+    "Height": 22,
+    "Hide": 26,
+    "Left": 32,
+    "MenuSlot_size": 64,
+    "ProjectContext_size": 152,
+    "Right": 34,
+    "Top": 28,
+    "Width": 20,
+    "X": 14,
+    "Y": 16
+  },
+  "native_sha256": "e0b68bf004e8b9e88d2faf1fddabd1f9e48029b6438bb18557601a6158f5a407",
+  "new_accepted_image_bytes": 0,
+  "new_aggregate_candidate_bytes": 0,
+  "new_discovery_bytes": 0,
+  "recovered_prior_exact_bytes": 912,
+  "relocations": 31,
+  "secondary_group_accepted": true,
+  "source_negatives": {
+    "missing_disable": {
+      "counterexample": [
+        0,
+        13,
+        1,
+        -32768,
+        0,
+        0,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ],
+      "host_rejected": true,
+      "strict_differences": 213,
+      "strict_rejected": true
+    },
+    "wrong_height_division": {
+      "counterexample": [
+        0,
+        12,
+        0,
+        4,
+        0,
+        -1,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ],
+      "host_rejected": true,
+      "strict_differences": 170,
+      "strict_rejected": true
+    },
+    "wrong_marker_case": {
+      "counterexample": [
+        0,
+        12,
+        1,
+        4,
+        0,
+        -1,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ],
+      "host_rejected": true,
+      "strict_differences": 1,
+      "strict_rejected": true
+    }
+  },
+  "source_pinset_sha256": "0d8a3ab8d65230c5e3146a7fdeaf11f2ed39319e82ea866d36c37153b6ba7c01",
+  "target": "func_803A3DA4"
+}
