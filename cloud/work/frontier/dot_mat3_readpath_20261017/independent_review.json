@@ -1,0 +1,44 @@
+{
+  "reviewer": "effects lane, independent source and replay review",
+  "status": "PASS_RESEARCH_ONLY",
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "source_sha256": {
+    "group/bounds.c": "42ad10a492b2de5170ca7c10f781b3a004cb56637c429ecb61903084563107ce",
+    "group/ctx.c": "9c71fba6afbf525bfdbddbaf06d018a00ba58f8ab3414becc4871922fc9d0b63",
+    "group/group.json": "55c5db6eff4ae026ec9f4da5ca725417f95f21625ad8597e11de986297b86b02",
+    "group/loader.c": "218f8a0684314884966dd8af3dae66d5a773c256933e7263a62a1928bcf774c3",
+    "group/path_graph.c": "9a10841ac3b358b65fcda10ed51437f952087e04f3052cd3a757cda36ef65c25",
+    "group/physics_response.c": "6428065b23ad9e6d9f4868cb7f8b639b761b5d2f1a9645005d8ab09e4479987a",
+    "group/result.o": "96ee821d759a96776e76ce97086140e4207257f07f55f10768a0c062ea5a347d",
+    "group/route_cross.c": "68c7a34d6ebdba097c726ae7f5fab669d25844f1e0c8e190200adeefbd1b7048",
+    "group/scores.json": "0b2be05a6678839f2f1ae30b449e3712901490338aedee69cccc51ecd3615dd8",
+    "verify.py": "1dc54171eddda8252bba2a666178204777d2a21b26b5fb7c801c016ac930e297",
+    "behavior.py": "fbed7ff97a34c10746493a07e50b421b979eee20a1a599a850496390f7493052",
+    "receipt.json": "9d21fa5d8f0e32f0d6c5440335ddbbcc7efcaa41ebe5dfc40104010a6fa08148",
+    "trace_fidelity.json": "407d26e2df5a59bd0a84d9e6033f2a12fc3073234bf6fa3656ce614999d4f163",
+    "README.md": "7b5129b2f7ab35112301ca6e79872da65b4eac2f7b941ff6e489d105ab10cdb3"
+  },
+  "focused_test_sha256": "3a0d0654a95be2e810aa66d95a38f197bcbb48b69905633771569d23af854c9b",
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "checks": {
+    "focused_tests": "2 passed, including optimized integrity refusals",
+    "optimized_full_replay": "passed",
+    "native_conversion_loops": "Verified backward-loop counter ranges at offsets 0xb8..0xc8, 0x118..0x144, and 0x21c..0x248 have no memory instructions. Donor loop sites and six local declarations independently agree.",
+    "complete_stock_traced_object_sha256": "96ee821d759a96776e76ce97086140e4207257f07f55f10768a0c062ea5a347d",
+    "trace_source_binding": true,
+    "natural_loader": "174/174 exact, 696 bytes, frame 80",
+    "actual_timing_helper": "211/230 differing; 916 compiled versus 920 native bytes",
+    "preserved_locked_matches": 10,
+    "behavior": "160 fixtures, all 174 loader instructions; independently expressed packed-data/event model",
+    "layout": "16 IDO-emitted facts, three genuine wrong-type controls",
+    "semantic_controls": "Wrong header and wrong path count fail; truth-test control differs by one word but preserves bounded behavior"
+  },
+  "limits": [
+    "Research packet only: no complete natural dependency closure or newly accepted bytes.",
+    "The four gameplay callees are boundary stubs; timing helper behavior and full-game integration are not proved.",
+    "Trusted native-endian aligned buffers and bounded counts; invalid buffers and signed-short overflow are excluded.",
+    "Inherited route-cross unused scalars and partial historical Tracker view are disclosed; no new full-game C type/aliasing proof."
+  ],
+  "blockers": []
+}

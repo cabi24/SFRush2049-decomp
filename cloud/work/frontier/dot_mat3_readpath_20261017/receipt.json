@@ -1,0 +1,757 @@
+{
+  "protocol_version": 2,
+  "base": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "preserved_locked_members": [
+    "audio_priority_find",
+    "audio_mixer_main",
+    "func_800B98D8",
+    "func_800B9B64",
+    "minimap_render",
+    "physics_friction_apply",
+    "physics_velocity_clamp",
+    "func_800B9740",
+    "func_800B930C",
+    "func_800B9338"
+  ],
+  "source_sha256": {
+    "group/bounds.c": "42ad10a492b2de5170ca7c10f781b3a004cb56637c429ecb61903084563107ce",
+    "group/ctx.c": "9c71fba6afbf525bfdbddbaf06d018a00ba58f8ab3414becc4871922fc9d0b63",
+    "group/group.json": "55c5db6eff4ae026ec9f4da5ca725417f95f21625ad8597e11de986297b86b02",
+    "group/loader.c": "218f8a0684314884966dd8af3dae66d5a773c256933e7263a62a1928bcf774c3",
+    "group/path_graph.c": "9a10841ac3b358b65fcda10ed51437f952087e04f3052cd3a757cda36ef65c25",
+    "group/physics_response.c": "6428065b23ad9e6d9f4868cb7f8b639b761b5d2f1a9645005d8ab09e4479987a",
+    "group/route_cross.c": "68c7a34d6ebdba097c726ae7f5fab669d25844f1e0c8e190200adeefbd1b7048",
+    "behavior.py": "fbed7ff97a34c10746493a07e50b421b979eee20a1a599a850496390f7493052"
+  },
+  "verify_sha256": "1dc54171eddda8252bba2a666178204777d2a21b26b5fb7c801c016ac930e297",
+  "target_words_sha256": {
+    "audio_priority_find": "227875473ba637eb83a188e4864731897968035c9e00d6a0366ef2202cee9e4c",
+    "audio_mixer_main": "5a1c1e88cc6e133f1e0a0ac7c4556fd1b5699abb22f567942fe6e1b5e0e2e835",
+    "func_800B98D8": "f8d0fbfc348f32ddf7021129547f264c7067b69d3406cce9cf82612e522bef04",
+    "func_800B9B64": "a3095f14a0c15e41d0f4db1ce31a3e5b66ed9ae6079cf641e153b9bc49db95ca",
+    "minimap_render": "102413427cd1284a77b4137fb71053d27ffcbddf17c09b8c5cd8602b66242d57",
+    "physics_friction_apply": "5efee39cab453a6d32a323cb6c9f9c08113afbc47a03504658697635db49fcc1",
+    "physics_velocity_clamp": "94e42bf5f27e27766efbb980a16f90a07e683612d4e84ba63b781e6a8718d532",
+    "func_800B9740": "bc8379404dfd8076e68b4e343ad1925a28b1c1d1aea315136c892e7023f67e8b",
+    "func_800B930C": "61284ddc68c539c8602e5efc722e375b5b59a7b8bd9b0e8eb853768c50c2af23",
+    "func_800B9338": "7504fa61acd4398de61d7b574285df3898e732973e271c99cce67295a9764488",
+    "audio_effect_apply": "858f0df463716ab7595fbf66906ac5720c6347c9c8a5afe47b66b9c65d6a0d60",
+    "physics_response": "e85960bb86fc25fb623f87de8530f5abde38bc291e1adc4ee99a54ed7467208a"
+  },
+  "expected": {
+    "claims": [],
+    "preserved_locked_matches": 10,
+    "new_accepted_bytes": 0,
+    "natural_dependency_closure": false,
+    "results": {
+      "natural": {
+        "scores": {
+          "audio_priority_find": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_mixer_main": {
+            "differing": 0,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B98D8": {
+            "differing": 0,
+            "total": 77,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9B64": {
+            "differing": 0,
+            "total": 129,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "minimap_render": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_friction_apply": {
+            "differing": 0,
+            "total": 126,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_velocity_clamp": {
+            "differing": 0,
+            "total": 86,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9740": {
+            "differing": 0,
+            "total": 102,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B930C": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9338": {
+            "differing": 0,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_effect_apply": {
+            "differing": 0,
+            "total": 174,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_response": {
+            "differing": 211,
+            "total": 230,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          }
+        },
+        "loader": {
+          "bytes": 696,
+          "frame": 80,
+          "body_sha256": "858f0df463716ab7595fbf66906ac5720c6347c9c8a5afe47b66b9c65d6a0d60"
+        },
+        "timing": {
+          "bytes": 916,
+          "frame": 64
+        },
+        "sections": {
+          ".text": "4863cc6f72cb68a9f46b0e980d499960ee039d79e0d103c10f4b9576edd9e760",
+          ".rodata": "76ea7136edb6f42fde16e12546e1909732621c21e64caccf5f54bfa8a4f7c390",
+          ".rel.text": "85b857bcfcec2825bc2b27a6aa3f2b85223c6c66f1e3cfa5a99cbf86f15b2d93"
+        },
+        "behavior": {
+          "fixtures": 160,
+          "executions": 320,
+          "instruction_coverage": [
+            174,
+            174
+          ],
+          "branch_outcomes": [
+            27,
+            27
+          ],
+          "callee_side_effects_validated": false
+        }
+      },
+      "repeat": {
+        "scores": {
+          "audio_priority_find": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_mixer_main": {
+            "differing": 0,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B98D8": {
+            "differing": 0,
+            "total": 77,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9B64": {
+            "differing": 0,
+            "total": 129,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "minimap_render": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_friction_apply": {
+            "differing": 0,
+            "total": 126,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_velocity_clamp": {
+            "differing": 0,
+            "total": 86,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9740": {
+            "differing": 0,
+            "total": 102,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B930C": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9338": {
+            "differing": 0,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_effect_apply": {
+            "differing": 0,
+            "total": 174,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_response": {
+            "differing": 211,
+            "total": 230,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          }
+        },
+        "loader": {
+          "bytes": 696,
+          "frame": 80,
+          "body_sha256": "858f0df463716ab7595fbf66906ac5720c6347c9c8a5afe47b66b9c65d6a0d60"
+        },
+        "timing": {
+          "bytes": 916,
+          "frame": 64
+        },
+        "sections": {
+          ".text": "4863cc6f72cb68a9f46b0e980d499960ee039d79e0d103c10f4b9576edd9e760",
+          ".rodata": "76ea7136edb6f42fde16e12546e1909732621c21e64caccf5f54bfa8a4f7c390",
+          ".rel.text": "85b857bcfcec2825bc2b27a6aa3f2b85223c6c66f1e3cfa5a99cbf86f15b2d93"
+        },
+        "behavior": {
+          "fixtures": 160,
+          "executions": 320,
+          "instruction_coverage": [
+            174,
+            174
+          ],
+          "branch_outcomes": [
+            27,
+            27
+          ],
+          "callee_side_effects_validated": false
+        }
+      },
+      "truthy_alternate": {
+        "scores": {
+          "audio_priority_find": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_mixer_main": {
+            "differing": 0,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B98D8": {
+            "differing": 0,
+            "total": 77,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9B64": {
+            "differing": 0,
+            "total": 129,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "minimap_render": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_friction_apply": {
+            "differing": 0,
+            "total": 126,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_velocity_clamp": {
+            "differing": 0,
+            "total": 86,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9740": {
+            "differing": 0,
+            "total": 102,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B930C": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9338": {
+            "differing": 0,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_effect_apply": {
+            "differing": 1,
+            "total": 174,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_response": {
+            "differing": 211,
+            "total": 230,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          }
+        },
+        "loader": {
+          "bytes": 696,
+          "frame": 80,
+          "body_sha256": "bb77838657595a9782938ffd52ebb5c487b40261117f1f29de5a4e1e4b6a50d1"
+        },
+        "timing": {
+          "bytes": 916,
+          "frame": 64
+        },
+        "sections": {
+          ".text": "9736a1bdee2735ca221993641222044b2ef405f240007697b7e80d9119653922",
+          ".rodata": "76ea7136edb6f42fde16e12546e1909732621c21e64caccf5f54bfa8a4f7c390",
+          ".rel.text": "85b857bcfcec2825bc2b27a6aa3f2b85223c6c66f1e3cfa5a99cbf86f15b2d93"
+        },
+        "behavior": {
+          "fixtures": 160,
+          "executions": 320,
+          "instruction_coverage": [
+            174,
+            174
+          ],
+          "branch_outcomes": [
+            27,
+            27
+          ],
+          "callee_side_effects_validated": false
+        }
+      },
+      "wrong_header": {
+        "scores": {
+          "audio_priority_find": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_mixer_main": {
+            "differing": 0,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B98D8": {
+            "differing": 0,
+            "total": 77,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9B64": {
+            "differing": 0,
+            "total": 129,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "minimap_render": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_friction_apply": {
+            "differing": 0,
+            "total": 126,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_velocity_clamp": {
+            "differing": 0,
+            "total": 86,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9740": {
+            "differing": 0,
+            "total": 102,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B930C": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9338": {
+            "differing": 0,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_effect_apply": {
+            "differing": 1,
+            "total": 174,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_response": {
+            "differing": 211,
+            "total": 230,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          }
+        },
+        "loader": {
+          "bytes": 696,
+          "frame": 80,
+          "body_sha256": "6a770a1fa6261a7d5f986932ba7977605932a9e70ad526476e25d64124101046"
+        },
+        "timing": {
+          "bytes": 916,
+          "frame": 64
+        },
+        "sections": {
+          ".text": "c56ec4e315faf6579078e1e9cbe225fe01975d448c2a145cf0a8a098e064fc99",
+          ".rodata": "76ea7136edb6f42fde16e12546e1909732621c21e64caccf5f54bfa8a4f7c390",
+          ".rel.text": "85b857bcfcec2825bc2b27a6aa3f2b85223c6c66f1e3cfa5a99cbf86f15b2d93"
+        },
+        "semantic_negative_rejected": true
+      },
+      "wrong_drone_count": {
+        "scores": {
+          "audio_priority_find": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_mixer_main": {
+            "differing": 0,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B98D8": {
+            "differing": 0,
+            "total": 77,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9B64": {
+            "differing": 0,
+            "total": 129,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "minimap_render": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_friction_apply": {
+            "differing": 0,
+            "total": 126,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_velocity_clamp": {
+            "differing": 0,
+            "total": 86,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9740": {
+            "differing": 0,
+            "total": 102,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B930C": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "func_800B9338": {
+            "differing": 0,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "audio_effect_apply": {
+            "differing": 1,
+            "total": 174,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "physics_response": {
+            "differing": 211,
+            "total": 230,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          }
+        },
+        "loader": {
+          "bytes": 696,
+          "frame": 80,
+          "body_sha256": "104c3845a4f357fc4e93f0d6037cf7e0cbceb246da942092b9b65424db1d4d3b"
+        },
+        "timing": {
+          "bytes": 916,
+          "frame": 64
+        },
+        "sections": {
+          ".text": "cd5e875cc5811fd7b43c5dd3657743e96a2c02614ee56209fc1f148592ed3809",
+          ".rodata": "76ea7136edb6f42fde16e12546e1909732621c21e64caccf5f54bfa8a4f7c390",
+          ".rel.text": "85b857bcfcec2825bc2b27a6aa3f2b85223c6c66f1e3cfa5a99cbf86f15b2d93"
+        },
+        "semantic_negative_rejected": true
+      }
+    },
+    "layouts": {
+      "native": {
+        "values": {
+          "vertex_size": 6,
+          "alternate_size": 16,
+          "alternate_count": 10,
+          "alternate_points": 12,
+          "respath_size": 16,
+          "respath_points": 4,
+          "respath_altcount": 8,
+          "respath_altwidth": 1,
+          "respath_alts": 12,
+          "drone_size": 8,
+          "drone_points": 4,
+          "point_size": 8,
+          "point_mph": 6,
+          "point_mphwidth": 1,
+          "signed_counter": 4294967295,
+          "unsigned_count": 65535
+        },
+        "mismatches": []
+      },
+      "vertex_stride": {
+        "values": {
+          "vertex_size": 8,
+          "alternate_size": 16,
+          "alternate_count": 10,
+          "alternate_points": 12,
+          "respath_size": 16,
+          "respath_points": 4,
+          "respath_altcount": 8,
+          "respath_altwidth": 1,
+          "respath_alts": 12,
+          "drone_size": 8,
+          "drone_points": 4,
+          "point_size": 8,
+          "point_mph": 6,
+          "point_mphwidth": 1,
+          "signed_counter": 4294967295,
+          "unsigned_count": 65535
+        },
+        "mismatches": [
+          "vertex_size"
+        ]
+      },
+      "wide_alt_count": {
+        "values": {
+          "vertex_size": 6,
+          "alternate_size": 16,
+          "alternate_count": 10,
+          "alternate_points": 12,
+          "respath_size": 20,
+          "respath_points": 4,
+          "respath_altcount": 8,
+          "respath_altwidth": 2,
+          "respath_alts": 16,
+          "drone_size": 8,
+          "drone_points": 4,
+          "point_size": 8,
+          "point_mph": 6,
+          "point_mphwidth": 1,
+          "signed_counter": 4294967295,
+          "unsigned_count": 65535
+        },
+        "mismatches": [
+          "respath_size",
+          "respath_altwidth",
+          "respath_alts"
+        ]
+      },
+      "wide_speed": {
+        "values": {
+          "vertex_size": 6,
+          "alternate_size": 16,
+          "alternate_count": 10,
+          "alternate_points": 12,
+          "respath_size": 16,
+          "respath_points": 4,
+          "respath_altcount": 8,
+          "respath_altwidth": 1,
+          "respath_alts": 12,
+          "drone_size": 8,
+          "drone_points": 4,
+          "point_size": 10,
+          "point_mph": 6,
+          "point_mphwidth": 2,
+          "signed_counter": 4294967295,
+          "unsigned_count": 65535
+        },
+        "mismatches": [
+          "point_size",
+          "point_mphwidth"
+        ]
+      }
+    }
+  }
+}

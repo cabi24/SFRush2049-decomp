@@ -1,0 +1,40 @@
+{
+  "members": [
+    "audio_priority_find",
+    "audio_mixer_main",
+    "func_800B98D8",
+    "func_800B9B64",
+    "minimap_render",
+    "physics_friction_apply",
+    "physics_velocity_clamp",
+    "func_800B9740",
+    "func_800B930C",
+    "func_800B9338"
+  ],
+  "files": [
+    "ctx.c",
+    "physics_response.c",
+    "route_cross.c",
+    "path_graph.c",
+    "bounds.c",
+    "loader.c"
+  ],
+  "keep": [
+    "audio_effect_apply",
+    "func_800B9338",
+    "audio_mixer_main",
+    "minimap_render",
+    "physics_friction_apply",
+    "func_800B98D8",
+    "func_800B9740",
+    "func_800B930C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [
+    "audio_effect_apply",
+    "physics_response"
+  ],
+  "claims": [],
+  "note": "Research only: natural ReadPathData is strictly exact at 696 bytes; real CalcCheckpointTimes remains 211/230 different. Ten existing exact members preserved. Empty claims and zero new accepted-byte credit. Canonical route-cross retains its disclosed two unused scalar locals unchanged. No artificial timing do-blocks."
+}

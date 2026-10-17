@@ -1,0 +1,18 @@
+{
+  "observation_only": true,
+  "complete_object_identity": true,
+  "object_sha256": "96ee821d759a96776e76ce97086140e4207257f07f55f10768a0c062ea5a347d",
+  "traced_uopt_sha256": "915d6eefffd835b52e6591eea1e3133f64cfb826aa93b16cbcf6f8c84358c16b",
+  "group_source_sha256": {
+    "group/bounds.c": "42ad10a492b2de5170ca7c10f781b3a004cb56637c429ecb61903084563107ce",
+    "group/ctx.c": "9c71fba6afbf525bfdbddbaf06d018a00ba58f8ab3414becc4871922fc9d0b63",
+    "group/group.json": "55c5db6eff4ae026ec9f4da5ca725417f95f21625ad8597e11de986297b86b02",
+    "group/loader.c": "218f8a0684314884966dd8af3dae66d5a773c256933e7263a62a1928bcf774c3",
+    "group/path_graph.c": "9a10841ac3b358b65fcda10ed51437f952087e04f3052cd3a757cda36ef65c25",
+    "group/physics_response.c": "6428065b23ad9e6d9f4868cb7f8b639b761b5d2f1a9645005d8ab09e4479987a",
+    "group/route_cross.c": "68c7a34d6ebdba097c726ae7f5fab669d25844f1e0c8e190200adeefbd1b7048"
+  },
+  "forced_colors": false,
+  "claims": [],
+  "new_accepted_bytes": 0
+}

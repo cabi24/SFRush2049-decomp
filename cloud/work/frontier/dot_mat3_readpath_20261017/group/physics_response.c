@@ -1,0 +1,109 @@
+/* CalcCheckpointTimes @ N64 0x800B93A8, historical physics_response label.
+ * Natural historical timing reconstruction with both artificial do-blocks removed.
+ * It remains 211/230 words different, compiled 916 bytes versus native 920.
+ * No matching claim. The exact loader calls this real but unmatched helper.
+ * GetNextCheckpoint below retains the canonical signed native contract.
+ */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef short s16;
+typedef unsigned short u16;
+typedef int s32;
+typedef unsigned int u32;
+typedef float f32;
+
+typedef struct Route {
+    /* 0x00 */ s16 total;     /* record 0: lap time */
+    /* 0x02 */ s16 first;     /* record 0: section the ring wraps to */
+    /* 0x04 */ s16 last;      /* record 0: last (finish) section */
+    /* 0x06 */ s16 start;     /* record 0: first section of the race */
+    /* 0x08 */ s16 count;     /* record 0: number of sections */
+    /* 0x0A */ char padA[0x20];
+    /* 0x2A */ s16 time[2];
+    /* 0x2E */ s16 pad2E;
+    /* 0x30 */ s16 pt_start[16];
+} Route; /* 0x50 */
+
+typedef struct {
+    /* 0x00 */ s16 pos[3];
+    /* 0x06 */ u8 speed;
+    /* 0x07 */ u8 unk7;
+} PathPt; /* 0x08 */
+
+
+extern Route D_80151CE8;
+typedef struct {
+    /* 0x00 */ u16 num;
+    /* 0x04 */ PathPt *pts;
+} PathSet; /* 0x08 */
+
+extern PathSet D_8012E5E8[];
+
+s16 func_800B9338(s16, s16);
+f32 sqrtf(f32);
+#pragma intrinsic (sqrtf)
+
+s32 func_800B930C(s32 index) {if(index+1 == D_80151CE8.count)return D_80151CE8.first;return index+1;}
+
+void physics_response(void) {
+    s32 p;
+    s32 path;
+    s32 cur;
+    s32 next;
+    s32 end;
+    s32 i;
+    s32 done;
+    f32 d[3];
+    f32 t;
+
+    path = 0;
+    for (p = 0; p < 2; p++) {
+        done = (D_80151CE8.start == 0 || p != 0);
+        if (p == 0) {
+            cur = D_80151CE8.start;
+        } else {
+            cur = D_80151CE8.last;
+        }
+        for (;;) {
+            next = func_800B930C(cur);
+            if (next < cur) {
+                end = D_8012E5E8[path].num - 1;
+            } else {
+                end = (&D_80151CE8)[next].pt_start[path] - 1;
+            }
+            t = 0.0f;
+            for (i = (&D_80151CE8)[cur].pt_start[path]; i < end; i++) {
+                d[0] = D_8012E5E8[path].pts[i + 1].pos[0] - D_8012E5E8[path].pts[i].pos[0];
+                d[1] = D_8012E5E8[path].pts[i + 1].pos[1] - D_8012E5E8[path].pts[i].pos[1];
+                d[2] = D_8012E5E8[path].pts[i + 1].pos[2] - D_8012E5E8[path].pts[i].pos[2];
+                t += sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]) / ((u32) D_8012E5E8[path].pts[i].speed * 1.4666667f);
+            }
+            d[0] = D_8012E5E8[path].pts[func_800B9338(i, path)].pos[0] - D_8012E5E8[path].pts[i].pos[0];
+            d[1] = D_8012E5E8[path].pts[func_800B9338(i, path)].pos[1] - D_8012E5E8[path].pts[i].pos[1];
+            d[2] = D_8012E5E8[path].pts[func_800B9338(i, path)].pos[2] - D_8012E5E8[path].pts[i].pos[2];
+            t += sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]) / ((u32) D_8012E5E8[path].pts[i].speed * 1.4666667f);
+            (&D_80151CE8)[cur].time[p] = t;
+            cur = next;
+            if (cur == D_80151CE8.last) {
+                if (done) {
+                    break;
+                }
+                done = 1;
+            }
+        }
+    }
+    D_80151CE8.total = D_80151CE8.time[0] + 10;
+    cur = D_80151CE8.last;
+    t = 0.0f;
+    do {
+        t += (&D_80151CE8)[cur].time[1];
+        if (cur == D_80151CE8.count - 1) {
+            i = D_80151CE8.first;
+        } else {
+            i = cur + 1;
+        }
+        cur = i;
+    } while (cur != D_80151CE8.last);
+    D_80151CE8.total = D_80151CE8.total + t / 30.0f;
+    (&D_80151CE8)[D_80151CE8.last].time[1] = (&D_80151CE8)[D_80151CE8.last].time[1] + t / 30.0f;
+}
