@@ -76,6 +76,12 @@ rejected(lambda:m.check_trace_identity(b'stock',b'changed'),'instrumentation cha
 original=m.source_bindings;m.source_bindings=lambda:{}
 try:rejected(lambda:m.verify(out/'source'),'source receipt changed')
 finally:m.source_bindings=original
+original_compiler=m.compiler_bindings
+for section,items in original_compiler().items():
+ for name in items:
+  changed=copy.deepcopy(original_compiler());changed[section][name]='0'*64;m.compiler_bindings=lambda:changed
+  try:rejected(lambda:m.verify(out/'compiler'),'toolchain/verifier inputs changed')
+  finally:m.compiler_bindings=original_compiler
 original=m.target_bindings;m.target_bindings=lambda:{}
 try:rejected(lambda:m.verify(out/'target'),'target receipt changed')
 finally:m.target_bindings=original
@@ -93,12 +99,12 @@ for mode,reason in [('claims','claim inventory changed'),('object','fresh sealed
  Path.read_text=changed
  try:rejected(lambda:m.verify(out/mode),reason)
  finally:Path.read_text=original
-if count!=36:raise RuntimeError('refusal count changed: '+str(count))
-print('36 optimized refusal cases pass')
+if count!=50:raise RuntimeError('refusal count changed: '+str(count))
+print('50 optimized refusal cases pass')
 '''
     result=subprocess.run([sys.executable,'-O','-c',program,str(PACKET),str(tmp_path)],capture_output=True,text=True)
     assert result.returncode==0,result.stdout+result.stderr
-    assert result.stdout=='36 optimized refusal cases pass\n'
+    assert result.stdout=='50 optimized refusal cases pass\n'
 
 def test_sound_init_relocated_packet(tmp_path):
     relocated=tmp_path/'different-root'/'packet'

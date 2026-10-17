@@ -28,7 +28,12 @@ def inspect(obj,name):
 def complete(r):
     return r['verdict']=='MATCH' and r['total']*4==r['symbol_bytes']==r['native_bytes'] and not any(r[k] for k in ('differing','extra_words','unresolved','unverified','errors'))
 def source_bindings():
-    return {str(p.relative_to(HERE)):sha(p.read_bytes()) for p in sorted(list(GROUP.glob('*'))+[HERE/'replay.py',HERE/'observe.py']) if p.is_file()}
+    return {str(p.relative_to(HERE)):sha(p.read_bytes()) for p in sorted(list(GROUP.glob('*'))+[HERE/'replay.py',HERE/'observe.py',HERE/'README.md']) if p.is_file()}
+def compiler_bindings():
+    return {'compiler_executables':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},
+            'verification_tools':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py','blob_matched.lock.json']},
+            'target_metadata':{n:sha((score.ASM_DIR/n).read_bytes()) for n in ['SHA256SUMS','symbols.json']}}
+
 def target_bindings():
     names=json.loads((GROUP/'group.json').read_text())['members']
     return {n:{'address':hex(score.image_symbols()[n]), 'bytes':4*len(score.targets()[n]), 'words_sha256':sha(struct.pack('>'+str(len(score.targets()[n]))+'I',*score.targets()[n]))} for n in names}
@@ -86,6 +91,7 @@ def verify(work,check_receipt=True):
         frozen=json.loads((HERE/'verification.json').read_text())
         require(source_bindings()==frozen['source_sha256'],'source receipt changed')
         require(target_bindings()==frozen['target_sha256'],'target receipt changed')
+        require(compiler_bindings()==frozen['verification_inputs'],'toolchain/verifier inputs changed')
         verify_report(frozen)
         require(sha((HERE/'compiler-decisions.json').read_bytes())==frozen['compiler_observations_sha256'],'compiler observation receipt changed')
     source=(GROUP/'hud_setup.c').read_text()
@@ -127,7 +133,7 @@ def verify(work,check_receipt=True):
         if label=='external_once_flag':require(rows[FN]['differing']==8,'external flag control changed')
         print(label+': '+rows[FN]['verdict']+'; prior members preserved '+str(len(results[label]['preserved_members']))+'/24')
     image=score.own_data();require(image.read(0x80110274,4)==bytes(4),'native initialized-data window changed')
-    result={'compiler_observations_sha256':sha((HERE/'compiler-decisions.json').read_bytes()),'claims':spec['claims'],'accepted_image_bytes':0,'protocol_version':3,'status':'STRICT_CLOUD_MATCH_PENDING_UNIT_IMAGE_GATES','new_code_bytes':1048,'prior_members':24,'source_sha256':source_bindings(),'target_sha256':target_bindings(),'once_flag':{'logical_bytes':1,'verified_window_bytes':4,'address':'0x80110274','window_sha256':sha(bytes(4))},'results':results}
+    result={'verification_inputs':compiler_bindings(),'compiler_observations_sha256':sha((HERE/'compiler-decisions.json').read_bytes()),'claims':spec['claims'],'accepted_image_bytes':0,'protocol_version':3,'status':'STRICT_CLOUD_MATCH_PENDING_UNIT_IMAGE_GATES','new_code_bytes':1048,'prior_members':24,'source_sha256':source_bindings(),'target_sha256':target_bindings(),'once_flag':{'logical_bytes':1,'verified_window_bytes':4,'address':'0x80110274','window_sha256':sha(bytes(4))},'results':results}
     verify_report(result)
     if check_receipt:
         verify_trace_bindings(json.loads((HERE/'compiler-decisions.json').read_text()),result)

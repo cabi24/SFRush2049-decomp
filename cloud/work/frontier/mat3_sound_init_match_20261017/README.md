@@ -27,7 +27,7 @@ From the repository root, with stock IDO 5.3 and MIPS binutils configured:
     python3 cloud/work/frontier/mat3_sound_init_match_20261017/replay.py
     python3 -m pytest -q tests/cloud/test_mat3_sound_init_match.py
 
-The single test validates source and target hashes, then performs the optional toolchain replay. Six fresh group compiles take about three seconds here. `verification.json` binds sources and target words by hash, not mutable tools or lock files.
+The focused tests validate the complete saved report, source and target hashes, then perform fresh and relocated toolchain replays. Six fresh group compiles take about three seconds here. `verification.json` binds sources, this README, target words, protected target metadata, all nine actual IDO group-build executables, the scorer, own-data verifier and accepted lock by hash.
 
 Controls, with the 24 prior members preserved unless stated:
 
@@ -64,3 +64,12 @@ Focused tests include optimized-interpreter refusal controls and replay after
 moving the packet to a different path. Run the same replay and observe commands
 with `python3 -O` to exercise the optimized-interpreter path. No source or
 matching-credit expansion accompanies this verification-only change.
+
+## Compiler-input correction
+
+The stock `cc -j` frontend invokes `cfe` followed by `ujoin`. The replay now
+binds that complete nine-executable pipeline, the current scorer/own-data tools,
+accepted lock and protected target metadata before compilation. The README joins
+the source seal. Optimized tests reject a stale digest for each compiler stage,
+tooling/lock input and target metadata file. All old compiled objects, comparison
+rows, trace decisions, source, recipe, claims and credit remain unchanged.

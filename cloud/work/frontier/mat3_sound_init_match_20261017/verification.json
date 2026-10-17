@@ -1,5 +1,27 @@
 {
-  "compiler_observations_sha256": "8a4f95f961b105a34cbcc33333431924fddc02c996a71e7ec083287a69ffbfad",
+  "verification_inputs": {
+    "compiler_executables": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    },
+    "verification_tools": {
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+    },
+    "target_metadata": {
+      "SHA256SUMS": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+      "symbols.json": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd"
+    }
+  },
+  "compiler_observations_sha256": "6940afe6e60350b6ecc8101766df2111abfe816f8d6657a09ec30ae75ecbe1a3",
   "claims": [
     "func_800CD058",
     "func_800CCEFC",
@@ -33,6 +55,7 @@
   "new_code_bytes": 1048,
   "prior_members": 24,
   "source_sha256": {
+    "README.md": "8587dd2ae8b163bba87f17e73ecd27aab6d3e5a2daa8bac1dbab91a2fc1bd171",
     "groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
     "groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
     "groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
@@ -43,7 +66,7 @@
     "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
     "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
     "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
-    "replay.py": "8ab715af895bbc9b90ed5c41e0e68ac4f4ce6063ea0679818f9e52cb11a06e09"
+    "replay.py": "4e36ba6d08767d922fa6ba67f457b7b8819fbbf4af1dc92280838b4f76ed5fca"
   },
   "target_sha256": {
     "func_800CD058": {
