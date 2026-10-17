@@ -85,3 +85,7 @@ concurrency, or execution of the native image. In particular, native cursor 4
 would access the following word before the limit check; this harness does not
 claim ISO-C validity for that out-of-array access. No ROM/image integration,
 canonical source edits, or CI monitoring is performed.
+
+## Toolchain availability correction
+
+The compiler executable hashes now pass through the shared `score.ido` availability check. With missing IDO, local focused tests use the repository's toolchain-skip policy; `REQUIRE_TOOLCHAIN=1` still fails closed. Previously those two receipt/guard tests raised `FileNotFoundError` before the shared policy could handle the absent compiler. A focused missing-compiler diagnostic test protects this behavior. This changes no C, recipe, target, comparison, extent, model, claim or credit.

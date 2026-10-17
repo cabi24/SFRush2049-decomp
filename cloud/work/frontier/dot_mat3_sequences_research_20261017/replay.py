@@ -31,7 +31,7 @@ def verify_scope(sp):
  require(sp['flags']=='-g0 -O3 -mips2 -G 0 -non_shared' and not sp.get('allow_unverified'),'compiler contract changed')
 def inputs():
  ts=score.targets();syms=score.image_symbols()
- return {'protocol_version':2,'recipe':recipe(),'packet_sha256':{n:sha((HERE/n).read_bytes()) for n in PACKET},'context_sha256':{n:sha((ROOT/n).read_bytes()) for n in list(CONTEXT.values())+[BASE+'/group.json',THREAD]},'targets':{n:{'address':hex(syms[n]),'bytes':len(ts[n])*4,'sha256':sha(struct.pack('>%dI'%len(ts[n]),*ts[n]))} for n in names()+['entity_ai_pathfind']},'toolchain_sha256':{n:sha((score.IDO/n).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
+ return {'protocol_version':2,'recipe':recipe(),'packet_sha256':{n:sha((HERE/n).read_bytes()) for n in PACKET},'context_sha256':{n:sha((ROOT/n).read_bytes()) for n in list(CONTEXT.values())+[BASE+'/group.json',THREAD]},'targets':{n:{'address':hex(syms[n]),'bytes':len(ts[n])*4,'sha256':sha(struct.pack('>%dI'%len(ts[n]),*ts[n]))} for n in names()+['entity_ai_pathfind']},'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},'verifier_sha256':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']}}
 def materialize(d,candidate=None,thread=False):
  for n,p in CONTEXT.items():shutil.copyfile(ROOT/p,d/n)
  if candidate is not None:

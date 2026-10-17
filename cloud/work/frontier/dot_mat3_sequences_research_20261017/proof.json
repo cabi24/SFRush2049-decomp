@@ -1575,10 +1575,10 @@
       "src/blob/groups/engine_sound_sync/group.json": "c8d17e019769d54181347ebaf290055867ca024af322464f5d7c7d4f6615ba95"
     },
     "packet_sha256": {
-      "README.md": "9e7fca714f91e0be5bba536a6dbd1d5f5abf392d47c3614e92746fba36072fa8",
+      "README.md": "162e9f676caccbde3bab9e209176d6a94d4cf89de3a9658815eda0bf7481d85b",
       "candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
       "group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
-      "replay.py": "522c7126a02a7c36f300f5c7a8294e599dc788cd04465e95afcfb93917d13394",
+      "replay.py": "d9369f610e2394b12b0beefbbb8ed100d3f1bc68f34aa8195c6f6c32403e6255",
       "semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93"
     },
     "protocol_version": 2,

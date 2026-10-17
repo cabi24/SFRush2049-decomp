@@ -1,0 +1,46 @@
+{
+  "status": "PASS_AVAILABILITY_ONLY_REVIEW",
+  "reviewer": "renderer lane independent review",
+  "reviewed_at_utc": "2026-10-17T21:37:58Z",
+  "proof_sha256": "97e143257f2464ba911086e95da3d4ee619827fd06eb670898a046e6ea6ebf87",
+  "claims": [],
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0,
+  "reviewed_files_sha256": {
+    "README.md": "162e9f676caccbde3bab9e209176d6a94d4cf89de3a9658815eda0bf7481d85b",
+    "replay.py": "d9369f610e2394b12b0beefbbb8ed100d3f1bc68f34aa8195c6f6c32403e6255",
+    "proof.json": "97e143257f2464ba911086e95da3d4ee619827fd06eb670898a046e6ea6ebf87",
+    "candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
+    "group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
+    "semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93"
+  },
+  "focused_test_sha256": "928258b45ef9ea91fee5de512408f5a04af24364a9cc69f4c9a1b14d8304ab3a",
+  "code_review": "The sole verifier code change resolves the same compiler executable through Path(score.ido(n)), restoring the standard missing-IDO diagnostic without changing its hash or invocation. The added focused test pins that diagnostic.",
+  "receipt_comparison": {
+    "only_changed_fields": [
+      "inputs.packet_sha256.README.md",
+      "inputs.packet_sha256.replay.py"
+    ],
+    "all_other_fields_equal": true
+  },
+  "independent_checks": {
+    "toolchain_present": {
+      "passed": 4,
+      "includes_full_stock_replay": true,
+      "includes_optimized_refusals": true
+    },
+    "missing_IDO_local": {
+      "passed": 1,
+      "skipped": 3
+    },
+    "missing_IDO_required": {
+      "passed": 1,
+      "expected_failed": 3
+    }
+  },
+  "limits": [
+    "Availability-only review; the existing source/semantics review remains separate.",
+    "No C, recipe, target, comparison, extent, complete-output, semantics or credit expansion.",
+    "No canonical integration, native execution, ROM verification or external publication performed by this review."
+  ]
+}

@@ -61,3 +61,8 @@ print('optimized proof guards reject mutations and stale compiler/verifier input
  r=subprocess.run([sys.executable,'-O','-c',script,str(HERE)],capture_output=True,text=True)
  assert r.returncode==0,(r.stdout,r.stderr)
  assert r.stdout=='optimized proof guards reject mutations and stale compiler/verifier inputs\n'
+
+def test_sequences_missing_compiler_diagnostic(monkeypatch, tmp_path):
+ monkeypatch.setattr(packet.score,'IDO',tmp_path/'missing_ido')
+ with pytest.raises(SystemExit,match='run tools/cloud/setup.sh'):
+  packet.inputs()
