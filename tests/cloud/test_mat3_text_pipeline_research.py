@@ -54,3 +54,16 @@ def test_text_pipeline_relocated_integrity(tmp_path):
   file=packet/name;old=file.read_bytes();obj=json.loads(old);update(obj);file.write_text(json.dumps(obj))
   assert run(f"\ntry:m.verify(Path({str(tmp_path/'refusal')!r}))\nexcept RuntimeError:print('rejected')\nelse:raise RuntimeError('accepted altered binding')\n",packet)=='rejected\n'
   file.write_bytes(old)
+
+ # Redirect only ujoin to changed local bytes; no real toolchain file is modified.
+ stage=tmp_path/'altered-ujoin';stage.write_text('changed compiler stage')
+ source=f"""
+old=m.score.ido
+m.score.ido=lambda n:{str(stage)!r} if n=='ujoin' else old(n)
+try:m.verify(Path({str(tmp_path/'stage_refusal')!r}))
+except RuntimeError as e:
+ if 'source/target/tool binding changed' not in str(e):raise
+ print('changed ujoin rejected')
+else:raise RuntimeError('changed ujoin was ignored')
+"""
+ assert run(source,packet)=='changed ujoin rejected\n'

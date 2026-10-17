@@ -148,3 +148,11 @@ equality. Explicit exceptions stay active under Python -O. Optimized refusal tes
 and a relocated packet replay exercise those guards. Stock and observation-only
 traced uopt produce the same complete object. Raw traces, target bytes, binaries
 and disassembly remain only in ignored local build scratch.
+
+## Compiler-stage binding follow-up
+
+The environment fingerprint includes `ujoin`, which the stock `cc -j` driver
+actually invokes for this group. A targeted optimized test redirects just that
+stage to changed local bytes and requires the source/tool binding guard to reject
+it before compilation. No shared toolchain file is modified. C, recipes, whole
+objects, matching results and behavior results are unchanged.
