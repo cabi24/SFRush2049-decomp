@@ -1575,10 +1575,10 @@
       "src/blob/groups/engine_sound_sync/group.json": "c8d17e019769d54181347ebaf290055867ca024af322464f5d7c7d4f6615ba95"
     },
     "packet_sha256": {
-      "README.md": "162e9f676caccbde3bab9e209176d6a94d4cf89de3a9658815eda0bf7481d85b",
+      "README.md": "881bfd039943dbea877ec514f9a324eff2cf55db42a056ec2d2702e1175894c0",
       "candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
       "group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
-      "replay.py": "d9369f610e2394b12b0beefbbb8ed100d3f1bc68f34aa8195c6f6c32403e6255",
+      "replay.py": "d0a2850da2a2d186fb686f60ff67332eb7a6465c7db660fc354e77a3098c6233",
       "semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93"
     },
     "protocol_version": 2,
@@ -1741,6 +1741,7 @@
       "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
       "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
       "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
       "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
       "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
       "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",

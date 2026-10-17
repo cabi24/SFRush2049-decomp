@@ -55,6 +55,11 @@ for key,value in [('differing',1),('extra_words',1),('unresolved',['bad']),('unv
 original=m.inputs
 for key in ['toolchain_sha256','verifier_sha256']:
  bad=original();name=next(iter(bad[key]));bad[key][name]='0'*64;m.inputs=lambda:bad;rejected(lambda:m.verify())
+bad=original();bad['toolchain_sha256']['ujoin']='0'*64;m.inputs=lambda:bad
+try:m.verify()
+except RuntimeError as e:
+ if str(e)!='source, context, toolchain, verifier or target receipt changed':raise RuntimeError('wrong ujoin refusal: '+str(e))
+else:raise RuntimeError('stale ujoin accepted')
 m.inputs=original
 print('optimized proof guards reject mutations and stale compiler/verifier inputs')
 '''

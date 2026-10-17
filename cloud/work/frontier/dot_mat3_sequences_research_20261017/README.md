@@ -89,3 +89,7 @@ canonical source edits, or CI monitoring is performed.
 ## Toolchain availability correction
 
 The compiler executable hashes now pass through the shared `score.ido` availability check. With missing IDO, local focused tests use the repository's toolchain-skip policy; `REQUIRE_TOOLCHAIN=1` still fails closed. Previously those two receipt/guard tests raised `FileNotFoundError` before the shared policy could handle the absent compiler. A focused missing-compiler diagnostic test protects this behavior. This changes no C, recipe, target, comparison, extent, model, claim or credit.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.

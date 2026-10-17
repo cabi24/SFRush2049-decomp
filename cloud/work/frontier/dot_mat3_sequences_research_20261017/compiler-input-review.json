@@ -1,0 +1,33 @@
+{
+  "independent_checks": [
+    "Only verifier-code change is adding ujoin through Path(score.ido(...)).",
+    "Stock cc -show -j independently confirms cfe then ujoin.",
+    "All 24 focused tests across six packets pass, including complete optimized replay and explicit stale-ujoin refusals.",
+    "Final refreshed input bindings equal current files and tools.",
+    "All prior output, source, recipe, object, extent, comparison, layout and semantic fields remain identical."
+  ],
+  "limits": [
+    "Prior source-shaping and semantic-domain disclosures remain applicable.",
+    "No canonical unit/image/ROM gates or additional acceptance claim."
+  ],
+  "prior_verifier_sha256": "d9369f610e2394b12b0beefbbb8ed100d3f1bc68f34aa8195c6f6c32403e6255",
+  "proof_sha256": "40c542002f287f4891e3c321d8c67030b1a34afc839318428f55651e8c19c62e",
+  "reviewed_at_utc": "2026-10-17T22:22:00Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/README.md": "881bfd039943dbea877ec514f9a324eff2cf55db42a056ec2d2702e1175894c0",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/candidate.c": "88028e9d1fc027a236124b71cc2ac8ed3bba24f2f57e99aace60cad415bbf941",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/group.json": "12474148505eecca9a8427844057aef0a1b4be5ab4011128da1f9613bdb8675f",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/proof.json": "40c542002f287f4891e3c321d8c67030b1a34afc839318428f55651e8c19c62e",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/replay.py": "d0a2850da2a2d186fb686f60ff67332eb7a6465c7db660fc354e77a3098c6233",
+    "cloud/work/frontier/dot_mat3_sequences_research_20261017/semantics.c": "998bfad7320412c5e3957c0d5a5226e03009c9fa451b532586f81181d8823e93",
+    "tests/cloud/test_mat3_sequences_research.py": "ace37a8c8dbaf9eed9d9dc2d5383ceba992c72ba9250d75e945acfaa9f104e23"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Compiler-input fingerprint correction only; no source or matching-credit expansion.",
+  "status": "PASS",
+  "verified_receipt_changes": [
+    "/inputs/packet_sha256/README.md",
+    "/inputs/packet_sha256/replay.py",
+    "/inputs/toolchain_sha256/ujoin"
+  ]
+}
