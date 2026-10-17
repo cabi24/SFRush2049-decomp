@@ -32,7 +32,7 @@ def inputs():
   'target_words_sha256':{n:hashlib.sha256(struct.pack('>%dI'%len(targets[n]),*targets[n])).hexdigest() for n in EXTENTS},
   'verification_inputs':{
    'protocol_version':2,
-   'toolchain_sha256':{n:digest(Path(score.ido(n))) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']},
+   'toolchain_sha256':{n:digest(Path(score.ido(n))) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},
    'verifier_sha256':{n:digest(ROOT/n) for n in ['tools/cloud/score.py','tools/cloud/owndata.py','blob_matched.lock.json']},
    'context_sha256':{'cloud/matches/process_inputs.c':digest(ROOT/'cloud/matches/process_inputs.c')},
    'target_manifest_sha256':digest(score.ASM_DIR/'SHA256SUMS'),

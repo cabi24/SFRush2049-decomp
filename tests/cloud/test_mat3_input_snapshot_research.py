@@ -41,6 +41,7 @@ for key in ['inputs_sha256','target_words_sha256']:
  b=copy.deepcopy(current);b[key][next(iter(b[key]))]='0'*64;rejected(lambda:m.verify_bindings(r,b))
 for key in ['toolchain_sha256','verifier_sha256','context_sha256']:
  b=copy.deepcopy(current);z=b['verification_inputs'][key];z[next(iter(z))]='0'*64;rejected(lambda:m.verify_bindings(r,b))
+b=copy.deepcopy(current);b['verification_inputs']['toolchain_sha256']['ujoin']='0'*64;rejected(lambda:m.verify_bindings(r,b))
 for key in ['target_manifest_sha256','target_symbols_sha256']:
  b=copy.deepcopy(current);b['verification_inputs'][key]='0'*64;rejected(lambda:m.verify_bindings(r,b))
 b=copy.deepcopy(current);b['verification_inputs']['targets'][m.TARGET]['address']='0x80000000';rejected(lambda:m.verify_bindings(r,b))
@@ -51,7 +52,7 @@ for mutate in [lambda x:x.update(claims=[m.TARGET]),lambda x:x['context'].pop(),
  b=copy.deepcopy(scope);mutate(b);rejected(lambda:m.verify_scope(b))
 print('optimized refusal cases:',count)
 '''
- assert run(script,True)=='optimized refusal cases: 101\n'
+ assert run(script,True)=='optimized refusal cases: 102\n'
 
 def test_input_snapshot_missing_ido_diagnostic(tmp_path):
  script=f"""

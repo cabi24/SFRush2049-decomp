@@ -1,0 +1,37 @@
+{
+  "reviewer": "independent physics lane",
+  "status": "PASS",
+  "scope": "Compiler-input seal correction only; no source, result, semantic or credit expansion.",
+  "proof_sha256": "e762cd86642714593ad018b2c05651c605c64a1bfb0476ece65e0c11b54dba31",
+  "prior_proof_sha256": "82050a722499d5dd56bd954250e64a64503a23880ce233ceac423e2945808053",
+  "changed_receipt_fields": [
+    "/inputs_sha256/README.md",
+    "/inputs_sha256/verify.py",
+    "/verification_inputs/toolchain_sha256/ujoin"
+  ],
+  "code_review": "The sole verifier code change adds ujoin to the existing standard score.ido compiler lookup and hash inventory. The optimized test specifically rejects a stale ujoin digest. Stock cc -j frontend evidence confirms cfe then ujoin.",
+  "preservation": "Independent recursive comparison reproduced exactly the three listed input changes; all other receipt fields, source/recipe hashes, complete objects, comparison rows, extents and semantics are identical.",
+  "independent_tests": {
+    "three_packet_focused_suite": "12 passed, including each full optimized replay and stale-ujoin refusal",
+    "missing_IDO": "3 passed, 9 skipped",
+    "logs": "build/physics_ujoin_review2221"
+  },
+  "current_files": {
+    "init_host_behavior.py": "8f274cb43312fa85e6fc155338eef9c8677672b72f1daee048ecc4add77e5ff6",
+    "layout.py": "c97402548734ae3f85e65c66efaea206d169c479bde4d361a91fbeafd2cdf46e",
+    "verify.py": "cbc5365edf0c0f20a41e950e47d10bb9539e31b8b5af14de0b1db6a1e437df75",
+    "behavior.py": "943b2fdc00a67f35ab5c23c4718405f1f51253fc6d991d27c00503387e0415ce",
+    "host_behavior.py": "711db62d107473af73fd3cdc78e5fb90e2a9087ca2e54e7b7ac5e77eb62f4684",
+    "verification.json": "e762cd86642714593ad018b2c05651c605c64a1bfb0476ece65e0c11b54dba31",
+    "init_negative_controls.py": "5662e98276a4182bc65a3dd035131028092dec51b04ac2a80e06d8001063d0a4",
+    "init_behavior.py": "1932367a54463b41f33db3e7bd769c5475bc3b0ba768b4410aca120fcb12e1da",
+    "negative_controls.py": "36006190be80bc66171c5ae5a2d319d1ef1eba3a9e2bfbb44850851bc37964d6",
+    "README.md": "157f6679a6d8e2b97b117a2f48cb594c9e092eb492dde1b0a840050a4d032f48",
+    "group/group.json": "9a6b7034503d25affeaa03603cf1a1220782e600482a4a1f22b4d68954378df7",
+    "group/process.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
+    "group/group.c": "d2121eb3fb2d4875c5006d72b8753a1b590e7b4dbd2ca5e48d43d785b9a35b7a"
+  },
+  "focused_test_sha256": "245c784ba884a9fbbf197714e039c734a716eaff8a995ab3338b58df8e9c061a",
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}

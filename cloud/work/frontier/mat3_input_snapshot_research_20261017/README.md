@@ -132,3 +132,7 @@ REQUIRE_TOOLCHAIN=1. The original independent review remains the source/behavior
 review; the separate hardening review covers this verifier-only update.
 
     python3 -m pytest tests/cloud/test_mat3_input_snapshot_research.py -q
+
+The compiler fingerprint includes `ujoin`, which stock `cc -j` invokes after
+`cfe` on this group-build path. A stale `ujoin` digest is rejected under Python
+`-O`; source, comparison rows, semantic results and credit are unchanged.
