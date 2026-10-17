@@ -119,7 +119,8 @@ native receipts remain unchanged. Moving the real Hidden definition after
 its callers preserves every native result. Error receipts scrub compared
 byte values. Seven standard-library guards run with the toolchain available;
 only the two environment-dependent guards skip when it is absent, while
-five source/proof/report/scope guards still run.
+five source/proof/report/scope guards still run. With REQUIRE_TOOLCHAIN=1,
+a missing toolchain instead fails both environment-dependent guards.
 
 The separate host differential compares the prior expanded visibility source
 with the recovered Hidden/win source over 8,192 deterministic scenarios. It

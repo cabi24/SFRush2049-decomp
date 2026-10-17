@@ -12,5 +12,14 @@
   },
   "host_scenarios": 8192,
   "claims": [],
-  "new_accepted_credit": 0
+  "new_accepted_credit": 0,
+  "required_missing_toolchain_control": {
+    "passed": 5,
+    "expected_failures": 2,
+    "mode": "optimized"
+  },
+  "independent_required_missing_modes": [
+    "normal",
+    "optimized"
+  ]
 }

@@ -32,3 +32,11 @@ fixed eight-site residual and strict retained sibling. Signoff preserves
 all inherited formal/device, donor-freshness and source-shadow limits above.
 It covers a narrow research draft with empty claims, not canonical source,
 complete-unit/image acceptance or new accepted credit.
+
+## Test availability amendment
+
+The same independent reviewer checked the test-only required-tool correction
+in normal and optimized Python: seven passes with tools, five passes and two
+skips when absent, and five passes plus two expected failures when absent
+with REQUIRE_TOOLCHAIN=1. Explicit failure checks survive optimization.
+No C source, proof input, compiler object or matching result changed.

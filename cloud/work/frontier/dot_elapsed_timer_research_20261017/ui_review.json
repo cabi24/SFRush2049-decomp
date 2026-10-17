@@ -1,5 +1,24 @@
 {
   "accepted_image_or_candidate_credit": 0,
+  "availability_amendment": {
+    "absent_each_mode": {
+      "passed": 5,
+      "skipped": 2
+    },
+    "modes": [
+      "normal",
+      "optimized"
+    ],
+    "present_each_mode": {
+      "passed": 7
+    },
+    "required_absent_each_mode": {
+      "expected_failures": 2,
+      "passed": 5
+    },
+    "source_and_proof_unchanged": true,
+    "test_sha256": "08cbbee36eeb1a3517f3be89452829f9d42eb7231de2f3b508a89110efc7bfbe"
+  },
   "claims": [],
   "conclusion": "Suitable for narrow research publication; fixed eight-site frame/home residual, exact retained text sibling and shared full32-byte position content proof reproduce. Inherited formal/blocker, donor freshness and shadow failures remain explicit.",
   "guards_each_python_mode": 7,
