@@ -1,0 +1,4453 @@
+{
+  "accepted_image_bytes": 0,
+  "claims": [],
+  "controls": {
+    "append_free_list": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "85cab64c6c4a0af4d93f3e742b06380e57265888f4cfdff38cfbee4d597ccde1",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 8,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "6fd3bc3ff8d853a7022019d097077c0a3d47c248f5d128cab80a92e3d5d662ac"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "5d5bb0b05f81794b7623e61dce1f336772f65c50e6d6e1fb1978f9aab25eb020"
+        }
+      }
+    },
+    "external_heap": {
+      "emitted_functions": [
+        "PS_CreateFile",
+        "car_lod_select",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "no_catchup",
+        "track_render_process"
+      ],
+      "object_sha256": "874d0267dc93db59805bd0ec1af59d6a4f10a50417a73f1f00b02ed523584767",
+      "rows": {
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 29,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3052,
+          "differing": 786,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "c2ff2543e18bd1834bd0e77609d664f213c53e7825a44a0388c708080e3b678e"
+        },
+        ".rel.text": {
+          "bytes": 2296,
+          "sha256": "516c83df8fd9329af91d43469db7c47036f19be5b642fe99e1572d4dcd343a2f"
+        },
+        ".rodata": {
+          "bytes": 48,
+          "sha256": "41316d891da8b3728fa53cf5f75ac6d00b1e6488d10f365914c8394bc838980e"
+        },
+        ".text": {
+          "bytes": 5968,
+          "sha256": "dfdd493b93a1393307ed32aa3e0f790af63a1247ce88cd986bb12bdc366fb3ec"
+        }
+      }
+    },
+    "lost_successor": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "736287255474e95117c16ce3edb3f6e542be6149f13e0061c90ceecf66ec0403",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 208,
+          "differing": 47,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3052,
+          "differing": 786,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5008,
+          "sha256": "56ed78fbf45789f09a86fb34bb1d878c47842cf47866e1d057920ca7cbbb55cb"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12160,
+          "sha256": "0bd76870394b14476c38753eda3371b408eb0b962bb8580a7a6bff016d56b172"
+        }
+      }
+    },
+    "missing_buffer_clear": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "b683c5474c03eb2d522198751062be040f04d00da8d6d58ec310adcf8fa9605d",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 200,
+          "differing": 35,
+          "errors": [],
+          "extra_words": 1,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3052,
+          "differing": 786,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5008,
+          "sha256": "22b3e3084ce1a87aed22fcc0da7447812ad6e3aa42175d9393ce2b4ecafa47cc"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12144,
+          "sha256": "7765249ad31aec84e4e48728a459d595950e1eb641b8c3f840e01262c0b872c1"
+        }
+      }
+    },
+    "outer_buffer": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "202936d9d0c995c45acb0d0d90e1eec3c10b6f05306e58d4ff22b17eebcd1cf5",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 5,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "6fd3bc3ff8d853a7022019d097077c0a3d47c248f5d128cab80a92e3d5d662ac"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "5116fa08955691b5493b6ed0dba2a9d4089c0331bd07e5562866f8ff16f779ba"
+        }
+      }
+    },
+    "skip_callback": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "488a38f4e0aa992b4e7e9f34f1942ba0493eb1f544743ad94e0d31081d1eeee3",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 188,
+          "differing": 36,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "c866eb79b1d99d78fdda28f160b2d1c08af72080f057e41bcd1e55071c3ff028"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12160,
+          "sha256": "5c0761f6ebe7066231ddbd15742cffced5ff9273cde78adb80863e1f7b41d103"
+        }
+      }
+    },
+    "wrong_release_tag": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "845f799a58c0d85b16be70e43ff87488de87403db8d0376af5b089a645c08603",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 1,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "6fd3bc3ff8d853a7022019d097077c0a3d47c248f5d128cab80a92e3d5d662ac"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "e8bcb97be130fcb03179fdf8bb2b5263ee7a38e85c7fdc2a6279db74c5dfd150"
+        }
+      }
+    },
+    "wrong_remove_port": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "8d15dcac7e7ef8cc3a01143cb1ea5c3284750fed2ee07ae11f62cbc59b7308e2",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 192,
+          "differing": 21,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "64203c3fc564ee5218cfe9f670e2aa8b1d23fb6dbd7aec3609e640881c23ea25"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "0564f63728109c04abc9d654a078e7424aa7d5dc81b630e90f1704113fb5e405"
+        }
+      }
+    }
+  },
+  "existing_heap_functions": 26,
+  "host_semantics": "65536 finite cleanup state-and-service-trace fixtures",
+  "inputs": {
+    "context_sha256": {
+      "src/blob/groups/codex_heap_release_a25/alloc_at.c": "fe202cc1f820beae158d18c4e6731ca8c6d48fbf7ca2513e1998823b0f837e7a",
+      "src/blob/groups/codex_heap_release_a25/car_damage_visual.c": "694f11da0c4e8747689f703ece7dc8c9164d0d4d5224bd3f8a331e1cba9a2896",
+      "src/blob/groups/codex_heap_release_a25/deflate_mem.c": "1a437491149504f8b615e39f6cdd1981e97f302ccf6b1694bb33aed784c98a68",
+      "src/blob/groups/codex_heap_release_a25/func_80091AF0.c": "e1ef34b799d1e12b781fcc40a26bf5a6d700e80080f47651b0cfc149bc5d37f6",
+      "src/blob/groups/codex_heap_release_a25/func_80091AF8.c": "3b414e4d0f971c05f663d496907ac3a51b919a53bf887625ef850f2a3d0a67cb",
+      "src/blob/groups/codex_heap_release_a25/func_80096130.c": "832ffcabf12eb450c78331c9d462239a1995094f5fa2ec75470685f374d062b5",
+      "src/blob/groups/codex_heap_release_a25/func_800C8918.c": "3ea8424ed36a6789f139aa5567608d06afe8fe6fe90a332a06b13a985629ff7d",
+      "src/blob/groups/codex_heap_release_a25/func_800CB9D0.c": "ec368063db6bd5e03f1482e941b7d20816f38ff88b7bd103393dd21dc98b178d",
+      "src/blob/groups/codex_heap_release_a25/group.c": "f039ea819406ac2ac799cc7183c754be623950ac32989c0036a2b3adac35ceaa",
+      "src/blob/groups/codex_heap_release_a25/group.json": "14cf7b2f1b0281cb889351a4fff442db10fbe5e30de2452884358b9296122c90",
+      "src/blob/groups/codex_heap_release_a25/overlay_loader.c": "5b1b5fc7fdc6b1119d84f1f9b65afc9478367118db830c5a282f2c1a6d6903ae",
+      "src/blob/groups/codex_heap_release_a25/wheel_params_set.c": "d63dd2f3b4392663fcb8174ca1604daa8a08557a4d6f7645a6e3c1f1acf61fe1"
+    },
+    "packet_sha256": {
+      "README.md": "01e745623f7623f22242c65a6942641b7db2ea9c1aa75868f52badd666e7b9ba",
+      "candidate.c": "aeb51341aa980ce018772b375a6b558b16ce1d221356ecbea9a13cc207f89638",
+      "group.json": "4c06db72e4ca3ddd1193d2a1719a443b89ef055b73f382137b239e37423ec4b1",
+      "replay.py": "0e34d1db014a4c58cd7c8396a8bf33b4d14807ee015d9daac1ff9735a036b258",
+      "semantics.c": "8a7be7c144299a4345a4689eccad98efbf56c99df89f68f14eed5647c33c14c8"
+    },
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [],
+      "context": [
+        "car_lod_select",
+        "func_800A1E94",
+        "func_800A43FC",
+        "no_catchup",
+        "PS_CreateFile",
+        "track_render_process",
+        "func_800A3724",
+        "audio_reverb_update",
+        "audio_effect_process",
+        "synced_model_render",
+        "MP_TargetSpeed",
+        "assign_default_paths",
+        "stat_race_end",
+        "NextMaxPath",
+        "menu_item_select",
+        "car_damage_visual",
+        "func_800CB9D0",
+        "car_angular_velocity_clamp",
+        "PrevMaxPath",
+        "InitMaxPath",
+        "sync_maxpath_to_checkpoint",
+        "func_800C885C",
+        "wheel_params_set",
+        "func_800C8918",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80096130",
+        "func_80095F8C",
+        "func_80095EF4",
+        "audio_buffer_sync",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "func_800A51D8"
+      ],
+      "files": [
+        "candidate.c",
+        "heap_group.c",
+        "heap_alloc_at.c",
+        "heap_car_damage_visual.c",
+        "heap_func_800CB9D0.c",
+        "heap_deflate_mem.c",
+        "heap_overlay_loader.c",
+        "heap_wheel_params_set.c",
+        "heap_func_80091AF0.c",
+        "heap_func_80091AF8.c",
+        "heap_func_800C8918.c",
+        "heap_func_80096130.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "func_800A1E94",
+        "func_800A43FC",
+        "car_lod_select",
+        "PS_CreateFile",
+        "track_render_process",
+        "audio_effect_process",
+        "synced_model_render",
+        "MP_TargetSpeed",
+        "assign_default_paths",
+        "stat_race_end",
+        "audio_buffer_sync",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "NextMaxPath",
+        "menu_item_select",
+        "car_damage_visual",
+        "func_800CB9D0",
+        "car_angular_velocity_clamp",
+        "InitMaxPath",
+        "sync_maxpath_to_checkpoint",
+        "func_800C885C",
+        "wheel_params_set",
+        "func_800C8918",
+        "func_80096130"
+      ],
+      "members": [
+        "func_800A3640"
+      ]
+    },
+    "targets": {
+      "InitMaxPath": {
+        "address": "0x800a1244",
+        "bytes": 136,
+        "sha256": "39fb255a22f38bd9e8485207ac94a5c2db4ed68dbcc53658b7998f32d14daefa"
+      },
+      "MP_TargetSpeed": {
+        "address": "0x800a0f6c",
+        "bytes": 112,
+        "sha256": "47a8f5e2c8914ba8acf0c9799e26c6fc8bba7e72d193b15af80957be8b844d2a"
+      },
+      "NextMaxPath": {
+        "address": "0x800a0fdc",
+        "bytes": 520,
+        "sha256": "5c761fba7d43c5f17502e98eba43122a4018e0d743410cd07ae8f45215234075"
+      },
+      "PS_CreateFile": {
+        "address": "0x800a2d4c",
+        "bytes": 1752,
+        "sha256": "6c90d7caa962ffabf6c30b7c6f9917e7a58dbc8e2fb66eb50b732ece1e4beb0b"
+      },
+      "PrevMaxPath": {
+        "address": "0x800a11e4",
+        "bytes": 96,
+        "sha256": "36b09bc3ca7abf5fc154625c926df393b276b7ad505117aa2f332fc85daec711"
+      },
+      "assign_default_paths": {
+        "address": "0x800a12cc",
+        "bytes": 112,
+        "sha256": "3e383650123e78a599ea855a7dba20b33a54e84b8d60d4da4f187790c1b8bd62"
+      },
+      "audio_buffer_sync": {
+        "address": "0x8009731c",
+        "bytes": 104,
+        "sha256": "4168a3f1be6c135cf761a9699932fdc70d407a235be6cce157f57b7c848b3a1a"
+      },
+      "audio_effect_process": {
+        "address": "0x800960d4",
+        "bytes": 92,
+        "sha256": "30976cacc290f1de1c4d391c982fa629b8adc622e157e09e8063aaf6fc00aa86"
+      },
+      "audio_reverb_update": {
+        "address": "0x80095fd8",
+        "bytes": 244,
+        "sha256": "9819b47716bced504227b5117fa1e0bf3144db7f0ffab1b198909a1c9421e221"
+      },
+      "car_angular_velocity_clamp": {
+        "address": "0x800aae68",
+        "bytes": 804,
+        "sha256": "3d5476ef5e2e3d0e3030432b14fa4c04b9e3b901a4f49bb13d9ce2692f65d329"
+      },
+      "car_damage_visual": {
+        "address": "0x800a51e0",
+        "bytes": 680,
+        "sha256": "d07ca33c446737156afff9cbbef391fda1d2d9d66b6896ae659b54d059ea066f"
+      },
+      "car_lod_select": {
+        "address": "0x800a4508",
+        "bytes": 324,
+        "sha256": "5cf04af1fdca72100b3e0a2a033f2f3061255c1c44046d35d9bc98998c869893"
+      },
+      "func_80091AF0": {
+        "address": "0x80091af0",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80091AF8": {
+        "address": "0x80091af8",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_80095EF4": {
+        "address": "0x80095ef4",
+        "bytes": 152,
+        "sha256": "435071b6f94e442c8489101d13366a31dbe4088bf7006c2357eca6a252a459ab"
+      },
+      "func_80095F8C": {
+        "address": "0x80095f8c",
+        "bytes": 76,
+        "sha256": "98396da74ec2786665375bc530e724757b7304a9aa09744ff96cb4ff1511ae4e"
+      },
+      "func_80096130": {
+        "address": "0x80096130",
+        "bytes": 264,
+        "sha256": "df0ff4b6169d9947de20572b0c32aed83622014150c735236ca5bfb9e96ef50f"
+      },
+      "func_800A1E94": {
+        "address": "0x800a1e94",
+        "bytes": 132,
+        "sha256": "62b190e1ab82d2d78f8a607b2cb53206bc85e657155def153f1e61c06409b7be"
+      },
+      "func_800A3640": {
+        "address": "0x800a3640",
+        "bytes": 204,
+        "sha256": "396d5bb70ffb9baf475bec66ae0e0cc364a581f0c75197fcc802233eb3c38a20"
+      },
+      "func_800A3724": {
+        "address": "0x800a3724",
+        "bytes": 88,
+        "sha256": "7a403028b49b2685282378bd393b71334b21c5483ba84ca9800f562b848f3502"
+      },
+      "func_800A43FC": {
+        "address": "0x800a43fc",
+        "bytes": 212,
+        "sha256": "82228d4b27e116ead98dc43c51bb2ff07886c2c3cf602e9cb58ce22071e3966f"
+      },
+      "func_800A51D8": {
+        "address": "0x800a51d8",
+        "bytes": 8,
+        "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+      },
+      "func_800C885C": {
+        "address": "0x800c885c",
+        "bytes": 188,
+        "sha256": "80faedfc700a3cefda033173c298d1cdac6c2b974651c239fa3732171716d8c8"
+      },
+      "func_800C8918": {
+        "address": "0x800c8918",
+        "bytes": 628,
+        "sha256": "94b51d62fcf4ce89ee164ff68de1fb8f560d025d51fd49667c0c0b80e87a9ed0"
+      },
+      "func_800CB9D0": {
+        "address": "0x800cb9d0",
+        "bytes": 516,
+        "sha256": "474d968d1e837c1374f9c294eb8dbce6a095838d39402b41a2c57f6ca5afe66c"
+      },
+      "menu_item_select": {
+        "address": "0x800cbbd4",
+        "bytes": 564,
+        "sha256": "3690804a925a92a6248d272bdf6f906c6e436105b9d5d5fdd9093e5fe75a9c3a"
+      },
+      "no_catchup": {
+        "address": "0x800a2d0c",
+        "bytes": 56,
+        "sha256": "32bbc47b3e77ef4949234743309a40160496fbbc37e18265c7e70b43a8914f96"
+      },
+      "object_counter_decrement": {
+        "address": "0x800e7914",
+        "bytes": 108,
+        "sha256": "b59acb62e6e0ac61439a3b06a6fda04b8a104691f13da546f899b005b2318026"
+      },
+      "object_counter_increment": {
+        "address": "0x800e7980",
+        "bytes": 112,
+        "sha256": "2bc396b63aa74c6c1a7c81154569efdb6c1c13b9b38e2e1f2fda342113a7adad"
+      },
+      "stat_race_end": {
+        "address": "0x800fe4ac",
+        "bytes": 116,
+        "sha256": "e1991d40a7b5ede9d2e0e73a1981b6d01462281fc028e61731d67f31ebd505ba"
+      },
+      "sync_maxpath_to_checkpoint": {
+        "address": "0x800a133c",
+        "bytes": 136,
+        "sha256": "15809ee9df01df4b99a141c36bfbbe74ff7816666dcb83fcd4f6c104b2ae6449"
+      },
+      "synced_model_render": {
+        "address": "0x8010fcc0",
+        "bytes": 92,
+        "sha256": "30976cacc290f1de1c4d391c982fa629b8adc622e157e09e8063aaf6fc00aa86"
+      },
+      "track_render_process": {
+        "address": "0x800a377c",
+        "bytes": 3200,
+        "sha256": "ffa8f13e745a8a6d18e83c25633eda053f0862ddf1fb5a45adebd8456530354f"
+      },
+      "wheel_params_set": {
+        "address": "0x800a4b6c",
+        "bytes": 232,
+        "sha256": "d734aa82069f48c83a6a0f5fb8bc9f266991ed2599ba4104fa560746d383a4df"
+      }
+    },
+    "toolchain_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
+    "verifier_sha256": {
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+    }
+  },
+  "layout": {
+    "emitted": [
+      104,
+      4,
+      12,
+      32,
+      14,
+      40,
+      4,
+      8,
+      772,
+      5,
+      12,
+      132,
+      76,
+      16,
+      17,
+      64,
+      68,
+      72,
+      4,
+      16,
+      8,
+      12,
+      4
+    ],
+    "wrong_stride_emitted": [
+      104,
+      4,
+      12,
+      32,
+      14,
+      40,
+      4,
+      8,
+      772,
+      5,
+      12,
+      132,
+      80,
+      16,
+      17,
+      68,
+      72,
+      76,
+      4,
+      16,
+      8,
+      12,
+      4
+    ]
+  },
+  "new_candidate_bytes": 0,
+  "positive": {
+    "first": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "2fcdcb87cdb2bcefa142f05dda84e9bc8c5a129ac7bf6ac584fcf5085d763fd7",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "6fd3bc3ff8d853a7022019d097077c0a3d47c248f5d128cab80a92e3d5d662ac"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "451da583956c5110221501b4122b34db7be6bdb81b900cc92b73081090b7e548"
+        }
+      }
+    },
+    "repeat": {
+      "emitted_functions": [
+        "InitMaxPath",
+        "MP_TargetSpeed",
+        "NextMaxPath",
+        "PS_CreateFile",
+        "PrevMaxPath",
+        "assign_default_paths",
+        "audio_buffer_sync",
+        "audio_effect_process",
+        "audio_reverb_update",
+        "car_angular_velocity_clamp",
+        "car_damage_visual",
+        "car_lod_select",
+        "func_80091AF0",
+        "func_80091AF8",
+        "func_80095CF4",
+        "func_80095CFC",
+        "func_80095EF4",
+        "func_80095F8C",
+        "func_800960CC",
+        "func_80096130",
+        "func_800A1E94",
+        "func_800A3640",
+        "func_800A3724",
+        "func_800A43FC",
+        "func_800A51D8",
+        "func_800C885C",
+        "func_800C8918",
+        "func_800CB9D0",
+        "heap_free_locked",
+        "mem_free",
+        "menu_item_select",
+        "no_catchup",
+        "object_counter_decrement",
+        "object_counter_increment",
+        "post_type1",
+        "post_type7",
+        "stat_race_end",
+        "sync_maxpath_to_checkpoint",
+        "synced_model_render",
+        "track_render_process",
+        "wheel_params_set",
+        "zcfree"
+      ],
+      "object_sha256": "2fcdcb87cdb2bcefa142f05dda84e9bc8c5a129ac7bf6ac584fcf5085d763fd7",
+      "rows": {
+        "InitMaxPath": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "MP_TargetSpeed": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "NextMaxPath": {
+          "bytes": 520,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 130,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PS_CreateFile": {
+          "bytes": 1776,
+          "differing": 348,
+          "errors": [],
+          "extra_words": 6,
+          "frame": 288,
+          "strict": false,
+          "total": 438,
+          "unresolved": [],
+          "unverified": []
+        },
+        "PrevMaxPath": {
+          "bytes": 96,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 24,
+          "unresolved": [],
+          "unverified": []
+        },
+        "assign_default_paths": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_buffer_sync": {
+          "bytes": 104,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 26,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_effect_process": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "audio_reverb_update": {
+          "bytes": 244,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 61,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_angular_velocity_clamp": {
+          "bytes": 804,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 200,
+          "strict": true,
+          "total": 201,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_damage_visual": {
+          "bytes": 680,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 56,
+          "strict": true,
+          "total": 170,
+          "unresolved": [],
+          "unverified": []
+        },
+        "car_lod_select": {
+          "bytes": 324,
+          "differing": 16,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": false,
+          "total": 81,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF0": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80091AF8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095EF4": {
+          "bytes": 152,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80095F8C": {
+          "bytes": 76,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 19,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_80096130": {
+          "bytes": 264,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 72,
+          "strict": true,
+          "total": 66,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A1E94": {
+          "bytes": 132,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 33,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3640": {
+          "bytes": 204,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 2,
+          "frame": 24,
+          "strict": false,
+          "total": 51,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A3724": {
+          "bytes": 88,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 22,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A43FC": {
+          "bytes": 360,
+          "differing": 51,
+          "errors": [],
+          "extra_words": 33,
+          "frame": null,
+          "strict": false,
+          "total": 53,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A51D8": {
+          "bytes": 8,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": true,
+          "total": 2,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C885C": {
+          "bytes": 188,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 47,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800C8918": {
+          "bytes": 628,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 208,
+          "strict": true,
+          "total": 157,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800CB9D0": {
+          "bytes": 516,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 104,
+          "strict": true,
+          "total": 129,
+          "unresolved": [],
+          "unverified": []
+        },
+        "menu_item_select": {
+          "bytes": 564,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 141,
+          "unresolved": [],
+          "unverified": []
+        },
+        "no_catchup": {
+          "bytes": 8,
+          "differing": 14,
+          "errors": [],
+          "extra_words": 0,
+          "frame": null,
+          "strict": false,
+          "total": 14,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_decrement": {
+          "bytes": 108,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 27,
+          "unresolved": [],
+          "unverified": []
+        },
+        "object_counter_increment": {
+          "bytes": 112,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 24,
+          "strict": true,
+          "total": 28,
+          "unresolved": [],
+          "unverified": []
+        },
+        "stat_race_end": {
+          "bytes": 116,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 40,
+          "strict": true,
+          "total": 29,
+          "unresolved": [],
+          "unverified": []
+        },
+        "sync_maxpath_to_checkpoint": {
+          "bytes": 136,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 34,
+          "unresolved": [],
+          "unverified": []
+        },
+        "synced_model_render": {
+          "bytes": 92,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 32,
+          "strict": true,
+          "total": 23,
+          "unresolved": [],
+          "unverified": []
+        },
+        "track_render_process": {
+          "bytes": 3080,
+          "differing": 747,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 416,
+          "strict": false,
+          "total": 800,
+          "unresolved": [],
+          "unverified": []
+        },
+        "wheel_params_set": {
+          "bytes": 232,
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "frame": 64,
+          "strict": true,
+          "total": 58,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.rodata": {
+          "bytes": 96,
+          "sha256": "9b06c496341970dd809c8fc6d9a95d96b61d1b900a51af4c465ea39f1e96caa6"
+        },
+        ".rel.text": {
+          "bytes": 5056,
+          "sha256": "6fd3bc3ff8d853a7022019d097077c0a3d47c248f5d128cab80a92e3d5d662ac"
+        },
+        ".rodata": {
+          "bytes": 64,
+          "sha256": "07ff82ab423da473b3a2749ffafce75f02f9b35459a3878e2873d592ad6f53fa"
+        },
+        ".text": {
+          "bytes": 12176,
+          "sha256": "451da583956c5110221501b4122b34db7be6bdb81b900cc92b73081090b7e548"
+        }
+      }
+    }
+  },
+  "semantic_negatives": {
+    "append_free_list": "rejected with exact differential exit 3 and message",
+    "lost_successor": "rejected with exact differential exit 3 and message",
+    "missing_buffer_clear": "rejected with exact differential exit 3 and message",
+    "skip_callback": "rejected with exact differential exit 3 and message",
+    "wrong_release_tag": "rejected with exact differential exit 3 and message",
+    "wrong_remove_port": "rejected with exact differential exit 3 and message"
+  }
+}
