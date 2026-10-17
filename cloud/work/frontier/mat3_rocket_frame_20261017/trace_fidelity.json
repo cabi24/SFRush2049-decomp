@@ -9,8 +9,8 @@
     "SPLOG"
   ],
   "inputs_sha256": {
-    "verify.py": "242ddc2addd96631ae44ca4a384c8275c16d0956639c74252e87183f0d5f72c1",
-    "trace_fidelity.py": "bb78da74c8e18aa7e815a2a12b332c75f40b3dfe7a7b9c23c1147d0f3e611f35",
+    "verify.py": "7ed08eb2c68ac3b7d083fa5131395a5d77a81f9f513c9fc82dde7ef9224d8157",
+    "trace_fidelity.py": "a845843d43679becd9417c96244f5267ed18c72c9e95787be92991ce9c7435d6",
     "test_palette_semantics.py": "49d084d17e0cd996f845f5c24e026c240e91c404d2cd10140697680244ea2760",
     "group/group.json": "157d0f8b590a73185980d95902a396b3e3baaea0ee624f13199cac97cb60b2a7",
     "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",

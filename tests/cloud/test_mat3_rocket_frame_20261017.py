@@ -50,7 +50,16 @@ receipt_path = v.HERE/'verification.json'
 receipt = json.loads(receipt_path.read_text()); receipt['inputs_sha256']['verify.py'] = 'changed'
 receipt_path.write_text(json.dumps(receipt))
 reject(lambda: v.verify(scratch/'changed'))
-print('PASS optimized proof negatives: unverified reference, false claim, changed source')
+shutil.copyfile(packet/'verification.json', receipt_path)
+trace_path = v.HERE/'trace_fidelity.json'
+trace = json.loads(trace_path.read_text()); trace['inputs_sha256']['verify.py'] = 'changed'
+trace_path.write_text(json.dumps(trace))
+reject(lambda: v.verify(scratch/'trace-input'))
+shutil.copyfile(packet/'trace_fidelity.json', trace_path)
+trace = json.loads(trace_path.read_text()); trace['stock_object_sha256'] = 'changed'
+trace_path.write_text(json.dumps(trace))
+reject(lambda: v.verify(scratch/'trace-object'))
+print('PASS optimized proof negatives: unverified reference, false claim, changed source, changed trace input, changed trace object')
 '''
     result = subprocess.run([sys.executable, '-O', '-c', program, str(packet), str(tmp_path)],
                             text=True, capture_output=True)

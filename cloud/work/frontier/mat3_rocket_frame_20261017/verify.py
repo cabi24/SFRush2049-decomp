@@ -88,8 +88,13 @@ def verify(out, frozen=True):
         old = json.loads((HERE/'verification.json').read_text())
         require(inputs == old['inputs_sha256'], 'source changed; reverify receipt')
         require(targets == old['target_words_sha256'], 'native target changed')
+        trace = json.loads((HERE/'trace_fidelity.json').read_text())
+        require(inputs == trace['inputs_sha256'], 'trace input binding changed')
     positive_obj = out/'positive.o'
     score.compile_group(group, positive_obj)
+    if frozen:
+        require(digest(positive_obj) == trace['stock_object_sha256'] == trace['trace_object_sha256'],
+                'trace object binding changed')
     positive = inspect(positive_obj, spec['members']+spec['context'])
     for name, expected in [(ROCKET, 47), (FRAME, 537)]:
         clean(positive[name])

@@ -20,3 +20,7 @@ verify.py and trace_fidelity.py and replayed both focused pytest cases. Both
 passed, including optimized-Python rejection of false claims, unverified
 references, and changed source receipts. Source/group files and the compiled
 object are unchanged. No blocker to updating the same research-only draft.
+
+The follow-up trace-receipt consistency fix was independently reviewed and both
+pytest cases replayed again. The verifier now enforces the trace input and paired
+object hashes; optimized-Python negatives reject changes to either binding.

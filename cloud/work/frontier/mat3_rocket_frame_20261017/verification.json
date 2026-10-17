@@ -5,7 +5,7 @@
   "new_matching_bytes": 0,
   "runtime_or_ROM_verification": false,
   "inputs_sha256": {
-    "verify.py": "0bd35e6bc0c4c71e28d408bdcbe8559694d23c1357e802aa0a478472dac05fec",
+    "verify.py": "7ed08eb2c68ac3b7d083fa5131395a5d77a81f9f513c9fc82dde7ef9224d8157",
     "trace_fidelity.py": "a845843d43679becd9417c96244f5267ed18c72c9e95787be92991ce9c7435d6",
     "test_palette_semantics.py": "49d084d17e0cd996f845f5c24e026c240e91c404d2cd10140697680244ea2760",
     "group/group.json": "157d0f8b590a73185980d95902a396b3e3baaea0ee624f13199cac97cb60b2a7",
