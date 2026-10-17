@@ -1,0 +1,27 @@
+{
+  "observation_only": true,
+  "forced_colors": false,
+  "complete_objects_identical": true,
+  "object_sha256": "cc632dd0c372c080f26c5424c97f7d24cffeaab90cdf119092717229ca8091d9",
+  "inputs_sha256": {
+    "behavior.py": "950b9240848f9156e1333f1da8e64c5ac5fdc86ba5866a1b897d27e7c06f359a",
+    "group/camera_collision_check.c": "eb89e25e737829315e64527a18277bde4aa418a6650ac6392db7cb82a297f175",
+    "group/demo.c": "5b08b76284d33b3f0405287d80ce69ad2235a9f8eafc6698f6facc0690315ae2",
+    "group/frontier_camera_scene_manager_group.c": "4f12e9a89180ea777e1e3239dfdd0c1132f7920cbb17517f37aacc2b4cfcb83b",
+    "group/frontier_camera_target_track_group.c": "8a0d199baa20a1be6229d928ad54ca24a5978ef357f96c10d5491a062c09c0fe",
+    "group/frontier_car_checkpoints_car_setup_confirm.c": "9cf75c694ab4d7b38687854ae86744ecab2535e336f08e62caa1066b7021c149",
+    "group/frontier_car_checkpoints_func_800B61A8.c": "b7b3b7c5850442de81c28724adbaa53bde177a204c348d084b5a23d833391bb0",
+    "group/frontier_car_checkpoints_func_800D1AB0.c": "b9e5a26c4ca99b97389ec4111558f7c824902a55531d0c9a14b03aca98a60f67",
+    "group/frontier_car_checkpoints_func_800F8EC8.c": "4d3e0ec991ee2562d8a35dcf967509b2e0b06376e9c38fe33331c333844a1ee6",
+    "group/frontier_path_D169C_path.c": "98870beadc918e6755f4e723c9767e86402ee7e5c0ac4b0d60ccb0ba18cf1592",
+    "group/func_800CB718.c": "cb2a05d42337d09e928ac6168b5a187b24ca1482638c2b3cc2fdc3866e626f8e",
+    "group/group.json": "064ab0cfacf11955d3a149338c88fab03d367df71c056370ffae571a56f64c78",
+    "group/race_tail.c": "4494b1aa2c79cd2a6982c22c46ad6eac18576dcd6f42e359fe529c8a090b2a71",
+    "group/render_large_objects_group.c": "53683ddea35baea59cd654425398d56f4af932aa238ba42ec3198c39c076f586",
+    "layout.py": "06bc789bbabf93f4922fe2ec47e5eb54bc0600d5ba1146c79e95c3503e8a56fd",
+    "relocate.py": "12b636328e8ad37b405b0a4432ea82ca70c1ebe938a21e4651aeed098b567bef",
+    "trace.py": "18c9c8898c4cfa72d54aafcf192e54cdb892537e945b16951be0fd43a3ecfd22",
+    "verify.py": "2abd5b3ffb567f182d69100442238e4928c7938a9bcc14b89be3613e10522de1"
+  },
+  "traced_uopt_sha256": "915d6eefffd835b52e6591eea1e3133f64cfb826aa93b16cbcf6f8c84358c16b"
+}
