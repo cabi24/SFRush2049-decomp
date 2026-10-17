@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| game | func_800E543C (Init_MDrive, 700 B) | dot physics | 2026-10-17 | Strict stock IDO MATCH, 175/175 words, native 72 B frame; packet `dot_mat3_physics_20261017/mdrive`, branch `dot/mat3-init-mdrive-20261017`; awaiting independent image/ROM integration. Supersedes this target only in the older open race/world pool entry. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

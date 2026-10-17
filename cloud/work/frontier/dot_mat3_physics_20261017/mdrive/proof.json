@@ -1,0 +1,145 @@
+{
+  "accepted_image_bytes": 0,
+  "as1_extra_flag": "-r4300_mul",
+  "claims": [
+    "func_800E543C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "image_gate": "not run",
+  "individually_strict_bytes": 700,
+  "inputs": {
+    "compiler": "ido5.3",
+    "files": {
+      "group.c": "5ce1020eb5df65a07d15167beed5a379d64bde377028c0677c353ab58b065070",
+      "group.json": "76a349f412d23740f7cd48253937acb5a91d48afecf283efdf300f5035af6de6",
+      "replay.py": "de49391235b29cc2ece69a4d066ed8cf0516b7f785023188f4ec55a3bcb39f37",
+      "semantics.c": "76a60f4b0d384220785ab650d580af46bc5e2c7aa6c1e78018bc3123184010d0"
+    },
+    "population": "game_blob",
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [
+        "func_800E543C"
+      ],
+      "context": [],
+      "files": [
+        "group.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "func_800E543C"
+      ],
+      "members": [
+        "func_800E543C"
+      ],
+      "note": "700-byte strict stock-IDO match from the genuine Init_MDrive/multiinit boundary. No other body claimed; image and ROM gates remain with the independent checker."
+    },
+    "references": {
+      "D_80142760": 2148804448,
+      "D_8014A250": 2148835920,
+      "D_801525F0": 2148869616,
+      "D_80153E88": 2148875912,
+      "car_setup_confirm": 2148343008,
+      "func_800C4F68": 2148290408,
+      "func_800D5E64": 2148359780,
+      "func_800E543C": 2148422716,
+      "gameplay_mode": 2148835600,
+      "player_array": 2148870168,
+      "stunt_combo_display": 2148350760
+    },
+    "targets": {
+      "func_800E543C": {
+        "address": "0x800e543c",
+        "size": 700,
+        "words_sha256": "4d307fce6f19fbf3506b34ddeb6596c148bf92234ddc1ff82956b5a0c9e8e455"
+      }
+    }
+  },
+  "name": "func_800E543C",
+  "negative_controls": {
+    "joined_active_state_line": {
+      "differing_words": 2,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": false,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "joined_mode_arm_lines": {
+      "differing_words": 2,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": false,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "missing_live_config_pointer": {
+      "differing_words": 10,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 64,
+      "strict_match": false,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "swapped_clear_order": {
+      "differing_words": 8,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": false,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "wrong_velocity_threshold": {
+      "differing_words": 1,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": false,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "positive": {
+    "group_first": {
+      "differing_words": 0,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": true,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "group_repeat": {
+      "differing_words": 0,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": true,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    },
+    "single": {
+      "differing_words": 0,
+      "errors": [],
+      "extra_nonzero_words": 0,
+      "frame_bytes": 72,
+      "strict_match": true,
+      "target_words": 175,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "rom_gate": "not run",
+  "target_bytes": 700
+}
