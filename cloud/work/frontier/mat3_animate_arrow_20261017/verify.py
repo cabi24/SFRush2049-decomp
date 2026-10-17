@@ -1,6 +1,6 @@
 """Strict source-bound AnimateArrow proof and complete seven-function locked closure."""
 from pathlib import Path
-import argparse,contextlib,hashlib,importlib.util,io,json,shutil,struct,sys
+import argparse,contextlib,hashlib,importlib.util,io,json,shlex,shutil,struct,sys
 from dataclasses import asdict
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3];sys.path.insert(0,str(ROOT))
 from tools.cloud import score
@@ -28,6 +28,14 @@ def details(obj,name):
  # Retain refusal reasons without publishing the scorer's raw byte excerpts.
  comparison['errors']=[reason.split(' (+0x',1)[0] for reason in comparison['errors']]
  return {'comparison':comparison,'symbol_bytes':e['size'],'frame_bytes':frame}
+def compile_leaf(source,flags,out):
+ # IDO stores the argument spelling in .mdebug even with -g0. Keep complete
+ # object hashes portable without weakening the instruction/extent proof.
+ flags=shlex.split(flags)
+ if score.R4300_CC not in flags:flags.append(score.R4300_CC)
+ out=out.resolve()
+ proc=score._run([score.ido('cc'),'-c',*flags,'-o',str(out),source.name],cwd=source.parent)
+ require(proc.returncode==0 and out.exists(),'leaf compilation failed')
 def exact(row,name):
  r=row['comparison'];require(not(r['differing'] or r['unresolved'] or r['unverified'] or r['errors'] or r['extra_words']),'non-strict result '+name);require(row['symbol_bytes']==len(score.targets()[name])*4,'incomplete extent '+name)
 def graph():
@@ -59,7 +67,7 @@ def verify(out,record=False):
   origin=ROOT/row['original_source'];require(digest(origin)==row['original_source_sha256'],'original closure provenance changed')
   if row['kind']=='group':
    gs=json.loads((d/'group.json').read_text());require(gs['claims']==row['claims']==gs['members']+gs['context'],'hidden group context');score.compile_group(d,o)
-  else:score.compile_single(d/'source.c',row['flags'],o)
+  else:compile_leaf(d/'source.c',row['flags'],o)
   closure[tag]={'object_sha256':digest(o),'members':{}}
   for name in row['members']:r=details(o,name);exact(r,name);closure[tag]['members'][name]=r
  require(sorted(claims)==LOCKED,'complete locked claim set changed')

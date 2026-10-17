@@ -94,3 +94,14 @@ The baseline is commit `58425072b49e95f0fbe5c4c239988fb4885f7c5c`. `closure.json
 binds the original source provenance; the proof uses the baseline's integrity-
 checked target artifacts and locked-function inventory. Independent review is
 recorded separately and is required before publishing or counting this candidate.
+
+## Clean-checkout portability correction
+
+The first publication passed the complete strict proof but its final sealed
+receipt was path-dependent: four single-file closure compiles recorded absolute
+source filenames in IDO's `.mdebug` section, even at `-g0`. Only `.mdebug` changed
+between checkouts; all instruction and relocation sections were identical. The
+verifier now invokes those same sources from their directory using the stable
+relative filename `source.c`. Complete object hashes remain required. No C source,
+flags, target bytes, match result or function extent changed. A relocated-packet
+regression and a fresh clean-checkout replay cover this correction.

@@ -1,11 +1,11 @@
 {
   "status": "PASS_STRICT_CANDIDATE_WITH_COMPLETE_LOCKED_CLOSURE",
   "reviewer": "independent AI/path lane",
-  "reviewed_at_utc": "2026-10-17T20:26:00Z",
-  "verification_sha256": "f108f1032346b094eee2a11abb28aede2493038950cc6ea4533e7b6658facf15",
-  "trace_fidelity_sha256": "5c3f90ce0e02c57cc7ea540d037fd5d22ab6d468f4fab84b4aaac91bbfa28b59",
-  "readme_sha256": "33def42e68f66a4defc7844aae989a5da0ec2ab23e25c3a83687939e51b56e9c",
-  "focused_test_sha256": "f7aec52023ed07fdfb02eced7ec99a343a459e020d279ba76ad29ac218debdd4",
+  "reviewed_at_utc": "2026-10-17T20:41:15Z",
+  "verification_sha256": "00a8d17c7acb489abe1129a356ffb9e72d5f0dc3bf873989210b8e7e3d0c378b",
+  "trace_fidelity_sha256": "66ce2dbc080fb04b6e73345504d1e2998b4e9e82f109202a1d22c749d8ae748f",
+  "readme_sha256": "3c5d2e0a907d643b8ef100082d4ab275050869f9c9392619d0a48c6c51495989",
+  "focused_test_sha256": "0616b14eecd47024e4bf175e19874470d82cc4616be098a2e5885a8785cf9844",
   "inputs_sha256": {
     "behavior.py": "c304841daa1eca179e5b84e4d4f04cb24ece1a7279d1f9b7a8d78819dbb4e947",
     "closure/atan2/source.c": "304064c80d0f6bb29b8942513fb210b55d14e4d6f116772b6b067bd63a525427",
@@ -21,7 +21,7 @@
     "group/group.json": "cdcdcf41bb0b0981bcf534fbaa2e829f780cc5317d54ec18867b4fea9f99b615",
     "layout.py": "1d46812a683cd7962a3bb8b0e6a98614aea9d55f274112e040242ce7a81cf8a5",
     "trace_fidelity.py": "c71e44bb7b18508d7cacd8be5459223f071689770cd85ec1be9ef3866c80c98c",
-    "verify.py": "ed9c2a1a34837463df7a655b35a5823a4f457cd5d25be278db75d826dacade0c",
+    "verify.py": "a0332c406d24713a96e5e2266580a058833d125eee1243177ed30e31fb4dd7a9",
     "baseline:tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
     "baseline:blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
@@ -45,7 +45,7 @@
   "independent_checks": {
     "separate_fresh_root_and_all_seven_closure_compiles": "PASS_STRICT",
     "full_optimized_replay": "PASS",
-    "focused_tests": 2,
+    "focused_tests": 3,
     "optimized_integrity_refusals": 11,
     "complete_stock_trace_identity": true,
     "complete_object_sha256": "fc0d4dcd8256034d2d2cb569349863875d62e34cd5a4d2ab06e164ac33b1be06",
@@ -55,7 +55,8 @@
     "compiled_semantic_negatives": 4,
     "source_boundary_controls": 2,
     "native_indirect_calls": 0,
-    "polygon_internal_switch_dispatch_offset": 244
+    "polygon_internal_switch_dispatch_offset": 244,
+    "relocated_full_optimized_replay": "PASS"
   },
   "source_review": [
     "Native callback retains its two-argument contract; full Visual24, Mesh88 and four-vertex typed polygon interfaces are compatible.",
@@ -70,5 +71,17 @@
     "Host field/geometry testing is not native execution and does not prove general floating-point equivalence.",
     "Atan is injected and polygon is an argument-capture boundary. Identity matrices, fixed positive view angles and defense.flags=1 limit the exercised geometry/alpha domain.",
     "Invalid indices, arbitrary camera inputs, concurrency, full-game runtime and canonical integration remain outside this proof."
-  ]
+  ],
+  "portability_review": {
+    "previous_verification_sha256": "f108f1032346b094eee2a11abb28aede2493038950cc6ea4533e7b6658facf15",
+    "source_and_flags_unchanged": true,
+    "only_changed_bound_input": "verify.py",
+    "four_leaf_object_changes": [
+      ".mdebug"
+    ],
+    "all_other_sections_identical_to_previous_independent_objects": true,
+    "main_and_group_objects_unchanged": true,
+    "relative_leaf_source_argument": "source.c",
+    "whole_object_receipt_checks_retained": true
+  }
 }

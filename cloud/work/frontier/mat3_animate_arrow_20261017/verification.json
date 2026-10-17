@@ -28,7 +28,7 @@
     "group/group.json": "cdcdcf41bb0b0981bcf534fbaa2e829f780cc5317d54ec18867b4fea9f99b615",
     "layout.py": "1d46812a683cd7962a3bb8b0e6a98614aea9d55f274112e040242ce7a81cf8a5",
     "trace_fidelity.py": "c71e44bb7b18508d7cacd8be5459223f071689770cd85ec1be9ef3866c80c98c",
-    "verify.py": "ed9c2a1a34837463df7a655b35a5823a4f457cd5d25be278db75d826dacade0c",
+    "verify.py": "a0332c406d24713a96e5e2266580a058833d125eee1243177ed30e31fb4dd7a9",
     "baseline:tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
     "baseline:blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
@@ -58,7 +58,7 @@
   },
   "closure": {
     "magnitude": {
-      "object_sha256": "0bb3dab320aa68a6d38ca240959260d71da918a935a8af2d2e5a4c24fd2b63aa",
+      "object_sha256": "181d9befbcda91187554bb7450f371acee80725aded3e075c1cdf63ee7971fa6",
       "members": {
         "func_8008B3C8": {
           "comparison": {
@@ -75,7 +75,7 @@
       }
     },
     "world_vector": {
-      "object_sha256": "c12c673ff37f9f12bf43ab54f2c7344bda7c00007536d6bca41d7f54c316a6a0",
+      "object_sha256": "0ba2b9e8ccb368e8d347084026dad5d1a764acc5078436d6fc77ef8a77375b54",
       "members": {
         "func_8008C544": {
           "comparison": {
@@ -92,7 +92,7 @@
       }
     },
     "atan2": {
-      "object_sha256": "a767b1792d3f401dbab6f0c44aac6d1796f0afcceeb1dc3b1979e3af81a7c25b",
+      "object_sha256": "5379ea1b122643549ce460f5dabbb7e83939b2127c6ab97618156223005a21a4",
       "members": {
         "func_8008C768": {
           "comparison": {
@@ -109,7 +109,7 @@
       }
     },
     "atan_signed": {
-      "object_sha256": "7ae82d8f1871568ed9463c32156f4cb9e39ecfa851f8d7d0690465d2971523fe",
+      "object_sha256": "11c178552a0ac9bf10be4afd63e905fcd2751fd3dffaa240d53696df24767e73",
       "members": {
         "func_8008C720": {
           "comparison": {

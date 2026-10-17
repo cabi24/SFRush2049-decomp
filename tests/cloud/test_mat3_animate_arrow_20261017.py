@@ -54,3 +54,12 @@ for mode in expected:
 '''
  r=subprocess.run([sys.executable,'-O','-c',program,str(PACKET),str(tmp_path)],text=True,capture_output=True)
  assert r.returncode==0,r.stdout+r.stderr
+
+
+def test_arrow_relocated_packet(tmp_path):
+ import shutil
+ relocated=tmp_path/'different-checkout-name'/'packet'
+ shutil.copytree(PACKET,relocated,ignore=shutil.ignore_patterns('__pycache__'))
+ s=importlib.util.spec_from_file_location('arrow_relocated',PACKET/'verify.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);m.HERE=relocated
+ r=m.verify(tmp_path/'objects')
+ assert r['new_matching_bytes']==2048 and r['main']['comparison']['differing']==0
