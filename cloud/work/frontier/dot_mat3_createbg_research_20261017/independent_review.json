@@ -1,0 +1,44 @@
+{
+  "reviewer": "independent physics lane",
+  "result": "PASS",
+  "scope": "Bounded createBG source/data/compiler research; no runtime equivalence or acceptance claim",
+  "receipt_sha256": "65db0fcd111fdb6b4dd4f3ac30c3e31c56864ce4db85c486ff5762fcf0d2318d",
+  "trace_fidelity_sha256": "d253460f20611acdc5f3209805225a24534932cc8683f2acf085ad866621dd96",
+  "files": {
+    "README.md": "c6b1977d8be1a2509d433da5ffc4b5f389da42b2d006d03ae4624a74b7dcf7d0",
+    "controls/historical.c": "5ca2f450d411560d9e61a415231c9aa28ce30a37f47088fb5f9b5856e759dad7",
+    "group/createbg.c": "dc5f6fb41033dcd8353ccbbb35b82b0b15e40c906951921e8c374e21fca192ed",
+    "group/group.json": "e623bd14eff9de32a88ba40e2a19396cec7755e45f3c04c210770552afc46007",
+    "group/newpoly.c": "7464a4a4eeadf99329a5a3c7de0dd4e1ba7822b4c567b9117ae5832bc9ddad3a",
+    "group/updatepoly.c": "258ebd3aa0343af3162fde2914b22791e7e32cef08fee7bba2cb1c7c1e817632",
+    "receipt.json": "65db0fcd111fdb6b4dd4f3ac30c3e31c56864ce4db85c486ff5762fcf0d2318d",
+    "trace_fidelity.json": "d253460f20611acdc5f3209805225a24534932cc8683f2acf085ad866621dd96",
+    "trace_fidelity.py": "4a9c89c364e6e6d7f8099f1734db4e62956c7df072ffbceee5972fcbc703ac46",
+    "verify.py": "7b8f4c7f4c75529e94e57a589df24112229955e65e829dd093f45afd0438a762"
+  },
+  "focused_test_sha256": "664b1110c2e98670ad5e2a09308456a5556c2a1085400689fea915e0d1a2024f",
+  "independent_replays": {
+    "optimized_full_and_focused": "4 passed, including seven specific integrity refusals and relocated packet",
+    "stock_traced_complete_object": "PASS; 1631326d43bfceffe63eca997696a76ad4f3aa1b46b62d1e52efccaa551f3f9c",
+    "missing_toolchain": "3 skipped / 1 passed",
+    "required_missing_toolchain": "3 expected failures / 1 passed"
+  },
+  "source_review": [
+    "The original table donors and DWARF/ELF local binding support signed int[4][4] camera storage and static four-by-four rectangle storage. All 960 initialized bytes independently compare against protected native data.",
+    "The repaired base is 0x801145E4, and windows-1 is coherent with the native table and original source. The prior shifted base remains historical only.",
+    "Coherent Mesh/Vertex/Texture views have the native 88/20/36-byte extents and required offsets. All17 emitted layout values and the wrong five-vertex capacity rejection reproduce.",
+    "Three preserved full bodies are strict; the 732-byte root remains59/183 with frame184. Empty claims and the nonnative8-byte ShowPoly residue are explicit.",
+    "Original six-local provenance does not assert original loop-scope spelling. The meaningful native distance snapshot, unauthenticated volatile count, inherited updateBG shift array and signed-shift/conversion limitations are disclosed.",
+    "External texture/blit callees remain unclosed. No native execution, broad host-C equivalence, or canonical/image/ROM verification is inferred."
+  ],
+  "followup_fixes_reviewed": [
+    "Compiler fingerprints now use Path(score.ido(name)); optimized missing-tool diagnostic rejects traceback substitution.",
+    "All seven mutation tests require their expected refusal messages instead of accepting an arbitrary failure."
+  ],
+  "reviewed_donor_sha256": {
+    "mat3-createbg-initializers.md": "a1e4d1a7e2267cd82d1bb71f68bb4317ac228a74f0ef6aa6dd40abb54c2ad7bf",
+    "mat3-createbg-original-tables.md": "d889d4160b6a2cb611aaf0e69a9aeef6f1e9f404ca13d586f12fc5623b3d50e0"
+  },
+  "accepted_bytes": 0,
+  "publication_blocker": null
+}

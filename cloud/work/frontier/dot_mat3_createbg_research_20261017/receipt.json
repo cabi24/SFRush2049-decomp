@@ -1,0 +1,556 @@
+{
+  "protocol_version": 2,
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "source_sha256": {
+    "controls/historical.c": "5ca2f450d411560d9e61a415231c9aa28ce30a37f47088fb5f9b5856e759dad7",
+    "group/createbg.c": "dc5f6fb41033dcd8353ccbbb35b82b0b15e40c906951921e8c374e21fca192ed",
+    "group/group.json": "e623bd14eff9de32a88ba40e2a19396cec7755e45f3c04c210770552afc46007",
+    "group/newpoly.c": "7464a4a4eeadf99329a5a3c7de0dd4e1ba7822b4c567b9117ae5832bc9ddad3a",
+    "group/updatepoly.c": "258ebd3aa0343af3162fde2914b22791e7e32cef08fee7bba2cb1c7c1e817632",
+    "trace_fidelity.py": "4a9c89c364e6e6d7f8099f1734db4e62956c7df072ffbceee5972fcbc703ac46",
+    "verify.py": "7b8f4c7f4c75529e94e57a589df24112229955e65e829dd093f45afd0438a762"
+  },
+  "target_sha256": {
+    "particle_lifetime_set": "3f720ecdf53a0e7d4d8564a084f78e4f111b5a0e42ef68b4e2eb5661f6377c6e",
+    "func_800A78BC": "620d7ddf79eb384b5e9a22815f9f7d64f8e5e42aa9bf534e8e63f4928847de9a",
+    "func_8008C074": "9003c817a0e2a2adc09299790449762d0a8a09020f418c3a5c163d73c8778d1d",
+    "func_800FC9F8": "1d2c762c8f7643721d371adb95dc0e5283abd06cdb089792a0a63526caaeb1ad"
+  },
+  "baseline_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
+    "asm/us/blob/SHA256SUMS": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
+    "asm/us/blob_data/SHA256SUMS": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594"
+  },
+  "toolchain_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "results": {
+    "natural": {
+      "object_sha256": "1631326d43bfceffe63eca997696a76ad4f3aa1b46b62d1e52efccaa551f3f9c",
+      "section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "ada691f8cb07cdc77b5c23a3f894546f19473eeefa140d1243efab06e681b570",
+        ".shstrtab": "e66bd9839019b8322a5ac4947cd6263e9c24e5e0a538a45de00151724b5cade1",
+        ".strtab": "d1320ce957e019b1d254a8ca4d415d2906d7925fb886bbcb50b5b5fd637efcb1",
+        ".text": "674c1edd7b7f445de2468bdd7aab1c6abb9a7d7fcd8a39065dc85c58123af45e",
+        ".rodata": "11196491799b13e5f018b47b13e83fa702f90197aeb1e5339a72fc45a7868856",
+        ".data": "bcce3f1797dac689f567c3a807f13c6a0e4f01fdf8b2c009c7ab74677ccc1318",
+        ".options": "9d10e84e8ca441e2d4b0e493b32b07467d51cc092522eadb64419e20a154ccda",
+        ".reginfo": "7b021e0749b380b77918954c60b2ce3841fa82138483c3a814005baa3e4c43cf",
+        ".rel.text": "74ed903a49868235a036f3db86fe6c310e1feecd644c27cd53436ef932af1f7f",
+        ".rel.rodata": "c3c3e18ab84b747e3c1331b390fdf86f91089ea11d4521d961abd5e93b6969e8",
+        ".gptab.data": "46b37eee550ee31bcc524ad6186183673ceb132c8ea9e5b4165013fbea2de861",
+        ".mdebug": "01323e6a62a08700bdabcdd30286ca91b69867c7de1513cc5e920749f460b429"
+      },
+      "functions": {
+        "particle_lifetime_set": {
+          "comparison": {
+            "differing": 59,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 732,
+          "frame_bytes": 184
+        },
+        "func_800A78BC": {
+          "comparison": {
+            "differing": 0,
+            "total": 63,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 252,
+          "frame_bytes": 56
+        },
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        },
+        "func_800FC9F8": {
+          "comparison": {
+            "differing": 0,
+            "total": 254,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1016,
+          "frame_bytes": 40
+        }
+      },
+      "tables": {
+        "whole_bytes": 960,
+        "rectangles": {
+          "address": "0x80114264",
+          "bytes": 896,
+          "sha256": "c4f5a3dc18b1bb7085681701b735a0895f31ef02668da8d4a944ce554400a3ee"
+        },
+        "cameras": {
+          "address": "0x801145E4",
+          "bytes": 64,
+          "sha256": "2be7e3907bee2bdc46fb172687ab57605f6bd252cf290258b7637847d7a3fc18"
+        }
+      }
+    },
+    "repeat": {
+      "object_sha256": "1631326d43bfceffe63eca997696a76ad4f3aa1b46b62d1e52efccaa551f3f9c",
+      "section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "ada691f8cb07cdc77b5c23a3f894546f19473eeefa140d1243efab06e681b570",
+        ".shstrtab": "e66bd9839019b8322a5ac4947cd6263e9c24e5e0a538a45de00151724b5cade1",
+        ".strtab": "d1320ce957e019b1d254a8ca4d415d2906d7925fb886bbcb50b5b5fd637efcb1",
+        ".text": "674c1edd7b7f445de2468bdd7aab1c6abb9a7d7fcd8a39065dc85c58123af45e",
+        ".rodata": "11196491799b13e5f018b47b13e83fa702f90197aeb1e5339a72fc45a7868856",
+        ".data": "bcce3f1797dac689f567c3a807f13c6a0e4f01fdf8b2c009c7ab74677ccc1318",
+        ".options": "9d10e84e8ca441e2d4b0e493b32b07467d51cc092522eadb64419e20a154ccda",
+        ".reginfo": "7b021e0749b380b77918954c60b2ce3841fa82138483c3a814005baa3e4c43cf",
+        ".rel.text": "74ed903a49868235a036f3db86fe6c310e1feecd644c27cd53436ef932af1f7f",
+        ".rel.rodata": "c3c3e18ab84b747e3c1331b390fdf86f91089ea11d4521d961abd5e93b6969e8",
+        ".gptab.data": "46b37eee550ee31bcc524ad6186183673ceb132c8ea9e5b4165013fbea2de861",
+        ".mdebug": "01323e6a62a08700bdabcdd30286ca91b69867c7de1513cc5e920749f460b429"
+      },
+      "functions": {
+        "particle_lifetime_set": {
+          "comparison": {
+            "differing": 59,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 732,
+          "frame_bytes": 184
+        },
+        "func_800A78BC": {
+          "comparison": {
+            "differing": 0,
+            "total": 63,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 252,
+          "frame_bytes": 56
+        },
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        },
+        "func_800FC9F8": {
+          "comparison": {
+            "differing": 0,
+            "total": 254,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1016,
+          "frame_bytes": 40
+        }
+      },
+      "tables": {
+        "whole_bytes": 960,
+        "rectangles": {
+          "address": "0x80114264",
+          "bytes": 896,
+          "sha256": "c4f5a3dc18b1bb7085681701b735a0895f31ef02668da8d4a944ce554400a3ee"
+        },
+        "cameras": {
+          "address": "0x801145E4",
+          "bytes": 64,
+          "sha256": "2be7e3907bee2bdc46fb172687ab57605f6bd252cf290258b7637847d7a3fc18"
+        }
+      }
+    },
+    "ordinary_models": {
+      "object_sha256": "9a9b25e2f09f67c5eda3f3f7d5bc314c506177381963cb8b31eed835557c4ce4",
+      "section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "17d8ac56b3300791d425a85c1826121310f28c1175771a12edbc7e4783e796c2",
+        ".shstrtab": "e66bd9839019b8322a5ac4947cd6263e9c24e5e0a538a45de00151724b5cade1",
+        ".strtab": "d1320ce957e019b1d254a8ca4d415d2906d7925fb886bbcb50b5b5fd637efcb1",
+        ".text": "000fe5dff0e6972892cf47019cf875b3505c032593955f6953615af55763d8d8",
+        ".rodata": "11196491799b13e5f018b47b13e83fa702f90197aeb1e5339a72fc45a7868856",
+        ".data": "bcce3f1797dac689f567c3a807f13c6a0e4f01fdf8b2c009c7ab74677ccc1318",
+        ".options": "9d10e84e8ca441e2d4b0e493b32b07467d51cc092522eadb64419e20a154ccda",
+        ".reginfo": "7b021e0749b380b77918954c60b2ce3841fa82138483c3a814005baa3e4c43cf",
+        ".rel.text": "8a73dfc3eefac9e902ac4cc51efcaded5542f6ce980e9e18aa83ba16fa37c119",
+        ".rel.rodata": "c3c3e18ab84b747e3c1331b390fdf86f91089ea11d4521d961abd5e93b6969e8",
+        ".gptab.data": "46b37eee550ee31bcc524ad6186183673ceb132c8ea9e5b4165013fbea2de861",
+        ".mdebug": "516b0c0692efabb2c689e80151d1ee1852d16424df5de079eed66d37e6ac0575"
+      },
+      "functions": {
+        "particle_lifetime_set": {
+          "comparison": {
+            "differing": 153,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x0 at +0x34",
+              ".data+0x0 at +0x58",
+              ".data+0x370 at +0xbc",
+              ".data+0x370 at +0x100"
+            ],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 728,
+          "frame_bytes": 184
+        },
+        "func_800A78BC": {
+          "comparison": {
+            "differing": 0,
+            "total": 63,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 252,
+          "frame_bytes": 56
+        },
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        },
+        "func_800FC9F8": {
+          "comparison": {
+            "differing": 0,
+            "total": 254,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1016,
+          "frame_bytes": 40
+        }
+      },
+      "tables": {
+        "whole_bytes": 960,
+        "rectangles": {
+          "address": "0x80114264",
+          "bytes": 896,
+          "sha256": "c4f5a3dc18b1bb7085681701b735a0895f31ef02668da8d4a944ce554400a3ee"
+        },
+        "cameras": {
+          "address": "0x801145E4",
+          "bytes": 64,
+          "sha256": "2be7e3907bee2bdc46fb172687ab57605f6bd252cf290258b7637847d7a3fc18"
+        }
+      }
+    },
+    "wrong_rectangle": {
+      "object_sha256": "d18f0f868bcf55698d402abc524212afdde21e014c29e35eae79ec3d266fac3b",
+      "section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "ada691f8cb07cdc77b5c23a3f894546f19473eeefa140d1243efab06e681b570",
+        ".shstrtab": "e66bd9839019b8322a5ac4947cd6263e9c24e5e0a538a45de00151724b5cade1",
+        ".strtab": "d1320ce957e019b1d254a8ca4d415d2906d7925fb886bbcb50b5b5fd637efcb1",
+        ".text": "674c1edd7b7f445de2468bdd7aab1c6abb9a7d7fcd8a39065dc85c58123af45e",
+        ".rodata": "11196491799b13e5f018b47b13e83fa702f90197aeb1e5339a72fc45a7868856",
+        ".data": "79bdedbe50a5bc0f4158aeada4a5fc2ebf5069ad2b1a4f34a7f3d9a158a04206",
+        ".options": "9d10e84e8ca441e2d4b0e493b32b07467d51cc092522eadb64419e20a154ccda",
+        ".reginfo": "7b021e0749b380b77918954c60b2ce3841fa82138483c3a814005baa3e4c43cf",
+        ".rel.text": "74ed903a49868235a036f3db86fe6c310e1feecd644c27cd53436ef932af1f7f",
+        ".rel.rodata": "c3c3e18ab84b747e3c1331b390fdf86f91089ea11d4521d961abd5e93b6969e8",
+        ".gptab.data": "46b37eee550ee31bcc524ad6186183673ceb132c8ea9e5b4165013fbea2de861",
+        ".mdebug": "01323e6a62a08700bdabcdd30286ca91b69867c7de1513cc5e920749f460b429"
+      },
+      "functions": {
+        "particle_lifetime_set": {
+          "comparison": {
+            "differing": 59,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x0 at +0x34",
+              ".data+0x0 at +0x58",
+              ".data+0x370 at +0xc0",
+              ".data+0x370 at +0x104"
+            ],
+            "errors": [
+              "own .data+0x0 referenced at +0x58 differs from retail 0x80114264"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 732,
+          "frame_bytes": 184
+        },
+        "func_800A78BC": {
+          "comparison": {
+            "differing": 0,
+            "total": 63,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 252,
+          "frame_bytes": 56
+        },
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        },
+        "func_800FC9F8": {
+          "comparison": {
+            "differing": 0,
+            "total": 254,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x0 at +0x38",
+              ".data+0x0 at +0x48"
+            ],
+            "errors": [
+              "own .data+0x0 referenced at +0x48 differs from retail 0x80114264"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1016,
+          "frame_bytes": 40
+        }
+      },
+      "tables": {
+        "rejected": "table-content mismatch"
+      }
+    },
+    "wrong_camera": {
+      "object_sha256": "967edd3f4c29437e7f46d843432346c3bfb14345c9aeeaf98082f653acb95647",
+      "section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "ada691f8cb07cdc77b5c23a3f894546f19473eeefa140d1243efab06e681b570",
+        ".shstrtab": "e66bd9839019b8322a5ac4947cd6263e9c24e5e0a538a45de00151724b5cade1",
+        ".strtab": "d1320ce957e019b1d254a8ca4d415d2906d7925fb886bbcb50b5b5fd637efcb1",
+        ".text": "674c1edd7b7f445de2468bdd7aab1c6abb9a7d7fcd8a39065dc85c58123af45e",
+        ".rodata": "11196491799b13e5f018b47b13e83fa702f90197aeb1e5339a72fc45a7868856",
+        ".data": "f61d77dead51475691db146f2d0593bb5fa599744e6877c2f82db9e74cd27808",
+        ".options": "9d10e84e8ca441e2d4b0e493b32b07467d51cc092522eadb64419e20a154ccda",
+        ".reginfo": "7b021e0749b380b77918954c60b2ce3841fa82138483c3a814005baa3e4c43cf",
+        ".rel.text": "74ed903a49868235a036f3db86fe6c310e1feecd644c27cd53436ef932af1f7f",
+        ".rel.rodata": "c3c3e18ab84b747e3c1331b390fdf86f91089ea11d4521d961abd5e93b6969e8",
+        ".gptab.data": "46b37eee550ee31bcc524ad6186183673ceb132c8ea9e5b4165013fbea2de861",
+        ".mdebug": "01323e6a62a08700bdabcdd30286ca91b69867c7de1513cc5e920749f460b429"
+      },
+      "functions": {
+        "particle_lifetime_set": {
+          "comparison": {
+            "differing": 59,
+            "total": 183,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x0 at +0x34",
+              ".data+0x0 at +0x58",
+              ".data+0x370 at +0xc0",
+              ".data+0x370 at +0x104"
+            ],
+            "errors": [
+              "own .data+0x370 referenced at +0x104 differs from retail 0x801145D4"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 732,
+          "frame_bytes": 184
+        },
+        "func_800A78BC": {
+          "comparison": {
+            "differing": 0,
+            "total": 63,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 252,
+          "frame_bytes": 56
+        },
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        },
+        "func_800FC9F8": {
+          "comparison": {
+            "differing": 0,
+            "total": 254,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1016,
+          "frame_bytes": 40
+        }
+      },
+      "tables": {
+        "rejected": "table-content mismatch"
+      }
+    }
+  },
+  "preserved": [
+    "func_800A78BC",
+    "func_8008C074",
+    "func_800FC9F8"
+  ],
+  "nonnative_residues": {
+    "native_ShowPoly": 8
+  },
+  "layout": {
+    "expressions": [
+      "sizeof(Color4)",
+      "sizeof(Vertex20)",
+      "sizeof(Mesh)",
+      "sizeof(Texture36)",
+      "sizeof(BackRect56)",
+      "sizeof(MultiBlit)",
+      "(u32)&((Mesh*)0)->vertices",
+      "(u32)&((Mesh*)0)->flags",
+      "(u32)&((Vertex20*)0)->s",
+      "(u32)&((Vertex20*)0)->t",
+      "(u32)&((Vertex20*)0)->color",
+      "(u32)&((Texture36*)0)->width",
+      "(u32)&((Texture36*)0)->height",
+      "(u32)&((BackRect56*)0)->offX",
+      "(u32)&((BackRect56*)0)->offY",
+      "sizeof(D_80114264)",
+      "sizeof(D_801145E4)"
+    ],
+    "expected": [
+      4,
+      20,
+      88,
+      36,
+      56,
+      36,
+      8,
+      2,
+      12,
+      14,
+      16,
+      16,
+      18,
+      24,
+      40,
+      896,
+      64
+    ],
+    "observed": {
+      "native": [
+        4,
+        20,
+        88,
+        36,
+        56,
+        36,
+        8,
+        2,
+        12,
+        14,
+        16,
+        16,
+        18,
+        24,
+        40,
+        896,
+        64
+      ],
+      "wrong_vertex_capacity": [
+        4,
+        20,
+        108,
+        36,
+        56,
+        36,
+        8,
+        2,
+        12,
+        14,
+        16,
+        16,
+        18,
+        24,
+        40,
+        896,
+        64
+      ]
+    }
+  },
+  "historical": {
+    "object_sha256": "b25d369760a6bd9d44240354960e3b954dde1780f9ac3bdea34eeae112873369",
+    "function": {
+      "comparison": {
+        "differing": 59,
+        "total": 183,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "symbol_bytes": 732,
+      "frame_bytes": 184
+    },
+    "source_limits": "shifted table base and abbreviated polygon view; no semantic claim"
+  },
+  "semantic_execution_claim": false,
+  "canonical_or_rom_verification": false
+}

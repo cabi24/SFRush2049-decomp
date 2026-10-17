@@ -1,0 +1,16 @@
+{
+  "observation_only": true,
+  "forced_colors": false,
+  "complete_objects_identical": true,
+  "object_sha256": "1631326d43bfceffe63eca997696a76ad4f3aa1b46b62d1e52efccaa551f3f9c",
+  "inputs_sha256": {
+    "controls/historical.c": "5ca2f450d411560d9e61a415231c9aa28ce30a37f47088fb5f9b5856e759dad7",
+    "group/createbg.c": "dc5f6fb41033dcd8353ccbbb35b82b0b15e40c906951921e8c374e21fca192ed",
+    "group/group.json": "e623bd14eff9de32a88ba40e2a19396cec7755e45f3c04c210770552afc46007",
+    "group/newpoly.c": "7464a4a4eeadf99329a5a3c7de0dd4e1ba7822b4c567b9117ae5832bc9ddad3a",
+    "group/updatepoly.c": "258ebd3aa0343af3162fde2914b22791e7e32cef08fee7bba2cb1c7c1e817632",
+    "trace_fidelity.py": "4a9c89c364e6e6d7f8099f1734db4e62956c7df072ffbceee5972fcbc703ac46",
+    "verify.py": "7b8f4c7f4c75529e94e57a589df24112229955e65e829dd093f45afd0438a762"
+  },
+  "trace_uopt_sha256": "915d6eefffd835b52e6591eea1e3133f64cfb826aa93b16cbcf6f8c84358c16b"
+}
