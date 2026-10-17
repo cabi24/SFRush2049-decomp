@@ -1,0 +1,37 @@
+Members:
+matrix_scale_apply:
+  MATCH
+anim_state_update:
+  MATCH
+    own .rodata verified at 0x8012393C..0x8012394C
+buffer_swap:
+  MATCH
+    own .rodata verified at 0x801239F0..0x80123A00
+entity_anim_texture:
+  MATCH
+
+Context (informational; excluded from exit status):
+model_bounds_calc:
+  MATCH
+func_8008B2B4:
+  12/12 words differ
+func_8008B2E4:
+  MATCH
+entity_transform_calc:
+  MATCH
+client_sync:
+  MISMATCH (1 extra words (nonzero beyond target length))
+entity_hierarchy_update:
+  MATCH
+stat_lap_complete:
+  MATCH
+game_timer_resume:
+  MATCH
+func_80091BA8:
+  MATCH
+func_80091B00:
+  11/42 words differ
+scheduler_recv:
+  MATCH
+func_8008B3A0:
+  2/10 words differ
