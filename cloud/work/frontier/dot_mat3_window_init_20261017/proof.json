@@ -1,0 +1,752 @@
+{
+  "accepted_image_bytes": 0,
+  "host_semantic_controls": {
+    "wrong_alpha": "mutation rejected with exact differential exit code and message",
+    "wrong_frontclip": "mutation rejected with exact differential exit code and message",
+    "wrong_return": "mutation rejected with exact differential exit code and message"
+  },
+  "host_semantics": "20324 finite state/call/return cases; 16777216 exhaustive RGB-byte packing cases; valid signed-short boundaries; UBSan clean; checksum=0",
+  "image_gate": "not run",
+  "inputs": {
+    "compiler": "ido5.3",
+    "context_sha256": {
+      "cloud/work/frontier/w9d/arb_rate_set/best.c": "8b34670059a199afccde76d0c5696a79f1684d91c1922dccc8ca2fdf85acbffe",
+      "src/blob/exhaust_smoke_effect.c": "59200d38648fee1fa298a598531cc832d0aea608b6b7a0e7bfb198a5828b7be7",
+      "src/blob/func_800A5560.c": "311b85532cdeb92f10f8d05f269c4f27c14e8d1b3ddf121a9ef8f9b1ee4a295c"
+    },
+    "packet_sha256": {
+      "candidate.c": "f19e5f5d8cfce0ad58c3c8688dcc5f742044145fdcc9f168964a5bc45b599413",
+      "group.json": "3e49f8185bdd3d47fc3a947b9a6374b88266f6ac72ad615b01872686c6fcd36c",
+      "replay.py": "b2cbe6eea232241cf18eafd0802d6a2cfc929e733dec41e55c321702faf0aa0d",
+      "semantics.c": "5628e62fb4eaf42e9ae65dce6972930f6376eda1747b806e47dc74b75fa0ca25"
+    },
+    "population": "game_blob",
+    "protocol_version": 2,
+    "recipe": {
+      "claims": [
+        "arb_rate_set"
+      ],
+      "context": [
+        "func_800A5560",
+        "exhaust_smoke_effect"
+      ],
+      "files": [
+        "candidate.c",
+        "fill.c",
+        "set_window.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "arb_rate_set",
+        "func_800A5560",
+        "exhaust_smoke_effect"
+      ],
+      "members": [
+        "arb_rate_set"
+      ],
+      "note": "New isolated initializer group with unchanged canonical background-color and projection helpers. Only the root is a new claim. Whole-unit/image/ROM gates pending."
+    },
+    "targets": {
+      "arb_rate_set": {
+        "address": "0x800a5908",
+        "bytes": 312,
+        "sha256": "647eff02fdd380863a8359d2d0f69b3f5932a7acf77da1477e43ccb68bc21e1c"
+      },
+      "exhaust_smoke_effect": {
+        "address": "0x800a5744",
+        "bytes": 452,
+        "sha256": "3fa26b39574260e19506c0e8b0a5e60f082388d5366f56f714380a0509d1c4b0"
+      },
+      "func_800A5560": {
+        "address": "0x800a5560",
+        "bytes": 28,
+        "sha256": "76184fd6c015cf21fe58364196050c5e16ab217345bb9c1b3bd2e664ec473af5"
+      }
+    }
+  },
+  "negative_controls": {
+    "cast_only": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 23,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "33a34d7dbe03f35e423549d3646827c7e32ee42d03ec6f016aa222a7659bd6a0"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "f5d0c14192ad45d49b448fe5a5da35b68a48c381bc9a00e97c28cef96e0362dc"
+        }
+      }
+    },
+    "donor_local_pointer": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 6,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "e6de328e34c699349c5f7f79fc0635baf45087bdec41b198fee2a2abfe24bfc4"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "6884148b94f6c883ae9eb27bffc92f89170264e5da69bd97fefb274fe7b314fd"
+        }
+      }
+    },
+    "historical_void": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 25,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "420ee2c2bfcc070d4b309b234d2537c137d66dca1bb0be66598d45afed8c5f3f"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "023372ebb42ca090809a014296a801a545936fe8cd799e7dd9a55f2b20858939"
+        }
+      }
+    },
+    "return_only": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 6,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "e6de328e34c699349c5f7f79fc0635baf45087bdec41b198fee2a2abfe24bfc4"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "81cec732f1160814b6ff9a1b81bcc8a268bbf5996a70c09ce0028cab579b78c3"
+        }
+      }
+    },
+    "wrong_alpha": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 308,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 17,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "eb8ff97c8ca91c3ddb1e27e09db2b556ec91d477e6d42bacf4cac7861614e265"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "a3f8523ffa62ec39472b00a2673db903195ff865d97152ca13234d4789428fcb"
+        }
+      }
+    },
+    "wrong_backclip": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 1,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "e6de328e34c699349c5f7f79fc0635baf45087bdec41b198fee2a2abfe24bfc4"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "80b6a0f44ce7bb52c32e5dc5645671aadb90ce767af7f93aeb184c2cec33ea40"
+        }
+      }
+    },
+    "wrong_frontclip": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 36,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0xc at +0x48",
+            ".rodata+0xc at +0x4c"
+          ]
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 216,
+          "sha256": "d71a7bae14b4837e1a5d15fded40905b794e5924706c13c2362a0ef6c02c82bf"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "a1940170b4e077612017f0f6682915ce18387a4876d390a9f858eff05477a04e"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "22a5158009c7d984fe75c5643ebcffd30dd44087e01a2d9ad5a03d546d3b7d5b"
+        }
+      }
+    },
+    "wrong_return": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 320,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 18,
+          "errors": [],
+          "extra_nonzero_words": 2,
+          "strict_match": false,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 216,
+          "sha256": "ca4a75699961103fac82fd17d4649fbced240df71fe6f1f13088579bff15af98"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "fd41f736532d967db435815e7be2b263629dc199b7cc2feefbaa78ca8504c0c0"
+        }
+      }
+    }
+  },
+  "new_individually_strict_bytes": 312,
+  "positive": {
+    "first": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "e6de328e34c699349c5f7f79fc0635baf45087bdec41b198fee2a2abfe24bfc4"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "3124db99ee492e62884ee3fea2ae2c977efb40151570b0ef8c0a5f460a71c8e5"
+        }
+      }
+    },
+    "repeat": {
+      "layout": {
+        "emitted_functions": [
+          "arb_rate_set",
+          "exhaust_smoke_effect",
+          "func_800A5560"
+        ],
+        "function_extents": {
+          "arb_rate_set": {
+            "bytes": 312,
+            "offset": 480
+          },
+          "exhaust_smoke_effect": {
+            "bytes": 452,
+            "offset": 0
+          },
+          "func_800A5560": {
+            "bytes": 28,
+            "offset": 452
+          }
+        },
+        "root_frame_bytes": 56
+      },
+      "scores": {
+        "arb_rate_set": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 78,
+          "unresolved": [],
+          "unverified": []
+        },
+        "exhaust_smoke_effect": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 113,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A5560": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 200,
+          "sha256": "e6de328e34c699349c5f7f79fc0635baf45087bdec41b198fee2a2abfe24bfc4"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "b8f0872bc84607ba4894735050cdcd3242ee4f419862757739e64f96b811525b"
+        },
+        ".text": {
+          "bytes": 800,
+          "sha256": "3124db99ee492e62884ee3fea2ae2c977efb40151570b0ef8c0a5f460a71c8e5"
+        }
+      }
+    }
+  },
+  "preserved_helpers": [
+    "func_800A5560",
+    "exhaust_smoke_effect"
+  ],
+  "rom_gate": "not run",
+  "semantic_scope": "Finite viewport values representable after native signed-short conversion; valid indices and objects. Historical state/callback behavior is compared, and the restored return is checked independently. No arbitrary float/invalid pointer claim.",
+  "whole_unit_gate": "not run"
+}

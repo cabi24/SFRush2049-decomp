@@ -1,0 +1,33 @@
+{
+  "status": "PASS_EXACT_CANDIDATE",
+  "reviewer": "renderer lane independent review",
+  "date": "2026-10-17",
+  "candidate": "arb_rate_set / ZOID_InitializeWindow 0x800A5908",
+  "new_candidate_bytes": 312,
+  "accepted_image_bytes": 0,
+  "packet_sha256": {
+    "candidate.c": "f19e5f5d8cfce0ad58c3c8688dcc5f742044145fdcc9f168964a5bc45b599413",
+    "group.json": "3e49f8185bdd3d47fc3a947b9a6374b88266f6ac72ad615b01872686c6fcd36c",
+    "replay.py": "b2cbe6eea232241cf18eafd0802d6a2cfc929e733dec41e55c321702faf0aa0d",
+    "semantics.c": "5628e62fb4eaf42e9ae65dce6972930f6376eda1747b806e47dc74b75fa0ca25",
+    "proof.json": "aac0b6dd43e58007bd11731111db853c9af76e7b32fca2c7adb531aa7af0d4fb",
+    "README.md": "b627dc652809e30e97c66dae5c36865062b2f0573487a67cfaec656c3305e2e0"
+  },
+  "test_sha256": "77460d108f14d0f2e5dfd6f5894c633ba2acf46252a5fd532fa83e391ab75f00",
+  "checks": [
+    "Independently inspected genuine MAT3 donor, native clip/fog/viewport adaptations and exact two-change source boundary.",
+    "Fresh python3 -O replay.py --check passed with identical source-bound proof.",
+    "Fresh focused pytest: 2 passed.",
+    "All positive ELF extents are 312/28/452 bytes and frame56; every control preserves both helpers.",
+    "Repeated strict object-section receipts agree, with no unverified or unresolved positive relocation.",
+    "20,324 bounded finite state/call/return cases, exact semantic-negative failures, fatal UBSan, 16,777,216 RGB packing cases.",
+    "Independent IDO-emitted layout probe matches [72,16,0,4,8,12,56,60,64,66,68,71,8].",
+    "README now identifies the accepted default-window caller declaration as supporting reconstruction evidence only, disclosing its compiled-out return holder."
+  ],
+  "limits": [
+    "Standalone source-group candidate; no canonical, whole-unit, image, compression or ROM gate.",
+    "Projection callback in host harness is a disclosed boundary stand-in, not trigonometric or native runtime execution.",
+    "Finite valid-index/object and signed-short-conversion range only; no invalid pointer, arbitrary NaN or out-of-range conversion claim.",
+    "Canonical helpers remain unchanged; this review does not resolve unrelated historical declaration contracts."
+  ]
+}
