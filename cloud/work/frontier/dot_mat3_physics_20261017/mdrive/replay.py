@@ -74,7 +74,7 @@ def inputs():
                 words_sha256=hashlib.sha256(b"".join(struct.pack(">I", w) for w in words)).hexdigest())},
                 references=references,
                 compiler_executables={name: hashlib.sha256(Path(score.ido(name)).read_bytes()).hexdigest()
-                                      for name in ("cc", "cfe", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
+                                      for name in ("cc", "cfe", "ujoin", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
                 verification_tools={name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
                                     for name in ("tools/cloud/score.py", "tools/cloud/owndata.py", "blob_matched.lock.json")})
 

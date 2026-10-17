@@ -1,0 +1,33 @@
+{
+  "independent_checks": [
+    "Only verifier-code change is adding ujoin through Path(score.ido(...)).",
+    "Stock cc -show -j independently confirms cfe then ujoin.",
+    "All 24 focused tests across six packets pass, including complete optimized replay and explicit stale-ujoin refusals.",
+    "Final refreshed input bindings equal current files and tools.",
+    "All prior output, source, recipe, object, extent, comparison, layout and semantic fields remain identical."
+  ],
+  "limits": [
+    "Prior source-shaping and semantic-domain disclosures remain applicable.",
+    "No canonical unit/image/ROM gates or additional acceptance claim."
+  ],
+  "prior_verifier_sha256": "a5381118138709079eaf68d20bffb1cc55573080036c5931157d9591c20c3226",
+  "proof_sha256": "9deb79e60925ddfb2bc0369b9fdaa4807e4a1c12188ec967a1bf1a82dcd82c39",
+  "reviewed_at_utc": "2026-10-17T22:22:00Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/README.md": "3581bc688b5ed147c03f095067b85f43d432fed34b74a2f48c22f61a9863f71f",
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/group.c": "5ce1020eb5df65a07d15167beed5a379d64bde377028c0677c353ab58b065070",
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/group.json": "76a349f412d23740f7cd48253937acb5a91d48afecf283efdf300f5035af6de6",
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/proof.json": "9deb79e60925ddfb2bc0369b9fdaa4807e4a1c12188ec967a1bf1a82dcd82c39",
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/replay.py": "675ac21a6fb4d7b0389a96b6c325d305107c160337a73cbb14e8178a0fa206c7",
+    "cloud/work/frontier/dot_mat3_physics_20261017/mdrive/semantics.c": "76a60f4b0d384220785ab650d580af46bc5e2c7aa6c1e78018bc3123184010d0",
+    "tests/cloud/test_mat3_init_mdrive.py": "ad1371cae931e518d50c1f51093688cc88842073e811b30e153845608bd4d982"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Compiler-input fingerprint correction only; no source or matching-credit expansion.",
+  "status": "PASS",
+  "verified_receipt_changes": [
+    "/inputs/compiler_executables/ujoin",
+    "/inputs/files/README.md",
+    "/inputs/files/replay.py"
+  ]
+}

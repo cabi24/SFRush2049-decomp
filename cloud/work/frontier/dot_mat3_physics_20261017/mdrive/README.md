@@ -74,7 +74,7 @@ python3 -m pytest -q tests/cloud/test_mat3_init_mdrive.py
 
 `proof.json` follows packet protocol 3: it binds the C source, group recipe,
 replay, host semantic test and README, the target's complete word hash and
-extent, and referenced symbol addresses. It also pins the actual eight IDO
+extent, and referenced symbol addresses. It also pins the actual nine IDO
 stage executables, scorer, own-data verifier and canonical lock. Replay reads
 the current checkout, without historical git objects. A source, tool or lock
 change requires a fresh reviewed receipt; absence of the compiler follows
@@ -92,7 +92,7 @@ Five controls are freshly compiled and must reject:
 | Join final gear assignment lines | 2 / 175 | 72 B |
 
 The four focused tests validate the stored inputs and strict compile, execute
-110 optimized-Python refusal checks, run the complete optimized replay with
+111 optimized-Python refusal checks, run the complete optimized replay with
 all five compiled controls, and check the missing-compiler diagnostic. The
 unchanged host layout/branch/order model runs 288 bounded cases under fatal
 UBSan with an empty-stderr requirement. It is a regression check for the
@@ -102,4 +102,8 @@ Toolchain absence uses the shared repository skip policy;
 
 ## Verification hardening (protocol 3)
 
-The source, recipe, five source controls and all prior comparison results are unchanged. The replay now pins the actual eight IDO-stage executables, scorer, own-data verifier and canonical lock; compiler lookups use the shared missing-tool policy. It records and enforces the complete emitted function inventory and 700-byte ELF extent for all three positives and all five controls, with frame scans bounded to that extent. Explicit guards check complete claims, compiler flags, all comparison fields, control counts, native frame and zero image credit. These checks remain active under optimized Python. The unchanged 288-case host model now also runs inside the full replay with fatal UBSan and an empty-stderr requirement. The original source-shaping and volatile-global disclosures above remain in force.
+The source, recipe, five source controls and all prior comparison results are unchanged. The replay now pins the actual nine IDO-stage executables, scorer, own-data verifier and canonical lock; compiler lookups use the shared missing-tool policy. It records and enforces the complete emitted function inventory and 700-byte ELF extent for all three positives and all five controls, with frame scans bounded to that extent. Explicit guards check complete claims, compiler flags, all comparison fields, control counts, native frame and zero image credit. These checks remain active under optimized Python. The unchanged 288-case host model now also runs inside the full replay with fatal UBSan and an empty-stderr requirement. The original source-shaping and volatile-global disclosures above remain in force.
+
+## Compiler-input correction
+
+The frontend driver invokes `cfe` followed by `ujoin` for the retained `cc -j` path. The receipt now includes the previously omitted `ujoin` executable hash, and the optimized guard test rejects a stale `ujoin` fingerprint. This input-seal correction changes no C, recipe, compiler flags, emitted object, target, comparison, layout or semantic result. Existing source and acceptance limits remain unchanged.

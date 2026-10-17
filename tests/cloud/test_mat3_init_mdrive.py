@@ -66,12 +66,13 @@ for section in ['files','compiler_executables','verification_tools']:
  z=copy.deepcopy(r);key=next(iter(z['inputs'][section]));z['inputs'][section][key]='0'*64;reject(lambda:m.check_saved(z))
 for change in [lambda z:z.update(protocol_version=2),lambda z:z['targets'][m.NAME].update(size=704),lambda z:z['references'].update({'injected':0})]:
  z=copy.deepcopy(r);change(z['inputs']);reject(lambda:m.check_saved(z))
-if count!=110:raise RuntimeError('mutation coverage changed: '+str(count))
-print('110 optimized verification refusals pass')
+z=copy.deepcopy(r);z['inputs']['compiler_executables']['ujoin']='0'*64;reject(lambda:m.check_saved(z))
+if count!=111:raise RuntimeError('mutation coverage changed: '+str(count))
+print('111 optimized verification refusals pass')
 '''
     run = subprocess.run([sys.executable, '-O', '-c', program, str(HERE)],capture_output=True,text=True)
     assert run.returncode == 0, run.stdout+run.stderr
-    assert run.stdout == '110 optimized verification refusals pass\n'
+    assert run.stdout == '111 optimized verification refusals pass\n'
 
 
 def test_init_mdrive_full_optimized_replay():
