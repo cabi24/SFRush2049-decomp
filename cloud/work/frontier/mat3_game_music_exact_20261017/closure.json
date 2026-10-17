@@ -1,0 +1,92 @@
+{
+  "group_claims": [
+    "func_800D6160",
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "sync_entry_register",
+    "func_80091B00",
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "leaves": {
+    "func_800D63EC": {
+      "source": "closure/func_800D63EC/source.c",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "original_source": "src/blob/func_800D63EC.c",
+      "original_sha256": "4aa8a308e5362c17faa6b30188c6e7d0bf1c58d83723be03f2286e4eb31e725a"
+    },
+    "func_80091FBC": {
+      "source": "closure/func_80091FBC/source.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "original_source": "src/blob/func_80091FBC.c",
+      "original_sha256": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79"
+    },
+    "func_8009211C": {
+      "source": "closure/func_8009211C/source.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "original_source": "src/blob/func_8009211C.c",
+      "original_sha256": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99"
+    }
+  },
+  "direct_call_graph": {
+    "func_800D6160": [
+      "speed_set",
+      "sync_entry_register"
+    ],
+    "physics_init_mode0": [
+      "func_800D6160"
+    ],
+    "physics_init_mode1": [
+      "func_800D6160"
+    ],
+    "speed_set": [
+      "func_80091B00",
+      "osRecvMesg",
+      "osSendMesg"
+    ],
+    "vsync_wait": [
+      "speed_set"
+    ],
+    "speed_mode0_wrapper": [
+      "speed_set"
+    ],
+    "speed_mode1_wrapper": [
+      "speed_set"
+    ],
+    "continue_prompt": [
+      "speed_set"
+    ],
+    "func_800D6530": [
+      "func_800D63EC",
+      "speed_set"
+    ],
+    "sync_entry_register": [
+      "func_80091B00",
+      "osRecvMesg",
+      "osSendMesg"
+    ],
+    "func_80091B00": [],
+    "func_8008B2E4": [],
+    "func_8008B2B4": [],
+    "func_800D63EC": [
+      "func_80091FBC",
+      "func_8009211C",
+      "osRecvMesg",
+      "osSendMesg"
+    ],
+    "func_80091FBC": [],
+    "func_8009211C": []
+  },
+  "SDK_boundaries": [
+    "osRecvMesg",
+    "osSendMesg"
+  ],
+  "new_root": "func_800D6160",
+  "new_bytes": 304
+}
