@@ -6,20 +6,25 @@ import hashlib,io,json,shutil,struct,sys,tempfile
 HERE=Path(__file__).resolve().parent
 GROUP=HERE/'groups/frontier_car_checkpoints'
 
+def require(ok, message):
+    if not ok:
+        raise RuntimeError(message)
+
 def verify(repo=None,compile=True):
     repo=Path(repo).resolve() if repo else HERE.parents[3]
     receipt=json.loads((HERE/'receipt.json').read_text())
-    assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest()==receipt['verify_sha256'],'verify mutation'
+    require(receipt['protocol_version']==2 and receipt['native_bytes']==924 and receipt['new_claims']==['render_viewport_init'], 'false credit or unsupported protocol')
+    require(hashlib.sha256(Path(__file__).read_bytes()).hexdigest()==receipt['verify_sha256'], 'verify mutation')
     for rel,digest in receipt['source_sha256'].items():
-        assert hashlib.sha256((HERE/rel).read_bytes()).hexdigest()==digest,rel+' mutation'
+        require(hashlib.sha256((HERE/rel).read_bytes()).hexdigest()==digest, rel+' mutation')
     sys.path.insert(0,str(repo/'tools/cloud'))
     import score
     group=json.loads((GROUP/'group.json').read_text())
-    assert len(group['members'])==25 and not group['context']
-    assert group['claims']==group['members']==receipt['claims']
+    require(len(group['members'])==25 and not group['context'], 'proof condition failed')
+    require(group['claims']==group['members']==receipt['claims'], 'proof condition failed')
     for name,digest in receipt['target_words_sha256'].items():
         words=score.targets()[name]
-        assert hashlib.sha256(struct.pack('>'+str(len(words))+'I',*words)).hexdigest()==digest,name+' target changed'
+        require(hashlib.sha256(struct.pack('>'+str(len(words))+'I',*words)).hexdigest()==digest, name+' target changed')
     if not compile:return {'input_integrity':True,'compiler_run':False}
     code=(GROUP/'race_tail.c').read_text()
     variants={
@@ -36,7 +41,7 @@ def verify(repo=None,compile=True):
     with tempfile.TemporaryDirectory(prefix='mat3-race-tail-') as tmp:
         tmp=Path(tmp)
         for variant,source in variants.items():
-            assert variant=='candidate' or source!=code,'unchanged control '+variant
+            require(variant=='candidate' or source!=code, 'unchanged control '+variant)
             path=tmp/variant;shutil.copytree(GROUP,path)
             (path/'race_tail.c').write_text(source)
             obj=path/'result.o';score.compile_group(path,obj)
@@ -44,8 +49,8 @@ def verify(repo=None,compile=True):
             for name in group['members']:
                 with redirect_stdout(io.StringIO()):comparison=score.compare(obj,name,show=0)
                 if name=='render_viewport_init':
-                    assert comparison.accepted()==(variant=='candidate'),variant+': '+comparison.summary()
-                else:assert comparison.accepted(),variant+' '+name+': '+comparison.summary()
+                    require(comparison.accepted()==(variant=='candidate'), variant+': '+comparison.summary())
+                else:require(comparison.accepted(), variant+' '+name+': '+comparison.summary())
                 rows[name]=comparison.summary()
             results[variant]=rows
     return {'input_integrity':True,'compiler_run':True,'results':results}

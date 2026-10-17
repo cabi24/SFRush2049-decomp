@@ -107,3 +107,12 @@ receipt.json pins the delivered source/group inputs, each of the 25 target-word
 rows, and verify.py. It does not pin tools, locks, build files, or assembly text.
 No ROM data, raw assembly, compiler objects, credentials, or scratch traces are
 included.
+
+## Proof-guard maintenance
+
+The verifier uses explicit exceptions, including under Python `-O`. Focused
+optimized-interpreter tests reject changed source/script/target inputs, false
+claims or byte credit, and unsupported relocation. Existing C source, target
+hashes, claims, comparison counts and negative-control meanings are unchanged.
+For a source-only checkout, set `N64_RESEARCH_REPO` to a complete unchanged
+checkout containing the protected artifacts.
