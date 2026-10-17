@@ -1,0 +1,37 @@
+{
+  "members": [
+    "func_80096288",
+    "slot_value_get",
+    "display_list_alloc",
+    "player_state_get",
+    "slot_deactivate",
+    "sound_update_channel",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "mode_byte_set",
+    "mode_flags_clear"
+  ],
+  "files": [
+    "LoadTrack.c",
+    "ctx_slot.c",
+    "mode_flags_clear.c"
+  ],
+  "context": [
+    "LoadTrack"
+  ],
+  "keep": [
+    "LoadTrack",
+    "slot_value_get",
+    "display_list_alloc",
+    "player_state_get",
+    "slot_deactivate",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "mode_byte_set",
+    "mode_flags_clear"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

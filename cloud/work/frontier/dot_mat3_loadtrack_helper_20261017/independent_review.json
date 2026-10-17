@@ -1,0 +1,35 @@
+{
+  "decision": "PASS_RESEARCH_ONLY",
+  "reviewer": "renderer lane",
+  "reviewed_at_utc": "2026-10-17T19:28:15Z",
+  "claims": [],
+  "preserved_locked_matches": 11,
+  "resolved_body_identical": true,
+  "replays": [
+    "normal six-build replay against independent renderer scorer/targets",
+    "optimized six-build replay after explicit exception guard fix",
+    "Both focused pytest cases passed in a fresh temporary packet/test tree using unchanged renderer 58425072 tools and protected artifacts; includes five optimized proof refusal controls."
+  ],
+  "provenance": [
+    "mode_flags_clear.c byte-identical to accepted source",
+    "ctx_slot.c byte-identical to accepted slot_sound group"
+  ],
+  "limits": [
+    "LoadTrack remains39/526; no new credit",
+    "historical volatile world-base contract remains provisional",
+    "structural flattening negative is not a semantic failure"
+  ],
+  "files_sha256": {
+    "README.md": "5d636a7c5f95ef6b4a3f057fef25347748e575bc62d6d2248370001759387453",
+    "group/LoadTrack.c": "d50f728035efbe06d1691e90817d3bbcdbfd44339e23081a0a49d504987ff834",
+    "group/ctx_slot.c": "f45284d32c1be634058f3f1c6a47e2c0f98588e8caaa0771f2beef14232136b2",
+    "group/group.json": "f64d58ff231a4533a10b21158436efd31510ac085dd021dba4f5dafa6b3c9a0d",
+    "group/mode_flags_clear.c": "78a8448ef0cddcfc13d6d98bd13e4c6c2477242500dd84ac1f4e0538d49dadcb",
+    "historical_LoadTrack.c": "a808da9086a30d02d0e0716ca71f38e32739bb29210605d0571e1ebb7f71ba9b",
+    "historical_group.json": "80346c8defb8333e063837d915c6f4a117e26fc74d3898ae14145935210bcb86",
+    "receipt.json": "44e5d6f77fd644dfc09def48fbfac95120be5bfc9cc57092977f9782ca9201b1",
+    "verify.py": "1b959a217feb674cd6a8fdca25ab66522d06d9b734bbbfb48c731c6240cf39c5"
+  },
+  "local_environment_note": "The historical rush-ai-lane4 snapshot predates the LoadTrack symbol rename, so its stale default targets fail with KeyError. Intended 58425072 target artifacts pass.",
+  "test_sha256": "2713740d870b9950192da392a1b8a57b14b33472116964eb1a4688706dd2239a"
+}
