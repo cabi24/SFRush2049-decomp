@@ -46,3 +46,20 @@ Proof includes two fresh repeats, the identical reordered-getter control, and re
 The finite host differential harness checks all four windows, translated/rotated views, depth boundaries, both signed-short saturation boundaries, and null/non-null optional output. Undefined-behavior sanitization is fatal, and a wrong-depth mutation must exit with the exact differential-mismatch code and message, rather than an arbitrary failure. These bounded tests supplement the exact native result; they do not assert behavior for arbitrary NaNs, invalid indices or overlapping output buffers.
 
 Source, recipe, canonical context, target hashes, complete scores, executable/relocation section hashes and function boundaries are retained in `proof.json`. No ROM bytes, raw assembly dumps, objects, private traces, or credentials are included. Independent review is recorded separately.
+
+## Protocol 3 verification follow-up
+
+The source and all existing matching/semantic outcomes are unchanged. The receipt
+now also binds this README, the scorer, own-data verifier, accepted lock, and the
+actual eight IDO stage executables. Compiler lookup uses the scorer's normal
+missing-tool diagnostic. A missing tool skips the focused compiler-dependent
+tests locally, while REQUIRE_TOOLCHAIN=1 turns those skips into failures.
+
+Explicit guards validate every positive/control score, complete function
+inventory, protected extent and root frame. They check each strict row's actual
+zero-difference and uncertainty fields rather than trusting its saved boolean.
+The frame scan is bounded by the root's ELF extent. All six negative builds
+preserve the unaffected helpers, including their full extents; the deliberate
+wrong-stride getter failure is required explicitly. Optimized-interpreter tests
+exercise inconsistent repeated rows, altered claims/inputs/extents and changed
+negative/semantic results, and independently run the full checked replay.
