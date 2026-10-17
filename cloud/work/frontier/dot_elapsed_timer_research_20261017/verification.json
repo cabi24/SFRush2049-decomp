@@ -1,0 +1,301 @@
+{
+  "animElapsedTimerText": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .data verified at 0x80115C88 (32 bytes; .data is laid out per translation unit)",
+      "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)",
+      "own .data verified at 0x80118E24 (4 bytes; .data is laid out per translation unit)"
+    ],
+    "summary": "MATCH",
+    "total": 308,
+    "unresolved": [],
+    "unverified": []
+  },
+  "camera_shake_update": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 45,
+    "unresolved": [],
+    "unverified": []
+  },
+  "checkpoint_hit": {
+    "accepted": false,
+    "differing": 8,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .data verified at 0x80115C88 (32 bytes; .data is laid out per translation unit)"
+    ],
+    "summary": "8/145 words differ",
+    "total": 145,
+    "unresolved": [],
+    "unverified": []
+  },
+  "display_list_alloc": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 23,
+    "unresolved": [],
+    "unverified": []
+  },
+  "entity_render_mode": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 71,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_80096288": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 4,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800A4E58": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 111,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800B3D0C": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 3,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800B669C": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [
+      "own .data verified at 0x80118E20 (4 bytes, all zero; .data is laid out per translation unit)"
+    ],
+    "summary": "MATCH",
+    "total": 5,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800B6748": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 16,
+    "unresolved": [],
+    "unverified": []
+  },
+  "func_800F68A4": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 33,
+    "unresolved": [],
+    "unverified": []
+  },
+  "mode_byte2_set": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 20,
+    "unresolved": [],
+    "unverified": []
+  },
+  "mode_byte_set": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 20,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_byte9_set": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 16,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_bytes23_sum": {
+    "accepted": false,
+    "differing": 4,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "4/18 words differ",
+    "total": 18,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_bytes_sum_global": {
+    "accepted": false,
+    "differing": 4,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "4/21 words differ",
+    "total": 21,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_create": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 28,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_type_byte2_get": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 10,
+    "unresolved": [],
+    "unverified": []
+  },
+  "object_type_byte3_get": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 10,
+    "unresolved": [],
+    "unverified": []
+  },
+  "player_state_get": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 15,
+    "unresolved": [],
+    "unverified": []
+  },
+  "slot_deactivate": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 22,
+    "unresolved": [],
+    "unverified": []
+  },
+  "slot_state_setup": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 58,
+    "unresolved": [],
+    "unverified": []
+  },
+  "slot_value_get": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 15,
+    "unresolved": [],
+    "unverified": []
+  },
+  "sound_update_channel": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 122,
+    "unresolved": [],
+    "unverified": []
+  },
+  "world_trigger_check": {
+    "accepted": true,
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "notes": [],
+    "summary": "MATCH",
+    "total": 54,
+    "unresolved": [],
+    "unverified": []
+  },
+  "world_velocity_integrate": {
+    "accepted": false,
+    "differing": 158,
+    "errors": [],
+    "extra_words": 3,
+    "notes": [
+      "not verified: .rodata+0x0 at +0x118: retail bytes at 0x00010001 are not available"
+    ],
+    "summary": "158/178 words differ (3 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x110, .rodata+0x0 at +0x118)",
+    "total": 178,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x110",
+      ".rodata+0x0 at +0x118"
+    ]
+  }
+}

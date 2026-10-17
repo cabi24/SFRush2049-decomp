@@ -1,0 +1,24 @@
+{
+  "scope": "Host callback trace only, authenticated native position initializer, not N64 ABI/image/matching proof",
+  "scenarios": 8192,
+  "prior_candidate_equal": true,
+  "output_sha256": "afeb8456ff62606f305171a948fd261dff136afd26d70d903a88f8e9164ba17d",
+  "negatives": {
+    "wrong_animid_mask": {
+      "differing_scenarios": 246,
+      "total_scenarios": 8192
+    },
+    "wrong_restore": {
+      "differing_scenarios": 2979,
+      "total_scenarios": 8192
+    },
+    "wrong_depth": {
+      "differing_scenarios": 2987,
+      "total_scenarios": 8192
+    },
+    "wrong_alpha": {
+      "differing_scenarios": 2976,
+      "total_scenarios": 8192
+    }
+  }
+}

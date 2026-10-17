@@ -1,0 +1,16 @@
+{
+  "normal_optimized_replay_equal": true,
+  "replay_sha256": "58f54b374a465833c559b2aa8dbc7a7b84fc1ced9a517f205540166977b56777",
+  "guard_tests": 7,
+  "guard_modes": [
+    "normal",
+    "optimized"
+  ],
+  "missing_toolchain_control": {
+    "passed": 5,
+    "skipped_environment_dependent": 2
+  },
+  "host_scenarios": 8192,
+  "claims": [],
+  "new_accepted_credit": 0
+}

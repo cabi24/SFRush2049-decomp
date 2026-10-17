@@ -1,0 +1,16 @@
+{
+  "accepted_image_or_candidate_credit": 0,
+  "claims": [],
+  "conclusion": "Suitable for narrow research publication; fixed eight-site frame/home residual, exact retained text sibling and shared full32-byte position content proof reproduce. Inherited formal/blocker, donor freshness and shadow failures remain explicit.",
+  "guards_each_python_mode": 7,
+  "host_negatives_rejected": 4,
+  "host_scenarios": 8192,
+  "independent_stock_and_traced_object_sha256": "5208f3fb45144fb35b6f42580357a1dbbb35bd5e11a9d41e3973181d108b44f5",
+  "inputs_sha256": "e8cba7168d9a74c62dda026522da94cfc2484191732b444702bf75426247c147",
+  "native_layout_checks": 6,
+  "native_receipts_reproduced": 26,
+  "normal_and_optimized_replay_sha256": "58f54b374a465833c559b2aa8dbc7a7b84fc1ced9a517f205540166977b56777",
+  "review": "Independent UI lane source-bound review",
+  "source_negatives_rejected": 7,
+  "verifier_sha256": "16b9943bfcbd064d2cb960e2e75d70acfd3284ef38f91c3a4c6c238541a6c554"
+}
