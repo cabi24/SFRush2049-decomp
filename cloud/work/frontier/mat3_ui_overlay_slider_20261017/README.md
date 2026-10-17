@@ -90,7 +90,7 @@ records; its contents are never included in this packet.
 - Three historical cache controls retained:23,4,27 differences respectively
 - Normal and optimized Python full outputs agree; proof guards use explicit
   exceptions, not removable assert statements
-- Eleven guard tests, including delivery-copy mismatch, target word/extent mutations and relocated replay
+- Twelve guard tests, including optimized stale-ujoin refusal, delivery-copy mismatch, target word/extent mutations and relocated replay
 
 The host oracle is inherited, bounded source-model evidence. It is not native
 instruction execution. Real projection and renderer implementations are not
@@ -110,8 +110,13 @@ python tests/cloud/test_mat3_overlay_slider_research.py
 ```
 
 `N64_RESEARCH_REPO` selects the checkout for a relocated packet. The full
-replay requires the authenticated private image asset. The tests keep ten
+replay requires the authenticated private image asset. The tests keep eleven
 integrity tests active without tools; only the full replay skips when its
 inputs are unavailable. `REQUIRE_TOOLCHAIN=1` turns that absence into failure.
 No binary objects, image bytes, assembly dumps or raw compiler traces are
 published. Only source, tests and proof metadata are in this packet.
+
+Compiler-input seal amendment: the cc frontend invokes cfe and ujoin. Both are
+pinned through the same score.ido resolver used by the build. The complete
+ten-tool inventory also retains the prior acpp pin. The native source, body,
+delivery and whole-object fidelity results are unchanged.

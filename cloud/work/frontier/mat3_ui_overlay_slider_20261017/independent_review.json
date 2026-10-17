@@ -1,4 +1,16 @@
 {
+  "compiler_seal_amendment": {
+    "executed_ujoin_stage_pinned": true,
+    "guards_passed_each_mode": 12,
+    "inputs_sha256": "99093ccc37b89f8d114cd431bd4ba28794da1158e5ee03d5f58e8f904d0d85d0",
+    "native_source_and_object_unchanged": true,
+    "normal_optimized_output_sha256": "a7542a37dc6aad12d0083cc3658bc5e0987b74f2f0e3d8e116d4e508a2190ac2",
+    "optimized_stale_ujoin_refusal": true,
+    "result": "pass",
+    "reviewer": "independent HUD lane",
+    "test_sha256": "29f0b4fc8b27fd7d249a12804f680aa912460eef41d67d79cc4327cd0f0a5dcf",
+    "verifier_sha256": "fbb768baccdcf5093af5d8800984d0ec20d7244e7127e0cbd71be5ed4f037a71"
+  },
   "delivery_sha256": "67deabe7ff97d7ec8e49c96edf6494096a1d523703a3b9525447c10e44e89601",
   "guards_passed_each_mode": 11,
   "inputs_sha256": "b8d6e73b1bb39795bc442227807841caae2d3eef31b901d98f406c15fa27d6fd",

@@ -20,7 +20,17 @@ class SliderGuards(unittest.TestCase):
  def test_source_omission(self):
   self.mutate(lambda p:self.inputs_edit(p,lambda j:j['sources'].pop('host.c')),'Source inventory')
  def test_compiler_omission(self):
-  self.mutate(lambda p:self.inputs_edit(p,lambda j:j['compiler_sha256'].pop('cfe')),'Compiler inventory')
+  self.mutate(lambda p:self.inputs_edit(p,lambda j:j['compiler_sha256'].pop('ujoin')),'Compiler inventory')
+ def test_stale_ujoin_optimized(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t)
+   for n in proof.COMPILERS:(root/n).write_text(n)
+   pins={'compiler_sha256':{n:proof.sha((root/n).read_bytes()) for n in proof.COMPILERS}}
+   proof.validate_compilers(pins,resolver=lambda n:root/n)
+   (root/'ujoin').write_text('changed stage')
+   code="import importlib.util;from pathlib import Path;s=importlib.util.spec_from_file_location('guard',%r);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);m.validate_compilers(%r,resolver=lambda n:Path(%r)/n)"%(str(PACKET/'verify.py'),pins,t)
+   env=dict(os.environ,N64_RESEARCH_REPO=str(ROOT));r=subprocess.run([sys.executable,'-O','-c',code],cwd=t,env=env,capture_output=True,text=True)
+   self.assertNotEqual(r.returncode,0);self.assertIn('Pinned compiler unavailable or changed: ujoin',r.stderr)
  def test_tool_omission(self):
   self.mutate(lambda p:self.inputs_edit(p,lambda j:j['tools_sha256'].pop('tools/cloud/score.py')),'Comparison tool inventory')
  def test_tool_fingerprint(self):

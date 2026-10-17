@@ -20,7 +20,7 @@ NAME='func_803A3DA4';ENTRY=0x803A3DA4;SIZE=912
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 ANCHORS={'D_8014A108':0x8014A108,'D_803BA028':0x803BA028,'D_803B9FD0':0x803B9FD0,'D_803AF9A8':0x803AF9A8,'D_803B97A8':0x803B97A8,'D_803B97AC':0x803B97AC,'D_803B97B0':0x803B97B0,'D_803B97B4':0x803B97B4,'D_803B97B8':0x803B97B8,'D_80111310':0x80111310,'D_80111414':0x80111414,'D_80150B70':0x80150B70,'input_new_data_wrapper':0x80094F88,'brake_light_update':0x800A6244,'Input_ApplyPadConfig':0x80094EC8}
 TOOL_FILES={'tools/cloud/score.py','tools/cloud/owndata.py'}
-COMPILERS={'cc','acpp','cfe','uopt','ugen','as1','uld','umerge','usplit'}
+COMPILERS={'cc','acpp','cfe','uopt','ugen','as1','uld','umerge','usplit','ujoin'}
 SOURCES={'group.json','fidelity.json','candidate.c','pr163_source.c','host.c','behavior.py','elf_support.py','verify.py','evidence.json','controls/direct_slot_only.c','controls/inline_quarter_only.c','controls/named_slot_and_height.c'}
 
 def run(*args):
@@ -86,9 +86,15 @@ def authenticate_callbacks(pins):
  require(ids==[(opt<<16)|(p<<4)|kind for p in range(4) for opt in (13,14) for kind in (0,1)],'Native slider callback IDs changed')
  return {'record_count':16,'definition_stride':36,'resource':'SLIDER','anim_ids':ids,'pointer_addresses':hits,'image_sha256':meta['image_sha256']}
 
+def validate_compilers(pins,resolver=None):
+ require(set(pins['compiler_sha256'])==COMPILERS,'Compiler inventory changed')
+ resolver=resolver or (lambda n:Path(score.ido(n)))
+ for n,h in pins['compiler_sha256'].items():
+  p=Path(resolver(n));require(p.is_file() and sha(p.read_bytes())==h,'Pinned compiler unavailable or changed: '+n)
+
 def measure():
  pins=validate_inputs()
- for n,h in pins['compiler_sha256'].items():require((score.IDO/n).is_file() and sha((score.IDO/n).read_bytes())==h,'Pinned compiler unavailable or changed: '+n)
+ validate_compilers(pins)
  linker=shutil.which('mips-linux-gnu-ld');require(linker is not None and shutil.which('gcc') is not None,'Existing GNU linker and host compiler required')
  previous=score.ASM_DIR
  try:
