@@ -1,0 +1,74 @@
+{
+  "magnitude": {
+    "kind": "single",
+    "members": [
+      "func_8008B3C8"
+    ],
+    "claims": [
+      "func_8008B3C8"
+    ],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "original_source": "src/blob/func_8008B3C8.c",
+    "original_source_sha256": "00ecb6740d68b52a86ce5efe0855f225bb523477b3c3155a336680d15211186a"
+  },
+  "world_vector": {
+    "kind": "single",
+    "members": [
+      "func_8008C544"
+    ],
+    "claims": [
+      "func_8008C544"
+    ],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "original_source": "src/blob/func_8008C544.c",
+    "original_source_sha256": "eebe8ddbd316812da19ff2569059d2f7a3a8d5cfe6ddd39e7e7c8068db0cd4c9"
+  },
+  "atan2": {
+    "kind": "single",
+    "members": [
+      "func_8008C768"
+    ],
+    "claims": [
+      "func_8008C768"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "original_source": "src/blob/func_8008C768.c",
+    "original_source_sha256": "304064c80d0f6bb29b8942513fb210b55d14e4d6f116772b6b067bd63a525427"
+  },
+  "atan_signed": {
+    "kind": "single",
+    "members": [
+      "func_8008C720"
+    ],
+    "claims": [
+      "func_8008C720"
+    ],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "original_source": "src/blob/func_8008C720.c",
+    "original_source_sha256": "3501a3207a940a316d29c06026826d59f95d3bbc5a67a94624b0c3ae13c9ef42"
+  },
+  "polygon": {
+    "kind": "group",
+    "members": [
+      "func_8008C074"
+    ],
+    "claims": [
+      "func_8008C074"
+    ],
+    "original_source": "src/blob/groups/codex_vertices_b88/group.c",
+    "original_source_sha256": "891aa0cbd4fc0ea4d7481a884bbebced0b41397b092880a695808bc8fefe9d5b"
+  },
+  "atan_reduction": {
+    "kind": "group",
+    "members": [
+      "func_8008C680",
+      "func_8008C5E0"
+    ],
+    "claims": [
+      "func_8008C680",
+      "func_8008C5E0"
+    ],
+    "original_source": "src/blob/groups/sol_high_c680/group.c",
+    "original_source_sha256": "6c538f6747f3a45db0f34e9ff96270cc1c1cfcef6e5b8d3b3568da2063a51f88"
+  }
+}

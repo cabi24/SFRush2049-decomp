@@ -1,0 +1,31 @@
+{
+  "complete_objects_identical": true,
+  "stock_object_sha256": "fc0d4dcd8256034d2d2cb569349863875d62e34cd5a4d2ab06e164ac33b1be06",
+  "trace_object_sha256": "fc0d4dcd8256034d2d2cb569349863875d62e34cd5a4d2ab06e164ac33b1be06",
+  "tracing_enabled": [
+    "CDX_LOG",
+    "CDX_DETAIL_WEB",
+    "W5D_LEVEL",
+    "SPLOG"
+  ],
+  "inputs_sha256": {
+    "behavior.py": "c304841daa1eca179e5b84e4d4f04cb24ece1a7279d1f9b7a8d78819dbb4e947",
+    "closure/atan2/source.c": "304064c80d0f6bb29b8942513fb210b55d14e4d6f116772b6b067bd63a525427",
+    "closure/atan_reduction/group.c": "6c538f6747f3a45db0f34e9ff96270cc1c1cfcef6e5b8d3b3568da2063a51f88",
+    "closure/atan_reduction/group.json": "37216d66551b98a6b7a74f43ebf27a586ac6b147d1e0c795c1ca3f3c993c15be",
+    "closure/atan_signed/source.c": "74f49e6e280127c5b235b9ecadeb0183d619b8a91b2a2fdf0f8853fa54486684",
+    "closure/magnitude/source.c": "f8828575f16bf90a60a1871a48dc5efea877dcef1e1cc10ee3b98d3dbe19ea46",
+    "closure/polygon/group.c": "258ebd3aa0343af3162fde2914b22791e7e32cef08fee7bba2cb1c7c1e817632",
+    "closure/polygon/group.json": "6fb5847797dca0f948ecf0994c3bd78f8990bc0f3f7ddaa442dd5262c3bb3356",
+    "closure/world_vector/source.c": "13cc8bbfd22882612601321dd97baadb9477b52891b3f49962be1e5cefb95ddf",
+    "closure.json": "a03d94f3265697ab0c1fc5534857d1367a2dd562188552bfd6d70db5b0cd7341",
+    "group/group.c": "5f33746438541693662f35014f229c61bb3c9076552187a64929aabb48d1aae7",
+    "group/group.json": "cdcdcf41bb0b0981bcf534fbaa2e829f780cc5317d54ec18867b4fea9f99b615",
+    "layout.py": "1d46812a683cd7962a3bb8b0e6a98614aea9d55f274112e040242ce7a81cf8a5",
+    "trace_fidelity.py": "c71e44bb7b18508d7cacd8be5459223f071689770cd85ec1be9ef3866c80c98c",
+    "verify.py": "ed9c2a1a34837463df7a655b35a5823a4f457cd5d25be278db75d826dacade0c",
+    "baseline:tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "baseline:blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+  }
+}
