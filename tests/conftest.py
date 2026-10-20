@@ -50,9 +50,10 @@ IDO_MISSING = "run tools/cloud/setup.sh"
 
 def _skip_instead_of_missing_ido_exit(outcome):
     # A SystemExit from score.ido(), or a subprocess-based replay whose failure
-    # message carries the same missing-IDO diagnostic.
+    # message carries the same missing-IDO diagnostic (as an assertion, or re-raised
+    # as RuntimeError, e.g. test_mat3_race_tail's refusal loop).
     exc = outcome.exception
-    if isinstance(exc, (SystemExit, AssertionError)) and IDO_MISSING in str(exc):
+    if isinstance(exc, (SystemExit, AssertionError, RuntimeError)) and IDO_MISSING in str(exc):
         outcome.force_exception(pytest.skip.Exception("IDO missing: " + str(exc)))
 
 
