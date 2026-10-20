@@ -4755,6 +4755,7 @@ entity_update_callback:
 .section .text.entity_anim_texture, "ax", @progbits
 .globl entity_anim_texture
 entity_anim_texture:
+    /* compiled from src/blob/entity_anim_texture.c */
     .word 0x27BDFFB0
     .word 0x00057400
     .word 0x000E7C03

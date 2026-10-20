@@ -1,0 +1,22 @@
+{
+ "files": [
+  "candidate.c",
+  "fill.c",
+  "set_window.c"
+ ],
+ "keep": [
+  "arb_rate_set",
+  "func_800A5560",
+  "exhaust_smoke_effect"
+ ],
+ "members": [
+  "arb_rate_set"
+ ],
+ "context": [
+  "func_800A5560",
+  "exhaust_smoke_effect"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "New isolated initializer group with unchanged canonical background-color and projection helpers. Only the root is a new claim. Whole-unit/image/ROM gates pending.",
+ "provenance": "PR #399 (dot_mat3_window_init_20261017, head e1884f38c; replay.py --materialize): ZOID_InitializeWindow; installed by w34i"
+}

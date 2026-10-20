@@ -4561,6 +4561,7 @@ func_800C8918:
 .section .text.hud_setup, "ax", @progbits
 .globl hud_setup
 hud_setup:
+    /* compiled from src/blob/hud_setup.c */
     .word 0x27BDFFC0
     .word 0x3C0E8011
     .word 0x81CE023C

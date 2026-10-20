@@ -264,8 +264,6 @@
       "other_unaccepted_direct_game_calls": [
         "audio_frame_sync",
         "display_enable",
-        "func_800A7480",
-        "hud_setup",
         "object_create",
         "tire_compound_set"
       ]
@@ -637,7 +635,6 @@
         "s0": 2
       },
       "other_unaccepted_direct_game_calls": [
-        "brake_light_update",
         "state_utility"
       ]
     },
@@ -676,7 +673,6 @@
         "s0": 7
       },
       "other_unaccepted_direct_game_calls": [
-        "brake_light_update",
         "camera_auto_follow",
         "race_position_update",
         "state_utility"
@@ -1135,7 +1131,6 @@
         "s0": 2
       },
       "other_unaccepted_direct_game_calls": [
-        "brake_light_update",
         "state_utility"
       ]
     },
@@ -1253,7 +1248,6 @@
         "s0": 3
       },
       "other_unaccepted_direct_game_calls": [
-        "brake_light_update",
         "camera_auto_follow",
         "object_bytes_sum_global",
         "state_utility"

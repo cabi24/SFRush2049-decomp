@@ -1,0 +1,15 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "members": [
+  "func_800E543C"
+ ],
+ "context": [],
+ "keep": [
+  "func_800E543C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "700-byte strict stock-IDO match from the genuine Init_MDrive/multiinit boundary. No other body claimed; image and ROM gates remain with the independent checker.",
+ "provenance": "PR #382 (dot_mat3_physics_20261017/mdrive, head 6ee77201e): MAT3 Init_MDrive; installed by w34i"
+}

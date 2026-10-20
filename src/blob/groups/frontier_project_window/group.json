@@ -1,0 +1,22 @@
+{
+ "files": [
+  "candidate.c",
+  "body_vector.c",
+  "get_window.c"
+ ],
+ "keep": [
+  "brake_light_update",
+  "func_800A61B0",
+  "func_800A6078"
+ ],
+ "members": [
+  "brake_light_update"
+ ],
+ "context": [
+  "func_800A61B0",
+  "func_800A6078"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "New isolated group with real BodyVector and ZOID_GetWindow context, both already locked. No caller stand-ins, unused padding locals, or compiler devices. Canonical context is materialized by replay.py. Full-unit/image/ROM gates pending.",
+ "provenance": "PR #397 (dot_mat3_project_window_20261017, head 05c1c6cc9; replay.py --materialize): ZOID_ProjectWindow with its genuine getter; installed by w34i"
+}

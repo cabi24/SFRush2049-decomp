@@ -2,11 +2,11 @@
  "members": [
   "matrix_scale_apply",
   "anim_state_update",
-  "buffer_swap"
+  "buffer_swap",
+  "entity_anim_texture"
  ],
  "context": [
   "model_bounds_calc",
-  "entity_anim_texture",
   "func_8008B2B4",
   "func_8008B2E4",
   "entity_transform_calc",
@@ -16,7 +16,8 @@
   "game_timer_resume",
   "func_80091BA8",
   "func_80091B00",
-  "scheduler_recv"
+  "scheduler_recv",
+  "func_8008B3A0"
  ],
  "files": [
   "buffer_swap.c",
@@ -36,9 +37,10 @@
   "entity_hierarchy_update",
   "scheduler_recv",
   "stat_lap_complete",
-  "game_timer_resume"
+  "game_timer_resume",
+  "func_8008B3A0"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
- "provenance": "Complete genuine donor/native callback context; no stand-ins or fabricated keepers. Wave 17 (w17c): anim_state_update body replaced (anim_tire_donor.c = cloud/work/frontier/w17c/anim_state_update/best.c) and moved from context to members; model_bounds_calc takes the arcade CheckVisible order (Visual *v, s32 on) in every file; func_8008B2E4.c is an unchanged copy of the locked single (Random, inlined by umerge). See cloud/work/frontier/w17c/RESULTS.md. Wave 23 (w23d): buffer_swap added as a member (buffer_swap.c = cloud/work/frontier/w23d/buffer_swap/best.c); codex_transform_b109.c is a byte-identical copy of src/blob/groups/codex_transform_b109/group.c (context: entity_transform_calc's IPA float-register convention for the inlined ehu_inline/client_sync calls); buffer_swap.c is listed first so that it is emitted last (otherwise the deleted rand stub follows it: '1 extra words'). See cloud/work/frontier/w23d/RESULTS.md.",
+ "provenance": "superseded in place by PR #386 (mat3_wingflame_20261017/group, head 8435976e4): + entity_anim_texture (AnimateWingFlame); installed by w34i",
  "name": "codex_visual_tire_module_20261002"
 }

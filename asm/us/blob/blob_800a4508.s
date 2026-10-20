@@ -1438,6 +1438,7 @@ exhaust_smoke_effect:
 .section .text.arb_rate_set, "ax", @progbits
 .globl arb_rate_set
 arb_rate_set:
+    /* compiled from src/blob/arb_rate_set.c */
     .word 0x27BDFFC8
     .word 0x3C014000
     .word 0x44810000
@@ -2076,6 +2077,7 @@ func_800A61B0:
 .section .text.brake_light_update, "ax", @progbits
 .globl brake_light_update
 brake_light_update:
+    /* compiled from src/blob/brake_light_update.c */
     .word 0x27BDFFB8
     .word 0xAFBF0014
     .word 0xAFA40048
@@ -3267,6 +3269,7 @@ func_800A7428:
 .section .text.func_800A7480, "ax", @progbits
 .globl func_800A7480
 func_800A7480:
+    /* compiled from src/blob/func_800A7480.c */
     .word 0x8FAC0018
     .word 0x3C0E8018
     .word 0x25CEA510
