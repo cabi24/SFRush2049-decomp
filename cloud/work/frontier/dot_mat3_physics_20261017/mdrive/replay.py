@@ -75,8 +75,9 @@ def inputs():
                 references=references,
                 compiler_executables={name: hashlib.sha256(Path(score.ido(name)).read_bytes()).hexdigest()
                                       for name in ("cc", "cfe", "ujoin", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
+                # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
                 verification_tools={name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
-                                    for name in ("tools/cloud/score.py", "tools/cloud/owndata.py", "blob_matched.lock.json")})
+                                    for name in ("tools/cloud/score.py", "tools/cloud/owndata.py")})
 
 
 def verify_scope(spec):

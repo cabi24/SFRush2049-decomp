@@ -69,7 +69,8 @@ def inputs():
         packet_sha256={p: digest((HERE / p).read_bytes()) for p in ['candidate.c', 'group.json', 'replay.py', 'semantics.c', 'README.md']},
         context_sha256={p: digest((ROOT / p).read_bytes()) for p in sorted([HISTORICAL] + list(CONTEXT.values()))},
         targets={n: dict(address=hex(syms[n]), bytes=len(targets[n])*4, sha256=digest(b''.join(struct.pack('>I', w) for w in targets[n]))) for n in STRICT},
-        tooling_sha256={p: digest((ROOT / p).read_bytes()) for p in ['tools/cloud/score.py', 'tools/cloud/owndata.py', 'blob_matched.lock.json']},
+        # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
+        tooling_sha256={p: digest((ROOT / p).read_bytes()) for p in ['tools/cloud/score.py', 'tools/cloud/owndata.py']},
         compiler_sha256={n: digest(Path(score.ido(n)).read_bytes()) for n in ['cc', 'cfe', 'ujoin', 'uld', 'usplit', 'umerge', 'uopt', 'ugen', 'as1']})
 
 def diagnostic(s):

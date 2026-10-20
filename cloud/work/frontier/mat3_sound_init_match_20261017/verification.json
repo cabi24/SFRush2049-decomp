@@ -13,15 +13,13 @@
     },
     "verification_tools": {
       "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
     },
     "target_metadata": {
-      "SHA256SUMS": "98ca257a850a832b68a2f24fd9fceeb68f9d0fbd38bf47aaf883df5bbf0a1f29",
       "symbols.json": "019590ba1540c9237d3e79dac2aeda499a62119ee0fffc3fb8c7a4d5a6df1fcd"
     }
   },
-  "compiler_observations_sha256": "6940afe6e60350b6ecc8101766df2111abfe816f8d6657a09ec30ae75ecbe1a3",
+  "compiler_observations_sha256": "d9a7c36b7de5506282008f7eb55968c51c86ce2dbf40ffc645b996182782f011",
   "claims": [
     "func_800CD058",
     "func_800CCEFC",
@@ -66,7 +64,7 @@
     "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
     "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
     "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
-    "replay.py": "4e36ba6d08767d922fa6ba67f457b7b8819fbbf4af1dc92280838b4f76ed5fca"
+    "replay.py": "40019b027af898823dffd3103ea81f0bcbc44ca70de39c70ac4737439e9a5d00"
   },
   "target_sha256": {
     "func_800CD058": {

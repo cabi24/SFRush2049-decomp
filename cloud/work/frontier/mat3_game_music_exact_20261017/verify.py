@@ -64,10 +64,11 @@ unsigned int facts[]={sizeof(AudioCfg),OFF(AudioCfg,music),OFF(AudioCfg,track),s
         data,sections=score._elf(o);symbol=next(s for i,sec in enumerate(sections) if sec['type']==2 for s in score._symbol_table(data,sections,i) if s['name']=='facts');sec=sections[symbol['section']];values=list(struct.unpack('>%dI'%len(LAYOUT),data[sec['off']+symbol['value']:sec['off']+symbol['value']+4*len(LAYOUT)]));result[tag]=values
         require((values==LAYOUT)==(tag=='positive'),'layout control '+tag)
     return result
+# w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
 def inputs(spec,closure):
     paths=['verify.py','behavior.py','semantics.c','trace_fidelity.py','closure.json','group/group.json']+['group/'+f for f in spec['files']]+[r['source'] for r in closure['leaves'].values()]
     names=spec['members']+list(closure['leaves'])
-    return {'files':{f:digest(HERE/f) for f in paths},'targets':{n:hashlib.sha256(struct.pack('>%dI'%len(score.targets()[n]),*score.targets()[n])).hexdigest() for n in names},'tools':{n:digest(ROOT/n) for n in ['tools/cloud/score.py','tools/cloud/owndata.py','blob_matched.lock.json']},'compiler':{n:digest(Path(score.ido(n))) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']}}
+    return {'files':{f:digest(HERE/f) for f in paths},'targets':{n:hashlib.sha256(struct.pack('>%dI'%len(score.targets()[n]),*score.targets()[n])).hexdigest() for n in names},'tools':{n:digest(ROOT/n) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']},'compiler':{n:digest(Path(score.ido(n))) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']}}
 def verify_report(r):
     require(r['new_root']==ROOT_NAME and r['new_candidate_bytes']==304 and r['accepted_image_bytes']==0,'false credit')
     require(len(r['group_claims'])==13 and len(r['leaf_claims'])==3 and set(r['positive'])==set(r['group_claims']) and set(r['leaves'])==set(r['leaf_claims']),'claim inventory changed')

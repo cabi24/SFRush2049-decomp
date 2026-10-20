@@ -16,7 +16,8 @@ def module(name):
 def inputs():
  files=[p for p in HERE.rglob('*') if p.is_file() and p.suffix in ('.c','.py','.json') and p.name not in ('verification.json','trace_fidelity.json','independent_review.json') and '__pycache__' not in p.parts]
  result={str(p.relative_to(HERE)):digest(p) for p in sorted(files)}
- for name in ('tools/cloud/score.py','tools/cloud/owndata.py','blob_matched.lock.json'):result['baseline:'+name]=digest(ROOT/name)
+ # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
+ for name in ('tools/cloud/score.py','tools/cloud/owndata.py'):result['baseline:'+name]=digest(ROOT/name)
  return result
 def symbol(score,obj,name):
  data,secs=score._elf(obj);es=[s for i,sec in enumerate(secs) if sec['type']==2 for s in score._symbol_table(data,secs,i) if s['name']==name];require(len(es)==1,'ambiguous symbol');e=es[0];sec=secs[e['section']];return e,data[sec['off']+e['value']:sec['off']+e['value']+e['size']]

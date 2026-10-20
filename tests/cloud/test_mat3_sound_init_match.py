@@ -99,12 +99,13 @@ for mode,reason in [('claims','claim inventory changed'),('object','fresh sealed
  Path.read_text=changed
  try:rejected(lambda:m.verify(out/mode),reason)
  finally:Path.read_text=original
-if count!=50:raise RuntimeError('refusal count changed: '+str(count))
-print('50 optimized refusal cases pass')
+# 48 since w34i: the lock and SHA256SUMS are no longer bound (one refusal each before)
+if count!=48:raise RuntimeError('refusal count changed: '+str(count))
+print('48 optimized refusal cases pass')
 '''
     result=subprocess.run([sys.executable,'-O','-c',program,str(PACKET),str(tmp_path)],capture_output=True,text=True)
     assert result.returncode==0,result.stdout+result.stderr
-    assert result.stdout=='50 optimized refusal cases pass\n'
+    assert result.stdout=='48 optimized refusal cases pass\n'
 
 def test_sound_init_relocated_packet(tmp_path):
     relocated=tmp_path/'different-root'/'packet'

@@ -28,10 +28,9 @@
     "group/group.json": "cdcdcf41bb0b0981bcf534fbaa2e829f780cc5317d54ec18867b4fea9f99b615",
     "layout.py": "1d46812a683cd7962a3bb8b0e6a98614aea9d55f274112e040242ce7a81cf8a5",
     "trace_fidelity.py": "c71e44bb7b18508d7cacd8be5459223f071689770cd85ec1be9ef3866c80c98c",
-    "verify.py": "a0332c406d24713a96e5e2266580a058833d125eee1243177ed30e31fb4dd7a9",
+    "verify.py": "aa5bfebce9e667322da4e0619578a9da22088baf0507afa7ef1f2b596ad84eee",
     "baseline:tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "baseline:blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+    "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
   },
   "target_words_sha256": {
     "entity_render_setup": "0559c5163fecc8bb2f0b29155fbaed44f2d4cb8b7501bc64877acabddb6936e5",

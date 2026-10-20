@@ -105,8 +105,9 @@ def inputs():
                 references=refs,
                 compiler_executables={name: digest(Path(score.ido(name))) for name in
                     ("cc", "cfe", "ujoin", "uld", "usplit", "umerge", "uopt", "ugen", "as1")},
+                # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
                 verification_tools={name: digest(ROOT/name) for name in
-                    ("tools/cloud/score.py", "tools/cloud/owndata.py", "blob_matched.lock.json")})
+                    ("tools/cloud/score.py", "tools/cloud/owndata.py")})
 
 
 def verify_report(report):

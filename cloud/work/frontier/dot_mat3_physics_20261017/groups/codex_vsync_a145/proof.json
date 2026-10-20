@@ -30,7 +30,7 @@
       "func_800DE45C.c": "e5ae29e7b33793b67caf2f294aba8ae032dadb3d3e5313f3cc6afa41e8355f5a",
       "group.c": "d376ef06a9a7fdd10e69aff27b9541223a19a5d180d7d8474a7666790a74b86d",
       "group.json": "a1e116d441d6283eed31a6c37858ab5aa5b8f838296e3603c3296678261970b4",
-      "replay.py": "64d6a1be770fd459957a717e8a8839dba6ace92a9e0fd3397d2f7f2ab9be0c7f",
+      "replay.py": "92c64ac690c2f6e730b93f29763c6c1fa7dfc5cd3e406d5231bc0e37b29c73cd",
       "semantics.c": "c2eb5870f579a8e3ce2e477c8c539f886bddf9ebaa7604142c46ffc5e9544be2"
     },
     "population": "game_blob",
@@ -192,7 +192,6 @@
       }
     },
     "verification_tools": {
-      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
       "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
       "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
     }

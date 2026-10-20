@@ -7,7 +7,8 @@ ROOT=HERE.parents[3]
 sys.path.insert(0,str(ROOT/'tools/cloud'))
 import score
 GROUP=HERE/'groups/menu_save_options'
-OLD=ROOT/'src/blob/groups/menu_save_options'
+# The 24-member group this packet extends; installed by w34i, so its pre-install copy (handoff §5).
+OLD=ROOT/'cloud/work/frontier/superseded/menu_save_options'
 FN='hud_setup'
 
 def require(condition,message):
@@ -31,8 +32,9 @@ def source_bindings():
     return {str(p.relative_to(HERE)):sha(p.read_bytes()) for p in sorted(list(GROUP.glob('*'))+[HERE/'replay.py',HERE/'observe.py',HERE/'README.md']) if p.is_file()}
 def compiler_bindings():
     return {'compiler_executables':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},
-            'verification_tools':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py','blob_matched.lock.json']},
-            'target_metadata':{n:sha((score.ASM_DIR/n).read_bytes()) for n in ['SHA256SUMS','symbols.json']}}
+            # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
+            'verification_tools':{n:sha((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py']},
+            'target_metadata':{n:sha((score.ASM_DIR/n).read_bytes()) for n in ['symbols.json']}}
 
 def target_bindings():
     names=json.loads((GROUP/'group.json').read_text())['members']

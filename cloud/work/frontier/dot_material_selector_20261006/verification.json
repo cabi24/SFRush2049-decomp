@@ -403,7 +403,7 @@
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "a2d1bce8758b06f9f45e3089bdf9fcb828fd791ed00c692b97a2bd32e4614093"
+    "tools/conveyor/pipeline/blob_group.py": "0be6052c3e6c0487ff3c4285e06a76c703867e0a53711f99534c1b6f7686dd61"
   },
   "packet_sha256": {
     "verify.py": "47ae0f7ff596db2b8d35392d2c328f4e7b914132e77e2b681b8280f999aadad8",

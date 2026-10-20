@@ -25,7 +25,7 @@
       "README.md": "3581bc688b5ed147c03f095067b85f43d432fed34b74a2f48c22f61a9863f71f",
       "group.c": "5ce1020eb5df65a07d15167beed5a379d64bde377028c0677c353ab58b065070",
       "group.json": "76a349f412d23740f7cd48253937acb5a91d48afecf283efdf300f5035af6de6",
-      "replay.py": "675ac21a6fb4d7b0389a96b6c325d305107c160337a73cbb14e8178a0fa206c7",
+      "replay.py": "e9ff17275d1e3300f1d2f3d3d917da6a06e27116eab33feba24630cd37931761",
       "semantics.c": "76a60f4b0d384220785ab650d580af46bc5e2c7aa6c1e78018bc3123184010d0"
     },
     "population": "game_blob",
@@ -68,7 +68,6 @@
       }
     },
     "verification_tools": {
-      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
       "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
       "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
     }
