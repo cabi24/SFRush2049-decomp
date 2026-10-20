@@ -230,6 +230,24 @@ def test_one_lo16_whose_retail_hi16_words_disagree_is_refused(tmp_path):
         _relocate(obj, image, ["f", "g"], names=["f", "g"])
 
 
+def test_two_lo16_sharing_one_hi16_are_paired_and_verified(tmp_path):
+    # IDO reads several words of one object through a single lui (w34i: AnimateArrow's .data)
+    obj = _two_literal_object(
+        tmp_path, "    lui $at, %hi(lit_f)\n    lwc1 $f4, %lo(lit_f)($at)\n"
+                  "    lwc1 $f6, %lo(lit_f+4)($at)\n    jr $ra\n",
+        rodata=f"    .section .rodata\nlit_f: .word {A}, {C}\nlit_g: .word {B}\n")
+    functions = {0x00: [LUI_AT | _hi(F_LIT), LWC1_F4 | (F_LIT & 0xFFFF),
+                        0xC4260000 | ((F_LIT + 4) & 0xFFFF), JR_RA],
+                 0x20: _pair(G_LIT) + [JR_RA, 0]}
+    image = _image(functions, {F_LIT: [A, C], G_LIT: [B]})
+    bodies = _relocate(obj, image, ["f", "g"], names=["f", "g"])
+    assert bodies["f"] == _body(image, "f") and bodies["g"] == _body(image, "g")
+    # the second site is checked like the first
+    with pytest.raises(blob_group.GroupError, match=r"^f: own \.rodata\+0x4"):
+        _relocate(obj, _image(functions, {F_LIT: [A, 0], G_LIT: [B]}), ["f", "g"],
+                  names=["f", "g"])
+
+
 def test_one_object_literal_at_two_retail_addresses_is_refused(tmp_path):
     # g reads f's literal object; retail's g reads another (equal) word
     obj = _two_literal_object(tmp_path, _load("lit_f"), _load("lit_f"),

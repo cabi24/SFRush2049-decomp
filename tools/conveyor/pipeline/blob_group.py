@@ -688,7 +688,7 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
 
     text = _text(obj)
     word = lambda o: struct.unpack(">I", text[o:o + 4])[0]
-    candidates, reach, pending, wanted = {}, {}, [], {}
+    candidates, reach, pending, wanted, shared = {}, {}, [], {}, {}
     for offset, rtype, name in rels:
         if not in_member(offset):
             continue
@@ -702,9 +702,12 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
         if rtype == "R_MIPS_HI16":
             pending.append((offset, name))
         elif rtype == "R_MIPS_LO16":
-            his = [h for h, n in pending if n == name]
+            # IDO loads several words through one lui: a LO16 without a HI16 of
+            # its own pairs with its symbol's previous one (the MIPS ABI rule).
+            his = [h for h, n in pending if n == name] or shared.get(name, [])
             if not his:
                 raise GroupError(f"{section} LO16 at .text+0x{offset:x} has no HI16")
+            shared[name] = his
             pending = [(h, n) for h, n in pending if n != name]
             ours = value + ((word(his[0]) & 0xFFFF) << 16) + _sext16(word(offset) & 0xFFFF)
             for h in his:
@@ -980,7 +983,7 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None, data_runs=
     # slices map call targets to image addresses, but their bodies are never
     # spliced and may be longer than their extent (a HI16/LO16 pair can
     # straddle the cut), so their own relocations are not touched.
-    pending_hi = []
+    pending_hi, shared_hi = [], {}
     for offset, rtype, name in rels:
         if not in_member(offset):
             continue            # a stand-in's own relocation: not image bytes
@@ -993,7 +996,10 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None, data_runs=
         elif rtype == "R_MIPS_LO16":
             lo = struct.unpack(">h", struct.pack(">H", insn & 0xFFFF))[0]
             his = [h for h in pending_hi if h[1] == name]
-            hi_imm = (his[0][2] & 0xFFFF) if his else 0
+            # a LO16 sharing an earlier lui takes that HI16's addend (see _local_data_bases)
+            hi_imm = (his[0][2] & 0xFFFF) if his else shared_hi.get(name, 0)
+            if his:
+                shared_hi[name] = hi_imm
             value = resolve(name, (hi_imm << 16) + lo)
             for h_off, _, h_insn in his:
                 put(h_off, (h_insn & 0xFFFF0000) | (((value + 0x8000) >> 16) & 0xFFFF))

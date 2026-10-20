@@ -1,0 +1,15 @@
+  LockedBodyError: 2 locked bodies cannot be built from their accepted C; refusing to compose the image with passthrough in their place:
+    func_80391650: group dot_runtime_b_status_scene_20261012: object was built from a different source_sha256 than the lock records
+    func_80391864: group dot_runtime_b_status_scene_20261012: object was built from a different source_sha256 than the lock records
+ovl_rom FAILED: image B: no rebuilt image (/home/cburnes/projects/rush2049-decomp/build/ovl/b/rebuilt.bin); run `ovl_layout build` (after `ovl_splice rebuild` on a fresh checkout)
+  byte-identical to the ROM's stream: True
+  -> /home/cburnes/projects/rush2049-decomp/build/blob/game_code.deflate
+ROM build with the source-built blob: SHA-1 EXACT
+  ROM matches!
+  ROM matches!
+  MAKE=0 TEST=0
+  static code:  632/667 functions, 151176/160720 bytes (94.06%)
+  game code:   1085/1216 functions, 414960/647072 bytes (64.13%) — compressed into the ROM at 0xB0CB10
+  overlay A:     82/193 functions, 51972/194128 bytes (26.77%; 33.98% of 152952 B text) — compressed into the ROM at 0xB5C534
+  overlay B:     21/49 functions, 9020/43888 bytes (20.55%; 23.30% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+  linked from C: 1717 functions, 566136 bytes (static + game)

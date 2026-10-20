@@ -549,6 +549,16 @@
       "verified": "image_gate",
       "verified_at": "2026-10-11"
     },
+    "func_803A3DA4": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "A",
+      "origin": "cloud/matches/ovl_a/func_803A3DA4.c",
+      "source": "src/ovl_a/func_803A3DA4.c",
+      "source_sha256": "67deabe7ff97d7ec8e49c96edf6494096a1d523703a3b9525447c10e44e89601",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-20"
+    },
     "func_803A4134": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "A",

@@ -1,0 +1,14 @@
+{
+ "members": [
+  "entity_render_setup"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "entity_render_setup"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "PR #406 (mat3_animate_arrow_20261017/group, head 834718b27): AnimateArrow; closure/ replays locked callees only; one lui shared by two .data loads (blob_group shared-HI16 pairing, w34i); installed by w34i"
+}

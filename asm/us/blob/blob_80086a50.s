@@ -6313,6 +6313,7 @@ func_8008C874:
 .section .text.entity_render_setup, "ax", @progbits
 .globl entity_render_setup
 entity_render_setup:
+    /* compiled from src/blob/entity_render_setup.c */
     .word 0x27BDFF48
     .word 0xAFBF002C
     .word 0xAFB10028

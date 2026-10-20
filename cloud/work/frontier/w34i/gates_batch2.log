@@ -1,0 +1,6 @@
+group lock: 0 problems
+blob lock: 1085 entries, 0 problems
+all 635 locked functions intact
+ovl lock: all 103 runtime-image entries intact
+build/blob_unit.json: 954 files, 1085 locked bodies, 1330 functions (968 kept, 362 internal), 11 inline blockers, 161 names defined more than once (152 locked), 29 stand-ins renamed
+blob_unit: 1085 locked bodies, 1085 equal to the image in one 954-file unit, 0 differ [1043 plain; stub tail 38, own bss 5; 496 own .rodata/.data references in 149 bodies checked against image bytes] (968 kept, 362 internal; IDO 2.0s, total 9.0s)
