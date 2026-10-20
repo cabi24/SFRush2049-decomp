@@ -44,7 +44,7 @@
         "destination": "0x8008e0b8"
       }
     ],
-    "locked": false,
+    "locked": true,
     "native_bytes": 224,
     "limits": "Direct protected-target census only; indirect callers are not excluded."
   },
@@ -1066,7 +1066,7 @@
     "cloud/work/frontier/dot_entity_vector_boundaries_20261005/donor_vectors.h": "c79ce4b4b95b97fc93cf7ebf7992e03c82712193b45900873904db6a325ac23b",
     "cloud/work/frontier/dot_entity_vector_boundaries_20261005/native.py": "bbcbcd89c722226bd2564f4c8223debe9954a03c0f7df572e6bcbefc357650ed",
     "cloud/work/frontier/dot_entity_vector_boundaries_20261005/host.c": "89a2749f3a85cf4e09f7f23aae3ddfcad0ed19f6851d8b5ad08f70cf4b381662",
-    "cloud/work/frontier/dot_entity_vector_boundaries_20261005/verify.py": "d99d6522c82423ee487d05b09f8d9b05415ab13cc4a6d8bbfd3455cb49b9c99f",
+    "cloud/work/frontier/dot_entity_vector_boundaries_20261005/verify.py": "12d2c3f483c7b34a73dde2306480d16c4444676b72910c8897bc26511f0f1e67",
     "cloud/work/frontier/dot_entity_vector_boundaries_20261005/claim.json": "9e0a038fd59277c3a45a981887337b7ce090bb4fa0d7c6020a5e0b7d9ff9defd",
     "cloud/work/frontier/dot_entity_vector_boundaries_20261005/provenance.json": "657fbe97b4fe9815ff6ffb95525c4656709668dadd197b777f5053db73b9fd87",
     "cloud/work/near_miss_B76/entity_iterate_native.c": "920c23603708a07cfa502daafb2b75ecaff2db9d1a3e5f22ffe7214f6acddf55",

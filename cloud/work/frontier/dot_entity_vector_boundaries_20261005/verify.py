@@ -211,7 +211,9 @@ def behavior(work,compiled):
 def native_metadata():
     addresses=score.image_symbols();targets=score.targets();base=addresses[FN]
     locks=json.loads((ROOT/'blob_matched.lock.json').read_text())
-    assert FN not in locks and len(targets[FN])*4==224
+    # Unclaimed when researched; locked since wave 33 (w33c via w33j), only from its own source.
+    if FN in locks:assert locks[FN]['source']=='src/blob/'+FN+'.c'
+    assert len(targets[FN])*4==224
     assert -native.signed(targets[FN][0]&65535,16)==88
     callers=[]
     for name,words in targets.items():
@@ -227,7 +229,7 @@ def native_metadata():
             calls.append({'offset':4*i,'destination':hex(target)})
     assert {int(c['destination'],16) for c in calls}=={native.COLLISION,native.NORMALIZE}
     return {'native_frame_bytes':88,'direct_callers':callers,'direct_calls':calls,
-            'locked':False,'native_bytes':224,'limits':'Direct protected-target census only; indirect callers are not excluded.'}
+            'locked':FN in locks,'native_bytes':224,'limits':'Direct protected-target census only; indirect callers are not excluded.'}
 
 def verify(work):
     results,compiled=build(work)
