@@ -1,0 +1,55 @@
+{
+  "added_fields": [
+    "README binding",
+    "nine compiler stages",
+    "scorer/own-data/materializer/lock bindings",
+    "target and owned-data manifests",
+    "complete nine-build extent inventories"
+  ],
+  "files_sha256": {
+    "README.md": "7669f2b41c4e21cbc57e46a0dd51196c10b6c34527720b19b83388377a59961e",
+    "candidate.c": "ecc07389870aa201ebccbb0b43ecc924d59d9ab67a4ab644ff365be2698b2594",
+    "group.json": "3c874dedda0427516fe2b85a59c628e6e40e8045a13d01724fb0385dac548f85",
+    "independent_review.json": "f05e5959b036ef050490227d76310b6066c7275003b0b98223dce86eb4b550f7",
+    "proof.json": "cc546c246dc0dc2f47ed814072805d216cc04b24d6c8ec42a4fd16d87bd020f1",
+    "replay.py": "7d78262e3f9b84b0e6d1da320e36c8949112a30ad24c59395b1d50130a53812e",
+    "semantics.c": "7eb372d31980ae51559f028bfb786fcbf72fc051c11f31e3a2f77d0da0e61c04"
+  },
+  "independent_results": {
+    "complete_native_inventory": 25,
+    "focused_tests": "4 passed; no skips",
+    "full_optimized_saved_and_fresh_report_equal": true,
+    "nonnative_inventory": "Two unchanged 104-byte C36A0 stand-ins and one named 8-byte lsq residue; static-lsq control accounts for the unnamed nonzero gap",
+    "optimized_integrity_refusals": 995,
+    "semantic_negative": "Exact SIGABRT/empty stdout/compare assertion at semantics.c:80; sanitizer/setup failures rejected",
+    "stock_traced": {
+      "object_sha256": "22def384d5344408e570d2a1b4ca89c77b514024d4f5be3c49cd92eb75224705",
+      "stock_trace_equal": true,
+      "trace_sha256": "915d6eefffd835b52e6591eea1e3133f64cfb826aa93b16cbcf6f8c84358c16b"
+    },
+    "strict_native_bodies": 24,
+    "unclaimed_native_partial": "func_800AC9BC: 52/56 differences"
+  },
+  "inspection": [
+    "All prior explicit guards remain; bounded frame scanning now stops at each ELF function extent.",
+    "Recipe, complete score inventory, actual strict fields, native extents, nonnative extents, all text gaps and negative outcomes are checked in every build.",
+    "Saved input seals are checked before a fresh replay; the CLI then requires complete report equality, including all output hashes.",
+    "Source/header/recipe/semantic harness and original review are byte-identical to the frozen published originals.",
+    "Standard score.ido lookup provides the documented missing-tool diagnostic; its optimized test passes independently."
+  ],
+  "limits": [
+    "Original finite floating-point semantic limits remain.",
+    "No whole-unit, image, ROM or canonical integration gate was run.",
+    "Review is proof-only; no new source or byte credit."
+  ],
+  "old_field_changes": [
+    "/inputs/protocol_version",
+    "/inputs/packet_sha256/replay.py"
+  ],
+  "publication_blockers": [],
+  "review": "PASS: independent verification-only hardening review",
+  "reviewed_at_utc": "2026-10-17T22:58:05Z",
+  "scope": "PR394 protocol-3 input seals, complete nine-build extents and precise semantic negative; original source claim unchanged",
+  "source_recipe_harness_original_review_byte_identical": true,
+  "test_sha256": "003803f0ca050ce55e57b83975045c3796a541bd66672e997d5c2b27819c1a99"
+}

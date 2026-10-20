@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "claimed_extents": {
+      "anim_state_update": 1840,
+      "buffer_swap": 1676,
+      "entity_anim_texture": 636,
+      "matrix_scale_apply": 100
+    },
+    "focused_tests": 3,
+    "optimized_full_replay": "PASS",
+    "optimized_refusal_cases": 20,
+    "optimized_stock_traced_complete_identity": "PASS",
+    "positive_and_negative_rows_identical_to_previous_publication": true,
+    "relocated_packet_replay": "PASS",
+    "source_recipe_diff_from_publication_head": "empty"
+  },
+  "complete_object_sha256": "e17e3b2614cfb17a8fe3d56bed2583cef833335f226bf624610eb53c94ce67c5",
+  "reviewed_at_utc": "2026-10-17T20:48:47.270919+00:00",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/mat3_wingflame_20261017/README.md": "8d13a1342372d88578b59c8a2e1d3130849ee17bf7d507dfd166f8884f4aaff9",
+    "cloud/work/frontier/mat3_wingflame_20261017/trace_fidelity.json": "8edcdff3f19df7e540543a84f6cfe2f5de7a2c2b54984527acc37dea9ad0a06a",
+    "cloud/work/frontier/mat3_wingflame_20261017/trace_fidelity.py": "426f14b9785407bdea9fbc6b2172601e684ab82f1c84eadbd420467eceb720a0",
+    "cloud/work/frontier/mat3_wingflame_20261017/verification.json": "e276385a77f3112276ce021ace2c432fee8d838ceeb4764966b3b4a2db6a7321",
+    "cloud/work/frontier/mat3_wingflame_20261017/verify.py": "095e23998d3467b55d7e7da8ac57e76b3dc391ef53f6a275173ae9b4566e8f17",
+    "tests/cloud/test_mat3_wingflame_20261017.py": "a1ba6e088a3a1f8d1bc8c6e07c6439d0bb538f4af795480c4be95f121b8fd0e8"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Explicit runtime guards, complete claimed ELF extents, sealed receipt equality and trace input/object bindings. No C source, recipe, compiler flag, matching claim or byte-credit expansion; no canonical/image integration.",
+  "status": "PASS_VERIFICATION_HARDENING_ONLY",
+  "unchanged_source_recipe_sha256": {
+    "group/anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
+    "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
+    "group/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768",
+    "group/entity_anim_texture.c": "b9bc99acbaea5daad7271eebd3f0a471abdfbd85133b23da1a15ef6ab369dd36",
+    "group/func_8008B2E4.c": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+    "group/group.json": "614693cef8ae4dba1f469ea7a0253bb39bfe70fdd27fb851fccf492211fbd1a8",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/visibility_wrappers.c": "17bbed89f524369dfd1b46d5ac3da2fc800a90549314dabdf64e951036f0f4b8"
+  },
+  "verification_sha256": "e276385a77f3112276ce021ace2c432fee8d838ceeb4764966b3b4a2db6a7321"
+}

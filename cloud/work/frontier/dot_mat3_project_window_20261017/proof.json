@@ -1,0 +1,730 @@
+{
+  "accepted_image_bytes": 0,
+  "host_semantic_control": "wrong-depth mutation rejected by differential assertion",
+  "host_semantics": "19216 finite differential cases; 10083 saturation cases; 9608 null-body cases; depth and signed-short boundaries exercised; UBSan clean",
+  "image_gate": "not run",
+  "inputs": {
+    "compiler": "ido5.3",
+    "compiler_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
+    "context_sha256": {
+      "cloud/work/frontier/w9d/brake_light_update/best.c": "b53069538160c8bcc526b5c1a80d77baac7df184928ae12606ec632ff18c4dab",
+      "src/blob/func_800A6078.c": "a55c5fd9b3b8cb73cf199229cbca0d005f26307a458f5c6f28bc5ef466455f76",
+      "src/blob/func_800A61B0.c": "aad8ebd2e21bb212b9ddc6562183238a06993bdad136d7e57f651eb3e23a8189"
+    },
+    "packet_sha256": {
+      "README.md": "0de5bb7ba738f1bda343dfa7d7ab2b35ea915dd7b16c753f6c8f7599555bba2a",
+      "candidate.c": "941621643e3fd5f0bfd9aa9420f2403f87cf99fbfa4a7cb02eef62c077cea633",
+      "group.json": "43be8b84cc70446513d31818779ddc1288715dc713248a7888a018fba2f90596",
+      "replay.py": "12d1015edf740e547ee8cd6adda862292e654c98028d49dd07a0e3f3cd8aa8d3",
+      "semantics.c": "9d7d42020ef95f95e89e00fc375d1ad68fc4c1af6063dd4411a41594155f9d71"
+    },
+    "population": "game_blob",
+    "protocol_version": 3,
+    "recipe": {
+      "claims": [
+        "brake_light_update"
+      ],
+      "context": [
+        "func_800A61B0",
+        "func_800A6078"
+      ],
+      "files": [
+        "candidate.c",
+        "body_vector.c",
+        "get_window.c"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "keep": [
+        "brake_light_update",
+        "func_800A61B0",
+        "func_800A6078"
+      ],
+      "members": [
+        "brake_light_update"
+      ],
+      "note": "New isolated group with real BodyVector and ZOID_GetWindow context, both already locked. No caller stand-ins, unused padding locals, or compiler devices. Canonical context is materialized by replay.py. Full-unit/image/ROM gates pending."
+    },
+    "targets": {
+      "brake_light_update": {
+        "address": "0x800a6244",
+        "bytes": 448,
+        "sha256": "2cc57eb276b9927306fb036ea25b9a090ab5f08a0e4dab6a093f0c16a90ba8ed"
+      },
+      "func_800A6078": {
+        "address": "0x800a6078",
+        "bytes": 28,
+        "sha256": "eb0a9c4a0cf3e9148a45cf54f40471d9ad1eae26117350b0f63dc1ca1e8a759b"
+      },
+      "func_800A61B0": {
+        "address": "0x800a61b0",
+        "bytes": 148,
+        "sha256": "d4a8abe8e545bf66990622a473a82b4b0af3d35d4a951c60c185a9884093ce4e"
+      }
+    },
+    "tooling_sha256": {
+      "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884",
+      "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+      "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+    }
+  },
+  "negative_controls": {
+    "flattened_getter": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 452,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 64
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 86,
+          "errors": [
+            "own .rodata+0x0 referenced at +0x104 differs from retail 0x80120000 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+          ],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x74",
+            ".rodata+0x0 at +0x104",
+            ".rodata+0x4 at +0x144",
+            ".rodata+0x4 at +0x164"
+          ]
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "f19742a6d8f57fd1e1bb42b88ee28db4eca4dffbcd38fd9497fc58e65c017148"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 640,
+          "sha256": "9fa5e31fd6e1f9df6d684be9dfa483a8957682584b90f0e208f6dbdd1d66c66c"
+        }
+      }
+    },
+    "historical_padding": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 452,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 74,
+          "errors": [
+            "own .rodata+0x0 referenced at +0x104 differs from retail 0x80120000 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+          ],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x74",
+            ".rodata+0x0 at +0x104",
+            ".rodata+0x4 at +0x144",
+            ".rodata+0x4 at +0x164"
+          ]
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "f19742a6d8f57fd1e1bb42b88ee28db4eca4dffbcd38fd9497fc58e65c017148"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 640,
+          "sha256": "ab410b2b640d4a129ed5f07eed82e18bb048742ce2d965812571abd4d9553fdf"
+        }
+      }
+    },
+    "scalar_screen_coordinates": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 424,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 64,
+          "errors": [
+            "own .rodata+0x0 referenced at +0xfc differs from retail 0x80120038 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+          ],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x74",
+            ".rodata+0x0 at +0xfc",
+            ".rodata+0x4 at +0x138",
+            ".rodata+0x4 at +0x14c"
+          ]
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "812415bc0231b200b0827f68b640de3aa098171e0cd78808621928d924dc5994"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 608,
+          "sha256": "4123302255c662d39cc4b869651d4d41a3f06fa6bcdf62ab00e62dd96c9e96e7"
+        }
+      }
+    },
+    "wrong_depth": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 448,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 1,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x4c",
+            ".rodata+0x0 at +0x50",
+            ".rodata+0x4 at +0x74",
+            ".rodata+0x4 at +0x108",
+            ".rodata+0x8 at +0x144",
+            ".rodata+0x8 at +0x160"
+          ]
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 88,
+          "sha256": "9de8bf79b409bb82266b41a34b68b4469fd0957d1a78a73bae35be02565d51d3"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "a1adbd9cf15bb00e0318ce03a1d4d751c62f96a16d6f9039007869bfb1c06cb0"
+        },
+        ".text": {
+          "bytes": 624,
+          "sha256": "7dfe96a5b0a4c7e82e6547dbf227fa6054285ddbf014d264b366f1a5eace7567"
+        }
+      }
+    },
+    "wrong_gc_vertical_scale": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 460,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 64,
+          "errors": [],
+          "extra_nonzero_words": 2,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0xac",
+            ".rodata+0x0 at +0xc8",
+            ".rodata+0x4 at +0xcc",
+            ".rodata+0x4 at +0x114",
+            ".rodata+0x8 at +0x150",
+            ".rodata+0x8 at +0x16c"
+          ]
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 88,
+          "sha256": "5086d8cc00f87228bd5373c31d0f9e0d5f3631bda293509967f1a7161ac0d9a3"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "391f3c7b3791fb73b55b3348db314521b9da96235677c8df61d31dcc276153a6"
+        },
+        ".text": {
+          "bytes": 640,
+          "sha256": "943c5c543aee1cda36afcaf2bf83ab22c21884ed4574e2fbb8e4c4d6bf002059"
+        }
+      }
+    },
+    "wrong_window_stride": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 448,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 2,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A6078": {
+          "differing_words": 2,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "1ea177b0e3aefad5d1304e84b1ad0c569cb4d32241ff679b4c5373797c91ecc1"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 624,
+          "sha256": "0a4e7ed92564a6a7eff96da159becfc434e09b56d7eed7ee5e8d86db98d5050e"
+        }
+      }
+    }
+  },
+  "new_individually_strict_bytes": 448,
+  "positive": {
+    "first": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 448,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "1ea177b0e3aefad5d1304e84b1ad0c569cb4d32241ff679b4c5373797c91ecc1"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 624,
+          "sha256": "2b14c1a2cb3330fa9c5a092865b94cc3c68da4e4d567af6be063585fafb21292"
+        }
+      }
+    },
+    "getter_after_inverse": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 448,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "1ea177b0e3aefad5d1304e84b1ad0c569cb4d32241ff679b4c5373797c91ecc1"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 624,
+          "sha256": "2b14c1a2cb3330fa9c5a092865b94cc3c68da4e4d567af6be063585fafb21292"
+        }
+      }
+    },
+    "repeat": {
+      "layout": {
+        "emitted_functions": [
+          "brake_light_update",
+          "func_800A6078",
+          "func_800A61B0"
+        ],
+        "function_extents": {
+          "brake_light_update": {
+            "bytes": 448,
+            "offset": 176
+          },
+          "func_800A6078": {
+            "bytes": 28,
+            "offset": 0
+          },
+          "func_800A61B0": {
+            "bytes": 148,
+            "offset": 28
+          }
+        },
+        "root_frame_bytes": 72
+      },
+      "scores": {
+        "brake_light_update": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 112,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A6078": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 7,
+          "unresolved": [],
+          "unverified": []
+        },
+        "func_800A61B0": {
+          "differing_words": 0,
+          "errors": [],
+          "extra_nonzero_words": 0,
+          "strict_match": true,
+          "target_words": 37,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "sections": {
+        ".rel.text": {
+          "bytes": 72,
+          "sha256": "1ea177b0e3aefad5d1304e84b1ad0c569cb4d32241ff679b4c5373797c91ecc1"
+        },
+        ".rodata": {
+          "bytes": 16,
+          "sha256": "caa2cbe0f831b45b588d2e0a8fcb9013624ea2c98cc3c9f679b104c5e397fa82"
+        },
+        ".text": {
+          "bytes": 624,
+          "sha256": "2b14c1a2cb3330fa9c5a092865b94cc3c68da4e4d567af6be063585fafb21292"
+        }
+      }
+    }
+  },
+  "preserved_helpers": [
+    "func_800A61B0",
+    "func_800A6078"
+  ],
+  "rom_gate": "not run",
+  "semantic_scope": "Bounded finite inputs with valid window index and nonoverlapping output buffers; exact native output is independently checked. No original-spelling or arbitrary-NaN claim.",
+  "whole_unit_gate": "not run"
+}

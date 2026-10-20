@@ -1,0 +1,24 @@
+{
+  "files": [
+    "candidate.c",
+    "fill.c",
+    "set_window.c"
+  ],
+  "keep": [
+    "arb_rate_set",
+    "func_800A5560",
+    "exhaust_smoke_effect"
+  ],
+  "members": [
+    "arb_rate_set"
+  ],
+  "context": [
+    "func_800A5560",
+    "exhaust_smoke_effect"
+  ],
+  "claims": [
+    "arb_rate_set"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "New isolated initializer group with unchanged canonical background-color and projection helpers. Only the root is a new claim. Whole-unit/image/ROM gates pending."
+}

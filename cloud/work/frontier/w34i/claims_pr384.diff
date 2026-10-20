@@ -1,0 +1,12 @@
+diff --git a/cloud/work/CLAIMS.md b/cloud/work/CLAIMS.md
+index 27fb2a9df..003b26974 100644
+--- a/cloud/work/CLAIMS.md
++++ b/cloud/work/CLAIMS.md
+@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`),
+ 
+ | Population | Target | Who | Since | Note |
+ |---|---|---|---|---|
++| game | render_viewport_init / PlayGame (0x800FA9B4, 924 B), strict 25-member frontier_car_checkpoints closure | Astra/dot lane4 | 2026-10-17 | MAT3 donor; all 24 old locked members preserved; packet dot_mat3_race_tail_20261017; coordinator installation pending |
+ | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
+ | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
+ | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |

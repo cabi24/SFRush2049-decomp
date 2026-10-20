@@ -1,0 +1,628 @@
+{
+  "reviewer": "independent renderer lane",
+  "status": "PASS_STRICT_CLOUD_CANDIDATE",
+  "source_sha256": {
+    "camera_play_script.c": "25c74113ab51d55da50a3c8f87e283fa69188a25db0dd9cd3709285ec94f97e2",
+    "camera_trigger_check.c": "ec8345e27644a69f72b50abcfada7cd914e2930ee33d581bc900b3b9177932f4",
+    "camera_victory.c": "852a7e45b355abbbcad4d7754e0fe76f35707df4c29d88cf5672762f15c3b674",
+    "effect_cleanup.c": "d40188f3c70a33a812f8f8d6413544adef487a5322eacd863c3d7faaa73d2671",
+    "func_8009E820.c": "9b393b84c7971fd615578d9646f77732bddb03a0e663e23d9fbf01ef10fa1da5",
+    "func_800A61B0.c": "aad8ebd2e21bb212b9ddc6562183238a06993bdad136d7e57f651eb3e23a8189",
+    "func_800B61A8.c": "b7b3b7c5850442de81c28724adbaa53bde177a204c348d084b5a23d833391bb0",
+    "func_800C54F0.c": "f2e99c177dbce23679e3beded4ff1f1fa8babdbde6736f4d70cb143769d3573f",
+    "group.c": "b55a9a2e09e9f6c05344d4470031eceb73cc8ccba7ea7192f0e5b2e448006112",
+    "group.json": "70dc5bf3d7855bbaa9e6053d6b0a32f29c8dec5ba6bcc72af80a1b8e2230e2e5",
+    "math_utility.c": "7472a0bf25b17015688a9ef94a5ee1a56e789b6b2d6fab169f90729d1f4085b6"
+  },
+  "results": {
+    "candidate": {
+      "rows": {
+        "func_800AD650": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 228,
+          "symbol_bytes": 228
+        },
+        "handbrake_apply": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 216,
+          "symbol_bytes": 216
+        },
+        "func_800C36A0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1072,
+          "symbol_bytes": 1072
+        },
+        "camera_trigger_check": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1232,
+          "symbol_bytes": 1232
+        },
+        "camera_victory": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1468,
+          "symbol_bytes": 1468
+        },
+        "func_800C3AD0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1448,
+          "symbol_bytes": 1448
+        },
+        "camera_play_script": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 3520,
+          "symbol_bytes": 3520
+        },
+        "func_800AD4C8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 264,
+          "symbol_bytes": 264
+        },
+        "input_process_controller": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1452,
+          "symbol_bytes": 1452
+        },
+        "func_800AD5D0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 128,
+          "symbol_bytes": 128
+        },
+        "func_800AC9BC": {
+          "verdict": "52/56 words differ",
+          "different": 52,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 224,
+          "symbol_bytes": 224
+        },
+        "effect_cleanup": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 96,
+          "symbol_bytes": 96
+        },
+        "func_800C54F0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 244,
+          "symbol_bytes": 244
+        },
+        "func_800A61B0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        },
+        "math_utility": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 76,
+          "symbol_bytes": 76
+        },
+        "func_800B61A8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 84,
+          "symbol_bytes": 84
+        },
+        "func_8009E820": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        }
+      },
+      "unclaimed_residue": [
+        {
+          "name": "lsq",
+          "size": 8
+        },
+        {
+          "name": "__standin_func_800AD4C8",
+          "size": 52
+        },
+        {
+          "name": "__standin_input_process_controller_a",
+          "size": 156
+        },
+        {
+          "name": "__standin_input_process_controller_b",
+          "size": 160
+        },
+        {
+          "name": "__standin_c36a0_a",
+          "size": 104
+        },
+        {
+          "name": "__standin_c36a0_b",
+          "size": 104
+        }
+      ],
+      "object_sha256": "8c0f0c385573bdea0801f8b0bb7c80bd109c0c72298c510ac8cff21b0f416790"
+    },
+    "no_identity": {
+      "rows": {
+        "func_800AD650": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 228,
+          "symbol_bytes": 228
+        },
+        "handbrake_apply": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 216,
+          "symbol_bytes": 216
+        },
+        "func_800C36A0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1072,
+          "symbol_bytes": 1072
+        },
+        "camera_trigger_check": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1232,
+          "symbol_bytes": 1232
+        },
+        "camera_victory": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1468,
+          "symbol_bytes": 1468
+        },
+        "func_800C3AD0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1448,
+          "symbol_bytes": 1448
+        },
+        "camera_play_script": {
+          "verdict": "1/880 words differ",
+          "different": 1,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 3520,
+          "symbol_bytes": 3520
+        },
+        "func_800AD4C8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 264,
+          "symbol_bytes": 264
+        },
+        "input_process_controller": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1452,
+          "symbol_bytes": 1452
+        },
+        "func_800AD5D0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 128,
+          "symbol_bytes": 128
+        },
+        "func_800AC9BC": {
+          "verdict": "52/56 words differ",
+          "different": 52,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 224,
+          "symbol_bytes": 224
+        },
+        "effect_cleanup": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 96,
+          "symbol_bytes": 96
+        },
+        "func_800C54F0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 244,
+          "symbol_bytes": 244
+        },
+        "func_800A61B0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        },
+        "math_utility": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 76,
+          "symbol_bytes": 76
+        },
+        "func_800B61A8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 84,
+          "symbol_bytes": 84
+        },
+        "func_8009E820": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        }
+      },
+      "unclaimed_residue": [
+        {
+          "name": "lsq",
+          "size": 8
+        },
+        {
+          "name": "__standin_func_800AD4C8",
+          "size": 52
+        },
+        {
+          "name": "__standin_input_process_controller_a",
+          "size": 156
+        },
+        {
+          "name": "__standin_input_process_controller_b",
+          "size": 160
+        },
+        {
+          "name": "__standin_c36a0_a",
+          "size": 104
+        },
+        {
+          "name": "__standin_c36a0_b",
+          "size": 104
+        }
+      ],
+      "object_sha256": "a154789fc895f6fa3517c645ad719ace58efd104110c3639e6f2643358530e16"
+    },
+    "lsq_static": {
+      "rows": {
+        "func_800AD650": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 228,
+          "symbol_bytes": 228
+        },
+        "handbrake_apply": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 216,
+          "symbol_bytes": 216
+        },
+        "func_800C36A0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1072,
+          "symbol_bytes": 1072
+        },
+        "camera_trigger_check": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1232,
+          "symbol_bytes": 1232
+        },
+        "camera_victory": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1468,
+          "symbol_bytes": 1468
+        },
+        "func_800C3AD0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1448,
+          "symbol_bytes": 1448
+        },
+        "camera_play_script": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 3520,
+          "symbol_bytes": 3520
+        },
+        "func_800AD4C8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 264,
+          "symbol_bytes": 264
+        },
+        "input_process_controller": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 1452,
+          "symbol_bytes": 1452
+        },
+        "func_800AD5D0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 128,
+          "symbol_bytes": 128
+        },
+        "func_800AC9BC": {
+          "verdict": "52/56 words differ",
+          "different": 52,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 224,
+          "symbol_bytes": 224
+        },
+        "effect_cleanup": {
+          "verdict": "MISMATCH (1 extra words (nonzero beyond target length))",
+          "different": 0,
+          "extra": 1,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 96,
+          "symbol_bytes": 96
+        },
+        "func_800C54F0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 244,
+          "symbol_bytes": 244
+        },
+        "func_800A61B0": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        },
+        "math_utility": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 76,
+          "symbol_bytes": 76
+        },
+        "func_800B61A8": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 84,
+          "symbol_bytes": 84
+        },
+        "func_8009E820": {
+          "verdict": "MATCH",
+          "different": 0,
+          "extra": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "native_bytes": 148,
+          "symbol_bytes": 148
+        }
+      },
+      "unclaimed_residue": [
+        {
+          "name": "__standin_func_800AD4C8",
+          "size": 52
+        },
+        {
+          "name": "__standin_input_process_controller_a",
+          "size": 156
+        },
+        {
+          "name": "__standin_input_process_controller_b",
+          "size": 160
+        },
+        {
+          "name": "__standin_c36a0_a",
+          "size": 104
+        },
+        {
+          "name": "__standin_c36a0_b",
+          "size": 104
+        }
+      ],
+      "object_sha256": "2f5c585e37a3e68eaca2cf99cf01e5a1ee9fdfa5f910336aa8ff2e231f6ddb93"
+    }
+  },
+  "findings": [
+    "All seven member bodies and six additional locked callees match with exact symbol sizes.",
+    "All old source files byte-identical except disclosed static removal on lsq; added callee files byte-identical.",
+    "Natural source control has one differing word out of 880.",
+    "Static lsq control leaves one nonzero extra word after effect_cleanup.",
+    "The eight-byte lsq residue and five historical stand-ins are unclaimed.",
+    "FP multiply-by-one shaping is openly disclosed as a target-compiler device, not general IEEE equivalence.",
+    "Historical func_800AC9BC remains unmatched context, 52/56.",
+    "No canonical, whole-unit, image, or ROM gate performed; independent checker remains integration owner."
+  ]
+}

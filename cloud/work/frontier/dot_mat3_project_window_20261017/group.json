@@ -1,0 +1,24 @@
+{
+  "files": [
+    "candidate.c",
+    "body_vector.c",
+    "get_window.c"
+  ],
+  "keep": [
+    "brake_light_update",
+    "func_800A61B0",
+    "func_800A6078"
+  ],
+  "members": [
+    "brake_light_update"
+  ],
+  "context": [
+    "func_800A61B0",
+    "func_800A6078"
+  ],
+  "claims": [
+    "brake_light_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "New isolated group with real BodyVector and ZOID_GetWindow context, both already locked. No caller stand-ins, unused padding locals, or compiler devices. Canonical context is materialized by replay.py. Full-unit/image/ROM gates pending."
+}

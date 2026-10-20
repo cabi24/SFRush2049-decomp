@@ -1,0 +1,36 @@
+{
+  "compiler_seal_amendment": {
+    "executed_ujoin_stage_pinned": true,
+    "guards_passed_each_mode": 12,
+    "inputs_sha256": "99093ccc37b89f8d114cd431bd4ba28794da1158e5ee03d5f58e8f904d0d85d0",
+    "native_source_and_object_unchanged": true,
+    "normal_optimized_output_sha256": "a7542a37dc6aad12d0083cc3658bc5e0987b74f2f0e3d8e116d4e508a2190ac2",
+    "optimized_stale_ujoin_refusal": true,
+    "result": "pass",
+    "reviewer": "independent HUD lane",
+    "test_sha256": "29f0b4fc8b27fd7d249a12804f680aa912460eef41d67d79cc4327cd0f0a5dcf",
+    "verifier_sha256": "fbb768baccdcf5093af5d8800984d0ec20d7244e7127e0cbd71be5ed4f037a71"
+  },
+  "delivery_sha256": "67deabe7ff97d7ec8e49c96edf6494096a1d523703a3b9525447c10e44e89601",
+  "guards_passed_each_mode": 11,
+  "inputs_sha256": "b8d6e73b1bb39795bc442227807841caae2d3eef31b901d98f406c15fa27d6fd",
+  "normal_optimized_identical": true,
+  "normal_optimized_output_sha256": "767fe2ad856eb900feaa2cfdb06c3a28cc1435c7d1e9cfe7d0b9612e1b31d9a3",
+  "result": "pass",
+  "reviewed": [
+    "Exact standard delivery file equals reviewed candidate and is the primary compiled input",
+    "Recovered prior exact body and standalone/one-root equality",
+    "Complete GNU body/extent/relocation proof",
+    "Sixteen authenticated native callback records and native/GC differences",
+    "Original four-local and helper/type evidence limits",
+    "Imported comparison implementation pins and omission guards",
+    "Bounded host-model evidence",
+    "Recovered912-byte candidate distinguished from zero new credit"
+  ],
+  "reviewer": "independent HUD lane",
+  "scope": "Recovered PR163 image-A A3DA4 exact standalone candidate; standard deliverable byte binding; zero new discovery/aggregate/image credit",
+  "source_changes_required": false,
+  "test_sha256": "a01fb81ead8a25aa18132bf44214a3493b74239eed6f142f01c69d421d9d85b1",
+  "verification_sha256": "767fe2ad856eb900feaa2cfdb06c3a28cc1435c7d1e9cfe7d0b9612e1b31d9a3",
+  "verifier_sha256": "83c47a15887702ea4225f8a7693d76267bd766b6ee71ea47d574c5081cba479f"
+}

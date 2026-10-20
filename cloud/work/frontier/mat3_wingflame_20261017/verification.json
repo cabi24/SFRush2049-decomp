@@ -1,0 +1,252 @@
+{
+  "status": "STRICT_GROUP_MATCH",
+  "population": "game",
+  "new_function": "entity_anim_texture",
+  "new_bytes": 636,
+  "cartridge_coverage_claimed": false,
+  "base_commit": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "inputs_sha256": {
+    "verify.py": "095e23998d3467b55d7e7da8ac57e76b3dc391ef53f6a275173ae9b4566e8f17",
+    "trace_fidelity.py": "426f14b9785407bdea9fbc6b2172601e684ab82f1c84eadbd420467eceb720a0",
+    "group/group.json": "614693cef8ae4dba1f469ea7a0253bb39bfe70fdd27fb851fccf492211fbd1a8",
+    "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
+    "group/anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/visibility_wrappers.c": "17bbed89f524369dfd1b46d5ac3da2fc800a90549314dabdf64e951036f0f4b8",
+    "group/entity_anim_texture.c": "b9bc99acbaea5daad7271eebd3f0a471abdfbd85133b23da1a15ef6ab369dd36",
+    "group/func_8008B2E4.c": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+    "group/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768"
+  },
+  "target_words_sha256": {
+    "matrix_scale_apply": "efe889bbb0a83bf978452a98f490ac73399fb85c5261dd26ce926a1baa25f7af",
+    "anim_state_update": "cddb26704485aea21a3403e4fbf1dbd930ff2c6ba8d61622e19fe45b87e50dc0",
+    "buffer_swap": "645952f012bd1bc274abd8b3af08d39f460abe016e8e40c0be2585689309f796",
+    "entity_anim_texture": "90c54242570a41c158d9015748e69ecc4349ef0f77b6af87092714e5fc22dd1b"
+  },
+  "unchanged_context_sha256": {
+    "buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
+    "anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
+    "rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "visibility_wrappers.c": "17bbed89f524369dfd1b46d5ac3da2fc800a90549314dabdf64e951036f0f4b8",
+    "func_8008B2E4.c": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+    "codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768"
+  },
+  "positive": {
+    "matrix_scale_apply": {
+      "differing": 0,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "anim_state_update": {
+      "differing": 0,
+      "total": 460,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x8012393C..0x8012394C"
+      ]
+    },
+    "buffer_swap": {
+      "differing": 0,
+      "total": 419,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x801239F0..0x80123A00"
+      ]
+    },
+    "entity_anim_texture": {
+      "differing": 0,
+      "total": 159,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "model_bounds_calc": {
+      "differing": 0,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B2B4": {
+      "differing": 12,
+      "total": 12,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B2E4": {
+      "differing": 0,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1,
+      "notes": []
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "stat_lap_complete": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "game_timer_resume": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8008B3A0": {
+      "differing": 2,
+      "total": 10,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    }
+  },
+  "negative_control": {
+    "matrix_scale_apply": {
+      "differing": 0,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "anim_state_update": {
+      "differing": 0,
+      "total": 460,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x8012393C..0x8012394C"
+      ]
+    },
+    "buffer_swap": {
+      "differing": 0,
+      "total": 419,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": [
+        "own .rodata verified at 0x801239F0..0x80123A00"
+      ]
+    },
+    "entity_anim_texture": {
+      "differing": 1,
+      "total": 159,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    }
+  },
+  "claims": [
+    "matrix_scale_apply",
+    "anim_state_update",
+    "buffer_swap",
+    "entity_anim_texture"
+  ],
+  "symbol_bytes": {
+    "matrix_scale_apply": 100,
+    "anim_state_update": 1840,
+    "buffer_swap": 1676,
+    "entity_anim_texture": 636,
+    "model_bounds_calc": 72,
+    "func_8008B2B4": 8,
+    "func_8008B2E4": 72,
+    "entity_transform_calc": 440,
+    "client_sync": 216,
+    "entity_hierarchy_update": 136,
+    "stat_lap_complete": 220,
+    "game_timer_resume": 220,
+    "func_80091BA8": 84,
+    "func_80091B00": 168,
+    "scheduler_recv": 160,
+    "func_8008B3A0": 40
+  },
+  "object_sha256": "e17e3b2614cfb17a8fe3d56bed2583cef833335f226bf624610eb53c94ce67c5",
+  "negative_mutation": "translucency XOR mask 0x80000000U -> 0x40000000U"
+}

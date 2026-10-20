@@ -1,0 +1,54 @@
+{
+  "reviewer": "independent physics lane",
+  "status": "PASS",
+  "scope": "PR387 compiler/verifier/target-metadata input binding expansion; no source or credit expansion.",
+  "proof_sha256": "0ed8a6ce3b1ba0a832c465224f504f09bf9b1b6fe516c83a702eff89fcfa25ba",
+  "compiler_observations_sha256": "6940afe6e60350b6ecc8101766df2111abfe816f8d6657a09ec30ae75ecbe1a3",
+  "preservation": {
+    "verification.json": {
+      "changed_paths": [
+        "/compiler_observations_sha256",
+        "/source_sha256/README.md",
+        "/source_sha256/replay.py",
+        "/verification_inputs"
+      ],
+      "sha256": "0ed8a6ce3b1ba0a832c465224f504f09bf9b1b6fe516c83a702eff89fcfa25ba"
+    },
+    "compiler-decisions.json": {
+      "changed_paths": [
+        "/candidate/inputs_sha256/README.md",
+        "/candidate/inputs_sha256/replay.py",
+        "/without_count_conversion/inputs_sha256/README.md",
+        "/without_count_conversion/inputs_sha256/replay.py"
+      ],
+      "sha256": "6940afe6e60350b6ecc8101766df2111abfe816f8d6657a09ec30ae75ecbe1a3"
+    }
+  },
+  "code_review": "Nine active stages now use standard score.ido availability lookup; scorer/ownership/lock and target manifests/symbols are bound before compilation. README is included in source bindings. The sealed compiler-observation digest carries the updated input hashes without altering allocation decisions or complete objects.",
+  "independent_tests": {
+    "focused": "3 passed, including full/relocated replay and 50 optimized refusals",
+    "observation": "fresh optimized candidate and no-conversion stock/traced objects equal the saved complete objects; allocation decisions unchanged",
+    "missing_IDO": "3 skipped",
+    "logs": "build/physics_sound_input_review2227"
+  },
+  "result_review": "Independent recursive comparison found exactly the documented input-map/source-hash/observation-digest changes. All prior C, recipe, complete object hashes, comparison rows, extents, semantic limits and credit claims are preserved.",
+  "current_files": {
+    "compiler-decisions.json": "6940afe6e60350b6ecc8101766df2111abfe816f8d6657a09ec30ae75ecbe1a3",
+    "observe.py": "2a8f4f0ea7bf872368976e153cf85c5456eec4409c7528897a07b60fd8e1b5a6",
+    "verification.json": "0ed8a6ce3b1ba0a832c465224f504f09bf9b1b6fe516c83a702eff89fcfa25ba",
+    "README.md": "8587dd2ae8b163bba87f17e73ecd27aab6d3e5a2daa8bac1dbab91a2fc1bd171",
+    "replay.py": "4e36ba6d08767d922fa6ba67f457b7b8819fbbf4af1dc92280838b4f76ed5fca",
+    "groups/menu_save_options/ctx_newghost.c": "c92b4984ba0b6463f96eba0d87253d700452f274c08d93474c97addce073d71a",
+    "groups/menu_save_options/group.json": "6d4cc165cd5a0fefa586b8b9351968063967c8a724e0b8c313a128c72425f724",
+    "groups/menu_save_options/ctx_strncmp.c": "7248f241786ee9d95150e53124e5bc2acc54f046d641f0d8b6857b9d4071f0e6",
+    "groups/menu_save_options/ctx_slot.c": "ca3e7712f086325e234732b97bac50bb15cdf0c62563ff1368761e9eb7e6d0d3",
+    "groups/menu_save_options/group.c": "5967a0a00a110a511e3b6b085a03bb5f63cc21250c6ed9c03016b2985a1b4abe",
+    "groups/menu_save_options/save.c": "8154742f075a67e678e9d0882330215cfcbe0c7dc0469a5ed7ac39dc54daaf5d",
+    "groups/menu_save_options/ctx_hash.c": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "groups/menu_save_options/props.c": "b64f3ea44ba1f912fbdc0388f824026d6af0301a60b60e5c1457dc38b62e71d6",
+    "groups/menu_save_options/hud_setup.c": "db445c6d663b17a525f0375c920d8880da42151672ad33404f435e1a8ef419e3"
+  },
+  "focused_test_sha256": "711880cea746e746784d80640c1953bdaaae11e17c1eaddefa090a349f3060c4",
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}

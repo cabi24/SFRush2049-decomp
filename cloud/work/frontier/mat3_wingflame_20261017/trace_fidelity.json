@@ -1,0 +1,23 @@
+{
+  "complete_objects_identical": true,
+  "stock_object_sha256": "e17e3b2614cfb17a8fe3d56bed2583cef833335f226bf624610eb53c94ce67c5",
+  "trace_object_sha256": "e17e3b2614cfb17a8fe3d56bed2583cef833335f226bf624610eb53c94ce67c5",
+  "tracing_enabled": [
+    "CDX_LOG",
+    "CDX_DETAIL_WEB",
+    "W5D_LEVEL",
+    "SPLOG"
+  ],
+  "inputs_sha256": {
+    "verify.py": "095e23998d3467b55d7e7da8ac57e76b3dc391ef53f6a275173ae9b4566e8f17",
+    "trace_fidelity.py": "426f14b9785407bdea9fbc6b2172601e684ab82f1c84eadbd420467eceb720a0",
+    "group/group.json": "614693cef8ae4dba1f469ea7a0253bb39bfe70fdd27fb851fccf492211fbd1a8",
+    "group/buffer_swap.c": "f0f75d396c527f55f4779ac6464c2e92767267177513908794838633fdfd1fb0",
+    "group/anim_tire_donor.c": "952c6408321be1d0b50b9c304e9a5c6ade61a7bda545b9900d6e1e609fcc751d",
+    "group/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group/visibility_wrappers.c": "17bbed89f524369dfd1b46d5ac3da2fc800a90549314dabdf64e951036f0f4b8",
+    "group/entity_anim_texture.c": "b9bc99acbaea5daad7271eebd3f0a471abdfbd85133b23da1a15ef6ab369dd36",
+    "group/func_8008B2E4.c": "5a663f3880013222964b4798586303fa9e4a4e530efdb53492abe8da28bd371d",
+    "group/codex_transform_b109.c": "09151ff0feed34660d666a876190faf67c5f5105edc4103b36ce419eb7122768"
+  }
+}

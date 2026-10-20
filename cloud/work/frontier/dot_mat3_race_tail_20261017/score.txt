@@ -1,0 +1,59 @@
+Members:
+render_viewport_init:
+  MATCH
+func_800F92C8:
+  MATCH
+    own .rodata verified at 0x80124638..0x8012463C
+render_large_objects:
+  MATCH
+    own .rodata verified at 0x8012463C..0x801247EC
+car_setup_confirm:
+  MATCH
+    own .rodata verified at 0x80124178..0x8012417C
+func_800D1AB0:
+  MATCH
+func_800F8EC8:
+  MATCH
+func_800D169C:
+  MATCH
+    own .rodata verified at 0x80124174..0x80124178
+func_800D18C8:
+  MATCH
+func_800C2944:
+  MATCH
+func_800C26C4:
+  MATCH
+func_800C2430:
+  MATCH
+func_800C1B60:
+  MATCH
+    own .rodata verified at 0x80123E94..0x80123EE4
+func_800C2004:
+  MATCH
+    own .rodata verified at 0x80123EE4..0x80123EE8
+func_800C220C:
+  MATCH
+    own .rodata verified at 0x80123EE8..0x80123EEC
+func_800C3578:
+  MATCH
+camera_scene_manager:
+  MATCH
+    own .rodata verified at 0x80123F38..0x80123F54
+func_80092278:
+  MATCH
+entity_flags_apply:
+  MATCH
+high_scores_display:
+  MATCH
+camera_target_track:
+  MATCH
+camera_collision_check:
+  MATCH
+func_800B61A8:
+  MATCH
+func_8009211C:
+  MATCH
+func_80091FBC:
+  MATCH
+func_800CB718:
+  MATCH

@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "67deabe7ff97d7ec8e49c96edf6494096a1d523703a3b9525447c10e44e89601",
+  "claims": [
+    "func_803A3DA4"
+  ],
+  "group_strict_words": 228,
+  "recipe_sha256": "43e34d0783f6e3cb923bbf4377e40eb2783e97301b6b88932e592ffcb14aaddf",
+  "route": "Secondary one-root O3 group, with the same sole native function; standalone strict and GNU routes are independently replayed by verify.py",
+  "stages": [
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "stock_sha256": "3f569daeabebed7132efdfe307d107e458d862680b8a672e01327be872b39a53",
+  "traced_sha256": "3f569daeabebed7132efdfe307d107e458d862680b8a672e01327be872b39a53",
+  "whole_object_identical": true
+}

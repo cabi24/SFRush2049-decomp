@@ -1,0 +1,72 @@
+{
+  "classification": "Recovered prior exact source, no new discovery",
+  "current_lock_and_canonical_source_absent": true,
+  "current_master_checked": "58425072b49e95f0fbe5c4c239988fb4885f7c5c",
+  "identity_support": [
+    "Player nibble, player limit, car-lock check and callback removal",
+    "Tire-scale cases and two per-player float tables",
+    "Sixteen SLIDER table records, two types and two options for each of four players",
+    "Same original four-local declaration list; no pointer/height caches"
+  ],
+  "limits": [
+    "No original N64 textual source or full original TU recovered",
+    "Original local/storage facts come from later-platform DWARF, independently corroborated by native exact output",
+    "External renderer/projector implementations remain external",
+    "Host oracle executes finite synthetic helper hooks, not native hardware",
+    "No accepted-image, integration, compression or ROM result"
+  ],
+  "native_platform_differences": [
+    "Options13/14 versus later11/12",
+    "Projection slot+19 versus later+17",
+    "Native unscaled X/Y versus later display-coordinate halving",
+    "Native row-base views retain current address-bound tire arrays",
+    "Native float-expression association preserved"
+  ],
+  "no_specific_claim_observed": true,
+  "original_donor": {
+    "dwarf_die": "0x18AA00",
+    "file": "carscr.c",
+    "function": "animNewSlider",
+    "locals": [
+      "int type",
+      "int p",
+      "int opt",
+      "signed short screenPos[2]"
+    ],
+    "lookup_receipt_sha256": "819c31461cfefa75d59bdf64cbba53cd07eb42ebf45aab108981ab167783d727",
+    "range": [
+      "0x800919C0",
+      "0x80091D50"
+    ],
+    "recorded_status": "100% in complete Matching TU; no fresh donor compile",
+    "signature": "static int animNewSlider(struct _tBlit *blt)",
+    "size": 912,
+    "source_sha256": "c855676c0a3a60278fbfdc117c7bf413430975cbb81e7711e061bc5342d4894a"
+  },
+  "prior_head": "1bd09c5eb3bde8f803c46d0d657e9264d4223a38",
+  "prior_pr": 163,
+  "prior_source_path": "cloud/matches/ovl_a/func_803A3DA4.c",
+  "prior_source_sha256": "3ee11ee05831a5680fc61c117072775aab8a8330bc3cc079444cbb3b4eefff5c",
+  "prior_state_observed": "closed, unmerged",
+  "prior_url": "https://github.com/cabi24/SFRush2049-decomp/pull/163",
+  "rejected_sibling": {
+    "distinctions": [
+      "No player local or player/lock guards",
+      "Different four non-tire options",
+      "Alpha255 to254 path absent in native carscr callback"
+    ],
+    "file": "trackscr.c",
+    "range": [
+      "0x80089018",
+      "0x80089328"
+    ],
+    "size": 784
+  },
+  "remote_claims_blob": "27fb2a9df2d0985655415c660458773dffd9f6c3",
+  "source_contract_cleanup": [
+    "Original Hidden int return, byte-neutral for this caller",
+    "Original projection body argument float pointer",
+    "Original local identities and order",
+    "Complete64-byte native Blit view with unaccessed opaque tail"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASS_VERIFIER_ONLY_INDEPENDENT_REVIEW",
+  "reviewer": "renderer lane",
+  "reviewed_at_utc": "2026-10-17T21:44:24Z",
+  "proof_sha256": "2af04feeea5002f1ff50eb62092ff350f31e46915aa31d135f5fc025521a2011",
+  "reviewed_files_sha256": {
+    "README.md": "cb09e4503b0426aef84ef1fa7d7d64265c9fbeac7b9224bf0467b758553ad45b",
+    "replay.py": "a5381118138709079eaf68d20bffb1cc55573080036c5931157d9591c20c3226",
+    "proof.json": "2af04feeea5002f1ff50eb62092ff350f31e46915aa31d135f5fc025521a2011",
+    "group.c": "5ce1020eb5df65a07d15167beed5a379d64bde377028c0677c353ab58b065070",
+    "group.json": "76a349f412d23740f7cd48253937acb5a91d48afecf283efdf300f5035af6de6",
+    "semantics.c": "76a60f4b0d384220785ab650d580af46bc5e2c7aa6c1e78018bc3123184010d0"
+  },
+  "focused_test_sha256": "d9ced007e7336cfb4f7d8baaba87c6e5ae20deed659b4f70bcd162a10e1dde43",
+  "unchanged_source_recipe_semantics": true,
+  "all_prior_comparison_fields_unchanged": true,
+  "checks": [
+    "Inspected complete replay and test diff against frozen prior files.",
+    "Independently compared all old receipt fields; only protocol version and replay hash changed, with new input and layout/host fields added.",
+    "Independently ran all four focused tests twice, including after the final README correction, with full optimized replay and110 refusal cases.",
+    "Checked all three positive and five negative ELF symbol extents are enforced at700bytes, native protected word counts remain175, and frame scans are bounded to the root extent.",
+    "Confirmed strict flags are cross-checked against differences, extras, unresolved/unverified references and errors in every row.",
+    "The unchanged288-case host source regression executes under fatal UBSan with exact stdout and empty stderr.",
+    "Missing IDO independently gives1pass/3skips locally and3expectedfailures/1pass when required.",
+    "Corrected README now consistently describes protocol3, tooling/lock binding, four tests and the complete negative replay."
+  ],
+  "limits": [
+    "Verifier-only review; the original source-shaping and inherited volatile declaration disclosures remain.",
+    "Existing700 individually strict bytes are unchanged; no new matching or accepted image credit.",
+    "No canonical integration, ROM verification or publication performed by this review."
+  ]
+}

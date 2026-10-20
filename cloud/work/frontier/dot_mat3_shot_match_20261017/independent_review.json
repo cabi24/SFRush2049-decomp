@@ -1,0 +1,75 @@
+{
+  "review": "PASS: independently replayed isolated source proof",
+  "reviewed_at_utc": "2026-10-17T19:22:22Z",
+  "review_scope": "N64 ShotToWorldCollision natural-C candidate, complete preserved group, bounded semantic and negative controls",
+  "files_sha256": {
+    "candidate.c": "ecc07389870aa201ebccbb0b43ecc924d59d9ab67a4ab644ff365be2698b2594",
+    "group.json": "3c874dedda0427516fe2b85a59c628e6e40e8045a13d01724fb0385dac548f85",
+    "replay.py": "a948643f5529be5e94d749fcaa9cd0587dabfdaa3884d414e8ed914b2f72c4e9",
+    "semantics.c": "7eb372d31980ae51559f028bfb786fcbf72fc051c11f31e3a2f77d0da0e61c04",
+    "proof.json": "297ab9f79f7ab51fe2e5d64a524b90a6b6350d9279361f8ce262afc1cb3783f4",
+    "README.md": "da3da362603fed3e0a1d21be400eb1ca335288b963dfa63d0d0c0086ddd92fc7"
+  },
+  "fresh_replay_matches_saved_proof": true,
+  "focused_tests": "2 passed, no skips",
+  "strict_function_count": 24,
+  "new_individually_strict_bytes": 3580,
+  "accepted_image_bytes": 0,
+  "root_frame_bytes": 400,
+  "repeat_executable_and_relocation_sections_identical": true,
+  "host_semantics": "70898 finite differential cases; all 65536 s16 returns; 480 traversal exits; 140670 accepted hits; 1800 snap calls; 1800 normalizations; UBSan clean",
+  "controls": {
+    "historical": {
+      "root_differing": 122,
+      "effect_cleanup_extra_nonzero": 0
+    },
+    "interpolation_only": {
+      "root_differing": 12,
+      "effect_cleanup_extra_nonzero": 0
+    },
+    "meaningful_state": {
+      "root_differing": 122,
+      "effect_cleanup_extra_nonzero": 0
+    },
+    "state_32bit": {
+      "root_differing": 276,
+      "effect_cleanup_extra_nonzero": 0
+    },
+    "unbounded_static_residue": {
+      "root_differing": 0,
+      "effect_cleanup_extra_nonzero": 1
+    },
+    "wrong_radius": {
+      "root_differing": 29,
+      "effect_cleanup_extra_nonzero": 0
+    },
+    "z_arguments_only": {
+      "root_differing": 115,
+      "effect_cleanup_extra_nonzero": 0
+    }
+  },
+  "preservation": [
+    "func_800AD650",
+    "handbrake_apply",
+    "func_800C36A0",
+    "camera_trigger_check",
+    "camera_victory",
+    "func_800C3AD0"
+  ],
+  "excluded_nonmatch": {
+    "func_800AC9BC": "52/56 words differing; absent from claims"
+  },
+  "source_review": [
+    "Meaningful signed-short state preserves the supplied signed-short callee result and truth test; historical versus state-only full executable/data/relocation identity reproduced.",
+    "The z assignment is moved into the relevant query argument. No other argument accesses z, its address does not escape, and the assignment completes before entering the callee.",
+    "Each interpolation reverses the two operands of a floating-point addition while retaining the same multiply and parenthesization. Finite host checks and exact native output support the documented scope; arbitrary NaN payload equivalence is expressly excluded.",
+    "The three obsolete AD4C8/CylinderInSurf stand-in bodies are removed. No replacement stand-in is introduced. Unrelated inherited C36A0 stand-ins remain disclosed.",
+    "The existing lsq body is unchanged apart from linkage. Its symbol bounds deleted-procedure residue; restoring static linkage produces a strict extra-word failure rather than silently trimming the function."
+  ],
+  "limits": [
+    "No canonical full-unit, image, or ROM gate run.",
+    "No claim that reconstructed spelling is the historical source.",
+    "No claim beyond the documented finite host semantic test domain."
+  ],
+  "publication_blockers": []
+}

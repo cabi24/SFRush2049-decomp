@@ -1,0 +1,56 @@
+{
+  "files": [
+    "func_800D6160.c",
+    "codex_vsync_a145.c",
+    "sync_entry_register.c",
+    "func_80091B00.c",
+    "random.c",
+    "func_800D6530.c",
+    "rand.c"
+  ],
+  "members": [
+    "func_800D6160",
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "sync_entry_register",
+    "func_80091B00",
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "context": [],
+  "keep": [
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait",
+    "func_800D6530",
+    "sync_entry_register",
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800D6160",
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "speed_set",
+    "vsync_wait",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "func_800D6530",
+    "sync_entry_register",
+    "func_80091B00",
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "note": "Complete source-backed music group: one new root and twelve locked members, all full extents; no padding or fabricated caller. Three further locked callable leaves are verified separately."
+}

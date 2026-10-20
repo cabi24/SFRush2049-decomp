@@ -1,0 +1,63 @@
+{
+  "members": [
+    "func_800D5A04",
+    "func_80091B00",
+    "func_800D5828",
+    "func_800D5524",
+    "records_screen",
+    "players_frame_update",
+    "func_800B0580",
+    "entity_audio_update",
+    "object_type7_create",
+    "object_type1_create",
+    "func_800D6348",
+    "sync_entry_register",
+    "player_conditional_check"
+  ],
+  "files": [
+    "func_800D5828.c",
+    "func_800D5524.c",
+    "records_screen.c",
+    "players_frame_update.c",
+    "func_800B0580.c",
+    "entity_audio_update.c",
+    "group.c",
+    "func_80091B00.c",
+    "object_type7_create.c",
+    "object_type1_create.c",
+    "func_800D6348.c",
+    "sync_entry_register.c"
+  ],
+  "keep": [
+    "func_800D5A04",
+    "func_800D5828",
+    "func_800D5524",
+    "records_screen",
+    "players_frame_update",
+    "func_800B0580",
+    "entity_audio_update",
+    "object_type7_create",
+    "object_type1_create",
+    "func_800D6348",
+    "sync_entry_register",
+    "player_conditional_check"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800D5A04",
+    "func_80091B00",
+    "func_800D5828",
+    "func_800D5524",
+    "records_screen",
+    "players_frame_update",
+    "func_800B0580",
+    "entity_audio_update",
+    "object_type7_create",
+    "object_type1_create",
+    "func_800D6348",
+    "sync_entry_register",
+    "player_conditional_check"
+  ],
+  "context": [],
+  "name": "frontier_slot18_alloc"
+}

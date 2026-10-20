@@ -1,0 +1,542 @@
+{
+  "status": "STRICT_MATCH_WITH_COMPLETE_LOCKED_CLOSURE",
+  "claims": [
+    "entity_render_setup"
+  ],
+  "preserved_locked_claims": [
+    "func_8008B3C8",
+    "func_8008C074",
+    "func_8008C544",
+    "func_8008C5E0",
+    "func_8008C680",
+    "func_8008C720",
+    "func_8008C768"
+  ],
+  "new_matching_bytes": 2048,
+  "inputs_sha256": {
+    "behavior.py": "c304841daa1eca179e5b84e4d4f04cb24ece1a7279d1f9b7a8d78819dbb4e947",
+    "closure/atan2/source.c": "304064c80d0f6bb29b8942513fb210b55d14e4d6f116772b6b067bd63a525427",
+    "closure/atan_reduction/group.c": "6c538f6747f3a45db0f34e9ff96270cc1c1cfcef6e5b8d3b3568da2063a51f88",
+    "closure/atan_reduction/group.json": "37216d66551b98a6b7a74f43ebf27a586ac6b147d1e0c795c1ca3f3c993c15be",
+    "closure/atan_signed/source.c": "74f49e6e280127c5b235b9ecadeb0183d619b8a91b2a2fdf0f8853fa54486684",
+    "closure/magnitude/source.c": "f8828575f16bf90a60a1871a48dc5efea877dcef1e1cc10ee3b98d3dbe19ea46",
+    "closure/polygon/group.c": "258ebd3aa0343af3162fde2914b22791e7e32cef08fee7bba2cb1c7c1e817632",
+    "closure/polygon/group.json": "6fb5847797dca0f948ecf0994c3bd78f8990bc0f3f7ddaa442dd5262c3bb3356",
+    "closure/world_vector/source.c": "13cc8bbfd22882612601321dd97baadb9477b52891b3f49962be1e5cefb95ddf",
+    "closure.json": "a03d94f3265697ab0c1fc5534857d1367a2dd562188552bfd6d70db5b0cd7341",
+    "group/group.c": "5f33746438541693662f35014f229c61bb3c9076552187a64929aabb48d1aae7",
+    "group/group.json": "cdcdcf41bb0b0981bcf534fbaa2e829f780cc5317d54ec18867b4fea9f99b615",
+    "layout.py": "1d46812a683cd7962a3bb8b0e6a98614aea9d55f274112e040242ce7a81cf8a5",
+    "trace_fidelity.py": "c71e44bb7b18508d7cacd8be5459223f071689770cd85ec1be9ef3866c80c98c",
+    "verify.py": "a0332c406d24713a96e5e2266580a058833d125eee1243177ed30e31fb4dd7a9",
+    "baseline:tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "baseline:tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "baseline:blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+  },
+  "target_words_sha256": {
+    "entity_render_setup": "0559c5163fecc8bb2f0b29155fbaed44f2d4cb8b7501bc64877acabddb6936e5",
+    "func_8008B3C8": "ec1c793bb0ad5a1d08a21ee5903a301b89212040db7a6aa72535a6683c954858",
+    "func_8008C074": "9003c817a0e2a2adc09299790449762d0a8a09020f418c3a5c163d73c8778d1d",
+    "func_8008C544": "8552808ea35cf5e7336dea147b1ffd94f0f88ba802244e23869b2562e1be998b",
+    "func_8008C5E0": "8d5ff4f4be2f97726d6f9f33fe44ab939fe27a2ac541e0cc3bd14ee6573d4f56",
+    "func_8008C680": "6e8be2174a62b5df66cc6002209b51b9d910d02dafa3984bb83965868299679d",
+    "func_8008C720": "7f00b3af04b3dfefec64089c49c55f62bb24de398cddfe7357e64f3ba7f5805f",
+    "func_8008C768": "4f7c7ec415f30e265c26687a37a63fffbe966a3955a89f76374caa0fd628c618"
+  },
+  "object_sha256": "fc0d4dcd8256034d2d2cb569349863875d62e34cd5a4d2ab06e164ac33b1be06",
+  "main": {
+    "comparison": {
+      "differing": 0,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "symbol_bytes": 2048,
+    "frame_bytes": 184
+  },
+  "closure": {
+    "magnitude": {
+      "object_sha256": "181d9befbcda91187554bb7450f371acee80725aded3e075c1cdf63ee7971fa6",
+      "members": {
+        "func_8008B3C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 11,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 44,
+          "frame_bytes": 0
+        }
+      }
+    },
+    "world_vector": {
+      "object_sha256": "0ba2b9e8ccb368e8d347084026dad5d1a764acc5078436d6fc77ef8a77375b54",
+      "members": {
+        "func_8008C544": {
+          "comparison": {
+            "differing": 0,
+            "total": 39,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 156,
+          "frame_bytes": 0
+        }
+      }
+    },
+    "atan2": {
+      "object_sha256": "5379ea1b122643549ce460f5dabbb7e83939b2127c6ab97618156223005a21a4",
+      "members": {
+        "func_8008C768": {
+          "comparison": {
+            "differing": 0,
+            "total": 67,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 268,
+          "frame_bytes": 24
+        }
+      }
+    },
+    "atan_signed": {
+      "object_sha256": "11c178552a0ac9bf10be4afd63e905fcd2751fd3dffaa240d53696df24767e73",
+      "members": {
+        "func_8008C720": {
+          "comparison": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 72,
+          "frame_bytes": 24
+        }
+      }
+    },
+    "polygon": {
+      "object_sha256": "b499799b02628348b3b6c8b3f161f98460cb07f56e88e760301613a9cff9c212",
+      "members": {
+        "func_8008C074": {
+          "comparison": {
+            "differing": 0,
+            "total": 308,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1232,
+          "frame_bytes": 0
+        }
+      }
+    },
+    "atan_reduction": {
+      "object_sha256": "52276cb32a1b21a824aa539137449897eb7f6dafec8055640b32531e1097d4c0",
+      "members": {
+        "func_8008C680": {
+          "comparison": {
+            "differing": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 160,
+          "frame_bytes": 24
+        },
+        "func_8008C5E0": {
+          "comparison": {
+            "differing": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 160,
+          "frame_bytes": 0
+        }
+      }
+    }
+  },
+  "call_graph": {
+    "entity_render_setup": [
+      "func_8008B3C8",
+      "func_8008C074",
+      "func_8008C544",
+      "func_8008C768"
+    ],
+    "func_8008B3C8": [],
+    "func_8008C074": [],
+    "func_8008C544": [],
+    "func_8008C5E0": [],
+    "func_8008C680": [
+      "func_8008C5E0"
+    ],
+    "func_8008C720": [
+      "func_8008C680"
+    ],
+    "func_8008C768": [
+      "func_8008C680",
+      "func_8008C720"
+    ]
+  },
+  "full_quad_sha256": "80c90b77399830790367df8bc026013171f43e71b24ff3d9d6e79b981e64a76f",
+  "palette_sha256": "cac9afe463f1109fbc180555ad90076a95a7f6a7c3bc3acbfaa5b143df8a59e9",
+  "behavior": {
+    "fixtures": 7210,
+    "observed_draw_classes": 4,
+    "scope": "host field/geometry model; deterministic atan boundary; genuine magnitude and world-vector bodies; captured polygon arguments"
+  },
+  "emitted_layout": {
+    "native": {
+      "values": {
+        "visual_bytes": 24,
+        "visual_view": 4,
+        "visual_mesh": 6,
+        "visual_player": 8,
+        "visual_data": 12,
+        "visual_time": 16,
+        "visual_callback": 20,
+        "car_bytes": 952,
+        "car_pos": 8,
+        "car_hidden": 856,
+        "car_flags": 908,
+        "car_color": 928,
+        "car_alpha": 929,
+        "car_alpha_mode": 930,
+        "vehicle_bytes": 2056,
+        "vehicle_state": 1732,
+        "vehicle_player": 1990,
+        "vehicle_mode": 1996,
+        "camera_bytes": 152,
+        "camera_pos": 36,
+        "camera_basis": 48,
+        "view_bytes": 72,
+        "view_radius": 12,
+        "view_scale": 16,
+        "poly_bytes": 88,
+        "poly_flags": 2,
+        "poly_vertices": 8,
+        "vertex_bytes": 20,
+        "vertex_color": 16,
+        "color_bytes": 4,
+        "color_alignment": 4,
+        "signed_mode": 4294967295
+      },
+      "mismatches": []
+    },
+    "wrong_visual_view": {
+      "values": {
+        "visual_bytes": 28,
+        "visual_view": 4,
+        "visual_mesh": 8,
+        "visual_player": 10,
+        "visual_data": 16,
+        "visual_time": 20,
+        "visual_callback": 24,
+        "car_bytes": 952,
+        "car_pos": 8,
+        "car_hidden": 856,
+        "car_flags": 908,
+        "car_color": 928,
+        "car_alpha": 929,
+        "car_alpha_mode": 930,
+        "vehicle_bytes": 2056,
+        "vehicle_state": 1732,
+        "vehicle_player": 1990,
+        "vehicle_mode": 1996,
+        "camera_bytes": 152,
+        "camera_pos": 36,
+        "camera_basis": 48,
+        "view_bytes": 72,
+        "view_radius": 12,
+        "view_scale": 16,
+        "poly_bytes": 88,
+        "poly_flags": 2,
+        "poly_vertices": 8,
+        "vertex_bytes": 20,
+        "vertex_color": 16,
+        "color_bytes": 4,
+        "color_alignment": 4,
+        "signed_mode": 4294967295
+      },
+      "mismatches": [
+        "visual_bytes",
+        "visual_mesh",
+        "visual_player",
+        "visual_data",
+        "visual_time",
+        "visual_callback"
+      ]
+    },
+    "wrong_poly_flags": {
+      "values": {
+        "visual_bytes": 24,
+        "visual_view": 4,
+        "visual_mesh": 6,
+        "visual_player": 8,
+        "visual_data": 12,
+        "visual_time": 16,
+        "visual_callback": 20,
+        "car_bytes": 952,
+        "car_pos": 8,
+        "car_hidden": 856,
+        "car_flags": 908,
+        "car_color": 928,
+        "car_alpha": 929,
+        "car_alpha_mode": 930,
+        "vehicle_bytes": 2056,
+        "vehicle_state": 1732,
+        "vehicle_player": 1990,
+        "vehicle_mode": 1996,
+        "camera_bytes": 152,
+        "camera_pos": 36,
+        "camera_basis": 48,
+        "view_bytes": 72,
+        "view_radius": 12,
+        "view_scale": 16,
+        "poly_bytes": 96,
+        "poly_flags": 4,
+        "poly_vertices": 16,
+        "vertex_bytes": 20,
+        "vertex_color": 16,
+        "color_bytes": 4,
+        "color_alignment": 4,
+        "signed_mode": 4294967295
+      },
+      "mismatches": [
+        "poly_bytes",
+        "poly_flags",
+        "poly_vertices"
+      ]
+    },
+    "byte_color_alignment": {
+      "values": {
+        "visual_bytes": 24,
+        "visual_view": 4,
+        "visual_mesh": 6,
+        "visual_player": 8,
+        "visual_data": 12,
+        "visual_time": 16,
+        "visual_callback": 20,
+        "car_bytes": 952,
+        "car_pos": 8,
+        "car_hidden": 856,
+        "car_flags": 908,
+        "car_color": 928,
+        "car_alpha": 929,
+        "car_alpha_mode": 930,
+        "vehicle_bytes": 2056,
+        "vehicle_state": 1732,
+        "vehicle_player": 1990,
+        "vehicle_mode": 1996,
+        "camera_bytes": 152,
+        "camera_pos": 36,
+        "camera_basis": 48,
+        "view_bytes": 72,
+        "view_radius": 12,
+        "view_scale": 16,
+        "poly_bytes": 88,
+        "poly_flags": 2,
+        "poly_vertices": 8,
+        "vertex_bytes": 20,
+        "vertex_color": 16,
+        "color_bytes": 4,
+        "color_alignment": 1,
+        "signed_mode": 4294967295
+      },
+      "mismatches": [
+        "color_alignment"
+      ]
+    }
+  },
+  "negative_controls": {
+    "direct_hide_store": {
+      "detail": {
+        "comparison": {
+          "differing": 420,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x350",
+            ".rodata+0x0 at +0x354",
+            ".rodata+0x4 at +0x3b0",
+            ".rodata+0x4 at +0x3b4",
+            ".rodata+0x8 at +0x3cc",
+            ".rodata+0x8 at +0x3d0",
+            ".rodata+0xc at +0x3d8",
+            ".rodata+0xc at +0x3f4",
+            ".rodata+0x10 at +0x3f8",
+            ".rodata+0x10 at +0x40c",
+            ".rodata+0x14 at +0x430",
+            ".rodata+0x14 at +0x434",
+            ".rodata+0x18 at +0x44c",
+            ".rodata+0x18 at +0x450",
+            ".rodata+0x1c at +0x438",
+            ".rodata+0x1c at +0x45c",
+            ".rodata+0x20 at +0x460",
+            ".rodata+0x20 at +0x474",
+            ".rodata+0x24 at +0x47c",
+            ".rodata+0x24 at +0x480",
+            ".rodata+0x28 at +0x4c4",
+            ".rodata+0x28 at +0x4d8",
+            ".rodata+0x2c at +0x4dc",
+            ".rodata+0x2c at +0x4f0",
+            ".rodata+0x30 at +0x518",
+            ".rodata+0x30 at +0x530",
+            ".data+0x0 at +0x554",
+            ".data+0x0 at +0x558",
+            ".data+0x4 at +0x584",
+            ".data+0xc at +0x5a4",
+            ".data+0x10 at +0x5a8",
+            ".data+0x10 at +0x5bc",
+            ".data+0x18 at +0x5d8",
+            ".data+0x1c at +0x5f0",
+            ".data+0x24 at +0x600",
+            ".data+0x24 at +0x60c",
+            ".data+0x28 at +0x624",
+            ".data+0x0 at +0x68c",
+            ".data+0x0 at +0x69c"
+          ],
+          "errors": [
+            "own .data+0x0: retail reads this one object at different addresses 0x00300080, 0xAD900001"
+          ],
+          "extra_words": 2
+        },
+        "symbol_bytes": 2052,
+        "frame_bytes": 184
+      }
+    },
+    "reconstructed_local_order": {
+      "detail": {
+        "comparison": {
+          "differing": 7,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2048,
+        "frame_bytes": 184
+      }
+    },
+    "wrong_default_palette": {
+      "detail": {
+        "comparison": {
+          "differing": 3,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2048,
+        "frame_bytes": 184
+      },
+      "semantic_rejection": "behavior fields case 0: [5633, 1, 0, 224, 0, 255, 4, 0] != [5633, 1, 224, 224, 224, 255, 4, 0]"
+    },
+    "wrong_alpha_cap": {
+      "detail": {
+        "comparison": {
+          "differing": 1,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2048,
+        "frame_bytes": 184
+      },
+      "semantic_rejection": "behavior fields case 1350: [5633, 1, 0, 0, 224, 113, 4, 0] != [5633, 1, 0, 0, 224, 112, 4, 0]"
+    },
+    "wrong_world_flags": {
+      "detail": {
+        "comparison": {
+          "differing": 1,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2048,
+        "frame_bytes": 184
+      },
+      "semantic_rejection": "behavior fields case 4802: [14081, 1, 224, 224, 224, 32, 4, 0] != [13825, 1, 224, 224, 224, 32, 4, 0]"
+    },
+    "wrong_zero_coordinate": {
+      "detail": {
+        "comparison": {
+          "differing": 0,
+          "total": 512,
+          "unresolved": [],
+          "unverified": [
+            ".rodata+0x0 at +0x34c",
+            ".rodata+0x0 at +0x350",
+            ".rodata+0x4 at +0x3ac",
+            ".rodata+0x4 at +0x3b0",
+            ".rodata+0x8 at +0x3c8",
+            ".rodata+0x8 at +0x3cc",
+            ".rodata+0xc at +0x3d4",
+            ".rodata+0xc at +0x3f0",
+            ".rodata+0x10 at +0x3f4",
+            ".rodata+0x10 at +0x408",
+            ".rodata+0x14 at +0x42c",
+            ".rodata+0x14 at +0x430",
+            ".rodata+0x18 at +0x448",
+            ".rodata+0x18 at +0x44c",
+            ".rodata+0x1c at +0x434",
+            ".rodata+0x1c at +0x458",
+            ".rodata+0x20 at +0x45c",
+            ".rodata+0x20 at +0x470",
+            ".rodata+0x24 at +0x478",
+            ".rodata+0x24 at +0x47c",
+            ".rodata+0x28 at +0x4c0",
+            ".rodata+0x28 at +0x4d4",
+            ".rodata+0x2c at +0x4d8",
+            ".rodata+0x2c at +0x4ec",
+            ".rodata+0x30 at +0x514",
+            ".rodata+0x30 at +0x52c",
+            ".data+0x0 at +0x550",
+            ".data+0x0 at +0x554",
+            ".data+0x4 at +0x580",
+            ".data+0xc at +0x5a0",
+            ".data+0x10 at +0x5a4",
+            ".data+0x10 at +0x5b8",
+            ".data+0x18 at +0x5d4",
+            ".data+0x1c at +0x5ec",
+            ".data+0x24 at +0x5fc",
+            ".data+0x24 at +0x608",
+            ".data+0x28 at +0x620",
+            ".data+0x0 at +0x688",
+            ".data+0x0 at +0x698"
+          ],
+          "errors": [
+            "own .data+0x4 referenced at +0x580 differs from retail 0x8011AD94"
+          ],
+          "extra_words": 0
+        },
+        "symbol_bytes": 2048,
+        "frame_bytes": 184
+      },
+      "semantic_rejection": "behavior geometry case 0"
+    }
+  },
+  "canonical_or_ROM_verification": false
+}

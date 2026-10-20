@@ -1,0 +1,39 @@
+{
+  "boundaries": [
+    "The same 448-byte candidate claim and two preserved canonical helpers remain; no image, unit or ROM gate was run.",
+    "Finite semantic inputs, valid indices, nonoverlapping outputs and existing floating-point limits are unchanged.",
+    "The receipt binds actual compiler stages, scorer, own-data verifier and accepted lock; legitimate dependency changes require reviewed refresh."
+  ],
+  "independent_checks": [
+    "Reviewed the full replay/test/README delta against the saved prior packet.",
+    "Compared every prior non-input proof field and all original source, recipe and semantic files.",
+    "Ran all four focused tests with the configured stock IDO toolchain, including full Python -O replay and 111 optimized refusal cases.",
+    "Verified missing IDO gives three skips and one diagnostic pass; REQUIRE_TOOLCHAIN=1 gives three expected failures and one pass.",
+    "Confirmed explicit zero-difference, uncertainty, strict-boolean, function-inventory, target-word-count, ELF-extent and frame checks across every positive and negative build.",
+    "Confirmed frame scanning is bounded to the root ELF extent, the deliberate wrong-stride getter failure is pinned, and other helpers remain strict."
+  ],
+  "preservation": {
+    "all_prior_output_fields_identical": true,
+    "prior_positive_and_control_sections_identical": true,
+    "target_context_recipe_bindings_identical": true
+  },
+  "proof_sha256": "12f087ea50b1d22d8fd4f48ca838f2ae047ceccfb0e0eb6cbf94c52fc96339cc",
+  "result": "PASS",
+  "reviewed_at_utc": "2026-10-17T22:00:21Z",
+  "reviewed_files_sha256": {
+    "cloud/work/frontier/dot_mat3_project_window_20261017/README.md": "b18a4287b13187299591f6d048e82ffec8e921c7c3531565d1925a25cceb972f",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/candidate.c": "941621643e3fd5f0bfd9aa9420f2403f87cf99fbfa4a7cb02eef62c077cea633",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/group.json": "43be8b84cc70446513d31818779ddc1288715dc713248a7888a018fba2f90596",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/proof.json": "12f087ea50b1d22d8fd4f48ca838f2ae047ceccfb0e0eb6cbf94c52fc96339cc",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/replay.py": "7ac7dfde89aaa633d495a4d6c619a06135b40a7ae9fa81f367db516ae4c35926",
+    "cloud/work/frontier/dot_mat3_project_window_20261017/semantics.c": "9d7d42020ef95f95e89e00fc375d1ad68fc4c1af6063dd4411a41594155f9d71",
+    "tests/cloud/test_mat3_project_window.py": "5f63fcddb8d421d5d6a87f020f464386869eca7049e811002af05ac2b8e09bac"
+  },
+  "reviewer": "independent renderer lane",
+  "scope": "Verification-only hardening of the existing PR397 candidate. No source, claim, semantic-domain or credit expansion.",
+  "unchanged_source_recipe_semantics_sha256": {
+    "candidate.c": "941621643e3fd5f0bfd9aa9420f2403f87cf99fbfa4a7cb02eef62c077cea633",
+    "group.json": "43be8b84cc70446513d31818779ddc1288715dc713248a7888a018fba2f90596",
+    "semantics.c": "9d7d42020ef95f95e89e00fc375d1ad68fc4c1af6063dd4411a41594155f9d71"
+  }
+}

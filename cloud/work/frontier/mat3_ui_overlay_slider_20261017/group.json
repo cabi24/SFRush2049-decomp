@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_803A3DA4"
+  ],
+  "context": [],
+  "files": [
+    "candidate.c"
+  ],
+  "keep": [
+    "func_803A3DA4"
+  ],
+  "claims": [
+    "func_803A3DA4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Secondary one-root compiler-fidelity control for the recovered exact standalone candidate; no fabricated callers or helpers."
+}
