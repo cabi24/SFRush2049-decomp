@@ -63,7 +63,7 @@ def main():
         external = d/'external'
         shutil.copytree(verify.GROUP, external)
         spec = json.loads((external/'group.json').read_text())
-        old = json.loads((verify.ROOT/'src/blob/groups/frontier_slot18_alloc/group.json').read_text())
+        old = json.loads((verify.ROOT/'cloud/work/frontier/superseded/frontier_slot18_alloc/group.json').read_text())
         removed = set(old['members'] + old['context'])
         spec['files'] = [f for f in spec['files'] if f not in old['files']]
         for key in ('members', 'claims', 'keep'):

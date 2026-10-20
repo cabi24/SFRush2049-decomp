@@ -25,6 +25,9 @@ OLD = ['func_800AD650', 'handbrake_apply', 'func_800C36A0', 'camera_trigger_chec
 COPIES = ['effect_cleanup', 'func_800C54F0', 'func_800A61B0', 'math_utility', 'func_800B61A8', 'func_8009E820']
 BASE = 'cloud/work/frontier/w12a/ida/'
 GROUP = 'src/blob/groups/func_800AD4C8/'
+# w34i: func_800AD4C8 was superseded (+ camera_play_script, PR #390); read its pre-install copy,
+# keeping the recorded path labels (handoff §5).
+def at(p): return ROOT / p.replace(GROUP, 'cloud/work/frontier/superseded/func_800AD4C8_w34/', 1)
 CONTEXT = [('group.c', GROUP + 'group.c', None),
            ('camera_victory.c', GROUP + 'camera_victory.c', None),
            ('camera_trigger_check.c', GROUP + 'camera_trigger_check.c', None)] + [
@@ -77,7 +80,7 @@ def verify_source_change():
 def sources():
     result = {}
     for dest, path, keep in CONTEXT:
-        s = (ROOT / path).read_text()
+        s = at(path).read_text()
         if keep is not None: s, _ = blob_unit.transform(s.replace('\\\n', ' '), set(keep))
         if dest == 'group.c':
             old = 's16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2)'
@@ -100,7 +103,7 @@ def inputs():
     targets, syms = score.targets(), score.image_symbols()
     return dict(protocol_version=3, population='game_blob', compiler='ido5.3', recipe=recipe(),
         packet_sha256={p: digest((HERE / p).read_bytes()) for p in ['candidate.c', 'group.json', 'replay.py', 'semantics.c', 'README.md']},
-        context_sha256={p: digest((ROOT / p).read_bytes()) for p in paths},
+        context_sha256={p: digest(at(p).read_bytes()) for p in paths},
         compiler_sha256={n: digest(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','ujoin','uld','usplit','umerge','uopt','ugen','as1']},
         # w34i: blob_matched.lock.json and SHA256SUMS change with every splice (handoff §5): not bound.
         tooling_sha256={n: digest((ROOT/n).read_bytes()) for n in ['tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_unit.py']},

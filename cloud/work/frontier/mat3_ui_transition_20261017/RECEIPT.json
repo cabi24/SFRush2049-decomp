@@ -21,8 +21,8 @@
     "groups/frontier_slot18_alloc/players_frame_update.c": "a4025c335f637514be96c645142bcc4a96d046d80eefbd6f449adeda61047dbd",
     "groups/frontier_slot18_alloc/records_screen.c": "82a5c08cfdd6710ce9a1d6bab1181a2f856526095829722c6e15ea199fe44798",
     "groups/frontier_slot18_alloc/sync_entry_register.c": "8810a2ae33ea777f927b138aeb8f1a6984dcfd21d02d6fd692e2564fde3bbe77",
-    "trace_verify.py": "a4565c6100907cec150d15017bf8f550e780a5a75731ef0bc6339a311041786d",
-    "verify.py": "30cf1be5bb2336ff8bf202add9f0bc36377a5ec399663bfd4592bc488a1ed9aa"
+    "trace_verify.py": "21403cbe0364f5fe111d8f56dcf6f4bd96b30fcf8f187c6f7e5d9812451a7b1f",
+    "verify.py": "0411caa5f11277f5ca8af52b48bf023bd80260ea64a8d509f8dae691d1cdbd45"
   },
   "targets": {
     "entity_audio_update": {

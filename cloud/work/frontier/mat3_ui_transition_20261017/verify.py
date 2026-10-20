@@ -38,7 +38,8 @@ def compare(obj, name):
 
 def evidence():
     spec = json.loads((GROUP / 'group.json').read_text())
-    old_dir = ROOT / 'src/blob/groups/frontier_slot18_alloc'
+    # w34i: frontier_slot18_alloc was superseded (+ func_800D5A04, PR #383); its pre-install copy (handoff §5).
+    old_dir = ROOT / 'cloud/work/frontier/superseded/frontier_slot18_alloc'
     old = json.loads((old_dir / 'group.json').read_text())
     require(spec['name'] == 'frontier_slot18_alloc', 'preserve original group name')
     require(spec['members'] == MEMBERS and spec['claims'] == MEMBERS, 'complete 13-member claims')
@@ -133,7 +134,7 @@ def main():
         external = d/'external_allocator'
         shutil.copytree(GROUP, external)
         spec = json.loads((external/'group.json').read_text())
-        old = json.loads((ROOT/'src/blob/groups/frontier_slot18_alloc/group.json').read_text())
+        old = json.loads((ROOT/'cloud/work/frontier/superseded/frontier_slot18_alloc/group.json').read_text())
         removed = set(old['members'] + old['context'])
         spec['files'] = [f for f in spec['files'] if f not in old['files']]
         for k in ('members', 'claims', 'keep'):
