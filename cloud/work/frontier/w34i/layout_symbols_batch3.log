@@ -1,0 +1,4 @@
+map -> /home/cburnes/projects/rush2049-decomp/build/blob_layout.json
+blob_tu: symbol table -> /home/cburnes/projects/rush2049-decomp/asm/us/blob/symbols.json; target hashes -> /home/cburnes/projects/rush2049-decomp/asm/us/blob/SHA256SUMS
+blob lock: 1090 entries, 0 problems
+No C candidate, compiler, runtime, image or ROM claim.

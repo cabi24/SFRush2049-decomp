@@ -1833,6 +1833,7 @@ render_large_objects:
 .section .text.render_viewport_init, "ax", @progbits
 .globl render_viewport_init
 render_viewport_init:
+    /* compiled from src/blob/render_viewport_init.c */
     .word 0x27BDFF40
     .word 0xAFBF0054
     .word 0xAFB60050

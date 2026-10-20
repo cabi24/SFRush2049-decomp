@@ -658,6 +658,11 @@
    "name": "func_800A4B40",
    "file": "src/blob/groups/wheel_setup_initial/group.c",
    "reason": "deleted per-slot release predicate inlined into wheel_setup_initial; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "input_process_controller",
+   "file": "src/blob/groups/frontier_shot_world_collision/group.c",
+   "reason": "unmatched context; its only retail caller is input_deadzone_apply (w34i, PR #394), whose match needs the reordered parameters (Poly *poly, p1, p2, out, vcOut, mat, flag, outIdx, rad2); func_800AD4C8's copy keeps the old order and is called only by its all-zero stand-ins"
   }
  ],
  "align": [
@@ -684,6 +689,11 @@
    "name": "D_80156958",
    "file": "src/blob/groups/controller_poll/group.c",
    "reason": "controller_poll's two gStick stores share one lui, which needs D_80156958 defined in the group's program (w24d); in the shadow unit the group file is the one definition, the other units see it extern"
+  },
+  {
+   "name": "D_80152818",
+   "file": "src/blob/groups/frontier_car_checkpoints/frontier_path_D169C_path.c",
+   "reason": "frontier_car_checkpoints (w34i, PR #384) compiles a byte copy of frontier_path_D169C's path.c as context; in the shadow unit the definition stays in src/blob/groups/frontier_path_D169C/path.c"
   }
  ],
  "data_align": [

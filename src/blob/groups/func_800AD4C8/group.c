@@ -3720,7 +3720,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
  * denominator in $f0 and evaluates it before the numerator); operand order inside it matters.
  * rad2 is an IPA register parameter ($f18): the body only reproduces with its real callers in the unit.
  */
-static f32 lsq(f32 *v) { return (v[0] * v[0]) + (v[2] * v[2]); }
+f32 lsq(f32 *v) { return (v[0] * v[0]) + (v[2] * v[2]); }
 s32 func_800AD4C8(f32 *a, f32 *p, f32 *out, f32 rad2) {
     f32 t;
     t = ((a[2] * p[2]) + (p[0] * a[0])) / lsq(a);

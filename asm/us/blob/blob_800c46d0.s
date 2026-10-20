@@ -1022,6 +1022,7 @@ effect_cleanup:
 .section .text.camera_play_script, "ax", @progbits
 .globl camera_play_script
 camera_play_script:
+    /* compiled from src/blob/camera_play_script.c */
     .word 0x27BDFDA0
     .word 0xAFBF006C
     .word 0xAFBE0068

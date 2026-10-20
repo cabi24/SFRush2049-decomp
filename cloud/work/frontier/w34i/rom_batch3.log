@@ -1,0 +1,17 @@
+  byte-identical to the ROM's stream: True
+  -> /home/cburnes/projects/rush2049-decomp/build/blob/game_code.deflate
+image A: rebuilt image (82 locked functions) -> 80272 B stream ebd4b2c19a1a4966… == ROM -> /home/cburnes/projects/rush2049-decomp/build/ovl/ovl_a.deflate
+image B: rebuilt image (21 locked functions) -> 23639 B stream 0e1292c1a5b2df46… == ROM -> /home/cburnes/projects/rush2049-decomp/build/ovl/ovl_b.deflate
+ROM build (game blob + both runtime-image streams composed): SHA-1 EXACT
+  ROM matches!
+  ROM matches!
+  MAKE=0 TEST=0
+ROM build with the source-built blob: SHA-1 EXACT
+  ROM matches!
+  ROM matches!
+  MAKE=0 TEST=0
+  static code:  632/667 functions, 151176/160720 bytes (94.06%)
+  game code:   1090/1216 functions, 423716/647072 bytes (65.48%) — compressed into the ROM at 0xB0CB10
+  overlay A:     82/193 functions, 51972/194128 bytes (26.77%; 33.98% of 152952 B text) — compressed into the ROM at 0xB5C534
+  overlay B:     21/49 functions, 9020/43888 bytes (20.55%; 23.30% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+  linked from C: 1722 functions, 574892 bytes (static + game)

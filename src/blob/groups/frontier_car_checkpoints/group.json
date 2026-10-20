@@ -1,25 +1,64 @@
 {
  "members": [
+  "render_viewport_init",
   "car_setup_confirm",
   "func_800D1AB0",
   "func_800F8EC8"
  ],
+ "context": [
+  "func_800F92C8",
+  "render_large_objects",
+  "func_800D169C",
+  "func_800D18C8",
+  "func_800C2944",
+  "func_800C26C4",
+  "func_800C2430",
+  "func_800C1B60",
+  "func_800C2004",
+  "func_800C220C",
+  "func_800C3578",
+  "camera_scene_manager",
+  "func_80092278",
+  "entity_flags_apply",
+  "high_scores_display",
+  "camera_target_track",
+  "camera_collision_check",
+  "func_800B61A8",
+  "func_8009211C",
+  "func_80091FBC",
+  "func_800CB718"
+ ],
  "files": [
-  "func_800F8EC8.c",
-  "car_setup_confirm.c",
-  "func_800D1AB0.c",
-  "func_800B61A8.c"
+  "race_tail.c",
+  "render_large_objects_group.c",
+  "frontier_car_checkpoints_func_800F8EC8.c",
+  "frontier_car_checkpoints_car_setup_confirm.c",
+  "frontier_car_checkpoints_func_800D1AB0.c",
+  "frontier_car_checkpoints_func_800B61A8.c",
+  "frontier_path_D169C_path.c",
+  "frontier_camera_scene_manager_group.c",
+  "frontier_camera_target_track_group.c",
+  "camera_collision_check.c",
+  "func_800CB718.c"
  ],
  "keep": [
+  "render_viewport_init",
+  "render_large_objects",
   "car_setup_confirm",
   "func_800F8EC8",
-  "func_800B61A8"
+  "func_800B61A8",
+  "func_800D169C",
+  "camera_scene_manager",
+  "func_800C3578",
+  "entity_flags_apply",
+  "high_scores_display",
+  "func_8009211C",
+  "func_80091FBC",
+  "camera_target_track",
+  "camera_collision_check",
+  "func_800CB718"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "unprototyped": [],
- "context": [
-  "func_800B61A8"
- ],
- "note": "frontier wave 3 (w3b). Real group, no stand-ins: both real callers of the internal func_800D1AB0 (car_setup_confirm, already locked, file unchanged from src/blob/groups/frontier_car_setup_confirm; and func_800F8EC8, new) plus the locked sound wrapper func_800B61A8 (unchanged copy of src/blob/func_800B61A8.c), which func_800F8EC8 inlines and which stays kept. Supersedes src/blob/groups/frontier_car_setup_confirm (revert it first). func_800D1AB0.c is unchanged from that group.",
- "provenance": "frontier wave 3 (w3b), 2026-10-05; cloud/work/frontier/w3b/RESULTS.md"
+ "note": "Strict full-group match: new render_viewport_init plus all 24 existing locked members; supersedes frontier_car_checkpoints with inherited locked closures.",
+ "provenance": "superseded in place by PR #384 (dot_mat3_race_tail_20261017/groups/frontier_car_checkpoints, head 4a7affc2f): + render_viewport_init = PlayGame race tail; the packet's 21 functions locked in other groups/singles are context here (w34i), not members"
 }

@@ -4973,6 +4973,7 @@ records_screen:
 .section .text.func_800D5A04, "ax", @progbits
 .globl func_800D5A04
 func_800D5A04:
+    /* compiled from src/blob/func_800D5A04.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xAFB30020
@@ -5468,6 +5469,7 @@ func_800D60AC:
 .section .text.func_800D6160, "ax", @progbits
 .globl func_800D6160
 func_800D6160:
+    /* compiled from src/blob/func_800D6160.c */
     .word 0x3C158014
     .word 0x26B56108
     .word 0x82A7000C

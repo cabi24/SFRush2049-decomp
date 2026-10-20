@@ -6402,6 +6402,7 @@ func_800ADCE0:
 .section .text.input_deadzone_apply, "ax", @progbits
 .globl input_deadzone_apply
 input_deadzone_apply:
+    /* compiled from src/blob/input_deadzone_apply.c */
     .word 0x27BDFE70
     .word 0xAFBF0084
     .word 0xAFBE0080
