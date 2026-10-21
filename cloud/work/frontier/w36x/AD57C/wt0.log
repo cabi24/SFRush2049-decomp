@@ -1,0 +1,1179 @@
+BACK EDGE: 60 to 23
+BACK EDGE: 93 to 83
+W blk=23 w=1
+  prop blk=60 from 23 w=1
+  blk=24 pred=23 w=1 +3
+W blk=24 w=4
+  blk=25 pred=24 w=4 +3
+  blk=25 pred=23 w=1 +3
+W blk=25 w=4
+  blk=26 pred=25 w=4 +3
+W blk=26 w=7
+  prop blk=28 from 26 w=7
+  prop blk=29 from 26 w=7
+  prop blk=35 from 26 w=7
+  prop blk=36 from 26 w=7
+  prop blk=37 from 26 w=7
+  prop blk=38 from 26 w=7
+  prop blk=39 from 26 w=7
+  blk=27 pred=26 w=7 +3
+W blk=27 w=10
+  blk=30 pred=29 w=7 +3
+W blk=30 w=10
+  prop blk=31 from 30 w=10
+  blk=32 pred=29 w=7 +3
+W blk=32 w=10
+  prop blk=33 from 32 w=10
+  prop blk=34 from 32 w=10
+  blk=40 pred=39 w=7 +3
+W blk=40 w=10
+  blk=41 pred=40 w=10 +3
+W blk=41 w=13
+  blk=42 pred=39 w=7 +3
+W blk=42 w=10
+  prop blk=58 from 42 w=10
+  prop blk=59 from 42 w=10
+  blk=43 pred=42 w=10 +3
+W blk=43 w=13
+  blk=44 pred=43 w=13 +3
+W blk=44 w=16
+  blk=45 pred=44 w=16 +3
+W blk=45 w=19
+  blk=46 pred=45 w=19 +3
+  blk=46 pred=44 w=16 +3
+W blk=46 w=19
+  prop blk=49 from 46 w=19
+  blk=47 pred=46 w=19 +3
+W blk=47 w=22
+  blk=48 pred=46 w=19 +3
+W blk=48 w=22
+  blk=50 pred=45 w=19 +3
+W blk=50 w=22
+  prop blk=53 from 50 w=22
+  prop blk=54 from 50 w=22
+  blk=51 pred=50 w=22 +3
+W blk=51 w=25
+  blk=52 pred=50 w=22 +3
+W blk=52 w=25
+  blk=55 pred=43 w=13 +3
+W blk=55 w=16
+  blk=56 pred=42 w=10 +3
+W blk=56 w=13
+  prop blk=57 from 56 w=13
+W blk=83 w=1
+  prop blk=87 from 83 w=1
+  prop blk=88 from 83 w=1
+  prop blk=89 from 83 w=1
+  prop blk=90 from 83 w=1
+  prop blk=91 from 83 w=1
+  prop blk=92 from 83 w=1
+  prop blk=93 from 83 w=1
+  blk=84 pred=83 w=1 +3
+W blk=84 w=4
+  blk=85 pred=84 w=4 +3
+W blk=85 w=7
+  blk=86 pred=83 w=1 +3
+W blk=86 w=4
+W blk=0 w=1
+W blk=1 w=1
+W blk=2 w=1
+W blk=3 w=1
+  prop blk=4 from 3 w=1
+  prop blk=5 from 3 w=1
+  blk=6 pred=5 w=1 +3
+W blk=6 w=4
+  prop blk=7 from 6 w=4
+  blk=8 pred=5 w=1 +3
+W blk=8 w=4
+  blk=9 pred=8 w=4 +3
+W blk=9 w=7
+  prop blk=10 from 9 w=7
+  prop blk=11 from 9 w=7
+  prop blk=12 from 9 w=7
+  prop blk=13 from 9 w=7
+  prop blk=14 from 9 w=7
+  prop blk=15 from 9 w=7
+  blk=16 pred=2 w=1 -3
+  blk=16 pred=15 w=7 +3
+W blk=16 w=-2
+  blk=17 pred=15 w=7 +3
+W blk=17 w=10
+  blk=18 pred=16 w=65534 -3
+  blk=18 pred=17 w=10 -3
+W blk=18 w=7
+  prop blk=19 from 18 w=7
+  prop blk=20 from 18 w=7
+  prop blk=21 from 18 w=7
+  prop blk=22 from 18 w=7
+  prop blk=61 from 18 w=7
+  prop blk=62 from 18 w=7
+  prop blk=63 from 18 w=7
+  prop blk=64 from 18 w=7
+  blk=65 pred=64 w=7 +3
+W blk=65 w=10
+  blk=66 pred=65 w=10 +3
+W blk=66 w=13
+  blk=67 pred=65 w=10 +3
+W blk=67 w=13
+  prop blk=68 from 67 w=13
+  blk=69 pred=65 w=10 +3
+W blk=69 w=13
+  prop blk=70 from 69 w=13
+  blk=71 pred=65 w=10 +3
+W blk=71 w=13
+  prop blk=72 from 71 w=13
+  blk=73 pred=65 w=10 +3
+W blk=73 w=13
+  prop blk=74 from 73 w=13
+  blk=75 pred=65 w=10 +3
+W blk=75 w=13
+  prop blk=76 from 75 w=13
+  blk=77 pred=65 w=10 +3
+W blk=77 w=13
+  prop blk=80 from 77 w=13
+  prop blk=81 from 77 w=13
+  prop blk=82 from 77 w=13
+  prop blk=94 from 77 w=13
+  prop blk=95 from 77 w=13
+  prop blk=96 from 77 w=13
+  blk=78 pred=77 w=13 +3
+W blk=78 w=16
+  blk=79 pred=77 w=13 +3
+W blk=79 w=16
+  blk=97 pred=65 w=10 +3
+W blk=97 w=13
+  prop blk=98 from 97 w=13
+  blk=99 pred=65 w=10 +3
+W blk=99 w=13
+  prop blk=100 from 99 w=13
+  blk=101 pred=65 w=10 +3
+W blk=101 w=13
+  prop blk=102 from 101 w=13
+  blk=103 pred=65 w=10 +3
+W blk=103 w=13
+  prop blk=104 from 103 w=13
+  blk=105 pred=65 w=10 +3
+W blk=105 w=13
+  prop blk=106 from 105 w=13
+  blk=107 pred=65 w=10 +3
+  blk=107 pred=1 w=1 -3
+W blk=107 w=-2
+  prop blk=108 from 107 w=-2
+  blk=109 pred=66 w=13 -3
+  blk=109 pred=68 w=13 -3
+  blk=109 pred=70 w=13 -3
+  blk=109 pred=72 w=13 -3
+  blk=109 pred=74 w=13 -3
+  blk=109 pred=76 w=13 -3
+  blk=109 pred=96 w=13 -3
+  blk=109 pred=98 w=13 -3
+  blk=109 pred=100 w=13 -3
+  blk=109 pred=102 w=13 -3
+  blk=109 pred=104 w=13 -3
+  blk=109 pred=106 w=13 -3
+  blk=109 pred=108 w=65534 -3
+  blk=109 pred=64 w=7 -3
+W blk=109 w=4
+  blk=110 pred=8 w=4 +3
+W blk=110 w=7
+  blk=111 pred=109 w=4 -3
+  blk=111 pred=7 w=4 -3
+  blk=111 pred=110 w=7 -3
+W blk=111 w=4
+  prop blk=112 from 111 w=4
+LOOP:  23 24 25 26 27 28 29 30 31 32 33 34 35 36
+ 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+ 52 53 54 55 56 57 58 59 60
+	bb: 23	weight: 1
+	bb: 24	weight: 4
+	bb: 25	weight: 4
+	bb: 26	weight: 7
+	bb: 27	weight: 10
+	bb: 28	weight: 7
+	bb: 29	weight: 7
+	bb: 30	weight: 10
+	bb: 31	weight: 10
+	bb: 32	weight: 10
+	bb: 33	weight: 10
+	bb: 34	weight: 10
+	bb: 35	weight: 7
+	bb: 36	weight: 7
+	bb: 37	weight: 7
+	bb: 38	weight: 7
+	bb: 39	weight: 7
+	bb: 40	weight: 10
+	bb: 41	weight: 13
+	bb: 42	weight: 10
+	bb: 43	weight: 13
+	bb: 44	weight: 16
+	bb: 45	weight: 19
+	bb: 46	weight: 19
+	bb: 47	weight: 22
+	bb: 48	weight: 22
+	bb: 49	weight: 19
+	bb: 50	weight: 22
+	bb: 51	weight: 25
+	bb: 52	weight: 25
+	bb: 53	weight: 22
+	bb: 54	weight: 22
+	bb: 55	weight: 16
+	bb: 56	weight: 13
+	bb: 57	weight: 13
+	bb: 58	weight: 10
+	bb: 59	weight: 10
+	bb: 60	weight: 1
+LOOP:  83 84 85 86 87 88 89 90 91 92 93
+	bb: 83	weight: 1
+	bb: 84	weight: 4
+	bb: 85	weight: 7
+	bb: 86	weight: 4
+	bb: 87	weight: 1
+	bb: 88	weight: 1
+	bb: 89	weight: 1
+	bb: 90	weight: 1
+	bb: 91	weight: 1
+	bb: 92	weight: 1
+	bb: 93	weight: 1
+LOOP:  0 1 2 3 4 5 6 7 8 9 10 11 12 13
+ 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+ 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43
+ 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58
+ 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73
+ 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88
+ 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103
+ 104 105 106 107 108 109 110 111 112
+	bb: 0	weight: 1
+	bb: 1	weight: 1
+	bb: 2	weight: 1
+	bb: 3	weight: 1
+	bb: 4	weight: 1
+	bb: 5	weight: 1
+	bb: 6	weight: 4
+	bb: 7	weight: 4
+	bb: 8	weight: 4
+	bb: 9	weight: 7
+	bb: 10	weight: 7
+	bb: 11	weight: 7
+	bb: 12	weight: 7
+	bb: 13	weight: 7
+	bb: 14	weight: 7
+	bb: 15	weight: 7
+	bb: 16	weight: 65534
+	bb: 17	weight: 10
+	bb: 18	weight: 7
+	bb: 19	weight: 7
+	bb: 20	weight: 7
+	bb: 21	weight: 7
+	bb: 22	weight: 7
+	bb: 23	weight: 1
+	bb: 24	weight: 4
+	bb: 25	weight: 4
+	bb: 26	weight: 7
+	bb: 27	weight: 10
+	bb: 28	weight: 7
+	bb: 29	weight: 7
+	bb: 30	weight: 10
+	bb: 31	weight: 10
+	bb: 32	weight: 10
+	bb: 33	weight: 10
+	bb: 34	weight: 10
+	bb: 35	weight: 7
+	bb: 36	weight: 7
+	bb: 37	weight: 7
+	bb: 38	weight: 7
+	bb: 39	weight: 7
+	bb: 40	weight: 10
+	bb: 41	weight: 13
+	bb: 42	weight: 10
+	bb: 43	weight: 13
+	bb: 44	weight: 16
+	bb: 45	weight: 19
+	bb: 46	weight: 19
+	bb: 47	weight: 22
+	bb: 48	weight: 22
+	bb: 49	weight: 19
+	bb: 50	weight: 22
+	bb: 51	weight: 25
+	bb: 52	weight: 25
+	bb: 53	weight: 22
+	bb: 54	weight: 22
+	bb: 55	weight: 16
+	bb: 56	weight: 13
+	bb: 57	weight: 13
+	bb: 58	weight: 10
+	bb: 59	weight: 10
+	bb: 60	weight: 1
+	bb: 61	weight: 7
+	bb: 62	weight: 7
+	bb: 63	weight: 7
+	bb: 64	weight: 7
+	bb: 65	weight: 10
+	bb: 66	weight: 13
+	bb: 67	weight: 13
+	bb: 68	weight: 13
+	bb: 69	weight: 13
+	bb: 70	weight: 13
+	bb: 71	weight: 13
+	bb: 72	weight: 13
+	bb: 73	weight: 13
+	bb: 74	weight: 13
+	bb: 75	weight: 13
+	bb: 76	weight: 13
+	bb: 77	weight: 13
+	bb: 78	weight: 16
+	bb: 79	weight: 16
+	bb: 80	weight: 13
+	bb: 81	weight: 13
+	bb: 82	weight: 13
+	bb: 83	weight: 1
+	bb: 84	weight: 4
+	bb: 85	weight: 7
+	bb: 86	weight: 4
+	bb: 87	weight: 1
+	bb: 88	weight: 1
+	bb: 89	weight: 1
+	bb: 90	weight: 1
+	bb: 91	weight: 1
+	bb: 92	weight: 1
+	bb: 93	weight: 1
+	bb: 94	weight: 13
+	bb: 95	weight: 13
+	bb: 96	weight: 13
+	bb: 97	weight: 13
+	bb: 98	weight: 13
+	bb: 99	weight: 13
+	bb: 100	weight: 13
+	bb: 101	weight: 13
+	bb: 102	weight: 13
+	bb: 103	weight: 13
+	bb: 104	weight: 13
+	bb: 105	weight: 13
+	bb: 106	weight: 13
+	bb: 107	weight: 65534
+	bb: 108	weight: 65534
+	bb: 109	weight: 4
+	bb: 110	weight: 7
+	bb: 111	weight: 4
+	bb: 112	weight: 4
+BB 0 dominated by:  0
+BB 1 dominated by:  1
+BB 2 dominated by:  2
+BB 3 dominated by:  3
+BB 4 dominated by:  3 4
+BB 5 dominated by:  3 4 5
+BB 6 dominated by:  3 4 5 6
+BB 7 dominated by:  3 4 5 6 7
+BB 8 dominated by:  3 4 5 8
+BB 9 dominated by:  3 4 5 8 9
+BB 10 dominated by:  3 4 5 8 9 10
+BB 11 dominated by:  3 4 5 8 9 10 11
+BB 12 dominated by:  3 4 5 8 9 10 11 12
+BB 13 dominated by:  3 4 5 8 9 10 11 12 13
+BB 14 dominated by:  3 4 5 8 9 10 11 12 13 14
+BB 15 dominated by:  3 4 5 8 9 10 11 12 13 14 15
+BB 16 dominated by:  16
+BB 17 dominated by:  3 4 5 8 9 10 11 12 13 14 15 17
+BB 18 dominated by:  18
+BB 19 dominated by:  18 19
+BB 20 dominated by:  18 19 20
+BB 21 dominated by:  18 19 20 21
+BB 22 dominated by:  18 19 20 21 22
+BB 23 dominated by:  18 19 20 21 22 23
+BB 24 dominated by:  18 19 20 21 22 23 24
+BB 25 dominated by:  18 19 20 21 22 23 25
+BB 26 dominated by:  18 19 20 21 22 23 25 26
+BB 27 dominated by:  18 19 20 21 22 23 25 26 27
+BB 28 dominated by:  18 19 20 21 22 23 25 26 28
+BB 29 dominated by:  18 19 20 21 22 23 25 26 28 29
+BB 30 dominated by:  18 19 20 21 22 23 25 26 28 29 30
+BB 31 dominated by:  18 19 20 21 22 23 25 26 28 29 30 31
+BB 32 dominated by:  18 19 20 21 22 23 25 26 28 29 32
+BB 33 dominated by:  18 19 20 21 22 23 25 26 28 29 32 33
+BB 34 dominated by:  18 19 20 21 22 23 25 26 28 29 32 33 34
+BB 35 dominated by:  18 19 20 21 22 23 25 26 28 29 35
+BB 36 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36
+BB 37 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37
+BB 38 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+BB 39 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39
+BB 40 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 40
+BB 41 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 40 41
+BB 42 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42
+BB 43 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43
+BB 44 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44
+BB 45 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45
+BB 46 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 46
+BB 47 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 46 47
+BB 48 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 46 48
+BB 49 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 46 49
+BB 50 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45 50
+BB 51 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45 50 51
+BB 52 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45 50 52
+BB 53 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45 50 53
+BB 54 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 44 45 50 53 54
+BB 55 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 43 55
+BB 56 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 56
+BB 57 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 56 57
+BB 58 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 58
+BB 59 dominated by:  18 19 20 21 22 23 25 26 28 29 35 36 37 38
+ 39 42 58 59
+BB 60 dominated by:  18 19 20 21 22 23 60
+BB 61 dominated by:  18 19 20 21 22 23 60 61
+BB 62 dominated by:  18 19 20 21 22 23 60 61 62
+BB 63 dominated by:  18 19 20 21 22 23 60 61 62 63
+BB 64 dominated by:  18 19 20 21 22 23 60 61 62 63 64
+BB 65 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65
+BB 66 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 66
+BB 67 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 67
+BB 68 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 67 68
+BB 69 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 69
+BB 70 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 69 70
+BB 71 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 71
+BB 72 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 71 72
+BB 73 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 73
+BB 74 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 73 74
+BB 75 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 75
+BB 76 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 75 76
+BB 77 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77
+BB 78 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 78
+BB 79 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 79
+BB 80 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+BB 81 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81
+BB 82 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82
+BB 83 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83
+BB 84 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 84
+BB 85 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 84 85
+BB 86 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 86
+BB 87 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87
+BB 88 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88
+BB 89 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89
+BB 90 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90
+BB 91 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91
+BB 92 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91 92
+BB 93 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91 92 93
+BB 94 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91 92 93 94
+BB 95 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91 92 93 94 95
+BB 96 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 77 80
+ 81 82 83 87 88 89 90 91 92 93 94 95 96
+BB 97 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 97
+BB 98 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 97 98
+BB 99 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 99
+BB 100 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 99 100
+BB 101 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 101
+BB 102 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 101 102
+BB 103 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 103
+BB 104 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 103 104
+BB 105 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 105
+BB 106 dominated by:  18 19 20 21 22 23 60 61 62 63 64 65 105 106
+BB 107 dominated by:  107
+BB 108 dominated by:  107 108
+BB 109 dominated by:  109
+BB 110 dominated by:  3 4 5 8 110
+BB 111 dominated by:  111
+BB 112 dominated by:  111 112
+BB 0 postdominated by:  0
+BB 1 postdominated by:  1 107 108 109 111 112
+BB 2 postdominated by:  2 16 18 19 20 21 22 23 60 61 62 63 64 109
+ 111 112
+BB 3 postdominated by:  3 4 5 111 112
+BB 4 postdominated by:  4 5 111 112
+BB 5 postdominated by:  5 111 112
+BB 6 postdominated by:  6 7 111 112
+BB 7 postdominated by:  7 111 112
+BB 8 postdominated by:  8 111 112
+BB 9 postdominated by:  9 10 11 12 13 14 15 18 19 20 21 22 23 60
+ 61 62 63 64 109 111 112
+BB 10 postdominated by:  10 11 12 13 14 15 18 19 20 21 22 23 60 61
+ 62 63 64 109 111 112
+BB 11 postdominated by:  11 12 13 14 15 18 19 20 21 22 23 60 61 62
+ 63 64 109 111 112
+BB 12 postdominated by:  12 13 14 15 18 19 20 21 22 23 60 61 62 63
+ 64 109 111 112
+BB 13 postdominated by:  13 14 15 18 19 20 21 22 23 60 61 62 63 64
+ 109 111 112
+BB 14 postdominated by:  14 15 18 19 20 21 22 23 60 61 62 63 64 109
+ 111 112
+BB 15 postdominated by:  15 18 19 20 21 22 23 60 61 62 63 64 109 111
+ 112
+BB 16 postdominated by:  16 18 19 20 21 22 23 60 61 62 63 64 109 111
+ 112
+BB 17 postdominated by:  17 18 19 20 21 22 23 60 61 62 63 64 109 111
+ 112
+BB 18 postdominated by:  18 19 20 21 22 23 60 61 62 63 64 109 111 112
+BB 19 postdominated by:  19 20 21 22 23 60 61 62 63 64 109 111 112
+BB 20 postdominated by:  20 21 22 23 60 61 62 63 64 109 111 112
+BB 21 postdominated by:  21 22 23 60 61 62 63 64 109 111 112
+BB 22 postdominated by:  22 23 60 61 62 63 64 109 111 112
+BB 23 postdominated by:  23 60 61 62 63 64 109 111 112
+BB 24 postdominated by:  24 60 61 62 63 64 109 111 112
+BB 25 postdominated by:  25 60 61 62 63 64 109 111 112
+BB 26 postdominated by:  26 28 29 35 36 37 38 39 60 61 62 63 64 109
+ 111 112
+BB 27 postdominated by:  27 28 29 35 36 37 38 39 60 61 62 63 64 109
+ 111 112
+BB 28 postdominated by:  28 29 35 36 37 38 39 60 61 62 63 64 109 111
+ 112
+BB 29 postdominated by:  29 35 36 37 38 39 60 61 62 63 64 109 111 112
+BB 30 postdominated by:  30 31 35 36 37 38 39 60 61 62 63 64 109 111
+ 112
+BB 31 postdominated by:  31 35 36 37 38 39 60 61 62 63 64 109 111 112
+BB 32 postdominated by:  32 33 34 35 36 37 38 39 60 61 62 63 64 109
+ 111 112
+BB 33 postdominated by:  33 34 35 36 37 38 39 60 61 62 63 64 109 111
+ 112
+BB 34 postdominated by:  34 35 36 37 38 39 60 61 62 63 64 109 111 112
+BB 35 postdominated by:  35 36 37 38 39 60 61 62 63 64 109 111 112
+BB 36 postdominated by:  36 37 38 39 60 61 62 63 64 109 111 112
+BB 37 postdominated by:  37 38 39 60 61 62 63 64 109 111 112
+BB 38 postdominated by:  38 39 60 61 62 63 64 109 111 112
+BB 39 postdominated by:  39 60 61 62 63 64 109 111 112
+BB 40 postdominated by:  40 60 61 62 63 64 109 111 112
+BB 41 postdominated by:  41 60 61 62 63 64 109 111 112
+BB 42 postdominated by:  42 58 59 60 61 62 63 64 109 111 112
+BB 43 postdominated by:  43 58 59 60 61 62 63 64 109 111 112
+BB 44 postdominated by:  44 58 59 60 61 62 63 64 109 111 112
+BB 45 postdominated by:  45 58 59 60 61 62 63 64 109 111 112
+BB 46 postdominated by:  46 49 58 59 60 61 62 63 64 109 111 112
+BB 47 postdominated by:  47 49 58 59 60 61 62 63 64 109 111 112
+BB 48 postdominated by:  48 49 58 59 60 61 62 63 64 109 111 112
+BB 49 postdominated by:  49 58 59 60 61 62 63 64 109 111 112
+BB 50 postdominated by:  50 53 54 58 59 60 61 62 63 64 109 111 112
+BB 51 postdominated by:  51 53 54 58 59 60 61 62 63 64 109 111 112
+BB 52 postdominated by:  52 53 54 58 59 60 61 62 63 64 109 111 112
+BB 53 postdominated by:  53 54 58 59 60 61 62 63 64 109 111 112
+BB 54 postdominated by:  54 58 59 60 61 62 63 64 109 111 112
+BB 55 postdominated by:  55 58 59 60 61 62 63 64 109 111 112
+BB 56 postdominated by:  56 57 58 59 60 61 62 63 64 109 111 112
+BB 57 postdominated by:  57 58 59 60 61 62 63 64 109 111 112
+BB 58 postdominated by:  58 59 60 61 62 63 64 109 111 112
+BB 59 postdominated by:  59 60 61 62 63 64 109 111 112
+BB 60 postdominated by:  60 61 62 63 64 109 111 112
+BB 61 postdominated by:  61 62 63 64 109 111 112
+BB 62 postdominated by:  62 63 64 109 111 112
+BB 63 postdominated by:  63 64 109 111 112
+BB 64 postdominated by:  64 109 111 112
+BB 65 postdominated by:  65 109 111 112
+BB 66 postdominated by:  66 109 111 112
+BB 67 postdominated by:  67 68 109 111 112
+BB 68 postdominated by:  68 109 111 112
+BB 69 postdominated by:  69 70 109 111 112
+BB 70 postdominated by:  70 109 111 112
+BB 71 postdominated by:  71 72 109 111 112
+BB 72 postdominated by:  72 109 111 112
+BB 73 postdominated by:  73 74 109 111 112
+BB 74 postdominated by:  74 109 111 112
+BB 75 postdominated by:  75 76 109 111 112
+BB 76 postdominated by:  76 109 111 112
+BB 77 postdominated by:  77 80 81 82 83 87 88 89 90 91 92 93 94 95
+ 96 109 111 112
+BB 78 postdominated by:  78 80 81 82 83 87 88 89 90 91 92 93 94 95
+ 96 109 111 112
+BB 79 postdominated by:  79 80 81 82 83 87 88 89 90 91 92 93 94 95
+ 96 109 111 112
+BB 80 postdominated by:  80 81 82 83 87 88 89 90 91 92 93 94 95 96
+ 109 111 112
+BB 81 postdominated by:  81 82 83 87 88 89 90 91 92 93 94 95 96 109
+ 111 112
+BB 82 postdominated by:  82 83 87 88 89 90 91 92 93 94 95 96 109 111
+ 112
+BB 83 postdominated by:  83 87 88 89 90 91 92 93 94 95 96 109 111 112
+BB 84 postdominated by:  84 87 88 89 90 91 92 93 94 95 96 109 111 112
+BB 85 postdominated by:  85 87 88 89 90 91 92 93 94 95 96 109 111 112
+BB 86 postdominated by:  86 87 88 89 90 91 92 93 94 95 96 109 111 112
+BB 87 postdominated by:  87 88 89 90 91 92 93 94 95 96 109 111 112
+BB 88 postdominated by:  88 89 90 91 92 93 94 95 96 109 111 112
+BB 89 postdominated by:  89 90 91 92 93 94 95 96 109 111 112
+BB 90 postdominated by:  90 91 92 93 94 95 96 109 111 112
+BB 91 postdominated by:  91 92 93 94 95 96 109 111 112
+BB 92 postdominated by:  92 93 94 95 96 109 111 112
+BB 93 postdominated by:  93 94 95 96 109 111 112
+BB 94 postdominated by:  94 95 96 109 111 112
+BB 95 postdominated by:  95 96 109 111 112
+BB 96 postdominated by:  96 109 111 112
+BB 97 postdominated by:  97 98 109 111 112
+BB 98 postdominated by:  98 109 111 112
+BB 99 postdominated by:  99 100 109 111 112
+BB 100 postdominated by:  100 109 111 112
+BB 101 postdominated by:  101 102 109 111 112
+BB 102 postdominated by:  102 109 111 112
+BB 103 postdominated by:  103 104 109 111 112
+BB 104 postdominated by:  104 109 111 112
+BB 105 postdominated by:  105 106 109 111 112
+BB 106 postdominated by:  106 109 111 112
+BB 107 postdominated by:  107 108 109 111 112
+BB 108 postdominated by:  108 109 111 112
+BB 109 postdominated by:  109 111 112
+BB 110 postdominated by:  110 111 112
+BB 111 postdominated by:  111 112
+BB 112 postdominated by:  112
+BBX 0 id=0 w=1 st=0 fl=ffff7800 preds:
+BBX 1 id=1 w=1 st=0 fl=ffff7800 preds:
+BBX 2 id=2 w=1 st=0 fl=ffff7800 preds:
+BBX 3 id=3 w=1 st=0 fl=ffff7800 preds:
+BBX 4 id=4 w=1 st=0 fl=fffff840 preds: 3
+BBX 5 id=5 w=1 st=3 fl=ffff7800 preds: 4
+BBX 6 id=6 w=4 st=1 fl=fffff840 preds: 5
+BBX 7 id=7 w=4 st=1 fl=ffff7810 preds: 6
+BBX 8 id=8 w=4 st=1 fl=ffff7800 preds: 5
+BBX 9 id=9 w=7 st=0 fl=fffff840 preds: 8
+BBX 10 id=10 w=7 st=0 fl=ffff7840 preds: 9
+BBX 11 id=11 w=7 st=0 fl=ffff7840 preds: 10
+BBX 12 id=12 w=7 st=0 fl=ffff7840 preds: 11
+BBX 13 id=13 w=7 st=0 fl=ffff7840 preds: 12
+BBX 14 id=14 w=7 st=0 fl=ffff7840 preds: 13
+BBX 15 id=15 w=7 st=3 fl=ffff7800 preds: 14
+BBX 16 id=16 w=65534 st=0 fl=fffff800 preds: 2 15
+BBX 17 id=17 w=10 st=1 fl=ffff7810 preds: 15
+BBX 18 id=18 w=7 st=0 fl=fffff840 preds: 16 17
+BBX 19 id=19 w=7 st=0 fl=ffff7840 preds: 18
+BBX 20 id=20 w=7 st=1 fl=ffff7840 preds: 19
+BBX 21 id=21 w=7 st=0 fl=ffff7840 preds: 20
+BBX 22 id=22 w=7 st=0 fl=ffff7800 preds: 21
+BBX 23 id=23 w=1 st=6 fl=fffffc00 preds: 60 22
+BBX 24 id=24 w=4 st=6 fl=ffff7c00 preds: 23
+BBX 25 id=25 w=4 st=3 fl=fffff800 preds: 24 23
+BBX 26 id=26 w=7 st=1 fl=ffff7c00 preds: 25
+BBX 27 id=27 w=10 st=2 fl=ffff7c00 preds: 26
+BBX 28 id=28 w=7 st=0 fl=fffff840 preds: 27 26
+BBX 29 id=29 w=7 st=6 fl=ffff7c00 preds: 28
+BBX 30 id=30 w=10 st=1 fl=fffff840 preds: 29
+BBX 31 id=31 w=10 st=0 fl=ffff7840 preds: 30
+BBX 32 id=32 w=10 st=1 fl=ffff7840 preds: 29
+BBX 33 id=33 w=10 st=0 fl=ffff7840 preds: 32
+BBX 34 id=34 w=10 st=1 fl=ffff7810 preds: 33
+BBX 35 id=35 w=7 st=1 fl=fffffc40 preds: 31 34
+BBX 36 id=36 w=7 st=0 fl=ffff7840 preds: 35
+BBX 37 id=37 w=7 st=27 fl=ffff7c40 preds: 36
+BBX 38 id=38 w=7 st=19 fl=ffff7c40 preds: 37
+BBX 39 id=39 w=7 st=1 fl=ffff7800 preds: 38
+BBX 40 id=40 w=10 st=1 fl=fffff800 preds: 39
+BBX 41 id=41 w=13 st=3 fl=ffff7840 preds: 40
+BBX 42 id=42 w=10 st=2 fl=ffff7800 preds: 39
+BBX 43 id=43 w=13 st=1 fl=fffff800 preds: 42
+BBX 44 id=44 w=16 st=3 fl=fffff800 preds: 43
+BBX 45 id=45 w=19 st=1 fl=ffff7800 preds: 44
+BBX 46 id=46 w=19 st=1 fl=fffff800 preds: 45 44
+BBX 47 id=47 w=22 st=0 fl=fffff800 preds: 46
+BBX 48 id=48 w=22 st=0 fl=ffff7810 preds: 46
+BBX 49 id=49 w=19 st=0 fl=fffff800 preds: 47 48
+BBX 50 id=50 w=22 st=1 fl=ffff7800 preds: 45
+BBX 51 id=51 w=25 st=0 fl=fffff800 preds: 50
+BBX 52 id=52 w=25 st=0 fl=ffff7810 preds: 50
+BBX 53 id=53 w=22 st=0 fl=fffff840 preds: 51 52
+BBX 54 id=54 w=22 st=0 fl=ffff7810 preds: 53
+BBX 55 id=55 w=16 st=1 fl=ffff7810 preds: 43
+BBX 56 id=56 w=13 st=1 fl=ffff7840 preds: 42
+BBX 57 id=57 w=13 st=0 fl=ffff7810 preds: 56
+BBX 58 id=58 w=10 st=0 fl=fffff840 preds: 49 54 55 57
+BBX 59 id=59 w=10 st=1 fl=ffff7810 preds: 58
+BBX 60 id=60 w=1 st=0 fl=fffff800 preds: 41 40 59 25 24
+BBX 61 id=61 w=7 st=0 fl=ffff7840 preds: 60
+BBX 62 id=62 w=7 st=1 fl=ffff7840 preds: 61
+BBX 63 id=63 w=7 st=1 fl=ffff7840 preds: 62
+BBX 64 id=64 w=7 st=4 fl=ffff7800 preds: 63
+BBX 65 id=65 w=10 st=3 fl=ffff7840 preds: 64
+BBX 66 id=66 w=13 st=1 fl=fffff840 preds: 65
+BBX 67 id=67 w=13 st=1 fl=fffff840 preds: 65
+BBX 68 id=68 w=13 st=1 fl=ffff7810 preds: 67
+BBX 69 id=69 w=13 st=1 fl=fffff840 preds: 65
+BBX 70 id=70 w=13 st=1 fl=ffff7810 preds: 69
+BBX 71 id=71 w=13 st=1 fl=fffff840 preds: 65
+BBX 72 id=72 w=13 st=1 fl=ffff7810 preds: 71
+BBX 73 id=73 w=13 st=1 fl=fffff840 preds: 65
+BBX 74 id=74 w=13 st=1 fl=ffff7810 preds: 73
+BBX 75 id=75 w=13 st=1 fl=fffff840 preds: 65
+BBX 76 id=76 w=13 st=1 fl=ffff7810 preds: 75
+BBX 77 id=77 w=13 st=3 fl=fffff800 preds: 65
+BBX 78 id=78 w=16 st=0 fl=fffff800 preds: 77
+BBX 79 id=79 w=16 st=3 fl=ffff7810 preds: 77
+BBX 80 id=80 w=13 st=0 fl=fffff840 preds: 78 79
+BBX 81 id=81 w=13 st=0 fl=ffff7840 preds: 80
+BBX 82 id=82 w=13 st=0 fl=ffff7800 preds: 81
+BBX 83 id=83 w=1 st=1 fl=fffff800 preds: 93 82
+BBX 84 id=84 w=4 st=1 fl=fffff800 preds: 83
+BBX 85 id=85 w=7 st=0 fl=ffff7800 preds: 84
+BBX 86 id=86 w=4 st=0 fl=ffff7810 preds: 83
+BBX 87 id=87 w=1 st=1 fl=fffff840 preds: 85 84 86
+BBX 88 id=88 w=1 st=0 fl=ffff7840 preds: 87
+BBX 89 id=89 w=1 st=0 fl=ffff7840 preds: 88
+BBX 90 id=90 w=1 st=0 fl=ffff7840 preds: 89
+BBX 91 id=91 w=1 st=0 fl=ffff7840 preds: 90
+BBX 92 id=92 w=1 st=1 fl=ffff7840 preds: 91
+BBX 93 id=93 w=1 st=0 fl=ffff7800 preds: 92
+BBX 94 id=94 w=13 st=0 fl=ffff7840 preds: 93
+BBX 95 id=95 w=13 st=0 fl=ffff7840 preds: 94
+BBX 96 id=96 w=13 st=1 fl=ffff7810 preds: 95
+BBX 97 id=97 w=13 st=1 fl=fffff840 preds: 65
+BBX 98 id=98 w=13 st=1 fl=ffff7810 preds: 97
+BBX 99 id=99 w=13 st=1 fl=fffff840 preds: 65
+BBX 100 id=100 w=13 st=1 fl=ffff7810 preds: 99
+BBX 101 id=101 w=13 st=0 fl=fffff840 preds: 65
+BBX 102 id=102 w=13 st=1 fl=ffff7810 preds: 101
+BBX 103 id=103 w=13 st=0 fl=fffff840 preds: 65
+BBX 104 id=104 w=13 st=1 fl=ffff7810 preds: 103
+BBX 105 id=105 w=13 st=0 fl=fffff840 preds: 65
+BBX 106 id=106 w=13 st=1 fl=ffff7810 preds: 105
+BBX 107 id=107 w=65534 st=1 fl=fffff840 preds: 65 1
+BBX 108 id=108 w=65534 st=1 fl=ffff7810 preds: 107
+BBX 109 id=109 w=4 st=0 fl=fffff840 preds: 66 68 70 72 74 76 96 98 100 102 104 106 108 64
+BBX 110 id=110 w=7 st=1 fl=ffff7810 preds: 8
+BBX 111 id=111 w=4 st=1 fl=fffff840 preds: 109 7 110
+BBX 112 id=112 w=4 st=0 fl=ffff7840 preds: 111
+current bb 23, weight = 1, stalls = 6
+MOVETO bb 23 inst 7  time: old 11, new 11
+MOVEFROM bb 24, inst 1  time: old 10, new 9
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: # 28
+ INST 3: Line 711:  INST 4: Line 711:  INST 5: Line 711:  INST 6: Line 711:  INST 7: Line 711:  INST 8: Line 711:  INST 9: Line 711: ----- basic block instruction moved from -----
+ INST 1: Line 711:  INST 2: Line 711:  INST 3: Line 711:  INST 4: Line 711:  INST 5: Line 711: current bb 24, weight = 4, stalls = 6
+current bb 25, weight = 4, stalls = 3
+MOVETO bb 25 inst 3  time: old 5, new 5
+MOVEFROM bb 28, inst 2  time: old 4, new 3
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 712:  INST 3: Line 713:  INST 4: Line 712:  INST 5: Line 712: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 713:  INST 3: Line 713:  INST 4: Line 713:  INST 5: Line 713:  INST 6: Line 713:  INST 7: # 29
+MOVETO bb 25 inst 4  time: old 5, new 5
+MOVEFROM bb 28, inst 3  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 712:  INST 3: Line 713:  INST 4: Line 713:  INST 5: Line 712:  INST 6: Line 712: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 713:  INST 3: Line 713:  INST 4: Line 713:  INST 5: Line 713:  INST 6: Line 713:  INST 7: # 29
+current bb 26, weight = 7, stalls = 1
+MOVETO bb 26 inst 3  time: old 4, new 4
+MOVEFROM bb 27, inst 1  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: Line 713:  INST 2: Line 713:  INST 3: Line 713:  INST 4: Line 713:  INST 5: Line 713: ----- basic block instruction moved from -----
+ INST 1: Line 713:  INST 2: Line 713:  INST 3: Line 713: current bb 29, weight = 7, stalls = 6
+MOVETO bb 29 inst 5  time: old 11, new 11
+MOVEFROM bb 30, inst 2  time: old 8, new 7
+----- basic block instruction moved to -----
+ INST 1: Line 714:  INST 2: Line 714:  INST 3: Line 714:  INST 4: Line 714:  INST 5: Line 718:  INST 6: Line 714:  INST 7: Line 714: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 718:  INST 3: Line 718:  INST 4: Line 718:  INST 5: Line 718:  INST 6: Line 718:  INST 7: Line 718:  INST 8: Line 718:  INST 9: Line 718:  INST 10: Line 718:  INST 11: Line 718:  INST 12: # 29
+MOVETO bb 29 inst 6  time: old 11, new 11
+MOVEFROM bb 30, inst 5  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: Line 714:  INST 2: Line 714:  INST 3: Line 714:  INST 4: Line 714:  INST 5: Line 718:  INST 6: Line 718:  INST 7: Line 714:  INST 8: Line 714: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 718:  INST 3: Line 718:  INST 4: Line 718:  INST 5: Line 718:  INST 6: Line 718:  INST 7: Line 718:  INST 8: Line 718:  INST 9: Line 718:  INST 10: Line 718:  INST 11: Line 718:  INST 12: # 29
+MOVETO bb 29 inst 7  time: old 11, new 11
+MOVEFROM bb 32, inst 1  time: old 8, new 7
+----- basic block instruction moved to -----
+ INST 1: Line 714:  INST 2: Line 714:  INST 3: Line 714:  INST 4: Line 714:  INST 5: Line 718:  INST 6: Line 718:  INST 7: Line 716:  INST 8: Line 714:  INST 9: Line 714: ----- basic block instruction moved from -----
+ INST 1: Line 716:  INST 2: Line 716:  INST 3: Line 716:  INST 4: Line 716:  INST 5: Line 716:  INST 6: Line 716:  INST 7: Line 716:  INST 8: Line 716:  INST 9: Line 716:  INST 10: Line 716:  INST 11: # 29
+MOVETO bb 29 inst 8  time: old 11, new 11
+MOVEFROM bb 32, inst 4  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: Line 714:  INST 2: Line 714:  INST 3: Line 714:  INST 4: Line 714:  INST 5: Line 718:  INST 6: Line 718:  INST 7: Line 716:  INST 8: Line 716:  INST 9: Line 714:  INST 10: Line 714: ----- basic block instruction moved from -----
+ INST 1: Line 716:  INST 2: Line 716:  INST 3: Line 716:  INST 4: Line 716:  INST 5: Line 716:  INST 6: Line 716:  INST 7: Line 716:  INST 8: Line 716:  INST 9: Line 716:  INST 10: Line 716:  INST 11: # 29
+current bb 39, weight = 7, stalls = 1
+MOVETO bb 39 inst 1  time: old 2, new 2
+MOVEFROM bb 40, inst 2  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: Line 735:  INST 2: Line 727:  INST 3: Line 727: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 735:  INST 3: Line 735:  INST 4: Line 735: current bb 27, weight = 10, stalls = 2
+current bb 34, weight = 10, stalls = 1
+current bb 40, weight = 10, stalls = 1
+MOVETO bb 40 inst 3  time: old 2, new 2
+MOVEFROM bb 41, inst 2  time: old 24, new 23
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 735:  INST 3: Line 735:  INST 4: Line 735:  INST 5: Line 735: ----- basic block instruction moved from -----
+ INST 1: Line 735:  INST 2: Line 735:  INST 3: Line 735:  INST 4: Line 735:  INST 5: Line 735:  INST 6: Line 735:  INST 7: Line 735:  INST 8: Line 735:  INST 9: Line 735:  INST 10: Line 735:  INST 11: Line 735:  INST 12: Line 735:  INST 13: Line 735:  INST 14: Line 735:  INST 15: Line 735:  INST 16: Line 735:  INST 17: Line 735:  INST 18: Line 735:  INST 19: Line 735:  INST 20: Line 735:  INST 21: Line 735:  INST 22: Line 735:  INST 23: Line 735:  INST 24: # 29
+current bb 42, weight = 10, stalls = 2
+current bb 59, weight = 10, stalls = 1
+current bb 43, weight = 13, stalls = 1
+current bb 44, weight = 16, stalls = 3
+MOVETO bb 44 inst 5  time: old 7, new 7
+MOVEFROM bb 45, inst 1  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 731:  INST 3: Line 731:  INST 4: Line 731:  INST 5: Line 731:  INST 6: Line 731:  INST 7: Line 731: ----- basic block instruction moved from -----
+ INST 1: Line 731:  INST 2: Line 731:  INST 3: Line 731: MOVETO bb 44 inst 6  time: old 7, new 7
+MOVEFROM bb 49, inst 3  time: old 4, new 3
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 731:  INST 3: Line 731:  INST 4: Line 731:  INST 5: Line 731:  INST 6: Line 733:  INST 7: Line 731:  INST 8: Line 731: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 733:  INST 3: Line 733:  INST 4: Line 733:  INST 5: Line 733: current bb 55, weight = 16, stalls = 1
+current bb 45, weight = 19, stalls = 1
+MOVETO bb 45 inst 2  time: old 2, new 2
+MOVEFROM bb 50, inst 1  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: Line 731:  INST 2: Line 732:  INST 3: Line 731:  INST 4: Line 731: ----- basic block instruction moved from -----
+ INST 1: Line 732:  INST 2: Line 732:  INST 3: Line 732: current bb 46, weight = 19, stalls = 1
+current bb 50, weight = 22, stalls = 1
+MOVETO bb 50 inst 2  time: old 2, new 2
+MOVEFROM bb 53, inst 2  time: old 10, new 9
+----- basic block instruction moved to -----
+ INST 1: Line 732:  INST 2: Line 732:  INST 3: Line 732:  INST 4: Line 732: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 732:  INST 3: Line 732:  INST 4: Line 732:  INST 5: Line 732:  INST 6: Line 732:  INST 7: Line 732:  INST 8: Line 732:  INST 9: Line 732:  INST 10: Line 732:  INST 11: Line 732:  INST 12: Line 732:  INST 13: # 29
+current bb 83, weight = 1, stalls = 1
+MOVETO bb 83 inst 4  time: old 2, new 2
+MOVEFROM bb 84, inst 2  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 767:  INST 3: Line 767:  INST 4: Line 766:  INST 5: Line 765:  INST 6: Line 765: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 766:  INST 3: Line 766:  INST 4: Line 766: current bb 84, weight = 4, stalls = 1
+current bb 5, weight = 1, stalls = 3
+MOVETO bb 5 inst 3  time: old 6, new 6
+MOVEFROM bb 8, inst 1  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: Line 777:  INST 2: Line 777:  INST 3: Line 777:  INST 4: Line 777:  INST 5: Line 777: ----- basic block instruction moved from -----
+ INST 1: Line 777:  INST 2: Line 777:  INST 3: Line 777: current bb 7, weight = 4, stalls = 1
+current bb 8, weight = 4, stalls = 1
+MOVETO bb 8 inst 2  time: old 2, new 2
+MOVEFROM bb 9, inst 2  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: Line 777:  INST 2: Line 703:  INST 3: Line 777:  INST 4: Line 777: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 703:  INST 3: Line 703:  INST 4: Line 703:  INST 5: Line 703:  INST 6: # 29
+current bb 15, weight = 7, stalls = 3
+MOVETO bb 15 inst 3  time: old 6, new 6
+MOVEFROM bb 17, inst 1  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: Line 708:  INST 2: Line 708:  INST 3: Line 708:  INST 4: Line 708:  INST 5: Line 708: ----- basic block instruction moved from -----
+ INST 1: Line 708:  INST 2: Line 708:  INST 3: # 28
+ INST 4: Line 708:  INST 5: Line 708:  INST 6: Line 708:  INST 7: Line 708: MOVETO bb 15 inst 4  time: old 6, new 6
+MOVEFROM bb 17, inst 2  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: Line 708:  INST 2: Line 708:  INST 3: Line 708:  INST 4: Line 708:  INST 5: Line 708:  INST 6: Line 708: ----- basic block instruction moved from -----
+ INST 1: Line 708:  INST 2: Line 708:  INST 3: # 28
+ INST 4: Line 708:  INST 5: Line 708:  INST 6: Line 708:  INST 7: Line 708: current bb 64, weight = 7, stalls = 4
+MOVETO bb 64 inst 8  time: old 12, new 12
+MOVEFROM bb 65, inst 1  time: old 8, new 7
+----- basic block instruction moved to -----
+ INST 1: Line 738:  INST 2: Line 738:  INST 3: Line 738:  INST 4: Line 738:  INST 5: Line 738:  INST 6: Line 738:  INST 7: Line 738:  INST 8: Line 738:  INST 9: Line 738:  INST 10: Line 738: ----- basic block instruction moved from -----
+ INST 1: Line 738:  INST 2: Line 738:  INST 3: Line 738:  INST 4: Line 738:  INST 5: Line 738:  INST 6: Line 738: current bb 110, weight = 7, stalls = 1
+current bb 17, weight = 10, stalls = 1
+current bb 68, weight = 13, stalls = 1
+current bb 70, weight = 13, stalls = 1
+current bb 72, weight = 13, stalls = 1
+current bb 74, weight = 13, stalls = 1
+current bb 76, weight = 13, stalls = 1
+current bb 77, weight = 13, stalls = 3
+MOVETO bb 77 inst 5  time: old 6, new 6
+MOVEFROM bb 78, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 761:  INST 3: Line 761:  INST 4: Line 763:  INST 5: Line 762:  INST 6: Line 761:  INST 7: Line 761: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 762:  INST 3: Line 762:  INST 4: Line 762:  INST 5: Line 762:  INST 6: Line 762:  INST 7: Line 762:  INST 8: Line 762: current bb 96, weight = 13, stalls = 1
+current bb 98, weight = 13, stalls = 1
+current bb 100, weight = 13, stalls = 1
+current bb 102, weight = 13, stalls = 1
+current bb 104, weight = 13, stalls = 1
+current bb 106, weight = 13, stalls = 1
+current bb 79, weight = 16, stalls = 3
+current bb 108, weight = 65534, stalls = 1
+W blk=0 w=1
+LOOP:  0
+	bb: 0	weight: 1
+BB 0 dominated by:  0
+BB 0 postdominated by:  0
+		0xc64002c8	lwc1	$f0,712($18)
+		0x3c010000	lui	$at,0
+		0xc4280000	lwc1	$f8,0($at)
+		0x4600403c	c.lt.s	$f8,$f0
+		0x3c010000	lui	$at,0
+		0x45000000	bc1f	0
+		0	nop
+		0	nop
+		0xc42a0000	lwc1	$f10,0($at)
+		0x460a003c	c.lt.s	$f0,$f10
+		0x45010000	bc1t	0
+		0	nop
+		0x924202fc	lbu	$2,764($18)
+		0x265002f0	addiu	$16,$18,752
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x147080	sll	$14,$20,2
+		0xafae007c	sw	$14,124($sp)
+		0xc000000	jal	0
+		0	nop
+		0x924202fc	lbu	$2,764($18)
+		0x265002f0	addiu	$16,$18,752
+		0x147080	sll	$14,$20,2
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0xafae007c	sw	$14,124($sp)
+		0xc000000	jal	0
+		0	nop
+		0x44822000	mtc1	$2,$f4
+		0x46802320	cvt.s.w	$f12,$f4
+		0x3c014f80	lui	$at,0x4f80
+		0x4410000	bgez	$2,0
+		0	nop
+		0	nop
+		0x44813000	mtc1	$at,$f6
+		0x46066300	add.s	$f12,$f12,$f6
+		0xc64802c8	lwc1	$f8,712($18)
+		0x3c010000	lui	$at,0
+		0xc42a0000	lwc1	$f10,0($at)
+		0x460a403c	c.lt.s	$f8,$f10
+		0x3c190000	lui	$25,0
+		0x45000000	bc1f	0
+		0	nop
+		0	nop
+		0x8f240000	lw	$4,0($25)
+		0xafa40000	sw	$4,0($sp)
+		0x3c0e0000	lui	$14,0
+		0x8dc50000	lw	$5,0($14)
+		0xafa50004	sw	$5,4($sp)
+		0	nop
+		0	nop
+		0xc000000	jal	0
+		0	nop
+		0xc64802c8	lwc1	$f8,712($18)
+		0x3c010000	lui	$at,0
+		0xc42a0000	lwc1	$f10,0($at)
+		0x460a403c	c.lt.s	$f8,$f10
+		0x3c190000	lui	$25,0
+		0x3c0e0000	lui	$14,0
+		0x45000000	bc1f	0
+		0	nop
+		0	nop
+		0x8f240000	lw	$4,0($25)
+		0xafa40000	sw	$4,0($sp)
+		0	nop
+		0x8dc50000	lw	$5,0($14)
+		0xafa50004	sw	$5,4($sp)
+		0	nop
+		0	nop
+		0xc000000	jal	0
+		0	nop
+		0xc64802c8	lwc1	$f8,712($18)
+		0x3c010000	lui	$at,0
+		0xc42a0000	lwc1	$f10,0($at)
+		0x460a403c	c.lt.s	$f8,$f10
+		0x3c190000	lui	$25,0
+		0x3c0e0000	lui	$14,0
+		0x3c0f0000	lui	$15,0
+		0x45000000	bc1f	0
+		0	nop
+		0	nop
+		0x8de40000	lw	$4,0($15)
+		0xafa40000	sw	$4,0($sp)
+		0x3c180000	lui	$24,0
+		0x8f050000	lw	$5,0($24)
+		0xafa50004	sw	$5,4($sp)
+		0	nop
+		0	nop
+		0xc000000	jal	0
+		0	nop
+		0xc64802c8	lwc1	$f8,712($18)
+		0x3c010000	lui	$at,0
+		0xc42a0000	lwc1	$f10,0($at)
+		0x460a403c	c.lt.s	$f8,$f10
+		0x3c190000	lui	$25,0
+		0x3c0e0000	lui	$14,0
+		0x3c0f0000	lui	$15,0
+		0x3c180000	lui	$24,0
+		0x45000000	bc1f	0
+		0	nop
+		0	nop
+		0x8de40000	lw	$4,0($15)
+		0xafa40000	sw	$4,0($sp)
+		0	nop
+		0x8f050000	lw	$5,0($24)
+		0xafa50004	sw	$5,4($sp)
+		0	nop
+		0	nop
+		0xc000000	jal	0
+		0	nop
+		0x24010001	li	$at,1
+		0x16800000	bne	$20,$0,0
+		0	nop
+		0	nop
+		0x16810000	bne	$20,$at,0
+		0	nop
+		0	nop
+		0x3c180000	lui	$24,0
+		0x16810000	bne	$20,$at,0
+		0	nop
+		0x8eae0010	lw	$14,16($21)
+		0	nop
+		0x8f180000	lw	$24,0($24)
+		0x18c880	sll	$25,$24,2
+		0x3c0f0000	lui	$15,0
+		0x1f97821	addu	$15,$15,$25
+		0x8def0000	lw	$15,0($15)
+		0xfc080	sll	$24,$15,2
+		0x1d8c821	addu	$25,$14,$24
+		0x8eaf000c	lw	$15,12($21)
+		0x95ee0068	lhu	$14,104($15)
+		0xec080	sll	$24,$14,2
+		0x3387821	addu	$15,$25,$24
+		0x8de60000	lw	$6,0($15)
+		0x162400	sll	$4,$22,16
+		0x47403	sra	$14,$4,16
+		0x1c02025	move	$4,$14
+		0x112c00	sll	$5,$17,16
+		0x5cc03	sra	$25,$5,16
+		0x3202825	move	$5,$25
+		0	nop
+		0xc000000	jal	0
+		0	nop
+		0x3c020000	lui	$2,0
+		0x80420000	lb	$2,0($2)
+		0x2841000c	slti	$at,$2,12
+		0x30590001	andi	$25,$2,0x1
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0	nop
+		0x13200000	beq	$25,$0,0
+		0	nop
+		0x3c020000	lui	$2,0
+		0x80420000	lb	$2,0($2)
+		0x2841000c	slti	$at,$2,12
+		0x30590001	andi	$25,$2,0x1
+		0x3c070000	lui	$7,0
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0x3c080	sll	$24,$3,2
+		0	nop
+		0xf83821	addu	$7,$7,$24
+		0x8ce70000	lw	$7,0($7)
+		0	nop
+		0x2841000d	slti	$at,$2,13
+		0x13200000	beq	$25,$0,0
+		0	nop
+		0	nop
+		0x14200000	bne	$at,$0,0
+		0	nop
+		0	nop
+		0x2e02025	move	$4,$23
+		0x14200000	bne	$at,$0,0
+		0	nop
+		0	nop
+		0x3c050000	lui	$5,0
+		0x24a50000	addiu	$5,$5,0
+		0x37880	sll	$15,$3,2
+		0x3c060000	lui	$6,0
+		0xcf3021	addu	$6,$6,$15
+		0x8cc60000	lw	$6,0($6)
+		0x8eae0004	lw	$14,4($21)
+		0x8dc70018	lw	$7,24($14)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0	nop
+		0x24010014	li	$at,20
+		0x16000000	bne	$16,$0,0
+		0	nop
+		0	nop
+		0x16010000	bne	$16,$at,0
+		0	nop
+		0x3c020000	lui	$2,0
+		0x8c420000	lw	$2,0($2)
+		0x24010001	li	$at,1
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x10410000	beq	$2,$at,0
+		0	nop
+		0	nop
+		0x24040001	li	$4,1
+		0x10410000	beq	$2,$at,0
+		0	nop
+		0	nop
+		0x24050001	li	$5,1
+		0xc000000	jal	0
+		0	nop
+		0x3c020000	lui	$2,0
+		0x8c420000	lw	$2,0($2)
+		0x3c150000	lui	$21,0
+		0x14400000	bne	$2,$0,0
+		0	nop
+		0	nop
+		0x26b50000	addiu	$21,$21,0
+		0x8eaf0004	lw	$15,4($21)
+		0x8de702c0	lw	$7,704($15)
+		0x10000000	b	0
+		0	nop
+		0x3c020000	lui	$2,0
+		0x8c420000	lw	$2,0($2)
+		0x3c150000	lui	$21,0
+		0x26b50000	addiu	$21,$21,0
+		0x14400000	bne	$2,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x8eaf0004	lw	$15,4($21)
+		0x8de702c0	lw	$7,704($15)
+		0x10000000	b	0
+		0	nop
+		0x3c180000	lui	$24,0
+		0x8f180000	lw	$24,0($24)
+		0x187880	sll	$15,$24,2
+		0x3c0e0000	lui	$14,0
+		0x1cf7021	addu	$14,$14,$15
+		0x8dce0000	lw	$14,0($14)
+		0x2dc1000d	sltiu	$at,$14,13
+		0xe7080	sll	$14,$14,2
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0	nop
+		0x3c010000	lui	$at,0
+		0x2e0821	addu	$at,$at,$14
+		0x8c2e0000	lw	$14,0($at)
+		0x1c00008	jr	$14
+		0	nop
+		0x3c020000	lui	$2,0
+		0x8c420000	lw	$2,0($2)
+		0	nop
+		0x3c180000	lui	$24,0
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x83180000	lb	$24,0($24)
+		0x187180	sll	$14,$24,6
+		0x25cffb00	addiu	$15,$14,-1280
+		0x3c190000	lui	$25,0
+		0x27390000	addiu	$25,$25,0
+		0x1f98821	addu	$17,$15,$25
+BBX 0 id=0 w=1 st=0 fl=ffff7800 preds:

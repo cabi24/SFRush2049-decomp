@@ -1,0 +1,32 @@
+Members:
+func_80391650:
+  MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x20, .rodata+0x0 at +0x24)
+    not verified: .rodata+0x0 at +0x24: no retail data available
+func_80391864:
+  MATCH (6 section-relative relocations unverified: .rodata+0x4 at +0x18, .rodata+0x4 at +0x1c, .rodata+0x8 at +0x30, .rodata+0x8 at +0x34, .rodata+0xc at +0xe8, .rodata+0xc at +0xf0)
+    not verified: .rodata+0x4 at +0x1c: no retail data available
+    not verified: .rodata+0x8 at +0x34: no retail data available
+    not verified: .rodata+0xc at +0xf0: no retail data available
+func_80391B00:
+    +0x278  want 146101a2 bne v1,at,0x68c               got 146101a0 bne v1,at,0x684             
+    +0x2b8  want 10000193 b 0x650                       got 10000191 b 0x648                     
+    +0x2cc  want 1840018d blez v0,0x638                 got 1840018b blez v0,0x630               
+    +0x3f8  want afb90088 sw t9,136(sp)                 got afb9008c sw t9,140(sp)               
+    +0x42c  want 8fa30090 lw v1,144(sp)                 got 4606503c c.lt.s $f10,$f6             
+    +0x430  want 4606503c c.lt.s $f10,$f6               got 00000000 nop                         
+    +0x434  want 00000000 nop                           got 45030005 bc1tl 0x18                  
+    +0x438  want 45010004 bc1t 0x14                     got 8fa20090 lw v0,144(sp)               
+    +0x43c  want 00000000 nop                           got 8f190018 lw t9,24(t8)                
+    +0x440  want 8f190018 lw t9,24(t8)                  got 532000fd beqzl t9,0x3f8              
+    +0x444  want 532000fc beqzl t9,0x3f4                got 8dcf0018 lw t7,24(t6)                
+    +0x448  want 8dcf0018 lw t7,24(t6)                  got 8fa20090 lw v0,144(sp)               
+  83/595 words differ (16 section-relative relocations unverified: .rodata+0x2c at +0x88, .rodata+0x2c at +0x8c, .rodata+0x30 at +0x90, .rodata+0x30 at +0x94, .rodata+0x34 at +0x98, .rodata+0x34 at +0xb4, .data+0x0 at +0x288, .data+0x0 at +0x290, .rodata+0x38 at +0x2d4, .rodata+0x38 at +0x2d8, .rodata+0x3c at +0x2dc, .rodata+0x3c at +0x2e0, .rodata+0x40 at +0x32c, .rodata+0x40 at +0x330, .rodata+0x44 at +0x41c, .rodata+0x44 at +0x420)
+    not verified: .rodata+0x2c at +0x8c: no retail data available
+    not verified: .rodata+0x30 at +0x94: no retail data available
+    not verified: .rodata+0x34 at +0xb4: no retail data available
+    not verified: .rodata+0x38 at +0x2d8: no retail data available
+    not verified: .rodata+0x3c at +0x2e0: no retail data available
+    not verified: .rodata+0x40 at +0x330: no retail data available
+    not verified: .rodata+0x44 at +0x420: no retail data available
+    not verified: .data+0x0 at +0x290: no retail data available
+exit=1
