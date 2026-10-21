@@ -68,6 +68,13 @@ def portable_elf(data):
 
 
 
+def helper_source(repo, rel):
+    """w36: w36x5 superseded src/blob/groups/audio_frame_sync in place; the group.c this receipt binds is kept
+    byte-identically in cloud/work/frontier/superseded/audio_frame_sync/ (recorded path unchanged)."""
+    old = repo/'cloud/work/frontier/superseded/audio_frame_sync'/Path(rel).name
+    return old if rel.startswith('src/blob/groups/audio_frame_sync/') and old.is_file() else repo/rel
+
+
 def portable(receipt):
     """Exclude only path-dependent raw-object/ECOFF provenance, after ELF binding."""
     r=json.loads(json.dumps(receipt))
@@ -193,7 +200,7 @@ def main():
     helpers={}
     for n,rel in helper_sources.items():
         require(game_symbols[n]==ANCHORS[n],('helper entry drift',n));body=game_words[n]
-        helpers[n]={'address':hex(ANCHORS[n]),'bytes':len(body)*4,'native_sha256':sha(struct.pack('>%dI'%len(body),*body)),'source':rel,'source_sha256':sha((repo/rel).read_bytes()),'scope':'read-only source/native contract witness; not compiled or executed as helper internals'}
+        helpers[n]={'address':hex(ANCHORS[n]),'bytes':len(body)*4,'native_sha256':sha(struct.pack('>%dI'%len(body),*body)),'source':rel,'source_sha256':sha(helper_source(repo,rel).read_bytes()),'scope':'read-only source/native contract witness; not compiled or executed as helper internals'}
     callers=[]
     for n,body in game_words.items():
         for i,w in enumerate(body):

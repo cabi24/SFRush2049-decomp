@@ -1613,7 +1613,7 @@
     "candidate.c": "29d1dfaaeed5d9f51862bb456ee677280f72e9da259d562a98caae42a135694a",
     "host.c": "f080ca6f9191000736e49c0d8dafd2c87f8f1eb9568ab3eee04ca90020624244",
     "native.py": "cf2343f4072c66b258b361da6dc8a2732d3706af5684594c2461ff3f730db072",
-    "verify.py": "fa340bc15d8bfc2dfa95caeaf94ddb7c7f99a7ebdfda60248c185f8e06c97d2b"
+    "verify.py": "7f8fbbf052eb3de7ae6f46618bf5f7daded12ab2b5bb1395fa60553521854492"
   },
   "protected_manifest": {
     "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
