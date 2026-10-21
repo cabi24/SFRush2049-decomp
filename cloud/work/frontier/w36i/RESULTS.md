@@ -58,6 +58,7 @@ codex_defaults_a16 note).
 | w36u w36u_audio_init_sys (AudioInitSys, 836 B) | new absolute ROM-offset symbol D_00039B40 (owner decision on naming/route) | note below |
 | w36w w36w_demo_pair (revised; 1,064 B) | ipakit sigs accuracy floor (removing 4 stub singles makes return class exactly 0.94) | note below |
 | w36x3 NEW w36x3_coins (particles_update = animCoins, 1,464 B) | another slot_state_setup caller: changes the audit census again on top of the owner's re-pin | `held/slot_contract_audit_w36x3_coins_followup.patch` (applies AFTER slot_contract_audit_held_callers.patch) |
+| w36x5 audio_frame_sync superseded (SetupWaveModel, LoadWave, ReplaceWave, fp_call_wrapper, func_80097164 + 3 stub bodies; 2,412 B) | `test_runtime_a_resource_cache::test_complete_frozen_replay`: the packet binds src/blob/groups/audio_frame_sync/group.c (helper_contracts source_sha256) | `held/resource_cache_superseded_audio_frame_sync.patch` (superseded copy + resolver; verify.py hash re-pinned). ipakit floor checked: 753/801 = 0.94007 after it, also with the held batch (no margin left for further stub supersessions) |
 | w36e func_80390BC0 (LoadSelectCar, 364 B) | resource-cache receipt asserts the cloud/matches file absent | `held/resource_cache_allow_promoted_80390BC0.patch` |
 
 ### w36k: NEW group controlscr (updateControlScreen func_800D91A0, func_800D816C, func_800D9058, ...)
