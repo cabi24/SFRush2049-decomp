@@ -22,6 +22,15 @@
  * 255.0f are deliberately different spellings (one shared 255 constant is wrongly CSE'd), `q` in the root is a
  * signed-char variable assigned in every switch arm (a plain argument is elided by IPA).
  * All source names are reconstructions; none is asserted as original.
+ * w36c (wave 36): func_80396FA0 = controlSelect@playerscr.c (MAT3 GC 0x8007a854) becomes a claimed member. Its body
+ * is unchanged from w35d except one compiled-out statement `do {} while (0);` between the edges chain and the
+ * autoFlags chain (SHAPING, disclosed; plausibly an empty release-build macro). The extra block boundary changes the
+ * colouring order: the constant-13 web (whole-web save 0.5758 vs the lda D_803BADB8 web 0.44, both split) no longer
+ * reaches a3 first, so the first-loop lda piece takes a3 as in retail (traced: forcing the 13 web to split gives the
+ * same object). Own .rodata = its 14-entry jump table (retail 0x803B9484), entries hand-checked equal.
+ * Context func_8039842C (kept root, not claimed) gets the same kind of compiled-out `do {} while (0);` before the
+ * main player loop: its gNumPlayers preheader load is then coloured a1 as in retail (122 -> 2 words; the last 2 are
+ * the spill home of the reset loop's walking pointer, sp+120 vs retail sp+124).
  */
 typedef signed char s8;typedef unsigned char u8;
 typedef short s16;typedef unsigned short u16;typedef int s32;typedef unsigned int u32;typedef float f32;
@@ -839,6 +848,7 @@ void func_80396FA0(s32 p)
         resource_type_select(D_8014A118[p].flags);
         D_803B5ED4 = 2;
     }
+    do {} while (0); /* SHAPING: compiled-out block boundary, see header */
     if (D_8014A118[p].autoFlags & 0x2000) {
         if (D_803BAD80[p] == 0 || (D_803BAD80[p] >= 3 && D_803BAD80[p] < 11)) {
             D_803BADB8[p] = !D_803BADB8[p];
@@ -1051,6 +1061,7 @@ void func_8039842C(void)
 restart:;
     }
     if (!D_803B5ED0) func_80397FFC();
+    do {} while (0); /* SHAPING (context): compiled-out block boundary, see header */
     for (playerIdx = 0; playerIdx < D_8014A108; playerIdx++) {
         switch (D_803BACE0[playerIdx]) {
         case 0:

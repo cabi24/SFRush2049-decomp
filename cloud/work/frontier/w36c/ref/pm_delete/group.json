@@ -1,0 +1,27 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803A9EEC"
+  ],
+  "members": [
+    "func_80395E24",
+    "func_803A87D4",
+    "func_803A8B74"
+  ],
+  "context": [
+    "func_80396EE8",
+    "func_80396F44",
+    "func_803A7B58",
+    "func_803A9088",
+    "func_803A9EEC"
+  ],
+  "provenance": "A9088 NONMATCH research, 15/917 differing words. Preserves all three exact members, 2324 inherited bytes; no new exact, accepted-image or ROM credit. Same group and genuine callback context; no lock migration.",
+  "claims": [
+    "func_80395E24",
+    "func_803A87D4",
+    "func_803A8B74"
+  ]
+}

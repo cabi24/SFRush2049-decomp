@@ -1,0 +1,29 @@
+{
+ "members": [
+  "func_80392F28",
+  "func_80393004",
+  "func_803930B8",
+  "func_803931C0",
+  "func_803932E4",
+  "func_80394058",
+  "func_80393B3C",
+  "func_80393B34"
+ ],
+ "context": [
+  "func_8039338C",
+  "func_803923B0"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_80394058"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "PR #311 genuine context; traced root frame closure. Five inherited exact preservation members receive no new credit. w36b: superseding revision (same name, all six old members unchanged and MATCH) adds func_80393B3C = initRecordScreen@recordscr.c with initButtons@recordscr.c inlined (MAT3 GC 0x8008077C / 0x80084BB4; IPA-internal, unsaved s0-s8, called from the root) and its deleted-procedure stub func_80393B34 (2 words), direct typed MAT3 port. Own data checked against image A: .data white colour template 0x803B65A8 and 7 .rodata floats 0x803B9454..0x803B946C; allow_unverified because the builder scorer has no overlay retail data. Context edit: D_80140BDC (gNumModels) declared volatile in the 93B3C declaration block (same edit as w36c).",
+ "claims": [
+  "func_80393B3C",
+  "func_80393B34"
+ ],
+ "allow_unverified": true
+}

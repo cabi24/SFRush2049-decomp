@@ -1,0 +1,28 @@
+{
+ "members": [
+  "func_80392F28",
+  "func_80393004",
+  "func_803930B8",
+  "func_803931C0",
+  "func_803932E4",
+  "func_80394058",
+  "func_803915E8"
+ ],
+ "context": [
+  "func_8039338C",
+  "func_80393B3C",
+  "func_803923B0"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_80394058"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "PR #311 genuine context; traced root frame closure. Five inherited exact preservation members receive no new credit. w36c: superseding revision (same name, all six old members unchanged and MATCH) adds func_803915E8 = updateSelectButtons@recordscr.c (MAT3 GC 0x80084f38), a direct typed MAT3 port, strict MATCH in this group (IPA-internal: unsaved s0-s8, called from context func_803923B0). Own data hand-verified against image A: 9 .rodata sites (5 floats 0x803B942C..0x803B943C, 4 strings 0x803B8C30/40/48/58) and the .data white colour template 0x803B65AC; allow_unverified because the builder scorer has no overlay retail data. Context edits: D_8002EB94 (gFrameSeconds) and D_80140BDC (gNumModels) declared volatile, as MAT3 rush_protos.h has them.",
+ "claims": [
+  "func_803915E8"
+ ],
+ "allow_unverified": true
+}

@@ -1,0 +1,29 @@
+{
+ "members": [
+  "func_80394564",
+  "func_80394834",
+  "func_80394B00",
+  "func_80397AD8",
+  "func_80397FFC",
+  "func_803968C0",
+  "func_80395E8C",
+  "func_80394DD8"
+ ],
+ "context": [
+  "func_8039842C",
+  "func_803949CC",
+  "func_80396FA0",
+  "func_80395E24",
+  "func_80396EE8",
+  "func_80396F44"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_8039842C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w35d: same-name superseding availability group. Adds the strict initScreen func_80397FFC (MAT3 playerscr.c initScreen, inlined calcSelectMenuMaxSize = stub func_80397FF4) and the real IPA-internal callees controlCreatePlayer func_803968C0, controlDeletePlayer func_80395E8C and updateButtons func_80394DD8 (all MAT3 ports). func_8039842C (updatePlayerScreen, kept root), func_80396FA0 (controlSelect, 262/718), func_803949CC, func_80395E24, func_80396EE8 and func_80396F44 are unspliced context (the last four are exact bodies installed elsewhere)."
+}

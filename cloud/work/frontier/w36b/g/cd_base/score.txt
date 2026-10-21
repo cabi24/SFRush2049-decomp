@@ -1,0 +1,58 @@
+Members:
+func_80392F28:
+  MATCH
+func_80393004:
+  MATCH
+func_803930B8:
+  MATCH
+func_803931C0:
+  MATCH
+func_803932E4:
+  MATCH
+func_80394058:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8039338C:
+    +0x024  want 15e00032 bnez t7,0xcc                  got 15e00033 bnez t7,0xd0                
+    +0x02c  want 3c01803c lui at,0x803c                 got 3c1e803c lui s8,0x803c               
+    +0x030  want 3c168013 lui s6,0x8013                 got 27dea80c addiu s8,s8,-22516          
+    +0x034  want 3c11803b lui s1,0x803b                 got 3c168013 lui s6,0x8013               
+    +0x038  want 3c10803c lui s0,0x803c                 got 3c11803b lui s1,0x803b               
+    +0x03c  want 2610a800 addiu s0,s0,-22528            got 3c10803c lui s0,0x803c               
+    +0x040  want 263165a4 addiu s1,s1,26020             got a3c00000 sb zero,0(s8)               
+    +0x044  want 26d6e6d8 addiu s6,s6,-6440             got 2610a800 addiu s0,s0,-22528          
+    +0x048  want a020a80c sb zero,-22516(at)            got 263165a4 addiu s1,s1,26020           
+    +0x04c  want 2415000a li s5,10                      got 26d6e6d8 addiu s6,s6,-6440           
+    +0x050  want 24140001 li s4,1                       got 2415000a li s5,10                    
+    +0x054  want 2498ffff addiu t8,a0,-1                got 24140001 li s4,1                     
+  475/490 words differ
+func_80393B3C:
+    +0x034  want 27b2004c addiu s2,sp,76                got 27b20054 addiu s2,sp,84              
+    +0x06c  want 16780037 bne s3,t8,0xe0                got 16780036 bne s3,t8,0xdc              
+    +0x080  want 3c188014 lui t8,0x8014                 got 3c068014 lui a2,0x8014               
+    +0x084  want 8e0f0000 lw t7,0(s0)                   got 90c60bdc lbu a2,3036(a2)             
+    +0x088  want 27180bdc addiu t8,t8,3036              got 8e0f0000 lw t7,0(s0)                 
+    +0x08c  want 93060000 lbu a2,0(t8)                  got 00002825 move a1,zero                
+    +0x090  want 000f7080 sll t6,t7,0x2                 got 24c6ffff addiu a2,a2,-1              
+    +0x094  want 028ec821 addu t9,s4,t6                 got 000f7080 sll t6,t7,0x2               
+    +0x098  want 24c6ffff addiu a2,a2,-1                got 028ec821 addu t9,s4,t6               
+    +0x09c  want 00067e00 sll t7,a2,0x18                got 0006c600 sll t8,a2,0x18              
+    +0x0a0  want 000f3603 sra a2,t7,0x18                got 00183603 sra a2,t8,0x18              
+    +0x0a8  want 00002825 move a1,zero                  got 0c024b8b jal 0x92e2c                 
+  288/327 words differ (4 extra words (nonzero beyond target length); 14 section-relative relocations unverified: .rodata+0x14 at +0x1c4, .rodata+0x14 at +0x1c8, .rodata+0x18 at +0x2d8, .rodata+0x18 at +0x2dc, .rodata+0x1c at +0x2f0, .rodata+0x1c at +0x2f4, .rodata+0x20 at +0x33c, .rodata+0x20 at +0x340, .rodata+0x24 at +0x34c, .rodata+0x24 at +0x350, .rodata+0x28 at +0x3c8, .rodata+0x28 at +0x3cc, .rodata+0x2c at +0x444, .rodata+0x2c at +0x448; unpaired R_MIPS_HI16 for D_803B6528 at .text+0x1c94)
+func_803923B0:
+    +0x008  want 27bdff70 addiu sp,sp,-144              got 27bdff80 addiu sp,sp,-128            
+    +0x010  want 11c002d5 beqz t6,0xb58                 got 11c002d9 beqz t6,0xb68               
+    +0x030  want 100002ce b 0xb3c                       got 100002d2 b 0xb4c                     
+    +0x040  want 100002ca b 0xb2c                       got 100002ce b 0xb3c                     
+    +0x050  want 3c03803c lui v1,0x803c                 got 3c14803c lui s4,0x803c               
+    +0x058  want a3af005b sb t7,91(sp)                  got a3af004f sb t7,79(sp)                
+    +0x05c  want 00002825 move a1,zero                  got 00001825 move v1,zero                
+    +0x060  want 00002025 move a0,zero                  got 00001025 move v0,zero                
+    +0x068  want 2463a7fe addiu v1,v1,-22530            got 2694a7fe addiu s4,s4,-22530          
+    +0x06c  want 00001025 move v0,zero                  got 00009825 move s3,zero                
+    +0x070  want 24060002 li a2,2                       got 24040002 li a0,2                     
+    +0x074  want afb8004c sw t8,76(sp)                  got afb80058 sw t8,88(sp)                
+  666/734 words differ (3 extra words (nonzero beyond target length); 10 section-relative relocations unverified: .rodata+0x0 at +0x140, .rodata+0x0 at +0x144, .rodata+0x4 at +0x344, .rodata+0x4 at +0x348, .rodata+0x8 at +0x358, .rodata+0x8 at +0x35c, .rodata+0xc at +0x3c8, .rodata+0xc at +0x3cc, .rodata+0x10 at +0x3d8, .rodata+0x10 at +0x408)
+exit=0
