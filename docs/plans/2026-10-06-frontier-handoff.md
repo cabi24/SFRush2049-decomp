@@ -901,6 +901,10 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
   - pinning stand-ins as matches.
   Implicit int (no declaration in scope) is **an open decision**; see §6.
 - **Provisional rule:** a body that matches only with stand-in callers goes in `provisional.json` and is not spliced. It becomes a match when its real callers match in the same group.
+- **Game coverage denominator (2026-10-21):** the image tail 0x8010FD7C..0x801249F0 is proven .data/.rodata
+  (`tests/conveyor/test_blob_data_tail.py`) and is labelled `data` in the layout. The owner made code bytes the
+  headline: `make progress` reports game code against its 561,860 function bytes (90.71% at 1165/1216), then the
+  647,072-byte image (78.77%). Quote both with their denominators when comparing to older figures, which used the image.
 - **Pushing:** push gate-passing, test-passing work to master as it lands; the owner wants master current. Force-push only with explicit owner approval (one history purge was approved).
 - **Hook-protected files:** do not edit `tools/cloud/score.py` directly. Changes go through a reviewed patch with owner approval.
 - **Permission denials:** if the permission classifier denies an action, do not retry it another way. Surface it to the owner.

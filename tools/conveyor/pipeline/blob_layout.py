@@ -6,7 +6,8 @@ The game code is not in the cartridge as code: it is a raw DEFLATE stream at
 ROM 0xB0CB10 that inflates at boot to 0x80086A50. Matched game functions are
 therefore unlinkable and uncounted. This module describes the 647,072-byte
 image as an ordered, complete list of entries — functions with gate-passed
-extents, and opaque runs for everything else — so the image can be rebuilt
+extents, the proven .data/.rodata tail (kind "data"), and opaque runs for
+everything else — so the image can be rebuilt
 from pieces and individual functions replaced with verified C.
 
 Contract: specs/008-blob-image-rebuild/contracts/image-layout-and-gate.md §1-§6.
@@ -16,6 +17,7 @@ either would corrupt the image silently.
 import argparse
 import hashlib
 import json
+import struct
 import sys
 from pathlib import Path
 
@@ -30,6 +32,14 @@ LAYOUT_JSON = REPO / "build" / "blob_layout.json"
 DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
 SPLIT_GAP = 4096       # an opaque run this large ends the current region
 MAX_FUNCS = 60         # ... as does this many functions, to keep TUs reviewable
+
+# The retail image's tail after its last function is .data, then .rodata
+# (float literals and switch jump tables). Proven 2026-10-21: no j/jal in game,
+# static or runtime-image code targets it and it holds no jr ra
+# (tests/conveyor/test_blob_data_tail.py). derive() labels it as data entries.
+DATA_SECTIONS = ((".data", 0x8010FD7C), (".rodata", 0x80123870))
+RETAIL_IMAGE_END = 0x801249F0
+JR_RA = 0x03E00008
 
 
 class LayoutError(RuntimeError):
@@ -85,6 +95,28 @@ def entries(conn, image_size):
     return out
 
 
+def mark_data_sections(items, image):
+    """Replace the retail image's trailing opaque run with its .data/.rodata.
+
+    Other images (test fixtures) pass through unchanged. For the retail image the
+    tail must still be one opaque run from .data to the end with no `jr ra` in
+    it; anything else means the data proof has to be redone, not assumed."""
+    if BASE + len(image) != RETAIL_IMAGE_END:
+        return items
+    start = DATA_SECTIONS[0][1]
+    tail = items[-1] if items else None
+    if not tail or tail["kind"] != "opaque" or tail["vaddr"] != start:
+        found = f"{tail['kind']} at {tail['vaddr']:#010x}" if tail else "nothing"
+        raise LayoutError(f"image tail is {found}, not the opaque .data run at "
+                          f"{start:#010x}; re-prove the tail before labelling it data")
+    if any(word == JR_RA for (word,) in struct.iter_unpack(">I", image[start - BASE:])):
+        raise LayoutError("a jr ra inside the image's .data/.rodata tail")
+    bounds = [address for _, address in DATA_SECTIONS[1:]] + [RETAIL_IMAGE_END]
+    return items[:-1] + [
+        {"kind": "data", "section": section, "vaddr": lo, "size": hi - lo}
+        for (section, lo), hi in zip(DATA_SECTIONS, bounds)]
+
+
 def regions(items, split_gap=SPLIT_GAP, max_funcs=MAX_FUNCS,
             flagset=DEFAULT_FLAGSET):
     """Group entries into TU-sized regions (contract §5)."""
@@ -97,13 +129,15 @@ def regions(items, split_gap=SPLIT_GAP, max_funcs=MAX_FUNCS,
     for item in items:
         if current is None:
             current = start_region(item)
-        elif ((item["kind"] == "opaque" and item["size"] >= split_gap)
+        elif ((item["kind"] != "function" and item["size"] >= split_gap
+               and any(e["kind"] == "function" for e in current["entries"]))
               or (item["kind"] == "function"
                   and sum(1 for e in current["entries"] if e["kind"] == "function")
                   >= max_funcs)):
             # A big gap starts a region (it is a natural boundary); the
             # function-count limit only splits before another function, so the
-            # cap never strands a data-only region.
+            # cap never strands a data-only region. Consecutive non-function
+            # entries (.data then .rodata) stay in one region.
             out.append(current)
             current = start_region(item)
         current["entries"].append(item)
@@ -118,10 +152,11 @@ def regions(items, split_gap=SPLIT_GAP, max_funcs=MAX_FUNCS,
 
 def derive(conn, image_path=IMAGE, output=LAYOUT_JSON, **options):
     image_bytes = Path(image_path).read_bytes()
-    items = entries(conn, len(image_bytes))
+    items = mark_data_sections(entries(conn, len(image_bytes)), image_bytes)
     grouped = regions(items, **options)
     functions = [e for e in items if e["kind"] == "function"]
     opaque = [e for e in items if e["kind"] == "opaque"]
+    data = [e for e in items if e["kind"] == "data"]
     document = {
         "image": {
             "path": str(Path(image_path).relative_to(REPO))
@@ -137,6 +172,7 @@ def derive(conn, image_path=IMAGE, output=LAYOUT_JSON, **options):
             "function_bytes": sum(e["size"] for e in functions),
             "opaque_runs": len(opaque),
             "opaque_bytes": sum(e["size"] for e in opaque),
+            "data_bytes": sum(e["size"] for e in data),
         },
         "regions": grouped,
     }
@@ -161,6 +197,9 @@ def report(document):
           f"({100 * totals['function_bytes'] / size:.1f}%)")
     print(f"opaque:   {totals['opaque_runs']:6d}  {totals['opaque_bytes']:8d} bytes "
           f"({100 * totals['opaque_bytes'] / size:.1f}%)")
+    for entry in (e for r in document["regions"] for e in r["entries"] if e["kind"] == "data"):
+        print(f"data:     {entry['section']:>6}  {entry['size']:8d} bytes "
+              f"@ 0x{entry['vaddr']:08X}")
     widest = sorted((e for r in document["regions"] for e in r["entries"]
                      if e["kind"] == "opaque"), key=lambda e: -e["size"])[:5]
     print("largest opaque runs: "

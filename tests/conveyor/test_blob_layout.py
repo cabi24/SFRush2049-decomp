@@ -102,3 +102,41 @@ def test_the_live_map_covers_the_whole_image():
             functions += entry["kind"] == "function"
     assert cursor == blob_layout.BASE + size
     assert functions == document["totals"]["functions"]
+
+
+def _retail_items(tail_start):
+    """A function, then one opaque run to the retail image's end."""
+    size = tail_start - BASE
+    return [{"kind": "function", "vaddr": BASE, "size": size, "target_id": "f"},
+            {"kind": "opaque", "vaddr": tail_start,
+             "size": blob_layout.RETAIL_IMAGE_END - tail_start}]
+
+
+def test_the_retail_tail_becomes_data_and_rodata():
+    image = bytes(blob_layout.RETAIL_IMAGE_END - BASE)
+    data_start = blob_layout.DATA_SECTIONS[0][1]
+    items = blob_layout.mark_data_sections(_retail_items(data_start), image)
+
+    assert [(e["kind"], e.get("section"), e["vaddr"], e["vaddr"] + e["size"])
+            for e in items[1:]] == [
+        ("data", ".data", 0x8010FD7C, 0x80123870),
+        ("data", ".rodata", 0x80123870, 0x801249F0)]
+    assert sum(e["size"] for e in items) == len(image)
+    regions = blob_layout.regions(items)
+    assert len(regions) == 2 and [e["kind"] for e in regions[1]["entries"]] == ["data", "data"]
+
+
+def test_a_moved_tail_or_a_return_in_it_refuses_the_data_label():
+    image = bytearray(blob_layout.RETAIL_IMAGE_END - BASE)
+    data_start = blob_layout.DATA_SECTIONS[0][1]
+    with pytest.raises(blob_layout.LayoutError, match="re-prove"):
+        blob_layout.mark_data_sections(_retail_items(data_start + 4), bytes(image))
+    offset = 0x80120000 - BASE
+    image[offset:offset + 4] = (0x03E00008).to_bytes(4, "big")
+    with pytest.raises(blob_layout.LayoutError, match="jr ra"):
+        blob_layout.mark_data_sections(_retail_items(data_start), bytes(image))
+
+
+def test_other_images_keep_their_opaque_tail():
+    items = [{"kind": "opaque", "vaddr": BASE, "size": 64}]
+    assert blob_layout.mark_data_sections(items, bytes(64)) == items

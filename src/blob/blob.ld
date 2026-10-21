@@ -1251,7 +1251,8 @@ SECTIONS
         *(.text.struct_init_and_call)
         *(.text.func_8010FD60)
         /* blob_8010fd7c */
-        *(.blobdata.op_8010fd7c)
+        *(.blobdata.data_8010fd7c)
+        *(.blobdata.rodata_80123870)
     }
 
     /* data symbols referenced by spliced C (addresses are truth:

@@ -252,9 +252,9 @@ def cartridge_coverage():
         "game_total": game["total_functions"],
         "game_bytes": game["bytes"],
         "game_total_bytes": game["image_size"],
-        # The image's tail after the last function is .data/.rodata
-        # (tests/conveyor/test_blob_data_tail.py), so the text figure is the
-        # code-only view, as the overlays report it.
+        # The image's tail after the last function is proven .data/.rodata
+        # (blob_layout.DATA_SECTIONS), so game code is reported against its
+        # code bytes; the whole-image figure follows it.
         "game_function_bytes": game["function_bytes"],
     }
 
@@ -266,10 +266,10 @@ def print_coverage(cov):
           f"{cov['static_bytes']}/{cov['static_total_bytes']} bytes "
           f"({100 * cov['static_bytes'] / cov['static_total_bytes']:.2f}%)")
     print(f"  game code:   {cov['game_functions']:4d}/{cov['game_total']} functions, "
-          f"{cov['game_bytes']}/{cov['game_total_bytes']} bytes "
-          f"({100 * cov['game_bytes'] / cov['game_total_bytes']:.2f}%; "
-          f"{100 * cov['game_bytes'] / cov['game_function_bytes']:.2f}% of "
-          f"{cov['game_function_bytes']} B text) "
+          f"{cov['game_bytes']}/{cov['game_function_bytes']} code bytes "
+          f"({100 * cov['game_bytes'] / cov['game_function_bytes']:.2f}%; "
+          f"{100 * cov['game_bytes'] / cov['game_total_bytes']:.2f}% of the "
+          f"{cov['game_total_bytes']} B image) "
           f"— compressed into the ROM at 0x{ROM_OFFSET:X}")
     if cov.get("overlays"):
         from . import ovl_splice

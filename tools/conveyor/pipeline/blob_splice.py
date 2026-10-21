@@ -779,15 +779,20 @@ def coverage(document=None, lockfile=LOCKFILE):
     linked = [e for e in functions if e["target_id"] in lock]
     total_functions = document["totals"]["functions"]
     linked_bytes = sum(e["size"] for e in linked)
+    function_bytes = sum(e["size"] for e in functions)
+    # The headline is code bytes: the image's tail is proven .data/.rodata
+    # (blob_layout.DATA_SECTIONS), which no function can ever claim.
     return {"functions": len(linked), "total_functions": total_functions,
             "bytes": linked_bytes, "image_size": size,
-            "function_bytes": sum(e["size"] for e in functions),
-            "percent": 100.0 * linked_bytes / size}
+            "function_bytes": function_bytes,
+            "percent": 100.0 * linked_bytes / function_bytes,
+            "image_percent": 100.0 * linked_bytes / size}
 
 
 def _print_coverage(stats):
-    print(f"image coverage: {stats['functions']}/{stats['total_functions']} functions, "
-          f"{stats['bytes']}/{stats['image_size']} bytes ({stats['percent']:.2f}%)")
+    print(f"code coverage: {stats['functions']}/{stats['total_functions']} functions, "
+          f"{stats['bytes']}/{stats['function_bytes']} code bytes ({stats['percent']:.2f}%; "
+          f"{stats['image_percent']:.2f}% of the {stats['image_size']} B image)")
     print("  the ROM's game-code blob is compressed from this image "
           "(pipeline.blob_rom), so spliced functions are cartridge coverage.")
 

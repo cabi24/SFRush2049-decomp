@@ -88,8 +88,9 @@ def test_coverage_counts_only_spliced_functions_and_names_the_rom_path(tmp_path,
     stats = blob_splice.coverage(document, path)
 
     assert stats["functions"] == 1 and stats["total_functions"] == 3
-    assert stats["bytes"] == 40 and stats["percent"] == pytest.approx(4.0)
-    assert stats["function_bytes"] == 100            # opaque runs are not text
+    assert stats["bytes"] == 40 and stats["function_bytes"] == 100   # opaque runs are not code
+    assert stats["percent"] == pytest.approx(40.0)
+    assert stats["image_percent"] == pytest.approx(4.0)
     blob_splice._print_coverage(stats)
     out = capsys.readouterr().out
     # Since 009 the ROM's blob is compressed from this image, so the output

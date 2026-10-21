@@ -116,7 +116,7 @@ def describe_difference(document, expected, actual):
     owner = "unmapped"
     if entry is not None:
         owner = (entry["target_id"] if entry["kind"] == "function"
-                 else f"opaque@0x{entry['vaddr']:08X}")
+                 else f"{entry['kind']}@0x{entry['vaddr']:08X}")
     lines = [
         f"first difference at image offset {offset} "
         f"(vram 0x{_base(document) + offset:08X})",

@@ -452,15 +452,21 @@ def verify_own_data(obj, name, want, address, image, start=None, addresses=None,
 
 
 def opaque_runs(document):
-    """[(start, end)] of the layout's non-function (opaque) entries."""
+    """[(start, end)] of the layout's non-function runs (opaque or data entries).
+
+    Adjacent entries (the image's .data then .rodata) form one run, as they
+    did when the layout held the whole tail as a single opaque entry."""
     out = []
     for region in document["regions"]:
         for entry in region["entries"]:
-            if entry["kind"] == "opaque":
+            if entry["kind"] != "function":
                 vaddr, size = entry["vaddr"], entry["size"]
                 vaddr = int(vaddr, 16) if isinstance(vaddr, str) else vaddr
                 size = int(size, 16) if isinstance(size, str) else size
-                out.append((vaddr, vaddr + size))
+                if out and out[-1][1] == vaddr:
+                    out[-1] = (out[-1][0], vaddr + size)
+                else:
+                    out.append((vaddr, vaddr + size))
     return out
 
 

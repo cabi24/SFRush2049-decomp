@@ -73,9 +73,11 @@ Game logic is stored compressed in ROM at offset 0xB0CB10 using DEFLATE compress
 
 The .data/.rodata tail is verified data, not unregistered code (2026-10-21): no j/jal in the game, static or
 runtime-image code targets it, and it holds no `jr ra`, stack-frame setup or `ra` save/restore.
-`tests/conveyor/test_blob_data_tail.py` re-checks this against the extracted image. The breakdown of both sections
-is in `cloud/work/frontier/type_model/REPORT.md` §1. `make progress` reports game code against the image and
-against .text function bytes ("of 561860 B text").
+`tests/conveyor/test_blob_data_tail.py` re-checks this against the extracted image, and `blob_layout derive`
+refuses the data label if the tail moves or a `jr ra` appears in it. The layout labels the two sections as `data`
+entries (`.blobdata.data_8010fd7c` "aw", `.blobdata.rodata_80123870` "a"); every other non-function run stays
+`opaque` ("ax"). The breakdown of both sections is in `cloud/work/frontier/type_model/REPORT.md` §1.
+`make progress` reports game code against its 561,860 code bytes, then against the 647,072-byte image.
 
 Approximate subsystem ranges in .text:
 

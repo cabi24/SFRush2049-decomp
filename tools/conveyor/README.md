@@ -517,6 +517,11 @@ Everything except the IDO compile runs on the Pi. The initial map described the 
 as an ordered, complete list of entries — 912 gate-passed functions (79.5%)
 and 214 opaque runs (20.5%, mostly the 85 KB data tail). Overlaps and
 coverage holes are hard errors: either would corrupt the image silently.
+Since 2026-10-21 the tail after the last function is labelled, not opaque: two
+`data` entries, `.data` 0x8010FD7C (80,628 B) and `.rodata` 0x80123870 (4,480 B),
+proven to hold no code (`tests/conveyor/test_blob_data_tail.py`; `derive` refuses
+the label if the tail moves or holds a `jr ra`). Game coverage is reported against
+function bytes first and the whole image second.
 
 **The gate**: the linked image must equal `build/game_code.bin` byte for
 byte. A failure names the first differing offset, its vram, and the region

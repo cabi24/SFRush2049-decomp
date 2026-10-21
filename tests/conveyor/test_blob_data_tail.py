@@ -2,10 +2,10 @@
 
 0x8010FD7C..0x801249F0 (85,108 B) is .data (initialised globals and every
 string literal) followed by .rodata from 0x80123870 (float literals and switch
-jump tables, starting with func_80086A50's table). The layout keeps it as one
-opaque run; coverage reports game text against function bytes only, so this
-test is the evidence for leaving the run out of that denominator. If a later
-scan registers a function in here, these assertions fail first.
+jump tables, starting with func_80086A50's table). blob_layout labels it as two
+"data" entries and coverage reports game code against function bytes only;
+this test is the evidence for both. If a later scan registers a function in
+here, these assertions fail first.
 """
 import struct
 
@@ -48,13 +48,15 @@ def _jumps_into_tail(words, vaddr):
     return hits
 
 
-def test_the_tail_is_the_last_layout_entry_and_holds_no_function():
+def test_the_layout_ends_with_the_data_and_rodata_entries():
     entries = [e for region in blob_layout.load()["regions"] for e in region["entries"]]
-    last = entries[-1]
-    assert (last["kind"], last["vaddr"], last["vaddr"] + last["size"]) == \
-        ("opaque", DATA_START, IMAGE_END)
-    assert entries[-2]["kind"] == "function"
+    assert [(e["kind"], e.get("section"), e["vaddr"], e["vaddr"] + e["size"])
+            for e in entries[-2:]] == [
+        ("data", ".data", DATA_START, RODATA_START),
+        ("data", ".rodata", RODATA_START, IMAGE_END)]
+    assert entries[-3]["kind"] == "function"
     assert blob_layout.BASE + len(_image()) == IMAGE_END
+    assert blob_layout.DATA_SECTIONS == ((".data", DATA_START), (".rodata", RODATA_START))
 
 
 def test_the_tail_has_no_returns_or_stack_frames():

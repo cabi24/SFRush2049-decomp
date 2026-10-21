@@ -10,6 +10,8 @@ neighbours:
 
     .section .text.func_800A7DF0   ->  raw instruction words (passthrough)
     .section .blobdata.op_800AB120 ->  .incbin of the image slice (opaque)
+    .section .blobdata.data_8010fd7c -> .incbin of a proven data section ("aw";
+                                        .rodata is .blobdata.rodata_*, "a")
 
 **Contract amendment (recorded 2026-09-24).** The contract as written reused
 004's `#pragma GLOBAL_ASM` C translation units. Implementation showed that
@@ -48,7 +50,16 @@ def _words(image, vaddr, size, base=None):
 def section_name(entry):
     if entry["kind"] == "function":
         return f".text.{entry['target_id']}"
+    if entry["kind"] == "data":
+        return f".blobdata.{entry['section'].lstrip('.')}_{entry['vaddr']:08x}"
     return f".blobdata.op_{entry['vaddr']:08x}"
+
+
+def section_flags(entry):
+    """Functions and unproven opaque runs stay "ax"; proven data does not."""
+    if entry["kind"] == "data":
+        return "a" if entry["section"] == ".rodata" else "aw"
+    return "ax"
 
 
 def render_region(region, image, image_rel, spliced=(), base=None, source_dir="src/blob"):
@@ -74,7 +85,7 @@ def render_region(region, image, image_rel, spliced=(), base=None, source_dir="s
              ".set noreorder", ".set noat", ""]
     for entry in region["entries"]:
         name = section_name(entry)
-        lines.append(f'.section {name}, "ax", @progbits')
+        lines.append(f'.section {name}, "{section_flags(entry)}", @progbits')
         if entry["kind"] == "function":
             target_id = entry["target_id"]
             lines.append(f".globl {target_id}")
