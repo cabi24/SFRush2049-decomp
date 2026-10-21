@@ -13,12 +13,13 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 3 | a5a4ccc1a | back out w36f's dot_runtime_a_seven_option_group_20261007 supersession (func_803993EC, func_80399D10) | -2,568 | 107 -> 105/193 | 25/49 | yes (a5a4ccc1a) |
 | - | 8754d42bc | w36y research commit (MAT3 -> N64 data-symbol map, struct layouts; not applied) | 0 | | | |
 | 4 | 0ce59e845 | w36j image B: animStuntPoints, animHealth, newWorldDamage, ShowHUDExtra (standalone) + UpdateBattlePowerUps (dot_runtime_b_resource_callbacks_20261012 superseded in place) | +6,120 | 105/193 | 25 -> 30/49 | yes (0ce59e845, with 8754d42bc) |
-| 5 | (this) | w36c updateSelectButtons/controlSelect@recordscr + w36b initRecordScreen (+stub) merged into dot_runtime_a_callers_deep_20261011 with the installed w36f revision; w36c controlSelect@playerscr (dot_runtime_a_availability_refresh_20261007); w36b setGhosts/updateCarComponents (dot_cleanup_colortrace_20261011) | +14,824 | 105 -> 112/193 | 30/49 | |
+| 5 | cc56165ba | w36c updateSelectButtons/controlSelect@recordscr + w36b initRecordScreen (+stub) merged into dot_runtime_a_callers_deep_20261011 with the installed w36f revision; w36c controlSelect@playerscr (dot_runtime_a_availability_refresh_20261007); w36b setGhosts/updateCarComponents (dot_cleanup_colortrace_20261011) | +14,824 | 105 -> 112/193 | 30/49 | yes (cc56165ba) |
+| - | 0cad8af34 | owner: research receipt re-pins for the three held items | 0 | | | with batch 6 |
+| 6 | (this) | formerly held: w36f updateButtons/updateModeScreen@modescr (seven_option group), w36j RemoveHUDExtra (B), w36m animResults/animFlag/animLapTimeText/func_80106874 (game credits_scroll_grp) | +2,568 A, +380 B, +6,224 game | 112 -> 114/193 | 30 -> 31/49 | |
 
 ## Held for owner
 
-The coordinator dropped all three held items from the w36i queue (2026-10-21): the owner re-pins these receipts
-by hand. The patches below are prepared, not applied; w36i never stages the receipt files.
+The owner applied the three receipt patches below himself (0cad8af34) and the items landed in batch 6.
 
 ### w36f: func_803993EC (updateButtons@modescr.c) + func_80399D10 (updateModeScreen)
 

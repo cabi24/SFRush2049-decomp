@@ -5302,6 +5302,7 @@ func_80105DA8:
 .section .text.animResults, "ax", @progbits
 .globl animResults
 animResults:
+    /* compiled from src/blob/animResults.c */
     .word 0x27BDFE70
     .word 0xAFBE0050
     .word 0x3C1E8015
@@ -5933,6 +5934,7 @@ animResults:
 .section .text.func_80106874, "ax", @progbits
 .globl func_80106874
 func_80106874:
+    /* compiled from src/blob/func_80106874.c */
     .word 0x27BDFFC0
     .word 0xAFB40034
     .word 0x3C148014
@@ -7792,6 +7794,7 @@ animLapTime:
 .section .text.func_801084D4, "ax", @progbits
 .globl func_801084D4
 func_801084D4:
+    /* compiled from src/blob/func_801084D4.c */
     .word 0x27BDFF20
     .word 0x3C0E8011
     .word 0x8DCE74B4
@@ -9517,6 +9520,7 @@ func_80109A60:
 .section .text.func_80109F54, "ax", @progbits
 .globl func_80109F54
 func_80109F54:
+    /* compiled from src/blob/func_80109F54.c */
     .word 0x3C028015
     .word 0x84421AD0
     .word 0x27BDFF78

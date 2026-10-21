@@ -11,11 +11,11 @@
  ],
  "members": [
   "func_80399394",
-  "func_803A6B50"
- ],
- "context": [
+  "func_803A6B50",
   "func_803993EC",
   "func_80399D10"
  ],
- "provenance": "Supersede same-name group, preserve all installed members and genuine context. Add A6B50 with independently bounded text36 reconstruction; original capacity unknown. Checker owns installation."
+ "context": [],
+ "provenance": "Supersede same-name group, preserve all installed members and genuine context. Add A6B50 with independently bounded text36 reconstruction; original capacity unknown. Checker owns installation. w36f: func_803993EC (MAT3 modescr updateButtons) and func_80399D10 (updateModeScreen) added as members and claims; old members unchanged.",
+ "allow_unverified": true
 }
