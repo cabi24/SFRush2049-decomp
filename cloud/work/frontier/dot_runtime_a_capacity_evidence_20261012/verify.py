@@ -261,8 +261,19 @@ def replay(deep=False):
     # w25p: before installation production has group.c (the helper); after, this packet's eligibility.c.
     installed = ROOT/'src/ovl_a/groups/dot_runtime_a_seven_option_group_20261007'
     installed = installed/('eligibility.c' if (installed/'eligibility.c').exists() else 'group.c')
-    require((GROUP/'eligibility.c').read_bytes() == installed.read_bytes(),
-            'inherited genuine group source differs from production')
+    # w36: a later revision may supersede the installed group in place (w36f adds
+    # func_803993EC/func_80399D10 as members). The revision this packet inherits is then
+    # kept byte-identically in cloud/work/frontier/superseded/ (handoff section 5), and
+    # production must still lock every member this packet claims.
+    inherited = (GROUP/'eligibility.c').read_bytes()
+    if inherited != installed.read_bytes():
+        superseded = ROOT/'cloud/work/frontier/superseded/dot_runtime_a_seven_option_group_20261007'
+        require(all((superseded/f).is_file() and (superseded/f).read_bytes() == (GROUP/f).read_bytes()
+                    for f in ('eligibility.c', 'renderer.c')),
+                'inherited genuine group source differs from production')
+        production = json.loads((installed.parent/'group.json').read_text())
+        require(set(spec['members']) <= set(production['members']),
+                'superseding production group dropped an inherited member')
     with tempfile.TemporaryDirectory(prefix='capacity-a6b50-') as path, targets(owndata.ImageData.from_image(data,base)):
         temp=Path(path);obj=temp/'group.o'
         score.compile_group(GROUP,obj)

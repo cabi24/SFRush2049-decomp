@@ -74,7 +74,12 @@ def test_packet_is_research_only():
     assert data['status'] == 'NONMATCH'
     assert data['accepted_bytes'] == 0
     assert data['elf']['differing_words'] == 34
-    assert not (ROOT / 'cloud/matches/ovl_b/func_8039244C.c').exists()
+    # w36: RemoveHUDExtra (w36j) may land as a standalone image-B match; the promoted
+    # state is allowed, an unlocked submission is not.
+    match = ROOT / 'cloud/matches/ovl_b/func_8039244C.c'
+    locks = json.loads((ROOT / 'ovl_matched.lock.json').read_text())
+    assert (not match.exists()
+            or locks['b'].get('func_8039244C', {}).get('source') == 'src/ovl_b/func_8039244C.c')
 
 
 def test_gnu_explicit_entry_and_misplacement_rejection(tmp_path, monkeypatch):
