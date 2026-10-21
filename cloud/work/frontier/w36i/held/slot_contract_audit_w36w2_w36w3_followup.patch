@@ -1,0 +1,111 @@
+--- a/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
++++ b/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
+@@ -53,6 +53,7 @@
+       "stack_word": 21
+     },
+     "accepted_callers": [
++      "voice_stop",
+       "func_800B4FB0",
+       "TitlePane",
+       "particles_update",
+@@ -67,9 +68,12 @@
+       "world_trigger_check",
+       "emitter_update",
+       "func_800EF288",
++      "dust_cloud_effect",
+       "skid_mark_render",
+       "PrintScores",
+       "SetHighScoreState",
++      "func_800F857C",
++      "countdown_handler",
+       "game_timer_display",
+       "audio_animButtonText",
+       "audio_animText",
+@@ -103,13 +107,12 @@
+       "func_8010B9C8",
+       "func_8010BC84"
+     ],
+-    "unaccepted_caller_bytes": 19776,
++    "unaccepted_caller_bytes": 17664,
+     "only_selector_unaccepted_direct_game_dependency": {
+       "object_create": 112,
+-      "world_velocity_integrate": 712,
+-      "dust_cloud_effect": 600
++      "world_velocity_integrate": 712
+     },
+-    "bounded_dependency_bytes": 1424
++    "bounded_dependency_bytes": 824
+   },
+   "no_copy_sites": [
+     {
+@@ -183,7 +186,7 @@
+       "start": "0x800B438C",
+       "bytes": 552,
+       "body_sha256": "36d01d43f0e04c7f9772101adac59dc18eb372e5302a5ccd7238062887e36b65",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800B43AC"
+       ],
+@@ -211,8 +214,7 @@
+         "s1": 6
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "object_bytes_sum_global",
+-        "voice_stop"
++        "object_bytes_sum_global"
+       ]
+     },
+     "TitlePane": {
+@@ -273,7 +275,6 @@
+         "stack_word": 3
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "audio_frame_sync",
+         "display_enable",
+         "object_create"
+       ]
+@@ -521,7 +522,7 @@
+       "start": "0x800EFEA8",
+       "bytes": 600,
+       "body_sha256": "f7175848a7f49c139b0cc9d5a1136ce4043882ba1c21276e4b5a3e9cbb7e1012",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800EFFF4",
+         "0x800F0028"
+@@ -581,7 +582,7 @@
+       "start": "0x800F857C",
+       "bytes": 464,
+       "body_sha256": "8c4e29430e1c577c4e7eae95803cf05bf81259bda910b4f02f74735755bfd38b",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800F85CC",
+         "0x800F866C"
+@@ -597,7 +598,7 @@
+       "start": "0x800FBC30",
+       "bytes": 496,
+       "body_sha256": "903a33743d334b2c4c3721feca3a326c86cf397f7685c4f65194459a8fcd1005",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800FBD38"
+       ],
+--- a/tests/cloud/test_slot_contract_audit.py
++++ b/tests/cloud/test_slot_contract_audit.py
+@@ -29,10 +29,10 @@
+     result = receipt()['summary']
+     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (66, 171, 168)
+     assert sum(result['captures'].values()) == 162
+-    assert result['accepted_callers'] == ['func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'credits_scroll', 'func_800D9058', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54, w36x3 particles_update via w36i 2026-10-21; w36o skid_mark_render/func_800EF288/emitter_update, w36q particle_render/func_800B4FB0, w36z func_80100E58, w36w game_timer_display/checkpoint_hit, w36k func_800D9058, w36x3 particles_update via w36i)
+-    assert result['unaccepted_caller_bytes'] == 19776
+-    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 3
+-    assert result['bounded_dependency_bytes'] == 1424
++    assert result['accepted_callers'] == ['voice_stop', 'func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'credits_scroll', 'func_800D9058', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'dust_cloud_effect', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'func_800F857C', 'countdown_handler', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54, w36x3 particles_update via w36i 2026-10-21; w36o skid_mark_render/func_800EF288/emitter_update, w36q particle_render/func_800B4FB0, w36z func_80100E58, w36w game_timer_display/checkpoint_hit, w36k func_800D9058, w36x3 particles_update via w36i; w36w2 voice_stop/func_800F857C/countdown_handler, w36w3 dust_cloud_effect via w36i)
++    assert result['unaccepted_caller_bytes'] == 17664
++    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 2
++    assert result['bounded_dependency_bytes'] == 824
+ 
+ 
+ @pytest.mark.parametrize('name,site', [
