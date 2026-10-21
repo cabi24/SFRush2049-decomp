@@ -1,0 +1,3 @@
+spliced w36w_demo_pair: 6 members, new: ['debug_collision', 'debug_stats']
+image coverage: 1115/1216 functions, 458424/647072 bytes (70.85%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

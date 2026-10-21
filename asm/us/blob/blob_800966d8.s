@@ -2391,6 +2391,7 @@ entity_flag_check:
 .section .text.func_800988D8, "ax", @progbits
 .globl func_800988D8
 func_800988D8:
+    /* compiled from src/blob/func_800988D8.c */
     .word 0x3C138015
     .word 0x8E739868
     .word 0x27BDFFE8

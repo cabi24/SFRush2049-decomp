@@ -182,79 +182,42 @@ void entity_flag_check(s32 *ipa_s0) {
     M2C_FIELD(ipa_s0, s8 *, 0xC) = 1;
 }
 
+/* func_800988D8 = _ProcessSequences@audiomgr.c (MAT3 GameCube audiomgr.c, GC 0x800A44D8; DWARF locals s, next, t).
+ * Body: Astra's research packet refs/pr/408 (cloud/work/frontier/dot_mat3_sequences_research_20261017/candidate.c,
+ * 1/95: the state local is that packet's native reconstruction choice), closed by w36w: DISCLOSED no-code identity
+ * `(state*1)==2` - uopt orders ==/!= operands by kind (a plain variable goes second); the identity makes the state
+ * side an expression so the hoisted constant 2 (s7) is the first BNE operand as in retail (wave-16 lever;
+ * `state^0` and `state>>0` match too). The clock predicate is the locked func_80095198 (timeout.c), inlined. */
+typedef struct Sequence { Link ll; u32 id; s8 free,active,stop; f32 startTime,timeout; u8 next; s32 ids[4]; s32 subId,replace; u8 priority; s32 sndTag; } Sequence;
+typedef struct FxTag { Link ll; List *list; u32 id; s32 state,type; s8 paused,loop; u8 numCmds,priority; s32 wpriority; f32 startTime,vol,lrpan,fbpan,pitch; s32 fxid,subId; u32 sysId; void *data; } FxTag;
+s32 func_80095198(f32,f32);
 void func_800988D8(void) {
-    f32 temp_f0;
-    f32 temp_f14;
-    f32 var_f12;
-    s32 temp_a0;
-    s32 temp_s5;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 var_s3;
-    s32 var_v0;
-    u8 temp_t7;
-    u8 var_v0_2;
-
-    var_s3 = D_80149868;
-    if (var_s3 != 0) {
-        do {
-            temp_s5 = M2C_FIELD(var_s3, s32 *, 0);
-            if (M2C_FIELD(var_s3, s8 *, 0xE) == 0) {
-                temp_a0 = M2C_FIELD(var_s3, s32 *, 0x38);
-                if (temp_a0 == -1) {
-                    temp_f0 = M2C_FIELD(var_s3, f32 *, 0x10);
-                    temp_f14 = temp_f0 + M2C_FIELD(var_s3, f32 *, 0x14);
-                    var_f12 = temp_f14;
-                    if (D_80152748 < temp_f0) {
-                        var_f12 = temp_f14 - 14400.0f;
-                    }
-                    var_v0 = 0;
-                    if (var_f12 < D_80152748) {
-                        var_v0 = 1;
-                    }
-                    if (var_v0 != 0) {
-                        goto block_9;
-                    }
-                    goto block_10;
-                }
-block_10:
-                temp_v0 = func_80091BA8(temp_a0);
-                if (temp_v0 != 0) {
-                    if ((M2C_FIELD(temp_v0, s32 *, 0x10) == 2) && (M2C_FIELD(temp_v0, u8 *, 0x1A) == 0) && (entity_state_check(M2C_FIELD(temp_v0, s32 *, 0x3C)) == 0)) {
-                        audio_effect_setup(temp_v0);
-                        goto block_15;
-                    }
-                } else {
-block_15:
-                    var_v0_2 = M2C_FIELD(var_s3, u8 *, 0x18);
-                    if (M2C_FIELD((var_s3 + (var_v0_2 * 4)), s32 *, 0x1C) == -1) {
-loop_16:
-                        temp_t7 = var_v0_2 + 1;
-                        var_v0_2 = temp_t7 & 0xFF;
-                        M2C_FIELD(var_s3, u8 *, 0x18) = temp_t7;
-                        if ((s32) var_v0_2 < 4) {
-                            if (M2C_FIELD((var_s3 + (var_v0_2 * 4)), s32 *, 0x1C) == -1) {
-                                goto loop_16;
-                            }
-                        }
-                    }
-                    if ((s32) var_v0_2 >= 4) {
-                        entity_flag_check(var_s3);
-                    } else {
-                        M2C_FIELD(var_s3, u8 *, 0x18) = (u8) (var_v0_2 + 1);
-                        temp_v0_2 = entity_flags_apply(M2C_FIELD((var_s3 + (var_v0_2 * 4)), s32 *, 0x1C), M2C_FIELD(var_s3, s32 *, 0x2C), M2C_FIELD(var_s3, s32 *, 0x30), M2C_FIELD(var_s3, u8 *, 0x34));
-                        M2C_FIELD(var_s3, s32 *, 0x38) = temp_v0_2;
-                        M2C_FIELD(func_80091BA8(temp_v0_2), s32 *, 0x40) = var_s3;
-                    }
-                }
-            } else {
-block_9:
-                scheduler_recv(M2C_FIELD(var_s3, s32 *, 0x38));
-                entity_flag_check(var_s3);
-            }
-            var_s3 = temp_s5;
-        } while (temp_s5 != 0);
-    }
+ Sequence *s,*next;
+ FxTag *t;
+ for(s=(Sequence *)D_80149860.head;s;s=next) {
+  next=(Sequence *)s->ll.next;
+  if(s->stop || (s->sndTag == -1 && func_80095198(s->startTime,s->timeout))) {
+   scheduler_recv(s->sndTag);
+   entity_flag_check((s32 *)s);
+  } else {
+   t=(FxTag *)func_80091BA8(s->sndTag);
+   if(t) {
+    s32 state=t->state;
+    if((state*1)==2 && !t->numCmds && !entity_state_check(t->sysId))
+     audio_effect_setup((Effect *)t);
+    else continue;
+   }
+   while(s->ids[s->next]==-1) {
+    s->next++;
+    if(s->next>=4) break;
+   }
+   if(s->next>=4) entity_flag_check((s32 *)s);
+   else {
+    s->sndTag=entity_flags_apply(s->ids[s->next++],s->subId,s->replace,s->priority);
+    ((FxTag *)func_80091BA8(s->sndTag))->data=s;
+   }
+  }
+ }
 }
 
 

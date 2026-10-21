@@ -18,7 +18,8 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 6 | dabdcf959 | formerly held: w36f updateButtons/updateModeScreen@modescr (seven_option group), w36j RemoveHUDExtra (B), w36m animResults/animFlag/animLapTimeText/func_80106874 (game credits_scroll_grp) | +2,568 A, +380 B, +6,224 game | 112 -> 114/193 | 30 -> 31/49 | yes (dabdcf959, with 0cad8af34) |
 | 7 | 65d3be09b | w36e trackscr (dot_runtime_a_c93c_closure_20261012: 11 new claims incl. w36d's BBB4/DFEC) + startscr initScreen (w35d_start_screen); w36h shots (NEW group w36h_shots, image B, 10 members) | +10,376 A, +12,360 B | 114 -> 126/193 | 31 -> 41/49 | yes (fb77b6f9e) |
 | 8 | fb77b6f9e | game: w36l StartEnvironment (music_control) + AnimateNewBlast (entity_update_callback) singles; w36o InitSystem (game_late_init, codex_heap_release_a25 superseded; force_internal HAL_InitText_Init, DeallocateMemory_Init); w36u func_8009F058 (frontier_particle_knot superseded) | +9,224 game (1094 -> 1098) | | | yes (fb77b6f9e) |
-| 9 | (this) | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | |
+| 9 | 82c7fe44c | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | yes (bf8210efa, with w36x) |
+| 10 | (this) | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | |
 
 ## Held for owner
 
@@ -140,6 +141,26 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   `test_fresh_source_bound_census` fails. Backed out of batch 9 (blob_group revert, installed group re-spliced, lock
   entry restored exactly, force_internal audio_doppler_calc removed); it is included in
   `slot_contract_audit_held_callers.patch` (the regenerated evidence assumes it landed with the six callers).
+
+### w36w: credits_scroll_grp merge (game_timer_display = animPanes@audioscr.c, checkpoint_hit = animElapsedTimer@hud.c)
+
+- Merged onto the installed w36m revision in `groups/credits_scroll_grp/` (w36w's gr3_d.c and gr3_73d8.c; claims
+  game_timer_display + checkpoint_hit only; time_result_display stays context/keep and gr3_trd.c is dropped, per the
+  coordinator). Builder, no --claims: all 16 members MATCH (`score_merged_credits_scroll.txt`).
+- Held: both are slot_state_setup callers and the audit binds credits_scroll_grp/group.json. Folded into
+  `slot_contract_audit_held_callers.patch` (its evidence uses the group.json hash install_group writes from this
+  packet). Land with `install_group.py cloud/work/frontier/w36i/groups/credits_scroll_grp credits_scroll_grp`.
+
+### w36w: NEW group w36w_demo_pair (debug_collision = updateDemoGame, debug_stats = playDemoGame + four stub bodies)
+
+- Installed, then backed out (blob_group revert; stub singles and lock entries restored from HEAD; overrides
+  removed): the packet's context copy frontier_path_D169C_path.c defines D_80152818, which the locked
+  frontier_path_D169C/path.c already defines, so the shadow unit fails (`uld saw a name defined twice ...
+  D_80152818: multiply defined`). The established fix is an `extern_data` override for the copy, but
+  frontier_car_checkpoints' copy already holds the only D_80152818 entry and `blob_unit.validate_overrides`
+  rejects a second entry for the same name ("extern_data lists D_80152818 twice").
+- Needs a tooling decision (allow one extern_data entry per (name, file), or a packet without that copy); then
+  land with the four `--revert-single` stubs and the overrides listed in w36w/RESULTS.md (+1,064 B).
 
 ## Batch 5 merge (dot_runtime_a_callers_deep_20261011)
 

@@ -1,0 +1,3 @@
+flags {'drone_target_update': '-O3'}
+refused {}
+image_ok True locked 1111

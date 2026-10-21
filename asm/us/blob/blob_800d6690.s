@@ -1595,6 +1595,7 @@ render_results_screen:
 .section .text.drone_target_update, "ax", @progbits
 .globl drone_target_update
 drone_target_update:
+    /* compiled from src/blob/drone_target_update.c */
     .word 0x27BDFFC0
     .word 0x3C0E8015
     .word 0x85CEA108

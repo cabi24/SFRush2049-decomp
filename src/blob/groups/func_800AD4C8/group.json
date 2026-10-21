@@ -6,7 +6,8 @@
   "camera_trigger_check",
   "camera_victory",
   "func_800C3AD0",
-  "camera_play_script"
+  "camera_play_script",
+  "func_800AD4C8"
  ],
  "files": [
   "camera_play_script.c",
@@ -42,7 +43,6 @@
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
  "context": [
-  "func_800AD4C8",
   "input_process_controller",
   "func_800AD5D0",
   "func_800AC9BC",
@@ -54,5 +54,5 @@
   "func_8009E820"
  ],
  "provenance": "superseded in place by PR #390 (dot_mat3_carbody_20261017/groups/func_800AD4C8, head 5ac0146ef): + camera_play_script = car-body surface collision; pre-install copy in cloud/work/frontier/superseded/func_800AD4C8_w34/ (w34i)",
- "note": "Supersedes func_800AD4C8 in place, preserving all six locked members. The historical stand-ins/context and unmatched func_800AC9BC are inherited unchanged. Existing lsq is non-static/unkept solely to give its deleted-procedure residue a symbol boundary. Added locked callees are copied verbatim as context. camera_play_script has one disclosed multiply-by-one source-shaping device in two uses; no claim of original spelling. Whole-unit, image and ROM gates remain pending."
+ "note": "Supersedes func_800AD4C8 in place, preserving all six locked members. The historical stand-ins/context and unmatched func_800AC9BC are inherited unchanged. Existing lsq is non-static/unkept solely to give its deleted-procedure residue a symbol boundary. Added locked callees are copied verbatim as context. camera_play_script has one disclosed multiply-by-one source-shaping device in two uses; no claim of original spelling. Whole-unit, image and ROM gates remain pending. | Wave 36 (w36w): func_800AD4C8 = VectorToSurfEdge@stree.c (MAT3, w36n proven) promoted from context to member, no source change: its group.c body is MATCH here and EQUAL in the shadow unit (internal). Its retail callers are func_800C3AD0 (member) and input_process_controller (real body in this group as context, MATCH; lane w36v's function); __standin_func_800AD4C8 is the existing kept stand-in for input_process_controller's callers, not for func_800AD4C8's."
 }

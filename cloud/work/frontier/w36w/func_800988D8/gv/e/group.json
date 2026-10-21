@@ -1,0 +1,50 @@
+{
+ "members": [
+  "engine_sound_sync",
+  "audio_effect_setup",
+  "func_80098ADC",
+  "func_800988D8"
+ ],
+ "context": [
+  "func_80091FBC",
+  "func_8009211C",
+  "audio_pitch_adjust",
+  "entity_flag_check",
+  "func_80098FB8",
+  "func_80091AF0",
+  "func_80091AF8",
+  "entity_transform_calc",
+  "client_sync",
+  "entity_hierarchy_update",
+  "stat_lap_complete",
+  "game_timer_resume",
+  "func_80091BA8",
+  "func_80091B00",
+  "scheduler_recv",
+  "func_80095198"
+ ],
+ "files": [
+  "engine_sound_sync.c",
+  "audio_effect_setup_b132.c",
+  "codex_transform_b109.c",
+  "timeout.c"
+ ],
+ "keep": [
+  "engine_sound_sync",
+  "func_80098FB8",
+  "func_80091FBC",
+  "func_8009211C",
+  "client_sync",
+  "entity_hierarchy_update",
+  "scheduler_recv",
+  "stat_lap_complete",
+  "game_timer_resume",
+  "func_80095198"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w23f (wave 23): engine_sound_sync EQUAL in the whole-program unit with audio_effect_setup (IPA register parameter s0, s1/s2 unsaved; its other callers func_800988D8/func_80098FB8/entity_ai_pathfind are unmatched retail asm in the unit) and the locked caller-less stub func_80098ADC given its body (inlined gain clamp, helper-identity hypothesis). Files: engine_sound_sync.c (members engine_sound_sync, func_80098ADC; context func_80091AF0/func_80091AF8 defined after the function, same bodies as codex_heap_release_a25's, see its header for why), audio_effect_setup_b132.c (byte-identical copy of cloud/work/lean_audio_effect_setup_20261006/group.c: member audio_effect_setup, B132 context callers func_800988D8/func_80098FB8 NONMATCH reconstructions that keep audio_effect_setup out of line, and the list routines), codex_transform_b109.c (byte-identical copy of src/blob/groups/codex_transform_b109/group.c: entity_transform_calc, whose x,y,z,w arrive in $f22/$f24/$f26/$f28 by IPA). Shaping devices (two compiled-out compares) and one unused local are disclosed in engine_sound_sync.c. unit_overrides: forced_internal audio_effect_setup and func_80098ADC; install with --revert-single func_80098ADC.",
+ "provenance": "frontier wave 23 (w23f), cloud/work/frontier/w23f/RESULTS.md; w17h/w20e/w21h/w22e history",
+ "claims": [
+  "func_800988D8"
+ ]
+}

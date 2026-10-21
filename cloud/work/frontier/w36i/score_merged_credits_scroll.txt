@@ -1,0 +1,80 @@
+Members:
+credits_scroll:
+  MATCH
+func_80100B8C:
+  MATCH
+slot_state_setup:
+  MATCH
+world_trigger_check:
+  MATCH
+func_8010A53C:
+  MATCH
+func_80107EDC:
+  MATCH
+animLapTime:
+  MATCH
+animElapsedTimerText:
+  MATCH
+animPlace:
+  MATCH
+animWrongWay:
+  MATCH
+    own .bss placed at 0x8013F2F8 (1 bytes; zero-initialised: verified by address only, nothing to compare)
+func_801084D4:
+  MATCH
+func_80109F54:
+  MATCH
+    own .rodata verified at 0x80120E48..0x80120E50
+func_80106874:
+  MATCH
+animResults:
+  MATCH
+    own .rodata verified at 0x80120DBC..0x80120DC4
+game_timer_display:
+  MATCH
+checkpoint_hit:
+  MATCH
+
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+object_byte9_set:
+  MATCH
+object_bytes23_sum:
+    +0x010  want 3c0c8015 lui t4,0x8015                 got 3c0a8015 lui t2,0x8015               
+    +0x014  want 258c97f0 addiu t4,t4,-26640            got 254a97f0 addiu t2,t2,-26640          
+object_bytes_sum_global:
+    +0x010  want 3c0c8015 lui t4,0x8015                 got 3c0a8015 lui t2,0x8015               
+    +0x014  want 258c97f0 addiu t4,t4,-26640            got 254a97f0 addiu t2,t2,-26640          
+func_800F68A4:
+  MATCH
+camera_shake_update:
+  MATCH
+slot_value_get:
+    +0x008  want 00803825 move a3,a0                    got afa40000 sw a0,0(sp)                 
+    +0x00c  want 00002825 move a1,zero                  got 00802825 move a1,a0                  
+mode_byte2_set:
+  MATCH
+mode_byte_set:
+  MATCH
+object_type_byte2_get:
+  MATCH
+object_type_byte3_get:
+  MATCH
+func_800B669C:
+  MATCH
+func_800D7634:
+    +0x000  want 27bdff00 addiu sp,sp,-256              got 27bdff90 addiu sp,sp,-112            
+    +0x018  want afbf006c sw ra,108(sp)                 got afbf002c sw ra,44(sp)                
+time_result_display:
+    +0x000  want 27bdff70 addiu sp,sp,-144              got 27bdff60 addiu sp,sp,-160            
+    +0x004  want 3c148014 lui s4,0x8014                 got afbf0034 sw ra,52(sp)                
+sound_update_channel:
+    +0x000  want 3c078015 lui a3,0x8015                 got 3c058015 lui a1,0x8015               
+    +0x004  want 8ce79780 lw a3,-26752(a3)              got 24a59780 addiu a1,a1,-26752          
+func_80096288:
+    +0x000  want 10c00001 beqz a2,0x8                   got 03e00008 jr ra                       
+    +0x008  want 03e00008 jr ra                         got (missing)
+func_800B6748:
+  MATCH
+rc=0

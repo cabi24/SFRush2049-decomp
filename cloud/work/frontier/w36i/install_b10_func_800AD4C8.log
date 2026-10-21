@@ -1,0 +1,3 @@
+spliced func_800AD4C8: 8 members, new: ['func_800AD4C8']
+image coverage: 1113/1216 functions, 457360/647072 bytes (70.68%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.
