@@ -1,0 +1,3 @@
+image A: group spliced ['func_8039D05C', 'func_8039D300', 'func_8039D494', 'func_8039D6A4', 'func_8039E200', 'func_8039E3BC', 'func_8039ED20', 'func_8039EF00', 'func_8039EF08', 'func_8039FF04', 'func_803A0FD8', 'func_803A1EAC']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     94/193 functions, 84288/194128 bytes (43.42%; 55.11% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     25/49 functions, 17412/43888 bytes (39.67%; 44.98% of 38708 B text) — compressed into the ROM at 0xB6FEC4

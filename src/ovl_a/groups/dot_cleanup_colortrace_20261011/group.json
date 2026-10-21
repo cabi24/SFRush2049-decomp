@@ -14,15 +14,17 @@
   "func_8039E200",
   "func_8039E3BC",
   "func_8039FF04",
-  "func_8039D6A4"
+  "func_8039D6A4",
+  "func_8039EF08",
+  "func_803A0FD8",
+  "func_803A1EAC",
+  "func_8039EF00"
  ],
  "context": [
   "func_803A0498",
-  "func_803A0FD8",
-  "func_803A1EAC",
-  "func_8039EF08"
+  "func_8039E444"
  ],
- "provenance": "Supersedes the accepted same-name group (all six old members byte-identical: D300, D05C, D494, ED20, E200, E3BC). w35a adds func_8039FF04 (GC initButtons@carscr.c) and func_8039D6A4 (GC updateButtons@carscr.c) as members from the MAT3 carscr.c bodies; the only head change is D_80140BDC declared volatile u8 (used by context func_803A0FD8 only). Own data/bss unverified for image A (no retail data tree).",
  "name": "dot_cleanup_colortrace_20261011",
- "allow_unverified": true
+ "allow_unverified": true,
+ "provenance": "w36a revision of the installed 8-member group (w35a): every old member byte-identical and still MATCH. Adds three claimed members from the MAT3 carscr.c ports (w35b, w35c), closed by w36a: func_8039EF08 (GC showCarSelect; as1 source-line tie), func_803A0FD8 (GC _InitScreen; spill-home order + as1 delay slot) and func_803A1EAC (GC updateCarScreen, keep root; ghost-file loop `continue` form fixes the lda-web split); see their headers; plus func_8039EF00 (GC createGridMap, empty in N64, inlined into showCarSelect; it replaces w35b's two unused locals). Context: func_8039E444 (w35b stand-in for updateCarComponents; gives EF08 the register-parameter/clobber convention of its call; NEW context entry), func_803A0498 unchanged. Head changes vs installed: per-player byte tables as [][13]/[5][13] rows, u32 D_801174BC/D_801174B4, resource_type_select(u32), u32 object_manager_update, PreparedCar.color s8[3] (all extern/type facts, see w36a RESULTS.md). Own data/bss unverified for image A (no retail data tree)."
 }

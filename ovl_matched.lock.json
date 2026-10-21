@@ -543,89 +543,133 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039D300": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039D494": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039D6A4": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039E200": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039E3BC": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
     },
     "func_8039ED20": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
+    },
+    "func_8039EF00": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_cleanup_colortrace_20261011",
+      "image": "A",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
+      "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
+    },
+    "func_8039EF08": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_cleanup_colortrace_20261011",
+      "image": "A",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
+      "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
     },
     "func_8039FF04": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_cleanup_colortrace_20261011",
       "image": "A",
-      "origin": "cloud/work/frontier/w35a/groups/dot_cleanup_colortrace_20261011",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
       "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
-      "source_sha256": "9c40f98a003373651c1f7758f44d93fb0904c9ece37ee8f9b3ceacbb665adafb",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-20"
+      "verified_at": "2026-10-21"
+    },
+    "func_803A0FD8": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_cleanup_colortrace_20261011",
+      "image": "A",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
+      "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
+    },
+    "func_803A1EAC": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_cleanup_colortrace_20261011",
+      "image": "A",
+      "origin": "cloud/work/frontier/w36a/groups/dot_cleanup_colortrace_20261011",
+      "source": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.json",
+      "source_sha256": "67d08d2adafb0bc1ad72ea7c959a24a30f5d257e942bc165668df24746b3f5bc",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
     },
     "func_803A3A6C": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

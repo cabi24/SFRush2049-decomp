@@ -1,0 +1,33 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_803A1EAC"
+ ],
+ "members": [
+  "func_8039D300",
+  "func_8039D05C",
+  "func_8039D494",
+  "func_8039ED20",
+  "func_8039E200",
+  "func_8039E3BC",
+  "func_8039FF04",
+  "func_8039D6A4",
+  "func_8039EF08",
+  "func_803A0FD8",
+  "func_803A1EAC"
+ ],
+ "context": [
+  "func_803A0498",
+  "func_8039E444"
+ ],
+ "name": "dot_cleanup_colortrace_20261011",
+ "allow_unverified": true,
+ "claims": [
+  "func_8039EF08",
+  "func_803A0FD8"
+ ],
+ "provenance": "w36a revision of the installed 8-member group (w35a): every old member byte-identical and still MATCH. Adds two claimed members from the MAT3 carscr.c ports by w35b, closed by w36a: func_8039EF08 (GC showCarSelect, as1 source-line tie) and func_803A0FD8 (GC _InitScreen, spill-home order + as1 delay slot); see their headers. Context bodies: func_803A1EAC (w35c MAT3 port, updateCarScreen, keep root), func_8039E444 (w35b stand-in for updateCarComponents; gives EF08 the register-parameter/clobber convention of its call; NEW context entry), func_803A0498 unchanged. Head changes vs installed: per-player byte tables as [][13]/[5][13] rows, u32 D_801174BC/D_801174B4, resource_type_select(u32), u32 object_manager_update, PreparedCar.color s8[3] (all extern/type facts, see w36a RESULTS.md). Own data/bss unverified for image A (no retail data tree)."
+}

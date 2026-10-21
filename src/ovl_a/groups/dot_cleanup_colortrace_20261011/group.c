@@ -108,17 +108,18 @@ extern void set_race_state(void);
 extern void func_8039FF04(s8);
 extern void func_8039E3BC(s32);
 typedef struct Vec3 {f32 v[3];} Vec3;
-typedef struct PreparedCar {u8 unknown0,car,color[3],unknown5,flags,unknown7;} PreparedCar;
+typedef struct PreparedCar {u8 unknown0,car;s8 color[3];u8 unknown5,flags,unknown7;} PreparedCar;
 extern Record **D_8012E6F8;
-extern s32 D_801174BC,D_801174B4,D_803BA030,D_803BA050[],D_803BA060[][19],D_803B9BA0[],D_803AF980;
+extern u32 D_801174BC,D_801174B4;
+extern s32 D_803BA030,D_803BA050[],D_803BA060[][19],D_803B9BA0[],D_803AF980;
 extern s8 D_80157244,D_803BA04C[],D_8012E67C[],D_80138664[];
 extern s16 D_801164BE,D_803B28B0[];
 extern Slot D_803AF9A8[][44];
 extern Vec3 D_803B3030;
 extern PreparedCar D_80153E88[];
 extern u8 D_803B857C[],D_803B8590[],D_803B85A0[];
-extern s8 D_80110E78[13],D_8011103C[13],D_80111080[13],D_8011119C[13],D_80111230[13],D_8011128C[13];
-extern s8 D_80111604[13],D_80111648[13],D_8011168C[13],D_8011157C[13],D_801115C0[13];
+extern s8 D_80110E78[][13],D_8011103C[][13],D_80111080[][13],D_8011119C[][13],D_80111230[][13],D_8011128C[][13];
+extern s8 D_80111604[][13],D_80111648[][13],D_8011168C[][13],D_8011157C[][13],D_801115C0[][13];
 extern s8 func_800A1A3C(s32);
 extern s8 func_800A361C(s32);
 extern void func_800B5570(s32);
@@ -128,7 +129,7 @@ extern void func_8039D6A4(s8);
 extern Record **func_8039E200(Record **,s8);
 extern s32 entity_flags_apply(u32,u32,u32,u8);
 extern void audio_doppler(s32);
-extern void resource_type_select(s32);
+extern void resource_type_select(u32);
 extern void scheduler_recv(s32);
 extern void func_800CDCAC(Profile **,u8);
 extern void sfx_stop(s16,s16,s32);
@@ -138,7 +139,7 @@ extern void pause_resume(s32);
 extern void brake_light_update(s32,f32 *,Camera *,void *,s16 *);
 extern void *object_create(s32);
 extern s16 object_bytes_sum_global(void);
-extern s32 object_manager_update(u8 *,s16);
+extern u32 object_manager_update(u8 *,s16);
 extern void crowd_cheer_play(FiveParts *,s32,s32,s32,s32);
 extern s8 D_803BA00C;
 
@@ -314,463 +315,545 @@ void func_803A0498(void)
 }
 void func_803A0498(void);
 void func_8039D300(s32);
+/* Overlay A 0x803A0FD8, 3796 bytes: GC _InitScreen@carscr.c (MAT3 0x8008f904, 0xbc8 B), static.
+ * Source: reference/repos/mat3 decomp/src/GameSource/src/carscr.c _InitScreen (typed port); the N64 build is an earlier
+ * revision: 62/80/61/81 audio loads, ghost count by D_80156994, 12 per-car settings (8,9 bytes; 10,11 tire scales),
+ * no cars[].alpha init, no SavePlayerCarTrans, 38 blits.  Private-ABI function of the IPA group (unsaved s0-s8/f20-f24).
+ * Shaping (all verified on the builder, group dot_cleanup_colortrace_20261011):
+ *  - the pane loop and the matrix loop use `p`/`i` as written (p out-ranks i for s4/s5);
+ *  - D_80140BDC (gNumModels) is volatile u8 in the head;
+ *  - `0.0` spelling for the pos[0] stores (zero constant gets $f0, 2.0 gets $f2);
+ *  - `for (D_803BA020[p] = 0, i = 0; ...)` orders the store after the row-offset arithmetic;
+ *  - `Player *pl` (assigned &D_8014A118[p], used for ->owner) is the third 4-byte local: it gives the retail 208-byte frame and puts
+ *    p's home at 200(sp); it is real, not padding.
+ *  - (w36a) `pl = &D_8014A118[p];` is also the first statement of the FIRST player loop, where it is dead and compiles to
+ *    nothing.  It enters the &gPlayers[p] expression into uopt's expression table ahead of the later loops' webs, so
+ *    f_spilltemps (homes in expression-bit order, first fit by block conflict) gives the strength-reduced pointer (s6) the
+ *    first home, 188(sp), and pushes the gNumCarsActive pointer to 180(sp), as in retail.  Without it the pointer gets the
+ *    fourth home (176) and gNumCarsActive the second (184): 7 words.  Disclosed shaping (a code-free dead assignment);
+ *    the original probably assigned a player pointer at the top of each player loop;
+ *  - (w36a) the final `for (i...)` loop body is on its own line: as1 then fills the unrolled loop's branch delay slot with
+ *    the first byte store (displacement rewritten), not the `addiu` (4 words; source-line tie in the delay-slot filler).
+ * Matches in this group (score.py group, strict).  Own .rodata verified by hand against decompressed image A (7/7 literal
+ * sites, rocheck.py).
+ */
 void func_803A0FD8(void)
 {
-    s32 player,car,i,mask,position;
-    u8 selected;
+    Player *pl;
+    s32 p;
+    s32 i;
+
     func_803A0498();
-    audio_frame_sync(62,0,0,0,0);
-    if(D_80156994) {
-        audio_frame_sync(80,0,0,0,0);
-        audio_frame_sync(61,0,0,0,0);
-    } else if(D_8014978C>=6)audio_frame_sync(80,0,0,0,0);
-    else audio_frame_sync(81,0,0,0,0);
-    D_803BA02C=0;
-    for(player=0;player<D_8014A108;player++) {
-        D_803B28B8[player]=0;D_803BA048[player]=1;D_803BA038[player]=1;
-        D_803BA028[player]=0;D_803BA1D0[player]=-1;
-        func_8039D300(player);
+    audio_frame_sync(62, 0, 0, 0, 0);
+    if (D_80156994) {
+        audio_frame_sync(80, 0, 0, 0, 0);
+        audio_frame_sync(61, 0, 0, 0, 0);
+    } else if (D_8014978C >= 6) {
+        audio_frame_sync(80, 0, 0, 0, 0);
+    } else {
+        audio_frame_sync(81, 0, 0, 0, 0);
     }
-    for(player=0;player<D_8014A108;player++) {
-        D_803BA020[player]=0;
-        for(car=0;car<13;car++)D_803B9FD8[player][D_803BA020[player]++]=D_803B3010[car];
+    D_803BA02C = 0;
+    for (p = 0; p < D_8014A108; p++) {
+        pl = &D_8014A118[p];
+        D_803B28B8[p] = 0;
+        D_803BA048[p] = 1;
+        D_803BA038[p] = 1;
+        D_803BA028[p] = 0;
+        D_803BA1D0[p] = -1;
+        func_8039D300(p);
     }
-    for(i=0;i<48;i++)D_803B9AA0[i]=func_800A7D6C();
+    for (p = 0; p < D_8014A108; p++) {
+        for (D_803BA020[p] = 0, i = 0; i < 13; i++) {
+            if (i < 13) D_803B9FD8[p][D_803BA020[p]++] = D_803B3010[i];
+        }
+    }
+    for (i = 0; i < 48; i++) D_803B9AA0[i] = func_800A7D6C();
     init_state_begin();
-    D_80146180[0]=D_80146180[1]=D_80146180[2]=D_80146180[3]=0;
-    D_80154188=90.0f;
+    D_80146180[0] = 0;
+    D_80146180[1] = 0;
+    D_80146180[2] = 0;
+    D_80146180[3] = 0;
+    D_80154188 = 90.0f;
     func_800A5A40();
-    D_80151AD0=D_8014A108;
-    if(D_80151AD0==3)D_80151AD0=4;
-    if(D_8014A110==2) {
-        D_803BA00C=3;D_80151AD0=4;
-        if(!D_80156994) {D_803BA00C=1;D_80151AD0=2;}
+    D_80151AD0 = D_8014A108;
+    if (D_80151AD0 == 3) D_80151AD0 = 4;
+    if (D_8014A110 == 2) {
+        D_803BA00C = 3;
+        D_80151AD0 = 4;
+        if (!D_80156994) {
+            D_803BA00C = 1;
+            D_80151AD0 = 2;
+        }
     }
     car_render_full(D_80151AD0);
-    if(D_80151AD0==1) {
-        D_803B25A8=1.0f;D_803B25AC=0.04500000178813934f;D_803B25B0=40.0f;D_803B25B4=0.0f;
-        D_803B25B8=-5.400000095367432f;D_803B25BC=-8.399999618530273f;D_803B25C0=15.0f;D_803B25C4=11.25f;
+    if (D_80151AD0 == 1) {
+        D_803B25A8 = 1.0f;
+        D_803B25AC = 0.045f;
+        D_803B25B0 = 40.0f;
+        D_803B25B4 = 0.0f;
+        D_803B25B8 = -5.4f;
+        D_803B25BC = -8.4f;
+        D_803B25C0 = 15.0f;
+        D_803B25C4 = 11.25f;
     } else {
-        D_803B25A8=1.0f;D_803B25AC=0.054999999701976776f;D_803B25B0=40.0f;D_803B25B4=0.0f;
-        D_803B25B8=-3.450000047683716f;D_803B25BC=-7.699999809265137f;D_803B25C0=15.0f;D_803B25C4=11.25f;
+        D_803B25A8 = 1.0f;
+        D_803B25AC = 0.055f;
+        D_803B25B0 = 40.0f;
+        D_803B25B4 = 0.0f;
+        D_803B25B8 = -3.45f;
+        D_803B25BC = -7.7f;
+        D_803B25C0 = 15.0f;
+        D_803B25C4 = 11.25f;
     }
-    audio_interrupt_handler(1);sfx_position_3d(1);particle_lifetime_set();
-    for(i=0;i<4;i++)D_803B9FC0[i]=ambient_sound_set(-20,0,-10,10,192,0,0,0);
-    for(player=0;player<D_8014A108;player++) {
-        math_utility(D_8011418C,D_803B9E40[player][0]);
-        math_utility(D_8011418C,D_803B9E40[player][1]);
-        D_803B25CC[player][0]=sign_extend_call(string_copy_format(D_803B85B0,0,D_80140BDC-1,1),D_803B9E40[player][0],-1,0x40000);
-        D_803B25CC[player][1]=sign_extend_call(string_copy_format(D_803B85BC,0,D_80140BDC-1,1),D_803B9E40[player][1],-1,0);
-        model_data_load(D_803B25CC[player][0],1,15);
-        model_data_load(D_803B25CC[player][1],1,15);
-        if(D_8014A110==2) {
-            model_transform_setup(D_803B25CC[player][0],0,15);
-            model_transform_setup(D_803B25CC[player][1],0,15);
+    audio_interrupt_handler(1);
+    sfx_position_3d(1);
+    particle_lifetime_set();
+    for (p = 0; p < 4; p++) D_803B9FC0[p] = ambient_sound_set(-20, 0, -10, 10, 192, 0, 0, 0);
+    for (p = 0; p < D_8014A108; p++) {
+        pl = &D_8014A118[p];
+        math_utility(D_8011418C, D_803B9E40[p][0]);
+        math_utility(D_8011418C, D_803B9E40[p][1]);
+        D_803B25CC[p][0] = sign_extend_call(string_copy_format(D_803B85B0, 0, D_80140BDC - 1, 1), D_803B9E40[p][0], -1, 0x40000);
+        D_803B25CC[p][1] = sign_extend_call(string_copy_format(D_803B85BC, 0, D_80140BDC - 1, 1), D_803B9E40[p][1], -1, 0);
+        model_data_load(D_803B25CC[p][0], 1, 15);
+        model_data_load(D_803B25CC[p][1], 1, 15);
+        if (D_8014A110 == 2) {
+            model_transform_setup(D_803B25CC[p][0], 0, 15);
+            model_transform_setup(D_803B25CC[p][1], 0, 15);
         } else {
-            mask=1<<player;
-            model_transform_setup(D_803B25CC[player][0],0,mask);
-            model_transform_setup(D_803B25CC[player][1],0,mask);
+            model_transform_setup(D_803B25CC[p][0], 0, 1 << p);
+            model_transform_setup(D_803B25CC[p][1], 0, 1 << p);
         }
-        D_803B9E40[player][0][10]=2.0f;D_803B9E40[player][1][10]=2.0f;
-        D_803B9E40[player][0][11]=15.0f;D_803B9E40[player][1][11]=15.0f;
-        D_803B9E40[player][0][9]=0.0f;D_803B9E40[player][1][9]=0.0f;
-        func_8039FF04(player);
-        for(car=0;car<13;car++) {
-            selected=car;
-            D_80111049[player][car]=func_800CDA60(D_8014A118[player].owner,selected,0);
-            D_8011108D[player][car]=func_800CDA60(D_8014A118[player].owner,selected,1);
-            if(!func_800F7604(player,D_8011108D[player][car])) {
-                do {
-                    D_8011108D[player][car]--;
-                    if(D_8011108D[player][car]<0) {D_8011108D[player][car]=0;break;}
-                } while(!func_800F7604(player,D_8011108D[player][car]));
+        D_803B9E40[p][0][9] = 0.0;
+        D_803B9E40[p][0][10] = 2.0f;
+        D_803B9E40[p][0][11] = 15.0f;
+        D_803B9E40[p][1][9] = 0.0;
+        D_803B9E40[p][1][10] = 2.0f;
+        D_803B9E40[p][1][11] = 15.0f;
+        func_8039FF04(p);
+        for (i = 0; i < 13; i++) {
+            D_8011103C[p + 1][i] = func_800CDA60(pl->owner, i, 0);
+            D_80111080[p + 1][i] = func_800CDA60(pl->owner, i, 1);
+            while (!func_800F7604(p, D_80111080[p + 1][i])) {
+                D_80111080[p + 1][i]--;
+                if (D_80111080[p + 1][i] < 0) { D_80111080[p + 1][i] = 0; break; }
             }
-            func_800C7578(D_8014A118[player].owner,selected,1,D_8011108D[player][car]);
-            D_801111A9[player][car]=func_800CDA60(D_8014A118[player].owner,selected,2);
-            if(!func_800F75D0(player,D_801111A9[player][car])) {
-                do {
-                    D_801111A9[player][car]--;
-                    if(D_801111A9[player][car]<0) {D_801111A9[player][car]=0;break;}
-                } while(!func_800F75D0(player,D_801111A9[player][car]));
+            func_800C7578(pl->owner, i, 1, D_80111080[p + 1][i]);
+            D_8011119C[p + 1][i] = func_800CDA60(pl->owner, i, 2);
+            while (!func_800F75D0(p, D_8011119C[p + 1][i])) {
+                D_8011119C[p + 1][i]--;
+                if (D_8011119C[p + 1][i] < 0) { D_8011119C[p + 1][i] = 0; break; }
             }
-            func_800C7578(D_8014A118[player].owner,selected,2,D_801111A9[player][car]);
-            D_8011123D[player][car]=func_800CDA60(D_8014A118[player].owner,selected,3);
-            if(!func_800F75B0(player,D_8011123D[player][car])) {
-                do {
-                    D_8011123D[player][car]--;
-                    if(D_8011123D[player][car]<0) {D_8011123D[player][car]=0;break;}
-                } while(!func_800F75B0(player,D_8011123D[player][car]));
+            func_800C7578(pl->owner, i, 2, D_8011119C[p + 1][i]);
+            D_80111230[p + 1][i] = func_800CDA60(pl->owner, i, 3);
+            while (!func_800F75B0(p, D_80111230[p + 1][i])) {
+                D_80111230[p + 1][i]--;
+                if (D_80111230[p + 1][i] < 0) { D_80111230[p + 1][i] = 0; break; }
             }
-            func_800C7578(D_8014A118[player].owner,selected,3,D_8011123D[player][car]);
-            D_80111299[player][car]=func_800CDA60(D_8014A118[player].owner,selected,4);
-            if(D_8014A110!=4 && D_80111299[player][car]>=2)D_80111299[player][car]=1;
-            D_80111611[player][car]=func_800CDA60(D_8014A118[player].owner,selected,5);
-            D_80111655[player][car]=func_800CDA60(D_8014A118[player].owner,selected,6);
-            D_80111699[player][car]=func_800CDA60(D_8014A118[player].owner,selected,7);
-            D_80111589[player][car]=func_800CDA60(D_8014A118[player].owner,selected,8);
-            D_801115CD[player][car]=func_800CDA60(D_8014A118[player].owner,selected,9);
-            D_801112DC[player+1][car]=func_800CDA60(D_8014A118[player].owner,selected,10)/100.0f+0.75f;
-            D_801113E0[player+1][car]=func_800CDA60(D_8014A118[player].owner,selected,11)/100.0f+0.75f;
-            if(!D_801407D0) {
-                D_801112DC[player+1][car]=D_801112DC[0][car];
-                D_801113E0[player+1][car]=D_801113E0[0][car];
+            func_800C7578(pl->owner, i, 3, D_80111230[p + 1][i]);
+            D_8011128C[p + 1][i] = func_800CDA60(pl->owner, i, 4);
+            if (D_8014A110 != 4 && D_8011128C[p + 1][i] > 1) D_8011128C[p + 1][i] = 1;
+            D_80111604[p + 1][i] = func_800CDA60(pl->owner, i, 5);
+            D_80111648[p + 1][i] = func_800CDA60(pl->owner, i, 6);
+            D_8011168C[p + 1][i] = func_800CDA60(pl->owner, i, 7);
+            D_8011157C[p + 1][i] = func_800CDA60(pl->owner, i, 8);
+            D_801115C0[p + 1][i] = func_800CDA60(pl->owner, i, 9);
+            D_801112DC[p + 1][i] = func_800CDA60(pl->owner, i, 10) / 100.0f + 0.75f;
+            D_801113E0[p + 1][i] = func_800CDA60(pl->owner, i, 11) / 100.0f + 0.75f;
+            if (!D_801407D0) {
+                D_801112DC[p + 1][i] = D_801112DC[0][i];
+                D_801113E0[p + 1][i] = D_801113E0[0][i];
             }
         }
-        D_803B9FD0[player]=func_800CDE88(D_8014A118[player].owner);
-        if(!func_800F7620(player,D_803B9FD0[player])) {
-            do {
-                if(D_803B9FD0[player]==0)D_803B9FD0[player]=12;
-                else D_803B9FD0[player]--;
-            } while(!func_800F7620(player,D_803B9FD0[player]));
+        D_803B9FD0[p] = func_800CDE88(pl->owner);
+        while (!func_800F7620(p, D_803B9FD0[p])) {
+            if (!D_803B9FD0[p]) D_803B9FD0[p] = 12;
+            else D_803B9FD0[p]--;
         }
-        D_803B9FD4[player]=0;
-        while(D_803B9FD4[player]<D_803BA020[player] && D_803B9FD0[player]!=D_803B9FD8[player][D_803B9FD4[player]])D_803B9FD4[player]++;
-        if(D_803B9FD4[player]>=D_803BA020[player]) {
-            D_803B9FD4[player]=player+1;
-            D_803B9FD0[player]=D_803B9FD8[player][D_803B9FD4[player]];
-            func_800CCA04(D_8014A118[player].owner,D_803B9FD0[player]);
+        for (D_803B9FD4[p] = 0; D_803B9FD4[p] < D_803BA020[p]; D_803B9FD4[p]++) {
+            if (D_803B9FD0[p] == D_803B9FD8[p][D_803B9FD4[p]]) break;
         }
-        D_803BA018[player]=-1;
-        func_8039E3BC(player);
-        for(car=0,position=-D_803B9FD4[player];car<D_803BA020[player];car++,position++) {
-            D_803B9BC8[player][car].position=position;
-            if(D_803B9BC8[player][car].position<0)D_803B9BC8[player][car].position+=D_803BA020[player];
-            D_803B9BC8[player][car].car=D_803B9FD8[player][car]+player*13;
-            D_803B9BC8[player][car].angle=3.1415927410125732f;
+        if (D_803B9FD4[p] >= D_803BA020[p]) {
+            D_803B9FD4[p] = p + 1;
+            D_803B9FD0[p] = D_803B9FD8[p][D_803B9FD4[p]];
+            func_800CCA04(pl->owner, D_803B9FD0[p]);
         }
-        if(D_8014A110==6)D_8014A118[player].paint=6;
+        D_803BA018[p] = -1;
+        func_8039E3BC(p);
+        for (i = 0; i < D_803BA020[p]; i++) {
+            D_803B9BC8[p][i].position = i - D_803B9FD4[p];
+            if (D_803B9BC8[p][i].position < 0) D_803B9BC8[p][i].position += D_803BA020[p];
+            D_803B9BC8[p][i].car = D_803B9FD8[p][i] + p * 13;
+            D_803B9BC8[p][i].angle = 3.1415927f;
+        }
+        if (D_8014A110 == 6) D_8014A118[p].paint = 6;
         else {
-            D_8014A118[player].paint=func_800CDDE8((void **)D_8014A118[player].owner);
-            if(!func_800F75EC(player,D_8014A118[player].paint)) {
-                do {
-                    D_8014A118[player].paint-=2;
-                    if((s32)D_8014A118[player].paint<0) {D_8014A118[player].paint+=2;break;}
-                } while(!func_800F75EC(player,D_8014A118[player].paint));
+            D_8014A118[p].paint = func_800CDDE8((void **)pl->owner);
+            while (!func_800F75EC(p, D_8014A118[p].paint)) {
+                D_8014A118[p].paint -= 2;
+                if ((s32)D_8014A118[p].paint < 0) { D_8014A118[p].paint += 2; break; }
             }
         }
-        for(car=0;car<13;car++)D_80110E85[player][car]=D_8014A118[player].paint;
+        for (i = 0; i < 13; i++)
+            D_80110E78[p + 1][i] = D_8014A118[p].paint;
     }
-    D_803B28AC=sound_control(0,0,D_803B2AB8,38);
-    particle_velocity_set();effects_update_emitters();set_race_state();D_803B28A8=1;
+    D_803B28AC = sound_control(0, 0, D_803B2AB8, 38);
+    particle_velocity_set();
+    effects_update_emitters();
+    set_race_state();
+    D_803B28A8 = 1;
 }
 void func_803A0498(void);
 void func_803A0FD8(void);
 void func_8039D300(s32);
+/* Overlay A 0x803A1EAC, 7104 bytes: GC updateCarScreen@carscr.c (MAT3 carscr.c line ~340), the image-A carscr root (kept).
+ * Source: reference/repos/mat3 decomp/src/GameSource/src/carscr.c updateCarScreen (typed port by w35c: MAT3 declaration order,
+ * per-iteration block locals at the top of the player loop, [5][13] per-player byte tables indexed p+1, u32 gSkipToGameState /
+ * PlayStartABSound argument / HAL_GetTextWidth result, nested ?: for d, s8 gLink colour bytes, own purge-loop variable; see
+ * cloud/work/frontier/w35c/RESULTS.md "Levers found").  N64 is an earlier revision: 19 options (cases 0..18), no player-file check,
+ * pak loop without the gRace==2 test, unscaled projection coordinates, extra pause_resume(0) at the end.
+ * (w36a) The ghost-file loop at the top tests the pak first and `continue`s: `if (ghost->file && !PS_PakInserted(...)) continue;
+ * if (ghosth == gGhosts[i]) break;` (the MAT3 single `(!file || PakInserted) && ghosth == gGhosts[i]` condition compiles to the
+ * same first-loop code).  This decides the tail: uopt's register candidate for &gGhosts (one lda web over the first loop, the
+ * case 16..18 slots and the two ghost-compaction tail loops) is split by f_split from the first eligible occurrence in its
+ * live-unit list, which follows uopt's flow-graph chain (a DFS that takes each block's first successor first and visits
+ * second-successor edges last).  With the single condition the first loop's compare block (bb19) leads the list, so it is the
+ * seed; the carved first-loop piece and the remainder are both unprofitable and every tail use is rematerialised (28 words,
+ * w35c).  With the `continue` form the compare block is reached through the second-successor edge and moves to the END of the
+ * list (13, 388, 394, cases 315..320, 19): the seed is the first tail loop, the piece {388, 394} (nocs 3, totalsave 19) is
+ * coloured v1 and hoisted in front of each tail loop as in retail, and the remainder keeps splitting harmlessly.
+ * Matches in this group (score.py group, strict).  Own .rodata verified against decompressed image A: 5/5 float literal sites
+ * (rocheck.py) and 19/19 jump-table entries (case offsets relative to the function start).
+ */
 void func_803A1EAC(void)
 {
-    s32 feedback=1,offset,waiting,other,j,x,change,car,all_same;
-    s16 i,player,y,width,height;
-    Record **record,**next;
-    Player *state;
-    s16 point[2];
-    Vec3 position;
-    if(!D_80156994)D_803BA010=D_8012E6F8;
-    else {
-        offset=D_80152570 ? 6 : 0;
-        D_803BA010=D_8012E6F8+(offset+D_8014978C)*3;
+    s16 i;
+    s16 p;
+    s32 sound = 1;
+    Record **ghosth;
+    Record *ghost;
+    Record **nextGhost;
+
+    if (!D_80156994) D_803BA010 = D_8012E6F8;
+    else D_803BA010 = D_8012E6F8 + ((D_80152570 ? 6 : 0) + D_8014978C) * 3;
+    if (D_801174BC != 1) {
+        if (D_801174BC != D_801174B4) { func_803A0498(); func_800B5570(0x40000); return; }
+        D_801174BC = 1;
     }
-    if(D_801174BC!=1) {
-        if(D_801174B4==D_801174BC)D_801174BC=1;
-        else {func_803A0498();func_800B5570(0x40000);return;}
-    }
-    for(i=1;i<4;i++) {
-        record=D_80152020.first;
-        while(record) {
-            next=(*record)->next;
-            if((!(*record)->file || func_800A1A3C((*(*record)->file)->controller)) && record==D_80152698[i])break;
-            record=next;
+    for (i = 1; i < 4; i++) {
+        for (ghosth = D_80152020.first; ghosth; ghosth = nextGhost) {
+            ghost = *ghosth;
+            nextGhost = ghost->next;
+            if (ghost->file && !func_800A1A3C((*ghost->file)->controller)) continue;
+            if (ghosth == D_80152698[i]) break;
         }
-        if(!record) {
-            for(player=0;player<3;player++) {
-                record=&D_803BA010[player];
-                if(record==D_80152698[i])break;
-                record=0;
+        if (!ghosth) {
+            for (p = 0; p < 3; p++) {
+                ghosth = D_803BA010 + p;
+                if (ghosth == D_80152698[i]) break;
+                ghosth = 0;
             }
         }
-        D_80152698[i]=record;
+        D_80152698[i] = ghosth;
     }
-    if(!D_803B28A8)func_803A0FD8();
+    if (!D_803B28A8) func_803A0FD8();
     func_8039EF08();
-    for(i=0;i<D_8014A108;i++) {
-        if((*D_8014A118[i].owner)->file && func_800A361C((*(*D_8014A118[i].owner)->file)->controller)) {
-            func_8039D05C();func_800B5570(32);D_803BA030=0;return;
+    for (i = 0; i < D_8014A108; i++) {
+        if ((*D_8014A118[i].owner)->file && func_800A361C((*(*D_8014A118[i].owner)->file)->controller)) {
+            func_8039D05C(); func_800B5570(32); D_803BA030 = 0; return;
         }
     }
-    if(D_80157244) {func_8039D05C();func_800B5570(4);D_803BA030=0;return;}
+    if (D_80157244) { func_8039D05C(); func_800B5570(4); D_803BA030 = 0; return; }
     D_803BA030++;
-    for(player=0;player<D_8014A108;player++) {
-        if(!D_803BA02C && (D_8014A118[player].pressed&4)) {
-            if(D_803BA028[player]==1)D_803BA028[player]=0;
-            else {
-                entity_flags_apply(38,0,1,0);func_8039D05C();func_800B5570(128);D_803BA030=0;return;
-            }
+    for (p = 0; p < D_8014A108; p++) {
+        s32 notReadyCount;
+        s32 notReadyIdx;
+        s32 pIdx;
+        s16 x, y, w, h;
+        s16 screenPos[2];
+        Vec3 msgPos;
+        s32 ghostIdx;
+        s16 gx, gy, gw, gh;
+        f32 pos[3];
+        s16 gscreenPos[2];
+        if (!D_803BA02C && (D_8014A118[p].pressed & 4)) {
+            if (D_803BA028[p] == 1) D_803BA028[p] = 0;
+            else { entity_flags_apply(38, 0, 1, 0); func_8039D05C(); func_800B5570(128); D_803BA030 = 0; return; }
         }
-        if(D_803BA028[player]) {
-            position=D_803B3030;
-            if(D_80151AD0==1)object_create(13);else object_create(12);
-            brake_light_update(player,position.v,&D_80150B70[player],0,point);
-            x=point[0];y=point[1]-object_bytes_sum_global();waiting=0;
-            for(j=0;j<D_8014A108;j++)if(j!=player && !D_803BA028[j]) {other=j;waiting++;}
-            if(!waiting) {
-                y+=object_bytes_sum_global();height=object_bytes_sum_global();width=object_manager_update(D_803B857C,-1);
-            } else {
-                width=object_manager_update(countdown_state.text[151],-1);height=object_bytes_sum_global()*2;
-                if(waiting==1)width=(u32)object_manager_update((*D_8014A118[other].owner)->name,-1)<(u32)width ? width : object_manager_update((*D_8014A118[other].owner)->name,-1);
-                else width=(u32)object_manager_update(countdown_state.text[31],-1)<(u32)width ? width : object_manager_update(countdown_state.text[31],-1);
+        if (D_803BA028[p]) {
+            msgPos = D_803B3030;
+            if (D_80151AD0 == 1) object_create(13); else object_create(12);
+            brake_light_update(p, msgPos.v, &D_80150B70[p], 0, screenPos);
+            x = screenPos[0];
+            y = screenPos[1] - object_bytes_sum_global();
+            notReadyCount = 0;
+            for (pIdx = 0; pIdx < D_8014A108; pIdx++) {
+                if (pIdx != p && !D_803BA028[pIdx]) { notReadyIdx = pIdx; notReadyCount++; }
             }
-            y-=object_bytes_sum_global()/2;
-            crowd_cheer_play(D_803B9FC0[player],x-width/2-4,y-4,x+width/2+4,y+height+4);
-            func_8039D6A4(player);
+            if (!notReadyCount) {
+                y += object_bytes_sum_global();
+                h = object_bytes_sum_global();
+                w = object_manager_update(D_803B857C, -1);
+            } else {
+                w = object_manager_update(countdown_state.text[151], -1);
+                h = object_bytes_sum_global() * 2;
+                if (notReadyCount == 1) w = (w > object_manager_update((*D_8014A118[notReadyIdx].owner)->name, -1) ? w : object_manager_update((*D_8014A118[notReadyIdx].owner)->name, -1));
+                else w = (w > object_manager_update(countdown_state.text[31], -1) ? w : object_manager_update(countdown_state.text[31], -1));
+            }
+            y -= object_bytes_sum_global() / 2;
+            crowd_cheer_play(D_803B9FC0[p], x - w / 2 - 4, y - 4, x + w / 2 + 4, y + h + 4);
+            func_8039D6A4(p);
             continue;
         }
-        state=&D_8014A118[player];
-        crowd_cheer_play(D_803B9FC0[player],-20,0,-10,10);
-        if(state->pressed&3) {
-            resource_type_select(state->pressed);
-            D_803BA028[player]=1;D_80153E88[player].flags=160;
-            car=D_803B9FD0[player];D_80153E88[player].car=car;
-            if(D_8014A110==6 && D_801164BE==0) {
-                D_80153E88[player].color[0]=D_80138664[D_8012E67C[player]];
-                D_80153E88[player].color[1]=D_80138664[D_8012E67C[player]];
-                D_80153E88[player].color[2]=D_80138664[D_8012E67C[player]];
+        crowd_cheer_play(D_803B9FC0[p], -20, 0, -10, 10);
+        if (D_8014A118[p].pressed & 3) {
+            resource_type_select(D_8014A118[p].pressed);
+            D_803BA028[p] = 1;
+            D_80153E88[p].flags = 160;
+            D_80153E88[p].car = D_803B9FD0[p];
+            if (D_8014A110 == 6 && D_801164BE == 0) {
+                D_80153E88[p].color[0] = D_80138664[D_8012E67C[p]];
+                D_80153E88[p].color[1] = D_80138664[D_8012E67C[p]];
+                D_80153E88[p].color[2] = D_80138664[D_8012E67C[p]];
             } else {
-                D_80153E88[player].color[0]=D_80111611[player][car];
-                D_80153E88[player].color[1]=D_80111655[player][car];
-                D_80153E88[player].color[2]=D_80111699[player][car];
+                D_80153E88[p].color[0] = D_80111604[p + 1][D_803B9FD0[p]];
+                D_80153E88[p].color[1] = D_80111648[p + 1][D_803B9FD0[p]];
+                D_80153E88[p].color[2] = D_8011168C[p + 1][D_803B9FD0[p]];
             }
-            D_803BA030=0;
+            D_803BA030 = 0;
         }
-        if(state->repeated&0x400) {
-            entity_flags_apply(40,0,1,0);
-            if(--D_803B28B8[player]<0)D_803B28B8[player]=D_803BA050[player]-1;
-        } else if(state->repeated&0x800) {
-            entity_flags_apply(39,0,1,0);
-            if(++D_803B28B8[player]>=D_803BA050[player])D_803B28B8[player]=0;
-        } else if(state->repeated&0x3080) {
-            if(state->repeated&0x1000)change=-1;
-            else change=(state->repeated&0x2000) ? 1 : 0;
-            if(!D_803BA048[player] || (!change && !D_803BA04C[player])) {
-                entity_flags_apply(42,0,1,0);
-                goto changed_selection;
+        if (D_8014A118[p].repeated & 0x400) {
+            entity_flags_apply(40, 0, 1, 0);
+            D_803B28B8[p]--;
+            if (D_803B28B8[p] < 0) D_803B28B8[p] = D_803BA050[p] - 1;
+        } else if (D_8014A118[p].repeated & 0x800) {
+            entity_flags_apply(39, 0, 1, 0);
+            D_803B28B8[p]++;
+            if (D_803B28B8[p] > D_803BA050[p] - 1) D_803B28B8[p] = 0;
+        } else if (D_8014A118[p].repeated & 0x3080) {
+            s32 d = (D_8014A118[p].repeated & 0x1000) ? -1 : ((D_8014A118[p].repeated & 0x2000) ? 1 : 0);
+            if (!D_803BA048[p] || (!d && !D_803BA04C[p])) {
+                entity_flags_apply(42, 0, 1, 0);
+                goto after_options;
             }
-            switch(D_803BA060[player][D_803B28B8[player]]) {
+            switch (D_803BA060[p][D_803B28B8[p]]) {
             case 0:
-                if(change) {
+                if (d) {
                     do {
-                        D_803B9FD4[player]+=change;
-                        if(D_803B9FD4[player]<0)D_803B9FD4[player]=D_803BA020[player]-1;
-                        else if(D_803B9FD4[player]>=D_803BA020[player])D_803B9FD4[player]=0;
-                    } while(!func_800F7620(player,D_803B9FD8[player][D_803B9FD4[player]]));
+                        D_803B9FD4[p] += d;
+                        if (D_803B9FD4[p] < 0) D_803B9FD4[p] = D_803BA020[p] - 1;
+                        else if (D_803B9FD4[p] >= D_803BA020[p]) D_803B9FD4[p] = 0;
+                    } while (!func_800F7620(p, D_803B9FD8[p][D_803B9FD4[p]]));
                 }
-                D_803B9FD0[player]=D_803B9FD8[player][D_803B9FD4[player]];
-                if(D_8014A110==6)state->paint=6;else state->paint=func_800CDDE8((void **)state->owner);
-                for(i=0;i<13;i++)D_80110E85[player][i]=state->paint;
-                func_8039E3BC(player);D_803B9BA0[player]=1;
+                D_803B9FD0[p] = D_803B9FD8[p][D_803B9FD4[p]];
+                if (D_8014A110 == 6) D_8014A118[p].paint = 6;
+                else D_8014A118[p].paint = func_800CDDE8((void **)D_8014A118[p].owner);
+                for (i = 0; i < 13; i++) D_80110E78[p + 1][i] = D_8014A118[p].paint;
+                func_8039E3BC(p);
+                D_803B9BA0[p] = 1;
                 break;
             case 1:
-                if(D_8014A110==6) {feedback=0;break;}
-                if(change) {
-                    do {
-                        D_80110E85[player][D_803B9FD0[player]]+=change;
-                        if(D_80110E85[player][D_803B9FD0[player]]<0)D_80110E85[player][D_803B9FD0[player]]=7;
-                        else if(D_80110E85[player][D_803B9FD0[player]]>=8)D_80110E85[player][D_803B9FD0[player]]=0;
-                    } while(!func_800F75EC(player,D_80110E85[player][D_803B9FD0[player]]) ||
-                            (D_8014A110==6 && (D_80110E85[player][D_803B9FD0[player]]&1)));
-                } else {
-                    car=D_803B9FD0[player];D_80110E85[player][car]=D_80110E78[car];
-                }
-                state->paint=D_80110E85[player][D_803B9FD0[player]];
-                func_800CDCAC(state->owner,state->paint);break;
+                if (D_8014A110 != 6) {
+                    if (d) {
+                        do {
+                            D_80110E78[p + 1][D_803B9FD0[p]] += d;
+                            if (D_80110E78[p + 1][D_803B9FD0[p]] < 0) D_80110E78[p + 1][D_803B9FD0[p]] = 7;
+                            else if (D_80110E78[p + 1][D_803B9FD0[p]] >= 8) D_80110E78[p + 1][D_803B9FD0[p]] = 0;
+                        } while (!func_800F75EC(p, D_80110E78[p + 1][D_803B9FD0[p]]) || (D_8014A110 == 6 && (D_80110E78[p + 1][D_803B9FD0[p]] & 1)));
+                    } else D_80110E78[p + 1][D_803B9FD0[p]] = D_80110E78[0][D_803B9FD0[p]];
+                    D_8014A118[p].paint = D_80110E78[p + 1][D_803B9FD0[p]];
+                    func_800CDCAC(D_8014A118[p].owner, D_8014A118[p].paint);
+                } else sound = 0;
+                break;
             case 2:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111049[player][car]+=change;
-                    if(D_80111049[player][car]<0)D_80111049[player][car]=2;
-                    else if(D_80111049[player][car]>=3)D_80111049[player][car]=0;
-                } else {
-                    car=D_803B9FD0[player];D_80111049[player][car]=D_8011103C[car];
-                }
-                func_800C7578(state->owner,car,0,D_80111049[player][car]);break;
+                if (d) {
+                    D_8011103C[p + 1][D_803B9FD0[p]] += d;
+                    if (D_8011103C[p + 1][D_803B9FD0[p]] < 0) D_8011103C[p + 1][D_803B9FD0[p]] = 2;
+                    else if (D_8011103C[p + 1][D_803B9FD0[p]] > 2) D_8011103C[p + 1][D_803B9FD0[p]] = 0;
+                } else D_8011103C[p + 1][D_803B9FD0[p]] = D_8011103C[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 0, D_8011103C[p + 1][D_803B9FD0[p]]);
+                break;
             case 3:
-                if(change) {
+                if (d) {
                     do {
-                        D_8011108D[player][D_803B9FD0[player]]+=change;
-                        if(D_8011108D[player][D_803B9FD0[player]]<0)D_8011108D[player][D_803B9FD0[player]]=8;
-                        else if(D_8011108D[player][D_803B9FD0[player]]>=9)D_8011108D[player][D_803B9FD0[player]]=0;
-                    } while(!func_800F7604(player,D_8011108D[player][D_803B9FD0[player]]));
-                } else {
-                    car=D_803B9FD0[player];D_8011108D[player][car]=D_80111080[car];
-                }
-                car=D_803B9FD0[player];
-                func_800C7578(state->owner,car,1,D_8011108D[player][car]);break;
+                        D_80111080[p + 1][D_803B9FD0[p]] += d;
+                        if (D_80111080[p + 1][D_803B9FD0[p]] < 0) D_80111080[p + 1][D_803B9FD0[p]] = 8;
+                        else if (D_80111080[p + 1][D_803B9FD0[p]] > 8) D_80111080[p + 1][D_803B9FD0[p]] = 0;
+                    } while (!func_800F7604(p, D_80111080[p + 1][D_803B9FD0[p]]));
+                } else D_80111080[p + 1][D_803B9FD0[p]] = D_80111080[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 1, D_80111080[p + 1][D_803B9FD0[p]]);
+                break;
             case 4:
-                if(change) {
+                if (d) {
                     do {
-                        D_801111A9[player][D_803B9FD0[player]]+=change;
-                        if(D_801111A9[player][D_803B9FD0[player]]<0)D_801111A9[player][D_803B9FD0[player]]=4;
-                        else if(D_801111A9[player][D_803B9FD0[player]]>=5)D_801111A9[player][D_803B9FD0[player]]=0;
-                    } while(!func_800F75D0(player,D_801111A9[player][D_803B9FD0[player]]));
-                } else {
-                    car=D_803B9FD0[player];D_801111A9[player][car]=D_8011119C[car];
-                }
-                car=D_803B9FD0[player];
-                func_800C7578(state->owner,car,2,D_801111A9[player][car]);break;
+                        D_8011119C[p + 1][D_803B9FD0[p]] += d;
+                        if (D_8011119C[p + 1][D_803B9FD0[p]] < 0) D_8011119C[p + 1][D_803B9FD0[p]] = 4;
+                        else if (D_8011119C[p + 1][D_803B9FD0[p]] > 4) D_8011119C[p + 1][D_803B9FD0[p]] = 0;
+                    } while (!func_800F75D0(p, D_8011119C[p + 1][D_803B9FD0[p]]));
+                } else D_8011119C[p + 1][D_803B9FD0[p]] = D_8011119C[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 2, D_8011119C[p + 1][D_803B9FD0[p]]);
+                break;
             case 5:
-                if(change) {
+                if (d) {
                     do {
-                        D_8011123D[player][D_803B9FD0[player]]+=change;
-                        if(D_8011123D[player][D_803B9FD0[player]]<0)D_8011123D[player][D_803B9FD0[player]]=5;
-                        else if(D_8011123D[player][D_803B9FD0[player]]>=6)D_8011123D[player][D_803B9FD0[player]]=0;
-                    } while(!func_800F75B0(player,D_8011123D[player][D_803B9FD0[player]]));
-                } else {
-                    car=D_803B9FD0[player];D_8011123D[player][car]=D_80111230[car];
-                }
-                car=D_803B9FD0[player];
-                func_800C7578(state->owner,car,3,D_8011123D[player][car]);break;
+                        D_80111230[p + 1][D_803B9FD0[p]] += d;
+                        if (D_80111230[p + 1][D_803B9FD0[p]] < 0) D_80111230[p + 1][D_803B9FD0[p]] = 5;
+                        else if (D_80111230[p + 1][D_803B9FD0[p]] > 5) D_80111230[p + 1][D_803B9FD0[p]] = 0;
+                    } while (!func_800F75B0(p, D_80111230[p + 1][D_803B9FD0[p]]));
+                } else D_80111230[p + 1][D_803B9FD0[p]] = D_80111230[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 3, D_80111230[p + 1][D_803B9FD0[p]]);
+                break;
             case 6:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111299[player][car]+=change;
-                    if(D_80111299[player][car]<0)D_80111299[player][car]=(D_8014A110==4 ? 2 : 1);
-                    else if(D_80111299[player][car]>(D_8014A110==4 ? 2 : 1))D_80111299[player][car]=0;
-                } else {
-                    car=D_803B9FD0[player];D_80111299[player][car]=D_8011128C[car];
-                }
-                func_800C7578(state->owner,car,4,D_80111299[player][car]);break;
+                if (d) {
+                    D_8011128C[p + 1][D_803B9FD0[p]] += d;
+                    if (D_8011128C[p + 1][D_803B9FD0[p]] < 0) D_8011128C[p + 1][D_803B9FD0[p]] = (D_8014A110 != 4 ? 1 : 2);
+                    else if (D_8011128C[p + 1][D_803B9FD0[p]] > (D_8014A110 != 4 ? 1 : 2)) D_8011128C[p + 1][D_803B9FD0[p]] = 0;
+                } else D_8011128C[p + 1][D_803B9FD0[p]] = D_8011128C[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 4, D_8011128C[p + 1][D_803B9FD0[p]]);
+                break;
             case 7:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111611[player][car]+=change;
-                    if(D_80111611[player][car]<0)D_80111611[player][car]=31;
-                    else if(D_80111611[player][car]>=32)D_80111611[player][car]=0;
-                } else {
-                    car=D_803B9FD0[player];D_80111611[player][car]=D_80111604[car];
-                }
-                func_800C7578(state->owner,car,5,D_80111611[player][car]);break;
+                if (d) {
+                    D_80111604[p + 1][D_803B9FD0[p]] += d;
+                    if (D_80111604[p + 1][D_803B9FD0[p]] < 0) D_80111604[p + 1][D_803B9FD0[p]] = 31;
+                    else if (D_80111604[p + 1][D_803B9FD0[p]] >= 32) D_80111604[p + 1][D_803B9FD0[p]] = 0;
+                } else D_80111604[p + 1][D_803B9FD0[p]] = D_80111604[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 5, D_80111604[p + 1][D_803B9FD0[p]]);
+                break;
             case 8:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111655[player][car]+=change;
-                    if(D_80111655[player][car]<0)D_80111655[player][car]=31;
-                    else if(D_80111655[player][car]>=32)D_80111655[player][car]=0;
-                } else {
-                    car=D_803B9FD0[player];D_80111655[player][car]=D_80111648[car];
-                }
-                func_800C7578(state->owner,car,6,D_80111655[player][car]);break;
+                if (d) {
+                    D_80111648[p + 1][D_803B9FD0[p]] += d;
+                    if (D_80111648[p + 1][D_803B9FD0[p]] < 0) D_80111648[p + 1][D_803B9FD0[p]] = 31;
+                    else if (D_80111648[p + 1][D_803B9FD0[p]] >= 32) D_80111648[p + 1][D_803B9FD0[p]] = 0;
+                } else D_80111648[p + 1][D_803B9FD0[p]] = D_80111648[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 6, D_80111648[p + 1][D_803B9FD0[p]]);
+                break;
             case 9:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111699[player][car]+=change;
-                    if(D_80111699[player][car]<0)D_80111699[player][car]=31;
-                    else if(D_80111699[player][car]>=32)D_80111699[player][car]=0;
-                } else {
-                    car=D_803B9FD0[player];D_80111699[player][car]=D_8011168C[car];
-                }
-                func_800C7578(state->owner,car,7,D_80111699[player][car]);break;
+                if (d) {
+                    D_8011168C[p + 1][D_803B9FD0[p]] += d;
+                    if (D_8011168C[p + 1][D_803B9FD0[p]] < 0) D_8011168C[p + 1][D_803B9FD0[p]] = 31;
+                    else if (D_8011168C[p + 1][D_803B9FD0[p]] >= 32) D_8011168C[p + 1][D_803B9FD0[p]] = 0;
+                } else D_8011168C[p + 1][D_803B9FD0[p]] = D_8011168C[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 7, D_8011168C[p + 1][D_803B9FD0[p]]);
+                break;
             case 10:
-                if(change) {
+                if (d) {
+                    s32 teamFull = 1;
                     do {
-                        D_8012E67C[player]+=change;
-                        if(D_8012E67C[player]<0)D_8012E67C[player]=3;
-                        else if(D_8012E67C[player]>=4)D_8012E67C[player]=0;
-                        all_same=1;
-                        for(i=0;i<D_8014A108;i++)if(i!=player && D_8012E67C[i]!=D_8012E67C[player])all_same=0;
-                    } while(all_same==1);
-                } else D_8012E67C[player]=player;
+                        D_8012E67C[p] += d;
+                        if (D_8012E67C[p] < 0) D_8012E67C[p] = 3;
+                        else if (D_8012E67C[p] > 3) D_8012E67C[p] = 0;
+                        for (i = 0; i < D_8014A108; i++) {
+                            if (i != p && D_8012E67C[i] != D_8012E67C[p]) teamFull = 0;
+                        }
+                    } while (teamFull == 1);
+                } else D_8012E67C[p] = p;
                 break;
             case 11:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_80111589[player][car]+=change;
-                    if(D_80111589[player][car]<0)D_80111589[player][car]=20;
-                    else if(D_80111589[player][car]>=21)D_80111589[player][car]=0;
-                } else D_80111589[player][car]=D_8011157C[car];
-                func_800C7578(state->owner,car,8,D_80111589[player][car]);break;
+                if (d) {
+                    D_8011157C[p + 1][D_803B9FD0[p]] += d;
+                    if (D_8011157C[p + 1][D_803B9FD0[p]] < 0) D_8011157C[p + 1][D_803B9FD0[p]] = 20;
+                    else if (D_8011157C[p + 1][D_803B9FD0[p]] > 20) D_8011157C[p + 1][D_803B9FD0[p]] = 0;
+                } else D_8011157C[p + 1][D_803B9FD0[p]] = D_8011157C[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 8, D_8011157C[p + 1][D_803B9FD0[p]]);
+                break;
             case 12:
-                car=D_803B9FD0[player];feedback=0;
-                if(change) {
-                    D_801115CD[player][car]+=change;
-                    if(D_801115CD[player][car]<0)D_801115CD[player][car]=9;
-                    else if(D_801115CD[player][car]>=10)D_801115CD[player][car]=0;
-                } else D_801115CD[player][car]=D_801115C0[car];
-                scheduler_recv(D_803BA1D0[player]);
-                D_803BA1D0[player]=entity_flags_apply(D_801115CD[player][D_803B9FD0[player]]+26,0,1,0);
-                car=D_803B9FD0[player];func_800C7578(state->owner,car,9,D_801115CD[player][car]);break;
+                if (d) {
+                    D_801115C0[p + 1][D_803B9FD0[p]] += d;
+                    if (D_801115C0[p + 1][D_803B9FD0[p]] < 0) D_801115C0[p + 1][D_803B9FD0[p]] = 9;
+                    else if (D_801115C0[p + 1][D_803B9FD0[p]] > 9) D_801115C0[p + 1][D_803B9FD0[p]] = 0;
+                } else D_801115C0[p + 1][D_803B9FD0[p]] = D_801115C0[0][D_803B9FD0[p]];
+                sound = 0;
+                scheduler_recv(D_803BA1D0[p]);
+                D_803BA1D0[p] = entity_flags_apply(D_801115C0[p + 1][D_803B9FD0[p]] + 26, 0, 1, 0);
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 9, D_801115C0[p + 1][D_803B9FD0[p]]);
+                break;
             case 13:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_801112DC[player+1][car]+=change*0.05000000074505806f;
-                    if(D_801112DC[player+1][car]<0.7400000095367432f)D_801112DC[player+1][car]=1.5f;
-                    else if(D_801112DC[player+1][car]>1.600000023841858f)D_801112DC[player+1][car]=0.75f;
-                } else D_801112DC[player+1][car]=D_801112DC[0][car];
-                func_800C7578(state->owner,car,10,(s8)(D_801112DC[player+1][car]*100.0f-75.0f));break;
+                if (d) {
+                    D_801112DC[p + 1][D_803B9FD0[p]] += d * 0.05f;
+                    if (D_801112DC[p + 1][D_803B9FD0[p]] < 0.74f) D_801112DC[p + 1][D_803B9FD0[p]] = 1.5f;
+                    else if (D_801112DC[p + 1][D_803B9FD0[p]] > 1.6f) D_801112DC[p + 1][D_803B9FD0[p]] = 0.75f;
+                } else D_801112DC[p + 1][D_803B9FD0[p]] = D_801112DC[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 10, (s8)(100.0f * D_801112DC[p + 1][D_803B9FD0[p]] - 75.0f));
+                break;
             case 14:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_801113E0[player+1][car]+=change*0.05000000074505806f;
-                    if(D_801113E0[player+1][car]<0.7400000095367432f)D_801113E0[player+1][car]=1.5f;
-                    else if(D_801113E0[player+1][car]>1.5f)D_801113E0[player+1][car]=0.75f;
-                } else D_801113E0[player+1][car]=D_801113E0[0][car];
-                func_800C7578(state->owner,car,11,(s8)(D_801113E0[player+1][car]*100.0f-75.0f));break;
+                if (d) {
+                    D_801113E0[p + 1][D_803B9FD0[p]] += d * 0.05f;
+                    if (D_801113E0[p + 1][D_803B9FD0[p]] < 0.74f) D_801113E0[p + 1][D_803B9FD0[p]] = 1.5f;
+                    else if (D_801113E0[p + 1][D_803B9FD0[p]] > 1.5f) D_801113E0[p + 1][D_803B9FD0[p]] = 0.75f;
+                } else D_801113E0[p + 1][D_803B9FD0[p]] = D_801113E0[0][D_803B9FD0[p]];
+                func_800C7578(D_8014A118[p].owner, D_803B9FD0[p], 11, (s8)(100.0f * D_801113E0[p + 1][D_803B9FD0[p]] - 75.0f));
+                break;
             case 15:
-                car=D_803B9FD0[player];
-                if(change) {
-                    D_803B28B0[player]+=change;
-                    if(D_803B28B0[player]<0)D_803B28B0[player]=10;
-                    else if(D_803B28B0[player]>=11)D_803B28B0[player]=0;
-                } else D_803B28B0[player]=0;
-                sfx_stop(car,player,D_803B28B0[player]);break;
-            case 16:D_80152698[1]=func_8039E200(D_80152698[1],change);break;
-            case 17:D_80152698[2]=func_8039E200(D_80152698[2],change);break;
-            case 18:D_80152698[3]=func_8039E200(D_80152698[3],change);break;
+                if (d) {
+                    D_803B28B0[p] += d;
+                    if (D_803B28B0[p] < 0) D_803B28B0[p] = 10;
+                    else if (D_803B28B0[p] > 10) D_803B28B0[p] = 0;
+                } else D_803B28B0[p] = 0;
+                sfx_stop(D_803B9FD0[p], p, D_803B28B0[p]);
+                break;
+            case 16: D_80152698[1] = func_8039E200(D_80152698[1], d); break;
+            case 17: D_80152698[2] = func_8039E200(D_80152698[2], d); break;
+            case 18: D_80152698[3] = func_8039E200(D_80152698[3], d); break;
             }
-            if(feedback)audio_doppler(state->repeated);
+            if (sound) audio_doppler(D_8014A118[p].repeated);
         }
-        if(D_803B28B8[player]-1<D_803BA038[player])D_803BA038[player]=D_803B28B8[player]-1;
-        if(D_803BA038[player]<D_803B28B8[player]-1)D_803BA038[player]=D_803B28B8[player]-1;
-        if(D_803BA050[player]-3<D_803BA038[player])D_803BA038[player]=D_803BA050[player]-3;
-        if(D_803BA038[player]<=0)D_803BA038[player]=1;
-        D_803BA048[player]=1;
-changed_selection:
-        car=D_803B9FD0[player];
-        if(D_803BA018[player]!=car) {
-            if(D_803BA018[player]>=0) {func_800CCA04(state->owner,car);car=D_803B9FD0[player];}
-            D_803BA018[player]=car;
+        if (D_803BA038[p] > D_803B28B8[p] - 1) D_803BA038[p] = D_803B28B8[p] - 1;
+        if (D_803BA038[p] < D_803B28B8[p] - 1) D_803BA038[p] = D_803B28B8[p] - 1;
+        if (D_803BA038[p] > D_803BA050[p] - 3) D_803BA038[p] = D_803BA050[p] - 3;
+        if (D_803BA038[p] < 1) D_803BA038[p] = 1;
+        D_803BA048[p] = 1;
+after_options:
+        if (D_803BA018[p] != D_803B9FD0[p]) {
+            if (D_803BA018[p] >= 0) func_800CCA04(D_8014A118[p].owner, D_803B9FD0[p]);
+            D_803BA018[p] = D_803B9FD0[p];
         }
-        if(D_8014A110==2) {
-            s16 ghost_point[2];
-            Vec3 ghost_position;
-            for(j=1;j<=D_803BA00C;j++)if(D_803B9FC0[j]) {
-                ghost_position.v[0]=D_803AF9A8[0][38].position[0];
-                ghost_position.v[1]=-D_803AF9A8[0][38].position[1]*0.5f;
-                ghost_position.v[2]=D_803AF9A8[0][38].position[2];
-                brake_light_update(j,ghost_position.v,&D_80150B70[j],0,ghost_point);
-                x=ghost_point[0];y=ghost_point[1];object_create(12);
-                if(!D_80152698[j]) {
-                    if(!D_803AF980)width=object_manager_update(countdown_state.text[225],-1);
-                    else width=object_manager_update(countdown_state.text[224],-1);
-                    height=object_bytes_sum_global();
-                } else {
-                    width=object_manager_update((*D_80152698[j])->name,-1);
-                    width=(u32)object_manager_update(D_803B8590,-1)<(u32)width ? width : object_manager_update(D_803B85A0,-1);
-                    height=object_bytes_sum_global()*2;
+        if (D_8014A110 == 2) {
+            for (ghostIdx = 1; ghostIdx < D_803BA00C + 1; ghostIdx++) {
+                if (D_803B9FC0[ghostIdx]) {
+                    pos[0] = D_803AF9A8[0][38].position[0];
+                    pos[1] = D_803AF9A8[0][38].position[1];
+                    pos[2] = D_803AF9A8[0][38].position[2];
+                    pos[1] = -pos[1] / 2.0f;
+                    brake_light_update(ghostIdx, pos, &D_80150B70[ghostIdx], 0, gscreenPos);
+                    gx = gscreenPos[0];
+                    gy = gscreenPos[1];
+                    object_create(12);
+                    if (!D_80152698[ghostIdx]) {
+                        if (!D_803AF980) gw = object_manager_update(countdown_state.text[225], -1);
+                        else gw = object_manager_update(countdown_state.text[224], -1);
+                        gh = object_bytes_sum_global();
+                    } else {
+                        gw = object_manager_update((*D_80152698[ghostIdx])->name, -1);
+                        gw = (gw > object_manager_update(D_803B8590, -1) ? gw : object_manager_update(D_803B85A0, -1));
+                        gh = object_bytes_sum_global() * 2;
+                    }
+                    gy -= object_bytes_sum_global() / 2;
+                    crowd_cheer_play(D_803B9FC0[ghostIdx], gx - gw / 2 - 4, gy - 4, gx + gw / 2 + 4, gy + gh + 4);
                 }
-                y-=object_bytes_sum_global()/2;
-                crowd_cheer_play(D_803B9FC0[j],x-width/2-4,y-4,x+width/2+4,y+height+4);
             }
         }
-        func_8039D6A4(player);func_8039D300(player);
+        func_8039D6A4(p);
+        func_8039D300(p);
     }
-    D_803BA02C=1;
-    for(i=0;i<D_8014A108;i++)if(!D_803BA028[i])D_803BA02C=0;
-    if(D_803BA02C && D_803BA030>=10) {
-        speed_mode0_wrapper(0.0f,3.0f);func_800B5570(0x40000);func_8039D05C();
-        if(D_8014A110==3)net_session_update();
-        if(D_8014A110==2) {
-            record=D_80152020.first;
-            while(record) {menu_transition((void **)record);record=(*record)->next;}
-            for(i=1;i<D_803BA00C;i++)if(!D_80152698[i]) {D_80152698[i]=D_80152698[i+1];D_80152698[i+1]=0;}
-            for(i=1;i<D_803BA00C;i++)if(!D_80152698[i]) {D_80152698[i]=D_80152698[i+1];D_80152698[i+1]=0;}
+    D_803BA02C = 1;
+    for (i = 0; i < D_8014A108; i++) if (!D_803BA028[i]) D_803BA02C = 0;
+    if (D_803BA02C && D_803BA030 >= 10) {
+        speed_mode0_wrapper(0.0f, 3.0f);
+        func_800B5570(0x40000);
+        func_8039D05C();
+        if (D_8014A110 == 3) net_session_update();
+        if (D_8014A110 == 2) {
+            {
+                Record **gh;
+                for (gh = D_80152020.first; gh; gh = (*gh)->next) menu_transition((void **)gh);
+            }
+            for (i = 1; i < D_803BA00C; i++) {
+                if (!D_80152698[i]) { D_80152698[i] = D_80152698[i + 1]; D_80152698[i + 1] = 0; }
+            }
+            for (i = 1; i < D_803BA00C; i++) {
+                if (!D_80152698[i]) { D_80152698[i] = D_80152698[i + 1]; D_80152698[i + 1] = 0; }
+            }
         }
         pause_resume(0);
     }
@@ -1165,124 +1248,319 @@ void func_8039ED20(s32 enabled)
     }
 }
 
+/* CONTEXT STAND-IN (not a match claim): overlay A 0x8039E444, 2268 bytes, GC updateCarComponents@carscr.c (MAT3 0x800910f8).
+ * Best-effort port of the MAT3 body adapted to the N64 data (compLight bytes, 10.0f light scale, CarHandles frame/tires, no button
+ * colour).  Compiled in the group only so that IDO sees the real call convention of the call in func_8039EF08: parameter p in
+ * $s6, every callee-saved register clobbered.  Compiles to 576 words (retail 567); it is not scored and has no claim.
+ */
+typedef struct CompRec { s16 idx, level; f32 uvs[9]; f32 pos[3]; } CompRec;
+#define CMP(p,i) ((CompRec *)&D_803B2618[p][i])
+extern u16 D_803B2600[11];
+extern char *D_803B25EC[5];
+extern u8 D_803B2858[2][40];
+extern f32 D_803B303C[3];
+extern char D_803B85CC[];
+extern u8 D_8012E708[];
+extern void func_800A61B0(f32 *,f32 *,void *);
+extern f32 func_800BEA30(void);
+extern s32 engine_rpm_calc(s32,void *,s32,s32,s32);
+extern s32 sprintf(char *,const char *,...);
+extern void car_mass_set(s32,s32);
+extern void func_80090E9C(f32,void *);
+extern void func_8008B32C(void *,void *,f32);
+extern void func_800A79B8(s32,s32,void *);
+typedef struct UVMat { f32 uvs[9]; f32 pos[3]; } UVMat;
+extern UVMat *func_8008B3A0(s16);
+void func_8039E444(s32 p)
+{
+    s32 i;
+    f32 lightVec[3];
+    CarHandles *car;
+    f32 tmp[3];
+    s16 currentLevel;
+    s32 whichLight;
+    f32 compScale;
+    char componentName[16];
+    s32 mask;
+    lightVec[0] = D_803B303C[0];
+    lightVec[1] = D_803B303C[1];
+    lightVec[2] = D_803B303C[2];
+    if (D_8014A108 > 1 || D_8014A110 == 2) return;
+    if (D_803BA028[p] != 1) {
+        if (D_803BA060[p][D_803B28B8[p]] == 1) goto show_components;
+        if (D_803BA060[p][D_803B28B8[p]] == 2) goto show_components;
+        if (D_803BA060[p][D_803B28B8[p]] == 3) goto show_components;
+        if (D_803BA060[p][D_803B28B8[p]] == 4) goto show_components;
+        if (D_803BA060[p][D_803B28B8[p]] == 5) goto show_components;
+    }
+    {
+        for (i = 0; i < 11; i++) {
+            if (CMP(p, i)->idx != -1) {
+                model_data_load(CMP(p, i)->idx, 1, 15);
+                car_mass_set(CMP(p, i)->idx, -1);
+            }
+        }
+        return;
+    }
+show_components:
+    car = &D_80139320[p * 13 + D_803B9FD0[p]];
+    if (D_803B25C8 == -1) {
+        D_803B25C8 = engine_rpm_calc(string_copy_format(D_803B85CC, 0, D_80140BDC - 1, 1), func_8008B3A0((s16)car->main), 15, -1, 0);
+        model_data_load(D_803B25C8, 1, 15);
+    } else {
+        *(void **)(D_8012E708 + D_803B25C8 * 68) = func_8008B3A0((s16)car->main);
+    }
+    D_803B2858[1][0] = 255.0f * func_800BEA30();
+    func_800A61B0(lightVec, tmp, func_8008B3A0((s16)car->main));
+    D_803B2858[0][16] = D_803B2858[1][16] = (s8)(tmp[0] * 10.0f);
+    D_803B2858[0][17] = D_803B2858[1][17] = (s8)(tmp[1] * 10.0f);
+    D_803B2858[0][18] = D_803B2858[1][18] = (s8)(tmp[2] * 10.0f);
+    mask = 1 << p;
+    for (i = 0; i < 11; i++) {
+        currentLevel = -1;
+        compScale = 1.0f;
+        whichLight = 0;
+        switch (D_803B2600[i]) {
+        case 0:
+            if (D_803BA060[p][D_803B28B8[p]] == 3) { whichLight = 1; compScale = 0.1f * func_800BEA30() + 1.0f; }
+            currentLevel = D_8011108D[p][D_803B9FD0[p]] % 5;
+            break;
+        case 1:
+            if (D_803BA060[p][D_803B28B8[p]] == 5) { whichLight = 1; compScale = 0.1f * func_800BEA30() + 1.0f; }
+            currentLevel = D_8011123D[p][D_803B9FD0[p]] % 3;
+            break;
+        case 2:
+            if (D_803BA060[p][D_803B28B8[p]] == 2) { whichLight = 1; compScale = 0.1f * func_800BEA30() + 1.0f; }
+            currentLevel = D_80111049[p][D_803B9FD0[p]] % 3;
+            break;
+        case 3:
+            if (D_803BA060[p][D_803B28B8[p]] == 4) { whichLight = 1; compScale = 0.1f * func_800BEA30() + 1.0f; }
+            currentLevel = D_801111A9[p][D_803B9FD0[p]] % 4;
+            break;
+        case 4:
+            if (D_803BA060[p][D_803B28B8[p]] == 1) { whichLight = 1; compScale = 0.1f * func_800BEA30() + 1.0f; }
+            currentLevel = D_80110E85[p][D_803B9FD0[p]] % 2;
+            break;
+        }
+        if (currentLevel != CMP(p, i)->level) {
+            sprintf(componentName, D_803B25EC[D_803B2600[i]], currentLevel + 1);
+            if (CMP(p, i)->idx != -1) {
+                sound_call_minimal(CMP(p, i)->idx);
+                CMP(p, i)->idx = -1;
+                CMP(p, i)->level = -1;
+            }
+            CMP(p, i)->idx = sign_extend_call(string_copy_format(componentName, 0, D_80140BDC - 1, 1), CMP(p, i)->uvs, -1, 0);
+            model_data_load(CMP(p, i)->idx, 1, 15);
+            if (D_80151AD0 == 1) {
+                CMP(p, i)->pos[0] = 0.0f;
+                CMP(p, i)->pos[1] = 1.0f;
+                CMP(p, i)->pos[2] = 15.0f;
+            } else {
+                CMP(p, i)->pos[0] = 0.0f;
+                CMP(p, i)->pos[1] = 2.0f;
+                CMP(p, i)->pos[2] = 15.0f;
+            }
+            CMP(p, i)->level = currentLevel;
+        }
+        switch (i) {
+        case 0: case 1: case 10:
+            func_8008B32C(D_8011418C, CMP(p, i)->uvs, compScale);
+            CMP(p, i)->pos[0] = 0.0f;
+            CMP(p, i)->pos[1] = 0.0f;
+            CMP(p, i)->pos[2] = 15.0f;
+            break;
+        case 2: case 6:
+            func_8008B32C(func_8008B3A0((s16)car->parts[3])->uvs, CMP(p, i)->uvs, compScale);
+            CMP(p, i)->pos[0] = func_8008B3A0((s16)car->parts[3])->pos[0];
+            CMP(p, i)->pos[1] = func_8008B3A0((s16)car->parts[3])->pos[1];
+            CMP(p, i)->pos[2] = func_8008B3A0((s16)car->parts[3])->pos[2];
+            func_80090E9C(3.1415927f, CMP(p, i)->uvs);
+            break;
+        case 3: case 7:
+            func_8008B32C(func_8008B3A0((s16)car->parts[4])->uvs, CMP(p, i)->uvs, compScale);
+            CMP(p, i)->pos[0] = func_8008B3A0((s16)car->parts[4])->pos[0];
+            CMP(p, i)->pos[1] = func_8008B3A0((s16)car->parts[4])->pos[1];
+            CMP(p, i)->pos[2] = func_8008B3A0((s16)car->parts[4])->pos[2];
+            break;
+        case 5: case 9:
+            func_8008B32C(func_8008B3A0((s16)car->parts[5])->uvs, CMP(p, i)->uvs, compScale);
+            CMP(p, i)->pos[0] = func_8008B3A0((s16)car->parts[5])->pos[0];
+            CMP(p, i)->pos[1] = func_8008B3A0((s16)car->parts[5])->pos[1];
+            CMP(p, i)->pos[2] = func_8008B3A0((s16)car->parts[5])->pos[2];
+            func_80090E9C(3.1415927f, CMP(p, i)->uvs);
+            break;
+        case 4: case 8:
+            func_8008B32C(func_8008B3A0((s16)car->parts[6])->uvs, CMP(p, i)->uvs, compScale);
+            CMP(p, i)->pos[0] = func_8008B3A0((s16)car->parts[6])->pos[0];
+            CMP(p, i)->pos[1] = func_8008B3A0((s16)car->parts[6])->pos[1];
+            CMP(p, i)->pos[2] = func_8008B3A0((s16)car->parts[6])->pos[2];
+            break;
+        }
+        car_mass_set(CMP(p, i)->idx, (s16)D_803B25C8);
+        model_transform_setup(CMP(p, i)->idx, 0, mask);
+        func_800A79B8(CMP(p, i)->idx, 1, D_803B2858[whichLight]);
+    }
+}
+
+
+/* Overlay A 0x8039EF08, 4092 bytes: GC showCarSelect@carscr.c (MAT3 0x8008eddc, 0xb28 B), static.
+ * Source: reference/repos/mat3 decomp/src/GameSource/src/carscr.c showCarSelect (typed port).  The MAT3 local order
+ * (uv,i,p,carPos,alpha,framesLeft,reflectIdx,reflectUV,reflectPos,ghostIdx,ghostCar,show) reproduces the retail frame offsets
+ * uv@212 i@208 p@204 carPos@192 reflectUV@144 reflectPos@132 exactly.  The N64 build is an earlier revision than GC: selection
+ * fades (`+= 5.0f * gFrameSeconds`), the "face front" mode is gOpts==11 (GC 9), reflection alpha is alpha/1.5f, no alpha/4,
+ * UpdateSelectCar takes 9 args (slot,p,paint,rims,horn,sheen,pos,uv,alpha), func_8039ED20(boolean) replaces showGridMap and
+ * updateCarComponents is func_8039E444(p) (register parameter $s6, clobbers every callee-saved register).
+ * Shaping, all verified on the builder (group dot_cleanup_colortrace_20261011):
+ *  - the two `gThisCarIndex[p] == i` reads are volatile (cast): retail does not share the load between them, and a shared
+ *    load becomes a coloured web that steals $v0 and moves p out of $s6 (nine code-free `if (p) {}` reads gave the same
+ *    allocation before this was found; they are gone);
+ *  - `if (!D_80152698[ghostIdx]) continue;`: the loop test `n + 1` is then kept in both paths, as in retail (the if-block form
+ *    folds it to `n < ghostIdx`);
+ *  - `0.f` for the angle>0 compare and `3.14159265f` for the RollUV argument give retail's separate constants/rodata entries;
+ *  - (w36a) no unused locals: MAT3 calls createGridMap() at the top of the `gNumPlayers == 1 && gRace != 2` block (before
+ *    `show`, which is block-local as in MAT3).  In this N64 revision createGridMap is EMPTY: func_8039EF00 (the caller-less
+ *    `jr ra; nop` right before this function) is it, defined below as a non-static, non-kept function so umerge inlines it
+ *    here and still emits its 8-byte body with a symbol.  The inlined call reserves the 8 frame bytes that w35b had to fill
+ *    with two unused locals (xx1, xx2), which are gone; frame 248 as retail.
+ * Needs func_8039E444 in the group (stand-in context): without it the caller keeps its registers across the call.
+ *  - (w36a) the `angle > 1.5707964f` test and its then-statement are on separate source lines: as1's cross-block pull fills the
+ *    stall slots of the block after `angle -= 1.5707964f` with the compare's `lui at` and the then-arm's `&gFrameSeconds`
+ *    (`lui t9; addiu t9`), and breaks the aftercycles tie between `lui at` and `addiu t9` by source line.  On one line the
+ *    tie went to `addiu t9` (2 words off, w35b); on two lines `lui at` (the compare, earlier line) goes first, as in retail.
+ * Matches in this group (score.py group, strict).  Own .rodata verified by hand against decompressed image A (33/33 literal
+ * sites, w35b rocheck.py).
+ */
+#define CAR_MIN(a,b) ((a) < (b) ? (a) : (b))
+extern void func_80390DCC(s16,s16,u8,u8,u8,s16,f32 *,f32 (*)[3],u32);
 extern void func_80090F44(f32,void *);
 extern void func_80090E9C(f32,void *);
 extern void func_8009EA68(f32,void *);
-extern void func_80390DCC(s16,s16,u8,u8,u8,s16,f32 *,f32 (*)[3],u8);
-extern void func_8039E444(void);
-extern f32 D_80111310[][13],D_80111414[][13];
+extern void func_8008B32C(void *,void *,f32);
+extern s8 D_80138664[];
+/* Overlay A 0x8039EF00, 8 bytes: GC createGridMap@carscr.c, empty in this N64 revision (MAT3 builds the grid display list).
+ * Called (and inlined) only by showCarSelect; non-static so its deleted-procedure body keeps a symbol (w17j packaging rule). */
+void func_8039EF00(void)
+{
+}
 void func_8039EF08(void)
 {
-    f32 matrix[3][3],position[3],shadow_matrix[3][3],shadow_position[3];
-    s32 player,index,other,car,remaining,ghost,option;
-    u32 alpha;
-    CarSlot *slot;
-    RecordedCar *saved;
-    for(player=0;player<D_8014A108;player++) {
-        for(index=0,slot=D_803B9BC8[player];index<D_803BA020[player];index++,slot++) {
-            if(index==D_803B9FD4[player]) {
-                slot->selection+=5.0f*D_8002EB94;
-                if(slot->selection>1.0f)slot->selection=1.0f;
+    f32 uv[3][3];
+    s32 i;
+    s32 p;
+    f32 carPos[3];
+    u8 alpha;
+    s32 framesLeft;
+    s8 reflectIdx;
+    f32 reflectUV[3][3];
+    f32 reflectPos[3];
+    s32 ghostIdx;
+    s32 ghostCar;
+    for (p = 0; p < D_8014A108; p++) {
+        for (i = 0; i < D_803BA020[p]; i++) {
+            if (((volatile s8 *)D_803B9FD4)[p] == i) {
+                D_803B9BC8[p][i].selection += 5.0f * D_8002EB94;
+                if (D_803B9BC8[p][i].selection > 1.0f) D_803B9BC8[p][i].selection = 1.0f;
             } else {
-                slot->selection-=5.0f*D_8002EB94;
-                if(slot->selection<0.0f)slot->selection=0.0f;
+                D_803B9BC8[p][i].selection -= 5.0f * D_8002EB94;
+                if (D_803B9BC8[p][i].selection < 0.0f) D_803B9BC8[p][i].selection = 0.0f;
             }
-            if(D_803BA028[player]) {
-                remaining=10-D_803BA030;
-                if(remaining<2)slot->angle=3.665191411972046f;
+            if (D_803BA028[p]) {
+                framesLeft = 10 - D_803BA030;
+                if (framesLeft <= 1) D_803B9BC8[p][i].angle = 3.6651914f;
                 else {
-                    slot->angle-=3.665191411972046f;
-                    while(slot->angle>3.1415927410125732f)slot->angle-=6.2831854820251465f;
-                    while(slot->angle<=-3.1415927410125732f)slot->angle+=6.2831854820251465f;
-                    slot->angle-=slot->angle/(remaining-1);
-                    slot->angle+=3.665191411972046f;
+                    D_803B9BC8[p][i].angle -= 3.6651914f;
+                    while (D_803B9BC8[p][i].angle > 3.1415927f) D_803B9BC8[p][i].angle -= 6.2831855f;
+                    while (D_803B9BC8[p][i].angle <= -3.1415927f) D_803B9BC8[p][i].angle += 6.2831855f;
+                    D_803B9BC8[p][i].angle -= D_803B9BC8[p][i].angle / (framesLeft - 1);
+                    D_803B9BC8[p][i].angle += 3.6651914f;
                 }
-            } else if(D_803BA060[player][D_803B28B8[player]]==11) {
-                slot->angle-=1.5707963705062866f;
-                while(slot->angle>3.1415927410125732f)slot->angle-=6.2831854820251465f;
-                while(slot->angle<=-3.1415927410125732f)slot->angle+=6.2831854820251465f;
-                if(slot->angle>1.5707963705062866f)
-                    slot->angle+=1.0471975803375244f*D_8002EB94*4.0f < 3.1415927410125732f-slot->angle ? 1.0471975803375244f*D_8002EB94*4.0f : 3.1415927410125732f-slot->angle;
-                else if(slot->angle< -1.5707963705062866f)
-                    slot->angle-=1.0471975803375244f*D_8002EB94*4.0f < slot->angle+3.1415927410125732f ? 1.0471975803375244f*D_8002EB94*4.0f : slot->angle+3.1415927410125732f;
-                else if(slot->angle>0.0f)
-                    slot->angle-=1.0471975803375244f*D_8002EB94*4.0f < slot->angle ? 1.0471975803375244f*D_8002EB94*4.0f : slot->angle;
-                else slot->angle+=1.0471975803375244f*D_8002EB94*4.0f < -slot->angle ? 1.0471975803375244f*D_8002EB94*4.0f : -slot->angle;
-                slot->angle+=1.5707963705062866f;
+            } else if (D_803BA060[p][D_803B28B8[p]] == 11) {
+                D_803B9BC8[p][i].angle -= 1.5707964f;
+                while (D_803B9BC8[p][i].angle > 3.1415927f) D_803B9BC8[p][i].angle -= 6.2831855f;
+                while (D_803B9BC8[p][i].angle <= -3.1415927f) D_803B9BC8[p][i].angle += 6.2831855f;
+                if (D_803B9BC8[p][i].angle > 1.5707964f)
+                    D_803B9BC8[p][i].angle += CAR_MIN(1.0471976f * D_8002EB94 * 4.0f, 3.1415927f - D_803B9BC8[p][i].angle);
+                else if (D_803B9BC8[p][i].angle < -1.5707964f) D_803B9BC8[p][i].angle -= CAR_MIN(1.0471976f * D_8002EB94 * 4.0f, 3.1415927f + D_803B9BC8[p][i].angle);
+                else if (D_803B9BC8[p][i].angle > 0.f) D_803B9BC8[p][i].angle -= CAR_MIN(1.0471976f * D_8002EB94 * 4.0f, D_803B9BC8[p][i].angle);
+                else D_803B9BC8[p][i].angle += CAR_MIN(1.0471976f * D_8002EB94 * 4.0f, -D_803B9BC8[p][i].angle);
+                D_803B9BC8[p][i].angle += 1.5707964f;
             } else {
-                slot->angle+=1.0471975803375244f*D_8002EB94;
-                if(slot->angle>=6.2831854820251465f)slot->angle-=6.2831854820251465f;
+                D_803B9BC8[p][i].angle += 1.0471976f * D_8002EB94;
+                if (D_803B9BC8[p][i].angle >= 6.2831855f) D_803B9BC8[p][i].angle -= 6.2831855f;
             }
-            func_8008B32C(D_8011418C,matrix,2.5f);
-            func_80090F44(0.3490658402442932f,matrix);
-            func_80090E9C(slot->angle,matrix);
-            car=slot->car%13;
-            if(car==10) {
-                if(D_80151AD0==1) {position[0]=0.0f;position[1]=3.200000047683716f;position[2]=40.5f;}
-                else {position[0]=0.0f;position[1]=5.900000095367432f;position[2]=40.5f;}
+            func_8008B32C(D_8011418C, uv, 2.5f);
+            func_80090F44(0.34906584f, uv);
+            func_80090E9C(D_803B9BC8[p][i].angle, uv);
+            if (D_803B9BC8[p][i].car % 13 == 10) {
+                if (D_80151AD0 == 1) { carPos[0] = 0.0f; carPos[1] = 3.2f; carPos[2] = 40.5f; }
+                else { carPos[0] = 0.0f; carPos[1] = 5.9f; carPos[2] = 40.5f; }
             } else {
-                if(D_80151AD0==1) {position[0]=0.0f;position[1]=2.5999999046325684f;position[2]=40.5f;}
-                else {position[0]=0.0f;position[1]=5.300000190734863f;position[2]=40.5f;}
+                if (D_80151AD0 == 1) { carPos[0] = 0.0f; carPos[1] = 2.6f; carPos[2] = 40.5f; }
+                else { carPos[0] = 0.0f; carPos[1] = 5.3f; carPos[2] = 40.5f; }
             }
-            alpha=(u8)(slot->selection*255.0f);
-            if(D_8014A110==6 && !D_801164BE)
-                func_80390DCC(slot->car,player,D_80138664[D_8012E67C[player]],D_80138664[D_8012E67C[player]],D_80138664[D_8012E67C[player]],D_803B28B0[player],position,matrix,alpha);
-            else func_80390DCC(slot->car,player,D_80111611[player][car],D_80111655[player][car],D_80111699[player][car],D_803B28B0[player],position,matrix,alpha);
-            if(D_8014A108<3 && D_8014A110!=2) {
-                other=player==0 ? 2 : 3;
-                func_8008B32C(matrix,shadow_matrix,1.2f);
-                func_8009EA68(3.1415927410125732f,shadow_matrix);
-                shadow_position[0]=position[0]*1.2000000476837158f;
-                shadow_position[1]=position[1]*1.2000000476837158f;
-                shadow_position[2]=position[2]*1.2000000476837158f;
-                if(slot->car%13==10)shadow_position[1]-=4.0f;
-                else shadow_position[1]-=2.5f;
-                D_803B9BC8[other][index].car=slot->car+26;
-                if(D_8014A110==6 && !D_801164BE)
-                    func_80390DCC(D_803B9BC8[other][index].car,other,D_80138664[D_8012E67C[player]],D_80138664[D_8012E67C[player]],D_80138664[D_8012E67C[player]],D_803B28B0[player],shadow_position,shadow_matrix,alpha/1.5f);
-                else {
-                    car=slot->car%13;
-                    func_80390DCC(D_803B9BC8[other][index].car,other,D_80111611[player][car],D_80111655[player][car],D_80111699[player][car],D_803B28B0[player],shadow_position,shadow_matrix,alpha/1.5f);
-                }
+            alpha = D_803B9BC8[p][i].selection * 255.0f;
+            if (D_8014A110 == 6 && D_801164BE == 0)
+                func_80390DCC(D_803B9BC8[p][i].car, p, D_80138664[D_8012E67C[p]], D_80138664[D_8012E67C[p]], D_80138664[D_8012E67C[p]], D_803B28B0[p], carPos, uv, alpha);
+            else func_80390DCC(D_803B9BC8[p][i].car, p, D_80111604[p + 1][D_803B9BC8[p][i].car % 13], D_80111648[p + 1][D_803B9BC8[p][i].car % 13], D_8011168C[p + 1][D_803B9BC8[p][i].car % 13], D_803B28B0[p], carPos, uv, alpha);
+            if (D_8014A108 < 3 && D_8014A110 != 2) {
+                reflectIdx = p == 0 ? 2 : 3;
+                func_8008B32C(uv, reflectUV, 1.2f);
+                func_8009EA68(3.14159265f, reflectUV);
+                reflectPos[0] = 1.2f * carPos[0];
+                reflectPos[1] = 1.2f * carPos[1];
+                reflectPos[2] = 1.2f * carPos[2];
+                if (D_803B9BC8[p][i].car % 13 == 10) reflectPos[1] -= 4.0f;
+                else reflectPos[1] -= 2.5f;
+                D_803B9BC8[reflectIdx][i].car = D_803B9BC8[p][i].car + 26;
+                if (D_8014A110 == 6 && D_801164BE == 0)
+                    func_80390DCC(D_803B9BC8[reflectIdx][i].car, reflectIdx, D_80138664[D_8012E67C[p]], D_80138664[D_8012E67C[p]], D_80138664[D_8012E67C[p]], D_803B28B0[p], reflectPos, reflectUV, alpha / 1.5f);
+                else func_80390DCC(D_803B9BC8[reflectIdx][i].car, reflectIdx, D_80111604[p + 1][D_803B9BC8[p][i].car % 13], D_80111648[p + 1][D_803B9BC8[p][i].car % 13], D_8011168C[p + 1][D_803B9BC8[p][i].car % 13], D_803B28B0[p], reflectPos, reflectUV, alpha / 1.5f);
             }
-            if(index==D_803B9FD4[player]) {
-                func_8008B32C(D_8011418C,D_803B9E40[player][0],1.3f);
-                func_8008B32C(D_8011418C,D_803B9E40[player][1],1.3f);
-                func_80090F44(0.3490658402442932f,D_803B9E40[player][0]);
-                func_80090F44(0.3490658402442932f,D_803B9E40[player][1]);
-                func_80090E9C(slot->angle,D_803B9E40[player][0]);
-                if(D_80151AD0==1) {
-                    D_803B9E40[player][0][9]=D_803B9E40[player][1][9]=0.0f;
-                    D_803B9E40[player][0][10]=D_803B9E40[player][1][10]=1.7999999523162842f;
-                    D_803B9E40[player][0][11]=D_803B9E40[player][1][11]=45.0f;
+            if (((volatile s8 *)D_803B9FD4)[p] == i) {
+                func_8008B32C(D_8011418C, D_803B9E40[p][0], 1.3f);
+                func_8008B32C(D_8011418C, D_803B9E40[p][1], 1.3f);
+                func_80090F44(0.34906584f, D_803B9E40[p][0]);
+                func_80090F44(0.34906584f, D_803B9E40[p][1]);
+                func_80090E9C(D_803B9BC8[p][i].angle, D_803B9E40[p][0]);
+                if (D_80151AD0 == 1) {
+                    D_803B9E40[p][0][9] = 0.0f;
+                    D_803B9E40[p][0][10] = 1.8f;
+                    D_803B9E40[p][0][11] = 45.0f;
+                    D_803B9E40[p][1][9] = 0.0f;
+                    D_803B9E40[p][1][10] = 1.8f;
+                    D_803B9E40[p][1][11] = 45.0f;
                 } else {
-                    D_803B9E40[player][0][9]=D_803B9E40[player][1][9]=0.0f;
-                    D_803B9E40[player][0][10]=D_803B9E40[player][1][10]=4.800000190734863f;
-                    D_803B9E40[player][0][11]=D_803B9E40[player][1][11]=45.0f;
+                    D_803B9E40[p][0][9] = 0.0f;
+                    D_803B9E40[p][0][10] = 4.8f;
+                    D_803B9E40[p][0][11] = 45.0f;
+                    D_803B9E40[p][1][9] = 0.0f;
+                    D_803B9E40[p][1][10] = 4.8f;
+                    D_803B9E40[p][1][11] = 45.0f;
                 }
-                if(D_8014A110==2) {
-                    for(ghost=1;ghost<D_803BA00C+1;ghost++) {
-                        if((!D_80152698[ghost] || D_803BA01A[ghost-1]!=(*(*D_80152698[ghost])->active)->car) && D_803BA01A[ghost-1]!=-1)
-                            func_80390DCC(D_803B9BC8[ghost][D_803BA01A[ghost-1]].car,ghost,0,0,0,0,position,matrix,0);
-                        if(D_80152698[ghost]) {
-                            car=(*(*D_80152698[ghost])->active)->car;
-                            D_803BA01A[ghost-1]=car;
-                            D_803B9BC8[ghost][car].car=ghost*13+car;
-                            D_801111A9[ghost][car]=(*(*D_80152698[ghost])->active)->component;
-                            D_80111589[ghost][car]=(*(*D_80152698[ghost])->active)->part;
-                            D_80111310[ghost][car]=(*(*D_80152698[ghost])->active)->stat0/100.0f+0.75f;
-                            D_80111414[ghost][car]=(*(*D_80152698[ghost])->active)->stat1/100.0f+0.75f;
-                            saved=*(*D_80152698[ghost])->active;
-                            func_80390DCC(D_803B9BC8[ghost][car].car,ghost,saved->red,saved->green,saved->blue,0,position,matrix,255);
+                if (D_8014A110 == 2) {
+                    for (ghostIdx = 1; ghostIdx < D_803BA00C + 1; ghostIdx++) {
+                        if (!D_80152698[ghostIdx] || D_803BA018[ghostIdx] != (*(*D_80152698[ghostIdx])->active)->car) {
+                            if (D_803BA018[ghostIdx] != -1) func_80390DCC(D_803B9BC8[ghostIdx][D_803BA018[ghostIdx]].car, ghostIdx, 0, 0, 0, 0, carPos, uv, 0);
                         }
+                        if (!D_80152698[ghostIdx]) continue;
+                        ghostCar = (*(*D_80152698[ghostIdx])->active)->car;
+                        D_803BA018[ghostIdx] = ghostCar;
+                        D_803B9BC8[ghostIdx][ghostCar].car = ghostCar + ghostIdx * 13;
+                        D_8011119C[ghostIdx + 1][ghostCar] = (*(*D_80152698[ghostIdx])->active)->component;
+                        D_8011157C[ghostIdx + 1][ghostCar] = (*(*D_80152698[ghostIdx])->active)->part;
+                        D_801112DC[ghostIdx + 1][ghostCar] = (*(*D_80152698[ghostIdx])->active)->stat0 / 100.0f + 0.75f;
+                        D_801113E0[ghostIdx + 1][ghostCar] = (*(*D_80152698[ghostIdx])->active)->stat1 / 100.0f + 0.75f;
+                        func_80390DCC(D_803B9BC8[ghostIdx][ghostCar].car, ghostIdx, (*(*D_80152698[ghostIdx])->active)->red, (*(*D_80152698[ghostIdx])->active)->green, (*(*D_80152698[ghostIdx])->active)->blue, 0, carPos, uv, 255);
                     }
                 }
             }
         }
-        if(D_8014A108==1 && D_8014A110!=2) {
-            option=D_803BA060[player][D_803B28B8[player]];
-            func_8039ED20(!D_803BA028[0] && (option==1 || option==2 || option==3 || option==4 || option==5));
-            func_8039E444();
+        if (D_8014A108 == 1 && D_8014A110 != 2) {
+            s32 show;
+            func_8039EF00();
+            show = !D_803BA028[0] && (D_803BA060[p][D_803B28B8[p]] == 1 || D_803BA060[p][D_803B28B8[p]] == 2 || D_803BA060[p][D_803B28B8[p]] == 3 || D_803BA060[p][D_803B28B8[p]] == 4 || D_803BA060[p][D_803B28B8[p]] == 5);
+            func_8039ED20(show);
+            func_8039E444(p);
         }
     }
 }
