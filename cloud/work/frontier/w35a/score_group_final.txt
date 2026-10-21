@@ -1,0 +1,100 @@
+Members:
+func_8039D300:
+  MATCH
+func_8039D05C:
+  MATCH
+func_8039D494:
+  MATCH
+func_8039ED20:
+  MATCH
+func_8039E200:
+  MATCH
+func_8039E3BC:
+  MATCH
+func_8039FF04:
+  MATCH (30 section-relative relocations unverified: .data+0x0 at +0x4, .data+0x0 at +0xc, .data+0x4 at +0x3c, .data+0x4 at +0x40, .rodata+0x8c at +0x1d8, .rodata+0x8c at +0x1dc, .data+0x4 at +0x22c, .data+0x4 at +0x230, .rodata+0x90 at +0x330, .rodata+0x90 at +0x334, .rodata+0x94 at +0x34c, .rodata+0x94 at +0x350, .rodata+0x98 at +0x354, .rodata+0x98 at +0x360, .rodata+0x9c at +0x364, .rodata+0x9c at +0x368, .rodata+0xa0 at +0x36c, .rodata+0xa0 at +0x374, .rodata+0xa4 at +0x3c0, .rodata+0xa4 at +0x3c4, .rodata+0xa8 at +0x3d0, .rodata+0xa8 at +0x3d4, .rodata+0xac at +0x464, .rodata+0xac at +0x468, .data+0x4 at +0x490, .data+0x4 at +0x494, .rodata+0xb0 at +0x4f8, .rodata+0xb0 at +0x4fc, .data+0x4 at +0x524, .data+0x4 at +0x528)
+    not verified: .rodata+0x8c at +0x1dc: no retail data available
+    not verified: .rodata+0x90 at +0x334: no retail data available
+    not verified: .rodata+0x94 at +0x350: no retail data available
+    not verified: .rodata+0x98 at +0x360: no retail data available
+    not verified: .rodata+0x9c at +0x368: no retail data available
+    not verified: .rodata+0xa0 at +0x374: no retail data available
+    not verified: .rodata+0xa4 at +0x3c4: no retail data available
+    not verified: .rodata+0xa8 at +0x3d4: no retail data available
+    not verified: .rodata+0xac at +0x468: no retail data available
+    not verified: .rodata+0xb0 at +0x4fc: no retail data available
+    not verified: .data+0x0 at +0xc: no retail data available
+    not verified: .data+0x4 at +0x40: no retail data available
+    not verified: .data+0x4 at +0x230: no retail data available
+    not verified: .data+0x4 at +0x494: no retail data available
+    not verified: .data+0x4 at +0x528: no retail data available
+func_8039D6A4:
+  MATCH (20 section-relative relocations unverified: .data+0x8 at +0x20, .data+0x8 at +0x24, .rodata+0x0 at +0x134, .rodata+0x0 at +0x138, .bss+0x0 at +0x1ec, .bss+0x0 at +0x1f4, .rodata+0x4 at +0x30c, .rodata+0x4 at +0x310, .rodata+0x8 at +0x348, .rodata+0x8 at +0x34c, .rodata+0xc at +0x3d0, .rodata+0xc at +0x3dc, .rodata+0x10 at +0x420, .rodata+0x10 at +0x434, .rodata+0x14 at +0x47c, .rodata+0x14 at +0x490, .bss+0x10 at +0x53c, .bss+0x10 at +0x544, .bss+0x10 at +0xb38, .bss+0x10 at +0xb40)
+    not verified: .rodata+0x0 at +0x138: no retail data available
+    not verified: .rodata+0x4 at +0x310: no retail data available
+    not verified: .rodata+0x8 at +0x34c: no retail data available
+    not verified: .rodata+0xc at +0x3dc: no retail data available
+    not verified: .rodata+0x10 at +0x434: no retail data available
+    not verified: .rodata+0x14 at +0x490: no retail data available
+    not verified: .data+0x8 at +0x24: no retail data available
+    not verified: own .bss+0x0 (referenced at +0x83c): retail address 0x803BA200 (+16 bytes) is not in a known game .bss range
+    not verified: own .bss+0x10 (referenced at +0xb8c, +0x1188): retail address 0x803BA210 (+4 bytes) is not in a known game .bss range
+
+Context (informational; excluded from exit status):
+func_803A0498:
+    +0x060  want 24100001 li s0,1                       got 00008025 move s0,zero                
+    +0x0f0  want 8e590018 lw t9,24(s2)                  got 8e99000c lw t9,12(s4)                
+    +0x0f4  want 8e8e000c lw t6,12(s4)                  got 8e4e0018 lw t6,24(s2)                
+    +0x100  want 8e4f001c lw t7,28(s2)                  got 8e8f0010 lw t7,16(s4)                
+    +0x104  want 8e980010 lw t8,16(s4)                  got 8e58001c lw t8,28(s2)                
+    +0x1b8  want 8e590018 lw t9,24(s2)                  got 8e99000c lw t9,12(s4)                
+    +0x1bc  want 8e8e000c lw t6,12(s4)                  got 8e4e0018 lw t6,24(s2)                
+    +0x1c8  want 8e4f001c lw t7,28(s2)                  got 8e8f0010 lw t7,16(s4)                
+    +0x1cc  want 8e980010 lw t8,16(s4)                  got 8e58001c lw t8,28(s2)                
+    +0x2f4  want 8c4f0008 lw t7,8(v0)                   got 8c4e0004 lw t6,4(v0)                 
+    +0x2f8  want 8c59000c lw t9,12(v0)                  got 8c4f0008 lw t7,8(v0)                 
+    +0x2fc  want 8c580010 lw t8,16(v0)                  got 8c59000c lw t9,12(v0)                
+  154/720 words differ
+func_803A0FD8:
+    +0x000  want 27bdff30 addiu sp,sp,-208              got 27bdff28 addiu sp,sp,-216            
+    +0x0b8  want 3c068015 lui a2,0x8015                 got 3c028015 lui v0,0x8015               
+    +0x0bc  want 84c6a108 lh a2,-24312(a2)              got 8442a108 lh v0,-24312(v0)            
+    +0x0c8  want 18c0001f blez a2,0x80                  got 1840001f blez v0,0x80                
+    +0x100  want ad600000 sw zero,0(t3)                 got a1820000 sb v0,0(t4)                 
+    +0x104  want a1820000 sb v0,0(t4)                   got ada20000 sw v0,0(t5)                 
+    +0x108  want ada20000 sw v0,0(t5)                   got ad600000 sw zero,0(t3)               
+    +0x10c  want a2000000 sb zero,0(s0)                 got ae380000 sw t8,0(s1)                 
+    +0x110  want ae380000 sw t8,0(s1)                   got a2000000 sb zero,0(s0)               
+    +0x11c  want 3c068015 lui a2,0x8015                 got 3c028015 lui v0,0x8015               
+    +0x120  want 84c6a108 lh a2,-24312(a2)              got 8442a108 lh v0,-24312(v0)            
+    +0x12c  want 0286082a slt at,s4,a2                  got 0282082a slt at,s4,v0                
+  873/949 words differ (14 section-relative relocations unverified: .rodata+0xb4 at +0x308, .rodata+0xb4 at +0x30c, .rodata+0xb8 at +0x330, .rodata+0xb8 at +0x334, .rodata+0xbc at +0x340, .rodata+0xbc at +0x344, .rodata+0xc0 at +0x388, .rodata+0xc0 at +0x38c, .rodata+0xc4 at +0x3b0, .rodata+0xc4 at +0x3b4, .rodata+0xc8 at +0x3c0, .rodata+0xc8 at +0x3c4, .rodata+0xd0 at +0x720, .rodata+0xd0 at +0x724)
+func_803A1EAC:
+    +0x000  want 27bdfef8 addiu sp,sp,-264              got 27bdff00 addiu sp,sp,-256            
+    +0x054  want afae0100 sw t6,256(sp)                 got afae00fc sw t6,252(sp)               
+    +0x074  want 3c0e8015 lui t6,0x8015                 got 00001025 move v0,zero                
+    +0x078  want 00001825 move v1,zero                  got 3c0e8015 lui t6,0x8015               
+    +0x088  want 24030006 li v1,6                       got 24020006 li v0,6                     
+    +0x094  want 006e7821 addu t7,v1,t6                 got 01c27821 addu t7,t6,v0               
+    +0x0b4  want 3c048011 lui a0,0x8011                 got 3c038011 lui v1,0x8011               
+    +0x0b8  want 248474bc addiu a0,a0,29884             got 246374bc addiu v1,v1,29884           
+    +0x0bc  want 8c820000 lw v0,0(a0)                   got 8c620000 lw v0,0(v1)                 
+    +0x0c0  want 24030001 li v1,1                       got 24010001 li at,1                     
+    +0x0c8  want 1062000b beq v1,v0,0x30                got 1041000d beq v0,at,0x38              
+    +0x0d4  want 53020008 beql t8,v0,0x24               got 24190001 li t9,1                     
+  1719/1776 words differ (12 section-relative relocations unverified: .rodata+0xd4 at +0x89c, .rodata+0xd4 at +0x8a4, .rodata+0x120 at +0x132c, .rodata+0x120 at +0x1330, .rodata+0x124 at +0x1368, .rodata+0x124 at +0x1374, .rodata+0x128 at +0x137c, .rodata+0x128 at +0x13a8, .rodata+0x12c at +0x145c, .rodata+0x12c at +0x1460, .rodata+0x130 at +0x1498, .rodata+0x130 at +0x14a4)
+func_8039EF08:
+    +0x008  want 27bdff08 addiu sp,sp,-248              got 27bdff10 addiu sp,sp,-240            
+    +0x010  want 184003f6 blez v0,0xfdc                 got 184003f3 blez v0,0xfd0               
+    +0x014  want 0000b025 move s6,zero                  got afa0008c sw zero,140(sp)             
+    +0x03c  want 25cea020 addiu t6,t6,-24544            got 3c0f803c lui t7,0x803c               
+    +0x040  want 3c01803c lui at,0x803c                 got 25efa020 addiu t7,t7,-24544          
+    +0x044  want 3c17803c lui s7,0x803c                 got 25ce9bc8 addiu t6,t6,-25656          
+    +0x048  want 4480f000 mtc1 zero,$f30                got 3c010000 lui at,0x0                  
+    +0x04c  want 26f79bc8 addiu s7,s7,-25656            got 3c16803c lui s6,0x803c               
+    +0x050  want c434967c lwc1 $f20,-27012(at)          got 4480f000 mtc1 zero,$f30              
+    +0x054  want afae005c sw t6,92(sp)                  got 26d69bc8 addiu s6,s6,-25656          
+    +0x058  want afa00060 sw zero,96(sp)                got c4340020 lwc1 $f20,32(at)            
+    +0x05c  want 241e000c li s8,12                      got afae0058 sw t6,88(sp)                
+  960/1023 words differ (58 section-relative relocations unverified: .rodata+0x18 at +0x28, .rodata+0x18 at +0x2c, .rodata+0x1c at +0x30, .rodata+0x1c at +0x34, .rodata+0x20 at +0x48, .rodata+0x20 at +0x58, .rodata+0x24 at +0x1a8, .rodata+0x24 at +0x1ac, .rodata+0x28 at +0x1b8, .rodata+0x28 at +0x1bc, .rodata+0x2c at +0x234, .rodata+0x2c at +0x244, .rodata+0x30 at +0x2a0, .rodata+0x30 at +0x2a4, .rodata+0x34 at +0x2b0, .rodata+0x34 at +0x31c, .rodata+0x38 at +0x334, .rodata+0x38 at +0x338, .rodata+0x3c at +0x350, .rodata+0x3c at +0x368, .rodata+0x40 at +0x320, .rodata+0x40 at +0x39c, .rodata+0x44 at +0x3ac, .rodata+0x44 at +0x3b8, .rodata+0x48 at +0x3d0, .rodata+0x48 at +0x3e8, .rodata+0x4c at +0x434, .rodata+0x4c at +0x440, .rodata+0x50 at +0x450, .rodata+0x50 at +0x468, .rodata+0x54 at +0x430, .rodata+0x54 at +0x49c, .rodata+0x58 at +0x4b4, .rodata+0x58 at +0x4cc, .rodata+0x5c at +0x4fc, .rodata+0x5c at +0x500, .rodata+0x60 at +0x514, .rodata+0x60 at +0x518, .rodata+0x64 at +0x554, .rodata+0x64 at +0x558, .rodata+0x68 at +0x5c0, .rodata+0x68 at +0x5c4, .rodata+0x6c at +0x5e0, .rodata+0x6c at +0x5e4, .rodata+0x70 at +0x60c, .rodata+0x70 at +0x610, .rodata+0x74 at +0x62c, .rodata+0x74 at +0x630, .rodata+0x78 at +0x820, .rodata+0x78 at +0x824, .rodata+0x7c at +0xbc0, .rodata+0x7c at +0xbc4, .rodata+0x80 at +0xbd0, .rodata+0x80 at +0xbd4, .rodata+0x84 at +0xc0c, .rodata+0x84 at +0xc10, .rodata+0x88 at +0xc30, .rodata+0x88 at +0xc34)
+exit=1

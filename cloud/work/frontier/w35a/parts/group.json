@@ -1,0 +1,27 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_803A1EAC"
+ ],
+ "members": [
+  "func_8039D300",
+  "func_8039D05C",
+  "func_8039D494",
+  "func_8039ED20",
+  "func_8039E200",
+  "func_8039E3BC",
+  "func_8039FF04",
+  "func_8039D6A4"
+ ],
+ "context": [
+  "func_803A0498",
+  "func_803A0FD8",
+  "func_803A1EAC",
+  "func_8039EF08"
+ ],
+ "provenance": "Supersedes same-name accepted cleanup group: D300 is new (404 bytes); all five old exact members are preserved (2264 bytes, no repeated credit). Genuine complete caller context and keep list unchanged. No lock migration.",
+ "claims": []
+}

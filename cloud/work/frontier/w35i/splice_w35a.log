@@ -1,0 +1,1 @@
+ovl_splice FAILED: func_8039D6A4: own .bss+0x0 (referenced at +0x83c): retail address 0x803BA200 (+16 bytes) is not in a known game .bss range; own .bss+0x10 (referenced at +0xb8c, +0x1188): retail address 0x803BA210 (+4 bytes) is not in a known game .bss range [per-reference placement tried because the whole-section placement was refused: .rodata: unaligned jump table reference]

@@ -1,0 +1,32 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_803A1EAC"
+ ],
+ "members": [
+  "func_8039D300",
+  "func_8039D05C",
+  "func_8039D494",
+  "func_8039ED20",
+  "func_8039E200",
+  "func_8039E3BC",
+  "func_8039FF04",
+  "func_8039D6A4"
+ ],
+ "context": [
+  "func_803A0498",
+  "func_803A0FD8",
+  "func_803A1EAC",
+  "func_8039EF08"
+ ],
+ "provenance": "Supersedes the accepted same-name group (all six old members byte-identical: D300, D05C, D494, ED20, E200, E3BC). w35a adds func_8039FF04 (GC initButtons@carscr.c) and func_8039D6A4 (GC updateButtons@carscr.c) as members from the MAT3 carscr.c bodies; the only head change is D_80140BDC declared volatile u8 (used by context func_803A0FD8 only). Own data/bss unverified for image A (no retail data tree).",
+ "name": "dot_cleanup_colortrace_20261011",
+ "allow_unverified": true,
+ "claims": [
+  "func_8039FF04",
+  "func_8039D6A4"
+ ]
+}

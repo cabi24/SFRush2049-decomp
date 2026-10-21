@@ -579,6 +579,33 @@ def test_bss_address_outside_game_bss(tmp_path):
     assert "(+4 bytes) is not in a known game .bss range" in result.unverified[0]
 
 
+def test_runtime_image_bss_is_the_range_its_loader_zeroes(tmp_path):
+    """A runtime image's own .bss lies in the range the overlay loader zeroes
+    after it (keyed by the image's end), never in the game's .bss."""
+    base = owndata.OVERLAY_BASE
+    image_a = owndata.ImageData.from_image(bytes(0x803B9A50 - base), base)
+    image_b = owndata.ImageData.from_image(bytes(0x80394F70 - base), base)
+    assert image_a.bss == owndata.OVERLAY_BSS[0x803B9A50]
+    assert image_b.bss == owndata.OVERLAY_BSS[0x80394F70]
+    assert owndata.ImageData.from_image(bytes(16), F).bss == owndata.GAME_BSS
+    # w35a: updateButtons@carscr.c's cursorSpeed/scrollSpeed statics in image A
+    a_statics = bss_want(op1=0x803BA200, sp=0x803BA210, cnt=0x803BA220)
+    assert verify(bss_object(tmp_path), a_statics, image_a).ok
+    for img in (None, image_b):
+        result = verify(bss_object(tmp_path), a_statics, img)
+        assert not result.failures and len(result.unverified) == 3
+    # the game's .bss is not an image's
+    result = verify(bss_object(tmp_path), bss_want(), image_a)
+    assert len(result.unverified) == 3 and not result.ok
+    # image B's range lies inside image A's text: there it is initialised -> failure
+    full_a = owndata.ImageData.from_image(bytes(0x803B9A50 - base), base)
+    result = verify(bss_object(tmp_path), bss_want(op1=0x80395000, sp=0x80395008,
+                                                   cnt=0x80395010), full_a)
+    assert "retail has initialised bytes there" in result.failures[0]
+    assert verify(bss_object(tmp_path), bss_want(op1=0x80395000, sp=0x80395008,
+                                                 cnt=0x80395010), image_b).ok
+
+
 def test_overlapping_bss_objects_fail(tmp_path):
     # sp (.bss+4, 4 bytes) placed two bytes into op1's storage
     result = verify(bss_object(tmp_path), bss_want(sp=BSS + 2), None)

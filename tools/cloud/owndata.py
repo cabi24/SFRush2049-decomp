@@ -35,9 +35,10 @@ Rules (see cloud/work/frontier/rodata/README.md):
   cloud/work/frontier/bss/README.md). Each referenced object offset is
   placed on its own (per object, like .data), at the one address every
   retail word referring to it encodes; that address range must lie inside a
-  known game .bss range (GAME_BSS) and must not overlap another object of
-  the function. What this proves: once the objects are placed there, every
-  code word that refers to them equals retail. It does not prove the
+  .bss range of the image (GAME_BSS; a runtime image's own range in
+  OVERLAY_BSS) and must not overlap another object of the function. What
+  this proves: once the objects are placed there, every code word that
+  refers to them equals retail. It does not prove the
   objects' sizes, types or initial (zero) contents.
 
 Standard library only: tools/cloud must run from a bare checkout.
@@ -76,6 +77,28 @@ GAME_BSS = (
     (0x801249F0, 0x8017A640, "game .bss: zeroed by boot code at 0x80002350 (bzero)"),
 )
 
+# The runtime images' zero-initialised storage, keyed by the image's end
+# address (both load at 0x8038A400; the end tells them apart). Source: the
+# locked overlay loader (src/blob/groups/codex_heap_release_a25/overlay_loader.c)
+# inflates an image to 0x8038A400 and then calls bzero(bssStart, bssEnd - bssStart)
+# with bssStart = the image's end: sync_maxpath_to_checkpoint passes
+# D_803B9A50/D_803BAE20 for image A, InitMaxPath D_80394F70/D_8039B440 for image B.
+# An image's own .bss lies in its own range only, never in the game's.
+OVERLAY_BSS = {
+    0x803B9A50: ((0x803B9A50, 0x803BAE20, "image A .bss: zeroed by the overlay loader "
+                  "(sync_maxpath_to_checkpoint, 0x800A133C)"),),
+    0x80394F70: ((0x80394F70, 0x8039B440, "image B .bss: zeroed by the overlay loader "
+                  "(InitMaxPath, 0x800A1244)"),),
+}
+OVERLAY_BASE = 0x8038A400
+
+
+def bss_ranges_for(base, size):
+    """The .bss ranges an image of `size` bytes linked at `base` owns."""
+    if base == OVERLAY_BASE and base + size in OVERLAY_BSS:
+        return OVERLAY_BSS[base + size]
+    return GAME_BSS
+
 # Bytes a load or store moves, by opcode; anything else that carries a LO16
 # (addiu, ori: an address is formed) proves only one byte of the object.
 ACCESS_WIDTH = {0x20: 1, 0x24: 1, 0x28: 1,                  # lb lbu sb
@@ -100,9 +123,9 @@ def section_class(name):
     return None
 
 
-def bss_range(address, size):
-    """The GAME_BSS entry holding [address, address + size), or None."""
-    for start, end, why in GAME_BSS:
+def bss_range(address, size, ranges=GAME_BSS):
+    """The `ranges` entry (default GAME_BSS) holding [address, address + size), or None."""
+    for start, end, why in ranges:
         if start <= address and address + size <= end:
             return start, end, why
     return None
@@ -117,7 +140,8 @@ def _sext16(value):
 class ImageData:
     """Retail bytes by image address, from any number of disjoint runs."""
 
-    def __init__(self, runs):
+    def __init__(self, runs, bss=GAME_BSS):
+        self.bss = bss                  # the zero-initialised ranges own .bss may use
         merged = []
         for address, data in sorted((int(a), bytes(d)) for a, d in runs):
             if merged and merged[-1][0] + len(merged[-1][1]) == address:
@@ -130,8 +154,9 @@ class ImageData:
 
     @classmethod
     def from_image(cls, data, base):
-        """The whole linked image (build/game_code.bin) at its base address."""
-        return cls([(base, data)])
+        """The whole linked image (build/game_code.bin, or a runtime image's
+        image.bin) at its base address, with the .bss ranges that image owns."""
+        return cls([(base, data)], bss=bss_ranges_for(base, len(data)))
 
     @classmethod
     def from_artifact(cls, directory):
@@ -569,7 +594,8 @@ def _verify_uninitialised(obj, windows, starts, image, result, blocked):
       * its extent is the gap to the next referenced offset of the section,
         or, for the last one, the widest access made to it (the section's
         tail is IDO alignment padding and proves nothing);
-      * that extent lies inside one GAME_BSS range. An address with retail
+      * that extent lies inside one of the image's .bss ranges (`image.bss`;
+        GAME_BSS without an image). An address with retail
         bytes (inside the image) is a failure: retail initialises it, so
         the object cannot be zero-initialised. Anything else outside the
         ranges stays unverified;
@@ -599,7 +625,7 @@ def _verify_uninitialised(obj, windows, starts, image, result, blocked):
         else:
             widest = max(ACCESS_WIDTH.get(ref.opcode, 1) for _a, ref, _w in uses)
             size = min(widest, sec["size"] - offset)
-        if bss_range(address, size) is None:
+        if bss_range(address, size, GAME_BSS if image is None else image.bss) is None:
             inside = image is not None and image.read(address, 1) is not None
             message = (f"{label} (referenced at {at}): retail address 0x{address:08X} "
                        f"(+{size} bytes) is not in a known game .bss range")
