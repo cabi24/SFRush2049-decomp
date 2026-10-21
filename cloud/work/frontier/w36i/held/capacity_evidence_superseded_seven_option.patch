@@ -1,0 +1,35 @@
+--- a/cloud/work/frontier/dot_runtime_a_capacity_evidence_20261012/verify.py
++++ b/cloud/work/frontier/dot_runtime_a_capacity_evidence_20261012/verify.py
+@@ -261,8 +261,19 @@
+     # w25p: before installation production has group.c (the helper); after, this packet's eligibility.c.
+     installed = ROOT/'src/ovl_a/groups/dot_runtime_a_seven_option_group_20261007'
+     installed = installed/('eligibility.c' if (installed/'eligibility.c').exists() else 'group.c')
+-    require((GROUP/'eligibility.c').read_bytes() == installed.read_bytes(),
+-            'inherited genuine group source differs from production')
++    # w36: a later revision may supersede the installed group in place (w36f adds
++    # func_803993EC/func_80399D10 as members). The revision this packet inherits is then
++    # kept byte-identically in cloud/work/frontier/superseded/ (handoff section 5), and
++    # production must still lock every member this packet claims.
++    inherited = (GROUP/'eligibility.c').read_bytes()
++    if inherited != installed.read_bytes():
++        superseded = ROOT/'cloud/work/frontier/superseded/dot_runtime_a_seven_option_group_20261007'
++        require(all((superseded/f).is_file() and (superseded/f).read_bytes() == (GROUP/f).read_bytes()
++                    for f in ('eligibility.c', 'renderer.c')),
++                'inherited genuine group source differs from production')
++        production = json.loads((installed.parent/'group.json').read_text())
++        require(set(spec['members']) <= set(production['members']),
++                'superseding production group dropped an inherited member')
+     with tempfile.TemporaryDirectory(prefix='capacity-a6b50-') as path, targets(owndata.ImageData.from_image(data,base)):
+         temp=Path(path);obj=temp/'group.o'
+         score.compile_group(GROUP,obj)
+--- a/cloud/work/frontier/dot_runtime_a_capacity_evidence_20261012/verification.json
++++ b/cloud/work/frontier/dot_runtime_a_capacity_evidence_20261012/verification.json
+@@ -225,7 +225,7 @@
+       "host.c": "2335f842f66269b6368ead7b8622b265a88ad1ff605493d32a12d6b03c7a528b",
+       "trace.json": "a0fe5c48411ac75a34663b81709dfd30f4d43d4b6ef8293618d87c2761d02021",
+       "trace.py": "7ca2be49ed54906e2cfbc4b7fd2690c4716555f51f40fc2fc4fa14b8539dbb02",
+-      "verify.py": "0c95de4bd1b5189531a3d22581d75d2d20ee0d40423bcf8aa29447feffe97e84"
++      "verify.py": "1074fae338dbfddd1c7ca239387862c696da4e898c030a54c33bc6c9e0082f95"
+     },
+     "targets": {
+       "func_80399394": {
