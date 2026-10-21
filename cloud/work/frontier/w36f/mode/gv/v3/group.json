@@ -1,0 +1,21 @@
+{
+ "name": "dot_runtime_a_seven_option_group_20261007",
+ "files": [
+  "eligibility.c",
+  "renderer.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_80399D10",
+  "func_803A6B50"
+ ],
+ "members": [
+  "func_80399394",
+  "func_803A6B50"
+ ],
+ "context": [
+  "func_803993EC",
+  "func_80399D10"
+ ],
+ "provenance": "Supersede same-name group, preserve all installed members and genuine context. Add A6B50 with independently bounded text36 reconstruction; original capacity unknown. Checker owns installation."
+}

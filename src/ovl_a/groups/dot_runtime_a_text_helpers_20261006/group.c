@@ -1,4 +1,8 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w36g superseding revision (wave 36): func_8039A4D4 (updateButtons@circuitscr.c, formerly context) and
+ * func_803A5948 (animText@circuitscr.c with animButtonText and getFinishPlaceStr inlined) plus its two
+ * deleted-inline stubs func_803A5938/func_803A5940 are new members; see their headers below. All thirteen
+ * old members and their text are unchanged. */
 /* Image-A A5658 strict match: 736 new bytes. This same-name group preserves
  * all eleven installed text_helpers members and pending PR333 BB80 (712 B).
  * BB80 is preserved-only credit here, not another new match.
@@ -502,179 +506,190 @@ extern Texture *func_800B24EC(char *,s16 *,s8,s8,s32);
 extern void func_8008D870(s16,s32,s32);
 extern void func_8008E06C(s16,s32 *);
 
+/* w36g: func_8039A4D4 = updateButtons@circuitscr.c (MAT3 GC 0x8006A730, 0x89C B): per-frame scroll, fade and
+ * texture of the four circuit-menu buttons, their right-hand value buttons (4, 5) and the cursor (7, 9). Direct
+ * typed port of reference/repos/mat3 decomp/src/GameSource/src/circuitscr.c updateButtons; called only by
+ * func_8039C140 (updateCircuitScreen) as its last statement, so it keeps the group's private ABI (saves only ra).
+ * N64 names: buttonInfo D_803B30C0, buttonsInited D_803B33C0, buttonsJustInited D_803B33C4, gShowTrophy
+ * D_803B342C, gEnterCircuitCode D_803B3414, gConfirmNewCircuit D_803B3418, gCircuitMenuSelect D_803BACF8,
+ * gButtonScale D_803B33C8, gButtonSpace D_803B33CC, buttonX D_803B33D0, maxY D_803B33D4, minY D_803B33D8,
+ * buttonZ D_803B33DC, cursorZ D_803B33E0, gFrameSeconds D_8002EB94 (volatile), unitmatrix D_8011418C,
+ * gNumModels D_80140BDC, buttonColor initialiser D_803B345C, "BUTTON_SELECT"/"BUTTON" D_803B87C8/D_803B87D8;
+ * MBOX_ShowObject model_transform_setup, MBOX_HideObject model_data_load, ScaleUV func_8008B32C, WPitchUV
+ * func_800B5898, WRollUV func_800B5940, MBOX_FindTexture_WORK func_800B24EC, ZOID_SetTexture func_8008D870,
+ * ZOID_SetColor func_8008E06C, menuItemValid func_8039A448.
+ * N64 differences read from the retail words: unselected buttons settle to 0.0f (GC 0.08726646f); alpha ramps
+ * linearly over one button pitch (GC fixed 80); single-precision speed math (fabsf intrinsic, 60.0f/10.0f).
+ * cursorSpeed/scrollSpeed are the function-local statics (retail .bss 0x803BA228/0x803BA22C).
+ * Shaping (the carscr sibling's measured idioms, w35a func_8039D6A4): fabsf on the right of the speed tests;
+ * the second 255 of each alpha ramp is the int 255 (keeps 255.0f rematerialised, 60.0f hoisted into $f30);
+ * gNumModels read through a volatile view (the group's shared declaration stays non-volatile for B560/BE48).
+ * FRAME RESIDUAL (disclosed): thirteen unused s32 homes declared first. Retail frame 152 with the locals at
+ * sp+60..100 (buttonColor +60, texIdx +66, clearScrollSpeed +75, selectedPos +76, prevPos +84) and 52 bytes of
+ * homes above them that no instruction touches; without the homes ugen gives frame 96 (locals +56..96); with
+ * them 152 and every slot as retail. Their original names/purpose are unknown (no MAT3/DWARF counterpart; an
+ * inlined helper's locals land below the caller's, so it is not an inline). No padding array is used.
+ * Own data: six float literals, the two .bss statics. */
 void func_8039A4D4(void)
 {
-    s32 i;
-    MenuObjectSlot *slot;
-    Texture *texture;
-    f32 old_position[3];
-    f32 old_y;
-    f32 current_y;
-    f32 selected_y = 0.0f;
-    s8 settled = 1;
-    s16 texture_index;
-    Color color = D_803B345C;
-    f32 difference;
-    f32 speed;
-    f32 fade_width;
-    f32 angle_mid;
-    f32 angle_max;
+    static f32 cursorSpeed;
+    static f32 scrollSpeed;
+    s32 frame_home0, frame_home1, frame_home2, frame_home3, frame_home4, frame_home5, frame_home6;
+    s32 frame_home7, frame_home8, frame_home9, frame_home10, frame_home11, frame_home12;
+    s32 buttonIdx;
+    f32 prevPos[3];
+    f32 buttonY;
+    f32 selectedPos = 0.0f;
+    s8 clearScrollSpeed = 1;
+    Texture *tex;
+    s16 texIdx;
+    Color buttonColor = D_803B345C;
 
     if (!D_803B33C0)
         return;
     if (D_803B342C == 1) {
-        for (i = 0; i < 12; i++) {
-            slot = &D_803B30C0[i];
-            if (i == 6 || i == 8 || i == 10) {
-                model_transform_setup(slot->handle, 0, 15);
-            } else {
-                slot->alpha = 0;
-                model_data_load(slot->handle, 0, 15);
+        for (buttonIdx = 0; buttonIdx < 12; buttonIdx++) {
+            if (buttonIdx == 6 || buttonIdx == 8 || buttonIdx == 10)
+                model_transform_setup(D_803B30C0[buttonIdx].handle, 0, 15);
+            else {
+                D_803B30C0[buttonIdx].alpha = 0;
+                model_data_load(D_803B30C0[buttonIdx].handle, 0, 15);
             }
         }
         return;
     }
-    for (i = 0; i < 12; i++)
-        model_transform_setup(D_803B30C0[i].handle, 0, 15);
-    current_y = D_803B33D4;
-    angle_mid = D_803B957C;
-    angle_max = D_803B9580;
-    for (i = 0, slot = D_803B30C0; i < 4; i++, slot++) {
+    for (buttonIdx = 0; buttonIdx < 12; buttonIdx++)
+        model_transform_setup(D_803B30C0[buttonIdx].handle, 0, 15);
+    buttonY = D_803B33D4;
+    for (buttonIdx = 0; buttonIdx < 4; buttonIdx++) {
         if (D_803B3414 || D_803B3418) {
-            model_data_load(slot->handle, 0, 15);
-            if (i == 1)
+            model_data_load(D_803B30C0[buttonIdx].handle, 0, 15);
+            if (buttonIdx == 1)
                 model_data_load(D_803B30C0[4].handle, 0, 15);
-            else if (i == 2)
+            else if (buttonIdx == 2)
                 model_data_load(D_803B30C0[5].handle, 0, 15);
-            continue;
-        }
-        if (i == D_803BACF8) {
-            selected_y = current_y;
-            if (slot->angle < angle_max)
-                slot->angle += D_803B9584 * D_8002EB94;
-            if (slot->angle > angle_max)
-                slot->angle = angle_max;
-            if (D_803B33C4)
-                slot->angle = angle_max;
         } else {
-            if (slot->angle > 0.0f)
-                slot->angle -= D_803B9588 * D_8002EB94;
-            if (slot->angle < 0.0f)
-                slot->angle = 0.0f;
-            if (D_803B33C4)
-                slot->angle = 0.0f;
-        }
-        memcpy(old_position, slot->position, 12);
-        slot->position[0] = -100.0f * D_803B33C8 + D_803B33D0;
-        slot->position[1] = current_y;
-        slot->position[2] = D_803B33DC;
-        if (!D_803B33C4) {
-            old_y = old_position[1];
-            difference = fabsf(slot->position[1] - old_y);
-            speed = D_803BA22C;
-            if (speed < difference * 60.0f / 10.0f) {
-                speed = difference * 60.0f / 10.0f;
-                if (!(speed < 540.0f * D_803B33C8)) speed = 540.0f * D_803B33C8;
-                if (!(180.0f * D_803B33C8 < speed)) speed = 180.0f * D_803B33C8;
-            }
-            if (old_y + speed * D_8002EB94 < slot->position[1]) {
-                settled = 0;
-                slot->position[1] = old_y + speed * D_8002EB94;
-                D_803BA22C = speed;
+            if (buttonIdx == D_803BACF8) {
+                selectedPos = buttonY;
+                if (D_803B30C0[buttonIdx].angle < 3.1415927f)
+                    D_803B30C0[buttonIdx].angle += 12.566371f * D_8002EB94;
+                if (D_803B30C0[buttonIdx].angle > 3.1415927f)
+                    D_803B30C0[buttonIdx].angle = 3.1415927f;
+                if (D_803B33C4)
+                    D_803B30C0[buttonIdx].angle = 3.1415927f;
             } else {
-                D_803BA22C = speed;
-                if (slot->position[1] < old_y - speed * D_8002EB94) {
-                    settled = 0;
-                    slot->position[1] = old_y - speed * D_8002EB94;
-                    D_803BA22C = speed;
+                if (D_803B30C0[buttonIdx].angle > 0.0f)
+                    D_803B30C0[buttonIdx].angle -= 12.566371f * D_8002EB94;
+                if (D_803B30C0[buttonIdx].angle < 0.0f)
+                    D_803B30C0[buttonIdx].angle = 0.0f;
+                if (D_803B33C4)
+                    D_803B30C0[buttonIdx].angle = 0.0f;
+            }
+            memcpy(prevPos, D_803B30C0[buttonIdx].position, 12);
+            D_803B30C0[buttonIdx].position[0] = D_803B33D0 + -100.0f * D_803B33C8;
+            D_803B30C0[buttonIdx].position[1] = buttonY;
+            D_803B30C0[buttonIdx].position[2] = D_803B33DC;
+            if (!D_803B33C4) {
+                if (scrollSpeed < fabsf(D_803B30C0[buttonIdx].position[1] - prevPos[1]) * 60.0f / 10.0f) {
+                    scrollSpeed = fabsf(D_803B30C0[buttonIdx].position[1] - prevPos[1]) * 60.0f / 10.0f;
+                    scrollSpeed = scrollSpeed < 540.0f * D_803B33C8 ? scrollSpeed : 540.0f * D_803B33C8;
+                    scrollSpeed = scrollSpeed > 180.0f * D_803B33C8 ? scrollSpeed : 180.0f * D_803B33C8;
+                }
+                if (D_803B30C0[buttonIdx].position[1] > prevPos[1] + scrollSpeed * D_8002EB94) {
+                    D_803B30C0[buttonIdx].position[1] = prevPos[1] + scrollSpeed * D_8002EB94;
+                    clearScrollSpeed = 0;
+                } else if (D_803B30C0[buttonIdx].position[1] < prevPos[1] - scrollSpeed * D_8002EB94) {
+                    D_803B30C0[buttonIdx].position[1] = prevPos[1] - scrollSpeed * D_8002EB94;
+                    clearScrollSpeed = 0;
                 }
             }
-        }
-        func_8008B32C((f32 (*)[3])D_8011418C, slot->matrix, D_803B33C8);
-        func_800B5898(slot->angle - angle_mid, slot->matrix);
-        if (slot->angle > angle_mid)
-            texture = func_800B24EC(D_803B87C8, &texture_index, 0, D_80140BDC - 1, 1);
-        else
-            texture = func_800B24EC(D_803B87D8, &texture_index, 0, D_80140BDC - 1, 1);
-        func_8008D870((s16)slot->handle, (s32)texture, -1);
-        fade_width = D_803B33CC * D_803B33C8;
-        if (D_803B33D4 + fade_width < slot->position[1] || slot->position[1] < D_803B33D8 - fade_width) {
-            slot->alpha = 0;
-        } else if (D_803B33D4 < slot->position[1]) {
-            slot->alpha = 255.0f - (slot->position[1] - D_803B33D4) * 255.0f / fade_width;
-        } else if (slot->position[1] < D_803B33D8) {
-            slot->alpha = 255.0f - (D_803B33D8 - slot->position[1]) * 255.0f / fade_width;
-        } else {
-            slot->alpha = 255;
-        }
-        if (!func_8039A448(i))
-            slot->alpha = 0;
-        color.channel[3] = slot->alpha;
-        func_8008E06C((s16)slot->handle, (s32 *)&color);
-        if (i == 1) {
-            D_803B30C0[4].angle = slot->angle;
-            D_803B30C0[4].position[0] = 100.0f * D_803B33C8 + D_803B33D0;
-            D_803B30C0[4].position[1] = slot->position[1];
-            D_803B30C0[4].position[2] = slot->position[2];
-            func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[4].matrix, D_803B33C8);
-            func_800B5898(D_803B30C0[4].angle - angle_mid, D_803B30C0[4].matrix);
-            func_8008D870((s16)D_803B30C0[4].handle, (s32)texture, -1);
-            D_803B30C0[4].alpha = slot->alpha;
-            func_8008E06C((s16)D_803B30C0[4].handle, (s32 *)&color);
-            if (!func_8039A448(i)) model_data_load(D_803B30C0[4].handle, 0, 15);
-            else if (!slot->alpha) model_data_load(D_803B30C0[4].handle, 0, 15);
-            else model_transform_setup(D_803B30C0[4].handle, 0, 15);
-        } else if (i == 2) {
-            D_803B30C0[5].angle = slot->angle;
-            D_803B30C0[5].position[0] = 100.0f * D_803B33C8 + D_803B33D0;
-            D_803B30C0[5].position[1] = slot->position[1];
-            D_803B30C0[5].position[2] = slot->position[2];
-            func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[5].matrix, D_803B33C8);
-            func_800B5898(D_803B30C0[5].angle - angle_mid, D_803B30C0[5].matrix);
-            func_8008D870((s16)D_803B30C0[5].handle, (s32)texture, -1);
-            D_803B30C0[5].alpha = slot->alpha;
-            func_8008E06C((s16)D_803B30C0[5].handle, (s32 *)&color);
-            if (!func_8039A448(i)) model_data_load(D_803B30C0[5].handle, 0, 15);
-            else if (!slot->alpha) model_data_load(D_803B30C0[5].handle, 0, 15);
-            else model_transform_setup(D_803B30C0[5].handle, 0, 15);
-        }
-        if (!func_8039A448(i)) {
-            model_data_load(slot->handle, 0, 15);
-        } else {
-            if (!slot->alpha) model_data_load(slot->handle, 0, 15);
-            else model_transform_setup(slot->handle, 0, 15);
-            current_y -= D_803B33CC * D_803B33C8;
+            func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[buttonIdx].matrix, D_803B33C8);
+            func_800B5898(D_803B30C0[buttonIdx].angle - 1.5707964f, D_803B30C0[buttonIdx].matrix);
+            if (D_803B30C0[buttonIdx].angle > 1.5707964f)
+                tex = func_800B24EC(D_803B87C8, &texIdx, 0, *(volatile u8 *)&D_80140BDC - 1, 1);
+            else
+                tex = func_800B24EC(D_803B87D8, &texIdx, 0, *(volatile u8 *)&D_80140BDC - 1, 1);
+            func_8008D870(D_803B30C0[buttonIdx].handle, (s32)tex, -1);
+            if (D_803B30C0[buttonIdx].position[1] > D_803B33D4 + D_803B33CC * D_803B33C8
+                || D_803B30C0[buttonIdx].position[1] < D_803B33D8 - D_803B33CC * D_803B33C8)
+                D_803B30C0[buttonIdx].alpha = 0;
+            else if (D_803B30C0[buttonIdx].position[1] > D_803B33D4)
+                D_803B30C0[buttonIdx].alpha = 255.0f - (D_803B30C0[buttonIdx].position[1] - D_803B33D4) * 255 / (D_803B33CC * D_803B33C8);
+            else if (D_803B30C0[buttonIdx].position[1] < D_803B33D8)
+                D_803B30C0[buttonIdx].alpha = 255.0f - (D_803B33D8 - D_803B30C0[buttonIdx].position[1]) * 255 / (D_803B33CC * D_803B33C8);
+            else
+                D_803B30C0[buttonIdx].alpha = 255;
+            if (!func_8039A448(buttonIdx))
+                D_803B30C0[buttonIdx].alpha = 0;
+            buttonColor.channel[3] = D_803B30C0[buttonIdx].alpha;
+            func_8008E06C(D_803B30C0[buttonIdx].handle, (s32 *)&buttonColor);
+            if (buttonIdx == 1) {
+                D_803B30C0[4].angle = D_803B30C0[buttonIdx].angle;
+                D_803B30C0[4].position[0] = D_803B33D0 + 100.0f * D_803B33C8;
+                D_803B30C0[4].position[1] = D_803B30C0[buttonIdx].position[1];
+                D_803B30C0[4].position[2] = D_803B30C0[buttonIdx].position[2];
+                func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[4].matrix, D_803B33C8);
+                func_800B5898(D_803B30C0[4].angle - 1.5707964f, D_803B30C0[4].matrix);
+                func_8008D870(D_803B30C0[4].handle, (s32)tex, -1);
+                D_803B30C0[4].alpha = D_803B30C0[buttonIdx].alpha;
+                func_8008E06C(D_803B30C0[4].handle, (s32 *)&buttonColor);
+                if (!func_8039A448(buttonIdx))
+                    model_data_load(D_803B30C0[4].handle, 0, 15);
+                else if (!D_803B30C0[buttonIdx].alpha)
+                    model_data_load(D_803B30C0[4].handle, 0, 15);
+                else
+                    model_transform_setup(D_803B30C0[4].handle, 0, 15);
+            } else if (buttonIdx == 2) {
+                D_803B30C0[5].angle = D_803B30C0[buttonIdx].angle;
+                D_803B30C0[5].position[0] = D_803B33D0 + 100.0f * D_803B33C8;
+                D_803B30C0[5].position[1] = D_803B30C0[buttonIdx].position[1];
+                D_803B30C0[5].position[2] = D_803B30C0[buttonIdx].position[2];
+                func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[5].matrix, D_803B33C8);
+                func_800B5898(D_803B30C0[5].angle - 1.5707964f, D_803B30C0[5].matrix);
+                func_8008D870(D_803B30C0[5].handle, (s32)tex, -1);
+                D_803B30C0[5].alpha = D_803B30C0[buttonIdx].alpha;
+                func_8008E06C(D_803B30C0[5].handle, (s32 *)&buttonColor);
+                if (!func_8039A448(buttonIdx))
+                    model_data_load(D_803B30C0[5].handle, 0, 15);
+                else if (!D_803B30C0[buttonIdx].alpha)
+                    model_data_load(D_803B30C0[5].handle, 0, 15);
+                else
+                    model_transform_setup(D_803B30C0[5].handle, 0, 15);
+            }
+            if (!func_8039A448(buttonIdx))
+                model_data_load(D_803B30C0[buttonIdx].handle, 0, 15);
+            else if (!D_803B30C0[buttonIdx].alpha) {
+                model_data_load(D_803B30C0[buttonIdx].handle, 0, 15);
+                buttonY -= D_803B33CC * D_803B33C8;
+            } else {
+                model_transform_setup(D_803B30C0[buttonIdx].handle, 0, 15);
+                buttonY -= D_803B33CC * D_803B33C8;
+            }
         }
     }
-    memcpy(old_position, D_803B30C0[7].position, 12);
-    D_803B30C0[7].angle += D_803B958C * D_8002EB94;
-    if (D_803B958C < D_803B30C0[7].angle)
-        D_803B30C0[7].angle -= D_803B958C;
-    D_803B30C0[7].position[0] = D_803B33D0 * D_803B33E0 / D_803B33DC - 140.0f * D_803B33C8;
-    D_803B30C0[7].position[1] = selected_y * D_803B33E0 / D_803B33DC;
+    memcpy(prevPos, D_803B30C0[7].position, 12);
+    D_803B30C0[7].angle += 6.2831855f * D_8002EB94;
+    if (D_803B30C0[7].angle > 6.2831855f)
+        D_803B30C0[7].angle -= 6.2831855f;
+    D_803B30C0[7].position[0] = D_803B33D0 * D_803B33E0 / D_803B33DC + -140.0f * D_803B33C8;
+    D_803B30C0[7].position[1] = selectedPos * D_803B33E0 / D_803B33DC;
     D_803B30C0[7].position[2] = D_803B33E0;
     if (!D_803B33C4) {
-        old_y = old_position[1];
-        difference = fabsf(D_803B30C0[7].position[1] - old_y);
-        speed = D_803BA228;
-        if (speed < difference * 60.0f / 10.0f) {
-            speed = difference * 60.0f / 10.0f;
-            if (!(speed < 540.0f * D_803B33C8)) speed = 540.0f * D_803B33C8;
-            if (!(180.0f * D_803B33C8 < speed)) speed = 180.0f * D_803B33C8;
+        if (cursorSpeed < fabsf(D_803B30C0[7].position[1] - prevPos[1]) * 60.0f / 10.0f) {
+            cursorSpeed = fabsf(D_803B30C0[7].position[1] - prevPos[1]) * 60.0f / 10.0f;
+            cursorSpeed = cursorSpeed < 540.0f * D_803B33C8 ? cursorSpeed : 540.0f * D_803B33C8;
+            cursorSpeed = cursorSpeed > 180.0f * D_803B33C8 ? cursorSpeed : 180.0f * D_803B33C8;
         }
-        if (old_y + speed * D_8002EB94 < D_803B30C0[7].position[1]) {
-            D_803B30C0[7].position[1] = old_y + speed * D_8002EB94;
-            D_803BA228 = speed;
-        } else if (D_803B30C0[7].position[1] < old_y - speed * D_8002EB94) {
-            D_803B30C0[7].position[1] = old_y - speed * D_8002EB94;
-            D_803BA228 = speed;
-        } else {
-            D_803BA228 = 180.0f * D_803B33C8;
-        }
+        if (D_803B30C0[7].position[1] > prevPos[1] + cursorSpeed * D_8002EB94)
+            D_803B30C0[7].position[1] = prevPos[1] + cursorSpeed * D_8002EB94;
+        else if (D_803B30C0[7].position[1] < prevPos[1] - cursorSpeed * D_8002EB94)
+            D_803B30C0[7].position[1] = prevPos[1] - cursorSpeed * D_8002EB94;
+        else
+            cursorSpeed = 180.0f * D_803B33C8;
     }
-    func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[7].matrix, D_803B33C8 * D_803B9590);
+    func_8008B32C((f32 (*)[3])D_8011418C, D_803B30C0[7].matrix, D_803B33C8 * 0.4f);
     func_800B5940(D_803B30C0[7].angle, D_803B30C0[7].matrix);
-    func_800B5898(angle_mid, D_803B30C0[7].matrix);
+    func_800B5898(1.5707964f, D_803B30C0[7].matrix);
     if (D_803B3414 || D_803B3418) {
         model_data_load(D_803B30C0[7].handle, 0, 15);
         model_data_load(D_803B30C0[9].handle, 0, 15);
@@ -682,7 +697,8 @@ void func_8039A4D4(void)
         model_transform_setup(D_803B30C0[7].handle, 0, 15);
         model_transform_setup(D_803B30C0[9].handle, 0, 15);
     }
-    if (settled == 1) D_803BA22C = 0.0f;
+    if (clearScrollSpeed == 1)
+        scrollSpeed = 0.0f;
     D_803B33C4 = 0;
 }
 
@@ -867,188 +883,265 @@ void func_803A5658(void)
     }
 }
 
-s32 func_803A5948(void *callback_context)
+/* w36g: func_803A5948 = animText@circuitscr.c (MAT3 GC 0x800695FC), with animButtonText@circuitscr.c
+ * (GC 0x80068850) and getFinishPlaceStr@circuitscr.c (GC 0x8006A000) inlined into it by umerge; their
+ * deleted bodies are the caller-less `jr ra; nop` stubs func_803A5940 and func_803A5938 (non-static, off
+ * the keep list, so each stub keeps its symbol). Direct typed port of reference/repos/mat3
+ * decomp/src/GameSource/src/circuitscr.c animButtonText/animText/getFinishPlaceStr; N64 names below:
+ * buttonInfo D_803B30C0 (tMenuButton[12], 64 B), buttonsInited D_803B33C0, gButtonScale D_803B33C8,
+ * gEnterCircuitCode D_803B3414, gConfirmNewCircuit D_803B3418, gInvalidCode D_803B341C,
+ * gWrongNumPlayers D_803B3420, gContinueEnabled D_803B3424, gStatsEnabled D_803B3428, gShowTrophy
+ * D_803B342C, gCircuitMenuSelect D_803BACF8, newCircuitType D_803BAD38, gCircuit D_803BAD90 (b8 type,
+ * b9 track), gCircuitCode D_803BAD98, gCodeSelect D_803B9A80, gReviewTrack D_803B9A84, gYes D_803BADC4,
+ * pane D_803BACF0, gPasswordAlphabet D_80116FE4, gNumCircuitTracks D_80111784, gCircuitCars D_80154450,
+ * flashColors D_801146BC/C0, gCamera D_80150B70, gText D_8017A4E0 (single +4, tab +0xC, taba +0x10);
+ * HAL_SetTextDepth render_helper, TB_SetJust func_800B669C, ZOID_ProjectWindow brake_light_update,
+ * HAL_SetFont object_create, TB_SetTextColor dispatch_handler, TB_CenterText sound_pitch_diff_halved,
+ * TB_DrawText state_utility, TB_DrawTextScrollBox camera_auto_follow, TB_GetFontLineHeight
+ * object_bytes_sum_global, HAL_SetTextTranslucency func_800ED66C, TB_FlashTextColors func_800BEA3C (tRGBA
+ * by value on N64), TB_Sprintf fcvt_wrapper, TB_Strcpy func_800BE6A4, TB_Strcat func_800BE4F0,
+ * HAL_GetTextWidth object_manager_update (MAT3 returns unsigned int: the macro below restores that type
+ * for these calls without touching the shared s32 declaration the old members use), ChangePaneSize
+ * crowd_cheer_play, getPointsStr func_8039B908, getPlaceStr func_8039B988, getToGoStr func_8039BA28,
+ * getFinishedStr func_8039BAE0, drawReview func_803A5658.
+ * N64 differences from the GC body, all read from the retail words: text indices and layout constants
+ * (59/75/126/129/153, pane boxes), screenPos used unhalved, the 5-track cap when D_80156994 == 0, a
+ * code-entry loop that steps x before the row test, and the del static at D_803B3454 (its "DEL" literal
+ * is the image's D_803B8758, written as that symbol like the group's other literals). Shaping, measured:
+ * - Local order i, str1, str, screenPos, x, y and a 192-byte str1 (GC: i, x, y, str1[64], str, screenPos)
+ *   are the only layout that reproduces the retail frame (str1 +140, str +136, screenPos +132, x/y homes
+ *   below; 344 bytes). No unused locals.
+ * - getFinishPlaceStr is defined after animText (MAT3 file order); defined before it, umerge emits its
+ *   parameter copy one instruction early.
+ * - The two button-label strings go through `str` before TB_DrawText (as1 order of the argument loads).
+ * - del is a block static as in MAT3: as an extern, uopt keeps &D_803B3454 in s0 across TB_CenterText.
+ * Own data: three float literals (bits checked against the image at 0x803B9814..1C) and the del word
+ * (0x803B3454 = 0x803B8758 in the image). */
+extern u8 D_803B8758[];
+#define HAL_GetTextWidth(s, n) ((u32)object_manager_update((s), (n)))
+void func_803A5938(s32 p, u8 *str);
+
+void func_803A5940(void)
 {
-    u8 text[200];
-    u8 *title;
-    s16 point[2];
-    s32 x,y,i;
-    MenuObjectSlot *slot;
-    if(D_803B33C0==1) {
-        render_helper(0.0f);
-        func_800B669C(0,1);
-        brake_light_update(0,D_803B30C0[6].position,&D_80150B70[0],0,point);
-        x=point[0]; y=point[1];
-        object_create(13);
+    s32 i;
+    u8 str1[192];
+    u8 *str;
+    s16 screenPos[2];
+    s32 x;
+    s32 y;
+
+    render_helper(0.0f);
+    func_800B669C(0, 1);
+    brake_light_update(0, D_803B30C0[6].position, &D_80150B70[0], 0, screenPos);
+    x = screenPos[0];
+    y = screenPos[1];
+    object_create(13);
+    dispatch_handler(1);
+    str = D_8017A4E0.text[42];
+    state_utility(sound_pitch_diff_halved(str, x), y, str);
+    if (D_803B3414) {
+        static u8 *del = D_803B8758;
+        func_800B669C(0, 3);
+        object_create(11);
+        y = 59;
+        x = 115;
         dispatch_handler(1);
-        title=D_8017A4E0.text[42];
-        state_utility(sound_pitch_diff_halved(title,x),y,title);
-        if(D_803B3414) {
-            func_800B669C(0,3);
-            object_create(11);
-            x=115;
-            dispatch_handler(1);
-            state_utility(sound_pitch_diff_halved(D_8017A4E0.text[44],160),59,D_8017A4E0.text[44]);
-            y=75;
-            if(D_803B341C || D_803B3420) {
-                dispatch_handler(5);
-                state_utility(sound_pitch_diff_halved(D_8017A4E0.text[134],160),y,D_8017A4E0.text[134]);
-            }
-            y+=16;
-            dispatch_handler(12);
-            text[1]=0;
-            for(i=0;i<20;i++) {
-                text[0]=D_803BAD98[i];
-                state_utility(sound_pitch_diff_halved(text,x+4),y,text);
-                if((i+1)%10==0) {x=115;y+=9;}
-                else x+=9;
-            }
-            dispatch_handler(1);
-            x=94;y=126;
-            for(i=0;i<32;i++) {
-                text[0]=D_80116FE4[i];
-                dispatch_handler(i==D_803B9A80 ? 22 : 1);
-                state_utility(sound_pitch_diff_halved(text,x+5),y,text);
-                x+=11;
-                if((i+1)%12==0) {x=94;y+=11;}
-            }
-            x+=12;
-            dispatch_handler(D_803B9A80==-2 ? 22 : 1);
-            state_utility(sound_pitch_diff_halved(D_803B3454,x+5),y,D_803B3454);
-            if(D_803BACF0)crowd_cheer_play(D_803BACF0,80,55,240,165);
-        } else if(D_803B3418) {
-            func_800B669C(1,3);
-            object_create(11);
-            dispatch_handler(1);
-            camera_auto_follow(160,59,140,78,-1,0,D_8017A4E0.text[96]);
-            y=59+object_bytes_sum_global()*5;
-            dispatch_handler(D_803BADC4 ? 22 : 1);
-            state_utility(145,y,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[24]]);
-            dispatch_handler(D_803BADC4 ? 1 : 22);
-            state_utility(175,y,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[24]+1]);
-            func_800B669C(0,3);
-            if(D_803BACF0)crowd_cheer_play(D_803BACF0,60,55,260,130);
-        } else {
-            object_create(11);
-            for(i=0,slot=D_803B30C0;i<4;i++,slot++) {
-                if(slot->angle>0.6981316804885864f && slot->angle<2.4434609413146973f)continue;
-                if(!slot->alpha)continue;
-                func_800ED66C((f32)(u32)slot->alpha);
-                brake_light_update(0,slot->position,&D_80150B70[0],0,point);
-                x=point[0]-35.0f*D_803B33C8; y=point[1];
-                if(slot->angle<1.5707963705062866f) {
-                    func_800BEA3C(D_801146BC,D_801146C0);
-                    dispatch_handler(1);
-                } else {
-                    func_800BEA3C(D_801146BC,D_801146C0);
-                    dispatch_handler(22);
-                }
-                state_utility(x,y,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[43]+i]);
-                if(i==1) {
-                    u8 *label;
-                    brake_light_update(0,D_803B30C0[4].position,&D_80150B70[0],0,point);
-                    x=point[0]-35.0f*D_803B33C8; y=point[1];
-                    if(D_803BAD90->b9==D_803B9A84)label=D_8017A4E0.text[176];
-                    else {
-                        fcvt_wrapper(text,D_803B875C,D_8017A4E0.text[82],D_803B9A84+1);
-                        label=text;
-                    }
-                    state_utility(x,y,label);
-                }
-                if(i==2) {
-                    brake_light_update(0,D_803B30C0[5].position,&D_80150B70[0],0,point);
-                    x=point[0]-35.0f*D_803B33C8; y=point[1];
-                    state_utility(x,y,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44]+D_803BAD38]);
-                }
-            }
-            func_800ED66C(-1.0f);
-            if(D_803B342C) {
-                s16 width;
-                func_800B669C(0,3);
-                object_create(11);
-                dispatch_handler(1);
-                fcvt_wrapper(text,D_803B8764,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44]+D_803BAD90->b8],D_8017A4E0.text[76]);
-                width=(u32)object_manager_update(text,-1)<20 ? 20 : object_manager_update(text,-1);
-                state_utility(sound_pitch_diff_halved(text,160),153,text);
-                y=153+object_bytes_sum_global();
-                y+=object_bytes_sum_global();
-                func_800BE6A4(text,D_8017A4E0.text[78]);
-                func_800BE4F0(text,D_8017A4E0.names[D_80154451+D_8017A4E0.indices->name_base]);
-                func_800BE4F0(text,D_803B87A4);
-                func_800BE4F0(text,D_8017A4E0.text[129]);
-                width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                state_utility(sound_pitch_diff_halved(text,160),y,text);
-                y+=object_bytes_sum_global();
-                func_8039B908(0,text);
-                width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                state_utility(sound_pitch_diff_halved(text,160),y,text);
-                y+=object_bytes_sum_global();
-                crowd_cheer_play(D_803BACF0,156-width/2,149,164+width/2,y+4);
-            } else if(D_803BACF8==2) {
-                s16 width;
-                s32 count;
-                func_800B669C(0,3);
-                object_create(11);
-                dispatch_handler(1);
-                fcvt_wrapper(text,D_803B876C,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44]+D_803BAD38],D_8017A4E0.text[42]);
-                width=(u32)object_manager_update(text,-1)<20 ? 20 : object_manager_update(text,-1);
-                state_utility(sound_pitch_diff_halved(text,160),129,text);
-                y=129+object_bytes_sum_global();
-                count=D_80111784[D_803BAD38];
-                if(!D_80156994 && count>=5)count=5;
-                fcvt_wrapper(text,D_803B8774,(D_803BAD38==3 ? 4 : 2)*count,D_8017A4E0.text[71]);
-                width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                state_utility(sound_pitch_diff_halved(text,160),y,text);
-                y+=object_bytes_sum_global();
-                crowd_cheer_play(D_803BACF0,156-width/2,125,164+width/2,y+4);
-            } else if(D_803B3428) {
-                func_800B669C(0,3);
-                object_create(11);
-                dispatch_handler(1);
-                if(D_803BACF8!=1) {
-                    s16 width;
-                    if(D_803B3424) {
-                        fcvt_wrapper(text,D_803B877C,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44]+D_803BAD90->b8],D_8017A4E0.text[67]);
-                        width=(u32)object_manager_update(text,-1)<20 ? 20 : object_manager_update(text,-1);
-                        state_utility(sound_pitch_diff_halved(text,160),129,text);
-                        y=129+object_bytes_sum_global();
-                        func_8039BAE0(text);
-                        width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                        state_utility(sound_pitch_diff_halved(text,160),y,text);
-                        y+=object_bytes_sum_global();
-                        func_8039BA28(text);
-                        width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                        state_utility(sound_pitch_diff_halved(text,160),y,text);
-                        y+=object_bytes_sum_global();
-                    } else {
-                        fcvt_wrapper(text,D_803B8784,D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44]+D_803BAD90->b8],D_8017A4E0.text[76]);
-                        width=(u32)object_manager_update(text,-1)<20 ? 20 : object_manager_update(text,-1);
-                        state_utility(sound_pitch_diff_halved(text,160),129,text);
-                        y=129+object_bytes_sum_global();
-                    }
-                    y+=object_bytes_sum_global();
-                    func_8039B988(0,text);
-                    width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                    state_utility(sound_pitch_diff_halved(text,160),y,text);
-                    y+=object_bytes_sum_global();
-                    func_8039B908(0,text);
-                    width=(u32)object_manager_update(text,-1)<(u32)width ? width : object_manager_update(text,-1);
-                    state_utility(sound_pitch_diff_halved(text,160),y,text);
-                    y+=object_bytes_sum_global();
-                    crowd_cheer_play(D_803BACF0,156-width/2,125,164+width/2,y+4);
-                } else {
-                    func_800B669C(0,3);
-                    func_803A5658();
-                    if(D_803BACF0)crowd_cheer_play(D_803BACF0,12,125,308,205);
-                }
-            } else crowd_cheer_play(D_803BACF0,-20,100,-10,120);
+        state_utility(sound_pitch_diff_halved(D_8017A4E0.text[44], 160), y, D_8017A4E0.text[44]);
+        y += 16;
+        if (D_803B341C || D_803B3420) {
+            dispatch_handler(5);
+            state_utility(sound_pitch_diff_halved(D_8017A4E0.text[134], 160), y, D_8017A4E0.text[134]);
         }
-        func_800B669C(0,3);
-        render_helper(-1.0f);
+        y += 16;
+        dispatch_handler(12);
+        str1[1] = 0;
+        for (i = 0; i < 20; i++) {
+            str1[0] = D_803BAD98[i];
+            state_utility(sound_pitch_diff_halved(str1, x + 4), y, str1);
+            if ((i + 1) % 10 == 0) {
+                x = 115;
+                y += 9;
+            } else
+                x += 9;
+        }
+        dispatch_handler(1);
+        x = 94;
+        y = 126;
+        for (i = 0; i < 32; i++) {
+            str1[0] = D_80116FE4[i];
+            dispatch_handler(D_803B9A80 == i ? 22 : 1);
+            state_utility(sound_pitch_diff_halved(str1, x + 5), y, str1);
+            if ((i + 1) % 12 == 0) {
+                x = 94;
+                y += 11;
+            } else
+                x += 11;
+        }
+        x += 12;
+        dispatch_handler(D_803B9A80 == -2 ? 22 : 1);
+        state_utility(sound_pitch_diff_halved(del, x + 5), y, del);
+        if (D_803BACF0)
+            crowd_cheer_play(D_803BACF0, 80, 55, 240, 165);
+    } else if (D_803B3418) {
+        func_800B669C(1, 3);
+        object_create(11);
+        dispatch_handler(1);
+        camera_auto_follow(160, 59, 140, 78, -1, 0, D_8017A4E0.text[96]);
+        y = 59 + 5 * object_bytes_sum_global();
+        dispatch_handler(D_803BADC4 ? 22 : 1);
+        state_utility(145, y, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[24]]);
+        dispatch_handler(D_803BADC4 ? 1 : 22);
+        state_utility(175, y, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[24] + 1]);
+        func_800B669C(0, 3);
+        if (D_803BACF0)
+            crowd_cheer_play(D_803BACF0, 60, 55, 260, 130);
+    } else {
+        object_create(11);
+        for (i = 0; i < 4; i++) {
+            if (D_803B30C0[i].angle > 0.6981317f && D_803B30C0[i].angle < 2.443461f)
+                continue;
+            if (!D_803B30C0[i].alpha)
+                continue;
+            func_800ED66C(D_803B30C0[i].alpha);
+            brake_light_update(0, D_803B30C0[i].position, &D_80150B70[0], 0, screenPos);
+            x = screenPos[0] - 35.0f * D_803B33C8;
+            y = screenPos[1];
+            if (D_803B30C0[i].angle < 1.5707964f) {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(1);
+            } else {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(22);
+            }
+            str = D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[43] + i];
+            state_utility(x, y, str);
+            if (i == 1) {
+                brake_light_update(0, D_803B30C0[4].position, &D_80150B70[0], 0, screenPos);
+                x = screenPos[0] - 35.0f * D_803B33C8;
+                y = screenPos[1];
+                if (D_803B9A84 == D_803BAD90->b9)
+                    str = D_8017A4E0.text[176];
+                else {
+                    fcvt_wrapper(str1, D_803B875C, D_8017A4E0.text[82], D_803B9A84 + 1);
+                    str = str1;
+                }
+                state_utility(x, y, str);
+            }
+            if (i == 2) {
+                brake_light_update(0, D_803B30C0[5].position, &D_80150B70[0], 0, screenPos);
+                x = screenPos[0] - 35.0f * D_803B33C8;
+                y = screenPos[1];
+                str = D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44] + D_803BAD38];
+                state_utility(x, y, str);
+            }
+        }
+        func_800ED66C(-1.0f);
+        if (D_803B342C) {
+            s16 width;
+            str = str1;
+            func_800B669C(0, 3);
+            object_create(11);
+            dispatch_handler(1);
+            fcvt_wrapper(str, D_803B8764, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44] + D_803BAD90->b8], D_8017A4E0.text[76]);
+            width = HAL_GetTextWidth(str, -1) < 20 ? 20 : HAL_GetTextWidth(str, -1);
+            state_utility(sound_pitch_diff_halved(str, 160), 153, str);
+            y = 153 + object_bytes_sum_global();
+            y += object_bytes_sum_global();
+            func_803A5938(0, str);
+            width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+            state_utility(sound_pitch_diff_halved(str, 160), y, str);
+            y += object_bytes_sum_global();
+            func_8039B908(0, str);
+            width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+            state_utility(sound_pitch_diff_halved(str, 160), y, str);
+            y += object_bytes_sum_global();
+            crowd_cheer_play(D_803BACF0, 160 - width / 2 - 4, 149, 160 + width / 2 + 4, y + 4);
+        } else if (D_803BACF8 == 2) {
+            s32 numCircuitTracks;
+            s16 width;
+            str = str1;
+            func_800B669C(0, 3);
+            object_create(11);
+            dispatch_handler(1);
+            fcvt_wrapper(str, D_803B876C, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44] + D_803BAD38], D_8017A4E0.text[42]);
+            width = HAL_GetTextWidth(str, -1) < 20 ? 20 : HAL_GetTextWidth(str, -1);
+            state_utility(sound_pitch_diff_halved(str, 160), 129, str);
+            y = 129 + object_bytes_sum_global();
+            numCircuitTracks = D_80111784[D_803BAD38];
+            if (!D_80156994 && numCircuitTracks >= 5)
+                numCircuitTracks = 5;
+            fcvt_wrapper(str, D_803B8774, numCircuitTracks * (D_803BAD38 == 3 ? 4 : 2), D_8017A4E0.text[71]);
+            width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+            state_utility(sound_pitch_diff_halved(str, 160), y, str);
+            y += object_bytes_sum_global();
+            crowd_cheer_play(D_803BACF0, 160 - width / 2 - 4, 125, 160 + width / 2 + 4, y + 4);
+        } else if (D_803B3428) {
+            str = str1;
+            func_800B669C(0, 3);
+            object_create(11);
+            dispatch_handler(1);
+            if (D_803BACF8 != 1) {
+                s16 width;
+                if (D_803B3424) {
+                    fcvt_wrapper(str, D_803B877C, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44] + D_803BAD90->b8], D_8017A4E0.text[67]);
+                    width = HAL_GetTextWidth(str, -1) < 20 ? 20 : HAL_GetTextWidth(str, -1);
+                    state_utility(sound_pitch_diff_halved(str, 160), 129, str);
+                    y = 129 + object_bytes_sum_global();
+                    func_8039BAE0(str);
+                    width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+                    state_utility(sound_pitch_diff_halved(str, 160), y, str);
+                    y += object_bytes_sum_global();
+                    func_8039BA28(str);
+                    width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+                    state_utility(sound_pitch_diff_halved(str, 160), y, str);
+                    y += object_bytes_sum_global();
+                } else {
+                    fcvt_wrapper(str, D_803B8784, D_8017A4E0.names[((u16 *)D_8017A4E0.indices)[44] + D_803BAD90->b8], D_8017A4E0.text[76]);
+                    width = HAL_GetTextWidth(str, -1) < 20 ? 20 : HAL_GetTextWidth(str, -1);
+                    state_utility(sound_pitch_diff_halved(str, 160), 129, str);
+                    y = 129 + object_bytes_sum_global();
+                }
+                y += object_bytes_sum_global();
+                func_8039B988(0, str);
+                width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+                state_utility(sound_pitch_diff_halved(str, 160), y, str);
+                y += object_bytes_sum_global();
+                func_8039B908(0, str);
+                width = width > HAL_GetTextWidth(str, -1) ? width : HAL_GetTextWidth(str, -1);
+                state_utility(sound_pitch_diff_halved(str, 160), y, str);
+                y += object_bytes_sum_global();
+                crowd_cheer_play(D_803BACF0, 160 - width / 2 - 4, 125, 160 + width / 2 + 4, y + 4);
+            } else {
+                func_800B669C(0, 3);
+                func_803A5658();
+                if (D_803BACF0)
+                    crowd_cheer_play(D_803BACF0, 12, 125, 308, 205);
+            }
+        } else
+            crowd_cheer_play(D_803BACF0, -20, 100, -10, 120);
+    }
+    func_800B669C(0, 3);
+    render_helper(-1.0f);
+}
+
+s32 func_803A5948(Blit *blit)
+{
+    if (D_803B33C0 == 1) {
+        func_803A5940();
         return 1;
     }
     return 1;
 }
+
+void func_803A5938(s32 p, u8 *str)
+{
+    func_800BE6A4(str, D_8017A4E0.text[78]);
+    func_800BE4F0(str, D_8017A4E0.names[D_8017A4E0.indices->name_base + D_80154450[p].rank]);
+    func_800BE4F0(str, D_803B87A4);
+    func_800BE4F0(str, D_8017A4E0.text[129]);
+}
+
+#undef HAL_GetTextWidth
 
 /* B560 initializes twelve native 64-byte slots and six special transforms.
  * Float literals are authenticated against current-tree image A. Distinct

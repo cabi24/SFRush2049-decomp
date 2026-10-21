@@ -17,11 +17,12 @@
   "func_803ACA94",
   "func_803ACD5C",
   "func_803ACF5C",
-  "func_803AD0D4"
+  "func_803AD0D4",
+  "func_803AA3D8"
  ],
  "context": [
-  "func_803AA3D8",
   "func_803AD57C"
  ],
- "provenance": "Complete genuine statistics group; ABEC8 is the sole fresh1128-byte candidate. All ten current accepted members remain claimed, including newly accepted AD0D4;8696 preserved bytes. Same genuine AD57C root and group identity."
+ "provenance": "Complete genuine statistics group; ABEC8 is the sole fresh1128-byte candidate. All ten current accepted members remain claimed, including newly accepted AD0D4;8696 preserved bytes. Same genuine AD57C root and group identity. w36f: func_803AA3D8 (MAT3 recordscr drawSelect) added as member and claim; old members unchanged.",
+ "allow_unverified": true
 }

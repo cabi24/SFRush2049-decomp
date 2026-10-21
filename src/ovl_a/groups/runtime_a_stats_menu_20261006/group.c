@@ -1,4 +1,6 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w36f superseding revision (wave 36): func_803AA3D8 (MAT3 recordscr drawSelect) is now a claimed member; the eleven
+ * old members are unchanged and still MATCH; the func_803AD57C root stays context (improved: drawView + nested drawStuntTotals). */
 /* Image-A aggregate statistics ABEC8: separate race/track/record pointers and
  * scan/display counters follow native lifetimes. The scaled quotient is a
  * shared expression; useful locals retain native declaration order. Buffer
@@ -108,117 +110,169 @@ void func_803AC330(u8 *destination,f32 time,s32 unused_format)
         fcvt_wrapper(destination,D_803B8C00,(u32)(time/60.0f)%100,(u32)time%60,(u32)(time*1000.0f)%1000);
     }
 }
+/* w36f (wave 36): func_803AA3D8 = MAT3 recordscr.c drawSelect (GC 0x8008126C, 0xA0C B), called by the animText root
+ * func_803AD57C in kRecordStateSelect.  Direct typed port of the MAT3 body; function-level locals and ORDER from the GC
+ * DWARF (i, x, y, cx, str, str1[64], screenPos[2]: str1 is 64 bytes as in GC, which fixes PR #363's 192-vs-176 frame),
+ * GC's block-scope `player`/`playerIdx` kept in the player-list arm; GC's dead block-scope tRGBA c1/c2 pairs are NOT
+ * present on the N64 (with them the frame is 208).
+ * N64 differences (from the retail displacements/constants): screenPos is not halved; gText indices single[47/143/144/
+ * 146/147], tab[24]/tab[50] (GC 25/52); no trailing TB_SetJust(0, 3) after the confirm branch or the button loop; the
+ * pak-select row draws taba[tab[50] + 1] then D_8011EAD0[gSelectPakIdx] at cx (GC: "CHOOSE PLAYER" + sprintf);
+ * row 2 picks the pak-status text with a switch on gNumPakPlayers[gSelectPakIdx] (case order -4, -3, 0, -2, -1 =
+ * single[165/169/148/166/168], from the jump table at 0x803B98B8) where GC has single[158]; the gStatPlayer list
+ * loop tests only `player` (no `*player`), with `player = gStatPlayer` assigned before the `if (!player)` test.
+ * Shapes taken from retail: `str = taba[tab[50] + 1]; TB_DrawText(x, y, str)` (evaluation before the narrowing),
+ * the list step written after the loop body (as1 line tie-break puts `i - sel` before `i < sel`).
+ * Names: brake_light_update = ZOID_ProjectWindow, func_800B669C = TB_SetJust, dispatch_handler = TB_SetTextColor,
+ * object_create = HAL_SetFont, sound_pitch_diff_halved = TB_CenterText, sound_pitch_diff_calc = TB_RightText,
+ * state_utility = TB_DrawText, object_bytes_sum_global = TB_GetFontLineHeight, camera_zoom_fov = TB_GetTextNumLines,
+ * crowd_cheer_play = ChangePaneSize, camera_auto_follow = TB_DrawTextScrollBox, func_800ED66C = HAL_SetTextTranslucency,
+ * func_800BEA3C = TB_FlashTextColors, object_manager_update = HAL_GetTextWidth, mode_byte_set = HAL_SetFontSpacing,
+ * music_fade = TB_DrawEllipseText, fcvt_wrapper = TB_Sprintf; D_803B8ACC = gScreenRect, D_803BA84D/854/850 =
+ * gDeleteConfirm/gDeleteNotify/gYes, D_803BA800 = gStatPlayer, D_803BA840 = gDeleteName, D_803BA808 = gSelectMenuSelect,
+ * D_803B65A4 = gSelectPakIdx, D_803BA830 = gNumPakPlayers, D_8012E6E0 = gPlayerFiles.head.
+ * SHAPING (disclosed residual): `pad` is an unused s32 declared before i.  Frame 176 with or without it (8-byte
+ * rounding), every local home is already retail's; it makes the cfe local area 108 instead of 104, which moves uopt's
+ * spill homes down one slot so the loop's spilled &buttonInfo[i].uvs[3] lands at retail's sp+52 instead of sp+56
+ * (6 words).  An extra 4-byte block-scope local anywhere gives the identical object.  No pad arrays.
+ */
 void func_803AA3D8(void)
 {
-    u8 text[80],*label;
-    s16 point[2],lines;
-    s32 x,y,draw_x,i,seen,selected;
-    Slot *slot;
-    Profile **node;
-    func_800B669C(0,1);
-    brake_light_update(0,D_803B5F28[17].position,&D_80150B70[0],0,point);
-    x=point[0];y=point[1];
-    func_800F6928(D_803B5F28[17].position[2]-10.0f);
-    dispatch_handler(1);object_create(13);dispatch_handler(1);
-    label=countdown_state.text[47];
-    state_utility(sound_pitch_diff_halved(label,x),y,label);
-    y+=object_bytes_sum_global()*2;object_create(10);
-    if(D_803BA84D==1) {
-        render_helper(0.0f);y+=object_bytes_sum_global();
-        if(D_803BA800) {fcvt_wrapper(text,countdown_state.text[143],D_803BA840);label=text;}
-        else label=countdown_state.text[144];
-        lines=camera_zoom_fov(D_803B8ACC.width,label);
-        crowd_cheer_play(D_803B6530,x-D_803B8ACC.width/2-4,y-4,x+D_803B8ACC.width/2+4,
-                         y+object_bytes_sum_global()*(lines+2)+4);
-        dispatch_handler(1);func_800B669C(1,3);
-        camera_auto_follow(x,y,D_803B8ACC.width,D_803B8ACC.height,-1,0,label);
-        func_800B669C(0,3);
-        lines=camera_zoom_fov(D_803B8ACC.width,label);
-        y+=object_bytes_sum_global()*(lines+1);
-        label=NAME(24,0);dispatch_handler(D_803BA850==1 ? 22 : 1);
-        state_utility(sound_pitch_diff_calc(label,x-5),y,label);
-        label=NAME(24,1);dispatch_handler(D_803BA850 ? 1 : 22);
-        state_utility(x+5,y,label);
-        return;
-    }
-    if(D_803BA854==1) {
-        render_helper(0.0f);y+=object_bytes_sum_global();
-        if(D_803BA800) {fcvt_wrapper(text,countdown_state.text[146],D_803BA840);label=text;}
-        else label=countdown_state.text[147];
-        lines=camera_zoom_fov(D_803B8ACC.width,label);
-        crowd_cheer_play(D_803B6530,x-D_803B8ACC.width/2-4,y-4,x+D_803B8ACC.width/2+4,
-                         y+object_bytes_sum_global()*lines+4);
-        dispatch_handler(1);func_800B669C(1,3);
-        camera_auto_follow(x,y,D_803B8ACC.width,D_803B8ACC.height,-1,0,label);
-        func_800B669C(0,3);
-        return;
-    }
-    for(i=0,slot=D_803B5F28;i<11;i++,slot++) {
-        crowd_cheer_play(D_803B6530,-20,0,-10,10);
-        func_800F6928(slot->position[2]-10.0f);
-        brake_light_update(0,slot->position,&D_80150B70[0],0,point);
-        if(slot->kind==11)draw_x=point[0];
-        else if(slot->kind==9)draw_x=point[0]-65.0f*D_803B64E8*300.0f/D_803B64FC;
-        else draw_x=point[0]-45.0f*D_803B64E8*300.0f/D_803B64FC;
-        y=point[1];
-        if(i==1) {
-            brake_light_update(0,D_803B5F28[14].position,&D_80150B70[0],0,point);
-            x=point[0]-25.0f*D_803B64E8*300.0f/D_803B64FC;
-        } else {
-            brake_light_update(0,D_803B5F28[13].position,&D_80150B70[0],0,point);
-            x=point[0]-45.0f*D_803B64E8*300.0f/D_803B64FC;
-        }
-        if(i>=3 && i<11 && i==D_803BA808 &&
-           (D_803B5F28[13].angle<0.6981316804885864f || D_803B5F28[13].angle>2.4434609413146973f) && D_803B5F28[13].alpha) {
-            func_800ED66C((f32)(u32)D_803B5F28[13].alpha);
-            if(D_803B5F28[13].angle<1.5707963705062866f) {
-                func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(1);
-            } else {func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(22);}
-            label=NAME(50,2);object_create(11);state_utility(x,y,label);object_create(10);
-        }
-        if(slot->angle>0.6981316804885864f && slot->angle<2.4434609413146973f)continue;
-        if(!slot->alpha)continue;
-        func_800ED66C((f32)(u32)slot->alpha);
-        if(slot->angle<1.5707963705062866f) {func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(1);}
-        else {func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(22);}
-        if(i==0) {label=NAME(50,0);state_utility(draw_x,y,label);}
-        else if(i==1) {
-            state_utility(draw_x,y,NAME(50,1));
-            label=D_8011EAD0[D_803B65A4];state_utility(x,y,label);
-        } else if(i==2) {
-            switch(D_803BA830[D_803B65A4]) {
-            case -4:label=countdown_state.text[165];break;
-            case -3:label=countdown_state.text[169];break;
-            case 0:label=countdown_state.text[148];break;
-            case -2:label=countdown_state.text[166];break;
-            case -1:label=countdown_state.text[168];break;
-            }
-            dispatch_handler(0);state_utility(sound_pitch_diff_halved(label,draw_x),y,label);
-        } else if(i>=3 && i<11) {
-            node=D_803BA800;seen=0;
-            if(!node) {
-                node=D_8012E6E0;
-                while(node) {
-                    if((*(*node)->file)->controller==D_803B65A4) {
-                        if(i==seen+3)label=(*node)->name;
-                        seen++;
-                    }
-                    node=(*node)->next;
-                }
+    s32 pad;
+    s32 i, x, y, cx;
+    u8 *str;
+    u8 str1[64];
+    s16 screenPos[2];
+    func_800B669C(0, 1);
+    brake_light_update(0, D_803B5F28[17].position, &D_80150B70[0], 0, screenPos);
+    cx = screenPos[0];
+    y = screenPos[1];
+    func_800F6928(D_803B5F28[17].position[2] - 10.0f);
+    dispatch_handler(1);
+    object_create(13);
+    dispatch_handler(1);
+    str = countdown_state.text[47];
+    state_utility(sound_pitch_diff_halved(str, cx), y, str);
+    y += object_bytes_sum_global() * 2;
+    object_create(10);
+    if (D_803BA84D == 1) {
+        render_helper(0.0f);
+        y += object_bytes_sum_global();
+        if (D_803BA800) {
+            fcvt_wrapper(str1, countdown_state.text[143], D_803BA840);
+            str = str1;
+        } else str = countdown_state.text[144];
+        crowd_cheer_play(D_803B6530, cx - D_803B8ACC.width / 2 - 4, y - 4,
+                         cx + D_803B8ACC.width / 2 + 4, 4 + y + ((camera_zoom_fov(D_803B8ACC.width, str) + 2) * object_bytes_sum_global()));
+        dispatch_handler(1);
+        func_800B669C(1, 3);
+        camera_auto_follow(cx, y, D_803B8ACC.width, D_803B8ACC.height, -1, 0, str);
+        func_800B669C(0, 3);
+        y += object_bytes_sum_global() * (camera_zoom_fov(D_803B8ACC.width, str) + 1);
+        str = NAME(24, 0);
+        dispatch_handler(D_803BA850 == 1 ? 22 : 1);
+        state_utility(sound_pitch_diff_calc(str, cx - 5), y, str);
+        str = NAME(24, 1);
+        dispatch_handler(D_803BA850 == 0 ? 22 : 1);
+        state_utility(cx + 5, y, str);
+    } else if (D_803BA854 == 1) {
+        render_helper(0.0f);
+        y += object_bytes_sum_global();
+        if (D_803BA800) {
+            fcvt_wrapper(str1, countdown_state.text[146], D_803BA840);
+            str = str1;
+        } else str = countdown_state.text[147];
+        crowd_cheer_play(D_803B6530, cx - D_803B8ACC.width / 2 - 4, y - 4,
+                         cx + D_803B8ACC.width / 2 + 4, 4 + y + (camera_zoom_fov(D_803B8ACC.width, str) * object_bytes_sum_global()));
+        dispatch_handler(1);
+        func_800B669C(1, 3);
+        camera_auto_follow(cx, y, D_803B8ACC.width, D_803B8ACC.height, -1, 0, str);
+        func_800B669C(0, 3);
+    } else {
+        for (i = 0; i < 11; i++) {
+            crowd_cheer_play(D_803B6530, -20, 0, -10, 10);
+            func_800F6928(D_803B5F28[i].position[2] - 10.0f);
+            brake_light_update(0, D_803B5F28[i].position, &D_80150B70[0], 0, screenPos);
+            if (D_803B5F28[i].kind == 11) x = screenPos[0];
+            else if (D_803B5F28[i].kind == 9) x = screenPos[0] - 65.0f * D_803B64E8 * 300.0f / D_803B64FC;
+            else x = screenPos[0] - 45.0f * D_803B64E8 * 300.0f / D_803B64FC;
+            y = screenPos[1];
+            if (i == 1) {
+                brake_light_update(0, D_803B5F28[14].position, &D_80150B70[0], 0, screenPos);
+                cx = screenPos[0] - 25.0f * D_803B64E8 * 300.0f / D_803B64FC;
             } else {
-                selected=D_803BA808;
-                while(node) {
-                    if((*(*node)->file)->controller==D_803B65A4) {
-                        if(ABS(i-selected)==seen)label=(*node)->name;
-                        seen++;
-                    }
-                    if(i<selected)node=(*node)->previous;else node=(*node)->next;
-                }
+                brake_light_update(0, D_803B5F28[13].position, &D_80150B70[0], 0, screenPos);
+                cx = screenPos[0] - 45.0f * D_803B64E8 * 300.0f / D_803B64FC;
             }
-            if((u32)object_manager_update(label,-1)>140)mode_byte_set(0);
-            music_fade(draw_x,y,98,label);mode_byte_set(-1);
+            if (i >= 3 && i < 11 && i == D_803BA808 &&
+                (D_803B5F28[13].angle < 0.6981317f || D_803B5F28[13].angle > 2.443461f) && D_803B5F28[13].alpha) {
+                func_800ED66C(D_803B5F28[13].alpha);
+                if (D_803B5F28[13].angle < 1.5707964f) {
+                    func_800BEA3C(D_801146BC, D_801146C0);
+                    dispatch_handler(1);
+                } else {
+                    func_800BEA3C(D_801146BC, D_801146C0);
+                    dispatch_handler(22);
+                }
+                str = NAME(50, 2);
+                object_create(11);
+                state_utility(cx, y, str);
+                object_create(10);
+            }
+            if (D_803B5F28[i].angle > 0.6981317f && D_803B5F28[i].angle < 2.443461f) continue;
+            if (!D_803B5F28[i].alpha) continue;
+            func_800ED66C(D_803B5F28[i].alpha);
+            if (D_803B5F28[i].angle < 1.5707964f) {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(1);
+            } else {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(22);
+            }
+            if (i == 0) {
+                str = NAME(50, 0);
+                state_utility(x, y, str);
+            } else if (i == 1) {
+                str = NAME(50, 1);
+                state_utility(x, y, str);
+                str = D_8011EAD0[D_803B65A4];
+                state_utility(cx, y, str);
+            } else if (i == 2) {
+                switch (D_803BA830[D_803B65A4]) {
+                case -4: str = countdown_state.text[165]; break;
+                case -3: str = countdown_state.text[169]; break;
+                case 0: str = countdown_state.text[148]; break;
+                case -2: str = countdown_state.text[166]; break;
+                case -1: str = countdown_state.text[168]; break;
+                }
+                dispatch_handler(0);
+                state_utility(sound_pitch_diff_halved(str, x), y, str);
+            } else if (i >= 3 && i < 11) {
+                Profile **player;
+                s32 playerIdx;
+                player = D_803BA800;
+                if (!player) {
+                    for (playerIdx = 0, player = D_8012E6E0; player; player = (*player)->next) {
+                        if ((*(*player)->file)->controller == D_803B65A4) {
+                            if (playerIdx == i - 3) str = (*player)->name;
+                            playerIdx++;
+                        }
+                    }
+                } else {
+                    for (playerIdx = 0; player; ) {
+                        if ((*(*player)->file)->controller == D_803B65A4) {
+                            if (playerIdx == (i - D_803BA808 >= 0 ? i - D_803BA808 : -(i - D_803BA808))) str = (*player)->name;
+                            playerIdx++;
+                        }
+                        player = i < D_803BA808 ? (*player)->previous : (*player)->next;
+                    }
+                }
+                if ((u32)object_manager_update(str, -1) > 140) mode_byte_set(0);
+                music_fade(x, y, 98, str);
+                mode_byte_set(-1);
+            }
+            object_bytes_sum_global();
         }
-        object_bytes_sum_global();
     }
 }
 void func_803AAF0C(void)
@@ -627,49 +681,58 @@ void func_803ACA94(void);
 void func_803ACD5C(void);
 void func_803ACF5C(s32);
 void func_803AD0D4(void);
-s32 func_803AD57C(void *callback_context)
+/* Image-A recordscr animText callback AD57C (GC recordscr.c animText 0x8008451C): HAL_SetTextDepth(0); switch (gRecordState)
+ * { case 0: drawSelect() [the call func_803AA3D8]; case 1: recordscr_drawView() [inlined by umerge, stub 0x803AD574] }
+ * HAL_SetTextDepth(-1); return 1.  drawView (GC 0x80081C78) is a direct typed MAT3 port (w35e); its kViewStuntTotals arm
+ * calls drawStuntTotals (GC 0x80082B30), a REAL function nested-inlined by umerge (w36f; its deleted stub is retail's
+ * caller-less 0x803ACA8C between drawObstacleStats and drawStuntStats).  Both are NON-static and off `keep`, with unique
+ * symbols recordscr_drawView / recordscr_drawStuntTotals.
+ * GC's dead block-scope `Color4 c1, c2;` survives in ONE flash-colour arm only: with that the cfe area is 170 (retail
+ * <= 172), frame 312 and every local/home/spill slot is retail's (w36f traced the spill homes with tools/trace/spill.sh).
+ * NOT A MATCH (context): strict 497/523 from a one-word shift at the state dispatch (as1 hoists the case-1 `li at,1` into
+ * the `lw` stall; retail's as1 input had a block boundary there: a label between the lw and the beqz reproduces retail),
+ * plus three more as1 placements; 30 non-equal-run words.  See cloud/work/frontier/w36f/RESULTS.md. */
+void recordscr_drawStuntTotals(void);
+void recordscr_drawView(void);
+void recordscr_drawView(void)
 {
-    u8 text[80],*label,*data;
-    s16 point[2];
-    s32 i,x,y,draw_x,track;
-    Slot *slot;
-    render_helper(0.0f);
-    switch(D_803BA804) {
-    case 0:func_803AA3D8();break;
-    case 1:
+    s32 i, x, y, cx;
+    u8 *str;
+    u8 str1[64];
+    s16 screenPos[2];
         func_800B669C(1,1);
-        brake_light_update(0,D_803B5F28[17].position,&D_80150B70[0],0,point);
-        x=point[0];y=point[1];
+        brake_light_update(0,D_803B5F28[17].position,&D_80150B70[0],0,screenPos);
+        cx=screenPos[0];y=screenPos[1];
         func_800F6928(D_803B5F28[17].position[2]-10.0f);
         dispatch_handler(1);object_create(13);dispatch_handler(1);
-        label=!D_803BA800 ? countdown_state.text[176] : (*D_803BA800)->name;
-        music_fade(x,y,140,label);
+        str=!D_803BA800 ? countdown_state.text[176] : (*D_803BA800)->name;music_fade(cx,y,140,str);
         func_800B669C(0,1);object_bytes_sum_global();object_create(11);
-        for(i=0,slot=&D_803B5F28[11];i<2;i++,slot++) {
-            if(slot->angle>0.6981316804885864f && slot->angle<2.4434609413146973f)continue;
-            if(!slot->alpha)continue;
-            func_800ED66C((f32)(u32)slot->alpha);
-            if(slot->angle<1.5707963705062866f) {func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(1);}
-            else {func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(22);}
-            func_800F6928(slot->position[2]-10.0f);
-            brake_light_update(0,slot->position,&D_80150B70[0],0,point);
-            draw_x=point[0]-35.0f*D_803B64E8*300.0f/D_803B64FC;y=point[1];
-            brake_light_update(0,D_803B5F28[15].position,&D_80150B70[0],0,point);
-            x=point[0]-55.0f*D_803B64E8*300.0f/D_803B64FC;
-            state_utility(draw_x,y,NAME(51,i));
+        for(i=0;i<2;i++) {
+            if(D_803B5F28[i+11].angle>0.6981316804885864f && D_803B5F28[i+11].angle<2.4434609413146973f)continue;
+            if(!D_803B5F28[i+11].alpha)continue;
+            func_800ED66C((f32)(u32)D_803B5F28[i+11].alpha);
+            if(D_803B5F28[i+11].angle<1.5707963705062866f) {
+                Color4 c1,c2;
+                func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(1);
+            } else {
+                func_800BEA3C(D_801146BC,D_801146C0);dispatch_handler(22);
+            }
+            func_800F6928(D_803B5F28[i+11].position[2]-10.0f);
+            brake_light_update(0,D_803B5F28[i+11].position,&D_80150B70[0],0,screenPos);
+            x=screenPos[0]-35.0f*D_803B64E8*300.0f/D_803B64FC;y=screenPos[1];
+            brake_light_update(0,D_803B5F28[15].position,&D_80150B70[0],0,screenPos);
+            cx=screenPos[0]-55.0f*D_803B64E8*300.0f/D_803B64FC;
+            str=NAME(51,i);state_utility(x,y,str);
+            x=cx;
             if(i==0) {
                 if(D_803BA880==4) {
-                    fcvt_wrapper(text,D_803B8AD8,NAME(44,D_803BA860),countdown_state.text[42]);label=text;
-                } else if(D_803BA880==5)label=countdown_state.text[176];
+                    fcvt_wrapper(str1,D_803B8AD8,NAME(44,D_803BA860),countdown_state.text[42]);str=str1;
+                } else if(D_803BA880==5)str=countdown_state.text[176];
                 else if(D_803BA858<12 && (D_803BA858&1)) {
-                    track=D_803BA858>=13 ? D_803BA858-6 : D_803BA858/2;
-                    fcvt_wrapper(text,D_803B8AE0,D_8011A8D8[track],countdown_state.text[6]);label=text;
-                } else {
-                    track=D_803BA858>=13 ? D_803BA858-6 : D_803BA858/2;
-                    label=D_8011A8D8[track];
-                }
-                state_utility(x,y,label);
-            } else if(i==1)state_utility(x,y,NAME(52,D_803BA818[D_803BA880]));
+                    fcvt_wrapper(str1,D_803B8AE0,D_8011A8D8[D_803BA858>=13 ? D_803BA858-6 : D_803BA858/2],countdown_state.text[6]);str=str1;
+                } else str=D_8011A8D8[D_803BA858>=13 ? D_803BA858-6 : D_803BA858/2];
+                state_utility(x,y,str);
+            } else if(i==1){str=NAME(52,D_803BA818[D_803BA880]);state_utility(x,y,str);}
         }
         func_800B669C(0,3);func_800ED66C(-1.0f);render_helper(0.0f);
         switch(D_803BA818[D_803BA880]) {
@@ -679,23 +742,7 @@ s32 func_803AD57C(void *callback_context)
         case 3:func_803ACF5C(2);break;
         case 4:func_803ACD5C();break;
         case 5:func_803ACA94();break;
-        case 6: {
-            u8 count_text[48];
-            s32 cx,cy;
-            if(D_803BA800)data=PROFILE_DATA+12+D_803BA858*64;
-            else data=D_80151410+D_803BA858*64-1280;
-            object_create(11);dispatch_handler(1);
-            for(i=0;i<10;i++) {
-                if(i==0) {cx=110;cy=90;}
-                else if(i==5) {cx=250;cy=90;}
-                fcvt_wrapper(count_text,D_803B8B60,NAME(37,i));
-                state_utility(sound_pitch_diff_calc(count_text,cx-4),cy,count_text);
-                fcvt_wrapper(count_text,D_803B8B64,U32_AT(data,20+i*4));
-                state_utility(cx+4,cy,count_text);cy+=object_bytes_sum_global();
-            }
-            crowd_cheer_play(D_803B6530,20,86,300,94+object_bytes_sum_global()*5);
-            break;
-        }
+        case 6:recordscr_drawStuntTotals();break;
         case 7:func_803AC7F4();break;
         case 8:func_803AC54C();break;
         case 9:func_803ABEC8();break;
@@ -704,7 +751,32 @@ s32 func_803AD57C(void *callback_context)
         case 12:func_803AAF0C();break;
         }
         func_800B669C(0,3);
-        break;
+}
+void recordscr_drawStuntTotals(void);
+void recordscr_drawStuntTotals(void)
+{
+            s32 statIdx, x, y;
+            u8 *stats;
+            u8 str[40];
+            if(D_803BA800)stats=PROFILE_DATA+12+D_803BA858*64;
+            else stats=D_80151410+D_803BA858*64-1280;
+            object_create(11);dispatch_handler(1);
+            for(statIdx=0;statIdx<10;statIdx++) {
+                if(statIdx==0) {x=110;y=90;}
+                else if(statIdx==5) {x=250;y=90;}
+                fcvt_wrapper(str,D_803B8B60,NAME(37,statIdx));
+                state_utility(sound_pitch_diff_calc(str,x-4),y,str);
+                fcvt_wrapper(str,D_803B8B64,U32_AT(stats,20+statIdx*4));
+                state_utility(x+4,y,str);y+=object_bytes_sum_global();
+            }
+            crowd_cheer_play(D_803B6530,20,86,300,94+object_bytes_sum_global()*5);
+            }
+s32 func_803AD57C(void *callback_context)
+{
+    render_helper(0.0f);
+    switch(D_803BA804) {
+    case 0:func_803AA3D8();break;
+    case 1:recordscr_drawView();break;
     }
     render_helper(-1.0f);
     return 1;

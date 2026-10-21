@@ -1,0 +1,462 @@
+== func_8039C910 @ 0x8039C910 (461 words)
+  8039c910: lui	t6,0x803b
+  8039c914: lb	t6,12428(t6) ; 0x803B308C
+  8039c918: addiu	sp,sp,-32
+  8039c91c: sw	ra,20(sp)
+  8039c920: bnez	t6,0x8039caa4
+  8039c924: lui	v1,0x8011
+  8039c928: lui	t7,0x8018
+  8039c92c: lb	t7,-23336(t7) ; 0x8017A4D8 D_8017A4D8
+  8039c930: addiu	v1,v1,25764 ; 0x801164A4 D_801164A4
+  8039c934: lui	t8,0x8014
+  8039c938: sh	t7,0(v1) ; 0x80110000 D_8010FFD4+0x2c
+  8039c93c: lb	t8,-308(t8) ; 0x8013FECC D_8013FECC
+  8039c940: lui	t9,0x8014
+  8039c944: lui	t2,0x8014
+  8039c948: sh	t8,2(v1) ; 0x80110002 D_8010FFD4+0x2e
+  8039c94c: lb	t9,-307(t9) ; 0x8013FECD D_8013FECD
+  8039c950: lui	t3,0x8014
+  8039c954: lui	t4,0x8014
+  8039c958: sh	t9,4(v1) ; 0x80110004 D_8010FFD4+0x30
+  8039c95c: lb	t2,976(t2) ; 0x801403D0 D_801403D0
+  8039c960: lui	t5,0x8014
+  8039c964: lui	t6,0x8014
+  8039c968: sh	t2,8(v1) ; 0x80110008 D_8010FFD4+0x34
+  8039c96c: lb	t3,10145(t3) ; 0x801427A1 D_801427A1
+  8039c970: lui	t7,0x8014
+  8039c974: lui	t8,0x8014
+  8039c978: sh	t3,10(v1) ; 0x8011000A D_8010FFD4+0x36
+  8039c97c: lb	t4,11008(t4) ; 0x80142B00 D_80142B00
+  8039c980: lui	t2,0x8014
+  8039c984: lui	t3,0x8018
+  8039c988: sh	t4,12(v1) ; 0x8011000C D_8010FFD4+0x38
+  8039c98c: lb	t5,1048(t5) ; 0x80140418 D_80140418
+  8039c990: lui	t4,0x8014
+  8039c994: lui	t0,0x8014
+  8039c998: sh	t5,14(v1) ; 0x8011000E D_8010FFD4+0x3a
+  8039c99c: lb	t6,1562(t6) ; 0x8014061A D_8014061A
+  8039c9a0: lui	t5,0x8016
+  8039c9a4: addiu	t0,t0,10144 ; 0x801427A0 D_801427A0
+  8039c9a8: sh	t6,16(v1) ; 0x80110010 D_8010FFD4+0x3c
+  8039c9ac: lb	t7,-3332(t7) ; 0x8013F2FC D_8013F2FC
+  8039c9b0: lui	t6,0x8014
+  8039c9b4: sh	t7,18(v1) ; 0x80110012 D_8010FFD4+0x3e
+  8039c9b8: lb	t8,11696(t8) ; 0x80142DB0 D_80142DB0
+  8039c9bc: lb	t7,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039c9c0: xori	t9,t8,0x2
+  8039c9c4: sltiu	t9,t9,1
+  8039c9c8: sh	t9,20(v1) ; 0x80110014 D_8010FFD4+0x40
+  8039c9cc: lb	t2,16156(t2) ; 0x80143F1C D_80143F1C
+  8039c9d0: sh	t2,22(v1) ; 0x80110016 D_8010FFD4+0x42
+  8039c9d4: lb	t3,-22988(t3) ; 0x8017A634 D_8017A634
+  8039c9d8: sh	t3,24(v1) ; 0x80110018 D_8010FFD4+0x44
+  8039c9dc: lb	t4,1968(t4) ; 0x801407B0 D_801407B0
+  8039c9e0: sh	t4,34(v1) ; 0x80110022 D_80110020+0x2
+  8039c9e4: lb	t5,5035(t5) ; 0x801613AB D_801613AB
+  8039c9e8: sh	t5,36(v1) ; 0x80110024 D_80110020+0x4
+  8039c9ec: lb	t6,2000(t6) ; 0x801407D0 D_801407D0
+  8039c9f0: sh	t7,40(v1) ; 0x80110028 D_80110020+0x8
+  8039c9f4: lh	v0,40(v1) ; 0x80110028 D_80110020+0x8
+  8039c9f8: sh	t6,38(v1) ; 0x80110026 D_80110020+0x6
+  8039c9fc: slti	at,v0,9
+  8039ca00: bnez	at,0x8039ca10
+  8039ca04: nop
+  8039ca08: b	0x8039ca1c
+  8039ca0c: sh	zero,40(v1) ; 0x80110028 D_80110020+0x8
+  8039ca10: bgez	v0,0x8039ca1c
+  8039ca14: li	t8,8
+  8039ca18: sh	t8,40(v1) ; 0x80110028 D_80110020+0x8
+  8039ca1c: jal	0x800b8374 <particle_lifetime_set>
+  8039ca20: nop
+  8039ca24: lui	a2,0x803b
+  8039ca28: addiu	a2,a2,12392 ; 0x803B3068
+  8039ca2c: move	a0,zero
+  8039ca30: move	a1,zero
+  8039ca34: jal	0x800b37e8 <sound_control>
+  8039ca38: li	a3,1
+  8039ca3c: lui	at,0x803b
+  8039ca40: sw	v0,12432(at) ; 0x803B3090
+  8039ca44: lui	t1,0x803b
+  8039ca48: addiu	t1,t1,12436 ; 0x803B3094
+  8039ca4c: sw	zero,0(t1) ; 0x803B0000
+  8039ca50: lui	at,0x803b
+  8039ca54: sw	zero,12440(at) ; 0x803B3098
+  8039ca58: lw	a0,0(t1) ; 0x803B0000
+  8039ca5c: lui	t2,0x803b
+  8039ca60: addiu	t2,t2,13408 ; 0x803B3460
+  8039ca64: sll	t9,a0,0x2
+  8039ca68: addu	t9,t9,a0
+  8039ca6c: sll	t9,t9,0x3
+  8039ca70: addu	t9,t9,a0
+  8039ca74: sll	t9,t9,0x2
+  8039ca78: mtc1	zero,$f4
+  8039ca7c: addu	t3,t9,t2
+  8039ca80: lui	at,0x803b
+  8039ca84: sw	t3,17016(at) ; 0x803B4278
+  8039ca88: lui	at,0x803b
+  8039ca8c: swc1	$f4,17020(at)
+  8039ca90: lui	at,0x803b
+  8039ca94: sw	zero,17024(at) ; 0x803B4280
+  8039ca98: lui	at,0x803b
+  8039ca9c: li	t4,1
+  8039caa0: sb	t4,12428(at) ; 0x803B308C
+  8039caa4: lui	a0,0x8015
+  8039caa8: lw	a0,26956(a0) ; 0x8015694C D_8015694C
+  8039caac: lui	t1,0x803b
+  8039cab0: lui	v0,0x8015
+  8039cab4: andi	t5,a0,0x5
+  8039cab8: beqz	t5,0x8039cb04
+  8039cabc: addiu	t1,t1,12436 ; 0x803B3094
+  8039cac0: andi	t6,a0,0x1
+  8039cac4: beqz	t6,0x8039cad4
+  8039cac8: move	a1,zero
+  8039cacc: b	0x8039cad8
+  8039cad0: li	a0,46
+  8039cad4: li	a0,38
+  8039cad8: li	a2,1
+  8039cadc: jal	0x80092360 <entity_flags_apply>
+  8039cae0: move	a3,zero
+  8039cae4: lui	t1,0x803b
+  8039cae8: li	t7,2
+  8039caec: lui	at,0x803b
+  8039caf0: lui	a0,0x8015
+  8039caf4: addiu	t1,t1,12436 ; 0x803B3094
+  8039caf8: lw	a0,26956(a0) ; 0x8015694C D_8015694C
+  8039cafc: b	0x8039cbcc
+  8039cb00: sw	t7,12440(at) ; 0x803B3098
+  8039cb04: lw	v0,-26748(v0) ; 0x80149784 D_80149784
+  8039cb08: andi	t8,v0,0xc00
+  8039cb0c: beqz	t8,0x8039cbcc
+  8039cb10: andi	t9,v0,0x400
+  8039cb14: beqz	t9,0x8039cb54
+  8039cb18: li	a0,39
+  8039cb1c: li	a0,40
+  8039cb20: move	a1,zero
+  8039cb24: li	a2,1
+  8039cb28: jal	0x80092360 <entity_flags_apply>
+  8039cb2c: move	a3,zero
+  8039cb30: lui	t1,0x803b
+  8039cb34: addiu	t1,t1,12436 ; 0x803B3094
+  8039cb38: lw	t2,0(t1) ; 0x803B0000
+  8039cb3c: addiu	a2,t2,-1 ; 0x803AFFFF
+  8039cb40: bgez	a2,0x8039cb88
+  8039cb44: sw	a2,0(t1) ; 0x803B0000
+  8039cb48: li	a2,20
+  8039cb4c: b	0x8039cb88
+  8039cb50: sw	a2,0(t1) ; 0x803B0000
+  8039cb54: move	a1,zero
+  8039cb58: li	a2,1
+  8039cb5c: jal	0x80092360 <entity_flags_apply>
+  8039cb60: move	a3,zero
+  8039cb64: lui	t1,0x803b
+  8039cb68: addiu	t1,t1,12436 ; 0x803B3094
+  8039cb6c: lw	t5,0(t1) ; 0x803B0000
+  8039cb70: addiu	a2,t5,1 ; 0x80160001 D_8015F740+0x8c1
+  8039cb74: slti	at,a2,21
+  8039cb78: bnez	at,0x8039cb88
+  8039cb7c: sw	a2,0(t1) ; 0x803B0000
+  8039cb80: sw	zero,0(t1) ; 0x803B0000
+  8039cb84: move	a2,zero
+  8039cb88: sll	t7,a2,0x2
+  8039cb8c: addu	t7,t7,a2
+  8039cb90: sll	t7,t7,0x3
+  8039cb94: addu	t7,t7,a2
+  8039cb98: lui	t8,0x803b
+  8039cb9c: addiu	t8,t8,13408 ; 0x803B3460
+  8039cba0: sll	t7,t7,0x2
+  8039cba4: mtc1	zero,$f6
+  8039cba8: addu	t9,t7,t8
+  8039cbac: lui	at,0x803b
+  8039cbb0: sw	t9,17016(at) ; 0x803B4278
+  8039cbb4: lui	at,0x803b
+  8039cbb8: swc1	$f6,17020(at)
+  8039cbbc: lui	at,0x803b
+  8039cbc0: lui	a0,0x8015
+  8039cbc4: lw	a0,26956(a0) ; 0x8015694C D_8015694C
+  8039cbc8: sw	zero,17024(at) ; 0x803B4280
+  8039cbcc: andi	t2,a0,0x3000
+  8039cbd0: beqz	t2,0x8039cf6c
+  8039cbd4: lw	a2,0(t1) ; 0x803B0000
+  8039cbd8: lui	t3,0x8011
+  8039cbdc: addu	t3,t3,a2
+  8039cbe0: lb	t3,25740(t3) ; 0x8011648C D_80116488+0x4
+  8039cbe4: andi	t4,a0,0x1000
+  8039cbe8: beqz	t3,0x8039cf6c
+  8039cbec: nop
+  8039cbf0: beqz	t4,0x8039cc00
+  8039cbf4: li	a1,1
+  8039cbf8: b	0x8039cc00
+  8039cbfc: li	a1,-1
+  8039cc00: jal	0x800b5f88 <audio_doppler>
+  8039cc04: sw	a1,28(sp)
+  8039cc08: lui	t1,0x803b
+  8039cc0c: addiu	t1,t1,12436 ; 0x803B3094
+  8039cc10: lw	a2,0(t1) ; 0x803B0000
+  8039cc14: lui	v1,0x8011
+  8039cc18: lui	t0,0x8014
+  8039cc1c: sltiu	at,a2,21
+  8039cc20: addiu	t0,t0,10144 ; 0x801427A0 D_801427A0
+  8039cc24: addiu	v1,v1,25764 ; 0x801164A4 D_801164A4
+  8039cc28: beqz	at,0x8039cf6c
+  8039cc2c: lw	a1,28(sp)
+  8039cc30: sll	t5,a2,0x2
+  8039cc34: lui	at,0x803c
+  8039cc38: addu	at,at,t5
+  8039cc3c: lw	t5,-27204(at) ; 0x803B95BC
+  8039cc40: jr	t5
+  8039cc44: nop
+  8039cc48: lui	v0,0x8018
+  8039cc4c: addiu	v0,v0,-23336 ; 0x8017A4D8 D_8017A4D8
+  8039cc50: lb	t6,0(v0) ; 0x80180000 gDisplayListBuffer
+  8039cc54: xori	t7,t6,0x1
+  8039cc58: sb	t7,0(v0) ; 0x80180000 gDisplayListBuffer
+  8039cc5c: lb	t8,0(v0) ; 0x80180000 gDisplayListBuffer
+  8039cc60: b	0x8039cf6c
+  8039cc64: sh	t8,0(v1) ; 0x80110000 D_8010FFD4+0x2c
+  8039cc68: lui	v0,0x8014
+  8039cc6c: addiu	v0,v0,-308 ; 0x8013FECC D_8013FECC
+  8039cc70: lb	t9,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cc74: xori	t2,t9,0x1
+  8039cc78: sb	t2,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cc7c: lb	t3,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cc80: b	0x8039cf6c
+  8039cc84: sh	t3,2(v1) ; 0x80110002 D_8010FFD4+0x2e
+  8039cc88: lui	v0,0x8014
+  8039cc8c: addiu	v0,v0,-307 ; 0x8013FECD D_8013FECD
+  8039cc90: lb	t4,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cc94: xori	t5,t4,0x1
+  8039cc98: sb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cc9c: lb	t6,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cca0: b	0x8039cf6c
+  8039cca4: sh	t6,4(v1) ; 0x80110004 D_8010FFD4+0x30
+  8039cca8: lh	t7,6(v1) ; 0x80110006 D_8010FFD4+0x32
+  8039ccac: xori	t8,t7,0x1
+  8039ccb0: b	0x8039cf6c
+  8039ccb4: sh	t8,6(v1) ; 0x80110006 D_8010FFD4+0x32
+  8039ccb8: lui	v0,0x8014
+  8039ccbc: addiu	v0,v0,976 ; 0x801403D0 D_801403D0
+  8039ccc0: lb	t9,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ccc4: xori	t2,t9,0x1
+  8039ccc8: sb	t2,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cccc: lb	t3,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ccd0: b	0x8039cf6c
+  8039ccd4: sh	t3,8(v1) ; 0x80110008 D_8010FFD4+0x34
+  8039ccd8: lui	v0,0x8014
+  8039ccdc: addiu	v0,v0,10145 ; 0x801427A1 D_801427A1
+  8039cce0: lb	t4,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cce4: xori	t5,t4,0x1
+  8039cce8: sb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ccec: lb	t6,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ccf0: b	0x8039cf6c
+  8039ccf4: sh	t6,10(v1) ; 0x8011000A D_8010FFD4+0x36
+  8039ccf8: lui	v0,0x8014
+  8039ccfc: addiu	v0,v0,11008 ; 0x80142B00 D_80142B00
+  8039cd00: lb	t7,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd04: xori	t8,t7,0x1
+  8039cd08: sb	t8,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd0c: lb	t9,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd10: b	0x8039cf6c
+  8039cd14: sh	t9,12(v1) ; 0x8011000C D_8010FFD4+0x38
+  8039cd18: lui	v0,0x8014
+  8039cd1c: addiu	v0,v0,1048 ; 0x80140418 D_80140418
+  8039cd20: lb	t2,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd24: xori	t3,t2,0x1
+  8039cd28: sb	t3,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd2c: lb	t4,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd30: b	0x8039cf6c
+  8039cd34: sh	t4,14(v1) ; 0x8011000E D_8010FFD4+0x3a
+  8039cd38: lui	v0,0x8014
+  8039cd3c: addiu	v0,v0,1562 ; 0x8014061A D_8014061A
+  8039cd40: lb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd44: xori	t6,t5,0x1
+  8039cd48: sb	t6,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd4c: lb	t7,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd50: b	0x8039cf6c
+  8039cd54: sh	t7,16(v1) ; 0x80110010 D_8010FFD4+0x3c
+  8039cd58: lui	v0,0x8014
+  8039cd5c: addiu	v0,v0,-3332 ; 0x8013F2FC D_8013F2FC
+  8039cd60: lb	t8,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd64: xori	t9,t8,0x1
+  8039cd68: sb	t9,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd6c: lb	t2,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd70: b	0x8039cf6c
+  8039cd74: sh	t2,18(v1) ; 0x80110012 D_8010FFD4+0x3e
+  8039cd78: lui	v0,0x8014
+  8039cd7c: addiu	v0,v0,11696 ; 0x80142DB0 D_80142DB0
+  8039cd80: lb	t3,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd84: bnez	t3,0x8039cd94
+  8039cd88: li	t4,2
+  8039cd8c: b	0x8039cd98
+  8039cd90: sb	t4,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd94: sb	zero,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd98: lb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cd9c: xori	t6,t5,0x2
+  8039cda0: sltiu	t6,t6,1
+  8039cda4: b	0x8039cf6c
+  8039cda8: sh	t6,20(v1) ; 0x80110014 D_8010FFD4+0x40
+  8039cdac: lui	a0,0x8014
+  8039cdb0: addiu	a0,a0,16156 ; 0x80143F1C D_80143F1C
+  8039cdb4: lb	t7,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cdb8: addu	t8,t7,a1
+  8039cdbc: sb	t8,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cdc0: lb	v0,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cdc4: slti	at,v0,3
+  8039cdc8: bnez	at,0x8039cddc
+  8039cdcc: nop
+  8039cdd0: sb	zero,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cdd4: b	0x8039cdec
+  8039cdd8: lb	v0,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cddc: bgez	v0,0x8039cdec
+  8039cde0: li	t9,2
+  8039cde4: sb	t9,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cde8: lb	v0,0(a0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cdec: b	0x8039cf6c
+  8039cdf0: sh	v0,22(v1) ; 0x80110016 D_8010FFD4+0x42
+  8039cdf4: lui	a0,0x8018
+  8039cdf8: addiu	a0,a0,-22988 ; 0x8017A634 D_8017A634
+  8039cdfc: lb	t2,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce00: addu	t3,t2,a1
+  8039ce04: sb	t3,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce08: lb	v0,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce0c: slti	at,v0,3
+  8039ce10: bnez	at,0x8039ce24
+  8039ce14: nop
+  8039ce18: sb	zero,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce1c: b	0x8039ce34
+  8039ce20: lb	v0,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce24: bgez	v0,0x8039ce34
+  8039ce28: li	t4,2
+  8039ce2c: sb	t4,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce30: lb	v0,0(a0) ; 0x80180000 gDisplayListBuffer
+  8039ce34: b	0x8039cf6c
+  8039ce38: sh	v0,24(v1) ; 0x80110018 D_8010FFD4+0x44
+  8039ce3c: lh	t5,26(v1) ; 0x8011001A D_8010FFD4+0x46
+  8039ce40: xori	t6,t5,0x1
+  8039ce44: b	0x8039cf6c
+  8039ce48: sh	t6,26(v1) ; 0x8011001A D_8010FFD4+0x46
+  8039ce4c: lh	t7,28(v1) ; 0x8011001C D_8010FFD4+0x48
+  8039ce50: xori	t8,t7,0x1
+  8039ce54: b	0x8039cf6c
+  8039ce58: sh	t8,28(v1) ; 0x8011001C D_8010FFD4+0x48
+  8039ce5c: lh	t9,30(v1) ; 0x8011001E D_8010FFD4+0x4a
+  8039ce60: xori	t2,t9,0x1
+  8039ce64: b	0x8039cf6c
+  8039ce68: sh	t2,30(v1) ; 0x8011001E D_8010FFD4+0x4a
+  8039ce6c: lh	t3,32(v1) ; 0x80110020 D_80110020
+  8039ce70: xori	t4,t3,0x1
+  8039ce74: b	0x8039cf6c
+  8039ce78: sh	t4,32(v1) ; 0x80110020 D_80110020
+  8039ce7c: lui	v0,0x8014
+  8039ce80: addiu	v0,v0,1968 ; 0x801407B0 D_801407B0
+  8039ce84: lb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ce88: xori	t6,t5,0x1
+  8039ce8c: sb	t6,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ce90: lb	t7,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039ce94: b	0x8039cf6c
+  8039ce98: sh	t7,34(v1) ; 0x80110022 D_80110020+0x2
+  8039ce9c: lui	a0,0x8016
+  8039cea0: addiu	a0,a0,5035 ; 0x801613AB D_801613AB
+  8039cea4: lb	t8,0(a0) ; 0x80160000 gAudioChannelState
+  8039cea8: addu	t9,t8,a1
+  8039ceac: sb	t9,0(a0) ; 0x80160000 gAudioChannelState
+  8039ceb0: lb	v0,0(a0) ; 0x80160000 gAudioChannelState
+  8039ceb4: slti	at,v0,4
+  8039ceb8: bnez	at,0x8039cecc
+  8039cebc: nop
+  8039cec0: sb	zero,0(a0) ; 0x80160000 gAudioChannelState
+  8039cec4: b	0x8039cedc
+  8039cec8: lb	v0,0(a0) ; 0x80160000 gAudioChannelState
+  8039cecc: bgez	v0,0x8039cedc
+  8039ced0: li	t2,3
+  8039ced4: sb	t2,0(a0) ; 0x80160000 gAudioChannelState
+  8039ced8: lb	v0,0(a0) ; 0x80160000 gAudioChannelState
+  8039cedc: b	0x8039cf6c
+  8039cee0: sh	v0,36(v1) ; 0x80110024 D_80110020+0x4
+  8039cee4: lui	v0,0x8014
+  8039cee8: addiu	v0,v0,2000 ; 0x801407D0 D_801407D0
+  8039ceec: lb	t3,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cef0: xori	t4,t3,0x1
+  8039cef4: sb	t4,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cef8: lb	t5,0(v0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cefc: b	0x8039cf6c
+  8039cf00: sh	t5,38(v1) ; 0x80110026 D_80110020+0x6
+  8039cf04: lb	v0,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf08: slti	at,v0,19
+  8039cf0c: beqzl	at,0x8039cf20
+  8039cf10: addiu	t6,v0,-18 ; 0x8013FFEE D_8013FEF4+0xfa
+  8039cf14: b	0x8039cf24
+  8039cf18: sb	zero,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf1c: addiu	t6,v0,-18 ; 0x8013FFEE D_8013FEF4+0xfa
+  8039cf20: sb	t6,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf24: lb	t7,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf28: addu	t8,t7,a1
+  8039cf2c: sb	t8,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf30: lb	v0,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf34: slti	at,v0,9
+  8039cf38: bnez	at,0x8039cf4c
+  8039cf3c: nop
+  8039cf40: sb	zero,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf44: b	0x8039cf5c
+  8039cf48: lb	v0,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf4c: bgez	v0,0x8039cf5c
+  8039cf50: li	t9,8
+  8039cf54: sb	t9,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf58: lb	v0,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf5c: beqz	v0,0x8039cf6c
+  8039cf60: sh	v0,40(v1) ; 0x80110028 D_80110020+0x8
+  8039cf64: addiu	t2,v0,18 ; 0x80140012 D_8014000D+0x5
+  8039cf68: sb	t2,0(t0) ; 0x80140000 D_8013FEF4+0x10c
+  8039cf6c: lui	t3,0x8011
+  8039cf70: addu	t3,t3,a2
+  8039cf74: lb	t3,25740(t3) ; 0x8011648C D_80116488+0x4
+  8039cf78: bnez	t3,0x8039cfa0
+  8039cf7c: nop
+  8039cf80: jal	0x8038f648 <func_8038F648>
+  8039cf84: nop
+  8039cf88: lui	t1,0x803b
+  8039cf8c: addiu	t1,t1,12436 ; 0x803B3094
+  8039cf90: lw	t4,0(t1) ; 0x803B0000
+  8039cf94: lui	at,0x8011
+  8039cf98: addu	at,at,t4
+  8039cf9c: sb	v0,25740(at) ; 0x8011648C D_80116488+0x4
+  8039cfa0: lui	t5,0x8015
+  8039cfa4: lb	t5,29252(t5) ; 0x80157244 D_80157244
+  8039cfa8: beqz	t5,0x8039cfec
+  8039cfac: lui	a0,0x803b
+  8039cfb0: lw	a0,12432(a0) ; 0x803B3090
+  8039cfb4: beqz	a0,0x8039cfcc
+  8039cfb8: nop
+  8039cfbc: jal	0x800b358c <sound_stop>
+  8039cfc0: nop
+  8039cfc4: lui	at,0x803b
+  8039cfc8: sw	zero,12432(at) ; 0x803B3090
+  8039cfcc: jal	0x800b557c <ambient_sounds_clear>
+  8039cfd0: nop
+  8039cfd4: lui	at,0x803b
+  8039cfd8: sb	zero,12428(at) ; 0x803B308C
+  8039cfdc: jal	0x800b5570 <func_800B5570>
+  8039cfe0: li	a0,4
+  8039cfe4: b	0x8039d038
+  8039cfe8: lw	ra,20(sp)
+  8039cfec: lui	t6,0x803b
+  8039cff0: lw	t6,12440(t6) ; 0x803B3098
+  8039cff4: lui	a0,0x803b
+  8039cff8: beqzl	t6,0x8039d038
+  8039cffc: lw	ra,20(sp)
+  8039d000: lw	a0,12432(a0) ; 0x803B3090
+  8039d004: beqz	a0,0x8039d01c
+  8039d008: nop
+  8039d00c: jal	0x800b358c <sound_stop>
+  8039d010: nop
+  8039d014: lui	at,0x803b
+  8039d018: sw	zero,12432(at) ; 0x803B3090
+  8039d01c: jal	0x800b557c <ambient_sounds_clear>
+  8039d020: nop
+  8039d024: lui	at,0x803b
+  8039d028: sb	zero,12428(at) ; 0x803B308C
+  8039d02c: jal	0x800b5570 <func_800B5570>
+  8039d030: li	a0,16
+  8039d034: lw	ra,20(sp)
+  8039d038: addiu	sp,sp,32
+  8039d03c: jr	ra
+  8039d040: nop

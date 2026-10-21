@@ -1,0 +1,193 @@
+== func_803A5358 @ 0x803A5358 (192 words)
+  803a5358: addiu	sp,sp,-136
+  803a535c: sw	ra,52(sp)
+  803a5360: mtc1	zero,$f12
+  803a5364: sw	s6,48(sp)
+  803a5368: sw	s5,44(sp)
+  803a536c: sw	s4,40(sp)
+  803a5370: sw	s3,36(sp)
+  803a5374: sw	s2,32(sp)
+  803a5378: sw	s1,28(sp)
+  803a537c: sw	s0,24(sp)
+  803a5380: jal	0x800b65b4 <render_helper>
+  803a5384: sw	a0,136(sp)
+  803a5388: jal	0x800b42f0 <object_create>
+  803a538c: li	a0,10
+  803a5390: jal	0x800b74a0 <dispatch_handler>
+  803a5394: li	a0,12
+  803a5398: lui	s6,0x8018
+  803a539c: addiu	s6,s6,-23328 ; 0x8017A4E0 countdown_state
+  803a53a0: lw	t6,4(s6) ; 0x80180004
+  803a53a4: li	a1,151
+  803a53a8: jal	0x800b71a0 <sound_pitch_diff_halved>
+  803a53ac: lw	a0,216(t6)
+  803a53b0: sll	s0,v0,0x10
+  803a53b4: sra	t7,s0,0x10
+  803a53b8: jal	0x800b3f00 <object_type_byte2_get>
+  803a53bc: move	s0,t7
+  803a53c0: li	t9,18
+  803a53c4: subu	a1,t9,v0
+  803a53c8: lw	t3,4(s6) ; 0x80180004
+  803a53cc: sll	a0,s0,0x10
+  803a53d0: sra	t8,a0,0x10
+  803a53d4: move	a0,t8
+  803a53d8: bgez	a1,0x803a53e8
+  803a53dc: sra	t0,a1,0x1
+  803a53e0: addiu	at,a1,1
+  803a53e4: sra	t0,at,0x1
+  803a53e8: addiu	a1,t0,6
+  803a53ec: sll	t1,a1,0x10
+  803a53f0: sra	a1,t1,0x10
+  803a53f4: jal	0x800b71d4 <state_utility>
+  803a53f8: lw	a2,216(t3)
+  803a53fc: jal	0x800b42f0 <object_create>
+  803a5400: li	a0,12
+  803a5404: lui	s2,0x803b
+  803a5408: li	s3,47
+  803a540c: addiu	s2,s2,12436 ; 0x803B3094
+  803a5410: move	s4,zero
+  803a5414: lw	a1,0(s2) ; 0x803B0000
+  803a5418: addiu	s5,sp,112
+  803a541c: lui	t0,0x8011
+  803a5420: addu	s0,s4,a1
+  803a5424: addiu	s0,s0,-6
+  803a5428: bgez	s0,0x803a5438
+  803a542c: slti	at,s0,21
+  803a5430: b	0x803a5444
+  803a5434: addiu	s0,s0,21
+  803a5438: bnezl	at,0x803a5448
+  803a543c: li	at,18
+  803a5440: addiu	s0,s0,-21
+  803a5444: li	at,18
+  803a5448: bne	s0,at,0x803a549c
+  803a544c: sll	v0,s0,0x1
+  803a5450: lui	a1,0x803c
+  803a5454: lui	a2,0x8016
+  803a5458: lb	a2,5035(a2) ; 0x801613AB D_801613AB
+  803a545c: addiu	a1,a1,-31128 ; 0x803B8668
+  803a5460: jal	0x800b4360 <fcvt_wrapper>
+  803a5464: move	a0,s5
+  803a5468: lw	t6,28(s6) ; 0x8018001C
+  803a546c: lw	t5,32(s6) ; 0x80180020
+  803a5470: sll	t0,s0,0x1
+  803a5474: lhu	t7,0(t6)
+  803a5478: lw	a1,0(s2) ; 0x803B0000
+  803a547c: lw	v1,36(s6) ; 0x80180024
+  803a5480: sll	t8,t7,0x1
+  803a5484: addu	t9,t5,t8
+  803a5488: addu	t1,t9,t0
+  803a548c: lhu	a0,0(t1)
+  803a5490: sll	t2,a0,0x2
+  803a5494: b	0x803a54dc
+  803a5498: move	a0,t2
+  803a549c: lw	t4,28(s6) ; 0x8018001C
+  803a54a0: lw	t3,32(s6) ; 0x80180020
+  803a54a4: addu	t0,t0,v0
+  803a54a8: lhu	t6,0(t4)
+  803a54ac: lh	t0,25764(t0) ; 0x801164A4 D_801164A4
+  803a54b0: lw	v1,36(s6) ; 0x80180024
+  803a54b4: sll	t7,t6,0x1
+  803a54b8: addu	t5,t3,t7
+  803a54bc: addu	t8,t5,v0
+  803a54c0: lhu	a0,0(t8)
+  803a54c4: sll	t1,t0,0x2
+  803a54c8: addu	t2,v1,t1
+  803a54cc: sll	t9,a0,0x2
+  803a54d0: addu	t4,t2,t9
+  803a54d4: lw	s5,4(t4)
+  803a54d8: move	a0,t9
+  803a54dc: addu	t6,v1,a0
+  803a54e0: bne	s0,a1,0x803a54f0
+  803a54e4: lw	s1,0(t6)
+  803a54e8: b	0x803a54f4
+  803a54ec: li	a3,11
+  803a54f0: li	a3,12
+  803a54f4: jal	0x800b42f0 <object_create>
+  803a54f8: move	a0,a3
+  803a54fc: lw	t3,0(s2) ; 0x803B0000
+  803a5500: li	a3,1
+  803a5504: bne	s0,t3,0x803a5514
+  803a5508: nop
+  803a550c: b	0x803a5514
+  803a5510: li	a3,22
+  803a5514: jal	0x800b74a0 <dispatch_handler>
+  803a5518: move	a0,a3
+  803a551c: move	a0,s1
+  803a5520: jal	0x800b7170 <sound_pitch_diff_calc>
+  803a5524: li	a1,150
+  803a5528: lw	t5,0(s2) ; 0x803B0000
+  803a552c: sll	a0,v0,0x10
+  803a5530: sra	t7,a0,0x10
+  803a5534: bne	s0,t5,0x803a5544
+  803a5538: move	a0,t7
+  803a553c: b	0x803a5548
+  803a5540: li	a3,1
+  803a5544: move	a3,zero
+  803a5548: subu	a1,s3,a3
+  803a554c: sll	t8,a1,0x10
+  803a5550: sra	a1,t8,0x10
+  803a5554: jal	0x800b71d4 <state_utility>
+  803a5558: move	a2,s1
+  803a555c: lui	t0,0x8011
+  803a5560: addiu	t0,t0,25740 ; 0x8011648C D_80116488+0x4
+  803a5564: addu	s1,s0,t0
+  803a5568: lb	t1,0(s1)
+  803a556c: li	a3,12
+  803a5570: beqz	t1,0x803a558c
+  803a5574: nop
+  803a5578: lw	t2,0(s2) ; 0x803B0000
+  803a557c: bne	s0,t2,0x803a558c
+  803a5580: nop
+  803a5584: b	0x803a558c
+  803a5588: li	a3,11
+  803a558c: jal	0x800b42f0 <object_create>
+  803a5590: move	a0,a3
+  803a5594: lb	t4,0(s1)
+  803a5598: li	a3,4
+  803a559c: beqz	t4,0x803a55c4
+  803a55a0: nop
+  803a55a4: lw	t6,0(s2) ; 0x803B0000
+  803a55a8: li	v0,1
+  803a55ac: bne	s0,t6,0x803a55bc
+  803a55b0: nop
+  803a55b4: b	0x803a55c4
+  803a55b8: li	a3,11
+  803a55bc: b	0x803a55c4
+  803a55c0: move	a3,v0
+  803a55c4: jal	0x800b74a0 <dispatch_handler>
+  803a55c8: move	a0,a3
+  803a55cc: lb	t3,0(s1)
+  803a55d0: li	a0,166
+  803a55d4: move	a2,s5
+  803a55d8: beqz	t3,0x803a55f4
+  803a55dc: move	a3,zero
+  803a55e0: lw	t7,0(s2) ; 0x803B0000
+  803a55e4: bne	s0,t7,0x803a55f4
+  803a55e8: nop
+  803a55ec: b	0x803a55f4
+  803a55f0: li	a3,1
+  803a55f4: subu	a1,s3,a3
+  803a55f8: sll	t5,a1,0x10
+  803a55fc: jal	0x800b71d4 <state_utility>
+  803a5600: sra	a1,t5,0x10
+  803a5604: jal	0x800b3f50 <object_bytes_sum_global>
+  803a5608: nop
+  803a560c: addiu	s4,s4,1
+  803a5610: li	at,13
+  803a5614: bne	s4,at,0x803a5414
+  803a5618: addu	s3,s3,v0
+  803a561c: lui	at,0xbf80
+  803a5620: mtc1	at,$f12
+  803a5624: jal	0x800b65b4 <render_helper>
+  803a5628: nop
+  803a562c: lw	ra,52(sp)
+  803a5630: lw	s0,24(sp)
+  803a5634: lw	s1,28(sp)
+  803a5638: lw	s2,32(sp)
+  803a563c: lw	s3,36(sp)
+  803a5640: lw	s4,40(sp)
+  803a5644: lw	s5,44(sp)
+  803a5648: lw	s6,48(sp)
+  803a564c: addiu	sp,sp,136
+  803a5650: jr	ra
+  803a5654: li	v0,1

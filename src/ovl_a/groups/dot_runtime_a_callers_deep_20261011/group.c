@@ -1,4 +1,8 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w36f superseding revision (wave 36): func_803923B0 is now a claimed member, a direct typed port of MAT3
+ * recordscr.c updateButtons + inlined updateViewButtons (see its header below).  The six old members are unchanged
+ * and still MATCH; the only shared-declaration change is `extern volatile u8 D_80140BDC` (gNumModels; its other
+ * user here is the context func_80393B3C, whose retail code also has the volatile lui/addiu/lbu 0(reg) form). */
 /* Image A availability-screen input root, func_80394058 (1292 bytes).
  * Reconstructed from native targets; no proven arcade-source ancestor.
  * Complete genuine 923B0 renderer, 9338C input and 93B3C initializer are
@@ -506,7 +510,7 @@ typedef struct { u8 red, green, blue, alpha; } Color4;
 extern Color4 D_803B65A8;
 extern char *D_803B5EF0[];
 extern f32 D_8011418C[3][3];
-extern u8 D_80140BDC;
+extern volatile u8 D_80140BDC;
 extern char D_803B8C10[], D_803B8C20[], D_803B8C28[], D_803B8C2C[];
 extern unsigned char D_803B6504[];
 extern void particle_lifetime_set(void), particle_velocity_set(void);
@@ -609,177 +613,170 @@ void func_80393B3C(void)
     D_803B6528 = 1;
 }
 
+/* w36f (wave 36): func_803923B0 = MAT3 recordscr.c updateButtons (GC 0x80084EE8, 0x50 B) with updateViewButtons
+ * (GC 0x80085998, 0x8B4 B) inlined by umerge; updateSelectButtons (GC 0x80084F38) stays the call func_803915E8.
+ * Direct typed port of the MAT3 bodies; local list and ORDER from the GC DWARF (rush_d_dwarf.c: buttonIdx, i,
+ * prevPos, gViewMenuCount, whichItem, buttonY, selectedPos, clearScrollSpeed, tex, texIdx, buttonColor; the MAT3 C
+ * moved clearScrollSpeed up for CodeWarrior).  clearScrollSpeed keeps its initialiser, gViewMenuCount/whichItem are
+ * assigned after the declarations (as in MAT3 updateSelectButtons): that statement order puts `li t7,1` in the
+ * dispatch delay slot.  updateViewButtons (symbol recordscr_updateViewButtons, unique so it cannot clash with other
+ * groups) is a NON-static function off `keep` (umerge inlines it; its deleted stub is retail's caller-less 0x803915E0).
+ * N64 differences (from the retail displacements/constants): 23 buttons at D_803B5F28 (0x40 stride), statics
+ * gButtonScale, gButtonSpace, buttonX, maxY, minY, buttonZ, cursorZ = D_803B64E8..D_803B6500, cursorSpeed/scrollSpeed
+ * = D_803BA7D8/DC, buttonsInited/JustInited = D_803BA7D0/D4, gRecordState = D_803BA804, gViewMenuVisible =
+ * D_803BA7FE, gViewMenuSelect = D_803BA810; the alpha fades linearly over one pitch
+ * (255 - d * 255 / (space * scale)) instead of GC's flat 80; the two trailing MBOX_HideObject(buttonInfo[19/20])
+ * calls are absent; associations follow the matched carscr updateButtons (`-140.0f * scale + buttonX`,
+ * `scale * 0.4f`, fabsf on the right of the speed comparisons).  Callees: MBOX_HideObject = model_data_load,
+ * MBOX_ShowObject = model_transform_setup, ZOID_SetTexture = func_8008D870, ZOID_SetColor = func_8008E06C,
+ * MBOX_FindTexture_WORK = func_800B24EC, WPitchUV = func_800B5898, WRollUV = func_800B5940, ScaleUV = func_8008B32C.
+ * SHAPING (disclosed frame residual): pad0 and pad1 are unused s32 locals of updateButtons.  Retail frame 144; the
+ * same source without them 136 (every other offset already retail: prevPos 108, clearScrollSpeed 91, texIdx 82,
+ * buttonColor 76, temp 52); 2 slots x 4 B = 8 B above the inlined callee's locals.  Two unused int parameters of
+ * updateViewButtons give the identical object.  No pad arrays.
+ */
+typedef unsigned short u16;
 extern void func_803915E8(void);
-extern Color4 D_803B65B0;
 extern f32 D_803B64E8, D_803B64EC, D_803B64F0, D_803B64F4;
 extern f32 D_803B64F8, D_803B64FC, D_803B6500;
-extern f32 D_803BA7D8, D_803BA7DC, D_8002EB94;
+extern f32 D_803BA7D8, D_803BA7DC;
+extern volatile f32 D_8002EB94;
 extern char D_803B8C60[], D_803B8C70[];
 extern f32 fabsf(f32);
 #pragma intrinsic(fabsf)
 
+void recordscr_updateViewButtons(void);
+
 void func_803923B0(void)
 {
-    f32 old_position[3];
-    f32 selected_y;
-    f32 y;
-    s32 i, count, before;
-    MenuRecord *record;
-    Color4 color;
-    s16 texture;
-    void *object;
-    s8 settled;
+    s32 pad0, pad1;
     if (D_803BA7D0) {
         switch (D_803BA804) {
-        case 0:
-            func_803915E8();
-            break;
-        case 1:
-            settled = 1;
-            color = D_803B65B0;
-            count = 0;
-            before = 0;
-            for (i = 0; i < 2; i++) {
-                if (D_803BA7FE[i]) {
-                    count++;
-                    if (i < D_803BA810) { before++; }
-                }
-            }
-            if ((count - 1) * D_803B64EC * D_803B64E8 > D_803B64F4 - D_803B64F8) {
-                selected_y = D_803B64F4 - before * (D_803B64F4 - D_803B64F8) / (count - 1);
-            } else {
-                selected_y = D_803B64F4 - before * D_803B64EC * D_803B64E8;
-            }
-            record = &D_803B5F28[18];
-            memcpy(old_position, record->position, 12);
-            record->angle += 6.2831854820251465f * D_8002EB94;
-            if (record->angle > 6.2831854820251465f) {
-                record->angle -= 6.2831854820251465f;
-            }
-            memcpy(record->matrix, D_8011418C, 36);
-            record->position[0] = D_803B64F0 * D_803B6500 / D_803B64FC - 165.0f * D_803B64E8;
-            record->position[1] = selected_y * D_803B6500 / D_803B64FC;
-            record->position[2] = D_803B6500;
-            if (D_803BA7D4 == 0) {
-                if (D_803BA7D8 < fabsf(record->position[1] - old_position[1]) * 60.0f * D_803B64E8 / 10.0f) {
-                    D_803BA7D8 = fabsf(record->position[1] - old_position[1]) * 60.0f * D_803B64E8 / 10.0f;
-                    D_803BA7D8 = D_803BA7D8 < 540.0f * D_803B64E8 ? D_803BA7D8 : 540.0f * D_803B64E8;
-                    D_803BA7D8 = D_803BA7D8 > 180.0f * D_803B64E8 ? D_803BA7D8 : 180.0f * D_803B64E8;
-                }
-                if (old_position[1] + D_803BA7D8 * D_8002EB94 < record->position[1]) {
-                    record->position[1] = old_position[1] + D_803BA7D8 * D_8002EB94;
-                } else if (old_position[1] - D_803BA7D8 * D_8002EB94 > record->position[1]) {
-                    record->position[1] = old_position[1] - D_803BA7D8 * D_8002EB94;
-                } else {
-                    D_803BA7D8 = 180.0f * D_803B64E8;
-                }
-            }
-            func_800B5940(record->angle, record->matrix);
-            func_800B5898(1.5707963705062866f, record->matrix);
-            func_8008B32C(record->matrix, record->matrix, D_803B64E8 * 0.4000000059604645f);
-            y = selected_y + before * D_803B64EC * D_803B64E8;
-            for (record = D_803B5F28; record < D_803B5F28 + 11; record++) {
-                model_data_load(record->fields[1], 1, 15);
-            }
-            for (i = 11; i < 13; i++) {
-                record = &D_803B5F28[i];
-                if (i == D_803BA810 + 11) {
-                    if (record->angle < 3.1415927410125732f) {
-                        record->angle += 12.566370964050293f * D_8002EB94;
-                    }
-                    if (record->angle > 3.1415927410125732f) { record->angle = 3.1415927410125732f; }
-                    if (D_803BA7D4) { record->angle = 3.1415927410125732f; }
-                } else {
-                    if (record->angle > 0.0f) {
-                        record->angle -= 12.566370964050293f * D_8002EB94;
-                    }
-                    if (record->angle < 0.0f) { record->angle = 0.0f; }
-                    if (D_803BA7D4) { record->angle = 0.0f; }
-                }
-                memcpy(old_position, record->position, 12);
-                record->position[0] = D_803B64F0 - 140.0f * D_803B64E8;
-                record->position[1] = y;
-                record->position[2] = D_803B64FC;
-                if (D_803BA7D4 == 0) {
-                    if (D_803BA7DC < fabsf(record->position[1] - old_position[1]) * 60.0f / 10.0f) {
-                        D_803BA7DC = fabsf(record->position[1] - old_position[1]) * 60.0f / 10.0f;
-                        D_803BA7DC = D_803BA7DC < 540.0f * D_803B64E8 ? D_803BA7DC : 540.0f * D_803B64E8;
-                        D_803BA7DC = D_803BA7DC > 180.0f * D_803B64E8 ? D_803BA7DC : 180.0f * D_803B64E8;
-                    }
-                    if (old_position[1] + D_803BA7DC * D_8002EB94 < record->position[1]) {
-                        record->position[1] = old_position[1] + D_803BA7DC * D_8002EB94;
-                        settled = 0;
-                    } else if (old_position[1] - D_803BA7DC * D_8002EB94 > record->position[1]) {
-                        record->position[1] = old_position[1] - D_803BA7DC * D_8002EB94;
-                        settled = 0;
-                    }
-                }
-                func_8008B32C(D_8011418C, record->matrix, D_803B64E8);
-                func_800B5898(record->angle - 1.5707963705062866f, record->matrix);
-                if (record->angle > 1.5707963705062866f) {
-                    object = func_800B24EC(D_803B8C60, &texture, 0, D_80140BDC - 1, 1);
-                } else {
-                    object = func_800B24EC(D_803B8C70, &texture, 0, D_80140BDC - 1, 1);
-                }
-                func_8008D870((s16)record->fields[1], object, -1);
-                if (record->position[1] > D_803B64F4 + D_803B64EC * D_803B64E8 ||
-                    record->position[1] < D_803B64F8 - D_803B64EC * D_803B64E8) {
-                    record->alpha = 0;
-                } else if (record->position[1] > D_803B64F4) {
-                    record->alpha = 255.0f - (record->position[1] - D_803B64F4) * 255.0f / (D_803B64EC * D_803B64E8);
-                } else if (record->position[1] < D_803B64F8) {
-                    record->alpha = 255.0f - (D_803B64F8 - record->position[1]) * 255.0f / (D_803B64EC * D_803B64E8);
-                } else {
-                    record->alpha = 255;
-                }
-                if (D_803BA7FE[i - 11] == 0) { record->alpha = 0; }
-                color.alpha = record->alpha;
-                func_8008E06C((s16)record->fields[1], &color);
-                if (D_803BA7FE[i - 11] == 0 || record->alpha == 0) {
-                    model_data_load(record->fields[1], 1, 15);
-                } else {
-                    model_transform_setup(record->fields[1], 0, 15);
-                }
-                if (i == 11) {
-                    D_803B5F28[15].position[0] = D_803B64F0 + 100.0f * D_803B64E8;
-                    D_803B5F28[15].position[1] = record->position[1];
-                    D_803B5F28[15].position[2] = record->position[2];
-                    D_803B5F28[15].angle = record->angle;
-                    func_8008B32C(D_8011418C, D_803B5F28[15].matrix, D_803B64E8);
-                    func_800B5898(D_803B5F28[15].angle - 1.5707963705062866f, D_803B5F28[15].matrix);
-                    func_8008D870((s16)D_803B5F28[15].fields[1], object, -1);
-                    D_803B5F28[15].alpha = record->alpha;
-                    func_8008E06C((s16)D_803B5F28[15].fields[1], &color);
-                    if (D_803BA7FE[i] == 0 || record->alpha == 0) {
-                        model_data_load(D_803B5F28[15].fields[1], 1, 15);
-                    } else {
-                        model_transform_setup(D_803B5F28[15].fields[1], 0, 15);
-                    }
-                } else if (i == 12) {
-                    D_803B5F28[16].position[0] = D_803B64F0 + 100.0f * D_803B64E8;
-                    D_803B5F28[16].position[1] = record->position[1];
-                    D_803B5F28[16].position[2] = record->position[2];
-                    D_803B5F28[16].angle = record->angle;
-                    func_8008B32C(D_8011418C, D_803B5F28[16].matrix, D_803B64E8);
-                    func_800B5898(D_803B5F28[16].angle - 1.5707963705062866f, D_803B5F28[16].matrix);
-                    func_8008D870((s16)D_803B5F28[16].fields[1], object, -1);
-                    D_803B5F28[16].alpha = record->alpha;
-                    func_8008E06C((s16)D_803B5F28[16].fields[1], &color);
-                    if (D_803BA7FE[i - 11] == 0 || record->alpha == 0) {
-                        model_data_load(D_803B5F28[16].fields[1], 1, 15);
-                    } else {
-                        model_transform_setup(D_803B5F28[16].fields[1], 0, 15);
-                    }
-                }
-                if (D_803BA7FE[i - 11] == 1) { y -= D_803B64EC * D_803B64E8; }
-            }
-            for (; i < 23; i++) {
-                if (i < 15) { model_data_load(D_803B5F28[i].fields[1], 1, 15); }
-                else { model_transform_setup(D_803B5F28[i].fields[1], 0, 15); }
-            }
-            if (settled == 1) { D_803BA7DC = 0.0f; }
-            D_803BA7D4 = 0;
-            break;
+        case 0: func_803915E8(); break;
+        case 1: recordscr_updateViewButtons(); break;
         }
     }
+}
+
+void recordscr_updateViewButtons(void)
+{
+    s32 buttonIdx, i;
+    f32 prevPos[3];
+    s32 gViewMenuCount;
+    s32 whichItem;
+    f32 buttonY, selectedPos;
+    s8 clearScrollSpeed = 1;
+    void *tex;
+    u16 texIdx;
+    Color4 buttonColor = {255, 255, 255, 255};
+    gViewMenuCount = 0;
+    whichItem = 0;
+    for (i = 0; i < 2; i++) {
+        if (D_803BA7FE[i]) {
+            gViewMenuCount++;
+            if (i < D_803BA810) whichItem++;
+        }
+    }
+    if ((gViewMenuCount - 1) * D_803B64EC * D_803B64E8 > D_803B64F4 - D_803B64F8)
+        selectedPos = D_803B64F4 - whichItem * (D_803B64F4 - D_803B64F8) / (gViewMenuCount - 1);
+    else selectedPos = D_803B64F4 - whichItem * D_803B64EC * D_803B64E8;
+    memcpy(prevPos, D_803B5F28[18].position, 12);
+    D_803B5F28[18].angle += 6.2831855f * D_8002EB94;
+    if (D_803B5F28[18].angle > 6.2831855f) D_803B5F28[18].angle -= 6.2831855f;
+    memcpy(D_803B5F28[18].matrix, D_8011418C, 36);
+    D_803B5F28[18].position[0] = D_803B64F0 * D_803B6500 / D_803B64FC + -165.0f * D_803B64E8;
+    D_803B5F28[18].position[1] = selectedPos * D_803B6500 / D_803B64FC;
+    D_803B5F28[18].position[2] = D_803B6500;
+    if (!D_803BA7D4) {
+        if (D_803BA7D8 < fabsf(D_803B5F28[18].position[1] - prevPos[1]) * 60.0f * D_803B64E8 / 10.0f) {
+            D_803BA7D8 = fabsf(D_803B5F28[18].position[1] - prevPos[1]) * 60.0f * D_803B64E8 / 10.0f;
+            D_803BA7D8 = D_803BA7D8 < 540.0f * D_803B64E8 ? D_803BA7D8 : 540.0f * D_803B64E8;
+            D_803BA7D8 = D_803BA7D8 > 180.0f * D_803B64E8 ? D_803BA7D8 : 180.0f * D_803B64E8;
+        }
+        if (D_803B5F28[18].position[1] > prevPos[1] + D_803BA7D8 * D_8002EB94)
+            D_803B5F28[18].position[1] = prevPos[1] + D_803BA7D8 * D_8002EB94;
+        else if (D_803B5F28[18].position[1] < prevPos[1] - D_803BA7D8 * D_8002EB94)
+            D_803B5F28[18].position[1] = prevPos[1] - D_803BA7D8 * D_8002EB94;
+        else D_803BA7D8 = 180.0f * D_803B64E8;
+    }
+    func_800B5940(D_803B5F28[18].angle, D_803B5F28[18].matrix);
+    func_800B5898(1.5707964f, D_803B5F28[18].matrix);
+    func_8008B32C(D_803B5F28[18].matrix, D_803B5F28[18].matrix, D_803B64E8 * 0.4f);
+    buttonY = selectedPos + whichItem * D_803B64EC * D_803B64E8;
+    for (buttonIdx = 0; buttonIdx < 11; buttonIdx++) model_data_load(D_803B5F28[buttonIdx].fields[1], 1, 15);
+    for (buttonIdx = 11; buttonIdx < 13; buttonIdx++) {
+        if (buttonIdx - 11 == D_803BA810) {
+            if (D_803B5F28[buttonIdx].angle < 3.1415927f) D_803B5F28[buttonIdx].angle += 12.566371f * D_8002EB94;
+            if (D_803B5F28[buttonIdx].angle > 3.1415927f) D_803B5F28[buttonIdx].angle = 3.1415927f;
+            if (D_803BA7D4) D_803B5F28[buttonIdx].angle = 3.1415927f;
+        } else {
+            if (D_803B5F28[buttonIdx].angle > 0.0f) D_803B5F28[buttonIdx].angle -= 12.566371f * D_8002EB94;
+            if (D_803B5F28[buttonIdx].angle < 0.0f) D_803B5F28[buttonIdx].angle = 0.0f;
+            if (D_803BA7D4) D_803B5F28[buttonIdx].angle = 0.0f;
+        }
+        memcpy(prevPos, D_803B5F28[buttonIdx].position, 12);
+        D_803B5F28[buttonIdx].position[0] = -140.0f * D_803B64E8 + D_803B64F0;
+        D_803B5F28[buttonIdx].position[1] = buttonY;
+        D_803B5F28[buttonIdx].position[2] = D_803B64FC;
+        if (!D_803BA7D4) {
+            if (D_803BA7DC < fabsf(D_803B5F28[buttonIdx].position[1] - prevPos[1]) * 60.0f / 10.0f) {
+                D_803BA7DC = fabsf(D_803B5F28[buttonIdx].position[1] - prevPos[1]) * 60.0f / 10.0f;
+                D_803BA7DC = D_803BA7DC < 540.0f * D_803B64E8 ? D_803BA7DC : 540.0f * D_803B64E8;
+                D_803BA7DC = D_803BA7DC > 180.0f * D_803B64E8 ? D_803BA7DC : 180.0f * D_803B64E8;
+            }
+            if (D_803B5F28[buttonIdx].position[1] > prevPos[1] + D_803BA7DC * D_8002EB94) {
+                D_803B5F28[buttonIdx].position[1] = prevPos[1] + D_803BA7DC * D_8002EB94;
+                clearScrollSpeed = 0;
+            } else if (D_803B5F28[buttonIdx].position[1] < prevPos[1] - D_803BA7DC * D_8002EB94) {
+                D_803B5F28[buttonIdx].position[1] = prevPos[1] - D_803BA7DC * D_8002EB94;
+                clearScrollSpeed = 0;
+            }
+        }
+        func_8008B32C(D_8011418C, D_803B5F28[buttonIdx].matrix, D_803B64E8);
+        func_800B5898(D_803B5F28[buttonIdx].angle - 1.5707964f, D_803B5F28[buttonIdx].matrix);
+        if (D_803B5F28[buttonIdx].angle > 1.5707964f) tex = func_800B24EC(D_803B8C60, (s16 *)&texIdx, 0, D_80140BDC - 1, 1);
+        else tex = func_800B24EC(D_803B8C70, (s16 *)&texIdx, 0, D_80140BDC - 1, 1);
+        func_8008D870((s16)D_803B5F28[buttonIdx].fields[1], tex, -1);
+        if (D_803B5F28[buttonIdx].position[1] > D_803B64F4 + D_803B64EC * D_803B64E8 || D_803B5F28[buttonIdx].position[1] < D_803B64F8 - D_803B64EC * D_803B64E8) D_803B5F28[buttonIdx].alpha = 0;
+        else if (D_803B5F28[buttonIdx].position[1] > D_803B64F4) D_803B5F28[buttonIdx].alpha = 255.0f - (D_803B5F28[buttonIdx].position[1] - D_803B64F4) * 255 / (D_803B64EC * D_803B64E8);
+        else if (D_803B5F28[buttonIdx].position[1] < D_803B64F8) D_803B5F28[buttonIdx].alpha = 255.0f - (D_803B64F8 - D_803B5F28[buttonIdx].position[1]) * 255 / (D_803B64EC * D_803B64E8);
+        else D_803B5F28[buttonIdx].alpha = 255;
+        if (!D_803BA7FE[buttonIdx - 11]) D_803B5F28[buttonIdx].alpha = 0;
+        buttonColor.alpha = D_803B5F28[buttonIdx].alpha;
+        func_8008E06C((s16)D_803B5F28[buttonIdx].fields[1], &buttonColor);
+        if (!D_803BA7FE[buttonIdx - 11] || !D_803B5F28[buttonIdx].alpha) model_data_load(D_803B5F28[buttonIdx].fields[1], 1, 15);
+        else model_transform_setup(D_803B5F28[buttonIdx].fields[1], 0, 15);
+        if (buttonIdx - 11 == 0) {
+            D_803B5F28[15].position[0] = 100.0f * D_803B64E8 + D_803B64F0;
+            D_803B5F28[15].position[1] = D_803B5F28[buttonIdx].position[1];
+            D_803B5F28[15].position[2] = D_803B5F28[buttonIdx].position[2];
+            D_803B5F28[15].angle = D_803B5F28[buttonIdx].angle;
+            func_8008B32C(D_8011418C, D_803B5F28[15].matrix, D_803B64E8);
+            func_800B5898(D_803B5F28[15].angle - 1.5707964f, D_803B5F28[15].matrix);
+            func_8008D870((s16)D_803B5F28[15].fields[1], tex, -1);
+            D_803B5F28[15].alpha = D_803B5F28[buttonIdx].alpha;
+            func_8008E06C((s16)D_803B5F28[15].fields[1], &buttonColor);
+            if (!D_803BA7FE[buttonIdx] || !D_803B5F28[buttonIdx].alpha) model_data_load(D_803B5F28[15].fields[1], 1, 15);
+            else model_transform_setup(D_803B5F28[15].fields[1], 0, 15);
+        } else if (buttonIdx - 11 == 1) {
+            D_803B5F28[16].position[0] = 100.0f * D_803B64E8 + D_803B64F0;
+            D_803B5F28[16].position[1] = D_803B5F28[buttonIdx].position[1];
+            D_803B5F28[16].position[2] = D_803B5F28[buttonIdx].position[2];
+            D_803B5F28[16].angle = D_803B5F28[buttonIdx].angle;
+            func_8008B32C(D_8011418C, D_803B5F28[16].matrix, D_803B64E8);
+            func_800B5898(D_803B5F28[16].angle - 1.5707964f, D_803B5F28[16].matrix);
+            func_8008D870((s16)D_803B5F28[16].fields[1], tex, -1);
+            D_803B5F28[16].alpha = D_803B5F28[buttonIdx].alpha;
+            func_8008E06C((s16)D_803B5F28[16].fields[1], &buttonColor);
+            if (!D_803BA7FE[buttonIdx - 11] || !D_803B5F28[buttonIdx].alpha) model_data_load(D_803B5F28[16].fields[1], 1, 15);
+            else model_transform_setup(D_803B5F28[16].fields[1], 0, 15);
+        }
+        if (D_803BA7FE[buttonIdx - 11] == 1) buttonY -= D_803B64EC * D_803B64E8;
+    }
+    for (; buttonIdx < 23; buttonIdx++) {
+        if (buttonIdx < 15) model_data_load(D_803B5F28[buttonIdx].fields[1], 1, 15);
+        else model_transform_setup(D_803B5F28[buttonIdx].fields[1], 0, 15);
+    }
+    if (clearScrollSpeed == 1) D_803BA7DC = 0.0f;
+    D_803BA7D4 = 0;
 }

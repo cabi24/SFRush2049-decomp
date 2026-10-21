@@ -1,0 +1,56 @@
+Members:
+func_8039B120:
+  MATCH
+func_8039B214:
+  MATCH
+func_8039BE48:
+  MATCH
+func_8039A448:
+  MATCH
+func_8039B00C:
+  MATCH
+func_8039C140:
+  MATCH
+func_8039B908:
+  MATCH
+func_8039B988:
+  MATCH
+func_8039BA28:
+  MATCH
+func_8039BAE0:
+  MATCH
+func_8039B560:
+  MATCH (16 section-relative relocations unverified: .rodata+0x24 at +0x154, .rodata+0x24 at +0x158, .rodata+0x28 at +0x230, .rodata+0x28 at +0x234, .rodata+0x2c at +0x240, .rodata+0x2c at +0x244, .rodata+0x30 at +0x28c, .rodata+0x30 at +0x290, .rodata+0x34 at +0x2a0, .rodata+0x34 at +0x2a4, .rodata+0x38 at +0x314, .rodata+0x38 at +0x318, .rodata+0x3c at +0x31c, .rodata+0x3c at +0x320, .rodata+0x40 at +0x368, .rodata+0x40 at +0x36c)
+    not verified: .rodata+0x24 at +0x158: no retail data available
+    not verified: .rodata+0x28 at +0x234: no retail data available
+    not verified: .rodata+0x2c at +0x244: no retail data available
+    not verified: .rodata+0x30 at +0x290: no retail data available
+    not verified: .rodata+0x34 at +0x2a4: no retail data available
+    not verified: .rodata+0x38 at +0x318: no retail data available
+    not verified: .rodata+0x3c at +0x320: no retail data available
+    not verified: .rodata+0x40 at +0x36c: no retail data available
+func_8039BB80:
+  MATCH
+func_803A5658:
+  MATCH
+func_8039A4D4:
+  MATCH (30 section-relative relocations unverified: .rodata+0xc at +0x104, .rodata+0xc at +0x108, .rodata+0x10 at +0x10c, .rodata+0x10 at +0x140, .rodata+0x14 at +0x1d8, .rodata+0x14 at +0x1ec, .rodata+0x18 at +0x230, .rodata+0x18 at +0x244, .bss+0x4 at +0x2d8, .bss+0x4 at +0x2dc, .bss+0x4 at +0x378, .bss+0x4 at +0x390, .bss+0x4 at +0x358, .bss+0x4 at +0x394, .bss+0x4 at +0x3b8, .bss+0x4 at +0x3cc, .rodata+0x1c at +0x8c4, .rodata+0x1c at +0x8c8, .bss+0x0 at +0x95c, .bss+0x0 at +0x960, .bss+0x0 at +0x9f8, .bss+0x0 at +0xa0c, .bss+0x0 at +0xa30, .bss+0x0 at +0xa44, .bss+0x0 at +0xa50, .bss+0x0 at +0xa58, .rodata+0x20 at +0xa5c, .rodata+0x20 at +0xa60, .bss+0x4 at +0xb10, .bss+0x4 at +0xb14)
+    not verified: .rodata+0xc at +0x108: no retail data available
+    not verified: .rodata+0x10 at +0x140: no retail data available
+    not verified: .rodata+0x14 at +0x1ec: no retail data available
+    not verified: .rodata+0x18 at +0x244: no retail data available
+    not verified: .rodata+0x1c at +0x8c8: no retail data available
+    not verified: .rodata+0x20 at +0xa60: no retail data available
+    not verified: own .bss+0x0 (referenced at +0x202c, +0x20d8, +0x2110, +0x2124): retail address 0x803BA228 (+4 bytes) is not in a known game .bss range
+    not verified: own .bss+0x4 (referenced at +0x19a8, +0x1a5c, +0x1a60, +0x1a98, +0x21e0): retail address 0x803BA22C (+4 bytes) is not in a known game .bss range
+func_803A5948:
+  MATCH (10 section-relative relocations unverified: .data+0x0 at +0x328, .data+0x0 at +0x32c, .data+0x0 at +0x348, .data+0x0 at +0x34c, .rodata+0x0 at +0x4e8, .rodata+0x0 at +0x4ec, .rodata+0x4 at +0x4f4, .rodata+0x4 at +0x508, .rodata+0x8 at +0x58c, .rodata+0x8 at +0x5b0)
+    not verified: .rodata+0x0 at +0x4ec: no retail data available
+    not verified: .rodata+0x4 at +0x508: no retail data available
+    not verified: .rodata+0x8 at +0x5b0: no retail data available
+    not verified: .data+0x0 at +0x32c: no retail data available
+    not verified: .data+0x0 at +0x34c: no retail data available
+func_803A5938:
+  MATCH
+func_803A5940:
+  MATCH

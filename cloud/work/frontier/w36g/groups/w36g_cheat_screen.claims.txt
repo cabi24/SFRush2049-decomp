@@ -1,0 +1,13 @@
+Members:
+func_8039C910:
+  MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x324, .rodata+0x0 at +0x32c)
+    not verified: .rodata+0x0 at +0x32c: no retail data available
+func_8039C900:
+  MATCH
+func_8039C908:
+  MATCH
+func_803A5358:
+  MATCH
+func_803A5350:
+  MATCH
+EXIT=0

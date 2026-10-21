@@ -1,0 +1,26 @@
+{
+ "members": [
+  "func_8039C910",
+  "func_8039C900",
+  "func_8039C908",
+  "func_803A5358",
+  "func_803A5350"
+ ],
+ "context": [],
+ "files": [
+  "eggs.c",
+  "cheatscr.c"
+ ],
+ "keep": [
+  "func_8039C910",
+  "func_803A5358"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "func_8039C910",
+  "func_8039C900",
+  "func_8039C908"
+ ],
+ "allow_unverified": true,
+ "provenance": "w36g (wave 36) new group: cheatscr.c of runtime image A (MAT3 port), InitEgg@eggs.c inlined from eggs.c."
+}
