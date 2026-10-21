@@ -1,0 +1,7 @@
+h0_0001.c: FAIL sound_position_update: 62 of 111 words differ; compiled body is 115 words, target 111; +0x140: .rodata+0x | words 55 ops 15 norm 15 | frame 24/24
+h0_0010.c: FAIL sound_position_update: 71 of 111 words differ; +0x13c: .rodata+0x614: retail words encode 0x3a680024, out | words 90 ops 6 norm 6 | frame 24/24
+h0_0011.c: FAIL sound_position_update: 76 of 111 words differ; compiled body is 116 words, target 111; +0x144: .rodata+0x | words 50 ops 18 norm 18 | frame 24/24
+h0_0100.c: FAIL sound_position_update: 93 of 111 words differ; compiled body is 114 words, target 111; +0x94: .rodata+0x6 | words 50 ops 5 norm 5 | frame 24/24
+h0_0101.c: FAIL sound_position_update: 93 of 111 words differ; compiled body is 115 words, target 111; +0x94: .rodata+0x6 | words 57 ops 14 norm 14 | frame 24/24
+h0_0110.c: FAIL sound_position_update: 94 of 111 words differ; compiled body is 115 words, target 111; +0x94: .rodata+0x6 | words 48 ops 8 norm 8 | frame 24/24
+h0_0111.c: FAIL sound_position_update: 96 of 111 words differ; compiled body is 116 words, target 111; +0x94: .rodata+0x6 | words 60 ops 17 norm 17 | frame 24/24

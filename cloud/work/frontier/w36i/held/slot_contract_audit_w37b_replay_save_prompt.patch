@@ -1,0 +1,41 @@
+--- a/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
++++ b/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
+@@ -60,6 +60,7 @@
+       "particle_render",
+       "credits_scroll",
+       "func_800D9058",
++      "replay_save_prompt",
+       "control_cell_text",
+       "control_cell_text3",
+       "control_cell_text2",
+@@ -107,7 +108,7 @@
+       "func_8010B9C8",
+       "func_8010BC84"
+     ],
+-    "unaccepted_caller_bytes": 17664,
++    "unaccepted_caller_bytes": 16124,
+     "only_selector_unaccepted_direct_game_dependency": {
+       "object_create": 112,
+       "world_velocity_integrate": 712
+@@ -339,7 +340,7 @@
+       "start": "0x800DABDC",
+       "bytes": 1540,
+       "body_sha256": "faaa38a0bc0196b816e4801ff24500c29384994c0c4608e3e46637f87e87a065",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800DAC08",
+         "0x800DAC48",
+--- a/tests/cloud/test_slot_contract_audit.py
++++ b/tests/cloud/test_slot_contract_audit.py
+@@ -29,8 +29,8 @@
+     result = receipt()['summary']
+     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (66, 171, 168)
+     assert sum(result['captures'].values()) == 162
+-    assert result['accepted_callers'] == ['voice_stop', 'func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'credits_scroll', 'func_800D9058', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'dust_cloud_effect', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'func_800F857C', 'countdown_handler', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54, w36x3 particles_update via w36i 2026-10-21; w36o skid_mark_render/func_800EF288/emitter_update, w36q particle_render/func_800B4FB0, w36z func_80100E58, w36w game_timer_display/checkpoint_hit, w36k func_800D9058, w36x3 particles_update via w36i; w36w2 voice_stop/func_800F857C/countdown_handler, w36w3 dust_cloud_effect via w36i)
+-    assert result['unaccepted_caller_bytes'] == 17664
++    assert result['accepted_callers'] == ['voice_stop', 'func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'credits_scroll', 'func_800D9058', 'replay_save_prompt', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'dust_cloud_effect', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'func_800F857C', 'countdown_handler', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54, w36x3 particles_update via w36i 2026-10-21; w36o skid_mark_render/func_800EF288/emitter_update, w36q particle_render/func_800B4FB0, w36z func_80100E58, w36w game_timer_display/checkpoint_hit, w36k func_800D9058, w36x3 particles_update via w36i; w36w2 voice_stop/func_800F857C/countdown_handler, w36w3 dust_cloud_effect via w36i; w37b replay_save_prompt via w36i)
++    assert result['unaccepted_caller_bytes'] == 16124
+     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 2
+     assert result['bounded_dependency_bytes'] == 824
+ 

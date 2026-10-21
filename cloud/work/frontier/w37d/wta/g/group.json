@@ -1,0 +1,8 @@
+{
+ "members": ["world_trigger_activate"],
+ "files": ["wta.c"],
+ "keep": ["world_trigger_activate"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": [],
+ "claims": []
+}

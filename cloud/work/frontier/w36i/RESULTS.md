@@ -252,3 +252,22 @@ the only shared-declaration edit, volatile D_80140BDC / D_8002EB94, is identical
 The builder also rescored w36c's availability_refresh revision (9 members MATCH, context 9842C 2/451), w36b's
 carscr revision (14 members MATCH) and the unchanged runtime_a_profile_menu_20261006 (4 members MATCH;
 96FA0 is a stand-in context there): `score_batch5_groups.txt`.
+
+## Wave 37 (branch wave37, from c12837976)
+
+| Batch | Commit | What | Bytes | Pushed |
+|---|---|---|---|---|
+| w37-1 | (this) | w37d func_800E73D8 (standalone; disclosed `do {} while (0);`) | +596 game (1159 -> 1160) | |
+
+Held (patches prepared, not applied; apply with `git apply <patch>` from the repo root, then commit as the owner):
+- w37d slot_sound superseded with func_800979A0 (292 B): breaks `dot_sequence_start_979a0_20261006`
+  (`test_verification.py::test_frozen_receipt_replays`: verify.py requires the packet group to extend exactly the
+  installed slot_sound). Patch: `held/sequence_start_979a0_superseded_slot_sound.patch` (byte copy of the current
+  slot_sound in superseded/slot_sound/, verify.py resolves it there, verification.json re-pins verify.py).
+  Then land: `install_group.py cloud/work/frontier/w37d/groups/slot_sound slot_sound`. Landing 979A0 alone keeps
+  the slot contract audit valid (simulated).
+- w37b frontier_optionscr_buttons superseded with replay_save_prompt (= initScreen@optionscr.c, 1,540 B): a new
+  accepted slot_state_setup caller. Patch: `held/slot_contract_audit_w37b_replay_save_prompt.patch` (evidence +
+  test counts; simulated identical with or without func_800979A0 landed, so the two patches are independent).
+  Then land: `install_group.py cloud/work/frontier/w37b/groups/frontier_optionscr_buttons frontier_optionscr_buttons`
+  (+ force_internal per w37b/RESULTS.md).
