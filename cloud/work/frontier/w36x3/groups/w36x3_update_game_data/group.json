@@ -1,0 +1,22 @@
+{
+ "name": "w36x3_update_game_data",
+ "members": [
+  "func_800E847C",
+  "func_800E7FA0"
+ ],
+ "claims": [
+  "func_800E847C",
+  "func_800E7FA0"
+ ],
+ "context": [],
+ "files": [
+  "update_game_data.c"
+ ],
+ "keep": [
+  "func_800E847C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_800E847C = MAT3 update_game_data@mdrive.c, func_800E7FA0 = its static callee _UpdateTireAppearance (private IPA: clobbers s0-s5 unsaved). func_800E7FA0 must stay internal (not on keep; unit install: force_internal += func_800E7FA0 if the manifest does not already make it internal). Both claimed. Shaping disclosed in update_game_data.c header.",
+ "provenance": "w36u update_game_data/best.c (MAT3 typed port) + w36x3: intensity local, maxForce holder, index-first web order"
+}

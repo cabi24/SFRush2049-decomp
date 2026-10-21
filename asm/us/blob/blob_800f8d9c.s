@@ -2224,6 +2224,7 @@ func_800FAF50:
 .section .text.init_state_continue, "ax", @progbits
 .globl init_state_continue
 init_state_continue:
+    /* compiled from src/blob/init_state_continue.c */
     .word 0x3C128015
     .word 0x2652A108
     .word 0x86430000
@@ -3307,6 +3308,7 @@ func_800FBF2C:
 .section .text.countdown, "ax", @progbits
 .globl countdown
 countdown:
+    /* compiled from src/blob/countdown.c */
     .word 0x3C028011
     .word 0x8C4274B4
     .word 0x27BDFFE8
@@ -4245,6 +4247,7 @@ func_800FCDF0:
 .section .text.debug_stats, "ax", @progbits
 .globl debug_stats
 debug_stats:
+    /* compiled from src/blob/debug_stats.c */
     .word 0x27BDFFE8
     .word 0x10800030
     .word 0xAFBF0014
@@ -4403,6 +4406,7 @@ func_800FD01C:
 .section .text.debug_collision, "ax", @progbits
 .globl debug_collision
 debug_collision:
+    /* compiled from src/blob/debug_collision.c */
     .word 0x27BDFFD0
     .word 0x3C0E8011
     .word 0x81CE414C

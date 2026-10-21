@@ -1,0 +1,17 @@
+t_calc rows   39 size +0  a_dbg.c frame=136
+t_calc rows   39 size +0  a_pnc.c frame=136
+t_calc rows   39 size +0  d_dbg.c frame=136
+t_calc rows   39 size +0  d_pnc.c frame=136
+t_calc rows   39 size +0  e_dbg.c frame=136
+t_calc rows   39 size +0  e_pnc.c frame=136
+t_calc rows   39 size +0  f_dbg.c frame=136
+t_calc rows   39 size +0  f_pnc.c frame=136
+t_calc rows   39 size +0  h_dbg.c frame=136
+t_calc rows   39 size +0  h_pnc.c frame=136
+t_calc rows  243 size +0  b_dbg.c frame=136
+t_calc rows  243 size +0  c_dbg.c frame=136
+t_calc rows  243 size +0  g_dbg.c frame=136
+t_calc rows  272 size +0  b_pnc.c frame=128
+t_calc rows  272 size +0  c_pnc.c frame=128
+t_calc rows  272 size +0  g_pnc.c frame=128
+16 files

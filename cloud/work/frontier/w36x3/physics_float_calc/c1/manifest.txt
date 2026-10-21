@@ -1,0 +1,13 @@
+v0000 ptr
+v0001 ptr, &D_8012E700[D_80149D90 + i]
+v0002 ptr, i
+v0003 ptr, ptr_no_clip
+v0004 ptr, ptr_no_clip, &D_8012E700[D_80149D90 + i]
+v0005 ptr, i, &D_8012E700[D_80149D90 + i]
+v0006 &D_8012E700[D_80149D90 + i]
+v0007 i, &D_8012E700[D_80149D90 + i]
+v0008 ptr_no_clip, &D_8012E700[D_80149D90 + i]
+v0009 ptr, mask
+v0010 ptr, mask, &D_8012E700[D_80149D90 + i]
+v0011 best, ptr
+v0012 ptr, parts

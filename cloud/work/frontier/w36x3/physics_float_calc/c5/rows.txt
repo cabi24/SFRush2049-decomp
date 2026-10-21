@@ -1,0 +1,6 @@
+t_calc rows   39 size +0  a.c frame=136
+t_calc rows   39 size +0  b_dfirst.c frame=136
+t_calc rows   39 size +0  e_noindexparam.c frame=136
+t_calc rows   69 size +0  c_d_s.c frame=144
+t_calc rows  288 size +0  d_now.c frame=120
+5 files

@@ -1,0 +1,9 @@
+t_calc rows   39 size +0  v0001.c frame=136
+t_calc rows   39 size +0  v0002.c frame=136
+t_calc rows   39 size +0  v0003.c frame=136
+t_calc rows   40 size +0  v0000.c frame=136
+t_calc rows   40 size +0  v0007.c frame=136
+t_calc rows  107 size +27  v0004.c frame=144
+t_calc rows  107 size +27  v0006.c frame=144
+t_calc rows 9999 size +0  v0005.c COMPILE FAIL
+8 files

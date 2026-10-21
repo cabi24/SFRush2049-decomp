@@ -24,6 +24,7 @@ untracked-lane-file receipts.
 | 9 | 82c7fe44c | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | yes (bf8210efa, with w36x) |
 | 10 | e013f7ac4 | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | yes (e3faa54a1, with w36x2) |
 | 11 | dbcc64cd5 | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | yes (dbcc64cd5) |
+| 12 | (this) | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w updateDemoGame/playDemoGame + 4 stubs (NEW w36w_demo_pair, revised by w36i: the D169C context copy declares D_80152818 extern) | +9,188 game (1116 -> 1123) | | | |
 
 ## Held for owner
 
@@ -54,7 +55,6 @@ codex_defaults_a16 note).
 |---|---|---|
 | w36l codex_visual_tire_module_20261002 (AnimateRocketFlame, AnimateFrame; 5,964 B) + six locked-single source replacements, then w36x4 music_seq_load (1,428 B) | two receipts pin the singles' current sources | `held/w36l_locked_singles_superseded.patch` |
 | w36u w36u_audio_init_sys (AudioInitSys, 836 B) | new absolute ROM-offset symbol D_00039B40 (owner decision on naming/route) | note below |
-| w36w w36w_demo_pair (updateDemoGame, playDemoGame + 4 stubs; 1,064 B) | needs a second extern_data entry for D_80152818 (blob_unit allows one per name) | note below |
 | w36e func_80390BC0 (LoadSelectCar, 364 B) | resource-cache receipt asserts the cloud/matches file absent | `held/resource_cache_allow_promoted_80390BC0.patch` |
 
 ### w36k: NEW group controlscr (updateControlScreen func_800D91A0, func_800D816C, func_800D9058, ...)
@@ -202,8 +202,9 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   D_80152818: multiply defined`). The established fix is an `extern_data` override for the copy, but
   frontier_car_checkpoints' copy already holds the only D_80152818 entry and `blob_unit.validate_overrides`
   rejects a second entry for the same name ("extern_data lists D_80152818 twice").
-- Needs a tooling decision (allow one extern_data entry per (name, file), or a packet without that copy); then
-  land with the four `--revert-single` stubs and the overrides listed in w36w/RESULTS.md (+1,064 B).
+- Landed in batch 12 from w36i's revised copy (`groups/w36w_demo_pair/`): the context copy declares D_80152818
+  `extern` instead (it is context, not a member; func_800D169C is on keep, so the members do not depend on its
+  lui sharing). Builder: all six members MATCH (`score_w36w_demo_pair_extern.txt`); unit 1123/1123 equal.
 
 ## Batch 5 merge (dot_runtime_a_callers_deep_20261011)
 

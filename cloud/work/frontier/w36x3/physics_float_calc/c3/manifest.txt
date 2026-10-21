@@ -1,0 +1,8 @@
+v0000 u32 *ptr; u32 *ptr_no_clip; s32 w; s32 dbg;
+v0001 s32 w; u32 *ptr; u32 *ptr_no_clip; s32 dbg;
+v0002 s32 dbg; u32 *ptr; u32 *ptr_no_clip; s32 w;
+v0003 u32 *ptr_no_clip; u32 *ptr; s32 w; s32 dbg;
+v0004 s32 w; u32 *ptr; u32 *ptr_no_clip;
+v0005 s32 dbg; u32 *ptr; u32 *ptr_no_clip;
+v0006 u32 *ptr_no_clip; u32 *ptr; s32 w;
+v0007 s32 w; s32 dbg; u32 *ptr; u32 *ptr_no_clip;

@@ -1,0 +1,8 @@
+00 ptr
+01 ptr, &D_8012E700[D_80149D90 + i]
+02 &D_8012E700[D_80149D90 + i], ptr
+03 ptr_no_clip, ptr
+04 ptr, i
+05 *ptr
+06 ptr[w]
+07 ptr, ptr_no_clip, &D_8012E700[D_80149D90 + i]

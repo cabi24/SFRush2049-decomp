@@ -1301,6 +1301,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "countdown": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_update_game",
+    "source": "src/blob/groups/frontier_update_game/group.json",
+    "source_sha256": "1384c75edc13522434baf7b42a2cf4055b0382f67ffc44f795f88c54f6fcae07",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "cpak_init": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_skid_marks",
@@ -1334,6 +1343,24 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "debug_collision": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "debug_stats": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "differential_output": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -6295,6 +6322,24 @@
     "verified": "image_gate",
     "verified_at": "2026-10-04"
   },
+  "func_800E7FA0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36x3_update_game_data",
+    "source": "src/blob/groups/w36x3_update_game_data/group.json",
+    "source_sha256": "1f609cb183a3ef5cd357c29d38a1d8e46b9a2b7cec31c2ba75aa67afc3282fe1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "func_800E847C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36x3_update_game_data",
+    "source": "src/blob/groups/w36x3_update_game_data/group.json",
+    "source_sha256": "1f609cb183a3ef5cd357c29d38a1d8e46b9a2b7cec31c2ba75aa67afc3282fe1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "func_800E8CB0": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800E8CB0.c",
@@ -6732,6 +6777,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-06"
   },
+  "func_800F7F3C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800F7F3C.c",
+    "source_sha256": "f712474c80a6e142e0b6c74cd5f17d98c0c64841fcb7cc5152de5e52675edfb1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "func_800F84B0": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800F84B0.c",
@@ -6871,36 +6924,40 @@
     "verified_at": "2026-10-04"
   },
   "func_800FCDF0": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800FCDF0.c",
-    "source_sha256": "0ee453d09b76cb0d7bcdcb0396b52f210f37591fa02208471446a50a89c28e7c",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800FD00C": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800FD00C.c",
-    "source_sha256": "ef1d9dc64f8787453e3c18a358bfadfd21e5b6a0d34d91097b8b2326a18a6ac2",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800FD014": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800FD014.c",
-    "source_sha256": "cd565972362e5effd3411734d8f3ca8128948899405168cdb7344b8021534a3a",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800FD01C": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800FD01C.c",
-    "source_sha256": "8b69d95aae32ce777a96779b7f0f01e19e8cd6c555d24b374a0892d2a5dd7c0c",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w_demo_pair",
+    "source": "src/blob/groups/w36w_demo_pair/group.json",
+    "source_sha256": "62d981d2b25707feea2f923ddb50138f85e27109947507db880cf839f4ebded5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800FD41C": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -7501,6 +7558,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "init_state_continue": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_update_game",
+    "source": "src/blob/groups/frontier_update_game/group.json",
+    "source_sha256": "1384c75edc13522434baf7b42a2cf4055b0382f67ffc44f795f88c54f6fcae07",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "init_wait_completion": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

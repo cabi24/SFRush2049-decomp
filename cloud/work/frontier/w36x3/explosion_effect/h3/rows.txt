@@ -1,0 +1,9 @@
+effect rows   37 size +1  v0027.c frame=288
+effect rows   46 size +1  v0001.c frame=288
+effect rows   46 size +1  v0003.c frame=288
+effect rows   46 size +1  v0005.c frame=288
+effect rows   46 size +1  v0006.c frame=288
+effect rows   53 size +5  v0041.c frame=288
+effect rows   66 size +3  v0036.c frame=296
+effect rows   66 size +3  v0040.c frame=296
+42 files

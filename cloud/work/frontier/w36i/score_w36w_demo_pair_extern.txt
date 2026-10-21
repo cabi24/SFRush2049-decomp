@@ -1,0 +1,23 @@
+Members:
+debug_collision:
+  MATCH
+    own .data verified at 0x8011414C (4 bytes, all zero; .data is laid out per translation unit)
+    own .data verified at 0x80114150 (4 bytes, all zero; .data is laid out per translation unit)
+    own .data verified at 0x80114154 (4 bytes, all zero; .data is laid out per translation unit)
+    own .data verified at 0x80114158 (4 bytes; .data is laid out per translation unit)
+debug_stats:
+  MATCH
+    own .data verified at 0x80114154 (4 bytes, all zero; .data is laid out per translation unit)
+    own .data verified at 0x80114158 (4 bytes; .data is laid out per translation unit)
+    own .data verified at 0x8011415C (4 bytes, all zero; .data is laid out per translation unit)
+func_800FCDF0:
+  MATCH
+func_800FD00C:
+  MATCH
+func_800FD014:
+  MATCH
+func_800FD01C:
+  MATCH
+
+Context (informational; excluded from exit status):
+rc=0

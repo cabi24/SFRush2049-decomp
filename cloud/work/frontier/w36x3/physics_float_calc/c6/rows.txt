@@ -1,0 +1,4 @@
+t_calc rows   39 size +0  a.c frame=136
+t_calc rows  265 size -87  b_nonstatic.c frame=104
+t_calc rows  313 size -42  c_manual.c frame=0
+3 files

@@ -1,0 +1,5 @@
+t_calc rows   39 size +0  a_ref.c frame=136
+t_calc rows   39 size +0  b_pnc.c frame=136
+t_calc rows   40 size +0  d_nodbg_wafter.c frame=136
+t_calc rows  229 size +0  c_pnc_arg.c frame=136
+4 files

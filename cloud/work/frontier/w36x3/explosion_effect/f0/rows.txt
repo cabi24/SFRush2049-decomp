@@ -1,0 +1,2 @@
+effect rows   77 size -1  g0.c frame=288
+1 files

@@ -1,0 +1,81 @@
+v0000 top slot
+v0001 aftercont slot
+v0002 afterdigits slot
+v0003 afterdl slot
+v0004 end slot
+v0005 top+end slot
+v0006 aftercont+end slot
+v0007 top+afterdigits slot
+v0008 aftercont+afterdl slot
+v0009 top slot + 1
+v0010 aftercont slot + 1
+v0011 afterdigits slot + 1
+v0012 afterdl slot + 1
+v0013 end slot + 1
+v0014 top+end slot + 1
+v0015 aftercont+end slot + 1
+v0016 top+afterdigits slot + 1
+v0017 aftercont+afterdl slot + 1
+v0018 top x
+v0019 aftercont x
+v0020 afterdigits x
+v0021 afterdl x
+v0022 end x
+v0023 top+end x
+v0024 aftercont+end x
+v0025 top+afterdigits x
+v0026 aftercont+afterdl x
+v0027 top y
+v0028 aftercont y
+v0029 afterdigits y
+v0030 afterdl y
+v0031 end y
+v0032 top+end y
+v0033 aftercont+end y
+v0034 top+afterdigits y
+v0035 aftercont+afterdl y
+v0036 top digitW
+v0037 aftercont digitW
+v0038 afterdigits digitW
+v0039 afterdl digitW
+v0040 end digitW
+v0041 top+end digitW
+v0042 aftercont+end digitW
+v0043 top+afterdigits digitW
+v0044 aftercont+afterdl digitW
+v0045 top x + y
+v0046 aftercont x + y
+v0047 afterdigits x + y
+v0048 afterdl x + y
+v0049 end x + y
+v0050 top+end x + y
+v0051 aftercont+end x + y
+v0052 top+afterdigits x + y
+v0053 aftercont+afterdl x + y
+v0054 top slot + x
+v0055 aftercont slot + x
+v0056 afterdigits slot + x
+v0057 afterdl slot + x
+v0058 end slot + x
+v0059 top+end slot + x
+v0060 aftercont+end slot + x
+v0061 top+afterdigits slot + x
+v0062 aftercont+afterdl slot + x
+v0063 top slot * 3
+v0064 aftercont slot * 3
+v0065 afterdigits slot * 3
+v0066 afterdl slot * 3
+v0067 end slot * 3
+v0068 top+end slot * 3
+v0069 aftercont+end slot * 3
+v0070 top+afterdigits slot * 3
+v0071 aftercont+afterdl slot * 3
+v0072 top slot + digitW
+v0073 aftercont slot + digitW
+v0074 afterdigits slot + digitW
+v0075 afterdl slot + digitW
+v0076 end slot + digitW
+v0077 top+end slot + digitW
+v0078 aftercont+end slot + digitW
+v0079 top+afterdigits slot + digitW
+v0080 aftercont+afterdl slot + digitW

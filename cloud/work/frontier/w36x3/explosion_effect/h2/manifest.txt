@@ -1,0 +1,62 @@
+v0000 top slot
+v0001 aftercont slot
+v0002 afterdigits slot
+v0003 afterfont slot
+v0004 afterdl slot
+v0005 aftery slot
+v0006 end slot
+v0007 top x
+v0008 aftercont x
+v0009 afterdigits x
+v0010 afterfont x
+v0011 afterdl x
+v0012 aftery x
+v0013 end x
+v0014 aftercont y
+v0015 afterdigits y
+v0016 afterfont y
+v0017 afterdl y
+v0018 aftery y
+v0019 end y
+v0020 top digitW
+v0021 aftercont digitW
+v0022 afterdigits digitW
+v0023 afterfont digitW
+v0024 afterdl digitW
+v0025 aftery digitW
+v0026 end digitW
+v0027 top x + y
+v0028 aftercont x + y
+v0029 afterdigits x + y
+v0030 afterfont x + y
+v0031 afterdl x + y
+v0032 aftery x + y
+v0033 end x + y
+v0034 top slot + x
+v0035 aftercont slot + x
+v0036 afterdigits slot + x
+v0037 afterfont slot + x
+v0038 afterdl slot + x
+v0039 aftery slot + x
+v0040 end slot + x
+v0041 top slot + y
+v0042 aftercont slot + y
+v0043 afterdigits slot + y
+v0044 afterfont slot + y
+v0045 afterdl slot + y
+v0046 aftery slot + y
+v0047 end slot + y
+v0048 top digitIdx
+v0049 aftercont digitIdx
+v0050 afterdigits digitIdx
+v0051 afterfont digitIdx
+v0052 afterdl digitIdx
+v0053 aftery digitIdx
+v0054 end digitIdx
+v0055 top mph
+v0056 aftercont mph
+v0057 afterdigits mph
+v0058 afterfont mph
+v0059 afterdl mph
+v0060 aftery mph
+v0061 end mph

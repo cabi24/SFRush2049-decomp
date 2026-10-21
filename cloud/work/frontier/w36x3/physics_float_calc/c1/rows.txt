@@ -1,0 +1,14 @@
+t_calc rows  241 size +17  v0006.c frame=136
+t_calc rows  244 size +18  v0004.c frame=136
+t_calc rows  247 size +19  v0007.c frame=136
+t_calc rows  256 size +16  v0002.c frame=136
+t_calc rows  256 size +16  v0012.c frame=136
+t_calc rows  260 size +16  v0009.c frame=136
+t_calc rows  267 size +18  v0001.c frame=136
+t_calc rows  267 size +18  v0008.c frame=136
+t_calc rows  271 size +20  v0010.c frame=136
+t_calc rows  274 size +20  v0005.c frame=136
+t_calc rows  287 size +14  v0000.c frame=128
+t_calc rows  317 size +14  v0003.c frame=128
+t_calc rows  317 size +14  v0011.c frame=128
+13 files
