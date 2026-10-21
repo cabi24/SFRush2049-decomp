@@ -1,0 +1,1276 @@
+{
+ "rows": [
+  {
+   "population": "game",
+   "n64_name": "entity_iterate",
+   "gc_key": "CameraCollision",
+   "kind": "matched",
+   "evidence": "Identity: GameCube CameraCollision (stree.c 0x80045D5C); port of GC body",
+   "where": "src/blob/entity_iterate.c"
+  },
+  {
+   "population": "game",
+   "n64_name": "input_deadzone_apply",
+   "gc_key": "ShotToWorldCollision",
+   "kind": "stated",
+   "evidence": "callee of CameraCollision = GC ShotToWorldCollision(old,new,uvs,radius,interp,ignore)",
+   "where": "src/blob/entity_iterate.c:8"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8008E0B8",
+   "gc_key": "NormalVector",
+   "kind": "stated",
+   "evidence": "callee of CameraCollision = GC NormalVector",
+   "where": "src/blob/entity_iterate.c:9"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800B9740",
+   "gc_key": "CalcResPathBounds",
+   "kind": "matched",
+   "evidence": "Identity: GameCube CalcResPathBounds (pathcommon.c 0x800331B4); port of GC body (w33c)",
+   "where": "src/blob/func_800B9740.c"
+  },
+  {
+   "population": "game",
+   "n64_name": "audio_effect_apply",
+   "gc_key": "ReadPathData",
+   "kind": "matched",
+   "evidence": "Identity: GameCube ReadPathData (pathcommon.c 0x8003220C); w33c port",
+   "where": "src/blob/groups/frontier_read_path_data/audio_effect_apply.c"
+  },
+  {
+   "population": "game",
+   "n64_name": "physics_response",
+   "gc_key": "CalcCheckpointTimes",
+   "kind": "stated",
+   "evidence": "only caller-callee partner of ReadPathData = GC CalcCheckpointTimes (w33c)",
+   "where": "src/blob/groups/frontier_read_path_data/group.json"
+  },
+  {
+   "population": "game",
+   "n64_name": "physics_friction_apply",
+   "gc_key": "SyncAltPaths",
+   "kind": "stated",
+   "evidence": "GC call order in ReadPathData: CalcCheckpointTimes, SyncCheckpointsToPaths(-1), SyncAltPaths (w33c)",
+   "where": "cloud/work/frontier/w33c/RESULTS.md:134"
+  },
+  {
+   "population": "game",
+   "n64_name": "audio_mixer_main",
+   "gc_key": "SyncCheckpointsToPaths",
+   "kind": "matched",
+   "evidence": "group frontier_route_cross: PR #379 port of GC SyncCheckpointsToPaths (+ inlined FindPathDistances); w33p rename lead",
+   "where": "src/blob/groups/frontier_route_cross/group.json"
+  },
+  {
+   "population": "game",
+   "n64_name": "audio_priority_find",
+   "gc_key": "FindAltPathIntersect",
+   "kind": "stated",
+   "evidence": "w33p rename lead: audio_priority_find = FindAltPathIntersect (group frontier_route_cross)",
+   "where": "cloud/work/frontier/w33p/RESULTS.md:72"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800EB028",
+   "gc_key": "update_camera",
+   "kind": "matched",
+   "evidence": "MATCH (w29c) from GC camera.c update_camera locals i,j,pos_in,pos_out,m,camera",
+   "where": "src/blob/func_800EB028.c"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800DB1E0",
+   "gc_key": "updateOptionScreen",
+   "kind": "matched",
+   "evidence": "Options-screen pair (GC optionscr.c): func_800DB1E0 = updateOptionScreen (kept)",
+   "where": "src/blob/groups/frontier_optionscr_buttons/buttons.c"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800DA2C0",
+   "gc_key": "updateButtons@optionscr.c",
+   "kind": "matched",
+   "evidence": "func_800DA2C0 = updateButtons (internal; sole caller updateOptionScreen)",
+   "where": "src/blob/groups/frontier_optionscr_buttons/group.json"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800DA0BC",
+   "gc_key": "uninitScreen@optionscr.c",
+   "kind": "matched",
+   "evidence": "w33b: func_800DA0BC = GC uninitScreen@optionscr.c (184 B, sole caller updateOptionScreen)",
+   "where": "src/blob/groups/frontier_optionscr_buttons/buttons.c:21"
+  },
+  {
+   "population": "game",
+   "n64_name": "object_type1_create",
+   "gc_key": "AudKillSong",
+   "kind": "stated",
+   "evidence": "locked -O2 single object_type1_create = body of GC AudKillSong (audio msg cmd 1) (w31d)",
+   "where": "src/blob/groups/frontier_billboard_render/track_texture_load.c:9"
+  },
+  {
+   "population": "game",
+   "n64_name": "sync_entry_register",
+   "gc_key": "AudPlaySong",
+   "kind": "lead",
+   "evidence": "HYPOTHESIS AudPlaySong(song, loop) (w31d)",
+   "where": "src/blob/groups/frontier_billboard_render/track_texture_load.c:16"
+  },
+  {
+   "population": "game",
+   "n64_name": "speed_mode0_wrapper",
+   "gc_key": "AudSetMusicVol",
+   "kind": "stated",
+   "evidence": "GC-derived name speed_mode0_wrapper = AudSetMusicVol (codex_vsync_a145; w31d)",
+   "where": "src/blob/groups/frontier_billboard_render/track_texture_load.c:14"
+  },
+  {
+   "population": "game",
+   "n64_name": "draw_speedometer",
+   "gc_key": "_CheckAndRepairPlayer",
+   "kind": "matched",
+   "evidence": "save unit member = GC _CheckAndRepairPlayer(player, repair) (w30c EQUAL)",
+   "where": "src/blob/groups/menu_save_options/group.c:7"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800C7EC8",
+   "gc_key": "_ReadPlayer",
+   "kind": "matched",
+   "evidence": "save unit member = GC _ReadPlayer(fileh) (w29d EQUAL)",
+   "where": "src/blob/groups/menu_save_options/group.c:9"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800C7EC0",
+   "gc_key": "_NewPlayer",
+   "kind": "stated",
+   "evidence": "caller-less stub = GC _NewPlayer, inlined into _ReadPlayer and CreatePlayer",
+   "where": "src/blob/groups/menu_save_options/group.c:10"
+  },
+  {
+   "population": "game",
+   "n64_name": "draw_ui_element",
+   "gc_key": "_CheckAndRepairGhost",
+   "kind": "matched",
+   "evidence": "save unit member = GC _CheckAndRepairGhost(ghosth,data,repair) (w29d EQUAL)",
+   "where": "src/blob/groups/menu_save_options/group.c:11"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800CBF2C",
+   "gc_key": "_ReadGhostData",
+   "kind": "matched",
+   "evidence": "save unit member = GC _ReadGhostData(ghosth, decode) + N64 flag (w30c EQUAL)",
+   "where": "src/blob/groups/menu_save_options/group.c:12"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800C7300",
+   "gc_key": "_FreeGhost",
+   "kind": "stated",
+   "evidence": "caller-less stub = GC _FreeGhost(ghosth), inlined into _ReadGhostHeader",
+   "where": "src/blob/groups/menu_save_options/group.c:13"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800CD0FC",
+   "gc_key": "_Pow",
+   "kind": "stated",
+   "evidence": "caller-less stub = GC _Pow(exp), inlined into CreatePlayer; GC save.c order (w33d)",
+   "where": "src/blob/groups/menu_save_options/group.c:14"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800CD0F4",
+   "gc_key": "_GetUniqueExtension",
+   "kind": "stated",
+   "evidence": "caller-less stub before _Pow = GC _GetUniqueExtension by save.c order (w33d)",
+   "where": "cloud/work/frontier/w33d/RESULTS.md:98"
+  },
+  {
+   "population": "game",
+   "n64_name": "format_string_parse",
+   "gc_key": "_CalcChecksum",
+   "kind": "matched",
+   "evidence": "GC-derived names: _CalcChecksum = format_string_parse (save unit)",
+   "where": "src/blob/groups/menu_save_options/group.c:36"
+  },
+  {
+   "population": "game",
+   "n64_name": "drone_set_catchup",
+   "gc_key": "PS_ReadFile",
+   "kind": "stated",
+   "evidence": "GC-derived names: PS_ReadFile = drone_set_catchup (save unit; w28b)",
+   "where": "src/blob/groups/menu_save_options/group.c:36"
+  },
+  {
+   "population": "game",
+   "n64_name": "reverb_setup",
+   "gc_key": "GetPlayerOption",
+   "kind": "stated",
+   "evidence": "prototype comment: s8 reverb_setup(Handle player, u8 option) /* GC GetPlayerOption */",
+   "where": "src/blob/groups/menu_save_options/group.c:447"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800A510C",
+   "gc_key": "LoadTextWave",
+   "kind": "stated",
+   "evidence": "prototype comment /* GC LoadTextWave */",
+   "where": "src/blob/groups/menu_save_options/group.c:449"
+  },
+  {
+   "population": "game",
+   "n64_name": "draw_text",
+   "gc_key": "AddPlayerScores",
+   "kind": "stated",
+   "evidence": "prototype comment /* GC AddPlayerScores */",
+   "where": "src/blob/groups/menu_save_options/group.c:450"
+  },
+  {
+   "population": "game",
+   "n64_name": "object_render_cleanup",
+   "gc_key": "PurgePlayerData",
+   "kind": "stated",
+   "evidence": "prototype comment /* GC PurgePlayerData */",
+   "where": "src/blob/groups/menu_save_options/group.c:451"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800C7200",
+   "gc_key": "_NewGhost",
+   "kind": "stated",
+   "evidence": "internal in the save unit; SaveServer calls it /* GC _NewGhost */",
+   "where": "src/blob/groups/menu_save_options/ctx_newghost.c:2"
+  },
+  {
+   "population": "game",
+   "n64_name": "menu_back",
+   "gc_key": "_DecodeGhost",
+   "kind": "stated",
+   "evidence": "GC names: menu_back = _DecodeGhost (IPA s1) (w30c)",
+   "where": "cloud/work/frontier/w30c/RESULTS.md:107"
+  },
+  {
+   "population": "game",
+   "n64_name": "menu_item_value_get",
+   "gc_key": "ReadGhostData",
+   "kind": "stated",
+   "evidence": "GC names: menu_item_value_get = ReadGhostData (w30c)",
+   "where": "cloud/work/frontier/w30c/RESULTS.md:107"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800BEA3C",
+   "gc_key": "TB_FlashTextColors",
+   "kind": "matched",
+   "evidence": "func_800BEA3C = GC TB_FlashTextColors re-typed to GC union (audio group)",
+   "where": "src/blob/groups/frontier_audioscr/audio.c:5"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800CF604",
+   "gc_key": "AreWeSolid",
+   "kind": "stated",
+   "evidence": "GC-derived names in animPlace: func_800CF604 = AreWeSolid (w29c)",
+   "where": "src/blob/groups/credits_scroll_grp/gr3_7af4.c:6"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800E543C",
+   "gc_key": "Init_MDrive",
+   "kind": "matched",
+   "evidence": "PR #382 MAT3 Init_MDrive, installed by w34i (frontier_init_mdrive)",
+   "where": "src/blob/groups/frontier_init_mdrive/group.json"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_80102F30",
+   "gc_key": "drawRaceScore",
+   "kind": "lead",
+   "evidence": "results dispatcher (GC gameoverscr.c draw dispatch) + race standings table (GC drawRaceScore)",
+   "where": "src/blob/groups/frontier_results_table/results_table.c:4"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_80100E58",
+   "gc_key": "drawRaceStandings",
+   "kind": "stated",
+   "evidence": "w29a draft: func_80100E58 (race standings, GC drawRaceStandings)",
+   "where": "cloud/work/frontier/w29a/RESULTS.md:154"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8010F218",
+   "gc_key": "animText@videoscr.c",
+   "kind": "stated",
+   "evidence": "w32b draft EQUIVALENT from GC animText@videoscr.c (+ drawColorBars inlined)",
+   "where": "cloud/work/frontier/w32b/RESULTS.md:16"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8010EA08",
+   "gc_key": "animButtonText@videoscr.c",
+   "kind": "stated",
+   "evidence": "w32b draft 511/514 from GC animButtonText@videoscr.c",
+   "where": "cloud/work/frontier/w32b/RESULTS.md:17"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8010C974",
+   "gc_key": "_AnimateMine",
+   "kind": "stated",
+   "evidence": "func_8010C974 = GC _AnimateMine (targets.c): animate callback of target type WPR_MINE (w31r)",
+   "where": "cloud/work/frontier/w31r/RESULTS.md:7"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8010D3C0",
+   "gc_key": "_StartWeaponIcon",
+   "kind": "stated",
+   "evidence": "N64 pick-up code func_8010D3C0 (= GC _StartWeaponIcon) (w31r)",
+   "where": "cloud/work/frontier/w31r/RESULTS.md:10"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_80090308",
+   "gc_key": "StartNewBlast",
+   "kind": "stated",
+   "evidence": "w33c draft from GC StartNewBlast, 210->180 words",
+   "where": "cloud/work/frontier/w33c/RESULTS.md:44"
+  },
+  {
+   "population": "game",
+   "n64_name": "save_write_data",
+   "gc_key": "StartBlast",
+   "kind": "stated",
+   "evidence": "w33c frame map from GC StartBlast",
+   "where": "cloud/work/frontier/w33c/RESULTS.md:74"
+  },
+  {
+   "population": "game",
+   "n64_name": "entity_physics_update",
+   "gc_key": "AnimateBlast",
+   "kind": "lead",
+   "evidence": "w33c heading: entity_physics_update (GC AnimateBlast), not worked",
+   "where": "cloud/work/frontier/w33c/RESULTS.md:138"
+  },
+  {
+   "population": "game",
+   "n64_name": "camera_look_at_point",
+   "gc_key": "_PlayMoveSound",
+   "kind": "stated",
+   "evidence": "w33c draft 38/199 from GC _PlayMoveSound",
+   "where": "cloud/work/frontier/w33c/RESULTS.md:145"
+  },
+  {
+   "population": "game",
+   "n64_name": "net_state_validate",
+   "gc_key": "CalcUnlockedStuff",
+   "kind": "stated",
+   "evidence": "net_state_validate (= GC CalcUnlockedStuff) recomputes the unlock tables (w30r)",
+   "where": "cloud/work/frontier/w30r/RESULTS.md:27"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039FF04",
+   "gc_key": "initButtons@carscr.c",
+   "kind": "matched",
+   "evidence": "w35a member from MAT3 carscr.c initButtons (0x80093b10)",
+   "where": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.c:902"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039D6A4",
+   "gc_key": "updateButtons@carscr.c",
+   "kind": "matched",
+   "evidence": "w35a member from MAT3 carscr.c updateButtons",
+   "where": "src/ovl_a/groups/dot_cleanup_colortrace_20261011/group.c:2"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80390418",
+   "gc_key": "updateStartScreen",
+   "kind": "matched",
+   "evidence": "w35d MAT3 startscr.c updateStartScreen (GC 0x8008624c), root kept",
+   "where": "src/ovl_a/groups/w35d_start_screen/group.c:3"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038F79C",
+   "gc_key": "updateButtons@startscr.c",
+   "kind": "matched",
+   "evidence": "w35d IPA-internal updateButtons (GC 0x800871e4)",
+   "where": "src/ovl_a/groups/w35d_start_screen/group.c:3"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039842C",
+   "gc_key": "updatePlayerScreen",
+   "kind": "stated",
+   "evidence": "kept root of the playerscr unit (updatePlayerScreen, GC 0x80079f80); context 122/451",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:2"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80397FFC",
+   "gc_key": "initScreen@playerscr.c",
+   "kind": "matched",
+   "evidence": "strict member initScreen (GC 0x8007a49c)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:5"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803968C0",
+   "gc_key": "controlCreatePlayer",
+   "kind": "matched",
+   "evidence": "strict member controlCreatePlayer (GC 0x8007b464)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:5"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80395E8C",
+   "gc_key": "controlDeletePlayer",
+   "kind": "matched",
+   "evidence": "strict member controlDeletePlayer (GC 0x8007b9f8)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:6"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80394DD8",
+   "gc_key": "updateButtons@playerscr.c",
+   "kind": "matched",
+   "evidence": "strict member updateButtons(signed char) (GC 0x8007fc14)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:6"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80394564",
+   "gc_key": "updateSelectInfo@playerscr.c",
+   "kind": "matched",
+   "evidence": "strict member updateSelectInfo (w27p body)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:4"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80394834",
+   "gc_key": "updatePakInfo@playerscr.c",
+   "kind": "matched",
+   "evidence": "strict member updatePakInfo (w27p body)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:4"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80394B00",
+   "gc_key": "setPlayerState",
+   "kind": "matched",
+   "evidence": "strict member setPlayerState (w27p body)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:4"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80397AD8",
+   "gc_key": "initButtons@playerscr.c",
+   "kind": "matched",
+   "evidence": "strict member initButtons (w27p body)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:5"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80396FA0",
+   "gc_key": "controlSelect@playerscr.c",
+   "kind": "stated",
+   "evidence": "context controlSelect (GC 0x8007a854, 262/718)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:7"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803949CC",
+   "gc_key": "uninitScreen@playerscr.c",
+   "kind": "stated",
+   "evidence": "context uninitScreen",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:8"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80395E24",
+   "gc_key": "playerClaimed",
+   "kind": "stated",
+   "evidence": "context playerClaimed",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:8"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80397FF4",
+   "gc_key": "calcSelectMenuMaxSize",
+   "kind": "stated",
+   "evidence": "deleted 8-byte stub = calcSelectMenuMaxSize (inlined into initScreen)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:14"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80396EE0",
+   "gc_key": "claimPlayer",
+   "kind": "stated",
+   "evidence": "deleted 8-byte stub = claimPlayer (inlined into controlSelect/controlCreatePlayer)",
+   "where": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.c:15"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A1EAC",
+   "gc_key": "updateCarScreen",
+   "kind": "stated",
+   "evidence": "w35c draft from GC updateCarScreen (MAT3 carscr.c), 28/1776",
+   "where": "cloud/work/frontier/w35c/RESULTS.md:1"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803AD57C",
+   "gc_key": "animText@recordscr.c",
+   "kind": "stated",
+   "evidence": "w35e near-match from GC animText@recordscr.c (drawView, drawStuntTotals inlined); correlation top-1 drawView",
+   "where": "cloud/work/frontier/w35e/RESULTS.md:59"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038C910",
+   "gc_key": "StartWeapon",
+   "kind": "matched",
+   "evidence": "StartWeapon(slot) -- MAT3 weapons.c StartWeapon GC 0x8005C7C0 (MATCH w35e)",
+   "where": "src/ovl_b/func_8038C910.c"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038AA8C",
+   "gc_key": "AnimateWeapon",
+   "kind": "matched",
+   "evidence": "w35f direct typed port of MAT3 AnimateWeapon",
+   "where": "src/ovl_b/groups/w35f_weapons/weapons.c:3"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038A95C",
+   "gc_key": "_RemoveCannMFlash",
+   "kind": "matched",
+   "evidence": "w35f weapons.c member _RemoveCannMFlash",
+   "where": "src/ovl_b/groups/w35f_weapons/weapons.c:3"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038AA14",
+   "gc_key": "_RemoveGattMFlash",
+   "kind": "matched",
+   "evidence": "w35f weapons.c member _RemoveGattMFlash",
+   "where": "src/ovl_b/groups/w35f_weapons/weapons.c:3"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038A408",
+   "gc_key": "newWorldDamage",
+   "kind": "stated",
+   "evidence": "w35e near-match (4 words + frame) from GC newWorldDamage",
+   "where": "cloud/work/frontier/w35e/RESULTS.md:37"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803923B0",
+   "gc_key": "updateButtons@recordscr.c",
+   "kind": "lanematch",
+   "evidence": "w36f MATCH in group (updateViewButtons inlined; root updateRecordScreen calls it last)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803915E8",
+   "gc_key": "updateSelectButtons",
+   "kind": "lanematch",
+   "evidence": "w36c MATCH in group (strings BUTTON_SELECT/BUTTON, 23 buttons, 11 items)",
+   "where": "cloud/work/frontier/w36c/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039338C",
+   "gc_key": "controlSelect@recordscr.c",
+   "kind": "lanematch",
+   "evidence": "w36c MATCH in group",
+   "where": "cloud/work/frontier/w36c/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80394058",
+   "gc_key": "updateRecordScreen",
+   "kind": "stated",
+   "evidence": "w36f: kept root of the recordscr unit (controlView inlined)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80393B3C",
+   "gc_key": "initRecordScreen",
+   "kind": "stated",
+   "evidence": "w36f: called by updateRecordScreen; initButtons inlined (stub 0x80393B34)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80393B34",
+   "gc_key": "initButtons@recordscr.c",
+   "kind": "stated",
+   "evidence": "w36f: deleted inlined initButtons stub before initRecordScreen",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803932E4",
+   "gc_key": "uninitRecordScreen",
+   "kind": "stated",
+   "evidence": "w36f: group member (uninitButtons stubs 0x803932D4/DC)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803931C0",
+   "gc_key": "setRecordState",
+   "kind": "stated",
+   "evidence": "w36f: group member",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80393004",
+   "gc_key": "updateSelectInfo@recordscr.c",
+   "kind": "stated",
+   "evidence": "w36f: group member",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80392F28",
+   "gc_key": "updateViewInfo",
+   "kind": "stated",
+   "evidence": "w36f: group member",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803930B8",
+   "gc_key": "updatePakInfo@recordscr.c",
+   "kind": "stated",
+   "evidence": "w36f: group member",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803915E0",
+   "gc_key": "updateViewButtons",
+   "kind": "stated",
+   "evidence": "w36f: the deleted updateViewButtons stub (inlined into updateButtons)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A9088",
+   "gc_key": "drawDeletePlayer",
+   "kind": "stated",
+   "evidence": "w36c confirmed: sole caller animText A9EEC case 4 (GC 0x8007d8f0)",
+   "where": "cloud/work/frontier/w36c/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A9EEC",
+   "gc_key": "animText@playerscr.c",
+   "kind": "stated",
+   "evidence": "w36c: animText@playerscr.c (drawControls/drawPakFull/drawPakDamaged inlined), kept root of runtime_a_profile_menu",
+   "where": "cloud/work/frontier/w36c/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039EF08",
+   "gc_key": "showCarSelect",
+   "kind": "lanematch",
+   "evidence": "w36a MATCH in group dot_cleanup_colortrace_20261011",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A0FD8",
+   "gc_key": "_InitScreen@carscr.c",
+   "kind": "stated",
+   "evidence": "w36a/w35b confirmed (12/949 draft)",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038E5DC",
+   "gc_key": "updateTrackScreen",
+   "kind": "stated",
+   "evidence": "w36d: root of the trackscr IPA unit; 21-case jump table = 21 options",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038DFEC",
+   "gc_key": "_InitScreen@trackscr.c",
+   "kind": "stated",
+   "evidence": "w36d: OptionValid loop, buildTrackMaps, GetPlayerTrack x4, SetOptions/createBG/initButtons/NewMultiBlit order",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038BBB4",
+   "gc_key": "updateButtons@trackscr.c",
+   "kind": "lanematch",
+   "evidence": "w36d MATCH (strict, in group)",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038CD14",
+   "gc_key": "buildTrackMaps",
+   "kind": "stated",
+   "evidence": "w36d: + inlined buildRace/Stunt/BattleTrackMaps, loadPathData, unloadPathData",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038C5EC",
+   "gc_key": "showTrackSelect",
+   "kind": "stated",
+   "evidence": "w36d: calls updateButtons first, OptionValid loop, 30*gFrameSeconds",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038ACB0",
+   "gc_key": "OptionValid",
+   "kind": "lanematch",
+   "evidence": "w36d MATCH (strict, in group) as a direct MAT3 port",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038B834",
+   "gc_key": "TrackValid",
+   "kind": "stated",
+   "evidence": "w36d: trackReady[] + IsTrackUnlocked + race ranges",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038AE50",
+   "gc_key": "unloadTrackScreen",
+   "kind": "stated",
+   "evidence": "w36d: two RemoveBlit/clear pairs",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038AEB0",
+   "gc_key": "buildTrackMap",
+   "kind": "stated",
+   "evidence": "w36d: (+inlined loadTrackScreen)",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038B388",
+   "gc_key": "clearTrackMap",
+   "kind": "stated",
+   "evidence": "w36d: unloadTrackScreen + ZOID_RemoveObject(trackMapObj)",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038B3EC",
+   "gc_key": "animTrackMap@trackscr.c",
+   "kind": "stated",
+   "evidence": "w36d",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038B940",
+   "gc_key": "_UninitScreen@trackscr.c",
+   "kind": "stated",
+   "evidence": "w36d: (+inlined uninitButtons, clearTrackMaps)",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038A820",
+   "gc_key": "animTrackMaps",
+   "kind": "stated",
+   "evidence": "w36d",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038C93C",
+   "gc_key": "initButtons@trackscr.c",
+   "kind": "stated",
+   "evidence": "w36d: installed member",
+   "where": "cloud/work/frontier/w36d/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_80390BC0",
+   "gc_key": "LoadSelectCar",
+   "kind": "lanematch",
+   "evidence": "w36e MATCH: three slot-search loops, LoadWave(index+88), gCarModelNums write",
+   "where": "cloud/work/frontier/w36e/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "sfx_volume_set",
+   "gc_key": "InitCarDynamicObjs",
+   "kind": "stated",
+   "evidence": "w36e: InitCarDynamicObjs(slot, idx, gCarModelNums[slot]) called from UpdateSelectCar",
+   "where": "cloud/work/frontier/w36e/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038A400",
+   "gc_key": "updateWarningScreen",
+   "kind": "stated",
+   "evidence": "w36e: updateWarningScreen@warningscr.c (N64 body)",
+   "where": "cloud/work/frontier/w36e/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8038A634",
+   "gc_key": "SetFogIntensity",
+   "kind": "stated",
+   "evidence": "w36e/w36d: SetFogIntensity@trackscr.c (color_smoothing candidate matches in the unit)",
+   "where": "cloud/work/frontier/w36e/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A5948",
+   "gc_key": "animText@circuitscr.c",
+   "kind": "lanematch",
+   "evidence": "w36g: byte-identical code from the MAT3 port (MATCH); animButtonText and getFinishPlaceStr inlined",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A5940",
+   "gc_key": "animButtonText@circuitscr.c",
+   "kind": "stated",
+   "evidence": "w36g: deleted inlined stub before animText",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A5938",
+   "gc_key": "getFinishPlaceStr",
+   "kind": "stated",
+   "evidence": "w36g: deleted inlined stub",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039C910",
+   "gc_key": "updateCheatScreen",
+   "kind": "stated",
+   "evidence": "w36g: 21-entry jump table of cheat toggles, InitEgg/CheckForEgg, setGameState 4/16",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A5358",
+   "gc_key": "animText@cheatscr.c",
+   "kind": "stated",
+   "evidence": "w36g: 13 rows, \"%d\" for gFrameScale, 21 options",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039B908",
+   "gc_key": "getPointsStr",
+   "kind": "stated",
+   "evidence": "w36g",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039B988",
+   "gc_key": "getPlaceStr",
+   "kind": "stated",
+   "evidence": "w36g",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039BA28",
+   "gc_key": "getToGoStr",
+   "kind": "stated",
+   "evidence": "w36g",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039BAE0",
+   "gc_key": "getFinishedStr",
+   "kind": "stated",
+   "evidence": "w36g",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A5658",
+   "gc_key": "drawReview",
+   "kind": "stated",
+   "evidence": "w36g",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800BE4F0",
+   "gc_key": "TB_Strcat",
+   "kind": "stated",
+   "evidence": "w36g: text-layer name from the A5948 match",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "sound_pitch_diff_halved",
+   "gc_key": "TB_CenterText",
+   "kind": "stated",
+   "evidence": "w36g: text-layer name from the A5948 match",
+   "where": "cloud/work/frontier/w36g/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "skid_mark_render",
+   "gc_key": "ShowHUD",
+   "kind": "stated",
+   "evidence": "w36o: unit EQUAL / group MATCH with the MAT3 body",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "explosion_effect",
+   "gc_key": "animSpeedText",
+   "kind": "stated",
+   "evidence": "w36o: body structure, constants 1.2f/1.61f, speedPos",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800F7F3C",
+   "gc_key": "FindWinner",
+   "kind": "stated",
+   "evidence": "w36o: gRankedPlayer/ties/tied, bubble sorts by gRace",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "slot_state_setup",
+   "gc_key": "_HAL_SetFont",
+   "kind": "stated",
+   "evidence": "w36o: static _HAL_SetFont, called between _GetSemaphore/_ReleaseSemaphore (osRecvMesg/osSendMesg on the font semaphore) -- the inlined HAL_SetFont wrapper",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "object_create",
+   "gc_key": "HAL_SetFont",
+   "kind": "stated",
+   "evidence": "w36o/w36g: gr3_b.c body = HAL_SetFont (the non-inlined wrapper)",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "object_type_byte2_get",
+   "gc_key": "HAL_GetFontAscent",
+   "kind": "stated",
+   "evidence": "w36o: _SetupFontData(0); return gFontHeader->ascent",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "object_type_byte3_get",
+   "gc_key": "HAL_GetFontDescent",
+   "kind": "stated",
+   "evidence": "w36o: _SetupFontData(0); return gFontHeader->descent",
+   "where": "cloud/work/frontier/w36o/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "countdown",
+   "gc_key": "_UpdateGame",
+   "kind": "stated",
+   "evidence": "w36p: state-bit chain, SetCountdownTimer 1800/600/300/1200, WorldFogDensity loop",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "display_list_flush",
+   "gc_key": "PrePlay",
+   "kind": "stated",
+   "evidence": "w36p: (useHud, cancel) shape, HFOV 90.0",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "init_state_continue",
+   "gc_key": "_CalcPolePositions",
+   "kind": "stated",
+   "evidence": "w36p: called from PrePlay high-score branch and _UpdateGame 0x40000 state",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "state_change_preprocess",
+   "gc_key": "uninitGameState",
+   "kind": "stated",
+   "evidence": "w36p",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "RaceStateMachine_Update",
+   "gc_key": "updatePauseScreen",
+   "kind": "stated",
+   "evidence": "w36p: switch on gPauseState",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "track_render_process",
+   "gc_key": "PS_PakServer",
+   "kind": "lead",
+   "evidence": "w36p lead: SaveServer calls it; N64 osPfs body (also w28b)",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "game_loop",
+   "gc_key": "GameLoop",
+   "kind": "stated",
+   "evidence": "w36p: calls updateGameState, updatePauseScreen, _UpdateGame",
+   "where": "cloud/work/frontier/w36p/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "physics_float_calc",
+   "gc_key": "WorldCullObjects",
+   "kind": "stated",
+   "evidence": "w36u: 0x68-byte tModelPart records, 19-case per-track parts switch; WorldDistance inlined (stub 0x8009EBB8)",
+   "where": "cloud/work/frontier/w36u/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_8009EBB8",
+   "gc_key": "WorldDistance",
+   "kind": "stated",
+   "evidence": "w36u: caller-less jr ra; nop = WorldDistance deleted body",
+   "where": "cloud/work/frontier/w36u/RESULTS.md"
+  },
+  {
+   "population": "game",
+   "n64_name": "particle_lifetime_set",
+   "gc_key": "createBG",
+   "kind": "stated",
+   "evidence": "w36q: 4-poly loop, BACKGROUND_SFX, ZOID_ShowPoly inlined",
+   "where": "cloud/work/frontier/w36q/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803AA3D8",
+   "gc_key": "drawSelect@recordscr.c",
+   "kind": "lanematch",
+   "evidence": "w36f MATCH (string/table indices, pak-status switch N64-only)",
+   "where": "cloud/work/frontier/w36f/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039EF00",
+   "gc_key": "createGridMap",
+   "kind": "lanematch",
+   "evidence": "w36a: 8-byte stub right before showCarSelect = createGridMap, EMPTY in N64; inlining it reproduces showCarSelect frame; group MATCH",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_8039ED20",
+   "gc_key": "showGridMap",
+   "kind": "stated",
+   "evidence": "w36a: showGridMap (MAT3 showCarSelect calls createGridMap then showGridMap)",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A0FD8",
+   "gc_key": "_InitScreen@carscr.c",
+   "kind": "lanematch",
+   "evidence": "w36a: confirmed by matching (group)",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_a",
+   "n64_name": "func_803A1EAC",
+   "gc_key": "updateCarScreen",
+   "kind": "lanematch",
+   "evidence": "w36a: confirmed by matching (group)",
+   "where": "cloud/work/frontier/w36a/RESULTS.md"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80391B00",
+   "gc_key": "UpdateHUDExtraPostCamera",
+   "kind": "stated",
+   "evidence": "w36n: calls func_80391864 (animWeaponIcons), func_80391650 (animPowerupIcons), then the inlined bodies of animBattleCoins (MBOX_FindObject_WORK..PitchUV, ZOID_WindowTo3D) and animStuntCoins (..ZOID_SetColor, MBOX_ShowObject, ZOID_RemoveObject) = GC order",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80391864",
+   "gc_key": "animWeaponIcons",
+   "kind": "stated",
+   "evidence": "w36n: ZOID_RemoveObject, MBOX_NewObject, Hide/ShowObject, ScaleUV, YawUV, ZOID_WindowTo3D = GC animWeaponIcons (no FindTexture/SetTexture/PitchUV of animBattleCoins); first call of UpdateHUDExtraPostCamera",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80391650",
+   "gc_key": "animPowerupIcons",
+   "kind": "stated",
+   "evidence": "w36n: exact 8-call sequence of GC animPowerupIcons (with MBOX_FindObject_WORK); second call of UpdateHUDExtraPostCamera",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80392FE4",
+   "gc_key": "animHealth",
+   "kind": "stated",
+   "evidence": "w36n: calls Hidden (input_new_data_wrapper) then UpdateBlit = GC animHealth; correlation top-1 animHealth (fld x9)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80393518",
+   "gc_key": "animAmmoCounts",
+   "kind": "stated",
+   "evidence": "w36n: exact 10-call sequence of GC animAmmoCounts (HAL_SetTextDepth, HAL_SetFont, TB_SetJust, TB_Sprintf, 2x SetTextColor/DrawText, TB_SetJust, HAL_SetTextDepth)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80390F60",
+   "gc_key": "UpdateBattlePowerUps",
+   "kind": "stated",
+   "evidence": "w36n: calls func_80390D38, func_80390B10 then an inlined Random/Random/ZOID_SetObjectDef/MBOX_ShowObject body = GC UpdateBattlePowerUps (Health, Shield, Invs inlined); size 988 = 40+556+328",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80390D38",
+   "gc_key": "UpdateBattleHealth",
+   "kind": "stated",
+   "evidence": "w36n: first callee of UpdateBattlePowerUps; 552 B = GC 552; calls Random x2, ZOID_SetObjectDef, MBOX_ShowObject",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_80390B10",
+   "gc_key": "UpdateBattleShield",
+   "kind": "stated",
+   "evidence": "w36n: second callee of UpdateBattlePowerUps; 552 B = GC 552; IPA layout Shield, Health, parent (post-order, last call first)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_803908D0",
+   "gc_key": "ShotInit",
+   "kind": "stated",
+   "evidence": "w36n: InitStatLL x4, MBOX_FindObject_WORK x2, MBOX_FindTexture_WORK x2, InitStreaks = GC ShotInit (exact order)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "ovl_b",
+   "n64_name": "func_8038D1A8",
+   "gc_key": "InitStreaks",
+   "kind": "stated",
+   "evidence": "w36n: last callee of ShotInit; InitStatLL x2 = GC InitStreaks",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "music_control",
+   "gc_key": "StartEnvironment",
+   "kind": "stated",
+   "evidence": "w36n: CreateCar (music_seq_load), StartCar (audio_frame_update), then 3x ZOID_NewPoly = GC StartEnvironment with StartShadow (1 poly) and StartArrow (2 polys) inlined",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "stunt_combo_display",
+   "gc_key": "Resurrect",
+   "kind": "stated",
+   "evidence": "w36n: N64 sequence = GC Resurrect: CopyUV, syminit, [FindSurfaceUvsInPlace inlined: RoadPosition, sinf/cosf x2, CopyUV], func_800D348C (FindHumanResPt), FindSurfaceUvsFromResPoint, ..., 3x CountdownTimeOut + race_countdown_display (PassedCP), FindSurfaceUvsFromResPoint, CopyUV, syminit; caller Init_MDrive (GC caller multiinit, mdrive.c)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_800D348C",
+   "gc_key": "FindHumanResPt",
+   "kind": "stated",
+   "evidence": "w36n: 1684 B vs GC 1680 B; calls FindResPt; called by Resurrect (stunt_combo_display) right where GC calls FindHumanResPt; correlation top-1 (fld x11)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "race_countdown_display",
+   "gc_key": "PassedCP",
+   "kind": "stated",
+   "evidence": "w36n: alternates with CountdownTimeOut three times inside Resurrect exactly as GC PassedCP; second caller func_800F8EC8 (CheckCPs position)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "playgame_state_change",
+   "gc_key": "updateGameState",
+   "kind": "stated",
+   "evidence": "w36n: callers game_loop and func_800D5A04 = GC updateGameState callers GameLoop and AbortGame; body = inlined initGameState (37 of 40 mapped calls in order)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "game_loop",
+   "gc_key": "GameLoop",
+   "kind": "lead",
+   "evidence": "w36n: calls updateGameState (playgame_state_change); struct lead 3/4",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "emitter_update",
+   "gc_key": "animCountdownTimer",
+   "kind": "stated",
+   "evidence": "w36n: GetCountdownTimeRemaining, AudPlayEffect, HAL_SetTextDepth, 3x HAL_SetFont, 2x HAL_GetCharWidth, 2x SetTextColor/DrawText, HAL_SetTextDepth = GC animCountdownTimer (12 of 16 in order); not animRadarBlip (= func_80108F40)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "func_80109F54",
+   "gc_key": "animFlag",
+   "kind": "stated",
+   "evidence": "w36n: 2 blit updates, 2x HAL_SetFont, HAL_SetTextDepth, SetTextColor+print x2, HAL_SetTextDepth, SelectBlit = GC animFlag sequence; correlation top-1 animFlag (hud.c)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  },
+  {
+   "population": "game",
+   "n64_name": "entity_update_callback",
+   "gc_key": "AnimateNewBlast",
+   "kind": "lead",
+   "evidence": "w36n: three identical leading calls (GC: 3x ZOID_RemoveObject) then ReleaseEnviron, PitchUV, YawUV as in GC AnimateNewBlast; Random/ZOID_SetColor absent; correlation top-1 (fld x12)",
+   "where": "cloud/work/frontier/w36n/RESULTS.md (manual check)"
+  }
+ ]
+}
