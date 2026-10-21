@@ -1,0 +1,17 @@
+{
+ "name": "w35f_weapons",
+ "files": [
+  "weapons.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "members": [
+  "func_8038AA8C",
+  "func_8038AA14",
+  "func_8038A95C"
+ ],
+ "keep": [
+  "func_8038AA8C"
+ ],
+ "context": [],
+ "provenance": "installed from cloud/work/frontier/w35f/groups/w35f_weapons"
+}
