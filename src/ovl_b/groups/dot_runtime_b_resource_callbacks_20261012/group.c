@@ -1,35 +1,21 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image B object-resource selection and player alpha state update.
- * New complete helpers: B10 and D38, 552 bytes each. Both deleted-procedure
- * stubs (B00/B08, 8 bytes each) are included and claimed separately. The genuine
- * outer 90F60 caller is complete but remains NONMATCH context: five words
- * (one table home, one address-schedule pair, one spill/reload home pair).
- * No accepted/image/ROM coverage is implied by this compiler match.
- *
- * Adjacent caller-less B00/B08 identities as the alpha and phase-a blocks are
- * inferred, not recovered original names or proven whole-TU membership. Stock
- * whole-program compilation inlines both; their separate bodies prevent B10
- * being incorrectly inlined into F60. Only the real F60 root is kept, owning
- * the native s0/s1/f20 saves for both internal no-argument helpers.
- *
- * The target-width pointer round-trip on delta-time reads intentionally removes
- * IDO's direct-global addressing/no-alias spelling. It restores the observed
- * address materialization; direct scalar spelling is 131/138 in both helpers.
- * unsigned long is target32 and host-pointer-width in the fixture build.
- * The 0.f spelling in phase-a keeps its zero web distinct from the alpha loop.
- * Alpha's pointer loop preserves the observed live count reload. The guarded
- * initialization is a native lifetime boundary. No unused locals, artificial
- * volatile, fake parameters, assembly, or changed compiler is used.
- *
- * Object's overlapping scene word and signed index at +14 are target-big-endian
- * union views. Unknown fields preserve observed record storage, not stack pads.
- * Native layouts: State 20 B, Slot 8 B, Player 952 B; Object is an 84-B prefix.
- * Valid domain: backed signed count/selector indices, an eligible selection
- * slot (or the native wrap loop does not terminate), phase-3 countdown 0..7,
- * finite timer/RNG results and representable conversions. Byte alpha subtraction
- * intentionally wraps before the <=16 test. Synchronous helper mutations are
- * visible in later reloads. No whole-game, helper implementation or hardware
- * equivalence is claimed, and no whole-function arcade donor is established.
+/* Image B battle power-ups (MAT3 GameSource/src/powerups.c). Superseded in place by lane w36j (wave 36):
+ * func_80390F60 = UpdateBattlePowerUps (GC 0x80033c94) is now a strict member/claim.
+ *   func_80390D38 = UpdateBattleHealth (GC 0x80033618)  - inherited member, source unchanged
+ *   func_80390B10 = UpdateBattleShield (GC 0x80033840)  - inherited member, source unchanged
+ *   func_80390B08 = UpdateBattleInvs   (GC 0x80033a68)  - inlined into F60; 8-byte deleted stub (member)
+ *   func_80390B00 = UpdateInvs         (GC 0x800334d0)  - inlined into UpdateBattleInvs; 8-byte stub (member)
+ * w36j rewrote the two inlined bodies as MAT3 typed ports: UpdateBattleInvs calls UpdateInvs first and keeps
+ * MAT3's early `return` and `else if ((invsTLeft -= gFrameSeconds) < 0.f)`; UpdateInvs keeps MAT3's
+ * `fadeAlpha + 8 > 255` form and invsColor table. N64 differences: `car` is a function-level local declared
+ * between i and invsColor (fixes the table home sp+56; MAT3 has it block-local), gFrameSeconds is MAT3's
+ * `extern volatile float` (per-use lui/addiu + lwc1 0(reg)), and the invs-phase compare is spelled `0.f`
+ * (keeps its zero web distinct from UpdateInvs' `0.0f`, as the inherited packet found). Field names below are
+ * the inherited descriptive ones; MAT3 names: State = tBattlePowerUps {num, hIdx, sIdx, iIdx, healthTLeft,
+ * invsTLeft, shieldTLeft, tS}, Slot = tBattlePowerUpT {t, last, type}, Player.{flags & 1 = battle.defense.active
+ * invisibility, countdown = battle.shoot, alpha = battle.fadeAlpha, phase = battle.fadeState, timer = fadeTime}.
+ * Inherited packet (dot_runtime_b_resource_callbacks_20261012, Astra) credited for layouts and the B10/D38 bodies.
+ * No unused locals.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -71,79 +57,86 @@ extern Player D_80152818[];
 extern f32 func_8008B2E4(f32);
 extern void func_80090770(s16, u16);
 extern void model_transform_setup(s32, s32, u32);
-void func_80390B00(void)
-{
-    s32 i, value;
-    Player *player;
-    {
-    u8 alpha_table[8] = {16, 32, 64, 96, 112, 144, 176, 176};
-    i = 0;
-    if (D_8014A108 > 0) {
-    player = D_80152818;
-    do {
-        if (player->flags & 1) {
-            if (player->phase == 3) {
-                player->alpha = alpha_table[player->countdown];
-            } else if (player->phase == 1) {
-                player->countdown = 0;
-                if (player->timer > 0.0f) {
-                    player->alpha -= 8;
-                    if (player->alpha <= 16) {
-                        player->alpha = 16;
-                        player->phase = 3;
-                    }
-                    player->timer -= D_8002EB94;
-                } else player->phase = 3;
-            } else {
-                player->countdown = 0;
-                if (player->timer > 0.0f) {
-                    value = player->alpha + 8;
-                    if (value > 255) player->alpha = 255;
-                    else player->alpha = value;
-                    player->timer -= D_8002EB94;
-                } else {
-                    player->phase = 0;
-                    player->flags &= ~1;
-                }
-            }
-        }
-        if (player->countdown > 0) player->countdown--;
-        i++;
-        player++;
-    } while (i < D_8014A108);
-    }
-    }
-}
-void func_80390B08(void)
+#define gBattlePowerUps D_80399AE0
+#define gNumPlayers D_8014A108
+#define gGameCar D_80152818
+#define gFrameSeconds (*(volatile f32 *)&D_8002EB94)
+#define Random func_8008B2E4
+#define ZOID_SetObjectDef func_80090770
+#define MBOX_ShowObject model_transform_setup
+void func_80390B00(void) /* UpdateInvs */
 {
     s32 i;
-    if (D_80399AE0.phase_a == -2.0f) {
-        if (!(D_80399AE0.slots[D_80399AE0.selected_a].object->flags & 2)) {
-            D_80399AE0.phase_a = func_8008B2E4(60.0f) + 90.0f;
-            for (i = 0; i < D_80399AE0.count; i++) {
-                if (D_80399AE0.slots[i].active == 2) {
-                    D_80399AE0.slots[i].active = 1;
+    Player *car;
+    u8 invsColor[8] = {16, 32, 64, 96, 112, 144, 176, 176};
+    for (i = 0; i < gNumPlayers; i++) {
+        car = &gGameCar[i];
+        if (car->flags & 1) {
+            if (car->phase == 3) {
+                car->alpha = invsColor[car->countdown];
+            } else if (car->phase == 1) {
+                car->countdown = 0;
+                if (car->timer > 0.0f) {
+                    car->alpha -= 8;
+                    if (car->alpha <= 16) {
+                        car->alpha = 16;
+                        car->phase = 3;
+                    }
+                    car->timer -= gFrameSeconds;
+                } else {
+                    car->phase = 3;
+                }
+            } else {
+                car->countdown = 0;
+                if (car->timer > 0.0f) {
+                    if (car->alpha + 8 > 255) {
+                        car->alpha = 255;
+                    } else {
+                        car->alpha = car->alpha + 8;
+                    }
+                    car->timer -= gFrameSeconds;
+                } else {
+                    car->flags &= ~1;
+                    car->phase = 0;
                 }
             }
-            D_80399AE0.slots[D_80399AE0.selected_a].active = 2;
-            D_80399AE0.slots[D_80399AE0.selected_a].count = 1;
         }
-    } else {
-        D_80399AE0.phase_a -= *(f32 *)(unsigned long)&D_8002EB94;
-        if (D_80399AE0.phase_a < 0.f) {
-            i = func_8008B2E4(D_80399AE0.count);
-            while (D_80399AE0.slots[i].count != 1 || D_80399AE0.slots[i].active == 2) {
-                if (++i >= D_80399AE0.count) i = 0;
+        if (car->countdown > 0) {
+            car->countdown--;
+        }
+    }
+}
+void func_80390B08(void) /* UpdateBattleInvs */
+{
+    s32 i;
+    func_80390B00();
+    if (gBattlePowerUps.phase_a == -2.0f) {
+        if (gBattlePowerUps.slots[gBattlePowerUps.selected_a].object->flags & 2) {
+            return;
+        }
+        gBattlePowerUps.phase_a = 90.0f + Random(60.0f);
+        for (i = 0; i < gBattlePowerUps.count; i++) {
+            if (gBattlePowerUps.slots[i].active == 2) {
+                gBattlePowerUps.slots[i].active = 1;
             }
-            D_80399AE0.selected_a = i;
-            D_80399AE0.slots[i].active = 1;
-            D_80399AE0.slots[i].count = 2;
-            D_80399AE0.slots[i].object->flags |= 2;
-            D_80399AE0.slots[i].object->resource = 354;
-            func_80090770(D_80399AE0.slots[i].object->handle.parts.index, D_80142A84);
-            model_transform_setup(D_80399AE0.slots[i].object->handle.scene, 0, 15);
-            D_80399AE0.phase_a = -2.0f;
         }
+        gBattlePowerUps.slots[gBattlePowerUps.selected_a].active = 2;
+        gBattlePowerUps.slots[gBattlePowerUps.selected_a].count = 1;
+    } else if ((gBattlePowerUps.phase_a -= gFrameSeconds) < 0.f) {
+        i = Random(gBattlePowerUps.count);
+        while (gBattlePowerUps.slots[i].count != 1 || gBattlePowerUps.slots[i].active == 2) {
+            if (++i >= gBattlePowerUps.count) {
+                i = 0;
+            }
+        }
+        gBattlePowerUps.selected_a = i;
+        gBattlePowerUps.slots[i].active = 1;
+        gBattlePowerUps.slots[i].count = 2;
+        gBattlePowerUps.slots[i].object->flags |= 2;
+        gBattlePowerUps.slots[i].object->resource = 354;
+        ZOID_SetObjectDef(gBattlePowerUps.slots[i].object->handle.parts.index, D_80142A84);
+        MBOX_ShowObject(gBattlePowerUps.slots[i].object->handle.scene, 0, 15);
+        gBattlePowerUps.phase_a = -2.0f;
     }
 }
 void func_80390B10(void)
@@ -210,10 +203,9 @@ void func_80390D38(void)
         }
     }
 }
-void func_80390F60(void)
+void func_80390F60(void) /* UpdateBattlePowerUps */
 {
     func_80390D38();
     func_80390B10();
-    func_80390B00();
     func_80390B08();
 }

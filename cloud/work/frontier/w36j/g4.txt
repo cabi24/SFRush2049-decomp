@@ -1,0 +1,323 @@
+--- want[34:39] (+0x88)  got[34:39]  replace
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f24,20276(at)                              | lwc1	$f24,44(at)
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f22,20280(at)                              | lwc1	$f22,48(at)
+   lui	at,0x8039                                    | lui	at,0x0
+--- want[45:46] (+0xb4)  got[45:46]  replace
+   lwc1	$f20,20284(at)                              | lwc1	$f20,52(at)
+--- want[177:179] (+0x2c4)  got[177:179]  replace
+   lui	t9,0x8015                                    | lui	a0,0x8015
+   addiu	t9,t9,8248                                 | addiu	a0,a0,8248
+--- want[181:185] (+0x2d4)  got[181:185]  replace
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f28,20288(at)                              | lwc1	$f28,56(at)
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f24,20292(at)                              | lwc1	$f24,60(at)
+--- want[190:192] (+0x2f8)  got[190:191]  replace
+   sw	t9,144(sp)                                    | li	s8,11
+   li	s8,2                                          | 
+--- want[193:195] (+0x304)  got[192:193]  replace
+   li	t0,11                                         | lh	t9,2(a0)
+   lw	t8,144(sp)                                    | 
+--- want[196:199] (+0x310)  got[194:196]  replace
+   li	t9,1                                          | li	t6,1
+   lh	t6,2(t8)                                      | beqzl	t9,0x354
+   beqzl	t6,0x360                                   | 
+--- want[202:205] (+0x328)  got[199:202]  replace
+   lwc1	$f6,4(t8)                                   | lwc1	$f6,4(a0)
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f10,20296(at)                              | lwc1	$f10,64(at)
+--- want[220:221] (+0x370)  got[217:218]  replace
+   cfc1	t7,c1_fcsr                                  | cfc1	t8,c1_fcsr
+--- want[222:224] (+0x378)  got[219:221]  replace
+   cfc1	t7,c1_fcsr                                  | cfc1	t8,c1_fcsr
+   ctc1	t9,c1_fcsr                                  | ctc1	t6,c1_fcsr
+--- want[226:227] (+0x388)  got[223:224]  replace
+   cfc1	t9,c1_fcsr                                  | cfc1	t6,c1_fcsr
+--- want[228:231] (+0x390)  got[225:228]  replace
+   andi	t9,t9,0x78                                  | andi	t6,t6,0x78
+   beqzl	t9,0x3e4                                   | beqzl	t6,0x3d8
+   mfc1	t9,$f6                                      | mfc1	t6,$f6
+--- want[232:233] (+0x3a0)  got[229:230]  replace
+   li	t9,1                                          | li	t6,1
+--- want[234:235] (+0x3a8)  got[231:232]  replace
+   ctc1	t9,c1_fcsr                                  | ctc1	t6,c1_fcsr
+--- want[237:238] (+0x3b4)  got[234:235]  replace
+   cfc1	t9,c1_fcsr                                  | cfc1	t6,c1_fcsr
+--- want[239:241] (+0x3bc)  got[236:238]  replace
+   andi	t9,t9,0x78                                  | andi	t6,t6,0x78
+   bnez	t9,0x3d8                                    | bnez	t6,0x3cc
+--- want[242:243] (+0x3c8)  got[239:240]  replace
+   mfc1	t9,$f6                                      | mfc1	t6,$f6
+--- want[245:246] (+0x3d4)  got[242:243]  replace
+   or	t9,t9,at                                      | or	t6,t6,at
+--- want[247:249] (+0x3dc)  got[244:246]  replace
+   li	t9,-1                                         | li	t6,-1
+   mfc1	t9,$f6                                      | mfc1	t6,$f6
+--- want[250:251] (+0x3e8)  got[247:248]  replace
+   bltz	t9,0x3d8                                    | bltz	t6,0x3cc
+--- want[252:257] (+0x3f0)  got[249:254]  replace
+   lw	t8,144(sp)                                    | lh	t9,0(a0)
+   ctc1	t7,c1_fcsr                                  | ctc1	t8,c1_fcsr
+   sw	t9,136(sp)                                    | sw	t6,144(sp)
+   sb	t9,211(sp)                                    | beqz	t9,0x828
+   lh	t7,0(t8)                                      | sb	t6,219(sp)
+--- want[258:261] (+0x408)  got[255:255]  delete
+   lw	t6,144(sp)                                    | 
+   beqzl	t7,0x838                                   | 
+   lw	t7,24(t6)                                     | 
+--- want[262:265] (+0x418)  got[256:259]  replace
+   lwc1	$f8,4(t8)                                   | lwc1	$f8,4(a0)
+   lui	at,0x8039                                    | lui	at,0x0
+   lwc1	$f6,20300(at)                               | lwc1	$f6,68(at)
+--- want[267:268] (+0x42c)  got[261:262]  replace
+   lw	v1,144(sp)                                    | move	v1,a0
+--- want[272:276] (+0x440)  got[266:270]  replace
+   lw	t9,24(t8)                                     | lw	t8,24(a0)
+   beqzl	t9,0x838                                   | beqzl	t8,0x82c
+   lw	t7,24(t6)                                     | lw	t6,24(a0)
+   lw	t6,144(sp)                                    | lw	t6,116(a0)
+--- want[278:279] (+0x458)  got[272:273]  replace
+   lw	t7,116(t6)                                    | bnez	t6,0x450
+--- want[280:285] (+0x460)  got[274:278]  replace
+   addiu	a0,sp,172                                  | lh	t7,32(v1)
+   bnez	t7,0x474                                    | sh	t7,52(v1)
+   lui	a2,0x8039                                    | sw	v1,128(sp)
+   lh	t8,32(v1)                                     | sw	a0,148(sp)
+   sh	t8,52(v1)                                     | 
+--- want[286:288] (+0x478)  got[279:281]  replace
+   lw	t6,244(sp)                                    | lw	t8,244(sp)
+   lui	t8,0x8039                                    | lui	t7,0x8039
+--- want[289:298] (+0x484)  got[282:291]  replace
+   sll	t7,t6,0x2                                    | sll	t6,t8,0x2
+   subu	t7,t7,t6                                    | subu	t6,t6,t8
+   sll	t7,t7,0x2                                    | sll	t6,t6,0x2
+   subu	t7,t7,t6                                    | subu	t6,t6,t8
+   sll	t7,t7,0x2                                    | sll	t6,t6,0x2
+   addu	t7,t7,t6                                    | addu	t6,t6,t8
+   sll	t7,t7,0x4                                    | sll	t6,t6,0x4
+   addiu	t8,t8,20672                                | addiu	t7,t7,20672
+   addu	s0,t7,t8                                    | addu	s0,t6,t7
+--- want[303:304] (+0x4bc)  got[296:297]  replace
+   bnel	t0,v0,0x6b0                                 | bnel	s8,v0,0x69c
+--- want[307:307] (+0x4cc)  got[300:301]  insert
+                                                    | lui	a2,0x8039
+--- want[308:310] (+0x4d0)  got[302:305]  replace
+   sll	t6,s2,0x3                                    | sll	t8,s2,0x3
+   move	s2,t6                                       | move	s2,t8
+                                                    | lw	a2,15168(a2)
+--- want[311:313] (+0x4dc)  got[306:308]  replace
+   lw	a2,15168(a2)                                  | addiu	a0,sp,172
+   lh	t7,2(s0)                                      | lh	t6,2(s0)
+--- want[315:316] (+0x4ec)  got[310:311]  replace
+   beq	t7,at,0x52c                                  | beq	t6,at,0x518
+--- want[317:320] (+0x4f4)  got[312:315]  replace
+   lui	t8,0x8014                                    | lui	t7,0x8014
+   addiu	t8,t8,3036                                 | addiu	t7,t7,3036
+   lbu	a2,0(t8)                                     | lbu	a2,0(t7)
+--- want[330:334] (+0x528)  got[325:329]  replace
+   li	t0,11                                         | lh	t8,2(s0)
+   lui	t7,0x8014                                    | lui	t6,0x8014
+   addiu	t7,t7,3036                                 | addiu	t6,t6,3036
+   lbu	a2,0(t7)                                     | lbu	a2,0(t6)
+--- want[337:338] (+0x544)  got[332:333]  replace
+   sll	t8,a2,0x18                                   | sll	t7,a2,0x18
+--- want[339:340] (+0x54c)  got[334:335]  replace
+   sra	a2,t8,0x18                                   | sra	a2,t7,0x18
+--- want[346:347] (+0x568)  got[341:341]  delete
+   li	t0,11                                         | 
+--- want[348:349] (+0x570)  got[342:343]  replace
+   lh	t6,2(s0)                                      | lh	t8,2(s0)
+--- want[350:355] (+0x578)  got[344:348]  replace
+   lui	v0,0x8011                                    | sll	t6,t8,0x4
+   sll	t7,t6,0x4                                    | addu	t6,t6,t8
+   addu	t7,t7,t6                                    | sll	t6,t6,0x2
+   sll	t7,t7,0x2                                    | addu	at,at,t6
+   addu	at,at,t7                                    | 
+--- want[358:362] (+0x598)  got[351:355]  replace
+   lh	a0,0(s4)                                      | lh	v0,0(s4)
+   addiu	v0,v0,24360                                | li	at,2
+   bne	s7,a0,0x5b0                                  | bne	s7,v0,0x594
+   sll	t8,a0,0x5                                    | sll	t7,v0,0x5
+--- want[363:366] (+0x5ac)  got[356:359]  replace
+   li	a1,-28                                        | li	v1,-28
+   bne	s8,a0,0x5c0                                  | bne	v0,at,0x5a4
+   li	v1,-12                                        | li	a0,-12
+--- want[367:372] (+0x5bc)  got[360:367]  replace
+   li	v1,-16                                        | li	a0,-16
+   move	a1,v1                                       | move	v1,a0
+   addu	t9,v0,t8                                    | lui	a0,0x8011
+   addu	t6,t9,s2                                    | addiu	a0,a0,24360
+   lw	t7,-32(t6)                                    | addu	t9,a0,t7
+                                                    | addu	t8,t9,s2
+                                                    | lw	t6,-32(t8)
+--- want[374:375] (+0x5d8)  got[369:377]  replace
+   sh	t7,60(s3)                                     | sh	t6,60(s3)
+                                                    | lh	t7,0(s4)
+                                                    | sll	t9,t7,0x5
+                                                    | addu	t8,a0,t9
+                                                    | addu	t6,t8,s2
+                                                    | lw	t7,-28(t6)
+                                                    | addu	t9,t7,v1
+                                                    | sh	t9,62(s3)
+--- want[376:382] (+0x5e0)  got[378:383]  replace
+   sll	t9,t8,0x5                                    | sll	t6,t8,0x5
+   addu	t6,v0,t9                                    | addu	t7,s5,t6
+   addu	t7,t6,s2                                    | addu	t9,t7,s2
+   lw	t8,-28(t7)                                    | lw	t8,-32(t9)
+   addu	t9,t8,a1                                    | sh	t8,64(s3)
+   sh	t9,62(s3)                                     | 
+--- want[384:394] (+0x600)  got[385:389]  replace
+   addu	t8,s5,t7                                    | addu	t9,s5,t7
+   addu	t9,t8,s2                                    | addu	t8,t9,s2
+   lw	t6,-32(t9)                                    | lw	t6,-28(t8)
+   sh	t6,64(s3)                                     | addu	t7,t6,v1
+   lh	t7,0(s4)                                      | 
+   sll	t8,t7,0x5                                    | 
+   addu	t9,s5,t8                                    | 
+   addu	t6,t9,s2                                    | 
+   lw	t7,-28(t6)                                    | 
+   addu	t8,t7,a1                                    | 
+--- want[395:397] (+0x62c)  got[390:392]  replace
+   sh	t8,66(s3)                                     | sh	t7,66(s3)
+   lh	a0,0(s4)                                      | lh	t9,0(s4)
+--- want[398:400] (+0x638)  got[393:395]  replace
+   li	v1,8                                          | li	a0,8
+   bne	s7,a0,0x64c                                  | bne	s7,t9,0x638
+--- want[402:404] (+0x648)  got[397:399]  replace
+   li	v1,18                                         | li	a0,18
+   lh	t9,56(v0)                                     | lh	t8,56(v0)
+--- want[406:407] (+0x658)  got[401:402]  replace
+   sh	t9,60(v0)                                     | sh	t8,60(v0)
+--- want[409:410] (+0x664)  got[404:405]  replace
+   subu	a1,a1,v1                                    | subu	v1,v1,a0
+--- want[411:414] (+0x66c)  got[406:409]  replace
+   sll	t8,t7,0x5                                    | sll	t9,t7,0x5
+   addu	t9,s5,t8                                    | addu	t8,s5,t9
+   addu	t6,t9,s2                                    | addu	t6,t8,s2
+--- want[417:420] (+0x684)  got[412:415]  replace
+   lh	t8,0(s4)                                      | lh	t9,0(s4)
+   sll	t9,t8,0x5                                    | sll	t8,t9,0x5
+   addu	t6,s5,t9                                    | addu	t6,s5,t8
+--- want[421:423] (+0x694)  got[416:418]  replace
+   lw	t8,-28(t7)                                    | lw	t9,-28(t7)
+   addu	t9,t8,a1                                    | addu	t8,t9,v1
+--- want[424:425] (+0x6a0)  got[419:420]  replace
+   sh	t9,66(v0)                                     | sh	t8,66(v0)
+--- want[439:441] (+0x6dc)  got[434:436]  replace
+   sll	t8,v0,0x2                                    | sll	t9,v0,0x2
+   addu	t8,t8,v0                                    | addu	t9,t9,v0
+--- want[442:444] (+0x6e8)  got[437:439]  replace
+   sll	t8,t8,0x2                                    | sll	t9,t9,0x2
+   subu	t8,t8,v0                                    | subu	t9,t9,v0
+--- want[447:449] (+0x6fc)  got[442:444]  replace
+   lui	t9,0x8015                                    | lui	t8,0x8015
+   addiu	t9,t9,2928                                 | addiu	t8,t8,2928
+--- want[451:452] (+0x70c)  got[446:447]  replace
+   sll	t8,t8,0x3                                    | sll	t9,t9,0x3
+--- want[455:456] (+0x71c)  got[450:451]  replace
+   addu	s0,t8,t9                                    | addu	s0,t9,t8
+--- want[460:461] (+0x730)  got[455:456]  replace
+   lh	t8,60(s3)                                     | lh	t9,60(s3)
+--- want[462:466] (+0x738)  got[457:462]  replace
+   mtc1	v0,$f10                                     | mtc1	v0,$f6
+   subu	t9,t8,v0                                    | subu	t8,t9,v0
+   mtc1	t9,$f6                                      | mtc1	t8,$f8
+   lh	t8,62(s3)                                     | cvt.s.w	$f4,$f6
+                                                    | lh	t9,62(s3)
+--- want[468:470] (+0x750)  got[464:466]  replace
+   subu	t9,t8,v1                                    | subu	t8,t9,v1
+   addiu	t8,s3,40                                   | addiu	t9,s3,40
+--- want[471:478] (+0x75c)  got[467:474]  replace
+   cvt.s.w	$f4,$f6                                  | cvt.s.w	$f10,$f8
+   cvt.s.w	$f6,$f10                                 | mul.s	$f6,$f0,$f10
+   mul.s	$f8,$f4,$f0                                | add.s	$f8,$f4,$f6
+   add.s	$f4,$f8,$f6                                | mtc1	v1,$f4
+   mtc1	t9,$f8                                      | trunc.w.s	$f10,$f8
+   trunc.w.s	$f10,$f4                               | mtc1	t8,$f8
+   cvt.s.w	$f6,$f8                                  | cvt.s.w	$f6,$f4
+--- want[479:480] (+0x77c)  got[475:476]  replace
+   mtc1	v1,$f10                                     | nop
+--- want[481:485] (+0x784)  got[477:481]  replace
+   cvt.s.w	$f8,$f10                                 | cvt.s.w	$f10,$f8
+   mul.s	$f4,$f6,$f0                                | mul.s	$f4,$f0,$f10
+   add.s	$f6,$f4,$f8                                | add.s	$f8,$f6,$f4
+   trunc.w.s	$f10,$f6                               | trunc.w.s	$f10,$f8
+--- want[488:489] (+0x7a0)  got[484:485]  replace
+   sw	t8,16(sp)                                     | sw	t9,16(sp)
+--- want[491:494] (+0x7ac)  got[487:491]  replace
+   lh	a0,0(s4)                                      | lh	v0,0(s4)
+   addiu	a1,s3,4                                    | move	a0,s0
+   bne	s7,a0,0x7c4                                  | li	at,2
+                                                    | bne	s7,v0,0x7b8
+--- want[497:498] (+0x7c4)  got[494:495]  replace
+   bnel	s8,a0,0x7d8                                 | bnel	v0,at,0x7cc
+--- want[505:506] (+0x7e4)  got[502:503]  replace
+   move	a0,s0                                       | addiu	a1,s3,4
+--- want[507:508] (+0x7ec)  got[504:505]  replace
+   lw	t9,136(sp)                                    | lw	t8,144(sp)
+--- want[509:510] (+0x7f4)  got[506:507]  replace
+   sb	t9,211(sp)                                    | sb	t8,3(a1)
+--- want[516:517] (+0x810)  got[513:513]  delete
+   li	t0,11                                         | 
+--- want[520:520] (+0x820)  got[516:517]  insert
+                                                    | lw	a0,148(sp)
+--- want[525:526] (+0x834)  got[522:526]  replace
+   lw	t7,24(t6)                                     | lw	t6,24(a0)
+                                                    | lui	t8,0x8039
+                                                    | addiu	t8,t8,20672
+                                                    | bnez	t6,0x8d4
+--- want[527:540] (+0x83c)  got[527:538]  replace
+   bnezl	t7,0x8e8                                   | sh	zero,0(a0)
+   lw	t8,244(sp)                                    | sh	zero,2(a0)
+   sh	zero,0(t6)                                    | sw	s7,108(a0)
+   sh	zero,2(t6)                                    | sb	zero,103(a0)
+   sw	s7,108(t6)                                    | sb	zero,101(a0)
+   sb	zero,103(t6)                                  | sw	zero,16(a0)
+   sb	zero,101(t6)                                  | lw	t7,244(sp)
+   sw	zero,16(t6)                                   | sw	a0,148(sp)
+   lw	t8,244(sp)                                    | sw	a0,128(sp)
+   lui	t7,0x8039                                    | sll	t9,t7,0x2
+   addiu	t7,t7,20672                                | subu	t9,t9,t7
+   sll	t9,t8,0x2                                    | 
+   subu	t9,t9,t8                                    | 
+--- want[541:542] (+0x874)  got[539:540]  replace
+   subu	t9,t9,t8                                    | subu	t9,t9,t7
+--- want[543:544] (+0x87c)  got[541:542]  replace
+   addu	t9,t9,t8                                    | addu	t9,t9,t7
+--- want[545:548] (+0x884)  got[543:545]  replace
+   addu	s0,t9,t7                                    | addu	s0,t9,t8
+   sw	t6,124(sp)                                    | lw	t6,128(sp)
+   lw	t8,124(sp)                                    | 
+--- want[549:551] (+0x894)  got[546:547]  replace
+   move	s3,s0                                       | sh	zero,52(t6)
+   sh	zero,52(t8)                                   | 
+--- want[553:554] (+0x8a4)  got[549:550]  replace
+   sh	t0,0(s3)                                      | lw	t9,128(sp)
+--- want[556:565] (+0x8b0)  got[552:560]  replace
+   li	t9,-1                                         | li	t7,-1
+   li	t0,11                                         | sh	t7,2(s0)
+   sh	t9,2(s0)                                      | lw	t9,128(sp)
+   sh	t0,0(s3)                                      | addiu	s1,s1,2
+   lw	t7,124(sp)                                    | li	at,20
+   addiu	s1,s1,72                                   | addiu	t8,t9,2
+   li	at,720                                        | sw	t8,128(sp)
+   addiu	t6,t7,2                                    | addiu	s0,s0,72
+   sw	t6,124(sp)                                    | 
+--- want[566:567] (+0x8d8)  got[561:562]  replace
+   addiu	s0,s0,72                                   | sh	s8,-72(s0)
+--- want[569:575] (+0x8e4)  got[564:569]  replace
+   lw	t8,244(sp)                                    | lw	a0,148(sp)
+   lw	t7,144(sp)                                    | lw	t6,244(sp)
+   addiu	t9,t8,1                                    | addiu	a0,a0,120
+   slt	at,t9,v0                                     | addiu	t7,t6,1
+   addiu	t6,t7,120                                  | slt	at,t7,v0
+   sw	t6,144(sp)                                    | 
+--- want[576:577] (+0x900)  got[570:571]  replace
+   sw	t9,244(sp)                                    | sw	t7,244(sp)
+--- want[595:595] (+0x94c)  got[589:592]  insert
+                                                    | nop
+                                                    | nop
+                                                    | nop
+want 595 got 592 words; non-equal run words 235; frame want/got: 336 304

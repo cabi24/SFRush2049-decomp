@@ -1,0 +1,122 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef signed short s16;
+typedef unsigned short u16;
+typedef signed int s32;
+typedef unsigned int u32;
+typedef float f32;
+
+typedef struct tUVMatrix { f32 uvs[4][3]; } tUVMatrix;
+typedef struct tHudIcon { s16 type, idx; tUVMatrix mat; } tHudIcon;          /* anon_type_idx_34 */
+typedef struct tBattleCoin { s16 idx; s16 pad; tUVMatrix mat; } tBattleCoin; /* anon_idx_mat_34 */
+typedef struct tStuntCoin {
+    s16 type, idx;
+    tUVMatrix mat;
+    f32 alpha;
+    s16 screenPos[2], startPos[2], destPos[2];
+    f32 scrollTime;
+} tStuntCoin;
+typedef struct tBattlePoint {      /* anon_active_cnt_18 */
+    s8 active, cnt, plto, plfrom;
+    f32 startx, starty, endx, endy;
+    s8 p;
+    u8 pad[3];
+} tBattlePoint;
+typedef struct tBlitSet tBlitSet;
+typedef struct tBlitDef tBlitDef;
+
+extern void *D_80395ED4;
+extern s16 D_80151AD0, active_player_count;
+extern s32 gameplay_mode;
+extern tHudIcon D_80395C00[4], D_80395CD0[4];
+extern tBattleCoin D_80395DA0[4];
+extern tStuntCoin D_803950C0[4][10];
+extern s8 D_80395ED0;
+extern tBattlePoint D_80395E70[4];
+extern s32 D_80393F50[4][4][2];
+extern u8 D_80394250[4][2][4];
+extern tBlitDef D_80393DE8[], D_80393B84[];
+extern char D_80394A80[];
+#define blit D_80395ED4
+#define gNumWindows D_80151AD0
+#define gNumPlayers active_player_count
+#define gRace gameplay_mode
+#define weaponIcon D_80395C00
+#define powerupIcon D_80395CD0
+#define battleCoin D_80395DA0
+#define stuntCoin D_803950C0
+#define battlePointCnt D_80395ED0
+#define battlePoint D_80395E70
+#define stuntPos D_80393F50
+#define playerPaneColors D_80394250
+#define BattleMultiBlit D_80393DE8
+#define StuntMultiBlit D_80393B84
+#define kBattle 6
+#define kStunt 4
+
+extern void *sound_control(s16, s16, tBlitDef *, s16);                 /* NewMultiBlit */
+extern s32 object_create(s32);                                          /* HAL_SetFont */
+extern u32 object_manager_update(void *, s16);                          /* HAL_GetTextWidth */
+extern s16 object_bytes_sum_global(void);                               /* TB_GetFontLineHeight */
+extern tBlitSet *ambient_sound_set(s32, s32, s32, s32, s32, void *, u32, s32); /* InitPane */
+extern void unlock_notification(tBlitSet *, u8 *, u8 *);               /* ChangePaneColor */
+#define NewMultiBlit sound_control
+#define HAL_SetFont object_create
+#define HAL_GetTextWidth object_manager_update
+#define TB_GetFontLineHeight object_bytes_sum_global
+#define InitPane ambient_sound_set
+#define ChangePaneColor unlock_notification
+
+/*@{*/static void ClearBattlePoints(void)
+{/*@|static void ClearBattlePoints(void) {@}*/
+    int i;
+/*@{*/    battlePointCnt = 0;
+    for (i = 0; i < 4; i++) battlePoint[i].active = 0;/*@|    battlePointCnt = 0;
+    for (i = 0; i < 4; i++) {
+        battlePoint[i].active = 0;
+    }@|    battlePointCnt = 0;
+    for (i = 0; i < 4; i++)
+        battlePoint[i].active = 0;@|    battlePointCnt = 0; for (i = 0; i < 4; i++) battlePoint[i].active = 0;@}*/
+}
+
+void func_803925D0(void)
+{
+    int i;
+    tBlitSet *pane;
+    int w, h;
+    int playerIdx;
+    int s;
+    if (!blit) {
+        if (gRace == kBattle)
+            blit = NewMultiBlit(0, 0, BattleMultiBlit, 10);
+        else if (gRace == kStunt) {
+            if (gNumWindows == 1) HAL_SetFont(10);
+            else if (gNumWindows == 2) HAL_SetFont(11);
+            else HAL_SetFont(12);
+            w = HAL_GetTextWidth(D_80394A80, -1) + 8;
+            h = TB_GetFontLineHeight() + 4;
+            for (playerIdx = 0; playerIdx < gNumPlayers; playerIdx++) {
+                pane = InitPane(stuntPos[gNumWindows-1][playerIdx][0]-w/2,
+                    stuntPos[gNumWindows-1][playerIdx][1]-h/2,
+                    stuntPos[gNumWindows-1][playerIdx][0]+w/2,
+                    stuntPos[gNumWindows-1][playerIdx][1]+h/2,
+                    128, 0, playerIdx << 4, 1);
+                ChangePaneColor(pane, playerPaneColors[playerIdx][0], playerPaneColors[playerIdx][1]);
+            }
+            blit = NewMultiBlit(0, 0, StuntMultiBlit, 17);
+        }
+/*@{*/        ClearBattlePoints();
+        for (i = 0; i < 4; i++) {/*@|        ClearBattlePoints(); for (i = 0; i < 4; i++) {@}*/
+            weaponIcon[i].type = 8;
+            weaponIcon[i].idx = -1;
+            powerupIcon[i].type = 0;
+            powerupIcon[i].idx = -1;
+            battleCoin[i].idx = -1;
+            for (s = 0; s < 10; s++) {
+                stuntCoin[i][s].type = 11;
+                stuntCoin[i][s].idx = -1;
+            }
+        }
+    }
+}

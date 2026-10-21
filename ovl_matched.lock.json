@@ -1138,6 +1138,16 @@
     }
   },
   "b": {
+    "func_8038A408": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_8038A408.c",
+      "source": "src/ovl_b/func_8038A408.c",
+      "source_sha256": "4e15134b16b2f8acdbb3b856b3e9cc195f30c23247b41cef7c559d2b47dabec1",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
+    },
     "func_8038A8CC": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "B",
@@ -1280,45 +1290,56 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_b_resource_callbacks_20261012",
       "image": "B",
-      "origin": "cloud/work/frontier/dot_runtime_b_resource_callbacks_20261012",
+      "origin": "cloud/work/frontier/w36j/groups/dot_runtime_b_resource_callbacks_20261012",
       "source": "src/ovl_b/groups/dot_runtime_b_resource_callbacks_20261012/group.json",
-      "source_sha256": "ad9805ae66d24812ad929cf5bd6c4436aef4ad305aa365f08eafdba29a32c992",
+      "source_sha256": "cdc75c54994e2c79df374f2b1c0b4003f91a753b6d312ed1a7996177654a760c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-12"
+      "verified_at": "2026-10-21"
     },
     "func_80390B08": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_b_resource_callbacks_20261012",
       "image": "B",
-      "origin": "cloud/work/frontier/dot_runtime_b_resource_callbacks_20261012",
+      "origin": "cloud/work/frontier/w36j/groups/dot_runtime_b_resource_callbacks_20261012",
       "source": "src/ovl_b/groups/dot_runtime_b_resource_callbacks_20261012/group.json",
-      "source_sha256": "ad9805ae66d24812ad929cf5bd6c4436aef4ad305aa365f08eafdba29a32c992",
+      "source_sha256": "cdc75c54994e2c79df374f2b1c0b4003f91a753b6d312ed1a7996177654a760c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-12"
+      "verified_at": "2026-10-21"
     },
     "func_80390B10": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_b_resource_callbacks_20261012",
       "image": "B",
-      "origin": "cloud/work/frontier/dot_runtime_b_resource_callbacks_20261012",
+      "origin": "cloud/work/frontier/w36j/groups/dot_runtime_b_resource_callbacks_20261012",
       "source": "src/ovl_b/groups/dot_runtime_b_resource_callbacks_20261012/group.json",
-      "source_sha256": "ad9805ae66d24812ad929cf5bd6c4436aef4ad305aa365f08eafdba29a32c992",
+      "source_sha256": "cdc75c54994e2c79df374f2b1c0b4003f91a753b6d312ed1a7996177654a760c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-12"
+      "verified_at": "2026-10-21"
     },
     "func_80390D38": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_b_resource_callbacks_20261012",
       "image": "B",
-      "origin": "cloud/work/frontier/dot_runtime_b_resource_callbacks_20261012",
+      "origin": "cloud/work/frontier/w36j/groups/dot_runtime_b_resource_callbacks_20261012",
       "source": "src/ovl_b/groups/dot_runtime_b_resource_callbacks_20261012/group.json",
-      "source_sha256": "ad9805ae66d24812ad929cf5bd6c4436aef4ad305aa365f08eafdba29a32c992",
+      "source_sha256": "cdc75c54994e2c79df374f2b1c0b4003f91a753b6d312ed1a7996177654a760c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-12"
+      "verified_at": "2026-10-21"
+    },
+    "func_80390F60": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_b_resource_callbacks_20261012",
+      "image": "B",
+      "origin": "cloud/work/frontier/w36j/groups/dot_runtime_b_resource_callbacks_20261012",
+      "source": "src/ovl_b/groups/dot_runtime_b_resource_callbacks_20261012/group.json",
+      "source_sha256": "cdc75c54994e2c79df374f2b1c0b4003f91a753b6d312ed1a7996177654a760c",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
     },
     "func_8039133C": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1381,6 +1402,36 @@
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
+    },
+    "func_803925D0": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_803925D0.c",
+      "source": "src/ovl_b/func_803925D0.c",
+      "source_sha256": "1383401d56969dc9d6722b754ae84a39b468a8aa528a300bab6e815f0b12d531",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
+    },
+    "func_80392894": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_80392894.c",
+      "source": "src/ovl_b/func_80392894.c",
+      "source_sha256": "93a1e0b6494714127b913225612bb0469ed1b77ad424952725908c459bca9f68",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
+    },
+    "func_80392FE4": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_80392FE4.c",
+      "source": "src/ovl_b/func_80392FE4.c",
+      "source_sha256": "283df1586656c1cf1bbb926c948f236e3f37b3568ce60bb818189bbb8cf7416f",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-21"
     },
     "func_80393518": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

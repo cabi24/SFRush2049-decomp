@@ -1,0 +1,16 @@
+image A: 194128 B @ 0x8038A400, 193 functions (152952 B), 1 opaque runs (41176 B, 25 switch tables inside), 5 regions
+  image gate (105 locked C bodies): byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+  rebuilt image published -> /home/cburnes/projects/rush2049-decomp/build/ovl/a/rebuilt.bin
+image B: 43888 B @ 0x8038A400, 49 functions (38708 B), 1 opaque runs (5180 B, 6 switch tables inside), 2 regions
+  image gate (30 locked C bodies): byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+  rebuilt image published -> /home/cburnes/projects/rush2049-decomp/build/ovl/b/rebuilt.bin
+ovl lock: all 135 runtime-image entries intact
+image A: rebuilt image (105 locked functions) -> 80272 B stream ebd4b2c19a1a4966… == ROM -> /home/cburnes/projects/rush2049-decomp/build/ovl/ovl_a.deflate
+image B: rebuilt image (30 locked functions) -> 23639 B stream 0e1292c1a5b2df46… == ROM -> /home/cburnes/projects/rush2049-decomp/build/ovl/ovl_b.deflate
+ROM build (game blob + both runtime-image streams composed): SHA-1 EXACT
+  Verifying built ROM hash...
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  MAKE=0 TEST=0

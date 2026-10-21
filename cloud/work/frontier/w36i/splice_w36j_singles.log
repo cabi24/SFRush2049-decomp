@@ -1,0 +1,4 @@
+image B: splicing 4
+  spliced 4, refused 0, locked 29; image gate byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+overlay A:    105/193 functions, 99928/194128 bytes (51.48%; 65.33% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     29/49 functions, 22544/43888 bytes (51.37%; 58.24% of 38708 B text) — compressed into the ROM at 0xB6FEC4
