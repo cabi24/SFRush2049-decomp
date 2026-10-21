@@ -1,0 +1,28 @@
+{
+  "members": [
+    "func_800B6748",
+    "audio_doppler_calc"
+  ],
+  "context": [
+    "menu_input_process",
+    "world_trigger_check",
+    "world_velocity_integrate",
+    "sound_update_channel"
+  ],
+  "files": [
+    "group.c",
+    "drawtext.c",
+    "slot_sound.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "menu_input_process",
+    "world_trigger_check",
+    "world_velocity_integrate"
+  ],
+  "provenance": "A16: seven true pointer outputs, three actual retail callers, switch table validated from authoritative game image; no stand-in. | w36t: _DrawText member (cloud/work/frontier/w36t/RESULTS.md)",
+  "claims": [
+    "audio_doppler_calc"
+  ],
+  "note": "w36t (wave 36) supersedes codex_defaults_a16 IN PLACE: same name, old member func_800B6748 and group.c unchanged (byte-identical), context unchanged; adds member audio_doppler_calc = _DrawText (MAT3 HAL_text.c, drawtext.c), a private IPA callee of the context callers menu_input_process (HAL_DrawText) and world_velocity_integrate (HAL_FinishText): text arrives in s2, length in s0, so it must stay internal (not on keep; unit_overrides force_internal audio_doppler_calc). slot_sound.c is a byte-identical copy of src/blob/groups/slot_sound/group.c, context only, for sound_update_channel's IPA t0 parameter (_SetupFontData(0)). Unit: blob_unit score audio_doppler_calc --internal audio_doppler_calc --with drawtext.c --neighbours -> EQUAL, 0 locked bodies differ."
+}

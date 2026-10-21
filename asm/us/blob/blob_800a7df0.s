@@ -6000,6 +6000,7 @@ func_800AD650:
 .section .text.input_process_controller, "ax", @progbits
 .globl input_process_controller
 input_process_controller:
+    /* compiled from src/blob/input_process_controller.c */
     .word 0x27BDFF48
     .word 0xAFBF0014
     .word 0x24140001

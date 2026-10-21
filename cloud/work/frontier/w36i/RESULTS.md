@@ -16,8 +16,9 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 5 | cc56165ba | w36c updateSelectButtons/controlSelect@recordscr + w36b initRecordScreen (+stub) merged into dot_runtime_a_callers_deep_20261011 with the installed w36f revision; w36c controlSelect@playerscr (dot_runtime_a_availability_refresh_20261007); w36b setGhosts/updateCarComponents (dot_cleanup_colortrace_20261011) | +14,824 | 105 -> 112/193 | 30/49 | yes (cc56165ba) |
 | - | 0cad8af34 | owner: research receipt re-pins for the three held items | 0 | | | with batch 6 |
 | 6 | dabdcf959 | formerly held: w36f updateButtons/updateModeScreen@modescr (seven_option group), w36j RemoveHUDExtra (B), w36m animResults/animFlag/animLapTimeText/func_80106874 (game credits_scroll_grp) | +2,568 A, +380 B, +6,224 game | 112 -> 114/193 | 30 -> 31/49 | yes (dabdcf959, with 0cad8af34) |
-| 7 | 65d3be09b | w36e trackscr (dot_runtime_a_c93c_closure_20261012: 11 new claims incl. w36d's BBB4/DFEC) + startscr initScreen (w35d_start_screen); w36h shots (NEW group w36h_shots, image B, 10 members) | +10,376 A, +12,360 B | 114 -> 126/193 | 31 -> 41/49 | with batch 8 |
-| 8 | (this) | game: w36l StartEnvironment (music_control) + AnimateNewBlast (entity_update_callback) singles; w36o InitSystem (game_late_init, codex_heap_release_a25 superseded; force_internal HAL_InitText_Init, DeallocateMemory_Init); w36u func_8009F058 (frontier_particle_knot superseded) | +9,224 game | | | |
+| 7 | 65d3be09b | w36e trackscr (dot_runtime_a_c93c_closure_20261012: 11 new claims incl. w36d's BBB4/DFEC) + startscr initScreen (w35d_start_screen); w36h shots (NEW group w36h_shots, image B, 10 members) | +10,376 A, +12,360 B | 114 -> 126/193 | 31 -> 41/49 | yes (fb77b6f9e) |
+| 8 | fb77b6f9e | game: w36l StartEnvironment (music_control) + AnimateNewBlast (entity_update_callback) singles; w36o InitSystem (game_late_init, codex_heap_release_a25 superseded; force_internal HAL_InitText_Init, DeallocateMemory_Init); w36u func_8009F058 (frontier_particle_knot superseded) | +9,224 game (1094 -> 1098) | | | yes (fb77b6f9e) |
+| 9 | (this) | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | |
 
 ## Held for owner
 
@@ -115,6 +116,30 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   one means regenerating asm/us/blob/symbols.json / blob.ld through the context tools, which many receipts bind.
   Owner decision needed: name and route for asset ROM-offset symbols in game code (symbol_addrs.us.txt +
   GAME_SYMBOLS + context refresh), then land with `install_group.py cloud/work/frontier/w36u/groups/w36u_audio_init_sys`.
+
+### w36q: physics_sym superseded (particle_collision, particle_render) and NEW frontier_pausescr_state (func_800B4FB0); w36z: frontier_results_table superseded (func_80100E58 = drawRaceStandings)
+
+- Not landed: particle_render, func_800B4FB0 and func_80100E58 are slot_state_setup callers (same slot contract
+  audit tests as w36o). func_80100E58 also trips `tests/conveyor/test_dot_substantial_scout.py`
+  (`landed = {'func_80102F30'}`: accepted_name_lock must stay False for func_80100E58).
+- Prepared fix (not applied): one combined patch for all six held selector callers (w36o x3, w36q x2, w36z x1) and w36t's _DrawText:
+  `cloud/work/frontier/w36i/held/slot_contract_audit_held_callers.patch` (replaces slot_contract_audit_w36o.patch)
+  plus `cloud/work/frontier/w36i/held/substantial_scout_80100E58.patch`. Landing order after the owner applies
+  them: all seven must land together (the regenerated evidence assumes all seven locked).
+- particle_collision (not a selector caller) shares physics_sym with particle_render; it waits with it.
+
+### w36t: codex_defaults_a16 superseded (audio_doppler_calc = _DrawText, 1,124 B): packaging fix, then held
+
+- Packaging: the lane's packet copies slot_sound/group.c as slot_sound.c without slot_sound's keep entries;
+  installed, the derivation (a function a group defines and does not keep is internal everywhere) turned eight
+  kept slot_sound functions internal and the unit failed 15 locked bodies. w36i's copy
+  (`groups/codex_defaults_a16/`) adds the eight to keep (as w36u_audio_init_sys does); builder: both members
+  MATCH (`score_codex_defaults_a16_keepfix.txt`), unit 1111/1111 equal. Land from that copy.
+- Held: landing _DrawText leaves world_velocity_integrate (HAL_FinishText, unaccepted) with no other unaccepted
+  callee, so it enters the slot contract audit's only-selector dependency list and
+  `test_fresh_source_bound_census` fails. Backed out of batch 9 (blob_group revert, installed group re-spliced, lock
+  entry restored exactly, force_internal audio_doppler_calc removed); it is included in
+  `slot_contract_audit_held_callers.patch` (the regenerated evidence assumes it landed with the six callers).
 
 ## Batch 5 merge (dot_runtime_a_callers_deep_20261011)
 

@@ -1,6 +1,7 @@
 {
  "members": [
-  "input_deadzone_apply"
+  "input_deadzone_apply",
+  "input_process_controller"
  ],
  "files": [
   "candidate.c",
@@ -46,7 +47,6 @@
  "unprototyped": [],
  "context": [
   "func_800AD4C8",
-  "input_process_controller",
   "func_800AD5D0",
   "func_800AC9BC",
   "effect_cleanup",
@@ -70,6 +70,6 @@
   "camera_victory",
   "func_800C3AD0"
  ],
- "provenance": "PR #394 (dot_mat3_shot_match_20261017, head 1fd1d075a; replay.py --materialize before #390 landed): ShotToWorldCollision; func_800AD4C8's six members and all other locked functions are context here (w34i)",
+ "provenance": "PR #394 (dot_mat3_shot_match_20261017, head 1fd1d075a; replay.py --materialize before #390 landed): ShotToWorldCollision; func_800AD4C8's six members and all other locked functions are context here (w34i); w36v (wave 36): input_process_controller (= MAT3 stree.c CylinderInSurf) moved from context to member/claims, source unchanged (EQUAL in the unit and MATCH in score.py group now that its sole caller input_deadzone_apply is a member)",
  "note": "Preserves all six canonical members and adds input_deadzone_apply. Real callers replace the three AD4C8/input_process_controller stand-ins. Existing lsq is non-static and unkept to delimit deleted-procedure residue. func_800AC9BC and the unrelated C36A0 stand-ins are inherited and unclaimed. All other context is strict; full-build, image and ROM gates are pending. Materialized from canonical sources by replay.py."
 }

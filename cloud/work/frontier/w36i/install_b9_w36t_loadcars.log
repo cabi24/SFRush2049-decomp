@@ -1,0 +1,3 @@
+spliced w36t_loadcars: 2 members, new: ['audio_interrupt_handler']
+image coverage: 1108/1216 functions, 455276/647072 bytes (70.36%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

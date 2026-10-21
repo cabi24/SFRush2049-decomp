@@ -1,0 +1,7 @@
+DONE 
+group_bodies OK: drone_pathfind_main, func_800D690C, func_800D6914, func_800D7634
+  drone_pathfind_main: 281 words, 0 differ from the image
+  func_800D690C: 2 words, 0 differ from the image
+  func_800D6914: 315 words, 0 differ from the image
+  func_800D7634: 451 words, 0 differ from the image
+4/4 members image-identical

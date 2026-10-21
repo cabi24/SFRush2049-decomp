@@ -1,0 +1,7 @@
+  EQUAL func_800D348C: 421 words (internal, c_resurrect.c)
+  EQUAL stunt_combo_display: 1175 words (kept, c_resurrect.c)
+  EQUAL camera_follow_path: 371 words (internal, c_camera_pair.c)
+  EQUAL func_800C4F68: 354 words (kept, c_camera_pair.c)
+  EQUAL func_800D3B20: 2 words (internal, c_resurrect.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 5/5 equal; object build/blob_unit/w36s/unit.o (18.1s)

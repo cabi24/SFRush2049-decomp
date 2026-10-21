@@ -544,6 +544,26 @@
   {
    "name": "DeallocateMemory_Init",
    "reason": "group codex_heap_release_a25 (w36o, MAT3 InitSystem@Init.c = game_late_init): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "camera_follow_path",
+   "reason": "group w36s_resurrect (w36s, MAT3 resurrect.c): internal IPA callee of Resurrect (stunt_combo_display); retail uses its private register convention"
+  },
+  {
+   "name": "func_800D348C",
+   "reason": "group w36s_resurrect (w36s, MAT3 resurrect.c): internal IPA callee of Resurrect (stunt_combo_display); retail uses its private register convention"
+  },
+  {
+   "name": "func_800D3B20",
+   "reason": "group w36s_resurrect (w36s, MAT3 resurrect.c): internal IPA callee of Resurrect (stunt_combo_display); retail uses its private register convention"
+  },
+  {
+   "name": "func_8009768C",
+   "reason": "group w36t_loadcars (w36t, MAT3 FindWaveInstance): real body inlined into LoadCars (audio_interrupt_handler) supersedes the locked 2-word stub single; only the retail stub remains"
+  },
+  {
+   "name": "voice_stop_2",
+   "reason": "group w36t_save_option (w36t, MAT3 _SaveRaceSetting@save.c): private IPA partner of SavePlayerOption (audio_bus_mix), player in t0"
   }
  ],
  "prefer_definition": [
@@ -671,6 +691,16 @@
    "name": "input_process_controller",
    "file": "src/blob/groups/frontier_shot_world_collision/group.c",
    "reason": "unmatched context; its only retail caller is input_deadzone_apply (w34i, PR #394), whose match needs the reordered parameters (Poly *poly, p1, p2, out, vcOut, mat, flag, outIdx, rad2); func_800AD4C8's copy keeps the old order and is called only by its all-zero stand-ins"
+  },
+  {
+   "name": "func_800D3B20",
+   "file": "src/blob/groups/w36s_resurrect/resurrect.c",
+   "reason": "FindBestQuat@resurrect.c (w36s): real body, inlined into Resurrect, supersedes the locked 8-byte stub single; only the retail stub remains"
+  },
+  {
+   "name": "func_8009768C",
+   "file": "src/blob/groups/w36t_loadcars/root.c",
+   "reason": "FindWaveInstance (w36t): the real body, inlined into LoadCars, supersedes the locked 2-word stub single"
   }
  ],
  "align": [

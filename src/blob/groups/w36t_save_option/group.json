@@ -1,0 +1,19 @@
+{
+ "members": [
+  "audio_bus_mix",
+  "voice_stop_2"
+ ],
+ "context": [
+  "format_string_parse"
+ ],
+ "files": [
+  "save_option.c",
+  "codex_hash_a80.c"
+ ],
+ "keep": [
+  "audio_bus_mix"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w36t (wave 36): audio_bus_mix = SavePlayerOption, voice_stop_2 = _SaveRaceSetting (MAT3 save.c; _SaveBattleSetting/_SaveStuntSetting/_SaveObstacleSetting inlined). voice_stop_2 is a private IPA callee (player in t0, option a0, value a2, unused track in the caller's outgoing slot): internal, not kept (unit_overrides force_internal voice_stop_2). codex_hash_a80.c is a byte-identical copy of src/blob/groups/codex_hash_a80/group.c (format_string_parse = _CalcChecksum; internal here as in the whole-program unit, so its callers keep a3/t0/v1 live across it) so the group sees its register use (callers keep a3/t0 live across it). No shaping devices.",
+ "provenance": "frontier wave 36 (w36t), cloud/work/frontier/w36t/RESULTS.md"
+}

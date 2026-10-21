@@ -1,0 +1,3 @@
+spliced audio_options_menu: 4 members, new: ['drone_pathfind_main']
+image coverage: 1105/1216 functions, 452108/647072 bytes (69.87%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

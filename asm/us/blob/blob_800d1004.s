@@ -2468,6 +2468,7 @@ func_800D3430:
 .section .text.func_800D348C, "ax", @progbits
 .globl func_800D348C
 func_800D348C:
+    /* compiled from src/blob/func_800D348C.c */
     .word 0x3C018012
     .word 0x3C038015
     .word 0xC43A4180
@@ -2900,6 +2901,7 @@ func_800D3B20:
 .section .text.stunt_combo_display, "ax", @progbits
 .globl stunt_combo_display
 stunt_combo_display:
+    /* compiled from src/blob/stunt_combo_display.c */
     .word 0x27BDFE70
     .word 0x3C058014
     .word 0x24A52760

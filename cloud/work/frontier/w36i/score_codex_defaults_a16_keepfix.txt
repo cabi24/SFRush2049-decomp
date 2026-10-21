@@ -1,0 +1,52 @@
+Members:
+func_800B6748:
+  MATCH
+audio_doppler_calc:
+  MATCH
+
+Context (informational; excluded from exit status):
+menu_input_process:
+    +0x000  want 27bdfe88 addiu sp,sp,-376              got 27bdfe50 addiu sp,sp,-432            
+    +0x03c  want afa40178 sw a0,376(sp)                 got afa401b0 sw a0,432(sp)               
+    +0x044  want afa5017c sw a1,380(sp)                 got afa501b4 sw a1,436(sp)               
+    +0x04c  want 87a5017e lh a1,382(sp)                 got 87a501b6 lh a1,438(sp)               
+    +0x050  want 8fb20178 lw s2,376(sp)                 got 8fb201b0 lw s2,432(sp)               
+    +0x05c  want 1000011d b 0x478                       got 10000105 b 0x418                     
+    +0x06c  want 87af017e lh t7,382(sp)                 got 87af01b6 lh t7,438(sp)               
+    +0x07c  want 27a40070 addiu a0,sp,112               got 27a400ac addiu a0,sp,172             
+    +0x080  want 27a40070 addiu a0,sp,112               got 27a400ac addiu a0,sp,172             
+    +0x088  want 8fa50178 lw a1,376(sp)                 got 8fa501b0 lw a1,432(sp)               
+    +0x094  want 8fa50178 lw a1,376(sp)                 got 8fa501b0 lw a1,432(sp)               
+    +0x09c  want 87a6017e lh a2,382(sp)                 got 87a601b6 lh a2,438(sp)               
+  274/320 words differ
+world_trigger_check:
+    +0x000  want 27bdffc8 addiu sp,sp,-56               got 27bdffd8 addiu sp,sp,-40             
+    +0x004  want afbf0034 sw ra,52(sp)                  got afbf0024 sw ra,36(sp)                
+    +0x00c  want afb30030 sw s3,48(sp)                  got 248461d0 addiu a0,a0,25040           
+    +0x010  want afb2002c sw s2,44(sp)                  got 00002825 move a1,zero                
+    +0x014  want afb10028 sw s1,40(sp)                  got 0c001c9c jal 0x7270                  
+    +0x018  want afb00024 sw s0,36(sp)                  got 24060001 li a2,1                     
+    +0x01c  want 248461d0 addiu a0,a0,25040             got 3c0b8015 lui t3,0x8015               
+    +0x020  want 00002825 move a1,zero                  got 256b9da0 addiu t3,t3,-25184          
+    +0x024  want 0c001c9c jal 0x7270                    got 3c048015 lui a0,0x8015               
+    +0x028  want 24060001 li a2,1                       got 3c058011 lui a1,0x8011               
+    +0x02c  want 3c0b8015 lui t3,0x8015                 got 3c068015 lui a2,0x8015               
+    +0x030  want 256b9da0 addiu t3,t3,-25184            got 3c078015 lui a3,0x8015               
+  53/54 words differ
+world_velocity_integrate:
+    +0x000  want 27bdffa0 addiu sp,sp,-96               got 27bdff88 addiu sp,sp,-120            
+    +0x00c  want afb40038 sw s4,56(sp)                  got afb30034 sw s3,52(sp)                
+    +0x010  want 0004a600 sll s4,a0,0x18                got 00049e00 sll s3,a0,0x18              
+    +0x014  want 00147603 sra t6,s4,0x18                got 00137603 sra t6,s3,0x18              
+    +0x018  want 01c0a025 move s4,t6                    got afb1002c sw s1,44(sp)                
+    +0x01c  want afbf004c sw ra,76(sp)                  got 01c09825 move s3,t6                  
+    +0x020  want afbe0048 sw s8,72(sp)                  got afbf004c sw ra,76(sp)                
+    +0x024  want afb70044 sw s7,68(sp)                  got afbe0048 sw s8,72(sp)                
+    +0x028  want afb60040 sw s6,64(sp)                  got afb70044 sw s7,68(sp)                
+    +0x02c  want afb5003c sw s5,60(sp)                  got afb60040 sw s6,64(sp)                
+    +0x030  want afb30034 sw s3,52(sp)                  got afb5003c sw s5,60(sp)                
+    +0x034  want afb20030 sw s2,48(sp)                  got afb40038 sw s4,56(sp)                
+  174/178 words differ (25 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x104, .ro
+sound_update_channel:
+  MATCH
+rc=0

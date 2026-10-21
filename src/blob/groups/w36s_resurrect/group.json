@@ -1,0 +1,41 @@
+{
+ "members": [
+  "func_800D348C",
+  "func_800D3B20",
+  "stunt_combo_display",
+  "camera_follow_path",
+  "func_800C4F68"
+ ],
+ "context": [
+  "func_8008B2E4",
+  "render_display_list",
+  "func_80099B30",
+  "func_8009C3F8",
+  "camera_update_c",
+  "select_screen_update",
+  "particle_system",
+  "track_collision_wall",
+  "Input_ProcessGameplayPad",
+  "func_800BFD8C",
+  "func_8009F058"
+ ],
+ "files": [
+  "resurrect.c",
+  "camera_pair.c",
+  "particle_context.c",
+  "func_8008B2E4.c"
+ ],
+ "keep": [
+  "stunt_combo_display",
+  "func_800C4F68",
+  "func_8008B2E4",
+  "camera_update_c",
+  "select_screen_update",
+  "Input_ProcessGameplayPad",
+  "func_800BFD8C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "w36s resurrect cluster (MAT3 resurrect.c typed ports): Resurrect (stunt_combo_display), FindHumanResPt (func_800D348C, internal), FindBestQuat (func_800D3B20, static inlined -> supersedes the locked stub single), FindSurfaceUvsFromResPoint (camera_follow_path, internal; body from Astra refs/pr/389) and SetResurrectionData (func_800C4F68; Astra body + arcade leftover locals). Context: particle_context.c = byte copy of src/blob/groups/frontier_particle_knot/group.c (camera_update_c fasin wrapper inlined into camera_follow_path; func_8009F058 22/1307 as in that group), func_8008B2E4.c = byte copy of src/blob/func_8008B2E4.c (Random, inlined into FindHumanResPt). Unit overrides: force_internal camera_follow_path, func_800D348C, func_800D3B20. Disclosed devices: unused arcade-named locals (exact frame residual), `} else {}`, one dead store `dp = 0;`, statement line splits (see resurrect.c header).",
+ "provenance": "frontier wave 36 (w36s), 2026-10-21"
+}

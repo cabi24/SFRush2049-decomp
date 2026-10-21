@@ -1630,6 +1630,7 @@ func_800A5BB0:
 .section .text.tire_compound_set, "ax", @progbits
 .globl tire_compound_set
 tire_compound_set:
+    /* compiled from src/blob/tire_compound_set.c */
     .word 0x27BDFFC0
     .word 0xAFB00014
     .word 0x3C108003

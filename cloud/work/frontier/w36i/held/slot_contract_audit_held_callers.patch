@@ -1,0 +1,238 @@
+--- a/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
++++ b/cloud/work/frontier/dot_slot_contract_audit_20261006/evidence.json
+@@ -53,7 +53,9 @@
+       "stack_word": 21
+     },
+     "accepted_callers": [
++      "func_800B4FB0",
+       "TitlePane",
++      "particle_render",
+       "credits_scroll",
+       "control_cell_text",
+       "control_cell_text3",
+@@ -61,11 +63,15 @@
+       "func_800DD0C0",
+       "control_settings",
+       "world_trigger_check",
++      "emitter_update",
++      "func_800EF288",
++      "skid_mark_render",
+       "PrintScores",
+       "SetHighScoreState",
+       "audio_animButtonText",
+       "audio_animText",
+       "func_80100B8C",
++      "func_80100E58",
+       "func_80101904",
+       "func_80101D84",
+       "drawMain",
+@@ -93,15 +99,15 @@
+       "func_8010B9C8",
+       "func_8010BC84"
+     ],
+-    "unaccepted_caller_bytes": 30596,
++    "unaccepted_caller_bytes": 22500,
+     "only_selector_unaccepted_direct_game_dependency": {
+       "object_create": 112,
+       "func_800D9058": 328,
++      "world_velocity_integrate": 712,
+       "dust_cloud_effect": 600,
+-      "skid_mark_render": 1396,
+       "checkpoint_hit": 580
+     },
+-    "bounded_dependency_bytes": 3016
++    "bounded_dependency_bytes": 2332
+   },
+   "no_copy_sites": [
+     {
+@@ -190,7 +196,7 @@
+       "start": "0x800B4FB0",
+       "bytes": 1472,
+       "body_sha256": "823415c6364620b5724c15b28de0736e89b1304d957b818b7301a634015403c2",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800B505C",
+         "0x800B50AC",
+@@ -242,7 +248,7 @@
+       "start": "0x800B8650",
+       "bytes": 448,
+       "body_sha256": "822aa6eff79af97fc1c2814adfb5256e3ce25f421a7bf0d98cae71061833dfcc",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800B8670"
+       ],
+@@ -267,8 +273,7 @@
+       "other_unaccepted_direct_game_calls": [
+         "audio_frame_sync",
+         "display_enable",
+-        "object_create",
+-        "tire_compound_set"
++        "object_create"
+       ]
+     },
+     "credits_scroll": {
+@@ -358,9 +363,7 @@
+       "captures": {
+         "s0": 1
+       },
+-      "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow"
+-      ]
++      "other_unaccepted_direct_game_calls": []
+     },
+     "control_cell_text3": {
+       "start": "0x800DC99C",
+@@ -377,7 +380,6 @@
+         "s0": 4
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+@@ -396,7 +398,6 @@
+         "s0": 3
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+@@ -416,7 +417,6 @@
+         "s0": 4
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+@@ -436,7 +436,6 @@
+         "s0": 4
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "state_utility"
+       ]
+     },
+@@ -450,9 +449,7 @@
+         "0x800ED918"
+       ],
+       "captures": {},
+-      "other_unaccepted_direct_game_calls": [
+-        "audio_doppler_calc"
+-      ]
++      "other_unaccepted_direct_game_calls": []
+     },
+     "world_trigger_check": {
+       "start": "0x800EDCE8",
+@@ -469,7 +466,7 @@
+       "start": "0x800EEDB0",
+       "bytes": 1240,
+       "body_sha256": "ccb2dec14bcbeedf8857f8edcd962891ca1f410a6887a28148bd7960af111e40",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800EF08C",
+         "0x800EF0D0",
+@@ -486,7 +483,7 @@
+       "start": "0x800EF288",
+       "bytes": 808,
+       "body_sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800EF2E8",
+         "0x800EF330",
+@@ -536,7 +533,7 @@
+       "start": "0x800F0100",
+       "bytes": 1396,
+       "body_sha256": "21a6a43dd40e7319680d611f31439c44612bee87855aae4427128e75c1da5382",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x800F0458"
+       ],
+@@ -676,7 +673,6 @@
+         "s0": 7
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "race_position_update",
+         "state_utility"
+       ]
+@@ -693,7 +689,6 @@
+         "s0": 1
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "controls_animButtonText",
+         "object_bytes_sum_global",
+         "race_position_update",
+@@ -712,15 +707,13 @@
+       "captures": {
+         "stack_word": 2
+       },
+-      "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow"
+-      ]
++      "other_unaccepted_direct_game_calls": []
+     },
+     "func_80100E58": {
+       "start": "0x80100E58",
+       "bytes": 2732,
+       "body_sha256": "1ef074ec1c53efab55d79fa190eb7deefe4aaf359de22c211d5c1580f9e0b5d3",
+-      "accepted": false,
++      "accepted": true,
+       "sites": [
+         "0x80101054",
+         "0x80101128",
+@@ -788,7 +781,6 @@
+         "s0": 2
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "func_80100E58",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+@@ -905,7 +897,6 @@
+         "s0": 10
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+@@ -944,7 +935,6 @@
+         "s0": 1
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global"
+       ]
+     },
+@@ -1251,7 +1241,6 @@
+         "s0": 3
+       },
+       "other_unaccepted_direct_game_calls": [
+-        "camera_auto_follow",
+         "object_bytes_sum_global",
+         "state_utility"
+       ]
+--- a/tests/cloud/test_slot_contract_audit.py
++++ b/tests/cloud/test_slot_contract_audit.py
+@@ -29,10 +29,10 @@
+     result = receipt()['summary']
+     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (66, 171, 168)
+     assert sum(result['captures'].values()) == 162
+-    assert result['accepted_callers'] == ['TitlePane', 'credits_scroll', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'PrintScores', 'SetHighScoreState', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54 via w36i 2026-10-21)
+-    assert result['unaccepted_caller_bytes'] == 30596
++    assert result['accepted_callers'] == ['func_800B4FB0', 'TitlePane', 'particle_render', 'credits_scroll', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']  # grows as callers land (w27b/w27c/w27f 2026-10-12; w28a/w28c via w28i 2026-10-13; w29a/w29c/w29b via w29i 2026-10-13; w30d/w30a/w30b via w30i 2026-10-13; w30b options_animText unit via w31i 2026-10-14; w32d control_cell_text/2/3 + func_800DD0C0, w32b audioscr pair via w32i 2026-10-14; w33a highscore_anim via w33k 2026-10-15; w33d control_settings via w33l 2026-10-15; w36m animResults/func_80106874/func_801084D4/func_80109F54 via w36i 2026-10-21; w36o skid_mark_render/func_800EF288/emitter_update, w36q particle_render/func_800B4FB0, w36z func_80100E58 via w36i)
++    assert result['unaccepted_caller_bytes'] == 22500
+     assert len(result['only_selector_unaccepted_direct_game_dependency']) == 5
+-    assert result['bounded_dependency_bytes'] == 3016
++    assert result['bounded_dependency_bytes'] == 2332
+ 
+ 
+ @pytest.mark.parametrize('name,site', [

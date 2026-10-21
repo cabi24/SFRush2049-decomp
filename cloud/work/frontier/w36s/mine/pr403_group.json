@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_8010C974"
+  ],
+  "context": [
+    "func_8008E26C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8010C974",
+    "func_8008E26C"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Research only: callback 499/659 differing, complete ELF extent 2632 versus 2636 native; allocator has exact 300-byte body but three adjacent nonzero deleted-procedure-stub words. Zero accepted bytes."
+}

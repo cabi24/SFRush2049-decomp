@@ -1,0 +1,3 @@
+spliced w36s_resurrect: 5 members, new: ['camera_follow_path', 'func_800C4F68', 'func_800D348C', 'stunt_combo_display']
+image coverage: 1102/1216 functions, 448448/647072 bytes (69.30%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

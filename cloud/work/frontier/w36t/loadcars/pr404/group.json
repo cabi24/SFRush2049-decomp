@@ -1,0 +1,38 @@
+{
+  "members": [
+    "audio_interrupt_handler"
+  ],
+  "context": [
+    "func_8009768C",
+    "audio_output_setup",
+    "func_800BAF90",
+    "func_800BB02C",
+    "func_8008B2B4",
+    "func_8008B2E4",
+    "state_change_preprocess",
+    "resource_slot_clear",
+    "func_80097694",
+    "resource_slots_clear_multiple",
+    "audio_frame_sync"
+  ],
+  "files": [
+    "root.c",
+    "setup.c",
+    "rand.c",
+    "random.c",
+    "resource.c",
+    "heap_total.c"
+  ],
+  "keep": [
+    "audio_interrupt_handler",
+    "audio_output_setup",
+    "func_800BB02C",
+    "func_8008B2B4",
+    "func_8008B2E4",
+    "state_change_preprocess",
+    "resource_slots_clear_multiple",
+    "audio_frame_sync"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

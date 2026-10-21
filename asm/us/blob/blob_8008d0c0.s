@@ -34,6 +34,7 @@ func_8008D0C0:
 .section .text.entity_process_main, "ax", @progbits
 .globl entity_process_main
 entity_process_main:
+    /* compiled from src/blob/entity_process_main.c */
     .word 0x27BDFEE8
     .word 0xAFBF0044
     .word 0xF7BA0038

@@ -1,0 +1,40 @@
+{
+ "members": [
+  "audio_interrupt_handler",
+  "func_8009768C"
+ ],
+ "context": [
+  "audio_output_setup",
+  "func_800BAF90",
+  "func_800BB02C",
+  "func_8008B2B4",
+  "func_8008B2E4",
+  "state_change_preprocess",
+  "resource_slot_clear",
+  "func_80097694",
+  "resource_slots_clear_multiple",
+  "audio_frame_sync"
+ ],
+ "files": [
+  "root.c",
+  "setup.c",
+  "rand.c",
+  "random.c",
+  "resource.c",
+  "heap_total.c",
+  "loadwave.c"
+ ],
+ "keep": [
+  "audio_interrupt_handler",
+  "audio_output_setup",
+  "func_800BB02C",
+  "func_8008B2B4",
+  "func_8008B2E4",
+  "state_change_preprocess",
+  "resource_slots_clear_multiple",
+  "audio_frame_sync"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w36t (wave 36): audio_interrupt_handler = LoadCars (MAT3 carload.c LoadCars) and func_8009768C = FindWaveInstance (waves.c; inlined everywhere, its deleted stub is the locked 8-byte single). root.c/setup.c/rand.c/random.c/heap_total.c/resource.c are Astra's research packet #404 (refs/pr/404 cloud/work/frontier/dot_mat3_loadcars_research_20261017/group/) unchanged, except that resource.c's m2c audio_frame_sync was moved out: loadwave.c is w36t's typed MAT3 port of LoadWave (waves.c, GC 0x8005B648; _NewWaveInstance and the N64 background-load hand-off inlined), context only: unit 4 rows, all from func_80097164's s8 register parameter, which follows SetupWaveModel's unmatched convention. Overrides: force_internal func_8009768C (gives the locked stub its real body; umerge inlines it into LoadCars and leaves the 2-word stub). Unit: blob_unit score audio_interrupt_handler func_8009768C --internal func_8009768C --with root.c --with resource.c --with loadwave.c --neighbours -> both EQUAL, 0 locked bodies differ.",
+ "provenance": "Astra research PR #404 (LoadCars) + w36t LoadWave port; cloud/work/frontier/w36t/RESULTS.md"
+}

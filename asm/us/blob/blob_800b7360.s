@@ -4186,6 +4186,7 @@ func_800BB02C:
 .section .text.audio_interrupt_handler, "ax", @progbits
 .globl audio_interrupt_handler
 audio_interrupt_handler:
+    /* compiled from src/blob/audio_interrupt_handler.c */
     .word 0x27BDFF58
     .word 0xAFBF0054
     .word 0xAFBE0050

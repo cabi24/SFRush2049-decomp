@@ -1,0 +1,39 @@
+Members:
+func_800D348C:
+  MATCH
+    own .rodata verified at 0x80124180..0x80124184
+func_800D3B20:
+  MATCH
+stunt_combo_display:
+  MATCH
+    own .rodata verified at 0x80124184..0x801241A4
+camera_follow_path:
+  MATCH
+    own .rodata verified at 0x80123F84..0x80123F88
+func_800C4F68:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8008B2E4:
+  MATCH
+render_display_list:
+  MATCH
+func_80099B30:
+  MATCH
+func_8009C3F8:
+  MATCH
+camera_update_c:
+  MATCH
+select_screen_update:
+  MATCH
+particle_system:
+  MATCH
+track_collision_wall:
+  MATCH
+Input_ProcessGameplayPad:
+  MATCH
+func_800BFD8C:
+  MATCH
+func_8009F058:
+  MATCH
+rc=0

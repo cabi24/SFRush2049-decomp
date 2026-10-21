@@ -1,0 +1,3 @@
+flags {'entity_process_main': '-O3', 'tire_compound_set': '-O3'}
+refused {}
+image_ok True locked 1107

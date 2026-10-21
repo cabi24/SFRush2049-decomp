@@ -865,6 +865,7 @@ func_800B4730:
 .section .text.voice_stop_2, "ax", @progbits
 .globl voice_stop_2
 voice_stop_2:
+    /* compiled from src/blob/voice_stop_2.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA4001C
@@ -925,6 +926,7 @@ voice_stop_2:
 .section .text.audio_bus_mix, "ax", @progbits
 .globl audio_bus_mix
 audio_bus_mix:
+    /* compiled from src/blob/audio_bus_mix.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C

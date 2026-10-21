@@ -1,0 +1,1 @@
+--internal replay_save_prompt --internal op_gfx_lock --internal op_gfx_unlock --internal op_font_set --internal op_SetFont --internal op_setButtonColor

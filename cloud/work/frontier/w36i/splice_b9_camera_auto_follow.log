@@ -1,0 +1,3 @@
+flags {'camera_auto_follow': '-O3'}
+refused {}
+image_ok True locked 1103

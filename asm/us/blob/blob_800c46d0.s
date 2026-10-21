@@ -5,6 +5,7 @@
 .section .text.camera_follow_path, "ax", @progbits
 .globl camera_follow_path
 camera_follow_path:
+    /* compiled from src/blob/camera_follow_path.c */
     .word 0x27BDFF98
     .word 0x04C000E3
     .word 0xAFBF0014
@@ -569,6 +570,7 @@ func_800C4CF8:
 .section .text.func_800C4F68, "ax", @progbits
 .globl func_800C4F68
 func_800C4F68:
+    /* compiled from src/blob/func_800C4F68.c */
     .word 0x27BDFF98
     .word 0x00047400
     .word 0x000E7C03

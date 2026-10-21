@@ -211,6 +211,7 @@ camera_zoom_fov:
 .section .text.camera_auto_follow, "ax", @progbits
 .globl camera_auto_follow
 camera_auto_follow:
+    /* compiled from src/blob/camera_auto_follow.c */
     .word 0x27BDFF90
     .word 0xAFB1001C
     .word 0x00078C00

@@ -7,10 +7,6 @@
   "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
   "note": "wave 1: strict MATCH with both real callers in the unit, but those callers (func_800C3AD0, input_process_controller) are themselves kept alive by stand-ins, so the group is not spliceable yet"
  },
- "input_process_controller": {
-  "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
-  "note": "wave 1: byte-identical in the unit; its own caller input_deadzone_apply is a stand-in"
- },
  "func_800E7FA0": {
   "evidence": "cloud/work/frontier/w2e/func_800E7FA0/grp",
   "note": "wave 2: 40/311 words with a stand-in caller; only caller func_800E847C (2,100 bytes) is unmatched. NOT a match - recorded so the next agent starts here"

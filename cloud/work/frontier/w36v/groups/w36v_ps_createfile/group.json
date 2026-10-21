@@ -1,0 +1,26 @@
+{
+ "name": "w36v_ps_createfile",
+ "files": [
+  "group.c"
+ ],
+ "members": [
+  "PS_CreateFile",
+  "no_catchup"
+ ],
+ "context": [
+  "func_800A1E94",
+  "w36v_standin_caller"
+ ],
+ "keep": [
+  "PS_CreateFile",
+  "w36v_standin_caller"
+ ],
+ "claims": [],
+ "provisional_claims": [
+  "PS_CreateFile",
+  "no_catchup"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "PROVISIONAL (stand-in caller). PS_CreateFile (paksysdc.c, 1752 B) and no_catchup (one-parameter InsertLLE helper, 56 B, already locked as a two-parameter single) are EQUAL in the whole-program unit with func_800A1E94 internal (force_internal; 0 locked bodies differ) and no_catchup internal. w36v_standin_caller stands in for no_catchup's second retail caller track_render_process (PS_PakServer, lane w36p, unmatched): with one call site umerge inlines no_catchup. Installable once PS_PakServer is in the unit (or accepted as unmatched context, cf. input_process_controller) with the stand-in removed. paksys_queue_init/paksys_lock/paksys_unlock/pfs_get_node are non-static internal helpers (no keep entry; pfs_get_node = the deleted static of locked stub 0x800A2D44).",
+ "provenance": "lane w36v (wave 36), 2026-10-21; start draft Astra PR #410 candidate.c (dot_mat3_pak_cleanup_research_20261017); house style from group pak_write_cluster; names from MAT3 paksysdc.c/rush_types.h"
+}

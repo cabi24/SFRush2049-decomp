@@ -1,0 +1,1 @@
+--internal particle_collision --internal particle_render --internal vi_gfx_lock --internal vi_gfx_unlock --internal vi_SetFont --internal vi_setButtonColor

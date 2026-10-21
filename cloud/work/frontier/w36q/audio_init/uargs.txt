@@ -1,0 +1,1 @@
+--internal drone_pathfind_main --internal drone_collision_avoid --internal di_setButtonColor --internal di_post_type1 --internal di_ProcessCommand --internal du_gfx_lock --internal du_gfx_unlock --internal du_font_set --internal du_SetFont --internal du_validOption

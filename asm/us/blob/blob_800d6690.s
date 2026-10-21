@@ -763,6 +763,7 @@ drone_collision_avoid:
 .section .text.drone_pathfind_main, "ax", @progbits
 .globl drone_pathfind_main
 drone_pathfind_main:
+    /* compiled from src/blob/drone_pathfind_main.c */
     .word 0x27BDFF58
     .word 0xAFBF001C
     .word 0x240E0001

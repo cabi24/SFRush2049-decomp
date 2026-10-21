@@ -1,3 +1,26 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/*
+ * Camera unit cluster (wave 12, lane w12f; builds on w11c/w10d).  All camera-unit functions in one file:
+ * camera_aspect_ratio, camera_fov_control, camera_build_view_matrix, camera_free_look, camera_look_at_point,
+ * camera_track_spline, func_800C15FC (the inlined slot setter = retail stub), camera_process_input,
+ * camera_update.
+ *   blob_unit --tag w12f score camera_process_input func_800C15FC camera_update camera_free_look
+ *       camera_look_at_point camera_track_spline camera_aspect_ratio camera_fov_control camera_build_view_matrix
+ *       --with group.c --internal func_800C15FC --neighbours
+ * w12f change to a locked member: camera_build_view_matrix's parameters are (Camera *cam, s32 idx) -- retail
+ * passes cam (IPA register s3) before idx (a0); the code of camera_build_view_matrix and camera_process_input
+ * is unchanged (both EQUAL).  Residuals and every disclosed quirk: ../../RESULTS.md.
+ * w15a: camera_update body replaced by cloud/work/frontier/w15a/best.c (5/719; two disclosed compiled-out
+ * reads, see its header and ../../RESULTS.md).  The other members are byte-identical to w12f's group.c.
+ * w16a: camera_update body replaced by cloud/work/frontier/w16a/camera_update/best.c (EQUAL 719/719; adds the
+ * disclosed `idx * 1 + 1 == sc->count` identity at the two do-loop end tests, see its header and
+ * cloud/work/frontier/w16a/RESULTS.md); D_80123E8C is now the natural literal 0.0425f (own .rodata) and its
+ * extern declaration is dropped.  Every other function is byte-identical to w15a's group.c.
+ */
+float fabsf(float);
+float sqrtf(float);
+#pragma intrinsic (fabsf)
+#pragma intrinsic (sqrtf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -44,6 +67,83 @@ typedef f32 Mat3f[3][3];
 typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 struct OSPfs;
+/* cloud: camera structures (hand-derived from the retail words) */
+typedef struct CamTbl {          /* D_80117530[], 0x30 bytes */
+    u8 pad00[0xC];
+    s32 w0C;
+    s16 mode;                    /* 0x10 */
+    s16 s12;
+    s16 s14;
+    s16 s16_;
+    s32 s18;
+    s32 trackA;                  /* 0x1C */
+    s32 s20;
+    s32 trackB;                  /* 0x24 */
+    s32 s28;
+    f32 f2C;
+} CamTbl;
+extern CamTbl D_80117530[];
+typedef struct CamNode {         /* pool entry from func_80090284 */
+    struct CamNode *next;        /* 0x00 */
+    s16 s04;
+    u8 pad06[6];
+    struct Camera *cam;          /* 0x0C */
+    f32 f10;                     /* 0x10 */
+    s32 w14;
+} CamNode;
+struct Camera;
+struct CamCtl;
+typedef struct CamKey {          /* 0x44 bytes */
+    f32 pos[3];                  /* 0x00 */
+    f32 dir[3];                  /* 0x0C */
+    f32 scale[3];                /* 0x18 */
+    f32 rot[4];                  /* 0x24 */
+    f32 f34;
+    f32 dur;                     /* 0x38 */
+    f32 f3C;
+    s32 flags;                   /* 0x40 */
+} CamKey;
+typedef struct CamScene {
+    u8 pad00[0x10];
+    s32 flags;                   /* 0x10 */
+    s16 count;                   /* 0x14 */
+    s16 id;                      /* 0x16 */
+    struct CamScene *link;       /* 0x18 */
+    CamKey *keys;                /* 0x1C */
+    struct CamCtl *cur;          /* 0x20 */
+} CamScene;
+typedef struct CamCtl {
+    CamScene *scene;             /* 0x00 */
+    f32 t;                       /* 0x04 */
+    u8 pad08[4];
+    s16 idx;                     /* 0x0C */
+    u16 mode;                    /* 0x0E */
+    f32 f10;                     /* 0x10 */
+    f32 f14;
+    f32 look[3];                 /* 0x18 */
+    f32 mat[9];                  /* 0x24 */
+} CamCtl;
+typedef struct Camera {
+    u8 pad00[4];
+    u8 flags;                    /* 0x04 */
+    u8 pad05[9];
+    s16 slot;                    /* 0x0E */
+    s16 tbl;                     /* 0x10 */
+    u8 pad12[2];
+    f32 m[3][3];                 /* 0x14 */
+    f32 pos[3];                  /* 0x38 */
+    u8 pad44[0xC];
+    s16 s50;
+    u8 pad52[6];
+    s16 s58;
+    s16 s5A;
+    u8 pad5C[4];
+    s32 handle;                  /* 0x60 */
+    s8 state;                    /* 0x64 */
+    s8 s65;
+    u8 pad66[6];
+    CamCtl *ctl;                 /* 0x6C */
+} Camera;
 extern u8 rspbootTextStart[], rspbootTextEnd[];
 extern u8 gspF3DEX2_fifoTextStart[], gspF3DEX2_fifoTextEnd[];
 extern u8 gspF3DEX2_fifoDataStart[], gspF3DEX2_fifoDataEnd[];
@@ -725,7 +825,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern s32 D_8002EB94;
+extern f32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -1086,7 +1186,6 @@ extern s32 D_801174DC;
 extern s32 D_8011750C;
 extern u8 D_80117510;
 extern s32 D_80117518;
-extern s32 D_80117530;
 extern s32 D_80117550;
 extern s32 D_80118C10;
 extern s32 D_80118DDC;
@@ -1578,7 +1677,6 @@ extern f32 D_80123E7C;
 extern f32 D_80123E80;
 extern f32 D_80123E84;
 extern f32 D_80123E88;
-extern f32 D_80123E8C;
 extern f32 D_80123E90;
 extern s32 D_80123E94;
 extern s32 D_80123EC4;
@@ -2075,7 +2173,7 @@ extern s32 D_80138928;
 extern s32 D_801391E0;
 extern s32 D_801391E4;
 extern s16 D_801391E8;
-extern s32 D_801391F0;
+extern struct CamNode *D_801391F0;
 extern s32 D_801391F8;
 extern s32 D_80139228;
 extern f32 D_801392B8;
@@ -2099,7 +2197,7 @@ extern s32 D_8013C128;
 extern s32 D_8013C228;
 extern s32 D_8013C234;
 extern s32 D_8013C238;
-extern s32 D_8013C300;
+extern struct Camera *D_8013C300[];
 extern s32 D_8013C304;
 extern s32 D_8013C308;
 extern s32 D_8013C378;
@@ -2858,10 +2956,10 @@ void brake_force_apply(s32 arg0);
 void brake_light_update(s32 arg0, void *arg1, void *arg2, void *arg3, s16 *arg4);
 void buffer_swap(void *arg0, s16 arg1);
 s32 callback_init(void *arg0);
-void camera_aspect_ratio(void);
+
 void camera_auto_follow(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, u8 *arg6);
 void camera_blend_between(void *arg0, f32 *arg1);
-void camera_build_view_matrix(s16 arg0);
+void camera_build_view_matrix(Camera *cam, s32 idx);
 void camera_cinematic_mode(s16 arg0, s16 arg1, s32 arg2, void *arg3);
 void camera_clip_planes(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
 void camera_collision_avoid(void *arg0, void *arg1, void *arg2, s32 arg3, void *arg4, s32 arg5, void *arg6, void *arg7);
@@ -2870,24 +2968,23 @@ void camera_dolly(void *arg0, void *arg1, f32 arg2, f32 arg3, void *arg4, f32 *a
 void camera_first_person(s32 arg0, void *arg1, void *arg2, void *arg3);
 void camera_follow_path(s32 arg0, s32 arg1, s32 arg2);
 void camera_follow_target(void *arg0, void *arg1, void *arg2, void *arg3, f32 arg4, void *arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, s32 arg12);
-void camera_fov_control(void);
-void camera_free_look(void);
+
+
 void camera_lerp_position(s32 arg0);
-void camera_look_at_point(void);
+
 void camera_play_script(void *arg0, void *arg1, void *arg2);
 void camera_position_update(void);
-void camera_process_input(void *arg0);
 void camera_reset(void);
 void camera_scene_manager(void);
 void camera_shake_start(void);
 u8 camera_shake_update(s32 arg0);
 void camera_smooth_follow(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void camera_smooth_lerp(void);
-s32 camera_target_track(void *arg0, s32 arg1, f32 arg2, s32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, u8 arg9);
-void camera_track_spline(void *arg3, s32 arg0);
+s32 camera_target_track(void *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9);
+void camera_track_spline(Camera *cam);
 void camera_transform(void);
 u16 *camera_trigger_check(void *arg0, void *arg1, f32 *arg2);
-void camera_update(s32 *arg0, s16 arg1);
+
 void camera_update_a(s32 arg0, void *arg1, s32 *arg2, s32 (*arg3)(void *, s32));
 void camera_update_b(void *arg0, s32 *arg1, s32 *arg2);
 void camera_update_c(f32 arg0);
@@ -3016,7 +3113,7 @@ void *func_8008E3C0(void *arg0);
 void func_8008E408(s16 arg0, s32 arg1);
 s16 func_8008FFD0(s16 arg0);
 s16 func_8009002C(s16 arg0);
-s32 func_80090284(void);
+struct CamNode *func_80090284(void);
 void func_80090308(s16 arg0);
 void func_80090E9C(f32 arg0, void *arg1);
 void func_80090F44(f32 arg0, void *arg1);
@@ -3175,7 +3272,7 @@ void func_800BF01C(void);
 void func_800BF780(void *arg0, void *arg1, void *arg2);
 void func_800BFBE8(void *arg0, void *arg1, s32 arg2);
 void func_800BFD8C(f32 arg0, void *arg1, void *arg2, void *arg3);
-void func_800C0294(s32 arg0, void *arg1);
+void func_800C0294(s32 arg0, f32 *arg1);
 void func_800C0828(void *arg0);
 void func_800C1A00(s32 arg0, void *arg1);
 s32 func_800C1B60();
@@ -3690,6 +3787,758 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_8009768C(void) {
 
+/* group members */
+void camera_aspect_ratio(Camera *ipa_s0);
+void camera_fov_control(Camera *ipa_s0);
+void camera_free_look(Camera *ipa_s1);
+void camera_look_at_point(Camera *ipa_s0);
+void camera_process_input(Camera *cam);
+void camera_update(CamNode *node, s16 flag);
+
+/* the pair of tests around camera_target_track is an inlined helper */
+static __inline s32 camera_track_entry(Camera *cam, f32 f2C, s32 id, s32 s28) {
+    if (D_8010FFC0 == 0) {
+        return -1;
+    }
+    if (id == -1) {
+        return -1;
+    }
+    return camera_target_track(&cam->pos, (s32) &D_801141B0, f2C, 0.0f, 1.0f, 0.0f, id, 0, s28, 0x80);
+}
+
+void camera_aspect_ratio(Camera *cam) {
+    CamTbl *t;
+
+    results_screen_update(cam->handle);
+    t = &D_80117530[cam->tbl];
+    if (t->trackA != -1) {
+        cam->handle = camera_track_entry(cam, t->f2C, t->trackA, t->s28);
+    } else {
+        cam->handle = -1;
+    }
+    cam->state = 0;
+}
+
+void camera_fov_control(Camera *cam) {
+    CamTbl *t;
+
+    if (cam->state != 2 && (cam->state != 0 || leaderboard_update(cam->handle) == 0)) {
+        results_screen_update(cam->handle);
+        t = &D_80117530[cam->tbl];
+        if (t->trackB != -1) {
+            cam->handle = camera_track_entry(cam, t->f2C, t->trackB, t->s28);
+        } else {
+            cam->handle = -1;
+        }
+        cam->state = 2;
+    }
+}
+
+
+void camera_free_look(Camera *cam) {
+    f32 out[4];
+    f32 d[3];
+    CamCtl *ctl;
+    CamScene *sc;
+    CamKey *k;
+    CamKey *keys;
+    f32 t;
+    f32 dur;
+    s32 next;
+    s32 idx;
+    s32 near;
+    f32 dist;
+
+    ctl = cam->ctl;
+    sc = cam->ctl->scene;
+    idx = ctl->idx;
+    k = &sc->keys[idx];
+    keys = sc->keys;
+    if (k->flags & 0x20) {
+        goto plain;
+    }
+    if (ctl->mode & 8) {
+        t = k->dur;
+        t -= ctl->t;
+    } else {
+        t = ctl->t;
+    }
+    dur = k->dur;
+    if (dur == 0.0f) {
+plain:
+        func_800BFBE8(cam->m[0], k->rot, 1);
+    } else {
+        next = idx + 1;
+        if (next >= sc->count && (sc->flags & 2)) {
+            next = 0;
+        }
+        func_800BFD8C(t / dur, k->rot, keys[next].rot, out);
+        func_800BFBE8(cam->m[0], out, 1);
+    }
+    if (sc->flags & 0x20) {
+        near = 1;
+        if (gameplay_mode == 5) {
+            d[0] = cam->pos[0] - ((f32 *) &player_array)[2];
+            d[1] = cam->pos[1] - ((f32 *) &player_array)[3];
+            d[2] = cam->pos[2] - ((f32 *) &player_array)[4];
+            dist = d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
+            if (22500.0f < dist) {
+                near = 0;
+            }
+        }
+        if (near != 0) {
+            camera_first_person(sc->id, cam->pos, ctl->mat, cam->m[0]);
+        }
+    }
+}
+
+void camera_look_at_point(Camera *cam) {
+    CamTbl *t;
+    f32 f;
+    f32 r;
+    s32 a;
+    s32 b;
+    s32 x;
+    s32 y;
+    s32 tt;
+
+    if (cam->state == 1) {
+        if (cam->handle != -1) {
+            if (D_80117530[cam->tbl].s20 == 1) {
+                b = (s32) cam->ctl->f14;
+                a = (s32) cam->ctl->f10;
+                if (b == 0) {
+                    b = a != 0 ? a : 1;
+                }
+/*@{*/tt = 0;
+if (b < 0) {
+ tt = 1;
+ }
+ if (tt) {}/*@| if (b < 0) {} @| tt = b < 0; if (tt) {} @}*/
+                x = a < 0 ? -a : a;
+                y = b < 0 ? -b : b;
+                r = ((f32) x / (f32) y) * 0.5f + .5f;
+                f = r;
+                if (r < 0.0f || r > 1.0f) {
+                    if (r < 0.0f) {
+                        f = 0.0f;
+                    } else {
+                        f = 1.0f;
+                    }
+                }
+            } else {
+                f = 1.0f;
+            }
+            if (D_80117530[cam->tbl].s20 == 0x12) {
+                camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
+                return;
+            }
+            if (D_80117530[cam->tbl].s20 == 0x61) {
+                camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, /*@{*/0.75f/*@| .75f @}*/);
+                return;
+            }
+            camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, /*@{*/0.75f * f + 0.25f/*@| f * 0.75f + 0.25f @| .75f * f + .25f @| 0.25f + 0.75f * f @}*/, f);
+        }
+    } else {
+        if (cam->state == 2) {
+            camera_aspect_ratio(cam);
+            return;
+        }
+        if (leaderboard_update(cam->handle) == 0) {
+            results_screen_update(cam->handle);
+            if (D_80117530[cam->tbl].s20 != -1) {
+                cam->handle = camera_track_entry(cam, D_80117530[cam->tbl].f2C, D_80117530[cam->tbl].s20, D_80117530[cam->tbl].s28);
+                if (D_80117530[cam->tbl].s20 == 1) {
+                    camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
+                }
+            } else {
+                cam->handle = -1;
+            }
+            cam->state = 1;
+        }
+    }
+}
+
+void camera_build_view_matrix(Camera *cam, s32 idx) {
+    CamCtl *ctl;
+    CamScene *sc;
+    s32 i;
+
+    ctl = cam->ctl;
+    sc = ctl->scene;
+    if ((sc->flags & 1) && idx >= sc->count - 1) {
+        ctl->mode = 8;
+    } else {
+        ctl->mode = 4;
+    }
+    ctl->idx = idx;
+    ctl->t = 0.0f;
+    ctl->f10 = 0.0f;
+    cam->pos[0] = sc->keys[ctl->idx].pos[0];
+    cam->pos[1] = sc->keys[ctl->idx].pos[1];
+    cam->pos[2] = sc->keys[ctl->idx].pos[2];
+    ctl->look[0] = sc->keys[ctl->idx].pos[0];
+    ctl->look[1] = sc->keys[ctl->idx].pos[1];
+    ctl->look[2] = sc->keys[ctl->idx].pos[2];
+    if (sc->flags & 0xC0) {
+        sc->flags |= 0x100;
+        sc->cur = ctl;
+    }
+    if (sc->flags & 0x5000) {
+        sc->flags |= 0x400;
+    }
+    func_800BFBE8(cam->m, sc->keys[ctl->idx].rot, 1);
+    math_utility(cam->m, ctl->mat);
+    func_800C0828(ctl->mat);
+    for (i = 0; i < 3; i++) {
+        cam->m[0][i] = sc->keys[ctl->idx].scale[0] * cam->m[0][i];
+        cam->m[1][i] = sc->keys[ctl->idx].scale[1] * cam->m[1][i];
+        cam->m[2][i] = sc->keys[ctl->idx].scale[2] * cam->m[2][i];
+    }
+}
+
+void camera_track_spline(Camera *cam) {
+    f32 v[3];
+    f32 w[3];
+    f32 u[3];
+    CamCtl *ctl;
+    CamScene *sc;
+    CamKey *k;
+    CamKey *keys;
+    s32 idx;
+    s32 n;
+    s32 next;
+    s32 near;
+    f32 t;
+    f32 d;
+    f32 a;
+    f32 c;
+    f32 dv;
+    s32 i;
+    s32 j;
+
+    ctl = cam->ctl;
+    idx = ctl->idx;
+    sc = ctl->scene;
+    k = &sc->keys[idx];
+    n = sc->count;
+    keys = sc->keys;
+    if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
+        if (k->flags & 0x10000008) {
+            if (ctl->mode & 8) {
+                t = k->dur - ctl->t;
+            } else {
+                t = ctl->t;
+            }
+            d = k->f34 * (t / k->dur);
+        } else {
+            next = idx + 1;
+            if (next >= n && (sc->flags & 2)) {
+                next = 0;
+            }
+            a = k->f3C;
+            d = keys[next].f3C;
+            dv = d - a;
+            if (ctl->mode & 8) {
+                t = k->dur - ctl->t;
+            } else {
+                t = ctl->t;
+            }
+            c = (t * t * dv) / (k->dur * 2);
+            if (d < a) {
+                d = a * t + c;
+            } else {
+                d = a * t + c;
+            }
+        }
+        v[0] = k->dir[0];
+        v[1] = k->dir[1];
+        v[2] = k->dir[2];
+        ctl->look[0] = cam->pos[0];
+        ctl->look[1] = cam->pos[1];
+        ctl->look[2] = cam->pos[2];
+        v[0] = v[0] * d;
+        v[1] = v[1] * d;
+        v[2] = v[2] * d;
+        for (i = 0; &v[i] < &v[3]; i++) {
+            j = v[i] * 32.0f;
+            v[i] = j * 0.03125f;
+        }
+        cam->pos[0] = k->pos[0] + v[0];
+        cam->pos[1] = k->pos[1] + v[1];
+        cam->pos[2] = k->pos[2] + v[2];
+        v[0] = cam->pos[0] - ctl->look[0];
+        v[1] = cam->pos[1] - ctl->look[1];
+        v[2] = cam->pos[2] - ctl->look[2];
+        ctl->f10 = sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) / *(volatile f32 *) &D_8002EB94;
+        if (sc->flags & 0x20) {
+            near = 1;
+            if (gameplay_mode == 5) {
+                w[0] = cam->pos[0] - ((f32 *) &player_array)[2];
+                w[1] = cam->pos[1] - ((f32 *) &player_array)[3];
+                w[2] = cam->pos[2] - ((f32 *) &player_array)[4];
+                d = w[0] * w[0] + w[1] * w[1] + w[2] * w[2];
+                if (202500.0f < d) {
+                    near = 0;
+                }
+            }
+            if (near != 0) {
+                func_800C0294(sc->id, v);
+            }
+        }
+    }
+}
+
+/*
+ * func_800C15FC (retail: caller-less `jr ra; nop` stub between camera_update and camera_process_input):
+ * the slot setter D_8012E700[slot].x14 = v (0x44-byte records), inlined by umerge at every call site
+ * (camera_update x4, camera_process_input x1) and therefore deleted.  Must stay INTERNAL (non-static,
+ * not kept) so that the stub remains.  Its two parameters give retail's v0/v1 pair; with its two
+ * locals it reserves the four frame slots per call site that both callers' frames need.
+ */
+void func_800C15FC(s32 slot, u16 v) {
+    u8 *base;
+    u16 *p;
+
+    base = (u8 *) &D_8012E714;
+    p = (u16 *) (base + slot * 0x44);
+    *p = v;
+}
+
+/*
+ * camera_process_input(cam): first-frame set-up of a scripted camera.  state = 2; unless already started
+ * (cam->flags & 1): reset the controller (mode 0, t 0); in gameplay mode 2 with a scene id > 0 snap the
+ * camera to every key flagged 0x1000000 and do the first-person set-up from key 0; otherwise register the
+ * camera (D_8013C300[D_8013F1DC++]), store the largest key f3C in ctl->f14, build the view matrix of the
+ * first key flagged 1 but not 0x1000 (and flag it 0x1000), set the s5A period from the table's s14
+ * (361 -> 4, 365 -> 20), start the scene (flags 0x100000 -> 0x200400 and the entity slot value
+ * D_80142A7A unless 0x8000) and link a new update node from func_80090284 (period 0.25 / 0.0425).  Then
+ * cam->flags |= 1.  N64-only (scripted attract/replay cameras); no arcade ancestor.
+ * Quirks, all needed for the 248-byte frame (every stack offset checked against retail):
+ *  - `u8 col[4] = {255, 0, 0, 255}`: initialised local aggregate; IDO copies it from an anonymous .data
+ *    word (retail 0x8011750C = 0xFF0000FF) to 200(sp) and never reads it (debug colour whose user is
+ *    compiled out).  Own .data: verified by the scorer/splice, not a reference to a named global.
+ *  - DISCLOSED: `s32 unused[11]` (top 44 bytes, 204..247) and `unused1`/`unused2` (two slots between the
+ *    function's locals and the mode-2 block) are unused locals.  They are the exact frame residual;
+ *    nothing natural found explains them (block-scoped and inlined locals are always allocated below the
+ *    function-level ones; natural splits of the existing variables change the code).
+ *  - the mode-2 locals are block-scoped, `k` in its own loop-body block (allocated after `mat`).
+ */
+void camera_process_input(Camera *cam) {
+    s32 unused[11];
+    u8 col[4] = { 255, 0, 0, 255 };
+    CamTbl *tbl;
+    CamScene *sc;
+    CamCtl *ctl;
+    s32 i;
+    f32 mx;
+    CamNode *node;
+    s32 unused1;
+    s32 unused2;
+
+    cam->state = 2;
+    tbl = &D_80117530[cam->tbl];
+    ctl = cam->ctl;
+    sc = cam->ctl->scene;
+    if (!(cam->flags & 1)) {
+        ctl->mode = 0;
+        ctl->t = 0.0f;
+        if (gameplay_mode == 2 && sc->id > 0) {
+            CamScene *s;
+            s32 j;
+            f32 v[3];
+            f32 delta[3];
+            f32 mat[9];
+
+            s = cam->ctl->scene;
+            for (j = 0; j < s->count; j++) {
+                CamKey *k = &s->keys[j];
+
+                if (s->keys[j].flags & 0x1000000) {
+                    cam->pos[0] = k->pos[0];
+                    cam->pos[1] = k->pos[1];
+                    cam->pos[2] = k->pos[2];
+                    func_800BFBE8(cam->m, k->rot, 1);
+                }
+            }
+            if (s->flags & 0x20) {
+                v[0] = s->keys[0].pos[0];
+                v[1] = s->keys[0].pos[1];
+                v[2] = s->keys[0].pos[2];
+                func_800BFBE8(mat, s->keys[0].rot, 1);
+                func_800C0828(mat);
+                delta[0] = cam->pos[0] - v[0];
+                delta[1] = cam->pos[1] - v[1];
+                delta[2] = cam->pos[2] - v[2];
+                func_800C0294(s->id, delta);
+                camera_first_person(s->id, cam->pos, mat, cam->m);
+            }
+        } else {
+            if (sc->flags & 0x20) {
+                D_8013C300[D_8013F1DC++] = cam;
+            }
+            mx = 0.0f;
+            for (i = 0; i < sc->count; i++) {
+                if (mx < sc->keys[i].f3C) {
+                    mx = sc->keys[i].f3C;
+                }
+            }
+            ctl->f14 = mx;
+            for (i = 0; i < sc->count; i++) {
+                if ((sc->keys[i].flags & 1) && !(sc->keys[i].flags & 0x1000)) {
+                    camera_build_view_matrix(cam, i);
+                    sc->keys[i].flags |= 0x1000;
+                    i = sc->count;
+                }
+            }
+            if (tbl->s14 == 361) {
+                cam->s5A = 4;
+            } else if (tbl->s14 == 365) {
+                cam->s5A = 20;
+            }
+            if ((sc->flags & 0x40) && !(sc->flags & 0x4000)) {
+                sc->flags &= ~0x100000;
+                sc->flags |= 0x200400;
+                if (!(sc->flags & 0x8000)) {
+                    func_800C15FC(cam->slot, D_80142A7A);
+                }
+            }
+            node = func_80090284();
+            if (node != NULL) {
+                node->s04 = 0;
+                node->w14 = tbl->w0C;
+                node->cam = cam;
+                if (tbl->s14 == 361) {
+                    node->f10 = 0.25f;
+                } else if (tbl->s14 == 365) {
+                    node->f10 = 0.0425f;
+                }
+                node->next = D_801391F0;
+                D_801391F0 = node;
+            }
+        }
+        cam->flags |= 1;
+    }
+}
+
+/* camera_update (0x800C0AC0, 2,876 B): the camera-script key stepper.  Advances ctl->t by the frame time, walks
+ * the scene's key list (sc->keys[], sc->count) forwards (mode 4) or backwards (mode 8) with wrap / ping-pong /
+ * stop flags, then runs the spline / free-look / look-at updates, the per-node texture-index animation
+ * (D_801427C0 table, func_800C15FC setter) and the mode-4 key-direction drift.
+ * Wave 16 (w16a): EQUAL in the whole-program unit (719/719 words, frame 248/248).  Compile inside the camera
+ * cluster (groups/camera_aspect_ratio/group.c).
+ * Shaping carried over from w12f (../../w12f/RESULTS.md): camera_build_view_matrix(cam, idx) parameter order;
+ * m = D_801427C0[..] before the flag test and the empty-then `if (flags & 0x8000) {} else {setter}`; one variable
+ * per register (idx = key flags / tb->s14 / s04 counter / block_99 index; fr = do-loop t and fraction; f = dur);
+ * `cam->m[k][i] *= sv[k]`; `node->f10 -= dt`.
+ * From w15a (../../w15a/RESULTS.md): the s50 texture index is the parameter `flag` reused (s16), for its
+ * formal-parameter copy relation (a1); DISCLOSED compiled-out read `lk = sc->link; if (lk) {}` after m's load
+ * (a v1 holder: m -> a0, tb -> a2); DISCLOSED compiled-out read `if (sc->keys[idx].dur != 0.0f) {}` after the
+ * division (tt -> f14).  Both are still needed (without them: 8 / 4 words).
+ * New in w16a, DISCLOSED shaping device: both do-loop end tests are written `idx * 1 + 1 == sc->count`.  The
+ * `* 1` folds away (no code) but makes the idx side an expression, not a plain variable, when uopt's
+ * readnxtinst builds the compare.  For equ/neq it keeps the operand order only when op1 is a plain variable and
+ * otherwise swaps, and it moves a `var + const` constant to the other side; so `idx + 1 == count` becomes
+ * equ(idx, count - 1) and `count == idx + 1` becomes equ(idx + 1, count), both idx-first.  With the identity op
+ * the tree is equ(count, idx*1 + 1): ugen evaluates count first (t6 / t9), as retail does.  `(idx ^ 0)` and
+ * `(idx >> 0)` give the same object.  Traced in ../RESULTS.md.
+ * No implicit int, no unused locals, no pad arrays.  0.0425f is camera_update's own .rodata word at
+ * 0x80123E8C (retail bits 0x3D2E147B, checked against the image).
+ */
+void camera_update(CamNode *node, s16 flag) {
+    Camera *cam;
+    CamCtl *ctl;
+    CamScene *sc;
+    CamScene *lk;
+    CamCtl *lc;
+    CamTbl *tb;
+    u16 m;
+    s32 idx;
+    s32 i;
+    s32 nx;
+    s8 moved;
+    f32 dv[3];
+    f32 sv[3];
+    f32 f;
+    f32 tt;
+    f32 fr;
+
+    moved = 0;
+    if (flag == 0) {
+        entity_transform_apply(node, 1);
+        return;
+    }
+    if (((state_word_a & 0x7C0000) || (state_word_a & 8)) && D_801170FC == 0) {
+        cam = node->cam;
+        ctl = cam->ctl;
+        sc = ctl->scene;
+        if (sc->flags & 0x40) {
+            if (sc->flags & 0x4000) {
+                if (!(sc->flags & 0x200)) {
+                    if (!(sc->flags & 0x400)) {
+                        if (ctl->mode & 4) {
+                            ctl->mode &= ~4;
+                            ctl->mode |= 8;
+                            ctl->t = sc->keys[ctl->idx].dur - ctl->t;
+                        }
+                        if (sc->flags & 0x100) {
+                            camera_aspect_ratio(cam);
+                        }
+                        sc->flags = sc->flags & ~0x100;
+                    }
+                } else {
+                    if (sc->flags & 0x400) {
+                        sc->flags = sc->flags & ~0x500;
+                        camera_aspect_ratio(cam);
+                    }
+                    sc->flags = sc->flags & ~0x200;
+                }
+            } else {
+                if ((sc->flags & 0x2000) && (sc->flags & 0x100000)) {
+                    if (sc->link->flags & 0x100) {
+                        sc->flags &= ~0x100000;
+                        sc->flags |= 0x200400;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A7A);
+                        }
+                        camera_fov_control(cam);
+                        return;
+                    }
+                }
+                if ((sc->flags & 0x400) && (sc->flags & 0x200)) {
+                    lk = sc->link;
+                    if (lk->flags & 0x100) {
+                        lk->flags &= ~0x100;
+                    } else if (sc->flags & 0x1000) {
+                        lc = lk->cur;
+                        if (lc->mode & 8) {
+                            lc->mode &= ~8;
+                            lc->mode |= 4;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        } else {
+                            lc->mode &= ~4;
+                            lc->mode |= 8;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        }
+                    }
+                    sc->flags = sc->flags & ~0x700;
+                    if (sc->flags & 0x1000) {
+                        if (sc->flags & 0x200000) {
+                            sc->flags &= ~0x200000;
+                            sc->flags |= 0x100000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A78);
+                            }
+                            camera_aspect_ratio(cam);
+                        } else {
+                            sc->flags &= ~0x100000;
+                            sc->flags |= 0x200000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A7A);
+                            }
+                            camera_fov_control(cam);
+                        }
+                    } else if (sc->flags & 0x200000) {
+                        sc->flags &= ~0x200000;
+                        sc->flags |= 0x100000;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A78);
+                        }
+                        camera_aspect_ratio(cam);
+                    }
+                }
+            }
+        }
+        if (!(sc->flags & 0x100)) {
+            i = 0;
+            ctl->t += *(f32 *)(u32)&D_8002EB94;
+            idx = ctl->idx;
+            do {
+                fr = ctl->t;
+                f = sc->keys[idx].dur;
+                if (f <= fr) {
+                    ctl->t = fr - f;
+                    if (ctl->mode & 8) {
+                        if (idx == 0) {
+                            if (sc->flags & 0x4000) {
+                                camera_build_view_matrix(cam, 0);
+                                i = 1;
+                                camera_fov_control(cam);
+                            } else {
+                                ctl->mode &= ~8;
+                                ctl->mode |= 4;
+                                if (sc->flags & 0x80) {
+                                    sc->flags |= 0x100;
+                                    i = 1;
+                                    ctl->t = 0.0f;
+                                }
+                            }
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        } else {
+                            ctl->idx = idx - 1;
+                        }
+                    } else if (idx * 1 + 1 == sc->count) {
+                        if (sc->flags & 0x80) {
+                            ctl->mode &= ~4;
+                            ctl->mode |= 8;
+                            ctl->idx = idx - 1;
+                        } else {
+                            ctl->idx = 0;
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        }
+                    } else {
+                        ctl->idx = idx + 1;
+                        idx = ctl->idx;
+                        if (sc->keys[idx].flags & 0x40) {
+                            i = 1;
+                            sc->flags |= 0x100;
+                            ctl->t = 0.0f;
+                        } else if (idx * 1 + 1 == sc->count) {
+                            if (sc->flags & 1) {
+                                ctl->mode &= ~4;
+                                ctl->mode |= 8;
+                                ctl->idx = idx - 1;
+                            } else if (sc->flags & 0x4000) {
+                                ctl->mode &= ~4;
+                                ctl->mode |= 8;
+                                ctl->idx = idx - 1;
+                                ctl->t = 0.0f;
+                                sc->flags |= 0x100;
+                            } else if (!(sc->flags & 2)) {
+                                camera_build_view_matrix(cam, 0);
+                                if (sc->flags & 0x20) {
+                                    listener_position_set(sc->id);
+                                }
+                            }
+                        }
+                    }
+                    idx = ctl->idx;
+                } else {
+                    i = 1;
+                }
+            } while (i == 0);
+            idx = sc->keys[idx].flags;
+            if (!(idx & 2)) {
+                camera_track_spline(cam);
+                moved = 1;
+                idx = sc->keys[ctl->idx].flags;
+            }
+            if (!(idx & 0x10) || !(idx & 4)) {
+                moved = 1;
+                camera_free_look(cam);
+            }
+            if (moved != 0) {
+                if (sc->flags & 0x100) {
+                    camera_fov_control(cam);
+                } else {
+                    camera_look_at_point(cam);
+                }
+            } else {
+                camera_fov_control(cam);
+            }
+            tb = &D_80117530[cam->tbl];
+            if (tb->s14 != -1) {
+                node->f10 -= *(f32 *)(s32)&D_8002EB94;
+                if (node->f10 <= 0.0f) {
+                    idx = tb->s14;
+                    if (idx == 0x169) {
+                        node->f10 = 0.25f;
+                    } else if (idx == 0x16D) {
+                        node->f10 = 0.0425f;
+                    }
+                    idx = ++node->s04;
+                    if (idx >= cam->s5A) {
+                        node->s04 = 0;
+                        idx = 0;
+                    }
+                    flag = cam->s58 + idx;
+                    if (flag != cam->s50) {
+                        m = (&D_801427C0)[flag];
+                        lk = sc->link;
+                        if (lk) {}
+                        if (sc->flags & 0x8000) {
+                        } else {
+                            func_800C15FC(cam->slot, m);
+                        }
+                        cam->s50 = flag;
+                    }
+                    goto block_99;
+                }
+            } else {
+block_99:
+                if (tb->mode == 4) {
+                    if (ctl->mode & 8) {
+                        dv[0] = sc->keys[ctl->idx].dir[0] * -ctl->f10;
+                        dv[1] = sc->keys[ctl->idx].dir[1] * -ctl->f10;
+                        dv[2] = sc->keys[ctl->idx].dir[2] * -ctl->f10;
+                    } else {
+                        dv[0] = sc->keys[ctl->idx].dir[0] * ctl->f10;
+                        dv[1] = sc->keys[ctl->idx].dir[1] * ctl->f10;
+                        dv[2] = sc->keys[ctl->idx].dir[2] * ctl->f10;
+                    }
+                    func_800AB750(cam->s65, dv, cam->pos, cam->m);
+                }
+                idx = ctl->idx;
+                if (!(sc->keys[idx].flags & 0x10)) {
+                    nx = idx + 1;
+                    if (nx >= sc->count) {
+                        nx = 0;
+                    }
+                    if (ctl->mode & 8) {
+                        f = sc->keys[idx].dur;
+                        tt = f - ctl->t;
+                    } else {
+                        tt = ctl->t;
+                        f = sc->keys[idx].dur;
+                    }
+                    fr = tt / f;
+                    if (sc->keys[idx].dur != 0.0f) {}
+                    for (i = 0; i < 3; i++) {
+                        sv[i] = sc->keys[ctl->idx].scale[i] + (sc->keys[nx].scale[i] - sc->keys[ctl->idx].scale[i]) * fr;
+                    }
+                    for (i = 0; i < 3; i++) {
+                        cam->m[0][i] *= sv[0];
+                        cam->m[1][i] *= sv[1];
+                        cam->m[2][i] *= sv[2];
+                    }
+                }
+                if (!(cam->flags & 2)) {
+                    if (!(sc->flags & 0x8000)) {
+                        entity_spawn_callback(cam->slot, 0, 0);
+                    }
+                    func_800AFA84(&D_80143FC8, (s32 *) cam);
+                    entity_transform_apply(node, 1);
+                }
+            }
+        }
+    }
+}
+
+/* stand-in caller: keeps camera_aspect_ratio out of line under -O3 */
+void __standin_camera_aspect_ratio(void)
+{
+    camera_aspect_ratio(0);
+}
+
+/* stand-in caller: keeps camera_fov_control out of line under -O3 */
+void __standin_camera_fov_control(void)
+{
+    camera_fov_control(0);
+}
+
+/* stand-in caller: keeps camera_free_look out of line under -O3 */
+void __standin_camera_free_look(void)
+{
+    camera_free_look(0);
+}
+
+/* stand-in caller: keeps camera_look_at_point out of line under -O3 */
+void __standin_camera_look_at_point(void)
+{
+    camera_look_at_point(0);
 }

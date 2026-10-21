@@ -1,0 +1,11 @@
+DONE 
+group_bodies OK: TitlePane, func_800B55F4, func_800B5688, func_800B59E8, func_800B59F0, particle_collision, particle_render, physics_sym
+  TitlePane: 83 words, 0 differ from the image
+  func_800B55F4: 2 words, 0 differ from the image
+  func_800B5688: 49 words, 0 differ from the image
+  func_800B59E8: 2 words, 0 differ from the image
+  func_800B59F0: 343 words, 0 differ from the image
+  particle_collision: 253 words, 0 differ from the image
+  particle_render: 112 words, 0 differ from the image
+  physics_sym: 313 words, 0 differ from the image
+8/8 members image-identical
