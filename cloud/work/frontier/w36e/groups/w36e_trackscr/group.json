@@ -1,0 +1,11 @@
+{
+  "name": "w36e_trackscr",
+  "members": ["func_8038A634", "func_8038ACB0", "func_8038AE50", "func_8038AEB0", "func_8038B388", "func_8038B3EC", "func_8038B834", "func_8038B940", "func_8038C5EC"],
+  "claims": ["func_8038A634", "func_8038ACB0", "func_8038AE50", "func_8038AEB0", "func_8038B388", "func_8038B3EC", "func_8038B834", "func_8038B940", "func_8038C5EC"],
+  "context": ["func_8038E5DC", "func_8038DFEC", "func_8038BBB4", "func_8038CD14", "func_8038A820", "func_8038C93C"],
+  "files": ["group.c"],
+  "keep": ["func_8038E5DC"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "allow_unverified": true,
+  "provenance": "w36e: MAT3 trackscr.c direct typed ports for the image-A track-select unit; root updateTrackScreen (w36d stand-in) kept, w36d's E5DC/DFEC/BBB4/CD14 drafts as context"
+}

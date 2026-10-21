@@ -12,6 +12,15 @@
  * installed body of group dot_runtime_a_option_eligibility_20261006, present only as IPA context (without it the
  * root keeps &gStartMenuSelect in s0 instead of a2).
  *
+ * w36e (wave 36) supersession: adds initScreen (func_8038FFD8, MAT3 startscr.c initScreen GC 0x800865f8) with
+ * initButtons (GC 0x80086da4) inlined as non-kept func_8038FFD0 (retail deleted stub 0x8038FFD0) and eggs.c
+ * InitEgg(23) inlined (non-kept `InitEgg`; store order gEgg, gNextTimeOut, gEggIdx; its `= 0` spelling keeps it off
+ * initButtons' 0.0f web). N64 differences from MAT3: gOptions[14] <= 12, AudPlaySong(6, 1), texture "BUTTON_TITLE"
+ * for button 11, the two 55.2f spellings (55.2f / 55.20f: retail has two rodata words), no MBOX_HideObject of
+ * buttons 14/15, volatile gNumModels. Functions are in MAT3 file order: as1 breaks scheduling ties by source line,
+ * so the inlined initButtons must follow initScreen (with initButtons first, `addiu s2,sp,76` lost a tie: 7 words).
+ * The bodies of updateStartScreen, updateButtons, optionValid, uninitScreen and uninitButtons are unchanged.
+ *
  * Frame shaping, disclosed (Wave 12/16 rule): updateButtons has retail frame 96. Without the three unused f32 locals
  * below the frame is 88 and the locals sit at sp+56/66/72 instead of retail's sp+52/62/68. Udef is 32 bytes with
  * the MAT3 locals (buttonIdx, prevPos[3], tex, texIdx, buttonY, selectedY) and 44 with three more 4-byte slots
@@ -21,6 +30,9 @@ typedef signed char s8;typedef unsigned char u8;
 typedef short s16;typedef unsigned short u16;typedef int s32;typedef unsigned int u32;typedef float f32;
 typedef struct Blit Blit;
 typedef struct ButtonInfo { s32 buttonType; s32 objIdx; f32 angle; f32 uvs[4][3]; } ButtonInfo;
+typedef union tRGBA { u8 c[4]; u32 w; } tRGBA;
+typedef struct MultiBlit MultiBlit;
+typedef struct Egg Egg;
 typedef struct Controller { s8 attached; u8 rest[15]; } Controller;
 
 extern volatile f32 D_8002EB94;            /* gFrameSeconds */
@@ -52,11 +64,23 @@ extern s32 D_803B6A6C;            /* gMaxPlayers */
 extern s32 D_803B6A70;            /* exitStartScreen */
 extern f32 D_803BAC1C;            /* cursorSpeed */
 extern f32 D_803BAC60;            /* playerCursorSpeed */
+extern char *D_803B65F0[];        /* buttonNames */
+extern MultiBlit D_803B65B8[];    /* mblit */
+extern Egg D_803B41D4[];          /* gEggs + 23 entries is the start-screen egg */
+extern Egg *D_803B4278;           /* gEgg */
+extern f32 D_803B427C;            /* gNextTimeOut */
+extern s32 D_803B4280;            /* gEggIdx */
 
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 extern void *memcpy(void *, const void *, u32);
-extern void func_8038FFD8(void);              /* initScreen */
+extern void particle_lifetime_set(void);      /* createBG */
+extern s32 string_copy_format(char *, s8, s8, s8);  /* MBOX_FindObject_WORK */
+extern s32 sign_extend_call(s32, f32 (*)[3], s32, s32); /* MBOX_NewObject */
+extern void func_8008E06C(s16, tRGBA *);      /* ZOID_SetColor */
+extern void particle_velocity_set(void);      /* ZeroCameras */
+extern Blit *sound_control(s16, s16, MultiBlit *, s16); /* NewMultiBlit */
+extern void entity_audio_update(void);        /* ClearRushControls */
 extern s8 func_8038F648(void);                /* CheckForEgg */
 extern void func_800B5570(s32);               /* setGameState */
 extern void speed_mode0_wrapper(f32, f32);    /* AudSetMusicVol */
@@ -79,6 +103,158 @@ extern void func_800B5898(f32, f32 *);        /* WPitchUV */
 extern void func_800B5940(f32, f32 *);        /* WRollUV */
 extern void func_800FD754(f32 *, f32 *, f32, f32, f32); /* ScaleUVXYZ */
 
+void func_8038FFD8(void);
+s8 func_8038F744(s32);
+void func_8038FFD0(void);
+static void uninitButtons(void);
+static void uninitScreen(void);
+void func_8038F79C(void);
+void InitEgg(s32);
+void func_80390418(void);
+
+
+
+
+
+
+
+
+void InitEgg(s32 egg)
+{
+    D_803B4278 = &D_803B41D4[egg - 23];
+    D_803B427C = 0;
+    D_803B4280 = 0;
+}
+
+void func_80390418(void)
+{
+    s32 ctrlIdx;
+    if (!D_80157244)
+        D_801461F8 = 1;
+    if (D_801174BC != 1) {
+        if (D_801174BC != D_801174B4) {
+            if (!(D_801174BC & 0x7c0000) && D_80146108[14] <= 12) {
+                speed_mode0_wrapper(D_80146108[12] / 10.0f, 0.05f);
+                sync_entry_register(6, 1);
+            }
+            func_800B5570(32);
+            return;
+        }
+        D_801174BC = 1;
+    }
+    if (!D_803B65DC)
+        func_8038FFD8();
+    while (!func_8038F744(D_803B6A68)) {
+        if (++D_803B6A68 >= 10)
+            D_803B6A68 = 0;
+    }
+    D_803B6A6C = 0;
+    for (ctrlIdx = 0; ctrlIdx < 4; ctrlIdx++) {
+        if (D_80156CF0[ctrlIdx].attached != 1)
+            break;
+        D_803B6A6C++;
+    }
+    if (D_8014A108 > D_803B6A6C) {
+        if (D_803B6A6C < 1)
+            D_8014A108 = 1;
+        else
+            D_8014A108 = D_803B6A6C;
+    }
+    if (D_8015694C & 1) {
+        resource_type_select(D_8015694C);
+        D_803B6A68 = 0;
+        D_803B6A70 = 1;
+    } else if (D_8015694C & 2) {
+        resource_type_select(D_8015694C);
+        D_803B6A70 = 1;
+    } else if (D_8015694C & 4) {
+        resource_type_select(D_8015694C);
+        D_803B6A70 = 2;
+    } else if (D_8015694C & 0x1000) {
+        audio_doppler(D_8015694C);
+        if (D_803B6A68 == 0) {
+            if (--D_8014A108 < 1)
+                D_8014A108 = D_803B6A6C;
+        }
+    } else if (D_8015694C & 0x2000) {
+        audio_doppler(D_8015694C);
+        if (D_803B6A68 == 0) {
+            if (++D_8014A108 > D_803B6A6C)
+                D_8014A108 = 1;
+        }
+    } else if (D_8015694C & 0x400) {
+        audio_distance_atten(D_8015694C);
+        do {
+            if (--D_803B6A68 < 0)
+                D_803B6A68 = 9;
+        } while (!func_8038F744(D_803B6A68));
+    } else if (D_8015694C & 0x800) {
+        audio_distance_atten(D_8015694C);
+        do {
+            if (++D_803B6A68 >= 10)
+                D_803B6A68 = 0;
+        } while (!func_8038F744(D_803B6A68));
+    }
+    func_8038F79C();
+    if (D_80157244) {
+        uninitScreen();
+        func_800B5570(4);
+    } else if (D_803B6A70) {
+        uninitScreen();
+        switch (D_803B6A70) {
+            case 1:
+                switch (D_803B6A68) {
+                    case 0: func_800B5570(32); break;
+                    case 1: func_800B5570(0x2000); break;
+                    case 2: func_800B5570(0x200); break;
+                    case 3: func_800B5570(0x800); break;
+                    case 4: func_800B5570(0x1000); break;
+                    case 6: func_800B5570(0x8000000); break;
+                    case 7: func_800B5570(0x10000000); break;
+                    case 9:
+                        object_type1_create();
+                        object_type7_create();
+                        func_800EE7AC();
+                        break;
+                }
+                break;
+            case 2:
+                func_800B5570(4);
+                break;
+        }
+        D_803B6A70 = 0;
+    }
+    if (!D_801164A1)
+        D_801164A1 = func_8038F648();
+}
+
+void func_8038FFD8(void)
+{
+    if (D_80146108[14] <= 12) {
+        speed_mode0_wrapper(D_80146108[12] / 10.0f, 0.05f);
+        sync_entry_register(6, 1);
+    }
+    particle_lifetime_set();
+    func_8038FFD0();
+    D_803B65E0 = sound_control(0, 0, D_803B65B8, 1);
+    D_803B6A70 = 0;
+    entity_audio_update();
+    if (!D_801164A1)
+        InitEgg(23);
+    D_803B65DC = 1;
+}
+
+static void uninitScreen(void)
+{
+    if (D_803B65E0) {
+        sound_stop(D_803B65E0);
+        D_803B65E0 = 0;
+    }
+    ambient_sounds_clear();
+    uninitButtons();
+    D_803B65DC = 0;
+}
+
 /* optionValid: installed body (group dot_runtime_a_option_eligibility_20261006), IPA context only */
 s8 func_8038F744(s32 index)
 {
@@ -92,6 +268,73 @@ s8 func_8038F744(s32 index)
         value = D_801164A1;
     }
     return value;
+}
+
+void func_8038FFD0(void) /* initButtons */
+{
+    tRGBA buttonColor = {255, 255, 255, 255};
+    void *tex;
+    u16 texIdx;
+    s32 buttonIdx;
+    for (buttonIdx = 0; buttonIdx < 18; buttonIdx++)
+        if (D_803B6610[buttonIdx].objIdx == -1) {
+            memcpy(D_803B6610[buttonIdx].uvs, D_8011418C, 48);
+            D_803B6610[buttonIdx].objIdx = sign_extend_call(
+                string_copy_format(D_803B65F0[D_803B6610[buttonIdx].buttonType], 0, D_80140BDC - 1, 1),
+                D_803B6610[buttonIdx].uvs, -1,
+                (D_803B6610[buttonIdx].buttonType == 0 || D_803B6610[buttonIdx].buttonType == 1) ? 0x42000 : 0);
+            func_8008E06C(D_803B6610[buttonIdx].objIdx, &buttonColor);
+        }
+    tex = func_800B24EC("BUTTON_TITLE", &texIdx, 0, D_80140BDC - 1, 1);
+    func_8008D870(D_803B6610[11].objIdx, tex, -1);
+    memcpy(D_803B6610[11].uvs, D_8011418C, 36);
+    func_800B5898(-1.5707964f, D_803B6610[11].uvs);
+    D_803B6610[11].uvs[3][0] = 0.0f;
+    D_803B6610[11].uvs[3][1] = 115.0f;
+    D_803B6610[11].uvs[3][2] = 200.0f;
+    tex = func_800B24EC("A1", &texIdx, 0, D_80140BDC - 1, 1);
+    func_8008D870(D_803B6610[12].objIdx, tex, -1);
+    memcpy(D_803B6610[12].uvs, D_8011418C, 36);
+    func_800B5898(-1.5707964f, D_803B6610[12].uvs);
+    D_803B6610[12].uvs[3][0] = 75.1f;
+    D_803B6610[12].uvs[3][1] = 55.2f;
+    D_803B6610[12].uvs[3][2] = 100.0f;
+    func_8008B32C(D_803B6610[12].uvs[0], D_803B6610[12].uvs[0], 0.5f);
+    memcpy(D_803B6610[13].uvs, D_8011418C, 36);
+    func_800B5898(-1.5707964f, D_803B6610[13].uvs);
+    func_800B5940(3.1415927f, D_803B6610[13].uvs);
+    D_803B6610[13].uvs[3][0] = 87.1f;
+    D_803B6610[13].uvs[3][1] = 55.2f;
+    D_803B6610[13].uvs[3][2] = 100.0f;
+    tex = func_800B24EC("B1", &texIdx, 0, D_80140BDC - 1, 1);
+    func_8008D870(D_803B6610[14].objIdx, tex, -1);
+    memcpy(D_803B6610[14].uvs, D_8011418C, 36);
+    func_800B5898(-1.5707964f, D_803B6610[14].uvs);
+    D_803B6610[14].uvs[3][0] = -75.1f;
+    D_803B6610[14].uvs[3][1] = 55.20f;
+    D_803B6610[14].uvs[3][2] = 100.0f;
+    func_8008B32C(D_803B6610[14].uvs[0], D_803B6610[14].uvs[0], 0.5f);
+    memcpy(D_803B6610[15].uvs, D_8011418C, 36);
+    func_800B5898(-1.5707964f, D_803B6610[15].uvs);
+    D_803B6610[15].uvs[3][0] = -87.1f;
+    D_803B6610[15].uvs[3][1] = 55.20f;
+    D_803B6610[15].uvs[3][2] = 100.0f;
+    tex = func_800B24EC("CURSOR", &texIdx, 0, D_80140BDC - 1, 1);
+    func_8008D870(D_803B6610[16].objIdx, tex, -1);
+    D_803B6A48 = 1;
+    D_803B6A4C = 1;
+    particle_velocity_set();
+}
+
+static void uninitButtons(void)
+{
+    s32 buttonIdx;
+    for (buttonIdx = 0; buttonIdx < 18; buttonIdx++)
+        if (D_803B6610[buttonIdx].objIdx != -1) {
+            sound_call_minimal(D_803B6610[buttonIdx].objIdx);
+            D_803B6610[buttonIdx].objIdx = -1;
+        }
+    D_803B6A48 = 0;
 }
 
 void func_8038F79C(void)
@@ -201,128 +444,4 @@ void func_8038F79C(void)
     func_8008B32C(D_803B6610[17].uvs[0], D_803B6610[17].uvs[0], D_803B6A50);
     func_800B5898(1.5707964f + D_803B6610[0].angle, D_803B6610[17].uvs[0]);
     D_803B6A4C = 0;
-}
-
-static void uninitButtons(void)
-{
-    s32 buttonIdx;
-    for (buttonIdx = 0; buttonIdx < 18; buttonIdx++)
-        if (D_803B6610[buttonIdx].objIdx != -1) {
-            sound_call_minimal(D_803B6610[buttonIdx].objIdx);
-            D_803B6610[buttonIdx].objIdx = -1;
-        }
-    D_803B6A48 = 0;
-}
-
-static void uninitScreen(void)
-{
-    if (D_803B65E0) {
-        sound_stop(D_803B65E0);
-        D_803B65E0 = 0;
-    }
-    ambient_sounds_clear();
-    uninitButtons();
-    D_803B65DC = 0;
-}
-
-void func_80390418(void)
-{
-    s32 ctrlIdx;
-    if (!D_80157244)
-        D_801461F8 = 1;
-    if (D_801174BC != 1) {
-        if (D_801174BC != D_801174B4) {
-            if (!(D_801174BC & 0x7c0000) && D_80146108[14] <= 12) {
-                speed_mode0_wrapper(D_80146108[12] / 10.0f, 0.05f);
-                sync_entry_register(6, 1);
-            }
-            func_800B5570(32);
-            return;
-        }
-        D_801174BC = 1;
-    }
-    if (!D_803B65DC)
-        func_8038FFD8();
-    while (!func_8038F744(D_803B6A68)) {
-        if (++D_803B6A68 >= 10)
-            D_803B6A68 = 0;
-    }
-    D_803B6A6C = 0;
-    for (ctrlIdx = 0; ctrlIdx < 4; ctrlIdx++) {
-        if (D_80156CF0[ctrlIdx].attached != 1)
-            break;
-        D_803B6A6C++;
-    }
-    if (D_8014A108 > D_803B6A6C) {
-        if (D_803B6A6C < 1)
-            D_8014A108 = 1;
-        else
-            D_8014A108 = D_803B6A6C;
-    }
-    if (D_8015694C & 1) {
-        resource_type_select(D_8015694C);
-        D_803B6A68 = 0;
-        D_803B6A70 = 1;
-    } else if (D_8015694C & 2) {
-        resource_type_select(D_8015694C);
-        D_803B6A70 = 1;
-    } else if (D_8015694C & 4) {
-        resource_type_select(D_8015694C);
-        D_803B6A70 = 2;
-    } else if (D_8015694C & 0x1000) {
-        audio_doppler(D_8015694C);
-        if (D_803B6A68 == 0) {
-            if (--D_8014A108 < 1)
-                D_8014A108 = D_803B6A6C;
-        }
-    } else if (D_8015694C & 0x2000) {
-        audio_doppler(D_8015694C);
-        if (D_803B6A68 == 0) {
-            if (++D_8014A108 > D_803B6A6C)
-                D_8014A108 = 1;
-        }
-    } else if (D_8015694C & 0x400) {
-        audio_distance_atten(D_8015694C);
-        do {
-            if (--D_803B6A68 < 0)
-                D_803B6A68 = 9;
-        } while (!func_8038F744(D_803B6A68));
-    } else if (D_8015694C & 0x800) {
-        audio_distance_atten(D_8015694C);
-        do {
-            if (++D_803B6A68 >= 10)
-                D_803B6A68 = 0;
-        } while (!func_8038F744(D_803B6A68));
-    }
-    func_8038F79C();
-    if (D_80157244) {
-        uninitScreen();
-        func_800B5570(4);
-    } else if (D_803B6A70) {
-        uninitScreen();
-        switch (D_803B6A70) {
-            case 1:
-                switch (D_803B6A68) {
-                    case 0: func_800B5570(32); break;
-                    case 1: func_800B5570(0x2000); break;
-                    case 2: func_800B5570(0x200); break;
-                    case 3: func_800B5570(0x800); break;
-                    case 4: func_800B5570(0x1000); break;
-                    case 6: func_800B5570(0x8000000); break;
-                    case 7: func_800B5570(0x10000000); break;
-                    case 9:
-                        object_type1_create();
-                        object_type7_create();
-                        func_800EE7AC();
-                        break;
-                }
-                break;
-            case 2:
-                func_800B5570(4);
-                break;
-        }
-        D_803B6A70 = 0;
-    }
-    if (!D_801164A1)
-        D_801164A1 = func_8038F648();
 }

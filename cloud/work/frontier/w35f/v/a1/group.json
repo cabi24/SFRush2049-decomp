@@ -1,0 +1,8 @@
+{
+  "name": "w35f_shots",
+  "files": ["group.c"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": ["func_8038FCE0", "func_8038F938", "func_8038F568", "func_8038E088", "func_8038D328", "func_8038D200"],
+  "context": [],
+  "keep": ["func_8038FCE0"]
+}

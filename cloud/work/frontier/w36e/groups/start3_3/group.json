@@ -1,0 +1,19 @@
+{
+ "members": [
+  "func_8038F79C",
+  "func_80390418",
+  "func_8038FFD8"
+ ],
+ "context": [
+  "func_8038F744"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_80390418"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w35d: MAT3 startscr.c updateStartScreen (root, kept) with its IPA-internal updateButtons"
+}

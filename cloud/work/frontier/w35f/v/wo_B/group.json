@@ -1,0 +1,1 @@
+{"name": "w35f_weapons", "files": ["group.c", "dummy.c"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "members": ["func_8038AA8C", "func_8038AA14", "func_8038A95C", "func_8038A408"], "context": [], "keep": ["func_8038AA8C"]}

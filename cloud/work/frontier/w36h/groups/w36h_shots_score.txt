@@ -1,0 +1,96 @@
+EXIT_PLAIN=1
+EXIT_ALLOW_UNVERIFIED=0
+NO_RETAIL_DATA=57
+OTHER_UNVERIFIED=0
+Members:
+func_8038D200:
+  MATCH (6 section-relative relocations unverified: .rodata+0xe0 at +0x90, .rodata+0xe0 at +0x94, .rodata+0xe4 at +0xd4, .rodata+0xe4 at +0xd8, .rodata+0xe8 at +0x10c, .rodata+0xe8 at +0x114)
+    not verified: .rodata+0xe0 at +0x94: no retail data available
+    not verified: .rodata+0xe4 at +0xd8: no retail data available
+    not verified: .rodata+0xe8 at +0x114: no retail data available
+func_8038D328:
+  MATCH
+func_8038E088:
+  MATCH (2 section-relative relocations unverified: .rodata+0x100 at +0x18, .rodata+0x100 at +0x20)
+    not verified: .rodata+0x100 at +0x20: no retail data available
+func_8038D498:
+  MATCH (6 section-relative relocations unverified: .rodata+0xec at +0xa4, .rodata+0xec at +0xac, .rodata+0xf0 at +0xd8, .rodata+0xf0 at +0xf8, .rodata+0xf4 at +0x104, .rodata+0xf4 at +0x114)
+    not verified: .rodata+0xec at +0xac: no retail data available
+    not verified: .rodata+0xf0 at +0xf8: no retail data available
+    not verified: .rodata+0xf4 at +0x114: no retail data available
+func_8038F938:
+  MATCH (20 section-relative relocations unverified: .data+0x5c at +0x4, .data+0x5c at +0xc, .rodata+0x1a4 at +0x4c, .rodata+0x1a4 at +0x80, .rodata+0x1a8 at +0x124, .rodata+0x1a8 at +0x128, .data+0x0 at +0x170, .data+0x0 at +0x184, .rodata+0x1ac at +0x198, .rodata+0x1ac at +0x1d4, .rodata+0x1b0 at +0x1d8, .rodata+0x1b0 at +0x20c, .rodata+0x1b4 at +0x220, .rodata+0x1b4 at +0x224, .rodata+0x1b8 at +0x22c, .rodata+0x1b8 at +0x274, .rodata+0x1bc at +0x278, .rodata+0x1bc at +0x284, .rodata+0x1c0 at +0x2a0, .rodata+0x1c0 at +0x2a4)
+    not verified: .rodata+0x1a4 at +0x80: no retail data available
+    not verified: .rodata+0x1a8 at +0x128: no retail data available
+    not verified: .rodata+0x1ac at +0x1d4: no retail data available
+    not verified: .rodata+0x1b0 at +0x20c: no retail data available
+    not verified: .rodata+0x1b4 at +0x224: no retail data available
+    not verified: .rodata+0x1b8 at +0x274: no retail data available
+    not verified: .rodata+0x1bc at +0x284: no retail data available
+    not verified: .rodata+0x1c0 at +0x2a4: no retail data available
+    not verified: .data+0x0 at +0x184: no retail data available
+    not verified: .data+0x5c at +0xc: no retail data available
+func_8038DA78:
+  MATCH (4 section-relative relocations unverified: .rodata+0xf8 at +0x28, .rodata+0xf8 at +0xac, .rodata+0xfc at +0xf4, .rodata+0xfc at +0xf8)
+    not verified: .rodata+0xf8 at +0xac: no retail data available
+    not verified: .rodata+0xfc at +0xf8: no retail data available
+func_8038FCE0:
+  MATCH (32 section-relative relocations unverified: .rodata+0x1c4 at +0x164, .rodata+0x1c4 at +0x174, .rodata+0xc at +0x168, .rodata+0xc at +0x170, .rodata+0xc at +0x1b4, .rodata+0xc at +0x1b8, .data+0x34 at +0x420, .data+0x34 at +0x444, .rodata+0x1c8 at +0x458, .rodata+0x1c8 at +0x460, .rodata+0x1ec at +0x490, .rodata+0x1ec at +0x494, .rodata+0x1f0 at +0x624, .rodata+0x1f0 at +0x628, .rodata+0x1f4 at +0x63c, .rodata+0x1f4 at +0x648, .rodata+0x1f8 at +0x64c, .rodata+0x1f8 at +0x650, .rodata+0x1fc at +0x668, .rodata+0x1fc at +0x670, .rodata+0x200 at +0x674, .rodata+0x200 at +0x678, .rodata+0x0 at +0x6b8, .rodata+0x0 at +0x6bc, .rodata+0x204 at +0x800, .rodata+0x204 at +0x808, .rodata+0x208 at +0x80c, .rodata+0x208 at +0x810, .rodata+0x20c at +0x83c, .rodata+0x20c at +0x844, .rodata+0x210 at +0x850, .rodata+0x210 at +0x854)
+    not verified: .rodata+0x0 at +0x6bc: no retail data available
+    not verified: .rodata+0xc at +0x170: no retail data available
+    not verified: .rodata+0xc at +0x1b8: no retail data available
+    not verified: .rodata+0x1c4 at +0x174: no retail data available
+    not verified: .rodata+0x1c8 at +0x460: no retail data available
+    not verified: .rodata+0x1ec at +0x494: no retail data available
+    not verified: .rodata+0x1f0 at +0x628: no retail data available
+    not verified: .rodata+0x1f4 at +0x648: no retail data available
+    not verified: .rodata+0x1f8 at +0x650: no retail data available
+    not verified: .rodata+0x1fc at +0x670: no retail data available
+    not verified: .rodata+0x200 at +0x678: no retail data available
+    not verified: .rodata+0x204 at +0x808: no retail data available
+    not verified: .rodata+0x208 at +0x810: no retail data available
+    not verified: .rodata+0x20c at +0x844: no retail data available
+    not verified: .rodata+0x210 at +0x854: no retail data available
+    not verified: .data+0x34 at +0x444: no retail data available
+func_8038F560:
+  MATCH
+func_8038F568:
+  MATCH (8 section-relative relocations unverified: .rodata+0xc at +0xac, .rodata+0xc at +0xc4, .rodata+0x198 at +0x308, .rodata+0x198 at +0x31c, .rodata+0x19c at +0x330, .rodata+0x19c at +0x33c, .rodata+0x1a0 at +0x34c, .rodata+0x1a0 at +0x350)
+    not verified: .rodata+0xc at +0xc4: no retail data available
+    not verified: .rodata+0x198 at +0x31c: no retail data available
+    not verified: .rodata+0x19c at +0x33c: no retail data available
+    not verified: .rodata+0x1a0 at +0x350: no retail data available
+func_8038E114:
+  MATCH (36 section-relative relocations unverified: .data+0x60 at +0x8, .data+0x60 at +0xc, .rodata+0x124 at +0x38, .rodata+0x124 at +0x3c, .rodata+0xc at +0xc0, .rodata+0xc at +0xcc, .rodata+0x128 at +0x21c, .rodata+0x128 at +0x220, .data+0x40 at +0x4bc, .data+0x40 at +0x4d8, .rodata+0x12c at +0x608, .rodata+0x12c at +0x610, .rodata+0x150 at +0x61c, .rodata+0x150 at +0x620, .rodata+0x154 at +0x9b8, .rodata+0x154 at +0x9bc, .rodata+0x158 at +0xa10, .rodata+0x158 at +0xa14, .rodata+0x84 at +0xb14, .rodata+0x84 at +0xb1c, .rodata+0x15c at +0xb68, .rodata+0x15c at +0xb6c, .rodata+0x160 at +0xc44, .rodata+0x160 at +0xc48, .rodata+0x90 at +0xcec, .rodata+0x90 at +0xd08, .rodata+0x164 at +0x1024, .rodata+0x164 at +0x1028, .rodata+0x168 at +0x112c, .rodata+0x168 at +0x1138, .rodata+0x16c at +0x1174, .rodata+0x16c at +0x1178, .rodata+0x170 at +0x1180, .rodata+0x170 at +0x1194, .rodata+0x174 at +0x1260, .rodata+0x174 at +0x1268)
+    not verified: .rodata+0xc at +0xcc: no retail data available
+    not verified: .rodata+0x84 at +0xb1c: no retail data available
+    not verified: .rodata+0x90 at +0xd08: no retail data available
+    not verified: .rodata+0x124 at +0x3c: no retail data available
+    not verified: .rodata+0x128 at +0x220: no retail data available
+    not verified: .rodata+0x12c at +0x610: no retail data available
+    not verified: .rodata+0x150 at +0x620: no retail data available
+    not verified: .rodata+0x154 at +0x9bc: no retail data available
+    not verified: .rodata+0x158 at +0xa14: no retail data available
+    not verified: .rodata+0x15c at +0xb6c: no retail data available
+    not verified: .rodata+0x160 at +0xc48: no retail data available
+    not verified: .rodata+0x164 at +0x1028: no retail data available
+    not verified: .rodata+0x168 at +0x1138: no retail data available
+    not verified: .rodata+0x16c at +0x1178: no retail data available
+    not verified: .rodata+0x170 at +0x1194: no retail data available
+    not verified: .rodata+0x174 at +0x1268: no retail data available
+    not verified: .data+0x40 at +0x4d8: no retail data available
+    not verified: .data+0x60 at +0xc: no retail data available
+
+Context (informational; excluded from exit status):
+func_8038CB20:
+  MATCH (14 section-relative relocations unverified: .rodata+0x9c at +0x4c, .rodata+0x9c at +0x50, .rodata+0xa0 at +0x54, .rodata+0xa0 at +0x64, .rodata+0xa4 at +0x16c, .rodata+0xa4 at +0x170, .rodata+0xa8 at +0x17c, .rodata+0xa8 at +0x180, .rodata+0xac at +0x184, .rodata+0xac at +0x188, .rodata+0xb0 at +0x2ac, .rodata+0xb0 at +0x2b0, .rodata+0xb4 at +0x354, .rodata+0xb4 at +0x38c)
+func_8038D054:
+  MATCH (6 section-relative relocations unverified: .rodata+0xb8 at +0x40, .rodata+0xb8 at +0x44, .rodata+0xbc at +0xa0, .rodata+0xbc at +0xa4, .rodata+0xc0 at +0xb4, .rodata+0xc0 at +0xc0)
+func_8038D3A4:
+  MATCH (2 section-relative relocations unverified: .rodata+0xd4 at +0x70, .rodata+0xd4 at +0x74)
+func_8038D798:
+  MATCH (4 section-relative relocations unverified: .rodata+0xd8 at +0x90, .rodata+0xd8 at +0x94, .rodata+0xdc at +0x98, .rodata+0xdc at +0xa4)
+func_8038DDDC:
+  MATCH (8 section-relative relocations unverified: .rodata+0xc4 at +0x218, .rodata+0xc4 at +0x21c, .rodata+0xc8 at +0x20c, .rodata+0xc8 at +0x234, .rodata+0xcc at +0x254, .rodata+0xcc at +0x258, .rodata+0xd0 at +0x23c, .rodata+0xd0 at +0x270)
+func_8038C910:
+  MATCH

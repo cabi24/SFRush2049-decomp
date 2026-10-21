@@ -1,0 +1,7 @@
+{
+  "members": [],
+  "context": ["func_8038E5DC", "func_8038DFEC", "func_8038BBB4", "func_8038CD14", "func_8038ACB0", "func_8038B834", "func_8038A634", "func_8038AE50", "func_8038B388", "func_8038B940", "func_8038AEB0", "func_8038B3EC", "func_8038C5EC", "func_8038A820", "func_8038C93C"],
+  "files": ["group.c"],
+  "keep": ["func_8038E5DC"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

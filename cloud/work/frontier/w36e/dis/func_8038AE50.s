@@ -1,0 +1,23 @@
+== func_8038AE50 @ 0x8038AE50 (22 words, 88 B)
+  8038ae50: 3c10803c lui	s0,0x803c
+  8038ae54: 26108288 addiu	s0,s0,-32120   ; 803B8288 [00000000 0]
+  8038ae58: 8e040000 lw	a0,0(s0)   ; 803B8288 [00000000 0]
+  8038ae5c: 27bdffe8 addiu	sp,sp,-24
+  8038ae60: afbf0014 sw	ra,20(sp)
+  8038ae64: 10800004 beqz	a0,0x8038ae78
+  8038ae68: 00000000 nop
+  8038ae6c: 0c02cd63 jal	0x800b358c   <sound_stop>
+  8038ae70: 00000000 nop
+  8038ae74: ae000000 sw	zero,0(s0)   ; 803B8288 [00000000 0]
+  8038ae78: 3c10803c lui	s0,0x803c
+  8038ae7c: 2610828c addiu	s0,s0,-32116   ; 803B828C [00000000 0]
+  8038ae80: 8e040000 lw	a0,0(s0)   ; 803B828C [00000000 0]
+  8038ae84: 50800005 beqzl	a0,0x8038ae9c
+  8038ae88: 8fbf0014 lw	ra,20(sp)
+  8038ae8c: 0c02cd63 jal	0x800b358c   <sound_stop>
+  8038ae90: 00000000 nop
+  8038ae94: ae000000 sw	zero,0(s0)   ; 803B828C [00000000 0]
+  8038ae98: 8fbf0014 lw	ra,20(sp)
+  8038ae9c: 27bd0018 addiu	sp,sp,24
+  8038aea0: 03e00008 jr	ra
+  8038aea4: 00000000 nop

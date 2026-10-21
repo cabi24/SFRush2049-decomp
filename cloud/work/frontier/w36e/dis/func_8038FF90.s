@@ -1,0 +1,17 @@
+== func_8038FF90 @ 0x8038FF90 (16 words, 64 B)
+  8038ff90: 00047080 sll	t6,a0,0x2
+  8038ff94: 01c47021 addu	t6,t6,a0
+  8038ff98: 000e70c0 sll	t6,t6,0x3
+  8038ff9c: 01c47021 addu	t6,t6,a0
+  8038ffa0: 3c0f803b lui	t7,0x803b
+  8038ffa4: 25ef3460 addiu	t7,t7,13408   ; 803B3460 [04000000 1.504633e-36]
+  8038ffa8: 000e7080 sll	t6,t6,0x2
+  8038ffac: 44802000 mtc1	zero,$f4
+  8038ffb0: 01cfc021 addu	t8,t6,t7
+  8038ffb4: 3c01803b lui	at,0x803b
+  8038ffb8: ac384278 sw	t8,17016(at)   ; 803B4278 [00000000 0]
+  8038ffbc: 3c01803b lui	at,0x803b
+  8038ffc0: e424427c swc1	$f4,17020(at)
+  8038ffc4: 3c01803b lui	at,0x803b
+  8038ffc8: 03e00008 jr	ra
+  8038ffcc: ac204280 sw	zero,17024(at)   ; 803B4280 [00000000 0]

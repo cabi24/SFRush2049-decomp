@@ -1,0 +1,1 @@
+{"name": "o3", "files": ["group.c"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "members": [], "context": [], "keep": ["func_8038B100", "func_8038B200", "func_8038B300"]}

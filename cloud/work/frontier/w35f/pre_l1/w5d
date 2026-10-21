@@ -1,0 +1,1050 @@
+[W5D] bit at=cm proc=func_8038FCE0 bit=0 kind=3 dtype=A ref=205|0 text=varM(110-60)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=1 kind=3 dtype=A ref=205|0 text=varM(110-60)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=2 kind=4 dtype=A ref=875|0 text=ilod.A@16(ldaS(112+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=3 kind=4 dtype=A ref=64|0 text=str.A(varM(110-60)r,ilod.A@16(ldaS(112+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=4 kind=4 dtype=A ref=1164|0 text=neq.A(varM(110-60)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=5 kind=4 dtype=A ref=490|0 text=cg1.A(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=6 kind=3 dtype=A ref=141|0 text=varM(110-64)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=7 kind=3 dtype=A ref=141|0 text=varM(110-64)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=8 kind=4 dtype=A ref=842|0 text=ilod.A@0(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=9 kind=4 dtype=A ref=659|0 text=str.A(varM(110-64)r,ilod.A@0(varM(110-60)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=10 kind=4 dtype=R ref=842|1 text=ilod.R@56(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=11 kind=4 dtype=R ref=697|0 text=ildv.R@0(ldaS(6+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=12 kind=4 dtype=R ref=211|0 text=sub.R(ilod.R@56(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=13 kind=4 dtype=R ref=500|0 text=istr.R@56(varM(110-60)r,sub.R(ilod.R@56(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=14 kind=4 dtype=R ref=52|0 text=geq.R(3,ilod.R@56(varM(110-60)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=15 kind=4 dtype=R ref=993|0 text=cg1.R(ilod.R@56(varM(110-60)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=16 kind=3 dtype=J ref=77|0 text=varM(110-68)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=17 kind=3 dtype=J ref=77|0 text=varM(110-68)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=18 kind=4 dtype=L ref=842|2 text=ilod.L@4(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=19 kind=4 dtype=J ref=1601|0 text=cvt.J(ilod.L@4(varM(110-60)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=20 kind=4 dtype=J ref=877|0 text=str.J(varM(110-68)r,cvt.J(ilod.L@4(varM(110-60)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=21 kind=4 dtype=J ref=386|0 text=cvtl.J(varM(110-68)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=22 kind=4 dtype=R ref=842|3 text=ilod.R@64(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=23 kind=4 dtype=R ref=235|0 text=ilod.R@0(ldaS(92+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=24 kind=4 dtype=R ref=366|0 text=mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=25 kind=4 dtype=R ref=1066|0 text=mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=26 kind=4 dtype=R ref=370|0 text=sub.R(ilod.R@64(varM(110-60)r),mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=27 kind=4 dtype=R ref=1031|1 text=istr.R@64(varM(110-60)r,sub.R(ilod.R@64(varM(110-60)r),mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0))))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=28 kind=4 dtype=R ref=842|4 text=ilod.R@44(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=29 kind=4 dtype=R ref=842|5 text=ilod.R@60(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=30 kind=4 dtype=R ref=809|0 text=mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=31 kind=4 dtype=R ref=847|0 text=add.R(ilod.R@44(varM(110-60)r),mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=32 kind=4 dtype=R ref=1005|0 text=istr.R@44(varM(110-60)r,add.R(ilod.R@44(varM(110-60)r),mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=33 kind=4 dtype=R ref=842|6 text=ilod.R@48(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=34 kind=4 dtype=R ref=769|0 text=mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=35 kind=4 dtype=R ref=839|0 text=add.R(ilod.R@48(varM(110-60)r),mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=36 kind=4 dtype=R ref=795|0 text=istr.R@48(varM(110-60)r,add.R(ilod.R@48(varM(110-60)r),mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=37 kind=4 dtype=R ref=842|7 text=ilod.R@52(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=38 kind=4 dtype=R ref=842|8 text=ilod.R@68(varM(110-60)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=39 kind=4 dtype=R ref=869|0 text=mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=40 kind=4 dtype=R ref=979|0 text=add.R(ilod.R@52(varM(110-60)r),mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=41 kind=4 dtype=R ref=1232|0 text=istr.R@52(varM(110-60)r,add.R(ilod.R@52(varM(110-60)r),mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=42 kind=4 dtype=A ref=1034|0 text=str.A(varM(110-60)r,varM(110-64)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=43 kind=4 dtype=A ref=1164|1 text=neq.A(varM(110-64)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=44 kind=4 dtype=A ref=376|0 text=cg1.A(varM(110-64)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=45 kind=3 dtype=J ref=1101|0 text=varM(110-4)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=46 kind=3 dtype=J ref=1101|0 text=varM(110-4)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=47 kind=4 dtype=J ref=206|0 text=str.J(varM(110-4)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=48 kind=3 dtype=A ref=589|0 text=varM(110-36)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=49 kind=3 dtype=A ref=589|0 text=varM(110-36)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=50 kind=4 dtype=A ref=1046|0 text=str.A(varM(110-36)r,ldaS(34+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=51 kind=4 dtype=J ref=6|0 text=ildv.J@0(ldaS(35+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=52 kind=4 dtype=J ref=62|0 text=geq.J(ildv.J@0(ldaS(35+0)),1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=53 kind=4 dtype=J ref=110|0 text=cg1.J(ildv.J@0(ldaS(35+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=54 kind=3 dtype=A ref=525|0 text=varM(110-40)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=55 kind=3 dtype=A ref=525|0 text=varM(110-40)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=56 kind=4 dtype=J ref=1610|0 text=ilod.J@859(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=57 kind=4 dtype=J ref=370|1 text=mpy.J(ilod.J@859(varM(110-36)r),2056)
+[W5D] bit at=cm proc=func_8038FCE0 bit=58 kind=4 dtype=J ref=1294|0 text=ixa.J(ldaS(26+0),mpy.J(ilod.J@859(varM(110-36)r),2056))
+[W5D] bit at=cm proc=func_8038FCE0 bit=59 kind=4 dtype=A ref=342|0 text=str.A(varM(110-40)r,ixa.J(ldaS(26+0),mpy.J(ilod.J@859(varM(110-36)r),2056)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=60 kind=3 dtype=A ref=653|0 text=varM(110-32)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=61 kind=3 dtype=A ref=653|0 text=varM(110-32)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=62 kind=4 dtype=A ref=683|0 text=add.A(varM(110-36)r,908)
+[W5D] bit at=cm proc=func_8038FCE0 bit=63 kind=4 dtype=A ref=1430|0 text=str.A(varM(110-32)r,add.A(varM(110-36)r,908))
+[W5D] bit at=cm proc=func_8038FCE0 bit=64 kind=4 dtype=L ref=1610|1 text=ilod.L@908(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=65 kind=3 dtype=J ref=1568|0 text=varM(110-76)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=66 kind=3 dtype=J ref=1568|0 text=varM(110-76)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=67 kind=4 dtype=J ref=1610|2 text=ilod.J@900(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=68 kind=4 dtype=J ref=1558|0 text=str.J(varM(110-76)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=69 kind=4 dtype=J ref=1261|0 text=equ.J(varM(110-76)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=70 kind=4 dtype=J ref=4|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=71 kind=4 dtype=J ref=711|1 text=equ.J(varM(110-76)r,1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=72 kind=4 dtype=J ref=6|1 text=cg1.J(varM(110-76)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=73 kind=4 dtype=J ref=1439|0 text=equ.J(varM(110-76)r,6)
+[W5D] bit at=cm proc=func_8038FCE0 bit=74 kind=4 dtype=J ref=8|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=75 kind=4 dtype=J ref=399|0 text=equ.J(varM(110-76)r,8)
+[W5D] bit at=cm proc=func_8038FCE0 bit=76 kind=4 dtype=J ref=10|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=77 kind=4 dtype=A ref=1610|3 text=ilod.A@896(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=78 kind=4 dtype=L ref=387|0 text=ilod.L@48(ilod.A@896(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=79 kind=4 dtype=L ref=387|1 text=ilod.L@4(ilod.A@896(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=80 kind=4 dtype=L ref=495|0 text=and.L(ilod.L@48(ilod.A@896(varM(110-36)r)),ilod.L@4(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=81 kind=4 dtype=J ref=1610|4 text=ilod.J@901(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=82 kind=4 dtype=J ref=811|0 text=equ.J(5,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=83 kind=4 dtype=J ref=148|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=84 kind=3 dtype=A ref=269|0 text=varM(110-56)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=85 kind=3 dtype=A ref=269|0 text=varM(110-56)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=86 kind=4 dtype=L ref=1482|0 text=ilod.L@8(varM(110-40)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=87 kind=4 dtype=L ref=1590|0 text=mpy.L(ilod.L@8(varM(110-40)r),16)
+[W5D] bit at=cm proc=func_8038FCE0 bit=88 kind=4 dtype=L ref=1125|0 text=ixa.L(ldaS(113+0),mpy.L(ilod.L@8(varM(110-40)r),16))
+[W5D] bit at=cm proc=func_8038FCE0 bit=89 kind=4 dtype=A ref=505|0 text=str.A(varM(110-56)r,ixa.L(ldaS(113+0),mpy.L(ilod.L@8(varM(110-40)r),16)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=90 kind=3 dtype=R ref=1504|0 text=varM(110-80)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=91 kind=3 dtype=R ref=1504|0 text=varM(110-80)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=92 kind=4 dtype=R ref=970|0 text=ilod.R@0(varM(110-56)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=93 kind=4 dtype=R ref=157|0 text=str.R(varM(110-80)r,ilod.R@0(varM(110-56)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=94 kind=4 dtype=R ref=360|0 text=istr.R@264(varM(110-40)r,varM(110-80)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=95 kind=4 dtype=R ref=360|1 text=istr.R@252(varM(110-40)r,varM(110-80)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=96 kind=4 dtype=R ref=970|1 text=ilod.R@4(varM(110-56)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=97 kind=4 dtype=R ref=1434|0 text=les.R(ilod.R@4(varM(110-56)r),varM(110-80)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=98 kind=4 dtype=R ref=1452|0 text=cg1.R(ilod.R@4(varM(110-56)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=99 kind=4 dtype=R ref=1523|0 text=cg1.R(varM(110-80)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=100 kind=3 dtype=R ref=13|0 text=varM(110-72)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=101 kind=3 dtype=R ref=13|0 text=varM(110-72)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=102 kind=4 dtype=R ref=1482|1 text=ilod.R@252(varM(110-40)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=103 kind=4 dtype=R ref=185|0 text=str.R(varM(110-72)r,ilod.R@252(varM(110-40)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=104 kind=4 dtype=R ref=4|1 text=str.R(varM(110-72)r,ilod.R@4(varM(110-56)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=105 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=106 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=107 kind=4 dtype=R ref=915|0 text=mpy.R(varM(110-72)r,varM(110-72)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=108 kind=4 dtype=R ref=970|2 text=ilod.R@8(varM(110-56)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=109 kind=4 dtype=R ref=336|0 text=mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=110 kind=4 dtype=R ref=39|0 text=add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=111 kind=4 dtype=R ref=970|3 text=ilod.R@12(varM(110-56)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=112 kind=4 dtype=R ref=426|0 text=mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=113 kind=4 dtype=R ref=1122|0 text=add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=114 kind=4 dtype=R ref=1199|0 text=sqrt.R(add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=115 kind=4 dtype=R ref=828|0 text=str.R(varR(0+32)r,sqrt.R(add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=116 kind=4 dtype=R ref=205|1 text=istr.R@1620(varM(110-40)r,varR(0+32)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=117 kind=4 dtype=J ref=412|0 text=istr.J@900(varM(110-36)r,8)
+[W5D] bit at=cm proc=func_8038FCE0 bit=118 kind=4 dtype=J ref=809|1 text=istr.J@901(varM(110-36)r,-1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=119 kind=4 dtype=R ref=243|0 text=istr.R@944(varM(110-36)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=120 kind=4 dtype=R ref=243|1 text=istr.R@948(varM(110-36)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=121 kind=4 dtype=R ref=1610|5 text=ilod.R@940(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=122 kind=4 dtype=R ref=1593|0 text=les.R(3,ilod.R@940(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=123 kind=4 dtype=R ref=248|0 text=cg1.R(ilod.R@940(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=124 kind=4 dtype=R ref=837|0 text=sub.R(ilod.R@940(varM(110-36)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=125 kind=4 dtype=R ref=298|0 text=istr.R@940(varM(110-36)r,sub.R(ilod.R@940(varM(110-36)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=126 kind=4 dtype=R ref=172|0 text=geq.R(3,ilod.R@940(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=127 kind=4 dtype=R ref=262|0 text=cg1.R(ilod.R@940(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=128 kind=4 dtype=J ref=991|0 text=equ.J(3,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=129 kind=4 dtype=J ref=192|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=130 kind=4 dtype=J ref=1610|6 text=ilod.J@932(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=131 kind=4 dtype=J ref=1256|0 text=istr.J@932(varM(110-36)r,1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=132 kind=4 dtype=J ref=212|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=133 kind=4 dtype=L ref=387|2 text=ilod.L@60(ilod.A@896(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=134 kind=4 dtype=L ref=555|0 text=and.L(ilod.L@60(ilod.A@896(varM(110-36)r)),ilod.L@4(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=135 kind=4 dtype=J ref=1114|0 text=neq.J(1,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=136 kind=4 dtype=J ref=220|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=137 kind=4 dtype=L ref=387|3 text=ilod.L@8(ilod.A@896(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=138 kind=4 dtype=L ref=635|0 text=and.L(ilod.L@60(ilod.A@896(varM(110-36)r)),ilod.L@8(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=139 kind=4 dtype=J ref=1482|2 text=ilod.J@1600(varM(110-40)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=140 kind=4 dtype=J ref=1610|7 text=ilod.J@776(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=141 kind=4 dtype=J ref=1610|8 text=ilod.J@857(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=142 kind=4 dtype=J ref=1604|0 text=istr.J@928(varM(110-36)r,6)
+[W5D] bit at=cm proc=func_8038FCE0 bit=143 kind=3 dtype=A ref=909|0 text=varM(110-16)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=144 kind=3 dtype=A ref=909|0 text=varM(110-16)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=145 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=146 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=147 kind=4 dtype=A ref=1213|0 text=str.A(varM(110-16)r,varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=148 kind=4 dtype=A ref=1164|2 text=neq.A(varR(0+2)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=149 kind=4 dtype=A ref=1539|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=150 kind=4 dtype=J ref=263|0 text=istr.J@5(varM(110-16)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=151 kind=4 dtype=A ref=263|1 text=istr.A@96(varM(110-16)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=152 kind=4 dtype=A ref=263|2 text=istr.A@100(varM(110-16)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=153 kind=4 dtype=J ref=1592|0 text=istr.J@7(varM(110-16)r,16)
+[W5D] bit at=cm proc=func_8038FCE0 bit=154 kind=4 dtype=J ref=1022|0 text=istr.J@6(varM(110-16)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=155 kind=4 dtype=J ref=982|0 text=istr.J@4(varM(110-16)r,ilod.J@859(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=156 kind=4 dtype=R ref=243|2 text=istr.R@12(varM(110-16)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=157 kind=4 dtype=R ref=243|3 text=istr.R@20(varM(110-16)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=158 kind=4 dtype=R ref=243|4 text=istr.R@24(varM(110-16)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=159 kind=4 dtype=R ref=243|5 text=istr.R@28(varM(110-16)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=160 kind=4 dtype=R ref=1610|9 text=ilod.R@8(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=161 kind=4 dtype=R ref=1162|0 text=istr.R@32(varM(110-16)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=162 kind=4 dtype=R ref=1610|10 text=ilod.R@12(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=163 kind=4 dtype=R ref=1182|0 text=istr.R@36(varM(110-16)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=164 kind=4 dtype=R ref=1610|11 text=ilod.R@16(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=165 kind=4 dtype=R ref=1202|0 text=istr.R@40(varM(110-16)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=166 kind=4 dtype=R ref=1162|1 text=istr.R@44(varM(110-16)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=167 kind=4 dtype=R ref=1182|1 text=istr.R@48(varM(110-16)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=168 kind=4 dtype=R ref=1202|1 text=istr.R@52(varM(110-16)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=169 kind=4 dtype=A ref=240|0 text=add.A(varM(110-36)r,44)
+[W5D] bit at=cm proc=func_8038FCE0 bit=170 kind=4 dtype=A ref=794|0 text=add.A(varM(110-16)r,56)
+[W5D] bit at=cm proc=func_8038FCE0 bit=171 kind=4 dtype=J ref=631|0 text=ilod.J@6(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=172 kind=4 dtype=J ref=666|0 text=neq.J(3,ilod.J@6(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=173 kind=4 dtype=J ref=1458|0 text=cg1.J(ilod.J@6(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=174 kind=4 dtype=J ref=604|0 text=mpy.J(ilod.J@900(varM(110-36)r),4)
+[W5D] bit at=cm proc=func_8038FCE0 bit=175 kind=4 dtype=J ref=807|0 text=ixa.J(ldaS(54+0),mpy.J(ilod.J@900(varM(110-36)r),4))
+[W5D] bit at=cm proc=func_8038FCE0 bit=176 kind=4 dtype=J ref=427|0 text=ilod.J@0(ixa.J(ldaS(54+0),mpy.J(ilod.J@900(varM(110-36)r),4)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=177 kind=3 dtype=J ref=1037|0 text=varM(110-8)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=178 kind=3 dtype=J ref=1037|0 text=varM(110-8)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=179 kind=4 dtype=J ref=206|1 text=str.J(varM(110-8)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=180 kind=4 dtype=J ref=822|0 text=str.J(varM(110-8)r,1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=181 kind=3 dtype=J ref=973|0 text=varM(110-12)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=182 kind=3 dtype=J ref=973|0 text=varM(110-12)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=183 kind=4 dtype=J ref=182|0 text=str.J(varM(110-12)r,1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=184 kind=4 dtype=R ref=1262|0 text=istr.R@940(varM(110-36)r,589833)
+[W5D] bit at=cm proc=func_8038FCE0 bit=185 kind=4 dtype=R ref=115|0 text=istr.R@8(varM(110-16)r,1179657)
+[W5D] bit at=cm proc=func_8038FCE0 bit=186 kind=4 dtype=R ref=151|0 text=istr.R@16(varM(110-16)r,1769476)
+[W5D] bit at=cm proc=func_8038FCE0 bit=187 kind=4 dtype=R ref=631|1 text=ilod.R@80(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=188 kind=4 dtype=R ref=1354|0 text=mpy.R(ilod.R@80(varM(110-16)r),2031620)
+[W5D] bit at=cm proc=func_8038FCE0 bit=189 kind=4 dtype=R ref=1610|12 text=ilod.R@20(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=190 kind=4 dtype=R ref=1544|0 text=add.R(mpy.R(ilod.R@80(varM(110-16)r),2031620),ilod.R@20(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=191 kind=4 dtype=R ref=72|0 text=istr.R@20(varM(110-16)r,add.R(mpy.R(ilod.R@80(varM(110-16)r),2031620),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=192 kind=4 dtype=R ref=631|2 text=ilod.R@84(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=193 kind=4 dtype=R ref=1374|0 text=mpy.R(ilod.R@84(varM(110-16)r),2031620)
+[W5D] bit at=cm proc=func_8038FCE0 bit=194 kind=4 dtype=R ref=1610|13 text=ilod.R@24(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=195 kind=4 dtype=R ref=1383|0 text=add.R(mpy.R(ilod.R@84(varM(110-16)r),2031620),ilod.R@24(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=196 kind=4 dtype=R ref=158|0 text=istr.R@24(varM(110-16)r,add.R(mpy.R(ilod.R@84(varM(110-16)r),2031620),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=197 kind=4 dtype=R ref=631|3 text=ilod.R@88(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=198 kind=4 dtype=R ref=1394|0 text=mpy.R(ilod.R@88(varM(110-16)r),2031620)
+[W5D] bit at=cm proc=func_8038FCE0 bit=199 kind=4 dtype=R ref=1610|14 text=ilod.R@28(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=200 kind=4 dtype=R ref=1222|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),2031620),ilod.R@28(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=201 kind=4 dtype=R ref=244|0 text=istr.R@28(varM(110-16)r,add.R(mpy.R(ilod.R@88(varM(110-16)r),2031620),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=202 kind=4 dtype=J ref=206|2 text=str.J(varM(110-12)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=203 kind=4 dtype=R ref=1350|0 text=istr.R@940(varM(110-36)r,2293763)
+[W5D] bit at=cm proc=func_8038FCE0 bit=204 kind=4 dtype=R ref=151|1 text=istr.R@8(varM(110-16)r,1769476)
+[W5D] bit at=cm proc=func_8038FCE0 bit=205 kind=4 dtype=R ref=147|0 text=istr.R@16(varM(110-16)r,2490371)
+[W5D] bit at=cm proc=func_8038FCE0 bit=206 kind=4 dtype=R ref=1479|0 text=mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=207 kind=4 dtype=R ref=1099|0 text=mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=208 kind=4 dtype=R ref=1279|0 text=mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=209 kind=4 dtype=R ref=172|1 text=add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=210 kind=4 dtype=R ref=571|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=211 kind=4 dtype=R ref=952|0 text=add.R(add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))),2686981)
+[W5D] bit at=cm proc=func_8038FCE0 bit=212 kind=4 dtype=R ref=348|0 text=istr.R@28(varM(110-16)r,add.R(add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))),2686981))
+[W5D] bit at=cm proc=func_8038FCE0 bit=213 kind=4 dtype=J ref=198|0 text=str.J(varM(110-12)r,2)
+[W5D] bit at=cm proc=func_8038FCE0 bit=214 kind=4 dtype=R ref=640|0 text=istr.R@8(varM(110-16)r,3014660)
+[W5D] bit at=cm proc=func_8038FCE0 bit=215 kind=4 dtype=R ref=173|0 text=istr.R@16(varM(110-16)r,2293763)
+[W5D] bit at=cm proc=func_8038FCE0 bit=216 kind=4 dtype=R ref=1610|15 text=ilod.R@944(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=217 kind=4 dtype=R ref=192|1 text=mpy.R(ilod.R@80(varM(110-16)r),3276804)
+[W5D] bit at=cm proc=func_8038FCE0 bit=218 kind=4 dtype=R ref=1029|0 text=add.R(mpy.R(ilod.R@80(varM(110-16)r),3276804),ilod.R@20(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=219 kind=4 dtype=R ref=870|0 text=istr.R@20(varM(110-16)r,add.R(mpy.R(ilod.R@80(varM(110-16)r),3276804),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=220 kind=4 dtype=R ref=212|1 text=mpy.R(ilod.R@84(varM(110-16)r),3276804)
+[W5D] bit at=cm proc=func_8038FCE0 bit=221 kind=4 dtype=R ref=878|0 text=add.R(mpy.R(ilod.R@84(varM(110-16)r),3276804),ilod.R@24(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=222 kind=4 dtype=R ref=1192|0 text=istr.R@24(varM(110-16)r,add.R(mpy.R(ilod.R@84(varM(110-16)r),3276804),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=223 kind=4 dtype=R ref=232|0 text=mpy.R(ilod.R@88(varM(110-16)r),3276804)
+[W5D] bit at=cm proc=func_8038FCE0 bit=224 kind=4 dtype=R ref=567|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),3276804),ilod.R@28(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=225 kind=4 dtype=R ref=976|0 text=istr.R@28(varM(110-16)r,add.R(mpy.R(ilod.R@88(varM(110-16)r),3276804),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=226 kind=4 dtype=R ref=135|0 text=istr.R@8(varM(110-16)r,3538947)
+[W5D] bit at=cm proc=func_8038FCE0 bit=227 kind=4 dtype=R ref=211|1 text=istr.R@16(varM(110-16)r,393219)
+[W5D] bit at=cm proc=func_8038FCE0 bit=228 kind=4 dtype=R ref=1610|16 text=ilod.R@948(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=229 kind=4 dtype=R ref=1043|0 text=neg.R(ilod.R@948(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=230 kind=4 dtype=R ref=867|0 text=istr.R@940(varM(110-36)r,3735561)
+[W5D] bit at=cm proc=func_8038FCE0 bit=231 kind=4 dtype=R ref=47|0 text=istr.R@16(varM(110-16)r,4325380)
+[W5D] bit at=cm proc=func_8038FCE0 bit=232 kind=4 dtype=R ref=540|0 text=str.R(varM(110-80)r,varR(0+32)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=233 kind=4 dtype=R ref=495|1 text=sub.R(varR(0+32)r,4915206)
+[W5D] bit at=cm proc=func_8038FCE0 bit=234 kind=4 dtype=R ref=1608|0 text=sub.R(sub.R(varR(0+32)r,4915206),ilod.R@948(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=235 kind=4 dtype=R ref=1372|0 text=add.R(sub.R(varR(0+32)r,4915206),ilod.R@944(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=236 kind=3 dtype=A ref=845|0 text=varM(110-20)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=237 kind=3 dtype=A ref=845|0 text=varM(110-20)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=238 kind=4 dtype=A ref=1166|0 text=str.A(varM(110-20)r,varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=239 kind=4 dtype=A ref=1583|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=240 kind=3 dtype=R ref=333|0 text=varM(110-52)
+[W5D] bit at=cm proc=func_8038FCE0 bit=241 kind=3 dtype=R ref=333|0 text=varM(110-52)
+[W5D] bit at=cm proc=func_8038FCE0 bit=242 kind=4 dtype=R ref=542|0 text=ilod.R@0(ldaS(51+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=243 kind=4 dtype=L ref=594|0 text=mpy.L(ilod.L@8(varM(110-40)r),12)
+[W5D] bit at=cm proc=func_8038FCE0 bit=244 kind=4 dtype=L ref=898|0 text=ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))
+[W5D] bit at=cm proc=func_8038FCE0 bit=245 kind=4 dtype=R ref=609|0 text=ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=246 kind=4 dtype=R ref=1378|0 text=add.R(ilod.R@0(ldaS(51+0)),ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=247 kind=4 dtype=R ref=660|0 text=str.R(varM(110-52),add.R(ilod.R@0(ldaS(51+0)),ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=248 kind=3 dtype=R ref=397|0 text=varM(110-48)
+[W5D] bit at=cm proc=func_8038FCE0 bit=249 kind=3 dtype=R ref=397|0 text=varM(110-48)
+[W5D] bit at=cm proc=func_8038FCE0 bit=250 kind=4 dtype=R ref=542|1 text=ilod.R@4(ldaS(51+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=251 kind=4 dtype=R ref=609|1 text=ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=252 kind=4 dtype=R ref=1428|0 text=add.R(ilod.R@4(ldaS(51+0)),ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=253 kind=4 dtype=R ref=1207|0 text=str.R(varM(110-48),add.R(ilod.R@4(ldaS(51+0)),ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=254 kind=3 dtype=R ref=461|0 text=varM(110-44)
+[W5D] bit at=cm proc=func_8038FCE0 bit=255 kind=3 dtype=R ref=461|0 text=varM(110-44)
+[W5D] bit at=cm proc=func_8038FCE0 bit=256 kind=4 dtype=R ref=542|2 text=ilod.R@8(ldaS(51+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=257 kind=4 dtype=R ref=609|2 text=ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=258 kind=4 dtype=R ref=1498|0 text=add.R(ilod.R@8(ldaS(51+0)),ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=259 kind=4 dtype=R ref=911|0 text=str.R(varM(110-44),add.R(ilod.R@8(ldaS(51+0)),ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=260 kind=4 dtype=R ref=1610|17 text=ilod.R@68(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=261 kind=4 dtype=R ref=169|0 text=mpy.R(varM(110-44),ilod.R@68(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=262 kind=4 dtype=R ref=631|4 text=ilod.R@32(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=263 kind=4 dtype=R ref=1288|0 text=add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=264 kind=4 dtype=R ref=905|0 text=istr.R@44(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=265 kind=4 dtype=R ref=1610|18 text=ilod.R@72(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=266 kind=4 dtype=R ref=189|0 text=mpy.R(varM(110-44),ilod.R@72(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=267 kind=4 dtype=R ref=631|5 text=ilod.R@36(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=268 kind=4 dtype=R ref=1226|0 text=add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=269 kind=4 dtype=R ref=1561|0 text=istr.R@48(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=270 kind=4 dtype=R ref=1610|19 text=ilod.R@76(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=271 kind=4 dtype=R ref=209|0 text=mpy.R(varM(110-44),ilod.R@76(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=272 kind=4 dtype=R ref=631|6 text=ilod.R@40(varM(110-16)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=273 kind=4 dtype=R ref=1164|3 text=add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=274 kind=4 dtype=R ref=658|0 text=istr.R@52(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=275 kind=4 dtype=R ref=503|0 text=ilod.R@44(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=276 kind=4 dtype=R ref=1610|20 text=ilod.R@56(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=277 kind=4 dtype=R ref=1132|0 text=mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))
+[W5D] bit at=cm proc=func_8038FCE0 bit=278 kind=4 dtype=R ref=57|0 text=add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=279 kind=4 dtype=R ref=1030|0 text=istr.R@44(varM(110-20)r,add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=280 kind=4 dtype=R ref=503|1 text=ilod.R@48(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=281 kind=4 dtype=R ref=1610|21 text=ilod.R@60(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=282 kind=4 dtype=R ref=1152|1 text=mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))
+[W5D] bit at=cm proc=func_8038FCE0 bit=283 kind=4 dtype=R ref=329|0 text=add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=284 kind=4 dtype=R ref=450|0 text=istr.R@48(varM(110-20)r,add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=285 kind=4 dtype=R ref=503|2 text=ilod.R@52(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=286 kind=4 dtype=R ref=1610|22 text=ilod.R@64(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=287 kind=4 dtype=R ref=1172|0 text=mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))
+[W5D] bit at=cm proc=func_8038FCE0 bit=288 kind=4 dtype=R ref=541|0 text=add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=289 kind=4 dtype=R ref=1236|0 text=istr.R@52(varM(110-20)r,add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=290 kind=4 dtype=R ref=1610|23 text=ilod.R@44(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=291 kind=4 dtype=R ref=476|0 text=mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))
+[W5D] bit at=cm proc=func_8038FCE0 bit=292 kind=4 dtype=R ref=1518|0 text=add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=293 kind=4 dtype=R ref=1605|0 text=istr.R@44(varM(110-20)r,add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=294 kind=4 dtype=R ref=1610|24 text=ilod.R@48(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=295 kind=4 dtype=R ref=496|0 text=mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))
+[W5D] bit at=cm proc=func_8038FCE0 bit=296 kind=4 dtype=R ref=141|1 text=add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=297 kind=4 dtype=R ref=109|0 text=istr.R@48(varM(110-20)r,add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=298 kind=4 dtype=R ref=1610|25 text=ilod.R@52(varM(110-36)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=299 kind=4 dtype=R ref=516|0 text=mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))
+[W5D] bit at=cm proc=func_8038FCE0 bit=300 kind=4 dtype=R ref=383|0 text=add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=301 kind=4 dtype=R ref=192|2 text=istr.R@52(varM(110-20)r,add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=302 kind=4 dtype=A ref=1381|0 text=add.A(varM(110-20)r,8)
+[W5D] bit at=cm proc=func_8038FCE0 bit=303 kind=4 dtype=R ref=1457|0 text=add.R(varR(0+32)r,5570563)
+[W5D] bit at=cm proc=func_8038FCE0 bit=304 kind=4 dtype=J ref=1118|0 text=ilod.J@0(ldaS(69+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=305 kind=4 dtype=L ref=1223|0 text=istr.L@4(varM(110-20)r,varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=306 kind=4 dtype=R ref=62|1 text=add.R(varR(0+32)r,393219)
+[W5D] bit at=cm proc=func_8038FCE0 bit=307 kind=4 dtype=R ref=1206|0 text=istr.R@56(varM(110-20)r,add.R(varR(0+32)r,393219))
+[W5D] bit at=cm proc=func_8038FCE0 bit=308 kind=4 dtype=R ref=503|3 text=ilod.R@20(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=309 kind=4 dtype=R ref=1315|0 text=mpy.R(ilod.R@20(varM(110-20)r),5767172)
+[W5D] bit at=cm proc=func_8038FCE0 bit=310 kind=4 dtype=R ref=197|0 text=add.R(mpy.R(ilod.R@20(varM(110-20)r),5767172),ilod.R@20(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=311 kind=4 dtype=R ref=541|1 text=istr.R@60(varM(110-20)r,add.R(mpy.R(ilod.R@20(varM(110-20)r),5767172),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=312 kind=4 dtype=R ref=503|4 text=ilod.R@24(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=313 kind=4 dtype=R ref=1335|0 text=mpy.R(ilod.R@24(varM(110-20)r),5767172)
+[W5D] bit at=cm proc=func_8038FCE0 bit=314 kind=4 dtype=R ref=36|0 text=add.R(mpy.R(ilod.R@24(varM(110-20)r),5767172),ilod.R@24(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=315 kind=4 dtype=R ref=51|0 text=istr.R@64(varM(110-20)r,add.R(mpy.R(ilod.R@24(varM(110-20)r),5767172),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=316 kind=4 dtype=R ref=503|5 text=ilod.R@28(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=317 kind=4 dtype=R ref=1355|0 text=mpy.R(ilod.R@28(varM(110-20)r),5767172)
+[W5D] bit at=cm proc=func_8038FCE0 bit=318 kind=4 dtype=R ref=1494|0 text=add.R(mpy.R(ilod.R@28(varM(110-20)r),5767172),ilod.R@28(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=319 kind=4 dtype=R ref=1180|0 text=istr.R@68(varM(110-20)r,add.R(mpy.R(ilod.R@28(varM(110-20)r),5767172),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=320 kind=4 dtype=R ref=503|6 text=ilod.R@68(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=321 kind=4 dtype=R ref=437|1 text=mpy.R(ilod.R@68(varM(110-20)r),6029316)
+[W5D] bit at=cm proc=func_8038FCE0 bit=322 kind=4 dtype=R ref=1573|0 text=istr.R@68(varM(110-20)r,mpy.R(ilod.R@68(varM(110-20)r),6029316))
+[W5D] bit at=cm proc=func_8038FCE0 bit=323 kind=4 dtype=R ref=503|7 text=ilod.R@64(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=324 kind=4 dtype=R ref=457|0 text=mpy.R(ilod.R@64(varM(110-20)r),6029316)
+[W5D] bit at=cm proc=func_8038FCE0 bit=325 kind=4 dtype=R ref=558|0 text=istr.R@64(varM(110-20)r,mpy.R(ilod.R@64(varM(110-20)r),6029316))
+[W5D] bit at=cm proc=func_8038FCE0 bit=326 kind=4 dtype=R ref=503|8 text=ilod.R@60(varM(110-20)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=327 kind=4 dtype=R ref=477|0 text=mpy.R(ilod.R@60(varM(110-20)r),6029316)
+[W5D] bit at=cm proc=func_8038FCE0 bit=328 kind=4 dtype=R ref=1182|2 text=istr.R@60(varM(110-20)r,mpy.R(ilod.R@60(varM(110-20)r),6029316))
+[W5D] bit at=cm proc=func_8038FCE0 bit=329 kind=4 dtype=R ref=173|1 text=istr.R@8(varM(110-16)r,2293763)
+[W5D] bit at=cm proc=func_8038FCE0 bit=330 kind=4 dtype=J ref=981|0 text=geq.J(ilod.J@900(varM(110-36)r),8)
+[W5D] bit at=cm proc=func_8038FCE0 bit=331 kind=4 dtype=J ref=388|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=332 kind=4 dtype=J ref=1463|0 text=mpy.J(ilod.J@900(varM(110-36)r),12)
+[W5D] bit at=cm proc=func_8038FCE0 bit=333 kind=4 dtype=J ref=1334|0 text=ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))
+[W5D] bit at=cm proc=func_8038FCE0 bit=334 kind=4 dtype=R ref=1481|1 text=ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=335 kind=4 dtype=R ref=442|0 text=str.R(varM(110-52),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=336 kind=4 dtype=R ref=1481|2 text=ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=337 kind=4 dtype=R ref=1187|0 text=str.R(varM(110-48),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=338 kind=4 dtype=R ref=1481|3 text=ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=339 kind=4 dtype=R ref=313|0 text=str.R(varM(110-44),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=340 kind=4 dtype=J ref=1265|0 text=ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=341 kind=4 dtype=L ref=704|0 text=ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))
+[W5D] bit at=cm proc=func_8038FCE0 bit=342 kind=4 dtype=R ref=221|0 text=ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=343 kind=4 dtype=R ref=1151|0 text=add.R(ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=344 kind=4 dtype=R ref=823|0 text=str.R(varM(110-52),add.R(ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=345 kind=4 dtype=R ref=221|1 text=ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=346 kind=4 dtype=R ref=1211|0 text=add.R(ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=347 kind=4 dtype=R ref=1025|0 text=str.R(varM(110-48),add.R(ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=348 kind=4 dtype=R ref=221|2 text=ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=349 kind=4 dtype=R ref=1291|0 text=add.R(ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=350 kind=4 dtype=R ref=232|1 text=str.R(varM(110-44),add.R(ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=351 kind=4 dtype=R ref=1154|0 text=istr.R@32(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=352 kind=4 dtype=R ref=986|0 text=istr.R@36(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=353 kind=4 dtype=R ref=878|1 text=istr.R@40(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=354 kind=4 dtype=R ref=92|0 text=add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=355 kind=4 dtype=R ref=1099|1 text=istr.R@32(varM(110-16)r,add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=356 kind=4 dtype=R ref=100|0 text=add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=357 kind=4 dtype=R ref=964|0 text=istr.R@36(varM(110-16)r,add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=358 kind=4 dtype=R ref=1587|0 text=add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=359 kind=4 dtype=R ref=763|0 text=istr.R@40(varM(110-16)r,add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=360 kind=4 dtype=R ref=515|0 text=add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=361 kind=4 dtype=R ref=1044|0 text=istr.R@32(varM(110-16)r,add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=362 kind=4 dtype=R ref=453|0 text=add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=363 kind=4 dtype=R ref=876|0 text=istr.R@36(varM(110-16)r,add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=364 kind=4 dtype=R ref=391|0 text=add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=365 kind=4 dtype=R ref=708|0 text=istr.R@40(varM(110-16)r,add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=366 kind=4 dtype=J ref=1204|0 text=neq.J(varM(110-8)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=367 kind=4 dtype=J ref=715|0 text=cg1.J(varM(110-8)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=368 kind=4 dtype=A ref=1199|1 text=add.A(varM(110-16)r,32)
+[W5D] bit at=cm proc=func_8038FCE0 bit=369 kind=4 dtype=A ref=1270|0 text=istr.A@92(varM(110-16)r,varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=370 kind=4 dtype=A ref=263|3 text=istr.A@92(varM(110-16)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=371 kind=4 dtype=J ref=1611|0 text=geq.J(ilod.J@901(varM(110-36)r),1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=372 kind=4 dtype=J ref=590|0 text=cg1.J(ilod.J@901(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=373 kind=4 dtype=J ref=754|0 text=neq.J(5,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=374 kind=4 dtype=J ref=424|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=375 kind=4 dtype=J ref=934|0 text=neq.J(3,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=376 kind=4 dtype=J ref=428|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=377 kind=4 dtype=J ref=290|0 text=add.J(ilod.J@901(varM(110-36)r),-1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=378 kind=4 dtype=J ref=278|0 text=istr.J@901(varM(110-36)r,add.J(ilod.J@901(varM(110-36)r),-1))
+[W5D] bit at=cm proc=func_8038FCE0 bit=379 kind=4 dtype=J ref=1416|0 text=add.J(varM(110-4)r,1)
+[W5D] bit at=cm proc=func_8038FCE0 bit=380 kind=4 dtype=J ref=975|0 text=str.J(varM(110-4)r,add.J(varM(110-4)r,1))
+[W5D] bit at=cm proc=func_8038FCE0 bit=381 kind=4 dtype=A ref=823|1 text=add.A(varM(110-36)r,952)
+[W5D] bit at=cm proc=func_8038FCE0 bit=382 kind=4 dtype=A ref=370|2 text=str.A(varM(110-36)r,add.A(varM(110-36)r,952))
+[W5D] bit at=cm proc=func_8038FCE0 bit=383 kind=4 dtype=J ref=1104|0 text=les.J(varM(110-4)r,ildv.J@0(ldaS(35+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=384 kind=4 dtype=J ref=861|0 text=cg1.J(varM(110-4)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=385 kind=4 dtype=J ref=290|1 text=cg1.J(ildv.J@0(ldaS(35+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=386 kind=3 dtype=A ref=781|0 text=varM(110-24)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=387 kind=3 dtype=A ref=781|0 text=varM(110-24)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=388 kind=4 dtype=A ref=683|1 text=ilod.A@16(ldaS(106+0))
+[W5D] bit at=cm proc=func_8038FCE0 bit=389 kind=4 dtype=A ref=1430|1 text=str.A(varM(110-24)r,ilod.A@16(ldaS(106+0)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=390 kind=4 dtype=A ref=1164|4 text=neq.A(varM(110-24)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=391 kind=4 dtype=A ref=225|0 text=cg1.A(varM(110-24)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=392 kind=3 dtype=A ref=717|0 text=varM(110-28)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=393 kind=3 dtype=A ref=717|0 text=varM(110-28)r
+[W5D] bit at=cm proc=func_8038FCE0 bit=394 kind=4 dtype=A ref=375|0 text=ilod.A@0(varM(110-24)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=395 kind=4 dtype=A ref=1376|0 text=str.A(varM(110-28)r,ilod.A@0(varM(110-24)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=396 kind=4 dtype=A ref=375|1 text=ilod.A@4(varM(110-24)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=397 kind=4 dtype=A ref=1434|1 text=str.A(varM(110-24)r,varM(110-28)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=398 kind=4 dtype=A ref=1164|5 text=neq.A(varM(110-28)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=399 kind=4 dtype=A ref=105|0 text=cg1.A(varM(110-28)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=400 kind=4 dtype=R ref=157|1 text=istr.R@44(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=401 kind=4 dtype=R ref=668|0 text=istr.R@48(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=402 kind=4 dtype=R ref=1239|0 text=istr.R@52(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=403 kind=4 dtype=R ref=164|0 text=ilod.R@44(varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=404 kind=4 dtype=R ref=1226|1 text=add.R(ilod.R@44(varR(0+2)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=405 kind=4 dtype=R ref=688|0 text=istr.R@44(varR(0+2)r,add.R(ilod.R@44(varR(0+2)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=406 kind=4 dtype=R ref=164|1 text=ilod.R@48(varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=407 kind=4 dtype=R ref=77|1 text=add.R(ilod.R@48(varR(0+2)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=408 kind=4 dtype=R ref=679|0 text=istr.R@48(varR(0+2)r,add.R(ilod.R@48(varR(0+2)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=409 kind=4 dtype=R ref=164|2 text=ilod.R@52(varR(0+2)r)
+[W5D] bit at=cm proc=func_8038FCE0 bit=410 kind=4 dtype=R ref=487|0 text=add.R(ilod.R@52(varR(0+2)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=cm proc=func_8038FCE0 bit=411 kind=4 dtype=R ref=100|1 text=istr.R@52(varR(0+2)r,add.R(ilod.R@52(varR(0+2)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=cm proc=func_8038FCE0 bit=412 kind=4 dtype=J ref=263|4 text=istr.J@5(varR(0+2)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=413 kind=4 dtype=A ref=263|5 text=istr.A@96(varR(0+2)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=414 kind=4 dtype=A ref=263|6 text=istr.A@100(varR(0+2)r,0)
+[W5D] bit at=cm proc=func_8038FCE0 bit=415 kind=4 dtype=J ref=1469|0 text=istr.J@7(varR(0+2)r,16)
+[W5D] bit at=cm proc=func_8038FCE0 bit=416 kind=4 dtype=J ref=990|0 text=istr.J@6(varR(0+2)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=417 kind=4 dtype=J ref=950|0 text=istr.J@4(varR(0+2)r,ilod.J@859(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=418 kind=4 dtype=R ref=243|6 text=istr.R@12(varR(0+2)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=419 kind=4 dtype=R ref=243|7 text=istr.R@20(varR(0+2)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=420 kind=4 dtype=R ref=243|8 text=istr.R@24(varR(0+2)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=421 kind=4 dtype=R ref=243|9 text=istr.R@28(varR(0+2)r,3)
+[W5D] bit at=cm proc=func_8038FCE0 bit=422 kind=4 dtype=R ref=1130|0 text=istr.R@32(varR(0+2)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=423 kind=4 dtype=R ref=1150|0 text=istr.R@36(varR(0+2)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=424 kind=4 dtype=R ref=1170|0 text=istr.R@40(varR(0+2)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=cm proc=func_8038FCE0 bit=425 kind=4 dtype=R ref=1130|1 text=istr.R@44(varR(0+2)r,ilod.R@8(varM(110-36)r))
+[W5D] regcand proc=func_8038FCE0 what=lda bb=0 ctx=3 decision=1 text=ldaS(112+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=0 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=lda bb=2 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=2 ctx=1 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=lda bb=4 ctx=0 decision=1 text=ldaS(112+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=7 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=9 ctx=0 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=lda bb=9 ctx=0 decision=1 text=ldaS(34+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=9 ctx=3 decision=1 text=ldaS(35+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=9 ctx=1 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=lda bb=11 ctx=0 decision=1 text=ldaS(26+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=11 ctx=5 decision=1 text=2056
+[W5D] regcand proc=func_8038FCE0 what=const bb=12 ctx=1 decision=0 text=908
+[W5D] regcand proc=func_8038FCE0 what=const bb=13 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=14 ctx=3 decision=1 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=15 ctx=3 decision=1 text=6
+[W5D] regcand proc=func_8038FCE0 what=const bb=16 ctx=3 decision=1 text=8
+[W5D] regcand proc=func_8038FCE0 what=const bb=32 ctx=3 decision=1 text=8
+[W5D] regcand proc=func_8038FCE0 what=const bb=32 ctx=3 decision=1 text=-1
+[W5D] regcand proc=func_8038FCE0 what=const bb=32 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=32 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=33 ctx=1 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=lda bb=34 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=35 ctx=1 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=37 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=99 ctx=1 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=99 ctx=1 decision=0 text=952
+[W5D] regcand proc=func_8038FCE0 what=lda bb=99 ctx=3 decision=1 text=ldaS(35+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=101 ctx=3 decision=1 text=ldaS(106+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=101 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=lda bb=104 ctx=0 decision=1 text=ldaS(106+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=105 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=40 ctx=3 decision=1 text=1
+[W5D] regcand proc=func_8038FCE0 what=lda bb=53 ctx=0 decision=1 text=ldaS(86+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=54 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=1 text=16
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=56 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=57 ctx=1 decision=0 text=44
+[W5D] regcand proc=func_8038FCE0 what=const bb=57 ctx=1 decision=0 text=56
+[W5D] regcand proc=func_8038FCE0 what=const bb=58 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=lda bb=59 ctx=0 decision=1 text=ldaS(54+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=59 ctx=5 decision=0 text=4
+[W5D] regcand proc=func_8038FCE0 what=const bb=59 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=59 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=61 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=61 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=61 ctx=0 decision=1 text=393219
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=3 decision=1 text=589833
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=3 decision=1 text=1179657
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=3 decision=1 text=1769476
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=5 decision=1 text=2031620
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=5 decision=1 text=2031620
+[W5D] regcand proc=func_8038FCE0 what=const bb=62 ctx=5 decision=1 text=2031620
+[W5D] regcand proc=func_8038FCE0 what=const bb=86 ctx=1 decision=0 text=8
+[W5D] regcand proc=func_8038FCE0 what=lda bb=87 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=87 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=87 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=87 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=87 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=87 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=const bb=90 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=91 ctx=1 decision=0 text=32
+[W5D] regcand proc=func_8038FCE0 what=const bb=94 ctx=1 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=95 ctx=3 decision=1 text=5
+[W5D] regcand proc=func_8038FCE0 what=const bb=96 ctx=3 decision=1 text=3
+[W5D] regcand proc=func_8038FCE0 what=const bb=97 ctx=1 decision=0 text=-1
+[W5D] regcand proc=func_8038FCE0 what=const bb=93 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=88 ctx=0 decision=1 text=ldaS(52+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=88 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=const bb=66 ctx=3 decision=1 text=589833
+[W5D] regcand proc=func_8038FCE0 what=const bb=66 ctx=3 decision=1 text=3538947
+[W5D] regcand proc=func_8038FCE0 what=const bb=66 ctx=3 decision=1 text=393219
+[W5D] regcand proc=func_8038FCE0 what=const bb=85 ctx=3 decision=1 text=2293763
+[W5D] regcand proc=func_8038FCE0 what=const bb=85 ctx=3 decision=1 text=2293763
+[W5D] regcand proc=func_8038FCE0 what=const bb=85 ctx=3 decision=1 text=2490371
+[W5D] regcand proc=func_8038FCE0 what=const bb=64 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=64 ctx=0 decision=0 text=2
+[W5D] regcand proc=func_8038FCE0 what=const bb=64 ctx=3 decision=1 text=589833
+[W5D] regcand proc=func_8038FCE0 what=const bb=64 ctx=3 decision=1 text=3014660
+[W5D] regcand proc=func_8038FCE0 what=const bb=64 ctx=3 decision=1 text=2293763
+[W5D] regcand proc=func_8038FCE0 what=const bb=65 ctx=5 decision=1 text=3276804
+[W5D] regcand proc=func_8038FCE0 what=const bb=65 ctx=5 decision=1 text=3276804
+[W5D] regcand proc=func_8038FCE0 what=const bb=65 ctx=5 decision=1 text=3276804
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=0 decision=0 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=0 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=3 decision=1 text=2293763
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=3 decision=1 text=1769476
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=3 decision=1 text=2490371
+[W5D] regcand proc=func_8038FCE0 what=const bb=63 ctx=1 decision=1 text=2686981
+[W5D] regcand proc=func_8038FCE0 what=const bb=71 ctx=3 decision=1 text=3735561
+[W5D] regcand proc=func_8038FCE0 what=const bb=71 ctx=3 decision=1 text=3538947
+[W5D] regcand proc=func_8038FCE0 what=const bb=71 ctx=3 decision=1 text=4325380
+[W5D] regcand proc=func_8038FCE0 what=const bb=71 ctx=0 decision=1 text=4587525
+[W5D] regcand proc=func_8038FCE0 what=const bb=72 ctx=1 decision=1 text=4915206
+[W5D] regcand proc=func_8038FCE0 what=const bb=73 ctx=0 decision=1 text=4587525
+[W5D] regcand proc=func_8038FCE0 what=const bb=74 ctx=1 decision=1 text=4915206
+[W5D] regcand proc=func_8038FCE0 what=lda bb=75 ctx=0 decision=1 text=ldaS(112+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=76 ctx=3 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=3 decision=1 text=ldaS(51+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=77 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=3 decision=1 text=ldaS(51+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=77 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=3 decision=1 text=ldaS(51+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=77 ctx=0 decision=1 text=ldaS(56+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=77 ctx=5 decision=1 text=12
+[W5D] regcand proc=func_8038FCE0 what=const bb=78 ctx=1 decision=0 text=8
+[W5D] regcand proc=func_8038FCE0 what=const bb=79 ctx=0 decision=1 text=5308420
+[W5D] regcand proc=func_8038FCE0 what=const bb=80 ctx=1 decision=1 text=5570563
+[W5D] regcand proc=func_8038FCE0 what=lda bb=81 ctx=3 decision=1 text=ldaS(69+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=81 ctx=0 decision=0 text=-1
+[W5D] regcand proc=func_8038FCE0 what=const bb=81 ctx=0 decision=0 text=0
+[W5D] regcand proc=func_8038FCE0 what=const bb=82 ctx=0 decision=1 text=5570563
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=1 decision=1 text=393219
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=5767172
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=5767172
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=5767172
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=6029316
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=6029316
+[W5D] regcand proc=func_8038FCE0 what=const bb=83 ctx=5 decision=1 text=6029316
+[W5D] regcand proc=func_8038FCE0 what=const bb=69 ctx=3 decision=1 text=589833
+[W5D] regcand proc=func_8038FCE0 what=const bb=69 ctx=3 decision=1 text=3538947
+[W5D] regcand proc=func_8038FCE0 what=const bb=69 ctx=3 decision=1 text=393219
+[W5D] regcand proc=func_8038FCE0 what=const bb=42 ctx=3 decision=1 text=5
+[W5D] regcand proc=func_8038FCE0 what=const bb=44 ctx=3 decision=1 text=1
+[W5D] regcand proc=func_8038FCE0 what=const bb=52 ctx=3 decision=1 text=6
+[W5D] regcand proc=func_8038FCE0 what=const bb=26 ctx=3 decision=1 text=5
+[W5D] regcand proc=func_8038FCE0 what=lda bb=27 ctx=0 decision=1 text=ldaS(113+0)
+[W5D] regcand proc=func_8038FCE0 what=const bb=27 ctx=5 decision=0 text=16
+[W5D] regcand proc=func_8038FCE0 what=const bb=6 ctx=5 decision=1 text=196611
+[W5D] regcand proc=func_8038FCE0 what=lda bb=6 ctx=3 decision=1 text=ldaS(92+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=6 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=6 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=6 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=func_8038FCE0 what=lda bb=6 ctx=3 decision=1 text=ldaS(6+0)
+[W5D] ordinal proc=func_8038FCE0 cdx_proc=13
+[W5D] bit at=gc proc=func_8038FCE0 bit=0 kind=3 dtype=A ref=205|0 text=varM(110-60)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=1 kind=3 dtype=A ref=205|0 text=varM(110-60)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=2 kind=4 dtype=A ref=875|0 text=ilod.A@16(ldaS(112+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=3 kind=4 dtype=A ref=64|0 text=str.A(varM(110-60)r,ilod.A@16(ldaS(112+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=4 kind=4 dtype=A ref=1164|0 text=neq.A(varM(110-60)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=5 kind=4 dtype=A ref=490|0 text=cg1.A(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=6 kind=3 dtype=A ref=141|0 text=varM(110-64)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=7 kind=3 dtype=A ref=141|0 text=varM(110-64)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=8 kind=4 dtype=A ref=842|0 text=ilod.A@0(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=9 kind=4 dtype=A ref=659|0 text=str.A(varM(110-64)r,ilod.A@0(varM(110-60)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=10 kind=4 dtype=R ref=842|1 text=ilod.R@56(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=11 kind=4 dtype=R ref=697|0 text=ildv.R@0(ldaS(6+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=12 kind=4 dtype=R ref=211|0 text=sub.R(ilod.R@56(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=13 kind=4 dtype=R ref=500|0 text=istr.R@56(varM(110-60)r,sub.R(ilod.R@56(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=14 kind=4 dtype=R ref=52|0 text=geq.R(3,ilod.R@56(varM(110-60)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=15 kind=4 dtype=R ref=993|0 text=cg1.R(ilod.R@56(varM(110-60)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=16 kind=3 dtype=J ref=77|0 text=varM(110-68)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=17 kind=3 dtype=J ref=77|0 text=varM(110-68)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=18 kind=4 dtype=L ref=842|2 text=ilod.L@4(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=19 kind=4 dtype=J ref=1601|0 text=cvt.J(ilod.L@4(varM(110-60)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=20 kind=4 dtype=J ref=877|0 text=str.J(varM(110-68)r,cvt.J(ilod.L@4(varM(110-60)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=21 kind=4 dtype=J ref=386|0 text=cvtl.J(varM(110-68)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=22 kind=4 dtype=R ref=842|3 text=ilod.R@64(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=23 kind=4 dtype=R ref=235|0 text=ilod.R@0(ldaS(92+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=24 kind=4 dtype=R ref=366|0 text=mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=25 kind=4 dtype=R ref=1066|0 text=mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=26 kind=4 dtype=R ref=370|0 text=sub.R(ilod.R@64(varM(110-60)r),mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=27 kind=4 dtype=R ref=1031|1 text=istr.R@64(varM(110-60)r,sub.R(ilod.R@64(varM(110-60)r),mpy.R(196611,mpy.R(ilod.R@0(ldaS(92+0)),ildv.R@0(ldaS(6+0))))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=28 kind=4 dtype=R ref=842|4 text=ilod.R@44(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=29 kind=4 dtype=R ref=842|5 text=ilod.R@60(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=30 kind=4 dtype=R ref=809|0 text=mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=31 kind=4 dtype=R ref=847|0 text=add.R(ilod.R@44(varM(110-60)r),mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=32 kind=4 dtype=R ref=1005|0 text=istr.R@44(varM(110-60)r,add.R(ilod.R@44(varM(110-60)r),mpy.R(ilod.R@60(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=33 kind=4 dtype=R ref=842|6 text=ilod.R@48(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=34 kind=4 dtype=R ref=769|0 text=mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=35 kind=4 dtype=R ref=839|0 text=add.R(ilod.R@48(varM(110-60)r),mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=36 kind=4 dtype=R ref=795|0 text=istr.R@48(varM(110-60)r,add.R(ilod.R@48(varM(110-60)r),mpy.R(ilod.R@64(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=37 kind=4 dtype=R ref=842|7 text=ilod.R@52(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=38 kind=4 dtype=R ref=842|8 text=ilod.R@68(varM(110-60)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=39 kind=4 dtype=R ref=869|0 text=mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=40 kind=4 dtype=R ref=979|0 text=add.R(ilod.R@52(varM(110-60)r),mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=41 kind=4 dtype=R ref=1232|0 text=istr.R@52(varM(110-60)r,add.R(ilod.R@52(varM(110-60)r),mpy.R(ilod.R@68(varM(110-60)r),ildv.R@0(ldaS(6+0)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=42 kind=4 dtype=A ref=1034|0 text=str.A(varM(110-60)r,varM(110-64)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=43 kind=4 dtype=A ref=1164|1 text=neq.A(varM(110-64)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=44 kind=4 dtype=A ref=376|0 text=cg1.A(varM(110-64)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=45 kind=3 dtype=J ref=1101|0 text=varM(110-4)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=46 kind=3 dtype=J ref=1101|0 text=varM(110-4)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=47 kind=4 dtype=J ref=206|0 text=str.J(varM(110-4)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=48 kind=3 dtype=A ref=589|0 text=varM(110-36)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=49 kind=3 dtype=A ref=589|0 text=varM(110-36)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=50 kind=4 dtype=A ref=1046|0 text=str.A(varM(110-36)r,ldaS(34+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=51 kind=4 dtype=J ref=6|0 text=ildv.J@0(ldaS(35+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=52 kind=4 dtype=J ref=62|0 text=geq.J(ildv.J@0(ldaS(35+0)),1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=53 kind=4 dtype=J ref=110|0 text=cg1.J(ildv.J@0(ldaS(35+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=54 kind=3 dtype=A ref=525|0 text=varM(110-40)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=55 kind=3 dtype=A ref=525|0 text=varM(110-40)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=56 kind=4 dtype=J ref=1610|0 text=ilod.J@859(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=57 kind=4 dtype=J ref=370|1 text=mpy.J(ilod.J@859(varM(110-36)r),2056)
+[W5D] bit at=gc proc=func_8038FCE0 bit=58 kind=4 dtype=J ref=1294|0 text=ixa.J(ldaS(26+0),mpy.J(ilod.J@859(varM(110-36)r),2056))
+[W5D] bit at=gc proc=func_8038FCE0 bit=59 kind=4 dtype=A ref=342|0 text=str.A(varM(110-40)r,ixa.J(ldaS(26+0),mpy.J(ilod.J@859(varM(110-36)r),2056)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=60 kind=3 dtype=A ref=653|0 text=varM(110-32)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=61 kind=3 dtype=A ref=653|0 text=varM(110-32)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=62 kind=4 dtype=A ref=683|0 text=add.A(varM(110-36)r,908)
+[W5D] bit at=gc proc=func_8038FCE0 bit=63 kind=4 dtype=A ref=1430|0 text=str.A(varM(110-32)r,add.A(varM(110-36)r,908))
+[W5D] bit at=gc proc=func_8038FCE0 bit=64 kind=4 dtype=L ref=1610|1 text=ilod.L@908(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=65 kind=3 dtype=J ref=1568|0 text=varM(110-76)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=66 kind=3 dtype=J ref=1568|0 text=varM(110-76)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=67 kind=4 dtype=J ref=1610|2 text=ilod.J@900(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=68 kind=4 dtype=J ref=1558|0 text=str.J(varM(110-76)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=69 kind=4 dtype=J ref=1261|0 text=equ.J(varM(110-76)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=70 kind=4 dtype=J ref=4|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=71 kind=4 dtype=J ref=711|1 text=equ.J(varM(110-76)r,1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=72 kind=4 dtype=J ref=6|1 text=cg1.J(varM(110-76)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=73 kind=4 dtype=J ref=1439|0 text=equ.J(varM(110-76)r,6)
+[W5D] bit at=gc proc=func_8038FCE0 bit=74 kind=4 dtype=J ref=8|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=75 kind=4 dtype=J ref=399|0 text=equ.J(varM(110-76)r,8)
+[W5D] bit at=gc proc=func_8038FCE0 bit=76 kind=4 dtype=J ref=10|0 text=cg1.J(varM(110-76)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=77 kind=4 dtype=A ref=1610|3 text=ilod.A@896(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=78 kind=4 dtype=L ref=387|0 text=ilod.L@48(ilod.A@896(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=79 kind=4 dtype=L ref=387|1 text=ilod.L@4(ilod.A@896(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=80 kind=4 dtype=L ref=495|0 text=and.L(ilod.L@48(ilod.A@896(varM(110-36)r)),ilod.L@4(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=81 kind=4 dtype=J ref=1610|4 text=ilod.J@901(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=82 kind=4 dtype=J ref=811|0 text=equ.J(5,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=83 kind=4 dtype=J ref=148|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=84 kind=3 dtype=A ref=269|0 text=varM(110-56)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=85 kind=3 dtype=A ref=269|0 text=varM(110-56)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=86 kind=4 dtype=L ref=1482|0 text=ilod.L@8(varM(110-40)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=87 kind=4 dtype=L ref=1590|0 text=mpy.L(ilod.L@8(varM(110-40)r),16)
+[W5D] bit at=gc proc=func_8038FCE0 bit=88 kind=4 dtype=L ref=1125|0 text=ixa.L(ldaS(113+0),mpy.L(ilod.L@8(varM(110-40)r),16))
+[W5D] bit at=gc proc=func_8038FCE0 bit=89 kind=4 dtype=A ref=505|0 text=str.A(varM(110-56)r,ixa.L(ldaS(113+0),mpy.L(ilod.L@8(varM(110-40)r),16)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=90 kind=3 dtype=R ref=1504|0 text=varM(110-80)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=91 kind=3 dtype=R ref=1504|0 text=varM(110-80)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=92 kind=4 dtype=R ref=970|0 text=ilod.R@0(varM(110-56)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=93 kind=4 dtype=R ref=157|0 text=str.R(varM(110-80)r,ilod.R@0(varM(110-56)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=94 kind=4 dtype=R ref=360|0 text=istr.R@264(varM(110-40)r,varM(110-80)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=95 kind=4 dtype=R ref=360|1 text=istr.R@252(varM(110-40)r,varM(110-80)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=96 kind=4 dtype=R ref=970|1 text=ilod.R@4(varM(110-56)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=97 kind=4 dtype=R ref=1434|0 text=les.R(ilod.R@4(varM(110-56)r),varM(110-80)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=98 kind=4 dtype=R ref=1452|0 text=cg1.R(ilod.R@4(varM(110-56)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=99 kind=4 dtype=R ref=1523|0 text=cg1.R(varM(110-80)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=100 kind=3 dtype=R ref=13|0 text=varM(110-72)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=101 kind=3 dtype=R ref=13|0 text=varM(110-72)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=102 kind=4 dtype=R ref=1482|1 text=ilod.R@252(varM(110-40)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=103 kind=4 dtype=R ref=185|0 text=str.R(varM(110-72)r,ilod.R@252(varM(110-40)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=104 kind=4 dtype=R ref=4|1 text=str.R(varM(110-72)r,ilod.R@4(varM(110-56)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=105 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=106 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=107 kind=4 dtype=R ref=915|0 text=mpy.R(varM(110-72)r,varM(110-72)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=108 kind=4 dtype=R ref=970|2 text=ilod.R@8(varM(110-56)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=109 kind=4 dtype=R ref=336|0 text=mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=110 kind=4 dtype=R ref=39|0 text=add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=111 kind=4 dtype=R ref=970|3 text=ilod.R@12(varM(110-56)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=112 kind=4 dtype=R ref=426|0 text=mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=113 kind=4 dtype=R ref=1122|0 text=add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=114 kind=4 dtype=R ref=1199|0 text=sqrt.R(add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=115 kind=4 dtype=R ref=828|0 text=str.R(varR(0+32)r,sqrt.R(add.R(add.R(mpy.R(varM(110-72)r,varM(110-72)r),mpy.R(ilod.R@8(varM(110-56)r),ilod.R@8(varM(110-56)r))),mpy.R(ilod.R@12(varM(110-56)r),ilod.R@12(varM(110-56)r)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=116 kind=4 dtype=R ref=205|1 text=istr.R@1620(varM(110-40)r,varR(0+32)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=117 kind=4 dtype=J ref=412|0 text=istr.J@900(varM(110-36)r,8)
+[W5D] bit at=gc proc=func_8038FCE0 bit=118 kind=4 dtype=J ref=809|1 text=istr.J@901(varM(110-36)r,-1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=119 kind=4 dtype=R ref=243|0 text=istr.R@944(varM(110-36)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=120 kind=4 dtype=R ref=243|1 text=istr.R@948(varM(110-36)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=121 kind=4 dtype=R ref=1610|5 text=ilod.R@940(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=122 kind=4 dtype=R ref=1593|0 text=les.R(3,ilod.R@940(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=123 kind=4 dtype=R ref=248|0 text=cg1.R(ilod.R@940(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=124 kind=4 dtype=R ref=837|0 text=sub.R(ilod.R@940(varM(110-36)r),ildv.R@0(ldaS(6+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=125 kind=4 dtype=R ref=298|0 text=istr.R@940(varM(110-36)r,sub.R(ilod.R@940(varM(110-36)r),ildv.R@0(ldaS(6+0))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=126 kind=4 dtype=R ref=172|0 text=geq.R(3,ilod.R@940(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=127 kind=4 dtype=R ref=262|0 text=cg1.R(ilod.R@940(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=128 kind=4 dtype=J ref=991|0 text=equ.J(3,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=129 kind=4 dtype=J ref=192|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=130 kind=4 dtype=J ref=1610|6 text=ilod.J@932(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=131 kind=4 dtype=J ref=1256|0 text=istr.J@932(varM(110-36)r,1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=132 kind=4 dtype=J ref=212|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=133 kind=4 dtype=L ref=387|2 text=ilod.L@60(ilod.A@896(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=134 kind=4 dtype=L ref=555|0 text=and.L(ilod.L@60(ilod.A@896(varM(110-36)r)),ilod.L@4(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=135 kind=4 dtype=J ref=1114|0 text=neq.J(1,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=136 kind=4 dtype=J ref=220|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=137 kind=4 dtype=L ref=387|3 text=ilod.L@8(ilod.A@896(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=138 kind=4 dtype=L ref=635|0 text=and.L(ilod.L@60(ilod.A@896(varM(110-36)r)),ilod.L@8(ilod.A@896(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=139 kind=4 dtype=J ref=1482|2 text=ilod.J@1600(varM(110-40)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=140 kind=4 dtype=J ref=1610|7 text=ilod.J@776(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=141 kind=4 dtype=J ref=1610|8 text=ilod.J@857(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=142 kind=4 dtype=J ref=1604|0 text=istr.J@928(varM(110-36)r,6)
+[W5D] bit at=gc proc=func_8038FCE0 bit=143 kind=3 dtype=A ref=909|0 text=varM(110-16)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=144 kind=3 dtype=A ref=909|0 text=varM(110-16)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=145 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=146 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=147 kind=4 dtype=A ref=1213|0 text=str.A(varM(110-16)r,varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=148 kind=4 dtype=A ref=1164|2 text=neq.A(varR(0+2)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=149 kind=4 dtype=A ref=1539|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=150 kind=4 dtype=J ref=263|0 text=istr.J@5(varM(110-16)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=151 kind=4 dtype=A ref=263|1 text=istr.A@96(varM(110-16)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=152 kind=4 dtype=A ref=263|2 text=istr.A@100(varM(110-16)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=153 kind=4 dtype=J ref=1592|0 text=istr.J@7(varM(110-16)r,16)
+[W5D] bit at=gc proc=func_8038FCE0 bit=154 kind=4 dtype=J ref=1022|0 text=istr.J@6(varM(110-16)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=155 kind=4 dtype=J ref=982|0 text=istr.J@4(varM(110-16)r,ilod.J@859(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=156 kind=4 dtype=R ref=243|2 text=istr.R@12(varM(110-16)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=157 kind=4 dtype=R ref=243|3 text=istr.R@20(varM(110-16)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=158 kind=4 dtype=R ref=243|4 text=istr.R@24(varM(110-16)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=159 kind=4 dtype=R ref=243|5 text=istr.R@28(varM(110-16)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=160 kind=4 dtype=R ref=1610|9 text=ilod.R@8(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=161 kind=4 dtype=R ref=1162|0 text=istr.R@32(varM(110-16)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=162 kind=4 dtype=R ref=1610|10 text=ilod.R@12(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=163 kind=4 dtype=R ref=1182|0 text=istr.R@36(varM(110-16)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=164 kind=4 dtype=R ref=1610|11 text=ilod.R@16(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=165 kind=4 dtype=R ref=1202|0 text=istr.R@40(varM(110-16)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=166 kind=4 dtype=R ref=1162|1 text=istr.R@44(varM(110-16)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=167 kind=4 dtype=R ref=1182|1 text=istr.R@48(varM(110-16)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=168 kind=4 dtype=R ref=1202|1 text=istr.R@52(varM(110-16)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=169 kind=4 dtype=A ref=240|0 text=add.A(varM(110-36)r,44)
+[W5D] bit at=gc proc=func_8038FCE0 bit=170 kind=4 dtype=A ref=794|0 text=add.A(varM(110-16)r,56)
+[W5D] bit at=gc proc=func_8038FCE0 bit=171 kind=4 dtype=J ref=631|0 text=ilod.J@6(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=172 kind=4 dtype=J ref=666|0 text=neq.J(3,ilod.J@6(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=173 kind=4 dtype=J ref=1458|0 text=cg1.J(ilod.J@6(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=174 kind=4 dtype=J ref=604|0 text=mpy.J(ilod.J@900(varM(110-36)r),4)
+[W5D] bit at=gc proc=func_8038FCE0 bit=175 kind=4 dtype=J ref=807|0 text=ixa.J(ldaS(54+0),mpy.J(ilod.J@900(varM(110-36)r),4))
+[W5D] bit at=gc proc=func_8038FCE0 bit=176 kind=4 dtype=J ref=427|0 text=ilod.J@0(ixa.J(ldaS(54+0),mpy.J(ilod.J@900(varM(110-36)r),4)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=177 kind=3 dtype=J ref=1037|0 text=varM(110-8)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=178 kind=3 dtype=J ref=1037|0 text=varM(110-8)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=179 kind=4 dtype=J ref=206|1 text=str.J(varM(110-8)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=180 kind=4 dtype=J ref=822|0 text=str.J(varM(110-8)r,1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=181 kind=3 dtype=J ref=973|0 text=varM(110-12)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=182 kind=3 dtype=J ref=973|0 text=varM(110-12)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=183 kind=4 dtype=J ref=182|0 text=str.J(varM(110-12)r,1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=184 kind=4 dtype=R ref=1262|0 text=istr.R@940(varM(110-36)r,589833)
+[W5D] bit at=gc proc=func_8038FCE0 bit=185 kind=4 dtype=R ref=115|0 text=istr.R@8(varM(110-16)r,1179657)
+[W5D] bit at=gc proc=func_8038FCE0 bit=186 kind=4 dtype=R ref=151|0 text=istr.R@16(varM(110-16)r,1769476)
+[W5D] bit at=gc proc=func_8038FCE0 bit=187 kind=4 dtype=R ref=631|1 text=ilod.R@80(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=188 kind=4 dtype=R ref=1354|0 text=mpy.R(ilod.R@80(varM(110-16)r),2031620)
+[W5D] bit at=gc proc=func_8038FCE0 bit=189 kind=4 dtype=R ref=1610|12 text=ilod.R@20(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=190 kind=4 dtype=R ref=1544|0 text=add.R(mpy.R(ilod.R@80(varM(110-16)r),2031620),ilod.R@20(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=191 kind=4 dtype=R ref=72|0 text=istr.R@20(varM(110-16)r,add.R(mpy.R(ilod.R@80(varM(110-16)r),2031620),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=192 kind=4 dtype=R ref=631|2 text=ilod.R@84(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=193 kind=4 dtype=R ref=1374|0 text=mpy.R(ilod.R@84(varM(110-16)r),2031620)
+[W5D] bit at=gc proc=func_8038FCE0 bit=194 kind=4 dtype=R ref=1610|13 text=ilod.R@24(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=195 kind=4 dtype=R ref=1383|0 text=add.R(mpy.R(ilod.R@84(varM(110-16)r),2031620),ilod.R@24(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=196 kind=4 dtype=R ref=158|0 text=istr.R@24(varM(110-16)r,add.R(mpy.R(ilod.R@84(varM(110-16)r),2031620),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=197 kind=4 dtype=R ref=631|3 text=ilod.R@88(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=198 kind=4 dtype=R ref=1394|0 text=mpy.R(ilod.R@88(varM(110-16)r),2031620)
+[W5D] bit at=gc proc=func_8038FCE0 bit=199 kind=4 dtype=R ref=1610|14 text=ilod.R@28(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=200 kind=4 dtype=R ref=1222|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),2031620),ilod.R@28(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=201 kind=4 dtype=R ref=244|0 text=istr.R@28(varM(110-16)r,add.R(mpy.R(ilod.R@88(varM(110-16)r),2031620),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=202 kind=4 dtype=J ref=206|2 text=str.J(varM(110-12)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=203 kind=4 dtype=R ref=1350|0 text=istr.R@940(varM(110-36)r,2293763)
+[W5D] bit at=gc proc=func_8038FCE0 bit=204 kind=4 dtype=R ref=151|1 text=istr.R@8(varM(110-16)r,1769476)
+[W5D] bit at=gc proc=func_8038FCE0 bit=205 kind=4 dtype=R ref=147|0 text=istr.R@16(varM(110-16)r,2490371)
+[W5D] bit at=gc proc=func_8038FCE0 bit=206 kind=4 dtype=R ref=1479|0 text=mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=207 kind=4 dtype=R ref=1099|0 text=mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=208 kind=4 dtype=R ref=1279|0 text=mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=209 kind=4 dtype=R ref=172|1 text=add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=210 kind=4 dtype=R ref=571|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=211 kind=4 dtype=R ref=952|0 text=add.R(add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))),2686981)
+[W5D] bit at=gc proc=func_8038FCE0 bit=212 kind=4 dtype=R ref=348|0 text=istr.R@28(varM(110-16)r,add.R(add.R(mpy.R(ilod.R@88(varM(110-16)r),ilod.R@28(varM(110-36)r)),add.R(mpy.R(ilod.R@20(varM(110-36)r),ilod.R@80(varM(110-16)r)),mpy.R(ilod.R@24(varM(110-36)r),ilod.R@84(varM(110-16)r)))),2686981))
+[W5D] bit at=gc proc=func_8038FCE0 bit=213 kind=4 dtype=J ref=198|0 text=str.J(varM(110-12)r,2)
+[W5D] bit at=gc proc=func_8038FCE0 bit=214 kind=4 dtype=R ref=640|0 text=istr.R@8(varM(110-16)r,3014660)
+[W5D] bit at=gc proc=func_8038FCE0 bit=215 kind=4 dtype=R ref=173|0 text=istr.R@16(varM(110-16)r,2293763)
+[W5D] bit at=gc proc=func_8038FCE0 bit=216 kind=4 dtype=R ref=1610|15 text=ilod.R@944(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=217 kind=4 dtype=R ref=192|1 text=mpy.R(ilod.R@80(varM(110-16)r),3276804)
+[W5D] bit at=gc proc=func_8038FCE0 bit=218 kind=4 dtype=R ref=1029|0 text=add.R(mpy.R(ilod.R@80(varM(110-16)r),3276804),ilod.R@20(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=219 kind=4 dtype=R ref=870|0 text=istr.R@20(varM(110-16)r,add.R(mpy.R(ilod.R@80(varM(110-16)r),3276804),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=220 kind=4 dtype=R ref=212|1 text=mpy.R(ilod.R@84(varM(110-16)r),3276804)
+[W5D] bit at=gc proc=func_8038FCE0 bit=221 kind=4 dtype=R ref=878|0 text=add.R(mpy.R(ilod.R@84(varM(110-16)r),3276804),ilod.R@24(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=222 kind=4 dtype=R ref=1192|0 text=istr.R@24(varM(110-16)r,add.R(mpy.R(ilod.R@84(varM(110-16)r),3276804),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=223 kind=4 dtype=R ref=232|0 text=mpy.R(ilod.R@88(varM(110-16)r),3276804)
+[W5D] bit at=gc proc=func_8038FCE0 bit=224 kind=4 dtype=R ref=567|0 text=add.R(mpy.R(ilod.R@88(varM(110-16)r),3276804),ilod.R@28(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=225 kind=4 dtype=R ref=976|0 text=istr.R@28(varM(110-16)r,add.R(mpy.R(ilod.R@88(varM(110-16)r),3276804),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=226 kind=4 dtype=R ref=135|0 text=istr.R@8(varM(110-16)r,3538947)
+[W5D] bit at=gc proc=func_8038FCE0 bit=227 kind=4 dtype=R ref=211|1 text=istr.R@16(varM(110-16)r,393219)
+[W5D] bit at=gc proc=func_8038FCE0 bit=228 kind=4 dtype=R ref=1610|16 text=ilod.R@948(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=229 kind=4 dtype=R ref=1043|0 text=neg.R(ilod.R@948(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=230 kind=4 dtype=R ref=867|0 text=istr.R@940(varM(110-36)r,3735561)
+[W5D] bit at=gc proc=func_8038FCE0 bit=231 kind=4 dtype=R ref=47|0 text=istr.R@16(varM(110-16)r,4325380)
+[W5D] bit at=gc proc=func_8038FCE0 bit=232 kind=4 dtype=R ref=540|0 text=str.R(varM(110-80)r,varR(0+32)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=233 kind=4 dtype=R ref=495|1 text=sub.R(varR(0+32)r,4915206)
+[W5D] bit at=gc proc=func_8038FCE0 bit=234 kind=4 dtype=R ref=1608|0 text=sub.R(sub.R(varR(0+32)r,4915206),ilod.R@948(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=235 kind=4 dtype=R ref=1372|0 text=add.R(sub.R(varR(0+32)r,4915206),ilod.R@944(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=236 kind=3 dtype=A ref=845|0 text=varM(110-20)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=237 kind=3 dtype=A ref=845|0 text=varM(110-20)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=238 kind=4 dtype=A ref=1166|0 text=str.A(varM(110-20)r,varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=239 kind=4 dtype=A ref=1583|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=240 kind=3 dtype=R ref=333|0 text=varM(110-52)
+[W5D] bit at=gc proc=func_8038FCE0 bit=241 kind=3 dtype=R ref=333|0 text=varM(110-52)
+[W5D] bit at=gc proc=func_8038FCE0 bit=242 kind=4 dtype=R ref=542|0 text=ilod.R@0(ldaS(51+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=243 kind=4 dtype=L ref=594|0 text=mpy.L(ilod.L@8(varM(110-40)r),12)
+[W5D] bit at=gc proc=func_8038FCE0 bit=244 kind=4 dtype=L ref=898|0 text=ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))
+[W5D] bit at=gc proc=func_8038FCE0 bit=245 kind=4 dtype=R ref=609|0 text=ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=246 kind=4 dtype=R ref=1378|0 text=add.R(ilod.R@0(ldaS(51+0)),ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=247 kind=4 dtype=R ref=660|0 text=str.R(varM(110-52),add.R(ilod.R@0(ldaS(51+0)),ilod.R@156(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=248 kind=3 dtype=R ref=397|0 text=varM(110-48)
+[W5D] bit at=gc proc=func_8038FCE0 bit=249 kind=3 dtype=R ref=397|0 text=varM(110-48)
+[W5D] bit at=gc proc=func_8038FCE0 bit=250 kind=4 dtype=R ref=542|1 text=ilod.R@4(ldaS(51+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=251 kind=4 dtype=R ref=609|1 text=ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=252 kind=4 dtype=R ref=1428|0 text=add.R(ilod.R@4(ldaS(51+0)),ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=253 kind=4 dtype=R ref=1207|0 text=str.R(varM(110-48),add.R(ilod.R@4(ldaS(51+0)),ilod.R@160(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=254 kind=3 dtype=R ref=461|0 text=varM(110-44)
+[W5D] bit at=gc proc=func_8038FCE0 bit=255 kind=3 dtype=R ref=461|0 text=varM(110-44)
+[W5D] bit at=gc proc=func_8038FCE0 bit=256 kind=4 dtype=R ref=542|2 text=ilod.R@8(ldaS(51+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=257 kind=4 dtype=R ref=609|2 text=ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=258 kind=4 dtype=R ref=1498|0 text=add.R(ilod.R@8(ldaS(51+0)),ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=259 kind=4 dtype=R ref=911|0 text=str.R(varM(110-44),add.R(ilod.R@8(ldaS(51+0)),ilod.R@164(ixa.L(ldaS(56+0),mpy.L(ilod.L@8(varM(110-40)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=260 kind=4 dtype=R ref=1610|17 text=ilod.R@68(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=261 kind=4 dtype=R ref=169|0 text=mpy.R(varM(110-44),ilod.R@68(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=262 kind=4 dtype=R ref=631|4 text=ilod.R@32(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=263 kind=4 dtype=R ref=1288|0 text=add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=264 kind=4 dtype=R ref=905|0 text=istr.R@44(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=265 kind=4 dtype=R ref=1610|18 text=ilod.R@72(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=266 kind=4 dtype=R ref=189|0 text=mpy.R(varM(110-44),ilod.R@72(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=267 kind=4 dtype=R ref=631|5 text=ilod.R@36(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=268 kind=4 dtype=R ref=1226|0 text=add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=269 kind=4 dtype=R ref=1561|0 text=istr.R@48(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=270 kind=4 dtype=R ref=1610|19 text=ilod.R@76(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=271 kind=4 dtype=R ref=209|0 text=mpy.R(varM(110-44),ilod.R@76(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=272 kind=4 dtype=R ref=631|6 text=ilod.R@40(varM(110-16)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=273 kind=4 dtype=R ref=1164|3 text=add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=274 kind=4 dtype=R ref=658|0 text=istr.R@52(varM(110-20)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=275 kind=4 dtype=R ref=503|0 text=ilod.R@44(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=276 kind=4 dtype=R ref=1610|20 text=ilod.R@56(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=277 kind=4 dtype=R ref=1132|0 text=mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))
+[W5D] bit at=gc proc=func_8038FCE0 bit=278 kind=4 dtype=R ref=57|0 text=add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=279 kind=4 dtype=R ref=1030|0 text=istr.R@44(varM(110-20)r,add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=280 kind=4 dtype=R ref=503|1 text=ilod.R@48(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=281 kind=4 dtype=R ref=1610|21 text=ilod.R@60(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=282 kind=4 dtype=R ref=1152|1 text=mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))
+[W5D] bit at=gc proc=func_8038FCE0 bit=283 kind=4 dtype=R ref=329|0 text=add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=284 kind=4 dtype=R ref=450|0 text=istr.R@48(varM(110-20)r,add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=285 kind=4 dtype=R ref=503|2 text=ilod.R@52(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=286 kind=4 dtype=R ref=1610|22 text=ilod.R@64(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=287 kind=4 dtype=R ref=1172|0 text=mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))
+[W5D] bit at=gc proc=func_8038FCE0 bit=288 kind=4 dtype=R ref=541|0 text=add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=289 kind=4 dtype=R ref=1236|0 text=istr.R@52(varM(110-20)r,add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=290 kind=4 dtype=R ref=1610|23 text=ilod.R@44(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=291 kind=4 dtype=R ref=476|0 text=mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))
+[W5D] bit at=gc proc=func_8038FCE0 bit=292 kind=4 dtype=R ref=1518|0 text=add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=293 kind=4 dtype=R ref=1605|0 text=istr.R@44(varM(110-20)r,add.R(ilod.R@44(varM(110-20)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=294 kind=4 dtype=R ref=1610|24 text=ilod.R@48(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=295 kind=4 dtype=R ref=496|0 text=mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))
+[W5D] bit at=gc proc=func_8038FCE0 bit=296 kind=4 dtype=R ref=141|1 text=add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=297 kind=4 dtype=R ref=109|0 text=istr.R@48(varM(110-20)r,add.R(ilod.R@48(varM(110-20)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=298 kind=4 dtype=R ref=1610|25 text=ilod.R@52(varM(110-36)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=299 kind=4 dtype=R ref=516|0 text=mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))
+[W5D] bit at=gc proc=func_8038FCE0 bit=300 kind=4 dtype=R ref=383|0 text=add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=301 kind=4 dtype=R ref=192|2 text=istr.R@52(varM(110-20)r,add.R(ilod.R@52(varM(110-20)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=302 kind=4 dtype=A ref=1381|0 text=add.A(varM(110-20)r,8)
+[W5D] bit at=gc proc=func_8038FCE0 bit=303 kind=4 dtype=R ref=1457|0 text=add.R(varR(0+32)r,5570563)
+[W5D] bit at=gc proc=func_8038FCE0 bit=304 kind=4 dtype=J ref=1118|0 text=ilod.J@0(ldaS(69+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=305 kind=4 dtype=L ref=1223|0 text=istr.L@4(varM(110-20)r,varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=306 kind=4 dtype=R ref=62|1 text=add.R(varR(0+32)r,393219)
+[W5D] bit at=gc proc=func_8038FCE0 bit=307 kind=4 dtype=R ref=1206|0 text=istr.R@56(varM(110-20)r,add.R(varR(0+32)r,393219))
+[W5D] bit at=gc proc=func_8038FCE0 bit=308 kind=4 dtype=R ref=503|3 text=ilod.R@20(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=309 kind=4 dtype=R ref=1315|0 text=mpy.R(ilod.R@20(varM(110-20)r),5767172)
+[W5D] bit at=gc proc=func_8038FCE0 bit=310 kind=4 dtype=R ref=197|0 text=add.R(mpy.R(ilod.R@20(varM(110-20)r),5767172),ilod.R@20(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=311 kind=4 dtype=R ref=541|1 text=istr.R@60(varM(110-20)r,add.R(mpy.R(ilod.R@20(varM(110-20)r),5767172),ilod.R@20(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=312 kind=4 dtype=R ref=503|4 text=ilod.R@24(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=313 kind=4 dtype=R ref=1335|0 text=mpy.R(ilod.R@24(varM(110-20)r),5767172)
+[W5D] bit at=gc proc=func_8038FCE0 bit=314 kind=4 dtype=R ref=36|0 text=add.R(mpy.R(ilod.R@24(varM(110-20)r),5767172),ilod.R@24(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=315 kind=4 dtype=R ref=51|0 text=istr.R@64(varM(110-20)r,add.R(mpy.R(ilod.R@24(varM(110-20)r),5767172),ilod.R@24(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=316 kind=4 dtype=R ref=503|5 text=ilod.R@28(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=317 kind=4 dtype=R ref=1355|0 text=mpy.R(ilod.R@28(varM(110-20)r),5767172)
+[W5D] bit at=gc proc=func_8038FCE0 bit=318 kind=4 dtype=R ref=1494|0 text=add.R(mpy.R(ilod.R@28(varM(110-20)r),5767172),ilod.R@28(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=319 kind=4 dtype=R ref=1180|0 text=istr.R@68(varM(110-20)r,add.R(mpy.R(ilod.R@28(varM(110-20)r),5767172),ilod.R@28(varM(110-36)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=320 kind=4 dtype=R ref=503|6 text=ilod.R@68(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=321 kind=4 dtype=R ref=437|1 text=mpy.R(ilod.R@68(varM(110-20)r),6029316)
+[W5D] bit at=gc proc=func_8038FCE0 bit=322 kind=4 dtype=R ref=1573|0 text=istr.R@68(varM(110-20)r,mpy.R(ilod.R@68(varM(110-20)r),6029316))
+[W5D] bit at=gc proc=func_8038FCE0 bit=323 kind=4 dtype=R ref=503|7 text=ilod.R@64(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=324 kind=4 dtype=R ref=457|0 text=mpy.R(ilod.R@64(varM(110-20)r),6029316)
+[W5D] bit at=gc proc=func_8038FCE0 bit=325 kind=4 dtype=R ref=558|0 text=istr.R@64(varM(110-20)r,mpy.R(ilod.R@64(varM(110-20)r),6029316))
+[W5D] bit at=gc proc=func_8038FCE0 bit=326 kind=4 dtype=R ref=503|8 text=ilod.R@60(varM(110-20)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=327 kind=4 dtype=R ref=477|0 text=mpy.R(ilod.R@60(varM(110-20)r),6029316)
+[W5D] bit at=gc proc=func_8038FCE0 bit=328 kind=4 dtype=R ref=1182|2 text=istr.R@60(varM(110-20)r,mpy.R(ilod.R@60(varM(110-20)r),6029316))
+[W5D] bit at=gc proc=func_8038FCE0 bit=329 kind=4 dtype=R ref=173|1 text=istr.R@8(varM(110-16)r,2293763)
+[W5D] bit at=gc proc=func_8038FCE0 bit=330 kind=4 dtype=J ref=981|0 text=geq.J(ilod.J@900(varM(110-36)r),8)
+[W5D] bit at=gc proc=func_8038FCE0 bit=331 kind=4 dtype=J ref=388|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=332 kind=4 dtype=J ref=1463|0 text=mpy.J(ilod.J@900(varM(110-36)r),12)
+[W5D] bit at=gc proc=func_8038FCE0 bit=333 kind=4 dtype=J ref=1334|0 text=ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))
+[W5D] bit at=gc proc=func_8038FCE0 bit=334 kind=4 dtype=R ref=1481|1 text=ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=335 kind=4 dtype=R ref=442|0 text=str.R(varM(110-52),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=336 kind=4 dtype=R ref=1481|2 text=ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=337 kind=4 dtype=R ref=1187|0 text=str.R(varM(110-48),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=338 kind=4 dtype=R ref=1481|3 text=ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=339 kind=4 dtype=R ref=313|0 text=str.R(varM(110-44),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=340 kind=4 dtype=J ref=1265|0 text=ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=341 kind=4 dtype=L ref=704|0 text=ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))
+[W5D] bit at=gc proc=func_8038FCE0 bit=342 kind=4 dtype=R ref=221|0 text=ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=343 kind=4 dtype=R ref=1151|0 text=add.R(ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=344 kind=4 dtype=R ref=823|0 text=str.R(varM(110-52),add.R(ilod.R@0(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@0(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=345 kind=4 dtype=R ref=221|1 text=ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=346 kind=4 dtype=R ref=1211|0 text=add.R(ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=347 kind=4 dtype=R ref=1025|0 text=str.R(varM(110-48),add.R(ilod.R@4(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@4(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=348 kind=4 dtype=R ref=221|2 text=ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=349 kind=4 dtype=R ref=1291|0 text=add.R(ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=350 kind=4 dtype=R ref=232|1 text=str.R(varM(110-44),add.R(ilod.R@8(ixa.L(ixa.J(ldaS(56+0),ilod.J@900(varM(110-36)r)),mpy.L(ilod.L@8(varM(110-40)r),12))),ilod.R@8(ixa.J(ldaS(52+0),mpy.J(ilod.J@900(varM(110-36)r),12)))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=351 kind=4 dtype=R ref=1154|0 text=istr.R@32(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=352 kind=4 dtype=R ref=986|0 text=istr.R@36(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=353 kind=4 dtype=R ref=878|1 text=istr.R@40(varM(110-16)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=354 kind=4 dtype=R ref=92|0 text=add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=355 kind=4 dtype=R ref=1099|1 text=istr.R@32(varM(110-16)r,add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=356 kind=4 dtype=R ref=100|0 text=add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=357 kind=4 dtype=R ref=964|0 text=istr.R@36(varM(110-16)r,add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=358 kind=4 dtype=R ref=1587|0 text=add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=359 kind=4 dtype=R ref=763|0 text=istr.R@40(varM(110-16)r,add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=360 kind=4 dtype=R ref=515|0 text=add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=361 kind=4 dtype=R ref=1044|0 text=istr.R@32(varM(110-16)r,add.R(ilod.R@32(varM(110-16)r),mpy.R(ilod.R@44(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=362 kind=4 dtype=R ref=453|0 text=add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=363 kind=4 dtype=R ref=876|0 text=istr.R@36(varM(110-16)r,add.R(ilod.R@36(varM(110-16)r),mpy.R(ilod.R@48(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=364 kind=4 dtype=R ref=391|0 text=add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=365 kind=4 dtype=R ref=708|0 text=istr.R@40(varM(110-16)r,add.R(ilod.R@40(varM(110-16)r),mpy.R(ilod.R@52(varM(110-36)r),varM(110-52))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=366 kind=4 dtype=J ref=1204|0 text=neq.J(varM(110-8)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=367 kind=4 dtype=J ref=715|0 text=cg1.J(varM(110-8)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=368 kind=4 dtype=A ref=1199|1 text=add.A(varM(110-16)r,32)
+[W5D] bit at=gc proc=func_8038FCE0 bit=369 kind=4 dtype=A ref=1270|0 text=istr.A@92(varM(110-16)r,varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=370 kind=4 dtype=A ref=263|3 text=istr.A@92(varM(110-16)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=371 kind=4 dtype=J ref=1611|0 text=geq.J(ilod.J@901(varM(110-36)r),1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=372 kind=4 dtype=J ref=590|0 text=cg1.J(ilod.J@901(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=373 kind=4 dtype=J ref=754|0 text=neq.J(5,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=374 kind=4 dtype=J ref=424|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=375 kind=4 dtype=J ref=934|0 text=neq.J(3,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=376 kind=4 dtype=J ref=428|0 text=cg1.J(ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=377 kind=4 dtype=J ref=290|0 text=add.J(ilod.J@901(varM(110-36)r),-1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=378 kind=4 dtype=J ref=278|0 text=istr.J@901(varM(110-36)r,add.J(ilod.J@901(varM(110-36)r),-1))
+[W5D] bit at=gc proc=func_8038FCE0 bit=379 kind=4 dtype=J ref=1416|0 text=add.J(varM(110-4)r,1)
+[W5D] bit at=gc proc=func_8038FCE0 bit=380 kind=4 dtype=J ref=975|0 text=str.J(varM(110-4)r,add.J(varM(110-4)r,1))
+[W5D] bit at=gc proc=func_8038FCE0 bit=381 kind=4 dtype=A ref=823|1 text=add.A(varM(110-36)r,952)
+[W5D] bit at=gc proc=func_8038FCE0 bit=382 kind=4 dtype=A ref=370|2 text=str.A(varM(110-36)r,add.A(varM(110-36)r,952))
+[W5D] bit at=gc proc=func_8038FCE0 bit=383 kind=4 dtype=J ref=1104|0 text=les.J(varM(110-4)r,ildv.J@0(ldaS(35+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=384 kind=4 dtype=J ref=861|0 text=cg1.J(varM(110-4)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=385 kind=4 dtype=J ref=290|1 text=cg1.J(ildv.J@0(ldaS(35+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=386 kind=3 dtype=A ref=781|0 text=varM(110-24)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=387 kind=3 dtype=A ref=781|0 text=varM(110-24)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=388 kind=4 dtype=A ref=683|1 text=ilod.A@16(ldaS(106+0))
+[W5D] bit at=gc proc=func_8038FCE0 bit=389 kind=4 dtype=A ref=1430|1 text=str.A(varM(110-24)r,ilod.A@16(ldaS(106+0)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=390 kind=4 dtype=A ref=1164|4 text=neq.A(varM(110-24)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=391 kind=4 dtype=A ref=225|0 text=cg1.A(varM(110-24)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=392 kind=3 dtype=A ref=717|0 text=varM(110-28)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=393 kind=3 dtype=A ref=717|0 text=varM(110-28)r
+[W5D] bit at=gc proc=func_8038FCE0 bit=394 kind=4 dtype=A ref=375|0 text=ilod.A@0(varM(110-24)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=395 kind=4 dtype=A ref=1376|0 text=str.A(varM(110-28)r,ilod.A@0(varM(110-24)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=396 kind=4 dtype=A ref=375|1 text=ilod.A@4(varM(110-24)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=397 kind=4 dtype=A ref=1434|1 text=str.A(varM(110-24)r,varM(110-28)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=398 kind=4 dtype=A ref=1164|5 text=neq.A(varM(110-28)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=399 kind=4 dtype=A ref=105|0 text=cg1.A(varM(110-28)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=400 kind=4 dtype=R ref=157|1 text=istr.R@44(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@68(varM(110-36)r)),ilod.R@32(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=401 kind=4 dtype=R ref=668|0 text=istr.R@48(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@72(varM(110-36)r)),ilod.R@36(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=402 kind=4 dtype=R ref=1239|0 text=istr.R@52(varR(0+2)r,add.R(mpy.R(varM(110-44),ilod.R@76(varM(110-36)r)),ilod.R@40(varM(110-16)r)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=403 kind=4 dtype=R ref=164|0 text=ilod.R@44(varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=404 kind=4 dtype=R ref=1226|1 text=add.R(ilod.R@44(varR(0+2)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=405 kind=4 dtype=R ref=688|0 text=istr.R@44(varR(0+2)r,add.R(ilod.R@44(varR(0+2)r),mpy.R(ilod.R@56(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=406 kind=4 dtype=R ref=164|1 text=ilod.R@48(varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=407 kind=4 dtype=R ref=77|1 text=add.R(ilod.R@48(varR(0+2)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=408 kind=4 dtype=R ref=679|0 text=istr.R@48(varR(0+2)r,add.R(ilod.R@48(varR(0+2)r),mpy.R(ilod.R@60(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=409 kind=4 dtype=R ref=164|2 text=ilod.R@52(varR(0+2)r)
+[W5D] bit at=gc proc=func_8038FCE0 bit=410 kind=4 dtype=R ref=487|0 text=add.R(ilod.R@52(varR(0+2)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48)))
+[W5D] bit at=gc proc=func_8038FCE0 bit=411 kind=4 dtype=R ref=100|1 text=istr.R@52(varR(0+2)r,add.R(ilod.R@52(varR(0+2)r),mpy.R(ilod.R@64(varM(110-36)r),varM(110-48))))
+[W5D] bit at=gc proc=func_8038FCE0 bit=412 kind=4 dtype=J ref=263|4 text=istr.J@5(varR(0+2)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=413 kind=4 dtype=A ref=263|5 text=istr.A@96(varR(0+2)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=414 kind=4 dtype=A ref=263|6 text=istr.A@100(varR(0+2)r,0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=415 kind=4 dtype=J ref=1469|0 text=istr.J@7(varR(0+2)r,16)
+[W5D] bit at=gc proc=func_8038FCE0 bit=416 kind=4 dtype=J ref=990|0 text=istr.J@6(varR(0+2)r,ilod.J@900(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=417 kind=4 dtype=J ref=950|0 text=istr.J@4(varR(0+2)r,ilod.J@859(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=418 kind=4 dtype=R ref=243|6 text=istr.R@12(varR(0+2)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=419 kind=4 dtype=R ref=243|7 text=istr.R@20(varR(0+2)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=420 kind=4 dtype=R ref=243|8 text=istr.R@24(varR(0+2)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=421 kind=4 dtype=R ref=243|9 text=istr.R@28(varR(0+2)r,3)
+[W5D] bit at=gc proc=func_8038FCE0 bit=422 kind=4 dtype=R ref=1130|0 text=istr.R@32(varR(0+2)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=423 kind=4 dtype=R ref=1150|0 text=istr.R@36(varR(0+2)r,ilod.R@12(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=424 kind=4 dtype=R ref=1170|0 text=istr.R@40(varR(0+2)r,ilod.R@16(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=425 kind=4 dtype=R ref=1130|1 text=istr.R@44(varR(0+2)r,ilod.R@8(varM(110-36)r))
+[W5D] bit at=gc proc=func_8038FCE0 bit=426 kind=1 dtype=A ref=1031|0 text=ldaS(112+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=427 kind=1 dtype=A ref=954|0 text=ldaS(6+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=428 kind=2 dtype=R ref=0|1 text=3
+[W5D] bit at=gc proc=func_8038FCE0 bit=429 kind=1 dtype=A ref=1402|0 text=ldaS(34+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=430 kind=1 dtype=A ref=1418|0 text=ldaS(35+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=431 kind=1 dtype=A ref=1274|0 text=ldaS(26+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=432 kind=2 dtype=J ref=437|0 text=2056
+[W5D] bit at=gc proc=func_8038FCE0 bit=433 kind=2 dtype=J ref=1|0 text=1
+[W5D] bit at=gc proc=func_8038FCE0 bit=434 kind=2 dtype=J ref=6|2 text=6
+[W5D] bit at=gc proc=func_8038FCE0 bit=435 kind=2 dtype=J ref=8|1 text=8
+[W5D] bit at=gc proc=func_8038FCE0 bit=436 kind=2 dtype=J ref=1618|0 text=-1
+[W5D] bit at=gc proc=func_8038FCE0 bit=437 kind=2 dtype=J ref=3|0 text=3
+[W5D] bit at=gc proc=func_8038FCE0 bit=438 kind=1 dtype=A ref=935|0 text=ldaS(106+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=439 kind=1 dtype=A ref=615|0 text=ldaS(86+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=440 kind=2 dtype=J ref=16|1 text=16
+[W5D] bit at=gc proc=func_8038FCE0 bit=441 kind=1 dtype=A ref=103|0 text=ldaS(54+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=442 kind=2 dtype=R ref=1152|0 text=393219
+[W5D] bit at=gc proc=func_8038FCE0 bit=443 kind=2 dtype=R ref=327|0 text=589833
+[W5D] bit at=gc proc=func_8038FCE0 bit=444 kind=2 dtype=R ref=654|0 text=1179657
+[W5D] bit at=gc proc=func_8038FCE0 bit=445 kind=2 dtype=R ref=436|0 text=1769476
+[W5D] bit at=gc proc=func_8038FCE0 bit=446 kind=2 dtype=R ref=1460|0 text=2031620
+[W5D] bit at=gc proc=func_8038FCE0 bit=447 kind=1 dtype=A ref=71|0 text=ldaS(52+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=448 kind=2 dtype=J ref=12|1 text=12
+[W5D] bit at=gc proc=func_8038FCE0 bit=449 kind=2 dtype=J ref=5|0 text=5
+[W5D] bit at=gc proc=func_8038FCE0 bit=450 kind=1 dtype=A ref=135|1 text=ldaS(56+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=451 kind=2 dtype=L ref=12|0 text=12
+[W5D] bit at=gc proc=func_8038FCE0 bit=452 kind=2 dtype=R ref=654|1 text=3538947
+[W5D] bit at=gc proc=func_8038FCE0 bit=453 kind=2 dtype=R ref=244|1 text=2293763
+[W5D] bit at=gc proc=func_8038FCE0 bit=454 kind=2 dtype=R ref=820|0 text=2490371
+[W5D] bit at=gc proc=func_8038FCE0 bit=455 kind=2 dtype=R ref=443|0 text=3014660
+[W5D] bit at=gc proc=func_8038FCE0 bit=456 kind=2 dtype=R ref=1467|0 text=3276804
+[W5D] bit at=gc proc=func_8038FCE0 bit=457 kind=2 dtype=R ref=168|0 text=2686981
+[W5D] bit at=gc proc=func_8038FCE0 bit=458 kind=2 dtype=R ref=452|0 text=3735561
+[W5D] bit at=gc proc=func_8038FCE0 bit=459 kind=2 dtype=R ref=706|0 text=4325380
+[W5D] bit at=gc proc=func_8038FCE0 bit=460 kind=2 dtype=R ref=1353|0 text=4587525
+[W5D] bit at=gc proc=func_8038FCE0 bit=461 kind=2 dtype=R ref=1277|0 text=4915206
+[W5D] bit at=gc proc=func_8038FCE0 bit=462 kind=1 dtype=A ref=55|0 text=ldaS(51+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=463 kind=2 dtype=R ref=1308|0 text=5308420
+[W5D] bit at=gc proc=func_8038FCE0 bit=464 kind=2 dtype=R ref=130|0 text=5570563
+[W5D] bit at=gc proc=func_8038FCE0 bit=465 kind=1 dtype=A ref=343|0 text=ldaS(69+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=466 kind=2 dtype=R ref=1481|0 text=5767172
+[W5D] bit at=gc proc=func_8038FCE0 bit=467 kind=2 dtype=R ref=886|0 text=6029316
+[W5D] bit at=gc proc=func_8038FCE0 bit=468 kind=1 dtype=A ref=1047|0 text=ldaS(113+0)
+[W5D] bit at=gc proc=func_8038FCE0 bit=469 kind=2 dtype=R ref=576|0 text=196611
+[W5D] bit at=gc proc=func_8038FCE0 bit=470 kind=1 dtype=A ref=711|0 text=ldaS(92+0)

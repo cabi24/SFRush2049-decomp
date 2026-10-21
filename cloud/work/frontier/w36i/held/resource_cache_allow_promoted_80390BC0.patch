@@ -1,0 +1,16 @@
+--- a/tests/cloud/test_runtime_a_resource_cache.py
++++ b/tests/cloud/test_runtime_a_resource_cache.py
+@@ -18,7 +18,12 @@
+         self.assertEqual(r['zero_alignment_bytes'],4)
+         self.assertEqual(r['owned_data_bytes'],0)
+         self.assertEqual(r['instruction_coverage'],[91,91,91])
+-        self.assertFalse((ROOT/'cloud/matches/ovl_a/func_80390BC0.c').exists())
++        # w36: LoadSelectCar (w36e) may land as a standalone image-A match; the promoted
++        # state is allowed, an unlocked submission is not.
++        match=ROOT/'cloud/matches/ovl_a/func_80390BC0.c'
++        locks=json.loads((ROOT/'ovl_matched.lock.json').read_text())
++        self.assertTrue(not match.exists()
++                        or locks['a'].get('func_80390BC0',{}).get('source')=='src/ovl_a/func_80390BC0.c')
+         for path,want in r['files'].items():
+             self.assertEqual(hashlib.sha256((PACKET/path).read_bytes()).hexdigest(),want,path)
+ 

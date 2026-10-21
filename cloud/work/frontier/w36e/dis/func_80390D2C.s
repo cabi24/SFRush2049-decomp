@@ -1,0 +1,41 @@
+== func_80390D2C @ 0x80390D2C (40 words, 160 B)
+  80390d2c: 27bdffe0 addiu	sp,sp,-32
+  80390d30: afb10018 sw	s1,24(sp)
+  80390d34: 00048c00 sll	s1,a0,0x10
+  80390d38: afb00014 sw	s0,20(sp)
+  80390d3c: 00117403 sra	t6,s1,0x10
+  80390d40: 3c10803c lui	s0,0x803c
+  80390d44: 3c02803c lui	v0,0x803c
+  80390d48: 01c08825 move	s1,t6
+  80390d4c: afbf001c sw	ra,28(sp)
+  80390d50: afa40020 sw	a0,32(sp)
+  80390d54: 2442a2f0 addiu	v0,v0,-23824   ; 803BA2F0 
+  80390d58: 2610a230 addiu	s0,s0,-24016   ; 803BA230 
+  80390d5c: 820f0005 lb	t7,5(s0)   ; 803BA235 
+  80390d60: 562f0013 bnel	s1,t7,0x80390db0
+  80390d64: 2610000c addiu	s0,s0,12   ; 803BA23C 
+  80390d68: 0c02b226 jal	0x800ac898   <player_state_get>
+  80390d6c: 8e040000 lw	a0,0(s0)   ; 803BA23C 
+  80390d70: 14400005 bnez	v0,0x80390d88
+  80390d74: 00000000 nop
+  80390d78: 0c02b226 jal	0x800ac898   <player_state_get>
+  80390d7c: 8e040000 lw	a0,0(s0)   ; 803BA23C 
+  80390d80: 1040fffd beqz	v0,0x80390d78
+  80390d84: 00000000 nop
+  80390d88: 0c02584c jal	0x80096130   <func_80096130>
+  80390d8c: 8e040000 lw	a0,0(s0)   ; 803BA23C 
+  80390d90: 0c03f92b jal	0x800fe4ac   <stat_race_end>
+  80390d94: 02202025 move	a0,s1
+  80390d98: 2402ffff li	v0,-1
+  80390d9c: ae020000 sw	v0,0(s0)   ; 803BA23C 
+  80390da0: a2020005 sb	v0,5(s0)   ; 803BA241 
+  80390da4: 10000004 b	0x80390db8
+  80390da8: a2000004 sb	zero,4(s0)   ; 803BA240 
+  80390dac: 2610000c addiu	s0,s0,12   ; 803BA248 
+  80390db0: 5602ffeb bnel	s0,v0,0x80390d60
+  80390db4: 820f0005 lb	t7,5(s0)   ; 803BA24D 
+  80390db8: 8fbf001c lw	ra,28(sp)
+  80390dbc: 8fb00014 lw	s0,20(sp)
+  80390dc0: 8fb10018 lw	s1,24(sp)
+  80390dc4: 03e00008 jr	ra
+  80390dc8: 27bd0020 addiu	sp,sp,32

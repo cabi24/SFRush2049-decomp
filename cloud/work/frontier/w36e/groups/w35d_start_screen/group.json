@@ -1,0 +1,25 @@
+{
+ "members": [
+  "func_8038F79C",
+  "func_80390418",
+  "func_8038FFD8"
+ ],
+ "context": [
+  "func_8038F744"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_80390418"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w35d: MAT3 startscr.c updateStartScreen (root, kept) with its IPA-internal updateButtons; w36e (wave 36) supersedes in place: adds initScreen func_8038FFD8 (MAT3 initScreen with initButtons and eggs.c InitEgg(23) inlined; old members' text unchanged, functions in MAT3 file order)",
+ "claims": [
+  "func_8038F79C",
+  "func_80390418",
+  "func_8038FFD8"
+ ],
+ "name": "w35d_start_screen"
+}

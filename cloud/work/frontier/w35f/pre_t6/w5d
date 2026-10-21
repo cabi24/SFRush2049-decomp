@@ -1,0 +1,111 @@
+[W5D] bit at=cm proc=f bit=0 kind=3 dtype=J ref=1008|0 text=varM(3-4)r
+[W5D] bit at=cm proc=f bit=1 kind=3 dtype=J ref=1008|0 text=varM(3-4)r
+[W5D] bit at=cm proc=f bit=2 kind=4 dtype=J ref=166|0 text=str.J(varM(3-4)r,0)
+[W5D] bit at=cm proc=f bit=3 kind=3 dtype=J ref=669|0 text=varP(3+12)r
+[W5D] bit at=cm proc=f bit=4 kind=3 dtype=J ref=669|0 text=varP(3+12)r
+[W5D] bit at=cm proc=f bit=5 kind=4 dtype=J ref=216|0 text=geq.J(varP(3+12)r,1)
+[W5D] bit at=cm proc=f bit=6 kind=4 dtype=J ref=1418|0 text=cg1.J(varP(3+12)r)
+[W5D] bit at=cm proc=f bit=7 kind=3 dtype=A ref=605|0 text=varP(3+8)r
+[W5D] bit at=cm proc=f bit=8 kind=3 dtype=A ref=605|0 text=varP(3+8)r
+[W5D] bit at=cm proc=f bit=9 kind=4 dtype=R ref=243|0 text=istr.R@4(varP(3+8)r,4)
+[W5D] bit at=cm proc=f bit=10 kind=3 dtype=A ref=541|0 text=varP(3+4)r
+[W5D] bit at=cm proc=f bit=11 kind=3 dtype=A ref=541|0 text=varP(3+4)r
+[W5D] bit at=cm proc=f bit=12 kind=3 dtype=A ref=477|0 text=varP(3+0)r
+[W5D] bit at=cm proc=f bit=13 kind=3 dtype=A ref=477|0 text=varP(3+0)r
+[W5D] bit at=cm proc=f bit=14 kind=4 dtype=R ref=1386|0 text=ilod.R@4(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=15 kind=4 dtype=R ref=864|0 text=mpy.R(ilod.R@4(varP(3+0)r),4)
+[W5D] bit at=cm proc=f bit=16 kind=4 dtype=R ref=1386|1 text=ilod.R@0(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=17 kind=4 dtype=R ref=1056|0 text=add.R(mpy.R(ilod.R@4(varP(3+0)r),4),ilod.R@0(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=18 kind=4 dtype=R ref=1351|0 text=istr.R@0(varP(3+4)r,add.R(mpy.R(ilod.R@4(varP(3+0)r),4),ilod.R@0(varP(3+0)r)))
+[W5D] bit at=cm proc=f bit=19 kind=4 dtype=R ref=1386|2 text=ilod.R@12(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=20 kind=4 dtype=R ref=924|0 text=mpy.R(ilod.R@12(varP(3+0)r),4)
+[W5D] bit at=cm proc=f bit=21 kind=4 dtype=R ref=1386|3 text=ilod.R@8(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=22 kind=4 dtype=R ref=530|0 text=add.R(mpy.R(ilod.R@12(varP(3+0)r),4),ilod.R@8(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=23 kind=4 dtype=R ref=274|0 text=istr.R@4(varP(3+4)r,add.R(mpy.R(ilod.R@12(varP(3+0)r),4),ilod.R@8(varP(3+0)r)))
+[W5D] bit at=cm proc=f bit=24 kind=4 dtype=R ref=1386|4 text=ilod.R@20(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=25 kind=4 dtype=R ref=984|0 text=mpy.R(ilod.R@20(varP(3+0)r),4)
+[W5D] bit at=cm proc=f bit=26 kind=4 dtype=R ref=1386|5 text=ilod.R@16(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=27 kind=4 dtype=R ref=4|0 text=add.R(mpy.R(ilod.R@20(varP(3+0)r),4),ilod.R@16(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=28 kind=4 dtype=R ref=816|0 text=istr.R@8(varP(3+4)r,add.R(mpy.R(ilod.R@20(varP(3+0)r),4),ilod.R@16(varP(3+0)r)))
+[W5D] bit at=cm proc=f bit=29 kind=4 dtype=R ref=93|0 text=istr.R@0(varP(3+8)r,262147)
+[W5D] bit at=cm proc=f bit=30 kind=4 dtype=R ref=93|1 text=istr.R@8(varP(3+8)r,262147)
+[W5D] bit at=cm proc=f bit=31 kind=4 dtype=R ref=93|2 text=istr.R@12(varP(3+8)r,262147)
+[W5D] bit at=cm proc=f bit=32 kind=4 dtype=R ref=1386|6 text=ilod.R@24(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=33 kind=4 dtype=R ref=1245|0 text=add.R(ilod.R@24(varP(3+0)r),ilod.R@24(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=34 kind=4 dtype=R ref=633|0 text=istr.R@12(varP(3+4)r,add.R(ilod.R@24(varP(3+0)r),ilod.R@24(varP(3+0)r)))
+[W5D] bit at=cm proc=f bit=35 kind=4 dtype=R ref=1386|7 text=ilod.R@28(varP(3+0)r)
+[W5D] bit at=cm proc=f bit=36 kind=4 dtype=R ref=1604|0 text=les.R(458756,ilod.R@28(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=37 kind=4 dtype=R ref=1257|0 text=cg1.R(ilod.R@28(varP(3+0)r))
+[W5D] bit at=cm proc=f bit=38 kind=4 dtype=R ref=860|0 text=istr.R@16(varP(3+4)r,720899)
+[W5D] bit at=cm proc=f bit=39 kind=4 dtype=R ref=445|0 text=istr.R@16(varP(3+4)r,917507)
+[W5D] bit at=cm proc=f bit=40 kind=4 dtype=J ref=486|0 text=add.J(varM(3-4)r,1)
+[W5D] bit at=cm proc=f bit=41 kind=4 dtype=J ref=1571|0 text=str.J(varM(3-4)r,add.J(varM(3-4)r,1))
+[W5D] bit at=cm proc=f bit=42 kind=4 dtype=J ref=189|0 text=les.J(varM(3-4)r,varP(3+12)r)
+[W5D] bit at=cm proc=f bit=43 kind=4 dtype=J ref=491|0 text=cg1.J(varM(3-4)r)
+[W5D] bit at=cm proc=f bit=44 kind=4 dtype=J ref=1432|0 text=cg1.J(varP(3+12)r)
+[W5D] bit at=cm proc=f bit=45 kind=4 dtype=J ref=1549|0 text=neq.J(varM(3-4)r,varP(3+12)r)
+[W5D] regcand proc=f what=const bb=0 ctx=0 decision=0 text=0
+[W5D] regcand proc=f what=const bb=0 ctx=1 decision=0 text=1
+[W5D] regcand proc=f what=const bb=2 ctx=3 decision=1 text=4
+[W5D] regcand proc=f what=const bb=2 ctx=5 decision=1 text=4
+[W5D] regcand proc=f what=const bb=2 ctx=5 decision=1 text=4
+[W5D] regcand proc=f what=const bb=2 ctx=5 decision=1 text=4
+[W5D] regcand proc=f what=const bb=3 ctx=3 decision=1 text=262147
+[W5D] regcand proc=f what=const bb=3 ctx=3 decision=1 text=262147
+[W5D] regcand proc=f what=const bb=3 ctx=3 decision=1 text=262147
+[W5D] regcand proc=f what=const bb=4 ctx=1 decision=1 text=458756
+[W5D] regcand proc=f what=const bb=5 ctx=3 decision=1 text=720899
+[W5D] regcand proc=f what=const bb=7 ctx=1 decision=0 text=1
+[W5D] regcand proc=f what=const bb=6 ctx=3 decision=1 text=917507
+[W5D] ordinal proc=f cdx_proc=0
+[W5D] bit at=gc proc=f bit=0 kind=3 dtype=J ref=1008|0 text=varM(3-4)r
+[W5D] bit at=gc proc=f bit=1 kind=3 dtype=J ref=1008|0 text=varM(3-4)r
+[W5D] bit at=gc proc=f bit=2 kind=4 dtype=J ref=166|0 text=str.J(varM(3-4)r,0)
+[W5D] bit at=gc proc=f bit=3 kind=3 dtype=J ref=669|0 text=varP(3+12)r
+[W5D] bit at=gc proc=f bit=4 kind=3 dtype=J ref=669|0 text=varP(3+12)r
+[W5D] bit at=gc proc=f bit=5 kind=4 dtype=J ref=216|0 text=geq.J(varP(3+12)r,1)
+[W5D] bit at=gc proc=f bit=6 kind=4 dtype=J ref=1418|0 text=cg1.J(varP(3+12)r)
+[W5D] bit at=gc proc=f bit=7 kind=3 dtype=A ref=605|0 text=varP(3+8)r
+[W5D] bit at=gc proc=f bit=8 kind=3 dtype=A ref=605|0 text=varP(3+8)r
+[W5D] bit at=gc proc=f bit=9 kind=4 dtype=R ref=243|0 text=istr.R@4(varP(3+8)r,4)
+[W5D] bit at=gc proc=f bit=10 kind=3 dtype=A ref=541|0 text=varP(3+4)r
+[W5D] bit at=gc proc=f bit=11 kind=3 dtype=A ref=541|0 text=varP(3+4)r
+[W5D] bit at=gc proc=f bit=12 kind=3 dtype=A ref=477|0 text=varP(3+0)r
+[W5D] bit at=gc proc=f bit=13 kind=3 dtype=A ref=477|0 text=varP(3+0)r
+[W5D] bit at=gc proc=f bit=14 kind=4 dtype=R ref=1386|0 text=ilod.R@4(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=15 kind=4 dtype=R ref=864|0 text=mpy.R(ilod.R@4(varP(3+0)r),4)
+[W5D] bit at=gc proc=f bit=16 kind=4 dtype=R ref=1386|1 text=ilod.R@0(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=17 kind=4 dtype=R ref=1056|0 text=add.R(mpy.R(ilod.R@4(varP(3+0)r),4),ilod.R@0(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=18 kind=4 dtype=R ref=1351|0 text=istr.R@0(varP(3+4)r,add.R(mpy.R(ilod.R@4(varP(3+0)r),4),ilod.R@0(varP(3+0)r)))
+[W5D] bit at=gc proc=f bit=19 kind=4 dtype=R ref=1386|2 text=ilod.R@12(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=20 kind=4 dtype=R ref=924|0 text=mpy.R(ilod.R@12(varP(3+0)r),4)
+[W5D] bit at=gc proc=f bit=21 kind=4 dtype=R ref=1386|3 text=ilod.R@8(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=22 kind=4 dtype=R ref=530|0 text=add.R(mpy.R(ilod.R@12(varP(3+0)r),4),ilod.R@8(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=23 kind=4 dtype=R ref=274|0 text=istr.R@4(varP(3+4)r,add.R(mpy.R(ilod.R@12(varP(3+0)r),4),ilod.R@8(varP(3+0)r)))
+[W5D] bit at=gc proc=f bit=24 kind=4 dtype=R ref=1386|4 text=ilod.R@20(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=25 kind=4 dtype=R ref=984|0 text=mpy.R(ilod.R@20(varP(3+0)r),4)
+[W5D] bit at=gc proc=f bit=26 kind=4 dtype=R ref=1386|5 text=ilod.R@16(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=27 kind=4 dtype=R ref=4|0 text=add.R(mpy.R(ilod.R@20(varP(3+0)r),4),ilod.R@16(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=28 kind=4 dtype=R ref=816|0 text=istr.R@8(varP(3+4)r,add.R(mpy.R(ilod.R@20(varP(3+0)r),4),ilod.R@16(varP(3+0)r)))
+[W5D] bit at=gc proc=f bit=29 kind=4 dtype=R ref=93|0 text=istr.R@0(varP(3+8)r,262147)
+[W5D] bit at=gc proc=f bit=30 kind=4 dtype=R ref=93|1 text=istr.R@8(varP(3+8)r,262147)
+[W5D] bit at=gc proc=f bit=31 kind=4 dtype=R ref=93|2 text=istr.R@12(varP(3+8)r,262147)
+[W5D] bit at=gc proc=f bit=32 kind=4 dtype=R ref=1386|6 text=ilod.R@24(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=33 kind=4 dtype=R ref=1245|0 text=add.R(ilod.R@24(varP(3+0)r),ilod.R@24(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=34 kind=4 dtype=R ref=633|0 text=istr.R@12(varP(3+4)r,add.R(ilod.R@24(varP(3+0)r),ilod.R@24(varP(3+0)r)))
+[W5D] bit at=gc proc=f bit=35 kind=4 dtype=R ref=1386|7 text=ilod.R@28(varP(3+0)r)
+[W5D] bit at=gc proc=f bit=36 kind=4 dtype=R ref=1604|0 text=les.R(458756,ilod.R@28(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=37 kind=4 dtype=R ref=1257|0 text=cg1.R(ilod.R@28(varP(3+0)r))
+[W5D] bit at=gc proc=f bit=38 kind=4 dtype=R ref=860|0 text=istr.R@16(varP(3+4)r,720899)
+[W5D] bit at=gc proc=f bit=39 kind=4 dtype=R ref=445|0 text=istr.R@16(varP(3+4)r,917507)
+[W5D] bit at=gc proc=f bit=40 kind=4 dtype=J ref=486|0 text=add.J(varM(3-4)r,1)
+[W5D] bit at=gc proc=f bit=41 kind=4 dtype=J ref=1571|0 text=str.J(varM(3-4)r,add.J(varM(3-4)r,1))
+[W5D] bit at=gc proc=f bit=42 kind=4 dtype=J ref=189|0 text=les.J(varM(3-4)r,varP(3+12)r)
+[W5D] bit at=gc proc=f bit=43 kind=4 dtype=J ref=491|0 text=cg1.J(varM(3-4)r)
+[W5D] bit at=gc proc=f bit=44 kind=4 dtype=J ref=1432|0 text=cg1.J(varP(3+12)r)
+[W5D] bit at=gc proc=f bit=45 kind=4 dtype=J ref=1549|0 text=neq.J(varM(3-4)r,varP(3+12)r)
+[W5D] bit at=gc proc=f bit=46 kind=2 dtype=R ref=0|1 text=4
+[W5D] bit at=gc proc=f bit=47 kind=2 dtype=R ref=768|0 text=262147
+[W5D] bit at=gc proc=f bit=48 kind=2 dtype=R ref=173|0 text=458756
+[W5D] bit at=gc proc=f bit=49 kind=2 dtype=R ref=493|0 text=720899
+[W5D] bit at=gc proc=f bit=50 kind=2 dtype=R ref=1069|0 text=917507

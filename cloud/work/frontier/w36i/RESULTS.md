@@ -15,7 +15,8 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 4 | 0ce59e845 | w36j image B: animStuntPoints, animHealth, newWorldDamage, ShowHUDExtra (standalone) + UpdateBattlePowerUps (dot_runtime_b_resource_callbacks_20261012 superseded in place) | +6,120 | 105/193 | 25 -> 30/49 | yes (0ce59e845, with 8754d42bc) |
 | 5 | cc56165ba | w36c updateSelectButtons/controlSelect@recordscr + w36b initRecordScreen (+stub) merged into dot_runtime_a_callers_deep_20261011 with the installed w36f revision; w36c controlSelect@playerscr (dot_runtime_a_availability_refresh_20261007); w36b setGhosts/updateCarComponents (dot_cleanup_colortrace_20261011) | +14,824 | 105 -> 112/193 | 30/49 | yes (cc56165ba) |
 | - | 0cad8af34 | owner: research receipt re-pins for the three held items | 0 | | | with batch 6 |
-| 6 | (this) | formerly held: w36f updateButtons/updateModeScreen@modescr (seven_option group), w36j RemoveHUDExtra (B), w36m animResults/animFlag/animLapTimeText/func_80106874 (game credits_scroll_grp) | +2,568 A, +380 B, +6,224 game | 112 -> 114/193 | 30 -> 31/49 | |
+| 6 | dabdcf959 | formerly held: w36f updateButtons/updateModeScreen@modescr (seven_option group), w36j RemoveHUDExtra (B), w36m animResults/animFlag/animLapTimeText/func_80106874 (game credits_scroll_grp) | +2,568 A, +380 B, +6,224 game | 112 -> 114/193 | 30 -> 31/49 | yes (dabdcf959, with 0cad8af34) |
+| 7 | (this) | w36e trackscr (dot_runtime_a_c93c_closure_20261012: 11 new claims incl. w36d's BBB4/DFEC) + startscr initScreen (w35d_start_screen); w36h shots (NEW group w36h_shots, image B, 10 members) | +10,376 A, +12,360 B | 114 -> 126/193 | 31 -> 41/49 | |
 
 ## Held for owner
 
@@ -63,6 +64,15 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   install_group writes it without --provenance, the four names locked; test accepted list and counts updated).
   Land with `PYTHONPATH=. python3 cloud/work/frontier/tools/install_group.py
   cloud/work/frontier/w36m/groups/credits_scroll_grp credits_scroll_grp`, then the game gates and `blob_rom rom`.
+
+### w36e: func_80390BC0 (LoadSelectCar@selectcarload.c, 364 B, standalone strict MATCH)
+
+- Not spliced (`cloud/matches/ovl_a/func_80390BC0.c` stays untracked). Failing test if landed:
+  `tests/cloud/test_runtime_a_resource_cache.py::RuntimeCachePacket::test_frozen_artifact_hashes_and_honest_claim`
+  (asserts the file is absent; frozen NONMATCH packet dot_runtime_a_resource_cache_20261006).
+- Prepared fix (not applied): `cloud/work/frontier/w36i/held/resource_cache_allow_promoted_80390BC0.patch`
+  (promoted state allowed: the file may exist once func_80390BC0 is locked from src/ovl_a/func_80390BC0.c).
+- To land after the patch: `python3 -m tools.conveyor.pipeline.ovl_splice splice cloud/matches/ovl_a/func_80390BC0.c`.
 
 ## Batch 5 merge (dot_runtime_a_callers_deep_20261011)
 
