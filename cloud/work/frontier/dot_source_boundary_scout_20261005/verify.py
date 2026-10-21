@@ -63,12 +63,22 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+SUPERSEDED = ROOT / "cloud/work/frontier/superseded/w36l_singles"
+
+
+def source_file(path):
+    """w36: w36l re-spliced the locked func_8008AE48/func_8008AE64 sources (same bytes); the
+    sources this packet recorded are kept byte-identically in superseded/w36l_singles/."""
+    old = SUPERSEDED / Path(path).name
+    return old if path.startswith("src/blob/") and old.is_file() else ROOT / path
+
+
 def source_inputs():
     paths = list(WALKER_INPUTS.values())
     paths += ["src/blob/" + name + ".c" for name in ACCESSORS]
     paths += [base + "/" + file for base in CLEANUP_INPUTS.values()
               for file in ("group.c", "group.json")]
-    return {path: sha((ROOT / path).read_bytes()) for path in sorted(paths)}
+    return {path: sha(source_file(path).read_bytes()) for path in sorted(paths)}
 
 
 def tool_sources():
@@ -242,7 +252,7 @@ def compiler_summary():
             directory = base / variant
             directory.mkdir()
             for name in ACCESSORS:
-                shutil.copyfile(ROOT / "src/blob" / (name + ".c"), directory / (name + ".c"))
+                shutil.copyfile(source_file("src/blob/" + name + ".c"), directory / (name + ".c"))
             for name, path in WALKER_INPUTS.items():
                 text = (ROOT / path).read_text()
                 if variant != "baseline":

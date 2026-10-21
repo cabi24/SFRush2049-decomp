@@ -20,8 +20,11 @@ def test_receipt_and_input_hashes():
     assert saved['status'].startswith('NONMATCH')
     for field,name in [('source_sha256','group.c'),('group_spec_sha256','group.json'),('verifier_sha256','verify.py'),('host_source_sha256','host.c')]:
         assert saved[field] == hashlib.sha256((HERE/name).read_bytes()).hexdigest()
+    superseded=ROOT/'cloud/work/frontier/superseded/w36l_singles'  # w36: w36l re-spliced two of them
     for path,digest in saved['input_hashes'].items():
-        assert digest == hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        old=superseded/Path(path).name
+        source=old if path.startswith('src/blob/') and old.is_file() else ROOT/path
+        assert digest == hashlib.sha256(source.read_bytes()).hexdigest()
     for label in ['original_helpers','normalized_helpers','kept_inline_control']:
         funcs=saved['experiments'][label]['functions']
         for name in ['func_8008E06C','func_80092BC8']:

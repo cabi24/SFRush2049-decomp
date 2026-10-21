@@ -22,6 +22,14 @@ NAMES = ['func_8008E06C', 'func_80092BC8', 'func_80092BF4']
 SOURCE_PATHS = ['src/blob/func_8008E06C.c', 'src/blob/func_80092BC8.c',
                 'cloud/work/tiny_A44/func_80092BF4.c', 'src/blob/sfx_stop.c']
 MASK = 0xffffffff
+SUPERSEDED = ROOT / 'cloud/work/frontier/superseded/w36l_singles'
+
+
+def source_file(path):
+    """w36: w36l re-spliced the locked func_8008E06C/func_80092BC8 sources (same bytes); the
+    sources this packet recorded are kept byte-identically in superseded/w36l_singles/."""
+    old = SUPERSEDED / Path(path).name
+    return old if path.startswith('src/blob/') and old.is_file() else ROOT / path
 
 # Only this packet's selected entries and consumed relocation symbols are pinned.
 # Unrelated manifest updates are intentionally allowed.
@@ -256,8 +264,8 @@ def main():
             d = work/label; d.mkdir()
             if label == 'original_helpers':
                 group['files'] = ['first.c','second.c','caller.c']
-                (d/'first.c').write_bytes((ROOT/SOURCE_PATHS[0]).read_bytes())
-                (d/'second.c').write_bytes((ROOT/SOURCE_PATHS[1]).read_bytes())
+                (d/'first.c').write_bytes(source_file(SOURCE_PATHS[0]).read_bytes())
+                (d/'second.c').write_bytes(source_file(SOURCE_PATHS[1]).read_bytes())
                 start = source.index('void func_8008E06C')
                 end = source.index('void func_80092BF4')
                 caller = source[:start] + 'void func_8008E06C(s16, s32 *);\nvoid func_80092BC8(s16, s32 *);\n' + source[end:]
@@ -298,7 +306,7 @@ def main():
     assert not any(callers.values())
     report={'status':'NONMATCH; no new matching claims', 'flags':FLAGS,
             'source_sha256':sha((HERE/'group.c').read_bytes()),
-            'input_hashes':{p:sha((ROOT/p).read_bytes()) for p in SOURCE_PATHS},
+            'input_hashes':{p:sha(source_file(p).read_bytes()) for p in SOURCE_PATHS},
             'experiments':records,'native':native,'host':host,
             'native_address_anchors':anchors,'direct_native_callers':callers,'claims':[], 'accepted_byte_gain':0,
             'toolchain_sha256':{n:sha((score.IDO/n).read_bytes()) for n in ['cc','cfe','uld','umerge','uopt','ugen','as1']},

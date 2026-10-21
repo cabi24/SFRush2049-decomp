@@ -23,7 +23,7 @@ def test_native_metadata_replays_complete_current_extents():
     result = scout.audit()
     assert result == json.loads((PACKET/'native_audit.json').read_text())
     assert result['claims'] == []
-    landed = {'func_80102F30'}  # locked since the scout: wave 29 (w29a frontier_results_table via w29i)
+    landed = {'func_80102F30', 'func_80100E58', 'func_800D91A0'}  # locked since the scout: wave 29 (w29a frontier_results_table via w29i); wave 36 (w36z func_80100E58, w36k func_800D91A0 via w36i)
     assert all(row['accepted_name_lock'] == (row['target'] in landed) for row in result['targets'])
     assert sum(row['native_bytes'] for row in result['targets']) == 12788
 
