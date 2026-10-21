@@ -3690,9 +3690,6 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800CB718(s16 arg0) {
-    s32 *temp_v0;
+void func_800FD01C(void) {
 
-    temp_v0 = &(&D_801392D8)[arg0];
-    *temp_v0 &= ~0x20;
 }

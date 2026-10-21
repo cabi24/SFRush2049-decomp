@@ -576,26 +576,6 @@
   {
    "name": "func_800E7FA0",
    "reason": "group w36x3_update_game_data (w36x3, MAT3 _UpdateTireAppearance@mdrive.c): private IPA callee of update_game_data (func_800E847C)"
-  },
-  {
-   "name": "func_800FCDF0",
-   "reason": "group w36w_demo_pair (w36w, MAT3 demo.c): deleted helper whose real body is inlined into updateDemoGame/playDemoGame; only the retail 2-word stub remains"
-  },
-  {
-   "name": "func_800FD00C",
-   "reason": "group w36w_demo_pair (w36w, MAT3 demo.c): deleted helper whose real body is inlined into updateDemoGame/playDemoGame; only the retail 2-word stub remains"
-  },
-  {
-   "name": "func_800FD014",
-   "reason": "group w36w_demo_pair (w36w, MAT3 demo.c): deleted helper whose real body is inlined into updateDemoGame/playDemoGame; only the retail 2-word stub remains"
-  },
-  {
-   "name": "func_800FD01C",
-   "reason": "group w36w_demo_pair (w36w, MAT3 demo.c): deleted helper whose real body is inlined into updateDemoGame/playDemoGame; only the retail 2-word stub remains"
-  },
-  {
-   "name": "debug_stats",
-   "reason": "group w36w_demo_pair (w36w, MAT3 playDemoGame@demo.c): internal; its second argument arrives in s0 (private IPA register parameter) from updateDemoGame (debug_collision)"
   }
  ],
  "prefer_definition": [
@@ -733,26 +713,6 @@
    "name": "func_8009768C",
    "file": "src/blob/groups/w36t_loadcars/root.c",
    "reason": "FindWaveInstance (w36t): the real body, inlined into LoadCars, supersedes the locked 2-word stub single"
-  },
-  {
-   "name": "func_800FCDF0",
-   "file": "src/blob/groups/w36w_demo_pair/demo.c",
-   "reason": "w36w_demo_pair (w36w): the real body, inlined into its demo.c callers, supersedes the locked 2-word stub single"
-  },
-  {
-   "name": "func_800FD00C",
-   "file": "src/blob/groups/w36w_demo_pair/demo.c",
-   "reason": "w36w_demo_pair (w36w): the real body, inlined into its demo.c callers, supersedes the locked 2-word stub single"
-  },
-  {
-   "name": "func_800FD014",
-   "file": "src/blob/groups/w36w_demo_pair/demo.c",
-   "reason": "w36w_demo_pair (w36w): the real body, inlined into its demo.c callers, supersedes the locked 2-word stub single"
-  },
-  {
-   "name": "func_800FD01C",
-   "file": "src/blob/groups/w36w_demo_pair/demo.c",
-   "reason": "w36w_demo_pair (w36w): the real body, inlined into its demo.c callers, supersedes the locked 2-word stub single"
   }
  ],
  "align": [
