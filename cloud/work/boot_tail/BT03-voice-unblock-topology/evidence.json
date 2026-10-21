@@ -259,7 +259,7 @@
   ],
   "input_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
     "tools/conveyor/seeds/extract_candidates.py": "0f0c753a0f279f2b93f636995d1008f5fbda863491af451120b9e4afb29b0f53",
     "include/boot_tail_audio_record.h": "128e9566a872e604ccfbf8352120a40cfc546c4d49b32321dd440cbf088348a7",
     "include/boot_tail_sample_contract.h": "47f15953b674de3262411e79f4fd46873b8ca79c067790a087876c16da965f77",
