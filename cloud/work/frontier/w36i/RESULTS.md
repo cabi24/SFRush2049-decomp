@@ -1,8 +1,11 @@
 # w36i: wave-36 integration
 
-Branch `wave35`, integration lane only (src/, locks, commits). Every batch: `ovl_layout build`,
-`ovl_splice check`, `ovl_rom rom` (log `gates_batchN.log`: image gates byte-identical, ovl lock intact,
-ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before any push.
+Branch `wave35`, integration lane only (src/, locks, commits). Every batch (log `gates_batchN.log`): overlay
+batches `ovl_layout build`, `ovl_splice check`, `ovl_rom rom` (image gates byte-identical, ovl lock intact, ROM
+SHA-1 EXACT); game batches `blob_unit check` (all locked bodies equal), `blob_group check`, `blob_splice check`,
+`lock check`, `ovl_splice check`, `blob_rom rom` (ROM SHA-1 EXACT with the source-built blob). Tests on rocky
+(clean clone, authoritative) and the Pi before every push; the Pi's only failures were the known
+untracked-lane-file receipts.
 
 ## Batches
 
@@ -20,7 +23,7 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 8 | fb77b6f9e | game: w36l StartEnvironment (music_control) + AnimateNewBlast (entity_update_callback) singles; w36o InitSystem (game_late_init, codex_heap_release_a25 superseded; force_internal HAL_InitText_Init, DeallocateMemory_Init); w36u func_8009F058 (frontier_particle_knot superseded) | +9,224 game (1094 -> 1098) | | | yes (fb77b6f9e) |
 | 9 | 82c7fe44c | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | yes (bf8210efa, with w36x) |
 | 10 | e013f7ac4 | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | yes (e3faa54a1, with w36x2) |
-| 11 | (this) | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | |
+| 11 | dbcc64cd5 | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | yes (dbcc64cd5) |
 
 ## Held for owner
 
@@ -44,6 +47,15 @@ The evidence was simulated with every claim above locked (identical with or with
 with the credits_scroll_grp group.json exactly as install_group writes it from w36i's merged packet. Each packet
 still gets the normal unit check at landing (context copies must keep what their home groups keep; see the
 codex_defaults_a16 note).
+
+### Other held items (details below)
+
+| item | blocker | prepared |
+|---|---|---|
+| w36l codex_visual_tire_module_20261002 (AnimateRocketFlame, AnimateFrame; 5,964 B) + six locked-single source replacements, then w36x4 music_seq_load (1,428 B) | two receipts pin the singles' current sources | `held/w36l_locked_singles_superseded.patch` |
+| w36u w36u_audio_init_sys (AudioInitSys, 836 B) | new absolute ROM-offset symbol D_00039B40 (owner decision on naming/route) | note below |
+| w36w w36w_demo_pair (updateDemoGame, playDemoGame + 4 stubs; 1,064 B) | needs a second extern_data entry for D_80152818 (blob_unit allows one per name) | note below |
+| w36e func_80390BC0 (LoadSelectCar, 364 B) | resource-cache receipt asserts the cloud/matches file absent | `held/resource_cache_allow_promoted_80390BC0.patch` |
 
 ### w36k: NEW group controlscr (updateControlScreen func_800D91A0, func_800D816C, func_800D9058, ...)
 
