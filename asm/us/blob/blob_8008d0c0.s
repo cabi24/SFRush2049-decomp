@@ -4205,6 +4205,7 @@ func_80090F44:
 .section .text.entity_update_callback, "ax", @progbits
 .globl entity_update_callback
 entity_update_callback:
+    /* compiled from src/blob/entity_update_callback.c */
     .word 0x27BDFF00
     .word 0x3C0F8011
     .word 0x8DEF70FC

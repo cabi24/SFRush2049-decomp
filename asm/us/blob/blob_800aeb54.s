@@ -3254,6 +3254,7 @@ music_seq_load:
 .section .text.music_control, "ax", @progbits
 .globl music_control
 music_control:
+    /* compiled from src/blob/music_control.c */
     .word 0x27BDFF60
     .word 0xAFB20028
     .word 0xAFBF0044

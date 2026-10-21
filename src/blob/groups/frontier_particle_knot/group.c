@@ -15,9 +15,10 @@
  *     |           `-> func_8009C3F8 (asin/acos kernel, x in $f16)   <- camera_update_c = asinf,
  *     `-> render_display_list                                          select_screen_update = acosf
  *
- * No stand-ins. Status (score.py group, this directory): every member MATCH except func_8009F058
- * (22/1307: the slot of the &D_80150B70[view] spill home, 68 vs 72). See cloud/work/frontier/w7a/RESULTS.md
- * and w6a/STRUCTURE.md.
+ * No stand-ins. Status (score.py group, this directory): every member MATCH, func_8009F058 included
+ * (wave 36, w36u: own .rodata verified at 0x80123B60..0x80123B68). See cloud/work/frontier/w7a/RESULTS.md,
+ * w6a/STRUCTURE.md and w36u/RESULTS.md. func_8009F058 is the N64 per-window scene setup (Camera =
+ * tWindowInfo ZoidWinInfo[] of MAT3 zoidwindow.c; no GameCube body: the GC renders through ngcZoid.c).
  *
  * Shaping facts, each one tested (a different spelling changes code):
  *  render_display_list: params (gp, tex, rect, clip, pals) -- callers set gp first; the clip/rect
@@ -32,7 +33,10 @@
  *    the following loop (otherwise uopt unrolls it); two separate filter ifs at the loop bottom;
  *    `pushed = 0, total = 0, saved = 0` initialised on one line; 16 bytes of unexplained frame filler.
  *  func_8009F058: `Camera *cam` initialised at its declaration (otherwise ugen marks $16 noalias $sp
- *    and as1 reorders the ortho arm); FillRectangle takes (s16) coordinates and ORs the y term first;
+ *    and as1 reorders the ortho arm) and declared BEFORE `Vp *vp` (f_spilltemps hands out spill homes
+ *    in itable order: with cam's &D_8017A510[view] first, the spilled &gCamera[view] web gets home 0 =
+ *    72(sp) as in retail; vp first gives view*16 home 0 and t0 68(sp)); the ortho arm passes a local
+ *    `Mtx *m = &D_8015B250->proj[view]` to guOrtho (its slot puts perspNorm at 322(sp)); FillRectangle takes (s16) coordinates and ORs the y term first;
  *    the view count goes through `i` and `(i < 2) != 0`; the texture address is recomputed as the
  *    render_display_list argument; SDK gSPFogPosition (128000); fov factor 57.295776f. Two parameters
  *    (view, eye): with (view, a1, a2, eye) the caller has to store the dead a1/a2 to their stack homes.
@@ -1206,8 +1210,8 @@ void guMtxIdent(Mtx *m);
 
 void func_8009F058(s32 view, View *eye)
 {
-    Vp *vp = &D_8015B250->vp[view];
     Camera *cam = &D_8017A510[view];
+    Vp *vp = &D_8015B250->vp[view];
     Poly *poly;
     u16 ulx, uly, lrx, lry;
     s32 mode;
@@ -1239,9 +1243,9 @@ void func_8009F058(s32 view, View *eye)
         D_8017A638 = 1;
     }
     if (cam->ortho) {
-        s32 pad1;
+        Mtx *m = &D_8015B250->proj[view];
 
-        guOrtho(&D_8015B250->proj[view], -cam->w * 0.5f, cam->w * 0.5f, -cam->h * 0.5f, cam->h * 0.5f,
+        guOrtho(m, -cam->w * 0.5f, cam->w * 0.5f, -cam->h * 0.5f, cam->h * 0.5f,
                 cam->near * 16.0f, cam->far * 16.0f, 1.0f);
     } else {
         u16 perspNorm;

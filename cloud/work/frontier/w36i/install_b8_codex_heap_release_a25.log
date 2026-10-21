@@ -1,0 +1,3 @@
+spliced codex_heap_release_a25: 21 members, new: ['game_late_init']
+image coverage: 1097/1216 functions, 433936/647072 bytes (67.06%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

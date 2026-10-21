@@ -536,6 +536,14 @@
   {
    "name": "ZOID_SetColorP_da",
    "reason": "group frontier_optionscr_buttons (w32b, GC ZOID_SetColor@zoidtexture.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_InitText_Init",
+   "reason": "group codex_heap_release_a25 (w36o, MAT3 InitSystem@Init.c = game_late_init): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "DeallocateMemory_Init",
+   "reason": "group codex_heap_release_a25 (w36o, MAT3 InitSystem@Init.c = game_late_init): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

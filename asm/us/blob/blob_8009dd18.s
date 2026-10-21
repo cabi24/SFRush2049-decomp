@@ -1281,6 +1281,7 @@ physics_float_calc:
 .section .text.func_8009F058, "ax", @progbits
 .globl func_8009F058
 func_8009F058:
+    /* compiled from src/blob/func_8009F058.c */
     .word 0x3C128016
     .word 0x2652B250
     .word 0x8E4E0000

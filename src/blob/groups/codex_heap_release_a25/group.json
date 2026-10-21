@@ -19,7 +19,8 @@
   "func_800C8918",
   "func_80091AF0",
   "func_80091AF8",
-  "func_80096130"
+  "func_80096130",
+  "game_late_init"
  ],
  "context": [
   "func_80095F8C",
@@ -40,7 +41,8 @@
   "func_80091AF0.c",
   "func_80091AF8.c",
   "func_800C8918.c",
-  "func_80096130.c"
+  "func_80096130.c",
+  "initsystem.c"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "keep": [
@@ -62,8 +64,9 @@
   "func_800C885C",
   "wheel_params_set",
   "func_800C8918",
-  "func_80096130"
+  "func_80096130",
+  "game_late_init"
  ],
  "provenance": "frontier waves 2-8 (heap family; wheel_params_set from w8c), 2026-10-05; wave 17: func_800C8918 + stub bodies func_80091AF0/func_80091AF8 (w17h), func_80096130 (w17i), merged by w17j",
- "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (all its files unchanged copies) with overlay_loader.c. New claims: PrevMaxPath (internal, register parameters), InitMaxPath, sync_maxpath_to_checkpoint. All three EQUAL in the whole-program unit (blob_unit score --with overlay_loader.c --internal PrevMaxPath, 0 neighbours broken). display_enable (also calls PrevMaxPath) is not included: its real caller playgame_state_change is unmatched. Wave 8 (w8a): func_800C885C appended to group.c; audio_effect_process made __inline with four unused locals (w6c rule) so umerge inlines it into func_800C885C; its kept body is unchanged."
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (all its files unchanged copies) with overlay_loader.c. New claims: PrevMaxPath (internal, register parameters), InitMaxPath, sync_maxpath_to_checkpoint. All three EQUAL in the whole-program unit (blob_unit score --with overlay_loader.c --internal PrevMaxPath, 0 neighbours broken). display_enable (also calls PrevMaxPath) is not included: its real caller playgame_state_change is unmatched. Wave 8 (w8a): func_800C885C appended to group.c; audio_effect_process made __inline with four unused locals (w6c rule) so umerge inlines it into func_800C885C; its kept body is unchanged. Wave 36 (w36o): initsystem.c appended (all other files unchanged copies); new member/claim game_late_init (= MAT3 InitSystem@Init.c), on keep. It inlines the group's func_80095CF4/func_80095CFC (via its own non-static DeallocateMemory_Init) and calls the internal audio_reverb_update with its IPA a1/a2 convention. Unit install: force_internal += HAL_InitText_Init, DeallocateMemory_Init (non-static helpers, not on keep); the static helpers leave no stub after game_late_init."
 }

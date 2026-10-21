@@ -8107,6 +8107,7 @@ world_effect_update:
 .section .text.game_late_init, "ax", @progbits
 .globl game_late_init
 game_late_init:
+    /* compiled from src/blob/game_late_init.c */
     .word 0x27BDFF80
     .word 0xAFBF002C
     .word 0xAFB10028

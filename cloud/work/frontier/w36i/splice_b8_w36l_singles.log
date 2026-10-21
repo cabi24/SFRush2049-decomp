@@ -1,0 +1,3 @@
+flags {'music_control': '-O3', 'entity_update_callback': '-O3'}
+refused {}
+image_ok True locked 1096

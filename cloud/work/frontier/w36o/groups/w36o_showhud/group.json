@@ -1,0 +1,38 @@
+{
+ "name": "w36o_showhud",
+ "members": [
+  "skid_mark_render"
+ ],
+ "claims": [
+  "skid_mark_render"
+ ],
+ "context": [
+  "slot_state_setup",
+  "sound_update_channel",
+  "func_8008B2E4"
+ ],
+ "files": [
+  "showhud.c",
+  "ctx_gr3_b.c",
+  "ctx_gr3.c",
+  "ctx_random.c"
+ ],
+ "keep": [
+  "skid_mark_render",
+  "func_8008B2E4",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "skid_mark_render = MAT3 ShowHUD@hud.c. Context (byte-identical copies): ctx_gr3_b.c = credits_scroll_grp/gr3_b.c (slot_state_setup, s2 font convention), ctx_gr3.c = credits_scroll_grp/gr3.c (sound_update_channel t0 convention and the getters), ctx_random.c = src/blob/func_8008B2E4.c (Random; inlined by umerge exactly as in the unit). keep = the member + func_8008B2E4 + the credits group's keep entries for the gr3.c functions (without func_8008B2E4 on keep the group compile hoists the font-queue address above the credits branch: 39 words; keeping it matches the unit, where it is a kept locked body). Inlined helpers HAL_SetFont_ShowHUD, _GetSemaphore_ShowHUD, _ReleaseSemaphore_ShowHUD are non-static and not on keep (w17j); unit install: force_internal += those three. Own .bss: function-local statics delay (retail 0x8015462C) and nextSwitch (0x80154644), verified by address.",
+ "provenance": "Astra research PR #414 (dot_showhud_research_20261017/group/candidate.c) + w36o: inlined HAL_SetFont copy instead of the locked object_create call (unit EQUAL)"
+}

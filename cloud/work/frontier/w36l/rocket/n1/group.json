@@ -1,0 +1,63 @@
+{
+  "members": [
+    "entity_tick_main",
+    "drone_ai_update"
+  ],
+  "context": [
+    "entity_anim_texture",
+    "matrix_scale_apply",
+    "anim_state_update",
+    "buffer_swap",
+    "model_bounds_calc",
+    "func_8008B2B4",
+    "func_8008B2E4",
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv",
+    "func_8008B3A0",
+    "func_8008E06C",
+    "func_80092BF4",
+    "func_80092BC8",
+    "func_8008AE64",
+    "func_8008AE48"
+  ],
+  "files": [
+    "buffer_swap.c",
+    "anim_tire_donor.c",
+    "rand.c",
+    "visibility_wrappers.c",
+    "entity_anim_texture.c",
+    "func_8008B2E4.c",
+    "codex_transform_b109.c",
+    "rocket.c",
+    "func_80092BF4.c",
+    "func_80092BC8.c"
+  ],
+  "keep": [
+    "anim_state_update",
+    "entity_anim_texture",
+    "func_8008B2E4",
+    "buffer_swap",
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_8008B3A0",
+    "drone_ai_update",
+    "func_8008E06C",
+    "func_80092BF4",
+    "func_80092BC8",
+    "func_8008AE64",
+    "func_8008AE48"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "provenance": "Complete genuine donor/native callback context; no stand-ins or fabricated keepers. Wave 17 (w17c): anim_state_update body replaced (anim_tire_donor.c = cloud/work/frontier/w17c/anim_state_update/best.c) and moved from context to members; model_bounds_calc takes the arcade CheckVisible order (Visual *v, s32 on) in every file; func_8008B2E4.c is an unchanged copy of the locked single (Random, inlined by umerge). See cloud/work/frontier/w17c/RESULTS.md. Wave 23 (w23d): buffer_swap added as a member (buffer_swap.c = cloud/work/frontier/w23d/buffer_swap/best.c); codex_transform_b109.c is a byte-identical copy of src/blob/groups/codex_transform_b109/group.c (context: entity_transform_calc's IPA float-register convention for the inlined ehu_inline/client_sync calls); buffer_swap.c is listed first so that it is emitted last (otherwise the deleted rand stub follows it: '1 extra words'). See cloud/work/frontier/w23d/RESULTS.md.",
+  "name": "mat3_rocket_frame_research",
+  "claims": []
+}

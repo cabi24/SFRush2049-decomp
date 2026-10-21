@@ -1,0 +1,32 @@
+{
+ "name": "w36o_speedtext",
+ "members": [
+  "explosion_effect"
+ ],
+ "claims": [],
+ "context": [
+  "slot_state_setup",
+  "sound_update_channel"
+ ],
+ "files": [
+  "speedtext.c",
+  "ctx_gr3_b.c",
+  "ctx_gr3.c"
+ ],
+ "keep": [
+  "explosion_effect",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "work in progress"
+}
