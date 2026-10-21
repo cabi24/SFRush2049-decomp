@@ -917,6 +917,16 @@
       "verified": "image_gate",
       "verified_at": "2026-10-11"
     },
+    "func_8038C910": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "image": "B",
+      "origin": "cloud/matches/ovl_b/func_8038C910.c",
+      "source": "src/ovl_b/func_8038C910.c",
+      "source_sha256": "93fefecf5e78af9c11f3b7d155dbc63e57ad27d1e2e9e070c6319d57adeb16c9",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-20"
+    },
     "func_8038CA24": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "B",

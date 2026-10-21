@@ -1,0 +1,9 @@
+|extern int g;|switch (g) { case 0: a(); break; case 1: b(1,1); break; }
+c(0.0f);|extern short g;|switch (g) { case 0: a(); break; case 1: b(1,1); break; }
+c(0.0f);|extern unsigned int g;|switch (g) { case 0: a(); break; case 1: b(1,1); break; }
+c(0.0f);|extern int g;|switch (g) { case 1: a(); break; case 2: b(1,1); break; }
+c(0.0f);|extern int g;|switch (g) { case 0: a(); break; case 2: b(1,1); break; }
+c(0.0f);|extern int g;|switch (g) { case 0: break; case 1: b(1,1); break; }
+c(0.0f);|extern int g;|switch (g) { case 0: a(); return 2; case 1: b(1,1); break; }
+c(0.0f);|extern int g;|if (g == 0) a(); else if (g == 1) b(1,1);
+c(0.0f);|extern int g;|if (g == 1) a(); else if (g == 0) b(1,1);
