@@ -1,0 +1,32 @@
+{
+ "name": "w36x3_coins",
+ "members": [
+  "particles_update"
+ ],
+ "context": [
+  "slot_state_setup",
+  "sound_update_channel"
+ ],
+ "files": [
+  "coins.c",
+  "ctx_gr3_b.c",
+  "ctx_gr3.c"
+ ],
+ "keep": [
+  "particles_update",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "particles_update = MAT3 animCoins@hud.c (+ animCoinsText folded in). Context (byte-identical copies): ctx_gr3_b.c = credits_scroll_grp/gr3_b.c (slot_state_setup s2 font convention), ctx_gr3.c = credits_scroll_grp/gr3.c. keep = member + the credits group's keep entries for the gr3.c functions (as w36o_animgear). Inlined helpers _GetSemaphore_Coins, _ReleaseSemaphore_Coins, HAL_SetFont_Coins, TB_SetJust_Coins, HAL_SetTextDepth_Coins are non-static and not on keep (w17j); unit install: force_internal += those five; extern_data += D_80118E20 (defined by credits_scroll_grp/gr3_d.c in the unit).",
+ "provenance": "w36u lead_area128.c (w27a body) + w36x3: volatile gNumModels, MAT3 x/y operand order, string data symbols, w36o helper shape, disclosed frame shaping"
+}

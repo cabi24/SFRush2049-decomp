@@ -1,0 +1,3 @@
+spliced w36x3_coins: 1 members, new: ['particles_update']
+image coverage: 1142/1216 functions, 497100/647072 bytes (76.82%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

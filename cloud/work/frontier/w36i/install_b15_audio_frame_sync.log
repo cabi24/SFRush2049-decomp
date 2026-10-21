@@ -1,0 +1,3 @@
+spliced audio_frame_sync: 9 members, new: ['SetupWaveModel', 'audio_frame_sync', 'fp_call_wrapper', 'func_80097164', 'suspension_setup']
+image coverage: 1147/1216 functions, 499512/647072 bytes (77.20%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

@@ -214,9 +214,12 @@ def validate_overrides(doc, where="overrides"):
                 raise UnitError(f"{where}: {key} {entry['name']} needs a file")
             if key == "data_align":
                 data_align_target(entry, where)
-            if entry["name"] in seen:
+            # extern_data names a (data symbol, file) pair: several groups may each
+            # compile their own context copy that defines the same symbol.
+            ident = (entry["name"], entry["file"]) if key == "extern_data" else entry["name"]
+            if ident in seen:
                 raise UnitError(f"{where}: {key} lists {entry['name']} twice")
-            seen.add(entry["name"])
+            seen.add(ident)
         out[key] = entries
     unknown = set(doc) - set(out) - {"comment"}
     if unknown:

@@ -640,6 +640,50 @@
   {
    "name": "font_set_CS",
    "reason": "group w36k_controlscr (w36k, MAT3 controlscr.c): non-static inlined helper in d9058.c; its deleted stub carries a symbol (w17j)"
+  },
+  {
+   "name": "_GetSemaphore_Coins",
+   "reason": "group w36x3_coins (w36x3, MAT3 animCoins@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "_ReleaseSemaphore_Coins",
+   "reason": "group w36x3_coins (w36x3, MAT3 animCoins@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_SetFont_Coins",
+   "reason": "group w36x3_coins (w36x3, MAT3 animCoins@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_Coins",
+   "reason": "group w36x3_coins (w36x3, MAT3 animCoins@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_SetTextDepth_Coins",
+   "reason": "group w36x3_coins (w36x3, MAT3 animCoins@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "SetupWaveModel",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "func_80097164",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "func_8009715C",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "func_800972BC",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "func_800A5014",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "_BGLoadWave",
+   "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
   }
  ],
  "prefer_definition": [
@@ -777,6 +821,26 @@
    "name": "func_8009768C",
    "file": "src/blob/groups/w36t_loadcars/root.c",
    "reason": "FindWaveInstance (w36t): the real body, inlined into LoadCars, supersedes the locked 2-word stub single"
+  },
+  {
+   "name": "func_8009715C",
+   "file": "src/blob/groups/audio_frame_sync/waves.c",
+   "reason": "w36x5: the real body, inlined by its callers, supersedes the locked 8-byte stub single"
+  },
+  {
+   "name": "func_800972BC",
+   "file": "src/blob/groups/audio_frame_sync/loadwave.c",
+   "reason": "w36x5 (_NewWaveInstance): the real body, inlined by LoadWave, supersedes the locked 8-byte stub single"
+  },
+  {
+   "name": "func_800A5014",
+   "file": "src/blob/groups/audio_frame_sync/replacewave.c",
+   "reason": "w36x5 (_ReplaceWaveInstance): the real body, inlined by ReplaceWave, supersedes the locked 8-byte stub single"
+  },
+  {
+   "name": "audio_frame_sync",
+   "file": "src/blob/groups/audio_frame_sync/loadwave.c",
+   "reason": "w36x5 (LoadWave): the member body; w36t_loadcars/loadwave.c and codex_state_audio_a146/group.c also define it as context"
   }
  ],
  "align": [
@@ -813,6 +877,11 @@
    "name": "D_80118E20",
    "file": "src/blob/groups/w36o_countdown/countdown.c",
    "reason": "w36o_countdown (w36o): the two TB_SetJust tail stores share one lui, which needs gJust defined in the group's program; in the shadow unit credits_scroll_grp/gr3_d.c is the one definition"
+  },
+  {
+   "name": "D_80118E20",
+   "file": "src/blob/groups/w36x3_coins/coins.c",
+   "reason": "w36x3_coins (w36x3): gJust is a tentative definition in the group file so the TB_SetJust tail stores share one lui in the group compile; in the shadow unit credits_scroll_grp/gr3_d.c is the one definition (as w36o_countdown)"
   }
  ],
  "data_align": [

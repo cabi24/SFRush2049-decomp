@@ -1,3 +1,7 @@
+/* w36x5 (wave 36): this is the installed audio_frame_sync group.c with the context bodies of audio_frame_sync,
+ * fp_call_wrapper, SetupWaveModel, func_80097164 and suspension_setup and the two __standin_* callers removed (now
+ * real members in waves.c / loadwave.c / replacewave.c), and func_80096288 replaced by the locked slot_sound body.
+ * Member func_800972C4 is unchanged. */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3747,51 +3751,7 @@ void SetupWaveModel(s32 ipa_fp, s32 ipa_t0);
 void func_80097164(s32 ipa_fp);
 void suspension_setup(s32 arg0, s32 arg1);
 
-s32 audio_frame_sync(s32 kind, s32 skip, s32 async, s32 flag, void *buf) {
-    ResSlot *r;
-    s32 i;
-    s32 slot;
-    s32 res;
-    void *msg;
 
-    if (skip == 0 && (res = func_80097694(kind, flag)) >= 0) {
-        slot = res;
-        if (gWaveInstance[slot].f3 != 0) {
-            entity_render_mode(slot);
-        }
-        return slot;
-    }
-    r = gWaveInstance;
-    for (i = 0; i != 64; i++, r++) {
-        if (r->p0C == 0) {
-            r->f0 = 0;
-            r->loaded = 0;
-            r->f2 = 0;
-            r->f4 = 0;
-            r->type = kind;
-            r->f5 = flag;
-            if (flag != 0) {
-                r->p0C = (u8 **) audio_task_complete(buf, (D_8002E580[kind] + 0x1F) & ~0x1F);
-            } else {
-                r->p0C = (u8 **) audio_dma_sync((s32) buf, (D_8002E580[kind] + 0x1F) & ~0x1F);
-            }
-            *(s32 *) ((u8 *) r + 8) = audio_buffer_sync((u32) r->p0C);
-            func_800972C4(i);
-            slot = i;
-            goto done;
-        }
-    }
-    slot = res;
-done:
-    if (async != 0) {
-        osRecvMesg((OSMesgQueue *) &D_80035440, &msg, 1);
-        D_801569AC = slot;
-        osSendMesg((OSMesgQueue *) &D_80156BB0, NULL, 1);
-    } else {
-        func_80097164(slot);
-    }
-    return slot;
-}
 
 void brake_force_apply(s32 arg0) {
     void *sp44;
@@ -3805,9 +3765,7 @@ loop_1:
     goto loop_1;
 }
 
-void fp_call_wrapper(s32 arg0) {
-    SetupWaveModel(arg0, 0);
-}
+
 
 /* copy of the locked leaf (src/blob/groups/resource_slot_clear/audio.c): its
  * temporaries stay in $t6-$t9, which is what lets suspension_setup and
@@ -3824,10 +3782,22 @@ s32 func_80097694(s32 arg0, s8 arg1) {
 }
 
 /* two small leaves that the ROM compiles inside the same IPA unit: they leave
- * $a3/$t0 alone, so suspension_setup keeps its values there across the calls */
-void func_80096288(s32 arg0, s32 arg1, s32 arg2) {
-    if (arg2 != 0) {
-    }
+ * $a3/$t0 alone, so suspension_setup keeps its values there across the calls.
+ * w36x5: func_80096288 is the locked body from src/blob/groups/slot_sound/group.c verbatim (dead if (0)
+ * switch = its inline blocker), so that it stays out of line as in retail now that suspension_setup is a member */
+void func_80096288(s32 arg0, s32 arg1, s32 arg2)
+{
+  s32 t;
+  if (arg0) {}
+  if (arg1) {}
+  t = !arg2;
+  if (arg2 != 0)
+  {
+    if (t) {}
+    if (t) {}
+  }
+  if (t) {}
+  if (0) { switch (arg0 + arg1) { case 1: D_80149B08 = 1; break; case 2: D_80149B08 = 2; break; case 3: D_80149B08 = 3; break; } }
 }
 
 void func_800972C4(s32 arg0) {
@@ -3913,170 +3883,4 @@ next:
             }
         }
     } while (sp >= &stk[0] && sp < &stk[10]);
-}
-
-void SetupWaveModel(s32 slot, s32 first) {
-    ResSlot *r;
-    s32 flags;
-    u8 *src;
-    u8 *base;
-    ParseCtx pc;
-    Tab *objs;
-    Tab *texs;
-    Tab *pals;
-    s32 i;
-    s32 j;
-    s32 fix;
-    s32 tx;
-    s32 img;
-
-    r = &gWaveInstance[slot];
-    flags = 0;
-    if (r->f3 == 0) {
-        r->loaded = 1;
-        return;
-    }
-    if (first != 0 || r->f5 != 0) {
-        if (active_player_count == 1) {
-            flags = 2;
-        } else if (active_player_count == 2) {
-            flags = 4;
-        }
-        if (D_80152570 != 0) {
-            flags |= 0x10;
-        } else {
-            flags |= 8;
-        }
-        if (r->f5 != 0) {
-            src = *r->p0C;
-        } else {
-            src = (u8 *) r->p0C;
-        }
-        if (first != 0) {
-            func_80096C28(pc.ctx, src);
-            base = pc.base;
-        } else {
-            base = *r->p0C - (u32) r->w10;
-            func_80096BBC(pc.ctx, (s32) src, (s32) base);
-        }
-        objs = &gRomObjDefPtrs[slot];
-        r->w10 = *r->p0C;
-        objs->ptr = (void *) lookup_with_output(pc.ctx, 0x4F424844, &objs->count);
-        texs = &gTexDefPtrs[slot];
-        texs->ptr = (void *) lookup_with_output(pc.ctx, 0x54584844, &texs->count);
-        pals = &gPalDefPtrs[slot];
-        pals->ptr = (void *) lookup_with_output(pc.ctx, 0x504C4844, &pals->count);
-        if (r->type >= 0x65 && r->type < 0x78) {
-            D_801392D0 = (TexRec *) lookup_with_output(pc.ctx, 0x50544844, &D_801392D4);
-        }
-        tx = lookup_with_output(pc.ctx, 0x54584C44, &pc.size);
-        img = lookup_with_output(pc.ctx, 0x494D4147, NULL);
-        entity_cull_check(tx, tx + pc.size, img);
-        for (i = 0; i < texs->count; i++) {
-            ((TexRec *) texs->ptr)[i].w18 += img;
-        }
-        for (i = 0; i < pals->count; i++) {
-            ((PalRec *) pals->ptr)[i].w14 += img;
-        }
-        if (first != 0) {
-            for (i = 0; i < objs->count; i++) {
-                for (j = 0; j < ((ObjRec *) gRomObjDefPtrs[slot].ptr)[i].nsub; j++) {
-                    ((ObjRec *) objs->ptr)[i].sub[j].a += (u32) (first != 0 ? src : base);
-                    ((ObjRec *) objs->ptr)[i].sub[j].b += (u32) (first != 0 ? src : base);
-                    entity_lod_select((u32 *) ((ObjRec *) objs->ptr)[i].sub[j].a, (s32) (first != 0 ? src : base), -1, D_80140A04 != 0, flags);
-                }
-            }
-        }
-        if (r->type >= 0x65 && r->type < 0x78) {
-            for (i = 0; i < D_801392D4; i++) {
-                D_801392D0[i].w1C += (u32) (first != 0 ? src : base);
-                D_801392D0[i].w18 += (u32) (first != 0 ? src : base);
-            }
-        }
-        r->loaded = 1;
-        entity_render_mode(slot);
-    }
-}
-
-void func_80097164(s32 ipa_fp) {
-    M2C_UNK sp38;
-    M2C_UNK *var_s0;
-    M2C_UNK *var_s0_2;
-    M2C_UNK *var_s0_3;
-    s32 temp_a3;
-    s32 temp_s2;
-    s32 temp_s3;
-    s32 temp_v1;
-    u8 temp_v0;
-    void *temp_s1;
-
-    temp_s1 = (s32 *) ((ipa_fp * 0x14) + (u8 *) &gWaveInstance);
-    temp_v0 = M2C_FIELD(temp_s1, u8 *, 6);
-    temp_a3 = temp_v0 * 4;
-    temp_v1 = (&D_80123564)[temp_v0];
-    if (temp_v1 == 0) {
-        if (M2C_FIELD(temp_s1, s8 *, 5) != 0) {
-            var_s0 = *M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        } else {
-            var_s0 = M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        }
-        temp_s2 = D_8002E580[temp_v0];
-        temp_s3 = (&D_8011B5BC)[temp_v0];
-        osInvalICache(var_s0, temp_s2, temp_a3);
-        osInvalDCache(var_s0, temp_s2);
-        osPiStartDma(&sp38, 0, 0, (u32) temp_s3, var_s0, (u32) temp_s2, (OSMesgQueue *) &D_80035410);
-        osRecvMesg((OSMesgQueue *) &D_80035410, NULL, 1);
-    } else if (temp_v1 == 1) {
-        if (M2C_FIELD(temp_s1, s8 *, 5) != 0) {
-            var_s0_2 = *M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        } else {
-            var_s0_2 = M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        }
-        lzss_decompress((&D_8011B5BC)[temp_v0], var_s0_2, temp_a3);
-    } else {
-        if (M2C_FIELD(temp_s1, s8 *, 5) != 0) {
-            var_s0_3 = *M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        } else {
-            var_s0_3 = M2C_FIELD(temp_s1, M2C_UNK **, 0xC);
-        }
-        inflate_decompress(M2C_FIELD((temp_a3 + 0x80120000), s32 *, -0x4A44), var_s0_3, 1, temp_a3);
-    }
-    M2C_FIELD(temp_s1, s8 *, 0) = 1;
-    SetupWaveModel(ipa_fp, 1);
-}
-
-void suspension_setup(s32 arg0, s32 arg1) {
-    s32 v;
-    ResSlot *r;
-
-    if (func_80097694(arg1, -1) < 0) {
-        v = func_80097694(arg0, -1);
-        if (v >= 0) {
-            if (D_8002EB70 != 0) {
-                do {
-
-                } while (D_8002EB70 != 0);
-            }
-            func_80096288(v, 1, 1);
-            r = &gWaveInstance[v];
-            r->f0 = 0;
-            r->loaded = 0;
-            r->type = arg1;
-            r->f4 = 0;
-            func_800972C4(v);
-            func_80097164(v);
-        }
-    }
-}
-
-/* stand-in caller: keeps func_80096CA8 out of line under -O3 */
-void __standin_func_80096CA8(void)
-{
-    SetupWaveModel(0, 0);
-}
-
-/* stand-in caller: keeps func_80097164 out of line under -O3 */
-void __standin_func_80097164(void)
-{
-    func_80097164(0);
 }

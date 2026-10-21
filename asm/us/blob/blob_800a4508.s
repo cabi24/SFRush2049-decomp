@@ -808,6 +808,7 @@ func_800A5014:
 .section .text.suspension_setup, "ax", @progbits
 .globl suspension_setup
 suspension_setup:
+    /* compiled from src/blob/suspension_setup.c */
     .word 0x27BDFFC0
     .word 0x00803825
     .word 0xAFBF003C

@@ -480,6 +480,7 @@ func_800B78F0:
 .section .text.particles_update, "ax", @progbits
 .globl particles_update
 particles_update:
+    /* compiled from src/blob/particles_update.c */
     .word 0x27BDFF00
     .word 0xAFBF0064
     .word 0x44806000

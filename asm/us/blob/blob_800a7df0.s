@@ -4878,6 +4878,7 @@ wheel_torque_apply:
 .section .text.fp_call_wrapper, "ax", @progbits
 .globl fp_call_wrapper
 fp_call_wrapper:
+    /* compiled from src/blob/fp_call_wrapper.c */
     .word 0x27BDFFC0
     .word 0xAFBF003C
     .word 0xAFBE0038

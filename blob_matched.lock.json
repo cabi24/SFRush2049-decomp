@@ -236,6 +236,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-14"
   },
+  "SetupWaveModel": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "ShowCountdown": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_doppler_full",
@@ -545,6 +554,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-12"
+  },
+  "audio_frame_sync": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "audio_helper": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -1812,6 +1830,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "fp_call_wrapper": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "func_80086A50": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "gfx_modes",
@@ -2671,29 +2698,40 @@
     "verified_at": "2026-10-04"
   },
   "func_8009715C": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_8009715C.c",
-    "source_sha256": "1922a80f1d0d4e914fa83a0a0f7e5649114b9fdcb570efeb543ae791287b67a9",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
+  },
+  "func_80097164": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "func_800972BC": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800972BC.c",
-    "source_sha256": "9039baff088b63a86500ca234b4c456eab42e1e412b2df478eb7026de519b3f2",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800972C4": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_frame_sync",
     "source": "src/blob/groups/audio_frame_sync/group.json",
-    "source_sha256": "db8066764d89c915075e01632d3d959898dfd261ca9eafb251662e26253c7965",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_80097468": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -3283,12 +3321,13 @@
     "verified_at": "2026-10-05"
   },
   "func_800A5014": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800A5014.c",
-    "source_sha256": "8e154446f64aeaf9954c6df66e3855e77595774424d38fb13f2dc0957fab6acf",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800A510C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8331,6 +8370,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "particles_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36x3_coins",
+    "source": "src/blob/groups/w36x3_coins/group.json",
+    "source_sha256": "6180c0adc179c2f6c5abaf2ed7efdf2ed097d20bbad12d665005623317c6c6a6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "physics_collision_test": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/physics_collision_test.c",
@@ -9228,6 +9276,15 @@
     "group": "w36s_resurrect",
     "source": "src/blob/groups/w36s_resurrect/group.json",
     "source_sha256": "f017709b0eb5c9de434103faccae4d8825fbb477fb49d174c65248492577b3c7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "suspension_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "32a7bdb41772ea520b13b0d3078d8aead7b433ca0639cadecc263be55f9659e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"

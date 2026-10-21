@@ -412,6 +412,7 @@ func_80096C28:
 .section .text.SetupWaveModel, "ax", @progbits
 .globl SetupWaveModel
 SetupWaveModel:
+    /* compiled from src/blob/SetupWaveModel.c */
     .word 0x001E7080
     .word 0x01DE7021
     .word 0x3C0F8015
@@ -724,6 +725,7 @@ func_8009715C:
 .section .text.func_80097164, "ax", @progbits
 .globl func_80097164
 func_80097164:
+    /* compiled from src/blob/func_80097164.c */
     .word 0x001E7080
     .word 0x01DE7021
     .word 0x3C0F8015
@@ -1170,6 +1172,7 @@ func_80097694:
 .section .text.audio_frame_sync, "ax", @progbits
 .globl audio_frame_sync
 audio_frame_sync:
+    /* compiled from src/blob/audio_frame_sync.c */
     .word 0x27BDFF90
     .word 0xAFBF003C
     .word 0xAFBE0038
