@@ -113,12 +113,15 @@ def test_selected_helper_change_fails_body_binding(monkeypatch):
 
 
 def test_changed_acceptance_status_changes_bound(monkeypatch):
+    # w36: func_800D9058 landed (w36k); use any caller the receipt still lists as unaccepted
+    # and selector-only, so accepting it must move the summary.
+    pending = sorted(receipt()['summary']['only_selector_unaccepted_direct_game_dependency'])[0]
     old_read = Path.read_text
     def changed(path, *args, **kwargs):
         text = old_read(path, *args, **kwargs)
         if path == ROOT / 'blob_matched.lock.json':
             locks = json.loads(text)
-            locks['func_800D9058'] = {'synthetic_test_only': True}
+            locks[pending] = {'synthetic_test_only': True}
             return json.dumps(locks)
         return text
     monkeypatch.setattr(Path, 'read_text', changed)
