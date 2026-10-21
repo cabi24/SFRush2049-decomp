@@ -55,6 +55,7 @@
     "accepted_callers": [
       "func_800B4FB0",
       "TitlePane",
+      "particles_update",
       "particle_render",
       "credits_scroll",
       "func_800D9058",
@@ -102,7 +103,7 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 21240,
+    "unaccepted_caller_bytes": 19776,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "world_velocity_integrate": 712,
@@ -233,7 +234,7 @@
       "start": "0x800B7A40",
       "bytes": 1464,
       "body_sha256": "bade19bc1c71133a72d6c59782e9e6a1f3183f10f6abdd09f0c8f6cf4b1db4d3",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800B7ABC",
         "0x800B7AF0"
