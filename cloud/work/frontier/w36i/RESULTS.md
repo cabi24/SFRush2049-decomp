@@ -24,7 +24,8 @@ untracked-lane-file receipts.
 | 9 | 82c7fe44c | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | yes (bf8210efa, with w36x) |
 | 10 | e013f7ac4 | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | yes (e3faa54a1, with w36x2) |
 | 11 | dbcc64cd5 | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | yes (dbcc64cd5) |
-| 12 | (this) | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w demo pair landed then backed out in 12b (see held) | +8,124 game (1116 -> 1121) | | | |
+| 12 | 559503fb7 | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w demo pair (backed out in 12b) | +9,188 game (1116 -> 1123) | | | yes (bb34a8d5e) |
+| 12b | bb34a8d5e | back out w36w_demo_pair (ipakit sigs accuracy floor; held) | -1,064 game (1123 -> 1121) | | | yes (bb34a8d5e) |
 
 ## Held for owner
 
