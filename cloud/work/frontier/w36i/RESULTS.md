@@ -19,9 +19,37 @@ ROM SHA-1 EXACT); tests on rocky (clean clone, authoritative) and the Pi before 
 | 7 | 65d3be09b | w36e trackscr (dot_runtime_a_c93c_closure_20261012: 11 new claims incl. w36d's BBB4/DFEC) + startscr initScreen (w35d_start_screen); w36h shots (NEW group w36h_shots, image B, 10 members) | +10,376 A, +12,360 B | 114 -> 126/193 | 31 -> 41/49 | yes (fb77b6f9e) |
 | 8 | fb77b6f9e | game: w36l StartEnvironment (music_control) + AnimateNewBlast (entity_update_callback) singles; w36o InitSystem (game_late_init, codex_heap_release_a25 superseded; force_internal HAL_InitText_Init, DeallocateMemory_Init); w36u func_8009F058 (frontier_particle_knot superseded) | +9,224 game (1094 -> 1098) | | | yes (fb77b6f9e) |
 | 9 | 82c7fe44c | game: w36s Resurrect cluster (NEW w36s_resurrect, 5 fns); w36v TB_DrawTextScrollBox single + CylinderInSurf (frontier_shot_world_collision, provisional entry retired); w36q initScreen@audioscr (audio_options_menu); w36t AnimateShadow + InitWaves singles, LoadCars (NEW w36t_loadcars), SavePlayerOption/_SaveRaceSetting (NEW w36t_save_option) | +17,056 game (1098 -> 1110) | | | yes (bf8210efa, with w36x) |
-| 10 | (this) | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | |
+| 10 | e013f7ac4 | game: w36w SetControls (drone_target_update single), _ProcessSequences (engine_sound_sync superseded), VectorToSurfEdge (func_800AD4C8 claim only) | +1,140 game (1110 -> 1113) | | | yes (e3faa54a1, with w36x2) |
+| 11 | (this) | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | |
 
 ## Held for owner
+
+### Summary: the selector-caller set (one owner patch, one landing)
+
+`held/slot_contract_audit_held_callers.patch` regenerates the slot contract audit evidence (and the test's
+accepted list / counts) for ALL of these landed together; `held/substantial_scout_held.patch` adds func_80100E58
+and func_800D91A0 to that scout's landed set. Apply both, then land in one batch:
+
+| packet | command | bytes |
+|---|---|---|
+| w36o_showhud / w36o_animgear / w36o_countdown | `install_group.py cloud/work/frontier/w36o/groups/<g> <g>` (overrides from w36o/RESULTS.md first, incl. extern_data D_80118E20 for w36o_countdown/countdown.c) | 3,444 |
+| w36q physics_sym (particle_collision, particle_render) | `install_group.py cloud/work/frontier/w36q/groups/physics_sym physics_sym` | 1,460 |
+| w36q frontier_pausescr_state (func_800B4FB0) | `install_group.py cloud/work/frontier/w36q/groups/frontier_pausescr_state frontier_pausescr_state` | 1,472 |
+| w36z frontier_results_table (func_80100E58) | `install_group.py cloud/work/frontier/w36z/groups/frontier_results_table frontier_results_table` | 2,732 |
+| w36t codex_defaults_a16 (audio_doppler_calc) | `install_group.py cloud/work/frontier/w36i/groups/codex_defaults_a16 codex_defaults_a16` (+ force_internal audio_doppler_calc) | 1,124 |
+| w36w credits_scroll_grp merge (game_timer_display, checkpoint_hit) | `install_group.py cloud/work/frontier/w36i/groups/credits_scroll_grp credits_scroll_grp` | 932 |
+| w36k controlscr (7 claims; drone_throttle_calc only if blob_group's window proof accepts) | `install_group.py cloud/work/frontier/w36k/groups/controlscr controlscr --revert-single func_800D8154` (+ force_internal gfx_lock_CS, gfx_unlock_CS, font_set_CS; CLAIMS.md landed row crediting Astra PR #322) | 7,532 (+1,024) |
+
+The evidence was simulated with every claim above locked (identical with or without drone_throttle_calc) and
+with the credits_scroll_grp group.json exactly as install_group writes it from w36i's merged packet. Each packet
+still gets the normal unit check at landing (context copies must keep what their home groups keep; see the
+codex_defaults_a16 note).
+
+### w36k: NEW group controlscr (updateControlScreen func_800D91A0, func_800D816C, func_800D9058, ...)
+
+- Not landed: func_800D9058 is a slot_state_setup caller (slot contract audit) and func_800D91A0 is a
+  dot_substantial_scout target (`test_dot_substantial_scout.py`: accepted_name_lock must equal the landed set).
+  Both are covered by the two held patches above.
 
 The owner applied the three receipt patches below himself (0cad8af34) and the items landed in batch 6.
 
@@ -95,6 +123,9 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   func_8008B3A0=cloud/work/frontier/w36l/singles/func_8008B3A0.c ...` (all six), then
   `install_group.py cloud/work/frontier/w36l/groups/codex_visual_tire_module_20261002 codex_visual_tire_module_20261002`,
   `blob_unit check` (w36l: 12/12 EQUAL), `blob_rom rom` (+5,964 B).
+- Depends on it: w36x4's standalone `cloud/matches/music_seq_load.c` (CreateCar, 1,428 B) is unit EQUAL only with
+  w36l's struct-form func_8008E06C/func_80092BC8/func_80092BF4 (256/357 with the current singles); land it right
+  after the w36l batch (`splice_singles.py music_seq_load`).
 
 ### w36o: NEW groups w36o_showhud (skid_mark_render = ShowHUD), w36o_animgear (func_800EF288 = animGear), w36o_countdown (emitter_update = animCountdownTimer)
 
@@ -125,7 +156,7 @@ The owner applied the three receipt patches below himself (0cad8af34) and the it
   (`landed = {'func_80102F30'}`: accepted_name_lock must stay False for func_80100E58).
 - Prepared fix (not applied): one combined patch for all six held selector callers (w36o x3, w36q x2, w36z x1) and w36t's _DrawText:
   `cloud/work/frontier/w36i/held/slot_contract_audit_held_callers.patch` (replaces slot_contract_audit_w36o.patch)
-  plus `cloud/work/frontier/w36i/held/substantial_scout_80100E58.patch`. Landing order after the owner applies
+  plus `cloud/work/frontier/w36i/held/substantial_scout_held.patch`. Landing order after the owner applies
   them: all seven must land together (the regenerated evidence assumes all seven locked).
 - particle_collision (not a selector caller) shares physics_sym with particle_render; it waits with it.
 

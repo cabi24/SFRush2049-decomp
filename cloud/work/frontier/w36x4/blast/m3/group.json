@@ -1,0 +1,26 @@
+{
+ "name": "w36x4_blast",
+ "members": [
+  "func_80090308",
+  "entity_physics_update",
+  "save_write_data"
+ ],
+ "context": [
+  "func_80090770"
+ ],
+ "files": [
+  "func_80090770.c",
+  "blast.c"
+ ],
+ "keep": [
+  "entity_physics_update",
+  "save_write_data",
+  "func_80090770"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "func_80090308",
+  "entity_physics_update"
+ ],
+ "provenance": "w36x4 wave 36 (second pass on w36l groups/w36l_blast + w26c f308): StartNewBlast + AnimateBlast MATCH; StartBlast unclaimed member (keeps func_80090308 internal with both real callers)"
+}

@@ -361,6 +361,7 @@ func_800AF064:
 .section .text.save_write_data, "ax", @progbits
 .globl save_write_data
 save_write_data:
+    /* compiled from src/blob/save_write_data.c */
     .word 0x27BDFEA0
     .word 0x3C0E8015
     .word 0x81CE6994

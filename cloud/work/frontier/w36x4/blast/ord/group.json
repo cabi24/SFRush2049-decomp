@@ -1,0 +1,30 @@
+{
+ "name": "w36x4_blast",
+ "members": [
+  "func_80090308",
+  "entity_physics_update",
+  "save_write_data"
+ ],
+ "context": [
+  "func_80090770",
+  "camera_collision_check"
+ ],
+ "files": [
+  "blast.c",
+  "camera_collision_check.c",
+  "func_80090770.c"
+ ],
+ "keep": [
+  "entity_physics_update",
+  "save_write_data",
+  "func_80090770",
+  "camera_collision_check"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "func_80090308",
+  "entity_physics_update",
+  "save_write_data"
+ ],
+ "provenance": "w36x4 wave 36 (second pass on w36l groups/w36l_blast + w26c f308): StartNewBlast, AnimateBlast, StartBlast (MAT3 visuals.c) MATCH; context = byte-identical copies of the locked singles func_80090770 (ZOID_SetObjectDef) and camera_collision_check (EmitGameSound)"
+}

@@ -3348,6 +3348,7 @@ func_80090284:
 .section .text.func_80090308, "ax", @progbits
 .globl func_80090308
 func_80090308:
+    /* compiled from src/blob/func_80090308.c */
     .word 0x3C0E8012
     .word 0x8DCEB550
     .word 0x27BDFEF0
@@ -3720,6 +3721,7 @@ entity_transform_apply:
 .section .text.entity_physics_update, "ax", @progbits
 .globl entity_physics_update
 entity_physics_update:
+    /* compiled from src/blob/entity_physics_update.c */
     .word 0x27BDFF90
     .word 0x3C188011
     .word 0x8F1870FC

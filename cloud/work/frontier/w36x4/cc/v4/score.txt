@@ -1,0 +1,4 @@
+strict  20  mnem-missing   0  aligned-missing  20  size +0  tex1.c
+strict  20  mnem-missing   0  aligned-missing  20  size +0  u4top.c
+strict  69  mnem-missing   2  aligned-missing  68  size +0  rim1.c
+3 files
