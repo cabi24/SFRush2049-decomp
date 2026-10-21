@@ -1307,6 +1307,7 @@ audio_frame_sync:
 .section .text.func_800979A0, "ax", @progbits
 .globl func_800979A0
 func_800979A0:
+    /* compiled from src/blob/func_800979A0.c */
     .word 0x3C0E8015
     .word 0x91CE1960
     .word 0x27BDFFC8

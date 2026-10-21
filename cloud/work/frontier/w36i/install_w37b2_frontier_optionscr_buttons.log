@@ -1,0 +1,3 @@
+spliced frontier_optionscr_buttons: 4 members, new: ['replay_save_prompt']
+image coverage: 1162/1216 functions, 507708/647072 bytes (78.46%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

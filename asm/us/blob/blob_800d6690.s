@@ -4563,6 +4563,7 @@ func_800DABD4:
 .section .text.replay_save_prompt, "ax", @progbits
 .globl replay_save_prompt
 replay_save_prompt:
+    /* compiled from src/blob/replay_save_prompt.c */
     .word 0x27BDFF00
     .word 0x3C158014
     .word 0x26B561D0

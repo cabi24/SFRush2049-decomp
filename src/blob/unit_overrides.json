@@ -764,6 +764,38 @@
   {
    "name": "Hidden_dust",
    "reason": "group w36w3_dust (w36w3): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "replay_save_prompt",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_gfx_lock",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_gfx_unlock",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_HAL_SetFont",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_setButtonColor",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_ZOID_SetColorP",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_calcOptionMenuMaxSize",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "op_initButtons",
+   "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [

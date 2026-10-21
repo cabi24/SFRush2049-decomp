@@ -1436,10 +1436,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "display_list_traverse": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1751,10 +1751,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "entity_render_setup": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -2705,10 +2705,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "func_800966D8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2804,6 +2804,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800979A0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "slot_sound",
+    "source": "src/blob/groups/slot_sound/group.json",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "func_80097AC4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -3360,10 +3369,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "func_800A5014": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -5740,19 +5749,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_optionscr_buttons",
     "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
-    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
+    "source_sha256": "9ceb13f2c4626abf08043753d6323e2949515cca04f7d8fda0cc7d2a49e19422",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-15"
+    "verified_at": "2026-10-21"
   },
   "func_800DA2C0": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_optionscr_buttons",
     "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
-    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
+    "source_sha256": "9ceb13f2c4626abf08043753d6323e2949515cca04f7d8fda0cc7d2a49e19422",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-15"
+    "verified_at": "2026-10-21"
   },
   "func_800DABCC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5774,10 +5783,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_optionscr_buttons",
     "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
-    "source_sha256": "905ce54dd9f52c1aefbd217d2851a5e8fe810d8e2739ca7158d0ccc3cbed8c30",
+    "source_sha256": "9ceb13f2c4626abf08043753d6323e2949515cca04f7d8fda0cc7d2a49e19422",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-15"
+    "verified_at": "2026-10-21"
   },
   "func_800DC080": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8100,19 +8109,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "mode_byte_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "mode_flags_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8368,19 +8377,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "object_type_byte3_get": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "object_update_full": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8662,10 +8671,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "player_state_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -8865,6 +8874,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-20"
+  },
+  "replay_save_prompt": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_optionscr_buttons",
+    "source": "src/blob/groups/frontier_optionscr_buttons/group.json",
+    "source_sha256": "9ceb13f2c4626abf08043753d6323e2949515cca04f7d8fda0cc7d2a49e19422",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "replay_update_dual": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -9088,10 +9106,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "slot_state_setup": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -9106,10 +9124,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "sound_bank_load": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -9221,10 +9239,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
     "source": "src/blob/groups/slot_sound/group.json",
-    "source_sha256": "23ce7b3c494325c160b0d0af0aa0fd18cbc58131fb6b6e203eebbcaa6a60a863",
+    "source_sha256": "5e72f3f2615000645556326029533c9914c638bffd430bfadb22455743aed586",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-21"
   },
   "sound_volume_helper": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
