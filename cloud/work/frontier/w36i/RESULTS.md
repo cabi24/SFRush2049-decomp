@@ -27,6 +27,7 @@ untracked-lane-file receipts.
 | 12 | 559503fb7 | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w demo pair (backed out in 12b) | +9,188 game (1116 -> 1123) | | | yes (bb34a8d5e) |
 | 12b | bb34a8d5e | back out w36w_demo_pair (ipakit sigs accuracy floor; held) | -1,064 game (1123 -> 1121) | | | yes (bb34a8d5e) |
 | 13 | (this) | game, the formerly held selector-caller set after 96e39b502: w36o ShowHUD/animGear/animCountdownTimer (NEW groups; w36o_countdown from w36i's copy, context += camera_shake_update), w36q particle_collision/particle_render (physics_sym) + setPauseState (NEW frontier_pausescr_state), w36z drawRaceStandings (frontier_results_table), w36t _DrawText (codex_defaults_a16, w36i keep fix), w36w animPanes/animElapsedTimer (credits_scroll_grp merge), w36k controlscr (NEW w36k_controlscr, 8 members incl. drone_throttle_calc via the window proof; CLAIMS row) | +19,720 game (1121 -> 1138) | | | |
+| 14 | (this) | game: w36l AnimateRocketFlame + AnimateFrame (codex_visual_tire_module_20261002 superseded; six locked singles re-spliced with struct forms, same bytes), w36x4 CreateCar (music_seq_load single); image A: w36e LoadSelectCar (func_80390BC0 single) | +7,392 game (1138 -> 1141), +364 A (126 -> 127) | 126 -> 127/193 | 41/49 | |
 
 ## Held for owner
 

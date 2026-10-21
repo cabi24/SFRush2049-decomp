@@ -1,0 +1,39 @@
+--- a/cloud/work/dot_substantial_scout/native_audit.json
++++ b/cloud/work/dot_substantial_scout/native_audit.json
+@@ -10,8 +10,10 @@
+       "native_words": 965,
+       "native_sha256": "4d67576064d8ab6d28f1a1a1b25bcde7ec81dbba063a64654d106ce2c7433d78",
+       "entry_frame_bytes": 240,
+-      "accepted_name_lock": false,
+-      "accepted_interval_overlaps": [],
++      "accepted_name_lock": true,
++      "accepted_interval_overlaps": [
++        "func_800D91A0"
++      ],
+       "direct_call_count": 33,
+       "callees": [
+         {
+@@ -249,8 +251,10 @@
+       "native_words": 683,
+       "native_sha256": "1ef074ec1c53efab55d79fa190eb7deefe4aaf359de22c211d5c1580f9e0b5d3",
+       "entry_frame_bytes": 528,
+-      "accepted_name_lock": false,
+-      "accepted_interval_overlaps": [],
++      "accepted_name_lock": true,
++      "accepted_interval_overlaps": [
++        "func_80100E58"
++      ],
+       "direct_call_count": 40,
+       "callees": [
+         {
+--- a/tests/cloud/test_slot_contract_audit.py
++++ b/tests/cloud/test_slot_contract_audit.py
+@@ -118,7 +118,7 @@
+         text = old_read(path, *args, **kwargs)
+         if path == ROOT / 'blob_matched.lock.json':
+             locks = json.loads(text)
+-            locks['func_800D9058'] = {'synthetic_test_only': True}
++            locks['dust_cloud_effect'] = {'synthetic_test_only': True}  # w36: func_800D9058 landed (w36k)
+             return json.dumps(locks)
+         return text
+     monkeypatch.setattr(Path, 'read_text', changed)

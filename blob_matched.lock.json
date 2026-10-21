@@ -343,10 +343,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "8dc2184289a5a8d57fc16b9ba4154e6c300d0003febb68977ed148cc0d799605",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-20"
+    "verified_at": "2026-10-21"
   },
   "arb_rate_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -758,10 +758,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "8dc2184289a5a8d57fc16b9ba4154e6c300d0003febb68977ed148cc0d799605",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-20"
+    "verified_at": "2026-10-21"
   },
   "callback_init": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1489,6 +1489,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-20"
   },
+  "drone_ai_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "group": "codex_visual_tire_module_20261002",
+    "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "drone_pathfind_main": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_options_menu",
@@ -1587,10 +1596,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "8dc2184289a5a8d57fc16b9ba4154e6c300d0003febb68977ed148cc0d799605",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-20"
+    "verified_at": "2026-10-21"
   },
   "entity_audio_update": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1726,6 +1735,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
+  },
+  "entity_tick_main": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "group": "codex_visual_tire_module_20261002",
+    "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "entity_transform_apply": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -1948,18 +1966,18 @@
   "func_8008AE48": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008AE48.c",
-    "source_sha256": "8a34db81fe15b8b12ed276cb5cf9f0d2a3fc63539df82ee7ec981703f7f4e428",
+    "source_sha256": "b8a7ea6f42061ea77a84f61a3882a5b4e3cb5ddfa5e32b125404109685eda2c6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_8008AE64": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008AE64.c",
-    "source_sha256": "e9624ce32c7b1a131a7464f59ab180c42556460d426b1fac2b05ea6ec6a39f9d",
+    "source_sha256": "24cebda492371919ec2264e7cf748bdbb2300f93efb531c64666d5acab67ebbe",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_8008B000": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -1996,10 +2014,10 @@
   "func_8008B3A0": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008B3A0.c",
-    "source_sha256": "c81e29af6e8155a8ebbd74800ff9ecc2accd387400b34f7fdd9e7c1512a2041c",
+    "source_sha256": "fab50e78971b546421d5bff7aba96c89a50a8eb214f0a44dff92f4af1fd7d91b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_8008B3C8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2151,10 +2169,10 @@
   "func_8008E06C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008E06C.c",
-    "source_sha256": "1a9ab3db5502cd9978585b727330c246544e09b8252b12fad363e47550747a5e",
+    "source_sha256": "92e76df53c26b82854e54b53e37d5f829e93b4dd78a8bda0bd2060af8347579d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_8008E098": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -2360,18 +2378,18 @@
   "func_80092BC8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_80092BC8.c",
-    "source_sha256": "d65794805ccc71b72dd451ba9aa0f79f97ea55e8b3e1385e41523c59f7a18c7a",
+    "source_sha256": "f186ea8a87d0fc0dce29c2a6bc101551b74f17040d286c7143c2cf81bfd299af",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_80092BF4": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_80092BF4.c",
-    "source_sha256": "9ecc61dbcba54060de8e6306cce3b2735ed3a11eba10426e26ada39c9389c8d7",
+    "source_sha256": "3c5b8c3863866e9e69886124ead1506e65d1df32ffdb324f873a52bc47dfc824",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-21"
   },
   "func_80092D80": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7784,10 +7802,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "8dc2184289a5a8d57fc16b9ba4154e6c300d0003febb68977ed148cc0d799605",
+    "source_sha256": "88bb26fe84dd8255a557d3dd9858bf2dc584ac94f514ee90535153f9515f22b3",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-20"
+    "verified_at": "2026-10-21"
   },
   "menu_audio_settings": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -8026,6 +8044,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-28"
+  },
+  "music_seq_load": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/music_seq_load.c",
+    "source_sha256": "ea0408b0ffd853c42f1f642e4210befdec1e5cc628adb5b992bef6287cec3c48",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "music_tempo_adjust": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

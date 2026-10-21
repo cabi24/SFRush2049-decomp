@@ -1,0 +1,3 @@
+flags {'func_8008B3A0': '-O2', 'func_8008AE64': '-O2', 'func_8008AE48': '-O2', 'func_8008E06C': '-O2', 'func_80092BC8': '-O2', 'func_80092BF4': '-O3'}
+refused {}
+image_ok True locked 1138

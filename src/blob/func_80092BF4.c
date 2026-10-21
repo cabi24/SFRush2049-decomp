@@ -1,19 +1,46 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/*
- * func_80092BF4: copy two words (*v1, *v2) into fields 0x3C/0x40 of the 0x44-byte
- * model slot D_8012E700[r->w14], where r = &D_80139320[idx] (0x40-byte player record).
- * Sibling of the locked func_80092FE0 and written in its style.  Also matches at -O2.
- * Shaping quirks: the slot index is read into two separate `short` locals (one
- * sign-extension each, and `li 68; multu` instead of a shift expansion), and the
- * second store goes through a `ModelSlot *` local (puts the final address in a3).
- */
-typedef struct ModelSlot { unsigned int flags; char pad4[0x38]; unsigned int v3C; unsigned int v40; } ModelSlot;
-typedef struct PlayerRec { char p0[0x14]; int w14; char p18[0x28]; } PlayerRec;
-extern ModelSlot D_8012E700[];
-extern PlayerRec D_80139320[];
-void func_80092BF4(short idx, unsigned int *v1, unsigned int *v2) {
-    PlayerRec *r = &D_80139320[idx];
-    short a, b; ModelSlot *m;
-    a = r->w14; D_8012E700[a].v3C = *v1;
-    b = r->w14; m = &D_8012E700[b]; m->v40 = *v2;
+/* func_80092BF4: replacement source for the locked single (w36l, wave 36). Struct form against the
+ * ObjInstanceList table D_8012E700 (MAT3 zoid.c / zoidtexture.c / visuals.c); matches standalone and in
+ * the whole-program unit, and its inlined copies share one table base inside AnimateRocketFlame/AnimateFrame
+ * The two accessors are repeated here (identical to their own singles) so umerge inlines them as retail
+ * does; the unit keeps one definition of each.
+ * (the m2c singles use &D_8012E708/&D_8012E73C bases, which split that web). One statement per line:
+ * as1 schedules by source line, a one-line body schedules the param home store differently. */
+typedef union Color { unsigned char b[4]; unsigned int w; } Color;
+typedef struct Node Node;
+typedef struct ObjInstance {
+    unsigned int flags;         /* 0x00 */
+    char pad4[4];
+    Node *mat;                  /* 0x08 */
+    char padC[8];
+    unsigned short index;       /* 0x14 */
+    char pad16[0x26];
+    unsigned int color;         /* 0x3C */
+    unsigned int envcolor;      /* 0x40 */
+} ObjInstance;
+typedef struct CarParts { int frame; int extraparts[3]; int hood; int sheen; char tail[0x28]; } CarParts;
+extern ObjInstance D_8012E700[];
+extern CarParts D_80139320[];
+
+/* ZOID_SetColor */
+void func_8008E06C(short objnum, Color *col)
+{
+    D_8012E700[objnum].color = col->w;
+}
+
+/* ZOID_SetEnvColor */
+void func_80092BC8(short objnum, Color *col)
+{
+    ObjInstance *obj;
+    obj = &D_8012E700[objnum];
+    obj->envcolor = col->w;
+}
+
+/* SetSheenColor */
+void func_80092BF4(short slot, Color *col, Color *env)
+{
+    CarParts *car;
+    car = &D_80139320[slot];
+    func_8008E06C(car->sheen, col);
+    func_80092BC8(car->sheen, env);
 }

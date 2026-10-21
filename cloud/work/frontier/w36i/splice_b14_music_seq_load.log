@@ -1,0 +1,3 @@
+flags {'music_seq_load': '-O3'}
+refused {}
+image_ok True locked 1141

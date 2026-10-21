@@ -3,7 +3,9 @@
   "matrix_scale_apply",
   "anim_state_update",
   "buffer_swap",
-  "entity_anim_texture"
+  "entity_anim_texture",
+  "entity_tick_main",
+  "drone_ai_update"
  ],
  "context": [
   "model_bounds_calc",
@@ -17,7 +19,12 @@
   "func_80091BA8",
   "func_80091B00",
   "scheduler_recv",
-  "func_8008B3A0"
+  "func_8008B3A0",
+  "func_8008E06C",
+  "func_80092BF4",
+  "func_80092BC8",
+  "func_8008AE64",
+  "func_8008AE48"
  ],
  "files": [
   "buffer_swap.c",
@@ -26,7 +33,10 @@
   "visibility_wrappers.c",
   "entity_anim_texture.c",
   "func_8008B2E4.c",
-  "codex_transform_b109.c"
+  "codex_transform_b109.c",
+  "rocket.c",
+  "func_80092BF4.c",
+  "func_80092BC8.c"
  ],
  "keep": [
   "anim_state_update",
@@ -38,9 +48,15 @@
   "scheduler_recv",
   "stat_lap_complete",
   "game_timer_resume",
-  "func_8008B3A0"
+  "func_8008B3A0",
+  "drone_ai_update",
+  "func_8008E06C",
+  "func_80092BF4",
+  "func_80092BC8",
+  "func_8008AE64",
+  "func_8008AE48"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
- "provenance": "superseded in place by PR #386 (mat3_wingflame_20261017/group, head 8435976e4): + entity_anim_texture (AnimateWingFlame); installed by w34i",
- "name": "codex_visual_tire_module_20261002"
+ "name": "codex_visual_tire_module_20261002",
+ "provenance": "superseded in place by PR #386 (mat3_wingflame_20261017/group, head 8435976e4): + entity_anim_texture (AnimateWingFlame); installed by w34i; superseded in place by w36l (wave 36): + entity_tick_main (AnimateRocketFlame) and drone_ai_update (AnimateFrame), built on PR #391 (mat3_rocket_frame_20261017, Astra); see cloud/work/frontier/w36l/RESULTS.md"
 }

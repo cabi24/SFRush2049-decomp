@@ -6432,6 +6432,7 @@ func_8009309C:
 .section .text.entity_tick_main, "ax", @progbits
 .globl entity_tick_main
 entity_tick_main:
+    /* compiled from src/blob/entity_tick_main.c */
     .word 0x27BDFE90
     .word 0x3C188012
     .word 0xAFBF0014
@@ -7107,6 +7108,7 @@ entity_tick_main:
 .section .text.drone_ai_update, "ax", @progbits
 .globl drone_ai_update
 drone_ai_update:
+    /* compiled from src/blob/drone_ai_update.c */
     .word 0x27BDFE70
     .word 0xAFBF0044
     .word 0xAFB70040

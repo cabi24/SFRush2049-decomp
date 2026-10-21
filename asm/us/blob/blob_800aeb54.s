@@ -2894,6 +2894,7 @@ sound_bank_unload:
 .section .text.music_seq_load, "ax", @progbits
 .globl music_seq_load
 music_seq_load:
+    /* compiled from src/blob/music_seq_load.c */
     .word 0x27BDFF40
     .word 0x3C0F8015
     .word 0x85EFA108
