@@ -156,6 +156,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-21"
   },
+  "PS_CreateFile": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w37a_paksys",
+    "source": "src/blob/groups/w37a_paksys/group.json",
+    "source_sha256": "f2739a76a93df7d36288c5bc63db518b83f57b97fe3f9ec26531a18ab7a6a331",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "PS_FlushFile": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "pak_write_cluster",
@@ -3250,6 +3259,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800A3724": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w37a_paksys",
+    "source": "src/blob/groups/w37a_paksys/group.json",
+    "source_sha256": "f2739a76a93df7d36288c5bc63db518b83f57b97fe3f9ec26531a18ab7a6a331",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "func_800A43FC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -8248,12 +8266,13 @@
     "verified_at": "2026-10-06"
   },
   "no_catchup": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/no_catchup.c",
-    "source_sha256": "6510a4404ee30820e03b40cb2ad74500c29d004d289da9a6e8928de58cd32ac7",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w37a_paksys",
+    "source": "src/blob/groups/w37a_paksys/group.json",
+    "source_sha256": "f2739a76a93df7d36288c5bc63db518b83f57b97fe3f9ec26531a18ab7a6a331",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-28"
+    "verified_at": "2026-10-21"
   },
   "object_action_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

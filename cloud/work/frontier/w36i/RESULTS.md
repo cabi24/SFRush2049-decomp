@@ -258,7 +258,8 @@ carscr revision (14 members MATCH) and the unchanged runtime_a_profile_menu_2026
 | Batch | Commit | What | Bytes | Pushed |
 |---|---|---|---|---|
 | w37-1 | f7a89ab92 | w37d func_800E73D8 (standalone; disclosed `do {} while (0);`) | +596 game (1159 -> 1160) | yes (f7a89ab92) |
-| w37-2 | (this) | after 78b60b453: w37d func_800979A0 (slot_sound superseded; disclosed holder `if (D_8011EAA0) {}`), w37b replay_save_prompt = initScreen@optionscr.c (frontier_optionscr_buttons superseded; disclosed unused `u0`) | +1,832 game (1160 -> 1162) | |
+| w37-2 | 0adb25284 | after 78b60b453: w37d func_800979A0 (slot_sound superseded; disclosed holder `if (D_8011EAA0) {}`), w37b replay_save_prompt = initScreen@optionscr.c (frontier_optionscr_buttons superseded; disclosed unused `u0`) | +1,832 game (1160 -> 1162) | yes (0adb25284) |
+| w37-3 | (this) | w37a Controller Pak (NEW w37a_paksys from w36i's copy, coordinator decision for the owner): PS_CreateFile, no_catchup (single reverted), func_800A3724 = _ClearPak; PS_PakServer/PS_InitPakSys/_RemovePak stay unmatched context. D_00039B40 for AudioInitSys skipped: adding it means regenerating asm/us/blob/symbols.json/blob.ld, which several receipts bind | +1,840 game (1162 -> 1164) | |
 
 Formerly held, landed in w37-2 after the owner's 78b60b453 (patches were applied with `git apply <patch>` from the repo root, then commit as the owner):
 - w37d slot_sound superseded with func_800979A0 (292 B): breaks `dot_sequence_start_979a0_20261006`

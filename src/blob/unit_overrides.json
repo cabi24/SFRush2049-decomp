@@ -796,6 +796,22 @@
   {
    "name": "op_initButtons",
    "reason": "group frontier_optionscr_buttons (w37b, MAT3 initScreen@optionscr.c): internal / non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "func_800A1E94",
+   "reason": "group w37a_paksys (w37a, MAT3 paksysdc.c): private IPA callee of PS_CreateFile / PS_PakServer; retail convention is internal"
+  },
+  {
+   "name": "no_catchup",
+   "reason": "group w37a_paksys (w37a, MAT3 paksysdc.c): private IPA callee of PS_CreateFile / PS_PakServer; retail convention is internal"
+  },
+  {
+   "name": "func_800A3724",
+   "reason": "group w37a_paksys (w37a, MAT3 paksysdc.c): private IPA callee of PS_CreateFile / PS_PakServer; retail convention is internal"
+  },
+  {
+   "name": "func_800A3640",
+   "reason": "group w37a_paksys (w37a, MAT3 paksysdc.c): private IPA callee of PS_CreateFile / PS_PakServer; retail convention is internal"
   }
  ],
  "prefer_definition": [
@@ -958,6 +974,11 @@
    "name": "func_800FBE20",
    "file": "src/blob/groups/frontier_update_game/countdown.c",
    "reason": "_EndGame@game.c (w36w2): the real body, inlined into _UpdateGame, supersedes the locked empty stub single"
+  },
+  {
+   "name": "no_catchup",
+   "file": "src/blob/groups/w37a_paksys/group.c",
+   "reason": "w37a_paksys: the one-parameter real body supersedes the locked single (same 14 words); PS_CreateFile and PS_PakServer call it with the parameter in a1"
   }
  ],
  "align": [

@@ -1,0 +1,3 @@
+spliced w37a_paksys: 3 members, new: ['PS_CreateFile', 'func_800A3724']
+image coverage: 1164/1216 functions, 509548/647072 bytes (78.75%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

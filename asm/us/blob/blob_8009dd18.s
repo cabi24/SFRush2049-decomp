@@ -5345,6 +5345,7 @@ func_800A2D44:
 .section .text.PS_CreateFile, "ax", @progbits
 .globl PS_CreateFile
 PS_CreateFile:
+    /* compiled from src/blob/PS_CreateFile.c */
     .word 0x27BDFEE8
     .word 0x3C0E8011
     .word 0x81CE194C
@@ -6033,6 +6034,7 @@ func_800A371C:
 .section .text.func_800A3724, "ax", @progbits
 .globl func_800A3724
 func_800A3724:
+    /* compiled from src/blob/func_800A3724.c */
     .word 0x30EE00FF
     .word 0x000E7880
     .word 0x01EE7823
