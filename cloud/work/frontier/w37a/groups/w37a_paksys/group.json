@@ -1,0 +1,40 @@
+{
+ "name": "w37a_paksys",
+ "files": [
+  "group.c",
+  "ctx_ll.c",
+  "ctx_lock.c"
+ ],
+ "members": [
+  "PS_CreateFile",
+  "no_catchup",
+  "func_800A3640",
+  "func_800A3724",
+  "track_render_process",
+  "car_lod_select"
+ ],
+ "context": [
+  "func_800A1E94",
+  "func_800A370C",
+  "func_800A44E8",
+  "func_8008A704"
+ ],
+ "keep": [
+  "PS_CreateFile",
+  "track_render_process",
+  "car_lod_select",
+  "func_800A370C",
+  "func_800A44E8",
+  "func_8008A704"
+ ],
+ "claims": [],
+ "provisional_claims": [
+  "PS_CreateFile",
+  "no_catchup",
+  "func_800A3640",
+  "func_800A3724"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "PROVISIONAL on two unmatched REAL callers (no stand-ins). PS_CreateFile (1752 B), no_catchup (56 B, one-parameter body replacing the locked two-parameter single), func_800A3640 = _RemovePak (204 B; provisional.json wave-8 entry) and func_800A3724 = _ClearPak (88 B) are EQUAL in the whole-program unit with track_render_process = PS_PakServer and car_lod_select = PS_InitPakSys as their real callers (blob_unit --neighbours: 0 locked bodies differ). PS_PakServer (3200 B) is a genuine reconstruction, 706/800 words differ in the unit (794 vs 800 words; structure aligned, residual = colour/split/schedule, see w37a RESULTS.md); PS_InitPakSys is 19/81 words (s3/s4 colour swap + one delay slot). Internal (force_internal, off keep): func_800A1E94, no_catchup, func_800A3640, func_800A3724, and the non-static inlined helpers paksys_queue_init/paksys_lock/paksys_unlock/pfs_get_node/_FileChanged/_StopRumble. Installable with claims = provisional_claims if the owner accepts unmatched-caller context (input_process_controller precedent) or once PS_PakServer/PS_InitPakSys match.",
+ "provenance": "lane w37a (wave 37), 2026-10-21; starts: Astra PR #410 candidate.c (dot_mat3_pak_cleanup_research_20261017), w36v group w36v_ps_createfile, w36w3 car_lod_select, w8b func_800A3640; names MAT3 paksysdc.c / rush_d_dwarf.c / frontier_rumble_thread"
+}
