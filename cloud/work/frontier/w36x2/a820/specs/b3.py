@@ -1,0 +1,11 @@
+BASE = 'work/a820_p4'
+S = "    static f32 mapPos[3] = { -100.0f, 30.0f, 200.0f };\n    s32 trackIdx;"
+P = """                    D_803B7CE4[trackIdx].position[0] = mapPos[0];
+                    D_803B7CE4[trackIdx].position[1] = mapPos[1];
+                    D_803B7CE4[trackIdx].position[2] = mapPos[2];"""
+H = "void func_8038A820(void)\n{"
+E = "extern f32 D_803B8388[3];   /* animTrackMaps static mapPos */"
+VARIANTS = {
+ 'glob': [(S, "    s32 trackIdx;"), (H, "f32 mapPosA[3] = { -100.0f, 30.0f, 200.0f };\n" + H), (P, P.replace('mapPos', 'mapPosA')), (E, "")],
+ 'fstatic': [(S, "    s32 trackIdx;"), (H, "static f32 mapPosA[3] = { -100.0f, 30.0f, 200.0f };\n" + H), (P, P.replace('mapPos', 'mapPosA')), (E, "")],
+}
