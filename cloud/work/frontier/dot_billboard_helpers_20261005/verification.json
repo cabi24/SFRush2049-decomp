@@ -14,7 +14,7 @@
   },
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
     "tools/conveyor/pipeline/blob_unit.py": "7d2b290f0f1542648a938077f3000b0135f259bc99e931e75c846c8f4387b345",
     "src/blob/unit_overrides.json": "b30ba68c5ee3c1fb180a2e9ff421e4acc59e373bb4e922015a9c52936ae54719"
   },

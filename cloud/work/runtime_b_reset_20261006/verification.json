@@ -96,7 +96,7 @@
     "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
     "cloud/work/runtime_b_reset_20261006/host_test.c": "0c9043627eb3fb13fa694400f765476fd416f2eb333718ac16df22dfdadbe9dd",
     "cloud/work/runtime_b_reset_20261006/verify.py": "3c93c49790aed56a38d5db040a6b4178267e7f1f73531de2ef7121ff52f79f2a",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
   },
   "source_sha256": "c4b083be9f7f28cb7aed1346ca7ff18ad9e2710565dc5d232ed756f83cb4a272",

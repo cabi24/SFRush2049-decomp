@@ -2,7 +2,7 @@
   "compiler_seal_amendment": {
     "executed_ujoin_stage_pinned": true,
     "guards_passed_each_mode": 12,
-    "inputs_sha256": "99093ccc37b89f8d114cd431bd4ba28794da1158e5ee03d5f58e8f904d0d85d0",
+    "inputs_sha256": "094e8d69ed3fea9be2c713a5d581d7ab9b566c22f4527c51e178b12423733317",
     "native_source_and_object_unchanged": true,
     "normal_optimized_output_sha256": "a7542a37dc6aad12d0083cc3658bc5e0987b74f2f0e3d8e116d4e508a2190ac2",
     "optimized_stale_ujoin_refusal": true,

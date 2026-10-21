@@ -619,7 +619,7 @@
   },
   "input_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
     "tools/conveyor/seeds/extract_candidates.py": "0f0c753a0f279f2b93f636995d1008f5fbda863491af451120b9e4afb29b0f53",
     "asm/us/boot_tail/SHA256SUMS": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
     "asm/us/boot_tail/boot_tail_8000f3a4.s": "0dc55ce51ebe828207816f4f0b878b8928da64694f7f247bf8749f68cf91b224",

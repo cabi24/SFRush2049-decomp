@@ -16,7 +16,7 @@
     "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4",
     "src/blob/groups/slot_sound/group.json": "1a942b85b1649aab6667660285db29d9de1409dcf3cc0e23eeb6483d40f4bbde",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
+    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e"
   },
   "initial_sparse_checkout_failures": "Recovered: materialized tracked test dependencies and locked source files; final aggregate is 739 passed. No source was changed to recover those infrastructure-only failures.",
   "full_repository_test_suite_run": false,

@@ -11,7 +11,7 @@
     "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/producer.c": "5be92960c93fa8656c732474adafaceddfa2575e1484fbab4af89a2d87d6a91c",
     "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/reproduce.py": "d7d1065bf19d32e84dfe86d29f364a42800841941cbc0b64fc30d1fc8b59832b",
     "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/selector.c": "095a265dc596d86b7582a744cafecb57ebff73504fdbbdf9118216948619e13e",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/owndata.py": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
   },
   "image": "A",
