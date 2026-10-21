@@ -1,18 +1,84 @@
 {
-  "members": [
-    "input_aux_handler"
-  ],
-  "context": [
-    "game_loop"
-  ],
-  "files": [
-    "group.c"
-  ],
-  "keep": [
-    "game_loop"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "unprototyped": [],
-  "note": "Only real game_loop caller; other callees preserved external, no stand-ins. game_loop context reconstructed from full assembly and not claimed.",
-  "provenance": "Codex real context, 2026-10-01; cloud/work/ipa-groups/codex_input_aux/STATUS.md"
+ "members": [
+  "input_aux_handler",
+  "game_loop",
+  "countdown_handler"
+ ],
+ "context": [
+  "countdown",
+  "init_state_continue",
+  "speed_set",
+  "speed_mode0_wrapper",
+  "speed_mode1_wrapper",
+  "continue_prompt",
+  "vsync_wait",
+  "func_800D6160",
+  "physics_init_mode0",
+  "physics_init_mode1",
+  "func_800B5570",
+  "func_8008B2E4",
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C",
+  "dispatch_handler",
+  "func_800A4770",
+  "object_manager_update",
+  "object_byte9_set",
+  "func_800F68A4",
+  "camera_shake_update",
+  "sound_update_channel",
+  "func_80096288",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800FBE20"
+ ],
+ "files": [
+  "group.c",
+  "game_loop.c",
+  "ctx_init_state_continue.c",
+  "ctx_countdown.c",
+  "ctx_func_800B5570.c",
+  "ctx_func_8008B2E4.c",
+  "ctx_game_music.c",
+  "ctx_vsync_a145.c",
+  "ctx_gr3_b.c",
+  "ctx_dispatch_handler.c",
+  "ctx_func_800A4770.c",
+  "ctx_sound_channel_extra.c",
+  "ctx_object_manager_update.c",
+  "countdown_handler.c"
+ ],
+ "keep": [
+  "game_loop",
+  "speed_mode0_wrapper",
+  "speed_mode1_wrapper",
+  "continue_prompt",
+  "vsync_wait",
+  "physics_init_mode0",
+  "physics_init_mode1",
+  "func_800B5570",
+  "func_8008B2E4",
+  "dispatch_handler",
+  "func_800A4770",
+  "object_manager_update",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "w36w2: codex_input_aux superseded in place. input_aux_handler unchanged (group.c = the old group.c minus its trailing unclaimed game_loop reconstruction, lines 3897-3938). game_loop = GameLoop@game.c, new body in game_loop.c (member, kept, claimed). Context = byte copies of w36p's frontier_update_game member/context files (countdown and init_state_continue are game_loop's private IPA callees: they use s0-s8 unsaved, which is why GameLoop saves s0-s8/f20/f22). countdown_handler = _animScrollText@game.c (countdown_handler.c; internal, private IPA; only caller game_loop); helpers gfx_lock_cdh/font_set_cdh non-static, not on keep. ctx_gr3_b.c = byte copy of credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA). ctx_countdown.c differs from w36p's countdown.c only in naming its static _EndGame helper as the non-static func_800FBE20 (the locked caller-less stub right after countdown_handler in the image = _EndGame's deleted-procedure stub, emitted there by the same call-graph order); without a symbol that stub extends countdown_handler's extent in the group compile (score.py: 1 extra word).",
+ "provenance": "Codex real context, 2026-10-01 (input_aux_handler); w36w2 wave 36 game_loop (cloud/work/frontier/w36w2/RESULTS.md)"
 }

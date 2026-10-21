@@ -1,0 +1,20 @@
+{
+ "name": "w36w3_dust",
+ "members": [
+  "dust_cloud_effect"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "dust.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "dust_cloud_effect"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "wave 36 (w36w3): dust_cloud_effect (N64 hud.c blit anim); ctx_gr3_b.c = byte copy of src/blob/groups/credits_scroll_grp/gr3_b.c (slot_state_setup's s2 IPA convention), as in codex_control_settings_a4; cloud/work/frontier/w36w3/RESULTS.md"
+}

@@ -1,0 +1,3 @@
+spliced frontier_pausescr_state: 2 members, new: ['voice_stop']
+image coverage: 1154/1216 functions, 502616/647072 bytes (77.68%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

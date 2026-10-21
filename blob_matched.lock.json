@@ -721,6 +721,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "audio_update_d": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w2_gameover",
+    "source": "src/blob/groups/w36w2_gameover/group.json",
+    "source_sha256": "c9cb1fd0f5f644695eb7a553f8376698fcbe66ab9aa2f22cf5ace344d86abda0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "audio_voice_set": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/audio_voice_set.c",
@@ -1341,7 +1350,16 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_update_game",
     "source": "src/blob/groups/frontier_update_game/group.json",
-    "source_sha256": "1384c75edc13522434baf7b42a2cf4055b0382f67ffc44f795f88c54f6fcae07",
+    "source_sha256": "bec89c69e04b84682f4767ac744ed27c4610dd77b3aee889b717a7526accfa13",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "countdown_handler": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_input_aux",
+    "source": "src/blob/groups/codex_input_aux/group.json",
+    "source_sha256": "f41431f4a425253014537dc888a53f9bd9a56d26dd7b50033c1d80dd5d8de020",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -1547,6 +1565,15 @@
     "group": "w36k_controlscr",
     "source": "src/blob/groups/w36k_controlscr/group.json",
     "source_sha256": "d77ff3a0410c18075cda0d651d1d7d560f4bb96a9330338b684fbc3c8d173a99",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "dust_cloud_effect": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w3_dust",
+    "source": "src/blob/groups/w36w3_dust/group.json",
+    "source_sha256": "e9f7512293826ecc3db3780ce06cbc9f0a5bcb7428b78dd2c2d0ac1b1be0fffc",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -1829,6 +1856,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-28"
+  },
+  "finish_state_alt": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w2_gameover",
+    "source": "src/blob/groups/w36w2_gameover/group.json",
+    "source_sha256": "c9cb1fd0f5f644695eb7a553f8376698fcbe66ab9aa2f22cf5ace344d86abda0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "format_string_parse": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -4199,7 +4235,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_pausescr_state",
     "source": "src/blob/groups/frontier_pausescr_state/group.json",
-    "source_sha256": "11d089379766c16bb8dfc60dc6752f87d07b59d13c07fda18bdbc84a8b8af908",
+    "source_sha256": "0990212576dd45f21a47af6054da0964b8c8de4fdf8cc5af8b8c343d7c468422",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -6949,6 +6985,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "func_800F857C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w2_gameover",
+    "source": "src/blob/groups/w36w2_gameover/group.json",
+    "source_sha256": "c9cb1fd0f5f644695eb7a553f8376698fcbe66ab9aa2f22cf5ace344d86abda0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "func_800F874C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800F874C.c",
@@ -6956,6 +7001,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800F87A0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "w36w2_gameover",
+    "source": "src/blob/groups/w36w2_gameover/group.json",
+    "source_sha256": "c9cb1fd0f5f644695eb7a553f8376698fcbe66ab9aa2f22cf5ace344d86abda0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "func_800F8B68": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7024,12 +7078,13 @@
     "verified_at": "2026-09-29"
   },
   "func_800FBE20": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800FBE20.c",
-    "source_sha256": "88b0641d5df3f3694dc276363aee5f26bba87357f7c61eecbfbb986a0c4f7d97",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_update_game",
+    "source": "src/blob/groups/frontier_update_game/group.json",
+    "source_sha256": "bec89c69e04b84682f4767ac744ed27c4610dd77b3aee889b717a7526accfa13",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-21"
   },
   "func_800FBE28": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7585,6 +7640,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-21"
   },
+  "game_loop": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_input_aux",
+    "source": "src/blob/groups/codex_input_aux/group.json",
+    "source_sha256": "f41431f4a425253014537dc888a53f9bd9a56d26dd7b50033c1d80dd5d8de020",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "game_mode_handler": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/game_mode_handler.c",
@@ -7741,7 +7805,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_update_game",
     "source": "src/blob/groups/frontier_update_game/group.json",
-    "source_sha256": "1384c75edc13522434baf7b42a2cf4055b0382f67ffc44f795f88c54f6fcae07",
+    "source_sha256": "bec89c69e04b84682f4767ac744ed27c4610dd77b3aee889b717a7526accfa13",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -7758,10 +7822,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_input_aux",
     "source": "src/blob/groups/codex_input_aux/group.json",
-    "source_sha256": "d9432c02609d22028cc48b5cf123dc82275c8f8bc7e4ef9a85cc3848a3cebb21",
+    "source_sha256": "f41431f4a425253014537dc888a53f9bd9a56d26dd7b50033c1d80dd5d8de020",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-01"
+    "verified_at": "2026-10-21"
   },
   "input_deadzone_apply": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -9566,6 +9630,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "voice_stop": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_pausescr_state",
+    "source": "src/blob/groups/frontier_pausescr_state/group.json",
+    "source_sha256": "0990212576dd45f21a47af6054da0964b8c8de4fdf8cc5af8b8c343d7c468422",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "voice_stop_2": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

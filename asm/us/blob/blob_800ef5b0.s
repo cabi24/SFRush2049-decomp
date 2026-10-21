@@ -593,6 +593,7 @@ explosion_effect:
 .section .text.dust_cloud_effect, "ax", @progbits
 .globl dust_cloud_effect
 dust_cloud_effect:
+    /* compiled from src/blob/dust_cloud_effect.c */
     .word 0x27BDFF70
     .word 0xAFBF002C
     .word 0xAFB40028
@@ -9476,6 +9477,7 @@ func_800F84B0:
 .section .text.func_800F857C, "ax", @progbits
 .globl func_800F857C
 func_800F857C:
+    /* compiled from src/blob/func_800F857C.c */
     .word 0x3C118014
     .word 0x26318870
     .word 0x8E220000
@@ -9603,6 +9605,7 @@ func_800F874C:
 .section .text.audio_update_d, "ax", @progbits
 .globl audio_update_d
 audio_update_d:
+    /* compiled from src/blob/audio_update_d.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C03E15F
@@ -9626,6 +9629,7 @@ audio_update_d:
 .section .text.func_800F87A0, "ax", @progbits
 .globl func_800F87A0
 func_800F87A0:
+    /* compiled from src/blob/func_800F87A0.c */
     .word 0x3C108015
     .word 0x2610694C
     .word 0x8E040000
@@ -9879,6 +9883,7 @@ func_800F8B68:
 .section .text.finish_state_alt, "ax", @progbits
 .globl finish_state_alt
 finish_state_alt:
+    /* compiled from src/blob/finish_state_alt.c */
     .word 0x27BDFFC8
     .word 0x3C0E8011
     .word 0x81CE4728

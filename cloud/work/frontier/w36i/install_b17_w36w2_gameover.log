@@ -1,0 +1,3 @@
+spliced w36w2_gameover: 4 members, new: ['audio_update_d', 'finish_state_alt', 'func_800F857C', 'func_800F87A0']
+image coverage: 1158/1216 functions, 504680/647072 bytes (77.99%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

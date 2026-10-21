@@ -700,6 +700,70 @@
   {
    "name": "us_ProcessCommand",
    "reason": "group audio_options_menu (w36w3, MAT3 uninitScreen@audioscr.c): internal; the us_* helpers are non-static inlined helpers, caller-less after inlining"
+  },
+  {
+   "name": "voice_stop",
+   "reason": "group frontier_pausescr_state (w36w2, MAT3 _TitlePane@pausescr.c): internal / non-static inlined helper"
+  },
+  {
+   "name": "vs_header_lock",
+   "reason": "group frontier_pausescr_state (w36w2, MAT3 _TitlePane@pausescr.c): internal / non-static inlined helper"
+  },
+  {
+   "name": "vs_header_unlock",
+   "reason": "group frontier_pausescr_state (w36w2, MAT3 _TitlePane@pausescr.c): internal / non-static inlined helper"
+  },
+  {
+   "name": "vs_header_font",
+   "reason": "group frontier_pausescr_state (w36w2, MAT3 _TitlePane@pausescr.c): internal / non-static inlined helper"
+  },
+  {
+   "name": "func_800F84B0",
+   "reason": "group w36w2_gameover (w36w2): locked single validOption that retail treats as internal; its callers keep values in a3 across it"
+  },
+  {
+   "name": "gfx_lock_go",
+   "reason": "group w36w2_gameover (w36w2, MAT3 gameoverscr.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_go",
+   "reason": "group w36w2_gameover (w36w2, MAT3 gameoverscr.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_set_go",
+   "reason": "group w36w2_gameover (w36w2, MAT3 gameoverscr.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "countdown_handler",
+   "reason": "group codex_input_aux (w36w2, MAT3 _animScrollText@game.c / _EndGame): internal or non-static inlined helper"
+  },
+  {
+   "name": "gfx_lock_cdh",
+   "reason": "group codex_input_aux (w36w2, MAT3 _animScrollText@game.c / _EndGame): internal or non-static inlined helper"
+  },
+  {
+   "name": "font_set_cdh",
+   "reason": "group codex_input_aux (w36w2, MAT3 _animScrollText@game.c / _EndGame): internal or non-static inlined helper"
+  },
+  {
+   "name": "func_800FBE20",
+   "reason": "group codex_input_aux (w36w2, MAT3 _animScrollText@game.c / _EndGame): internal or non-static inlined helper"
+  },
+  {
+   "name": "gfx_lock_dust",
+   "reason": "group w36w3_dust (w36w3): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "gfx_unlock_dust",
+   "reason": "group w36w3_dust (w36w3): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "font_set_dust",
+   "reason": "group w36w3_dust (w36w3): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "Hidden_dust",
+   "reason": "group w36w3_dust (w36w3): non-static inlined helper, caller-less after inlining"
   }
  ],
  "prefer_definition": [
@@ -857,6 +921,11 @@
    "name": "audio_frame_sync",
    "file": "src/blob/groups/audio_frame_sync/loadwave.c",
    "reason": "w36x5 (LoadWave): the member body; w36t_loadcars/loadwave.c and codex_state_audio_a146/group.c also define it as context"
+  },
+  {
+   "name": "func_800FBE20",
+   "file": "src/blob/groups/frontier_update_game/countdown.c",
+   "reason": "_EndGame@game.c (w36w2): the real body, inlined into _UpdateGame, supersedes the locked empty stub single"
   }
  ],
  "align": [

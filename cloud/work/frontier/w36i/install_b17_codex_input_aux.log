@@ -1,0 +1,3 @@
+spliced codex_input_aux: 3 members, new: ['countdown_handler', 'game_loop']
+image coverage: 1153/1216 functions, 502064/647072 bytes (77.59%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

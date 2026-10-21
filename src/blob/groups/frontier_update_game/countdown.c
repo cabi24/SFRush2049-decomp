@@ -136,7 +136,7 @@ void finish_state_alt(void);            /* updateGameOverScreen */
 void func_800AB18C(s32 i, f32 *pos);    /* WorldFogDensity */
 void func_800B5570(u32 state);          /* setGameState */
 
-static void _EndGame(void);
+void func_800FBE20(void);  /* GC _EndGame: w36w2 names the static after its retail deleted-procedure stub */
 
 void countdown(void)
 {
@@ -294,7 +294,7 @@ void countdown(void)
             }
         }
     } else if (state_word_a & 0x1000000) {
-        _EndGame();
+        func_800FBE20();
     } else if (state_word_a & 0x2000000) billboard_render();
     else if (state_word_a & 0x800000) finish_state_alt();
 done:
@@ -303,7 +303,7 @@ done:
     }
 }
 
-static void _EndGame(void)
+void func_800FBE20(void)
 {
     s16 i;
     for (i = 0; i < D_80152744; i++) {

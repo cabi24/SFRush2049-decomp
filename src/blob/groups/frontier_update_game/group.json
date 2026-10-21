@@ -2,7 +2,8 @@
  "name": "frontier_update_game",
  "members": [
   "countdown",
-  "init_state_continue"
+  "init_state_continue",
+  "func_800FBE20"
  ],
  "context": [
   "game_loop",
@@ -25,7 +26,8 @@
   "func_8008B2E4.c",
   "ctx_game_music.c",
   "ctx_vsync_a145.c",
-  "ctx_input_aux.c"
+  "ctx_input_aux.c",
+  "ctx_game_loop.c"
  ],
  "keep": [
   "game_loop",
@@ -39,6 +41,6 @@
   "func_8008B2E4"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "note": "w36p (wave 36): countdown = MAT3 game.c _UpdateGame and init_state_continue = _CalcPolePositions, both internal (IPA: no callee saves). EQUAL in the whole-program unit with no inline blockers (blob_unit --internal countdown --internal init_state_continue). Context files are byte-identical copies of locked sources: ctx_input_aux.c = src/blob/groups/codex_input_aux/group.c (game_loop, the only caller of countdown, unclaimed context there too), ctx_vsync_a145.c = src/blob/groups/codex_vsync_a145/group.c (speed_set IPA f20/f22/s1/s2 + the inlined speed_mode0_wrapper = AudSetMusicVol), ctx_game_music.c = src/blob/groups/frontier_game_music/func_800D6160.c (physics_init_mode0 = StartGameMusic inlined, func_800D6160 t0 convention), func_800B5570.c (setGameState, inlined x7), func_8008B2E4.c (Random, inlined into init_state_continue). Retires init_state_continue's provisional entry (w16f).",
- "provenance": "frontier wave 36 (w36p): cloud/work/frontier/w36p/RESULTS.md; init_state_continue body from w16f (cloud/work/frontier/w16f/groups/frontier_init_state_continue)"
+ "note": "w36p (wave 36): countdown = MAT3 game.c _UpdateGame and init_state_continue = _CalcPolePositions, both internal (IPA: no callee saves). EQUAL in the whole-program unit with no inline blockers (blob_unit --internal countdown --internal init_state_continue). Context files are byte-identical copies of locked sources: ctx_input_aux.c = src/blob/groups/codex_input_aux/group.c (game_loop, the only caller of countdown, unclaimed context there too), ctx_vsync_a145.c = src/blob/groups/codex_vsync_a145/group.c (speed_set IPA f20/f22/s1/s2 + the inlined speed_mode0_wrapper = AudSetMusicVol), ctx_game_music.c = src/blob/groups/frontier_game_music/func_800D6160.c (physics_init_mode0 = StartGameMusic inlined, func_800D6160 t0 convention), func_800B5570.c (setGameState, inlined x7), func_8008B2E4.c (Random, inlined into init_state_continue). Retires init_state_continue's provisional entry (w16f). | w36w2 refresh: countdown.c names its static _EndGame helper as the non-static func_800FBE20 (code-identical; the locked caller-less stub right after countdown_handler is _EndGame's deleted-procedure stub: prefer_definition func_800FBE20 -> this file, force_internal func_800FBE20); ctx_input_aux.c = byte copy of the superseded codex_input_aux/group.c (game_loop text removed there), ctx_game_loop.c = byte copy of codex_input_aux/game_loop.c (game_loop is a member of codex_input_aux now). Members and claims unchanged.",
+ "provenance": "frontier wave 36 (w36p): cloud/work/frontier/w36p/RESULTS.md; init_state_continue body from w16f (cloud/work/frontier/w16f/groups/frontier_init_state_continue) w36i: func_800FBE20 (_EndGame, non-static, inlined; its deleted stub is the locked single) added as a member so the stub single can be reverted (w36t_loadcars/func_8009768C precedent)."
 }

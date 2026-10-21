@@ -26,14 +26,15 @@ untracked-lane-file receipts.
 | 11 | dbcc64cd5 | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | yes (dbcc64cd5) |
 | 12 | 559503fb7 | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w demo pair (backed out in 12b) | +9,188 game (1116 -> 1123) | | | yes (bb34a8d5e) |
 | 12b | bb34a8d5e | back out w36w_demo_pair (ipakit sigs accuracy floor; held) | -1,064 game (1123 -> 1121) | | | yes (bb34a8d5e) |
-| 13 | (local) | game, the formerly held selector-caller set after 96e39b502: w36o ShowHUD/animGear/animCountdownTimer (NEW groups; w36o_countdown from w36i's copy, context += camera_shake_update), w36q particle_collision/particle_render (physics_sym) + setPauseState (NEW frontier_pausescr_state), w36z drawRaceStandings (frontier_results_table), w36t _DrawText (codex_defaults_a16, w36i keep fix), w36w animPanes/animElapsedTimer (credits_scroll_grp merge), w36k controlscr (NEW w36k_controlscr, 8 members incl. drone_throttle_calc via the window proof; CLAIMS row) | +19,720 game (1121 -> 1138) | | | |
-| 14 | (local) | game: w36l AnimateRocketFlame + AnimateFrame (codex_visual_tire_module_20261002 superseded; six locked singles re-spliced with struct forms, same bytes), w36x4 CreateCar (music_seq_load single); image A: w36e LoadSelectCar (func_80390BC0 single) | +7,392 game (1138 -> 1141), +364 A (126 -> 127) | 126 -> 127/193 | 41/49 | |
-| 15 | (local) | game, after the owner's ca46e75ea / a28e8705f: w36x3 animCoins (NEW w36x3_coins; second extern_data D_80118E20 entry, blob_unit now keys extern_data on (name, file)); w36x5 SetupWaveModel, _ReadWave, LoadWave, ReplaceWave, fp_call_wrapper + 3 stub bodies (audio_frame_sync superseded) | +3,876 game (1141 -> 1147) | | | |
-| 16 | (local) | game: w36w3 func_800E7038 + func_8010FBE0 (singles), func_800E7134 (controller_poll superseded), uninitScreen@audioscr (credits_screen, audio_options_menu superseded) | +1,352 game (1147 -> 1151) | | | |
+| 13 | cfe5af449 (pushed in 5eb7d857d) | game, the formerly held selector-caller set after 96e39b502: w36o ShowHUD/animGear/animCountdownTimer (NEW groups; w36o_countdown from w36i's copy, context += camera_shake_update), w36q particle_collision/particle_render (physics_sym) + setPauseState (NEW frontier_pausescr_state), w36z drawRaceStandings (frontier_results_table), w36t _DrawText (codex_defaults_a16, w36i keep fix), w36w animPanes/animElapsedTimer (credits_scroll_grp merge), w36k controlscr (NEW w36k_controlscr, 8 members incl. drone_throttle_calc via the window proof; CLAIMS row) | +19,720 game (1121 -> 1138) | | | yes (5eb7d857d) |
+| 14 | 019281a78 (pushed in 5eb7d857d) | game: w36l AnimateRocketFlame + AnimateFrame (codex_visual_tire_module_20261002 superseded; six locked singles re-spliced with struct forms, same bytes), w36x4 CreateCar (music_seq_load single); image A: w36e LoadSelectCar (func_80390BC0 single) | +7,392 game (1138 -> 1141), +364 A (126 -> 127) | 126 -> 127/193 | 41/49 | yes (5eb7d857d) |
+| 15 | 427cb7673 (pushed in 5eb7d857d) | game, after the owner's ca46e75ea / a28e8705f: w36x3 animCoins (NEW w36x3_coins; second extern_data D_80118E20 entry, blob_unit now keys extern_data on (name, file)); w36x5 SetupWaveModel, _ReadWave, LoadWave, ReplaceWave, fp_call_wrapper + 3 stub bodies (audio_frame_sync superseded) | +3,876 game (1141 -> 1147) | | | yes (5eb7d857d) |
+| 16 | bb6b2f054 (pushed in 5eb7d857d) | game: w36w3 func_800E7038 + func_8010FBE0 (singles), func_800E7134 (controller_poll superseded), uninitScreen@audioscr (credits_screen, audio_options_menu superseded) | +1,352 game (1147 -> 1151) | | | yes (5eb7d857d) |
+| 17 | (this) | game, after 82000793f: w36w2 voice_stop (frontier_pausescr_state superseded), func_800F857C/audio_update_d/func_800F87A0/finish_state_alt (NEW w36w2_gameover), game_loop + countdown_handler (codex_input_aux superseded) with frontier_update_game refreshed (w36i copy: _EndGame stub func_800FBE20 as member, single reverted); w36w3 dust_cloud_effect (NEW w36w3_dust) | +4,416 game (1151 -> 1159) | | | |
 
 ## Held for owner
 
-### BLOCKING the push of batches 13-16 (owner receipt patches needed first)
+### (resolved) receipt follow-ups for batches 13-16 — owner applied them in 5eb7d857d; pushed
 
 Rocky on 427cb7673 (batches 13-15) fails exactly these, all receipt/test bindings:
 - `tests/conveyor/test_dot_substantial_scout.py::test_native_metadata_replays_complete_current_extents`: the scout's
@@ -48,7 +49,7 @@ Rocky on 427cb7673 (batches 13-15) fails exactly these, all receipt/test binding
   w36x3_coins' second D_80118E20 entry). Fix: `held/shot_match_blob_unit_rebind.patch` (tooling hash rebound,
   handoff section 5 precedent).
 
-### Held: w36w2 x3 and w36w3 dust (selector callers)
+### (resolved) w36w2 x3 and w36w3 dust — owner re-pin 82000793f; landed in batch 17
 
 w36w2 frontier_pausescr_state + voice_stop, NEW w36w2_gameover (func_800F857C, audio_update_d, func_800F87A0,
 finish_state_alt), codex_input_aux superseded (game_loop, countdown_handler) with the refreshed

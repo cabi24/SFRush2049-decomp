@@ -1,0 +1,24 @@
+{
+ "name": "w36w2_gameover",
+ "members": [
+  "func_800F857C",
+  "audio_update_d",
+  "func_800F87A0",
+  "finish_state_alt"
+ ],
+ "context": [
+  "func_800F84B0",
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "gameover.c",
+  "ctx_func_800F84B0.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "finish_state_alt"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

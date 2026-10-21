@@ -3060,6 +3060,7 @@ game_state_check_handler:
 .section .text.countdown_handler, "ax", @progbits
 .globl countdown_handler
 countdown_handler:
+    /* compiled from src/blob/countdown_handler.c */
     .word 0x3C0E8015
     .word 0x8DCEA110
     .word 0x27BDFEA8
@@ -4691,6 +4692,7 @@ func_800FD41C:
 .section .text.game_loop, "ax", @progbits
 .globl game_loop
 game_loop:
+    /* compiled from src/blob/game_loop.c */
     .word 0x27BDFFA8
     .word 0x3C0E8011
     .word 0x81CE46EC

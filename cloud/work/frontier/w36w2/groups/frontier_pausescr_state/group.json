@@ -1,0 +1,27 @@
+{
+ "name": "frontier_pausescr_state",
+ "members": [
+  "func_800B4FB0",
+  "voice_stop"
+ ],
+ "claims": [
+  "voice_stop"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "pause.c",
+  "voice.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_800B4FB0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "w36w2: w36q's frontier_pausescr_state (pause.c and ctx_gr3_b.c byte-identical) + voice.c (voice_stop = _TitlePane@pausescr.c, Astra PR #388 body; helpers vs_header_lock/vs_header_unlock/vs_header_font non-static, not on keep). voice_stop is internal (private IPA, s0-s4 unsaved). unit_overrides force_internal (if not derived): ps_gfx_lock, ps_gfx_unlock, ps_font_set, ps_SetFont, ps_updatePauseStateCreate (w36q), vs_header_lock, vs_header_unlock, vs_header_font, voice_stop.",
+ "provenance": "w36q (wave 36) func_800B4FB0 + w36w2 voice_stop (PR #388 mat3_ui_pause_title_20261017); supersedes w36q's frontier_pausescr_state in place (all w36q members unchanged)"
+}

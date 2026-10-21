@@ -596,6 +596,7 @@ fcvt_wrapper:
 .section .text.voice_stop, "ax", @progbits
 .globl voice_stop
 voice_stop:
+    /* compiled from src/blob/voice_stop.c */
     .word 0x27BDFF68
     .word 0x3C148014
     .word 0x269461D0

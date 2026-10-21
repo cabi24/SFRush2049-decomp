@@ -1,7 +1,8 @@
 {
  "name": "frontier_pausescr_state",
  "members": [
-  "func_800B4FB0"
+  "func_800B4FB0",
+  "voice_stop"
  ],
  "context": [
   "slot_state_setup",
@@ -10,6 +11,7 @@
  ],
  "files": [
   "pause.c",
+  "voice.c",
   "ctx_gr3_b.c"
  ],
  "keep": [
@@ -17,6 +19,6 @@
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
- "note": "Pause-menu state switch (GC pausescr.c): func_800B4FB0 = setPauseState (kept; callers physics_sym and the other pause screens) with updatePauseStateCreate inlined (ps_updatePauseStateCreate, non-static, not on keep). Context ctx_gr3_b.c = byte-identical copy of src/blob/groups/credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA only with its body in the program; object_create and func_800B669C come with the file, as in frontier_audioscr / physics_sym). unit_overrides force_internal (if not derived): ps_gfx_lock, ps_gfx_unlock, ps_font_set, ps_SetFont, ps_updatePauseStateCreate.",
- "provenance": "w36q (wave 36), MAT3 pausescr.c setPauseState/updatePauseStateCreate typed port; cloud/work/frontier/w36q/RESULTS.md"
+ "note": "w36w2: w36q's frontier_pausescr_state (pause.c and ctx_gr3_b.c byte-identical) + voice.c (voice_stop = _TitlePane@pausescr.c, Astra PR #388 body; helpers vs_header_lock/vs_header_unlock/vs_header_font non-static, not on keep). voice_stop is internal (private IPA, s0-s4 unsaved). unit_overrides force_internal (if not derived): ps_gfx_lock, ps_gfx_unlock, ps_font_set, ps_SetFont, ps_updatePauseStateCreate (w36q), vs_header_lock, vs_header_unlock, vs_header_font, voice_stop.",
+ "provenance": "w36q (wave 36) func_800B4FB0 + w36w2 voice_stop (PR #388 mat3_ui_pause_title_20261017); supersedes w36q's frontier_pausescr_state in place (all w36q members unchanged)"
 }
