@@ -53,6 +53,7 @@
       "stack_word": 21
     },
     "accepted_callers": [
+      "voice_stop",
       "func_800B4FB0",
       "TitlePane",
       "particles_update",
@@ -67,9 +68,12 @@
       "world_trigger_check",
       "emitter_update",
       "func_800EF288",
+      "dust_cloud_effect",
       "skid_mark_render",
       "PrintScores",
       "SetHighScoreState",
+      "func_800F857C",
+      "countdown_handler",
       "game_timer_display",
       "audio_animButtonText",
       "audio_animText",
@@ -103,13 +107,12 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 19776,
+    "unaccepted_caller_bytes": 17664,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
-      "world_velocity_integrate": 712,
-      "dust_cloud_effect": 600
+      "world_velocity_integrate": 712
     },
-    "bounded_dependency_bytes": 1424
+    "bounded_dependency_bytes": 824
   },
   "no_copy_sites": [
     {
@@ -183,7 +186,7 @@
       "start": "0x800B438C",
       "bytes": 552,
       "body_sha256": "36d01d43f0e04c7f9772101adac59dc18eb372e5302a5ccd7238062887e36b65",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800B43AC"
       ],
@@ -211,8 +214,7 @@
         "s1": 6
       },
       "other_unaccepted_direct_game_calls": [
-        "object_bytes_sum_global",
-        "voice_stop"
+        "object_bytes_sum_global"
       ]
     },
     "TitlePane": {
@@ -273,7 +275,6 @@
         "stack_word": 3
       },
       "other_unaccepted_direct_game_calls": [
-        "audio_frame_sync",
         "display_enable",
         "object_create"
       ]
@@ -521,7 +522,7 @@
       "start": "0x800EFEA8",
       "bytes": 600,
       "body_sha256": "f7175848a7f49c139b0cc9d5a1136ce4043882ba1c21276e4b5a3e9cbb7e1012",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800EFFF4",
         "0x800F0028"
@@ -581,7 +582,7 @@
       "start": "0x800F857C",
       "bytes": 464,
       "body_sha256": "8c4e29430e1c577c4e7eae95803cf05bf81259bda910b4f02f74735755bfd38b",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800F85CC",
         "0x800F866C"
@@ -597,7 +598,7 @@
       "start": "0x800FBC30",
       "bytes": 496,
       "body_sha256": "903a33743d334b2c4c3721feca3a326c86cf397f7685c4f65194459a8fcd1005",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800FBD38"
       ],
