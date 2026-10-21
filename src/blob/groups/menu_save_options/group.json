@@ -25,13 +25,13 @@
   "SaveGhost",
   "CompressGhost",
   "GhostStart",
-  "hud_setup"
+  "hud_setup",
+  "menu_back"
  ],
  "context": [
   "CreatePlayer",
   "draw_number",
   "format_string_parse",
-  "menu_back",
   "audio_reverb_update",
   "audio_buffer_sync",
   "func_800950AC"
@@ -69,6 +69,6 @@
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
  "note": "Extends current menu_save_options with hud_setup (0x800C8B8C, 1048 bytes, actual sound-system initialization). All seven old C files are byte-identical; all 24 prior members and the new member strictly MATCH. Existing seven context entries and keep choices are preserved. hud_setup is kept; its non-static inferred sound_list_init helper must be internal. It uses the existing real func_800A370C body from save.c. Existing own-data placements are unchanged. New function-local static zero-initialized s8 once flag is one logical byte, verified within the existing four-byte zero .data window at 0x80110274. A named, unclaimed eight-byte empty-return sound_list_init residue is not spliced. The u32 count argument conversion is explicit and the existing s32 bit-scan prototype is unchanged. No canonical source or override files changed in this packet.",
- "provenance": "superseded in place by PR #387 (mat3_sound_init_match_20261017/groups/menu_save_options, head ac9896e42): + hud_setup (sound-system init); installed by w34i",
- "supersedes": "menu_save_options (all 24 old members preserved)"
+ "provenance": "superseded in place by PR #387 (mat3_sound_init_match_20261017/groups/menu_save_options, head ac9896e42): + hud_setup (sound-system init); installed by w34i; superseded in place by lane f1 (2026-10-21): menu_back context -> member, one disclosed do {} while (0) in ctx_slot.c",
+ "supersedes": "menu_save_options (all 25 old members preserved; f1 adds menu_back = _DecodeGhost, context -> member)"
 }

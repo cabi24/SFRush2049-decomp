@@ -5,6 +5,7 @@
 .section .text.menu_back, "ax", @progbits
 .globl menu_back
 menu_back:
+    /* compiled from src/blob/menu_back.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8E2E0000

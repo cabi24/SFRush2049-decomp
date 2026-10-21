@@ -1,0 +1,16 @@
+== l1
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l2
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l3
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l4
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l5
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l6
+  FAIL ghost_race_setup: 3 of 110 words differ
+== l7
+  FAIL ghost_race_setup: 21 of 110 words differ
+== l8
+  FAIL ghost_race_setup: 74 of 110 words differ; compiled body is 109 words, target 110

@@ -208,6 +208,7 @@ void menu_back(Handle h) {
         m->buffer = *(s32 *)(*h)->h36;
         n = inflate_entry_alt(m->data, m->size, m->buffer);
         m->count = n / 3;
+        do {} while (0); /* f1: compiled-out block end (disclosed shaping): retail colours n into a1 */
         format_string_parse(m->buffer, n);
         m->loaded = 1;
     }
