@@ -39,6 +39,11 @@ def verify(repo):
     group = HERE / 'group'
     config = json.loads((group / 'group.json').read_text())
     accepted_dir = repo / 'src/blob/groups/slot_sound'
+    # w37: w37d superseded slot_sound in place (func_800979A0 a member); the group this packet extends is
+    # kept byte-identically in cloud/work/frontier/superseded/slot_sound/ (handoff section 5).
+    superseded = repo / 'cloud/work/frontier/superseded/slot_sound'
+    if (superseded / 'group.json').is_file():
+        accepted_dir = superseded
     accepted = json.loads((accepted_dir / 'group.json').read_text())
     require(config['claims'] == [], 'Research packet must not claim matching bytes')
     require(config['members'] == accepted['members'] + [NAME], 'Context membership changed')

@@ -60,6 +60,7 @@
       "particle_render",
       "credits_scroll",
       "func_800D9058",
+      "replay_save_prompt",
       "control_cell_text",
       "control_cell_text3",
       "control_cell_text2",
@@ -107,7 +108,7 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 17664,
+    "unaccepted_caller_bytes": 16124,
     "only_selector_unaccepted_direct_game_dependency": {
       "object_create": 112,
       "world_velocity_integrate": 712
@@ -339,7 +340,7 @@
       "start": "0x800DABDC",
       "bytes": 1540,
       "body_sha256": "faaa38a0bc0196b816e4801ff24500c29384994c0c4608e3e46637f87e87a065",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800DAC08",
         "0x800DAC48",

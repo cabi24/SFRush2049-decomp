@@ -48,7 +48,7 @@
   "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
   "own_data_tool_sha256": "7054d08452f75e038a8ab58ff32c11184c1d0733454479619b17dfc1ff9a5d6e",
   "native_manifest_sha256": "f3d13aca4410a120cbb48b8ed6398d4a2c75e5be094dfa731eb368b9c536990c",
-  "verification_script_sha256": "1abe6b1278630bafcf3c5b09152701b9ce093ea1c6fdfc6d7f7083d4194dc0f5",
+  "verification_script_sha256": "eafeed2037d0ca9b45c8c944277012b27bd0f2300351db23d3b9cdec6cfe1490",
   "functions": {
     "func_80096288": {
       "native_address": "0x80096288",
