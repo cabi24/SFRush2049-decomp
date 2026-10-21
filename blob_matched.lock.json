@@ -1324,10 +1324,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
+    "source_sha256": "5d572c9c1794856f0be954c9262f4f8b1d3769e35abb59d98c01bca554233360",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-21"
   },
   "controller_rumble_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1362,6 +1362,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-11"
+  },
+  "credits_screen": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_options_menu",
+    "source": "src/blob/groups/audio_options_menu/group.json",
+    "source_sha256": "9e35032b75b18c8bc17fef8bbcdf1c8493401a55f73793463ae4590bbbb2fdb6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "credits_scroll": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -1520,7 +1529,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_options_menu",
     "source": "src/blob/groups/audio_options_menu/group.json",
-    "source_sha256": "2227ca62630f31b8d3a0dea6cdfd1ef76727bd75485368af27ad448250a037ff",
+    "source_sha256": "9e35032b75b18c8bc17fef8bbcdf1c8493401a55f73793463ae4590bbbb2fdb6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -4957,10 +4966,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
+    "source_sha256": "5d572c9c1794856f0be954c9262f4f8b1d3769e35abb59d98c01bca554233360",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-21"
   },
   "func_800CA2F8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5599,7 +5608,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_options_menu",
     "source": "src/blob/groups/audio_options_menu/group.json",
-    "source_sha256": "2227ca62630f31b8d3a0dea6cdfd1ef76727bd75485368af27ad448250a037ff",
+    "source_sha256": "9e35032b75b18c8bc17fef8bbcdf1c8493401a55f73793463ae4590bbbb2fdb6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -5608,7 +5617,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_options_menu",
     "source": "src/blob/groups/audio_options_menu/group.json",
-    "source_sha256": "2227ca62630f31b8d3a0dea6cdfd1ef76727bd75485368af27ad448250a037ff",
+    "source_sha256": "9e35032b75b18c8bc17fef8bbcdf1c8493401a55f73793463ae4590bbbb2fdb6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -5633,7 +5642,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_options_menu",
     "source": "src/blob/groups/audio_options_menu/group.json",
-    "source_sha256": "2227ca62630f31b8d3a0dea6cdfd1ef76727bd75485368af27ad448250a037ff",
+    "source_sha256": "9e35032b75b18c8bc17fef8bbcdf1c8493401a55f73793463ae4590bbbb2fdb6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-21"
@@ -6355,6 +6364,23 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800E7038": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800E7038.c",
+    "source_sha256": "d98690d3716fc4e23090254334872b42b2b3e28cade5c414a9b0142d958e697b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
+  "func_800E7134": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "controller_poll",
+    "source": "src/blob/groups/controller_poll/group.json",
+    "source_sha256": "5d572c9c1794856f0be954c9262f4f8b1d3769e35abb59d98c01bca554233360",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
   },
   "func_800E762C": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -7518,6 +7544,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "func_8010FBE0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010FBE0.c",
+    "source_sha256": "85e2f94cabd763f873e5d97d229cd8cdcc9bd7b5656699e48613484f5da19504",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-21"
+  },
   "func_8010FC60": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8010FC60.c",
@@ -8539,10 +8573,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
+    "source_sha256": "5d572c9c1794856f0be954c9262f4f8b1d3769e35abb59d98c01bca554233360",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-21"
   },
   "player_state_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -8565,10 +8599,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
+    "source_sha256": "5d572c9c1794856f0be954c9262f4f8b1d3769e35abb59d98c01bca554233360",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-12"
+    "verified_at": "2026-10-21"
   },
   "players_frame_update": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

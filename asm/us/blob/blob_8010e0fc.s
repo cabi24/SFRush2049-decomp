@@ -1769,6 +1769,7 @@ sync_acquire_menu:
 .section .text.func_8010FBE0, "ax", @progbits
 .globl func_8010FBE0
 func_8010FBE0:
+    /* compiled from src/blob/func_8010FBE0.c */
     .word 0x3C018015
     .word 0xAC205238
     .word 0x3C018015

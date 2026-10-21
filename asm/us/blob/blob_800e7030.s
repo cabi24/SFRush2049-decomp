@@ -12,6 +12,7 @@ func_800E7030:
 .section .text.func_800E7038, "ax", @progbits
 .globl func_800E7038
 func_800E7038:
+    /* compiled from src/blob/func_800E7038.c */
     .word 0x3C0E8011
     .word 0x81CE1954
     .word 0x27BDFFE8
@@ -79,6 +80,7 @@ func_800E7038:
 .section .text.func_800E7134, "ax", @progbits
 .globl func_800E7134
 func_800E7134:
+    /* compiled from src/blob/func_800E7134.c */
     .word 0x27BDFFD0
     .word 0x3C0E8011
     .word 0x81CE1954

@@ -1,0 +1,11 @@
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0001.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0003.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0005.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0007.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0009.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0011.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0013.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0015.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0017.c
+strict  79  mnem-missing  11  aligned-missing  45  size +0  v0019.c
+32 files

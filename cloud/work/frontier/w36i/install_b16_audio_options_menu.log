@@ -1,0 +1,3 @@
+spliced audio_options_menu: 5 members, new: ['credits_screen']
+image coverage: 1151/1216 functions, 500864/647072 bytes (77.40%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

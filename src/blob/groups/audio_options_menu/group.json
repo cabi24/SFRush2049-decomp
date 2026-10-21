@@ -3,7 +3,8 @@
   "func_800D690C",
   "func_800D6914",
   "func_800D7634",
-  "drone_pathfind_main"
+  "drone_pathfind_main",
+  "credits_screen"
  ],
  "context": [
   "speed_set",
@@ -31,7 +32,8 @@
   "func_800D6160.c",
   "init_w36q.c",
   "ctx_sign_extend.c",
-  "ctx_func_800B8810.c"
+  "ctx_func_800B8810.c",
+  "uninit_w36w3.c"
  ],
  "keep": [
   "func_800D7634",

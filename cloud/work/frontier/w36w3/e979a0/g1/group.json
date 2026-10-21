@@ -1,0 +1,42 @@
+{
+  "members": [
+    "func_80096288",
+    "slot_value_get",
+    "display_list_alloc",
+    "player_state_get",
+    "slot_deactivate",
+    "sound_update_channel",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "mode_byte_set",
+    "func_800A4E58",
+    "entity_render_mode",
+    "func_800979A0"
+  ],
+  "files": [
+    "group.c",
+    "func_800A4E58.c",
+    "entity_render_mode.c",
+    "func_800979A0.c"
+  ],
+  "keep": [
+    "slot_value_get",
+    "display_list_alloc",
+    "player_state_get",
+    "slot_deactivate",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "mode_byte_set",
+    "func_800A4E58",
+    "entity_render_mode",
+    "func_800979A0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [],
+  "note": "Current accepted slot_sound context reused unchanged; only func_800979A0 is new. No stand-ins or fabricated helper definitions. Research NONMATCH. No matching claims.",
+  "provenance": "Base dea99f09; archived cloud/work/s20261004/C/g979a0/group.c caller transplanted to accepted slot_sound context.",
+  "claims": []
+}

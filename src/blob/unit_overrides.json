@@ -684,6 +684,22 @@
   {
    "name": "_BGLoadWave",
    "reason": "group audio_frame_sync (w36x5, MAT3 waves.c): private IPA helper of LoadWave/ReplaceWave/SetupWaveModel; retail convention is internal"
+  },
+  {
+   "name": "credits_screen",
+   "reason": "group audio_options_menu (w36w3, MAT3 uninitScreen@audioscr.c): internal; the us_* helpers are non-static inlined helpers, caller-less after inlining"
+  },
+  {
+   "name": "us_uninitButtons",
+   "reason": "group audio_options_menu (w36w3, MAT3 uninitScreen@audioscr.c): internal; the us_* helpers are non-static inlined helpers, caller-less after inlining"
+  },
+  {
+   "name": "us_AudKillSong",
+   "reason": "group audio_options_menu (w36w3, MAT3 uninitScreen@audioscr.c): internal; the us_* helpers are non-static inlined helpers, caller-less after inlining"
+  },
+  {
+   "name": "us_ProcessCommand",
+   "reason": "group audio_options_menu (w36w3, MAT3 uninitScreen@audioscr.c): internal; the us_* helpers are non-static inlined helpers, caller-less after inlining"
   }
  ],
  "prefer_definition": [

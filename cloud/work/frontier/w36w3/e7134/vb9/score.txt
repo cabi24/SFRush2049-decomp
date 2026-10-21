@@ -1,0 +1,7 @@
+strict  11  mnem-missing   4  aligned-missing   7  size +0  v0005.c
+strict  16  mnem-missing   6  aligned-missing   9  size +0  v0000.c
+strict  16  mnem-missing   6  aligned-missing   9  size +0  v0003.c
+strict 164  mnem-missing   6  aligned-missing  61  size +2  v0001.c
+strict 164  mnem-missing   6  aligned-missing  61  size +2  v0004.c
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0002.c COMPILE FAIL
+6 files

@@ -1,0 +1,33 @@
+{
+ "members": [
+  "controller_poll",
+  "func_800C9590",
+  "player_mode_set",
+  "player_state_set",
+  "func_800E7134"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "controller_poll",
+  "func_800E7134",
+  "process_inputs",
+  "player_mode_set",
+  "player_state_set",
+  "__standin_controller_poll",
+  "__standin_func_800C9590",
+  "__standin_func_800E7038"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "blob_group seed from build/ipa_groups.json",
+ "unprototyped": [],
+ "context": [
+  "func_800E7038",
+  "process_inputs"
+ ],
+ "provenance": "wave 24 (w24d): controller_poll body matched, moved from context to members; cloud/work/frontier/w24d/RESULTS.md; wave 36 (w36w3): func_800E7134 body written (N64 pad reader, volatile shared-state views), moved from context to members; cloud/work/frontier/w36w3/RESULTS.md",
+ "claims": [
+  "func_800E7134"
+ ]
+}

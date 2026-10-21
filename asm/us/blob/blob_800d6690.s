@@ -12,6 +12,7 @@ func_800D6690:
 .section .text.credits_screen, "ax", @progbits
 .globl credits_screen
 credits_screen:
+    /* compiled from src/blob/credits_screen.c */
     .word 0x27BDFFE8
     .word 0x3C118014
     .word 0x26312728

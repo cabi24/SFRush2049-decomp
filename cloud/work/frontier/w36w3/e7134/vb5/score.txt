@@ -1,0 +1,9 @@
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0003.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0004.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0005.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0006.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0007.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0008.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0009.c
+strict  54  mnem-missing  12  aligned-missing  16  size +0  v0010.c
+15 files
