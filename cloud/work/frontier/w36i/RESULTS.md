@@ -26,10 +26,11 @@ untracked-lane-file receipts.
 | 11 | dbcc64cd5 | game: w36x4 StartNewBlast/AnimateBlast/StartBlast (NEW w36x4_blast) | +3,040 game (1113 -> 1116) | | | yes (dbcc64cd5) |
 | 12 | 559503fb7 | game: w36p _UpdateGame + _CalcPolePositions (NEW frontier_update_game; provisional entry retired); w36x3 update_game_data + _UpdateTireAppearance (NEW w36x3_update_game_data; provisional entry retired) and FindWinner (single); w36w demo pair (backed out in 12b) | +9,188 game (1116 -> 1123) | | | yes (bb34a8d5e) |
 | 12b | bb34a8d5e | back out w36w_demo_pair (ipakit sigs accuracy floor; held) | -1,064 game (1123 -> 1121) | | | yes (bb34a8d5e) |
+| 13 | (this) | game, the formerly held selector-caller set after 96e39b502: w36o ShowHUD/animGear/animCountdownTimer (NEW groups; w36o_countdown from w36i's copy, context += camera_shake_update), w36q particle_collision/particle_render (physics_sym) + setPauseState (NEW frontier_pausescr_state), w36z drawRaceStandings (frontier_results_table), w36t _DrawText (codex_defaults_a16, w36i keep fix), w36w animPanes/animElapsedTimer (credits_scroll_grp merge), w36k controlscr (NEW w36k_controlscr, 8 members incl. drone_throttle_calc via the window proof; CLAIMS row) | +19,720 game (1121 -> 1138) | | | |
 
 ## Held for owner
 
-### Summary: the selector-caller set (one owner patch, one landing)
+### Summary: the selector-caller set (one owner patch, one landing) — LANDED in batch 13 after the owner's 96e39b502
 
 `held/slot_contract_audit_held_callers.patch` regenerates the slot contract audit evidence (and the test's
 accepted list / counts) for ALL of these landed together; `held/substantial_scout_held.patch` adds func_80100E58

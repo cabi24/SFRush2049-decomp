@@ -1,0 +1,18 @@
+t1.c: FAIL func_80100E58: 643 of 683 words differ; compiled body is 684 words, target 683 | words 19 ops 8 norm 8 | frame 528/528
+  oracle(stock split): want 683 words, got 684; differing rows 19 (words); frame 528/528; unverified 0 unresolved 0
+  [SPL] split lr=329 sym=15 start bb=39
+  counted@45: 328/280* 320/278* 312/312* 311/311* 310/310* 309/309* 308/308* 303/303* 300/300* 297/297* 294/294* 291/291* 290/290* 289/289* 287/287* 286/286* 277/277* 123/123* 24/24* 0/0*
+  [SPL]   adj bb=45 regsleft=12 old=19 shared=4 numintf=20 f0=1c017e00 f1=00000000
+  [SPL]   add
+t2.c: FAIL func_80100E58: 119 of 683 words differ | words 121 ops 14 norm 14 | frame 528/528
+  oracle(stock split): want 683 words, got 683; differing rows 121 (words); frame 528/528; unverified 0 unresolved 0
+  [SPL] split lr=331 sym=15 start bb=39
+  counted@45: 330/282* 322/280* 314/314* 313/313* 312/312* 311/311* 310/310* 305/305* 302/302* 299/299* 296/296* 293/293* 292/292* 291/291* 289/289* 288/288* 279/279* 125/125* 24/24* 0/0*
+  [SPL]   adj bb=45 regsleft=12 old=19 shared=4 numintf=20 f0=1c017e00 f1=00000000
+  [SPL]   add
+t3.c: FAIL func_80100E58: 643 of 683 words differ; compiled body is 684 words, target 683 | words 19 ops 8 norm 8 | frame 528/528
+  oracle(stock split): want 683 words, got 684; differing rows 19 (words); frame 528/528; unverified 0 unresolved 0
+  [SPL] split lr=332 sym=15 start bb=39
+  counted@45: 331/283* 323/281* 315/315* 314/314* 313/313* 312/312* 311/311* 306/306* 303/303* 300/300* 297/297* 294/294* 293/293* 292/292* 290/290* 289/289* 280/280* 126/126* 29/29* 0/0*
+  [SPL]   adj bb=45 regsleft=12 old=19 shared=4 numintf=20 f0=1c017e00 f1=00000000
+  [SPL]   add

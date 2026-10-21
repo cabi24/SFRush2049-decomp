@@ -97,6 +97,7 @@ func_80100D5C:
 .section .text.func_80100E58, "ax", @progbits
 .globl func_80100E58
 func_80100E58:
+    /* compiled from src/blob/func_80100E58.c */
     .word 0x3C0E8015
     .word 0x85CEA108
     .word 0x27BDFDF0
@@ -6678,6 +6679,7 @@ func_80106D94:
 .section .text.checkpoint_hit, "ax", @progbits
 .globl checkpoint_hit
 checkpoint_hit:
+    /* compiled from src/blob/checkpoint_hit.c */
     .word 0x27BDFF70
     .word 0xAFBF002C
     .word 0xAFB40028

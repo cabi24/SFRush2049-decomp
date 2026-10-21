@@ -576,6 +576,70 @@
   {
    "name": "func_800E7FA0",
    "reason": "group w36x3_update_game_data (w36x3, MAT3 _UpdateTireAppearance@mdrive.c): private IPA callee of update_game_data (func_800E847C)"
+  },
+  {
+   "name": "HAL_SetFont_ShowHUD",
+   "reason": "group w36o_showhud (w36o, MAT3 ShowHUD@hud.c): non-static inlined HAL_text.c helper, caller-less after inlining"
+  },
+  {
+   "name": "_GetSemaphore_ShowHUD",
+   "reason": "group w36o_showhud (w36o, MAT3 ShowHUD@hud.c): non-static inlined HAL_text.c helper, caller-less after inlining"
+  },
+  {
+   "name": "_ReleaseSemaphore_ShowHUD",
+   "reason": "group w36o_showhud (w36o, MAT3 ShowHUD@hud.c): non-static inlined HAL_text.c helper, caller-less after inlining"
+  },
+  {
+   "name": "_GetSemaphore_Gear",
+   "reason": "group w36o_animgear (w36o, MAT3 animGear@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "_ReleaseSemaphore_Gear",
+   "reason": "group w36o_animgear (w36o, MAT3 animGear@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_SetFont_Gear",
+   "reason": "group w36o_animgear (w36o, MAT3 animGear@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "TB_RightText_Gear",
+   "reason": "group w36o_animgear (w36o, MAT3 animGear@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "_GetSemaphore_Countdown",
+   "reason": "group w36o_countdown (w36o, MAT3 animCountdownTimer@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "_ReleaseSemaphore_Countdown",
+   "reason": "group w36o_countdown (w36o, MAT3 animCountdownTimer@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "HAL_SetFont_Countdown",
+   "reason": "group w36o_countdown (w36o, MAT3 animCountdownTimer@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "TB_SetJust_Countdown",
+   "reason": "group w36o_countdown (w36o, MAT3 animCountdownTimer@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "PlayGameSound_Countdown",
+   "reason": "group w36o_countdown (w36o, MAT3 animCountdownTimer@hud.c): non-static inlined helper, caller-less after inlining"
+  },
+  {
+   "name": "audio_doppler_calc",
+   "reason": "group codex_defaults_a16 (w36t, MAT3 _DrawText@HAL_text.c): private IPA callee (text in s2, length in s0) of HAL_FinishText and HAL_DrawText"
+  },
+  {
+   "name": "gfx_lock_CS",
+   "reason": "group w36k_controlscr (w36k, MAT3 controlscr.c): non-static inlined helper in d9058.c; its deleted stub carries a symbol (w17j)"
+  },
+  {
+   "name": "gfx_unlock_CS",
+   "reason": "group w36k_controlscr (w36k, MAT3 controlscr.c): non-static inlined helper in d9058.c; its deleted stub carries a symbol (w17j)"
+  },
+  {
+   "name": "font_set_CS",
+   "reason": "group w36k_controlscr (w36k, MAT3 controlscr.c): non-static inlined helper in d9058.c; its deleted stub carries a symbol (w17j)"
   }
  ],
  "prefer_definition": [
@@ -744,6 +808,11 @@
    "name": "D_80152818",
    "file": "src/blob/groups/frontier_car_checkpoints/frontier_path_D169C_path.c",
    "reason": "frontier_car_checkpoints (w34i, PR #384) compiles a byte copy of frontier_path_D169C's path.c as context; in the shadow unit the definition stays in src/blob/groups/frontier_path_D169C/path.c"
+  },
+  {
+   "name": "D_80118E20",
+   "file": "src/blob/groups/w36o_countdown/countdown.c",
+   "reason": "w36o_countdown (w36o): the two TB_SetJust tail stores share one lui, which needs gJust defined in the group's program; in the shadow unit credits_scroll_grp/gr3_d.c is the one definition"
   }
  ],
  "data_align": [

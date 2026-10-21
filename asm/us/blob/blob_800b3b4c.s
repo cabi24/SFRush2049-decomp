@@ -1452,6 +1452,7 @@ func_800B4E68:
 .section .text.func_800B4FB0, "ax", @progbits
 .globl func_800B4FB0
 func_800B4FB0:
+    /* compiled from src/blob/func_800B4FB0.c */
     .word 0x27BDFFA8
     .word 0xAFB00028
     .word 0x3C108011
@@ -3096,6 +3097,7 @@ func_800B6748:
 .section .text.audio_doppler_calc, "ax", @progbits
 .globl audio_doppler_calc
 audio_doppler_calc:
+    /* compiled from src/blob/audio_doppler_calc.c */
     .word 0x27BDFF90
     .word 0xAFBF0034
     .word 0xAFB00074

@@ -1,0 +1,2 @@
+x5.c | FAIL controls_animText: 367 of 394 words differ; compiled body is 392  | rows 159 (words); frame 360/352;  | B: rows 234 (words); frame 544/520; 
+DONE

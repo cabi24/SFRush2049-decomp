@@ -1,0 +1,3 @@
+spliced codex_defaults_a16: 2 members, new: ['audio_doppler_calc']
+image coverage: 1129/1216 functions, 478756/647072 bytes (73.99%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

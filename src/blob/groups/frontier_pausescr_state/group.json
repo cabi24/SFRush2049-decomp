@@ -1,0 +1,22 @@
+{
+ "name": "frontier_pausescr_state",
+ "members": [
+  "func_800B4FB0"
+ ],
+ "context": [
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "pause.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_800B4FB0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Pause-menu state switch (GC pausescr.c): func_800B4FB0 = setPauseState (kept; callers physics_sym and the other pause screens) with updatePauseStateCreate inlined (ps_updatePauseStateCreate, non-static, not on keep). Context ctx_gr3_b.c = byte-identical copy of src/blob/groups/credits_scroll_grp/gr3_b.c (slot_state_setup takes its font in s2 by IPA only with its body in the program; object_create and func_800B669C come with the file, as in frontier_audioscr / physics_sym). unit_overrides force_internal (if not derived): ps_gfx_lock, ps_gfx_unlock, ps_font_set, ps_SetFont, ps_updatePauseStateCreate.",
+ "provenance": "w36q (wave 36), MAT3 pausescr.c setPauseState/updatePauseStateCreate typed port; cloud/work/frontier/w36q/RESULTS.md"
+}

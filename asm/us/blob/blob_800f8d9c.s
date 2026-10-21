@@ -6347,6 +6347,7 @@ func_800FEC9C:
 .section .text.game_timer_display, "ax", @progbits
 .globl game_timer_display
 game_timer_display:
+    /* compiled from src/blob/game_timer_display.c */
     .word 0x27BDFF88
     .word 0x3C0E8011
     .word 0x81CE0634

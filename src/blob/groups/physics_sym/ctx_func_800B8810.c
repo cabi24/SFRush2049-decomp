@@ -3261,7 +3261,7 @@ void func_800D6914(void);
 void func_800D6E00(s32 arg0);
 void func_800D7634(void);
 s32 func_800D8078(s8 arg0);
-
+s32 func_800D8154(s32 arg0);
 void func_800D816C(s32 arg0);
 void func_800D9058(void);
 void func_800D91A0(void);
@@ -3690,12 +3690,6 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-s32 func_800D8154(s32 arg0) {
-    s32 var_v1;
-
-    var_v1 = 1;
-    if (arg0 == 8) {
-        var_v1 = 0;
-    }
-    return var_v1;
+void func_800B8810(void) {
+    D_80117428 = 1;
 }

@@ -747,6 +747,7 @@ dust_cloud_effect:
 .section .text.skid_mark_render, "ax", @progbits
 .globl skid_mark_render
 skid_mark_render:
+    /* compiled from src/blob/skid_mark_render.c */
     .word 0x27BDFFC0
     .word 0xAFB00028
     .word 0x3C108015

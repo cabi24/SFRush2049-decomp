@@ -1,0 +1,51 @@
+dw_04.c | FAIL func_800D9058: 21 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_05.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_06.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_07.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_08.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_09.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_10.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_12.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+dw_14.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hc_08.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hc_09.c | FAIL func_800D9058: 24 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hc_10.c | FAIL func_800D9058: 24 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hc_12.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hc_14.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hg_04.c | FAIL func_800D9058: 32 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hg_05.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hg_06.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hg_07.c | FAIL func_800D9058: 51 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hg_08.c | FAIL func_800D9058: 50 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hg_09.c | FAIL func_800D9058: 50 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hg_10.c | FAIL func_800D9058: 50 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hg_12.c | FAIL func_800D9058: 21 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hg_14.c | FAIL func_800D9058: 21 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hn_04.c | FAIL func_800D9058: 33 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hn_05.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hn_06.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hn_07.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hn_08.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hn_09.c | EQUAL func_800D9058: 82 words (internal, c_hn_09.c) | EQUAL func_800D91A0: 965 words (kept, c_
+hn_10.c | EQUAL func_800D9058: 82 words (internal, c_hn_10.c) | EQUAL func_800D91A0: 965 words (kept, c_
+hn_12.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hn_14.c | FAIL func_800D9058: 82 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hr_04.c | FAIL func_800D9058: 21 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_05.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_06.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_07.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_08.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_09.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_10.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_12.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hr_14.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+hs_04.c | FAIL func_800D9058: 73 of 82 words differ | FAIL func_800D91A0: 256 of 965 words dif
+hs_05.c | FAIL func_800D9058: 56 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_06.c | FAIL func_800D9058: 56 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_07.c | FAIL func_800D9058: 49 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_08.c | FAIL func_800D9058: 49 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_09.c | FAIL func_800D9058: 49 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_10.c | FAIL func_800D9058: 49 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_12.c | FAIL func_800D9058: 28 of 82 words differ; compiled body is 81 words, target 82 | EQUAL func_800D91A0: 965 words (kept, c_
+hs_14.c | FAIL func_800D9058: 20 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+DONE

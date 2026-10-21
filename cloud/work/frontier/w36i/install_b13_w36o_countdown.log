@@ -1,0 +1,3 @@
+spliced w36o_countdown: 1 members, new: ['emitter_update']
+image coverage: 1124/1216 functions, 471968/647072 bytes (72.94%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

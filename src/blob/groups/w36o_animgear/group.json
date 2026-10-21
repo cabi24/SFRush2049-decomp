@@ -1,0 +1,32 @@
+{
+ "name": "w36o_animgear",
+ "members": [
+  "func_800EF288"
+ ],
+ "context": [
+  "slot_state_setup",
+  "sound_update_channel"
+ ],
+ "files": [
+  "animgear.c",
+  "ctx_gr3_b.c",
+  "ctx_gr3.c"
+ ],
+ "keep": [
+  "func_800EF288",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "func_800EF288 = MAT3 animGear@hud.c. Context (byte-identical copies): ctx_gr3_b.c = credits_scroll_grp/gr3_b.c (slot_state_setup s2 font convention), ctx_gr3.c = credits_scroll_grp/gr3.c (sound_update_channel t0 convention). keep = member + the credits group's keep entries for the gr3.c functions. Inlined helpers _GetSemaphore_Gear, _ReleaseSemaphore_Gear, HAL_SetFont_Gear, TB_RightText_Gear are non-static and not on keep (w17j); unit install: force_internal += those four.",
+ "provenance": "w36o: direct MAT3 port, unit EQUAL on the first draft"
+}

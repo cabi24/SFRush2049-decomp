@@ -1505,6 +1505,7 @@ func_800D7634:
 .section .text.render_replay_ui, "ax", @progbits
 .globl render_replay_ui
 render_replay_ui:
+    /* compiled from src/blob/render_replay_ui.c */
     .word 0x27BDFFE8
     .word 0xAFB40018
     .word 0x00147600
@@ -1542,6 +1543,7 @@ render_replay_ui:
 .section .text.render_results_screen, "ax", @progbits
 .globl render_results_screen
 render_results_screen:
+    /* compiled from src/blob/render_results_screen.c */
     .word 0x27BDFFC0
     .word 0xAFB70034
     .word 0xAFB60030
@@ -1724,6 +1726,7 @@ drone_target_update:
 .section .text.func_800D8078, "ax", @progbits
 .globl func_800D8078
 func_800D8078:
+    /* compiled from src/blob/func_800D8078.c */
     .word 0xAFA40000
     .word 0x00047600
     .word 0x000E2603
@@ -1794,6 +1797,7 @@ func_800D8154:
 .section .text.func_800D816C, "ax", @progbits
 .globl func_800D816C
 func_800D816C:
+    /* compiled from src/blob/func_800D816C.c */
     .word 0x000A7600
     .word 0x000E7E03
     .word 0x000F5880
@@ -2497,6 +2501,7 @@ func_800D816C:
 .section .text.drone_throttle_calc, "ax", @progbits
 .globl drone_throttle_calc
 drone_throttle_calc:
+    /* compiled from src/blob/drone_throttle_calc.c */
     .word 0x27BDFF90
     .word 0x83AF0073
     .word 0x3C0E8011
@@ -2757,6 +2762,7 @@ drone_throttle_calc:
 .section .text.func_800D9058, "ax", @progbits
 .globl func_800D9058
 func_800D9058:
+    /* compiled from src/blob/func_800D9058.c */
     .word 0x3C0E8015
     .word 0x85CE1AD0
     .word 0x27BDFFE8
@@ -2843,6 +2849,7 @@ func_800D9058:
 .section .text.func_800D91A0, "ax", @progbits
 .globl func_800D91A0
 func_800D91A0:
+    /* compiled from src/blob/func_800D91A0.c */
     .word 0x27BDFF10
     .word 0xAFBE0078
     .word 0x3C1E8011

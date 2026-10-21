@@ -1290,6 +1290,7 @@ particle_lifetime_set:
 .section .text.particle_render, "ax", @progbits
 .globl particle_render
 particle_render:
+    /* compiled from src/blob/particle_render.c */
     .word 0x27BDFF80
     .word 0x3C148014
     .word 0x269461D0
@@ -1415,6 +1416,7 @@ func_800B8810:
 .section .text.particle_collision, "ax", @progbits
 .globl particle_collision
 particle_collision:
+    /* compiled from src/blob/particle_collision.c */
     .word 0x27BDFF78
     .word 0xAFBF001C
     .word 0x240E0001

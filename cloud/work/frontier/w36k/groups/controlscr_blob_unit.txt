@@ -1,0 +1,10 @@
+  EQUAL func_800D91A0: 965 words (kept, c_caller.c)
+  EQUAL func_800D816C: 699 words (internal, c_target.c)
+  EQUAL drone_throttle_calc: 256 words (internal, c_dtc.c)
+  EQUAL func_800D9058: 82 words (internal, c_d9058.c)
+  EQUAL render_replay_ui: 33 words (internal, c_rows.c)
+  EQUAL render_results_screen: 49 words (kept, c_rows.c)
+  EQUAL func_800D8078: 55 words (internal, c_predicate.c)
+  EQUAL func_800D8154: 6 words (internal, c_d8154.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 8/8 equal; object build/blob_unit/w36k/unit.o (16.4s)

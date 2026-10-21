@@ -8319,6 +8319,7 @@ game_late_init:
 .section .text.emitter_update, "ax", @progbits
 .globl emitter_update
 emitter_update:
+    /* compiled from src/blob/emitter_update.c */
     .word 0x27BDFF28
     .word 0x3C0E8011
     .word 0x8DCE74B4
@@ -8633,6 +8634,7 @@ emitter_update:
 .section .text.func_800EF288, "ax", @progbits
 .globl func_800EF288
 func_800EF288:
+    /* compiled from src/blob/func_800EF288.c */
     .word 0x27BDFF48
     .word 0xAFBF003C
     .word 0x44806000

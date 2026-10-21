@@ -1,0 +1,3 @@
+spliced credits_scroll_grp: 16 members, new: ['checkpoint_hit', 'game_timer_display']
+image coverage: 1131/1216 functions, 479688/647072 bytes (74.13%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

@@ -1,0 +1,33 @@
+{
+ "name": "w36o_countdown",
+ "members": [
+  "emitter_update"
+ ],
+ "context": [
+  "slot_state_setup",
+  "sound_update_channel",
+  "camera_shake_update"
+ ],
+ "files": [
+  "countdown.c",
+  "ctx_gr3_b.c",
+  "ctx_gr3.c"
+ ],
+ "keep": [
+  "emitter_update",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "emitter_update = MAT3 animCountdownTimer@hud.c. Context (byte-identical copies): ctx_gr3_b.c = credits_scroll_grp/gr3_b.c (slot_state_setup s2 font convention), ctx_gr3.c = credits_scroll_grp/gr3.c. Inlined helpers _GetSemaphore_Countdown, _ReleaseSemaphore_Countdown, HAL_SetFont_Countdown, TB_SetJust_Countdown, PlayGameSound_Countdown are non-static and not on keep (w17j); unit install: force_internal += those five. Own data: function-local statics sec (retail 0x80124F74) and nextBeep = 30 (retail 0x801161B8).",
+ "provenance": "w36o: direct MAT3 port w36i: context += camera_shake_update (defined by the ctx_gr3.c copy and called by emitter_update; blob_group maps the call through a context slice). No source change."
+}

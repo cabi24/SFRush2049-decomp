@@ -1,0 +1,6 @@
+a1.c | FAIL func_800D9058: 16 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+a2.c | FAIL func_800D9058: 24 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+a3.c |  | 
+a4.c | FAIL func_800D9058: 24 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+a5.c | FAIL func_800D9058: 15 of 82 words differ | EQUAL func_800D91A0: 965 words (kept, c_
+DONE

@@ -1,20 +1,33 @@
 {
-  "members": [
-    "func_800B6748"
-  ],
-  "context": [
-    "menu_input_process",
-    "world_trigger_check",
-    "world_velocity_integrate"
-  ],
-  "files": [
-    "group.c"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "keep": [
-    "menu_input_process",
-    "world_trigger_check",
-    "world_velocity_integrate"
-  ],
-  "provenance": "A16: seven true pointer outputs, three actual retail callers, switch table validated from authoritative game image; no stand-in."
+ "members": [
+  "func_800B6748",
+  "audio_doppler_calc"
+ ],
+ "context": [
+  "menu_input_process",
+  "world_trigger_check",
+  "world_velocity_integrate",
+  "sound_update_channel"
+ ],
+ "files": [
+  "group.c",
+  "drawtext.c",
+  "slot_sound.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "menu_input_process",
+  "world_trigger_check",
+  "world_velocity_integrate",
+  "slot_value_get",
+  "display_list_alloc",
+  "player_state_get",
+  "slot_deactivate",
+  "mode_byte2_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "mode_byte_set"
+ ],
+ "provenance": "A16: seven true pointer outputs, three actual retail callers, switch table validated from authoritative game image; no stand-in. | w36t: _DrawText member (cloud/work/frontier/w36t/RESULTS.md) w36i: keep += the eight slot_sound functions that slot_sound.c defines and slot_sound keeps (as w36u_audio_init_sys does), so the byte copy does not turn them internal in the whole-program unit.",
+ "note": "w36t (wave 36) supersedes codex_defaults_a16 IN PLACE: same name, old member func_800B6748 and group.c unchanged (byte-identical), context unchanged; adds member audio_doppler_calc = _DrawText (MAT3 HAL_text.c, drawtext.c), a private IPA callee of the context callers menu_input_process (HAL_DrawText) and world_velocity_integrate (HAL_FinishText): text arrives in s2, length in s0, so it must stay internal (not on keep; unit_overrides force_internal audio_doppler_calc). slot_sound.c is a byte-identical copy of src/blob/groups/slot_sound/group.c, context only, for sound_update_channel's IPA t0 parameter (_SetupFontData(0)). Unit: blob_unit score audio_doppler_calc --internal audio_doppler_calc --with drawtext.c --neighbours -> EQUAL, 0 locked bodies differ."
 }

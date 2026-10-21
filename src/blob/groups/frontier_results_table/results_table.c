@@ -9,7 +9,22 @@
  * func_80102448 = per-player stunt records table (13 rows; F30 calls it for gameplay_mode 4).
  * func_80102980 = GC drawBattleScore (battle head-to-head matrix: rows = players+2, cols = players+1;
  *   F30 calls it for gameplay_mode 6) (w30a).
- * func_80100E58 stays asm (unmatched draft: w30a/func_80100E58/best.c).
+ * func_80100E58 = GC drawRaceStandings@gameoverscr.c (w36z, from w36m's MAT3 typed port f0e58/best_port.c and
+ *   w33a/w30a drafts): rows = players+1, cols = 3 or 4 (volatile gNumCars == 1, or circuit and not place_locked),
+ *   loop 1 cell backgrounds (drawRect, rank colours), loop 2 text: name column (inlined TB_DrawEllipseText =
+ *   rs_DrawEllipseText with its char[160] buffer, "DRONE" for drones), header row fixed[208]/[210]/[22], best race
+ *   time / best lap "%d:%02d.%03d" (font 3) or fixed[215], finishing place text. Frame 528, every anchor as retail.
+ *   Helpers rs_DrawEllipseText / rs_SetJust (GC TB_DrawEllipseText / TB_SetJust): non-static, internal, inlined.
+ *   SOURCE FORMS (each is a spelling of the GC code; disclosed, see cloud/work/frontier/w36z/RESULTS.md):
+ *   - loop 1 computes the cell position right before drawRect (`x = ...; bgY = 36 + row * 14;` after the colour
+ *     switch; GC computes them at the loop top): uopt numbers col*60 after gRankedPlayer[row-1], which gives retail's
+ *     spill homes and the header-block order of the s-register values in loop 2;
+ *   - the final text call is written `col * 60 - cols * 60 / 2 + 190` (= GC's x + 30): with `x + 30` the constant
+ *     160 becomes a loop-invariant live-range candidate in the draw block, a 21st interferer of the cols split piece
+ *     (uopt f_addadjacents needs numintf <= 20 to add the column==0 header block); proven with a split oracle;
+ *   - loop 1 else-branch colour init on two lines (as GC drawStuntStandings writes it): as1 store order;
+ *   - two f32 locals time/time2 for the two time columns (GC: two block-local `time`), x/y/bgY declared first.
+ *   No unused locals, no pads.
  * Helpers: rt_gfx_lock/rt_gfx_unlock (the D_801461D0 font lock), rt_font_set (lock; slot_state_setup;
  *   unlock, 24 B inline area) and rt_font_set_b (lock helper + osSendMesg written out, 16 B inline area).
  *   Non-static so umerge leaves no deleted-procedure stubs; internal (not on keep). HELPER IDENTITY
@@ -107,7 +122,8 @@ extern CarB6 D_80152906[];
 extern CarB7 D_80152907[];
 extern CarF8 D_80152908[];
 extern Rec808 D_8014AA16[];
-extern s16 D_801543CA,D_80152734;
+extern volatile s16 D_801543CA;
+extern s16 D_80152734;
 extern u8 D_801543D4,D_80144018[];
 extern f32 D_80144DA8[];
 extern char D_8012031C[],D_80120324[],D_80120334[];
@@ -122,7 +138,8 @@ extern s32 fcvt_wrapper(char *,char *,...);
 extern s32 osRecvMesg(OSMesgQueue *,void **,s32),osSendMesg(OSMesgQueue *,void *,s32);
 extern s32 slot_state_setup(s32);
 void func_80100D5C(s32 x, s32 y, s32 w, s32 h, u8 *color);
-extern void func_80101904(void),func_80101D84(void),func_80100E58(void),drawBattleScore(void);
+extern void func_80101904(void),func_80101D84(void),drawBattleScore(void);
+void func_80100E58(void);
 void func_80102448(void);
 extern s32 func_800F84B0(s32),object_bytes_sum_global(void);
 void rt_gfx_lock(void) {osRecvMesg(&D_801461D0,0,1);}
@@ -132,6 +149,117 @@ s32 rt_font_set(s32 font) {
     rt_gfx_lock();previous=slot_state_setup(font);rt_gfx_unlock();
     return previous;
 }
+s16 rs_CenterText(char *text, s16 centerX);
+void rs_DrawEllipseText(s16 x, s16 y, s16 w, char *text)
+{
+    char str[160];
+    race_position_update(str, text, w);
+    state_utility(x, y, str);
+}
+
+void rs_SetJust(s32 h, s32 v)
+{
+    D_80118E20[0] = h;
+    D_80118E20[1] = v;
+}
+
+void func_80100E58(void)
+{
+    s32 x;
+    s32 y;
+    s32 bgY;
+    char *str;
+    char str1[40];
+    s32 rows, cols;
+    s32 row, col;
+    f32 time;
+    f32 time2;
+    RGBA c;
+
+    rows = active_player_count + 1;
+    cols = (D_801543CA == 1 || (gameplay_mode == 3 && !D_80152907[D_801543D4].flag)) ? 3 : 4;
+    for (row = 0; row < rows; row++) {
+        for (col = 0; col < cols; col++) {
+            if (row == 0 && col == 0) continue;
+            if (col > 0 && row > 0) {
+                c.r = 0; c.g = 0; c.b = 0; c.a = 192;
+                switch (D_80143F54[row - 1]) {
+                case 0: c.b = 128; break;
+                case 1: c.r = 128; break;
+                case 2: c.r = 128; c.g = 128; break;
+                case 3: c.g = 128; break;
+                }
+            } else {
+                c.r = 0; c.g = 0; c.b = 0;
+                c.a = 192;
+            }
+            x = 160 - cols * 60 / 2 + col * 60;
+            bgY = 36 + row * 14;
+            func_80100D5C(x, bgY, 60, 14, (u8 *)&c);
+        }
+    }
+    render_helper(0.0f);
+    rs_SetJust(1, 1);
+    rt_font_set(11);
+    for (row = 0; row < rows; row++) {
+        for (col = 0; col < cols; col++) {
+            x = 160 - cols * 60 / 2 + col * 60;
+            y = 36 + row * 14;
+            if (row == 0 && col == 0) continue;
+            if (col == 0) {
+                rt_font_set(11);
+                if (D_80143F54[row - 1] < active_player_count) {
+                    dispatch_handler(D_801146AC[D_80143F54[row - 1]]);
+                    str = input_rec0[D_80143F54[row - 1]].name[0] + 20;
+                } else {
+                    dispatch_handler(4);
+                    str = D_8012031C;
+                }
+                rs_DrawEllipseText(x + 30, y + 7, 60, str);
+            } else if (row == 0) {
+                rt_font_set(11);
+                dispatch_handler(1);
+                if (col == 1) str = countdown_state.fixed[208];
+                else if (col == 2) str = countdown_state.fixed[210];
+                else if (col == 3) str = countdown_state.fixed[22];
+            } else {
+                if (col == 1) {
+                    if (D_80144018[D_80143F54[row - 1]] == D_80152734) {
+                        time = D_80152908[D_80143F54[row - 1]].best;
+                        rt_font_set(3);
+                        dispatch_handler(1);
+                        fcvt_wrapper(str1, D_80120324, (u32)(time / 60.0f), (u32)time % 60, (u32)(time * 1000.0f) % 1000);
+                        str = str1;
+                    } else {
+                        rt_font_set(11);
+                        dispatch_handler(1);
+                        str = countdown_state.fixed[215];
+                    }
+                } else if (col == 2) {
+                    if (D_80144018[D_80143F54[row - 1]] > 0) {
+                        time2 = D_80144DA8[D_80143F54[row - 1]];
+                        rt_font_set(3);
+                        dispatch_handler(1);
+                        fcvt_wrapper(str1, D_80120334, (u32)(time2 / 60.0f), (u32)time2 % 60, (u32)(time2 * 1000.0f) % 1000);
+                        str = str1;
+                    } else {
+                        rt_font_set(11);
+                        dispatch_handler(1);
+                        str = countdown_state.fixed[215];
+                    }
+                } else if (col == 3) {
+                    rt_font_set(11);
+                    dispatch_handler(1);
+                    str = countdown_state.strings[((TextIdx2 *)countdown_state.indices)->cars + D_80152906[D_8014AA16[D_80143F54[row - 1]].car].lap];
+                }
+            }
+            if (col != 0) state_utility(col * 60 - cols * 60 / 2 + 190, y + 7, str);
+        }
+    }
+    render_helper(-1.0f);
+    rs_SetJust(0, 3);
+}
+
 void func_80101904(void)
 {
     s16 x;

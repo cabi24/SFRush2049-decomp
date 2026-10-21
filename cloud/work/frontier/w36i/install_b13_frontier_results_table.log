@@ -1,0 +1,3 @@
+spliced frontier_results_table: 8 members, new: ['func_80100E58']
+image coverage: 1128/1216 functions, 477632/647072 bytes (73.81%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.

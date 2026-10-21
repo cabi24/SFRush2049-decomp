@@ -1,0 +1,55 @@
+{
+  "files": [
+    "caller.c",
+    "target.c",
+    "rows.c",
+    "predicate.c",
+    "dtc.c",
+    "d8154.c",
+    "d9058.c",
+    "helpers.c",
+    "ctx_pak.c",
+    "ctx_gr3_b.c"
+  ],
+  "members": [
+    "func_800D91A0",
+    "func_800D816C",
+    "drone_throttle_calc",
+    "func_800D9058",
+    "render_replay_ui",
+    "render_results_screen",
+    "func_800D8078",
+    "func_800D8154"
+  ],
+  "context": [
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800A1A3C",
+    "func_80094FC4",
+    "slot_state_setup",
+    "object_create",
+    "func_800B669C"
+  ],
+  "keep": [
+    "func_800D91A0",
+    "render_results_screen",
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800A1A3C",
+    "func_80094FC4",
+    "func_800B669C"
+  ],
+  "claims": [
+    "func_800D91A0",
+    "func_800D816C",
+    "func_800D9058",
+    "render_replay_ui",
+    "render_results_screen",
+    "func_800D8078",
+    "func_800D8154"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "w36k (wave 36): controlscr.c cluster. func_800D91A0 updateControlScreen (kept, MAT3 port on Astra PR #322), func_800D816C updateButtons (PR #322 body), func_800D9058 calcControlMenuMaxSize (new, internal), drone_throttle_calc initButtons (w16f body), render_replay_ui uninitButtons, render_results_screen cleanupControlScreen, func_800D8078 validControl, func_800D8154 validOption (re-typed (s8,s32), switch form; supersedes the locked single). Context: locked singles func_8008B32C/func_800B5898/func_800B5940 (helpers.c, byte-identical), pak getters func_800A1A3C/func_80094FC4 (ctx_pak.c, byte-identical function text from menu_save_options), ctx_gr3_b.c = byte-identical credits_scroll_grp/gr3_b.c. drone_throttle_calc: two-region own .rodata (strings 0x80120254.., floats 0x801241BC..), code identical; blob_group proof. cloud/work/frontier/w36k/RESULTS.md"
+}

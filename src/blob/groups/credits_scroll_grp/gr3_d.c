@@ -58,19 +58,30 @@ s32 font_set_g3d(s32 font)
     gfx_unlock_g3d();
     return old;
 }
+/* game_timer_display = animPanes@audioscr.c (MAT3 GameCube audioscr.c animPanes, GC 0x800662D0; w36w):
+ * font_set_g3d = HAL_SetFont (inlined), credits_scroll = _TitlePane@audioscr.c, object_bytes_sum_global =
+ * TB_GetFontLineHeight, ambient_sound_set = InitPane, D_80110650 = menuRect {x, w, h}.
+ * Disclosed: x, u1 and u2 are UNUSED locals = exact frame residual. Retail frame 120 with y at sp+116; with y
+ * alone the frame is 112 (y at sp+110, 5 words differ); x (declared before y) puts y in retail's slot (sp+116)
+ * and u1/u2 supply the remaining local area (with 8 bytes of locals or less the frame stays 112). */
+typedef struct { s32 x, w, h; } MenuRect;
 s32 game_timer_display(s32 arg0)
 {
-    s16 h;
+    s16 x;
+    s16 y;
+    s32 u1;
+    s32 u2;
 
     if (!D_80110634) {
         if (!(state_word_a & 0x7C03FFFE)) {
             font_set_g3d(13);
             D_8011064C = !D_80156CF0[D_8015698C].flag;
             credits_scroll();
-            h = object_bytes_sum_global() * 2 + 10;
+            y = 10 + 2 * object_bytes_sum_global();
             font_set_g3d(10);
-            ambient_sound_set(D_80110650[0] - 8, h - 4, D_80110650[1] + D_80110650[0] + 8,
-                              h + D_80110650[2] + 4, 176, 0, 0, 0);
+            ambient_sound_set(((MenuRect *)D_80110650)->x - 8, y - 4,
+                              ((MenuRect *)D_80110650)->x + ((MenuRect *)D_80110650)->w + 8,
+                              y + ((MenuRect *)D_80110650)->h + 4, 176, 0, 0, 0);
         }
         D_80110634 = 1;
     }

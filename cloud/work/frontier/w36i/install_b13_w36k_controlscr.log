@@ -1,0 +1,3 @@
+spliced w36k_controlscr: 8 members, new: ['drone_throttle_calc', 'func_800D8078', 'func_800D816C', 'func_800D9058', 'func_800D91A0', 'render_replay_ui', 'render_results_screen']
+image coverage: 1138/1216 functions, 488244/647072 bytes (75.45%)
+  the ROM's game-code blob is compressed from this image (pipeline.blob_rom), so spliced functions are cartridge coverage.
