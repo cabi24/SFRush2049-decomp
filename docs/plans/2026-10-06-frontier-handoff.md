@@ -759,6 +759,19 @@ fp_call_wrapper, object_bytes23_sum — unreferenced); overlays A 99/193, B 35/4
 
 **Wave 37 outcome (2026-10-21, short wave, branch wave37 from `c12837976`; master `0adb25284` + this doc commit):** game 1159 → 1162/1216 (507,708 B, 78.46%, +2,428 B): func_800E73D8 (w37d, standalone; compiled-out block end between a call and the web it blocks), func_800979A0 (w37d, slot_sound superseded; holder `if (D_8011EAA0) {}` after the final store), replay_save_prompt = initScreen@optionscr.c (w37b, frontier_optionscr_buttons superseded; the MAT3 HAL_SetFont shape changes umerge's inline order). Owner receipt commit 78b60b453. No matches from w37c (game flow: RaceStateMachine_Update constant-2 range, PrePlay frame = spills not locals, WorldCullObjects ?: temp) or w37a (Controller Pak). w37a delivered `cloud/work/frontier/w37a/groups/w37a_paksys/` as PROVISIONAL: PS_CreateFile, no_catchup (one-parameter, supersedes the locked single), _RemovePak (func_800A3640), _ClearPak (func_800A3724) are unit EQUAL with their real callers, but PS_PakServer (track_render_process) is 706/800 and the bare group compile colours it differently (needs more IPA context or a unit-based install) — owner decision: accept PS_PakServer's reconstruction as unmatched caller context (input_process_controller precedent) or wait for it to match. Rocky's CI clone is at fd0f33955 (bundle from there).
 
+**Post-wave-37 (2026-10-21 afternoon, master `7be1d67b` + the overlay/doc commit):** batch 3 (Controller Pak group:
+PS_CreateFile, no_catchup, _ClearPak; PS_PakServer and PS_InitPakSys accepted as unmatched caller context, a
+coordinator decision the owner has now seen) and batch 4 (f1 lane: menu_back = _DecodeGhost) took game to 1165/1216;
+f2/f3 found nothing (`f2/RESULTS.md`, `f3/RESULTS.md`). Coverage reporting changed (§4 "Coverage denominators"): the
+three images' data tails are labelled `data` with fail-closed checks in `blob_layout derive` / `ovl_layout derive`
+(the tail must start where proven and hold no `jr ra`), their sections are emitted non-executable
+(`.blobdata.data_*` "aw", `.blobdata.rodata_*` "a"), and `make progress` leads with code bytes: game 509,680/561,860
+(90.71%), A 128,060/152,952 (83.73%), B 36,272/38,708 (93.71%), static 151,176/160,720 (94.06%). Gates: images
+byte-identical, blob_unit 1165/1165, ROM SHA-1 exact via both `blob_rom rom` and `ovl_rom rom`. README, CloudHandoff,
+cloud/RESEARCH_INDEX, dot_handoff (+ `docs/dot_handoff_targets.csv`, now the 51 unmatched) and PROJECT_PLAN carry
+the new figures. The wiki's `rush2049:status` page is still the 2026-09-10 snapshot: SSH to the unraid host refused
+on a changed host key (owner to verify the key before anyone accepts it).
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
@@ -901,10 +914,12 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
   - pinning stand-ins as matches.
   Implicit int (no declaration in scope) is **an open decision**; see §6.
 - **Provisional rule:** a body that matches only with stand-in callers goes in `provisional.json` and is not spliced. It becomes a match when its real callers match in the same group.
-- **Game coverage denominator (2026-10-21):** the image tail 0x8010FD7C..0x801249F0 is proven .data/.rodata
-  (`tests/conveyor/test_blob_data_tail.py`) and is labelled `data` in the layout. The owner made code bytes the
-  headline: `make progress` reports game code against its 561,860 function bytes (90.71% at 1165/1216), then the
-  647,072-byte image (78.77%). Quote both with their denominators when comparing to older figures, which used the image.
+- **Coverage denominators (2026-10-21):** each image's tail after its last function is proven .data/.rodata and is
+  labelled `data` in its layout (game from 0x8010FD7C, `.rodata` 0x80123870; A from 0x803AF978, `.rodata` 0x803B92C8;
+  B from 0x80393B34, `.rodata` 0x80394D20; `tests/conveyor/test_blob_data_tail.py`, `test_ovl_data_tail.py`). The
+  owner made code bytes the headline: `make progress` reports game, A and B against their function bytes (game
+  90.71% at 1165/1216), then against the whole image (game 78.77%). Quote both with their denominators when
+  comparing to older figures, which used the image. Static is unchanged (its denominator was already code bytes).
 - **Pushing:** push gate-passing, test-passing work to master as it lands; the owner wants master current. Force-push only with explicit owner approval (one history purge was approved).
 - **Hook-protected files:** do not edit `tools/cloud/score.py` directly. Changes go through a reviewed patch with owner approval.
 - **Permission denials:** if the permission classifier denies an action, do not retry it another way. Surface it to the owner.

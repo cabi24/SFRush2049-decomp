@@ -16,8 +16,10 @@ lives under build/ovl/<x>/:
 (pipeline.ovl_targets: scanned, evidence per start, switch-table merges
 recorded). Everything else is an opaque run carried byte for byte from the
 image: inter-function padding and the data tail after `text_end`, which holds
-the switch tables, literals and initialised data. A switch table is refused if
-it would fall inside a function's extent (it must stay opaque); an overlap,
+the switch tables, literals and initialised data. For the retail images that
+tail is labelled: a `.data` entry and a `.rodata` entry (RODATA_START), each a
+"data" kind, proven to hold no code. A switch table is refused if it would fall
+inside a function's extent or outside .rodata; an overlap,
 a hole, a misaligned extent or an image whose sha256 differs from
 extents.json is a LayoutError. Nothing is guessed.
 
@@ -44,6 +46,7 @@ removes both, and ovl_rom refuses a missing or stale (lock changed) one.
 import argparse
 import hashlib
 import json
+import struct
 import sys
 from pathlib import Path
 
@@ -52,6 +55,12 @@ from . import blob_build, blob_layout, blob_tu, ovl_image, ovl_targets
 REPO = ovl_image.REPO
 DEFAULT_FLAGSET = blob_layout.DEFAULT_FLAGSET
 LayoutError = blob_layout.LayoutError
+
+# Each retail image's tail after text_end is .data, then .rodata from here
+# (float literals and every switch table, in function order). Proven 2026-10-21:
+# no j/jal in game, static or runtime-image code targets a tail and none holds
+# a jr ra (tests/conveyor/test_ovl_data_tail.py). derive() labels them as data.
+RODATA_START = {"a": 0x803B92C8, "b": 0x80394D20}
 
 
 def image_name(targets=None, image=None):
@@ -124,17 +133,46 @@ def entries(extents, image_bytes):
     return out
 
 
+def mark_data_sections(image, items, image_bytes, extents):
+    """Replace a retail image's tail opaque run with its .data/.rodata entries.
+
+    Other images (test fixtures) pass through unchanged. For a retail image the
+    tail must still be one opaque run from text_end to the end with no `jr ra`
+    in it; anything else means the data proof has to be redone."""
+    stream = ovl_image.STREAMS.get(image)
+    if stream is None or hashlib.sha256(image_bytes).hexdigest() != stream.image_sha256:
+        return items
+    base = int(extents["base"], 16)
+    text_end, end = int(extents["text_end"], 16), base + len(image_bytes)
+    rodata = RODATA_START[image]
+    tail = items[-1] if items else None
+    if not tail or tail["kind"] != "opaque" or tail["vaddr"] != text_end \
+            or not text_end < rodata < end:
+        raise LayoutError(f"image {image}: the tail is not one opaque run from text_end "
+                          f"0x{text_end:08X} around .rodata 0x{rodata:08X}; "
+                          f"re-prove it before labelling it data")
+    words = struct.iter_unpack(">I", image_bytes[text_end - base:])
+    if any(word == blob_layout.JR_RA for (word,) in words):
+        raise LayoutError(f"image {image}: a jr ra inside the .data/.rodata tail")
+    return items[:-1] + [
+        {"kind": "data", "section": ".data", "vaddr": text_end, "size": rodata - text_end},
+        {"kind": "data", "section": ".rodata", "vaddr": rodata, "size": end - rodata}]
+
+
 def switch_table_runs(image_bytes, extents, items):
     """[(vaddr, size)] of the image's switch tables, each proven to lie inside
-    an opaque entry (never inside a function, whose body C would replace)."""
+    a non-function entry (never inside a function, whose body C would replace)
+    and, once the tail is labelled, inside .rodata."""
     base = int(extents["base"], 16)
     tables = ovl_targets.switch_tables(image_bytes, int(extents["text_end"], 16), base)
-    opaque = [(e["vaddr"], e["vaddr"] + e["size"]) for e in items if e["kind"] == "opaque"]
+    runs = [(e["vaddr"], e["vaddr"] + e["size"]) for e in items
+            if e["kind"] == "opaque" or e.get("section") == ".rodata"]
     out = []
     for table, dests in sorted(tables.items()):
         size = 4 * len(dests)
-        if not any(lo <= table and table + size <= hi for lo, hi in opaque):
-            raise LayoutError(f"switch table 0x{table:08X}+{size} is not inside an opaque run")
+        if not any(lo <= table and table + size <= hi for lo, hi in runs):
+            raise LayoutError(f"switch table 0x{table:08X}+{size} is not inside an opaque "
+                              f"run or .rodata")
         out.append((table, size))
     return out
 
@@ -149,13 +187,14 @@ def derive(image, image_path=None, target_dir=None, output=None, write=True):
         raise LayoutError(f"{image_path}: sha256 {sha[:12]}... is not the image "
                           f"extents.json describes ({extents['image_sha256'][:12]}...)")
     base = int(extents["base"], 16)
-    items = entries(extents, data)
+    items = mark_data_sections(image, entries(extents, data), data, extents)
     tables = switch_table_runs(data, extents, items)
     regions = blob_layout.regions(items)
     for region in regions:
         region["name"] = f"ovl_{image}_{region['vaddr_start']:08x}"
     functions = [e for e in items if e["kind"] == "function"]
     opaque = [e for e in items if e["kind"] == "opaque"]
+    data_entries = [e for e in items if e["kind"] == "data"]
     try:
         rel = str(image_path.resolve().relative_to(REPO))
     except ValueError:
@@ -169,6 +208,7 @@ def derive(image, image_path=None, target_dir=None, output=None, write=True):
             "function_bytes": sum(e["size"] for e in functions),
             "opaque_runs": len(opaque),
             "opaque_bytes": sum(e["size"] for e in opaque),
+            "data_bytes": sum(e["size"] for e in data_entries),
             "switch_tables": len(tables),
         },
         "switch_tables": [{"vaddr": f"0x{t:08X}", "size": n} for t, n in tables],
@@ -284,8 +324,8 @@ def main(argv=None):
         t = document["totals"]
         print(f"image {image.upper()}: {document['image']['size']} B @ 0x{document['image']['base']}, "
               f"{t['functions']} functions ({t['function_bytes']} B), {t['opaque_runs']} opaque "
-              f"runs ({t['opaque_bytes']} B, {t['switch_tables']} switch tables inside), "
-              f"{t['regions']} regions")
+              f"runs ({t['opaque_bytes']} B), {t.get('data_bytes', 0)} B .data/.rodata, "
+              f"{t['switch_tables']} switch tables, {t['regions']} regions")
         if args.command == "derive":
             continue
         label = "all-passthrough" if args.passthrough else "locked C"

@@ -500,9 +500,12 @@ def coverage(lockfile=LOCKFILE):
 
 def print_coverage(stats, indent="  "):
     for image, c in sorted(stats.items()):
+        # Code bytes lead: each image's tail is proven .data/.rodata
+        # (ovl_layout.RODATA_START), as the game image's is.
         print(f"{indent}overlay {image.upper()}:   {c['functions']:4d}/{c['total_functions']} functions, "
-              f"{c['bytes']}/{c['image_size']} bytes ({100 * c['bytes'] / c['image_size']:.2f}%; "
-              f"{100 * c['bytes'] / c['function_bytes']:.2f}% of {c['function_bytes']} B text) "
+              f"{c['bytes']}/{c['function_bytes']} code bytes "
+              f"({100 * c['bytes'] / c['function_bytes']:.2f}%; "
+              f"{100 * c['bytes'] / c['image_size']:.2f}% of the {c['image_size']} B image) "
               f"— compressed into the ROM at {c['rom_offset']}")
 
 

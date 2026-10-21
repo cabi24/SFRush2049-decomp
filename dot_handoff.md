@@ -1,6 +1,6 @@
 # dot_handoff — work queue for Rush 2049 helpers
 
-For the full-project continuation strategy, current readiness corrections and detailed agent work packages, start with [PROJECT_PLAN.md](PROJECT_PLAN.md). Existing packet history remains below; check the plan before dispatch.
+For the current state and how matching waves are run, start with the [frontier handoff](docs/plans/2026-10-06-frontier-handoff.md) §0. [PROJECT_PLAN.md](PROJECT_PLAN.md) is the 2026-10-03 audit plan. Existing packet history remains below.
 
 Updated after matching integration **d77aabb8** and incorporation of research PRs #9, #21, #25–39 and #41–49. Original snapshot: 2026-10-02.
 This is the assignment and replenishment plan. Update its claims and results as work arrives.
@@ -8,7 +8,7 @@ No helpers are newly assigned by this document; names and ownership must be reco
 
 ## Start here
 
-1. Read [project rules](CLAUDE.md). Repo-only helpers also read [CloudHandoff.md](CloudHandoff.md); use the current numbers below because its opening statistics are historical.
+1. Read [project rules](CLAUDE.md). Repo-only helpers also read [CloudHandoff.md](CloudHandoff.md).
 2. Choose an available packet below, record its owner and exact addresses, and check current locks, open PRs and reservations.
 3. Work in an isolated branch/worktree. Return complete C, compiler evidence and a short continuation note.
 4. A maintainer reviews matching submissions and runs image/compression/ROM gates. Only then update accepted percentages.
@@ -17,28 +17,40 @@ The recommended split is one maintainer handling integration, two helpers handli
 
 ## Project state and where the bytes are
 
-| Population | Accepted functions | Accepted native bytes | Matching bytes |
+Cartridge coverage at master `7be1d67b` (2026-10-21; `make progress` for live numbers). Populations keep their own
+denominators and are never summed:
+
+| Population | Accepted functions | Accepted code bytes | Whole image |
 |---|---:|---:|---:|
-| Game image | 666 / 1,216 | 100,656 / 647,072 | 15.56% |
-| Static cartridge code | 158 / 230 | 44,808 / 61,440 | 72.93% |
+| Game code | 1,165 / 1,216 | 509,680 / 561,860 (90.71%) | 78.77% of 647,072 B |
+| Static cartridge code | 632 / 667 | 151,176 / 160,720 (94.06%) | — |
+| Runtime image A | 127 / 193 | 128,060 / 152,952 (83.73%) | 65.97% of 194,128 B |
+| Runtime image B | 41 / 49 | 36,272 / 38,708 (93.71%) | 82.65% of 43,888 B |
 
-Combined byte tracker: **145,464 / 708,512 = 20.53%**. The separate population percentages retain their own denominators. There are 824 linked C functions. Existing static lock records include entries outside the counted cartridge population; lock-record counts are not coverage counts.
-
-Latest accepted batch: PRs #24 and #40, 176 game bytes, with fresh complete image/compression/ROM gates. [Integration evidence](cloud/work/pr_integration_20261003/README.md). The preceding batch accepted thirteen PRs (#10–20, #22, #23), 1,252 game bytes. The preceding scheduler core added 872 code bytes; its verified 28-byte switch table earns no code credit. The full source-built image, original compressed stream and ROM hash passed; the earlier published CI run37071306233 passed; merged research master43a4302a also passed CI run37084943832. See [acceptance evidence](cloud/work/pr_match_review_20261002/README.md).
+Code bytes leave out each image's `.data`/`.rodata` tail (game 85,108 B from `0x8010FD7C`; A 41,176 B; B 5,180 B),
+which is proven to hold no code and is labelled `data` in the layouts. Before 2026-10-21 the game figure was quoted
+against the whole image, so compare old and new figures with their denominators.
 
 | Unmatched game function size | Functions | Native bytes remaining |
 |---|---:|---:|
-| Below 256 bytes | 135 | 22,592 |
-| 256–1,023 bytes | 274 | 153,048 |
-| 1,024–4,095 bytes | 135 | 243,304 |
-| 4,096 bytes and above | 6 | 41,408 |
-| Total | 550 | 460,352 |
+| Below 256 bytes | 7 | 1,012 |
+| 256–1,023 bytes | 25 | 13,968 |
+| 1,024–4,095 bytes | 19 | 37,200 |
+| 4,096 bytes and above | 0 | 0 |
+| Total | 51 | 52,180 |
 
-There are also 72 remaining static functions occupying 16,632 bytes. Even accepting all of those would put the combined tracker at only **22.88%**. Reaching 50% requires **208,792 more matching bytes** from the current base, or **192,160 game bytes** after hypothetical completion of all static code. There is no evidence supporting a short completion date.
+The largest unmatched game function is `track_render_process` (PS_PakServer, 3,200 B). Most of what remains are
+traced near-misses; their causes and best sources are in the
+[frontier handoff](docs/plans/2026-10-06-frontier-handoff.md) §0. Astra's reserved targets (`func_80087110`,
+`camera_transform`, handoff §4) are among the 51.
 
-**Allocation:** put most effort into the 256–4,095-byte game population, build genuine caller/callee context where needed, and integrate completed matches promptly. Keep small residual work bounded. Scout the six very large functions before committing a team to one.
+[Complete unmatched game inventory](docs/dot_handoff_targets.csv) lists all 51 targets, sorted by native bytes, with
+addresses and the research PR recorded for that name in the 2026-10-02 snapshot where it still applies. It is
+derived from `build/blob_layout.json` minus `blob_matched.lock.json` at `7be1d67b`; it does not assert that a target
+is fresh, correctly named or unclaimed. Recheck before assigning.
 
-[Complete unmatched game inventory](docs/dot_handoff_targets.csv) lists all 550 targets, sorted by native bytes, with addresses and incorporated research PRs. It is a snapshot derived from `build/blob_layout.json` minus `blob_matched.lock.json`; it does not assert that a target is fresh, correctly named, or unclaimed. Recheck before assigning.
+The assignment queue and dispatch notes below are the 2026-10-02 plan. Most of their targets have since landed;
+check the lock before acting on any of them.
 
 ## Incorporated matching and research work
 

@@ -13,12 +13,12 @@ Rush 2049 (N64, US)** ROM. Game logic comes from the arcade source (`reference/r
 maintainer's machine; **not** in this repo) and from decompiling the N64 assembly. The cartridge holds
 four code populations, reported separately and never merged:
 
-| Population | Targets in this repo | Compiler | 2026-10-11 |
+| Population | Targets in this repo | Compiler | 2026-10-21 (master `7be1d67b`) |
 |---|---|---|---|
-| Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 550/668 functions, 103,172 / 160,720 B (64.19%) |
-| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 973/1216, 310,928 / 647,072 B (48.05%) |
-| Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 42/193 functions, 14,364 / 152,952 B; lands via `ovl_splice` + `ovl_rom` (2026-10-11) |
-| Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 8/49 functions, 1,640 / 38,708 B; same |
+| Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 632/667 functions, 151,176 / 160,720 B (94.06%) |
+| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 1165/1216, 509,680 / 561,860 code B (90.71%; 78.77% of the 647,072 B image) |
+| Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 127/193 functions, 128,060 / 152,952 code B (83.73%); lands via `ovl_splice` + `ovl_rom` |
+| Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 41/49 functions, 36,272 / 38,708 code B (93.71%); same |
 
 Every function we "match" is spliced into its rebuilt image, and the full ROM must still hash SHA-1
 exact. Read [CLAUDE.md](CLAUDE.md) for the shared rules. The live state of the game-code frontier

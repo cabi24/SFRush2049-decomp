@@ -123,6 +123,24 @@ The game uses a bitmask ladder for state dispatch:
 | 0x01000000 | 0x800FC89C | GSTATE_CARS |
 | 0x02000000 | 0x800FC960 | GSTATE_FINISH |
 
+### 1.3 Runtime Images A and B (0x8038A400)
+
+Two more raw-DEFLATE images load at the same address, one at a time: A from ROM 0xB5C534 (194,128 B) and B from
+ROM 0xB6FEC4 (43,888 B). Each has the game image's shape: .text, then .data, then .rodata. Their .bss is zeroed by
+the loader past the image end (A 0x803B9A50..0x803BAE20, B 0x80394F70..0x8039B440).
+
+| Image | .text | .data | .rodata |
+|---|---|---|---|
+| A | 0x8038A400 - 0x803AF978 (152,952 B, 193 functions) | 0x803AF978 - 0x803B92C8 (39,248 B) | 0x803B92C8 - 0x803B9A50 (1,928 B: 241 literals/tables, all 25 switch tables) |
+| B | 0x8038A400 - 0x80393B34 (38,708 B, 49 functions) | 0x80393B34 - 0x80394D20 (4,588 B) | 0x80394D20 - 0x80394F70 (592 B: 96 literals/tables, all 6 switch tables) |
+
+Both tails are verified data (2026-10-21): no j/jal in either image, the game image or static code targets them
+(calls from elsewhere into the shared address range land on the other image's function entries), and they hold no
+`jr ra`, stack-frame setup or `ra` save/restore. .rodata starts directly after the last .data string, and every item
+in it is read-only (switch table or `lw`/`lwc1`/`ldc1`-only literal) and in function order.
+`tests/conveyor/test_ovl_data_tail.py` re-checks this; `ovl_layout derive` labels the sections `data`
+(`RODATA_START`) and refuses the label if a tail moves or holds a `jr ra`.
+
 ---
 
 ## 2. Global Variables (D_80* Addresses)

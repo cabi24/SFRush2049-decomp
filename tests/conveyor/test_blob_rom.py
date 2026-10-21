@@ -112,6 +112,8 @@ def test_cartridge_coverage_keeps_the_two_populations_separate(monkeypatch, caps
     assert "4168/561860 code bytes (0.74%" in out and "of the 647072 B image" in out
     assert "linked from C: 79 functions, 5616 bytes" in out
     assert "/1142" not in out                     # no merged denominator
-    assert "overlay A:" in out and "17/193" in out and "5396/194128" in out
-    assert "overlay B:" in out and "8/49" in out and "1640/43888" in out
+    assert "overlay A:" in out and "17/193" in out and "5396/152952 code bytes" in out
+    assert "of the 194128 B image" in out
+    assert "overlay B:" in out and "8/49" in out and "1640/38708 code bytes" in out
+    assert "of the 43888 B image" in out
     assert "/1335" not in out and "/1191" not in out    # overlays never merged in
