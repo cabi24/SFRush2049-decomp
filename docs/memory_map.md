@@ -15,7 +15,7 @@ size and global-variable hypotheses from `CLAUDE.md`; they are not current targe
 | Static Code | 0x80000400 | 0x8000F700 | ~61KB | Uncompressed boot/library code |
 | Static Data | 0x80010000 | 0x80037DB0 | ~159KB | Static data/rodata |
 | BSS (Static) | 0x80037DB0 | 0x80086A50 | ~318KB | Static BSS/uninitialized data |
-| Decompressed Game | 0x80086A50 | 0x80124AF0 | ~632KB | Compressed game code (DEFLATE) |
+| Decompressed Game | 0x80086A50 | 0x801249F0 | 647,072 B | Game image from a DEFLATE stream: .text to 0x8010FD7C, then .data and .rodata (§1.2) |
 | Game BSS | 0x801249F0 | 0x8017A640 | ~346KB | Game BSS/runtime data |
 | Hardware Regs | 0xA4000000 | 0xA4800020 | - | N64 MMIO registers |
 
@@ -61,13 +61,27 @@ __osException     = 0x8000C980  // CPU exception handler
 inflate_entry     = 0x80006814  // DEFLATE decompression entry
 ```
 
-### 1.2 Decompressed Game Code (0x80086A50 - 0x80124AF0)
+### 1.2 Decompressed Game Image (0x80086A50 - 0x801249F0)
 
 Game logic is stored compressed in ROM at offset 0xB0CB10 using DEFLATE compression. At boot, it is decompressed to RAM starting at 0x80086A50.
 
+| Section | Range | Size | Contents |
+|---|---|---:|---|
+| .text | 0x80086A50 - 0x8010FD7C | 561,964 B | 1,216 functions (561,860 B) and 104 B of gaps; the last function is func_8010FD60 |
+| .data | 0x8010FD7C - 0x80123870 | 80,628 B | initialised globals and every string literal, grouped per translation unit (not in .text order) |
+| .rodata | 0x80123870 - 0x801249F0 | 4,480 B | float literals and switch jump tables only, in .text order; starts with func_80086A50's jump table |
+
+The .data/.rodata tail is verified data, not unregistered code (2026-10-21): no j/jal in the game, static or
+runtime-image code targets it, and it holds no `jr ra`, stack-frame setup or `ra` save/restore.
+`tests/conveyor/test_blob_data_tail.py` re-checks this against the extracted image. The breakdown of both sections
+is in `cloud/work/frontier/type_model/REPORT.md` §1. `make progress` reports game code against the image and
+against .text function bytes ("of 561860 B text").
+
+Approximate subsystem ranges in .text:
+
 | Address Range | Approx Size | Description |
 |---------------|-------------|-------------|
-| 0x80087068 - 0x8008A000 | ~12KB | Entity/render state processing |
+| 0x80086A50 - 0x8008A000 | ~13KB | Entity/render state processing |
 | 0x8008A000 - 0x8009F000 | ~84KB | Audio, sync, resource management |
 | 0x8009F000 - 0x800B0000 | ~68KB | Physics, AI, pathfinding (maxpath) |
 | 0x800B0000 - 0x800C0000 | ~64KB | Vehicle physics, effects, UI helpers |
@@ -75,7 +89,7 @@ Game logic is stored compressed in ROM at offset 0xB0CB10 using DEFLATE compress
 | 0x800D0000 - 0x800E0000 | ~64KB | Track/car selection, race setup |
 | 0x800E0000 - 0x800F0000 | ~64KB | Race state, audio, video timing |
 | 0x800F0000 - 0x80100000 | ~64KB | Game loop, state machine, object dispatch |
-| 0x80100000 - 0x80124AF0 | ~148KB | Additional game functions |
+| 0x80100000 - 0x8010FD7C | ~63KB | Additional game functions |
 
 **Key Game Functions:**
 
@@ -318,9 +332,11 @@ Per-player input state, 4 players x 32 bytes (0x20 stride).
 0x80037DB0  +------------------+
             | Static BSS       |  ~318KB (OS structures)
 0x80086A50  +------------------+
-            | Decompressed     |  ~632KB (game code from ROM)
+            | Decompressed     |  549KB .text (game code from ROM)
             | Game Code        |
-0x80124AF0  +------------------+
+0x8010FD7C  +------------------+
+            | Game .data       |  79KB, then .rodata 4.4KB at 0x80123870
+0x801249F0  +------------------+
             | Game Data/BSS    |  ~346KB (runtime structures)
 0x8017A640  +------------------+
             | Heap/Stack       |  Remaining RAM

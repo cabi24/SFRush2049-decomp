@@ -774,12 +774,14 @@ def coverage(document=None, lockfile=LOCKFILE):
     document = document or blob_layout.load()
     lock = load_lock(lockfile)
     size = document["image"]["size"]
-    linked = [e for region in document["regions"] for e in region["entries"]
-              if e["kind"] == "function" and e["target_id"] in lock]
+    functions = [e for region in document["regions"] for e in region["entries"]
+                 if e["kind"] == "function"]
+    linked = [e for e in functions if e["target_id"] in lock]
     total_functions = document["totals"]["functions"]
     linked_bytes = sum(e["size"] for e in linked)
     return {"functions": len(linked), "total_functions": total_functions,
             "bytes": linked_bytes, "image_size": size,
+            "function_bytes": sum(e["size"] for e in functions),
             "percent": 100.0 * linked_bytes / size}
 
 
