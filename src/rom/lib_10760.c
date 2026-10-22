@@ -4,4 +4,19 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_10760/__osAiDeviceBusy.s")
+/* PROMOTED 2026-10-21 — __osAiDeviceBusy
+ * Source:   src/libultra/os_ai.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libultra/os_ai.c:__osAiDeviceBusy (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osAiDeviceBusy(void) {
+    register s32 status = AI_STATUS_REG;
+
+    if (status & AI_STATUS_FIFO_FULL) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+

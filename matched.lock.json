@@ -1,12 +1,4 @@
 {
-  "src/libultra/os_ai.c:__osAiDeviceBusy": {
-    "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osAiDeviceBusy",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/rom/lib_10280.c:__osContRamWrite": {
     "body_sha256": "4512a345b658c5d1ee754a69db918f27a2aa1755f9dbefc964e60ad064e3d19c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -198,6 +190,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_10760.c:__osAiDeviceBusy": {
+    "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osAiDeviceBusy",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-21"
   },
   "src/rom/lib_107a0.c:osDestroyThread": {
     "body_sha256": "8a3119c5d35f4f194e0d84c31c083742530f31f7bc56b4f0594309087f83d12f",
