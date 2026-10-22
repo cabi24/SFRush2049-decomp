@@ -12,7 +12,7 @@ the four code populations are reported separately, never summed. Run `make progr
 | Population | Functions | Code bytes | Whole image |
 |---|---:|---:|---:|
 | Game code (DEFLATE image at ROM `0xB0CB10`, inflates to `0x80086A50`) | 1,165 / 1,216 | 509,680 / 561,860 (90.71%) | 78.77% of 647,072 B |
-| Static boot/library code | 676 / 677 (633 C + 43 assembly) | 159,040 / 162,284 (98.00%; from C 93.18%) | — |
+| Static boot/library code | 677 / 677 (634 C + 43 assembly) | 162,188 / 162,284 (99.94%; from C 95.12%) | — |
 | Runtime image A (ROM `0xB5C534`, loads at `0x8038A400`) | 127 / 193 | 128,060 / 152,952 (83.73%) | 65.97% of 194,128 B |
 | Runtime image B (ROM `0xB6FEC4`, loads at `0x8038A400`) | 41 / 49 | 36,272 / 38,708 (93.71%) | 82.65% of 43,888 B |
 

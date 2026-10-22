@@ -280,3 +280,27 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
    int, register, two-step, initialised), so changing the *other* web's priority is the lever.
 5. Harness: `cloud/work/frontier/z12d18/variants.py BASE SPEC...` applies named edit sets (`a+b`) and scores each with
    `obj71.sh`; keep every tried edit in its `EDITS` table so the next lane does not repeat it.
+
+## 2026-10-21 lessons, part 2 (z12d18 closed: func_80012D18 187 -> 0 rows, IDO 7.1)
+
+1. **A web that is itself a direct call argument is pinned to that argument's register.** In 7.1 `f_cupcosts`, a
+   live unit whose second flag byte is 6 (the expression is passed as-is as an outgoing argument) costs every
+   register in mask `0x1001c7d0` at the ~1e20 ineligible sentinel; only the argument register stays eligible.
+   Symptom: retail keeps the value in v0 and does `move aN,v0` in the jal delay slot, ours loads straight into aN.
+   Lever: make the argument a different expression from the shared web (one cast around the whole address
+   expression, or `(int)x` for the argument). `XENV="CUPLOG=1" RAW=1 ctrace71.sh` prints the unit flags.
+2. **Ties in p1 go to the lower web number, and split pieces get new high numbers.** A split piece loses every tie
+   against an original web, so lowering the competitor's save below the piece's (not just to equal) is the lever.
+   Find what inflates the competitor: here an `int` conversion web of a u16 local also covered two end-of-function
+   uses; making `mode` unsigned put those uses in the unsigned conversion web with their neighbours.
+3. **When opcodes match 100% and only t6-t9 names differ, it is the ugen ring.** Under 7.1 at -O2 the ring here was
+   only t6 t7 t8 t9 (t0-t5 were coloured somewhere) and strictly FIFO; check it event by event with `ugt71.sh`
+   (`DKWB-FREELIST` lines carry the source line). A block that pops and frees all four temps in order fixes the
+   queue, so work the target's allocations backward from it: if no starting queue fits, the target spends an extra
+   pop. The extra pop is law L65's phantom: a redundant mask that folds into a u16/u8 store (`x & 3 & 0xFFFF`,
+   `(unsigned short)(a * b) + c` stored to a short) emits nothing but pops one temp. Where the pop lands matters:
+   masking a whole sum popped one step too late (5 rows); casting the product popped where the target does (0).
+   Truncating casts that cfe drops, or that narrow a load (`(unsigned short)arr[1]` became `lhu 98(sp)`), are not
+   phantoms.
+4. Read the workbench compiler laws (`third_party/n64-decomp-workbench/docs/compiler-laws/ido-5.3.md`, L1, L64-L78)
+   before theorising about a ring residual: most of them carry over to 7.1's ugen.

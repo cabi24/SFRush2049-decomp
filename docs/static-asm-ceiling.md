@@ -21,7 +21,9 @@
 > from assembly 43 / 4.82%)`. The 7 ultralib name leads were applied the same day (lane ulr,
 > `docs/SYMBOL_MISATTRIBUTION.md`). The C-reachable pair (section 3)
 > stays C work: the lock refuses them. `__osAiDeviceBusy` landed as C on 2026-10-21 (segment 0x10760 converted
-> to `rom/lib_10760`, promoted with the July score0 lock; ROM SHA-1 exact), leaving `func_80012D18`.
+> to `rom/lib_10760`, promoted with the July score0 lock; ROM SHA-1 exact), leaving `func_80012D18`. It landed as C the same evening
+> (lane z12d18, `cloud/work/frontier/z12d18/RESULTS.md`; ROM SHA-1 exact): static is `677/677 functions,
+> 162,188/162,284 bytes (99.94%: from C 634 / 95.12%, from assembly 43 / 4.82%)`; no C-reachable static function remains.
 
 Status at wave 28 (lane w28s, 2026-10-12, after #377 func_80011910 landed): `make progress` reports
 **static code 632/667 functions, 151,176/160,720 bytes (94.06%)**. Of the 35 functions still in assembly,
@@ -123,7 +125,7 @@ instruction in `kernels.s` and the ROM SHA-1 failed, so the composition is what 
 
 | Function | Bytes | State |
 |---|---:|---|
-| func_80012D18 | 3,148 | IDO 7.1 C, near miss: 674/787 words differ at baseline, body 6 words short (#376, `cloud/work/frontier/dot_static_12d18_20261013/RESULTS.md`) |
+| func_80012D18 | 3,148 | **Landed 2026-10-21** as IDO 7.1 C (lane z12d18, `cloud/work/frontier/z12d18/RESULTS.md`; ROM SHA-1 exact). Was a near miss: 674/787 words differ at baseline, body 6 words short (#376, `cloud/work/frontier/dot_static_12d18_20261013/RESULTS.md`) |
 | __osAiDeviceBusy | 48 | **C in ultralib** (`src/io/ai.c`): compiled at `-O2` with IDO 5.3, it is IDENTICAL @0x8000FB60 (12 words, prove.log above). Its segment 0x10760 is whole-asm, so landing it needs a segment conversion (`pipeline.layout convert`) with an `-O2` flagset, not a new match |
 
 ## 4. Whole-assembly segments (not converted to ROM TUs)
@@ -153,5 +155,5 @@ counted in sections 1-3 above.
 
 These segments total 2,336 B. The rest of the assembly sits as `GLOBAL_ASM` slots in converted TUs:
 lib_5610 (the inflate set), lib_7c80 (osSetIntMask), lib_8e10 (osInvalICache), lib_d580 (exceptasm),
-lib_e390 (__osSetFpcCsr), lib_e4f0 (osCauseGet) and lib_11640 (func_80012D18). The ROM header and IPL3
+lib_e390 (__osSetFpcCsr) and lib_e4f0 (osCauseGet); lib_11640's last slot (func_80012D18) is C since 2026-10-21. The ROM header and IPL3
 (0x0-0xFFF) are not in the static population.

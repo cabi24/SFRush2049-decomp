@@ -790,6 +790,15 @@ locked as assembly. Static now 676/677 (98.00%; from C 633 / 93.18%, assembly 43
 **Ultralib renames (lane ulr, same day):** the 7 name leads of `docs/static-asm-ceiling.md` applied with
 `static_rename` + `targets_rename rename` (table `cloud/work/frontier/ulr/renames.json`; details and the tool change
 in `docs/SYMBOL_MISATTRIBUTION.md`); game side unchanged through `game_static_legacy.us.txt`.
+**func_80012D18 landed (lane z12d18, 2026-10-21 evening):** the last static function, 578 -> 0 rows over two
+sessions (`cloud/work/frontier/z12d18/RESULTS.md`, levers table). Pool lock score 0 (ido7.1 toolkit `4586d230`),
+context row `z12d18/ctx71_O2.jsonl`, `promote_batch.py` gate ROM SHA-1 exact. Static is now **677/677** (634 C + 43
+assembly), 162,188/162,284 B (99.94%; from C 95.12%). Disclosed in the source: one unused 2-byte `probe` local (retail's
+local area is 4 bytes larger below `loopRem`; identity unknown). Session-2 mechanisms (also in WAVE_BRIEF): a web that is
+a direct call argument is pinned to that argument register by `f_cupcosts` (unit flag 6 -> 1e20); p1 ties go to the
+lower web number, so split pieces lose ties; the t6-t9 ring is FIFO and two L65 phantom pops (redundant u16 masks/casts)
+fixed the last 127 rows. Tool note: `promote_batch`'s splice skips a body declaration already present anywhere in the
+TU, even after the slot; prep commit `fabd42404` moved two externs above the slot.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
