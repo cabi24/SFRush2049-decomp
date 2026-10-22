@@ -1,0 +1,14 @@
+{
+ "members": [
+  "world_effect_update"
+ ],
+ "files": [
+  "a.c",
+  "b.c"
+ ],
+ "keep": [
+  "world_effect_update"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": []
+}

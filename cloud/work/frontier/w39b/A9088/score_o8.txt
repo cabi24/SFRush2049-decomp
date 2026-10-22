@@ -1,0 +1,61 @@
+Members:
+func_80395E24:
+  MATCH
+func_803A87D4:
+  MATCH
+func_803A8B74:
+  MATCH
+func_803A7B58:
+  MATCH (8 section-relative relocations unverified: .rodata+0x24 at +0x2bc, .rodata+0x24 at +0x2c0, .rodata+0x28 at +0x2c4, .rodata+0x28 at +0x2c8, .rodata+0x2c at +0x2d4, .rodata+0x2c at +0x2d8, .rodata+0x30 at +0x6a4, .rodata+0x30 at +0x6ac)
+    not verified: .rodata+0x24 at +0x2c0: no retail data available
+    not verified: .rodata+0x28 at +0x2c8: no retail data available
+    not verified: .rodata+0x2c at +0x2d8: no retail data available
+    not verified: .rodata+0x30 at +0x6ac: no retail data available
+
+Context (informational; excluded from exit status):
+func_803A9088:
+    +0x124  want afa50038 sw a1,56(sp)                  got afa50048 sw a1,72(sp)                
+    +0x280  want 87a4003a lh a0,58(sp)                  got 87a4004a lh a0,74(sp)                
+    +0x550  want 87a4003a lh a0,58(sp)                  got 87a4004a lh a0,74(sp)                
+    +0x6f0  want afa30030 sw v1,48(sp)                  got afa30034 sw v1,52(sp)                
+    +0x6f4  want 8fb80030 lw t8,48(sp)                  got 8fb80034 lw t8,52(sp)                
+    +0x73c  want 8fb90030 lw t9,48(sp)                  got 8fb90034 lw t9,52(sp)                
+    +0x75c  want 8fb90030 lw t9,48(sp)                  got 8fb90034 lw t9,52(sp)                
+    +0x790  want 8fae0030 lw t6,48(sp)                  got 8fae0034 lw t6,52(sp)                
+    +0x96c  want afae0038 sw t6,56(sp)                  got afae0048 sw t6,72(sp)                
+    +0x9f4  want 87a4003a lh a0,58(sp)                  got 87a4004a lh a0,74(sp)                
+    +0xd3c  want afa70034 sw a3,52(sp)                  got afa70030 sw a3,48(sp)                
+    +0xd48  want 8fa70034 lw a3,52(sp)                  got 8fa70030 lw a3,48(sp)                
+  15/917 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x648, .rodata+0x0 at +0x64c, .rodata+0x4 at +0x650, .rodata+0x4 at +0x654, .rodata+0x8 at +0x660, .rodata+0x8 at +0x664, .rodata+0xc at +0xa3c, .rodata+0xc at +0xa44)
+func_803A9EEC:
+    +0x000  want 27bdfee8 addiu sp,sp,-280              got 27bdfee0 addiu sp,sp,-288            
+    +0x04c  want afa40118 sw a0,280(sp)                 got afa40120 sw a0,288(sp)               
+    +0x060  want 1860010b blez v1,0x430                 got 18600102 blez v1,0x40c               
+    +0x068  want afa00084 sw zero,132(sp)               got afa00088 sw zero,136(sp)             
+    +0x06c  want afae0080 sw t6,128(sp)                 got afae0084 sw t6,132(sp)               
+    +0x070  want 8faf0080 lw t7,128(sp)                 got 8faf0084 lw t7,132(sp)               
+    +0x07c  want 102000fa beqz at,0x3ec                 got 102000f2 beqz at,0x3cc               
+    +0x09c  want afb20114 sw s2,276(sp)                 got afb2011c sw s2,284(sp)               
+    +0x0a0  want 8fb20114 lw s2,276(sp)                 got 3c038015 lui v1,0x8015               
+    +0x0a4  want 3c038015 lui v1,0x8015                 got 8463a108 lh v1,-24312(v1)            
+    +0x0a8  want 8463a108 lh v1,-24312(v1)              got 100000e7 b 0x3a0                     
+    +0x0ac  want 100000ef b 0x3c0                       got 8fb2011c lw s2,284(sp)               
+  281/315 words differ (2 section-relative relocations unverified: .rodata+0x48 at +0x84, .rodata+0x48 at +0x8c)
+func_80396FA0:
+    +0x000  want 001070c0 sll t6,s0,0x3                 got 000470c0 sll t6,a0,0x3               
+    +0x004  want 01d07023 subu t6,t6,s0                 got 27bdffc0 addiu sp,sp,-64             
+    +0x008  want 3c0f803c lui t7,0x803c                 got 01c47023 subu t6,t6,a0               
+    +0x00c  want 25efad00 addiu t7,t7,-21248            got 3c0f803c lui t7,0x803c               
+    +0x010  want 000e7040 sll t6,t6,0x1                 got afb00018 sw s0,24(sp)                
+    +0x014  want 01cfa821 addu s5,t6,t7                 got 25efad00 addiu t7,t7,-21248          
+    +0x018  want 3c0e803c lui t6,0x803c                 got 000e7040 sll t6,t6,0x1               
+    +0x01c  want 25cead80 addiu t6,t6,-21120            got 01cf8021 addu s0,t6,t7               
+    +0x020  want 0010c880 sll t9,s0,0x2                 got 3c0e803c lui t6,0x803c               
+    +0x024  want 032e9821 addu s3,t9,t6                 got 25cead80 addiu t6,t6,-21120          
+    +0x028  want 8e6f0000 lw t7,0(s3)                   got 0004c880 sll t9,a0,0x2               
+    +0x02c  want 27bdffa8 addiu sp,sp,-88               got 032e6021 addu t4,t9,t6               
+  717/718 words differ (39 extra words (nonzero beyond target length))
+func_80396EE8:
+  MATCH
+func_80396F44:
+  MATCH

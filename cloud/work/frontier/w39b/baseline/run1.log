@@ -1,0 +1,30 @@
+## func_8010D680 w36w/func_8010D680/best.c UARGS=
+best.c: FAIL func_8010D680: 82 of 119 words differ; +0xf0: .rodata+0xfd4: retail words encode 0x49900000, outside the  | words 22 ops 12 norm 12 | frame 80/80
+## func_8010D3C0 w36w/func_8010D3C0/best.c UARGS=
+best.c: FAIL func_8010D3C0: 72 of 176 words differ; +0xdc: .rodata+0xfd4: retail words encode 0x49580000, outside the  | words 23 ops 4 norm 4 | frame 32/32
+## race_position_update w36w/race_position_update/best.c UARGS=
+best.c: FAIL race_position_update: 107 of 121 words differ; compiled body is 114 words, target 121; +0x98: .rodata+0x1 | words 60 ops 16 norm 16 | frame 120/112
+## object_bytes_sum_global w36w/text/best_object_bytes_sum_global.c UARGS=
+best_object_bytes_sum_global.c: FAIL object_bytes_sum_global: 4 of 21 words differ | words 4 ops 0 norm 0 | frame 24/24
+## object_bytes23_sum w38a/tb/d1.c UARGS=
+d1.c: FAIL object_bytes23_sum: 4 of 18 words differ | words 4 ops 0 norm 0 | frame 24/24
+## state_utility w38a/tbdraw/t1.c UARGS=
+t1.c: FAIL state_utility: 14 of 99 words differ | words 10 ops 4 norm 4 | frame 24/24
+## physics_float_calc w36x3/physics_float_calc/best.c UARGS=
+best.c: FAIL physics_float_calc: 52 of 294 words differ | words 39 ops 10 norm 10 | frame 136/136
+## particle_lifetime_set w37b/cbg/best.c UARGS=
+best.c: FAIL particle_lifetime_set: 51 of 183 words differ; .bss+0x48bc is placed at different image addresses: 0x8013 | words 58 ops 0 norm 0 | frame 184/184
+## func_8010C974 w36s/func_8010C974/best.c UARGS=
+best.c: FAIL func_8010C974: 167 of 659 words differ | words 165 ops 8 norm 8 | frame 392/376
+## pak_delete_file_retry w36v/pak_delete_file_retry/best.c UARGS=--internal func_800A1E94
+best.c: FAIL pak_delete_file_retry: 157 of 196 words differ; compiled body is 158 words, target 196; +0x2c: refers to  | words 188 ops 52 norm 52 | frame 232/200
+## controls_animText w36k/anim/best.c UARGS=
+best.c: FAIL controls_animText: 364 of 394 words differ; compiled body is 365 words, target 394; +0xa4: refers to ct_f | words 337 ops 89 norm 89 | frame 360/280
+## controls_animButtonText w36k/anim/v/b3.c UARGS=
+b3.c: FAIL controls_animButtonText: 478 of 479 words differ; compiled body is 507 words, target 479; +0x438: .rodata | words 428 ops 111 norm 111 | frame 544/496
+## func_8010F218 w33b/videoscr/best.c UARGS=
+best.c: FAIL func_8010F218: 233 of 611 words differ; compiled body is 233 words, target 611; +0x28: refers to vs_drawC | words 553 ops 397 norm 397 | frame 456/200
+## func_8010EA08 w33b/videoscr/best.c UARGS=
+best.c: FAIL func_8010EA08: 473 of 514 words differ; compiled body is 475 words, target 514; +0x50: refers to vs_font_ | words 402 ops 209 norm 209 | frame 312/264
+## CreatePlayer w32c/CreatePlayer/lead_f2.c UARGS=
+lead_f2.c: FAIL CreatePlayer: 256 of 272 words differ; compiled body is 271 words, target 272 | words 120 ops 43 norm 43 | frame 224/224

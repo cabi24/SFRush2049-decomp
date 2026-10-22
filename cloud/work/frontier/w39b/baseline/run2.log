@@ -1,0 +1,14 @@
+## controls_animText w36k/anim/best.c UARGS=--internal ct_CenterText --internal ct_RightText --internal ct_font_set --internal ct_gfx_lock --internal ct_gfx_unlock --internal ct_SetFont --internal controls_animButtonText
+best.c: FAIL controls_animText: 365 of 394 words differ; compiled body is 390 words, target 394 | words 151 ops 35 norm 35 | frame 360/352
+## controls_animButtonText w36k/anim/v/b3.c UARGS=--internal ct_CenterText --internal ct_RightText --internal ct_font_set --internal ct_gfx_lock --internal ct_gfx_unlock --internal ct_SetFont --internal controls_animButtonText
+b3.c: FAIL controls_animButtonText: 58 of 479 words differ; compiled body is 478 words, target 479 | words 49 ops 7 norm 7 | frame 544/440
+## func_8010F218 w33b/videoscr/best.c UARGS=--internal vs_CenterText --internal vs_RightText --internal vs_font_set --internal vs_drawColorBars --internal vs_gfx_lock --internal vs_gfx_unlock --internal vs_SetFont --internal vs_SetJust --internal func_8010EA08
+best.c: FAIL func_8010F218: 423 of 611 words differ; compiled body is 518 words, target 611; +0x51c: .rodata+0x15c: re | words 324 ops 113 norm 113 | frame 456/384
+## func_8010EA08 w33b/videoscr/best.c UARGS=--internal vs_CenterText --internal vs_RightText --internal vs_font_set --internal vs_drawColorBars --internal vs_gfx_lock --internal vs_gfx_unlock --internal vs_SetFont --internal vs_SetJust --internal func_8010EA08
+best.c: FAIL func_8010EA08: 484 of 514 words differ; compiled body is 511 words, target 514; +0x1e4: .rodata+0x7e8: re | words 287 ops 86 norm 86 | frame 312/312
+## display_list_flush w36p/display_list_flush/best.c UARGS=--internal InitBattlePoints
+best.c: FAIL display_list_flush: 499 of 589 words differ; +0x330: .rodata+0x8c8: retail words encode 0x801547f0, outsi | words 395 ops 55 norm 55 | frame 256/88
+## pak_delete_file_retry w36v/pak_delete_file_retry/best.c UARGS=--internal func_800A1E94 --internal paksys_queue_init --internal paksys_lock --internal paksys_unlock --internal pdf_heap_lock --internal pdf_heap_unlock --internal pdf_buffer_free --internal pdf_free_blocks --internal pdf_release
+best.c: FAIL pak_delete_file_retry: 168 of 196 words differ; compiled body is 169 words, target 196; +0x2c: refers to  | words 177 ops 41 norm 41 | frame 232/208
+## track_render_process w37a/groups/w37a_paksys/group.c UARGS=--internal func_800A1E94 --internal no_catchup --internal paksys_queue_init --internal paksys_lock --internal paksys_unlock --internal pfs_get_node --internal func_800A3640 --internal func_800A3724 --internal _FileChanged --internal _StopRumble
+group.c: FAIL track_render_process: 752 of 800 words differ; compiled body is 771 words, target 800; +0x15c: refers to  | words 603 ops 83 norm 83 | frame 432/424

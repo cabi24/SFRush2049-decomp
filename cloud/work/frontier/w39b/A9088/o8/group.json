@@ -1,0 +1,24 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_803A9EEC",
+  "func_80396FA0"
+ ],
+ "members": [
+  "func_80395E24",
+  "func_803A87D4",
+  "func_803A8B74",
+  "func_803A7B58"
+ ],
+ "context": [
+  "func_803A9088",
+  "func_803A9EEC",
+  "func_80396FA0",
+  "func_80396EE8",
+  "func_80396F44"
+ ],
+ "provenance": "A7B58 stock exact 3196 B; preserve 2508 inherited bytes, including two separately locked 92 B helpers as verification-only duplicates requiring checker ownership reconciliation before installation. Same profile group identity; genuine 96FA0 is NONMATCH kept context. Safe bounded 32-byte reconstruction, original capacity unknown."
+}

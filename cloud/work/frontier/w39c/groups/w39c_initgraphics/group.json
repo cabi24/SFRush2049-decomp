@@ -1,0 +1,21 @@
+{
+ "members": [
+  "func_800EE8AC",
+  "world_effect_update"
+ ],
+ "files": [
+  "gfx.c",
+  "initgfx.c"
+ ],
+ "keep": [
+  "world_effect_update"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": [],
+ "claims": [
+  "world_effect_update",
+  "func_800EE8AC"
+ ],
+ "provenance": "w39c (wave 39), from w39a identification InitGraphics + _InitGfx and the w19e draft",
+ "note": "NEW group. world_effect_update = InitGraphics@gfx.c (kept, unreferenced); func_800EE8AC = N64 _InitGfx in a second file, cross-file inlined; its deleted-procedure stub replaces the locked standalone stub src/blob/func_800EE8AC.c (supersede that single; unit: force_internal func_800EE8AC)."
+}
