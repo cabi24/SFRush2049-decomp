@@ -68,6 +68,117 @@ EDITS = {
             length[1] = excess - 6;
             mode = 0;
             address[1] = V->loop_start;""")],
+ # session 2 (2026-10-21 pm): non-flags PCM statement order
+ 'p_m1': [("""            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
+            mainRem = address[0] & 3;
+""", """            mainRem = address[0] & 3;
+            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
+""")],
+ 'p_l1': [("""                cmd->loop.second_length = 0;
+                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;
+""", """                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;
+                cmd->loop.second_length = 0;
+""")],
+ 'p_m2': [("""            mainRem = address[0] & 3;
+            cmd->main.second_length = 0;
+            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+""", """            mainRem = address[0] & 3;
+            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+            cmd->main.second_length = 0;
+""")],
+ 'mode_u': [("    int mode;\n", "    unsigned int mode;\n")],
+ 'offset_u': [("    int offset;\n", "    unsigned int offset;\n")],
+ 'pc_int4': [('func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (int)V->data);'), ('func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (int)V->data);')],
+ 'pc_ptr2': [('func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->loop, (unsigned int)((address[1] & 0xFFFC) * 2 + V->data), ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);'), ('func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->main, (unsigned int)((address[0] & 0xFFFC) * 2 + V->data), ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);')],
+ 'pc_ptr2i': [('func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->loop, (unsigned int)(V->data + (address[1] & 0xFFFC) * 2), ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);'), ('func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->main, (unsigned int)(V->data + (address[0] & 0xFFFC) * 2), ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);')],
+ 'pc_int2': [('func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);'), ('func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);')],
+ 'pc_ptr2_int4': [('func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->loop, (unsigned int)((address[1] & 0xFFFC) * 2 + V->data), ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (int)V->data);'), ('func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);', 'func_80012730(&cmd->main, (unsigned int)((address[0] & 0xFFFC) * 2 + V->data), ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (int)V->data);')],
+ 'p_m3': [("""            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
+            cmd->main.second_length = 0;
+            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+""", """            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
+            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+            cmd->main.second_length = 0;
+""")],
+ 'p_m4': [("""            cmd->main.second_length = 0;
+            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+        pcm_tail:
+            cmd->main_blocks = 0;
+""", """            cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+        pcm_tail:
+            cmd->main.second_length = 0;
+            cmd->main_blocks = 0;
+""")],
+ 'p_l2': [("""                cmd->loop.second_length = 0;
+                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;
+                cmd->u.pcm.loop_count = padded[1];
+""", """                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;
+                cmd->u.pcm.loop_count = padded[1];
+                cmd->loop.second_length = 0;
+""")],
+ 'pt1': [("""        pcm_tail:
+            cmd->main_blocks = 0;
+            cmd->main_offset = mainRem;
+            cmd->u.pcm.main_count = padded[0];
+""", """        pcm_tail:
+            cmd->u.pcm.main_count = padded[0];
+            cmd->main_blocks = 0;
+            cmd->main_offset = mainRem;
+""")],
+ 'pt2': [("""        pcm_tail:
+            cmd->main_blocks = 0;
+            cmd->main_offset = mainRem;
+            cmd->u.pcm.main_count = padded[0];
+""", """        pcm_tail:
+            cmd->u.pcm.main_count = padded[0];
+            cmd->main_offset = mainRem;
+            cmd->main_blocks = 0;
+""")],
+ 'pl_c1': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (unsigned short)address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_c2': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (unsigned short)(address[1] & 3);\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_m4': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = address[1] % 4;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_c3': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (unsigned short)address[1] % 4;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_c4': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (int)address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_c5': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (short)address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'pl_ch1': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n', '                cmd->loop_offset = loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n')],
+ 'pl_ch2': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n', '                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->loop_offset = (cmd->u.pcm.loop_count = padded[1], loopRem);\n')],
+ 'pl_ch3': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n', '                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + (loopRem = address[1] & 3) + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n')],
+ 'pl_ch4': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n', '                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;\n                cmd->loop.first_length = ((padded[1] + (loopRem = address[1] & 3) + 3) & 0xFFFC) * 2;\n                cmd->loop.second_length = 0;\n                cmd->u.pcm.loop_count = padded[1];\n                cmd->loop_offset = loopRem;\n')],
+ 'e_d1': [('    } else {\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n', '    } else {\n        offset = 0;\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n')],
+ 'e_d2': [('    } else {\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n', '    } else {\n        offset = 0;\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n')],
+ 'e_d3': [('    } else {\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n', '    } else {\n        mode = -1;\n        offset = 0;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n')],
+ 'e_d4': [('    } else {\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n', '    } else {\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n            mode = -1;\n        }\n    }\n')],
+ 'e_d5': [('    } else {\n        mode = -1;\n        if (position + frames >= V->length) {\n            address[0] = position;\n            offset = 0;\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            address[0] = position;\n            offset = 0;\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n', '    } else {\n        offset = 0;\n        mode = -1;\n        address[0] = position;\n        if (position + frames >= V->length) {\n            length[0] = V->length - position + 0x20;\n            length[1] = 0;\n            mode = -2;\n            state = 0;\n        } else {\n            length[0] = frames - 6;\n            length[1] = 0;\n        }\n    }\n')],
+ 'ph1': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = address[1] & 0xFFFF & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'ph2': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = address[1] & 3 & 0xFFFF;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'ph3': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (address[1] & 3) & 0xFFFF;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'ph4': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = address[1] & 0xFFFF & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'ph5': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = (unsigned short)(address[1] & 0xFFFF) & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'ph6': [('                loopRem = address[1] & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;', '                loopRem = address[1] % 0x10000 & 3;\n                cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;')],
+ 'q1': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate * 16U) + cmd->fraction;\n')],
+ 'q2': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (unsigned int)(V->rate * 16) + cmd->fraction;\n')],
+ 'q3': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * ((unsigned int)V->rate * 16) + cmd->fraction;\n')],
+ 'q4': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate << 4) + cmd->fraction;\n')],
+ 'q5': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (int)padded[0] * (V->rate * 16) + cmd->fraction;\n')],
+ 'q6': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate * 16) + (unsigned short)cmd->fraction;\n')],
+ 'q7': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (padded[0] * (V->rate * 16) + cmd->fraction) & 0xFFFF;\n')],
+ 'q8': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate * 16 & 0xFFFFF) + cmd->fraction;\n')],
+ 'q9': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * ((V->rate & 0xFFFF) * 16) + cmd->fraction;\n')],
+ 'q10': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate * 16) + (cmd->fraction & 0xFFFF);\n')],
+ 'q11': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (padded[0] & 0xFFFFFFFF) * (V->rate * 16) + cmd->fraction;\n')],
+ 'q12': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (V->rate * 0x10) + cmd->fraction;\n')],
+ 'q13': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = cmd->fraction + padded[0] * (V->rate * 16);\n')],
+ 'r1': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (padded[0] * (V->rate * 16) & 0xFFFF) + cmd->fraction;\n')],
+ 'r2': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * ((V->rate * 16) & 0xFFFF) + cmd->fraction;\n')],
+ 'r3': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (padded[0] & 0xFFFF) * (V->rate * 16) + cmd->fraction;\n')],
+ 'r5': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (unsigned short)(padded[0] * (V->rate * 16)) + cmd->fraction;\n')],
+ 'r6': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (short)(padded[0] * (V->rate * 16) + cmd->fraction);\n')],
+ 'r7': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (unsigned short)(padded[0] * (V->rate * 16) + cmd->fraction);\n')],
+ 'r8': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (short)(padded[0] * (V->rate * 16)) + cmd->fraction;\n')],
+ 'r9': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = padded[0] * (unsigned short)(V->rate * 16) + cmd->fraction;\n')],
+ 'r10': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = (padded[0] * (V->rate * 16) & 0xFFFF) + (cmd->fraction & 0xFFFF);\n')],
+ 'r11': [('    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n', '    cmd->position4C = ((padded[0] * (V->rate * 16) & 0xFFFF) + cmd->fraction) & 0xFFFF;\n')],
+ 'noprobe': [("    unsigned short probe;\n", "")],
 }
 
 def score(path):

@@ -1,18 +1,26 @@
 /* flags: -g0 -O2 -mips2 -G 0 -non_shared */
-/* z12d18 (2026-10-21) from w23a best.c: NEAR MISS, not a submission. IDO 7.1 (lib_11640), obj71 rows:
- * 578 -> 187 differing (788 = 788 rows; structure and every named frame slot now match retail).
- * Levers, in order: chained level assignments (retail sign-extends the stored short); `loopRem / 32` and
- * `mainRem / 32` (signed divide) in the non-flags ADPCM case only; the flags cases `goto` the non-flags
- * cases' shared tails (adpcm_tail / pcm_tail); `position` is a u32 set from the floor call and there is no
- * double local; `excess` is declared after `state`; statement order in the range planning and tail; `frames` computed in two
- * steps (`>> 12`, then `+= 6`), which lifts its colouring priority above the excess expression (frames a1, excess a2).
- * DISCLOSED: `probe` (unsigned short, never used) is an exact frame residual: retail's local area is 2-4 bytes
- * larger below loopRem than these declarations give (first expression home at -76 like retail's 44(sp));
- * its real identity is not known. */
+/* func_80012D18 - lib_11640 (IDO 7.1 -O2). Builds one audio voice's command record (ADPCM or PCM fetch
+ * ranges, loop end markers, volume ramps) at D_800382D0[*D_800382D4].commands[count] and advances the voice.
+ * z12d18 (2026-10-21): byte-identical to retail in the reduced TU (obj71: 788 = 788 rows, 0 differing,
+ * relocations included). Levers, in order (each measured; RESULTS.md has the table):
+ *  - chained level assignments `cmd->volume[i] = (V->level[i] = ...) << 16` (retail sign-extends the stored short);
+ *  - `loopRem / 32`, `mainRem / 32` (signed divide) in the non-flags ADPCM case only;
+ *  - the flags cases `goto` the non-flags cases' shared tails (adpcm_tail / pcm_tail);
+ *  - `position` is a u32 set from the floor call; `excess` declared after `state`; `frames` in two steps;
+ *  - `mode` is unsigned: the end markers' `mainRem + mode` and `length[0] + mainRem` then share one
+ *    conversion web, which lowers the ADPCM `mainRem` web below V->data's piece (V->data in v0 like retail);
+ *  - the flags PCM calls pass the fetch address as one cast `(unsigned int)(... + V->data)`: V->data is then
+ *    not itself an outgoing argument, so its web may take v0 (retail `move a3,v0` in the delay slot);
+ *  - statement order in the range planning, the else entry (`mode = -1` in its sub-branch) and the PCM case;
+ *  - two ugen temp-ring phantom pops (compiler law L65: a redundant mask emits nothing but pops one temp):
+ *    `address[1] & 3 & 0xFFFF` in the non-flags PCM loop and `(unsigned short)(padded[0] * ...)` in
+ *    position4C put the t6-t9 ring in retail's phase for the rest of the function.
+ * DISCLOSED: `probe` (unsigned short, never used) is an exact frame residual: retail's local area is 4 bytes
+ * larger below loopRem than these declarations give (the first expression home is retail's 44(sp)); its real
+ * identity is not known (not a chained-assignment temp, a second switch temp, or a `format` local). */
 #include "types.h"
 #include "boot_tail_audio_record.h"
-typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; unsigned int unknown08; unsigned int unknown0C; unsigned int unknown10; unsigned char *buffer; } AudioCacheNode;
-typedef struct Fetch_80012D18 { unsigned char *first; unsigned char *second; short first_length; short second_length; } Fetch_80012D18;
+typedef struct Fetch_80012730 { unsigned char *first; unsigned char *second; short first_length; short second_length; } Fetch_80012730;
 typedef struct Voice_80012D18 {
     unsigned char active, pending;
     unsigned short flags;
@@ -40,8 +48,8 @@ typedef struct Command_80012D18 {
     int delta[4];
     unsigned short fraction;
     unsigned short rate;
-    Fetch_80012D18 main;
-    Fetch_80012D18 loop;
+    Fetch_80012730 main;
+    Fetch_80012730 loop;
     unsigned char main_blocks, loop_blocks, main_offset, loop_offset;
     union { void *book; struct { short main_count, loop_count; } pcm; } u;
     unsigned int unknown44;
@@ -56,8 +64,8 @@ extern unsigned int func_8002C5E0(unsigned int, unsigned int);
 extern double func_8001E688(double value);
 extern void func_80011A64(AudioState *audio, unsigned short samples, unsigned char *active);
 extern void func_80011D74(AudioState *audio, unsigned short samples);
-extern void *func_80012234(void *);
-extern void func_80012730(Fetch_80012D18 *fetch, unsigned int addr, unsigned int length, unsigned int tag);
+extern unsigned char *func_80012234(unsigned int source);
+extern void func_80012730(Fetch_80012730 *fetch, unsigned int addr, unsigned int length, unsigned int tag);
 #define V ((Voice_80012D18 *)audio)
 void func_80012D18(AudioState *audio, unsigned short samples, unsigned char index)
 {
@@ -69,7 +77,7 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
     unsigned int address[2];
     unsigned int length[2];
     int offset;
-    int mode;
+    unsigned int mode;
     unsigned int padded[2];
     Command_80012D18 *cmd;
     unsigned short mainRem;
@@ -112,7 +120,6 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
             mode = 0;
         }
     } else {
-        mode = -1;
         if (position + frames >= V->length) {
             address[0] = position;
             offset = 0;
@@ -125,6 +132,7 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
             offset = 0;
             length[0] = frames - 6;
             length[1] = 0;
+            mode = -1;
         }
     }
     padded[0] = length[0] + 6;
@@ -146,12 +154,12 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
             }
             mainRem = address[0] & 0x3F;
             func_80012730(&cmd->main, (address[0] >> 6) * 40 + (unsigned int)V->data + 0x100, ((((padded[0] + (mainRem & 0x1F) + 0x1F) >> 5) + (mainRem >> 5) + 1) >> 1) * 40, (unsigned int)V->data + 0x100);
-            cmd->u.book = func_80012234(V->data);
+            cmd->u.book = func_80012234((unsigned int)V->data);
             goto adpcm_tail;
         case 0:
             if (length[1] != 0) {
                 loopRem = address[1] & 3;
-                func_80012730(&cmd->loop, (address[1] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);
+                func_80012730(&cmd->loop, (unsigned int)((address[1] & 0xFFFC) * 2 + V->data), ((padded[1] + loopRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);
                 cmd->u.pcm.loop_count = padded[1];
                 cmd->loop_offset = loopRem;
             } else {
@@ -159,7 +167,7 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
                 cmd->u.pcm.loop_count = 0;
             }
             mainRem = address[0] & 3;
-            func_80012730(&cmd->main, (address[0] & 0xFFFC) * 2 + (unsigned int)V->data, ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);
+            func_80012730(&cmd->main, (unsigned int)((address[0] & 0xFFFC) * 2 + V->data), ((padded[0] + mainRem + 3) & 0xFFFC) * 2, (unsigned int)V->data);
             goto pcm_tail;
         }
     } else {
@@ -189,24 +197,24 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
             break;
         case 0:
             if (length[1] != 0) {
-                loopRem = address[1] & 3;
+                loopRem = address[1] & 3 & 0xFFFF;
                 cmd->loop.first = (address[1] & 0xFFFC) * 2 + V->data;
-                cmd->loop.second_length = 0;
                 cmd->loop.first_length = ((padded[1] + loopRem + 3) & 0xFFFC) * 2;
+                cmd->loop.second_length = 0;
                 cmd->u.pcm.loop_count = padded[1];
                 cmd->loop_offset = loopRem;
             } else {
                 cmd->loop.first = 0;
                 cmd->u.pcm.loop_count = 0;
             }
-            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
             mainRem = address[0] & 3;
-            cmd->main.second_length = 0;
+            cmd->main.first = (address[0] & 0xFFFC) * 2 + V->data;
             cmd->main.first_length = ((padded[0] + mainRem + 3) & 0xFFFC) * 2;
+            cmd->main.second_length = 0;
         pcm_tail:
+            cmd->u.pcm.main_count = padded[0];
             cmd->main_blocks = 0;
             cmd->main_offset = mainRem;
-            cmd->u.pcm.main_count = padded[0];
             break;
         }
     }
@@ -247,7 +255,7 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
     }
     cmd->rate = V->rate;
     cmd->fraction = (V->position - func_8001E688(V->position)) * 65536.0;
-    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;
+    cmd->position4C = (unsigned short)(padded[0] * (V->rate * 16)) + cmd->fraction;
     cmd->unknown44 = 0;
     ((Block_80012D18 *)D_800382D0)[*D_800382D4].count++;
     func_80011D74(audio, 192);

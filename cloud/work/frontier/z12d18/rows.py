@@ -1,7 +1,7 @@
 """rows.py SRC [SRC...]: obj71 each source, keep its rows as <scratch>/<stem>.rows, print score and differing ranges."""
 import os, re, subprocess, sys
 from pathlib import Path
-S = Path("/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/62f66057-aadb-46cb-af75-cd497ac20bf0/scratchpad/z")
+S = Path(os.environ.get("ROWS_DIR", "build/trace71/z12d18_rows")); S.mkdir(parents=True, exist_ok=True)
 def rows(path):
     return [l.rstrip("\n") for l in open(path)]
 def ranges(t, m):
