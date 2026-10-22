@@ -799,6 +799,22 @@ a direct call argument is pinned to that argument register by `f_cupcosts` (unit
 lower web number, so split pieces lose ties; the t6-t9 ring is FIFO and two L65 phantom pops (redundant u16 masks/casts)
 fixed the last 127 rows. Tool note: `promote_batch`'s splice skips a body declaration already present anywhere in the
 TU, even after the slot; prep commit `fabd42404` moved two externs above the slot.
+**Wave 38, overlay stubs (2026-10-22, lanes w38b + integration w38i, master `4aa2bdd04`):** image A 127 → 155/193
+(128,284 B, 83.87%), image B 41 → 43/49 (36,288 B, 93.75%): 30 deleted-inline `jr ra; nop` stubs landed (28 A, 2 B;
+w38b claimed 33, 3 held below). Each stub is
+the deleted procedure of an inlined static; written as a non-static, non-kept helper named after its stub, it gets its
+symbol at the retail slot. 13 packets landed (11 image-A groups superseded in place, all old members MATCH; image B
+singles func_8038A408/func_803925D0 reverted and re-landed as the new groups w38b_worlddam/w38b_hud_show). Several
+members lost disclosed shaping (unused slots, carriers, one `if (player) {}` holder) that stood in for the 8-byte
+inlined-call areas. Gates: both images byte-identical, ovl lock intact, ROM SHA-1 EXACT, Pi + rocky green.
+**Held:** menu_renderers (3 more stubs, A 158/193) breaks `test_runtime_a_writer_bounds` (its verify.py requires
+production group.c = its packet); the superseded-copy fallback is `cloud/work/frontier/w38i/held/
+writer_bounds_superseded_menu_renderers.patch`, validated on rocky with the install applied (owner applies; then
+`ovl_splice group --targets asm/us/ovl_a --claims all cloud/work/frontier/w38b/groups/dot_runtime_a_menu_renderers_20261011`).
+Stubs left: 15 land only with their unmatched callers (CD14 x6, 90DCC, 9842C x4, A44FC x2, A9EEC x3, AD57C x2,
+B 91B00 x2; helper identities in `w38b/RESULTS.md`), B 8CB10/8CB18/8FCD8 would cost their installed callers, five
+trackscr stubs are probably unreferenced GC functions (not claimed), A440/A3D9C unidentified. No overlay near-miss
+closed (9842C 2/451, 90DCC 33/425, A9EEC 102/315 with a second listing oracle; w38b RESULTS §3).
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in

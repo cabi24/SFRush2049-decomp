@@ -304,3 +304,16 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
    phantoms.
 4. Read the workbench compiler laws (`third_party/n64-decomp-workbench/docs/compiler-laws/ido-5.3.md`, L1, L64-L78)
    before theorising about a ring residual: most of them carry over to 7.1's ugen.
+
+## 2026-10-22 lessons (w38b: overlay deleted-inline stubs, 30 landed)
+
+1. **Every caller-less `jr ra; nop` is a deleted inlined static, and its position is predictable.** Game-called roots
+   are laid out first in post-order (callees from the last call site to the first; switch cases from the last case
+   backwards), then the rest of the file in SOURCE order, depth-first from each procedure not yet emitted. With MAT3's
+   call lists and file order this predicted every claimed stub; `w38b/tools/objsyms.py` shows where our compile puts
+   each helper's stub. Claim it by writing the helper non-static, non-kept, named after the stub, in the caller's group.
+2. **Unexplained frame slots in native-led bodies are inlined calls.** umerge reserves 8 bytes per inlined call at the
+   top of the callee's local area (even for an empty `void f(void)`), and rounds the callee's locals up to 8. Before
+   adding unused locals, look for a caller-less stub next to the function: writing the MAT3 static as a real helper
+   removed disclosed slots, carriers and a holder from nine installed members with every word still MATCH.
+3. Unreferenced non-kept functions in a group also compile to an 8-byte stub (with a symbol; a static one without).

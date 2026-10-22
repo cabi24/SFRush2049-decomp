@@ -17,15 +17,15 @@ The recommended split is one maintainer handling integration, two helpers handli
 
 ## Project state and where the bytes are
 
-Cartridge coverage at master `7be1d67b` (2026-10-21; `make progress` for live numbers). Populations keep their own
+Cartridge coverage at master `4aa2bdd04` (2026-10-22; `make progress` for live numbers). Populations keep their own
 denominators and are never summed:
 
 | Population | Accepted functions | Accepted code bytes | Whole image |
 |---|---:|---:|---:|
 | Game code | 1,165 / 1,216 | 509,680 / 561,860 (90.71%) | 78.77% of 647,072 B |
 | Static cartridge code | 677 / 677 (634 C + 43 assembly) | 162,188 / 162,284 (99.94%; from C 95.12%) | — |
-| Runtime image A | 127 / 193 | 128,060 / 152,952 (83.73%) | 65.97% of 194,128 B |
-| Runtime image B | 41 / 49 | 36,272 / 38,708 (93.71%) | 82.65% of 43,888 B |
+| Runtime image A | 155 / 193 | 128,284 / 152,952 (83.87%) | 66.08% of 194,128 B |
+| Runtime image B | 43 / 49 | 36,288 / 38,708 (93.75%) | 82.68% of 43,888 B |
 
 Code bytes leave out each image's `.data`/`.rodata` tail (game 85,108 B from `0x8010FD7C`; A 41,176 B; B 5,180 B),
 which is proven to hold no code and is labelled `data` in the layouts. Before 2026-10-21 the game figure was quoted
