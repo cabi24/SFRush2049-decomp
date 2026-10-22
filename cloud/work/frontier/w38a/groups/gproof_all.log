@@ -1,0 +1,57 @@
+=== w37a_paksys
+DONE 
+group_bodies OK: PS_CreateFile, car_lod_select, func_800A3724, no_catchup
+  PS_CreateFile: 438 words, 0 differ from the image
+  car_lod_select: 81 words, 0 differ from the image
+  func_800A3724: 22 words, 0 differ from the image
+  no_catchup: 14 words, 0 differ from the image
+4/4 members image-identical
+=== audio_frame_update
+DONE 
+group_bodies OK: audio_frame_update, func_800B0A88
+  audio_frame_update: 150 words, 0 differ from the image
+  func_800B0A88: 112 words, 0 differ from the image
+2/2 members image-identical
+=== camera_aspect_ratio
+DONE 
+group_bodies OK: camera_aspect_ratio, camera_build_view_matrix, camera_fov_control, camera_free_look, camera_look_at_point, camera_process_input, camera_track_spline, camera_update, func_800C15FC
+  camera_aspect_ratio: 50 words, 0 differ from the image
+  camera_build_view_matrix: 153 words, 0 differ from the image
+  camera_fov_control: 60 words, 0 differ from the image
+  camera_free_look: 109 words, 0 differ from the image
+  camera_look_at_point: 199 words, 0 differ from the image
+  camera_process_input: 255 words, 0 differ from the image
+  camera_track_spline: 215 words, 0 differ from the image
+  camera_update: 719 words, 0 differ from the image
+  func_800C15FC: 2 words, 0 differ from the image
+9/9 members image-identical
+=== audio_options_menu
+DONE 
+group_bodies OK: credits_screen, drone_collision_avoid, drone_pathfind_main, func_800D690C, func_800D6914, func_800D7634
+  credits_screen: 74 words, 0 differ from the image
+  drone_collision_avoid: 213 words, 0 differ from the image
+  drone_pathfind_main: 281 words, 0 differ from the image
+  func_800D690C: 2 words, 0 differ from the image
+  func_800D6914: 315 words, 0 differ from the image
+  func_800D7634: 451 words, 0 differ from the image
+6/6 members image-identical
+  File "/home/cburnes/projects/rush2049-decomp/tools/conveyor/pipeline/blob_group.py", line 974, in resolve
+    return text_addr(sym[0] + addend)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cburnes/projects/rush2049-decomp/tools/conveyor/pipeline/blob_group.py", line 908, in text_addr
+    raise GroupError(f"relocation targets .text+0x{offset:x}, which no member "
+tools.conveyor.pipeline.blob_group.GroupError: relocation targets .text+0x8a0, which no member slice covers (a call into a stand-in?)
+group_bodies OK: audio_doppler_calc, func_800B6748, world_velocity_integrate
+  audio_doppler_calc: 281 words, 0 differ from the image
+  func_800B6748: 16 words, 0 differ from the image
+  world_velocity_integrate: 178 words, 0 differ from the image
+3/3 members image-identical
+=== codex_defaults_a16 (w38a second packet: + HAL_DrawText, _TextLen), 2026-10-22T12:22:49Z
+DONE 
+group_bodies OK: audio_doppler_calc, func_800B66B0, func_800B6748, menu_input_process, world_velocity_integrate
+  audio_doppler_calc: 281 words, 0 differ from the image
+  func_800B66B0: 38 words, 0 differ from the image
+  func_800B6748: 16 words, 0 differ from the image
+  menu_input_process: 320 words, 0 differ from the image
+  world_velocity_integrate: 178 words, 0 differ from the image
+5/5 members image-identical

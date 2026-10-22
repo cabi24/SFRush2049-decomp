@@ -1,0 +1,21 @@
+Members:
+camera_look_at_point:
+  MATCH
+
+Context (informational; excluded from exit status):
+camera_aspect_ratio:
+  MATCH
+camera_fov_control:
+  MATCH
+camera_build_view_matrix:
+  MATCH
+func_800C15FC:
+  MATCH
+camera_process_input:
+  MATCH
+camera_update:
+  MATCH
+camera_free_look:
+  MATCH
+camera_track_spline:
+  MATCH

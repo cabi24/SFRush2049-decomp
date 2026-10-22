@@ -1,0 +1,87 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/*
+ * world_velocity_integrate (0x800ED804, 712 B) = MAT3 HAL_text.c HAL_FinishText(signed char end): replay the
+ * buffered text commands (gBuffer D_80149DD8, gBufLen D_80149DD0) under the font semaphore D_801461D0: reset the
+ * defaults (_SetDefaults = func_800B6748 with the seven globals), _HAL_SetFont(gFontIndex) = slot_state_setup,
+ * gFontAttribute &= 0x8000, then per opcode 0..6: font, HAL_SetFontLeading (mode_byte2_set), HAL_SetFontSpacing
+ * (mode_byte_set), HAL_SetTextPos (func_800B70EC, umerge-inlined), HAL_SetTextTranslucency (func_800ED66C) from a
+ * big-endian float, HAL_SetTextColor (func_800B7360), _DrawText (audio_doppler_calc, private IPA: text in s2,
+ * length in s0).
+ * w38a: a direct typed port of the MAT3 text with the real callees; the earlier drafts (w27b, codex_defaults_a16
+ * context) predate _DrawText's match (w36t) and hand-inlined HAL_SetTextPos. No shaping.
+ */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef signed short s16;
+typedef unsigned short u16;
+typedef signed int s32;
+typedef unsigned int u32;
+typedef float f32;
+typedef struct { s32 opaque[6]; } OSMesgQueue;
+extern OSMesgQueue D_801461D0;
+extern s32 osRecvMesg(OSMesgQueue *, void **, s32);
+extern s32 osSendMesg(OSMesgQueue *, void *, s32);
+extern s32 slot_state_setup(s32 selection);                 /* _HAL_SetFont */
+extern void func_800B6748(u8 *rgba, f32 *amount, s16 *x, s16 *y, s8 *bank, s8 *mode, s8 *variant); /* _SetDefaults */
+extern void mode_byte2_set(s16 leading);                    /* HAL_SetFontLeading */
+extern void mode_byte_set(s16 spacing);                     /* HAL_SetFontSpacing */
+extern void func_800B70EC(s16 x, s16 y);                    /* HAL_SetTextPos */
+extern void func_800ED66C(f32 xlu);                         /* HAL_SetTextTranslucency */
+extern void func_800B7360(u8 r, u8 g, u8 b, u8 a);          /* HAL_SetTextColor */
+extern void audio_doppler_calc(const u8 *text, u16 length); /* _DrawText */
+extern s32 D_80149B48;          /* gFontColor */
+extern f32 D_80114748;          /* gTrans */
+extern s16 D_80149D92, D_80149D9E;   /* gFontXpos, gFontYpos */
+extern s8 D_80149DA0, D_80149B60, D_80149B70;   /* gFontIndex, gLeading, gSpacing */
+extern s32 D_80149B88;          /* gFontAttribute */
+extern s8 D_8011474C, D_8011473C;   /* gBufferInited, gFinished */
+extern s32 D_80149DD0;          /* gBufLen */
+extern u8 D_80149DD8[800];      /* gBuffer */
+
+void world_velocity_integrate(s8 end)
+{
+    s32 i;
+    s32 length;
+    u32 aLong;
+
+    if (D_8011474C) {
+        osRecvMesg(&D_801461D0, (void **)0, 1);
+        D_8011473C = end;
+        func_800B6748((u8 *)&D_80149B48, &D_80114748, &D_80149D92, &D_80149D9E, &D_80149DA0, &D_80149B60, &D_80149B70);
+        slot_state_setup(D_80149DA0);
+        D_80149B88 &= 0x8000;
+        for (i = 0; i < D_80149DD0;) {
+            switch (D_80149DD8[i++]) {
+                case 0:
+                    slot_state_setup(D_80149DD8[i++]);
+                    break;
+                case 1:
+                    mode_byte2_set(D_80149DD8[i++]);
+                    break;
+                case 2:
+                    mode_byte_set(D_80149DD8[i++]);
+                    break;
+                case 3:
+                    func_800B70EC(((s16)D_80149DD8[i] << 8) | D_80149DD8[i + 1],
+                                  ((s16)D_80149DD8[i + 2] << 8) | D_80149DD8[i + 3]);
+                    i += 4;
+                    break;
+                case 4:
+                    aLong = (D_80149DD8[i] << 24) | (D_80149DD8[i + 1] << 16) | (D_80149DD8[i + 2] << 8) | D_80149DD8[i + 3];
+                    i += 4;
+                    func_800ED66C(*(f32 *)&aLong);
+                    break;
+                case 5:
+                    func_800B7360(D_80149DD8[i], D_80149DD8[i + 1], D_80149DD8[i + 2], D_80149DD8[i + 3]);
+                    i += 4;
+                    break;
+                case 6:
+                    length = D_80149DD8[i++];
+                    audio_doppler_calc(D_80149DD8 + i, length);
+                    i += length;
+                    break;
+            }
+        }
+        osSendMesg(&D_801461D0, (void *)0, 0);
+    }
+}

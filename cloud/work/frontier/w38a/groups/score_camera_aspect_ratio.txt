@@ -1,0 +1,24 @@
+Members:
+camera_aspect_ratio:
+  MATCH
+camera_fov_control:
+  MATCH
+camera_build_view_matrix:
+  MATCH
+func_800C15FC:
+  MATCH
+camera_process_input:
+  MATCH
+    own .data verified at 0x8011750C (4 bytes; .data is laid out per translation unit)
+    own .rodata verified at 0x80123E90..0x80123E94
+camera_update:
+  MATCH
+    own .rodata verified at 0x80123E8C..0x80123E90
+camera_free_look:
+  MATCH
+    own .rodata verified at 0x80123E84..0x80123E88
+camera_track_spline:
+  MATCH
+    own .rodata verified at 0x80123E88..0x80123E8C
+camera_look_at_point:
+  MATCH

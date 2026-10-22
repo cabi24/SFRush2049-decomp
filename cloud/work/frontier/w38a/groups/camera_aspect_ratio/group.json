@@ -1,0 +1,32 @@
+{
+ "members": [
+  "camera_aspect_ratio",
+  "camera_fov_control",
+  "camera_build_view_matrix",
+  "func_800C15FC",
+  "camera_process_input",
+  "camera_update",
+  "camera_free_look",
+  "camera_track_spline",
+  "camera_look_at_point"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_update",
+  "camera_process_input",
+  "__standin_camera_aspect_ratio",
+  "__standin_camera_fov_control",
+  "__standin_camera_free_look",
+  "__standin_camera_look_at_point"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "blob_group seed from build/ipa_groups.json",
+ "unprototyped": [],
+ "context": [],
+ "provenance": "frontier wave 16 (w16a), 2026-10-11; supersedes the locked camera_aspect_ratio group (same name, all five old members byte-identical) and the w15a/w12f work bases; adds camera_update (EQUAL 719/719 in the whole-program unit), camera_free_look and camera_track_spline (EQUAL, internal; their only caller is camera_update); camera_look_at_point (38/199) stays context; cloud/work/frontier/w16a/RESULTS.md; w38a (wave 38): camera_look_at_point = _PlayMoveSound matched (Dreamcast targetpaths.c text) and moved from context to members, claims [camera_look_at_point]; only its body changed in group.c",
+ "claims": [
+  "camera_look_at_point"
+ ]
+}

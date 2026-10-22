@@ -1,0 +1,20 @@
+void car_lod_select(PakErrorFunc errorFunc)
+{
+    s32 i;
+
+    D_80144008 = errorFunc;
+    func_800A44E8(&D_801460E0, 1, 1);
+    for (i = 0; i < 64; i++) {
+        D_80144C60[i].file = &D_80144DC0[i];
+        func_80091FBC(&D_801460E0, &D_80144C60[i], D_801460E0.head);
+    }
+    for (i = 0; i < 4; i++) {
+        func_800A44E8(&D_80144D60[i], 1, 1);
+        D_80144030[i].damaged = 0;
+        func_800A3724(i);
+    }
+    osCreateThread(D_800349F0, 2, audio_queue_process, 0, D_800329F0, 6);
+    osStartThread(D_800349F0);
+    D_8011EAE0 = 1;
+    func_800A43FC();
+}

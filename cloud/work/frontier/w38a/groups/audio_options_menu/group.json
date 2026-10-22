@@ -1,0 +1,63 @@
+{
+ "members": [
+  "func_800D690C",
+  "func_800D6914",
+  "func_800D7634",
+  "drone_pathfind_main",
+  "credits_screen",
+  "drone_collision_avoid"
+ ],
+ "context": [
+  "speed_set",
+  "vsync_wait",
+  "speed_mode0_wrapper",
+  "speed_mode1_wrapper",
+  "continue_prompt",
+  "sync_entry_register",
+  "func_80091B00",
+  "func_80091AF0",
+  "func_80091AF8",
+  "func_800D6160",
+  "physics_init_mode0",
+  "physics_init_mode1",
+  "sign_extend_call",
+  "func_800B8810",
+  "slot_state_setup",
+  "object_create",
+  "func_800B669C"
+ ],
+ "files": [
+  "func_800D7634.c",
+  "codex_vsync_a145.c",
+  "sync_entry_register.c",
+  "func_80091B00.c",
+  "func_80091AF0.c",
+  "func_80091AF8.c",
+  "func_800D6160.c",
+  "init_w36q.c",
+  "ctx_sign_extend.c",
+  "ctx_func_800B8810.c",
+  "uninit_w36w3.c",
+  "rect_w38a.c",
+  "ctx_gr3_b.c"
+ ],
+ "keep": [
+  "func_800D7634",
+  "speed_mode0_wrapper",
+  "speed_mode1_wrapper",
+  "continue_prompt",
+  "vsync_wait",
+  "sync_entry_register",
+  "physics_init_mode0",
+  "physics_init_mode1",
+  "sign_extend_call",
+  "func_800B8810"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w22e (wave 22): func_800D690C (locked caller-less stub given its body), func_800D6914 and func_800D7634, all EQUAL in the whole-program unit with their real callers. Context files are byte-identical copies of locked sources (codex_vsync_a145/group.c, sync_entry_register.c, frontier_slot18_alloc/func_80091B00.c, codex_heap_release_a25/func_80091AF0.c and func_80091AF8.c) plus func_800D6160.c, a verbatim excerpt of codex_mode_init_a18/group.c lines 4137-4156 (func_800D6160 context, physics_init_mode0/1 members) because the full a18 file also defines speed_set and the wrappers. func_800D6914's own .rodata sits in two retail regions (strings 0x8011F70C, floats 0x801241B0..0x801241BC, bits checked by hand): score.py says NOT VERIFIED as expected; install via blob_group. unit_overrides: prefer_definition func_800D7634 (this file; credits_scroll_grp carries an m2c context copy), forced_internal func_800D6914 and func_800D690C; install with --revert-single func_800D690C. w36q (wave 36): + drone_pathfind_main (init_w36q.c; GC initScreen@audioscr.c with initButtons in place; internal, sole caller func_800D7634); helpers di_setButtonColor, di_post_type1, di_ProcessCommand are non-static, not on keep (force_internal if not derived). Old members unchanged. w38a (wave 38): + drone_collision_avoid = calcMenuRect@audioscr.c (rect_w38a.c; internal, sole caller drone_pathfind_main; helpers cmr_gfx_lock/cmr_gfx_unlock/cmr_font_set non-static; validOption = the member func_800D690C, not on keep; one disclosed unused local u0 = exact frame residual). Context += ctx_gr3_b.c (byte copy of src/blob/groups/frontier_pausescr_state/ctx_gr3_b.c: slot_state_setup = _HAL_SetFont with its IPA s2 parameter, object_create, func_800B669C; as in frontier_optionscr_buttons). Old members and files unchanged.",
+ "provenance": "frontier wave 22 (w22e), cloud/work/frontier/w22e/RESULTS.md; w21h/w20e/w17h history | w36q: drone_pathfind_main from Astra PR #411 init.c, unit adaptation; cloud/work/frontier/w36q/RESULTS.md",
+ "name": "audio_options_menu",
+ "claims": [
+  "drone_collision_avoid"
+ ]
+}

@@ -1,0 +1,13 @@
+Members:
+audio_frame_update:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800B0A88:
+  MATCH
+func_800B08FC:
+    +0x148  want 3c028013 lui v0,0x8013                 got 3c198013 lui t9,0x8013               
+    +0x15c  want 00581021 addu v0,v0,t8                 got 0338c821 addu t9,t9,t8               
+    +0x160  want 8c42e708 lw v0,-6392(v0)               got 8f39e708 lw t9,-6392(t9)             
+    +0x170  want e4440028 swc1 $f4,40(v0)               got e7240028 swc1 $f4,40(t9)             
+  4/99 words differ

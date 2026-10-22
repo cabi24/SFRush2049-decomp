@@ -1,0 +1,5 @@
+  EQUAL menu_input_process: 320 words (kept, c_hal_drawtext.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  EQUAL func_800B66B0: 38 words (internal, c_hal_drawtext.c)
+  EQUAL world_velocity_integrate: 178 words (kept, c_finishtext.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w38a/unit.o (9.8s)

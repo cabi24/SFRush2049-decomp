@@ -1,0 +1,3 @@
+  EQUAL menu_input_process: 320 words (kept, c_best.c); own zero-initialised data (addresses consistent, inside game .bss, no overlaps; nothing to compare)
+  EQUAL func_800B66B0: 38 words (internal, c_best.c)
+blob_unit score: 2/2 equal; object build/blob_unit/w38a/unit.o (8.9s)

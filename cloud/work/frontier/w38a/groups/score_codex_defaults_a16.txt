@@ -1,0 +1,61 @@
+Members:
+func_800B6748:
+  MATCH
+audio_doppler_calc:
+  MATCH
+world_velocity_integrate:
+  MATCH
+    own .rodata verified at 0x80124588..0x801245A4
+menu_input_process:
+  MATCH
+    own .bss placed at 0x80153F60 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80153F80 (4 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80153FD0 (2 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80154180 (2 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80154184 (1 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x80154194 (1 bytes; zero-initialised: verified by address only, nothing to compare)
+    own .bss placed at 0x8015419C (1 bytes; zero-initialised: verified by address only, nothing to compare)
+func_800B66B0:
+  MATCH
+
+Context (informational; excluded from exit status):
+world_trigger_check:
+    +0x09c  want 34188000 li t8,0x8000                  got 340f8000 li t7,0x8000                
+    +0x0a0  want ac580000 sw t8,0(v0)                   got ac4f0000 sw t7,0(v0)                 
+  2/54 words differ
+sound_update_channel:
+  MATCH
+func_800B70EC:
+  MATCH
+func_800ED66C:
+  MATCH
+func_800B7360:
+  MATCH
+slot_state_setup:
+  MATCH
+object_create:
+    +0x000  want 27bdffd0 addiu sp,sp,-48               got 03e00008 jr ra                       
+    +0x004  want afa40030 sw a0,48(sp)                  got 00000000 nop                         
+    +0x008  want afbf0024 sw ra,36(sp)                  got (missing)
+    +0x00c  want 3c048014 lui a0,0x8014                 got (missing)
+    +0x010  want afb30020 sw s3,32(sp)                  got (missing)
+    +0x014  want afb2001c sw s2,28(sp)                  got (missing)
+    +0x018  want afb10018 sw s1,24(sp)                  got (missing)
+    +0x01c  want afb00014 sw s0,20(sp)                  got (missing)
+    +0x020  want 248461d0 addiu a0,a0,25040             got (missing)
+    +0x024  want 00002825 move a1,zero                  got (missing)
+    +0x028  want 0c001c9c jal 0x7270                    got (missing)
+    +0x02c  want 24060001 li a2,1                       got (missing)
+  28/28 words differ
+func_800B669C:
+    +0x000  want 3c028012 lui v0,0x8012                 got 03e00008 jr ra                       
+    +0x004  want 24428e20 addiu v0,v0,-29152            got 00000000 nop                         
+    +0x008  want ac440000 sw a0,0(v0)                   got (missing)
+    +0x00c  want 03e00008 jr ra                         got (missing)
+    +0x010  want ac450004 sw a1,4(v0)                   got (missing)
+  5/5 words differ
+mode_byte2_set:
+  MATCH
+mode_byte_set:
+  MATCH
+rc=0
