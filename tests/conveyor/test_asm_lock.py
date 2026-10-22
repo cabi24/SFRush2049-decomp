@@ -63,11 +63,10 @@ def test_drift_and_promotion_are_reported(entries, mapping):
 
 def test_add_refuses_c_and_bad_evidence(mapping):
     with pytest.raises(A.AsmLockError, match="C lock"):
-        A.make_entry("__osAiDeviceBusy", "handwritten:no", mapping)
-    promoted = next(f["name"] for s in mapping["segments"] if not s["refusal"]
-                    for f in s.get("functions", []) if f.get("state") == "promoted")
+        A.make_entry("bcopy", "handwritten:no", mapping,
+                     c_lock={"src/libc/bcopy.c:bcopy": {"target_id": "bcopy"}})
     with pytest.raises(A.AsmLockError, match="already promoted"):
-        A.make_entry(promoted, "handwritten:no", mapping)
+        A.make_entry("__osAiDeviceBusy", "handwritten:no", mapping)    # C since 2026-10-21
     with pytest.raises(A.AsmLockError, match="evidence must be"):
         A.check_evidence("vibes:it looks like asm", 0x8000C970, 3)
     with pytest.raises(A.AsmLockError, match="no IDENTICAL row"):

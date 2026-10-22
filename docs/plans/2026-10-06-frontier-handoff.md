@@ -780,6 +780,11 @@ denominator (632/667 -> 632/677, 160,720 -> 162,284 B). The bytes did not move: 
 `assets/us/data.bin`, whose sha256 110 receipts pin (plus 83 cloud/work scripts slicing at 0x283D0, the owned-slot
 offsets, storage records and the build-time symbol_addrs context proof). Split it when one of the routines is
 first matched. `layout.derive` and the recomp counts are unchanged (the routines stay provisional extents there).
+**Static policy (b) + __osAiDeviceBusy (same day):** 33 assembly functions locked in `asm_matched.lock.json`
+(`pipeline.asm_lock`); segment 0x10760 converted (layout's `_do_convert`, splat fed a sanitized symbol_addrs copy
+for the split only, so the context proof holds) and `__osAiDeviceBusy` promoted as C. Static now 666/677 functions,
+157,476/162,284 B (97.04%; from C 633 / 93.18%). Left on static: func_80012D18 (C near-miss) and the 10 boot-tail
+routines (assembly, still in the data bin).
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
