@@ -236,18 +236,22 @@ def cartridge_coverage():
     populations and summing them would hide how thin each still is."""
     from . import layout as layoutmod
 
-    from . import ovl_splice
+    from . import boot_data, ovl_splice
 
     static = layoutmod.coverage()
+    # Hand-written CPU routines still inside the ROM data bin (pipeline.boot_data):
+    # static functions no source builds yet, so they join the denominator only.
+    boot = boot_data.coverage()
     game = blob_splice.coverage()
     return {
         # Runtime images A/B (pipeline.ovl_splice): their own rows and
         # denominators, never summed into static or game.
         "overlays": ovl_splice.coverage(),
         "static_functions": static["promoted_functions"],
-        "static_total": static["static_functions"],
+        "static_total": static["static_functions"] + boot["functions"],
         "static_bytes": static["promoted_bytes"],
-        "static_total_bytes": static["static_bytes"],
+        "static_total_bytes": static["static_bytes"] + boot["bytes"],
+        "static_in_data_bin": boot["functions"],
         "game_functions": game["functions"],
         "game_total": game["total_functions"],
         "game_bytes": game["bytes"],
@@ -262,9 +266,12 @@ def cartridge_coverage():
 def print_coverage(cov):
     total_fn = cov["static_functions"] + cov["game_functions"]
     total_b = cov["static_bytes"] + cov["game_bytes"]
+    in_bin = cov.get("static_in_data_bin")
     print(f"  static code: {cov['static_functions']:4d}/{cov['static_total']} functions, "
           f"{cov['static_bytes']}/{cov['static_total_bytes']} bytes "
-          f"({100 * cov['static_bytes'] / cov['static_total_bytes']:.2f}%)")
+          f"({100 * cov['static_bytes'] / cov['static_total_bytes']:.2f}%"
+          + (f"; {in_bin} hand-written routines still in the ROM data bin, see boot_data"
+             if in_bin else "") + ")")
     print(f"  game code:   {cov['game_functions']:4d}/{cov['game_total']} functions, "
           f"{cov['game_bytes']}/{cov['game_function_bytes']} code bytes "
           f"({100 * cov['game_bytes'] / cov['game_function_bytes']:.2f}%; "

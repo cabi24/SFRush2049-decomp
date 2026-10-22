@@ -12,9 +12,9 @@ size and global-variable hypotheses from `CLAUDE.md`; they are not current targe
 |--------|-------|-----|------|-------------|
 | ROM Header | 0x00 | 0x40 | 64B | N64 ROM header |
 | IPL3 Boot | 0x40 | 0x1000 | ~4KB | IPL3 boot code |
-| Static Code | 0x80000400 | 0x8000F700 | ~61KB | Uncompressed boot/library code |
-| Static Data | 0x80010000 | 0x80037DB0 | ~159KB | Static data/rodata |
-| BSS (Static) | 0x80037DB0 | 0x80086A50 | ~318KB | Static BSS/uninitialized data |
+| Static Code | 0x80000400 | 0x800277D0 | 160,720 B | Boot/library code (ROM 0x1000-0x283D0) |
+| Boot segment tail | 0x800277D0 | 0x8002E8E0 | 28,944 B | Hand-written CPU routines, RSP microcode, static .data/.rodata (§1.1a) |
+| BSS (Static) | 0x8002E8E0 | 0x80086A50 | 360,816 B | Zeroed by `entrypoint` |
 | Decompressed Game | 0x80086A50 | 0x801249F0 | 647,072 B | Game image from a DEFLATE stream: .text to 0x8010FD7C, then .data and .rodata (§1.2) |
 | Game BSS | 0x801249F0 | 0x8017A640 | ~346KB | Game BSS/runtime data |
 | Hardware Regs | 0xA4000000 | 0xA4800020 | - | N64 MMIO registers |
@@ -25,7 +25,7 @@ size and global-variable hypotheses from `CLAUDE.md`; they are not current targe
 
 ## 1. Code Segments
 
-### 1.1 Static ROM Code (0x80000400 - 0x8000F700)
+### 1.1 Static ROM Code (0x80000400 - 0x800277D0)
 
 This code is loaded directly from ROM at boot and remains resident. It contains libultra OS functions, decompression routines, and initialization code.
 
@@ -60,6 +60,32 @@ osCreateScheduler = 0x80000450  // Scheduler creation
 __osException     = 0x8000C980  // CPU exception handler
 inflate_entry     = 0x80006814  // DEFLATE decompression entry
 ```
+
+### 1.1a Boot Segment Tail (0x800277D0 - 0x8002E8E0, ROM 0x283D0 - 0x2F4E0)
+
+splat ends the static code at ROM 0x283D0 because the function scanner stops on hand-written code it cannot
+parse; the rest of the boot segment is the first 28,944 B of the ROM `data` bin, up to where `entrypoint`'s
+BSS clear starts. `tools/conveyor/pipeline/boot_data.py` labels it in place (2026-10-21; the bytes stay in
+`assets/us/data.bin`, whose hash 110 research receipts pin) and `tests/conveyor/test_boot_data.py` re-proves
+each label:
+
+| Range | Size | Kind | Contents |
+|---|---:|---|---|
+| 0x800277D0 - 0x80027DD0 | 1,536 B | CPU | 9 hand-written libgsm kernels (RPE decoding, long-term and short-term synthesis, LAR interpolation, `LARp_to_rp`) called by `lib_26f60`'s decoder |
+| 0x80027DD0 - 0x80027EA0 | 208 B | RSP text | rspboot (both tasks' `ucode_boot`) |
+| 0x80027EA0 - 0x80028CC0 | 3,616 B | RSP text | microcode no task references (probably a second audio microcode) |
+| 0x80028CC0 - 0x8002A050 | 5,008 B | RSP text | F3DEX NoN fifo 2.08 (graphics task `ucode`) |
+| 0x8002A050 - 0x8002AFA0 | 3,920 B | RSP text | aspMain (audio task `ucode`) |
+| 0x8002AFA0 - 0x8002C5E0 | 5,696 B | data | static .data/.rodata, from `__osScCurAudioTask` |
+| 0x8002C5E0 - 0x8002C5FC | 28 B | CPU | `func_8002C5E0`, a hand-written D-cache loop placed among the data |
+| 0x8002C5FC - 0x8002DDF0 | 6,132 B | data | static .data/.rodata |
+| 0x8002DDF0 - 0x8002E210 | 1,056 B | RSP data | F3DEX data (graphics task `ucode_data`) |
+| 0x8002E210 - 0x8002E440 | 560 B | RSP data | aspMain data (audio task `ucode_data`) |
+| 0x8002E440 - 0x8002E8E0 | 1,184 B | data | static .data/.rodata: build-info record ("07-17-00", "02:26:18", "MERRILL", "BLACKOUT") |
+
+The 10 CPU routines (1,564 B) count in the static coverage denominator as functions no source builds yet,
+so `make progress` reports static against 677 functions and 162,284 bytes. The microcode is Nintendo SDK
+binary and is not a decompilation target.
 
 ### 1.2 Decompressed Game Image (0x80086A50 - 0x801249F0)
 
@@ -346,11 +372,11 @@ Per-player input state, 4 players x 32 bytes (0x20 stride).
 0x80000000  +------------------+
             | OS Constants     |  (0x300-0x320)
 0x80000400  +------------------+
-            | Static Code      |  ~61KB (entrypoint, libultra, inflate)
-0x8000F700  +------------------+
-            | Static Data      |  ~159KB
-0x80037DB0  +------------------+
-            | Static BSS       |  ~318KB (OS structures)
+            | Static Code      |  157KB (entrypoint, libultra, inflate, libgsm)
+0x800277D0  +------------------+
+            | Boot tail        |  28KB: GSM asm kernels, RSP microcode, .data
+0x8002E8E0  +------------------+
+            | Static BSS       |  352KB (zeroed by entrypoint)
 0x80086A50  +------------------+
             | Decompressed     |  549KB .text (game code from ROM)
             | Game Code        |

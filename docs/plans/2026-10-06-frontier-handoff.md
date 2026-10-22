@@ -766,11 +766,20 @@ f2/f3 found nothing (`f2/RESULTS.md`, `f3/RESULTS.md`). Coverage reporting chang
 three images' data tails are labelled `data` with fail-closed checks in `blob_layout derive` / `ovl_layout derive`
 (the tail must start where proven and hold no `jr ra`), their sections are emitted non-executable
 (`.blobdata.data_*` "aw", `.blobdata.rodata_*` "a"), and `make progress` leads with code bytes: game 509,680/561,860
-(90.71%), A 128,060/152,952 (83.73%), B 36,272/38,708 (93.71%), static 151,176/160,720 (94.06%). Gates: images
+(90.71%), A 128,060/152,952 (83.73%), B 36,272/38,708 (93.71%), static 151,176/162,284 (93.16%; see below). Gates: images
 byte-identical, blob_unit 1165/1165, ROM SHA-1 exact via both `blob_rom rom` and `ovl_rom rom`. README, CloudHandoff,
 cloud/RESEARCH_INDEX, dot_handoff (+ `docs/dot_handoff_targets.csv`, now the 51 unmatched) and PROJECT_PLAN carry
 the new figures. The wiki's `rush2049:status` page is still the 2026-09-10 snapshot: SSH to the unraid host refused
 on a changed host key (owner to verify the key before anyone accepts it).
+**Boot segment tail (same day, owner chose "label in place"):** RAM 0x800277D0..0x8002E8E0 (ROM 0x283D0..0x2F4E0,
+the head of the `data` bin) is mapped by `tools/conveyor/pipeline/boot_data.py` and re-proven by
+`tests/conveyor/test_boot_data.py`: 10 hand-written CPU routines (the BT08 census-boundary targets: 9 libgsm
+kernels + `func_8002C5E0`, a D-cache loop), RSP microcode text (rspboot, an unreferenced microcode, F3DEX NoN
+fifo 2.08, aspMain), and static .data/.rodata with the F3DEX/aspMain data blocks. The 10 routines join the static
+denominator (632/667 -> 632/677, 160,720 -> 162,284 B). The bytes did not move: splitting the bin changes
+`assets/us/data.bin`, whose sha256 110 receipts pin (plus 83 cloud/work scripts slicing at 0x283D0, the owned-slot
+offsets, storage records and the build-time symbol_addrs context proof). Split it when one of the routines is
+first matched. `layout.derive` and the recomp counts are unchanged (the routines stay provisional extents there).
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
@@ -919,7 +928,7 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
   B from 0x80393B34, `.rodata` 0x80394D20; `tests/conveyor/test_blob_data_tail.py`, `test_ovl_data_tail.py`). The
   owner made code bytes the headline: `make progress` reports game, A and B against their function bytes (game
   90.71% at 1165/1216), then against the whole image (game 78.77%). Quote both with their denominators when
-  comparing to older figures, which used the image. Static is unchanged (its denominator was already code bytes).
+  comparing to older figures, which used the image. Static's denominator was already code bytes; it now also counts the 10 routines in the boot segment tail.
 - **Pushing:** push gate-passing, test-passing work to master as it lands; the owner wants master current. Force-push only with explicit owner approval (one history purge was approved).
 - **Hook-protected files:** do not edit `tools/cloud/score.py` directly. Changes go through a reviewed patch with owner approval.
 - **Permission denials:** if the permission classifier denies an action, do not retry it another way. Surface it to the owner.
