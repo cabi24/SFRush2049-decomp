@@ -16,7 +16,10 @@
   "func_8039A4D4",
   "func_803A5948",
   "func_803A5938",
-  "func_803A5940"
+  "func_803A5940",
+  "func_8039B004",
+  "func_8039B558",
+  "func_8039BA20"
  ],
  "context": [],
  "files": [
@@ -27,6 +30,6 @@
   "func_803A5948"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "w36g same-name superseding revision of the installed group (master e68aea6e1): all thirteen installed members unchanged and still MATCH; new members func_8039A4D4 (updateButtons@circuitscr.c, MAT3 port, formerly a context stand-in), func_803A5948 (animText@circuitscr.c, MAT3 port with animButtonText/getFinishPlaceStr inlined) and the two deleted-inline stubs func_803A5938/func_803A5940. Previous: Same-name group extension from master b37643eec, preserving all eleven installed members and pending PR333 BB80 unchanged; A5658 added after stock-stage equality, loop, and exact scalar-home frame diagnosis. BB80 is preserved-only credit.",
- "allow_unverified": true
+ "allow_unverified": true,
+ "provenance": "w36g same-name superseding revision of the installed group (master e68aea6e1): all thirteen installed members unchanged and still MATCH; new members func_8039A4D4 (updateButtons@circuitscr.c, MAT3 port, formerly a context stand-in), func_803A5948 (animText@circuitscr.c, MAT3 port with animButtonText/getFinishPlaceStr inlined) and the two deleted-inline stubs func_803A5938/func_803A5940. Previous: Same-name group extension from master b37643eec, preserving all eleven installed members and pending PR333 BB80 unchanged; A5658 added after stock-stage equality, loop, and exact scalar-home frame diagnosis. BB80 is preserved-only credit. w38b (wave 38): claims stubs func_8039B004 uninitButtons@circuitscr.c, func_8039B558 controlShowTrophy, func_8039BA20 getPlayerStr (helpers extracted from members B00C, C140, BB80; C140's carriers and four of BB80's unused homes dropped: the inlined calls' frame areas). Old members MATCH."
 }

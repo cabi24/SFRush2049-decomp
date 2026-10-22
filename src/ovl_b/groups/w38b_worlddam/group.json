@@ -1,0 +1,17 @@
+{
+ "name": "w38b_worlddam",
+ "members": [
+  "func_8038A408",
+  "func_8038A400"
+ ],
+ "context": [],
+ "files": [
+  "worlddam.c"
+ ],
+ "keep": [
+  "func_8038A408"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w38b (wave 38): image B worlddam.c as a group so the deleted-inline stub of findDamageSlot (B:func_8038A400, the image base) carries a symbol. Source = the locked single src/ovl_b/func_8038A408.c with `static s32 findDamageSlot(void)` renamed to the non-static, non-kept func_8038A400. Supersedes the single func_8038A408 (revert it first)."
+}

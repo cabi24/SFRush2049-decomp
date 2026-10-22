@@ -1,12 +1,15 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Runtime image A: menu-state update and its three genuine IPA helpers.
  * New root func_803990D0 keeps the existing executable statements and ABI.
- * Four unused s32 locals represent only the measured frame residual: the
- * baseline frame is 96 bytes; retail is 112 (+16). One slot precedes the
- * three live status bytes, and three follow the live descriptor/index so
- * the descriptor and status homes move by the required +12 bytes. These
- * slots are shaping evidence, not recovered original variable declarations.
- * No live buffer, descriptor size, or helper prototype is changed.
+ * w38b superseding revision (wave 38): this is MAT3 pakscr.c. updatePakScreen (func_803990D0) calls
+ * _ControlFileDelVerify / _ControlRumblePak / _ControlDamaged for states 2/3/4; they are now the non-kept helpers
+ * func_80398C34 / func_80398BE8 / func_80398BE0 named after their retail deleted stubs, and _SetState
+ * (func_80398B40) calls _BuildFileDelList = func_80398B38. Post-order of updatePakScreen (last call first):
+ * _BuildFileDelList 98B38, _SetState 98B40, _ControlDamaged 98BE0, _ControlRumblePak 98BE8, _FindFile 98BF0 (single),
+ * _ControlFileDelVerify 98C34, _ControlFileDel 98C3C, _ControlPickPak 98E70, updatePakScreen 990D0 = retail layout.
+ * The former four unused s32 frame slots are gone: the inlined calls' frame areas plus MAT3's local order
+ * (`int i` first, the blit descriptor block-local in the init branch) give the retail frame 112 and homes. The
+ * case bodies moved verbatim.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -49,20 +52,27 @@ extern void player_state_set(s32,s32);
 extern s32 func_8039A24C(s32);
 extern void control_settings(s32,s8 *,s8 *,s8 *,s32 (*)(s32));
 
+void func_80398B38(void);
 void func_80398B40(s32 mode)
 {
     switch(mode) {
     case 0: break;
     case 1:
-        D_803B9BB4=8;
-        D_803B9BBC=func_800A35BC(D_803B9BBA);
-        D_803B9BC4=16;
-        if(D_803B9BB4<D_803B9BC4)D_803B9E3A=D_803B9BB4;
-        else D_803B9E3A=D_803B9BC4;
+        func_80398B38();
         break;
     case 2: D_803B9BB8=0; break;
     }
     D_803B9BB0=mode;
+}
+
+/* _BuildFileDelList (MAT3 pakscr.c): inlined into _SetState func_80398B40; deleted stub 0x80398B38 (w38b). */
+void func_80398B38(void)
+{
+    D_803B9BB4=8;
+    D_803B9BBC=func_800A35BC(D_803B9BBA);
+    D_803B9BC4=16;
+    if(D_803B9BB4<D_803B9BC4)D_803B9E3A=D_803B9BB4;
+    else D_803B9E3A=D_803B9BC4;
 }
 
 void func_80398C3C(void)
@@ -133,16 +143,17 @@ void func_80398E70(void)
     }
 }
 
+void func_80398C34(void);
+void func_80398BE8(void);
+void func_80398BE0(void);
 void func_803990D0(void)
 {
-    s32 frame_slot3;
+    s32 i;
     s8 complete;
     s8 result;
     s8 choice;
-    MultiBlit descriptor;
-    s32 i;
-    s32 frame_slot0, frame_slot1, frame_slot2;
     if(!D_803B46A8) {
+        MultiBlit descriptor;
         descriptor=D_803B46B8;
         func_80398B40(0);
         if(D_801174B4&0x7C03FFFE)particle_lifetime_set();
@@ -165,36 +176,49 @@ void func_803990D0(void)
         switch(D_803B9BB0) {
         case 0: func_80398E70(); break;
         case 1: func_80398C3C(); break;
-        case 2:
-            if(D_8015694C&0x3000) {
-                audio_doppler(D_8015694C);
-                D_803B9BB8=!D_803B9BB8;
-            }
-            if(D_8015694C&2) {
-                entity_flags_apply(37,0,1,0);
-                if(D_803B9BB8) {
-                    func_800A2680(D_803B9BC0);
-                    D_803B9BBC=func_800A35BC(D_803B9BBA);
-                    D_803B9BC0=func_80398BF0(D_803B9BC6);
-                }
-                func_80398B40(1);
-            } else if(D_8015694C&5) {
-                resource_type_select(D_8015694C);
-                func_80398B40(1);
-            }
-            break;
-        case 3:
-            if(D_8015694C&7) {
-                resource_type_select(D_8015694C);
-                func_80398B40(0);
-            }
-            break;
-        case 4:
-            if(D_8015694C&7) {
-                resource_type_select(D_8015694C);
-                func_80398B40(0);
-            }
-            break;
+        case 2: func_80398C34(); break;
+        case 3: func_80398BE8(); break;
+        case 4: func_80398BE0(); break;
         }
     }
 }
+
+/* _ControlFileDelVerify (MAT3 pakscr.c): inlined into updatePakScreen func_803990D0; deleted stub 0x80398C34 (w38b). */
+void func_80398C34(void)
+{
+    if(D_8015694C&0x3000) {
+        audio_doppler(D_8015694C);
+        D_803B9BB8=!D_803B9BB8;
+    }
+    if(D_8015694C&2) {
+        entity_flags_apply(37,0,1,0);
+        if(D_803B9BB8) {
+            func_800A2680(D_803B9BC0);
+            D_803B9BBC=func_800A35BC(D_803B9BBA);
+            D_803B9BC0=func_80398BF0(D_803B9BC6);
+        }
+        func_80398B40(1);
+    } else if(D_8015694C&5) {
+        resource_type_select(D_8015694C);
+        func_80398B40(1);
+    }
+}
+
+/* _ControlRumblePak (MAT3 pakscr.c): inlined into updatePakScreen func_803990D0; deleted stub 0x80398BE8 (w38b). */
+void func_80398BE8(void)
+{
+    if(D_8015694C&7) {
+        resource_type_select(D_8015694C);
+        func_80398B40(0);
+    }
+}
+
+/* _ControlDamaged (MAT3 pakscr.c): inlined into updatePakScreen func_803990D0; deleted stub 0x80398BE0 (w38b). */
+void func_80398BE0(void)
+{
+    if(D_8015694C&7) {
+        resource_type_select(D_8015694C);
+        func_80398B40(0);
+    }
+}
+

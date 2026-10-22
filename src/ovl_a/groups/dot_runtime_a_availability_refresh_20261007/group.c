@@ -1,4 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): claims the two deleted-inline stubs whose helpers this unit already defines:
+ * func_80397FF4 = calcSelectMenuMaxSize (inlined into initScreen func_80397FFC) and claimPlayer, renamed from
+ * func_80396EE0 to func_803968B8: the compiled object emits its deleted procedure right after controlDeletePlayer
+ * func_80395E8C and before controlCreatePlayer func_803968C0, i.e. at retail 0x803968B8 (post-order: controlCreatePlayer
+ * calls claimPlayer, controlSelect's later calls find it visited). Retail 0x80396ED8/0x80396EE0 are the stubs of
+ * controlControls/controlWait, inlined into the unmatched root func_8039842C (not claimed). No body changed. */
 /* Image A player-select screen (MAT3 GameSource playerscr.c), one IPA unit rooted at the kept func_8039842C
  * (updatePlayerScreen, GC 0x80079f80). Claimed members (all strict in this group):
  *   func_80394564 updateSelectInfo, func_80394834 updatePakInfo, func_80394B00 setPlayerState, func_80397AD8
@@ -12,7 +18,7 @@
  * wait state, a "controls" arrow button (index 14) next to the selected item, 0.0f lower angle limit, and
  * gFrameSeconds / gNumModels are volatile.
  * Inlined statics (their 8-byte deleted stubs are non-static symbols, not on keep): func_80397FF4 =
- * calcSelectMenuMaxSize (inlined into initScreen), func_80396EE0 = claimPlayer (inlined 4x into controlSelect and 1x
+ * calcSelectMenuMaxSize (inlined into initScreen), func_803968B8 = claimPlayer (inlined 4x into controlSelect and 1x
  * into controlCreatePlayer). Their parameters are what the frame needs: defining them as helpers replaced the
  * `screens` local of the earlier research body and two unused locals.
  * Shaping devices (each needed for the exact frame; disclosed per the Wave 12/16 rule):
@@ -788,7 +794,7 @@ s32 func_80396F44(s32 skip)
     for(i=0;i<D_8014A108;i++)if(i!=skip && D_803BACE0[i]==3)found=1;
     return found;
 }
-void func_80396EE0(s32,Owner *);
+void func_803968B8(s32,Owner *);
 void func_80396FA0(s32 p)
 {
     while (!D_803BAD00[p][D_803BAD80[p]] ||
@@ -814,14 +820,14 @@ void func_80396FA0(s32 p)
     if (D_8014A118[p].flags & 1) {
         resource_type_select(D_8014A118[p].flags);
         if (D_803BAD80[p] >= 3 && D_803BAD80[p] < 11)
-            func_80396EE0(p, D_803BAC80[p]);
+            func_803968B8(p, D_803BAC80[p]);
         else
-            func_80396EE0(p, &D_80146150[p]);
+            func_803968B8(p, &D_80146150[p]);
         func_80394B00(p, 1);
     } else if (D_8014A118[p].flags & 2) {
         resource_type_select(D_8014A118[p].flags);
         if (D_803BAD80[p] >= 3 && D_803BAD80[p] < 11) {
-            func_80396EE0(p, D_803BAC80[p]);
+            func_803968B8(p, D_803BAC80[p]);
             if (D_803BADB8[p] == 1) {
                 if (func_800CCEFC(D_8014A118[p].owner)) {
                     D_8015418C[p] = 1;
@@ -831,7 +837,7 @@ void func_80396FA0(s32 p)
             } else func_80394B00(p, 1);
         } else switch (D_803BAD80[p]) {
         case 0:
-            func_80396EE0(p, &D_80146150[p]);
+            func_803968B8(p, &D_80146150[p]);
             if (D_803BADB8[p] == 1) {
                 D_8015418C[p] = 1;
                 func_800A3424((void **)D_8014A118[p].owner->body->selection, 1);
@@ -931,7 +937,7 @@ void func_80396FA0(s32 p)
                  (D_803BAD80[p] == 12 && func_80396EE8(p) == 1));
     }
 }
-void func_80396EE0(s32 playerIdx, Owner *player)
+void func_803968B8(s32 playerIdx, Owner *player)
 {
     D_8014A118[playerIdx].owner = player;
     func_80394564(-1);
@@ -993,7 +999,7 @@ void func_803968C0(s32 p)
             if (D_803BAC98[p][0]) {
                 player = func_800CD104(D_803BADBC[p], D_803BAC98[p]);
                 if (player) {
-                    func_80396EE0(p, player);
+                    func_803968B8(p, player);
                     D_803BAD80[p] = 3;
                     D_803BAC80[p] = player;
                     for (pIdx = 0; pIdx < D_8014A108; pIdx++) {

@@ -21,6 +21,11 @@
  * so the inlined initButtons must follow initScreen (with initButtons first, `addiu s2,sp,76` lost a tie: 7 words).
  * The bodies of updateStartScreen, updateButtons, optionValid, uninitScreen and uninitButtons are unchanged.
  *
+ * w38b (wave 38): uninitButtons and uninitScreen are non-static functions named after their retail deleted stubs
+ * func_8038F734 / func_8038F73C (post-order of updateStartScreen: CheckForEgg F648, then uninitScreen's subtree
+ * uninitButtons F734, uninitScreen F73C, then optionValid F744, updateButtons F79C, InitEgg = locked single FF90,
+ * initButtons FFD0, initScreen FFD8). Off keep, so umerge still inlines them; as statics they had no symbol.
+ *
  * Frame shaping, disclosed (Wave 12/16 rule): updateButtons has retail frame 96. Without the three unused f32 locals
  * below the frame is 88 and the locals sit at sp+56/66/72 instead of retail's sp+52/62/68. Udef is 32 bytes with
  * the MAT3 locals (buttonIdx, prevPos[3], tex, texIdx, buttonY, selectedY) and 44 with three more 4-byte slots
@@ -106,8 +111,8 @@ extern void func_800FD754(f32 *, f32 *, f32, f32, f32); /* ScaleUVXYZ */
 void func_8038FFD8(void);
 s8 func_8038F744(s32);
 void func_8038FFD0(void);
-static void uninitButtons(void);
-static void uninitScreen(void);
+void func_8038F734(void); /* uninitButtons@startscr.c: deleted stub 0x8038F734 */
+void func_8038F73C(void); /* uninitScreen@startscr.c: deleted stub 0x8038F73C */
 void func_8038F79C(void);
 void InitEgg(s32);
 void func_80390418(void);
@@ -197,10 +202,10 @@ void func_80390418(void)
     }
     func_8038F79C();
     if (D_80157244) {
-        uninitScreen();
+        func_8038F73C();
         func_800B5570(4);
     } else if (D_803B6A70) {
-        uninitScreen();
+        func_8038F73C();
         switch (D_803B6A70) {
             case 1:
                 switch (D_803B6A68) {
@@ -244,14 +249,14 @@ void func_8038FFD8(void)
     D_803B65DC = 1;
 }
 
-static void uninitScreen(void)
+void func_8038F73C(void) /* uninitScreen (w38b: non-static, named after its retail stub) */
 {
     if (D_803B65E0) {
         sound_stop(D_803B65E0);
         D_803B65E0 = 0;
     }
     ambient_sounds_clear();
-    uninitButtons();
+    func_8038F734();
     D_803B65DC = 0;
 }
 
@@ -326,7 +331,7 @@ void func_8038FFD0(void) /* initButtons */
     particle_velocity_set();
 }
 
-static void uninitButtons(void)
+void func_8038F734(void) /* uninitButtons (w38b: non-static, named after its retail stub) */
 {
     s32 buttonIdx;
     for (buttonIdx = 0; buttonIdx < 18; buttonIdx++)

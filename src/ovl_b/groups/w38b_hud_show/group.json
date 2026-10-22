@@ -1,0 +1,17 @@
+{
+ "name": "w38b_hud_show",
+ "members": [
+  "func_803925D0",
+  "func_803925C8"
+ ],
+ "context": [],
+ "files": [
+  "hudextra.c"
+ ],
+ "keep": [
+  "func_803925D0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w38b (wave 38): image B ShowHUDExtra as a group so the deleted-inline stub of ClearBattlePoints (B:func_803925C8) carries a symbol. Source = the locked single src/ovl_b/func_803925D0.c with `static void ClearBattlePoints(void)` renamed to the non-static, non-kept func_803925C8 (still defined after ShowHUDExtra). Supersedes the single func_803925D0 (revert it first)."
+}

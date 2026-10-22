@@ -1,6 +1,7 @@
 {
  "members": [
-  "func_803949CC"
+  "func_803949CC",
+  "func_803949C4"
  ],
  "context": [
   "func_80394564",
@@ -16,5 +17,5 @@
   "func_8039842C"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "New complete cleanup with full genuine 9842C menu caller. Availability/setup/state-change/refresh context reused from #290; 94834 remains existing exact context and is not claimed again. Other group members are NONMATCH."
+ "provenance": "New complete cleanup with full genuine 9842C menu caller. Availability/setup/state-change/refresh context reused from #290; 94834 remains existing exact context and is not claimed again. Other group members are NONMATCH. w38b (wave 38): claims stub func_803949C4 = uninitButtons@playerscr.c, the button loop of uninitScreen func_803949CC moved into a non-kept helper (MAT3 signature signed char p). Old member MATCH."
 }

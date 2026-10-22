@@ -1,4 +1,7 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): claims the three deleted-inline stubs before _UninitScreen (func_8039D05C):
+ * func_8039D044 clearCarComponents, func_8039D04C uninitButtons@carscr.c, func_8039D054 releaseGridMap (see the
+ * D05C header). Every old member MATCHes; D05C needs no shaping device now. */
 /* w36b superseding revision: func_803A0498 (GC setGhosts@carscr.c) and func_8039E444 (GC updateCarComponents@carscr.c) are
  * now members (MAT3 ports, headers at the functions). Every earlier member is unchanged; the one shared-declaration change is
  * the 4th parameter of string_copy_format (s8 -> s32). */
@@ -23,10 +26,12 @@
  * Authentic reconstructed callers/callees are preserved as nonclaiming context.
  * Arcade ancestry is unknown. This is a private-ABI no-argument helper that
  * clobbers s0-s8; its real caller func_803A1EAC saves/restores that set.
- * Shaping quirk: the code-free read of initialized player in the panel loop
- * adds one weight-100 use in IDO's allocation analysis (92/11 -> 192/11),
- * giving the retail register order. It has no memory access or side effects.
- * This is explicit source shaping, not a claim about original source spelling.
+ * (w38b, wave 38) This is MAT3 carscr.c _UninitScreen. Its three inlined statics are now the non-kept helpers
+ * func_8039D044 clearCarComponents(int p), func_8039D04C uninitButtons(signed char p) and func_8039D054
+ * releaseGridMap (empty in the N64 build, like createGridMap = func_8039EF00), called where MAT3 calls them
+ * (releaseGridMap under `gNumPlayers == 1 && gRace != 2` right after the first wave unload). Their deleted
+ * procedures are the retail stubs 0x8039D044/4C/54 in that order (post-order, last call first). The former
+ * shaping device (a code-free `if (player) {}` read in the panel loop) is no longer needed and is removed.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -966,13 +971,15 @@ extern void sound_call_minimal(s16);
 extern void sound_stop(Blit *);
 extern void ambient_sounds_clear(void);
 extern void func_800A5B3C(void);
+void func_8039D044(s32);
+void func_8039D04C(s8);
+void func_8039D054(void);
 void func_8039D05C(void)
 {
-    s32 player,i,count;
+    s32 player,count;
     FiveParts **box;
-    Slot *slot;
-    PanelPart *part;
     wheel_setup_initial(62);
+    if(D_8014A108==1 && D_8014A110!=2) func_8039D054();
     if(D_80156994) {
         wheel_setup_initial(80);
         wheel_setup_initial(61);
@@ -982,22 +989,10 @@ void func_8039D05C(void)
         if(*box) {sound_handles_array_clear(*box);*box=0;}
     }
     for(player=0;player<(count=D_8014A108);player++) {
-        for(i=0;i!=44;i++) {
-            slot=&D_803AF9A8[(s8)player][i];
-            if(slot->handle!=-1) {sound_call_minimal(slot->handle);slot->handle=-1;}
-        }
-        D_803B9B90[(s8)player]=0;
+        func_8039D04C(player);
         if(D_803B25CC[player][0]!=-1) {sound_call_minimal(D_803B25CC[player][0]);D_803B25CC[player][0]=-1;}
         if(D_803B25CC[player][1]!=-1) {sound_call_minimal(D_803B25CC[player][1]);D_803B25CC[player][1]=-1;}
-        if(player>0)continue;
-        {
-            for(i=0;i!=11;i++) {
-                if (player) {} /* Code-free allocation-priority read; see header. */
-                part=&D_803B2618[player][i];
-                if(part->handle!=-1) {sound_call_minimal(part->handle);part->handle=-1;part->auxiliary=-1;}
-            }
-            if(D_803B25C8!=-1) {sound_call_minimal(D_803B25C8);D_803B25C8=-1;}
-        }
+        func_8039D044(player);
     }
     if(D_803B28AC) {sound_stop(D_803B28AC);D_803B28AC=0;}
     ambient_sounds_clear();
@@ -1005,6 +1000,34 @@ void func_8039D05C(void)
     func_800A5A40();func_800A5B3C();
     for(player=0;player<D_8014A108;player++)scheduler_recv(D_803BA1D0[player]);
     D_803B28A8=0;
+}
+
+/* clearCarComponents (MAT3 carscr.c, int p): inlined into _UninitScreen; deleted stub 0x8039D044 (w38b) */
+void func_8039D044(s32 p)
+{
+    s32 i;
+    if (p > 0) return;
+    for(i=0;i!=11;i++) {
+        if(D_803B2618[p][i].handle!=-1) {sound_call_minimal(D_803B2618[p][i].handle);D_803B2618[p][i].handle=-1;D_803B2618[p][i].auxiliary=-1;}
+    }
+    if(D_803B25C8!=-1) {sound_call_minimal(D_803B25C8);D_803B25C8=-1;}
+}
+
+/* releaseGridMap (MAT3 carscr.c): empty in the N64 build like createGridMap (func_8039EF00); deleted stub 0x8039D054 (w38b) */
+void func_8039D054(void)
+{
+}
+
+/* uninitButtons@carscr.c (MAT3 signed char p): inlined into _UninitScreen; deleted stub 0x8039D04C (w38b) */
+void func_8039D04C(s8 p)
+{
+    s32 i;
+    Slot *slot;
+    for(i=0;i!=44;i++) {
+        slot=&D_803AF9A8[p][i];
+        if(slot->handle!=-1) {sound_call_minimal(slot->handle);slot->handle=-1;}
+    }
+    D_803B9B90[p]=0;
 }
 
 typedef union Color4 {u8 c[4];u32 word;} Color4;

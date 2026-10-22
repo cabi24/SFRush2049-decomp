@@ -1,4 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): claims three deleted-inline stubs, in the post-order the IPA layout uses
+ * (updateRecordScreen's calls visited last first): func_803915E0 = updateViewButtons (the helper formerly named
+ * recordscr_updateViewButtons, renamed after its stub), func_803932D4 = controlView (case 1 of updateRecordScreen
+ * moved verbatim into a helper; MAT3 block-local step variables) and func_803932DC = uninitButtons@recordscr.c
+ * (the button loop of uninitRecordScreen func_803932E4 moved verbatim into a helper). Every old member MATCHes;
+ * func_80394058 no longer needs its two unused residual slots or the `mode` carrier. */
 /* w36f superseding revision (wave 36): func_803923B0 is now a claimed member, a direct typed port of MAT3
  * recordscr.c updateButtons + inlined updateViewButtons (see its header below).  The six old members are unchanged
  * and still MATCH; the only shared-declaration change is `extern volatile u8 D_80140BDC` (gNumModels; its other
@@ -14,12 +20,11 @@
  * pairs from the renderer, are required to reproduce the kept root's ABI.
  * The native mode read has its own s32 carrier. Two actual signed-byte
  * input steps retain separate homes; every root statement is inherited.
- * SHAPING: residual_slot0 and residual_slot1 are unused s32 declarations
- * before the byte locals. Each reserves four bytes in the declared-local
- * area. Native frame 128, frame without these slots 120; total residual
- * 2 * 4 = 8 bytes. Save area 24..111 and byte homes 118/119 stay exact.
- * This is an explicitly permitted frame reconstruction, not evidence of
- * original variable names, types or declarations. No padding arrays.
+ * (w38b, wave 38: the former SHAPING residual_slot0/residual_slot1 and the
+ * `mode` carrier are gone. The 8 + 8 frame bytes they stood in for are
+ * umerge's reservation for the inlined controlView call: case 1 is MAT3
+ * controlView, now the non-kept helper func_803932D4 whose deleted procedure
+ * is the retail stub 0x803932D4. Root frame 128 with no unused locals.)
  * Earlier strict helpers are preservation members, with no new credit.
  * Context FP/data discrepancies remain unclaimed; root owns no data.
  * w36c (wave 36): adds members/claims func_803915E8 = updateSelectButtons@recordscr.c (MAT3
@@ -185,15 +190,9 @@ extern void sound_call_minimal(s16);
 extern void sound_handles_array_clear(void *);
 extern void sound_stop(void *);
 extern void ambient_sounds_clear(void);
+void func_803932DC(void);
 void func_803932E4(void) {
-    s32 i;
-    for (i = 0; i < 23; i++) {
-        if (D_803B5F28[i].fields[1] != -1) {
-            sound_call_minimal((s16)D_803B5F28[i].fields[1]);
-            D_803B5F28[i].fields[1] = -1;
-        }
-    }
-    D_803BA7D0 = 0;
+    func_803932DC();
     if (D_803B6530 != 0) {
         sound_handles_array_clear(D_803B6530);
         D_803B6530 = 0;
@@ -221,12 +220,9 @@ extern void func_800B5FC4(s32);
 extern void func_800A3424(ListObject *, s32);
 extern void func_800C7308(ListNode *);
 
+void func_803932D4(void);
 void func_80394058(void)
 {
-    s32 residual_slot0; s32 residual_slot1;
-    s8 level_step;
-    s8 item_step;
-    s32 mode;
     if (D_803B6528 == 0) {
         func_80393B3C();
     }
@@ -242,77 +238,12 @@ void func_80394058(void)
         func_803932E4();
         func_800B5570(16);
     } else {
-        mode = D_803BA804;
-        switch (mode) {
+        switch (D_803BA804) {
         case 0:
             func_8039338C();
             break;
         case 1:
-            if (D_80156944 & 0x3000) {
-                if (D_803BA810 == 0) {
-                    level_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
-                    if (level_step != 0) {
-                        func_800B5F88(D_80149784);
-                        do {
-                            D_803BA858 += level_step;
-                            if (D_803BA858 < 0) {
-                                D_803BA858 = D_803BA800 != 0 ? 29 : 28;
-                            }
-                            if (D_803BA858 > (D_803BA800 != 0 ? 29 : 28)) {
-                                D_803BA858 = 0;
-                            }
-                        } while (D_803B6534[D_803BA858] == 0);
-                        func_80392F28();
-                    }
-                } else {
-                    item_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
-                    if (item_step != 0) {
-                        func_800B5F88(D_80149784);
-                        do {
-                            D_803BA818[D_803BA880] += item_step;
-                            if (D_803BA818[D_803BA880] < 0) {
-                                D_803BA818[D_803BA880] = 12;
-                            }
-                            if (D_803BA818[D_803BA880] >= 13) {
-                                D_803BA818[D_803BA880] = 0;
-                            }
-                        } while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0);
-                        func_80392F28();
-                    }
-                }
-            } else if (D_80149784 & 0x400) {
-                func_800B5F4C(D_80149784);
-                do {
-                    if (--D_803BA810 < 0) {
-                        D_803BA810 = 1;
-                    }
-                } while (D_803BA7FC[D_803BA810] == 0);
-            } else if (D_80149784 & 0x800) {
-                func_800B5F4C(D_80149784);
-                do {
-                    if (++D_803BA810 >= 2) {
-                        D_803BA810 = 0;
-                    }
-                } while (D_803BA7FC[D_803BA810] == 0);
-            }
-            while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0) {
-                if (++D_803BA818[D_803BA880] >= 13) {
-                    D_803BA818[D_803BA880] = 0;
-                }
-            }
-            while (D_803BA7FC[D_803BA810] == 0) {
-                if (--D_803BA810 < 0) {
-                    D_803BA810 = 1;
-                }
-            }
-            if (D_8015694C & 7) {
-                func_800B5FC4(D_8015694C);
-                func_803931C0(0);
-                if (D_803BA800 != 0) {
-                    func_800A3424(D_803BA800->payload->object, 0);
-                    func_800C7308(D_803BA800);
-                }
-            }
+            func_803932D4();
             break;
         }
     }
@@ -483,6 +414,80 @@ void func_8039338C(void)
     }
 }
 
+/* controlView@recordscr.c (MAT3 GC controlView): case 1 of updateRecordScreen func_80394058, inlined; its deleted
+ * procedure is the retail stub func_803932D4 (w38b). Body moved verbatim from func_80394058. */
+void func_803932D4(void)
+{
+    if (D_80156944 & 0x3000) {
+        if (D_803BA810 == 0) {
+            s8 level_step;
+            level_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
+            if (level_step != 0) {
+                func_800B5F88(D_80149784);
+                do {
+                    D_803BA858 += level_step;
+                    if (D_803BA858 < 0) {
+                        D_803BA858 = D_803BA800 != 0 ? 29 : 28;
+                    }
+                    if (D_803BA858 > (D_803BA800 != 0 ? 29 : 28)) {
+                        D_803BA858 = 0;
+                    }
+                } while (D_803B6534[D_803BA858] == 0);
+                func_80392F28();
+            }
+        } else {
+            s8 item_step;
+            item_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
+            if (item_step != 0) {
+                func_800B5F88(D_80149784);
+                do {
+                    D_803BA818[D_803BA880] += item_step;
+                    if (D_803BA818[D_803BA880] < 0) {
+                        D_803BA818[D_803BA880] = 12;
+                    }
+                    if (D_803BA818[D_803BA880] >= 13) {
+                        D_803BA818[D_803BA880] = 0;
+                    }
+                } while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0);
+                func_80392F28();
+            }
+        }
+    } else if (D_80149784 & 0x400) {
+        func_800B5F4C(D_80149784);
+        do {
+            if (--D_803BA810 < 0) {
+                D_803BA810 = 1;
+            }
+        } while (D_803BA7FC[D_803BA810] == 0);
+    } else if (D_80149784 & 0x800) {
+        func_800B5F4C(D_80149784);
+        do {
+            if (++D_803BA810 >= 2) {
+                D_803BA810 = 0;
+            }
+        } while (D_803BA7FC[D_803BA810] == 0);
+    }
+    while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0) {
+        if (++D_803BA818[D_803BA880] >= 13) {
+            D_803BA818[D_803BA880] = 0;
+        }
+    }
+    while (D_803BA7FC[D_803BA810] == 0) {
+        if (--D_803BA810 < 0) {
+            D_803BA810 = 1;
+        }
+    }
+    if (D_8015694C & 7) {
+        func_800B5FC4(D_8015694C);
+        func_803931C0(0);
+        if (D_803BA800 != 0) {
+            func_800A3424(D_803BA800->payload->object, 0);
+            func_800C7308(D_803BA800);
+        }
+    }
+}
+
+
 /* Complete initializer; slot geometry follows the witnessed 64-byte records. */
 typedef unsigned int u32;
 typedef struct { u8 red, green, blue, alpha; } Color4;
@@ -541,6 +546,21 @@ void func_80393B3C(void)
     D_803BA80C = 0;
     D_803B6528 = 1;
 }
+
+/* uninitButtons@recordscr.c (MAT3 GC uninitButtons): inlined into uninitRecordScreen func_803932E4; its deleted
+ * procedure is the retail stub func_803932DC (w38b). Loop moved verbatim from func_803932E4. */
+void func_803932DC(void)
+{
+    s32 i;
+    for (i = 0; i < 23; i++) {
+        if (D_803B5F28[i].fields[1] != -1) {
+            sound_call_minimal((s16)D_803B5F28[i].fields[1]);
+            D_803B5F28[i].fields[1] = -1;
+        }
+    }
+    D_803BA7D0 = 0;
+}
+
 
 void func_80393B34(void)
 {
@@ -802,7 +822,7 @@ void func_803915E8(void)
  * prevPos, gViewMenuCount, whichItem, buttonY, selectedPos, clearScrollSpeed, tex, texIdx, buttonColor; the MAT3 C
  * moved clearScrollSpeed up for CodeWarrior).  clearScrollSpeed keeps its initialiser, gViewMenuCount/whichItem are
  * assigned after the declarations (as in MAT3 updateSelectButtons): that statement order puts `li t7,1` in the
- * dispatch delay slot.  updateViewButtons (symbol recordscr_updateViewButtons, unique so it cannot clash with other
+ * dispatch delay slot.  updateViewButtons (symbol func_803915E0, unique so it cannot clash with other
  * groups) is a NON-static function off `keep` (umerge inlines it; its deleted stub is retail's caller-less 0x803915E0).
  * N64 differences (from the retail displacements/constants): 23 buttons at D_803B5F28 (0x40 stride), statics
  * gButtonScale, gButtonSpace, buttonX, maxY, minY, buttonZ, cursorZ = D_803B64E8..D_803B6500, cursorSpeed/scrollSpeed
@@ -828,7 +848,7 @@ extern char D_803B8C60[], D_803B8C70[];
 extern f32 fabsf(f32);
 #pragma intrinsic(fabsf)
 
-void recordscr_updateViewButtons(void);
+void func_803915E0(void);
 
 void func_803923B0(void)
 {
@@ -836,12 +856,12 @@ void func_803923B0(void)
     if (D_803BA7D0) {
         switch (D_803BA804) {
         case 0: func_803915E8(); break;
-        case 1: recordscr_updateViewButtons(); break;
+        case 1: func_803915E0(); break;
         }
     }
 }
 
-void recordscr_updateViewButtons(void)
+void func_803915E0(void)
 {
     s32 buttonIdx, i;
     f32 prevPos[3];

@@ -1,8 +1,11 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Image A:803AECE4..803AF744, complete projected settings-label/value callback.
- * Native local homes require x,y,i before text[80], then label, point[2],
- * position[3], index and slot. The 216-byte frame and all buffer capacities
- * are unchanged from the prior complete reconstruction. Native expressions
+ * (w38b, wave 38) This callback is MAT3 trackscr.c animText; its body is animButtonText, now the non-kept
+ * helper func_803AECDC (inlined; its deleted procedure is the retail stub 0x803AECDC right before animText).
+ * umerge's 8-byte area for that inlined call sits exactly where the native x/y homes were (retail never
+ * touches sp+208..215; i is the memory-resident counter at sp+204), so the helper declares i first and x, y
+ * last, and the native `slot` carrier is gone (D_803B6B14[index] directly). N64 animText has no
+ * `else drawOptions()` (a second inlined call would add 8 more bytes). Frame 216, buffer capacities unchanged. Native expressions
  * evaluate the selected table base before the language offset; three existing
  * label assignments preserve text evaluation before argument narrowing.
  * Reordered existing vector writes and a split Y subtraction preserve the
@@ -48,142 +51,149 @@ extern int sprintf(char *,const char *,...);
 extern void func_800ED66C(f32);
 extern void func_800BEA3C(Color4,Color4);
 
+void func_803AECDC(void);
 s32 func_803AECE4(void *callback_context)
 {
-    s32 x, y, i;
+    if (D_803B7714 == 1) func_803AECDC();
+    return 1;
+}
+
+/* animButtonText@trackscr.c (MAT3): inlined into animText func_803AECE4; deleted stub 0x803AECDC (w38b) */
+void func_803AECDC(void)
+{
+    s32 i;
     char text[80];
     char *label;
     s16 point[2];
     f32 position[3];
     s32 index;
-    Slot *slot;
-    if (D_803B7714 == 1) {
-        render_helper(0.0f);
-        func_800B669C(0, 1);
-        brake_light_update(0, D_803B75C4, &D_80150B70[0], 0, point);
+    s32 x;
+    s32 y;
+    render_helper(0.0f);
+    func_800B669C(0, 1);
+    brake_light_update(0, D_803B75C4, &D_80150B70[0], 0, point);
+    x = point[0];
+    y = point[1];
+    object_create(13);
+    dispatch_handler(1);
+    fcvt_wrapper(text, countdown_state.text[45]);
+    state_utility(sound_pitch_diff_halved(text, x), y, text);
+    if (!D_80156994 && D_8014978C == 5) {
+        position[2] = D_803B6B14[0].position[2];
+        position[0] = 0.0f;
+        position[1] = D_803B6B14[0].position[1];
+        position[1] -= D_803B7720 * D_803B771C;
+        object_create(11);
+        brake_light_update(0, position, &D_80150B70[0], 0, point);
         x = point[0];
         y = point[1];
-        object_create(13);
-        dispatch_handler(1);
-        fcvt_wrapper(text, countdown_state.text[45]);
-        state_utility(sound_pitch_diff_halved(text, x), y, text);
-        if (!D_80156994 && D_8014978C == 5) {
-            position[2] = D_803B6B14[0].position[2];
-            position[0] = 0.0f;
-            position[1] = D_803B6B14[0].position[1];
-            position[1] -= D_803B7720 * D_803B771C;
-            object_create(11);
-            brake_light_update(0, position, &D_80150B70[0], 0, point);
-            x = point[0];
-            y = point[1];
-            label = countdown_state.text[232];
-            dispatch_handler(22);
-            state_utility(sound_pitch_diff_halved(label, x), y, label);
-        }
-        object_create(11);
-        for (i = 0; i < D_803BA898; i++) {
-            index = D_803BA8B0[i];
-            slot = &D_803B6B14[index];
-            if ((slot->angle <= 0.6981316804885864f || slot->angle >= 2.4434609413146973f) && slot->alpha) {
-                func_800ED66C(slot->alpha);
-                brake_light_update(0, slot->position, &D_80150B70[0], 0, point);
-                x = point[0] - 35.0f * D_803B771C;
-                y = point[1];
-                if (slot->angle < 1.5707963705062866f) {
-                    func_800BEA3C(D_801146BC, D_801146C0);
-                    dispatch_handler(1);
-                } else {
-                    func_800BEA3C(D_801146BC, D_801146C0);
-                    dispatch_handler(22);
-                }
-                label = (countdown_state.indexed + D_803BA8B0[i])[countdown_state.indices[1]];
-                state_utility(x, y, label);
-            }
-            if ((slot[21].angle <= 0.6981316804885864f || slot[21].angle >= 2.4434609413146973f) && slot[21].alpha) {
-                func_800ED66C(slot[21].alpha);
-                brake_light_update(0, slot[21].position, &D_80150B70[0], 0, point);
-                x = point[0] - 35.0f * D_803B771C;
-                y = point[1];
-                if (slot[21].angle < 1.5707963705062866f) {
-                    func_800BEA3C(D_801146BC, D_801146C0);
-                    dispatch_handler(1);
-                } else {
-                    func_800BEA3C(D_801146BC, D_801146C0);
-                    dispatch_handler(22);
-                }
-                switch (index) {
-                case 0:
-                    label = D_8011A8D8[D_8014978C];
-                    state_utility(x, y, label);
-                    break;
-                case 1:
-                    label = countdown_state.indexed[countdown_state.indices[35] + D_801426EC];
-                    state_utility(x, y, label);
-                    break;
-                case 2:
-                    sprintf(text, D_803B9244, D_80152734);
-                    state_utility(x, y, text);
-                    break;
-                case 3:
-                    if (D_80146108.a == 0) label = countdown_state.text[208];
-                    else if (D_80146108.a == 1) label = countdown_state.text[130];
-                    else label = countdown_state.text[12];
-                    state_utility(x, y, label);
-                    break;
-                case 4:
-                    state_utility(x, y, (countdown_state.indexed + (D_80146108.b == 0 ? 0 : 1))[countdown_state.indices[36]]);
-                    break;
-                case 5:
-                    sprintf(text, D_803B9248, D_80146108.c);
-                    state_utility(x, y, text);
-                    break;
-                case 6:
-                    sprintf(text, D_803B924C, D_80146108.d);
-                    state_utility(x, y, text);
-                    break;
-                case 7:
-                    sprintf(text, D_803B9250, D_80146108.e);
-                    state_utility(x, y, text);
-                    break;
-                case 8:
-                    state_utility(x, y, D_80146108.f == 1 ? countdown_state.text[208] : countdown_state.text[130]);
-                    break;
-                case 9:
-                    sprintf(text, D_803B9254, D_80146108.g);
-                    state_utility(x, y, text);
-                    break;
-                case 10:
-                    sprintf(text, D_803B9258, D_80146108.h);
-                    state_utility(x, y, text);
-                    break;
-                case 11:
-                    state_utility(x, y, (countdown_state.indexed + (D_80146108.i == 0 ? 0 : 1))[countdown_state.indices[16]]);
-                    break;
-                case 12:
-                    state_utility(x, y, (countdown_state.indexed + (D_80152570 == 0 ? 0 : 1))[countdown_state.indices[16]]);
-                    break;
-                case 13:
-                    if (D_8014A110 == 3) {
-                        state_utility(x, y, (countdown_state.indexed + (D_801543DA[D_80154628].flag == 0 ? 0 : 1))[countdown_state.indices[16]]);
-                    } else if (D_80146108.mode == 2) {
-                        state_utility(x, y, countdown_state.indexed[countdown_state.indices[18] + 2]);
-                    } else {
-                        state_utility(x, y, (countdown_state.indexed + (D_80146108.mode == 0 ? 0 : 1))[countdown_state.indices[16]]);
-                    }
-                    break;
-                case 17:
-                    sprintf(text, D_803B925C, D_80142724);
-                    state_utility(x, y, text);
-                    break;
-                case 20:
-                    state_utility(x, y, (countdown_state.indexed + (D_80142760 == 0 ? 0 : 1))[countdown_state.indices[16]]);
-                    break;
-                }
-            }
-        }
-        func_800B669C(0, 3);
-        func_800ED66C(-1.0f);
-        render_helper(-1.0f);
+        label = countdown_state.text[232];
+        dispatch_handler(22);
+        state_utility(sound_pitch_diff_halved(label, x), y, label);
     }
-    return 1;
+    object_create(11);
+    for (i = 0; i < D_803BA898; i++) {
+        index = D_803BA8B0[i];
+        if ((D_803B6B14[index].angle <= 0.6981316804885864f || D_803B6B14[index].angle >= 2.4434609413146973f) && D_803B6B14[index].alpha) {
+            func_800ED66C(D_803B6B14[index].alpha);
+            brake_light_update(0, D_803B6B14[index].position, &D_80150B70[0], 0, point);
+            x = point[0] - 35.0f * D_803B771C;
+            y = point[1];
+            if (D_803B6B14[index].angle < 1.5707963705062866f) {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(1);
+            } else {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(22);
+            }
+            label = (countdown_state.indexed + D_803BA8B0[i])[countdown_state.indices[1]];
+            state_utility(x, y, label);
+        }
+        if ((D_803B6B14[index + 21].angle <= 0.6981316804885864f || D_803B6B14[index + 21].angle >= 2.4434609413146973f) && D_803B6B14[index + 21].alpha) {
+            func_800ED66C(D_803B6B14[index + 21].alpha);
+            brake_light_update(0, D_803B6B14[index + 21].position, &D_80150B70[0], 0, point);
+            x = point[0] - 35.0f * D_803B771C;
+            y = point[1];
+            if (D_803B6B14[index + 21].angle < 1.5707963705062866f) {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(1);
+            } else {
+                func_800BEA3C(D_801146BC, D_801146C0);
+                dispatch_handler(22);
+            }
+            switch (index) {
+            case 0:
+                label = D_8011A8D8[D_8014978C];
+                state_utility(x, y, label);
+                break;
+            case 1:
+                label = countdown_state.indexed[countdown_state.indices[35] + D_801426EC];
+                state_utility(x, y, label);
+                break;
+            case 2:
+                sprintf(text, D_803B9244, D_80152734);
+                state_utility(x, y, text);
+                break;
+            case 3:
+                if (D_80146108.a == 0) label = countdown_state.text[208];
+                else if (D_80146108.a == 1) label = countdown_state.text[130];
+                else label = countdown_state.text[12];
+                state_utility(x, y, label);
+                break;
+            case 4:
+                state_utility(x, y, (countdown_state.indexed + (D_80146108.b == 0 ? 0 : 1))[countdown_state.indices[36]]);
+                break;
+            case 5:
+                sprintf(text, D_803B9248, D_80146108.c);
+                state_utility(x, y, text);
+                break;
+            case 6:
+                sprintf(text, D_803B924C, D_80146108.d);
+                state_utility(x, y, text);
+                break;
+            case 7:
+                sprintf(text, D_803B9250, D_80146108.e);
+                state_utility(x, y, text);
+                break;
+            case 8:
+                state_utility(x, y, D_80146108.f == 1 ? countdown_state.text[208] : countdown_state.text[130]);
+                break;
+            case 9:
+                sprintf(text, D_803B9254, D_80146108.g);
+                state_utility(x, y, text);
+                break;
+            case 10:
+                sprintf(text, D_803B9258, D_80146108.h);
+                state_utility(x, y, text);
+                break;
+            case 11:
+                state_utility(x, y, (countdown_state.indexed + (D_80146108.i == 0 ? 0 : 1))[countdown_state.indices[16]]);
+                break;
+            case 12:
+                state_utility(x, y, (countdown_state.indexed + (D_80152570 == 0 ? 0 : 1))[countdown_state.indices[16]]);
+                break;
+            case 13:
+                if (D_8014A110 == 3) {
+                    state_utility(x, y, (countdown_state.indexed + (D_801543DA[D_80154628].flag == 0 ? 0 : 1))[countdown_state.indices[16]]);
+                } else if (D_80146108.mode == 2) {
+                    state_utility(x, y, countdown_state.indexed[countdown_state.indices[18] + 2]);
+                } else {
+                    state_utility(x, y, (countdown_state.indexed + (D_80146108.mode == 0 ? 0 : 1))[countdown_state.indices[16]]);
+                }
+                break;
+            case 17:
+                sprintf(text, D_803B925C, D_80142724);
+                state_utility(x, y, text);
+                break;
+            case 20:
+                state_utility(x, y, (countdown_state.indexed + (D_80142760 == 0 ? 0 : 1))[countdown_state.indices[16]]);
+                break;
+            }
+        }
+    }
+    func_800B669C(0, 3);
+    func_800ED66C(-1.0f);
+    render_helper(-1.0f);
 }
+
+

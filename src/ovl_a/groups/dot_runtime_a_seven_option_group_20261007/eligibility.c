@@ -1,4 +1,9 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): the two inlined helpers formerly named modescr_uninitButtons /
+ * modescr_uninitScreen are renamed after their retail deleted stubs, func_80399384 (uninitButtons@modescr.c) and
+ * func_8039938C (uninitScreen@modescr.c), and claimed. Post-order of updateModeScreen (its last calls are the three
+ * uninitScreen calls): uninitButtons 99384, uninitScreen 9938C, optionValid 99394, updateButtons 993EC, initButtons
+ * stub 998B8, initScreen 998C0, updateModeScreen 99D10 = the retail layout. No code changed. */
 /* w36f superseding revision (wave 36): func_803993EC (modescr updateButtons) and func_80399D10 (updateModeScreen) are
  * now claimed members; func_80399394 and renderer.c's func_803A6B50 are unchanged.  Shared-declaration change:
  * D_80140BDC and D_8002EB94 are volatile (only the new bodies use them). */
@@ -132,7 +137,7 @@ void func_803993EC(void)
 
 /* w36f (wave 36): func_80399D10 = MAT3 modescr.c updateModeScreen (GC 0x80073A38, 0x2B8 B), the game-called root.
  * Direct typed port; uninitScreen (GC 0x80073DE8) and uninitButtons (GC 0x8007457C) are real NON-static functions off
- * `keep` (unique symbols modescr_uninitScreen / modescr_uninitButtons), defined after the root, inlined three times by
+ * `keep` (unique symbols func_8039938C / func_80399384), defined after the root, inlined three times by
  * umerge (retail's caller-less stubs 0x80399384/0x8039938C).
  * N64 differences: none in structure; gPlayers[i].save->fileh/pak = D_8014A118[i].owner->resource->player, PS_PakChanged =
  * func_800A361C, ZOID_RemoveObject = sound_call_minimal, RemoveBlit = sound_stop, removeBG = ambient_sounds_clear,
@@ -141,7 +146,7 @@ void func_803993EC(void)
  * D_803B46A0, gRace = D_8014A110, gSoftReset = D_80157244, gActiveEdges = D_8015694C, initScreen = func_803998C0.
  * MATCH on the first typed port.
  */
-void modescr_uninitScreen(void);
+void func_8039938C(void);
 
 void func_80399D10(void)
 {
@@ -171,12 +176,12 @@ void func_80399D10(void)
     for (i = 0; i < D_8014A108; i++) {
         Resource **fileh = (*D_8014A118[i].owner)->resource;
         if (fileh && func_800A361C((*fileh)->player)) {
-            modescr_uninitScreen(); func_800B5570(0x20); return;
+            func_8039938C(); func_800B5570(0x20); return;
         }
     }
-    if (D_80157244) { modescr_uninitScreen(); func_800B5570(4); return; }
+    if (D_80157244) { func_8039938C(); func_800B5570(4); return; }
     if (D_803B46A0) {
-        modescr_uninitScreen();
+        func_8039938C();
         switch (D_803B46A0) {
         case 1:
             switch (D_803B469C) {
@@ -195,17 +200,17 @@ void func_80399D10(void)
     }
 }
 
-void modescr_uninitButtons(void);
+void func_80399384(void);
 
-void modescr_uninitScreen(void)
+void func_8039938C(void)
 {
-    modescr_uninitButtons();
+    func_80399384();
     if (D_803B467C) { sound_stop(D_803B467C); D_803B467C = 0; }
     ambient_sounds_clear();
     D_803B4678 = 0;
 }
 
-void modescr_uninitButtons(void)
+void func_80399384(void)
 {
     s32 buttonIdx;
     for (buttonIdx = 0; buttonIdx < 13; buttonIdx++) {

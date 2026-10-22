@@ -1,4 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): claims three more deleted-inline stubs of the circuitscr.c unit, in the
+ * post-order the IPA layout uses (updateCircuitScreen's calls visited last first): func_8039B004 = uninitButtons
+ * (the button loop of uninitScreen func_8039B00C, moved verbatim), func_8039B558 = controlShowTrophy (the former
+ * C140_ANIMATION_ARM of updateCircuitScreen func_8039C140) and func_8039BA20 = getPlayerStr (the name copy of
+ * calcProgressSize func_8039BB80). All 17 old members MATCH; C140 loses its two carriers and BB80 four of its
+ * eight unused homes (the inlined calls' frame areas). */
 /* w36g superseding revision (wave 36): func_8039A4D4 (updateButtons@circuitscr.c, formerly context) and
  * func_803A5948 (animText@circuitscr.c with animButtonText and getFinishPlaceStr inlined) plus its two
  * deleted-inline stubs func_803A5938/func_803A5940 are new members; see their headers below. All thirteen
@@ -13,14 +19,17 @@
  * BB80 SHAPING: the two genuine player/text helpers use player-first formal
  * order. Both helper bodies remain byte-identical; every real in-group call
  * is updated. This recovers native private-argument evaluation ordering.
- * Eight disclosed unused s32 homes are the exact frame residual: the same
- * live 80-byte text array moves 48 -> 80; frame128 + 8*4 = native160. Their
- * original names/purposes are unknown. No live capacity is changed.
+ * (w38b) Four disclosed unused s32 homes are the exact frame residual (was
+ * eight): getPlayerStr is now the inlined helper func_8039BA20 (MAT3
+ * calcProgressSize calls getPlayerStr(p, str)), whose inline area accounts
+ * for 16 of the 32 bytes. Frame 160 = 144 + 4*4; three homes give 152 (5
+ * words), five give the same object as four. Original purpose unknown.
  *
- * Inherited C140 shaping: two meaningful operand carriers account for its
- * native frame136; the one-line animation macro preserves a stock as1 source-
- * line scheduling tie. Inherited volatile clock declaration and pointer/record
- * hypotheses are unchanged; asynchronous clock behavior is not established.
+ * (w38b) C140: the former C140_ANIMATION_ARM macro and its two operand
+ * carriers (matrix, angle) are MAT3 controlShowTrophy, now the inlined helper
+ * func_8039B558; umerge's reservation for that inlined call is the 8 bytes
+ * the carriers stood in for (frame 136 with neither carrier). Inherited
+ * volatile clock declaration and pointer/record hypotheses are unchanged.
  * B560 retains separate same-value 55.2 literal spellings and owned float data.
  * No false return types, fabricated callees, forced registers, compiler/object
  * patches, padding arrays, or historical-source spelling claims are used.
@@ -271,32 +280,10 @@ s32 func_8039A448(s32 mode)
         && (!(mode == 1) || D_803B3428 != 0);
 }
 
-/* Keep invocation and else-if on one line: measured as1 scheduling tie. */
-#define C140_ANIMATION_ARM \
-{ \
-        matrix = (f32 (*)[3])D_803B9A50; \
-        angle = -90.0f * D_8002EB94 * D_803B95B8; \
-        func_80090E9C(angle, matrix); \
-        if (D_8015694C & 7) { \
-            if (D_803B3448 != -1) { \
-                func_80090254((s16)D_803B3448); \
-                D_803B3448 = -1; \
-            } \
-            if (D_803B344C != -1) { \
-                func_80090254((s16)D_803B344C); \
-                D_803B344C = -1; \
-            } \
-            resource_type_select_simple(D_8015694C); \
-            D_803B342C = 0; \
-            D_803B33C4 = 1; \
-        } \
-    }
-
+void func_8039B558(void);
 void func_8039C140(void)
 {
     s32 i;
-    f32 (*matrix)[3];
-    f32 angle;
     D_803BAD90 = (Cfg *)(D_8014A118[D_801543D4].owner->body->resource->bytes + 0x6F4);
     if (D_801174BC != 1) {
         if (D_801174BC != state_word_a) {
@@ -312,7 +299,7 @@ void func_8039C140(void)
         if (D_803BACF8 >= 4)
             D_803BACF8 = 0;
     }
-    if (D_803B342C) C140_ANIMATION_ARM else if (D_803B3414) {
+    if (D_803B342C) func_8039B558(); else if (D_803B3414) {
         func_8039B214();
     } else if (D_8015694C & 1) {
         entity_flags_apply(0x2E, 0, 1, 0);
@@ -442,7 +429,25 @@ void func_8039C140(void)
     func_8039A4D4();
 }
 
-#undef C140_ANIMATION_ARM
+/* controlShowTrophy (MAT3 circuitscr.c GC controlShowTrophy): inlined into updateCircuitScreen func_8039C140;
+ * deleted stub 0x8039B558 (w38b). Body = the former C140_ANIMATION_ARM. */
+void func_8039B558(void)
+{
+    func_80090E9C(-90.0f * D_8002EB94 * D_803B95B8, (f32 (*)[3])D_803B9A50);
+    if (D_8015694C & 7) {
+        if (D_803B3448 != -1) {
+            func_80090254((s16)D_803B3448);
+            D_803B3448 = -1;
+        }
+        if (D_803B344C != -1) {
+            func_80090254((s16)D_803B344C);
+            D_803B344C = -1;
+        }
+        resource_type_select_simple(D_8015694C);
+        D_803B342C = 0;
+        D_803B33C4 = 1;
+    }
+}
 
 typedef struct MenuObjectSlot {
     s32 other,handle;
@@ -456,17 +461,10 @@ extern s32 D_803B33C0;
 extern void sound_stop(Blit *);
 extern void sound_handles_array_clear(s8 *);
 extern void ambient_sounds_clear(void);
+void func_8039B004(void);
 void func_8039B00C(void)
 {
-    s32 i;
-    for (i = 0; i < 12; i++) {
-        if (D_803B30C0[i].handle != -1) {
-            if (state_word_a & 0x7C03FFFE)
-                func_80090254((s16)D_803B30C0[i].handle);
-            D_803B30C0[i].handle = -1;
-        }
-    }
-    D_803B33C0 = 0;
+    func_8039B004();
     if (D_803B3408) {
         sound_stop(D_803B3408);
         D_803B3408 = 0;
@@ -485,6 +483,21 @@ void func_8039B00C(void)
     }
     ambient_sounds_clear();
     D_803B340C = 0;
+}
+
+/* uninitButtons@circuitscr.c (MAT3 GC uninitButtons): inlined into uninitScreen func_8039B00C; deleted stub
+ * 0x8039B004 (w38b). Loop moved verbatim. */
+void func_8039B004(void)
+{
+    s32 i;
+    for (i = 0; i < 12; i++) {
+        if (D_803B30C0[i].handle != -1) {
+            if (state_word_a & 0x7C03FFFE)
+                func_80090254((s16)D_803B30C0[i].handle);
+            D_803B30C0[i].handle = -1;
+        }
+    }
+    D_803B33C0 = 0;
 }
 
 typedef union Color {u32 word;u8 channel[4];} Color;
@@ -759,12 +772,18 @@ void func_8039BAE0(u8 *destination)
     func_800BE4F0(destination,D_8017A4E0.text[75]);
 }
 
+/* getPlayerStr (MAT3 circuitscr.c GC getPlayerStr(int p, unsigned char *str)): inlined into calcProgressSize
+ * func_8039BB80; deleted stub 0x8039BA20 (w38b). */
+void func_8039BA20(s32 player,u8 *destination)
+{
+    func_800BE6A4(destination,(u8 *)D_8014A118[player].owner->body + 20);
+}
+
 void func_8039BB80(void)
 {
     u8 text[80];
     /* Measured unused scalar homes: 128 + 8*4 = native 160-byte frame. */
     s32 frame_home0, frame_home1, frame_home2, frame_home3;
-    s32 frame_home4, frame_home5, frame_home6, frame_home7;
     s32 width;
     s32 maximum;
     s32 player;
@@ -792,7 +811,7 @@ void func_8039BB80(void)
         maximum = 0;
         player = D_801543D4;
         for (i = 0; i < 2; i++) {
-            func_800BE6A4(text,(u8 *)D_8014A118[player].owner->body + 20);
+            func_8039BA20(player,text);
             width = object_manager_update(text,-1);
             if (width >= maximum) maximum = width;
             func_8039B988(player,text);

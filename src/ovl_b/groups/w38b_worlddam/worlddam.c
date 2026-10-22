@@ -59,7 +59,7 @@ extern f32 fabsf(f32);
 #pragma intrinsic(fabsf)
 
 
-static s32 findDamageSlot(void)
+s32 func_8038A400(void)
 {
     s32 i;
     s32 j;
@@ -169,6 +169,6 @@ void func_8038A408(f32 *pos, s32 slot) /* newWorldDamage */
     if (edge_length2 > 200.0f) {
         return;
     }
-    damslot = findDamageSlot();
+    damslot = func_8038A400();
     func_8008C074(D_80399A70.polys[damslot], 0, xyz, 0, D_803948B8, 0x60f, 0);
 }

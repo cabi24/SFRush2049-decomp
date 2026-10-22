@@ -1,4 +1,5 @@
 {
+ "name": "dot_runtime_a_c93c_closure_20261012",
  "members": [
   "func_8038C93C",
   "func_8038BBB4",
@@ -11,7 +12,12 @@
   "func_8038B940",
   "func_8038AEB0",
   "func_8038B3EC",
-  "func_8038C5EC"
+  "func_8038C5EC",
+  "func_8038A62C",
+  "func_8038AEA8",
+  "func_8038C934",
+  "func_8038B930",
+  "func_8038B938"
  ],
  "context": [
   "func_8038E5DC",
@@ -26,6 +32,5 @@
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "allow_unverified": true,
- "provenance": "w36d wave 36: same-name supersession of the installed C93C group with the whole N64 trackscr.c IPA unit (MAT3 trackscr.c typed ports), kept root moved from DFEC to the real root updateTrackScreen func_8038E5DC (game-called; context, 1 instruction off). Old member C93C unchanged and MATCH. New strict members: updateButtons BBB4 and _InitScreen DFEC (w36d); OptionValid ACB0, TrackValid B834 (MAT3 ports, w36d/w36e), SetFogIntensity A634 (dot_runtime_a_color_smoothing_20261006 body), unloadTrackScreen AE50, clearTrackMap B388, _UninitScreen B940 (w36e bodies). Own .rodata hand-verified (14 sites, base 0x803B92C8); own .bss: BlowFog fogTileSize 0x803BA220, updateButtons scrollSpeed 0x803BA87C / cursorSpeed 0x803BA85C. w36e merge (wave 36): adds buildTrackMap AEB0, animTrackMap B3EC, showTrackSelect C5EC (w36e final bodies, cloud/work/frontier/w36e/RESULTS.md) as strict members on top of w36d's packet; animTrackMaps A820 is w36e's 61/292 context.",
- "name": "dot_runtime_a_c93c_closure_20261012"
+ "provenance": "w36d wave 36: same-name supersession of the installed C93C group with the whole N64 trackscr.c IPA unit (MAT3 trackscr.c typed ports), kept root moved from DFEC to the real root updateTrackScreen func_8038E5DC (game-called; context, 1 instruction off). Old member C93C unchanged and MATCH. New strict members: updateButtons BBB4 and _InitScreen DFEC (w36d); OptionValid ACB0, TrackValid B834 (MAT3 ports, w36d/w36e), SetFogIntensity A634 (dot_runtime_a_color_smoothing_20261006 body), unloadTrackScreen AE50, clearTrackMap B388, _UninitScreen B940 (w36e bodies). Own .rodata hand-verified (14 sites, base 0x803B92C8); own .bss: BlowFog fogTileSize 0x803BA220, updateButtons scrollSpeed 0x803BA87C / cursorSpeed 0x803BA85C. w36e merge (wave 36): adds buildTrackMap AEB0, animTrackMap B3EC, showTrackSelect C5EC (w36e final bodies, cloud/work/frontier/w36e/RESULTS.md) as strict members on top of w36d's packet; animTrackMaps A820 is w36e's 61/292 context. w38b (wave 38): adds the deleted-inline stubs func_8038A62C setCamera, func_8038AEA8 loadTrackScreen, func_8038C934 BlowFog (helpers already defined under those names, inlined into member callers DFEC/AEB0) and func_8038B930 clearTrackMaps / func_8038B938 uninitButtons (bodies moved verbatim out of _UninitScreen B940 into named non-kept helpers). Every old member byte-identical in the object."
 }

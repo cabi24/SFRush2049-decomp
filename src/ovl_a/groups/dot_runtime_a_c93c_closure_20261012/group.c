@@ -148,6 +148,7 @@ void func_8038BBB4(void);
 void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
 void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
 void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038B930(void); void func_8038B938(void);
 void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
 void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
 void func_8038CCEC(void); void func_8038CCE4(void);
@@ -629,42 +630,17 @@ void func_8038DFEC(void)
     D_803BACCC = 0;
 }
 
-/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21 */
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21.
+ * w38b: MAT3 _UninitScreen calls uninitButtons() and clearTrackMaps(); both are inlined statics whose deleted
+ * procedures are the retail stubs func_8038B938 (uninitButtons) and func_8038B930 (clearTrackMaps), emitted in the
+ * post-order of the call graph (clearTrackMaps is visited first: last call first). Bodies moved verbatim from here. */
 void func_8038B940(void)
 {
-    s32 i,model;
-    RomObjDef *def;
-    for (i = 0; i < 48; i++) {
-        if (D_803B6B14[i].handle != -1) {
-            if (D_801174B4 & 0x7C03FFFE) func_80090254((s16)D_803B6B14[i].handle);
-            D_803B6B14[i].handle = -1;
-        }
-    }
-    D_803B7714 = 0;
+    func_8038B938();
     if (D_803B7CD0) { sound_stop(D_803B7CD0); D_803B7CD0 = 0; }
     ambient_sounds_clear();
     func_8038B388();
-    if (D_803BAAE0) {
-        for (i = 0; i < 20; i++) {
-            if (D_803B7CE4[i].handle != -1) {
-                func_80090254((s16)D_803B7CE4[i].handle);
-                D_803B7CE4[i].handle = -1;
-            }
-        }
-        while (D_8002EB70) {}
-        for (i = 0; i < 7; i++) {
-            model = string_copy_format(D_803B7738[i < 6 ? i : 19],0,D_80140BDC - 1,1);
-            def = &D_801161F4[model >> 10].romObjDefs[model & 0x3FF];
-            def->lod[0] = D_803BAB58[i];
-            if (D_803BABC8[i]) func_800960D4(D_803BABC8[i]);
-            D_803BABC8[i] = 0;
-            if (D_803BABE8[i]) func_800960D4(D_803BABE8[i]);
-            D_803BABE8[i] = 0;
-            D_803BAAE8[i].displayList = 0;
-            D_803BAAE8[i].verts = 0;
-        }
-        D_803BAAE0 = 0;
-    }
+    func_8038B930();
     func_800A5B3C();
     D_803B7CD4 = 0;
 }
@@ -1183,6 +1159,35 @@ void func_8038CCFC(void)
 {
 }
 
+/* clearTrackMaps (MAT3 trackscr.c, GC 0x8008bfac): inlined into _UninitScreen; deleted stub 0x8038B930 (w38b).
+ * Body moved verbatim from w36e's _UninitScreen. */
+void func_8038B930(void)
+{
+    s32 i,model;
+    RomObjDef *def;
+    if (D_803BAAE0) {
+        for (i = 0; i < 20; i++) {
+            if (D_803B7CE4[i].handle != -1) {
+                func_80090254((s16)D_803B7CE4[i].handle);
+                D_803B7CE4[i].handle = -1;
+            }
+        }
+        while (D_8002EB70) {}
+        for (i = 0; i < 7; i++) {
+            model = string_copy_format(D_803B7738[i < 6 ? i : 19],0,D_80140BDC - 1,1);
+            def = &D_801161F4[model >> 10].romObjDefs[model & 0x3FF];
+            def->lod[0] = D_803BAB58[i];
+            if (D_803BABC8[i]) func_800960D4(D_803BABC8[i]);
+            D_803BABC8[i] = 0;
+            if (D_803BABE8[i]) func_800960D4(D_803BABE8[i]);
+            D_803BABE8[i] = 0;
+            D_803BAAE8[i].displayList = 0;
+            D_803BAAE8[i].verts = 0;
+        }
+        D_803BAAE0 = 0;
+    }
+}
+
 /* animTrackMaps stand-in: the GC transform loop and pathPos advance (the N64 vertex-colour fade is omitted). */
 /* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
 typedef union MapColor { u8 c[4]; u32 w; } MapColor;
@@ -1335,6 +1340,20 @@ void func_8038C93C(void)
     D_803B7714 = 1;
     D_803B7718 = 1;
     particle_velocity_set();
+}
+
+/* uninitButtons@trackscr.c (MAT3 GC 0x8008cac4): inlined into _UninitScreen; deleted stub 0x8038B938 (w38b).
+ * Body moved verbatim from w36e's _UninitScreen. */
+void func_8038B938(void)
+{
+    s32 i;
+    for (i = 0; i < 48; i++) {
+        if (D_803B6B14[i].handle != -1) {
+            if (D_801174B4 & 0x7C03FFFE) func_80090254((s16)D_803B6B14[i].handle);
+            D_803B6B14[i].handle = -1;
+        }
+    }
+    D_803B7714 = 0;
 }
 
 /* updateButtons (MAT3 trackscr.c, GC 0x8008cb54). N64: single-precision speed clamps (60.0f/10.0f),

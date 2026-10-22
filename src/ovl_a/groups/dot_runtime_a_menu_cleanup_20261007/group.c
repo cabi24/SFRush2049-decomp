@@ -1,4 +1,9 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): func_803949CC = uninitScreen@playerscr.c (MAT3 GC uninitScreen) now calls
+ * uninitButtons(signed char p) (MAT3 playerscr.c) as the non-kept helper func_803949C4, defined after its caller (MAT3
+ * file order); its deleted procedure is the retail stub 0x803949C4 right before uninitScreen. The button loop moved
+ * verbatim apart from MAT3's direct indexing (the earlier `player`/`slot`/`j` carriers are gone; the s8 parameter is
+ * MAT3's `signed char p` and is what keeps the code identical: an s32 parameter gives 71/77). Context unchanged. */
 typedef signed char s8;typedef unsigned char u8;
 typedef short s16;typedef unsigned short u16;typedef int s32;typedef unsigned int u32;typedef float f32;
 extern s16 D_8014A108;
@@ -231,21 +236,12 @@ extern void sound_call_minimal(s16),sound_handles_array_clear(FiveParts *);
 extern void render_results_screen(void),sound_stop(Blit *),ambient_sounds_clear(void);
 extern void func_800A5A40(void),func_800A5B3C(void);
 
+void func_803949C4(s8);
 void func_803949CC(void)
 {
-    s32 i,j;
-    s8 player;
-    Slot64 *slot;
+    s32 i;
     for(i=0;i<D_8014A108;i++) {
-        player=i;
-        for(j=0;j<22;j++) {
-            slot=&D_803B470C[player][j];
-            if(slot->id!=-1) {
-                sound_call_minimal(slot->id);
-                slot->id=-1;
-            }
-        }
-        D_803BA868[player]=0;
+        func_803949C4(i);
         if(D_803BAC08[i]) {
             sound_handles_array_clear(D_803BAC08[i]);
             D_803BAC08[i]=0;
@@ -262,6 +258,19 @@ void func_803949CC(void)
     func_800A5A40();
     func_800A5B3C();
     D_803B5ED0=0;
+}
+
+/* uninitButtons@playerscr.c (MAT3 GC uninitButtons(signed char p)); deleted stub 0x803949C4 (w38b) */
+void func_803949C4(s8 p)
+{
+    s32 buttonIdx;
+    for (buttonIdx = 0; buttonIdx < 22; buttonIdx++) {
+        if (D_803B470C[p][buttonIdx].id != -1) {
+            sound_call_minimal(D_803B470C[p][buttonIdx].id);
+            D_803B470C[p][buttonIdx].id = -1;
+        }
+    }
+    D_803BA868[p] = 0;
 }
 
 extern u32 D_801174BC,D_801174B4;

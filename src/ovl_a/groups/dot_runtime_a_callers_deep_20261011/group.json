@@ -10,7 +10,10 @@
   "func_803915E8",
   "func_8039338C",
   "func_80393B3C",
-  "func_80393B34"
+  "func_80393B34",
+  "func_803915E0",
+  "func_803932D4",
+  "func_803932DC"
  ],
  "context": [],
  "files": [
@@ -20,6 +23,6 @@
   "func_80394058"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "PR #311 genuine context; traced root frame closure. Five inherited exact preservation members receive no new credit. w36f: func_803923B0 (MAT3 recordscr updateButtons + inlined updateViewButtons) added as member and claim; old members unchanged. w36i merge: w36c (func_803915E8 = updateSelectButtons@recordscr.c, func_8039338C = controlSelect@recordscr.c replacing its context body; volatile D_8002EB94/D_80140BDC) and w36b (func_80393B3C = initRecordScreen@recordscr.c with initButtons inlined, func_80393B34 = its deleted-procedure stub, named non-static) added as members and claims; their lane revisions were built on the pre-w36f group and are merged block by block; no context remains.",
- "allow_unverified": true
+ "allow_unverified": true,
+ "provenance": "PR #311 genuine context; traced root frame closure. Five inherited exact preservation members receive no new credit. w36f: func_803923B0 (MAT3 recordscr updateButtons + inlined updateViewButtons) added as member and claim; old members unchanged. w36i merge: w36c (func_803915E8 = updateSelectButtons@recordscr.c, func_8039338C = controlSelect@recordscr.c replacing its context body; volatile D_8002EB94/D_80140BDC) and w36b (func_80393B3C = initRecordScreen@recordscr.c with initButtons inlined, func_80393B34 = its deleted-procedure stub, named non-static) added as members and claims; their lane revisions were built on the pre-w36f group and are merged block by block; no context remains. w38b (wave 38): claims stubs func_803915E0 updateViewButtons (renamed helper), func_803932D4 controlView (case 1 of func_80394058 as an inlined helper; the root's two disclosed unused residual slots and its mode carrier are removed), func_803932DC uninitButtons (loop of func_803932E4 as an inlined helper). Every old member MATCH."
 }

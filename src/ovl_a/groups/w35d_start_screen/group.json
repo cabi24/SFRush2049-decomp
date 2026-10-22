@@ -1,8 +1,12 @@
 {
+ "name": "w35d_start_screen",
  "members": [
   "func_8038F79C",
   "func_80390418",
-  "func_8038FFD8"
+  "func_8038FFD8",
+  "func_8038F734",
+  "func_8038F73C",
+  "func_8038FFD0"
  ],
  "context": [
   "func_8038F744"
@@ -15,6 +19,5 @@
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "allow_unverified": true,
- "provenance": "w35d: MAT3 startscr.c updateStartScreen (root, kept) with its IPA-internal updateButtons; w36e (wave 36) supersedes in place: adds initScreen func_8038FFD8 (MAT3 initScreen with initButtons and eggs.c InitEgg(23) inlined; old members' text unchanged, functions in MAT3 file order)",
- "name": "w35d_start_screen"
+ "provenance": "w35d: MAT3 startscr.c updateStartScreen (root, kept) with its IPA-internal updateButtons; w36e (wave 36) supersedes in place: adds initScreen func_8038FFD8 (MAT3 initScreen with initButtons and eggs.c InitEgg(23) inlined; old members' text unchanged, functions in MAT3 file order) w38b (wave 38): claims the deleted-inline stubs func_8038F734 uninitButtons, func_8038F73C uninitScreen (former statics renamed, non-static, off keep) and func_8038FFD0 initButtons (already defined under that name). Old members unchanged."
 }

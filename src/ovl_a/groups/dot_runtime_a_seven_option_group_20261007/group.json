@@ -1,21 +1,23 @@
 {
  "name": "dot_runtime_a_seven_option_group_20261007",
- "files": [
-  "eligibility.c",
-  "renderer.c"
- ],
- "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "keep": [
-  "func_80399D10",
-  "func_803A6B50"
- ],
  "members": [
   "func_80399394",
   "func_803A6B50",
   "func_803993EC",
-  "func_80399D10"
+  "func_80399D10",
+  "func_80399384",
+  "func_8039938C"
  ],
  "context": [],
- "provenance": "Supersede same-name group, preserve all installed members and genuine context. Add A6B50 with independently bounded text36 reconstruction; original capacity unknown. Checker owns installation. w36f: func_803993EC (MAT3 modescr updateButtons) and func_80399D10 (updateModeScreen) added as members and claims; old members unchanged.",
- "allow_unverified": true
+ "files": [
+  "eligibility.c",
+  "renderer.c"
+ ],
+ "keep": [
+  "func_80399D10",
+  "func_803A6B50"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "Supersede same-name group, preserve all installed members and genuine context. Add A6B50 with independently bounded text36 reconstruction; original capacity unknown. Checker owns installation. w36f: func_803993EC (MAT3 modescr updateButtons) and func_80399D10 (updateModeScreen) added as members and claims; old members unchanged. w38b (wave 38): claims stubs func_80399384 uninitButtons@modescr.c and func_8039938C uninitScreen@modescr.c (the helpers modescr_uninitButtons/modescr_uninitScreen renamed). No code changed."
 }

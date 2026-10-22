@@ -1,4 +1,9 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): func_803998C0 = initScreen@modescr.c calls initButtons (MAT3 modescr.c) as the
+ * non-kept helper func_803998B8, defined after its caller (MAT3 order); its deleted procedure is the retail stub
+ * 0x803998B8 right before initScreen. The button set-up moved verbatim except that MAT3's nested call shape
+ * `MBOX_NewObject(MBOX_FindObject_WORK(...), ..., type <= 1 ? 0x42000 : 0)` replaces the native `object`/`flags`
+ * carriers: those two locals were standing in for umerge's 8-byte reservation for the inlined call (frame 80). */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -220,25 +225,43 @@ extern void func_8008E06C(s16,Color4 *);
 extern Blit *sound_control(s16,s16,const MultiBlit *,s16);
 extern u8 func_800CDED8(void **);
 
+void func_803998B8(void);
 void func_803998C0(void)
 {
-    u32 flags;
-    s32 object;
+    visual_objects_update(1);
+    particle_lifetime_set();
+    func_803998B8();
+    D_803B467C=sound_control(0,0,&D_803B4654,1);
+    D_803B46A0=0;
+    entity_audio_update();
+    D_803B469C=func_800CDED8((void **)D_8014A118[0].owner);
+    switch(D_803B469C) {
+    case 1: D_803B469C=1; break;
+    case 2: D_803B469C=2; break;
+    case 3: D_803B469C=3; break;
+    case 4: D_803B469C=4; break;
+    case 5: D_803B469C=5; break;
+    case 6: D_803B469C=6; break;
+    default: D_803B469C=0; break;
+    }
+    D_803B4678=1;
+}
+
+/* initButtons@modescr.c (MAT3 GC initButtons): deleted stub 0x803998B8 (w38b) */
+void func_803998B8(void)
+{
     Color4 color;
     s32 i;
     s16 texture;
     Slot64 *slot;
     f32 (*matrix)[3];
-    visual_objects_update(1);
-    particle_lifetime_set();
     color=D_803B46A4;
     for(i=0;i<13;i++) {
         slot=&D_803B42F4[i];
         if(slot->id==-1) {
             matrix=slot->matrix;
             memcpy(matrix,D_8011418C,36);
-            object=string_copy_format(D_803B42D4[slot->unknown0],0,D_80140BDC-1,1);
-            if(slot->unknown0==0 || slot->unknown0==1)flags=0x42000; else flags=0; slot->id=sign_extend_call(object,(u32)matrix,-1,flags);
+            slot->id=sign_extend_call(string_copy_format(D_803B42D4[slot->unknown0],0,D_80140BDC-1,1),(u32)matrix,-1,(slot->unknown0==0 || slot->unknown0==1) ? 0x42000 : 0);
             func_8008E06C(slot->id,&color);
         }
     }
@@ -277,18 +300,4 @@ void func_803998C0(void)
     D_803B4634=1;
     D_803B4638=1;
     particle_velocity_set();
-    D_803B467C=sound_control(0,0,&D_803B4654,1);
-    D_803B46A0=0;
-    entity_audio_update();
-    D_803B469C=func_800CDED8((void **)D_8014A118[0].owner);
-    switch(D_803B469C) {
-    case 1: D_803B469C=1; break;
-    case 2: D_803B469C=2; break;
-    case 3: D_803B469C=3; break;
-    case 4: D_803B469C=4; break;
-    case 5: D_803B469C=5; break;
-    case 6: D_803B469C=6; break;
-    default: D_803B469C=0; break;
-    }
-    D_803B4678=1;
 }

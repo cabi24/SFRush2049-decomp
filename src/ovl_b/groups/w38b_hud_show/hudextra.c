@@ -91,7 +91,7 @@ extern void unlock_notification(tBlitSet *, u8 *, u8 *);               /* Change
 #define InitPane ambient_sound_set
 #define ChangePaneColor unlock_notification
 
-static void ClearBattlePoints(void);
+void func_803925C8(void);
 
 void func_803925D0(void) /* ShowHUDExtra */
 {
@@ -119,7 +119,7 @@ void func_803925D0(void) /* ShowHUDExtra */
             }
             blit = NewMultiBlit(0, 0, StuntMultiBlit, 17);
         }
-        ClearBattlePoints();
+        func_803925C8();
         for (i = 0; i < 4; i++) {
             weaponIcon[i].type = 8;
             weaponIcon[i].idx = -1;
@@ -134,7 +134,7 @@ void func_803925D0(void) /* ShowHUDExtra */
     }
 }
 
-static void ClearBattlePoints(void)
+void func_803925C8(void)
 {
     int i;
     battlePointCnt = 0;
