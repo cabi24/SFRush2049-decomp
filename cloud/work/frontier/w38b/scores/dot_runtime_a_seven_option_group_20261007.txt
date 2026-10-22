@@ -1,0 +1,57 @@
+### score.py group cand/groups__dot_runtime_a_seven_option_group_20261007 --targets asm/us/ovl_a
+Members:
+func_80399394:
+  MATCH
+func_803A6B50:
+  MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x1d0, .rodata+0x0 at +0x1d4, .rodata+0x4 at +0x1dc, .rodata+0x4 at +0x1f0, .rodata+0x8 at +0x200, .rodata+0x8 at +0x204, .rodata+0xc at +0x208, .rodata+0xc at +0x220, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260)
+    not verified: .rodata+0x0 at +0x1d4: no retail data available
+    not verified: .rodata+0x4 at +0x1f0: no retail data available
+    not verified: .rodata+0x8 at +0x204: no retail data available
+    not verified: .rodata+0xc at +0x220: no retail data available
+    not verified: .rodata+0x10 at +0x260: no retail data available
+func_803993EC:
+  MATCH (8 section-relative relocations unverified: .rodata+0x14 at +0x1c, .rodata+0x14 at +0x20, .rodata+0x18 at +0x24, .rodata+0x18 at +0x28, .rodata+0x1c at +0x34, .rodata+0x1c at +0x6c, .rodata+0x20 at +0x2d4, .rodata+0x20 at +0x2d8)
+    not verified: .rodata+0x14 at +0x20: no retail data available
+    not verified: .rodata+0x18 at +0x28: no retail data available
+    not verified: .rodata+0x1c at +0x6c: no retail data available
+    not verified: .rodata+0x20 at +0x2d8: no retail data available
+func_80399D10:
+  MATCH (2 section-relative relocations unverified: .rodata+0x24 at +0x410, .rodata+0x24 at +0x418)
+    not verified: .rodata+0x24 at +0x418: no retail data available
+func_80399384:
+  MATCH
+func_8039938C:
+  MATCH
+exit=1
+### score.py group cand/groups__dot_runtime_a_seven_option_group_20261007 --targets asm/us/ovl_a --claims
+Members:
+func_80399394:
+  MATCH
+func_803A6B50:
+  MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x1d0, .rodata+0x0 at +0x1d4, .rodata+0x4 at +0x1dc, .rodata+0x4 at +0x1f0, .rodata+0x8 at +0x200, .rodata+0x8 at +0x204, .rodata+0xc at +0x208, .rodata+0xc at +0x220, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260)
+    not verified: .rodata+0x0 at +0x1d4: no retail data available
+    not verified: .rodata+0x4 at +0x1f0: no retail data available
+    not verified: .rodata+0x8 at +0x204: no retail data available
+    not verified: .rodata+0xc at +0x220: no retail data available
+    not verified: .rodata+0x10 at +0x260: no retail data available
+func_803993EC:
+  MATCH (8 section-relative relocations unverified: .rodata+0x14 at +0x1c, .rodata+0x14 at +0x20, .rodata+0x18 at +0x24, .rodata+0x18 at +0x28, .rodata+0x1c at +0x34, .rodata+0x1c at +0x6c, .rodata+0x20 at +0x2d4, .rodata+0x20 at +0x2d8)
+    not verified: .rodata+0x14 at +0x20: no retail data available
+    not verified: .rodata+0x18 at +0x28: no retail data available
+    not verified: .rodata+0x1c at +0x6c: no retail data available
+    not verified: .rodata+0x20 at +0x2d8: no retail data available
+func_80399D10:
+  MATCH (2 section-relative relocations unverified: .rodata+0x24 at +0x410, .rodata+0x24 at +0x418)
+    not verified: .rodata+0x24 at +0x418: no retail data available
+func_80399384:
+  MATCH
+func_8039938C:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000     88 M func_80399394                    retail 80399394/88
+000058    964 M func_803A6B50                    retail 803A6B50/964
+00041c      8 M func_80399384                    retail 80399384/8 STUB
+000424      8 M func_8039938C                    retail 8039938C/8 STUB
+00042c   1228 M func_803993EC                    retail 803993EC/1228
+0008f8   1352 M func_80399D10                    retail 80399D10/1340

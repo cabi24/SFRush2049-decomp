@@ -1,0 +1,30 @@
+{
+ "members": [
+  "func_803A6F2C",
+  "func_803A7180",
+  "func_803A7620",
+  "func_803A7918",
+  "func_803A6F14",
+  "func_803A6F1C",
+  "func_803A6F24"
+ ],
+ "claims": [
+  "func_803A6F2C",
+  "func_803A7180",
+  "func_803A7620",
+  "func_803A7918",
+  "func_803A6F14",
+  "func_803A6F1C",
+  "func_803A6F24"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_803A7918"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "Same-name supersession; preserve all three installed members and add 1184 exact candidate bytes through independently bounded live storage. Original capacity remains unknown. w38b (wave 38): claims stubs func_803A6F14 _GetPakStatusStr (inlined into _DrawPickPak 7620, MAT3 statStr[24]; 7620 keeps 1 of its 4 unused slots), func_803A6F1C _DrawDamaged and func_803A6F24 _DrawRumblePak (cases 4/3 of _AnimText 7918; its 3 unused slots removed). Stub identities from the source-order scan layout. Old members MATCH."
+}

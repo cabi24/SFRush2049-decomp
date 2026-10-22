@@ -1,0 +1,100 @@
+### score.py group cand/groups__dot_runtime_a_seven_option_init_20261007 --targets asm/us/ovl_a
+Members:
+func_803998C0:
+  MATCH (16 section-relative relocations unverified: .rodata+0x10 at +0x194, .rodata+0x10 at +0x198, .rodata+0x14 at +0x1a8, .rodata+0x14 at +0x1ac, .rodata+0x18 at +0x1c0, .rodata+0x18 at +0x1c4, .rodata+0x1c at +0x208, .rodata+0x1c at +0x20c, .rodata+0x20 at +0x21c, .rodata+0x20 at +0x220, .rodata+0x24 at +0x28c, .rodata+0x24 at +0x290, .rodata+0x28 at +0x2d8, .rodata+0x28 at +0x2dc, .rodata+0x2c at +0x3d8, .rodata+0x2c at +0x3e0)
+    not verified: .rodata+0x10 at +0x198: no retail data available
+    not verified: .rodata+0x14 at +0x1ac: no retail data available
+    not verified: .rodata+0x18 at +0x1c4: no retail data available
+    not verified: .rodata+0x1c at +0x20c: no retail data available
+    not verified: .rodata+0x20 at +0x220: no retail data available
+    not verified: .rodata+0x24 at +0x290: no retail data available
+    not verified: .rodata+0x28 at +0x2dc: no retail data available
+    not verified: .rodata+0x2c at +0x3e0: no retail data available
+func_803998B8:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_80399394:
+  MATCH
+func_803993EC:
+    +0x010  want 11c0012a beqz t6,0x4ac                 got 11c0012b beqz t6,0x4b0               
+    +0x01c  want 3c01803c lui at,0x803c                 got 3c014334 lui at,0x4334               
+    +0x020  want c43e951c lwc1 $f30,-27364(at)          got 4481f000 mtc1 at,$f30                
+    +0x030  want 4481c000 mtc1 at,$f24                  got c43a0004 lwc1 $f26,4(at)             
+    +0x03c  want 3c14803b lui s4,0x803b                 got 3c13803b lui s3,0x803b               
+    +0x040  want 3c15803b lui s5,0x803b                 got 3c14803b lui s4,0x803b               
+    +0x044  want 3c16803b lui s6,0x803b                 got 3c17803b lui s7,0x803b               
+    +0x048  want 3c138003 lui s3,0x8003                 got 3c158003 lui s5,0x8003               
+    +0x050  want 4480d000 mtc1 zero,$f26                got 4480c000 mtc1 zero,$f24              
+    +0x058  want 2673eb94 addiu s3,s3,-5228             got 26b5eb94 addiu s5,s5,-5228           
+    +0x05c  want 26d64638 addiu s6,s6,17976             got 26f74638 addiu s7,s7,17976           
+    +0x060  want 26b54324 addiu s5,s5,17188             got 26944324 addiu s4,s4,17188           
+  249/307 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x24, .rodata+0x0 at +0x28, .rodata+0x4 at +0x2c, .rodata+0x4 at +0x30, .rodata+0x8 at +0x34, .rodata+0x8 at +0x6c, .rodata+0xc at +0x2d8, .rodata+0xc at +0x2dc)
+func_80399D10:
+    +0x000  want 27bdff50 addiu sp,sp,-176              got 27bdff90 addiu sp,sp,-112            
+    +0x050  want 10620011 beq v1,v0,0x48                got 10620012 beq v1,v0,0x4c              
+    +0x060  want 24014000 li at,16384                   got 55c20004 bnel t6,v0,0x14             
+    +0x064  want 51c2000c beql t6,v0,0x34               got 24014000 li at,16384                 
+    +0x068  want ac830000 sw v1,0(a0)                   got 1000000c b 0x34                      
+    +0x06c  want 14410005 bne v0,at,0x18                got ac830000 sw v1,0(a0)                 
+    +0x070  want 00000000 nop                           got 24014000 li at,16384                 
+    +0x074  want 0c02d55c jal 0xb5570                   got 14410005 bne v0,at,0x18              
+    +0x078  want 24044000 li a0,16384                   got 00000000 nop                         
+    +0x07c  want 1000011e b 0x47c                       got 0c02d55c jal 0xb5570                 
+    +0x080  want 8fbf006c lw ra,108(sp)                 got 24044000 li a0,16384                 
+    +0x084  want 0c02d55c jal 0xb5570                   got 10000119 b 0x468                     
+  293/335 words differ (2 section-relative relocations unverified: .rodata+0x44 at +0x404, .rodata+0x44 at +0x40c)
+exit=1
+### score.py group cand/groups__dot_runtime_a_seven_option_init_20261007 --targets asm/us/ovl_a --claims
+Members:
+func_803998C0:
+  MATCH (16 section-relative relocations unverified: .rodata+0x10 at +0x194, .rodata+0x10 at +0x198, .rodata+0x14 at +0x1a8, .rodata+0x14 at +0x1ac, .rodata+0x18 at +0x1c0, .rodata+0x18 at +0x1c4, .rodata+0x1c at +0x208, .rodata+0x1c at +0x20c, .rodata+0x20 at +0x21c, .rodata+0x20 at +0x220, .rodata+0x24 at +0x28c, .rodata+0x24 at +0x290, .rodata+0x28 at +0x2d8, .rodata+0x28 at +0x2dc, .rodata+0x2c at +0x3d8, .rodata+0x2c at +0x3e0)
+    not verified: .rodata+0x10 at +0x198: no retail data available
+    not verified: .rodata+0x14 at +0x1ac: no retail data available
+    not verified: .rodata+0x18 at +0x1c4: no retail data available
+    not verified: .rodata+0x1c at +0x20c: no retail data available
+    not verified: .rodata+0x20 at +0x220: no retail data available
+    not verified: .rodata+0x24 at +0x290: no retail data available
+    not verified: .rodata+0x28 at +0x2dc: no retail data available
+    not verified: .rodata+0x2c at +0x3e0: no retail data available
+func_803998B8:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_80399394:
+  MATCH
+func_803993EC:
+    +0x010  want 11c0012a beqz t6,0x4ac                 got 11c0012b beqz t6,0x4b0               
+    +0x01c  want 3c01803c lui at,0x803c                 got 3c014334 lui at,0x4334               
+    +0x020  want c43e951c lwc1 $f30,-27364(at)          got 4481f000 mtc1 at,$f30                
+    +0x030  want 4481c000 mtc1 at,$f24                  got c43a0004 lwc1 $f26,4(at)             
+    +0x03c  want 3c14803b lui s4,0x803b                 got 3c13803b lui s3,0x803b               
+    +0x040  want 3c15803b lui s5,0x803b                 got 3c14803b lui s4,0x803b               
+    +0x044  want 3c16803b lui s6,0x803b                 got 3c17803b lui s7,0x803b               
+    +0x048  want 3c138003 lui s3,0x8003                 got 3c158003 lui s5,0x8003               
+    +0x050  want 4480d000 mtc1 zero,$f26                got 4480c000 mtc1 zero,$f24              
+    +0x058  want 2673eb94 addiu s3,s3,-5228             got 26b5eb94 addiu s5,s5,-5228           
+    +0x05c  want 26d64638 addiu s6,s6,17976             got 26f74638 addiu s7,s7,17976           
+    +0x060  want 26b54324 addiu s5,s5,17188             got 26944324 addiu s4,s4,17188           
+  249/307 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x24, .rodata+0x0 at +0x28, .rodata+0x4 at +0x2c, .rodata+0x4 at +0x30, .rodata+0x8 at +0x34, .rodata+0x8 at +0x6c, .rodata+0xc at +0x2d8, .rodata+0xc at +0x2dc)
+func_80399D10:
+    +0x000  want 27bdff50 addiu sp,sp,-176              got 27bdff90 addiu sp,sp,-112            
+    +0x050  want 10620011 beq v1,v0,0x48                got 10620012 beq v1,v0,0x4c              
+    +0x060  want 24014000 li at,16384                   got 55c20004 bnel t6,v0,0x14             
+    +0x064  want 51c2000c beql t6,v0,0x34               got 24014000 li at,16384                 
+    +0x068  want ac830000 sw v1,0(a0)                   got 1000000c b 0x34                      
+    +0x06c  want 14410005 bne v0,at,0x18                got ac830000 sw v1,0(a0)                 
+    +0x070  want 00000000 nop                           got 24014000 li at,16384                 
+    +0x074  want 0c02d55c jal 0xb5570                   got 14410005 bne v0,at,0x18              
+    +0x078  want 24044000 li a0,16384                   got 00000000 nop                         
+    +0x07c  want 1000011e b 0x47c                       got 0c02d55c jal 0xb5570                 
+    +0x080  want 8fbf006c lw ra,108(sp)                 got 24044000 li a0,16384                 
+    +0x084  want 0c02d55c jal 0xb5570                   got 10000119 b 0x468                     
+  293/335 words differ (2 section-relative relocations unverified: .rodata+0x44 at +0x404, .rodata+0x44 at +0x40c)
+exit=0
+### object order (objsyms.py)
+000000     88 C func_80399394                    retail 80399394/88
+000058   1232 C func_803993EC                    retail 803993EC/1228
+000528      8 M func_803998B8                    retail 803998B8/8 STUB
+000530   1104 M func_803998C0                    retail 803998C0/1104
+000980   1328 C func_80399D10                    retail 80399D10/1340

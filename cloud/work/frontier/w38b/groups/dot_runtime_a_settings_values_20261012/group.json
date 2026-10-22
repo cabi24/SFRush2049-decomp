@@ -1,0 +1,21 @@
+{
+ "name": "dot_runtime_a_settings_values_20261012",
+ "members": [
+  "func_803AECE4",
+  "func_803AECDC"
+ ],
+ "claims": [
+  "func_803AECE4",
+  "func_803AECDC"
+ ],
+ "context": [],
+ "files": [
+  "settings_values.c"
+ ],
+ "keep": [
+  "func_803AECE4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "installed from cloud/work/frontier/dot_runtime_a_settings_neighbor_20261012/groups/dot_runtime_a_settings_values_20261012 w38b (wave 38): claims stub func_803AECDC = animButtonText@trackscr.c (the body of the animText callback func_803AECE4 moved into a non-kept inlined helper; the call area replaces the native unaccessed x/y homes, slot carrier removed). Old member MATCH."
+}

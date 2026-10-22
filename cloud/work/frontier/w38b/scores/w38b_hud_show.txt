@@ -1,0 +1,17 @@
+### score.py group cand/groups__w38b_hud_show --targets asm/us/ovl_b
+Members:
+func_803925D0:
+  MATCH
+func_803925C8:
+  MATCH
+exit=0
+### score.py group cand/groups__w38b_hud_show --targets asm/us/ovl_b --claims
+Members:
+func_803925D0:
+  MATCH
+func_803925C8:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000      8 M func_803925C8                    retail 803925C8/8 STUB
+000008    712 M func_803925D0                    retail 803925D0/708

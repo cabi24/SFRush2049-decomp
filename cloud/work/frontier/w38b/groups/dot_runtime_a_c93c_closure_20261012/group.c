@@ -1,0 +1,1475 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Image A track-select screen: the whole N64 trackscr.c IPA unit, root updateTrackScreen (func_8038E5DC,
+ * kept; called by the game code). Donor: MAT3 GameSource trackscr.c (GC 0x80087abc..0x8008d30c), direct
+ * typed ports, N64 offsets/addresses from the retail words. Identities (call graph + MAT3 statement order):
+ *   func_8038E5DC updateTrackScreen   func_8038DFEC _InitScreen       func_8038B940 _UninitScreen
+ *   func_8038C5EC showTrackSelect     func_8038B834 TrackValid        func_8038ACB0 OptionValid
+ *   func_8038A634 SetFogIntensity     func_8038AE50 unloadTrackScreen func_8038AEB0 buildTrackMap
+ *   func_8038B388 clearTrackMap       func_8038B3EC animTrackMap      func_8038CD14 buildTrackMaps
+ *   func_8038A820 animTrackMaps       func_8038C93C initButtons       func_8038BBB4 updateButtons
+ * Inlined statics, named by their retail 8-byte deleted stubs (the compiled object emits them at those places):
+ *   func_8038A62C setCamera, func_8038C934 BlowFog, func_8038AEA8 loadTrackScreen, func_8038CCE4 unloadPathData,
+ *   func_8038CCEC loadPathData, func_8038CCF4 buildRaceTrackMaps, func_8038CCFC buildObstacleTrackMaps,
+ *   func_8038CD04 buildBattleTrackMaps, func_8038CD0C buildStuntTrackMaps.
+ * Every function except the kept root has the private IPA ABI (no callee saves; the root saves s0-s8 and
+ * $f20-$f30), so members match only in this unit. Function order is MAT3's file order (as1 breaks scheduling
+ * ties by source line, and the inlined helpers' lines must follow their callers).
+ * Bodies: w36d (E5DC, DFEC, BBB4, CD14, ACB0, B834 ports); w36e (AE50, B388, B940, AEA8, AEB0; cloud/work/frontier/
+ * w36e/groups/best_ts); dot_runtime_a_color_smoothing_20261006 (A634); C93C = the installed member of
+ * dot_runtime_a_c93c_closure_20261012, text unchanged. C5EC/B3EC/A820 are stand-ins (context only).
+ * Strict in this unit: C93C, BBB4, DFEC, ACB0, B834, A634, AE50, B388, B940. E5DC is one instruction off (case 14's
+ * gOptions[29] = 3 store is absolute in retail); CD14/AEB0/B3EC/C5EC/A820 are context.
+ */
+typedef signed char s8; typedef unsigned char u8;
+typedef short s16; typedef unsigned short u16;
+typedef int s32; typedef unsigned int u32; typedef float f32;
+typedef struct Blit Blit;
+typedef struct MultiBlit {
+    char *name;s16 x,y,width,height,top,bottom,left,right;
+    u32 z,alpha;s32 (*callback)(Blit *);u32 descriptor;
+} MultiBlit;
+typedef struct MenuObjectSlot {s32 other,handle;f32 angle,matrix[3][3],position[3];u8 alpha,pad[3];} MenuObjectSlot;
+typedef union Color {u32 word;u8 channel[4];} Color;
+typedef struct Texture Texture;
+typedef struct FileInfo {u8 unknown00[16],controller;} FileInfo;
+typedef struct Profile Profile;
+struct Profile {Profile **next,**previous;FileInfo **file;u32 id0,id1;u8 name[24];u8 **stats;};
+typedef struct Player {u32 held,pressed,levels,repeated;u8 unknown10[56];Profile **save;} Player;
+typedef struct CircuitTrack {u8 trackNum,unknown1,mirror,fog,wind;} CircuitTrack;
+typedef struct TrackSlot {s8 gTrackNum;f32 pos[3];f32 targetPos;s8 slot;} TrackSlot;   /* anon_gTrackNum_pos_18 */
+
+/* game globals */
+extern u32 D_801174B4;             /* gGameState */
+extern u32 D_801174BC;             /* gSkipToGameState */
+extern s16 D_8014A108;             /* gNumPlayers */
+extern s32 D_8014A110;             /* gRace (0 OneRace 1 Practice 2 Ghost 3 Circuit 4 Stunt 5 Obstacle 6 Battle) */
+extern Player D_8014A118[];        /* gPlayers */
+extern s8 D_8014978C;              /* gTrackNum */
+extern s8 D_80146108[];            /* gOptions */
+extern s8 D_80157244;              /* gSoftReset */
+extern u32 D_8015694C;             /* gActiveEdges */
+extern u32 D_80156944;             /* gActiveLevels */
+extern u32 D_80149784;             /* gActiveAutoEdges */
+extern s8 D_8013F1D9;              /* gMirrorControls */
+extern s8 D_80154628;              /* gCircuitTrack */
+extern u8 D_801543D4;              /* gCircuitPlayer */
+extern CircuitTrack D_801543D8[];  /* gCircuitTracks */
+extern s8 D_80156994;              /* (N64) all-tracks flag: track 5 may be started */
+extern s8 D_80142726;              /* gWind */
+extern volatile f32 D_8002EB94;    /* gFrameSeconds */
+extern f32 D_8011418C[12];         /* unitmatrix */
+extern volatile u8 D_80140BDC;     /* gNumModels */
+
+/* trackscr data */
+extern MenuObjectSlot D_803B6B14[48];  /* buttonInfo */
+extern s32 D_803B7714,D_803B7718;      /* buttonsInited, buttonsJustInited */
+extern f32 D_803B771C;                 /* gButtonScale */
+extern f32 D_803B7720;                 /* gButtonSpace */
+extern f32 D_803B7724;                 /* buttonX */
+extern f32 D_803B7728;                 /* maxY */
+extern f32 D_803B772C;                 /* minY */
+extern f32 D_803B7730;                 /* buttonZ */
+extern f32 D_803B7734;                 /* cursorZ */
+extern Color D_803B8394;               /* initButtons buttonColor template */
+extern Color D_803B8398;               /* updateButtons buttonColor template */
+extern char *D_803B6AF0[];             /* buttonNames */
+extern char D_803B9264[],D_803B9274[],D_803B927C[],D_803B9280[];  /* "BUTTON_TITLE" "CURSOR" "A1" "B1" */
+extern char D_803B9284[],D_803B9294[],D_803B929C[],D_803B92AC[];  /* "BUTTON_SELECT" "BUTTON" x2 */
+extern f32 D_803B7A20[];               /* yFog */
+extern MultiBlit D_803B7A6C[];         /* mblit (17 entries on N64) */
+extern Blit *D_803B7CD0;               /* blit */
+extern s8 D_803B7CD4;                  /* inited */
+extern f32 D_803B7CE0;                 /* pathPos */
+extern s16 D_803BA84E;                 /* oldTrack */
+extern s16 D_803BA852;                 /* gNumTracks */
+extern s16 D_803BA856;                 /* gTrack */
+extern s16 D_803BA85A;                 /* gActiveOption */
+extern s16 D_803BA878;                 /* gFirstOption */
+extern s16 D_803BA898;                 /* gNumOptions */
+extern s8 D_803BA908;                  /* gActiveOptionEnabled */
+extern s8 D_803BA910;                  /* gActiveZ */
+extern s16 D_803BA8B0[21];             /* gOpts */
+extern TrackSlot D_803BA918[19];       /* gTracks */
+extern f32 D_803BA85C;                 /* updateButtons static cursorSpeed */
+extern f32 D_803BA87C;                 /* updateButtons static scrollSpeed */
+extern s32 D_803BAC78;                 /* currentTrackMap */
+extern s32 D_803BAC90;                 /* desiredTrackMap */
+extern f32 D_803BACCC;                 /* mapTransition */
+extern f32 D_803BAE10[3];              /* _InitScreen static fogPos */
+extern u16 D_803BA220,D_803BA222;      /* BlowFog static fogTileSize.uls/.ult */
+
+/* game functions */
+extern void *memcpy(void *,const void *,u32);
+extern f32 fabsf(f32);
+#pragma intrinsic (fabsf)
+extern void func_800B5570(s32);                   /* setGameState */
+extern s8 func_800A361C(s32);                     /* (N64) controller-pak removed test */
+extern void resource_type_select(u32);            /* PlayStartABSound */
+extern void audio_doppler(u32);                   /* PlayLRSound */
+extern s32 entity_flags_apply(u32,u32,u32,u8);    /* AudPlayEffect */
+extern void audio_bus_mix(Profile **,u8,s8);      /* SavePlayerOption */
+extern s8 reverb_setup(Profile **,u8);            /* GetPlayerOption */
+extern void menu_text_input(Profile **,s32,u8);   /* SavePlayerTrack */
+extern u8 func_800CDC3C(Profile **,s32);          /* GetPlayerTrack */
+extern void init_state_begin(void);               /* SetOptions */
+extern void particle_lifetime_set(void);          /* createBG */
+extern Blit *sound_control(s16,s16,const MultiBlit *,s16);  /* NewMultiBlit */
+extern void particle_position_set(s16);           /* ZeroCamera */
+extern void Effects_UpdateEmitters(void);         /* UpdateCameras */
+extern void entity_audio_update(void);            /* ClearRushControls */
+extern s32 func_800F7644(s32);                    /* IsTrackUnlocked */
+extern s32 sign_extend_call(u32,u32,s32,u32);     /* MBOX_NewObject */
+extern s32 string_copy_format(char *,s8,s8,s8);   /* MBOX_FindObject_WORK */
+extern Texture *func_800B24EC(char *,s16 *,s8,s8,s32);  /* MBOX_FindTexture_WORK */
+extern void func_8008D870(s16,s32,s32);           /* ZOID_SetTexture */
+extern void func_8008E06C(s16,s32 *);             /* ZOID_SetColor */
+extern void func_8008B32C(f32 [3][3],f32 [3][3],f32);  /* ScaleUV */
+extern void func_800B5898(f32,f32 [][3]);         /* WPitchUV */
+extern void func_800B5940(f32,f32 [][3]);         /* WRollUV */
+extern void particle_velocity_set(void);          /* ZeroCameras */
+extern void model_data_load(s32,s32,s32);         /* MBOX_HideObject */
+extern void model_transform_setup(s32,s32,s32);   /* MBOX_ShowObject */
+
+/* unit functions */
+void func_8038DFEC(void);
+void func_8038B940(void);
+void func_8038C5EC(void);
+s32 func_8038B834(s32);
+s32 func_8038ACB0(s32);
+void func_8038A634(s32);
+void func_8038AE50(void);
+void func_8038AEB0(void);
+void func_8038B388(void);
+void func_8038B3EC(void);
+void func_8038CD14(void);
+void func_8038A820(void);
+void func_8038C93C(void);
+void func_8038BBB4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038B930(void); void func_8038B938(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+void func_8038C934(void); void func_8038A62C(void); void func_8038AEA8(void);
+void func_8038CCF4(void); void func_8038CD0C(void); void func_8038CD04(void); void func_8038CCFC(void);
+void func_8038CCEC(void); void func_8038CCE4(void);
+
+/* SDK GBI subset (as w36e) */
+typedef struct { u32 w0; u32 w1; } Gwords;
+typedef union { Gwords words; long long int force_structure_alignment; } Gfx;
+#define _SHIFTL(v, s, w) ((u32)(((u32)(v) & ((0x01 << (w)) - 1)) << (s)))
+#define gSPTexture(pkt, s, t, level, tile, on) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(0xD7, 24, 8) | _SHIFTL(0, 16, 8) | _SHIFTL((level), 11, 3) | _SHIFTL((tile), 8, 3) | _SHIFTL((on), 1, 7)); \
+    _g->words.w1 = (_SHIFTL((s), 16, 16) | _SHIFTL((t), 0, 16)); \
+}
+#define gDPNoParam(pkt, cmd) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(cmd, 24, 8); \
+    _g->words.w1 = 0; \
+}
+#define gDPPipeSync(pkt) gDPNoParam(pkt, 0xE7)
+#define gSPEndDisplayList(pkt) gDPNoParam(pkt, 0xDF)
+#define gSPSetOtherMode(pkt, cmd, sft, len, data) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(cmd, 24, 8) | _SHIFTL(32 - (sft) - (len), 8, 8) | _SHIFTL((len) - 1, 0, 8)); \
+    _g->words.w1 = (u32)(data); \
+}
+#define gDPSetRenderMode(pkt, c0, c1) gSPSetOtherMode(pkt, 0xE2, 3, 29, (c0) | (c1))
+#define gDPSetCombine(pkt, muxs0, muxs1) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0xFC, 24, 8) | _SHIFTL(muxs0, 0, 24); \
+    _g->words.w1 = (u32)(muxs1); \
+}
+#define gSPVertex(pkt, v, n, v0) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0x01, 24, 8) | _SHIFTL((n), 12, 8) | _SHIFTL((v0) + (n), 1, 7); \
+    _g->words.w1 = (u32)(v); \
+}
+#define __gsSP1Triangle_w1(v0, v1, v2) (_SHIFTL((v0) * 2, 16, 8) | _SHIFTL((v1) * 2, 8, 8) | _SHIFTL((v2) * 2, 0, 8))
+#define gSP2Triangles(pkt, v00, v01, v02, flag0, v10, v11, v12, flag1) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(0x06, 24, 8) | __gsSP1Triangle_w1(v00, v01, v02)); \
+    _g->words.w1 = __gsSP1Triangle_w1(v10, v11, v12); \
+}
+typedef struct { s16 ob[3]; u16 flag; s16 tc[2]; u8 cn[4]; } Vtx;
+
+/* ---- context (w36e region): OptionValid, TrackValid, SetFogIntensity, unloadTrackScreen, clearTrackMap ---- */
+extern s32 D_803B77D4[][21];   /* validOption */
+extern s8 D_803B8314[19];      /* TrackValid static trackReady */
+extern s32 D_803AF980;
+/* SetFogIntensity: research body cloud/work/frontier/dot_runtime_a_color_smoothing_20261006/candidate.c */
+struct Blit {const char *Name;void *Image;void *Info;u16 TexIndex;s16 X,Y;u16 Z;s16 Width,Height;u8 Alpha,Flip;s8 Hide,Init;
+    u8 other28[24];u16 resource;};
+typedef struct RGB { u8 r, g, b; } RGB;
+extern s8 D_801427A0;
+extern s8 D_8013F1D8;
+extern RGB D_80114658[];
+extern u8 D_803BA1E0[8];
+extern u8 D_803BA1E8[];
+extern u8 *D_803BA1FC;
+extern Blit *D_803B8288,*D_803B828C;
+extern void Input_ApplyPadConfig(Blit *);
+/* BlowFog (inlined into _InitScreen); MAT3 static fogTileSize (anon_uls_ult_8) */
+typedef struct TileSize {u16 uls,ult,lrs,lrt;} TileSize;
+extern volatile s16 D_8002EB70;   /* gRenderInProgress */
+extern s32 D_803B8284;            /* trackMapObj */
+extern void sound_stop(Blit *);   /* RemoveBlit (ZOID_RemovePoly on N64: blits) */
+extern void sound_call_minimal(s16);  /* ZOID_RemoveObject */
+extern void ambient_sounds_clear(void);  /* removeBG */
+extern void func_800A5B3C(void);  /* ZOID_Reset */
+/* ---- context (w36e region): _UninitScreen, buildTrackMap, animTrackMap: option_parent research bodies ---- */
+typedef struct MapLod {u16 texidx,flags;f32 lodRad;u32 *displayList;void *verts;} MapLod;   /* N64 16-byte model LOD */
+typedef struct RomObjDef {char name[16];f32 radius;s16 unused,lodCount;MapLod lod[4];} RomObjDef;   /* 88 B */
+typedef struct ModelBank {RomObjDef *romObjDefs;s32 count;} ModelBank;
+typedef struct Slot72 {s32 handle;f32 offset_x,offset_y,angle,scale_from,scale_to;f32 matrix[3][3],position[3];} Slot72;   /* trackMap: anon_objIdx_cityX_48 */
+extern Slot72 D_803B7CE4[20];
+extern s8 D_803BAAE0;            /* trackMapsBuilt */
+extern MapLod D_803BAB58[7];   /* original lod[0] of the seven map objects */
+extern MapLod D_803BAAE8[7];   /* mapObj */
+extern void *D_803BABC8[7],*D_803BABE8[7];
+extern ModelBank D_801161F4[];   /* gRomObjDefPtrs */
+extern char *D_803B7738[];       /* trackMapObjNames */
+extern void func_800960D4(void *);  /* DeallocateMemory */
+typedef struct ImageMeta {u8 other0[21];u8 flags;u8 other22[10];} ImageMeta;
+typedef struct DisplayCommand {u32 w0,w1;} DisplayCommand;
+extern ImageMeta D_80140BF0[];
+extern char *D_803B7788[];
+extern char D_803B9260[];
+extern Color D_803B8328;
+extern s32 D_803B7CD8;          /* kNumMapSects */
+extern Gfx *D_803BAB50;            /* mapObj[6].displayList */
+extern f32 D_803B8254[12],D_803BAC30[12],D_803B832C[3];
+extern Blit *func_800B3704(char *,s16,s16,s16);
+extern void func_80094EC8(Blit *);
+#define DISPLAY_WORDS(p,a,b) do {DisplayCommand *command=(p)++; command->w0=(a);command->w1=(b);} while(0)
+#define DISPLAY_TEXTURE(p,on) DISPLAY_WORDS(p,0xD7000000u|((on)<<1),0xFFFFFFFFu)
+#define DISPLAY_VERTEX(p,v,n,first) DISPLAY_WORDS(p,0x01000000u|((n)<<12)|(((first)+(n))<<1),(u32)(v))
+#define DISPLAY_TRIANGLES(p,a,b,c,d,e,f) DISPLAY_WORDS(p,0x06000000u|((a)*2<<16)|((b)*2<<8)|((c)*2),((d)*2<<16)|((e)*2<<8)|((f)*2))
+extern f32 D_803B8350,D_803B8338[3],D_803B8344[3];
+extern void func_800FD754(f32 (*)[3],f32 (*)[3],f32,f32,f32);   /* ScaleUVXYZ */
+extern void gfx_setup_fc(f32,f32 (*)[3]);   /* WYawUV */
+/* ---- context (w36e region): showTrackSelect stand-in (MAT3 port), animTrackMaps stand-in ---- */
+extern s8 D_80152570;      /* gBackwards */
+extern s8 D_80140A04;      /* gMirrorWaves */
+extern f32 D_803B8290;     /* showTrackSelect static angle */
+extern f32 D_803B9A90[3];  /* showTrackSelect static fogPos */
+extern void math_utility(f32 *,f32 (*)[3]);          /* CopyUV */
+extern void func_80090E9C(f32,f32 (*)[3]);           /* YawUV */
+extern f32 D_803B8388[3];   /* animTrackMaps static mapPos */
+/* ---- buildTrackMaps (MAT3 trackscr.c, GC 0x8008ad10) and its inlined statics ---- */
+typedef struct Vtx_t {s16 ob[3];u16 flag;s16 tc[2];u8 cn[4];} Vtx_t;
+typedef struct ResPath {u16 numPts;s16 (*pts)[3];} ResPath;
+typedef struct Checkpoints {s16 startTime,loopPt,finishPt,startPt,numPoints;} Checkpoints;
+extern s16 D_801407B4[3];          /* gPathMax */
+extern s16 D_801407D4[3];          /* gPathMin */
+extern ResPath D_801407F0;         /* gResPath */
+extern Checkpoints D_80151CE8;     /* gCheckpoints */
+extern void *D_80153F20;           /* gPathWave */
+extern s32 D_803B7CDC;             /* pathWaveIdx */
+extern Color D_803B8354;           /* buildRaceTrackMaps static map vertex colour {63,63,63,255} */
+extern f32 D_803B8358[3],D_803B8364[3];  /* buildRaceTrackMaps static mapPos (x2) */
+extern f32 D_803B8370[3];          /* buildStuntTrackMaps static mapPos */
+extern f32 D_803B837C[3];          /* buildBattleTrackMaps static mapPos */
+extern s32 audio_frame_sync(s32,s32,s32,s32,s32);  /* LoadWave */
+extern void *slot_value_get(s32);  /* GetWaveInstanceAddr */
+extern void audio_dsp_process(void);   /* ReadCheckpointData */
+extern void audio_effect_apply(void);  /* ReadPathData */
+extern void func_80096130(s32);    /* UnloadWaveInstance */
+extern void *audio_dma_sync(s32,s32);  /* AllocateMemoryHeap */
+extern s32 func_800BA61C(s16);     /* FindResPathIntersect */
+extern f32 sqrtf(f32);
+#pragma intrinsic (sqrtf)
+#define GFX(p,a,b) do { Gfx *_g = (p)++; _g->words.w0 = (a); _g->words.w1 = (b); } while (0)
+
+/* updateTrackScreen (MAT3 trackscr.c, GC 0x80087abc). N64 differences read from the retail words: the
+ * _InitScreen/showTrackSelect calls come before the player loop, which tests a removed controller pak
+ * instead of walking gPlayerFiles; A/B start needs D_80156994 or a track other than 5 (the same gate guards
+ * the up/down option moves); effect ids 38/40/39; case 0 sets buttonsJustInited when !D_80156994;
+ * options are saved for player 0 after SetOptions; ZeroCamera/UpdateCameras = inlined setCamera. */
+void func_8038E5DC(void)
+{
+    s32 i;
+    s32 j;
+    s32 add;
+    if (D_801174BC != 1) {
+        if (D_801174BC != D_801174B4) { func_800B5570(0x100); return; }
+        D_801174BC = 1;
+    }
+    if (!D_803B7CD4) func_8038DFEC();
+    func_8038C5EC();
+    for (i = 0; i < D_8014A108; i++) {
+        if ((*D_8014A118[i].save)->file && func_800A361C((*(*D_8014A118[i].save)->file)->controller)) {
+            func_8038B940(); func_800B5570(0x20); return;
+        }
+    }
+    if (D_80157244) { func_8038B940(); func_800B5570(4); return; }
+    if ((D_8015694C & 3) && (D_80156994 || D_8014978C != 5)) {
+        resource_type_select(D_8015694C); func_800B5570(0x100); func_8038B940();
+        for (j = 0; j < D_8014A108; j++)
+            for (i = 21; i < 41; i++) audio_bus_mix(D_8014A118[j].save, i, D_80146108[i]);
+        return;
+    }
+    if (D_8015694C & 4) {
+        entity_flags_apply(38, 0, 1, 0); func_8038B940();
+        if (D_8014A110 == 3) func_800B5570(0x4000);
+        else func_800B5570(0x40);
+        return;
+    }
+    if (D_80156944 & 0x3080) {
+        add = (D_80149784 & 0x1000) ? -1 : (D_80149784 & 0x2000) ? 1 : 0;
+        if ((D_8014A110 == 3 && (D_80154628 > 0 || D_803BA8B0[D_803BA85A] != 20)) || (add == 0 && !D_803BA910) || (D_8014A110 == 2 && D_803BA8B0[D_803BA85A] == 2)) goto controls_done;
+        audio_doppler(D_80149784);
+        if (D_8013F1D9 > 1) add = -add;
+        switch (D_803BA8B0[D_803BA85A]) {
+        case 0:
+            if (add) {
+                D_803BA856 += add;
+                if (D_803BA856 < 0) D_803BA856 = D_803BA852 - 1;
+                else if (D_803BA856 >= D_803BA852) D_803BA856 = 0;
+                do {
+                    D_8014978C += add;
+                    if (D_8014978C < 0) D_8014978C = 18;
+                    else if (D_8014978C >= 19) D_8014978C = 0;
+                } while (!func_8038B834(D_8014978C));
+                for (i = 21; i < 41; i++)
+                    D_80146108[i] = reverb_setup(D_8014A118[0].save, i);
+                if (!D_80156994) D_803B7718 = 1;
+            }
+            break;
+        case 1:
+            if (add) {
+                D_80146108[25] += add;
+                if (D_80146108[25] < 0) D_80146108[25] = 1;
+                else if (D_80146108[25] > 1) D_80146108[25] = 0;
+            } else D_80146108[25] = 0;
+            break;
+        case 2:
+            if (add) {
+                D_80146108[21] += add;
+                if (D_80146108[21] < 1) D_80146108[21] = 8;
+                else if (D_80146108[21] > 8) D_80146108[21] = 1;
+            } else D_80146108[21] = 3;
+            break;
+        case 3:
+            if (add) {
+                D_80146108[32] += add;
+                if (D_80146108[32] < 0) D_80146108[32] = 2;
+                else if (D_80146108[32] > 2) D_80146108[32] = 0;
+            } else D_80146108[32] = 0;
+            break;
+        case 4:
+            if (add) {
+                if (!D_80146108[33]) D_80146108[33] = 1;
+                else D_80146108[33] = 0;
+            } else D_80146108[33] = 0;
+            break;
+        case 5:
+            if (add) {
+                D_80146108[34] += add;
+                if (D_80146108[34] <= 0) D_80146108[34] = 100;
+                else if (D_80146108[34] > 100) D_80146108[34] = 1;
+            } else D_80146108[34] = 69;
+            break;
+        case 6:
+            if (add) {
+                D_80146108[35] += add;
+                if (D_80146108[35] <= 0) D_80146108[35] = 20;
+                else if (D_80146108[35] > 20) D_80146108[35] = 1;
+            } else D_80146108[35] = 5;
+            break;
+        case 7:
+            if (add) {
+                D_80146108[36] += add;
+                if (D_80146108[36] <= 0) D_80146108[36] = 50;
+                else if (D_80146108[36] > 50) D_80146108[36] = 1;
+            } else D_80146108[36] = 30;
+            break;
+        case 8:
+            if (add) {
+                if (!D_80146108[37]) D_80146108[37] = 1;
+                else D_80146108[37] = 0;
+            } else D_80146108[37] = 0;
+            break;
+        case 9:
+            if (add) {
+                D_80146108[38] += 5*add;
+                if (D_80146108[38] < 5) D_80146108[38] = 50;
+                else if (D_80146108[38] > 50) D_80146108[38] = 5;
+            } else D_80146108[38] = 10;
+            break;
+        case 10:
+            if (add) {
+                D_80146108[39] += add;
+                if (D_80146108[39] <= 0) D_80146108[39] = 20;
+                else if (D_80146108[39] > 20) D_80146108[39] = 1;
+            } else D_80146108[39] = 8;
+            break;
+        case 11:
+            if (add) {
+                D_80146108[40] ^= 1;
+            } else D_80146108[40] = 0;
+            break;
+        case 12:
+            if (add) {
+                D_80146108[27] ^= 1;
+            } else D_80146108[27] = 0;
+            func_8038B388(); func_8038AEB0(); D_803B7CE0 = 1.0f - D_803B7CE0;
+            break;
+        case 13:
+            if (add) {
+                if ((D_8014A118[0].levels & 0x3c000) == 0x3c000) D_80146108[28] = 2;
+                else if (!D_80146108[28]) D_80146108[28] = 1;
+                else D_80146108[28] = 0;
+            } else D_80146108[28] = 0;
+            func_8038B388(); func_8038AEB0();
+            break;
+        case 14:
+            if (add) {
+                D_80146108[29] += add;
+                if (D_80146108[29] < 0) D_80146108[29] = 3;
+                else if (D_80146108[29] > 3) D_80146108[29] = 0;
+            } else D_80146108[29] = 0;
+            break;
+        case 15:
+            if (add) {
+                D_80146108[30] += add;
+                if (D_80146108[30] < 0) D_80146108[30] = 4;
+                else if (D_80146108[30] > 4) D_80146108[30] = 0;
+            } else D_80146108[30] = 0;
+            break;
+        case 16:
+            if (add) {
+                D_80146108[23] += add;
+                if (D_80146108[23] < 0) D_80146108[23] = 3;
+                else if (D_80146108[23] > 3) D_80146108[23] = 0;
+            } else D_80146108[23] = 1;
+            break;
+        case 17:
+            if (add) {
+                D_80146108[22] += add;
+                if (D_80146108[22] > 5) D_80146108[22] = 0;
+                else if (D_80146108[22] < 0) D_80146108[22] = 5;
+            } else D_80146108[22] = 5;
+            break;
+        case 18:
+            if (add) {
+                D_80146108[24] += add;
+                if (D_80146108[24] < 0) D_80146108[24] = 5;
+                else if (D_80146108[24] > 5) D_80146108[24] = 0;
+            } else D_80146108[24] = 2;
+            break;
+        case 19:
+            if (add) {
+                D_80146108[26] += add;
+                if (D_80146108[26] < 0) D_80146108[26] = 2;
+                else if (D_80146108[26] > 2) D_80146108[26] = 0;
+            } else D_80146108[26] = 2;
+            break;
+        case 20:
+            if (add) {
+                D_80146108[31] ^= 1;
+            } else D_80146108[31] = 0;
+            if (D_8014A110 == 3) (*(*D_8014A118[D_801543D4].save)->stats)[1785] = D_80146108[31];
+            break;
+        }
+        init_state_begin();
+        for (i = 21; i < 41; i++) audio_bus_mix(D_8014A118[0].save, i, D_80146108[i]);
+    } else if (D_80149784 & 0x400) {
+        if (D_80156994 || D_8014978C != 5) {
+            entity_flags_apply(40, 0, 1, 0);
+            if (--D_803BA85A < 0) D_803BA85A = D_803BA898 - 1;
+        }
+    } else if (D_80149784 & 0x800) {
+        if (D_80156994 || D_8014978C != 5) {
+            entity_flags_apply(39, 0, 1, 0);
+            D_803BA85A++;
+            if (D_803BA85A > D_803BA898 - 1) D_803BA85A = 0;
+        }
+    }
+    if (D_803BA878 > D_803BA85A - 1) D_803BA878 = D_803BA85A - 1;
+    if (D_803BA878 < D_803BA85A - 2) D_803BA878 = D_803BA85A - 2;
+    if (D_803BA878 > D_803BA898 - 4) D_803BA878 = D_803BA898 - 4;
+    if (D_803BA878 < 0) D_803BA878 = 0;
+controls_done:
+    D_803BA908 = D_8014A110 != 3 || (D_80154628 == 0 && D_803BA8B0[D_803BA85A] == 20);
+    if (D_8014978C != D_803BA84E) {
+        D_803BAC90 = D_8014978C;
+        D_803BA84E = D_8014978C;
+        for (i = 0; i < D_8014A108; i++) {
+            switch (D_8014A110) {
+            case 0: case 1: case 2:
+                if (D_8014978C >= 0 && D_8014978C <= 5) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C + 0);
+                break;
+            case 4:
+                if (D_8014978C >= 14 && D_8014978C <= 17) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C - 14);
+                break;
+            case 6:
+                if (D_8014978C >= 6 && D_8014978C <= 13) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C - 6);
+                break;
+            }
+        }
+    }
+    func_8038B3EC();
+    func_8038A820();
+    func_8038A634(0);
+    func_8038A62C();
+}
+
+/* _InitScreen (MAT3 trackscr.c, GC 0x800887ac). N64: 17-entry multiblit; BlowFog and setCamera inlined. */
+void func_8038DFEC(void)
+{
+    s32 i;
+    s32 j;
+    f32 pos;
+    D_803BA85A = 0;
+    D_803BA878 = 0;
+    D_803BA910 = 0;
+    D_803BAC78 = -1;
+    D_803BA898 = 0; for (i = 0; i < 21; i++) if (func_8038ACB0(i)) D_803BA8B0[D_803BA898++] = i;
+    func_8038CD14();
+    if (D_8014A110 == 3) D_803BA84E = D_8014978C = D_801543D8[D_80154628].trackNum;
+    else {
+        if (D_8014A110 == 4) D_803BA84E = D_8014978C = func_800CDC3C(D_8014A118[0].save, D_8014A110) + 14;
+        else if (D_8014A110 == 5) D_803BA84E = D_8014978C = func_800CDC3C(D_8014A118[0].save, D_8014A110) + 18;
+        else if (D_8014A110 == 6) D_803BA84E = D_8014978C = func_800CDC3C(D_8014A118[0].save, D_8014A110) + 6;
+        else D_803BA84E = D_8014978C = func_800CDC3C(D_8014A118[0].save, D_8014A110) + 0;
+        if (!func_8038B834(D_8014978C)) {
+            if (D_8014A110 == 4) D_803BA84E = D_8014978C = 14;
+            else if (D_8014A110 == 5) D_803BA84E = D_8014978C = 18;
+            else if (D_8014A110 == 6) D_803BA84E = D_8014978C = 6;
+            else D_803BA84E = D_8014978C = 0;
+        }
+        for (i = 0; i < D_8014A108; i++) {
+            if (D_8014A110 == 4) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C - 14);
+            else if (D_8014A110 == 5) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C - 18);
+            else if (D_8014A110 == 6) menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C - 6);
+            else menu_text_input(D_8014A118[i].save, D_8014A110, D_8014978C);
+        }
+        for (i = 21; i < 41; i++)
+            D_80146108[i] = reverb_setup(D_8014A118[0].save, i);
+    }
+    init_state_begin();
+    particle_lifetime_set();
+    func_8038C93C();
+    D_803B7CD0 = sound_control(0, 0, D_803B7A6C, 17);
+    i = 0;
+    for (j = 0; j < 19; j++) {
+        if (func_8038B834(j)) {
+            if (j == D_8014978C) { D_803BA856 = i; break; }
+            i++;
+        }
+    }
+    D_803BA852 = 19;
+    i = 0;
+    pos = 0.0f;
+    for (j = 0; j < 19; j++) {
+        if (func_8038B834(j)) {
+            D_803BA918[i].gTrackNum = j;
+            D_803BA918[i].slot = i - D_803BA856;
+            if (D_803BA918[i].slot < 0) D_803BA918[i].slot += D_803BA852;
+            if (D_803BA856 == i) D_803BA918[i].targetPos = 0.0f;
+            else if (D_803BA856 >= D_803BA852/2) D_803BA918[i].targetPos = pos - (D_803BA852 - D_803BA856)*100;
+            else D_803BA918[i].targetPos = pos + D_803BA856*100;
+            D_803BA918[i].pos[0] = D_803BA918[i].targetPos;
+            D_803BA918[i].pos[1] = -5.0f;
+            D_803BA918[i].pos[2] = 0.0f;
+            pos -= 100.0f;
+            if (pos < -(D_803BA852*100/2)) pos += D_803BA852*100;
+            i++;
+        }
+    }
+    D_803BAE10[0] = 0.0f;
+    D_803BAE10[1] = D_803B7A20[D_803BA918[D_803BA856].gTrackNum] - 5.0f;
+    D_803BAE10[2] = 0.0f;
+    func_8038A634(1);
+    func_8038C934();
+    func_8038A62C();
+    entity_audio_update();
+    D_803B7CD4 = 1;
+    D_803BAC78 = -1;
+    D_803BAC90 = D_8014978C;
+    D_803BACCC = 0;
+}
+
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21.
+ * w38b: MAT3 _UninitScreen calls uninitButtons() and clearTrackMaps(); both are inlined statics whose deleted
+ * procedures are the retail stubs func_8038B938 (uninitButtons) and func_8038B930 (clearTrackMaps), emitted in the
+ * post-order of the call graph (clearTrackMaps is visited first: last call first). Bodies moved verbatim from here. */
+void func_8038B940(void)
+{
+    func_8038B938();
+    if (D_803B7CD0) { sound_stop(D_803B7CD0); D_803B7CD0 = 0; }
+    ambient_sounds_clear();
+    func_8038B388();
+    func_8038B930();
+    func_800A5B3C();
+    D_803B7CD4 = 0;
+}
+
+/* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
+typedef struct UVMatrix { f32 uvs[3][3]; f32 pos[3]; } UVMatrix;   /* tUVMatrix */
+void func_8038C5EC(void)
+{
+    static f32 angle = 0.0f;
+    static f32 fogPos[3];
+    UVMatrix fogMat;
+    f32 uv[3][3];
+    f32 speed;
+    f32 frames;
+    s32 i;
+    s32 slot;
+    f32 fogY, fogDelta;
+    func_8038BBB4();
+    for (D_803BA898 = 0, i = 0; i < 21; i++) if (func_8038ACB0(i)) D_803BA8B0[D_803BA898++] = i;
+    frames = D_8002EB94 * 30.0f;
+    if ((D_80152570 && !D_80140A04) || (!D_80152570 && D_80140A04)) {
+        angle -= 0.01745329238474369f * frames;
+        if (angle < 0.0f) angle += 6.2831854820251465f;
+    } else {
+        angle += 0.01745329238474369f * frames;
+        if (angle >= 6.2831854820251465f) angle -= 6.2831854820251465f;
+    }
+    speed = frames * ((D_803BA918[D_803BA856].targetPos - D_803BA918[D_803BA856].pos[0]) / 10.0f);
+    for (i = 0; i < D_803BA852; i++) {
+        slot = i - D_803BA856;
+        if (slot < 0) slot += D_803BA852;
+        if (slot != D_803BA918[i].slot) {
+            if (D_803BA918[i].slot == (slot-1 < 0 ? D_803BA852-1 : slot-1)) D_803BA918[i].targetPos -= 100.0f;
+            else D_803BA918[i].targetPos += 100.0f;
+            D_803BA918[i].slot = slot;
+        }
+        if (speed != 0.0f) {
+            D_803BA918[i].pos[0] += speed;
+            if (D_803BA918[i].pos[0] < -(D_803BA852*100/2)) {
+                D_803BA918[i].pos[0] += D_803BA852*100;
+                D_803BA918[i].targetPos += D_803BA852*100;
+            } else if (D_803BA918[i].pos[0] > D_803BA852*100/2) {
+                D_803BA918[i].pos[0] -= D_803BA852*100;
+                D_803BA918[i].targetPos -= D_803BA852*100;
+            }
+        }
+    }
+    fogPos[1] += ((D_803B7A20[D_803BA918[D_803BA856].gTrackNum] - 5.0f - fogPos[1]) / 10.0f) * frames;
+    math_utility(D_8011418C, uv);
+    func_80090E9C(angle, uv);
+    func_800FD754(uv, uv, 2.0f, 1.0f, 2.5f);
+}
+
+/* TrackValid: MAT3 trackscr.c TrackValid (GC 0x8008a248) direct port; IDO rewrites the range tests as pointer compares on &trackReady[track]. */
+s32 func_8038B834(s32 track)
+{
+    if (!D_803B8314[track]) return 0;
+    if (!func_800F7644(track)) return 0;
+    if (D_8014A110 == 4) return track >= 14 && track <= 17;
+    if (D_8014A110 == 5) return track >= 18 && track <= 18;
+    if (D_8014A110 == 6) return track >= 6 && track <= 13;
+    return track >= 0 && track <= 5;
+}
+
+/* OptionValid: MAT3 trackscr.c OptionValid (GC 0x8008a324) direct port; N64 adds the track-5 and D_803AF980 tests. */
+s32 func_8038ACB0(s32 opt)
+{
+    s32 valid;
+    valid = D_803B77D4[D_8014A110][opt];
+    if (D_8014A110 == 0 && opt == 17) valid = D_8014A108 < 3;
+    if (D_8014A110 == 4) {
+        if (opt == 5) valid = D_80146108[32] == 1;
+        if (opt == 6) valid = D_80146108[32] == 0;
+        if (opt == 7) valid = D_80146108[32] == 2;
+    }
+    if (D_8014A110 == 6) {
+        if (opt == 9) valid = D_80146108[37] == 0;
+        if (opt == 11) valid = D_80146108[37] == 0;
+        if (opt == 10) valid = D_80146108[37] == 1;
+    }
+    if (opt == 19 && D_8014A108 == 1) valid = 0;
+    if (opt == 12) valid = D_8014978C >= 0 && D_8014978C <= 5;
+    if (!D_80156994 && D_8014978C == 5 && opt != 0) valid = 0;
+    if (!D_803AF980 && opt == 1) valid = 0;
+    return valid;
+}
+
+void func_8038A634(s32 initialize)
+{
+    u8 color[3];
+    if (D_801427A0 < 19)
+        D_801427A0 = D_8014978C;
+    color[0] = D_80114658[D_801427A0].r;
+    color[1] = D_80114658[D_801427A0].g;
+    color[2] = D_80114658[D_801427A0].b;
+    if (initialize) {
+        D_803BA1E0[0] = color[0];
+        D_803BA1E0[1] = color[1];
+        D_803BA1E0[2] = color[2];
+    } else {
+        D_803BA1E0[0] += (color[0] - D_803BA1E0[0]) / 10;
+        D_803BA1E0[1] += (color[1] - D_803BA1E0[1]) / 10;
+        D_803BA1E0[2] += (color[2] - D_803BA1E0[2]) / 10;
+    }
+    D_803BA1E0[3] = D_8013F1D8 * 192 / 3;
+    if (D_803B828C) {
+        D_803BA1FC = D_803BA1E0;
+        D_803BA1E0[4] = 0;
+        D_803BA1E0[5] = 0;
+        D_803BA1E0[6] = 0;
+        D_803BA1E0[7] = 0;
+        D_803B828C->Z = 0x7E00;
+        D_803B828C->Alpha = D_803BA1E0[3];
+        D_803B828C->Image = D_803BA1E8;
+        Input_ApplyPadConfig(D_803B828C);
+    }
+}
+
+void func_8038C934(void)
+{
+    static TileSize fogTileSize;
+    TileSize *tile = &fogTileSize;
+    s32 s;
+    s32 speed;
+    speed = D_80142726 ? D_80142726 * 5 : 1;
+    s = tile->uls + speed;
+    if (s < 0) s += 2048;
+    if (s >= 2048) s -= 2048;
+    tile->uls = s;
+    tile->ult = 0;
+}
+
+/* setCamera (inlined into _InitScreen and updateTrackScreen) */
+void func_8038A62C(void)
+{
+    particle_position_set(1);
+    Effects_UpdateEmitters();
+}
+
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21 */
+/* loadTrackScreen (MAT3 trackscr.c, GC 0x8008a634): inlined into buildTrackMap (deleted stub 0x8038AEA8).
+ * The GC poly locals stay declared (shared GameSource declarations); the N64 body makes blits. */
+/* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
+void func_8038AEA8(void)
+{
+    f32 polyVerts[4][3];
+    u16 texIdx;
+    Color backColor = D_803B8328;
+    func_8038AE50();
+    if (!((D_8014978C >= 0 && D_8014978C <= 5) ||
+        (D_8014978C >= 6 && D_8014978C <= 13) ||
+        (D_8014978C >= 14 && D_8014978C <= 17) ||
+        (D_8014978C >= 18 && D_8014978C <= 18))) return;
+    D_803B8288 = func_800B3704(D_803B7788[D_8014978C],176,32,0);
+    D_803B8288->Z = 0x7F00;
+    func_80094EC8(D_803B8288);
+    D_80140BF0[D_803B8288->resource].flags |= 1;
+    if (func_8038ACB0(14) == 1) {
+        D_803B828C = func_800B3704(D_803B9260,176,32,0);
+        D_803B828C->Z = 0x7E00;
+        func_80094EC8(D_803B828C);
+    }
+}
+
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21 */
+/* unloadTrackScreen: option_parent research body */
+void func_8038AE50(void)
+{
+    Blit *b;
+    if ((b = D_803B8288)) { sound_stop(b); D_803B8288 = 0; }
+    if ((b = D_803B828C)) { sound_stop(b); D_803B828C = 0; }
+}
+
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21 */
+/* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
+void func_8038AEB0(void)
+{
+    Gfx *gfx;
+    Vtx *vtx;
+    s32 i, vertex;
+    u32 vtxSize, dlSize;
+    s32 trackMBIdx;
+    func_8038AEA8();
+    if (D_803BAC90 >= 0 && D_803BAC90 <= 5) {
+        if (D_803B7CE4[19].handle != -1) {
+            vtxSize = (D_803B7CD8 + 1) * 4 * sizeof(Vtx);
+            memcpy(D_803BABE8[6], D_803BABE8[D_803BAC90], vtxSize);
+            dlSize = (D_803B7CD8 * 5 + 7) * sizeof(Gfx);
+            memcpy(D_803BABC8[6], D_803BABC8[D_803BAC90], dlSize);
+            gfx = D_803BAB50;
+            if ((D_8014A110 == 3 && D_801543D8[D_80154628].mirror == 1)
+                || (D_8014A110 != 3 && D_80146108[28])) {
+                gSPTexture(gfx++, 0xFFFF, 0xFFFF, 0, 0, 0);
+                gDPPipeSync(gfx++);
+                gDPSetRenderMode(gfx++, 0xC8112230, 0);
+                gDPSetCombine(gfx++, 0xFFFFFF, 0xFFFE7C38);
+                for (i = 0, vertex = 0; i < D_803B7CD8; i++, vertex += 4) {
+                    if (i + 1 == D_803B7CD8) {
+                        if (vertex) {}
+                        gSPVertex(gfx++, &((Vtx *)D_803BABE8[6])[vertex], 4, 0);
+                        gSPVertex(gfx++, &((Vtx *)D_803BABE8[6])[0], 4, 4);
+                    } else {
+                        gSPVertex(gfx++, &((Vtx *)D_803BABE8[6])[vertex], 8, 0);
+                    }
+                    gSP2Triangles(gfx++, 1, 5, 0, 0, 4, 0, 5, 0);
+                    gSP2Triangles(gfx++, 0, 4, 3, 0, 7, 3, 4, 0);
+                    gSP2Triangles(gfx++, 3, 7, 2, 0, 6, 2, 7, 0);
+                    gSP2Triangles(gfx++, 2, 6, 1, 0, 5, 1, 6, 0);
+                }
+                gSPTexture(gfx++, 0xFFFF, 0xFFFF, 0, 0, 1);
+                gSPEndDisplayList(gfx++);
+            }
+            func_8008B32C((f32 (*)[3])D_8011418C, (f32 (*)[3])D_803B8254, 2.0f);
+            func_800B5898(-0.785398185f, (f32 (*)[3])D_803B8254);
+            D_803B7CE4[19].position[0] = D_803B832C[0];
+            D_803B7CE4[19].position[1] = D_803B832C[1];
+            D_803B7CE4[19].position[2] = D_803B832C[2];
+        }
+    } else if ((D_803BAC90 >= 6 && D_803BAC90 <= 13) || (D_803BAC90 >= 14 && D_803BAC90 <= 17)) {
+        if (D_803B8284 == -1) {
+            D_803B8284 = sign_extend_call(string_copy_format(D_803B7738[D_803BAC90], 0, D_80140BDC - 1, 1), (u32)D_803BAC30, -1, 0);
+            func_8008B32C((f32 (*)[3])D_8011418C, (f32 (*)[3])D_803BAC30, 2.0f);
+            func_800B5898(-0.785398185f, (f32 (*)[3])D_803BAC30);
+            D_803BAC30[9] = D_803B832C[0];
+            D_803BAC30[10] = D_803B832C[1];
+            D_803BAC30[11] = D_803B832C[2];
+        }
+    }
+    D_803BAC78 = D_803BAC90;
+}
+
+/* w36e body (cloud/work/frontier/w36e/groups/best_ts), merged 2026-10-21 */
+/* clearTrackMap: option_parent research body */
+void func_8038B388(void)
+{
+    func_8038AE50();
+    if (D_803B8284 != -1) { sound_call_minimal((s16)D_803B8284); D_803B8284 = -1; }
+    while (D_8002EB70) {}
+}
+
+/* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
+void func_8038B3EC(void)
+{
+    static f32 cityPos[3] = { -100.0f, 30.0f, 200.0f };
+    static f32 mapPos[3] = { 50.0f, -15.0f, 100.0f };
+    static f32 rotAngle = 0.0f;
+    rotAngle += D_8002EB94 * 6.2831854820251465f / 10.0f;
+    if (rotAngle > 6.2831854820251465f) rotAngle -= 6.2831854820251465f;
+    if (D_803BAC78 != D_803BAC90) {
+        D_803BACCC -= D_8002EB94 * 4.0f;
+        if (D_803BACCC < 0.0f) {
+            D_803BACCC = 0.0f;
+            func_8038B388();
+            func_8038AEB0();
+        }
+    } else {
+        D_803BACCC += D_8002EB94 * 4.0f;
+        if (D_803BACCC > 1.0f) D_803BACCC = 1.0f;
+    }
+    D_803B7CE4[19].position[0] = cityPos[0];
+    D_803B7CE4[19].position[1] = cityPos[1];
+    D_803B7CE4[19].position[2] = cityPos[2];
+    D_803B7CE4[19].position[0] += D_803B7CE4[D_803BAC78].offset_x;
+    D_803B7CE4[19].position[1] += D_803B7CE4[D_803BAC78].offset_y;
+    D_803B7CE4[19].position[0] *= 1.0f - D_803BACCC;
+    D_803B7CE4[19].position[1] *= 1.0f - D_803BACCC;
+    D_803B7CE4[19].position[2] *= 1.0f - D_803BACCC;
+    D_803B7CE4[19].position[0] += mapPos[0] * D_803BACCC;
+    D_803B7CE4[19].position[1] += mapPos[1] * D_803BACCC;
+    D_803B7CE4[19].position[2] += mapPos[2] * D_803BACCC;
+    D_803BAC30[9] = D_803B7CE4[19].position[0];
+    D_803BAC30[10] = D_803B7CE4[19].position[1];
+    D_803BAC30[11] = D_803B7CE4[19].position[2];
+    func_8008B32C((f32 (*)[3])D_8011418C, (f32 (*)[3])D_803BAC30,
+        D_803BACCC * D_803B7CE4[D_803BAC78].scale_to + D_803B7CE4[D_803BAC78].scale_from * (1.0f - D_803BACCC));
+    func_8008B32C((f32 (*)[3])D_8011418C, (f32 (*)[3])D_803B8254,
+        D_803BACCC * D_803B7CE4[D_803BAC78].scale_to + D_803B7CE4[D_803BAC78].scale_from * (1.0f - D_803BACCC));
+    if ((D_8014A110 == 3 && D_801543D8[D_80154628].mirror == 1)
+        || (D_8014A110 != 3 && D_8014A110 != 4 && D_8014A110 != 6 && D_8014A110 != 5 && D_80146108[28])) {
+        func_800FD754((f32 (*)[3])D_803BAC30, (f32 (*)[3])D_803BAC30, -1.0f, 1.0f, 1.0f);
+        func_800FD754((f32 (*)[3])D_803B8254, (f32 (*)[3])D_803B8254, -1.0f, 1.0f, 1.0f);
+    }
+    gfx_setup_fc(rotAngle * D_803BACCC + D_803B7CE4[D_803BAC78].angle * (1.0f - D_803BACCC), (f32 (*)[3])D_803BAC30);
+    func_800B5898(-0.5235987901687622f * D_803BACCC + (1.0f - D_803BACCC) * -1.5707963705062866f, (f32 (*)[3])D_803BAC30);
+    gfx_setup_fc(rotAngle * D_803BACCC + D_803B7CE4[D_803BAC78].angle * (1.0f - D_803BACCC), (f32 (*)[3])D_803B8254);
+    func_800B5898(-0.5235987901687622f * D_803BACCC + (1.0f - D_803BACCC) * -1.5707963705062866f, (f32 (*)[3])D_803B8254);
+}
+
+void func_8038CD14(void)
+{
+    if (D_8014A110 == 4) func_8038CD0C();
+    else if (D_8014A110 == 6) func_8038CD04();
+    else if (D_8014A110 == 5) func_8038CCFC();
+    else func_8038CCF4();
+    D_803BAAE0 = 1;
+    D_803B7CE0 = 0.0f;
+}
+
+/* buildRaceTrackMaps (inlined). N64: the GC PS2 packet code is an N64 display list per map: kNumMapSects
+ * sections of 4 vertices (8 for the last, which wraps to the first) and four G_TRI2 commands each. */
+void func_8038CCF4(void)
+{
+    s32 saveTrackNum;
+    s32 pointIdx;
+    s32 vertIdx;
+    s32 prevPt;
+    s32 currStartPt;
+    s32 currEndPt;
+    s32 nextPt;
+    f32 x0, y0, x1, y1, x2, y2, x3, y3;
+    f32 dx0, dy0, len0, dx1, dy1, len1, dx2, dy2, len2;
+    f32 u0;
+    f32 xoffset, yoffset, zoffset;
+    s32 u1, u2;
+    s32 trackMBIdx;
+    RomObjDef *trackRomObjDef;
+    Gfx *dl;
+    Vtx_t *vtx;
+    s32 vtxSize, dlSize;
+    s32 i;
+    s32 u3, u4, u5, u6, u7;
+    f32 sectVerts[8][3];
+    saveTrackNum = D_8014978C;
+    for (D_8014978C = 0; D_8014978C <= 5; D_8014978C++) {
+        if (!func_800F7644(D_8014978C)) continue;
+        {
+            func_8038CCEC();
+            xoffset = -(D_801407D4[0] + D_801407B4[0]) / 2;
+            yoffset = -(D_801407D4[2] + D_801407B4[2]) / 2;
+            zoffset = -(D_801407D4[1] + D_801407B4[1]) / 2;
+            D_803B7CE4[D_8014978C].scale_to = 5000.0f / ((D_801407B4[0] - D_801407D4[0] > D_801407B4[2] - D_801407D4[2]) ? D_801407B4[0] - D_801407D4[0] : D_801407B4[2] - D_801407D4[2]);
+            trackMBIdx = string_copy_format(D_803B7738[D_8014978C], 0, D_80140BDC - 1, 1);
+            trackRomObjDef = &D_801161F4[trackMBIdx >> 10].romObjDefs[trackMBIdx & 1023];
+            D_803BAB58[D_8014978C] = trackRomObjDef->lod[0];
+            vtxSize = D_803B7CD8 * 64 + 64;
+            D_803BABE8[D_8014978C] = audio_dma_sync(0, vtxSize + 7);
+            D_803BAAE8[D_8014978C].verts = vtx = (Vtx_t *)(((u32)D_803BABE8[D_8014978C] + 7) & ~7);
+            dlSize = D_803B7CD8 * 40 + 56;
+            D_803BABC8[D_8014978C] = audio_dma_sync(0, dlSize + 7);
+            D_803BAAE8[D_8014978C].displayList = (u32 *)(dl = (Gfx *)(((u32)D_803BABC8[D_8014978C] + 7) & ~7));
+            dl[0].words.w0 = 0xD7000000; dl[0].words.w1 = 0xFFFFFFFF;
+            dl[1].words.w0 = 0xE7000000; dl[1].words.w1 = 0;
+            dl[2].words.w0 = 0xE200001C; dl[2].words.w1 = 0xC8112230;
+            dl[3].words.w0 = 0xFCFFFFFF; dl[3].words.w1 = 0xFFFE7C38;
+            dl += 4;
+            for (pointIdx = 0; pointIdx < D_803B7CD8; pointIdx++) {
+                if (pointIdx > 0) prevPt = (D_801407F0.numPts * (pointIdx - 1)) / D_803B7CD8; else prevPt = -1;
+                currStartPt = D_801407F0.numPts * pointIdx / D_803B7CD8;
+                currEndPt = pointIdx < D_803B7CD8 - 1 ? (D_801407F0.numPts * (pointIdx + 1)) / D_803B7CD8 : func_800BA61C(D_80151CE8.loopPt);
+                if (pointIdx < D_803B7CD8 - 2) nextPt = (D_801407F0.numPts * (pointIdx + 2)) / D_803B7CD8; else nextPt = -1;
+                x1 = xoffset + D_801407F0.pts[currStartPt][0];
+                y1 = yoffset + D_801407F0.pts[currStartPt][2];
+                x2 = xoffset + D_801407F0.pts[currEndPt][0];
+                y2 = yoffset + D_801407F0.pts[currEndPt][2];
+                if (prevPt != -1) {
+                    x0 = xoffset + D_801407F0.pts[prevPt][0];
+                    y0 = yoffset + D_801407F0.pts[prevPt][2];
+                } else {
+                    x0 = x1 - (x2 - x1);
+                    y0 = y1 - (y2 - y1);
+                }
+                if (nextPt != -1) {
+                    x3 = xoffset + D_801407F0.pts[nextPt][0];
+                    y3 = yoffset + D_801407F0.pts[nextPt][2];
+                } else {
+                    x3 = x2 + (x2 - x1);
+                    y3 = y2 + (y2 - y1);
+                }
+                dx0 = x0 - x1; dy0 = y1 - y0;
+                dx1 = x1 - x2; dy1 = y2 - y1;
+                dx2 = x2 - x3; dy2 = y3 - y2;
+                len0 = sqrtf(dx0 * dx0 + dy0 * dy0);
+                len1 = sqrtf(dx1 * dx1 + dy1 * dy1);
+                len2 = sqrtf(dx2 * dx2 + dy2 * dy2);
+                dx0 *= 100.0f; dy0 *= 100.0f; dx1 *= 100.0f; dy1 *= 100.0f; dx2 *= 100.0f; dy2 *= 100.0f;
+                dx0 /= len0; dy0 /= len0; dx1 /= len1; dy1 /= len1; dx2 /= len2; dy2 /= len2;
+                sectVerts[0][0] = x1 + (dy0 + dy1) / 2;
+                sectVerts[0][2] = y1 + (dx0 + dx1) / 2;
+                sectVerts[0][1] = zoffset + D_801407F0.pts[currStartPt][1] + 50.0f;
+                sectVerts[1][0] = x1 - (dy0 + dy1) / 2;
+                sectVerts[1][2] = y1 - (dx0 + dx1) / 2;
+                sectVerts[1][1] = zoffset + D_801407F0.pts[currStartPt][1] + 50.0f;
+                sectVerts[2][0] = x1 - (dy0 + dy1) / 2;
+                sectVerts[2][2] = y1 - (dx0 + dx1) / 2;
+                sectVerts[2][1] = D_801407D4[1] + zoffset - 50.0f;
+                sectVerts[3][0] = x1 + (dy0 + dy1) / 2;
+                sectVerts[3][2] = y1 + (dx0 + dx1) / 2;
+                sectVerts[3][1] = D_801407D4[1] + zoffset - 50.0f;
+                sectVerts[4][0] = x2 + (dy1 + dy2) / 2;
+                sectVerts[4][2] = y2 + (dx1 + dx2) / 2;
+                sectVerts[4][1] = zoffset + D_801407F0.pts[currEndPt][1] + 50.0f;
+                sectVerts[5][0] = x2 - (dy1 + dy2) / 2;
+                sectVerts[5][2] = y2 - (dx1 + dx2) / 2;
+                sectVerts[5][1] = zoffset + D_801407F0.pts[currEndPt][1] + 50.0f;
+                sectVerts[6][0] = x2 - (dy1 + dy2) / 2;
+                sectVerts[6][2] = y2 - (dx1 + dx2) / 2;
+                sectVerts[6][1] = D_801407D4[1] + zoffset - 50.0f;
+                sectVerts[7][0] = x2 + (dy1 + dy2) / 2;
+                sectVerts[7][2] = y2 + (dx1 + dx2) / 2;
+                sectVerts[7][1] = D_801407D4[1] + zoffset - 50.0f;
+                if (pointIdx == D_803B7CD8 - 1) {
+                    sectVerts[0][1] += 0.1f; sectVerts[1][1] += 0.1f;
+                    sectVerts[2][1] += 0.1f; sectVerts[3][1] += 0.1f;
+                }
+                sectVerts[0][0] *= 0.01f; sectVerts[0][1] *= 0.01f; sectVerts[0][2] *= 0.01f;
+                sectVerts[1][0] *= 0.01f; sectVerts[1][1] *= 0.01f; sectVerts[1][2] *= 0.01f;
+                sectVerts[2][0] *= 0.01f; sectVerts[2][1] *= 0.01f; sectVerts[2][2] *= 0.01f;
+                sectVerts[3][0] *= 0.01f; sectVerts[3][1] *= 0.01f; sectVerts[3][2] *= 0.01f;
+                sectVerts[4][0] *= 0.01f; sectVerts[4][1] *= 0.01f; sectVerts[4][2] *= 0.01f;
+                sectVerts[5][0] *= 0.01f; sectVerts[5][1] *= 0.01f; sectVerts[5][2] *= 0.01f;
+                sectVerts[6][0] *= 0.01f; sectVerts[6][1] *= 0.01f; sectVerts[6][2] *= 0.01f;
+                sectVerts[7][0] *= 0.01f; sectVerts[7][1] *= 0.01f; sectVerts[7][2] *= 0.01f;
+                for (i = 0; i < (pointIdx == D_803B7CD8 - 1 ? 8 : 4); i++) {
+                    vtx->ob[0] = sectVerts[i][0] * 16.0f;
+                    vtx->ob[1] = sectVerts[i][1] * 16.0f;
+                    vtx->ob[2] = sectVerts[i][2] * 16.0f;
+                    vtx->flag = 0x8000;
+                    vtx->tc[0] = 0;
+                    vtx->tc[1] = 0;
+                    vtx->cn[0] = D_803B8354.channel[0];
+                    vtx->cn[1] = D_803B8354.channel[1];
+                    vtx->cn[2] = D_803B8354.channel[2];
+                    vtx->cn[3] = D_803B8354.channel[3];
+                    vtx++;
+                }
+                if (pointIdx == D_803B7CD8 - 1) {
+                    GFX(dl, 0x01004008, (u32)((Vtx_t *)D_803BABE8[D_8014978C] + pointIdx * 4));
+                    GFX(dl, 0x01004010, (u32)D_803BABE8[D_8014978C]);
+                } else {
+                    GFX(dl, 0x01008010, (u32)((Vtx_t *)D_803BABE8[D_8014978C] + pointIdx * 4));
+                }
+                GFX(dl, 0x06000802, 0x000A0208);
+                GFX(dl, 0x06020A04, 0x000C040A);
+                GFX(dl, 0x06040C06, 0x000E060C);
+                GFX(dl, 0x06060E00, 0x0008000E);
+            }
+            GFX(dl, 0xD7000002, 0xFFFFFFFF);
+            GFX(dl, 0xDF000000, 0);
+            D_803BAAE8[D_8014978C].flags = 0;
+            D_803BAAE8[D_8014978C].texidx = 0;
+            D_803BAAE8[D_8014978C].lodRad = 0.0f;
+            trackRomObjDef->lod[0] = D_803BAAE8[D_8014978C];
+            if (D_803B7CE4[D_8014978C].handle == -1) {
+                D_803B7CE4[D_8014978C].handle = sign_extend_call(trackMBIdx, (u32)D_803B7CE4[D_8014978C].matrix, -1, 0);
+                func_8008B32C((f32 (*)[3])D_8011418C, D_803B7CE4[D_8014978C].matrix, 1.0f);
+                func_800B5898(-1.5707963705062866f, D_803B7CE4[D_8014978C].matrix);
+                D_803B7CE4[D_8014978C].position[0] = D_803B8358[0];
+                D_803B7CE4[D_8014978C].position[1] = D_803B8358[1];
+                D_803B7CE4[D_8014978C].position[2] = D_803B8358[2];
+            }
+            func_8038CCE4();
+        }
+    }
+    D_8014978C = saveTrackNum;
+    trackMBIdx = string_copy_format(D_803B7738[19], 0, D_80140BDC - 1, 1);
+    trackRomObjDef = &D_801161F4[trackMBIdx >> 10].romObjDefs[trackMBIdx & 1023];
+    D_803BAB58[6] = trackRomObjDef->lod[0];
+    D_803BABE8[6] = audio_dma_sync(0, D_803B7CD8 * 64 + 64 + 7);
+    D_803BAAE8[6].verts = (void *)(((u32)D_803BABE8[6] + 7) & ~7);
+    D_803BABC8[6] = audio_dma_sync(0, D_803B7CD8 * 40 + 56 + 7);
+    D_803BAAE8[6].displayList = (u32 *)(((u32)D_803BABC8[6] + 7) & ~7);
+    D_803BAAE8[6].flags = 0;
+    D_803BAAE8[6].texidx = 0;
+    D_803BAAE8[6].lodRad = 0.0f;
+    trackRomObjDef->lod[0] = D_803BAAE8[6];
+    if (D_803B7CE4[19].handle == -1) {
+        D_803B7CE4[19].handle = sign_extend_call(trackMBIdx, (u32)D_803B7CE4[19].matrix, -1, 0);
+        func_8008B32C((f32 (*)[3])D_8011418C, D_803B7CE4[19].matrix, 1.0f);
+        func_800B5898(-1.5707963705062866f, D_803B7CE4[19].matrix);
+        D_803B7CE4[19].position[0] = D_803B8364[0];
+        D_803B7CE4[19].position[1] = D_803B8364[1];
+        D_803B7CE4[19].position[2] = D_803B8364[2];
+    }
+}
+
+/* buildStuntTrackMaps (inlined) */
+void func_8038CD0C(void)
+{
+    s32 saveTrackNum;
+    saveTrackNum = D_8014978C;
+    for (D_8014978C = 14; D_8014978C <= 17; D_8014978C++) {
+        if (!func_800F7644(D_8014978C)) continue;
+        if (D_803B7CE4[D_8014978C].handle == -1) {
+            D_803B7CE4[D_8014978C].handle = sign_extend_call(string_copy_format(D_803B7738[D_8014978C], 0, D_80140BDC - 1, 1), (u32)D_803B7CE4[D_8014978C].matrix, -1, 0);
+            func_8008B32C((f32 (*)[3])D_8011418C, D_803B7CE4[D_8014978C].matrix, 1.0f);
+            func_800B5898(-1.5707963705062866f, D_803B7CE4[D_8014978C].matrix);
+            D_803B7CE4[D_8014978C].position[0] = D_803B8370[0];
+            D_803B7CE4[D_8014978C].position[1] = D_803B8370[1];
+            D_803B7CE4[D_8014978C].position[2] = D_803B8370[2];
+        }
+    }
+    D_8014978C = saveTrackNum;
+}
+
+/* buildBattleTrackMaps (inlined) */
+void func_8038CD04(void)
+{
+    s32 saveTrackNum;
+    saveTrackNum = D_8014978C;
+    for (D_8014978C = 6; D_8014978C <= 13; D_8014978C++) {
+        if (!func_800F7644(D_8014978C)) continue;
+        if (D_803B7CE4[D_8014978C].handle == -1) {
+            D_803B7CE4[D_8014978C].handle = sign_extend_call(string_copy_format(D_803B7738[D_8014978C], 0, D_80140BDC - 1, 1), (u32)D_803B7CE4[D_8014978C].matrix, -1, 0);
+            func_8008B32C((f32 (*)[3])D_8011418C, D_803B7CE4[D_8014978C].matrix, 1.0f);
+            func_800B5898(-1.5707963705062866f, D_803B7CE4[D_8014978C].matrix);
+            D_803B7CE4[D_8014978C].position[0] = D_803B837C[0];
+            D_803B7CE4[D_8014978C].position[1] = D_803B837C[1];
+            D_803B7CE4[D_8014978C].position[2] = D_803B837C[2];
+        }
+    }
+    D_8014978C = saveTrackNum;
+}
+
+/* buildObstacleTrackMaps (inlined, empty) */
+void func_8038CCFC(void)
+{
+}
+
+/* clearTrackMaps (MAT3 trackscr.c, GC 0x8008bfac): inlined into _UninitScreen; deleted stub 0x8038B930 (w38b).
+ * Body moved verbatim from w36e's _UninitScreen. */
+void func_8038B930(void)
+{
+    s32 i,model;
+    RomObjDef *def;
+    if (D_803BAAE0) {
+        for (i = 0; i < 20; i++) {
+            if (D_803B7CE4[i].handle != -1) {
+                func_80090254((s16)D_803B7CE4[i].handle);
+                D_803B7CE4[i].handle = -1;
+            }
+        }
+        while (D_8002EB70) {}
+        for (i = 0; i < 7; i++) {
+            model = string_copy_format(D_803B7738[i < 6 ? i : 19],0,D_80140BDC - 1,1);
+            def = &D_801161F4[model >> 10].romObjDefs[model & 0x3FF];
+            def->lod[0] = D_803BAB58[i];
+            if (D_803BABC8[i]) func_800960D4(D_803BABC8[i]);
+            D_803BABC8[i] = 0;
+            if (D_803BABE8[i]) func_800960D4(D_803BABE8[i]);
+            D_803BABE8[i] = 0;
+            D_803BAAE8[i].displayList = 0;
+            D_803BAAE8[i].verts = 0;
+        }
+        D_803BAAE0 = 0;
+    }
+}
+
+/* animTrackMaps stand-in: the GC transform loop and pathPos advance (the N64 vertex-colour fade is omitted). */
+/* w36e final body (cloud/work/frontier/w36e/groups/best_ts) */
+typedef union MapColor { u8 c[4]; u32 w; } MapColor;
+typedef struct MapVtx { s16 ob[3]; u16 flag; s16 tc[2]; u8 cn[4]; } MapVtx;
+void func_8038A820(void)
+{
+    static f32 mapPos[3] = { -100.0f, 30.0f, 200.0f };
+    s32 trackIdx;
+    s32 pointIdx;
+    MapVtx *pStrip;
+    s32 fade;
+    MapColor col;
+    s32 i;
+    s32 mapIdx;
+    if (D_803BAAE0) {
+        for (trackIdx = 0; trackIdx <= 19; trackIdx++) {
+            if (D_803B7CE4[trackIdx].handle != -1) {
+                if (trackIdx < 19) {
+                    func_8008B32C((f32 (*)[3])D_8011418C, D_803B7CE4[trackIdx].matrix, D_803B7CE4[trackIdx].scale_from);
+                    func_800B5898(-1.5707963705062866f, D_803B7CE4[trackIdx].matrix);
+                    func_800B5940(-D_803B7CE4[trackIdx].angle, D_803B7CE4[trackIdx].matrix);
+                    D_803B7CE4[trackIdx].position[0] = mapPos[0];
+                    D_803B7CE4[trackIdx].position[1] = mapPos[1];
+                    D_803B7CE4[trackIdx].position[2] = mapPos[2];
+                    D_803B7CE4[trackIdx].position[0] += D_803B7CE4[trackIdx].offset_x;
+                    D_803B7CE4[trackIdx].position[1] += D_803B7CE4[trackIdx].offset_y;
+                    if (trackIdx == D_8014978C) {
+                        func_8008B32C(D_803B7CE4[trackIdx].matrix, D_803B7CE4[trackIdx].matrix, 0.8f);
+                        D_803B7CE4[trackIdx].position[0] = D_803B7CE4[trackIdx].position[0] * 0.8f;
+                        D_803B7CE4[trackIdx].position[1] = D_803B7CE4[trackIdx].position[1] * 0.8f;
+                        D_803B7CE4[trackIdx].position[2] = D_803B7CE4[trackIdx].position[2] * 0.8f;
+                    }
+                }
+                mapIdx = trackIdx == 19 ? 6 : trackIdx;
+                if (trackIdx < 6 || trackIdx == 19) {
+                    if (D_803BAAE8[mapIdx].displayList) {
+                        for (pointIdx = 0; pointIdx < D_803B7CD8; pointIdx++) {
+                            pStrip = (MapVtx *)D_803BAAE8[mapIdx].verts;
+                            pStrip += pointIdx * 4;
+                            if (D_80146108[27] == 0) fade = D_803B7CE0 * D_803B7CD8 - pointIdx;
+                            else fade = D_803B7CE0 * D_803B7CD8 + pointIdx;
+                            if (fade < 0) fade += D_803B7CD8;
+                            if (fade > D_803B7CD8 - 1) fade -= D_803B7CD8;
+                            fade *= 2;
+                            if (mapIdx != D_8014978C && mapIdx < 6) {
+                                col.c[0] = (mapIdx + 1) & 1 ? 127 : 31;
+                                col.c[1] = (mapIdx + 1) & 2 ? 127 : 31;
+                                if ((mapIdx + 1) & 4) col.c[2] = 127; else col.c[2] = 31;
+                            } else if (mapIdx < 6) {
+                                if (fade > 63) fade = 64;
+                                if ((D_8014978C + 1) & 1) col.c[0] = 255 - fade; else col.c[0] = 255 - fade * 3;
+                                if ((D_8014978C + 1) & 2) col.c[1] = 255 - fade; else col.c[1] = 255 - fade * 3;
+                                if ((D_8014978C + 1) & 4) col.c[2] = 255 - fade; else col.c[2] = 255 - fade * 3;
+                            } else {
+                                if (fade > 63) fade = 64;
+                                if ((D_803BAC78 + 1) & 1) col.c[0] = 255 - fade; else col.c[0] = 255 - fade * 3;
+                                if ((D_803BAC78 + 1) & 2) col.c[1] = 255 - fade; else col.c[1] = 255 - fade * 3;
+                                if ((D_803BAC78 + 1) & 4) col.c[2] = 255 - fade; else col.c[2] = 255 - fade * 3;
+                            }
+                            if (pointIdx == D_803B7CD8 - 1) col.w = 0xFFFFFFFF;
+                            for (i = 0; i < (pointIdx == D_803B7CD8 - 1 ? 8 : 4); i++) {
+                                if (i & 2) col.w = 255;
+                                pStrip->cn[0] = col.c[2];
+                                pStrip->cn[1] = col.c[1];
+                                pStrip->cn[2] = col.c[0];
+                                pStrip->cn[3] = col.c[3];
+                                pStrip++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        D_803B7CE0 += D_8002EB94 / 5.0f;
+        while (D_803B7CE0 > 1.0f) D_803B7CE0 -= 1.0f;
+    }
+}
+
+/* loadPathData (inlined) */
+void func_8038CCEC(void)
+{
+    if (D_8014978C >= 0 && D_8014978C <= 5) {
+        D_803B7CDC = audio_frame_sync(D_8014978C + 158, 0, 0, 0, 0);
+        D_80153F20 = slot_value_get(D_803B7CDC);
+        audio_dsp_process();
+        audio_effect_apply();
+    } else D_803B7CDC = -1;
+}
+
+/* unloadPathData (inlined) */
+void func_8038CCE4(void)
+{
+    if (D_803B7CDC != -1) func_80096130(D_803B7CDC);
+    D_803B7CDC = -1;
+}
+
+void func_8038C93C(void)
+{
+    Color color = D_803B8394;
+    s32 i;
+    s16 texture_index;
+    f32 yaw;
+    for (i = 0; i < 48; i++) {
+        if (D_803B6B14[i].handle == -1) {
+            memcpy(D_803B6B14[i].matrix, D_8011418C, 36);
+            D_803B6B14[i].handle = sign_extend_call(
+                string_copy_format(D_803B6AF0[D_803B6B14[i].other], 0, D_80140BDC - 1, 1),
+                (u32)D_803B6B14[i].matrix, -1,
+                (D_803B6B14[i].other == 0 || D_803B6B14[i].other == 1 || D_803B6B14[i].other == 2) ? 0x42000 : 0);
+            func_8008E06C((s16)D_803B6B14[i].handle, (s32 *)&color);
+        }
+    }
+    func_8008D870((s16)D_803B6B14[42].handle,
+        (s32)func_800B24EC(D_803B9264, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B6B14[42].matrix, D_8011418C, 36);
+    yaw = -1.5707963705062866f;
+    func_800B5898(yaw, D_803B6B14[42].matrix);
+    D_803B6B14[42].position[0] = 0.0f;
+    D_803B6B14[42].position[1] = 115.0f;
+    D_803B6B14[42].position[2] = 200.0f;
+    func_8008D870((s16)D_803B6B14[43].handle,
+        (s32)func_800B24EC(D_803B9274, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    func_8008D870((s16)D_803B6B14[44].handle,
+        (s32)func_800B24EC(D_803B927C, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B6B14[44].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B6B14[44].matrix);
+    D_803B6B14[44].position[0] = 75.1f;
+    D_803B6B14[44].position[1] = 55.2f;
+    D_803B6B14[44].position[2] = 100.0f;
+    func_8008B32C(D_803B6B14[44].matrix, D_803B6B14[44].matrix, 0.5f);
+    memcpy(D_803B6B14[45].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B6B14[45].matrix);
+    func_800B5940(3.1415927410125732f, D_803B6B14[45].matrix);
+    D_803B6B14[45].position[0] = 87.1f;
+    D_803B6B14[45].position[1] = 55.2f;
+    D_803B6B14[45].position[2] = 100.0f;
+    func_8008D870((s16)D_803B6B14[46].handle,
+        (s32)func_800B24EC(D_803B9280, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B6B14[46].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B6B14[46].matrix);
+    D_803B6B14[46].position[0] = -75.1f;
+    D_803B6B14[46].position[1] = 55.20f;
+    D_803B6B14[46].position[2] = 100.0f;
+    func_8008B32C(D_803B6B14[46].matrix, D_803B6B14[46].matrix, 0.5f);
+    memcpy(D_803B6B14[47].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B6B14[47].matrix);
+    D_803B6B14[47].position[0] = -87.1f;
+    D_803B6B14[47].position[1] = 55.20f;
+    D_803B6B14[47].position[2] = 100.0f;
+    D_803B7714 = 1;
+    D_803B7718 = 1;
+    particle_velocity_set();
+}
+
+/* uninitButtons@trackscr.c (MAT3 GC 0x8008cac4): inlined into _UninitScreen; deleted stub 0x8038B938 (w38b).
+ * Body moved verbatim from w36e's _UninitScreen. */
+void func_8038B938(void)
+{
+    s32 i;
+    for (i = 0; i < 48; i++) {
+        if (D_803B6B14[i].handle != -1) {
+            if (D_801174B4 & 0x7C03FFFE) func_80090254((s16)D_803B6B14[i].handle);
+            D_803B6B14[i].handle = -1;
+        }
+    }
+    D_803B7714 = 0;
+}
+
+/* updateButtons (MAT3 trackscr.c, GC 0x8008cb54). N64: single-precision speed clamps (60.0f/10.0f),
+ * WPitchUV(angle - pi/2) (GC adds pi), and the out-of-range buttons fade over one button space
+ * (alpha 255 - d*255/(space*scale)) instead of GC's fixed 80. The two GC function-local statics stay
+ * function-local (own .bss: scrollSpeed 0x803BA87C, cursorSpeed 0x803BA85C); as externs uopt does not keep them
+ * in registers across the clamp. Literal spellings: two distinct 12.566371 rodata words (0x803B92F4/F8).
+ * Frame residual, disclosed (Wave 12/16 rule): retail frame 120; without the three unused f32 locals declared
+ * first the frame is 112 and every local sits 4 bytes high (prevPos sp+96 vs retail sp+92). Three 4-byte slots
+ * reproduce retail exactly; same 3-slot residual as w35d's startscr updateButtons. Their original use is unknown. */
+void func_8038BBB4(void)
+{
+    static f32 scrollSpeed;
+    static f32 cursorSpeed;
+    f32 unused0, unused1, unused2;
+    s32 buttonIdx;
+    f32 prevPos[3];
+    f32 buttonY;
+    f32 selectedPos;
+    s8 clearScrollSpeed = 1;
+    Texture *tex;
+    s16 texIdx;
+    Color buttonColor = D_803B8398;
+    if (D_803B7714) {
+        if (D_803B771C * ((D_803BA898 - 1) * D_803B7720) > D_803B7728 - D_803B772C)
+            selectedPos = D_803B7728 - D_803BA85A * (D_803B7728 - D_803B772C) / (D_803BA898 - 1);
+        else selectedPos = D_803B7728 - D_803B771C * (D_803BA85A * D_803B7720);
+        memcpy(prevPos, D_803B6B14[43].position, 12);
+        D_803B6B14[43].angle += 6.2831854820251465f * D_8002EB94;
+        if (D_803B6B14[43].angle > 6.2831854820251465f) D_803B6B14[43].angle -= 6.2831854820251465f;
+        D_803B6B14[43].position[0] = D_803B7724 * D_803B7734 / D_803B7730 + -180.0f * D_803B771C;
+        D_803B6B14[43].position[1] = selectedPos * D_803B7734 / D_803B7730;
+        D_803B6B14[43].position[2] = D_803B7734;
+        if (!D_803B7718) {
+            if (60.0f * fabsf(D_803B6B14[43].position[1] - prevPos[1]) / 10.0f > cursorSpeed) {
+                cursorSpeed = 60.0f * fabsf(D_803B6B14[43].position[1] - prevPos[1]) / 10.0f;
+                cursorSpeed = cursorSpeed < 540.0f * D_803B771C ? cursorSpeed : 540.0f * D_803B771C;
+                cursorSpeed = cursorSpeed > 180.0f * D_803B771C ? cursorSpeed : 180.0f * D_803B771C;
+            }
+            if (D_803B6B14[43].position[1] > prevPos[1] + cursorSpeed * D_8002EB94)
+                D_803B6B14[43].position[1] = prevPos[1] + cursorSpeed * D_8002EB94;
+            else if (D_803B6B14[43].position[1] < prevPos[1] - cursorSpeed * D_8002EB94)
+                D_803B6B14[43].position[1] = prevPos[1] - cursorSpeed * D_8002EB94;
+            else cursorSpeed = 180.0f * D_803B771C;
+        }
+        func_8008B32C((f32 (*)[3])D_8011418C, D_803B6B14[43].matrix, D_803B771C * 0.4f);
+        func_800B5940(D_803B6B14[43].angle, D_803B6B14[43].matrix);
+        func_800B5898(1.5707963705062866f, D_803B6B14[43].matrix);
+        buttonY = selectedPos + D_803B771C * (D_803BA85A * D_803B7720);
+        for (buttonIdx = 0; buttonIdx < 21; buttonIdx++) {
+            if (buttonIdx == D_803BA8B0[D_803BA85A]) {
+                if (D_803B6B14[buttonIdx].angle < 3.1415927410125732f) D_803B6B14[buttonIdx].angle += 12.566370964050293f * D_8002EB94;
+                if (D_803B6B14[buttonIdx].angle > 3.1415927410125732f) D_803B6B14[buttonIdx].angle = 3.1415927410125732f;
+                if (D_803B7718) D_803B6B14[buttonIdx].angle = 3.1415927410125732f;
+            } else {
+                if (D_803B6B14[buttonIdx].angle > 0.0f) D_803B6B14[buttonIdx].angle -= 12.566371f * D_8002EB94;
+                if (D_803B6B14[buttonIdx].angle < 0.0f) D_803B6B14[buttonIdx].angle = 0.0f;
+                if (D_803B7718) D_803B6B14[buttonIdx].angle = 0.0f;
+            }
+            if ((D_8014A110 != 3 || (D_80154628 == 0 && buttonIdx == 20)) && (D_8014A110 != 2 || buttonIdx != 2)) D_803B6B14[buttonIdx+21].angle = D_803B6B14[buttonIdx].angle;
+            else D_803B6B14[buttonIdx+21].angle = 0.0f;
+            memcpy(prevPos, D_803B6B14[buttonIdx].position, 12);
+            D_803B6B14[buttonIdx].position[0] = D_803B7724 + -155.0f * D_803B771C;
+            D_803B6B14[buttonIdx].position[1] = buttonY;
+            D_803B6B14[buttonIdx].position[2] = D_803B7730;
+            if (!D_803B7718) {
+                if (60.0f * fabsf(D_803B6B14[buttonIdx].position[1] - prevPos[1]) / 10.0f > scrollSpeed) {
+                    scrollSpeed = 60.0f * fabsf(D_803B6B14[buttonIdx].position[1] - prevPos[1]) / 10.0f;
+                    scrollSpeed = scrollSpeed < 540.0f * D_803B771C ? scrollSpeed : 540.0f * D_803B771C;
+                    scrollSpeed = scrollSpeed > 180.0f * D_803B771C ? scrollSpeed : 180.0f * D_803B771C;
+                }
+                if (D_803B6B14[buttonIdx].position[1] > prevPos[1] + scrollSpeed * D_8002EB94) {
+                    D_803B6B14[buttonIdx].position[1] = prevPos[1] + scrollSpeed * D_8002EB94;
+                    clearScrollSpeed = 0;
+                } else if (D_803B6B14[buttonIdx].position[1] < prevPos[1] - scrollSpeed * D_8002EB94) {
+                    D_803B6B14[buttonIdx].position[1] = prevPos[1] - scrollSpeed * D_8002EB94;
+                    clearScrollSpeed = 0;
+                }
+            }
+            D_803B6B14[buttonIdx+21].position[0] = D_803B7724 + 50.0f * D_803B771C;
+            D_803B6B14[buttonIdx+21].position[1] = D_803B6B14[buttonIdx].position[1];
+            D_803B6B14[buttonIdx+21].position[2] = D_803B6B14[buttonIdx].position[2];
+            func_8008B32C((f32 (*)[3])D_8011418C, D_803B6B14[buttonIdx].matrix, D_803B771C);
+            func_8008B32C((f32 (*)[3])D_8011418C, D_803B6B14[buttonIdx+21].matrix, D_803B771C);
+            func_800B5898(D_803B6B14[buttonIdx].angle - 1.5707963705062866f, D_803B6B14[buttonIdx].matrix);
+            func_800B5898(D_803B6B14[buttonIdx+21].angle - 1.5707963705062866f, D_803B6B14[buttonIdx+21].matrix);
+            if (D_803B6B14[buttonIdx].angle > 1.5707963705062866f) tex = func_800B24EC(D_803B9284, &texIdx, 0, D_80140BDC - 1, 1);
+            else tex = func_800B24EC(D_803B9294, &texIdx, 0, D_80140BDC - 1, 1);
+            func_8008D870(D_803B6B14[buttonIdx].handle, (s32)tex, -1);
+            if (D_803B6B14[buttonIdx+21].angle > 1.5707963705062866f) tex = func_800B24EC(D_803B929C, &texIdx, 0, D_80140BDC - 1, 1);
+            else tex = func_800B24EC(D_803B92AC, &texIdx, 0, D_80140BDC - 1, 1);
+            func_8008D870(D_803B6B14[buttonIdx+21].handle, (s32)tex, -1);
+            if (D_803B6B14[buttonIdx].position[1] > D_803B7728 + D_803B7720 * D_803B771C || D_803B6B14[buttonIdx].position[1] < D_803B772C - D_803B7720 * D_803B771C) D_803B6B14[buttonIdx].alpha = 0;
+            else if (D_803B6B14[buttonIdx].position[1] > D_803B7728) D_803B6B14[buttonIdx].alpha = 255 - (D_803B6B14[buttonIdx].position[1] - D_803B7728) * 255.0f / (D_803B7720 * D_803B771C);
+            else if (D_803B6B14[buttonIdx].position[1] < D_803B772C) D_803B6B14[buttonIdx].alpha = 255 - (D_803B772C - D_803B6B14[buttonIdx].position[1]) * 255.0f / (D_803B7720 * D_803B771C);
+            else D_803B6B14[buttonIdx].alpha = 255;
+            if (!func_8038ACB0(buttonIdx)) D_803B6B14[buttonIdx].alpha = 0;
+            D_803B6B14[buttonIdx+21].alpha = D_803B6B14[buttonIdx].alpha;
+            buttonColor.channel[3] = D_803B6B14[buttonIdx].alpha;
+            func_8008E06C(D_803B6B14[buttonIdx].handle, (s32 *)&buttonColor);
+            func_8008E06C(D_803B6B14[buttonIdx+21].handle, (s32 *)&buttonColor);
+            if (!func_8038ACB0(buttonIdx)) {
+                model_data_load(D_803B6B14[buttonIdx].handle, 0, 15);
+                model_data_load(D_803B6B14[buttonIdx+21].handle, 0, 15);
+            } else if (D_803B6B14[buttonIdx].alpha == 0) {
+                model_data_load(D_803B6B14[buttonIdx].handle, 0, 15);
+                model_data_load(D_803B6B14[buttonIdx+21].handle, 0, 15);
+                buttonY -= D_803B7720 * D_803B771C;
+            } else {
+                model_transform_setup(D_803B6B14[buttonIdx].handle, 0, 15);
+                model_transform_setup(D_803B6B14[buttonIdx+21].handle, 0, 15);
+                buttonY -= D_803B7720 * D_803B771C;
+            }
+        }
+        if (clearScrollSpeed == 1) scrollSpeed = 0.0f;
+        D_803B7718 = 0;
+    }
+}
+

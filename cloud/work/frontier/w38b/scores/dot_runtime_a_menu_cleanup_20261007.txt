@@ -1,0 +1,124 @@
+### score.py group cand/groups__dot_runtime_a_menu_cleanup_20261007 --targets asm/us/ovl_a
+Members:
+func_803949CC:
+  MATCH
+func_803949C4:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_80394564:
+    +0x004  want 00a01025 move v0,a1                    got 00801025 move v0,a0                  
+    +0x008  want 14a10005 bne a1,at,0x18                got 14810005 bne a0,at,0x18              
+    +0x00c  want 00a01825 move v1,a1                    got 00801825 move v1,a0                  
+  3/180 words differ
+func_80397FFC:
+    +0x00c  want 27bdffb8 addiu sp,sp,-72               got 27bdffc0 addiu sp,sp,-64             
+    +0x05c  want afbe0044 sw s8,68(sp)                  got afbe003c sw s8,60(sp)                
+    +0x06c  want 8fbe0044 lw s8,68(sp)                  got 8fbe003c lw s8,60(sp)                
+    +0x070  want 19e00055 blez t7,0x158                 got 19e0004b blez t7,0x130               
+    +0x0a8  want afb20030 sw s2,48(sp)                  got afb2002c sw s2,44(sp)                
+    +0x0ac  want afb30034 sw s3,52(sp)                  got afb30030 sw s3,48(sp)                
+    +0x0b4  want afb4002c sw s4,44(sp)                  got afb40028 sw s4,40(sp)                
+    +0x0c8  want 8fb20030 lw s2,48(sp)                  got 8fb2002c lw s2,44(sp)                
+    +0x0e0  want 8fb30034 lw s3,52(sp)                  got 8fb30030 lw s3,48(sp)                
+    +0x0e4  want 8fb4002c lw s4,44(sp)                  got 8fb40028 lw s4,40(sp)                
+    +0x174  want afbe0000 sw s8,0(sp)                   got a02facf4 sb t7,-21260(at)            
+    +0x178  want afb20030 sw s2,48(sp)                  got 0c0e5eb6 jal 0x397ad8                
+  176/268 words differ (4 section-relative relocations unverified: .rodata+0x0 at +0x274, .rodata+0x0 at +0x278, .rodata+0x4 at +0x2f4, .rodata+0x4 at +0x2f8)
+func_80394B00:
+    +0x004  want 16200073 bnez s1,0x1d0                 got 16200072 bnez s1,0x1cc               
+    +0x030  want 1100000f beqz t0,0x40                  got 11000011 beqz t0,0x48                
+    +0x034  want 01002025 move a0,t0                    got 01002825 move a1,t0                  
+    +0x058  want 50820006 beql a0,v0,0x1c               got 50a20008 beql a1,v0,0x24             
+    +0x060  want 8c980000 lw t8,0(a0)                   got 8cb80000 lw t8,0(a1)                 
+    +0x064  want 8f040000 lw a0,0(t8)                   got 8f050000 lw a1,0(t8)                 
+    +0x068  want 1480fffb bnez a0,0xfffffffffffffff0    got 50a00004 beqzl a1,0x14               
+    +0x06c  want 00000000 nop                           got 0019c880 sll t9,t9,0x2               
+    +0x070  want 0019c880 sll t9,t9,0x2                 got 54a2fffc bnel a1,v0,0xfffffffffffffff4
+    +0x074  want 0330c823 subu t9,t9,s0                 got 8cb80000 lw t8,0(a1)                 
+    +0x078  want 3c0e8015 lui t6,0x8015                 got 0019c880 sll t9,t9,0x2               
+    +0x07c  want 25cea118 addiu t6,t6,-24296            got 0330c823 subu t9,t9,s0               
+  162/182 words differ
+func_80394834:
+  MATCH
+func_8039842C:
+    +0x000  want 27bdff40 addiu sp,sp,-192              got 27bdff98 addiu sp,sp,-104            
+    +0x004  want afbf006c sw ra,108(sp)                 got afbe0038 sw s8,56(sp)                
+    +0x008  want afbe0068 sw s8,104(sp)                 got afb20020 sw s2,32(sp)                
+    +0x00c  want afb70064 sw s7,100(sp)                 got afbf003c sw ra,60(sp)                
+    +0x010  want afb60060 sw s6,96(sp)                  got afb70034 sw s7,52(sp)                
+    +0x014  want afb5005c sw s5,92(sp)                  got afb60030 sw s6,48(sp)                
+    +0x018  want afb40058 sw s4,88(sp)                  got afb5002c sw s5,44(sp)                
+    +0x01c  want afb30054 sw s3,84(sp)                  got afb40028 sw s4,40(sp)                
+    +0x020  want afb20050 sw s2,80(sp)                  got afb30024 sw s3,36(sp)                
+    +0x024  want afb1004c sw s1,76(sp)                  got afb1001c sw s1,28(sp)                
+    +0x028  want afb00048 sw s0,72(sp)                  got afb00018 sw s0,24(sp)                
+    +0x02c  want f7be0040 sdc1 $f30,64(sp)              got 24120001 li s2,1                     
+  448/451 words differ (2 section-relative relocations unverified: .rodata+0x8 at +0x18c, .rodata+0x8 at +0x194)
+exit=0
+### score.py group cand/groups__dot_runtime_a_menu_cleanup_20261007 --targets asm/us/ovl_a --claims
+Members:
+func_803949CC:
+  MATCH
+func_803949C4:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_80394564:
+    +0x004  want 00a01025 move v0,a1                    got 00801025 move v0,a0                  
+    +0x008  want 14a10005 bne a1,at,0x18                got 14810005 bne a0,at,0x18              
+    +0x00c  want 00a01825 move v1,a1                    got 00801825 move v1,a0                  
+  3/180 words differ
+func_80397FFC:
+    +0x00c  want 27bdffb8 addiu sp,sp,-72               got 27bdffc0 addiu sp,sp,-64             
+    +0x05c  want afbe0044 sw s8,68(sp)                  got afbe003c sw s8,60(sp)                
+    +0x06c  want 8fbe0044 lw s8,68(sp)                  got 8fbe003c lw s8,60(sp)                
+    +0x070  want 19e00055 blez t7,0x158                 got 19e0004b blez t7,0x130               
+    +0x0a8  want afb20030 sw s2,48(sp)                  got afb2002c sw s2,44(sp)                
+    +0x0ac  want afb30034 sw s3,52(sp)                  got afb30030 sw s3,48(sp)                
+    +0x0b4  want afb4002c sw s4,44(sp)                  got afb40028 sw s4,40(sp)                
+    +0x0c8  want 8fb20030 lw s2,48(sp)                  got 8fb2002c lw s2,44(sp)                
+    +0x0e0  want 8fb30034 lw s3,52(sp)                  got 8fb30030 lw s3,48(sp)                
+    +0x0e4  want 8fb4002c lw s4,44(sp)                  got 8fb40028 lw s4,40(sp)                
+    +0x174  want afbe0000 sw s8,0(sp)                   got a02facf4 sb t7,-21260(at)            
+    +0x178  want afb20030 sw s2,48(sp)                  got 0c0e5eb6 jal 0x397ad8                
+  176/268 words differ (4 section-relative relocations unverified: .rodata+0x0 at +0x274, .rodata+0x0 at +0x278, .rodata+0x4 at +0x2f4, .rodata+0x4 at +0x2f8)
+func_80394B00:
+    +0x004  want 16200073 bnez s1,0x1d0                 got 16200072 bnez s1,0x1cc               
+    +0x030  want 1100000f beqz t0,0x40                  got 11000011 beqz t0,0x48                
+    +0x034  want 01002025 move a0,t0                    got 01002825 move a1,t0                  
+    +0x058  want 50820006 beql a0,v0,0x1c               got 50a20008 beql a1,v0,0x24             
+    +0x060  want 8c980000 lw t8,0(a0)                   got 8cb80000 lw t8,0(a1)                 
+    +0x064  want 8f040000 lw a0,0(t8)                   got 8f050000 lw a1,0(t8)                 
+    +0x068  want 1480fffb bnez a0,0xfffffffffffffff0    got 50a00004 beqzl a1,0x14               
+    +0x06c  want 00000000 nop                           got 0019c880 sll t9,t9,0x2               
+    +0x070  want 0019c880 sll t9,t9,0x2                 got 54a2fffc bnel a1,v0,0xfffffffffffffff4
+    +0x074  want 0330c823 subu t9,t9,s0                 got 8cb80000 lw t8,0(a1)                 
+    +0x078  want 3c0e8015 lui t6,0x8015                 got 0019c880 sll t9,t9,0x2               
+    +0x07c  want 25cea118 addiu t6,t6,-24296            got 0330c823 subu t9,t9,s0               
+  162/182 words differ
+func_80394834:
+  MATCH
+func_8039842C:
+    +0x000  want 27bdff40 addiu sp,sp,-192              got 27bdff98 addiu sp,sp,-104            
+    +0x004  want afbf006c sw ra,108(sp)                 got afbe0038 sw s8,56(sp)                
+    +0x008  want afbe0068 sw s8,104(sp)                 got afb20020 sw s2,32(sp)                
+    +0x00c  want afb70064 sw s7,100(sp)                 got afbf003c sw ra,60(sp)                
+    +0x010  want afb60060 sw s6,96(sp)                  got afb70034 sw s7,52(sp)                
+    +0x014  want afb5005c sw s5,92(sp)                  got afb60030 sw s6,48(sp)                
+    +0x018  want afb40058 sw s4,88(sp)                  got afb5002c sw s5,44(sp)                
+    +0x01c  want afb30054 sw s3,84(sp)                  got afb40028 sw s4,40(sp)                
+    +0x020  want afb20050 sw s2,80(sp)                  got afb30024 sw s3,36(sp)                
+    +0x024  want afb1004c sw s1,76(sp)                  got afb1001c sw s1,28(sp)                
+    +0x028  want afb00048 sw s0,72(sp)                  got afb00018 sw s0,24(sp)                
+    +0x02c  want f7be0040 sdc1 $f30,64(sp)              got 24120001 li s2,1                     
+  448/451 words differ (2 section-relative relocations unverified: .rodata+0x8 at +0x18c, .rodata+0x8 at +0x194)
+exit=0
+### object order (objsyms.py)
+000000    720 C func_80394564                    retail 80394564/720
+0002d0    400 C func_80394834                    retail 80394834/400
+000460      8 M func_803949C4                    retail 803949C4/8 STUB
+000468    308 M func_803949CC                    retail 803949CC/308
+00059c    724 C func_80394B00                    retail 80394B00/728
+000870   1032 C func_80397FFC                    retail 80397FFC/1072
+000c78   1672 C func_8039842C                    retail 8039842C/1804

@@ -1,0 +1,31 @@
+### score.py group cand/groups__dot_runtime_a_settings_values_20261012 --targets asm/us/ovl_a
+Members:
+func_803AECE4:
+  MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x200, .rodata+0x0 at +0x204, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x224, .rodata+0x8 at +0x2a0, .rodata+0x8 at +0x2b4, .rodata+0xc at +0x358, .rodata+0xc at +0x35c, .rodata+0x10 at +0x364, .rodata+0x10 at +0x378, .rodata+0x14 at +0x3f4, .rodata+0x14 at +0x408, .rodata+0x18 at +0x47c, .rodata+0x18 at +0x484)
+    not verified: .rodata+0x0 at +0x204: no retail data available
+    not verified: .rodata+0x4 at +0x224: no retail data available
+    not verified: .rodata+0x8 at +0x2b4: no retail data available
+    not verified: .rodata+0xc at +0x35c: no retail data available
+    not verified: .rodata+0x10 at +0x378: no retail data available
+    not verified: .rodata+0x14 at +0x408: no retail data available
+    not verified: .rodata+0x18 at +0x484: no retail data available
+func_803AECDC:
+  MATCH
+exit=1
+### score.py group cand/groups__dot_runtime_a_settings_values_20261012 --targets asm/us/ovl_a --claims
+Members:
+func_803AECE4:
+  MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x200, .rodata+0x0 at +0x204, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x224, .rodata+0x8 at +0x2a0, .rodata+0x8 at +0x2b4, .rodata+0xc at +0x358, .rodata+0xc at +0x35c, .rodata+0x10 at +0x364, .rodata+0x10 at +0x378, .rodata+0x14 at +0x3f4, .rodata+0x14 at +0x408, .rodata+0x18 at +0x47c, .rodata+0x18 at +0x484)
+    not verified: .rodata+0x0 at +0x204: no retail data available
+    not verified: .rodata+0x4 at +0x224: no retail data available
+    not verified: .rodata+0x8 at +0x2b4: no retail data available
+    not verified: .rodata+0xc at +0x35c: no retail data available
+    not verified: .rodata+0x10 at +0x378: no retail data available
+    not verified: .rodata+0x14 at +0x408: no retail data available
+    not verified: .rodata+0x18 at +0x484: no retail data available
+func_803AECDC:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000      8 M func_803AECDC                    retail 803AECDC/8 STUB
+000008   2664 M func_803AECE4                    retail 803AECE4/2656

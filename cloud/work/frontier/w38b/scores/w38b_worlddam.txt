@@ -1,0 +1,17 @@
+### score.py group cand/groups__w38b_worlddam --targets asm/us/ovl_b
+Members:
+func_8038A408:
+  MATCH
+func_8038A400:
+  MATCH
+exit=0
+### score.py group cand/groups__w38b_worlddam --targets asm/us/ovl_b --claims
+Members:
+func_8038A408:
+  MATCH
+func_8038A400:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000      8 M func_8038A400                    retail 8038A400/8 STUB
+000008   1224 M func_8038A408                    retail 8038A408/1220

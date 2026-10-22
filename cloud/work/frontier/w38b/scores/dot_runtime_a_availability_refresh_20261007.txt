@@ -1,0 +1,143 @@
+### score.py group cand/groups__dot_runtime_a_availability_refresh_20261007 --targets asm/us/ovl_a
+Members:
+func_80394564:
+  MATCH
+func_80394834:
+  MATCH
+func_80394B00:
+  MATCH
+func_80397AD8:
+  MATCH (22 section-relative relocations unverified: .data+0x0 at +0x4, .data+0x0 at +0xc, .rodata+0x7c at +0x1d4, .rodata+0x7c at +0x1d8, .rodata+0x80 at +0x304, .rodata+0x80 at +0x308, .rodata+0x84 at +0x318, .rodata+0x84 at +0x31c, .rodata+0x88 at +0x320, .rodata+0x88 at +0x32c, .rodata+0x8c at +0x330, .rodata+0x8c at +0x334, .rodata+0x90 at +0x338, .rodata+0x90 at +0x340, .rodata+0x94 at +0x384, .rodata+0x94 at +0x388, .rodata+0x98 at +0x398, .rodata+0x98 at +0x39c, .rodata+0x9c at +0x428, .rodata+0x9c at +0x42c, .rodata+0xa0 at +0x4a4, .rodata+0xa0 at +0x4a8)
+    not verified: .rodata+0x7c at +0x1d8: no retail data available
+    not verified: .rodata+0x80 at +0x308: no retail data available
+    not verified: .rodata+0x84 at +0x31c: no retail data available
+    not verified: .rodata+0x88 at +0x32c: no retail data available
+    not verified: .rodata+0x8c at +0x334: no retail data available
+    not verified: .rodata+0x90 at +0x340: no retail data available
+    not verified: .rodata+0x94 at +0x388: no retail data available
+    not verified: .rodata+0x98 at +0x39c: no retail data available
+    not verified: .rodata+0x9c at +0x42c: no retail data available
+    not verified: .rodata+0xa0 at +0x4a8: no retail data available
+    not verified: .data+0x0 at +0xc: no retail data available
+func_80397FFC:
+  MATCH (4 section-relative relocations unverified: .rodata+0xa4 at +0x29c, .rodata+0xa4 at +0x2a0, .rodata+0xa8 at +0x31c, .rodata+0xa8 at +0x320)
+    not verified: .rodata+0xa4 at +0x2a0: no retail data available
+    not verified: .rodata+0xa8 at +0x320: no retail data available
+func_803968C0:
+  MATCH
+func_80395E8C:
+  MATCH
+func_80394DD8:
+  MATCH (20 section-relative relocations unverified: .data+0x4 at +0xc, .data+0x4 at +0x1c, .rodata+0x30 at +0x43c, .rodata+0x30 at +0x440, .rodata+0x34 at +0x63c, .rodata+0x34 at +0x640, .rodata+0x38 at +0x658, .rodata+0x38 at +0x65c, .rodata+0x3c at +0x68c, .rodata+0x3c at +0x690, .rodata+0x40 at +0x694, .rodata+0x40 at +0x6c4, .rodata+0x0 at +0x9f4, .rodata+0x0 at +0xa0c, .rodata+0x10 at +0x9c8, .rodata+0x10 at +0x9d8, .rodata+0x18 at +0xee0, .rodata+0x18 at +0xef8, .rodata+0x28 at +0xeb4, .rodata+0x28 at +0xec4)
+    not verified: .rodata+0x0 at +0xa0c: no retail data available
+    not verified: .rodata+0x10 at +0x9d8: no retail data available
+    not verified: .rodata+0x18 at +0xef8: no retail data available
+    not verified: .rodata+0x28 at +0xec4: no retail data available
+    not verified: .rodata+0x30 at +0x440: no retail data available
+    not verified: .rodata+0x34 at +0x640: no retail data available
+    not verified: .rodata+0x38 at +0x65c: no retail data available
+    not verified: .rodata+0x3c at +0x690: no retail data available
+    not verified: .rodata+0x40 at +0x6c4: no retail data available
+    not verified: .data+0x4 at +0x1c: no retail data available
+func_80396FA0:
+  MATCH (2 section-relative relocations unverified: .rodata+0x44 at +0x460, .rodata+0x44 at +0x468)
+    not verified: .rodata+0x44 at +0x468: no retail data available
+func_80397FF4:
+  MATCH
+func_803968B8:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8039842C:
+    +0x5ec  want afa2007c sw v0,124(sp)                 got afa20078 sw v0,120(sp)               
+    +0x5f8  want 8fa2007c lw v0,124(sp)                 got 8fa20078 lw v0,120(sp)               
+  2/451 words differ (2 section-relative relocations unverified: .rodata+0xac at +0x1a8, .rodata+0xac at +0x1b0)
+func_803949CC:
+  MATCH
+func_80395E24:
+  MATCH
+func_80396EE8:
+  MATCH
+func_80396F44:
+  MATCH
+exit=1
+### score.py group cand/groups__dot_runtime_a_availability_refresh_20261007 --targets asm/us/ovl_a --claims
+Members:
+func_80394564:
+  MATCH
+func_80394834:
+  MATCH
+func_80394B00:
+  MATCH
+func_80397AD8:
+  MATCH (22 section-relative relocations unverified: .data+0x0 at +0x4, .data+0x0 at +0xc, .rodata+0x7c at +0x1d4, .rodata+0x7c at +0x1d8, .rodata+0x80 at +0x304, .rodata+0x80 at +0x308, .rodata+0x84 at +0x318, .rodata+0x84 at +0x31c, .rodata+0x88 at +0x320, .rodata+0x88 at +0x32c, .rodata+0x8c at +0x330, .rodata+0x8c at +0x334, .rodata+0x90 at +0x338, .rodata+0x90 at +0x340, .rodata+0x94 at +0x384, .rodata+0x94 at +0x388, .rodata+0x98 at +0x398, .rodata+0x98 at +0x39c, .rodata+0x9c at +0x428, .rodata+0x9c at +0x42c, .rodata+0xa0 at +0x4a4, .rodata+0xa0 at +0x4a8)
+    not verified: .rodata+0x7c at +0x1d8: no retail data available
+    not verified: .rodata+0x80 at +0x308: no retail data available
+    not verified: .rodata+0x84 at +0x31c: no retail data available
+    not verified: .rodata+0x88 at +0x32c: no retail data available
+    not verified: .rodata+0x8c at +0x334: no retail data available
+    not verified: .rodata+0x90 at +0x340: no retail data available
+    not verified: .rodata+0x94 at +0x388: no retail data available
+    not verified: .rodata+0x98 at +0x39c: no retail data available
+    not verified: .rodata+0x9c at +0x42c: no retail data available
+    not verified: .rodata+0xa0 at +0x4a8: no retail data available
+    not verified: .data+0x0 at +0xc: no retail data available
+func_80397FFC:
+  MATCH (4 section-relative relocations unverified: .rodata+0xa4 at +0x29c, .rodata+0xa4 at +0x2a0, .rodata+0xa8 at +0x31c, .rodata+0xa8 at +0x320)
+    not verified: .rodata+0xa4 at +0x2a0: no retail data available
+    not verified: .rodata+0xa8 at +0x320: no retail data available
+func_803968C0:
+  MATCH
+func_80395E8C:
+  MATCH
+func_80394DD8:
+  MATCH (20 section-relative relocations unverified: .data+0x4 at +0xc, .data+0x4 at +0x1c, .rodata+0x30 at +0x43c, .rodata+0x30 at +0x440, .rodata+0x34 at +0x63c, .rodata+0x34 at +0x640, .rodata+0x38 at +0x658, .rodata+0x38 at +0x65c, .rodata+0x3c at +0x68c, .rodata+0x3c at +0x690, .rodata+0x40 at +0x694, .rodata+0x40 at +0x6c4, .rodata+0x0 at +0x9f4, .rodata+0x0 at +0xa0c, .rodata+0x10 at +0x9c8, .rodata+0x10 at +0x9d8, .rodata+0x18 at +0xee0, .rodata+0x18 at +0xef8, .rodata+0x28 at +0xeb4, .rodata+0x28 at +0xec4)
+    not verified: .rodata+0x0 at +0xa0c: no retail data available
+    not verified: .rodata+0x10 at +0x9d8: no retail data available
+    not verified: .rodata+0x18 at +0xef8: no retail data available
+    not verified: .rodata+0x28 at +0xec4: no retail data available
+    not verified: .rodata+0x30 at +0x440: no retail data available
+    not verified: .rodata+0x34 at +0x640: no retail data available
+    not verified: .rodata+0x38 at +0x65c: no retail data available
+    not verified: .rodata+0x3c at +0x690: no retail data available
+    not verified: .rodata+0x40 at +0x6c4: no retail data available
+    not verified: .data+0x4 at +0x1c: no retail data available
+func_80396FA0:
+  MATCH (2 section-relative relocations unverified: .rodata+0x44 at +0x460, .rodata+0x44 at +0x468)
+    not verified: .rodata+0x44 at +0x468: no retail data available
+func_80397FF4:
+  MATCH
+func_803968B8:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8039842C:
+    +0x5ec  want afa2007c sw v0,124(sp)                 got afa20078 sw v0,120(sp)               
+    +0x5f8  want 8fa2007c lw v0,124(sp)                 got 8fa20078 lw v0,120(sp)               
+  2/451 words differ (2 section-relative relocations unverified: .rodata+0xac at +0x1a8, .rodata+0xac at +0x1b0)
+func_803949CC:
+  MATCH
+func_80395E24:
+  MATCH
+func_80396EE8:
+  MATCH
+func_80396F44:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000    720 M func_80394564                    retail 80394564/720
+0002d0    400 M func_80394834                    retail 80394834/400
+000460    308 C func_803949CC                    retail 803949CC/308
+000594    728 M func_80394B00                    retail 80394B00/728
+00086c   4156 M func_80394DD8                    retail 80394DD8/4156
+0018a8    104 C func_80395E24                    retail 80395E24/104
+001910   2604 M func_80395E8C                    retail 80395E8C/2604
+00233c      8 M func_803968B8                    retail 803968B8/8 STUB
+002344   1560 M func_803968C0                    retail 803968C0/1560
+00295c     92 C func_80396EE8                    retail 80396EE8/92
+0029b8     92 C func_80396F44                    retail 80396F44/92
+002a14   2872 M func_80396FA0                    retail 80396FA0/2872
+00354c   1308 M func_80397AD8                    retail 80397AD8/1308
+003a68      8 M func_80397FF4                    retail 80397FF4/8 STUB
+003a70   1072 M func_80397FFC                    retail 80397FFC/1072
+003ea0   1808 C func_8039842C                    retail 8039842C/1804

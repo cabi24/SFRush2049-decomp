@@ -1,0 +1,51 @@
+{
+ "name": "dot_cleanup_colortrace_20261011",
+ "members": [
+  "func_8039D300",
+  "func_8039D05C",
+  "func_8039D494",
+  "func_8039ED20",
+  "func_8039E200",
+  "func_8039E3BC",
+  "func_8039FF04",
+  "func_8039D6A4",
+  "func_8039EF08",
+  "func_803A0FD8",
+  "func_803A1EAC",
+  "func_8039EF00",
+  "func_803A0498",
+  "func_8039E444",
+  "func_8039D044",
+  "func_8039D04C",
+  "func_8039D054"
+ ],
+ "claims": [
+  "func_8039D300",
+  "func_8039D05C",
+  "func_8039D494",
+  "func_8039ED20",
+  "func_8039E200",
+  "func_8039E3BC",
+  "func_8039FF04",
+  "func_8039D6A4",
+  "func_8039EF08",
+  "func_803A0FD8",
+  "func_803A1EAC",
+  "func_8039EF00",
+  "func_803A0498",
+  "func_8039E444",
+  "func_8039D044",
+  "func_8039D04C",
+  "func_8039D054"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_803A1EAC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "w36b revision of the installed group (w36a revision, 12 members): every old member byte-identical and still MATCH. Adds two claimed members, direct typed MAT3 carscr.c ports that replace the old context stand-ins: func_803A0498 = setGhosts (GC 0x80090638; no own data) and func_8039E444 = updateCarComponents (GC 0x800910F8; private ABI, p in s6). E444 defines compLight (D_803B2858, 80 bytes, image-A initialiser) and owns the lightVec template, 3 rodata floats and 2 jump tables, all checked against image A. Shared-declaration change: string_copy_format(char *,s8,s8,s32) (4th parameter int, as MAT3 MBOX_FindObject_WORK); no other head change. No context remains. Earlier provenance: w36a revision of the installed 8-member group (w35a): every old member byte-identical and still MATCH. Adds three claimed members from the MAT3 carscr.c ports (w35b, w35c), closed by w36a: func_8039EF08 (GC showCarSelect; as1 source-line tie), func_803A0FD8 (GC _InitScreen; spill-home order + as1 delay slot) and func_803A1EAC (GC updateCarScreen, keep root; ghost-file loop `continue` form fixes the lda-web split); see their headers; plus func_8039EF00 (GC createGridMap, empty in N64, inlined into showCarSelect; it replaces w35b's two unused locals). Context: func_8039E444 (w35b stand-in for updateCarComponents; gives EF08 the register-parameter/clobber convention of its call; NEW context entry), func_803A0498 unchanged. Head changes vs installed: per-player byte tables as [][13]/[5][13] rows, u32 D_801174BC/D_801174B4, resource_type_select(u32), u32 object_manager_update, PreparedCar.color s8[3] (all extern/type facts, see w36a RESULTS.md). Own data/bss unverified for image A (no retail data tree). w38b (wave 38): claims stubs func_8039D044 clearCarComponents, func_8039D04C uninitButtons@carscr.c, func_8039D054 releaseGridMap (empty on N64), the three MAT3 statics of _UninitScreen func_8039D05C as non-kept helpers; D05C's code-free if (player) {} holder removed. Old members MATCH."
+}

@@ -1,0 +1,44 @@
+### score.py group cand/groups__dot_runtime_a_menu_renderers_20261011 --targets asm/us/ovl_a
+Members:
+func_803A6F2C:
+  MATCH
+func_803A7180:
+  MATCH
+func_803A7620:
+  MATCH
+func_803A7918:
+  MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0xa0, .rodata+0x0 at +0xa8)
+    not verified: .rodata+0x0 at +0xa8: no retail data available
+func_803A6F14:
+  MATCH
+func_803A6F1C:
+  MATCH
+func_803A6F24:
+  MATCH
+exit=1
+### score.py group cand/groups__dot_runtime_a_menu_renderers_20261011 --targets asm/us/ovl_a --claims
+Members:
+func_803A6F2C:
+  MATCH
+func_803A7180:
+  MATCH
+func_803A7620:
+  MATCH
+func_803A7918:
+  MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0xa0, .rodata+0x0 at +0xa8)
+    not verified: .rodata+0x0 at +0xa8: no retail data available
+func_803A6F14:
+  MATCH
+func_803A6F1C:
+  MATCH
+func_803A6F24:
+  MATCH
+exit=0
+### object order (objsyms.py)
+000000      8 M func_803A6F1C                    retail 803A6F1C/8 STUB
+000008      8 M func_803A6F24                    retail 803A6F24/8 STUB
+000010    596 M func_803A6F2C                    retail 803A6F2C/596
+000264   1184 M func_803A7180                    retail 803A7180/1184
+000704      8 M func_803A6F14                    retail 803A6F14/8 STUB
+00070c    760 M func_803A7620                    retail 803A7620/760
+000a04    588 M func_803A7918                    retail 803A7918/576

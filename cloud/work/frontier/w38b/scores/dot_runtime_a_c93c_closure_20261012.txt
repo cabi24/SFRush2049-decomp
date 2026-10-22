@@ -1,0 +1,273 @@
+### score.py group cand/cloud__work__frontier__w38b__groups__dot_runtime_a_c93c_closure_20261012 --targets asm/us/ovl_a
+Members:
+func_8038C93C:
+  MATCH (16 section-relative relocations unverified: .rodata+0x44 at +0x154, .rodata+0x44 at +0x158, .rodata+0x48 at +0x230, .rodata+0x48 at +0x234, .rodata+0x4c at +0x240, .rodata+0x4c at +0x244, .rodata+0x50 at +0x28c, .rodata+0x50 at +0x290, .rodata+0x54 at +0x2a0, .rodata+0x54 at +0x2a4, .rodata+0x58 at +0x314, .rodata+0x58 at +0x318, .rodata+0x5c at +0x31c, .rodata+0x5c at +0x320, .rodata+0x60 at +0x368, .rodata+0x60 at +0x36c)
+    not verified: .rodata+0x44 at +0x158: no retail data available
+    not verified: .rodata+0x48 at +0x234: no retail data available
+    not verified: .rodata+0x4c at +0x244: no retail data available
+    not verified: .rodata+0x50 at +0x290: no retail data available
+    not verified: .rodata+0x54 at +0x2a4: no retail data available
+    not verified: .rodata+0x58 at +0x318: no retail data available
+    not verified: .rodata+0x5c at +0x320: no retail data available
+    not verified: .rodata+0x60 at +0x36c: no retail data available
+func_8038BBB4:
+  MATCH (30 section-relative relocations unverified: .rodata+0x1c at +0xe0, .rodata+0x1c at +0xe4, .bss+0x1c at +0x184, .bss+0x1c at +0x188, .bss+0x1c at +0x238, .bss+0x1c at +0x24c, .bss+0x1c at +0x274, .bss+0x1c at +0x288, .bss+0x1c at +0x290, .bss+0x1c at +0x298, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2d4, .rodata+0x24 at +0x2d8, .rodata+0x28 at +0x300, .rodata+0x28 at +0x340, .rodata+0x2c at +0x384, .rodata+0x2c at +0x39c, .rodata+0x30 at +0x3e0, .rodata+0x30 at +0x3f4, .bss+0x18 at +0x4cc, .bss+0x18 at +0x4d0, .bss+0x18 at +0x584, .bss+0x18 at +0x59c, .bss+0x18 at +0x564, .bss+0x18 at +0x5a0, .bss+0x18 at +0x5c4, .bss+0x18 at +0x5d8, .bss+0x18 at +0xa18, .bss+0x18 at +0xa1c)
+    not verified: .rodata+0x1c at +0xe4: no retail data available
+    not verified: .rodata+0x20 at +0x2a0: no retail data available
+    not verified: .rodata+0x24 at +0x2d8: no retail data available
+    not verified: .rodata+0x28 at +0x340: no retail data available
+    not verified: .rodata+0x2c at +0x39c: no retail data available
+    not verified: .rodata+0x30 at +0x3f4: no retail data available
+    not verified: own .bss+0x18 (referenced at +0x1a5c, +0x1b28, +0x1b2c, +0x1b64, +0x1fa8): retail address 0x803BA87C (+4 bytes) is not in a known game .bss range
+    not verified: own .bss+0x1c (referenced at +0x1714, +0x17d8, +0x1814, +0x1824): retail address 0x803BA85C (+4 bytes) is not in a known game .bss range
+func_8038DFEC:
+  MATCH (5 section-relative relocations unverified: .bss+0x10 at +0x55c, .bss+0x10 at +0x56c, .bss+0x10 at +0x590, .bss+0x10 at +0x594, .bss+0x12 at +0x59c)
+    not verified: own .bss+0x10 (referenced at +0x3f3c, +0x3f64): retail address 0x803BA220 (+2 bytes) is not in a known game .bss range
+    not verified: own .bss+0x12 (referenced at +0x3f6c): retail address 0x803BA222 (+6 bytes) is not in a known game .bss range
+func_8038ACB0:
+  MATCH
+func_8038B834:
+  MATCH
+func_8038A634:
+  MATCH
+func_8038AE50:
+  MATCH
+func_8038B388:
+  MATCH
+func_8038B940:
+  MATCH
+func_8038AEB0:
+  MATCH (4 section-relative relocations unverified: .rodata+0x8 at +0x3b0, .rodata+0x8 at +0x3b4, .rodata+0xc at +0x48c, .rodata+0xc at +0x490)
+    not verified: .rodata+0x8 at +0x3b4: no retail data available
+    not verified: .rodata+0xc at +0x490: no retail data available
+func_8038B3EC:
+  MATCH (20 section-relative relocations unverified: .data+0x1c at +0x0, .data+0x1c at +0x4, .rodata+0x10 at +0x10, .rodata+0x10 at +0x14, .data+0x1c at +0x2c, .data+0x1c at +0x4c, .data+0x1c at +0x5c, .data+0x1c at +0x60, .data+0x4 at +0x180, .data+0x4 at +0x184, .data+0x10 at +0x1c0, .data+0x10 at +0x1c4, .data+0x1c at +0x37c, .data+0x1c at +0x388, .rodata+0x14 at +0x3b4, .rodata+0x14 at +0x3b8, .rodata+0x18 at +0x3c0, .rodata+0x18 at +0x3c8, .data+0x1c at +0x3e4, .data+0x1c at +0x3f0)
+    not verified: .rodata+0x10 at +0x14: no retail data available
+    not verified: .rodata+0x14 at +0x3b8: no retail data available
+    not verified: .rodata+0x18 at +0x3c8: no retail data available
+    not verified: .data+0x4 at +0x184: no retail data available
+    not verified: .data+0x10 at +0x1c4: no retail data available
+    not verified: .data+0x1c at +0x4: no retail data available
+    not verified: .data+0x1c at +0x4c: no retail data available
+    not verified: .data+0x1c at +0x60: no retail data available
+    not verified: .data+0x1c at +0x388: no retail data available
+    not verified: .data+0x1c at +0x3f0: no retail data available
+func_8038C5EC:
+  MATCH (24 section-relative relocations unverified: .data+0x0 at +0xa8, .data+0x0 at +0xac, .rodata+0x34 at +0xb0, .rodata+0x34 at +0xb4, .data+0x0 at +0xbc, .data+0x0 at +0xcc, .rodata+0x38 at +0xd0, .rodata+0x38 at +0xdc, .data+0x0 at +0xe0, .data+0x0 at +0xec, .rodata+0x3c at +0xf0, .rodata+0x3c at +0xf4, .data+0x0 at +0xf8, .data+0x0 at +0xfc, .rodata+0x40 at +0x100, .rodata+0x40 at +0x104, .data+0x0 at +0x108, .data+0x0 at +0x118, .data+0x0 at +0x128, .data+0x0 at +0x12c, .bss+0x0 at +0x2bc, .bss+0x0 at +0x2d4, .data+0x0 at +0x308, .data+0x0 at +0x30c)
+    not verified: .rodata+0x34 at +0xb4: no retail data available
+    not verified: .rodata+0x38 at +0xdc: no retail data available
+    not verified: .rodata+0x3c at +0xf4: no retail data available
+    not verified: .rodata+0x40 at +0x104: no retail data available
+    not verified: .data+0x0 at +0xac: no retail data available
+    not verified: .data+0x0 at +0xcc: no retail data available
+    not verified: .data+0x0 at +0xec: no retail data available
+    not verified: .data+0x0 at +0xfc: no retail data available
+    not verified: .data+0x0 at +0x118: no retail data available
+    not verified: .data+0x0 at +0x12c: no retail data available
+    not verified: .data+0x0 at +0x30c: no retail data available
+    not verified: own .bss+0x0 (referenced at +0x2298): retail address 0x803B9A90 (+16 bytes) is not in a known game .bss range
+func_8038A62C:
+  MATCH
+func_8038AEA8:
+  MATCH
+func_8038C934:
+  MATCH
+func_8038B930:
+  MATCH
+func_8038B938:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8038E5DC:
+    +0x070  want 10000370 b 0xdc4                       got 1000036f b 0xdc0                     
+    +0x0ec  want 10000351 b 0xd48                       got 10000350 b 0xd44                     
+    +0x134  want 1000033f b 0xd00                       got 1000033e b 0xcfc                     
+    +0x1a0  want 1b200323 blez t9,0xc90                 got 1b200322 blez t9,0xc8c               
+    +0x1f4  want 1000030f b 0xc40                       got 1000030e b 0xc3c                     
+    +0x24c  want 100002f9 b 0xbe8                       got 100002f8 b 0xbe4                     
+    +0x25c  want 100002f5 b 0xbd8                       got 100002f4 b 0xbd4                     
+    +0x278  want 13000231 beqz t8,0x8c8                 got 13000230 beqz t8,0x8c4               
+    +0x330  want 10000259 b 0x968                       got 10000258 b 0x964                     
+    +0x374  want 102001e2 beqz at,0x78c                 got 102001e1 beqz at,0x788               
+    +0x478  want 100001a1 b 0x688                       got 100001a0 b 0x684                     
+    +0x4a8  want 10000195 b 0x658                       got 10000194 b 0x654                     
+  412/926 words differ (4 section-relative relocations unverified: .rodata+0xa8 at +0x37c, .rodata+0xa8 at +0x384, .rodata+0xfc at +0xd24, .rodata+0xfc at +0xd2c)
+func_8038CD14:
+    +0x018  want 3c0c8015 lui t4,0x8015                 got 3c0b8015 lui t3,0x8015               
+    +0x01c  want 258c978c addiu t4,t4,-26740            got 256b978c addiu t3,t3,-26740          
+    +0x020  want 818e0000 lb t6,0(t4)                   got 81790000 lb t9,0(t3)                 
+    +0x024  want 2418000e li t8,14                      got 240f000e li t7,14                    
+    +0x028  want a1980000 sb t8,0(t4)                   got a16f0000 sb t7,0(t3)                 
+    +0x02c  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x030  want afae01dc sw t6,476(sp)                 got afb901dc sw t9,476(sp)               
+    +0x084  want 3c0c8015 lui t4,0x8015                 got 3c0b8015 lui t3,0x8015               
+    +0x08c  want 258c978c addiu t4,t4,-26740            got 256b978c addiu t3,t3,-26740          
+    +0x094  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x098  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x0a4  want 0015c080 sll t8,s5,0x2                 got 00157880 sll t7,s5,0x2               
+  1085/1206 words differ (3 extra words (nonzero beyond target length); 24 section-relative relocations unverified: .rodata+0x64 at +0x3c, .rodata+0x64 at +0x40, .rodata+0x68 at +0x1dc, .rodata+0x68 at +0x208, .rodata+0x6c at +0x374, .rodata+0x6c at +0x378, .rodata+0x78 at +0x4c8, .rodata+0x78 at +0x4cc, .rodata+0x7c at +0x6b0, .rodata+0x7c at +0x6b4, .rodata+0x80 at +0x7dc, .rodata+0x80 at +0x7e0, .rodata+0x84 at +0xbf0, .rodata+0x84 at +0xc08, .rodata+0x88 at +0xc38, .rodata+0x88 at +0xc3c, .rodata+0x8c at +0xc40, .rodata+0x8c at +0xc44, .rodata+0x94 at +0x1054, .rodata+0x94 at +0x1058, .rodata+0x98 at +0x1094, .rodata+0x98 at +0x10ac, .rodata+0xa4 at +0x1290, .rodata+0xa4 at +0x1294; unpaired R_MIPS_HI16 for D_803B7CE0 at .text+0x39c0)
+func_8038A820:
+    +0x010  want 11c0011b beqz t6,0x470                 got 11c0011c beqz t6,0x474               
+    +0x05c  want 11e100ea beq t7,at,0x3ac               got afa2005c sw v0,92(sp)                
+    +0x060  want 28410013 slti at,v0,19                 got 11e100e8 beq t7,at,0x3a4             
+    +0x064  want 1020002e beqz at,0xbc                  got 28410013 slti at,v0,19               
+    +0x068  want 3c048011 lui a0,0x8011                 got 1020002d beqz at,0xb8                
+    +0x06c  want 26f30018 addiu s3,s7,24                got 3c048011 lui a0,0x8011               
+    +0x070  want 02602825 move a1,s3                    got 26f30018 addiu s3,s7,24              
+    +0x074  want 2484418c addiu a0,a0,16780             got 02602825 move a1,s3                  
+    +0x078  want 8ee60010 lw a2,16(s7)                  got 2484418c addiu a0,a0,16780           
+    +0x07c  want 0c022ccb jal 0x8b32c                   got 8ee60010 lw a2,16(s7)                
+    +0x080  want afa2005c sw v0,92(sp)                  got 0c022ccb jal 0x8b32c                 
+    +0x084  want 4600b306 mov.s $f12,$f22               got afa2005c sw v0,92(sp)                
+  61/292 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x18, .rodata+0x0 at +0x1c, .rodata+0x4 at +0x20, .rodata+0x4 at +0x3c, .data+0x28 at +0xa4, .data+0x28 at +0xa8, .data+0x20 at +0xb8, .data+0x24 at +0xd4)
+exit=1
+### score.py group cand/cloud__work__frontier__w38b__groups__dot_runtime_a_c93c_closure_20261012 --targets asm/us/ovl_a --claims
+Members:
+func_8038C93C:
+  MATCH (16 section-relative relocations unverified: .rodata+0x44 at +0x154, .rodata+0x44 at +0x158, .rodata+0x48 at +0x230, .rodata+0x48 at +0x234, .rodata+0x4c at +0x240, .rodata+0x4c at +0x244, .rodata+0x50 at +0x28c, .rodata+0x50 at +0x290, .rodata+0x54 at +0x2a0, .rodata+0x54 at +0x2a4, .rodata+0x58 at +0x314, .rodata+0x58 at +0x318, .rodata+0x5c at +0x31c, .rodata+0x5c at +0x320, .rodata+0x60 at +0x368, .rodata+0x60 at +0x36c)
+    not verified: .rodata+0x44 at +0x158: no retail data available
+    not verified: .rodata+0x48 at +0x234: no retail data available
+    not verified: .rodata+0x4c at +0x244: no retail data available
+    not verified: .rodata+0x50 at +0x290: no retail data available
+    not verified: .rodata+0x54 at +0x2a4: no retail data available
+    not verified: .rodata+0x58 at +0x318: no retail data available
+    not verified: .rodata+0x5c at +0x320: no retail data available
+    not verified: .rodata+0x60 at +0x36c: no retail data available
+func_8038BBB4:
+  MATCH (30 section-relative relocations unverified: .rodata+0x1c at +0xe0, .rodata+0x1c at +0xe4, .bss+0x1c at +0x184, .bss+0x1c at +0x188, .bss+0x1c at +0x238, .bss+0x1c at +0x24c, .bss+0x1c at +0x274, .bss+0x1c at +0x288, .bss+0x1c at +0x290, .bss+0x1c at +0x298, .rodata+0x20 at +0x29c, .rodata+0x20 at +0x2a0, .rodata+0x24 at +0x2d4, .rodata+0x24 at +0x2d8, .rodata+0x28 at +0x300, .rodata+0x28 at +0x340, .rodata+0x2c at +0x384, .rodata+0x2c at +0x39c, .rodata+0x30 at +0x3e0, .rodata+0x30 at +0x3f4, .bss+0x18 at +0x4cc, .bss+0x18 at +0x4d0, .bss+0x18 at +0x584, .bss+0x18 at +0x59c, .bss+0x18 at +0x564, .bss+0x18 at +0x5a0, .bss+0x18 at +0x5c4, .bss+0x18 at +0x5d8, .bss+0x18 at +0xa18, .bss+0x18 at +0xa1c)
+    not verified: .rodata+0x1c at +0xe4: no retail data available
+    not verified: .rodata+0x20 at +0x2a0: no retail data available
+    not verified: .rodata+0x24 at +0x2d8: no retail data available
+    not verified: .rodata+0x28 at +0x340: no retail data available
+    not verified: .rodata+0x2c at +0x39c: no retail data available
+    not verified: .rodata+0x30 at +0x3f4: no retail data available
+    not verified: own .bss+0x18 (referenced at +0x1a5c, +0x1b28, +0x1b2c, +0x1b64, +0x1fa8): retail address 0x803BA87C (+4 bytes) is not in a known game .bss range
+    not verified: own .bss+0x1c (referenced at +0x1714, +0x17d8, +0x1814, +0x1824): retail address 0x803BA85C (+4 bytes) is not in a known game .bss range
+func_8038DFEC:
+  MATCH (5 section-relative relocations unverified: .bss+0x10 at +0x55c, .bss+0x10 at +0x56c, .bss+0x10 at +0x590, .bss+0x10 at +0x594, .bss+0x12 at +0x59c)
+    not verified: own .bss+0x10 (referenced at +0x3f3c, +0x3f64): retail address 0x803BA220 (+2 bytes) is not in a known game .bss range
+    not verified: own .bss+0x12 (referenced at +0x3f6c): retail address 0x803BA222 (+6 bytes) is not in a known game .bss range
+func_8038ACB0:
+  MATCH
+func_8038B834:
+  MATCH
+func_8038A634:
+  MATCH
+func_8038AE50:
+  MATCH
+func_8038B388:
+  MATCH
+func_8038B940:
+  MATCH
+func_8038AEB0:
+  MATCH (4 section-relative relocations unverified: .rodata+0x8 at +0x3b0, .rodata+0x8 at +0x3b4, .rodata+0xc at +0x48c, .rodata+0xc at +0x490)
+    not verified: .rodata+0x8 at +0x3b4: no retail data available
+    not verified: .rodata+0xc at +0x490: no retail data available
+func_8038B3EC:
+  MATCH (20 section-relative relocations unverified: .data+0x1c at +0x0, .data+0x1c at +0x4, .rodata+0x10 at +0x10, .rodata+0x10 at +0x14, .data+0x1c at +0x2c, .data+0x1c at +0x4c, .data+0x1c at +0x5c, .data+0x1c at +0x60, .data+0x4 at +0x180, .data+0x4 at +0x184, .data+0x10 at +0x1c0, .data+0x10 at +0x1c4, .data+0x1c at +0x37c, .data+0x1c at +0x388, .rodata+0x14 at +0x3b4, .rodata+0x14 at +0x3b8, .rodata+0x18 at +0x3c0, .rodata+0x18 at +0x3c8, .data+0x1c at +0x3e4, .data+0x1c at +0x3f0)
+    not verified: .rodata+0x10 at +0x14: no retail data available
+    not verified: .rodata+0x14 at +0x3b8: no retail data available
+    not verified: .rodata+0x18 at +0x3c8: no retail data available
+    not verified: .data+0x4 at +0x184: no retail data available
+    not verified: .data+0x10 at +0x1c4: no retail data available
+    not verified: .data+0x1c at +0x4: no retail data available
+    not verified: .data+0x1c at +0x4c: no retail data available
+    not verified: .data+0x1c at +0x60: no retail data available
+    not verified: .data+0x1c at +0x388: no retail data available
+    not verified: .data+0x1c at +0x3f0: no retail data available
+func_8038C5EC:
+  MATCH (24 section-relative relocations unverified: .data+0x0 at +0xa8, .data+0x0 at +0xac, .rodata+0x34 at +0xb0, .rodata+0x34 at +0xb4, .data+0x0 at +0xbc, .data+0x0 at +0xcc, .rodata+0x38 at +0xd0, .rodata+0x38 at +0xdc, .data+0x0 at +0xe0, .data+0x0 at +0xec, .rodata+0x3c at +0xf0, .rodata+0x3c at +0xf4, .data+0x0 at +0xf8, .data+0x0 at +0xfc, .rodata+0x40 at +0x100, .rodata+0x40 at +0x104, .data+0x0 at +0x108, .data+0x0 at +0x118, .data+0x0 at +0x128, .data+0x0 at +0x12c, .bss+0x0 at +0x2bc, .bss+0x0 at +0x2d4, .data+0x0 at +0x308, .data+0x0 at +0x30c)
+    not verified: .rodata+0x34 at +0xb4: no retail data available
+    not verified: .rodata+0x38 at +0xdc: no retail data available
+    not verified: .rodata+0x3c at +0xf4: no retail data available
+    not verified: .rodata+0x40 at +0x104: no retail data available
+    not verified: .data+0x0 at +0xac: no retail data available
+    not verified: .data+0x0 at +0xcc: no retail data available
+    not verified: .data+0x0 at +0xec: no retail data available
+    not verified: .data+0x0 at +0xfc: no retail data available
+    not verified: .data+0x0 at +0x118: no retail data available
+    not verified: .data+0x0 at +0x12c: no retail data available
+    not verified: .data+0x0 at +0x30c: no retail data available
+    not verified: own .bss+0x0 (referenced at +0x2298): retail address 0x803B9A90 (+16 bytes) is not in a known game .bss range
+func_8038A62C:
+  MATCH
+func_8038AEA8:
+  MATCH
+func_8038C934:
+  MATCH
+func_8038B930:
+  MATCH
+func_8038B938:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_8038E5DC:
+    +0x070  want 10000370 b 0xdc4                       got 1000036f b 0xdc0                     
+    +0x0ec  want 10000351 b 0xd48                       got 10000350 b 0xd44                     
+    +0x134  want 1000033f b 0xd00                       got 1000033e b 0xcfc                     
+    +0x1a0  want 1b200323 blez t9,0xc90                 got 1b200322 blez t9,0xc8c               
+    +0x1f4  want 1000030f b 0xc40                       got 1000030e b 0xc3c                     
+    +0x24c  want 100002f9 b 0xbe8                       got 100002f8 b 0xbe4                     
+    +0x25c  want 100002f5 b 0xbd8                       got 100002f4 b 0xbd4                     
+    +0x278  want 13000231 beqz t8,0x8c8                 got 13000230 beqz t8,0x8c4               
+    +0x330  want 10000259 b 0x968                       got 10000258 b 0x964                     
+    +0x374  want 102001e2 beqz at,0x78c                 got 102001e1 beqz at,0x788               
+    +0x478  want 100001a1 b 0x688                       got 100001a0 b 0x684                     
+    +0x4a8  want 10000195 b 0x658                       got 10000194 b 0x654                     
+  412/926 words differ (4 section-relative relocations unverified: .rodata+0xa8 at +0x37c, .rodata+0xa8 at +0x384, .rodata+0xfc at +0xd24, .rodata+0xfc at +0xd2c)
+func_8038CD14:
+    +0x018  want 3c0c8015 lui t4,0x8015                 got 3c0b8015 lui t3,0x8015               
+    +0x01c  want 258c978c addiu t4,t4,-26740            got 256b978c addiu t3,t3,-26740          
+    +0x020  want 818e0000 lb t6,0(t4)                   got 81790000 lb t9,0(t3)                 
+    +0x024  want 2418000e li t8,14                      got 240f000e li t7,14                    
+    +0x028  want a1980000 sb t8,0(t4)                   got a16f0000 sb t7,0(t3)                 
+    +0x02c  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x030  want afae01dc sw t6,476(sp)                 got afb901dc sw t9,476(sp)               
+    +0x084  want 3c0c8015 lui t4,0x8015                 got 3c0b8015 lui t3,0x8015               
+    +0x08c  want 258c978c addiu t4,t4,-26740            got 256b978c addiu t3,t3,-26740          
+    +0x094  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x098  want 81950000 lb s5,0(t4)                   got 81750000 lb s5,0(t3)                 
+    +0x0a4  want 0015c080 sll t8,s5,0x2                 got 00157880 sll t7,s5,0x2               
+  1085/1206 words differ (3 extra words (nonzero beyond target length); 24 section-relative relocations unverified: .rodata+0x64 at +0x3c, .rodata+0x64 at +0x40, .rodata+0x68 at +0x1dc, .rodata+0x68 at +0x208, .rodata+0x6c at +0x374, .rodata+0x6c at +0x378, .rodata+0x78 at +0x4c8, .rodata+0x78 at +0x4cc, .rodata+0x7c at +0x6b0, .rodata+0x7c at +0x6b4, .rodata+0x80 at +0x7dc, .rodata+0x80 at +0x7e0, .rodata+0x84 at +0xbf0, .rodata+0x84 at +0xc08, .rodata+0x88 at +0xc38, .rodata+0x88 at +0xc3c, .rodata+0x8c at +0xc40, .rodata+0x8c at +0xc44, .rodata+0x94 at +0x1054, .rodata+0x94 at +0x1058, .rodata+0x98 at +0x1094, .rodata+0x98 at +0x10ac, .rodata+0xa4 at +0x1290, .rodata+0xa4 at +0x1294; unpaired R_MIPS_HI16 for D_803B7CE0 at .text+0x39c0)
+func_8038A820:
+    +0x010  want 11c0011b beqz t6,0x470                 got 11c0011c beqz t6,0x474               
+    +0x05c  want 11e100ea beq t7,at,0x3ac               got afa2005c sw v0,92(sp)                
+    +0x060  want 28410013 slti at,v0,19                 got 11e100e8 beq t7,at,0x3a4             
+    +0x064  want 1020002e beqz at,0xbc                  got 28410013 slti at,v0,19               
+    +0x068  want 3c048011 lui a0,0x8011                 got 1020002d beqz at,0xb8                
+    +0x06c  want 26f30018 addiu s3,s7,24                got 3c048011 lui a0,0x8011               
+    +0x070  want 02602825 move a1,s3                    got 26f30018 addiu s3,s7,24              
+    +0x074  want 2484418c addiu a0,a0,16780             got 02602825 move a1,s3                  
+    +0x078  want 8ee60010 lw a2,16(s7)                  got 2484418c addiu a0,a0,16780           
+    +0x07c  want 0c022ccb jal 0x8b32c                   got 8ee60010 lw a2,16(s7)                
+    +0x080  want afa2005c sw v0,92(sp)                  got 0c022ccb jal 0x8b32c                 
+    +0x084  want 4600b306 mov.s $f12,$f22               got afa2005c sw v0,92(sp)                
+  61/292 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x18, .rodata+0x0 at +0x1c, .rodata+0x4 at +0x20, .rodata+0x4 at +0x3c, .data+0x28 at +0xa4, .data+0x28 at +0xa8, .data+0x20 at +0xb8, .data+0x24 at +0xd4)
+exit=0
+### object order (objsyms.py)
+000000      8 M func_8038A62C                    retail 8038A62C/8 STUB
+000008    492 M func_8038A634                    retail 8038A634/492
+0001f4   1172 C func_8038A820                    retail 8038A820/1168
+000688    416 M func_8038ACB0                    retail 8038ACB0/416
+000828     88 M func_8038AE50                    retail 8038AE50/88
+000880      8 M func_8038AEA8                    retail 8038AEA8/8 STUB
+000888   1240 M func_8038AEB0                    retail 8038AEB0/1240
+000d60    100 M func_8038B388                    retail 8038B388/100
+000dc4   1096 M func_8038B3EC                    retail 8038B3EC/1096
+00120c    252 M func_8038B834                    retail 8038B834/252
+001308      8 M func_8038B930                    retail 8038B930/8 STUB
+001310      8 M func_8038B938                    retail 8038B938/8 STUB
+001318    628 M func_8038B940                    retail 8038B940/628
+00158c   2616 M func_8038BBB4                    retail 8038BBB4/2616
+001fc4    840 M func_8038C5EC                    retail 8038C5EC/840
+00230c      8 M func_8038C934                    retail 8038C934/8 STUB
+002314    936 M func_8038C93C                    retail 8038C93C/936
+0026bc      8 - func_8038CCE4                    retail 8038CCE4/8 STUB
+0026c4      8 - func_8038CCEC                    retail 8038CCEC/8 STUB
+0026cc      8 - func_8038CCF4                    retail 8038CCF4/8 STUB
+0026d4      8 - func_8038CCFC                    retail 8038CCFC/8 STUB
+0026dc      8 - func_8038CD04                    retail 8038CD04/8 STUB
+0026e4      8 - func_8038CD0C                    retail 8038CD0C/8 STUB
+0026ec   4836 C func_8038CD14                    retail 8038CD14/4824
+0039d0   1520 M func_8038DFEC                    retail 8038DFEC/1520
+003fc0   3712 C func_8038E5DC                    retail 8038E5DC/3704

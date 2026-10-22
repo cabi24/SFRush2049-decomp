@@ -1,0 +1,32 @@
+{
+ "members": [
+  "func_80398B40",
+  "func_80398C3C",
+  "func_80398E70",
+  "func_803990D0",
+  "func_80398B38",
+  "func_80398BE0",
+  "func_80398BE8",
+  "func_80398C34"
+ ],
+ "claims": [
+  "func_80398B40",
+  "func_80398C3C",
+  "func_80398E70",
+  "func_803990D0",
+  "func_80398B38",
+  "func_80398BE0",
+  "func_80398BE8",
+  "func_80398C34"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_803990D0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "Supersedes the installed group of the same name; preserves all three locked helpers. Four disclosed unused s32 frame slots close the complete menu-state root without live-capacity changes. w38b (wave 38): claims stubs func_80398B38 _BuildFileDelList, func_80398BE0 _ControlDamaged, func_80398BE8 _ControlRumblePak, func_80398C34 _ControlFileDelVerify (MAT3 pakscr.c helpers extracted from members 98B40/990D0; 990D0's four unused frame slots removed, MAT3 local order). Old members MATCH."
+}

@@ -1,0 +1,24 @@
+{
+ "members": [
+  "func_803998C0",
+  "func_803998B8"
+ ],
+ "claims": [
+  "func_803998C0",
+  "func_803998B8"
+ ],
+ "context": [
+  "func_80399394",
+  "func_803993EC",
+  "func_80399D10"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_80399D10"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "allow_unverified": true,
+ "provenance": "installed from cloud/work/frontier/dot_runtime_a_seven_option_init_20261007 w38b (wave 38): claims stub func_803998B8 = initButtons@modescr.c (the button set-up of initScreen func_803998C0 as a non-kept helper; the native object/flags carriers replaced by MAT3's nested call form). Old member MATCH."
+}
