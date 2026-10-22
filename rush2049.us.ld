@@ -176,7 +176,7 @@ SECTIONS
         build/us/src/rom/lib_10280.o(.text);
         build/us/asm/us/104D0.o(.text);
         build/us/src/rom/lib_105f0.o(.text);
-        build/us/asm/us/10760.o(.text);
+        build/us/src/rom/lib_10760.o(.text);
         build/us/asm/us/10790.o(.text);
         build/us/src/rom/lib_107a0.o(.text);
         build/us/asm/us/108B0.o(.text);
@@ -302,7 +302,7 @@ SECTIONS
         build/us/src/rom/lib_10280.o(.data);
         build/us/asm/us/104D0.o(.data);
         build/us/src/rom/lib_105f0.o(.data);
-        build/us/asm/us/10760.o(.data);
+        build/us/src/rom/lib_10760.o(.data);
         build/us/asm/us/10790.o(.data);
         build/us/src/rom/lib_107a0.o(.data);
         build/us/asm/us/108B0.o(.data);
@@ -428,7 +428,7 @@ SECTIONS
         build/us/src/rom/lib_10280.o(.rodata);
         build/us/asm/us/104D0.o(.rodata);
         build/us/src/rom/lib_105f0.o(.rodata);
-        build/us/asm/us/10760.o(.rodata);
+        build/us/src/rom/lib_10760.o(.rodata);
         build/us/asm/us/10790.o(.rodata);
         build/us/src/rom/lib_107a0.o(.rodata);
         build/us/asm/us/108B0.o(.rodata);
@@ -559,7 +559,7 @@ SECTIONS
         build/us/src/rom/lib_10280.o(.bss);
         build/us/asm/us/104D0.o(.bss);
         build/us/src/rom/lib_105f0.o(.bss);
-        build/us/asm/us/10760.o(.bss);
+        build/us/src/rom/lib_10760.o(.bss);
         build/us/asm/us/10790.o(.bss);
         build/us/src/rom/lib_107a0.o(.bss);
         build/us/asm/us/108B0.o(.bss);

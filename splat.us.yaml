@@ -182,7 +182,7 @@ segments:
       - [0x10280, c, rom/lib_10280]
       - [0x104D0, asm]
       - [0x105F0, c, rom/lib_105f0]
-      - [0x10760, asm]
+      - [0x10760, c, rom/lib_10760]
       - [0x10790, asm]
       - [0x107A0, c, rom/lib_107a0]
       - [0x108B0, asm]
