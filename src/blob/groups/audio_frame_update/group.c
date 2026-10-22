@@ -3772,57 +3772,7 @@ void func_800B0A88(s16 slot, s16 idx) {
     func_80092484(slot, idx);
 }
 
-void audio_frame_update(s16 slot) {
-    u8 *dst;
-    CarS *car;
-    s16 i;
-    s32 t;
-
-    save_load_data(slot);
-    func_800AC8D4(slot);
-    t = state_word_a & 8;
-    if (t == 0 || (t != 0 && D_80156994 != 0)) {
-        func_800B0A88(slot, 0);
-        func_800B0A88(slot, 1);
-        func_800B08FC(slot, 0);
-        func_800B08FC(slot, 1);
-    }
-    if (gameplay_mode == 6) {
-        func_8038c910(slot);
-    }
-    dst = *(u8 **) ((u8 *) &D_8013FEF4 + (u32) slot * 0x18);
-    if (D_8014978C == 3 || D_8014978C == 5) {
-        ((u16 *) (dst + 0x140))[0] = ((u16 *) &D_8011B58C)[0];
-        ((u16 *) (dst + 0x140))[1] = ((u16 *) &D_8011B58C)[1];
-        ((u16 *) (dst + 0x140))[2] = ((u16 *) &D_8011B58C)[2];
-        ((u16 *) (dst + 0x140))[3] = ((u16 *) &D_8011B58C)[3];
-        ((u16 *) (dst + 0x140))[4] = ((u16 *) &D_8011B58C)[4];
-        ((u16 *) (dst + 0x140))[5] = ((u16 *) &D_8011B58C)[5];
-        ((u16 *) (dst + 0x140))[6] = ((u16 *) &D_8011B58C)[6];
-        ((u16 *) (dst + 0x140))[7] = ((u16 *) &D_8011B58C)[7];
-        ((u16 *) (dst + 0x150))[0] = ((u16 *) &D_8011B5AC)[0];
-        ((u16 *) (dst + 0x150))[1] = ((u16 *) &D_8011B5AC)[1];
-        ((u16 *) (dst + 0x150))[2] = ((u16 *) &D_8011B5AC)[2];
-        ((u16 *) (dst + 0x150))[3] = ((u16 *) &D_8011B5AC)[3];
-        ((u16 *) (dst + 0x150))[4] = ((u16 *) &D_8011B5AC)[4];
-        ((u16 *) (dst + 0x150))[5] = ((u16 *) &D_8011B5AC)[5];
-        ((u16 *) (dst + 0x150))[6] = ((u16 *) &D_8011B5AC)[6];
-        ((u16 *) (dst + 0x150))[7] = ((u16 *) &D_8011B5AC)[7];
-    }
-    car = (CarS *) &player_array[slot];
-    car->snd[0].cb = (void *) &D_8008BEA4;
-    car->snd[0].slot = slot;
-    i = 0;
-    do {
-        car->snd[6 + i].f4 = i;
-        car->snd[6 + i].cb = (void *) anim_state_update;
-        car->snd[6 + i].slot = slot;
-        car->snd[6 + i].idx = 0;
-        car->snd[6 + i].t = D_801543CC;
-        car->snd[6 + i].handle = ((SndCtl *) &D_80139320)[slot].vals[i];
-        i++;
-    } while (i < 4);
-}
+/* audio_frame_update (StartCar) is defined in startcar.c */
 
 /* stand-in caller: keeps func_800B08FC out of line under -O3 */
 void __standin_func_800B08FC(void)

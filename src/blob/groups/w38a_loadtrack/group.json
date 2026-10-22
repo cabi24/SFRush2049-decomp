@@ -1,0 +1,42 @@
+{
+ "name": "w38a_loadtrack",
+ "files": [
+  "loadtrack.c",
+  "ctx_slot_sound.c",
+  "ctx_wheel_torque_apply.c",
+  "ctx_mode_flags_clear.c"
+ ],
+ "members": [
+  "LoadTrack"
+ ],
+ "context": [
+  "func_80096288",
+  "slot_value_get",
+  "display_list_alloc",
+  "player_state_get",
+  "slot_deactivate",
+  "sound_update_channel",
+  "mode_byte2_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "mode_byte_set",
+  "wheel_torque_apply",
+  "mode_flags_clear"
+ ],
+ "keep": [
+  "LoadTrack",
+  "slot_value_get",
+  "display_list_alloc",
+  "player_state_get",
+  "slot_deactivate",
+  "mode_byte2_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "mode_byte_set",
+  "wheel_torque_apply",
+  "mode_flags_clear"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "LoadTrack = tracks.c LoadTrack (w38a). Context files are byte-identical copies: ctx_slot_sound.c = src/blob/groups/slot_sound/group.c (WaveInstanceReady/GetWaveInstanceAddr and the internal IPA func_80096288; its keep entries kept here), ctx_wheel_torque_apply.c = src/blob/wheel_torque_apply.c (NewWorld, inlined into LoadTrack), ctx_mode_flags_clear.c = src/blob/mode_flags_clear.c (inlined).",
+ "provenance": "lane w38a (wave 38), 2026-10-22; base w29d/w30d/w31d LoadTrack draft; Dreamcast tracks.c empty gGameState checks"
+}

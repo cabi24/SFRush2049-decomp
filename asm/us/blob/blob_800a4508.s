@@ -5,6 +5,7 @@
 .section .text.car_lod_select, "ax", @progbits
 .globl car_lod_select
 car_lod_select:
+    /* compiled from src/blob/car_lod_select.c */
     .word 0x27BDFFC0
     .word 0xAFB40030
     .word 0x3C148014

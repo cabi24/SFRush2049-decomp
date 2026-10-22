@@ -3893,70 +3893,52 @@ plain:
     }
 }
 
+/* camera_look_at_point = targetpaths.c _PlayMoveSound (w38a): the Dreamcast decomp's text, which keeps two
+ * N64-era empty statements GC dropped (`if ((maxVel < 0 && curVel > 0) || (maxVel > 0 && curVel < 0)) ;` = retail's
+ * empty `bgez v1`, and `if ((int)ratio < 0 || (int)ratio > 1) ;` in the clamp); path_abs as a macro (MAT3's static
+ * inline function costs 167 words); `0.75f * ratio` operand order (retail mul.s $f10,$f6,$f0). */
+#define path_abs(x) ((x) < 0 ? -(x) : (x))
+
 void camera_look_at_point(Camera *cam) {
-    CamTbl *t;
-    f32 f;
-    f32 r;
-    s32 a;
-    s32 b;
-    s32 x;
-    s32 y;
-    s32 tt;
+    CamCtl *dPtr;
+    f32 ratio;
+    s32 maxVel;
+    s32 curVel;
 
     if (cam->state == 1) {
         if (cam->handle != -1) {
             if (D_80117530[cam->tbl].s20 == 1) {
-                b = (s32) cam->ctl->f14;
-                a = (s32) cam->ctl->f10;
-                if (b == 0) {
-                    b = a != 0 ? a : 1;
+                dPtr = cam->ctl;
+                maxVel = dPtr->f14;
+                curVel = dPtr->f10;
+                if (!maxVel) {
+                    if (curVel) maxVel = curVel;
+                    else maxVel = 1;
                 }
-tt = 0;
-if (b < 0) {
- tt = 1;
- }
- if (tt) {}
-                x = a < 0 ? -a : a;
-                y = b < 0 ? -b : b;
-                r = ((f32) x / (f32) y) * 0.5f + .5f;
-                f = r;
-                if (r < 0.0f || r > 1.0f) {
-                    if (r < 0.0f) {
-                        f = 0.0f;
-                    } else {
-                        f = 1.0f;
-                    }
+                if ((maxVel < 0 && curVel > 0) || (maxVel > 0 && curVel < 0)) ;
+                ratio = (f32)path_abs(curVel) / (f32)path_abs(maxVel);
+                ratio = ratio / 2.0f + 0.5f;
+                if (ratio < 0.0f || ratio > 1.0f) {
+                    if ((s32)ratio < 0 || (s32)ratio > 1) ;
+                    if (ratio < 0.0f) ratio = 0.0f;
+                    else ratio = 1.0f;
                 }
-            } else {
-                f = 1.0f;
-            }
-            if (D_80117530[cam->tbl].s20 == 0x12) {
+            } else ratio = 1.0f;
+            if (D_80117530[cam->tbl].s20 == 0x12)
                 camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
-                return;
-            }
-            if (D_80117530[cam->tbl].s20 == 0x61) {
+            else if (D_80117530[cam->tbl].s20 == 0x61)
                 camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, 0.75f);
-                return;
-            }
-            camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * f + 0.25f, f);
+            else camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * ratio + 0.25f, ratio);
         }
-    } else {
-        if (cam->state == 2) {
-            camera_aspect_ratio(cam);
-            return;
-        }
-        if (leaderboard_update(cam->handle) == 0) {
-            results_screen_update(cam->handle);
-            if (D_80117530[cam->tbl].s20 != -1) {
-                cam->handle = camera_track_entry(cam, D_80117530[cam->tbl].f2C, D_80117530[cam->tbl].s20, D_80117530[cam->tbl].s28);
-                if (D_80117530[cam->tbl].s20 == 1) {
-                    camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
-                }
-            } else {
-                cam->handle = -1;
-            }
-            cam->state = 1;
-        }
+    } else if (cam->state == 2) camera_aspect_ratio(cam);
+    else if (!leaderboard_update(cam->handle)) {
+        results_screen_update(cam->handle);
+        if (D_80117530[cam->tbl].s20 != -1) {
+            cam->handle = camera_track_entry(cam, D_80117530[cam->tbl].f2C, D_80117530[cam->tbl].s20, D_80117530[cam->tbl].s28);
+            if (D_80117530[cam->tbl].s20 == 1)
+                camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
+        } else cam->handle = -1;
+        cam->state = 1;
     }
 }
 

@@ -2269,6 +2269,7 @@ func_800B0A88:
 .section .text.audio_frame_update, "ax", @progbits
 .globl audio_frame_update
 audio_frame_update:
+    /* compiled from src/blob/audio_frame_update.c */
     .word 0x27BDFFD8
     .word 0xAFB30020
     .word 0x00049C00

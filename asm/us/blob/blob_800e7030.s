@@ -6874,6 +6874,7 @@ mode_byte2_set:
 .section .text.world_velocity_integrate, "ax", @progbits
 .globl world_velocity_integrate
 world_velocity_integrate:
+    /* compiled from src/blob/world_velocity_integrate.c */
     .word 0x27BDFFA0
     .word 0x3C0F8011
     .word 0x81EF474C

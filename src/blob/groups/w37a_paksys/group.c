@@ -6,9 +6,12 @@
  *   func_800A3640 = _RemovePak        - w8b body (osSendMesg), private IPA (unsaved s-registers)
  *   func_800A3724 = _ClearPak         - memset of the 772-byte gPaks record keeping .damaged; pak in a3 (IPA)
  *   track_render_process = PS_PakServer (0x800A377C) - NOT MATCHED (genuine reconstruction, see RESULTS.md)
- *   car_lod_select = PS_InitPakSys (0x800A4508)      - NOT MATCHED (19 words: s3/s4 swap + one schedule)
+ *   car_lod_select = PS_InitPakSys (0x800A4508)      - MATCH (w38a): MAT3 indexed handle loop
+ *     `for (i = 0; i < 64; i++) { gFileHandles[i].file = &gPsFiles[i]; InsertLLE(&gFree, &gFileHandles[i], head); }`
+ *     (the w36w3 pointer do-while coloured the free-list/end address webs s3/s4 the wrong way round; the indexed
+ *     loop lets uopt build the end bound from the induction variable, giving retail s4 list / s3 end).
  * The four first functions are EQUAL in the whole-program unit with PS_PakServer and PS_InitPakSys as their REAL
- * callers (no stand-ins). They stay provisional only because those two callers are not matched yet.
+ * callers (no stand-ins). PS_InitPakSys matches (w38a); PS_PakServer is still unmatched caller context.
  *
  * Provenance: MAT3 decomp/src/GameSource/src/paksysdc.c (GC/PS2 platform layer: names, statement order of
  * PS_PakServer/PS_InitPakSys, ClearLL/InitLL use) + rush_d_dwarf.c locals (i, j, changed[4], dup, same, psfileh);
@@ -565,7 +568,6 @@ flush:
 /* ---- PS_InitPakSys ---- */
 extern PakHandle D_80144C60[];          /* the 64 tPS_File handles */
 extern tPS_File D_80144DC0[];           /* the 64 tPS_File records (76 bytes) */
-extern tPS_File D_801460C0[];           /* end of the records */
 extern u8 D_800349F0[];                 /* pak thread */
 extern u8 D_800329F0[];                 /* pak thread stack top */
 extern void audio_queue_process(void *);    /* rumble/pak thread entry */
@@ -578,19 +580,13 @@ extern void func_800A44E8(tDLList *, u8, u8);   /* InitLL (MAT3 char = unsigned)
 void car_lod_select(PakErrorFunc errorFunc)
 {
     s32 i;
-    PakHandle *fileh;
-    tPS_File *psfile;
 
     D_80144008 = errorFunc;
     func_800A44E8(&D_801460E0, 1, 1);
-    fileh = D_80144C60;
-    psfile = D_80144DC0;
-    do {
-        fileh->file = psfile;
-        func_80091FBC(&D_801460E0, fileh, D_801460E0.head);
-        psfile++;
-        fileh++;
-    } while (psfile < D_801460C0);
+    for (i = 0; i < 64; i++) {
+        D_80144C60[i].file = &D_80144DC0[i];
+        func_80091FBC(&D_801460E0, &D_80144C60[i], D_801460E0.head);
+    }
     for (i = 0; i < 4; i++) {
         func_800A44E8(&D_80144D60[i], 1, 1);
         D_80144030[i].damaged = 0;

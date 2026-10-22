@@ -547,6 +547,7 @@ func_800D6E74:
 .section .text.drone_collision_avoid, "ax", @progbits
 .globl drone_collision_avoid
 drone_collision_avoid:
+    /* compiled from src/blob/drone_collision_avoid.c */
     .word 0x27BDFF70
     .word 0x3C148014
     .word 0x269461D0

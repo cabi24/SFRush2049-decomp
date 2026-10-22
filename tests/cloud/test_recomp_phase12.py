@@ -176,7 +176,7 @@ def test_overlay_census_scripts_and_matched_lock():
     assert covered and scripts and "controls_frontend" in scripts
     assert dc.overlay_census_scripts("ovl_a", "func_00000000") == (None, False)
     m = dc.matched_functions()
-    assert "ovl_a:func_80396F44" in m and "ovl_a_func_80396F44" in m and "LoadTrack" not in m
+    assert "ovl_a:func_80396F44" in m and "ovl_a_func_80396F44" in m and "camera_transform" not in m
 
 
 # ------------------------------------------------------------------ end to end (recomp host only)

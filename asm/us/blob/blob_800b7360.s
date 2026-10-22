@@ -4749,6 +4749,7 @@ camera_lerp_position:
 .section .text.LoadTrack, "ax", @progbits
 .globl LoadTrack
 LoadTrack:
+    /* compiled from src/blob/LoadTrack.c */
     .word 0x3C098014
     .word 0x25293A10
     .word 0x812E0004

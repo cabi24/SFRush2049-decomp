@@ -1588,6 +1588,7 @@ camera_aspect_ratio:
 .section .text.camera_look_at_point, "ax", @progbits
 .globl camera_look_at_point
 camera_look_at_point:
+    /* compiled from src/blob/camera_look_at_point.c */
     .word 0x27BDFFD0
     .word 0xAFBF002C
     .word 0x82020064

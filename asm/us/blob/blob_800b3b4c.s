@@ -3035,6 +3035,7 @@ func_800B669C:
 .section .text.func_800B66B0, "ax", @progbits
 .globl func_800B66B0
 func_800B66B0:
+    /* compiled from src/blob/func_800B66B0.c */
     .word 0xAFA50004
     .word 0x90980000
     .word 0x00057400
@@ -3384,6 +3385,7 @@ audio_doppler_calc:
 .section .text.menu_input_process, "ax", @progbits
 .globl menu_input_process
 menu_input_process:
+    /* compiled from src/blob/menu_input_process.c */
     .word 0x27BDFE88
     .word 0x3C018011
     .word 0xC4244744
