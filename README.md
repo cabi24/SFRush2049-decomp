@@ -6,14 +6,14 @@ A work-in-progress decompilation of San Francisco Rush 2049 for the Nintendo 64.
 
 ## Status
 
-Cartridge coverage at master `4aa2bdd04` (2026-10-22). Every figure is gated by the built ROM's SHA-1, and
+Cartridge coverage at master `3b32175c6` (2026-10-22). Every figure is gated by the built ROM's SHA-1, and
 the four code populations are reported separately, never summed. Run `make progress` for live numbers.
 
 | Population | Functions | Code bytes | Whole image |
 |---|---:|---:|---:|
 | Game code (DEFLATE image at ROM `0xB0CB10`, inflates to `0x80086A50`) | 1,173 / 1,216 | 516,500 / 561,860 (91.93%) | 79.82% of 647,072 B |
 | Static boot/library code | 677 / 677 (634 C + 43 assembly) | 162,188 / 162,284 (99.94%; from C 95.12%) | — |
-| Runtime image A (ROM `0xB5C534`, loads at `0x8038A400`) | 155 / 193 | 128,284 / 152,952 (83.87%) | 66.08% of 194,128 B |
+| Runtime image A (ROM `0xB5C534`, loads at `0x8038A400`) | 158 / 193 | 128,308 / 152,952 (83.89%) | 66.09% of 194,128 B |
 | Runtime image B (ROM `0xB6FEC4`, loads at `0x8038A400`) | 43 / 49 | 36,288 / 38,708 (93.75%) | 82.68% of 43,888 B |
 
 Static counts functions that were assembly in the original build as built from assembly source, apart from C ([static asm ceiling](docs/static-asm-ceiling.md)), including 10 hand-written routines the build composes into the ROM data segment (`pipeline.boot_data`). Code bytes leave out each image's `.data`/`.rodata` tail, which is proven to hold no code (see the

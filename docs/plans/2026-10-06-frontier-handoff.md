@@ -822,9 +822,9 @@ closed (9842C 2/451, 90DCC 33/425, A9EEC 102/315 with a second listing oracle; w
 calcMenuRect 852, one disclosed unused local), audio_frame_update (StartCar 600, one disclosed cast), codex_defaults_a16
 (world_velocity_integrate = HAL_FinishText 712, menu_input_process = HAL_DrawText 1,280, func_800B66B0 = _TextLen 152;
 seven function-local statics own .bss, address-verified; an empty `else ;` breaks a save tie, disclosed). Gates:
-blob_unit 1173/1173, locks intact, ROM SHA-1 EXACT. **Push held** on the slot-contract audit receipt (drone_collision_avoid
-and world_velocity_integrate are now accepted callers): owner applies `cloud/work/frontier/w38i/held/
-slot_contract_audit_w38a.patch` (validated: Pi + rocky green with it). Not closed (w38a RESULTS): state_utility =
+blob_unit 1173/1173, locks intact, ROM SHA-1 EXACT. The slot-contract audit receipt re-pin (drone_collision_avoid and
+world_velocity_integrate are now accepted callers) is owner commit 329614591; the writer_bounds superseded-copy fallback
+is owner commit 4934ffede, after which menu_renderers landed (`3b32175c6`, image A 158/193, 33 stubs in all). Not closed (w38a RESULTS): state_utility =
 TB_DrawText 10 words, TB_GetFontLineHeight/TB_GetFontHeight 4 words each, world_effect_update 8, object_create =
 HAL_SetFont code-identical only when kept (provisional on playgame_state_change). `docs/dot_handoff_targets.csv` now
 lists the 43 unmatched.
