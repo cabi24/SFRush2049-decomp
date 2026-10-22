@@ -944,6 +944,8 @@ void func_80012730(Fetch_80012730 *fetch, unsigned int addr, unsigned int length
     fetch->second_length = lengths[0];
 }
 
+extern unsigned int D_80038034;
+extern unsigned int D_80038030;
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012D18.s")
 /* PROMOTED 2026-10-05 — func_80013964
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013964.c (in-repo, locked)
@@ -953,8 +955,6 @@ void func_80012730(Fetch_80012730 *fetch, unsigned int addr, unsigned int length
  */
 extern unsigned char D_8003829E;
 extern unsigned short D_800382E0[];
-extern unsigned int D_80038034;
-extern unsigned int D_80038030;
 void func_80013964(void)
 {
     unsigned int cursor;
