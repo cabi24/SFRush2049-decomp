@@ -17,12 +17,12 @@ The recommended split is one maintainer handling integration, two helpers handli
 
 ## Project state and where the bytes are
 
-Cartridge coverage at master `3b32175c6` (2026-10-22; `make progress` for live numbers). Populations keep their own
+Cartridge coverage at master `4c481dc28` (2026-10-22; `make progress` for live numbers). Populations keep their own
 denominators and are never summed:
 
 | Population | Accepted functions | Accepted code bytes | Whole image |
 |---|---:|---:|---:|
-| Game code | 1,173 / 1,216 | 516,500 / 561,860 (91.93%) | 79.82% of 647,072 B |
+| Game code | 1,177 / 1,216 | 518,060 / 561,860 (92.20%) | 80.06% of 647,072 B |
 | Static cartridge code | 677 / 677 (634 C + 43 assembly) | 162,188 / 162,284 (99.94%; from C 95.12%) | — |
 | Runtime image A | 158 / 193 | 128,308 / 152,952 (83.89%) | 66.09% of 194,128 B |
 | Runtime image B | 43 / 49 | 36,288 / 38,708 (93.75%) | 82.68% of 43,888 B |
@@ -33,18 +33,18 @@ against the whole image, so compare old and new figures with their denominators.
 
 | Unmatched game function size | Functions | Native bytes remaining |
 |---|---:|---:|
-| Below 256 bytes | 6 | 860 |
-| 256–1,023 bytes | 20 | 10,684 |
+| Below 256 bytes | 5 | 664 |
+| 256–1,023 bytes | 17 | 9,320 |
 | 1,024–4,095 bytes | 17 | 33,816 |
 | 4,096 bytes and above | 0 | 0 |
-| Total | 43 | 45,360 |
+| Total | 39 | 43,800 |
 
 The largest unmatched game function is `track_render_process` (PS_PakServer, 3,200 B). Most of what remains are
 traced near-misses; their causes and best sources are in the
 [frontier handoff](docs/plans/2026-10-06-frontier-handoff.md) §0. Astra's reserved targets (`func_80087110`,
-`camera_transform`, handoff §4) are among the 43.
+`camera_transform`, handoff §4) are among the 39.
 
-[Complete unmatched game inventory](docs/dot_handoff_targets.csv) lists all 43 targets, sorted by native bytes, with
+[Complete unmatched game inventory](docs/dot_handoff_targets.csv) lists all 39 targets, sorted by native bytes, with
 addresses and the research PR recorded for that name in the 2026-10-02 snapshot where it still applies. It is
 derived from `build/blob_layout.json` minus `blob_matched.lock.json` at `7be1d67b`; it does not assert that a target
 is fresh, correctly named or unclaimed. Recheck before assigning.

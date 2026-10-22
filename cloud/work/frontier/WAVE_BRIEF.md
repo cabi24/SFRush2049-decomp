@@ -331,3 +331,17 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
    N64-era empty statements; helpers defined after their caller settle as1 line ties.
 4. **Globals referenced by one function are often its function-local statics** (own .bss, address-verified by
    score.py and blob_group's per-reference path).
+
+## 2026-10-22 lessons, part 3 (w39: MAT3 sweep)
+
+1. **Unidentified functions are often N64-only platform code that MAT3/Dreamcast still carry**: thread entries
+   (audio manager, model thread, wave loader), the scheduler message loop, end-of-frame submit. Identify them from the
+   call graph (who creates the thread, which message queue), strings and the DC gfx/audio files (`w39a/RESULTS.md`).
+2. **Inlining a helper from another source file is a lever**: it creates scheduling-block boundaries a single-file
+   source cannot (InitGraphics + _InitGfx). Functions with one caller that retail keeps out of line were external.
+3. **Undo MAT3's CodeWarrior shapes** (flat loops that are nested on N64, float operand order); prefer the Dreamcast
+   text where MAT3 keeps only a stub; MAT3 prototypes decide branch signedness (`unsigned` returns).
+4. **Thread entries with endless loops** need the image offset modulo 32 for their `.align 5` epilogue pad: a context
+   file in the group fixes it there, an `align` unit override in the shadow unit.
+5. A leaf whose retail temps stay in t6-t9 while ours spill into t0+ is an internal callee: score it in a group with
+   its caller. `force.sh` early, even on far functions, separates register choice from frame residuals.

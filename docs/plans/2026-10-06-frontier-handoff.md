@@ -828,6 +828,20 @@ is owner commit 4934ffede, after which menu_renderers landed (`3b32175c6`, image
 TB_DrawText 10 words, TB_GetFontLineHeight/TB_GetFontHeight 4 words each, world_effect_update 8, object_create =
 HAL_SetFont code-identical only when kept (provisional on playgame_state_change). `docs/dot_handoff_targets.csv` now
 lists the 43 unmatched.
+**Wave 39, MAT3 sweep (2026-10-22, lanes w39a/w39b/w39c, integration commit `4c481dc28`):** game 1173 → 1177/1216
+(518,060 B, 92.20%, +1,560 B). w39a identified 13 of the 14 unmatched game functions w36n had no MAT3 name for
+(`w39a/RESULTS.md`): the audio manager (entity_ai_pathfind = the audio thread with _ProcessCommand inlined,
+func_80098FB8 = _PeriodicMaintenance, sound_position_update = _UpdateFx), InitGraphics, the N64 end-of-frame and
+main-thread message step, ModelThread, BGLoadWaveMain, LoadFrontEndOverlay (display_enable), SetupCarColor
+(sound_bank_unload); corrected drone_set_catchup = PS_ReadPartialFile and debug_stats = playDemoGame; about 12 label
+corrections for matched functions (hud_setup = AudioInit, func_80091B00 = _GetCmd, ...; NOT applied, next rename
+batch). w39b scored a MAT3-faithful port of every identified function (ranked table in `w39b/RESULTS.md`; no match;
+updateWarningScreen 50 → 10 rows from the Dreamcast text, _AnimateMine 165 → 66, controls_animButtonText 49 → 29).
+w39c matched four as groups: NEW w39c_updatefx (_UpdateFx), w39c_mainloop (main-thread step), w39c_initgraphics
+(InitGraphics + func_800EE8AC = _InitGfx inlined across files, stub single superseded), and audio_frame_sync
+superseded in place (brake_force_apply = BGLoadWaveMain; unit `align` override). Unmatched: render_thread_entry
+30-33 rows, world_collision_response 84 words, SetupCarColor 135/312; func_800B0EA0 group-MATCH only with a stand-in
+caller. `docs/dot_handoff_targets.csv` lists the 39 unmatched.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in

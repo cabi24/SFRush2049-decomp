@@ -27,9 +27,6 @@ debug_stats,0x800FCDF8,532,133,,7be1d67b,preflight_required
 debug_collision,0x800FD024,532,133,,7be1d67b,preflight_required
 race_position_update,0x800BE7BC,484,121,,7be1d67b,preflight_required
 func_8010D680,0x8010D680,476,119,,7be1d67b,preflight_required
-world_trigger_activate,0x800EE5DC,464,116,,7be1d67b,preflight_required
-world_effect_update,0x800EE8B4,456,114,,7be1d67b,preflight_required
-sound_position_update,0x800951E0,444,111,,7be1d67b,preflight_required
 ghost_race_setup,0x800D510C,440,110,,7be1d67b,preflight_required
 state_utility,0x800B71D4,396,99,,7be1d67b,preflight_required
 func_8010E8B4,0x8010E8B4,340,85,,7be1d67b,preflight_required
@@ -37,7 +34,6 @@ time_result_display,0x800DA174,332,83,,7be1d67b,preflight_required
 display_enable,0x800C8FA4,316,79,,7be1d67b,preflight_required
 render_thread_entry,0x800E7808,268,67,,7be1d67b,preflight_required
 func_800A3640,0x800A3640,204,51,,7be1d67b,preflight_required
-brake_force_apply,0x800AC75C,196,49,,7be1d67b,preflight_required
 func_800B0EA0,0x800B0EA0,192,48,,7be1d67b,preflight_required
 object_create,0x800B42F0,112,28,,7be1d67b,preflight_required
 object_bytes_sum_global,0x800B3F50,84,21,,7be1d67b,preflight_required
