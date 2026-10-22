@@ -40,7 +40,7 @@ This distinction prevents two costly mistakes: polishing an unlinked historical 
 ### Coverage snapshot and denominator policy
 
 > **Update 2026-10-22 (master `4aa2bdd04`).** The figures below are the 2026-10-03 snapshot. Current coverage: game
-> 1,165/1,216 functions, 509,680/561,860 code bytes (90.71%; 78.77% of the 647,072-byte image); static 677/677
+> 1,173/1,216 functions, 516,500/561,860 code bytes (91.93%; 79.82% of the 647,072-byte image); static 677/677
 > (634 C + 43 assembly), 162,188/162,284 bytes (99.94%; from C 95.12%); runtime image A 155/193 (83.87% of code bytes), B 43/49 (93.75%). The
 > data/opaque classification this section asks for is done: the image tail from `0x8010FD7C` is proven
 > `.data`/`.rodata` (`tests/conveyor/test_blob_data_tail.py`), the layout labels it `data`, and the owner made code

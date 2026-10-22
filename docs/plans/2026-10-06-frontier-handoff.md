@@ -815,6 +815,19 @@ Stubs left: 15 land only with their unmatched callers (CD14 x6, 90DCC, 9842C x4,
 B 91B00 x2; helper identities in `w38b/RESULTS.md`), B 8CB10/8CB18/8FCD8 would cost their installed callers, five
 trackscr stubs are probably unreferenced GC functions (not claimed), A440/A3D9C unidentified. No overlay near-miss
 closed (9842C 2/451, 90DCC 33/425, A9EEC 102/315 with a second listing oracle; w38b RESULTS §3).
+**Wave 38, game (2026-10-22, lane w38a + integration w38i, commit `cd2b9bef6`):** game 1165 → 1173/1216 (516,500 B,
+91.93%, +6,820 B), 8 functions in 6 packets, MAT3 typed ports with the real locked callees: NEW group w38a_loadtrack
+(LoadTrack 2,104); superseded in place, every old member still locked: w37a_paksys (car_lod_select = PS_InitPakSys
+324), camera_aspect_ratio (camera_look_at_point = _PlayMoveSound 796), audio_options_menu (drone_collision_avoid =
+calcMenuRect 852, one disclosed unused local), audio_frame_update (StartCar 600, one disclosed cast), codex_defaults_a16
+(world_velocity_integrate = HAL_FinishText 712, menu_input_process = HAL_DrawText 1,280, func_800B66B0 = _TextLen 152;
+seven function-local statics own .bss, address-verified; an empty `else ;` breaks a save tie, disclosed). Gates:
+blob_unit 1173/1173, locks intact, ROM SHA-1 EXACT. **Push held** on the slot-contract audit receipt (drone_collision_avoid
+and world_velocity_integrate are now accepted callers): owner applies `cloud/work/frontier/w38i/held/
+slot_contract_audit_w38a.patch` (validated: Pi + rocky green with it). Not closed (w38a RESULTS): state_utility =
+TB_DrawText 10 words, TB_GetFontLineHeight/TB_GetFontHeight 4 words each, world_effect_update 8, object_create =
+HAL_SetFont code-identical only when kept (provisional on playgame_state_change). `docs/dot_handoff_targets.csv` now
+lists the 43 unmatched.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in

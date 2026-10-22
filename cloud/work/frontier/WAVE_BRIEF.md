@@ -317,3 +317,17 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
    adding unused locals, look for a caller-less stub next to the function: writing the MAT3 static as a real helper
    removed disclosed slots, carriers and a holder from nine installed members with every word still MATCH.
 3. Unreferenced non-kept functions in a group also compile to an 8-byte stub (with a symbol; a static one without).
+
+## 2026-10-22 lessons, part 2 (w38a: 8 game functions, MAT3 typed ports)
+
+1. **A save tie is decided by a zero-footprint block.** When ctrace shows equal-save webs and retail colours another
+   one, an empty `else ;` (or `if (0) {}`, `do {} while (0)`, `if (x) {}`) placed where only one web is live adds a
+   uopt block to its range and drops its save below the tie (HAL_DrawText: 14 rows -> 0). Prove it first with
+   `force.sh LABEL NAME p1:wN=s`.
+2. **Mask phase: sweep the whole subset, the answer may be "all".** Every computed byte stored into HAL_DrawText's byte
+   buffer is `& 255`; 15 of 16 subsets per block differ. A redundant mask is one ring pop (L65).
+3. **Rewrite old drafts as MAT3 typed ports against the real locked callees** (LoadTrack, calcMenuRect, HAL_FinishText,
+   HAL_DrawText closed fast once their partners had matched). MAT3 indexed loops beat pointer walks; Dreamcast text keeps
+   N64-era empty statements; helpers defined after their caller settle as1 line ties.
+4. **Globals referenced by one function are often its function-local statics** (own .bss, address-verified by
+   score.py and blob_group's per-reference path).
