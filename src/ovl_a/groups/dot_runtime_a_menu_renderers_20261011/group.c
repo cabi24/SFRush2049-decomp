@@ -1,4 +1,16 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* w38b superseding revision (wave 38): this is MAT3 pakscr.c's draw side. Image A's callback region is laid out by a
+ * forward scan of each file in source order with a post-order DFS (last call first) from every procedure not yet
+ * emitted (recordscr: drawSelect before drawView's subtree; playerscr: drawSelect .. drawPakDamaged stubs; circuitscr:
+ * drawReview first). For pakscr that gives: _GetPakStatusStr (source line 224, reached before _AnimText at 251) =
+ * stub 0x803A6F14, then _AnimText's DFS: _DrawDamaged 6F1C, _DrawRumblePak 6F24 (case 4 first), _DrawFileDelVerify
+ * 6F2C, _DrawFileDel 7180, _DrawPickPak 7620 (its _GetPakStatusStr already emitted: no stub before it), _AnimText 7918.
+ * So _GetPakStatusStr(int pak, char *str) is now the non-kept helper func_803A6F14 inlined into _DrawPickPak (the
+ * status-text chain moved verbatim; the buffer is MAT3's statStr[24]): three of _DrawPickPak's four unused slots were
+ * that inlined call's frame area (one remains, disclosed). _AnimText's cases 4/3 are _DrawDamaged / _DrawRumblePak =
+ * func_803A6F1C / func_803A6F24 (bodies moved verbatim with their 256-byte buffers); its three unused slots are gone.
+ * (Our single-root group compile emits _GetPakStatusStr's stub just before _DrawPickPak; the retail slot follows from
+ * the source-order scan, which the stand-alone group compile does not reproduce. Stub bytes are identical.) */
 /* Image A file-menu renderer: supersede the installed same-name group.
  * New exact member func_803A7180 (1184 bytes); preserve 6F2C/7620/7918
  * (1932 bytes) and claim all four verified members. The real 7918 root
@@ -18,8 +30,8 @@
  * native fixed-width producer paths; arbitrary pointer mutation excluded.
  *
  * INHERITED SHAPING, unchanged: 6F2C two unused s32 slots close312 ->320;
- * 7620 four unused s32 slots close128 ->144, used homes move+12;
- * 7918 a real s16 X carrier and three unused s32 slots close600 ->608.
+ * 7620 (w38b) one unused s32 slot (was four) after title[40]; status[] is MAT3's statStr[24];
+ * 7918 a real s16 X carrier (w38b: its three unused s32 slots are gone, see below).
  * Other inherited buffer capacities remain unproven and unchanged.
  * No new padding, dummy local, fake signature, synthetic helper, forced
  * register, artificial use, compiler modification or source reordering.
@@ -143,39 +155,45 @@ void func_803A7180(void)
     func_800B71D4(x,192,text);
 }
 
+void func_803A6F14(s32,char *);
+/* _GetPakStatusStr (MAT3 pakscr.c): inlined into _DrawPickPak func_803A7620 (w38b) */
+void func_803A6F14(s32 player,char *str)
+{
+    OpenRecord **open;
+    SavedRecord **saved;
+    if (!D_80156CF0[player].present) func_800B4360(str,D_803B889C,D_8017A4E0.labels[165]);
+    else if (!func_800A1A3C(player)) func_800B4360(str,D_803B88A4,D_8017A4E0.labels[168]);
+    else if (func_800A35F8(player)) func_800B4360(str,D_803B88AC,D_8017A4E0.labels[166]);
+    else if (func_80094FC4(player)) func_800B4360(str,D_803B88B4,D_8017A4E0.labels[169]);
+    else {
+        for (open=D_8012E6E0;open;open=(*open)->next) {
+            if ((*open)->owner && (*(*open)->owner)->slot==player) break;
+        }
+        for (saved=D_80152028;saved;saved=(*saved)->next) {
+            if ((*saved)->owner && (*(*saved)->owner)->slot==player) break;
+        }
+        if (open || saved) func_800B4360(str,D_803B88BC,D_8017A4E0.labels[159]);
+        else if (func_800A3518(player) && func_800A35BC(player)>=D_803BA7EB)
+            func_800B4360(str,D_803B88C4,D_8017A4E0.labels[158]);
+        else func_800B4360(str,D_803B88CC,D_8017A4E0.labels[161]);
+    }
+}
+
 void func_803A7620(void)
 {
-    s32 residual_slot0;
-    char status[20];
+    char status[24];
     char title[40];
-    s32 residual_slot1, residual_slot2, residual_slot3;
+    s32 residual_slot1; /* SHAPING (disclosed): one unused 4-byte slot; frame 144 (136 without it) */
     s32 player;
     s32 y=64;
     s16 x;
-    OpenRecord **open;
-    SavedRecord **saved;
     for(player=0;player<4;player++,y+=36) {
         func_800B42F0(player==D_803B9BBA ? 10 : 11);
         func_800B74A0(player==D_803B9BBA ? 22 : 1);
         func_800B4360(title,D_803B88D4,D_8017A4E0.labels[123],player+1);
         x=func_800B71A0(title,160);
         func_800B71D4(x,y-(player==D_803B9BBA ? 1 : 0),title);
-        if (!D_80156CF0[player].present) func_800B4360(status,D_803B889C,D_8017A4E0.labels[165]);
-        else if (!func_800A1A3C(player)) func_800B4360(status,D_803B88A4,D_8017A4E0.labels[168]);
-        else if (func_800A35F8(player)) func_800B4360(status,D_803B88AC,D_8017A4E0.labels[166]);
-        else if (func_80094FC4(player)) func_800B4360(status,D_803B88B4,D_8017A4E0.labels[169]);
-        else {
-            for (open=D_8012E6E0;open;open=(*open)->next) {
-                if ((*open)->owner && (*(*open)->owner)->slot==player) break;
-            }
-            for (saved=D_80152028;saved;saved=(*saved)->next) {
-                if ((*saved)->owner && (*(*saved)->owner)->slot==player) break;
-            }
-            if (open || saved) func_800B4360(status,D_803B88BC,D_8017A4E0.labels[159]);
-            else if (func_800A3518(player) && func_800A35BC(player)>=D_803BA7EB)
-                func_800B4360(status,D_803B88C4,D_8017A4E0.labels[158]);
-            else func_800B4360(status,D_803B88CC,D_8017A4E0.labels[161]);
-        }
+        func_803A6F14(player,status);
         x=func_800B71A0(status,160);
         func_800B71D4(x,y-(player==D_803B9BBA ? 1 : 0)+12,status);
     }
@@ -217,13 +235,11 @@ void func_803A6F2C(void)
     func_800B71D4(175,y-(D_803B9BB8 ? 1 : 0),D_8017A4E0.choices[D_8017A4E0.indices->choice]);
 }
 
+void func_803A6F24(void);
+void func_803A6F1C(void);
 s32 func_803A7918(void *callback)
 {
-    s32 residual_slot0;
     s16 x;
-    char unavailable[256];
-    s32 residual_slot1, residual_slot2;
-    char failed[256];
     func_800B65B4(0.0f);
     func_800B42F0(13);
     func_800B74A0(12);
@@ -234,28 +250,38 @@ s32 func_803A7918(void *callback)
         case 0: func_803A7620(); break;
         case 1: func_803A7180(); break;
         case 2: func_803A6F2C(); break;
-        case 3:
-            func_800B42F0(11);
-            func_800B74A0(1);
-            func_800BE6A4(unavailable,D_8017A4E0.labels[106]);
-            func_800BE4F0(unavailable,D_803B8904);
-            func_800BE4F0(unavailable,D_8017A4E0.labels[102]);
-            func_800B669C(1,1);
-            func_800BE078(160,130,300,160,-1,0,unavailable);
-            func_800B669C(0,3);
-            break;
-        case 4:
-            func_800B42F0(11);
-            func_800B74A0(1);
-            func_800BE6A4(failed,D_8017A4E0.labels[167]);
-            func_800BE4F0(failed,D_803B8908);
-            func_800BE4F0(failed,D_8017A4E0.labels[102]);
-            func_800B669C(1,1);
-            func_800BE078(160,130,300,160,-1,0,failed);
-            func_800B669C(0,3);
-            break;
+        case 3: func_803A6F24(); break;
+        case 4: func_803A6F1C(); break;
         }
     }
     func_800B65B4(-1.0f);
     return 1;
+}
+
+/* _DrawRumblePak (MAT3 pakscr.c): inlined into _AnimText func_803A7918 (w38b) */
+void func_803A6F24(void)
+{
+    char unavailable[256];
+        func_800B42F0(11);
+        func_800B74A0(1);
+        func_800BE6A4(unavailable,D_8017A4E0.labels[106]);
+        func_800BE4F0(unavailable,D_803B8904);
+        func_800BE4F0(unavailable,D_8017A4E0.labels[102]);
+        func_800B669C(1,1);
+        func_800BE078(160,130,300,160,-1,0,unavailable);
+        func_800B669C(0,3);
+}
+
+/* _DrawDamaged (MAT3 pakscr.c): inlined into _AnimText func_803A7918 (w38b) */
+void func_803A6F1C(void)
+{
+    char failed[256];
+        func_800B42F0(11);
+        func_800B74A0(1);
+        func_800BE6A4(failed,D_8017A4E0.labels[167]);
+        func_800BE4F0(failed,D_803B8908);
+        func_800BE4F0(failed,D_8017A4E0.labels[102]);
+        func_800B669C(1,1);
+        func_800BE078(160,130,300,160,-1,0,failed);
+        func_800B669C(0,3);
 }
