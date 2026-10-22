@@ -406,8 +406,28 @@ def rename_plan(conn, functions, rows, locks=None):
     return actions
 
 
+def build_rename_objects(conn, actions, regions, store, builder=None, words_of=None):
+    """build_objects for a rename, with one allowance: a row whose object had
+    already failed the round-trip gate keeps that recorded failure (and its
+    columns) under the new name when the rebuild fails the gate too. A rename
+    must neither hide a gate failure nor invent a pass; any other refusal, and
+    any gate failure of a row that used to pass, still refuses."""
+    for a in actions:
+        prev = _row(conn, a["old"])
+        try:
+            build_objects([a], regions, store, builder, words_of)
+        except RenameRefusal as exc:
+            if not (prev is not None and prev["gate_reason"]
+                    and "round-trip gate failed" in str(exc)):
+                raise
+            a.update(carry=prev["gate_reason"], o_sha=prev["target_o_sha"],
+                     insn_count=prev["insn_count"])
+    return actions
+
+
 def apply_rename(conn, actions):
-    """Move every keyed row old -> new (via temporary ids), then refresh objects."""
+    """Move every keyed row old -> new (via temporary ids), then refresh objects
+    (a carried gate failure keeps its row's object columns)."""
     from ..coordinator import db as dbmod
 
     purged = 0
@@ -421,6 +441,8 @@ def apply_rename(conn, actions):
                 conn.execute(f"UPDATE {table} SET target_id=? WHERE target_id=?",
                              (a["target_id"], "\x00rename\x00" + a["target_id"]))
         for a in actions:
+            if a.get("carry"):
+                continue
             tid = a["target_id"]
             prev = _row(conn, tid)
             _changed, n = targetsmod._supersede_target(conn, tid, prev["target_o_sha"], a["o_sha"])
@@ -441,10 +463,11 @@ def format_rename(conn, actions):
         n = {t: conn.execute(f"SELECT COUNT(*) FROM {t} WHERE target_id=?", (a["old"],)).fetchone()[0]
              for t in _KEYED_TABLES}
         prev = _row(conn, a["old"])
-        sup = ("object unchanged" if prev["target_o_sha"] == a["o_sha"]
+        sup = (f"gate failure carried: {a['carry']}" if a.get("carry")
+               else "object unchanged" if prev["target_o_sha"] == a["o_sha"]
                else f"object changes, supersedes {n['matrix_entry']} matrix_entry rows")
         lines.append(f"rename    {a['old']:24} -> {a['target_id']:24} @0x{a['address']:08X}"
-                     f" {a['insn_count']:4} insns o={a['o_sha'][:12]}  (function_status"
+                     f" {a['insn_count'] or 0:4} insns o={(a['o_sha'] or '-')[:12]}  (function_status"
                      f" {n['function_status']}, work_unit {n['work_unit']}, promotion_record"
                      f" {n['promotion_record']}; {sup})")
     return lines
@@ -517,7 +540,7 @@ def _main_rename(args, conn, functions, data, layoutmod, BlobStore):
         actions = rename_plan(conn, functions, rows, lock_targets(args.lockfile))
         with tempfile.TemporaryDirectory() as tmp:
             store = BlobStore(Path(tmp) if args.dry_run else data / "blobs")
-            build_objects(actions, layoutmod.collect_regions(), store)
+            build_rename_objects(conn, actions, layoutmod.collect_regions(), store)
     except (RenameRefusal, RenameError) as exc:
         sys.exit(f"refusing: {exc}")
     for line in format_rename(conn, actions):

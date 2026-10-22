@@ -787,6 +787,9 @@ for the split only, so the context proof holds) and `__osAiDeviceBusy` promoted 
 `asm/us/boot_data/*.s`, the Makefile assembles them and composes them into their `data.bin` slots (`--extra`, like the
 game blob/overlays; `data.bin` and its 110 receipts unchanged; builder drill: one changed instruction fails the SHA-1),
 locked as assembly. Static now 676/677 (98.00%; from C 633 / 93.18%, assembly 43). Left on static: func_80012D18.
+**Ultralib renames (lane ulr, same day):** the 7 name leads of `docs/static-asm-ceiling.md` applied with
+`static_rename` + `targets_rename rename` (table `cloud/work/frontier/ulr/renames.json`; details and the tool change
+in `docs/SYMBOL_MISATTRIBUTION.md`); game side unchanged through `game_static_legacy.us.txt`.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in

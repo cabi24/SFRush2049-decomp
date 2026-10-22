@@ -4188,7 +4188,7 @@
     "verified_at": "2026-07-15"
   },
   "src/rom/lib_7b30.c:osCreateThread": {
-    "body_sha256": "626b2ed59f496db09cff24e07e2fd0d35ecde452a6a102776ce8eea3cc64071e",
+    "body_sha256": "fffca99a7eae9572d040eb1c4df5c1e8adbd91c8d70329539e8ff6a67d23813b",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osCreateThread",
     "toolkit_sha": null,
@@ -4340,7 +4340,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_8a80.c:__osInitialize_common": {
-    "body_sha256": "1caeae18a665e88bcfffd35f26c5cb44d77e50146b4c3879094fd6b2db51d37f",
+    "body_sha256": "885f11000e02869dd11c7d2b4d2a64edff01fb3192b85955013f4db512572ef9",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
     "raw_word_diff": 0,
     "storage_owner": "sdk_initialize",

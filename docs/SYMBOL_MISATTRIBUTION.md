@@ -311,3 +311,31 @@ Conveyor DB `targets_rename rename` (functions), `targets._typed_data_field_alia
 name for the task-field family, `tools/recomp/identity.json` maps the seven back to their pre-w27s
 names for the recompiler.
 
+## exceptasm, TLB and cause accessors renamed (lane ulr, 2026-10-21)
+
+Proof by assembly: the wave-28 ceiling proof (`cloud/work/frontier/w28s/ceiling/{prove.sh,prove.log}`) built
+ultralib (decompals `e24c836`) VERSION_J `exceptasm.s`, `unmaptlball.s`, `maptlbrdb.s` and `getcause.s` with the
+project's IDO 5.3 and found each object byte-identical to the ROM (`docs/static-asm-ceiling.md` §1). Table
+`cloud/work/frontier/ulr/renames.json` (a permutation; static side only, no game source calls these names):
+
+| vram | old | ultralib name | file |
+|---|---|---|---|
+| 0x8000C980 | `__osException` | `__osExceptionPreamble` (the 16 B vector stub) | os/exceptasm.s |
+| 0x8000C990 | `__osExceptionPreamble` | `__osException` | os/exceptasm.s |
+| 0x8000CEDC | `__osSendInterrupt` | `send_mesg` (the slot also holds `handle_CpU`) | os/exceptasm.s |
+| 0x8000D298 | `__osExceptionPanic` | `__osCleanupThread` | os/exceptasm.s |
+| 0x8000D840 | `__osTlbFlush` | `osUnmapTLBAll` | os/unmaptlball.s |
+| 0x8000D890 | `__osTlbInit` | `osMapTLBRdb` | os/maptlbrdb.s |
+| 0x8000DBB0 | `osCauseGet` | `__osGetCause` | os/getcause.s |
+
+Applied with the same tools as w22g: `static_rename symbols|source|lock|owned` (symbol_addrs; src/rom
+lib_7b30/lib_8a80/lib_d580/lib_e4f0 and rom_tu.h; 2 lock bodies re-pinned with pure-rename proofs; both storage
+owners' context proofs and sdk_initialize's full module rebound into `cloud/work/frontier/ulr/rebind/`, with a
+reviewed `renamed` revision in `owned_existing_storage.PROFILES`), `make extract` (splat fed a sanitized copy of
+symbol_addrs for the split only) regenerating the permuted nonmatchings and `asm/us/E440.s`/`E490.s`,
+`asm/us/boot_tail/symbols.json` keys renamed in place, `asm_matched.lock.json` re-keyed (words unchanged).
+The game and runtime-image links keep the old names through 7 rows in `game_static_legacy.us.txt`, so
+`src/blob/blob.ld` and `asm/us/blob/symbols.json` regenerate byte-identically. `tools/recomp/identity.json` maps
+the seven back to their old names for the recompiler (patches.json and the runtime shims key on them). Conveyor
+DB: `targets_rename rename` (two rows, 0x8000C990 and 0x8000CEDC, already failed the object round-trip gate;
+`rename` now carries such a recorded failure under the new name instead of refusing).

@@ -104,9 +104,9 @@ __osDisableInt = 0x8000C4B0; // type:func disable interrupts, return previous st
 __osRestoreInt = 0x8000C520; // type:func restore interrupt state
 osViInit = 0x8000C540; // type:func video interface initialization
 __osViSwapContext = 0x8000C670; // type:func swap VI context (writes to VI hardware registers)
-__osException = 0x8000C980; // type:func CPU exception handler (handwritten asm)
+__osExceptionPreamble = 0x8000C980; // type:func libultra __osExceptionPreamble (renamed from __osException, docs/SYMBOL_MISATTRIBUTION.md)
 osViSetSpecialFeatures = 0x80007D20; // type:func set VI special features (gamma, dither, etc.)
-osCauseGet = 0x8000DBB0; // type:func read CP0 Cause register
+__osGetCause = 0x8000DBB0; // type:func libultra __osGetCause (renamed from osCauseGet, docs/SYMBOL_MISATTRIBUTION.md)
 __osSiRawReadIo = 0x8000D7A0; // type:func libultra __osSiRawReadIo (renamed from osPiReadIo, docs/SYMBOL_MISATTRIBUTION.md)
 __osSiRawWriteIo = 0x8000D7F0; // type:func libultra __osSiRawWriteIo (renamed from osPiWriteWord, docs/SYMBOL_MISATTRIBUTION.md)
 osPiReadIo = 0x800081D0; // type:func libultra osPiReadIo (renamed from osPiRawReadWord, docs/SYMBOL_MISATTRIBUTION.md)
@@ -126,8 +126,8 @@ __osPiMesg = 0x80037C70; // PI message buffer (OSMesg)
 __osPiDmaQueue = 0x80037A80; // size:0x18 PI DMA event message queue (OSMesgQueue) - osCreatePiManager
 __osPiDmaMesg = 0x80037A98; // size:0x4 PI DMA message buffer (OSMesg) - capacity 1
 
-__osTlbFlush = 0x8000D840; // type:func flush all TLB entries
-__osTlbInit = 0x8000D890; // type:func initialize TLB for 0xC0000000 region
+osUnmapTLBAll = 0x8000D840; // type:func libultra osUnmapTLBAll (renamed from __osTlbFlush, docs/SYMBOL_MISATTRIBUTION.md)
+osMapTLBRdb = 0x8000D890; // type:func libultra osMapTLBRdb (renamed from __osTlbInit, docs/SYMBOL_MISATTRIBUTION.md)
 __osProbeTLB = 0x8000FCB0; // type:func census S12 (cloud/work/s12_boot_tail_census) exact masked ultralib e24c836 match, formerly labelled __osTLBLookup
 osPhysicalToVirtual = 0x80009C00; // type:func convert physical address to KSEG0 virtual
 osVirtualToPhysical = 0x8000D5C0; // type:func convert virtual address to physical
@@ -182,7 +182,6 @@ __osSiChannelMask = 0x8002C4D4; // SI channel mask byte (u8) - 0xFA = all channe
 __osSetFpcCsr = 0x8000D790; // type:func set FP control/status register
 __osSetSR = 0x8000D770; // type:func set CP0 Status register
 __osGetSR = 0x8000D780; // type:func get CP0 Status register
-// dup-addr(kept osCauseGet): __osGetCause = 0x8000DBB0; // type:func get CP0 Cause register
 __osSpSetStatus = 0x8000D640; // type:func set RSP status register
 __osSpSetPc = 0x8000D650; // type:func set RSP program counter (only if halted)
 __osSpDeviceBusy = 0x8000D710; // type:func check if RSP is busy (bits 0x1C)
@@ -277,9 +276,9 @@ __osRcpImTable = 0x8002D6D0; // size:128 RCP interrupt mask lookup table (u16[64
 __osEventStateTab = 0x80036710; // size:128 event state table array (__OSEventState[16])
 
 // Exception handler code labels (D580.s) - internal entry points within __osException
-__osExceptionPreamble = 0x8000C990; // type:func exception preamble - saves context to __osExceptionSaveArea then running thread
-__osExceptionPanic = 0x8000D298; // type:func exception panic - called after ERET falls through (should not happen)
-__osSendInterrupt = 0x8000CEDC; // type:func send interrupt message to event state table queue (called from exception handler)
+__osException = 0x8000C990; // type:func libultra __osException (renamed from __osExceptionPreamble, docs/SYMBOL_MISATTRIBUTION.md)
+__osCleanupThread = 0x8000D298; // type:func libultra __osCleanupThread (renamed from __osExceptionPanic, docs/SYMBOL_MISATTRIBUTION.md)
+send_mesg = 0x8000CEDC; // type:func libultra send_mesg (renamed from __osSendInterrupt, docs/SYMBOL_MISATTRIBUTION.md)
 
 
 // VI manager state (D140.s, D270.s)

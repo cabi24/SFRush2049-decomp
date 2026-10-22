@@ -303,3 +303,39 @@ def test_cli_absorbed_dry_run(conn, tmp_path, monkeypatch, capsys):
     out = capsys.readouterr().out
     assert "retire    viStub" in out and "absorbed into __osEPiRawWriteIo" in out
     assert _snapshot(conn, ()) == before
+
+
+# --- rename: a pre-existing gate failure is carried, never hidden or invented --
+
+def _failing_gate(region, name, out_o):
+    raise tr.RenameRefusal(f"{name}: round-trip gate failed: word_mismatch@3")
+
+
+def test_rename_carries_a_gate_failure_the_row_already_had(conn, tmp_path):
+    conn.execute("UPDATE n64_target SET gate_reason='length_mismatch 90 != 88'"
+                 " WHERE target_id='osEPiRawStartDma'")
+    conn.commit()
+    actions = tr.rename_plan(conn, tr.layout_functions(_mapping()),
+                             [(A, "osEPiRawStartDma", "__osEPiRawWriteIo")])
+    tr.build_rename_objects(conn, actions, _regions(), BlobStore(tmp_path / "b"),
+                            builder=_failing_gate, words_of=_words_of)
+    assert actions[0]["carry"] == "length_mismatch 90 != 88"
+    assert "gate failure carried: length_mismatch 90 != 88" in tr.format_rename(conn, actions)[0]
+    tr.apply_rename(conn, actions)
+    row = conn.execute("SELECT insn_count, target_o_sha, gate_reason FROM n64_target"
+                       " WHERE target_id='__osEPiRawWriteIo'").fetchone()
+    assert tuple(row) == (88, "old_a", "length_mismatch 90 != 88")
+    assert conn.execute("SELECT 1 FROM n64_target WHERE target_id='osEPiRawStartDma'").fetchone() is None
+    assert conn.execute("SELECT COUNT(*) FROM matrix_entry WHERE target_id='__osEPiRawWriteIo'"
+                        ).fetchone()[0] == 2
+
+
+def test_rename_still_refuses_a_gate_failure_of_a_passing_row(conn, tmp_path):
+    actions = tr.rename_plan(conn, tr.layout_functions(_mapping()),
+                             [(A, "osEPiRawStartDma", "__osEPiRawWriteIo")])
+    with pytest.raises(tr.RenameRefusal, match="round-trip gate failed"):
+        tr.build_rename_objects(conn, actions, _regions(), BlobStore(tmp_path / "b"),
+                                builder=_failing_gate, words_of=_words_of)
+    tr.build_rename_objects(conn, actions, _regions(), BlobStore(tmp_path / "b2"),
+                            builder=_builder, words_of=_words_of)
+    assert "carry" not in actions[0] and actions[0]["insn_count"] == 86

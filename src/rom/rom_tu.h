@@ -99,7 +99,7 @@ extern s32 osDpIsBusy(void);
 extern void __osPackRequestData(u8);
 extern OSTime __osInsertTimer(OSTimer *);
 extern void __osSetTimerIntr(OSTime);
-extern void __osExceptionPanic(void);
+extern void __osCleanupThread(void);
 extern OSThread *__osRunQueue;
 typedef u32 OSIntMask;
 #define OS_IM_ALL 0x003FFF01U

@@ -18,8 +18,8 @@
 > Section 2a's 10 routines joined on the same day: their `.s` (`asm/us/boot_data/`) is assembled and composed
 > into their `data.bin` slots by the Makefile, so `data.bin` itself (110 receipts) is unchanged; 43 functions /
 > 7,816 B are now locked and static reads `676/677 functions, 159,040/162,284 bytes (98.00%: from C 633 / 93.18%,
-> from assembly 43 / 4.82%)`. Still open: the
-> 7 ultralib name leads (renames go through the `symbol_addrs` context re-pin). The C-reachable pair (section 3)
+> from assembly 43 / 4.82%)`. The 7 ultralib name leads were applied the same day (lane ulr,
+> `docs/SYMBOL_MISATTRIBUTION.md`). The C-reachable pair (section 3)
 > stays C work: the lock refuses them. `__osAiDeviceBusy` landed as C on 2026-10-21 (segment 0x10760 converted
 > to `rom/lib_10760`, promoted with the July score0 lock; ROM SHA-1 exact), leaving `func_80012D18`.
 
@@ -84,7 +84,7 @@ sh cloud/work/frontier/w28s/ceiling/compare.sh                   # Pi, repo root
 exceptasm.s's object also contains `__osPopThread` (0x8000D10C, 16 B). That function is already
 C-promoted in `src/rom/lib_d580.c`; it is counted in the population as C, not here.
 
-**Name leads** (the bold names above): the project's labels differ from ultralib's at
+**Name leads** (the bold names above; **applied 2026-10-21 by lane ulr**, so the project now uses the bold names): the project's labels differ from ultralib's at
 0x8000C980/0x8000C990 (the two are swapped), 0x8000CEDC, 0x8000D298, 0x8000D840, 0x8000D890 and 0x8000DBB0.
 The bytes are proven identical, but nothing was renamed: a rename is a `symbol_addrs` edit with the
 owned-context re-pin (see the w24t/w25a/w27s rename procedure).

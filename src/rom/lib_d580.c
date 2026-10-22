@@ -4,9 +4,9 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osException.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osExceptionPreamble.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osSendInterrupt.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osException.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/send_mesg.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osEnqueueAndYield.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osEnqueueThread.s")
 /* PROMOTED 2026-09-24 — __osPopThread
@@ -32,7 +32,7 @@ OSThread *__osPopThread(OSThread **queue)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osDispatchThread.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osExceptionPanic.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osCleanupThread.s")
 /* PROMOTED 2026-07-15 — bzero_alt
  * Source:   work/nearmiss/bzero_alt/source.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

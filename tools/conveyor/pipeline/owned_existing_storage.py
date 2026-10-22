@@ -50,6 +50,11 @@ PROFILES={
                       members=('__osInitialize_common','__osPiReadDeviceType')),
                  # Lane w23g's ll.c rename: __ll_mul/__ull_div (__muldi3/__udivdi3 before).
                  dict(source_sha256='403a97d34d1c618222940942f046998a0aed0833648498a7f9b6b31efb1a3131',
+                      members=('__osInitialize_common','__osPiReadDeviceType')),
+                 # Lane ulr's ultralib renames (cloud/work/frontier/ulr/renames.json): the
+                 # vector stub __osException -> __osExceptionPreamble, osCauseGet ->
+                 # __osGetCause, __osTlbFlush/__osTlbInit -> osUnmapTLBAll/osMapTLBRdb.
+                 dict(source_sha256='ce9aaf99f7d5000e3bcbb39d5094a3504674974a4a7a1aef5dcf402d42f7bae2',
                       members=('__osInitialize_common','__osPiReadDeviceType')),)),
 }
 

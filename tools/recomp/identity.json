@@ -343,6 +343,55 @@
    "recomp": "__osContParseResponse",
    "confidence": "high",
    "evidence": "ultralib src/io/pfsgetstatus.c __osPfsGetOneChannelData (lane w27s inventory rename, byte-identical compile of pfsgetstatus.c VERSION_J -g0 -O2; __osContParseResponse before). Kept under its pre-w27s name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000C980",
+   "inventory": "__osExceptionPreamble",
+   "recomp": "__osException",
+   "confidence": "high",
+   "evidence": "ultralib src/os/exceptasm.s __osExceptionPreamble (lane ulr inventory rename, byte-identical object in the w28s proof; __osException before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000C990",
+   "inventory": "__osException",
+   "recomp": "__osExceptionPreamble",
+   "confidence": "high",
+   "evidence": "ultralib src/os/exceptasm.s __osException (lane ulr inventory rename, byte-identical object in the w28s proof; __osExceptionPreamble before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000CEDC",
+   "inventory": "send_mesg",
+   "recomp": "__osSendInterrupt",
+   "confidence": "high",
+   "evidence": "ultralib src/os/exceptasm.s send_mesg (lane ulr inventory rename, byte-identical object in the w28s proof; __osSendInterrupt before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D298",
+   "inventory": "__osCleanupThread",
+   "recomp": "__osExceptionPanic",
+   "confidence": "high",
+   "evidence": "ultralib src/os/exceptasm.s __osCleanupThread (lane ulr inventory rename, byte-identical object in the w28s proof; __osExceptionPanic before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D840",
+   "inventory": "osUnmapTLBAll",
+   "recomp": "__osTlbFlush",
+   "confidence": "high",
+   "evidence": "ultralib src/os/unmaptlball.s osUnmapTLBAll (lane ulr inventory rename, byte-identical object in the w28s proof; __osTlbFlush before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D890",
+   "inventory": "osMapTLBRdb",
+   "recomp": "__osTlbInit",
+   "confidence": "high",
+   "evidence": "ultralib src/os/maptlbrdb.s osMapTLBRdb (lane ulr inventory rename, byte-identical object in the w28s proof; __osTlbInit before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000DBB0",
+   "inventory": "__osGetCause",
+   "recomp": "osCauseGet",
+   "confidence": "high",
+   "evidence": "ultralib src/os/getcause.s __osGetCause (lane ulr inventory rename, byte-identical object in the w28s proof; osCauseGet before). Kept under its pre-ulr name for the recompiler so recompiled output is unchanged (patches.json and the runtime shims key on it); giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
   }
  ]
 }

@@ -1,7 +1,7 @@
 /* flags: -g0 -O1 -mips2 -G 0 -non_shared */
 #include "rom_tu.h"
 typedef struct { u32 inst1, inst2, inst3, inst4; } ExceptionVector;
-extern ExceptionVector __osException;
+extern ExceptionVector __osExceptionPreamble;
 u32 gSpTaskState;
 OSTime gAudioDmaCounter = 62500000;
 s32 gAudioDmaBufferPtr=0x2e6d354;
@@ -9,8 +9,8 @@ u32 __osShutdown=0;
 u32 __osGlobalIntMask=0x003fff01;
 extern u32 osResetType;
 extern u8 osAppNMIBuffer[];
-extern u32 __osGetSR(void), osCauseGet(void);
-extern void __osSetSR(u32), __osSetFpcCsr(u32), __osPiReadDeviceType(void), __osTlbFlush(void), __osTlbInit(void);
+extern u32 __osGetSR(void), __osGetCause(void);
+extern void __osSetSR(u32), __osSetFpcCsr(u32), __osPiReadDeviceType(void), osUnmapTLBAll(void), osMapTLBRdb(void);
 extern s32 __osSiRawReadIo(u32,u32*), __osSiRawWriteIo(u32,u32);
 extern void osInvalICache(void*,s32);
 extern u64 __ll_mul(u64,u64), __ull_div(u64,u64);
@@ -22,21 +22,21 @@ void __osInitialize_common(void) {
  __osSetFpcCsr(0x01000800);
  while(__osSiRawReadIo(0x1fc007fc,&pifdata)) {}
  while(__osSiRawWriteIo(0x1fc007fc,pifdata|8)) {}
- *(ExceptionVector*)0x80000000 = __osException;
- *(ExceptionVector*)0x80000080 = __osException;
- *(ExceptionVector*)0x80000100 = __osException;
- *(ExceptionVector*)0x80000180 = __osException;
+ *(ExceptionVector*)0x80000000 = __osExceptionPreamble;
+ *(ExceptionVector*)0x80000080 = __osExceptionPreamble;
+ *(ExceptionVector*)0x80000100 = __osExceptionPreamble;
+ *(ExceptionVector*)0x80000180 = __osExceptionPreamble;
  osWritebackDCache((void*)0x80000000,0x190);
  osInvalICache((void*)0x80000000,0x190);
  __osPiReadDeviceType();
- __osTlbFlush();
- __osTlbInit();
+ osUnmapTLBAll();
+ osMapTLBRdb();
  gAudioDmaCounter=__ull_div(__ll_mul(gAudioDmaCounter,3),4);
  if(osResetType==0) bzero(osAppNMIBuffer,0x40);
  if(osTvType==0) gAudioDmaBufferPtr=0x2f5b2d2;
  else if(osTvType==2) gAudioDmaBufferPtr=0x2e6025c;
  else gAudioDmaBufferPtr=0x2e6d354;
- if(osCauseGet()&0x1000) { while(1) {} }
+ if(__osGetCause()&0x1000) { while(1) {} }
  *(volatile u32*)0xa4500008=1;
  *(volatile u32*)0xa4500010=0x3fff;
  *(volatile u32*)0xa4500014=0xf;

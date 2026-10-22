@@ -1,0 +1,54 @@
+{
+  "note": "Ultralib name leads from docs/static-asm-ceiling.md \u00a71 (byte-identical objects, w28s prove.log); ultralib decompals e24c836 VERSION_J. Applied 2026-10-21.",
+  "renames": [
+    {
+      "vram": "0x8000C980",
+      "old": "__osException",
+      "new": "__osExceptionPreamble",
+      "status": "accepted",
+      "evidence": "exceptasm.s: LEAF(__osExceptionPreamble), the 16 B vector stub copied to 0x80000000"
+    },
+    {
+      "vram": "0x8000C990",
+      "old": "__osExceptionPreamble",
+      "new": "__osException",
+      "status": "accepted",
+      "evidence": "exceptasm.s: LEAF(__osException), the handler the stub jumps to"
+    },
+    {
+      "vram": "0x8000CEDC",
+      "old": "__osSendInterrupt",
+      "new": "send_mesg",
+      "status": "accepted",
+      "evidence": "exceptasm.s: LEAF(send_mesg) (the slot also holds handle_CpU)"
+    },
+    {
+      "vram": "0x8000D298",
+      "old": "__osExceptionPanic",
+      "new": "__osCleanupThread",
+      "status": "accepted",
+      "evidence": "exceptasm.s: __osCleanupThread (osCreateThread stores it as the thread's return address)"
+    },
+    {
+      "vram": "0x8000D840",
+      "old": "__osTlbFlush",
+      "new": "osUnmapTLBAll",
+      "status": "accepted",
+      "evidence": "unmaptlball.s: LEAF(osUnmapTLBAll)"
+    },
+    {
+      "vram": "0x8000D890",
+      "old": "__osTlbInit",
+      "new": "osMapTLBRdb",
+      "status": "accepted",
+      "evidence": "maptlbrdb.s: LEAF(osMapTLBRdb)"
+    },
+    {
+      "vram": "0x8000DBB0",
+      "old": "osCauseGet",
+      "new": "__osGetCause",
+      "status": "accepted",
+      "evidence": "getcause.s: LEAF(__osGetCause)"
+    }
+  ]
+}

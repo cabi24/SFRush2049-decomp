@@ -13,3 +13,12 @@
 // images resolve against their own frozen asm/us/ovl_*/symbols.json.
 //
 // Format: symbol_addrs (NAME = 0xADDR; // static name NEW).
+// Lane ulr (2026-10-21, cloud/work/frontier/ulr/renames.json): no game source calls these;
+// the rows keep src/blob/blob.ld and asm/us/blob/symbols.json byte-identical.
+__osException = 0x8000C980;
+__osExceptionPreamble = 0x8000C990;
+__osSendInterrupt = 0x8000CEDC;
+__osExceptionPanic = 0x8000D298;
+__osTlbFlush = 0x8000D840;
+__osTlbInit = 0x8000D890;
+osCauseGet = 0x8000DBB0;

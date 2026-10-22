@@ -1,7 +1,7 @@
 /* Handwritten function */
-nonmatching __osSendInterrupt, 0xE8
+nonmatching send_mesg, 0xE8
 
-glabel __osSendInterrupt
+glabel send_mesg
     /* DADC 8000CEDC 3C0A8003 */  lui        $t2, %hi(__osEventStateTab)
     /* DAE0 8000CEE0 254A6710 */  addiu      $t2, $t2, %lo(__osEventStateTab)
     /* DAE4 8000CEE4 01445021 */  addu       $t2, $t2, $a0
@@ -64,4 +64,4 @@ glabel __osSendInterrupt
     /* DBB8 8000CFB8 AF490018 */  sw         $t1, 0x18($k0) /* handwritten instruction */
     /* DBBC 8000CFBC 1000FFB5 */  b          .L8000CE94
     /* DBC0 8000CFC0 AF5B0118 */   sw        $k1, 0x118($k0) /* handwritten instruction */
-endlabel __osSendInterrupt
+endlabel send_mesg
