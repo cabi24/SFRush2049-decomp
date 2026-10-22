@@ -1,5 +1,11 @@
 # Static code: the assembly ceiling
 
+> **Update 2026-10-21.** The static denominator now also counts the 10 hand-written routines in the boot
+> segment tail (section 2a, `pipeline.boot_data`): **632/677 functions, 151,176/162,284 bytes (93.16%)**.
+> Assembly in the original build: **43 functions / 7,816 bytes** (sections 1, 2 and 2a). C-reachable: the
+> same **2 functions / 3,196 bytes** (section 3). Ceiling: **634/677 functions, 154,372/162,284 bytes
+> (95.12%)**. The wave-28 text below is unchanged apart from this note and section 2a.
+
 Status at wave 28 (lane w28s, 2026-10-12, after #377 func_80011910 landed): `make progress` reports
 **static code 632/667 functions, 151,176/160,720 bytes (94.06%)**. Of the 35 functions still in assembly,
 **33 functions / 6,252 bytes are assembly in the original build too**: they cannot become C and are
@@ -76,6 +82,23 @@ owned-context re-pin (see the w24t/w25a/w27s rename procedure).
 | inflate_entry_alt | 132 | lib_5610 (converted) | same hand edit (w27s) |
 | entrypoint | 80 | 0x1000 (whole-asm) | boot stub: clears .bss from 0x8002E8E0, sets `sp`, jumps to `main` (`/* Handwritten function */`) |
 | __setfpcsr | 32 | 0x55F0 (whole-asm) | `ctc1 a0,$31; nop; nop; jr ra` + padding; not an ultralib routine (ultralib's `__osSetFpcCsr` also returns the old value) |
+
+## 2a. Boot segment tail: hand-written, still in the ROM data bin (10 functions, 1,564 B)
+
+Added 2026-10-21. These sit past splat's static code end (ROM 0x283D0) inside the `data` bin, so they are
+not in `layout derive`; `pipeline.boot_data` labels them and `blob_rom`'s cartridge report adds them to the
+static denominator. `tests/conveyor/test_boot_data.py` proves the extents and callers.
+
+| Function | Bytes | Evidence |
+|---|---:|---|
+| func_800277D0, func_800278C4 | 244, 188 | libgsm RPE decoding and long-term synthesis, called by `func_80026558`; each reads an inline table PC-relatively with a never-taken `bltzal $zero` |
+| func_80027B44, func_80027980, func_80027C98 | 340, 452, 164 | short-term synthesis: `func_80026360` calls B44, which `bal`s into 980/C98 with no frames; C98 calls a coefficient routine through `jalr t3` eight times |
+| func_80027D3C, func_80027D54, func_80027D64, func_80027D7C | 24, 16, 24, 84 | the coefficient routines: pointers formed as `ra + imm` after `bltzal $zero`; three branch into D7C (`LARp_to_rp`, constants 11059/20070/26112) |
+| func_8002C5E0 | 28 | D-cache `cache 0xd` loop over [a0, a1), placed among the segment's .data; jal'd by six static functions |
+
+None of this has a C form: PC-relative self-addressing, frameless `bal` calls and computed callbacks into
+code fragments are hand-written assembly. Landing them means splitting the `data` bin (110 receipts pin
+`assets/us/data.bin`) and promoting the `.s`.
 
 ## 3. C-reachable, still open (2 functions, 3,196 B)
 
