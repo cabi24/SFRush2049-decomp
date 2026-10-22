@@ -253,3 +253,30 @@ not matched", or to find where a near-miss draft is wrong. Details: `tools/recom
    line note: `correct, not matched (oracle EQUIVALENT 1800 frames, N calls identical, script S;
    runs/<SET>/verdict.json, replacements.json <id>)`. Limits to state with it: the scripts used; functions
    a script does not reach get no verdict; thread stacks below the replaced function's frame are not judged.
+
+## 2026-10-21 lessons (z12d18: func_80012D18, IDO 7.1, 578 -> 187 rows in one session)
+
+Method that worked on a far near-miss (674/787 words, 6 words short, five lanes stuck on it):
+1. **Align by opcode first** (`difflib` on the mnemonic sequences of `t.rows`/`m.rows`; `cloud/work/frontier/z12d18/rows.py`
+   prints ranges). It separates structural differences (inserted/deleted instructions) from allocation noise; fix
+   structure before touching registers.
+2. **Read the target's shape at each misaligned block** and name the C construct that emits it:
+   - `mfc1; sll 16; sra 16; sh; sll 16` = the value of a short assignment reused: `x = (s->f = expr) << 16`.
+   - `bgez r; sra; addiu at,r,31; sra` = signed `/ 32` of an int-promoted value (a `>> 5` in the source is a plain
+     `sra`); two branches of one function may be written differently.
+   - a branch into another switch's case body with that body's registers preloaded in the delay slot = a `goto`
+     into a shared tail (IDO does not cross-jump identical tails).
+   - the first instruction of a block sitting in the previous branch's delay slot = that statement comes first.
+   - a field reloaded after a store to a stack array: the store killed it; computing the dependent value before the
+     store removes the reload (`offset = pos - V->loop_start;` before `address[0] = V->loop_start;`).
+3. **Frame by usage profile**: list every `N(sp)` the target and ours touch; a constant shift is a declared-local
+   difference. `spill71.sh` gives the cfe area and homes; a never-used probe local tests a layout hypothesis in one
+   compile (disclose any that stays). A named local replaces a cfe temp (the temp for an assignment expression's
+   value is 2 bytes), so swapping forms moves the area.
+4. **7.1 colouring is by priority = totalsave/nocs**, highest first; `ctrace71.sh` shows it. **Confirm the payoff with
+   `force71.sh` before searching** (one compile tells you how many rows the swap is worth). A second definition
+   (`x = a; x += b;`, same instructions) raises a variable web's totalsave and moves it ahead: that fixed a frames/excess
+   a1/a2 swap. uopt copy-propagates single-definition locals into expressions in every form tried (own statement,
+   int, register, two-step, initialised), so changing the *other* web's priority is the lever.
+5. Harness: `cloud/work/frontier/z12d18/variants.py BASE SPEC...` applies named edit sets (`a+b`) and scores each with
+   `obj71.sh`; keep every tried edit in its `EDITS` table so the next lane does not repeat it.
