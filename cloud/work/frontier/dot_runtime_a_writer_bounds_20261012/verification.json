@@ -616,7 +616,7 @@
       "groups/dot_runtime_a_menu_renderers_20261011/group.json": "3df7daa31c7f9ae91340f0ced72d3411b45296124ac07718bccc808206cce3b4",
       "host.c": "75ce6962ad076bc28768e9039d8b24d1a5aa4afd5916c12170d5c78ab29a866d",
       "trace.py": "ea720a5ce6d3d54618d1369d83c3afb71e9fef25ca314850d58a2e0ea0dc0f61",
-      "verify.py": "3cbf3b69c4cd6f52fbc8a9254352b63edad2b865faf4de3bc0507ea4646e026c"
+      "verify.py": "41a7ebf411fea0c830a114cd8e68923d7a909f66496cb8199a37ccf5756d4e01"
     },
     "targets": {
       "func_803A6F2C": {

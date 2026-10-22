@@ -259,9 +259,18 @@ def replay(deep=False):
     strip=lambda s: re.sub(r'/\*.*?\*/','',s,flags=re.S).strip()
     # w25p: once installed, production equals this packet; before, it is the text[100] baseline.
     installed=strip((baseline/'group.c').read_text())
-    require(strip((GROUP/'group.c').read_text()) in (installed,) or
-            strip((GROUP/'group.c').read_text()).replace('char text[76];','char text[100];')==installed,
-            'change exceeds sole bounded capacity edit')
+    packet=strip((GROUP/'group.c').read_text())
+    if packet!=installed and packet.replace('char text[76];','char text[100];')!=installed:
+        # w38: a later revision may supersede the installed group in place (w38b claims the
+        # deleted-inline stubs func_803A6F14/1C/24). The revision this packet installed is then
+        # kept byte-identically in cloud/work/frontier/superseded/ (handoff section 5), and
+        # production must still lock every member this packet claims.
+        superseded=ROOT/'cloud/work/frontier/superseded'/GROUP_NAME/'group.c'
+        require(superseded.is_file() and strip(superseded.read_text())==packet,
+                'change exceeds sole bounded capacity edit')
+        production=json.loads((baseline/'group.json').read_text())
+        require(set(MEMBERS)<=set(production['members']),
+                'superseding production group dropped a packet member')
     meta=metadata();extents={e['name']:e for e in meta['functions']}
     with target_scope():
         for name,size in SIZES.items():
