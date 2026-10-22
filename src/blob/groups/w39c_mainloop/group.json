@@ -1,0 +1,15 @@
+{
+ "members": [
+  "world_trigger_activate"
+ ],
+ "files": [
+  "mainloop.c"
+ ],
+ "keep": [
+  "world_trigger_activate"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": [],
+ "provenance": "w39c (wave 39), from w36w3's draft and the w39a role identification",
+ "note": "NEW group. MainPreNMI / MainEndFrame are inlined non-static helpers, not kept (their deleted-procedure stubs carry symbols and are not installed; unit: force_internal MainPreNMI, MainEndFrame). world_collision_response (EndGraphics) is called by jal and stays retail asm: no value is live across that call, so its (unmatched) body does not shape this one. D_801161CC is a function-local static (own .data verified by score.py)."
+}

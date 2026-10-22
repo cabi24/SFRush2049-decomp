@@ -746,6 +746,7 @@ func_80095198:
 .section .text.sound_position_update, "ax", @progbits
 .globl sound_position_update
 sound_position_update:
+    /* compiled from src/blob/sound_position_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C870008

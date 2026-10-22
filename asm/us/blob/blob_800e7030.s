@@ -7779,6 +7779,7 @@ gfx_frame_begin:
 .section .text.world_trigger_activate, "ax", @progbits
 .globl world_trigger_activate
 world_trigger_activate:
+    /* compiled from src/blob/world_trigger_activate.c */
     .word 0x27BDFFC8
     .word 0xAFBF0014
     .word 0x3C048003
@@ -7995,6 +7996,7 @@ func_800EE8AC:
 .section .text.world_effect_update, "ax", @progbits
 .globl world_effect_update
 world_effect_update:
+    /* compiled from src/blob/world_effect_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C018016

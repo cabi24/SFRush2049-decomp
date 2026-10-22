@@ -8,14 +8,16 @@
   "audio_frame_sync",
   "func_800972BC",
   "suspension_setup",
-  "func_800A5014"
+  "func_800A5014",
+  "brake_force_apply"
  ],
  "files": [
   "group.c",
   "waves.c",
   "loadwave.c",
   "replacewave.c",
-  "entity_render_mode.c"
+  "entity_render_mode.c",
+  "wheel_torque_apply.c"
  ],
  "keep": [
   "audio_frame_sync",
@@ -23,17 +25,18 @@
   "fp_call_wrapper",
   "suspension_setup",
   "entity_lod_select",
-  "entity_render_mode"
+  "entity_render_mode",
+  "wheel_torque_apply"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
  "context": [
-  "brake_force_apply",
   "func_80097694",
   "func_80096288",
   "entity_lod_select",
-  "entity_render_mode"
+  "entity_render_mode",
+  "wheel_torque_apply"
  ],
  "provenance": "cloud Lanes A (PRs #1-#4), cloud/work/ipa-groups/audio_frame_sync | w36x5 (wave 36): waves.c cluster, cloud/work/frontier/w36x5/RESULTS.md",
- "note": "w36x5 (wave 36) supersedes audio_frame_sync IN PLACE: same name, old member func_800972C4 unchanged (its text in group.c untouched). New members: SetupWaveModel/func_8009715C/func_80097164/fp_call_wrapper (waves.c, w36x5: MAT3 _SetupWaveModel/_ReadWave + Dreamcast modelIdx; func_8009715C = the inlined DMA-read static whose locked 8-byte stub gets its real body), audio_frame_sync = LoadWave and func_800972BC = its inlined _NewWaveInstance (loadwave.c, w36t's code), suspension_setup = ReplaceWave and func_800A5014 = its inlined _ReplaceWaveInstance (replacewave.c, w36t's code). group.c = old group.c minus the context bodies those files now define and the two __standin_* callers; its func_80096288 context is the locked slot_sound body verbatim (dead if(0) switch inline blocker). entity_render_mode.c is a byte-identical copy of src/blob/groups/slot_sound/entity_render_mode.c (context; second call site keeps func_80096288 out of line). Overrides: force_internal SetupWaveModel, func_80097164, func_8009715C, func_800972BC, func_800A5014, _BGLoadWave; prefer_definition func_8009715C/func_800972BC/func_800A5014 -> this group's files (locked stub singles superseded), audio_frame_sync -> loadwave.c. Devices: SetupWaveModel's empty do {} while (0) (disclosed in waves.c); _BGLoadWave is an invented helper name (no retail stub). brake_force_apply stays context: body identical in the unit except the .align 5 epilogue padding (needs an align override to claim)."
+ "note": "w36x5 (wave 36) supersedes audio_frame_sync IN PLACE: same name, old member func_800972C4 unchanged (its text in group.c untouched). New members: SetupWaveModel/func_8009715C/func_80097164/fp_call_wrapper (waves.c, w36x5: MAT3 _SetupWaveModel/_ReadWave + Dreamcast modelIdx; func_8009715C = the inlined DMA-read static whose locked 8-byte stub gets its real body), audio_frame_sync = LoadWave and func_800972BC = its inlined _NewWaveInstance (loadwave.c, w36t's code), suspension_setup = ReplaceWave and func_800A5014 = its inlined _ReplaceWaveInstance (replacewave.c, w36t's code). group.c = old group.c minus the context bodies those files now define and the two __standin_* callers; its func_80096288 context is the locked slot_sound body verbatim (dead if(0) switch inline blocker). entity_render_mode.c is a byte-identical copy of src/blob/groups/slot_sound/entity_render_mode.c (context; second call site keeps func_80096288 out of line). Overrides: force_internal SetupWaveModel, func_80097164, func_8009715C, func_800972BC, func_800A5014, _BGLoadWave; prefer_definition func_8009715C/func_800972BC/func_800A5014 -> this group's files (locked stub singles superseded), audio_frame_sync -> loadwave.c. Devices: SetupWaveModel's empty do {} while (0) (disclosed in waves.c); _BGLoadWave is an invented helper name (no retail stub). brake_force_apply stays context: body identical in the unit except the .align 5 epilogue padding (needs an align override to claim). | w39c (wave 39) supersedes IN PLACE: brake_force_apply = BGLoadWaveMain@waves.c promoted from context to member (body rewritten as a for(;;) thread loop in group.c; claims [brake_force_apply]); NEW context file wheel_torque_apply.c (byte copy of the locked single src/blob/wheel_torque_apply.c, kept) placed only so brake_force_apply sits at its retail offset modulo 32 in the group object (its unreachable epilogue is .align 5 padded). Unit: needs an `align` override for brake_force_apply (like audio_queue_process / task_complete_signal). Old members and other files unchanged."
 }

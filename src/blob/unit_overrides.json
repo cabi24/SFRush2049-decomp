@@ -812,6 +812,18 @@
   {
    "name": "func_800A3640",
    "reason": "group w37a_paksys (w37a, MAT3 paksysdc.c): private IPA callee of PS_CreateFile / PS_PakServer; retail convention is internal"
+  },
+  {
+   "name": "func_800EE8AC",
+   "reason": "deleted-procedure stub of the N64 _InitGfx, inlined across files into InitGraphics (world_effect_update, group w39c_initgraphics) and InitSystem; only the retail stub remains"
+  },
+  {
+   "name": "MainPreNMI",
+   "reason": "inlined non-static helper of the main-thread message step (world_trigger_activate, group w39c_mainloop); invented name, no retail symbol"
+  },
+  {
+   "name": "MainEndFrame",
+   "reason": "inlined non-static helper of the main-thread message step (world_trigger_activate, group w39c_mainloop); invented name, no retail symbol"
   }
  ],
  "prefer_definition": [
@@ -979,6 +991,11 @@
    "name": "no_catchup",
    "file": "src/blob/groups/w37a_paksys/group.c",
    "reason": "w37a_paksys: the one-parameter real body supersedes the locked single (same 14 words); PS_CreateFile and PS_PakServer call it with the parameter in a1"
+  },
+  {
+   "name": "func_800EE8AC",
+   "file": "src/blob/groups/w39c_initgraphics/initgfx.c",
+   "reason": "locked before as an empty stub single; the real N64 _InitGfx body in the InitGraphics group is what InitGraphics and InitSystem inline (w39c); it still produces the 2-word retail stub"
   }
  ],
  "align": [
@@ -993,6 +1010,10 @@
   {
    "name": "dma_wait_complete",
    "reason": "position dependent, same mechanism as task_complete_signal and audio_queue_process: the scheduler-client thread ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text (105 words only at its image offset modulo 32; 103 in the shadow unit otherwise)"
+  },
+  {
+   "name": "brake_force_apply",
+   "reason": "position dependent, same mechanism as task_complete_signal and audio_queue_process: the wave-loader thread (BGLoadWaveMain) ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text (49 words only at its image offset modulo 32; w39c)"
   }
  ],
  "extern_data": [

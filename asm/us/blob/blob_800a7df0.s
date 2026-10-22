@@ -4909,6 +4909,7 @@ fp_call_wrapper:
 .section .text.brake_force_apply, "ax", @progbits
 .globl brake_force_apply
 brake_force_apply:
+    /* compiled from src/blob/brake_force_apply.c */
     .word 0x27BDFFB8
     .word 0xAFA40048
     .word 0xAFBF003C

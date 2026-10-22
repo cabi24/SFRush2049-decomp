@@ -3745,7 +3745,7 @@ typedef s64 M2C_UNK64;
 
 /* group members */
 s32 audio_frame_sync(s32 kind, s32 skip, s32 async, s32 flag, void *buf);
-void brake_force_apply(s32 arg0);
+void brake_force_apply(void *arg);
 void fp_call_wrapper(s32 arg0);
 void SetupWaveModel(s32 ipa_fp, s32 ipa_t0);
 void func_80097164(s32 ipa_fp);
@@ -3753,16 +3753,24 @@ void suspension_setup(s32 arg0, s32 arg1);
 
 
 
-void brake_force_apply(s32 arg0) {
-    void *sp44;
+/* brake_force_apply (0x800AC75C, 196 B; historical label) = BGLoadWaveMain@waves.c (GC: DWARF "Erased static void
+ * BGLoadWaveMain()"; no Dreamcast counterpart): the N64 background wave-load thread (thread id 8, created by the
+ * static game_init). It waits for LoadWave's background request (_BGLoadWave posts on D_80156BB0), reads the
+ * requested wave (_ReadWave = func_80097164, whose IPA convention takes the index in s8 and leaves s0-s7 unsaved:
+ * hence the nine saves) and signals completion on D_80035440 (InitWaves' inlined _BGLoadWaveCheck waits on it).
+ * w39c (wave 39): promoted from context to member. Its unreachable epilogue after the endless loop is `.align 5`
+ * padded, so the body only matches at its retail offset modulo 32: wheel_torque_apply.c (byte copy of the locked
+ * single, retail 0x800AC668) is context that puts it there in this object; the unit needs an `align` override. */
+void brake_force_apply(void *arg) {
+    OSMesg msg;
 
     osCreateMesgQueue((OSMesgQueue *) &D_80156BB0, (void **) &D_80156BD4, 1);
     osSetThreadPri((OSThread *) &D_80034690, 3);
-loop_1:
-    osRecvMesg((OSMesgQueue *) &D_80156BB0, &sp44, 1);
-    func_80097164(D_801569AC);
-    osSendMesg((OSMesgQueue *) &D_80035440, NULL, 1);
-    goto loop_1;
+    for (;;) {
+        osRecvMesg((OSMesgQueue *) &D_80156BB0, &msg, 1);
+        func_80097164(D_801569AC);
+        osSendMesg((OSMesgQueue *) &D_80035440, NULL, 1);
+    }
 }
 
 

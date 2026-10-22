@@ -1,0 +1,21 @@
+{
+ "members": [
+  "sound_position_update"
+ ],
+ "files": [
+  "updatefx.c",
+  "timeout.c",
+  "getcmd.c"
+ ],
+ "keep": [
+  "sound_position_update",
+  "func_80095198"
+ ],
+ "context": [
+  "func_80095198",
+  "func_80091B00"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "w39c (wave 39): MAT3/DC _UpdateFx typed port, w39a identification",
+ "note": "NEW group. timeout.c = byte copy of locked single src/blob/func_80095198.c (AudioTimeout, kept, inlined from its own file as in engine_sound_sync); getcmd.c = byte copy of src/blob/groups/frontier_slot18_alloc/func_80091B00.c (_GetCmd, internal: IPA a2 preservation). One disclosed code-free shaping line (see updatefx.c header)."
+}
