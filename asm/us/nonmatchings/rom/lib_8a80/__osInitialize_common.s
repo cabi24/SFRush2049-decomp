@@ -48,30 +48,30 @@ glabel __osInitialize_common
     /* 8B24 80007F24 1440FFF9 */  bnez       $v0, .L80007F0C
     /* 8B28 80007F28 00000000 */   nop
   .L80007F2C:
-    /* 8B2C 80007F2C 3C088001 */  lui        $t0, %hi(__osException)
-    /* 8B30 80007F30 2508C980 */  addiu      $t0, $t0, %lo(__osException)
+    /* 8B2C 80007F2C 3C088001 */  lui        $t0, %hi(__osExceptionPreamble)
+    /* 8B30 80007F30 2508C980 */  addiu      $t0, $t0, %lo(__osExceptionPreamble)
     /* 8B34 80007F34 8D010000 */  lw         $at, 0x0($t0)
     /* 8B38 80007F38 3C198000 */  lui        $t9, %hi(g_tlb_exception_vector)
-    /* 8B3C 80007F3C 3C0D8001 */  lui        $t5, %hi(__osException)
+    /* 8B3C 80007F3C 3C0D8001 */  lui        $t5, %hi(__osExceptionPreamble)
     /* 8B40 80007F40 AF210000 */  sw         $at, %lo(g_tlb_exception_vector)($t9)
     /* 8B44 80007F44 8D0B0004 */  lw         $t3, 0x4($t0)
-    /* 8B48 80007F48 25ADC980 */  addiu      $t5, $t5, %lo(__osException)
+    /* 8B48 80007F48 25ADC980 */  addiu      $t5, $t5, %lo(__osExceptionPreamble)
     /* 8B4C 80007F4C 3C0C8000 */  lui        $t4, (0x80000080 >> 16)
     /* 8B50 80007F50 AF2B0004 */  sw         $t3, %lo(g_tlb_exception_instr1)($t9)
     /* 8B54 80007F54 8D010008 */  lw         $at, 0x8($t0)
     /* 8B58 80007F58 358C0080 */  ori        $t4, $t4, (0x80000080 & 0xFFFF)
-    /* 8B5C 80007F5C 3C098001 */  lui        $t1, %hi(__osException)
+    /* 8B5C 80007F5C 3C098001 */  lui        $t1, %hi(__osExceptionPreamble)
     /* 8B60 80007F60 AF210008 */  sw         $at, %lo(g_tlb_exception_instr2)($t9)
     /* 8B64 80007F64 8D0B000C */  lw         $t3, 0xC($t0)
-    /* 8B68 80007F68 2529C980 */  addiu      $t1, $t1, %lo(__osException)
+    /* 8B68 80007F68 2529C980 */  addiu      $t1, $t1, %lo(__osExceptionPreamble)
     /* 8B6C 80007F6C 3C0A8000 */  lui        $t2, (0x80000100 >> 16)
     /* 8B70 80007F70 AF2B000C */  sw         $t3, %lo(g_tlb_exception_instr3)($t9)
     /* 8B74 80007F74 8DA10000 */  lw         $at, 0x0($t5)
     /* 8B78 80007F78 354A0100 */  ori        $t2, $t2, (0x80000100 & 0xFFFF)
-    /* 8B7C 80007F7C 3C0E8001 */  lui        $t6, %hi(__osException)
+    /* 8B7C 80007F7C 3C0E8001 */  lui        $t6, %hi(__osExceptionPreamble)
     /* 8B80 80007F80 AD810000 */  sw         $at, 0x0($t4)
     /* 8B84 80007F84 8DB80004 */  lw         $t8, 0x4($t5)
-    /* 8B88 80007F88 25CEC980 */  addiu      $t6, $t6, %lo(__osException)
+    /* 8B88 80007F88 25CEC980 */  addiu      $t6, $t6, %lo(__osExceptionPreamble)
     /* 8B8C 80007F8C 3C0F8000 */  lui        $t7, (0x80000180 >> 16)
     /* 8B90 80007F90 AD980004 */  sw         $t8, 0x4($t4)
     /* 8B94 80007F94 8DA10008 */  lw         $at, 0x8($t5)
@@ -103,9 +103,9 @@ glabel __osInitialize_common
     /* 8BFC 80007FFC 24050190 */   addiu     $a1, $zero, 0x190
     /* 8C00 80008000 0C00204A */  jal        __osPiReadDeviceType
     /* 8C04 80008004 00000000 */   nop
-    /* 8C08 80008008 0C003610 */  jal        __osTlbFlush
+    /* 8C08 80008008 0C003610 */  jal        osUnmapTLBAll
     /* 8C0C 8000800C 00000000 */   nop
-    /* 8C10 80008010 0C003624 */  jal        __osTlbInit
+    /* 8C10 80008010 0C003624 */  jal        osMapTLBRdb
     /* 8C14 80008014 00000000 */   nop
     /* 8C18 80008018 3C048003 */  lui        $a0, %hi(gAudioDmaCounter)
     /* 8C1C 8000801C 3C058003 */  lui        $a1, %hi(gAudioDmaState)
@@ -158,7 +158,7 @@ glabel __osInitialize_common
     /* 8CCC 800080CC 3C018003 */  lui        $at, %hi(gAudioDmaBufferPtr)
     /* 8CD0 800080D0 AC2DC368 */  sw         $t5, %lo(gAudioDmaBufferPtr)($at)
   .L800080D4:
-    /* 8CD4 800080D4 0C0036EC */  jal        osCauseGet
+    /* 8CD4 800080D4 0C0036EC */  jal        __osGetCause
     /* 8CD8 800080D8 00000000 */   nop
     /* 8CDC 800080DC 304C1000 */  andi       $t4, $v0, 0x1000
     /* 8CE0 800080E0 11800003 */  beqz       $t4, .L800080F0
