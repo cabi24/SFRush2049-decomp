@@ -1,6 +1,8 @@
 #!/bin/sh
-# Block commits that edit a verified-matched function (matched.lock.json) or a
-# spliced runtime-image body (ovl_matched.lock.json).
+# Block commits that edit a verified-matched function (matched.lock.json), a
+# locked assembly-source function (asm_matched.lock.json) or a spliced
+# runtime-image body (ovl_matched.lock.json).
 # Bypass deliberately with: git commit --no-verify
 python3 -m tools.conveyor.pipeline.lock check --quiet || exit 1
+python3 -m tools.conveyor.pipeline.asm_lock check --quiet || exit 1
 exec python3 -m tools.conveyor.pipeline.ovl_splice check --quiet

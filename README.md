@@ -12,11 +12,11 @@ the four code populations are reported separately, never summed. Run `make progr
 | Population | Functions | Code bytes | Whole image |
 |---|---:|---:|---:|
 | Game code (DEFLATE image at ROM `0xB0CB10`, inflates to `0x80086A50`) | 1,165 / 1,216 | 509,680 / 561,860 (90.71%) | 78.77% of 647,072 B |
-| Static boot/library code | 632 / 677 | 151,176 / 162,284 (93.16%) | — |
+| Static boot/library code | 665 / 677 (632 C + 33 assembly) | 157,428 / 162,284 (97.01%; from C 93.16%) | — |
 | Runtime image A (ROM `0xB5C534`, loads at `0x8038A400`) | 127 / 193 | 128,060 / 152,952 (83.73%) | 65.97% of 194,128 B |
 | Runtime image B (ROM `0xB6FEC4`, loads at `0x8038A400`) | 41 / 49 | 36,272 / 38,708 (93.71%) | 82.65% of 43,888 B |
 
-Static counts 10 hand-written routines that still sit inside the ROM data segment (`pipeline.boot_data`). Code bytes leave out each image's `.data`/`.rodata` tail, which is proven to hold no code (see the
+Static counts functions that were assembly in the original build as built from assembly source, apart from C ([static asm ceiling](docs/static-asm-ceiling.md)); 10 hand-written routines still sit inside the ROM data segment (`pipeline.boot_data`). Code bytes leave out each image's `.data`/`.rodata` tail, which is proven to hold no code (see the
 [memory map](docs/memory_map.md) §1.2 and `tests/conveyor/test_blob_data_tail.py`, `test_ovl_data_tail.py`).
 The 51 unmatched game functions are listed in [docs/dot_handoff_targets.csv](docs/dot_handoff_targets.csv).
 

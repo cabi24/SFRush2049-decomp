@@ -1,0 +1,299 @@
+{
+  "__osDisableInt": {
+    "evidence": "ultralib:src/os/interrupt.s",
+    "slot_bytes": 112,
+    "source": "asm/us/D0B0.s",
+    "target_id": "__osDisableInt",
+    "vaddr": "0x8000C4B0",
+    "words": 28,
+    "words_sha256": "7124633a426a470e409aa8e1ecb5a26712118bb3ca15b9a738deb7f89021fab9"
+  },
+  "__osDispatchThread": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 380,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osDispatchThread.s",
+    "target_id": "__osDispatchThread",
+    "vaddr": "0x8000D11C",
+    "words": 95,
+    "words_sha256": "558da3c9a686c48519cba8b6c5a5b764b237d1c9591b92adc9fa9c9b81818c02"
+  },
+  "__osEnqueueAndYield": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 256,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osEnqueueAndYield.s",
+    "target_id": "__osEnqueueAndYield",
+    "vaddr": "0x8000CFC4",
+    "words": 64,
+    "words_sha256": "fac98a03a31aa1cb908327366c3ffc3bdad88a15d004f76cb7ecb58712e43e09"
+  },
+  "__osEnqueueThread": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 72,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osEnqueueThread.s",
+    "target_id": "__osEnqueueThread",
+    "vaddr": "0x8000D0C4",
+    "words": 18,
+    "words_sha256": "7a5f8eb74da1d549f0e1ef88cf503af6f6591f7610142d771a940bcbf1995293"
+  },
+  "__osException": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 16,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osException.s",
+    "target_id": "__osException",
+    "vaddr": "0x8000C980",
+    "words": 4,
+    "words_sha256": "6cc82db0956ccbcb875122226ad6890185d3a97f0fde24de3969bd2d0db8e6a5"
+  },
+  "__osExceptionPanic": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 8,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osExceptionPanic.s",
+    "target_id": "__osExceptionPanic",
+    "vaddr": "0x8000D298",
+    "words": 2,
+    "words_sha256": "1c35860b8ca1ba483b09d781c98b89ec21bdf255a29888d562c2a9b9218560a8"
+  },
+  "__osExceptionPreamble": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 1356,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osExceptionPreamble.s",
+    "target_id": "__osExceptionPreamble",
+    "vaddr": "0x8000C990",
+    "words": 339,
+    "words_sha256": "c0e3be1bf8afba80e3802cf5c9a333903abe9a4e63c94ffad8af6da042f875b7"
+  },
+  "__osGetSR": {
+    "evidence": "ultralib:src/os/getsr.s",
+    "slot_bytes": 16,
+    "source": "asm/us/E370.s",
+    "target_id": "__osGetSR",
+    "vaddr": "0x8000D780",
+    "words": 3,
+    "words_sha256": "1b53748f5f4368117fb1895424084ea851b7b5f7bcdd800bacb6787a18c17ce3"
+  },
+  "__osProbeTLB": {
+    "evidence": "ultralib:src/os/probetlb.s",
+    "slot_bytes": 192,
+    "source": "asm/us/108B0.s",
+    "target_id": "__osProbeTLB",
+    "vaddr": "0x8000FCB0",
+    "words": 46,
+    "words_sha256": "71e03acbd0f5cb748630306b593e2df26e208bb65779c5b1b27cb634ad054df4"
+  },
+  "__osRestoreInt": {
+    "evidence": "ultralib:src/os/interrupt.s",
+    "slot_bytes": 32,
+    "source": "asm/us/D0B0.s",
+    "target_id": "__osRestoreInt",
+    "vaddr": "0x8000C520",
+    "words": 7,
+    "words_sha256": "f2fd84a811ec49c0975f70884e56a70d56a5889025d303b24e99389c9c248cf4"
+  },
+  "__osSendInterrupt": {
+    "evidence": "ultralib:src/os/exceptasm.s",
+    "slot_bytes": 232,
+    "source": "asm/us/nonmatchings/rom/lib_d580/__osSendInterrupt.s",
+    "target_id": "__osSendInterrupt",
+    "vaddr": "0x8000CEDC",
+    "words": 58,
+    "words_sha256": "be61c414b7202f4c840cb52833a39783ed05cbb3498066985f88f291ae1b6747"
+  },
+  "__osSetCompare": {
+    "evidence": "ultralib:src/os/setcompare.s",
+    "slot_bytes": 16,
+    "source": "asm/us/10790.s",
+    "target_id": "__osSetCompare",
+    "vaddr": "0x8000FB90",
+    "words": 3,
+    "words_sha256": "7204efbdf6c576405e3f43334b55ff5639e894aaf830537b1040e81f9aa87d3e"
+  },
+  "__osSetFpcCsr": {
+    "evidence": "ultralib:src/os/setfpccsr.s",
+    "slot_bytes": 16,
+    "source": "asm/us/nonmatchings/rom/lib_e390/__osSetFpcCsr.s",
+    "target_id": "__osSetFpcCsr",
+    "vaddr": "0x8000D790",
+    "words": 4,
+    "words_sha256": "0315a45d489fbd256ee50c95dc4f9ff3fb2430cb7e415b7ec5b2e1dccfdf87fe"
+  },
+  "__osSetSR": {
+    "evidence": "ultralib:src/os/setsr.s",
+    "slot_bytes": 16,
+    "source": "asm/us/E370.s",
+    "target_id": "__osSetSR",
+    "vaddr": "0x8000D770",
+    "words": 4,
+    "words_sha256": "a2c60593b193ccb0a2ca27aae96c2d6b219042153ed3f21ba098915b99632dec"
+  },
+  "__osTlbFlush": {
+    "evidence": "ultralib:src/os/unmaptlball.s",
+    "slot_bytes": 80,
+    "source": "asm/us/E440.s",
+    "target_id": "__osTlbFlush",
+    "vaddr": "0x8000D840",
+    "words": 17,
+    "words_sha256": "0df00d41c97e49127225f6cea01f203c3910ab02c41b64f1a92e17e2d59f9c00"
+  },
+  "__osTlbInit": {
+    "evidence": "ultralib:src/os/maptlbrdb.s",
+    "slot_bytes": 96,
+    "source": "asm/us/E490.s",
+    "target_id": "__osTlbInit",
+    "vaddr": "0x8000D890",
+    "words": 22,
+    "words_sha256": "87c4318fc2d8ecd5a727cf5fc47334d6f571b185e6fd0ef8759c3f99ff017f87"
+  },
+  "__setfpcsr": {
+    "evidence": "handwritten:ctc1 a0,$31; nop; nop; jr ra: writes the FPU control register, which C cannot; not an ultralib routine",
+    "slot_bytes": 32,
+    "source": "asm/us/55F0.s",
+    "target_id": "__setfpcsr",
+    "vaddr": "0x800049F0",
+    "words": 5,
+    "words_sha256": "8b4c8517351e3c47647e4cdfd69c08f188d049085256e4c59845fd7f8af55b27"
+  },
+  "bcmp": {
+    "evidence": "ultralib:src/libc/bcmp.s",
+    "slot_bytes": 288,
+    "source": "asm/us/104D0.s",
+    "target_id": "bcmp",
+    "vaddr": "0x8000F8D0",
+    "words": 71,
+    "words_sha256": "fce75585834e03233cbac927aeb802c5e88cdb3a4324b10e394274946ffd10e7"
+  },
+  "bcopy": {
+    "evidence": "ultralib:src/libc/bcopy.s",
+    "slot_bytes": 784,
+    "source": "asm/us/DEB0.s",
+    "target_id": "bcopy",
+    "vaddr": "0x8000D2B0",
+    "words": 193,
+    "words_sha256": "abba914d38cabdcd0e6cf8fa946e7e318b9f07079c113575fdeec7c7efcf873c"
+  },
+  "bzero": {
+    "evidence": "ultralib:src/libc/bzero.s",
+    "slot_bytes": 160,
+    "source": "asm/us/9190.s",
+    "target_id": "bzero",
+    "vaddr": "0x80008590",
+    "words": 39,
+    "words_sha256": "40493fb91da0a872e183853137b07b66e8642e0b7f84afa7370496e3d3863f9e"
+  },
+  "entrypoint": {
+    "evidence": "handwritten:boot stub: clears BSS from 0x8002E8E0, sets sp, jumps to main",
+    "slot_bytes": 80,
+    "source": "asm/us/1000.s",
+    "target_id": "entrypoint",
+    "vaddr": "0x80000400",
+    "words": 14,
+    "words_sha256": "c001b162a0a767fe6541285d8357cc2beb8ce37e63e89498b27cd03105fab358"
+  },
+  "inflate_entry": {
+    "evidence": "handwritten:hand-edited compiler output: li a1,12000 + addiu a0,zero,0 after a one-argument call; no C order reaches it (w27s)",
+    "slot_bytes": 360,
+    "source": "asm/us/nonmatchings/rom/lib_5610/inflate_entry.s",
+    "target_id": "inflate_entry",
+    "vaddr": "0x80006814",
+    "words": 90,
+    "words_sha256": "9d82fb4c3c9c7eb494e381bd68fbcf29d45e81ca400b7aaa9a9f24553bf9b00b"
+  },
+  "inflate_entry_alt": {
+    "evidence": "handwritten:same hand edit as inflate_entry (w27s)",
+    "slot_bytes": 132,
+    "source": "asm/us/nonmatchings/rom/lib_5610/inflate_entry_alt.s",
+    "target_id": "inflate_entry_alt",
+    "vaddr": "0x8000697C",
+    "words": 32,
+    "words_sha256": "28facfdfeb92f673abbd6d2f8e5c0da6029108e7c8dc8d8480a1dc867f725467"
+  },
+  "inflate_io_wait": {
+    "evidence": "handwritten:non-ABI: returns in t1 and clobbers s0-s4 unsaved (w25a, w26a)",
+    "slot_bytes": 236,
+    "source": "asm/us/nonmatchings/rom/lib_5610/inflate_io_wait.s",
+    "target_id": "inflate_io_wait",
+    "vaddr": "0x80004A10",
+    "words": 59,
+    "words_sha256": "2d4ce9e65677ac415ca4adc1bd6bca4dfb8bbbe79d62ff935cb180c5fe0a91df"
+  },
+  "lzss_decode": {
+    "evidence": "handwritten:non-ABI register contract: reads t1 after each call and spills s0 itself (w25a, w26a)",
+    "slot_bytes": 596,
+    "source": "asm/us/nonmatchings/rom/lib_5610/lzss_decode.s",
+    "target_id": "lzss_decode",
+    "vaddr": "0x80004AFC",
+    "words": 149,
+    "words_sha256": "81c40f959f060a0544b1b4f128be5747a6cc422493c770bd72e2026e73212a03"
+  },
+  "osCauseGet": {
+    "evidence": "ultralib:src/os/getcause.s",
+    "slot_bytes": 16,
+    "source": "asm/us/nonmatchings/rom/lib_e4f0/osCauseGet.s",
+    "target_id": "osCauseGet",
+    "vaddr": "0x8000DBB0",
+    "words": 3,
+    "words_sha256": "c9938253158c4f5c96cacab37701dddcee0ae5c1842c796d640bbc51535f0348"
+  },
+  "osGetCount": {
+    "evidence": "ultralib:src/os/getcount.s",
+    "slot_bytes": 16,
+    "source": "asm/us/D570.s",
+    "target_id": "osGetCount",
+    "vaddr": "0x8000C970",
+    "words": 3,
+    "words_sha256": "d666a631e781e7af31cf0fecb98346d12c902109778a14f3889610ddbe6418d7"
+  },
+  "osInvalDCache": {
+    "evidence": "ultralib:src/os/invaldcache.s",
+    "slot_bytes": 176,
+    "source": "asm/us/90E0.s",
+    "target_id": "osInvalDCache",
+    "vaddr": "0x800084E0",
+    "words": 43,
+    "words_sha256": "036ec6220bec4885a63bb6fc8b1091bba92c979dc565717af6291358eb2db9fc"
+  },
+  "osInvalICache": {
+    "evidence": "ultralib:src/os/invalicache.s",
+    "slot_bytes": 128,
+    "source": "asm/us/nonmatchings/rom/lib_8e10/osInvalICache.s",
+    "target_id": "osInvalICache",
+    "vaddr": "0x80008460",
+    "words": 29,
+    "words_sha256": "5338f25a9ed61417621b0ed2ee4c5dc99afa811793d5056f8835ef309b417a6c"
+  },
+  "osSetIntMask": {
+    "evidence": "ultralib:src/os/setintmask.s",
+    "slot_bytes": 160,
+    "source": "asm/us/nonmatchings/rom/lib_7c80/osSetIntMask.s",
+    "target_id": "osSetIntMask",
+    "vaddr": "0x800071D0",
+    "words": 40,
+    "words_sha256": "2ca8626bb948cbc9c126cf2c1bd11a33f3b4282d1b6c8341851a2dfd95a5b5ee"
+  },
+  "osWritebackDCache": {
+    "evidence": "ultralib:src/os/writebackdcache.s",
+    "slot_bytes": 128,
+    "source": "asm/us/88A0.s",
+    "target_id": "osWritebackDCache",
+    "vaddr": "0x80007CA0",
+    "words": 29,
+    "words_sha256": "227c163001cc78679a00771d8f92d93635d05c7b789603df4503dc5581e4fb0b"
+  },
+  "osWritebackDCacheAll": {
+    "evidence": "ultralib:src/os/writebackdcacheall.s",
+    "slot_bytes": 48,
+    "source": "asm/us/8410.s",
+    "target_id": "osWritebackDCacheAll",
+    "vaddr": "0x80007810",
+    "words": 10,
+    "words_sha256": "61681471d2b9acaf2f2f1a45e3523450311d791c82e6b997821d6cd9f8de4a70"
+  },
+  "sqrtf": {
+    "evidence": "ultralib:src/gu/sqrtf.s",
+    "slot_bytes": 16,
+    "source": "asm/us/EFC0.s",
+    "target_id": "sqrtf",
+    "vaddr": "0x8000E3C0",
+    "words": 2,
+    "words_sha256": "abcf0741f7825615677cd05094cc0fc5982d459b2b3427a95b2c170319c6f6b3"
+  }
+}

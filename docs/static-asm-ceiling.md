@@ -6,6 +6,19 @@
 > same **2 functions / 3,196 bytes** (section 3). Ceiling: **634/677 functions, 154,372/162,284 bytes
 > (95.12%)**. The wave-28 text below is unchanged apart from this note and section 2a.
 
+> **Policy (b) adopted, 2026-10-21 (owner).** Functions that were assembly in the original build count as static
+> coverage **from assembly**, reported beside C: `make progress` prints `665/677 functions, 157,428/162,284 bytes
+> (97.01%: from C 632 / 93.16%, from assembly 33 / 3.85%)`. The 33 functions of sections 1 and 2 are pinned in
+> `asm_matched.lock.json` by `python3 -m tools.conveyor.pipeline.asm_lock`. Source of truth is the repo's own
+> assembly (splat's disassembly, which the ROM build already assembles byte-identically); ultralib is cited as
+> provenance and not vendored, because it carries no licence. Each entry records its source `.s`, the sha256 of its
+> instruction words, and evidence: `ultralib:<file>` must match an IDENTICAL row of the w28s proof log covering
+> its address, otherwise `handwritten:<reason>`. `add` refuses a function that is promoted to C, has a C lock, or
+> whose words differ from the ROM; `check` runs in the pre-commit hook and in `tests/conveyor/test_asm_lock.py`.
+> Still open: section 2a's 10 routines (need their bytes built from a `.s`, i.e. the `data` bin split) and the
+> 7 ultralib name leads (renames go through the `symbol_addrs` context re-pin). The C-reachable pair (section 3)
+> stays C work: the lock refuses them.
+
 Status at wave 28 (lane w28s, 2026-10-12, after #377 func_80011910 landed): `make progress` reports
 **static code 632/667 functions, 151,176/160,720 bytes (94.06%)**. Of the 35 functions still in assembly,
 **33 functions / 6,252 bytes are assembly in the original build too**: they cannot become C and are

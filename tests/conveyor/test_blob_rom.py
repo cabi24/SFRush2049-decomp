@@ -95,6 +95,8 @@ def test_cartridge_coverage_keeps_the_two_populations_separate(monkeypatch, caps
         "promoted_bytes": 1448, "static_bytes": 61440})
     from tools.conveyor.pipeline import boot_data
     monkeypatch.setattr(boot_data, "coverage", lambda: {"functions": 10, "bytes": 1564})
+    from tools.conveyor.pipeline import asm_lock
+    monkeypatch.setattr(asm_lock, "static_coverage", lambda: {"functions": 5, "bytes": 400})
     monkeypatch.setattr(blob_splice, "coverage", lambda: {
         "functions": 56, "total_functions": 912,
         "bytes": 4168, "image_size": 647072, "function_bytes": 561860})
@@ -110,7 +112,8 @@ def test_cartridge_coverage_keeps_the_two_populations_separate(monkeypatch, caps
     blob_rom.print_coverage(cov)
     out = capsys.readouterr().out
 
-    assert "23/240" in out and "1448/63004" in out and "56/912" in out
+    assert "28/240" in out and "1848/63004" in out and "56/912" in out
+    assert "from C 23 / 2.30%, from assembly 5 / 0.63%" in out
     assert "10 hand-written routines still in the ROM data bin" in out
     assert "4168/561860 code bytes (0.74%" in out and "of the 647072 B image" in out
     assert "linked from C: 79 functions, 5616 bytes" in out

@@ -929,6 +929,10 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
   owner made code bytes the headline: `make progress` reports game, A and B against their function bytes (game
   90.71% at 1165/1216), then against the whole image (game 78.77%). Quote both with their denominators when
   comparing to older figures, which used the image. Static's denominator was already code bytes; it now also counts the 10 routines in the boot segment tail.
+- **Assembly-source coverage (policy (b), 2026-10-21):** static functions that were assembly in the original build
+  count as coverage "from assembly" (`asm_matched.lock.json`, `pipeline.asm_lock`; 33 locked: 27 ultralib-identical,
+  6 hand-written), always reported beside the from-C figure. The source of truth is the repo's splat assembly;
+  ultralib is cited, not vendored (no licence). See `docs/static-asm-ceiling.md`.
 - **Pushing:** push gate-passing, test-passing work to master as it lands; the owner wants master current. Force-push only with explicit owner approval (one history purge was approved).
 - **Hook-protected files:** do not edit `tools/cloud/score.py` directly. Changes go through a reviewed patch with owner approval.
 - **Permission denials:** if the permission classifier denies an action, do not retry it another way. Surface it to the owner.

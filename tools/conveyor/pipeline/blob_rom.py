@@ -236,9 +236,12 @@ def cartridge_coverage():
     populations and summing them would hide how thin each still is."""
     from . import layout as layoutmod
 
-    from . import boot_data, ovl_splice
+    from . import asm_lock, boot_data, ovl_splice
 
     static = layoutmod.coverage()
+    # Static functions that were assembly in the original build, locked in
+    # asm_matched.lock.json (owner policy (b), 2026-10-21): reported beside C.
+    asm = asm_lock.static_coverage()
     # Hand-written CPU routines still inside the ROM data bin (pipeline.boot_data):
     # static functions no source builds yet, so they join the denominator only.
     boot = boot_data.coverage()
@@ -252,6 +255,8 @@ def cartridge_coverage():
         "static_bytes": static["promoted_bytes"],
         "static_total_bytes": static["static_bytes"] + boot["bytes"],
         "static_in_data_bin": boot["functions"],
+        "static_asm_functions": asm["functions"],
+        "static_asm_bytes": asm["bytes"],
         "game_functions": game["functions"],
         "game_total": game["total_functions"],
         "game_bytes": game["bytes"],
@@ -267,9 +272,13 @@ def print_coverage(cov):
     total_fn = cov["static_functions"] + cov["game_functions"]
     total_b = cov["static_bytes"] + cov["game_bytes"]
     in_bin = cov.get("static_in_data_bin")
-    print(f"  static code: {cov['static_functions']:4d}/{cov['static_total']} functions, "
-          f"{cov['static_bytes']}/{cov['static_total_bytes']} bytes "
-          f"({100 * cov['static_bytes'] / cov['static_total_bytes']:.2f}%"
+    asm_f, asm_b = cov.get("static_asm_functions", 0), cov.get("static_asm_bytes", 0)
+    total = cov["static_total_bytes"]
+    split = (f": from C {cov['static_functions']} / {100 * cov['static_bytes'] / total:.2f}%, "
+             f"from assembly {asm_f} / {100 * asm_b / total:.2f}%") if asm_f else ""
+    print(f"  static code: {cov['static_functions'] + asm_f:4d}/{cov['static_total']} functions, "
+          f"{cov['static_bytes'] + asm_b}/{total} bytes "
+          f"({100 * (cov['static_bytes'] + asm_b) / total:.2f}%{split}"
           + (f"; {in_bin} hand-written routines still in the ROM data bin, see boot_data"
              if in_bin else "") + ")")
     print(f"  game code:   {cov['game_functions']:4d}/{cov['game_total']} functions, "

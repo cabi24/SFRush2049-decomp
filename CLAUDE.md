@@ -29,6 +29,8 @@ when relevant to the task; historical notes are not current status or instructio
   produced from the linked images (game code; runtime images A/B via `ovl_layout build` +
   `ovl_rom`); do not substitute the extracted original streams or bypass the build gates.
 - Report static and game coverage separately; never merge their denominators.
+  Static counts hand-written assembly locked in `asm_matched.lock.json` (owner policy, see
+  [static asm ceiling](docs/static-asm-ceiling.md)); always state the from-C part separately.
   Source files, stubs, identified symbols, and compiled seeds are not ROM coverage.
 - Extracted extents and population come from scanning/closure. `work/**/info.txt`
   names and sizes are historical labels, not authoritative function boundaries.

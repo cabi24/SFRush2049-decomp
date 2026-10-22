@@ -23,7 +23,7 @@ denominators and are never summed:
 | Population | Accepted functions | Accepted code bytes | Whole image |
 |---|---:|---:|---:|
 | Game code | 1,165 / 1,216 | 509,680 / 561,860 (90.71%) | 78.77% of 647,072 B |
-| Static cartridge code | 632 / 677 | 151,176 / 162,284 (93.16%) | — |
+| Static cartridge code | 665 / 677 (632 C + 33 assembly) | 157,428 / 162,284 (97.01%; from C 93.16%) | — |
 | Runtime image A | 127 / 193 | 128,060 / 152,952 (83.73%) | 65.97% of 194,128 B |
 | Runtime image B | 41 / 49 | 36,272 / 38,708 (93.71%) | 82.65% of 43,888 B |
 
