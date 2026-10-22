@@ -29,7 +29,7 @@ def entries():
 
 
 def test_the_live_lock_holds(entries, mapping):
-    assert len(entries) == 33
+    assert len(entries) == 43                     # 33 static segments + 10 boot-segment-tail routines
     assert A.check(entries, mapping) == []
 
 
@@ -46,7 +46,7 @@ def test_no_entry_shadows_c(entries, mapping):
     c_targets = {e.get("target_id") for e in clock.load_lock().values()}
     assert not set(entries) & c_targets
     states = {f["name"]: f.get("state") for s in mapping["segments"] for f in s.get("functions", [])}
-    assert all(states[name] != "promoted" for name in entries)
+    assert all(states.get(name) != "promoted" for name in entries)   # boot routines are not in derive
 
 
 def test_drift_and_promotion_are_reported(entries, mapping):
@@ -75,5 +75,13 @@ def test_add_refuses_c_and_bad_evidence(mapping):
 
 def test_coverage_counts_only_unpromoted_locked_functions(entries, mapping):
     by_name = A.coverage(mapping, entries)
-    assert set(by_name) == set(entries)
-    assert sum(by_name.values()) == 6252
+    boot = A.boot_coverage(entries)
+    assert set(by_name) | set(boot) == set(entries) and not set(by_name) & set(boot)
+    assert sum(by_name.values()) == 6252 and sum(boot.values()) == 1564
+
+
+def test_boot_routines_are_locked_to_the_composed_sources(entries):
+    from tools.conveyor.pipeline import boot_data
+    for _, _, name, _ in boot_data.CPU_ROUTINES:
+        assert entries[name]["source"].startswith("asm/us/boot_data/")
+        assert entries[name]["evidence"].startswith("handwritten:")

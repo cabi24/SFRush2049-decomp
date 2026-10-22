@@ -254,7 +254,7 @@ def cartridge_coverage():
         "static_total": static["static_functions"] + boot["functions"],
         "static_bytes": static["promoted_bytes"],
         "static_total_bytes": static["static_bytes"] + boot["bytes"],
-        "static_in_data_bin": boot["functions"],
+        "static_in_data_bin": boot["functions"] - asm.get("boot_functions", 0),
         "static_asm_functions": asm["functions"],
         "static_asm_bytes": asm["bytes"],
         "game_functions": game["functions"],

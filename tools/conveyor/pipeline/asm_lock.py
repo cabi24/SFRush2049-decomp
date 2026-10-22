@@ -39,7 +39,7 @@ import struct
 import sys
 from pathlib import Path
 
-from . import layout
+from . import boot_data, layout
 from . import lock as clock
 
 REPO = layout.REPO
@@ -129,7 +129,39 @@ def check_evidence(evidence, vaddr, nwords, prove_log=PROVE_LOG):
     raise AsmLockError(f"no IDENTICAL row for {stem} covering 0x{vaddr:08X} in {prove_log}")
 
 
+def _boot_routines():
+    return {n: (v, size) for v, size, n, _ in boot_data.CPU_ROUTINES}
+
+
+def boot_source(name, repo=REPO):
+    """(source, vaddr, words) of a boot-segment-tail routine built from
+    asm/us/boot_data (pipeline.boot_data), or AsmLockError."""
+    vaddr, size = _boot_routines()[name]
+    src = boot_data.source_of(vaddr)
+    rel = f"asm/us/boot_data/{src}"
+    if boot_data.makefile_slots(Path(repo) / "Makefile").get(src) != boot_data.expected_slots()[src]:
+        raise AsmLockError(f"{name}: the Makefile does not compose {rel} into its data.bin slot")
+    words = boot_data.source_words(Path(repo) / rel)
+    missing = [v for v in range(vaddr, vaddr + size, 4) if v not in words]
+    if missing:
+        raise AsmLockError(f"{name}: {rel} lacks 0x{missing[0]:08X}")
+    return rel, vaddr, [words[v] for v in range(vaddr, vaddr + size, 4)]
+
+
+def _boot_entry(name, evidence, repo, baserom):
+    rel, vaddr, words = boot_source(name, repo)
+    rom = Path(baserom).read_bytes()
+    off = boot_data.rom_offset(vaddr)
+    if list(struct.unpack(f">{len(words)}I", rom[off:off + 4 * len(words)])) != words:
+        raise AsmLockError(f"{name}: {rel} words differ from the ROM")
+    check_evidence(evidence, vaddr, len(words))
+    return {"target_id": name, "source": rel, "vaddr": f"0x{vaddr:08X}", "words": len(words),
+            "words_sha256": _words_sha(words), "slot_bytes": 4 * len(words), "evidence": evidence}
+
+
 def make_entry(name, evidence, mapping=None, repo=REPO, baserom=BASEROM, c_lock=None):
+    if name in _boot_routines():
+        return _boot_entry(name, evidence, repo, baserom)
     mapping = mapping or layout.derive()
     seg, f = _function(name, mapping)
     if f.get("state") == "promoted":
@@ -155,6 +187,11 @@ def check(entries, mapping=None, repo=REPO):
     problems = []
     for name, e in sorted(entries.items()):
         try:
+            if name in _boot_routines():
+                rel, vaddr, words = boot_source(name, repo)
+                if rel != e["source"] or f"0x{vaddr:08X}" != e["vaddr"] or _words_sha(words) != e["words_sha256"]:
+                    problems.append((name, "assembly words drifted from the locked form"))
+                continue
             seg, f = _function(name, mapping)
             if f.get("state") == "promoted":
                 problems.append((name, "promoted to C: remove the asm entry"))
@@ -183,10 +220,20 @@ def coverage(mapping, entries=None):
     return out
 
 
+def boot_coverage(entries=None):
+    """{name: bytes} of boot-segment-tail routines built from locked assembly."""
+    entries = load_lock() if entries is None else entries
+    return {n: size for n, (_, size) in _boot_routines().items() if n in entries}
+
+
 def static_coverage():
-    """{"functions", "bytes"} of the static population built from locked assembly."""
-    by_name = coverage(layout.derive())
-    return {"functions": len(by_name), "bytes": sum(by_name.values())}
+    """{"functions", "bytes"} of the static population built from locked assembly,
+    including the boot segment tail's routines ("boot_functions")."""
+    entries = load_lock()
+    by_name = coverage(layout.derive(), entries)
+    boot = boot_coverage(entries)
+    return {"functions": len(by_name) + len(boot), "bytes": sum(by_name.values()) + sum(boot.values()),
+            "boot_functions": len(boot)}
 
 
 def main(argv=None):

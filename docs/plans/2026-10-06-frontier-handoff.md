@@ -783,8 +783,10 @@ first matched. `layout.derive` and the recomp counts are unchanged (the routines
 **Static policy (b) + __osAiDeviceBusy (same day):** 33 assembly functions locked in `asm_matched.lock.json`
 (`pipeline.asm_lock`); segment 0x10760 converted (layout's `_do_convert`, splat fed a sanitized symbol_addrs copy
 for the split only, so the context proof holds) and `__osAiDeviceBusy` promoted as C. Static now 666/677 functions,
-157,476/162,284 B (97.04%; from C 633 / 93.18%). Left on static: func_80012D18 (C near-miss) and the 10 boot-tail
-routines (assembly, still in the data bin).
+157,476/162,284 B (97.04%; from C 633 / 93.18%). Then the 10 boot-tail routines: `boot_data asm` generates
+`asm/us/boot_data/*.s`, the Makefile assembles them and composes them into their `data.bin` slots (`--extra`, like the
+game blob/overlays; `data.bin` and its 110 receipts unchanged; builder drill: one changed instruction fails the SHA-1),
+locked as assembly. Static now 676/677 (98.00%; from C 633 / 93.18%, assembly 43). Left on static: func_80012D18.
 
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in

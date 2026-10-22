@@ -649,6 +649,10 @@ python3 -m tools.conveyor.pipeline.ovl_rom rom [--drill] [--builder-repo DIR --j
   into every ROM build (`compose_data.py --extra STREAM:SLOT:LEN`); no rule
   makes `build/ovl/ovl_{a,b}.deflate` and there is no fallback to `data.bin`'s
   bytes, so a missing stream stops the build (`No rule to make target`).
+- **Boot segment tail:** the same `--extra` composition puts the ten hand-written
+  CPU routines at the head of `data.bin` (offsets 0x0 and 0x4E10), assembled from
+  `asm/us/boot_data/*.s` (`pipeline.boot_data`; regenerate with `boot_data asm`).
+  `boot_data bin` refuses a source that outgrows its slot.
 - **Source image:** `produce` compresses `rebuilt.bin` and refuses when it is
   missing, does not match its record, was linked from a lock that has since
   changed, or when `ovl_splice check` reports drift. `--image-file x=PATH`

@@ -156,3 +156,32 @@ def test_data_landmarks():
     pointers = struct.unpack(">5I", rom[B.rom_offset(0x8002E440):B.rom_offset(0x8002E454)])
     assert all(0x8002E460 <= p < 0x8002E4A0 for p in pointers)
     assert "__osScCurAudioTask = 0x8002AFA0;" in (layout.REPO / "symbol_addrs.us.txt").read_text()
+
+
+# --- built from assembly (asm/us/boot_data, composed by the Makefile) ----------
+
+def test_the_makefile_composes_each_source_into_its_slot():
+    assert B.makefile_slots() == B.expected_slots()
+    assert set(B.SOURCES) == {p.name for p in B.ASM_DIR.glob("*.s")}
+    cpu = sorted((s, e) for s, e, kind, _ in B.REGIONS if kind == "cpu")
+    assert sorted(B.SOURCES.values()) == cpu
+
+
+def test_the_sources_hold_the_rom_words_with_tables_as_data():
+    for name, (lo, hi) in B.SOURCES.items():
+        words = B.source_words(B.ASM_DIR / name)
+        assert sorted(words) == list(range(lo, hi, 4)), name
+        assert [words[v] for v in range(lo, hi, 4)] == list(_words(lo, hi)), name
+    text = (B.ASM_DIR / "kernels.s").read_text()
+    for vaddr, size, _ in B.INLINE_TABLES:
+        assert f"dlabel D_{vaddr:08X}" in text and f"glabel func_{vaddr:08X}" not in text
+    for _, _, name, _ in B.CPU_ROUTINES:
+        assert f"glabel {name}" in (B.ASM_DIR / B.source_of(int(name[5:], 16))).read_text()
+
+
+def test_slot_bytes_refuse_a_source_that_outgrows_its_slot():
+    assert B.trim_to_slot(bytes(28) + bytes(4), "func_8002C5E0.s") == bytes(28)
+    with pytest.raises(ValueError, match="slot holds exactly 28"):
+        B.trim_to_slot(bytes(28) + b"\x00\x00\x00\x01", "func_8002C5E0.s")
+    with pytest.raises(ValueError, match="slot holds exactly 1536"):
+        B.trim_to_slot(bytes(1532), "kernels.s")

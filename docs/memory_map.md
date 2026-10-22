@@ -83,9 +83,12 @@ each label:
 | 0x8002E210 - 0x8002E440 | 560 B | RSP data | aspMain data (audio task `ucode_data`) |
 | 0x8002E440 - 0x8002E8E0 | 1,184 B | data | static .data/.rodata: build-info record ("07-17-00", "02:26:18", "MERRILL", "BLACKOUT") |
 
-The 10 CPU routines (1,564 B) count in the static coverage denominator as functions no source builds yet,
-so `make progress` reports static against 677 functions and 162,284 bytes. The microcode is Nintendo SDK
-binary and is not a decompilation target.
+The 10 CPU routines (1,564 B) are static functions built from assembly: `boot_data asm` writes
+`asm/us/boot_data/{kernels,func_8002C5E0}.s` (splat's disassembly, the two inline tables as `.word` data), and
+the Makefile assembles each and composes it into its `data.bin` slot (`compose_data --extra`, offsets 0x0 and
+0x4E10), so the extracted bytes there are never read. They are locked in `asm_matched.lock.json`;
+`make progress` reports static against 677 functions and 162,284 bytes. The microcode is Nintendo SDK binary
+and is not a decompilation target.
 
 ### 1.2 Decompressed Game Image (0x80086A50 - 0x801249F0)
 

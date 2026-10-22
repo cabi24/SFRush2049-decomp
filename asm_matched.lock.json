@@ -188,6 +188,96 @@
     "words": 14,
     "words_sha256": "c001b162a0a767fe6541285d8357cc2beb8ce37e63e89498b27cd03105fab358"
   },
+  "func_800277D0": {
+    "evidence": "handwritten:reads its inline table PC-relatively via a never-taken bltzal $zero (libgsm RPE decoding / long-term synthesis)",
+    "slot_bytes": 244,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_800277D0",
+    "vaddr": "0x800277D0",
+    "words": 61,
+    "words_sha256": "dc092fcf69ba41826edf50ce4774181e6a6a72a817f102b3d2bf1dec233efa28"
+  },
+  "func_800278C4": {
+    "evidence": "handwritten:reads its inline table PC-relatively via a never-taken bltzal $zero (libgsm RPE decoding / long-term synthesis)",
+    "slot_bytes": 188,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_800278C4",
+    "vaddr": "0x800278C4",
+    "words": 47,
+    "words_sha256": "7e3a33c0dc042b7cb7905ba902759d3ad8d64389fbf26fb7dbb4bb51dbbc3e7b"
+  },
+  "func_80027980": {
+    "evidence": "handwritten:reached by bal with no stack frame; 0x80027C98 calls its PC-relative callback through jalr t3 (libgsm short-term synthesis)",
+    "slot_bytes": 452,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027980",
+    "vaddr": "0x80027980",
+    "words": 113,
+    "words_sha256": "55cc752a97533cbf74b68ed945ef5653727d8fe43c70920633b5c07193b803d9"
+  },
+  "func_80027B44": {
+    "evidence": "handwritten:frameless bal calls into 0x80027980/0x80027C98 and builds callback pointers as ra+imm after bltzal $zero (libgsm short-term synthesis)",
+    "slot_bytes": 340,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027B44",
+    "vaddr": "0x80027B44",
+    "words": 85,
+    "words_sha256": "b7852872e8fd22040b008d132ad804ba2ed5381b8abbce20db908cc966d498c6"
+  },
+  "func_80027C98": {
+    "evidence": "handwritten:reached by bal with no stack frame; 0x80027C98 calls its PC-relative callback through jalr t3 (libgsm short-term synthesis)",
+    "slot_bytes": 164,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027C98",
+    "vaddr": "0x80027C98",
+    "words": 41,
+    "words_sha256": "972cdabc00436f6ed60c9976142dd9933afb833c27c0b7587e262d213dce563e"
+  },
+  "func_80027D3C": {
+    "evidence": "handwritten:callback entry formed as ra+imm after bltzal $zero; tail-branches into func_80027D7C (libgsm LAR interpolation)",
+    "slot_bytes": 24,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027D3C",
+    "vaddr": "0x80027D3C",
+    "words": 6,
+    "words_sha256": "d055e26ae88a511034c8f16c944dd9e5f3f8e7e68591f04baccdc68d9ce132c6"
+  },
+  "func_80027D54": {
+    "evidence": "handwritten:callback entry formed as ra+imm after bltzal $zero; tail-branches into func_80027D7C (libgsm LAR interpolation)",
+    "slot_bytes": 16,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027D54",
+    "vaddr": "0x80027D54",
+    "words": 4,
+    "words_sha256": "e33f78ee9cd1f7270a0480d7a52dfba2667c05e8e888cb892fc388071ec0b4af"
+  },
+  "func_80027D64": {
+    "evidence": "handwritten:callback entry formed as ra+imm after bltzal $zero; tail-branches into func_80027D7C (libgsm LAR interpolation)",
+    "slot_bytes": 24,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027D64",
+    "vaddr": "0x80027D64",
+    "words": 6,
+    "words_sha256": "8ca33faf0ff2f0f7e9be05df77425b36eaaa6b6d73170ec1bf6b3410ac468301"
+  },
+  "func_80027D7C": {
+    "evidence": "handwritten:shared tail of the PC-relative coefficient callbacks (libgsm LARp_to_rp)",
+    "slot_bytes": 84,
+    "source": "asm/us/boot_data/kernels.s",
+    "target_id": "func_80027D7C",
+    "vaddr": "0x80027D7C",
+    "words": 21,
+    "words_sha256": "e076b7c899e899e149d5faa7642dd42cd74c433773f1850ecbd1981d32909c38"
+  },
+  "func_8002C5E0": {
+    "evidence": "handwritten:cache 0xd (create dirty exclusive) loop; C cannot emit cache",
+    "slot_bytes": 28,
+    "source": "asm/us/boot_data/func_8002C5E0.s",
+    "target_id": "func_8002C5E0",
+    "vaddr": "0x8002C5E0",
+    "words": 7,
+    "words_sha256": "b72ab00c5f4a68cdff26ceeb38c3dbc40b3d15c8cf56f9d5a078c7fb8fbebc49"
+  },
   "inflate_entry": {
     "evidence": "handwritten:hand-edited compiler output: li a1,12000 + addiu a0,zero,0 after a one-argument call; no C order reaches it (w27s)",
     "slot_bytes": 360,

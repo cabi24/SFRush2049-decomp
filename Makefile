@@ -298,10 +298,31 @@ OVL_STREAMS      := $(OVL_A_STREAM) $(OVL_B_STREAM)
 OVL_COMPOSE_ARGS := --extra $(OVL_A_STREAM):$(OVL_A_SLOT):$(OVL_A_LEN) \
                     --extra $(OVL_B_STREAM):$(OVL_B_SLOT):$(OVL_B_LEN)
 
-$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) $(OVL_STREAMS) | $(BUILD_DIR)/$(ASSETS_DIR)
-	@echo "BIN $< + game-code blob and runtime images A/B built from sources"
+# The boot segment tail's ten hand-written CPU routines (pipeline.boot_data) sit
+# at the head of the data segment. They are assembled from asm/us/boot_data/*.s
+# (outside the top-level asm glob, so nothing links them twice) and composed
+# into their data.bin slots like the streams above: the extracted bytes there
+# are never read, and the full-ROM SHA-1 judges the assembly.
+BOOT_DIR          := $(BUILD_DIR)/boot_data
+BOOT_KERNELS      := $(BOOT_DIR)/kernels.bin
+BOOT_C5E0         := $(BOOT_DIR)/func_8002C5E0.bin
+BOOT_BINS         := $(BOOT_KERNELS) $(BOOT_C5E0)
+BOOT_COMPOSE_ARGS := --extra $(BOOT_KERNELS):0x0:0x600 \
+                     --extra $(BOOT_C5E0):0x4E10:0x1C
+$(BOOT_KERNELS): BOOT_VADDR := 0x800277D0
+$(BOOT_C5E0): BOOT_VADDR := 0x8002C5E0
+
+$(BOOT_DIR)/%.bin: $(ASM_DIR)/boot_data/%.s tools/conveyor/pipeline/boot_data.py
+	@mkdir -p $(@D)
+	@echo "AS $< (boot segment tail)"
+	$(V)$(AS) $(ASFLAGS) -o $(@:.bin=.o) $<
+	$(V)$(LD) -e $(BOOT_VADDR) -Ttext=$(BOOT_VADDR) -o $(@:.bin=.elf) $(@:.bin=.o)
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.boot_data bin $(@:.bin=.elf) $@ --source $*.s --objcopy $(OBJCOPY)
+
+$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) $(OVL_STREAMS) $(BOOT_BINS) | $(BUILD_DIR)/$(ASSETS_DIR)
+	@echo "BIN $< + game-code blob, runtime images A/B and boot-tail routines built from sources"
 	$(V)$(PYTHON) tools/compose_data.py $< $(GAME_BLOB) $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin \
-	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN) $(OVL_COMPOSE_ARGS)
+	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN) $(OVL_COMPOSE_ARGS) $(BOOT_COMPOSE_ARGS)
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@ --objcopy $(OBJCOPY)
 
 # Convert binary files to objects (using MIPS big-endian ELF format)

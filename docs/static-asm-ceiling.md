@@ -15,7 +15,10 @@
 > instruction words, and evidence: `ultralib:<file>` must match an IDENTICAL row of the w28s proof log covering
 > its address, otherwise `handwritten:<reason>`. `add` refuses a function that is promoted to C, has a C lock, or
 > whose words differ from the ROM; `check` runs in the pre-commit hook and in `tests/conveyor/test_asm_lock.py`.
-> Still open: section 2a's 10 routines (need their bytes built from a `.s`, i.e. the `data` bin split) and the
+> Section 2a's 10 routines joined on the same day: their `.s` (`asm/us/boot_data/`) is assembled and composed
+> into their `data.bin` slots by the Makefile, so `data.bin` itself (110 receipts) is unchanged; 43 functions /
+> 7,816 B are now locked and static reads `676/677 functions, 159,040/162,284 bytes (98.00%: from C 633 / 93.18%,
+> from assembly 43 / 4.82%)`. Still open: the
 > 7 ultralib name leads (renames go through the `symbol_addrs` context re-pin). The C-reachable pair (section 3)
 > stays C work: the lock refuses them. `__osAiDeviceBusy` landed as C on 2026-10-21 (segment 0x10760 converted
 > to `rom/lib_10760`, promoted with the July score0 lock; ROM SHA-1 exact), leaving `func_80012D18`.
@@ -111,8 +114,10 @@ static denominator. `tests/conveyor/test_boot_data.py` proves the extents and ca
 | func_8002C5E0 | 28 | D-cache `cache 0xd` loop over [a0, a1), placed among the segment's .data; jal'd by six static functions |
 
 None of this has a C form: PC-relative self-addressing, frameless `bal` calls and computed callbacks into
-code fragments are hand-written assembly. Landing them means splitting the `data` bin (110 receipts pin
-`assets/us/data.bin`) and promoting the `.s`.
+code fragments are hand-written assembly. They are built from `asm/us/boot_data/*.s` (`pipeline.boot_data asm`
+generates them from splat's disassembly, with the two inline tables as `.word` data), composed into their
+`data.bin` slots by the Makefile, and locked in `asm_matched.lock.json` (2026-10-21). A builder drill changed one
+instruction in `kernels.s` and the ROM SHA-1 failed, so the composition is what the gate judges.
 
 ## 3. C-reachable, still open (2 functions, 3,196 B)
 
