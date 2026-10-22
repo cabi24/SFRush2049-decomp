@@ -4,6 +4,15 @@ from pathlib import Path
 D = Path("cloud/work/frontier/z12d18")
 
 EDITS = {
+ 'r_excess': [('    unsigned int excess;\n', '    register unsigned int excess;\n')],
+ 'r_frames': [('    unsigned int frames;\n', '    register unsigned int frames;\n')],
+ 'i_frames': [('    unsigned int frames;\n', '    int frames;\n')],
+ 'f_twostep': [('    frames = ((unsigned int)(V->rate * 192 + 0xFFF) >> 12) + 6;\n', '    frames = (unsigned int)(V->rate * 192 + 0xFFF) >> 12;\n    frames += 6;\n')],
+
+ 'x_init0': [('    unsigned int excess;\n', '    unsigned int excess = 0;\n')],
+ 'x_twostep': [('        } else if (V->loop_start >= position) {', '        } else if (excess = frames - end, excess += position, V->loop_start >= position) {'), ('        } else if (V->loop_length < (excess = frames - end + position) || excess >= position - V->loop_start) {', '        } else if (V->loop_length < excess || excess >= position - V->loop_start) {')],
+ 'x_twostep_b': [('        } else if (V->loop_length < (excess = frames - end + position) || excess >= position - V->loop_start) {', '        } else if (excess = frames - end, V->loop_length < (excess += position) || excess >= position - V->loop_start) {')],
+
  'x_int': [('    unsigned int excess;\n', '    int excess;\n')],
 
  't_u44': [('    cmd->unknown44 = 0;\n    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;', '    cmd->position4C = padded[0] * (V->rate * 16) + cmd->fraction;\n    cmd->unknown44 = 0;')],

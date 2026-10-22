@@ -1,6 +1,6 @@
 # z12d18 — func_80012D18 (static, lib_11640, IDO 7.1 `-g0 -O2`), 2026-10-21
 
-NEAR MISS, not a submission. `best.c` takes the w23a baseline from **578 to 205** differing `objdump -dr` rows
+NEAR MISS, not a submission. `best.c` takes the w23a baseline from **578 to 187** differing `objdump -dr` rows
 (`obj71.sh`, trace71 toolkit, scratch `watchman2:~/rush2049/scratch/frontier/z12d18`, fidelity 54/54). The body is now
 **788 = 788 rows** (baseline 781: 6 words short); opcode-aligned equal 769/788 before the last scheduling fixes; every
 named local sits at retail's frame offset (stack-offset usage profile identical to retail).
@@ -19,14 +19,12 @@ named local sits at retail's frame offset (stack-offset usage profile identical 
 | 7 | more statement order (third/fourth branch, else-path sub-branch) | 221 |
 | 8 | 2 bytes of local area below `loopRem` (`probe`, disclosed): first expression home at -76 like retail's `44(sp)` | 217 |
 | 9 | non-flags ADPCM loop/main statement order; `cmd->unknown44 = 0` after `position4C` | 205 |
+| 10 | `frames = (V->rate * 192 + 0xFFF) >> 12; frames += 6;`: the second definition raises frames' priority (tot 6 -> 8, save 1.5 -> 2.0, ties the excess expression and is decided first), so frames a1 / excess a2 like retail; equals the force71 oracle | 187 |
 
-## Remaining residual (205 rows)
+## Remaining residual (187 rows)
 
-- **frames/excess register swap** (~18 rows): retail `frames` a1, `excess` a2; ours the reverse. uopt colours by
-  priority: the `excess` expression web (w382, save 2.0, 2 live units) before `frames` (w19, save 1.5, 4 units).
-  `force71 "p1:w19=c4,p1:w382=c5"` gives **187** (the swap alone, nothing else breaks). Not moved by: excess as its own
-  statement before the loop_start test, flipped compare, `int excess`. Next: find what makes retail's excess web rank
-  below frames (more live units, or a variable web that survives copy propagation).
+- **frames/excess register swap: FIXED** by step 10. Not moved by: excess as its own statement, flipped compare,
+  `int excess`, `register`, two-step or initialised excess (uopt copy-propagates every excess form).
 - **`V->data` in v0 + `move a3,v0` in the jal delay slot** (flags PCM/ADPCM cases): ours colours the CSE'd load into
   a3/t0 directly (argument preference).
 - **loopRem at the join in a0** (ours a1); force to a0 is declined (a0 forbidden by an interfering web).

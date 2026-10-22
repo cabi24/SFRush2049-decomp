@@ -1,10 +1,11 @@
 /* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 /* z12d18 (2026-10-21) from w23a best.c: NEAR MISS, not a submission. IDO 7.1 (lib_11640), obj71 rows:
- * 578 -> 205 differing (788 = 788 rows; structure and every named frame slot now match retail).
+ * 578 -> 187 differing (788 = 788 rows; structure and every named frame slot now match retail).
  * Levers, in order: chained level assignments (retail sign-extends the stored short); `loopRem / 32` and
  * `mainRem / 32` (signed divide) in the non-flags ADPCM case only; the flags cases `goto` the non-flags
  * cases' shared tails (adpcm_tail / pcm_tail); `position` is a u32 set from the floor call and there is no
- * double local; `excess` is declared after `state`; statement order in the range planning and tail.
+ * double local; `excess` is declared after `state`; statement order in the range planning and tail; `frames` computed in two
+ * steps (`>> 12`, then `+= 6`), which lifts its colouring priority above the excess expression (frames a1, excess a2).
  * DISCLOSED: `probe` (unsigned short, never used) is an exact frame residual: retail's local area is 2-4 bytes
  * larger below loopRem than these declarations give (first expression home at -76 like retail's 44(sp));
  * its real identity is not known. */
@@ -78,7 +79,8 @@ void func_80012D18(AudioState *audio, unsigned short samples, unsigned char inde
     cmd = &((Block_80012D18 *)D_800382D0)[*D_800382D4].commands[((Block_80012D18 *)D_800382D0)[*D_800382D4].count];
     D_80038030 += 0x50;
     D_80038034 = func_8002C5E0(D_80038034, D_80038030);
-    frames = ((unsigned int)(V->rate * 192 + 0xFFF) >> 12) + 6;
+    frames = (unsigned int)(V->rate * 192 + 0xFFF) >> 12;
+    frames += 6;
     position = func_8001E688(V->position);
     end = V->loop_start + V->loop_length;
     state = 2;
