@@ -3690,6 +3690,6 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800CA2F8(void) {
+void func_800E6AF0(void) {
 
 }

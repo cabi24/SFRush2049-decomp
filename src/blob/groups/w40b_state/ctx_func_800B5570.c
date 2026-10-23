@@ -3690,6 +3690,6 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800C9150(void) {
-
+void func_800B5570(s32 arg0) {
+    state_word_b = arg0;
 }

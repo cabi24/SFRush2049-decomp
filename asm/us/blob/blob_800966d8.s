@@ -2855,6 +2855,7 @@ engine_sound_sync:
 .section .text.func_80098FB8, "ax", @progbits
 .globl func_80098FB8
 func_80098FB8:
+    /* compiled from src/blob/func_80098FB8.c */
     .word 0x3C0E8011
     .word 0x81CE023C
     .word 0x27BDFF48
@@ -3048,6 +3049,7 @@ func_80098FB8:
 .section .text.entity_ai_pathfind, "ax", @progbits
 .globl entity_ai_pathfind
 entity_ai_pathfind:
+    /* compiled from src/blob/entity_ai_pathfind.c */
     .word 0x27BDFF30
     .word 0xAFA400D0
     .word 0xAFBF005C

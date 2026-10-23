@@ -2424,6 +2424,7 @@ audio_frame_update:
 .section .text.func_800B0EA0, "ax", @progbits
 .globl func_800B0EA0
 func_800B0EA0:
+    /* compiled from src/blob/func_800B0EA0.c */
     .word 0x14800003
     .word 0x288100FF
     .word 0x03E00008
@@ -2579,6 +2580,7 @@ sound_bank_load:
 .section .text.sound_bank_unload, "ax", @progbits
 .globl sound_bank_unload
 sound_bank_unload:
+    /* compiled from src/blob/sound_bank_unload.c */
     .word 0x27BDFF40
     .word 0xAFA400C0
     .word 0x87AF00C2

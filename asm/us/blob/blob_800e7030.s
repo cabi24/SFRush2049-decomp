@@ -537,6 +537,7 @@ func_800E7710:
 .section .text.render_thread_entry, "ax", @progbits
 .globl render_thread_entry
 render_thread_entry:
+    /* compiled from src/blob/render_thread_entry.c */
     .word 0x27BDFFC0
     .word 0xAFA40040
     .word 0xAFBF002C

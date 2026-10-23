@@ -6214,6 +6214,7 @@ state_change_preprocess:
 .section .text.playgame_state_change, "ax", @progbits
 .globl playgame_state_change
 playgame_state_change:
+    /* compiled from src/blob/playgame_state_change.c */
     .word 0x27BDFF18
     .word 0xAFB00038
     .word 0x3C108011

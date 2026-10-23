@@ -1,0 +1,22 @@
+{
+ "members": [
+  "render_thread_entry"
+ ],
+ "files": [
+  "func_800E7710.c",
+  "modelthread.c",
+  "func_800E6AF0.c"
+ ],
+ "keep": [
+  "render_thread_entry",
+  "func_800E7710",
+  "func_800E6AF0"
+ ],
+ "context": [
+  "func_800E7710",
+  "func_800E6AF0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "w40a (wave 40): ModelThread@model.c N64 thread form; w39a identification, w27a/w39c drafts",
+ "note": "NEW group. Context files are byte copies of locked singles used only for layout: func_800E7710.c (the function retail places directly before render_thread_entry) and func_800E6AF0.c (an 8-byte stub of the same model/mdrive region, listed last so umerge emits it first); together they put render_thread_entry at its retail offset modulo 32 (0x60DB8 from the game .text base = 24) for the .align 5 pad of the unreachable epilogue. One disclosed code-free shaping line (compiled-out message-type test in the drain loop, see modelthread.c)."
+}

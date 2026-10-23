@@ -3690,6 +3690,12 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800B42E8(void) {
+f32 func_800986DC(f32 arg0, f32 arg1) {
+    f32 var_f2;
 
+    var_f2 = D_80152748;
+    if (D_80152748 < arg0) {
+        var_f2 = D_80152748 + 14400.0f;
+    }
+    return (var_f2 - arg0) / arg1;
 }

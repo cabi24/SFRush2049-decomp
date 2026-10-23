@@ -82,6 +82,10 @@
   {
    "name": "vsync_wait",
    "reason": "locked in codex_vsync_a145 (group.c); group frontier_billboard_render lists it as context (byte-identical copy ctx_vsync_a145.c, w31d) which makes it internal in the unit and empties the body (37w -> 2w)"
+  },
+  {
+   "name": "object_create",
+   "reason": "HAL_SetFont (group w40b_state, halfont.c): retail keeps an out-of-line body and playgame_state_change calls it by jal at fonts 8..13 (umerge inlines only fonts 7, 6, 5 there); in the unit the derivation makes it internal and empties it (28w -> 20w). PrintScores stays EQUAL with it kept (w40b)"
   }
  ],
  "force_internal": [
@@ -824,6 +828,10 @@
   {
    "name": "MainEndFrame",
    "reason": "inlined non-static helper of the main-thread message step (world_trigger_activate, group w39c_mainloop); invented name, no retail symbol"
+  },
+  {
+   "name": "SetModelPalette",
+   "reason": "inlined helper of sound_bank_unload (N64 SetupCarColor, group w40a_carcolor) at both palette stores; invented name, no retail symbol (w40a)"
   }
  ],
  "prefer_definition": [
@@ -996,6 +1004,11 @@
    "name": "func_800EE8AC",
    "file": "src/blob/groups/w39c_initgraphics/initgfx.c",
    "reason": "locked before as an empty stub single; the real N64 _InitGfx body in the InitGraphics group is what InitGraphics and InitSystem inline (w39c); it still produces the 2-word retail stub"
+  },
+  {
+   "name": "object_create",
+   "file": "src/blob/groups/w40b_state/halfont.c",
+   "reason": "HAL_SetFont: about 20 groups carry the direct osRecvMesg form as context (gr3_b.c copies); only the MAT3 two-level form (_GetSemaphore/_HAL_SetFont/_ReleaseSemaphore) in w40b_state is retail's kept body and gives umerge's retail inlining (fonts 7, 6, 5 inlined in playgame_state_change, the rest jal; w40b)"
   }
  ],
  "align": [
@@ -1014,6 +1027,14 @@
   {
    "name": "brake_force_apply",
    "reason": "position dependent, same mechanism as task_complete_signal and audio_queue_process: the wave-loader thread (BGLoadWaveMain) ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text (49 words only at its image offset modulo 32; w39c)"
+  },
+  {
+   "name": "render_thread_entry",
+   "reason": "position dependent, same mechanism as brake_force_apply and task_complete_signal: the model thread (ModelThread@model.c, group w40a_modelthread) ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text, so its body is retail's only at its image offset modulo 32 (w40a)"
+  },
+  {
+   "name": "entity_ai_pathfind",
+   "reason": "position dependent: the audio-manager thread (group engine_sound_sync, audiomgr_thread.c) ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text, so its body is retail's only at its image offset modulo 32 (w40a; the group places it with the func_800986DC.c context copy, the unit needs this entry)"
   }
  ],
  "extern_data": [

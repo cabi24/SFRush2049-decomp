@@ -548,6 +548,7 @@ func_800B42E8:
 .section .text.object_create, "ax", @progbits
 .globl object_create
 object_create:
+    /* compiled from src/blob/object_create.c */
     .word 0x27BDFFD0
     .word 0xAFA40030
     .word 0xAFBF0024
