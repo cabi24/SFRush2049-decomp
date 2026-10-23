@@ -24,6 +24,19 @@
  *  - DISCLOSED LEVER: `if (D_8039A520.head) {}` before the _InitNewShot call in ShotUpdate is a compiled-out read
  *    (no code): it adds the block that keeps ShotUpdate's callee-saved cost at retail's value and the gShotList
  *    address reference that orders the case-1 colouring. No natural source form for it has been found.
+ * w41b superseding revision (wave 41): claims the deleted-inline stub func_8038FCD8 = AnimateCase (MAT3 shots.c
+ * static, called first by ShotUpdate; post-order places its 8-byte stub immediately before ShotUpdate, w36n/w38b).
+ * The casing loop moves verbatim out of ShotUpdate into the helper (non-static, not on keep, named after the stub;
+ * locals casing, next and the s32 `idx` carrier that keeps retail's `lw; sll; sra; move` argument path).
+ * Frame accounting (spill.sh, cfe locals area): installed 88; helper inlined as-is 96 (umerge's 8-byte inline-call
+ * area plus the helper's locals rounded to 8 replace the 12 root bytes of casing/next/idx), every home +8
+ * (w38b: 47/764). Retail's root therefore has 13 words of named locals: i (sp+204), StartStreak, streaktype
+ * (sp+196), seven 4-byte locals, then off[3] (sp+156..164). This revision gets there with two SHAPING changes
+ * (disclosed; text otherwise unchanged): (1) `defense` is not a local: UpdateDefense's test and argument use
+ * `car->battle.defense` directly (code-identical); (2) the hit-poly cleanup loop keeps its successor in the dead
+ * `shot` pointer (`shot = (Shot *)hp->next`) instead of a separate nexth (shot is not read after the main loop).
+ * `z` (case 5) and `sizep` are function-scope locals declared before off[3]. Result: area 88, frame 208, all eleven
+ * members text-identical (Astra's dot_ovlb_20261022 variant, h/shot reused for hp/nexth, is equally exact).
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -950,20 +963,10 @@ void func_8038F560(Shot *shot, Car *car)
     math_utility(&car->uvs[0][0], &shot->uvs[0][0]);
 }
 
-/* 0x8038FCE0 ShotUpdate */
-void func_8038FCE0(void)
+void func_8038FCD8(void);
+/* AnimateCase (MAT3 shots.c): inlined into ShotUpdate func_8038FCE0; deleted stub 0x8038FCD8 (w38b). Loop moved verbatim. */
+void func_8038FCD8(void)
 {
-    s32 i;
-    s32 StartStreak;
-    s32 streaktype;
-    Shot *shot;
-    ShotCase *h;
-    HitPoly *hp, *nexth;
-    Defense *defense;
-    Car *car;
-    Model *m;
-    f32 off[3];
-    ColSize *sizep;
     ShotCase *casing, *next;
     s32 idx;
 
@@ -981,11 +984,28 @@ void func_8038FCE0(void)
             casing->mat.pos[2] = casing->mat.pos[2] + casing->vel[2] * D_8002EB94;
         }
     }
+}
+
+/* 0x8038FCE0 ShotUpdate */
+void func_8038FCE0(void)
+{
+    s32 i;
+    s32 StartStreak;
+    s32 streaktype;
+    Shot *shot;
+    ShotCase *h;
+    HitPoly *hp;
+    Car *car;
+    Model *m;
+    ColSize *sizep;
+    f32 z;
+    f32 off[3];
+
+    func_8038FCD8();
     for (i = 0, car = D_80152818; i < D_801543CA; i++, car++) {
         m = &D_8014A250[car->slot];
-        defense = &car->battle.defense;
-        if (defense->active)
-            func_8038F938(car, m, defense, car->slot);
+        if (car->battle.defense.active)
+            func_8038F938(car, m, &car->battle.defense, car->slot);
         switch (car->battle.type) {
         case 0: case 1: case 6: case 8:
             func_8038F568(car);
@@ -995,7 +1015,6 @@ void func_8038FCE0(void)
             goto resetWeapon;
         if (!car->battle.ammoCnt) {
             if (car->battle.type == 5) {
-                f32 z;
                 sizep = &D_8011F844[m->body_type];
                 m->bodyR[0][2] = m->bodyR[1][2] = sizep->colfront;
                 z = m->bodyR[0][2] > sizep->colrear ? m->bodyR[0][2] : sizep->colrear;
@@ -1140,8 +1159,8 @@ resetWeapon:
                 car->battle.ammoCnt--;
         }
     }
-    for (hp = D_8039A5F8.head; hp; hp = nexth) {
-        nexth = hp->next;
+    for (hp = D_8039A5F8.head; hp; hp = (HitPoly *)shot) {
+        shot = (Shot *)hp->next;
         func_8008D0C0(hp->poly);
         func_800AFA84(&D_8039A5F8, hp);
     }

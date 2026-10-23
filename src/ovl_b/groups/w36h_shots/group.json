@@ -20,7 +20,8 @@
   "func_8038FCE0",
   "func_8038F560",
   "func_8038F568",
-  "func_8038E114"
+  "func_8038E114",
+  "func_8038FCD8"
  ],
  "context": [
   "func_8038CB20",
@@ -40,5 +41,6 @@
   "func_8038DDDC",
   "func_8038C910"
  ],
- "provenance": "w36h (continues w35f groups/ovlb): MAT3 shots.c port; every shots.c function of image B is a member and claimed; context = six byte-identical copies of installed partners"
+ "provenance": "w36h (continues w35f groups/ovlb): MAT3 shots.c port; every shots.c function of image B is a member and claimed; context = six byte-identical copies of installed partners; w41b (wave 41): same-name superseding revision, claims the AnimateCase deleted-inline stub func_8038FCD8 (helper defined non-static, not kept); ShotUpdate frame shaping disclosed in shots.c header; all ten old members unchanged and MATCH; adds allow_unverified (own .rodata of ShotUpdate/ElevateGun/UpdateShots lies in two retail regions, the one-base rule; every window content-verified locally against build/ovl/b/image.bin, identical to the installed copy)",
+ "allow_unverified": true
 }
