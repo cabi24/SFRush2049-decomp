@@ -116,7 +116,9 @@ class CorpusTests(unittest.TestCase):
         a, b = summ['class relaxed (ptr~int)']
         self.assertGreater(a / b, 0.93)
         a, b = summ['return class']
-        self.assertGreater(a / b, 0.94)
+        # 0.935, not 0.94: the blob ground truth is src/blob/*.c singles, which shrink as stub singles fold
+        # into groups (w40b_state took four correct void stubs: 753/801 -> 749/797, no prediction changed)
+        self.assertGreater(a / b, 0.935)
 
 
 if __name__ == '__main__':

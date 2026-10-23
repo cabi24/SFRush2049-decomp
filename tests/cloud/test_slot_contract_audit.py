@@ -29,10 +29,10 @@ def test_counts_are_bounded_dependency_surface_not_matches():
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (66, 171, 168)
     assert sum(result['captures'].values()) == 162
-    assert result['accepted_callers'] == ['voice_stop', 'func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'credits_scroll', 'drone_collision_avoid', 'func_800D9058', 'replay_save_prompt', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_velocity_integrate', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'dust_cloud_effect', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'func_800F857C', 'countdown_handler', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']
-    assert result['unaccepted_caller_bytes'] == 14560
-    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 1
-    assert result['bounded_dependency_bytes'] == 112
+    assert result['accepted_callers'] == ['object_create', 'voice_stop', 'func_800B4FB0', 'TitlePane', 'particles_update', 'particle_render', 'playgame_state_change', 'credits_scroll', 'drone_collision_avoid', 'func_800D9058', 'replay_save_prompt', 'control_cell_text', 'control_cell_text3', 'control_cell_text2', 'func_800DD0C0', 'control_settings', 'world_velocity_integrate', 'world_trigger_check', 'emitter_update', 'func_800EF288', 'dust_cloud_effect', 'skid_mark_render', 'PrintScores', 'SetHighScoreState', 'func_800F857C', 'countdown_handler', 'game_timer_display', 'audio_animButtonText', 'audio_animText', 'func_80100B8C', 'func_80100E58', 'func_80101904', 'func_80101D84', 'drawMain', 'func_80102448', 'drawBattleScore', 'func_80102F30', 'DrawUnlocked', 'DrawName', 'DrawGhost', 'animResults', 'func_80106874', 'func_80106B3C', 'checkpoint_hit', 'animElapsedTimerText', 'animPlace', 'func_80107EDC', 'animLapTime', 'func_801084D4', 'animWrongWay', 'func_80109F54', 'func_8010A53C', 'options_animButtonText', 'options_animText', 'func_8010B5D0', 'func_8010B7FC', 'func_8010B9C8', 'func_8010BC84']
+    assert result['unaccepted_caller_bytes'] == 11904
+    assert len(result['only_selector_unaccepted_direct_game_dependency']) == 0
+    assert result['bounded_dependency_bytes'] == 0
 
 
 @pytest.mark.parametrize('name,site', [
@@ -114,8 +114,11 @@ def test_selected_helper_change_fails_body_binding(monkeypatch):
 
 def test_changed_acceptance_status_changes_bound(monkeypatch):
     # w36: func_800D9058 landed (w36k); use any caller the receipt still lists as unaccepted
-    # and selector-only, so accepting it must move the summary.
-    pending = sorted(receipt()['summary']['only_selector_unaccepted_direct_game_dependency'])[0]
+    # and selector-only, so accepting it must move the summary. w40b: object_create, the last
+    # selector-only one, landed; any unaccepted caller still moves unaccepted_caller_bytes.
+    saved = receipt()
+    bounded = sorted(saved['summary']['only_selector_unaccepted_direct_game_dependency'])
+    pending = bounded[0] if bounded else sorted(n for n, r in saved['callers'].items() if not r['accepted'])[0]
     old_read = Path.read_text
     def changed(path, *args, **kwargs):
         text = old_read(path, *args, **kwargs)

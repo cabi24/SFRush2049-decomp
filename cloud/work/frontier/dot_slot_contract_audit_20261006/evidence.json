@@ -53,11 +53,13 @@
       "stack_word": 21
     },
     "accepted_callers": [
+      "object_create",
       "voice_stop",
       "func_800B4FB0",
       "TitlePane",
       "particles_update",
       "particle_render",
+      "playgame_state_change",
       "credits_scroll",
       "drone_collision_avoid",
       "func_800D9058",
@@ -110,11 +112,9 @@
       "func_8010B9C8",
       "func_8010BC84"
     ],
-    "unaccepted_caller_bytes": 14560,
-    "only_selector_unaccepted_direct_game_dependency": {
-      "object_create": 112
-    },
-    "bounded_dependency_bytes": 112
+    "unaccepted_caller_bytes": 11904,
+    "only_selector_unaccepted_direct_game_dependency": {},
+    "bounded_dependency_bytes": 0
   },
   "no_copy_sites": [
     {
@@ -175,7 +175,7 @@
       "start": "0x800B42F0",
       "bytes": 112,
       "body_sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800B4320"
       ],
@@ -267,7 +267,7 @@
       "start": "0x800CA3B4",
       "bytes": 2544,
       "body_sha256": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
-      "accepted": false,
+      "accepted": true,
       "sites": [
         "0x800CABF0",
         "0x800CAC24",
@@ -277,8 +277,7 @@
         "stack_word": 3
       },
       "other_unaccepted_direct_game_calls": [
-        "display_enable",
-        "object_create"
+        "display_enable"
       ]
     },
     "credits_scroll": {
