@@ -1,0 +1,45 @@
+{
+ "name": "w36h_shots",
+ "files": [
+  "shots.c",
+  "ctx_d3a4.c",
+  "ctx_d798.c",
+  "ctx_dddc.c",
+  "ctx_d054.c",
+  "ctx_cb20.c",
+  "ctx_c910.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "members": [
+  "func_8038D200",
+  "func_8038D328",
+  "func_8038E088",
+  "func_8038D498",
+  "func_8038F938",
+  "func_8038DA78",
+  "func_8038FCE0",
+  "func_8038F560",
+  "func_8038F568",
+  "func_8038E114",
+  "func_8038FCD8"
+ ],
+ "context": [
+  "func_8038CB20",
+  "func_8038D054",
+  "func_8038D3A4",
+  "func_8038D798",
+  "func_8038DDDC",
+  "func_8038C910"
+ ],
+ "keep": [
+  "func_8038FCE0",
+  "func_8038F568",
+  "func_8038CB20",
+  "func_8038D054",
+  "func_8038D3A4",
+  "func_8038D798",
+  "func_8038DDDC",
+  "func_8038C910"
+ ],
+ "provenance": "w36h (continues w35f groups/ovlb): MAT3 shots.c port; every shots.c function of image B is a member and claimed; context = six byte-identical copies of installed partners"
+}
