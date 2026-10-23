@@ -13,10 +13,10 @@ Rush 2049 (N64, US)** ROM. Game logic comes from the arcade source (`reference/r
 maintainer's machine; **not** in this repo) and from decompiling the N64 assembly. The cartridge holds
 four code populations, reported separately and never merged:
 
-| Population | Targets in this repo | Compiler | 2026-10-22 (master `4c481dc28`) |
+| Population | Targets in this repo | Compiler | 2026-10-23 (master `836aec1b5`) |
 |---|---|---|---|
 | Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 677/677 functions (634 C + 43 assembly), 162,188 / 162,284 B (99.94%; from C 95.12%); 10 of the assembly routines are composed into the ROM data bin (`pipeline.boot_data`) |
-| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 1177/1216, 518,060 / 561,860 code B (92.20%; 80.06% of the 647,072 B image) |
+| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 1184/1216, 525,360 / 561,860 code B (93.50%; 81.19% of the 647,072 B image) |
 | Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 158/193 functions, 128,308 / 152,952 code B (83.89%); lands via `ovl_splice` + `ovl_rom` |
 | Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 43/49 functions, 36,288 / 38,708 code B (93.75%); same |
 

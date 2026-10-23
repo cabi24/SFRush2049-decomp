@@ -843,6 +843,23 @@ superseded in place (brake_force_apply = BGLoadWaveMain; unit `align` override).
 30-33 rows, world_collision_response 84 words, SetupCarColor 135/312; func_800B0EA0 group-MATCH only with a stand-in
 caller. `docs/dot_handoff_targets.csv` lists the 39 unmatched.
 
+**Wave 40, audio manager + state.c (2026-10-23, lanes w40a/w40b, integration commit `836aec1b5`):** game 1177 → 1184/1216
+(525,360 B, 93.50%, +7,300 B). w40a: engine_sound_sync superseded in place with func_80098FB8 (_PeriodicMaintenance)
+and entity_ai_pathfind (the audio-manager thread, `audiomgr_thread.c`); NEW w40a_modelthread (render_thread_entry =
+ModelThread); NEW w40a_carcolor (sound_bank_unload = N64 SetupCarColor, func_800B0EA0 colour blend, stub
+func_800B0F60). w40b: NEW w40b_state (playgame_state_change = initGameState/updateGameState, object_create =
+HAL_SetFont in the MAT3 two-level form, four stubs). Unit overrides: `align` entity_ai_pathfind and
+render_thread_entry (thread mains, 32-byte epilogue pad), force_internal SetModelPalette, prefer_definition +
+force_keep object_create. w40b decoded umerge's inlining rule with an instrumented umerge (`w40b/RESULTS.md` §1,
+WAVE_BRIEF 2026-10-23). Unmatched: world_collision_response (EndGraphics, 135/135 words, 88 rows of register choice),
+display_enable (55/79; flags are function-local statics of a deleted overlay helper, needs codex_heap_release_a25's
+overlay_loader.c superseded), _AnimateMine 66 → 49 rows, controls pair unchanged. Owner receipt patches:
+`w38i/held/slot_contract_audit_w40b.patch` (object_create was the last selector-only dependency; the acceptance test
+falls back to any unaccepted caller) and `ipakit_sigs_floor_w40b.patch` (return-class floor 0.935: stub singles
+leaving `src/blob/*.c` shrink the ground truth). PR review the same day: 33 stale Astra drafts closed with reasons,
+#419 and #407 merged (`bd7c4d06f`), #413/#410/#417 harvested into `cloud/work/frontier/w41_inputs/` (local; their
+receipts pin moved files). `docs/dot_handoff_targets.csv` lists the 32 unmatched.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1

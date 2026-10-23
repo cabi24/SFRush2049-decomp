@@ -345,3 +345,25 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
    file in the group fixes it there, an `align` unit override in the shadow unit.
 5. A leaf whose retail temps stay in t6-t9 while ours spill into t0+ is an internal callee: score it in a group with
    its caller. `force.sh` early, even on far functions, separates register choice from frame residuals.
+
+## 2026-10-23 lessons (w40: audio manager, model thread, SetupCarColor, state.c)
+
+1. **umerge's inlining is a formula, not a budget** (w40b, instrumented umerge, byte-identical output). Per
+   procedure, +32 = u-code instruction count and +28 = size measure max(+32 >> 5, calls/branches). Per edge, benefit
+   B = freq x (4 + param bytes/4) and growth S = callee +32 - 4 - param bytes/4. Loop 1 (callees' subtrees first,
+   call sites from the LAST source line) inlines at once when S <= 0 or the callee has one caller. Loop 2 inlines a
+   multi-caller site iff C + c <= min(500, 62*sqrt(C/c)) and S*max(1, C>>7)/B <= 3.0; the caller's C grows by c
+   per inline, so costs double once C reaches 256 (the old "per-caller budget").
+2. **Frame accounting**: each inlined call costs 8 bytes of frame plus the callee's locals, below the caller's own
+   locals; unexplained bytes above the first named local are the function's own locals.
+3. **Function-local statics never get an address register** (no uopt address web); every other global kind does in
+   an internal procedure, where s-registers are free. A flag that retail reloads with lui/addiu each time is a
+   function-local static.
+4. **The MAT3 two-level HAL_SetFont is retail's body** (`_GetSemaphore(); old = _HAL_SetFont(id); _ReleaseSemaphore();`)
+   and the only form umerge inlines at retail's three sites. Several installed groups still carry the direct form as
+   context; the unit uses the w40b_state definition (`prefer_definition`).
+5. **Thread mains need `align` in the unit even when the group places them** (entity_ai_pathfind and
+   render_thread_entry both failed without it); blob_unit keeps its pads between runs, so a second run converges.
+6. **A static inlined into its only caller still leaves its 8-byte stub at the end of its subtree** (initGameState =
+   func_800CA2F8): use it to place the helper in the source.
+

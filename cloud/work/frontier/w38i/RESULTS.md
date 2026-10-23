@@ -10,6 +10,7 @@ byte-identical), `ovl_splice check` (ovl lock intact), `ovl_rom rom` (ROM SHA-1 
 | 2 | cd2b9bef6 (lane files e26d56101) | w38a game: NEW w38a_loadtrack (LoadTrack); w37a_paksys, camera_aspect_ratio, audio_options_menu, audio_frame_update, codex_defaults_a16 superseded in place (car_lod_select, camera_look_at_point, drone_collision_avoid, audio_frame_update, world_velocity_integrate, menu_input_process, func_800B66B0); phase-12 test example LoadTrack -> camera_transform | game 1165 -> 1173/1216 (+6,820 B) | | yes, after owner commit 329614591 (slot audit re-pin) |
 | 3 | 3b32175c6 | w38b menu_renderers (func_803A6F14/1C/24), after owner commit 4934ffede (writer_bounds superseded copy) | 155 -> 158/193 (128,308 B) | | yes |
 | 4 | 4c481dc28 (lane files feeab9967) | w39c game: NEW w39c_updatefx (sound_position_update), w39c_mainloop (world_trigger_activate), w39c_initgraphics (world_effect_update; stub single func_800EE8AC superseded); audio_frame_sync superseded in place (brake_force_apply); unit overrides force_internal func_800EE8AC/MainPreNMI/MainEndFrame, prefer_definition func_800EE8AC, align brake_force_apply | game 1173 -> 1177/1216 (+1,560 B) | | yes |
+| 5 | 836aec1b5 (lane files 3ff88872c) | w40a/w40b game: engine_sound_sync superseded in place (func_80098FB8, entity_ai_pathfind); NEW w40a_modelthread (render_thread_entry), w40a_carcolor (sound_bank_unload, func_800B0EA0, stub func_800B0F60 reverted), w40b_state (playgame_state_change, object_create, four stub singles reverted); align entity_ai_pathfind/render_thread_entry, force_internal SetModelPalette, prefer_definition + force_keep object_create | game 1177 -> 1184/1216 (525,360 B) | | after owner patches |
 
 Note: commit 4aa2bdd04's message says "30 stubs" for image A; the split is 28 in A plus 2 in B.
 
@@ -32,3 +33,14 @@ Note: commit 4aa2bdd04's message says "30 stubs" for image A; the split is 28 in
   caller rows `accepted: true`, unaccepted bytes 16124 -> 14560, bounded dependency 824 -> 112) and the test's
   expected values. Validated in a throwaway commit: those tests pass on the Pi, rocky conveyor 2351 / cloud 1109
   passed. To land: owner applies and commits it, then batch 2 can be pushed.
+
+Batch 5 (w40, 2026-10-23): Pi pytest showed two failures caused by the batch, not by the matches.
+`test_slot_contract_audit.py`: object_create was the receipt's last selector-only dependency, so the summary moves
+and `test_changed_acceptance_status_changes_bound` indexes an empty list. `test_ipakit_sigs.py`: return-class
+accuracy 753/801 -> 748/796 (0.9397 < 0.94) only because five correctly predicted `void` stub singles left
+`src/blob/*.c` (no prediction changed). Prepared fixes: `held/slot_contract_audit_w40b.patch` (evidence regenerated
+with the packet's `collect()`, expected values, selector-only fallback to any unaccepted caller) and
+`held/ipakit_sigs_floor_w40b.patch` (floor 0.935). Validated in a throwaway commit (install + both patches): those
+tests pass on the Pi; rocky conveyor 2345 (5 fewer: stub singles moved into groups) / cloud 1109 passed. To land:
+owner applies and commits both, then batch 5 can be pushed.
+
