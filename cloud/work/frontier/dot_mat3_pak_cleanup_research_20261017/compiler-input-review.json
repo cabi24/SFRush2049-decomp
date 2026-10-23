@@ -1,0 +1,30 @@
+{
+  "reviewer": "independent physics lane",
+  "status": "PASS",
+  "scope": "Compiler-input seal correction only; no source, result, semantic or credit expansion.",
+  "proof_sha256": "c934d583318be8bafdc0f38e3be5c49310bfe4596eddf979b1539f50fb0c66fe",
+  "prior_proof_sha256": "e7adf2a1a54765dd3a8a81bdbe47d87eab483fd5c947366117d9d252fa0a8183",
+  "changed_receipt_fields": [
+    "/inputs/packet_sha256/README.md",
+    "/inputs/packet_sha256/replay.py",
+    "/inputs/toolchain_sha256/ujoin"
+  ],
+  "code_review": "The sole verifier code change adds ujoin to the existing standard score.ido compiler lookup and hash inventory. The optimized test specifically rejects a stale ujoin digest. Stock cc -j frontend evidence confirms cfe then ujoin.",
+  "preservation": "Independent recursive comparison reproduced exactly the three listed input changes; all other receipt fields, source/recipe hashes, complete objects, comparison rows, extents and semantics are identical.",
+  "independent_tests": {
+    "three_packet_focused_suite": "12 passed, including each full optimized replay and stale-ujoin refusal",
+    "missing_IDO": "3 passed, 9 skipped",
+    "logs": "build/physics_ujoin_review2221"
+  },
+  "current_files": {
+    "semantics.c": "8a7be7c144299a4345a4689eccad98efbf56c99df89f68f14eed5647c33c14c8",
+    "proof.json": "c934d583318be8bafdc0f38e3be5c49310bfe4596eddf979b1539f50fb0c66fe",
+    "group.json": "4c06db72e4ca3ddd1193d2a1719a443b89ef055b73f382137b239e37423ec4b1",
+    "candidate.c": "aeb51341aa980ce018772b375a6b558b16ce1d221356ecbea9a13cc207f89638",
+    "README.md": "c4c939d985371896962c504f005a6e24f7ebe96f42158152d3336b8cde12f0bc",
+    "replay.py": "6254f6df2428aaff3b23ed0d65945b30fa6784c61b63fbaf5fe1263e2ef4291f"
+  },
+  "focused_test_sha256": "497becf45f1bdb9ccd57aee0c36ecdd80ec3ddc1809c7cbb1ee902a91503e4db",
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0
+}

@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "reviewer": "independent physics lane",
+  "scope": "Missing-IDO availability diagnostic only; no source, matching or semantic re-acceptance.",
+  "reviewed_at_utc": "2026-10-17T21:25:21Z",
+  "proof_sha256": "e7adf2a1a54765dd3a8a81bdbe47d87eab483fd5c947366117d9d252fa0a8183",
+  "prior_proof_sha256": "569454c24cde01ff609518e06e2111f6f1df07040c1bc8b9d2a250d7edaa051b",
+  "changed_file_sha256": {
+    "cloud/work/frontier/dot_mat3_pak_cleanup_research_20261017/replay.py": "2324dfd6d53236c29bb0a9ae81632c054c45703f4d36a8ac1887307fd8bf6157",
+    "cloud/work/frontier/dot_mat3_pak_cleanup_research_20261017/README.md": "ef43e6621b1170cc5b91bcbb3dcdf9a67e804b27182033574958e0b44f1bac63",
+    "cloud/work/frontier/dot_mat3_pak_cleanup_research_20261017/proof.json": "e7adf2a1a54765dd3a8a81bdbe47d87eab483fd5c947366117d9d252fa0a8183",
+    "tests/cloud/test_mat3_pak_cleanup_research.py": "a0d1608ade8395c36b4cfbd5aabdb5d24fdeea4da0b8b86272328c4940902238"
+  },
+  "preservation": "Recursive proof comparison differs only at inputs.packet_sha256.README.md and inputs.packet_sha256.replay.py. All scores, complete objects, context/source/recipe/target/compiler/verifier hashes and semantic results are identical.",
+  "code_review": "The sole verifier code change replaces direct score.IDO/name access with Path(score.ido(name)), preserving the selected executable and hash while restoring the standard SystemExit diagnostic. The focused diagnostic test pins that behavior.",
+  "independent_checks": {
+    "toolchain_present_focused_tests": 8,
+    "missing_ido_local": {
+      "passes": 2,
+      "skips": 6,
+      "exit": 0
+    },
+    "missing_ido_required": {
+      "passes": 2,
+      "failures": 6,
+      "exit": 1
+    }
+  },
+  "new_candidate_bytes": 0,
+  "accepted_image_bytes": 0,
+  "publication_blockers": []
+}
