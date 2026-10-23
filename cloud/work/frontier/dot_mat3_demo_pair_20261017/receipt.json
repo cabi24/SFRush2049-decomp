@@ -1,0 +1,2922 @@
+{
+  "protocol_version": 2,
+  "claims": [],
+  "new_accepted_bytes": 0,
+  "source_sha256": {
+    "behavior.py": "950b9240848f9156e1333f1da8e64c5ac5fdc86ba5866a1b897d27e7c06f359a",
+    "group/camera_collision_check.c": "eb89e25e737829315e64527a18277bde4aa418a6650ac6392db7cb82a297f175",
+    "group/demo.c": "5b08b76284d33b3f0405287d80ce69ad2235a9f8eafc6698f6facc0690315ae2",
+    "group/frontier_camera_scene_manager_group.c": "4f12e9a89180ea777e1e3239dfdd0c1132f7920cbb17517f37aacc2b4cfcb83b",
+    "group/frontier_camera_target_track_group.c": "8a0d199baa20a1be6229d928ad54ca24a5978ef357f96c10d5491a062c09c0fe",
+    "group/frontier_car_checkpoints_car_setup_confirm.c": "9cf75c694ab4d7b38687854ae86744ecab2535e336f08e62caa1066b7021c149",
+    "group/frontier_car_checkpoints_func_800B61A8.c": "b7b3b7c5850442de81c28724adbaa53bde177a204c348d084b5a23d833391bb0",
+    "group/frontier_car_checkpoints_func_800D1AB0.c": "b9e5a26c4ca99b97389ec4111558f7c824902a55531d0c9a14b03aca98a60f67",
+    "group/frontier_car_checkpoints_func_800F8EC8.c": "4d3e0ec991ee2562d8a35dcf967509b2e0b06376e9c38fe33331c333844a1ee6",
+    "group/frontier_path_D169C_path.c": "98870beadc918e6755f4e723c9767e86402ee7e5c0ac4b0d60ccb0ba18cf1592",
+    "group/func_800CB718.c": "cb2a05d42337d09e928ac6168b5a187b24ca1482638c2b3cc2fdc3866e626f8e",
+    "group/group.json": "064ab0cfacf11955d3a149338c88fab03d367df71c056370ffae571a56f64c78",
+    "group/race_tail.c": "4494b1aa2c79cd2a6982c22c46ad6eac18576dcd6f42e359fe529c8a090b2a71",
+    "group/render_large_objects_group.c": "53683ddea35baea59cd654425398d56f4af932aa238ba42ec3198c39c076f586",
+    "layout.py": "06bc789bbabf93f4922fe2ec47e5eb54bc0600d5ba1146c79e95c3503e8a56fd",
+    "relocate.py": "12b636328e8ad37b405b0a4432ea82ca70c1ebe938a21e4651aeed098b567bef",
+    "trace.py": "18c9c8898c4cfa72d54aafcf192e54cdb892537e945b16951be0fd43a3ecfd22",
+    "verify.py": "2abd5b3ffb567f182d69100442238e4928c7938a9bcc14b89be3613e10522de1"
+  },
+  "target_words_sha256": {
+    "render_viewport_init": "654bb1ced64803ad473a7bb8d1238cdd95fba6868c75e49697192678c14fb9d9",
+    "func_800F92C8": "4cd90843ae24719886d832abb5d5af0c3de30c3d4611a2a16a9237c56436d7f6",
+    "render_large_objects": "04ff94b2dfea00abe7f297e4ba22eeaa0bbd5ac9f1238af653dae3d3ca4299ff",
+    "car_setup_confirm": "302759489f274b1aa9543aa88533274215a0245c8098bf974886fbe509d963be",
+    "func_800D1AB0": "1965bd7e38588504d9c005b16135bb6636b6797283e5022f18ae448d6daa7e87",
+    "func_800F8EC8": "704a856de34cd61f04accb71b0a04e032ca11754cab89505fd0ec5757e69780f",
+    "func_800D169C": "d5e14d9c9a66046776b118a9356c63143ca4984c90f6b216bf2b4d29cfb186d6",
+    "func_800D18C8": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800C2944": "c52139e76f4b0841c44117a9c6e5e8c4c016e073ca999e8bfa939009db2a7f06",
+    "func_800C26C4": "988309460e94bf86e91b54f0fe999c2eb0b45af62269f2307f7d4597798d125b",
+    "func_800C2430": "8014ace5172008551a66d684b47deff61bd6d6f1ef24421d39a9382e1953d723",
+    "func_800C1B60": "6e9bc4d46743436d450bc6d04b3ef1382b52fa1a8dc99e0341bde65e80b9c0d8",
+    "func_800C2004": "30666472109075d5c2f9fab88f291ff836e76b31e9e4c0553f93249c8e0b0f19",
+    "func_800C220C": "d615c1c4b3600620ed7a1af7eb468e057e9a3e73d573dfe13604b3037c82c9fa",
+    "func_800C3578": "c118989c64831a918f7439b9890f54f3cc51dfddb00ce99c8b26ee4ce4f0cd61",
+    "camera_scene_manager": "af9393277f546ff5b8c127422cf426ea29dd2882a28610ee11ad02b9b32a9011",
+    "func_80092278": "bfbbf64f98436079738840a97cb6792b381459e9b01565f6bfde260f6a9e67c6",
+    "entity_flags_apply": "5efca54fa178493c1e74e67a1283bdc58e23307e0db4c5fc35fe3f81ce54e53e",
+    "high_scores_display": "daff2fd31ef421307d27e4ab9509fc0444ab9395dad54745cd76619420d8dd8b",
+    "camera_target_track": "a057021cac52f5037d124838784fd62d4b2bf90a961c66b6a6b83344cb7da032",
+    "camera_collision_check": "3f413d17c94959d2eca5e59d4a0e48af9a069dd96cbe9b2f9c2c5e509cc290d0",
+    "func_800B61A8": "4a7d28b593d0bc7c5f622d021ea0159a8ca2d7c682aeb31a897ea516f11899bd",
+    "func_8009211C": "80e4ec28bf08e115019c1f294ce349b309d6ac9b6324bbd70cabc50728d075bb",
+    "func_80091FBC": "f8d5ad3a803810f13581c07ee33389ef6ac7e7e536c566e80cce8c3574064255",
+    "func_800CB718": "b9f06d6dc7e4e3d74db4322dcaa03d565c4810032ea39bae1133f3f6d2dc0791",
+    "debug_stats": "c6da1e9923785486e6a6747abc143e1f59108a4a7933742182959f29a8894592",
+    "debug_collision": "5f1e51ac0189534368d7a0ee078b1ded2eecf93cf0b39f836aceea4c168c42db",
+    "func_800FCDF0": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800FD00C": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800FD014": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "func_800FD01C": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+  },
+  "baseline_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+  },
+  "preserved_bodies": [
+    "render_viewport_init",
+    "func_800F92C8",
+    "render_large_objects",
+    "car_setup_confirm",
+    "func_800D1AB0",
+    "func_800F8EC8",
+    "func_800D169C",
+    "func_800D18C8",
+    "func_800C2944",
+    "func_800C26C4",
+    "func_800C2430",
+    "func_800C1B60",
+    "func_800C2004",
+    "func_800C220C",
+    "func_800C3578",
+    "camera_scene_manager",
+    "func_80092278",
+    "entity_flags_apply",
+    "high_scores_display",
+    "camera_target_track",
+    "camera_collision_check",
+    "func_800B61A8",
+    "func_8009211C",
+    "func_80091FBC",
+    "func_800CB718",
+    "func_800FCDF0",
+    "func_800FD00C",
+    "func_800FD014",
+    "func_800FD01C"
+  ],
+  "exact_research_helper": "debug_stats",
+  "results": {
+    "natural": {
+      "object_sha256": "cc632dd0c372c080f26c5424c97f7d24cffeaab90cdf119092717229ca8091d9",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 0,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      },
+      "differing_caller_offsets": [
+        204,
+        284,
+        412
+      ],
+      "behavior": {
+        "fixtures": 768,
+        "executions": 1536,
+        "instruction_coverage": [
+          {
+            "0x800fd024": 133,
+            "0x800fcdf8": 132
+          },
+          {
+            "0x800fd024": 133,
+            "0x800fcdf8": 132
+          }
+        ],
+        "uncovered_offsets": [
+          {
+            "0x800fd024": [],
+            "0x800fcdf8": [
+              172
+            ]
+          },
+          {
+            "0x800fd024": [],
+            "0x800fcdf8": [
+              172
+            ]
+          }
+        ],
+        "branch_outcomes": [
+          60,
+          60
+        ],
+        "callee_implementation_side_effects_validated": false,
+        "both_pair_bodies_execute": true
+      }
+    },
+    "repeat": {
+      "object_sha256": "cc632dd0c372c080f26c5424c97f7d24cffeaab90cdf119092717229ca8091d9",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 0,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      },
+      "differing_caller_offsets": [
+        204,
+        284,
+        412
+      ],
+      "behavior": {
+        "fixtures": 768,
+        "executions": 1536,
+        "instruction_coverage": [
+          {
+            "0x800fd024": 133,
+            "0x800fcdf8": 132
+          },
+          {
+            "0x800fd024": 133,
+            "0x800fcdf8": 132
+          }
+        ],
+        "uncovered_offsets": [
+          {
+            "0x800fd024": [],
+            "0x800fcdf8": [
+              172
+            ]
+          },
+          {
+            "0x800fd024": [],
+            "0x800fcdf8": [
+              172
+            ]
+          }
+        ],
+        "branch_outcomes": [
+          60,
+          60
+        ],
+        "callee_implementation_side_effects_validated": false,
+        "both_pair_bodies_execute": true
+      }
+    },
+    "external_demo_flag": {
+      "object_sha256": "313d93bd7af2933d33ff271b53d933a574315b74ec44b7920f54d0cec34676e8",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 117,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x4 at +0x44",
+              ".data+0x4 at +0x50",
+              ".data+0x0 at +0x54",
+              ".data+0x0 at +0x58",
+              ".data+0x0 at +0xd8",
+              ".data+0x0 at +0xdc"
+            ],
+            "errors": [
+              "own .data+0x0: retail reads this one object at different addresses 0x80114154, 0xFFFF8011"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 536,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      }
+    },
+    "uninitialized_demo_flag": {
+      "object_sha256": "8d988d30586db91d8ff8b1aafe957b9b401641317b3432dd8e015ca047e93dca",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 0,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [
+              ".bss+0x1650 at +0xc",
+              ".bss+0x1650 at +0x10",
+              ".bss+0x1650 at +0x18",
+              ".bss+0x1650 at +0x2c",
+              ".data+0x4 at +0x44",
+              ".data+0x4 at +0x50",
+              ".data+0x0 at +0x54",
+              ".data+0x0 at +0x58",
+              ".data+0x0 at +0xdc",
+              ".data+0x0 at +0xe0",
+              ".bss+0x1650 at +0xcc",
+              ".bss+0x1650 at +0xd4"
+            ],
+            "errors": [
+              "own .bss+0x1650 (referenced at +0x4604, +0x4620, +0x46c8): retail address 0x8011415C (+1 bytes) is not in a known game .bss range; retail has initialised bytes there"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      }
+    },
+    "wrong_requested_state": {
+      "object_sha256": "f8dd6cc253c9bfe330998d0fc304695dc6beab4aa95709b9a55c85f967173e4f",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 0,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 5,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      },
+      "semantic_rejection": "independent field/event model mismatch"
+    },
+    "wrong_preplay_mask": {
+      "object_sha256": "da7c94ca065b2072a600e2042fb8c81cc1ff47bdeb8bd6f69db4e5c70e1bb703",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 1,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      },
+      "semantic_rejection": "independent field/event model mismatch"
+    },
+    "wrong_teardown_flag": {
+      "object_sha256": "d7f1cc0f4ff4db01f67bd5d5858d81edd7f68d34cbd1c06250c19f5887dafc7d",
+      "functions": {
+        "render_viewport_init": {
+          "comparison": {
+            "differing": 0,
+            "total": 231,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 924,
+          "frame_bytes": 192
+        },
+        "func_800F92C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 52,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 208,
+          "frame_bytes": 0
+        },
+        "render_large_objects": {
+          "comparison": {
+            "differing": 0,
+            "total": 1413,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 5652,
+          "frame_bytes": 472
+        },
+        "car_setup_confirm": {
+          "comparison": {
+            "differing": 0,
+            "total": 221,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 884,
+          "frame_bytes": 136
+        },
+        "func_800D1AB0": {
+          "comparison": {
+            "differing": 0,
+            "total": 140,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 560,
+          "frame_bytes": 72
+        },
+        "func_800F8EC8": {
+          "comparison": {
+            "differing": 0,
+            "total": 256,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1024,
+          "frame_bytes": 168
+        },
+        "func_800D169C": {
+          "comparison": {
+            "differing": 0,
+            "total": 139,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 556,
+          "frame_bytes": 104
+        },
+        "func_800D18C8": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800C2944": {
+          "comparison": {
+            "differing": 0,
+            "total": 167,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 668,
+          "frame_bytes": 48
+        },
+        "func_800C26C4": {
+          "comparison": {
+            "differing": 0,
+            "total": 160,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 640,
+          "frame_bytes": 48
+        },
+        "func_800C2430": {
+          "comparison": {
+            "differing": 0,
+            "total": 165,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 660,
+          "frame_bytes": 48
+        },
+        "func_800C1B60": {
+          "comparison": {
+            "differing": 0,
+            "total": 297,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 1188,
+          "frame_bytes": 32
+        },
+        "func_800C2004": {
+          "comparison": {
+            "differing": 0,
+            "total": 130,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 520,
+          "frame_bytes": 24
+        },
+        "func_800C220C": {
+          "comparison": {
+            "differing": 0,
+            "total": 131,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 524,
+          "frame_bytes": 24
+        },
+        "func_800C3578": {
+          "comparison": {
+            "differing": 0,
+            "total": 37,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 148,
+          "frame_bytes": 40
+        },
+        "camera_scene_manager": {
+          "comparison": {
+            "differing": 0,
+            "total": 614,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 2456,
+          "frame_bytes": 112
+        },
+        "func_80092278": {
+          "comparison": {
+            "differing": 0,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 232,
+          "frame_bytes": 24
+        },
+        "entity_flags_apply": {
+          "comparison": {
+            "differing": 0,
+            "total": 73,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 292,
+          "frame_bytes": 40
+        },
+        "high_scores_display": {
+          "comparison": {
+            "differing": 0,
+            "total": 117,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 468,
+          "frame_bytes": 40
+        },
+        "camera_target_track": {
+          "comparison": {
+            "differing": 0,
+            "total": 159,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 636,
+          "frame_bytes": 56
+        },
+        "camera_collision_check": {
+          "comparison": {
+            "differing": 0,
+            "total": 33,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 132,
+          "frame_bytes": 48
+        },
+        "func_800B61A8": {
+          "comparison": {
+            "differing": 0,
+            "total": 21,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 84,
+          "frame_bytes": 24
+        },
+        "func_8009211C": {
+          "comparison": {
+            "differing": 0,
+            "total": 87,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 348,
+          "frame_bytes": 0
+        },
+        "func_80091FBC": {
+          "comparison": {
+            "differing": 0,
+            "total": 88,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 352,
+          "frame_bytes": 0
+        },
+        "func_800CB718": {
+          "comparison": {
+            "differing": 0,
+            "total": 12,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 48,
+          "frame_bytes": 0
+        },
+        "debug_stats": {
+          "comparison": {
+            "differing": 85,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [
+              ".data+0x10 at +0xc",
+              ".data+0x10 at +0x10",
+              ".data+0x10 at +0x18",
+              ".data+0x10 at +0x2c",
+              ".data+0x4 at +0x44",
+              ".data+0x4 at +0x50",
+              ".data+0x0 at +0x54",
+              ".data+0x0 at +0x58",
+              ".data+0x0 at +0xe0",
+              ".data+0x0 at +0xe4",
+              ".data+0x10 at +0xd0",
+              ".data+0x10 at +0xd8"
+            ],
+            "errors": [
+              "own .data+0x0: retail reads this one object at different addresses 0x41540000, 0x80114154",
+              "own .data+0x10: retail reads this one object at different addresses 0x27440000, 0x8011415C"
+            ],
+            "extra_words": 0
+          },
+          "symbol_bytes": 536,
+          "frame_bytes": 24
+        },
+        "debug_collision": {
+          "comparison": {
+            "differing": 3,
+            "total": 133,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 532,
+          "frame_bytes": 48
+        },
+        "func_800FCDF0": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD00C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD014": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        },
+        "func_800FD01C": {
+          "comparison": {
+            "differing": 0,
+            "total": 2,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "symbol_bytes": 8,
+          "frame_bytes": 0
+        }
+      },
+      "semantic_rejection": "independent field/event model mismatch"
+    }
+  },
+  "layout": {
+    "facts": {
+      "model_stride": 2056,
+      "model_slot": 1990,
+      "model_slot_width": 2,
+      "player_stride": 76,
+      "player_slot": 0,
+      "player_slot_width": 1,
+      "player_capacity": 4,
+      "inited_width": 1,
+      "ready_width": 1,
+      "track_width": 2,
+      "windows_width": 2,
+      "cars_width": 1,
+      "blit_pointer_width": 4
+    },
+    "compiled_negative_values": {
+      "model_slot": [
+        2054,
+        1988,
+        2,
+        76,
+        0,
+        1,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1,
+        4
+      ],
+      "player_stride": [
+        2056,
+        1990,
+        2,
+        80,
+        0,
+        1,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1,
+        4
+      ],
+      "player_capacity": [
+        2056,
+        1990,
+        2,
+        76,
+        0,
+        1,
+        5,
+        1,
+        1,
+        2,
+        2,
+        1,
+        4
+      ]
+    }
+  },
+  "canonical_or_ROM_verification": false
+}

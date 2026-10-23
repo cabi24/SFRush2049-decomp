@@ -1,0 +1,64 @@
+{
+  "reviewer": "independent UI lane",
+  "reviewed_at_utc": "2026-10-17T21:10:18Z",
+  "scope": "Source-bound research review; empty claims and zero accepted image credit.",
+  "receipt_sha256": "955613e91af4b9c5d7e265c96adaa372596adb69776a173112d92ba17cf24be0",
+  "trace_receipt_sha256": "8c9d721927cc0d5bb209fea071de98b44729a8567f6e9c6c481c067ae767a501",
+  "source_sha256": {
+    "behavior.py": "950b9240848f9156e1333f1da8e64c5ac5fdc86ba5866a1b897d27e7c06f359a",
+    "group/camera_collision_check.c": "eb89e25e737829315e64527a18277bde4aa418a6650ac6392db7cb82a297f175",
+    "group/demo.c": "5b08b76284d33b3f0405287d80ce69ad2235a9f8eafc6698f6facc0690315ae2",
+    "group/frontier_camera_scene_manager_group.c": "4f12e9a89180ea777e1e3239dfdd0c1132f7920cbb17517f37aacc2b4cfcb83b",
+    "group/frontier_camera_target_track_group.c": "8a0d199baa20a1be6229d928ad54ca24a5978ef357f96c10d5491a062c09c0fe",
+    "group/frontier_car_checkpoints_car_setup_confirm.c": "9cf75c694ab4d7b38687854ae86744ecab2535e336f08e62caa1066b7021c149",
+    "group/frontier_car_checkpoints_func_800B61A8.c": "b7b3b7c5850442de81c28724adbaa53bde177a204c348d084b5a23d833391bb0",
+    "group/frontier_car_checkpoints_func_800D1AB0.c": "b9e5a26c4ca99b97389ec4111558f7c824902a55531d0c9a14b03aca98a60f67",
+    "group/frontier_car_checkpoints_func_800F8EC8.c": "4d3e0ec991ee2562d8a35dcf967509b2e0b06376e9c38fe33331c333844a1ee6",
+    "group/frontier_path_D169C_path.c": "98870beadc918e6755f4e723c9767e86402ee7e5c0ac4b0d60ccb0ba18cf1592",
+    "group/func_800CB718.c": "cb2a05d42337d09e928ac6168b5a187b24ca1482638c2b3cc2fdc3866e626f8e",
+    "group/group.json": "064ab0cfacf11955d3a149338c88fab03d367df71c056370ffae571a56f64c78",
+    "group/race_tail.c": "4494b1aa2c79cd2a6982c22c46ad6eac18576dcd6f42e359fe529c8a090b2a71",
+    "group/render_large_objects_group.c": "53683ddea35baea59cd654425398d56f4af932aa238ba42ec3198c39c076f586",
+    "layout.py": "06bc789bbabf93f4922fe2ec47e5eb54bc0600d5ba1146c79e95c3503e8a56fd",
+    "relocate.py": "12b636328e8ad37b405b0a4432ea82ca70c1ebe938a21e4651aeed098b567bef",
+    "trace.py": "18c9c8898c4cfa72d54aafcf192e54cdb892537e945b16951be0fd43a3ecfd22",
+    "verify.py": "2abd5b3ffb567f182d69100442238e4928c7938a9bcc14b89be3613e10522de1"
+  },
+  "test_file_sha256": "f983b1c96bcc87fc32fc3119365572e41341a3ec49d5e43801f2eae50853e79f",
+  "readme_sha256": "d04d0cb8f6e8a69dc6ea55cd0e52fef2e31ebe01087547e568ea52b072bb1c54",
+  "baseline_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "blob_matched.lock.json": "013d19268dd4f52c9096341cde6a530edb7b1113993c922fbcb03ce763e1d884"
+  },
+  "checks": {
+    "fresh_normal_sealed_replay": "PASS",
+    "fresh_optimized_sealed_replay": "PASS",
+    "normal_optimized_cli_outputs_identical": true,
+    "all_31_member_receipts": "PASS",
+    "all_29_preserved_native_bodies": "strict exact",
+    "helper": "strict 532 bytes; owned data verified",
+    "caller": "3/133, frame 48, fixed residual offsets retained",
+    "seven_full_group_builds": "PASS",
+    "bounded_independent_model": "768 cases, 1536 native/candidate executions; full reachable instruction coverage",
+    "layout": "13 facts, three negatives",
+    "semantic_negatives": 3,
+    "optimized_integrity_refusals": 10,
+    "direct_shallow_path_acceptance_and_false_credit_refusal": "PASS under normal and optimized test invocation",
+    "all_three_focused_tests": "PASS, actual test functions invoked directly with temporary paths because pytest is not installed",
+    "full_stock_and_instrumented_objects_identical": true,
+    "object_sha256": "cc632dd0c372c080f26c5424c97f7d24cffeaab90cdf119092717229ca8091d9"
+  },
+  "reviewed_boundaries": [
+    "Original one-formal/two-actual unprototyped legacy source is disclosed as compiler-specific, not portable ISO C execution.",
+    "Deleted-helper names are inferred correspondences, not authenticated historical N64 names.",
+    "The five data-cell relocation mapping checks candidate extent and complete initialized storage before use; instructions are not filled from native words.",
+    "The independent fixture model, external event stubs, native layout checks, memory bounds/alignment and saved-register ABI checks are explicitly bounded and do not establish full runtime effects.",
+    "The unused argument residual blocks complete-group acceptance and new accepted bytes."
+  ],
+  "findings": [
+    "The initial shallow-path ROOT assumption was corrected. The final direct-/tmp positive and false-credit negative both pass. No C sources, compiled bodies or result counts changed."
+  ],
+  "canonical_installation_or_ROM_verification": false,
+  "signoff": "Suitable for narrow research-only draft publication within the disclosed scope."
+}
