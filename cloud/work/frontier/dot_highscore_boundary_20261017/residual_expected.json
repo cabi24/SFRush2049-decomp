@@ -1,0 +1,121 @@
+{
+  "DrawGhost": {
+    "constant_load_swap_sites": [],
+    "frame_gap_bytes": 8,
+    "owned_window_content": [
+      {
+        "bytes": 16,
+        "native_address": "0x80120654",
+        "object_offset": 40,
+        "relocated_table_entries": 0,
+        "section": ".rodata",
+        "sha256": "898e49d5644348e8dae8e586f94e048f1c98a0dded82326f22d7207d609ea887"
+      },
+      {
+        "bytes": 8,
+        "native_address": "0x80118e20",
+        "object_offset": 12,
+        "relocated_table_entries": 0,
+        "section": ".data",
+        "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975"
+      },
+      {
+        "bytes": 32,
+        "native_address": "0x80124880",
+        "object_offset": 104,
+        "relocated_table_entries": 8,
+        "section": ".rodata",
+        "sha256": "4848f8cca25c8f6428e98967e3af178478c8bcbd6e0744321832b3a917464b15"
+      },
+      {
+        "bytes": 16,
+        "native_address": "0x80120664",
+        "object_offset": 56,
+        "relocated_table_entries": 0,
+        "section": ".rodata",
+        "sha256": "898e49d5644348e8dae8e586f94e048f1c98a0dded82326f22d7207d609ea887"
+      }
+    ],
+    "stack_difference_sites": [
+      "0x0",
+      "0x1e0",
+      "0x2cc",
+      "0x530",
+      "0x5c4",
+      "0x614",
+      "0x7fc",
+      "0x82c",
+      "0x89c",
+      "0x958"
+    ],
+    "strict_differing": 10,
+    "unverified_sites": [
+      "0x1ec",
+      "0x1f0",
+      "0x2e4",
+      "0x2e8",
+      "0x380",
+      "0x384",
+      "0x548",
+      "0x54c",
+      "0x640",
+      "0x648",
+      "0x6c4",
+      "0x6cc"
+    ],
+    "whole_section_layout_accepted": false,
+    "words": 601
+  },
+  "highscore_animText": {
+    "constant_load_swap_sites": [
+      "0x5e4",
+      "0x5e8"
+    ],
+    "frame_gap_bytes": 24,
+    "owned_window_content": [
+      {
+        "bytes": 20,
+        "native_address": "0x801248a0",
+        "object_offset": 136,
+        "relocated_table_entries": 5,
+        "section": ".rodata",
+        "sha256": "64daccd28b4d069aace7ffc60e6426a135696cee93e32e813d3f838809bf2f63"
+      },
+      {
+        "bytes": 4,
+        "native_address": "0x80120674",
+        "object_offset": 72,
+        "relocated_table_entries": 0,
+        "section": ".rodata",
+        "sha256": "876f0615b4ba02af6b66da0bd9dc12d705ee74346063cf6629255ad305b3e445"
+      }
+    ],
+    "stack_difference_sites": [
+      "0x0",
+      "0x3c",
+      "0x16c",
+      "0x1bc",
+      "0x1d8",
+      "0x1dc",
+      "0x1e4",
+      "0x1e8",
+      "0x1f0",
+      "0x210",
+      "0x218",
+      "0x21c",
+      "0x220",
+      "0x2b4",
+      "0x2c4",
+      "0x6e8"
+    ],
+    "strict_differing": 18,
+    "unverified_sites": [
+      "0x58",
+      "0x60",
+      "0x3cc",
+      "0x3d8"
+    ],
+    "whole_section_layout_accepted": false,
+    "words": 445
+  }
+}
