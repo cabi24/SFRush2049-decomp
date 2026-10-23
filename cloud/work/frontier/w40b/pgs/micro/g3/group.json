@@ -1,0 +1,1 @@
+{"members": ["g3"], "files": ["ovl.c", "st.c"], "keep": ["g1", "g2", "g3", "InitB"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared"}

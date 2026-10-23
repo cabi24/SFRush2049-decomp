@@ -1,0 +1,105 @@
+Members:
+playgame_state_change:
+  MATCH
+    own .rodata verified at 0x80123FB4..0x80123FC0
+func_800CA2F8:
+  MATCH
+func_800C9150:
+  MATCH
+object_create:
+  MATCH
+func_800B42E8:
+  MATCH
+func_800B41B8:
+  MATCH
+
+Context (informational; excluded from exit status):
+display_enable:
+    +0x014  want 3c0f8012 lui t7,0x8012                 got 55c00046 bnezl t6,0x11c              
+    +0x018  want 55c00045 bnezl t6,0x118                got 8fbf0024 lw ra,36(sp)                
+    +0x01c  want 8fbf0024 lw ra,36(sp)                  got 3c138012 lui s3,0x8012               
+    +0x020  want 81efed04 lb t7,-4860(t7)               got 2673ed04 addiu s3,s3,-4860           
+    +0x024  want 3c128015 lui s2,0x8015                 got 826f0000 lb t7,0(s3)                 
+    +0x028  want 26522770 addiu s2,s2,10096             got 3c128015 lui s2,0x8015               
+    +0x02c  want 11e0000e beqz t7,0x3c                  got 26522770 addiu s2,s2,10096           
+    +0x030  want 02402025 move a0,s2                    got 11e0000d beqz t7,0x38                
+    +0x034  want 00002825 move a1,zero                  got 02402025 move a0,s2                  
+    +0x038  want 0c001c9c jal 0x7270                    got 00002825 move a1,zero                
+    +0x03c  want 24060001 li a2,1                       got 0c001c9c jal 0x7270                  
+    +0x040  want 3c058039 lui a1,0x8039                 got 24060001 li a2,1                     
+  55/79 words differ (10 section-relative relocations unverified: .data+0x0 at +0xc, .data+0x0 at +0x10, .rodata+0x8 at +0x68, .rodata+0x8 at +0x78, .data+0x0 at +0xb8, .data+0x0 at +0xc0, .data+0x0 at +0xc4, .data+0x0 at +0xc8, .data+0x0 at +0x124, .data+0x0 at +0x128; own .rodata+0x8 referenced at +0x78 differs from retail 0x80118012 (+0x0: retail 174c8012, got 53746172; 8 bytes compared))
+slot_state_setup:
+    +0x0b8  want 02724026 xor t0,s3,s2                  got 02722026 xor a0,s3,s2                
+    +0x0c0  want 0008402b sltu t0,zero,t0               got 0004202b sltu a0,zero,a0             
+  2/58 words differ
+speed_set:
+  MATCH
+speed_mode0_wrapper:
+  MATCH
+speed_mode1_wrapper:
+  MATCH
+continue_prompt:
+  MATCH
+vsync_wait:
+  MATCH
+func_800B5570:
+  MATCH
+PrevMaxPath:
+  MATCH
+InitMaxPath:
+  MATCH
+sync_maxpath_to_checkpoint:
+  MATCH
+NextMaxPath:
+  MATCH
+audio_reverb_update:
+  MATCH
+func_80095F8C:
+  MATCH
+func_80095EF4:
+  MATCH
+audio_effect_process:
+  MATCH
+synced_model_render:
+  MATCH
+MP_TargetSpeed:
+  MATCH
+assign_default_paths:
+  MATCH
+stat_race_end:
+  MATCH
+audio_buffer_sync:
+  MATCH
+object_counter_decrement:
+  MATCH
+object_counter_increment:
+  MATCH
+menu_item_select:
+  MATCH
+func_800C885C:
+  MATCH
+world_trigger_check:
+    +0x02c  want 3c0b8015 lui t3,0x8015                 got 3c0e8015 lui t6,0x8015               
+    +0x030  want 256b9da0 addiu t3,t3,-25184            got 3c0f8015 lui t7,0x8015               
+    +0x034  want 3c048015 lui a0,0x8015                 got 3c188015 lui t8,0x8015               
+    +0x038  want 3c058011 lui a1,0x8011                 got 27189b70 addiu t8,t8,-25744          
+    +0x03c  want 3c068015 lui a2,0x8015                 got 25ef9b60 addiu t7,t7,-25760          
+    +0x040  want 3c078015 lui a3,0x8015                 got 25ce9da0 addiu t6,t6,-25184          
+    +0x044  want 3c098015 lui t1,0x8015                 got 3c048015 lui a0,0x8015               
+    +0x048  want 3c0a8015 lui t2,0x8015                 got 3c058011 lui a1,0x8011               
+    +0x04c  want 254a9b70 addiu t2,t2,-25744            got 3c068015 lui a2,0x8015               
+    +0x050  want 25299b60 addiu t1,t1,-25760            got 3c078015 lui a3,0x8015               
+    +0x064  want 0c02d9d2 jal 0xb6748                   got afae0010 sw t6,16(sp)                
+    +0x068  want 01604025 move t0,t3                    got afaf0014 sw t7,20(sp)                
+  39/54 words differ (3 extra words (nonzero beyond target length))
+func_800B6748:
+    +0x028  want 2403ffff li v1,-1                      got a4e00000 sh zero,0(a3)               
+    +0x02c  want a4e00000 sh zero,0(a3)                 got 8fb80010 lw t8,16(sp)                
+    +0x030  want a1030000 sb v1,0(t0)                   got 2403ffff li v1,-1                    
+    +0x034  want a1230000 sb v1,0(t1)                   got a3030000 sb v1,0(t8)                 
+    +0x038  want 03e00008 jr ra                         got 8fb90014 lw t9,20(sp)                
+    +0x03c  want a1430000 sb v1,0(t2)                   got a3230000 sb v1,0(t9)                 
+  6/16 words differ (3 extra words (nonzero beyond target length))
+__standin_func_800B6748:
+  NOT VERIFIED (no target section .text.__standin_func_800B6748 in /home/cburnes/rush2049/scratch/frontier/w40b/asm/us/blob)
+rc=0

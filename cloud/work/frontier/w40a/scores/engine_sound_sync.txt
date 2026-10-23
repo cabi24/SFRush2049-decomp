@@ -1,0 +1,121 @@
+Members:
+engine_sound_sync:
+  MATCH
+audio_effect_setup:
+  MATCH
+func_80098ADC:
+  MATCH
+func_800988D8:
+  MATCH
+func_80098FB8:
+  MATCH
+entity_ai_pathfind:
+  MATCH
+    own .rodata verified at 0x80123A8C..0x80123ABC
+
+Context (informational; excluded from exit status):
+func_80091FBC:
+  MATCH
+func_8009211C:
+  MATCH
+audio_pitch_adjust:
+  MISMATCH (8 extra words (nonzero beyond target length))
+entity_flag_check:
+  MATCH
+func_80091AF0:
+  MATCH
+func_80091AF8:
+  MATCH
+entity_transform_calc:
+  MATCH
+client_sync:
+  MATCH
+entity_hierarchy_update:
+  MATCH
+stat_lap_complete:
+  MATCH
+game_timer_resume:
+  MATCH
+func_80091BA8:
+  MATCH
+func_80091B00:
+    +0x01c  want a06f0003 sb t7,3(v1)                   got 2418ffff li t8,-1                    
+    +0x020  want 2418ffff li t8,-1                      got a06f0003 sb t7,3(v1)                 
+    +0x03c  want a06e001b sb t6,27(v1)                  got 240fffff li t7,-1                    
+    +0x040  want 240fffff li t7,-1                      got a46f0018 sh t7,24(v1)                
+    +0x044  want a46f0018 sh t7,24(v1)                  got a06e001b sb t6,27(v1)                
+    +0x05c  want a0790033 sb t9,51(v1)                  got 240effff li t6,-1                    
+    +0x060  want 240effff li t6,-1                      got a46e0030 sh t6,48(v1)                
+    +0x064  want a46e0030 sh t6,48(v1)                  got a0790033 sb t9,51(v1)                
+    +0x07c  want a078004b sb t8,75(v1)                  got 2419ffff li t9,-1                    
+    +0x080  want 2419ffff li t9,-1                      got a4790048 sh t9,72(v1)                
+    +0x084  want a4790048 sh t9,72(v1)                  got a078004b sb t8,75(v1)                
+  11/42 words differ
+scheduler_recv:
+  MATCH
+func_80095198:
+  MATCH
+func_800986DC:
+  MISMATCH (2 extra words (nonzero beyond target length))
+exit=0
+===CLAIMS
+Members:
+func_80098FB8:
+  MATCH
+entity_ai_pathfind:
+  MATCH
+    own .rodata verified at 0x80123A8C..0x80123ABC
+
+Context (informational; excluded from exit status):
+engine_sound_sync:
+  MATCH
+audio_effect_setup:
+  MATCH
+func_80098ADC:
+  MATCH
+func_800988D8:
+  MATCH
+func_80091FBC:
+  MATCH
+func_8009211C:
+  MATCH
+audio_pitch_adjust:
+  MISMATCH (8 extra words (nonzero beyond target length))
+entity_flag_check:
+  MATCH
+func_80091AF0:
+  MATCH
+func_80091AF8:
+  MATCH
+entity_transform_calc:
+  MATCH
+client_sync:
+  MATCH
+entity_hierarchy_update:
+  MATCH
+stat_lap_complete:
+  MATCH
+game_timer_resume:
+  MATCH
+func_80091BA8:
+  MATCH
+func_80091B00:
+    +0x01c  want a06f0003 sb t7,3(v1)                   got 2418ffff li t8,-1                    
+    +0x020  want 2418ffff li t8,-1                      got a06f0003 sb t7,3(v1)                 
+    +0x03c  want a06e001b sb t6,27(v1)                  got 240fffff li t7,-1                    
+    +0x040  want 240fffff li t7,-1                      got a46f0018 sh t7,24(v1)                
+    +0x044  want a46f0018 sh t7,24(v1)                  got a06e001b sb t6,27(v1)                
+    +0x05c  want a0790033 sb t9,51(v1)                  got 240effff li t6,-1                    
+    +0x060  want 240effff li t6,-1                      got a46e0030 sh t6,48(v1)                
+    +0x064  want a46e0030 sh t6,48(v1)                  got a0790033 sb t9,51(v1)                
+    +0x07c  want a078004b sb t8,75(v1)                  got 2419ffff li t9,-1                    
+    +0x080  want 2419ffff li t9,-1                      got a4790048 sh t9,72(v1)                
+    +0x084  want a4790048 sh t9,72(v1)                  got a078004b sb t8,75(v1)                
+  11/42 words differ
+scheduler_recv:
+  MATCH
+func_80095198:
+  MATCH
+func_800986DC:
+  MISMATCH (2 extra words (nonzero beyond target length))
+exit=0

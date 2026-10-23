@@ -1,0 +1,18 @@
+  EQUAL playgame_state_change: 636 words (kept, c_state.c)
+  EQUAL object_create: 28 words (kept, c_halfont.c)
+  EQUAL func_800C9150: 2 words (internal, c_state.c)
+  EQUAL func_800CA2F8: 2 words (internal, c_state.c)
+  EQUAL func_800B41B8: 2 words (internal, c_halfont.c)
+  EQUAL func_800B42E8: 2 words (internal, c_halfont.c)
+  FAIL display_enable: 55 of 79 words differ; +0x78: own .rodata+0x1e8 (53746172) differs from the image at 0x80118012 (174c8012)
+       defined by c_state.c (internal)
+       +0x014  image 3c0f8012  unit 55c00046
+       +0x018  image 55c00045  unit 8fbf0024
+       +0x01c  image 8fbf0024  unit 3c138012
+       +0x020  image 81efed04  unit 2673ed04
+       +0x024  image 3c128015  unit 826f0000
+       +0x028  image 26522770  unit 3c128015
+       umerge inlined into it: sync_maxpath_to_checkpoint
+  EQUAL PrintScores: 396 words (internal, g_frontier_billboard_render__func_800F0914.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 7/8 equal; object build/blob_unit/w40b/unit.o (10.4s)

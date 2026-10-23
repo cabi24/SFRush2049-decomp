@@ -1,0 +1,21 @@
+Members:
+render_thread_entry:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800E7710:
+  MATCH
+func_800E6AF0:
+  MISMATCH (3 extra words (nonzero beyond target length))
+exit=0
+===CLAIMS
+Members:
+render_thread_entry:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800E7710:
+  MATCH
+func_800E6AF0:
+  MISMATCH (3 extra words (nonzero beyond target length))
+exit=0

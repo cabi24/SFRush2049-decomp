@@ -1,0 +1,64 @@
+Members:
+sound_bank_unload:
+  MATCH
+func_800B0EA0:
+  MATCH
+func_800B0F60:
+  MATCH
+
+Context (informational; excluded from exit status):
+audio_reverb_update:
+  MATCH
+audio_effect_process:
+  MATCH
+synced_model_render:
+  MATCH
+MP_TargetSpeed:
+  MATCH
+assign_default_paths:
+  MATCH
+stat_race_end:
+  MATCH
+NextMaxPath:
+  MATCH
+menu_item_select:
+  MATCH
+car_damage_visual:
+  MATCH
+func_800CB9D0:
+  MATCH
+car_angular_velocity_clamp:
+  MATCH
+PrevMaxPath:
+  MATCH
+InitMaxPath:
+  MATCH
+sync_maxpath_to_checkpoint:
+  MATCH
+func_800C885C:
+  MATCH
+wheel_params_set:
+  MATCH
+func_800C8918:
+  MATCH
+func_80091AF0:
+  MATCH
+func_80091AF8:
+  MATCH
+func_80096130:
+  MATCH
+game_late_init:
+  MATCH
+func_80095F8C:
+  MATCH
+func_80095EF4:
+  MATCH
+audio_buffer_sync:
+  MATCH
+object_counter_decrement:
+  MATCH
+object_counter_increment:
+  MATCH
+func_800A51D8:
+  MATCH
+builder: python3 tools/cloud/score.py group cand/g/w40a_carcolor --claims -> rc=0

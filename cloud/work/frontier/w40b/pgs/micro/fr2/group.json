@@ -1,0 +1,1 @@
+{"members": ["c0"], "files": ["a.c"], "keep": ["c0","c1","c4","c4k","e2"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared"}

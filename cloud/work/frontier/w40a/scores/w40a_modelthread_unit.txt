@@ -1,0 +1,3 @@
+  EQUAL render_thread_entry: 67 words (kept, c_modelthread.c); stub tail: 2 words of deleted-procedure stubs follow (NOT as in the image)
+  locked bodies that differ in this unit: 0
+blob_unit score: 1/1 equal; object build/blob_unit/w40a/unit.o (21.4s)

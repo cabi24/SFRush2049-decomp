@@ -1,0 +1,6 @@
+python3 -m tools.conveyor.pipeline.blob_unit --tag w40a score sound_bank_unload func_800B0EA0 func_800B0F60 --internal func_800B0EA0 --internal func_800B0F60 --internal SetModelPalette --with cloud/work/frontier/w40a/groups/w40a_carcolor/carcolor.c --neighbours
+  EQUAL sound_bank_unload: 312 words (kept, c_carcolor.c)
+  EQUAL func_800B0EA0: 48 words (internal, c_carcolor.c)
+  EQUAL func_800B0F60: 2 words (internal, c_carcolor.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 3/3 equal; object build/blob_unit/w40a/unit.o (9.1s)

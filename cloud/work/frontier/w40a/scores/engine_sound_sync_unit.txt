@@ -1,0 +1,9 @@
+  EQUAL entity_ai_pathfind: 545 words (kept, c_audiomgr_thread.c)
+  EQUAL func_80098FB8: 189 words (internal, c_audiomgr_thread.c)
+  EQUAL engine_sound_sync: 309 words (kept, g_engine_sound_sync__engine_sound_sync.c); stub tail: 4 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL audio_effect_setup: 46 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_800988D8: 95 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_80098ADC: 2 words (internal, g_engine_sound_sync__engine_sound_sync.c)
+  EQUAL func_800986DC: 13 words (kept, c_func_800986DC.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 7/7 equal; object build/blob_unit/w40a/unit.o (9.2s)

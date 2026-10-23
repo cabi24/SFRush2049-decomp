@@ -1,0 +1,14 @@
+# python3 cloud/work/frontier/w40a/tools/unit_extra.py --align render_thread_entry -- <same blob_unit args as combined_unit.txt>
+  EQUAL entity_ai_pathfind: 545 words (kept, c_audiomgr_thread.c)
+  EQUAL func_80098FB8: 189 words (internal, c_audiomgr_thread.c)
+  EQUAL engine_sound_sync: 309 words (kept, g_engine_sound_sync__engine_sound_sync.c); stub tail: 4 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL audio_effect_setup: 46 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_800988D8: 95 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_80098ADC: 2 words (internal, g_engine_sound_sync__engine_sound_sync.c)
+  EQUAL func_800986DC: 13 words (kept, c_func_800986DC.c)
+  EQUAL render_thread_entry: 67 words (kept, c_modelthread.c); stub tail: 2 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL sound_bank_unload: 312 words (kept, c_carcolor.c)
+  EQUAL func_800B0EA0: 48 words (internal, c_carcolor.c)
+  EQUAL func_800B0F60: 2 words (internal, c_carcolor.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 11/11 equal; object build/blob_unit/w40a/unit.o (12.8s)

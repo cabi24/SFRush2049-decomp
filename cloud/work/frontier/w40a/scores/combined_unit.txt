@@ -1,0 +1,21 @@
+# python3 -m tools.conveyor.pipeline.blob_unit --tag w40a score entity_ai_pathfind func_80098FB8 engine_sound_sync audio_effect_setup func_800988D8 func_80098ADC func_800986DC render_thread_entry sound_bank_unload func_800B0EA0 func_800B0F60 --internal func_80098FB8 --internal func_800B0EA0 --internal func_800B0F60 --internal SetModelPalette --with <G>/engine_sound_sync/audiomgr_thread.c --with <G>/engine_sound_sync/audio_effect_setup_b132.c --with <G>/engine_sound_sync/func_800986DC.c --with <G>/w40a_modelthread/modelthread.c --with <G>/w40a_carcolor/carcolor.c --neighbours   (G = cloud/work/frontier/w40a/groups)
+  EQUAL entity_ai_pathfind: 545 words (kept, c_audiomgr_thread.c)
+  EQUAL func_80098FB8: 189 words (internal, c_audiomgr_thread.c)
+  EQUAL engine_sound_sync: 309 words (kept, g_engine_sound_sync__engine_sound_sync.c); stub tail: 4 words of deleted-procedure stubs follow (NOT as in the image)
+  EQUAL audio_effect_setup: 46 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_800988D8: 95 words (internal, c_audio_effect_setup_b132.c)
+  EQUAL func_80098ADC: 2 words (internal, g_engine_sound_sync__engine_sound_sync.c)
+  EQUAL func_800986DC: 13 words (kept, c_func_800986DC.c)
+  FAIL render_thread_entry: 9 of 67 words differ; compiled body is 74 words, target 67
+       defined by c_modelthread.c (kept)
+       +0x0e8  image 8fbf002c  unit 00000000
+       +0x0ec  image 8fb00014  unit 00000000
+       +0x0f0  image 8fb10018  unit 00000000
+       +0x0f4  image 8fb2001c  unit 00000000
+       +0x0f8  image 8fb30020  unit 00000000
+       +0x0fc  image 8fb40024  unit 8fbf002c
+  EQUAL sound_bank_unload: 312 words (kept, c_carcolor.c)
+  EQUAL func_800B0EA0: 48 words (internal, c_carcolor.c)
+  EQUAL func_800B0F60: 2 words (internal, c_carcolor.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 10/11 equal; object build/blob_unit/w40a/unit.o (20.7s)
