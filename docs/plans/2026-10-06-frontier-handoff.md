@@ -860,6 +860,14 @@ leaving `src/blob/*.c` shrink the ground truth). PR review the same day: 33 stal
 #419 and #407 merged (`bd7c4d06f`), #413/#410/#417 harvested into `cloud/work/frontier/w41_inputs/` (local; their
 receipts pin moved files). `docs/dot_handoff_targets.csv` lists the 32 unmatched.
 
+**Wave 41, overlays (2026-10-23, lane w41b, integration commit `addfe547c`):** image B 43 → 44/49 (36,296 B, 93.77%):
+w36h_shots superseded in place (same name; shots.c + group.json) to claim func_8038FCD8, the AnimateCase helper
+deleted after inlining into ShotUpdate (Astra PR #419's form; ShotUpdate's root keeps only retail's locals because the
+inlined helper's 8 B + locals come out of the same frame). Not matched: image A func_8039842C 2/451 and image B
+func_80391B00 83/595 (holder) / 112/595 (Astra): each needs one more coloured expression web at a specific place in
+uopt's numbering (`w41b/9842C/sim.py` replays the spill-home allocator from the `spill.sh` log); image A func_803A44FC
+2/917 unchanged (as1 cross-block schedule). Lane w41a (game) still running.
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1

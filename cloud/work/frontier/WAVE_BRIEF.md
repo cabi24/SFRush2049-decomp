@@ -367,3 +367,15 @@ Method that worked on a far near-miss (674/787 words, 6 words short, five lanes 
 6. **A static inlined into its only caller still leaves its 8-byte stub at the end of its subtree** (initGameState =
    func_800CA2F8): use it to place the helper in the source.
 
+## 2026-10-23 lessons, part 2 (w41b: overlay spill homes)
+
+1. **The frame holds only the spill homes actually used.** uopt can number more homes than ugen places; the frame
+   is the locals area plus homes up to the highest used one. A one-slot spill difference (9842C: sp+120 vs 124) is a
+   home-numbering difference, not a frame-size one.
+2. **The home allocator is replayable** (`w41b/9842C/sim.py` from the `spill.sh` conflict log): search it for the
+   extra expression web retail must have had (which webs it conflicts with, where it is numbered), then look for the
+   source expression that creates it. 9842C, 91B00, 90DCC and A9088 all show this one systematic gap.
+3. **Inlining a helper costs the root its own locals**: umerge adds 8 B + the helper's locals, so a root that
+   matches retail's frame after inlining has fewer locals than the MAT3 text (ShotUpdate: two of nine are not N64
+   locals).
+
